@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ ** Copyright (C) 2012 The CyanogenMod Project
+ **
+ ** Licensed under the Apache License, Version 2.0 (the "License");
+ ** you may not use this file except in compliance with the License.
+ ** You may obtain a copy of the License at
+ **
+ **      http://www.apache.org/licenses/LICENSE-2.0
+ **
+ ** Unless required by applicable law or agreed to in writing, software
+ ** distributed under the License is distributed on an "AS IS" BASIS,
+ ** WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ ** See the License for the specific language governing permissions and
+ ** limitations under the License.-->
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+
+  <!-- The default background color -->
+  <color name="default_background">@android:color/white</color>
+
+  <!-- A black color with some transparency -->
+  <color name="black_transparent">#99000000</color>
+  <!-- A derivated blue from @android:color/holo_blue_light with some transparency -->
+  <color name="blue_transparent">#9933b5e5</color>
+
+  <!-- Disk usage total color -->
+  <color name="disk_usage_total">#7ecccccc</color>
+  <!-- Disk usage used color -->
+  <color name="disk_usage_used">#7e0099cc</color>
+
+  <!-- Relevance * Border color -->
+  <color name="relevance_border">#becccccc</color>
+  <!-- Relevance *  0% ~ 50% -->
+  <color name="relevance_percentil_25">#bee89338</color>
+  <!-- Relevance * 25% ~ 50% -->
+  <color name="relevance_percentil_50">#bee8e238</color>
+  <!-- Relevance * 50% ~ 75% -->
+  <color name="relevance_percentil_75">#be45bc6c</color>
+  <!-- Relevance * 75% ~ 100% -->
+  <color name="relevance_percentil_100">#be207da4</color>
+
+</resources>

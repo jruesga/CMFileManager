@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+ ** Copyright (C) 2012 The CyanogenMod Project
+ **
+ ** Licensed under the Apache License, Version 2.0 (the "License");
+ ** you may not use this file except in compliance with the License.
+ ** You may obtain a copy of the License at
+ **
+ **      http://www.apache.org/licenses/LICENSE-2.0
+ **
+ ** Unless required by applicable law or agreed to in writing, software
+ ** distributed under the License is distributed on an "AS IS" BASIS,
+ ** WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ ** See the License for the specific language governing permissions and
+ ** limitations under the License.
+-->
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+  package="com.cyanogenmod.explorer">
+
+  <original-package android:name="com.cyanogenmod.explorer" />
+
+  <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+  <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
+
+  <application
+    android:name="ExplorerApplication"
+    android:description="@string/app_description"
+    android:icon="@drawable/ic_launcher"
+    android:label="@string/app_name"
+    android:process=":main"
+    android:theme="@style/Explorer.Theme.Holo.Ligth" >
+
+    <meta-data
+      android:name="android.app.default_searchable"
+      android:value=".activities.NavigationActivity" />
+
+    <provider
+      android:name=".providers.RecentSearchesContentProvider"
+      android:authorities="com.cyanogenmod.explorer.providers.RecentSearchesContentProvider"
+      android:exported="false" />
+
+    <activity
+      android:name=".activities.NavigationActivity"
+      android:label="@string/app_name"
+      android:launchMode="singleTop"
+      android:uiOptions="none"
+      android:windowSoftInputMode="adjustNothing" >
+      <intent-filter>
+        <action android:name="android.intent.action.MAIN" />
+        <category android:name="android.intent.category.LAUNCHER" />
+        <category android:name="android.intent.category.DEFAULT" />
+      </intent-filter>
+      <intent-filter>
+        <action android:name="android.intent.action.SEARCH" />
+        <category android:name="android.intent.category.DEFAULT" />
+      </intent-filter>
+      <meta-data
+        android:name="android.app.searchable"
+        android:resource="@xml/searchable" />
+    </activity>
+
+    <activity
+      android:name=".activities.BookmarksActivity"
+      android:label="@string/bookmarks"
+      android:uiOptions="none"
+      android:windowSoftInputMode="adjustNothing" >
+    </activity>
+
+    <activity
+      android:name=".activities.HistoryActivity"
+      android:label="@string/history"
+      android:uiOptions="none"
+      android:windowSoftInputMode="adjustNothing" >
+    </activity>
+
+    <activity
+      android:name=".activities.SearchActivity"
+      android:label="@string/search"
+      android:launchMode="singleTop"
+      android:uiOptions="none"
+      android:windowSoftInputMode="adjustNothing" >
+    </activity>
+
+  </application>
+
+</manifest>

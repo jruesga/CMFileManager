@@ -1,0 +1,325 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+ ** Copyright (C) 2012 The CyanogenMod Project
+ **
+ ** Licensed under the Apache License, Version 2.0 (the "License");
+ ** you may not use this file except in compliance with the License.
+ ** You may obtain a copy of the License at
+ **
+ **      http://www.apache.org/licenses/LICENSE-2.0
+ **
+ ** Unless required by applicable law or agreed to in writing, software
+ ** distributed under the License is distributed on an "AS IS" BASIS,
+ ** WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ ** See the License for the specific language governing permissions and
+ ** limitations under the License.
+-->
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+
+  <!-- The name of the application -->
+  <string name="app_name">CMExplorer</string>
+  <!-- The description of the application -->
+  <string name="app_description">A CyanogenMod file manager.</string>
+
+  <!-- Human readable sizes -->
+  <string name="size_bytes" translatable="false">B </string>
+  <string name="size_kilobytes" translatable="false">Kb</string>
+  <string name="size_megabytes" translatable="false">Mb</string>
+  <string name="size_gigabytes" translatable="false">Gb</string>
+
+  <!-- Mount Point States -->
+  <string name="mount_point_readonly">RO</string>
+  <string name="mount_point_readwrite">RW</string>
+
+  <!-- Default buttons -->
+  <string name="ok">@android:string/ok</string>
+  <string name="cancel">@android:string/cancel</string>
+  <!-- @android:string/yes and @android:string/no in android are asigned to OK and Cancel.
+       Use a string with own yes and no string -->
+  <string name="yes">Yes</string>
+  <string name="no">No</string>
+
+  <!-- Consoles -->
+  <string name="non_privileged_console">Non-Privileged Console</string>
+  <string name="privileged_console">Privileged Console</string>
+
+  <!-- The root directory name -->
+  <string name="root_directory_name">&lt;Root directory&gt;</string>
+  <!-- The search result name -->
+  <string name="search_result_name">Search: <xliff:g id="terms">%1$s</xliff:g></string>
+
+  <!-- Messages titles -->
+  <string name="title_warning">Warning</string>
+  <string name="title_error">Error</string>
+  <string name="title_question">Question</string>
+
+  <!-- A console can't not be create. Without a console the application can't continue -->
+  <string name="msgs_cant_create_console">The application is not capable of create a console. The
+    application can\'t work without a console.</string>
+  <!-- The message show when a allocation of a privileged console fails, and a non
+       privileged is allocated -->
+  <string name="msgs_privileged_console_alloc_failed">A privileged console can\'t be allocated.\n
+    Changing to a non-privileged console.</string>
+  <!-- The operation to change to other kind of console failed -->
+  <string name="msgs_console_change_failed">Change to new type of console failed.</string>
+
+  <!-- The selected setting was not applied nor stored -->
+  <string name="msgs_settings_save_failure">The setting can\'t be stored or applied.</string>
+  <!-- The initial directory has an invalid directory -->
+  <string name="msgs_settings_invalid_initial_directory">Initial directory
+    "<xliff:g id="initial_dir">%1$s</xliff:g>" is invalid. Changing to root directory</string>
+
+  <!-- Success -->
+  <string name="msgs_success">The operation was completed successfully.</string>
+  <!-- Unknown error -->
+  <string name="msgs_unknown">An error was detected. The operation was unsuccessful.</string>
+  <!-- When an operation requires elevated privileged (normally because a non-privileged
+       was used) -->
+  <string name="msgs_insufficient_permissions">The operation requires elevated permissions. Try
+    to change to a privileged console.</string>
+  <!-- The file or directory was not found -->
+  <string name="msgs_file_not_found">The file or folder was not found.</string>
+  <!-- The command reference can't be created (not found or invalid definition)
+       (cause by a development error) -->
+  <string name="msgs_command_not_found">The operation\'s command is not found or has an
+    invalid definition.</string>
+  <!-- I/O exception -->
+  <string name="msgs_io_failed">Read/write failure.</string>
+  <!-- Operation timeout detected -->
+  <string name="msgs_operation_timeout">Operation timeout!</string>
+  <!-- The operation returns an invalid exit code -->
+  <string name="msgs_operation_failure">The operation failed</string>
+  <!-- A console can't not be allocated (FATAL. There is no way to execute commands) -->
+  <string name="msgs_console_alloc_failure">A privileged console can\'t be allocated.</string>
+  <!-- An operation can't not be cancelled -->
+  <string name="msgs_operation_can_not_be_cancelled">The operation can\'t be cancelled.</string>
+  <!-- An operation can't not be cancelled -->
+  <string name="msgs_read_only_filesystem">The filesystem is read-only. Try to mount the
+    filesystem as read-write before do a write operation.</string>
+
+  <!-- A message advise before close the application -->
+  <string name="msgs_push_again_to_exit">Push again back button to exit.</string>
+
+  <!-- An operation requires a read-write filesystem -->
+  <string name="advise_read_only_filesystem">The operation requires a read-write filesystem.\n\n
+    Do you want to remount the filesystem as read-write?</string>
+  <!-- An operation requires elevated privileged -->
+  <string name="advise_insufficient_permissions">The operation requires elevated privileged.\n\n
+    Do you want to change to a privileged console?</string>
+
+
+  <!-- The parent directory of the current directory in navigation view -->
+  <string name="parent_dir">Parent Directory</string>
+
+  <!-- ActionBar Buttons > FileSystem -->
+  <string name="actionbar_button_filesystem_cd">Filesystem info</string>
+  <!-- ActionBar Buttons > Navigation View Configuration -->
+  <string name="actionbar_button_configuration_cd">Configuration</string>
+  <!-- ActionBar Buttons > Sort Mode -->
+  <string name="actionbar_button_sort_mode_cd">Sort mode</string>
+  <!-- ActionBar Buttons > Layout Mode -->
+  <string name="actionbar_button_layout_mode_cd">Layout mode</string>
+  <!-- ActionBar Buttons > Other View Options -->
+  <string name="actionbar_button_other_view_options_cd">Other view options</string>
+  <!-- ActionBar Buttons > Close -->
+  <string name="actionbar_button_nav_close_cd">Close</string>
+  <!-- ActionBar Buttons > Done -->
+  <string name="actionbar_button_selection_done_cd">Done</string>
+  <!-- ActionBar Buttons > Actions -->
+  <string name="actionbar_button_actions_cd">Actions</string>
+  <!-- ActionBar Buttons > History -->
+  <string name="actionbar_button_history_cd">History</string>
+  <!-- ActionBar Buttons > Bookmarks -->
+  <string name="actionbar_button_bookmarks_cd">Bookmarks</string>
+  <!-- ActionBar Buttons > Search -->
+  <string name="actionbar_button_search_cd">Search</string>
+  <!-- ActionBar Buttons > Overflow -->
+  <string name="actionbar_button_overflow_cd">More options</string>
+
+  <!-- Sort by name (ascending) -->
+  <string name="sort_by_name_asc">By name (asc)</string>
+  <!-- Sort by name (descending) -->
+  <string name="sort_by_name_desc">By name (desc)</string>
+  <!-- Sort by date (ascending) -->
+  <string name="sort_by_date_asc">By date (asc)</string>
+  <!-- Sort by date (descending) -->
+  <string name="sort_by_date_desc">By date (desc)</string>
+
+  <!-- Layout * Icons -->
+  <string name="layout_icons">Icons</string>
+  <!-- Layout * Simple -->
+  <string name="layout_simple">Simple</string>
+  <!-- Layout * Details -->
+  <string name="layout_details">Details</string>
+
+  <!-- Show directories first -->
+  <string name="cm_explorer_show_dirs_first">Show directories first</string>
+  <!-- Show hidden files option -->
+  <string name="cm_explorer_show_hidden">Show hidden files</string>
+  <!-- Show system files option -->
+  <string name="cm_explorer_show_system">Show system files</string>
+  <!-- Show symlinks option -->
+  <string name="cm_explorer_show_symlinks">Show symlinks</string>
+
+  <!-- Filesystem Info (no data) -->
+  <string name="filesystem_info_warning_msg">There is no information about the filesystem</string>
+  <!-- Filesystem Info * Not allowed message -->
+  <string name="filesystem_info_mount_not_allowed_msg">Mount filesystem operation is not allowed
+    by a non-privileged console. Try to change to a privileged console.</string>
+  <!-- Filesystem Info * Mount failed -->
+  <string name="filesystem_info_mount_failed_msg">Mount filesystem operation failed.</string>
+  <!-- Filesystem Info Dialog * Title -->
+  <string name="filesystem_info_dialog_title">Filesystem Information</string>
+  <!-- Filesystem Info Dialog * Tab * Info -->
+  <string name="filesystem_info_dialog_tab_info">Info</string>
+  <!-- Filesystem Info Dialog * Tab * Disk Usage -->
+  <string name="filesystem_info_dialog_tab_disk_usage">Disk Usage</string>
+  <!-- Filesystem Info Dialog * Status Label -->
+  <string name="filesystem_info_dialog_status">Status:</string>
+  <!-- Filesystem Info Dialog * Mount Point Label -->
+  <string name="filesystem_info_dialog_mount_point">Mount Point:</string>
+  <!-- Filesystem Info Dialog * Device Label -->
+  <string name="filesystem_info_dialog_device">Device:</string>
+  <!-- Filesystem Info Dialog * Type Label -->
+  <string name="filesystem_info_dialog_type">Type:</string>
+  <!-- Filesystem Info Dialog * Options Label -->
+  <string name="filesystem_info_dialog_options">Options:</string>
+  <!-- Filesystem Info Dialog * Dump/Pass Label -->
+  <string name="filesystem_info_dialog_dump_pass">Dump / Pass:</string>
+  <!-- Filesystem Info Dialog * Total Disk Usage -->
+  <string name="filesystem_info_dialog_total_disk_usage">Total:</string>
+  <!-- Filesystem Info Dialog * Used Disk Usage -->
+  <string name="filesystem_info_dialog_used_disk_usage">Used:</string>
+  <!-- Filesystem Info Dialog * Free Disk Usage -->
+  <string name="filesystem_info_dialog_free_disk_usage">Free:</string>
+
+  <!-- Choose console dialog title -->
+  <string name="choose_console_dialog_title">Choose console</string>
+
+  <!-- History activity title -->
+  <string name="history">History</string>
+  <!-- The history is empty -->
+  <string name="msgs_history_empty">History is empty.</string>
+  <!-- The history references is not in the actual history list -->
+  <string name="msgs_history_unknown">Unknown history item.</string>
+
+  <!-- Search activity title -->
+  <string name="search">Search results</string>
+  <!-- Search hint message -->
+  <string name="search_hint">Type your search</string>
+  <!-- Voice search hint message -->
+  <string name="search_voice_hint">Talk your search</string>
+  <!-- Search error message -->
+  <string name="search_error_msg">An error occurred while searching. No results found.</string>
+  <!-- Search no results message -->
+  <string name="search_no_results_msg">No results found.</string>
+  <!-- Search found items -->
+  <plurals name="search_found_items">
+    <item quantity="zero">No items found</item>
+    <item quantity="one">1 item found</item>
+    <item quantity="other"><xliff:g id="count">%d</xliff:g> items found</item>
+  </plurals>
+  <!-- Message of items found in directory -->
+  <string name="search_found_items_in_directory"><xliff:g id="items">%1$s</xliff:g> in
+    <xliff:g id="path">%2$s</xliff:g></string>
+  <!-- Search query terms -->
+  <string name="search_terms">&lt;b>Terms:&lt;/b> <xliff:g id="terms">%1$s</xliff:g></string>
+  <!-- Some terms of the search are too small. The operation can be very costly -->
+  <string name="search_few_characters_msg">Some of terms of the search has few characters. In
+    this situation, the operation can be very costly in time and system resources.\n\n
+    Do you want to cancel the search?</string>
+
+  <!-- Searching dialog title -->
+  <string name="searching">Please, wait…</string>
+  <!-- Searching label -->
+  <string name="searching_action_label">Searching in progress</string>
+
+  <!-- Bookmarks activity title -->
+  <string name="bookmarks">Bookmarks</string>
+  <!-- Bookmark name * Home -->
+  <string name="bookmarks_home">Home</string>
+  <!-- Bookmark name * Root folder -->
+  <string name="bookmarks_root_folder">Root folder</string>
+  <!-- Bookmark name * System folder -->
+  <string name="bookmarks_system_folder">System folder</string>
+  <!-- Bookmark name * External Storage -->
+  <string name="bookmarks_external_storage">External storage</string>
+  <!-- Bookmark name * Button * Initial directory content description -->
+  <string name="bookmarks_button_config_cd">Set the initial directory</string>
+  <!-- Bookmark name * Button * Remove bookmark content description -->
+  <string name="bookmarks_button_remove_bookmark_cd">Remove the bookmarks</string>
+
+  <!-- Initial directory dialog title -->
+  <string name="initial_directory_dialog_title">Initial directory</string>
+  <!-- Initial directory label -->
+  <string name="initial_directory_label">Choose the initial directory:</string>
+  <!-- Initial directory text hint -->
+  <string name="initial_directory_text_hint">Type initial directory</string>
+  <!-- Initial directory is relative and this is not allowed -->
+  <string name="initial_directory_relative_msg">Relative paths are not allowed.</string>
+  <!-- Initial directory error message -->
+  <string name="initial_directory_error_msg">An error occurred while saving initial
+    directory\'s preference.</string>
+
+  <!-- Menu * History -->
+  <string name="menu_history">History</string>
+  <!-- Menu * Bookmarks -->
+  <string name="menu_bookmarks">Bookmarks</string>
+  <!-- Menu * Search -->
+  <string name="menu_search">Search</string>
+  <!-- Menu * Settings -->
+  <string name="menu_settings">Settings</string>
+  <!-- Menu * Console -->
+  <string name="menu_console">Select console</string>
+  <!-- Menu * Exit -->
+  <string name="menu_exit">Exit</string>
+
+
+  <!-- Actions Dialog * Title -->
+  <string name="actions_dialog_title">Actions</string>
+  <!-- Actions Dialog * Menu * New directory -->
+  <string name="actions_menu_new_directory">New folder</string>
+  <!-- Actions Dialog * Menu * New file -->
+  <string name="actions_menu_new_file">New file</string>
+  <!-- Actions Dialog * Menu * Select all -->
+  <string name="actions_menu_select_all">Select all</string>
+  <!-- Actions Dialog * Menu * Deselect all -->
+  <string name="actions_menu_deselect_all">Deselect all</string>
+  <!-- Actions Dialog * Menu * Select -->
+  <string name="actions_menu_select">Select</string>
+  <!-- Actions Dialog * Menu * Deselect -->
+  <string name="actions_menu_deselect">Deselect</string>
+  <!-- Actions Dialog * Menu * Copy selection -->
+  <string name="actions_menu_copy_selection">Copy selection</string>
+  <!-- Actions Dialog * Menu * Move selection -->
+  <string name="actions_menu_move_selection">Move selection</string>
+  <!-- Actions Dialog * Menu * Open -->
+  <string name="actions_menu_open">Open</string>
+  <!-- Actions Dialog * Menu * Open with -->
+  <string name="actions_menu_open_with">Open with</string>
+  <!-- Actions Dialog * Menu * Delete -->
+  <string name="actions_menu_delete">Delete</string>
+  <!-- Actions Dialog * Menu * Rename -->
+  <string name="actions_menu_rename">Rename</string>
+  <!-- Actions Dialog * Menu * Properties -->
+  <string name="actions_menu_properties">Properties</string>
+
+
+  <!-- Enter Name Dialog * Label -->
+  <string name="input_name_dialog_label">Name:</string>
+  <!-- Enter Name Dialog * Message * Empty name -->
+  <string name="input_name_dialog_message_empty_name">The name can\'t not be empty.</string>
+  <!-- Enter Name Dialog * Message * Invalid name -->
+  <string name="input_name_dialog_message_invalid_path_name">Invalid name. The characters
+    \'<xliff:g id="invalid_characters">%1$s</xliff:g>\' are not allowed.</string>
+  <!-- Enter Name Dialog * Message * Invalid name -->
+  <string name="input_name_dialog_message_invalid_name">Invalid name. The names \'.\' and
+    \'..\' are not allowed.</string>
+  <!-- Enter Name Dialog * Message * Name exists -->
+  <string name="input_name_dialog_message_name_exists">The namealready exists.</string>
+
+
+  <!-- Inline Autocomplete Widget * Tab message nothing to complete -->
+  <string name="inline_autocomplete_tab_nothing_to_complete_msg">Nothing to complete</string>
+
+</resources>

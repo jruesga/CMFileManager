@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+ ** Copyright (C) 2012 The CyanogenMod Project
+ **
+ ** Licensed under the Apache License, Version 2.0 (the "License");
+ ** you may not use this file except in compliance with the License.
+ ** You may obtain a copy of the License at
+ **
+ **      http://www.apache.org/licenses/LICENSE-2.0
+ **
+ ** Unless required by applicable law or agreed to in writing, software
+ ** distributed under the License is distributed on an "AS IS" BASIS,
+ ** WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ ** See the License for the specific language governing permissions and
+ ** limitations under the License.-->
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  android:layout_width="match_parent"
+  android:layout_height="wrap_content" >
+
+  <EditText
+    android:id="@+id/inline_autocomplete_bg_text"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_alignParentLeft="true"
+    android:ems="@integer/default_edit_text_ems"
+    android:gravity="top"
+    android:hint="@null"
+    android:inputType="none"
+    android:paddingLeft="@dimen/small_buttom_width"
+    android:singleLine="false"
+    android:textColor="@android:color/darker_gray"
+    android:textSize="@dimen/primary_text_size"
+    android:textStyle="normal" />
+
+  <EditText
+    android:id="@+id/inline_autocomplete_fg_text"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_alignBottom="@id/inline_autocomplete_bg_text"
+    android:layout_alignLeft="@id/inline_autocomplete_bg_text"
+    android:layout_alignParentLeft="true"
+    android:layout_alignRight="@id/inline_autocomplete_bg_text"
+    android:layout_alignTop="@id/inline_autocomplete_bg_text"
+    android:ems="@integer/default_edit_text_ems"
+    android:gravity="top"
+    android:hint="@null"
+    android:inputType="textNoSuggestions|textMultiLine"
+    android:imeOptions="actionDone"
+    android:paddingLeft="@dimen/small_buttom_width"
+    android:singleLine="false"
+    android:textColor="@color/black_transparent"
+    android:textSize="@dimen/primary_text_size"
+    android:textStyle="normal">
+    <requestFocus />
+  </EditText>
+
+  <com.cyanogenmod.explorer.ui.widgets.ButtonItem
+    android:id="@+id/inline_autocomplete_button_tab"
+    android:layout_width="@dimen/small_buttom_width"
+    android:layout_height="@dimen/small_buttom_width"
+    android:layout_alignBottom="@id/inline_autocomplete_bg_text"
+    android:layout_alignParentLeft="true"
+    android:layout_alignTop="@id/inline_autocomplete_bg_text"
+    android:layout_centerVertical="true"
+    android:contentDescription="@null"
+    android:src="@drawable/ic_holo_light_tab" />
+
+</RelativeLayout>

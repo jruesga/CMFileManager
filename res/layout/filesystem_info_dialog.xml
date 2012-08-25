@@ -1,0 +1,336 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+ ** Copyright (C) 2012 The CyanogenMod Project
+ **
+ ** Licensed under the Apache License, Version 2.0 (the "License");
+ ** you may not use this file except in compliance with the License.
+ ** You may obtain a copy of the License at
+ **
+ **      http://www.apache.org/licenses/LICENSE-2.0
+ **
+ ** Unless required by applicable law or agreed to in writing, software
+ ** distributed under the License is distributed on an "AS IS" BASIS,
+ ** WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ ** See the License for the specific language governing permissions and
+ ** limitations under the License.-->
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  android:layout_width="wrap_content"
+  android:layout_height="wrap_content" >
+
+  <!-- Tabs -->
+  <TableLayout
+    android:id="@+id/filesystem_tabs"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content" >
+
+    <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="@dimen/default_row_height" >
+
+      <TextView
+        android:id="@+id/filesystem_info_dialog_tab_info"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:background="@drawable/holo_selector"
+        android:clickable="true"
+        android:gravity="center_horizontal|center_vertical"
+        android:text="@string/filesystem_info_dialog_tab_info"
+        android:textAllCaps="true"
+        android:textAppearance="@style/primary_text_appearance" />
+
+      <include layout="@layout/horizontal_divider" />
+
+      <TextView
+        android:id="@+id/filesystem_info_dialog_tab_disk_usage"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:background="@drawable/holo_selector"
+        android:clickable="true"
+        android:gravity="center_horizontal|center_vertical"
+        android:text="@string/filesystem_info_dialog_tab_disk_usage"
+        android:textAllCaps="true"
+        android:textAppearance="@style/primary_text_appearance" />
+    </LinearLayout>
+
+    <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content" >
+
+      <include layout="@layout/vertical_divider" />
+    </LinearLayout>
+  </TableLayout>
+
+  <!-- Info -->
+  <TableLayout
+    android:id="@+id/filesystem_tab_info"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_below="@id/filesystem_tabs"
+    android:paddingBottom="@dimen/extra_large_margin"
+    android:paddingTop="@dimen/default_margin" >
+
+    <!-- Mount Point -->
+    <TableRow
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_marginLeft="@dimen/extra_large_margin"
+      android:layout_marginRight="@dimen/extra_large_margin" >
+
+      <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/default_margin"
+        android:gravity="left|center_vertical"
+        android:text="@string/filesystem_info_dialog_status"
+        android:textAppearance="@style/primary_text_appearance" />
+
+      <Switch
+        android:id="@+id/filesystem_info_status"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="left"
+        android:layout_margin="@dimen/default_margin"
+        android:textOff="@string/mount_point_readonly"
+        android:textOn="@string/mount_point_readwrite" />
+    </TableRow>
+
+    <!-- Mount Point -->
+    <TableRow
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_marginLeft="@dimen/extra_large_margin"
+      android:layout_marginRight="@dimen/extra_large_margin" >
+
+      <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/default_margin"
+        android:gravity="left|center_vertical"
+        android:text="@string/filesystem_info_dialog_mount_point"
+        android:textAppearance="@style/primary_text_appearance" />
+
+      <TextView
+        android:id="@+id/filesystem_info_mount_point"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/default_margin"
+        android:gravity="left|center_vertical"
+        android:textAppearance="@style/secondary_text_appearance" />
+    </TableRow>
+
+    <!-- Device -->
+    <TableRow
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_marginLeft="@dimen/extra_large_margin"
+      android:layout_marginRight="@dimen/extra_large_margin" >
+
+      <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/default_margin"
+        android:gravity="left|center_vertical"
+        android:text="@string/filesystem_info_dialog_device"
+        android:textAppearance="@style/primary_text_appearance" />
+
+      <TextView
+        android:id="@+id/filesystem_info_device"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/default_margin"
+        android:gravity="left|center_vertical"
+        android:textAppearance="@style/secondary_text_appearance" />
+    </TableRow>
+
+    <!-- Type -->
+    <TableRow
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_marginLeft="@dimen/extra_large_margin"
+      android:layout_marginRight="@dimen/extra_large_margin" >
+
+      <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/default_margin"
+        android:gravity="left|top"
+        android:text="@string/filesystem_info_dialog_type"
+        android:textAppearance="@style/primary_text_appearance" />
+
+      <TextView
+        android:id="@+id/filesystem_info_type"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/default_margin"
+        android:gravity="left|center_vertical"
+        android:textAppearance="@style/secondary_text_appearance" />
+    </TableRow>
+
+    <!-- Options -->
+    <TableRow
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_marginLeft="@dimen/extra_large_margin"
+      android:layout_marginRight="@dimen/extra_large_margin" >
+
+      <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/default_margin"
+        android:gravity="left|center_vertical"
+        android:text="@string/filesystem_info_dialog_options"
+        android:textAppearance="@style/primary_text_appearance" />
+
+      <TextView
+        android:id="@+id/filesystem_info_options"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/default_margin"
+        android:gravity="left|center_vertical"
+        android:singleLine="false"
+        android:textAppearance="@style/secondary_text_appearance" />
+    </TableRow>
+
+    <!-- Dump/Pass -->
+    <TableRow
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_marginLeft="@dimen/extra_large_margin"
+      android:layout_marginRight="@dimen/extra_large_margin" >
+
+      <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/default_margin"
+        android:gravity="left|center_vertical"
+        android:text="@string/filesystem_info_dialog_dump_pass"
+        android:textAppearance="@style/primary_text_appearance" />
+
+      <TextView
+        android:id="@+id/filesystem_info_dump_pass"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/default_margin"
+        android:gravity="left|center_vertical"
+        android:textAppearance="@style/secondary_text_appearance" />
+    </TableRow>
+
+    <!-- Info message -->
+    <TextView
+      android:id="@+id/filesystem_info_msg"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_gravity="center_vertical"
+      android:layout_marginLeft="@dimen/extra_large_margin"
+      android:layout_marginRight="@dimen/extra_large_margin"
+      android:contentDescription="@null"
+      android:drawableLeft="@drawable/ic_holo_light_fs_warning"
+      android:drawablePadding="@dimen/default_margin"
+      android:gravity="left|center_vertical"
+      android:singleLine="false"
+      android:text="@string/filesystem_info_mount_not_allowed_msg"
+      android:textAppearance="@style/secondary_text_appearance"
+      android:textSize="@dimen/note_text_size"
+      android:visibility="gone" />
+  </TableLayout>
+
+  <!-- Disk Usage -->
+  <RelativeLayout
+    android:id="@+id/filesystem_tab_diskusage"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_below="@id/filesystem_tabs"
+    android:visibility="gone" >
+
+    <com.cyanogenmod.explorer.ui.widgets.DiskUsageGraph
+      android:id="@+id/filesystem_disk_usage_graph"
+      android:layout_width="50dp"
+      android:layout_height="50dp"
+      android:layout_alignParentLeft="true"
+      android:layout_centerVertical="true"
+      android:layout_margin="@dimen/extra_large_margin" />
+
+    <TableLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_toRightOf="@id/filesystem_disk_usage_graph"
+      android:paddingBottom="@dimen/extra_large_margin"
+      android:paddingTop="@dimen/default_margin" >
+
+      <!-- Total -->
+      <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/extra_large_margin"
+        android:layout_marginRight="@dimen/extra_large_margin" >
+
+        <TextView
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_margin="@dimen/default_margin"
+          android:gravity="left|center_vertical"
+          android:text="@string/filesystem_info_dialog_total_disk_usage"
+          android:textAppearance="@style/primary_text_appearance" />
+
+        <TextView
+          android:id="@+id/filesystem_info_total_disk_usage"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_margin="@dimen/default_margin"
+          android:gravity="left|center_vertical"
+          android:textAppearance="@style/secondary_text_appearance" />
+      </TableRow>
+
+      <!-- Used -->
+      <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/extra_large_margin"
+        android:layout_marginRight="@dimen/extra_large_margin" >
+
+        <TextView
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_margin="@dimen/default_margin"
+          android:gravity="left|center_vertical"
+          android:text="@string/filesystem_info_dialog_used_disk_usage"
+          android:textAppearance="@style/primary_text_appearance" />
+
+        <TextView
+          android:id="@+id/filesystem_info_used_disk_usage"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_margin="@dimen/default_margin"
+          android:gravity="left|center_vertical"
+          android:textAppearance="@style/secondary_text_appearance" />
+      </TableRow>
+
+      <!-- Free -->
+      <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/extra_large_margin"
+        android:layout_marginRight="@dimen/extra_large_margin" >
+
+        <TextView
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_margin="@dimen/default_margin"
+          android:gravity="left|center_vertical"
+          android:text="@string/filesystem_info_dialog_free_disk_usage"
+          android:textAppearance="@style/primary_text_appearance" />
+
+        <TextView
+          android:id="@+id/filesystem_info_free_disk_usage"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_margin="@dimen/default_margin"
+          android:gravity="left|center_vertical"
+          android:textAppearance="@style/secondary_text_appearance" />
+      </TableRow>
+    </TableLayout>
+  </RelativeLayout>
+
+</RelativeLayout>

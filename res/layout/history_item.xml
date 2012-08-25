@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ ** Copyright (C) 2012 The CyanogenMod Project
+ **
+ ** Licensed under the Apache License, Version 2.0 (the "License");
+ ** you may not use this file except in compliance with the License.
+ ** You may obtain a copy of the License at
+ **
+ **      http://www.apache.org/licenses/LICENSE-2.0
+ **
+ ** Unless required by applicable law or agreed to in writing, software
+ ** distributed under the License is distributed on an "AS IS" BASIS,
+ ** WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ ** See the License for the specific language governing permissions and
+ ** limitations under the License.-->
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  android:layout_width="wrap_content"
+  android:layout_height="@dimen/default_row_height"
+  android:background="@drawable/holo_selector" >
+
+  <ImageView
+    android:id="@+id/history_item_icon"
+    android:layout_width="@dimen/default_row_height"
+    android:layout_height="match_parent"
+    android:contentDescription="@null"
+    android:gravity="center_horizontal|center_vertical"
+    android:paddingLeft="@dimen/extra_margin"
+    android:src="@null" />
+
+  <TextView
+    android:id="@+id/history_item_position"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_alignParentRight="true"
+    android:layout_centerVertical="true"
+    android:layout_marginLeft="@dimen/default_margin"
+    android:layout_marginTop="@dimen/default_margin"
+    android:paddingRight="@dimen/extra_margin"
+    android:singleLine="true"
+    android:textAppearance="@style/primary_text_appearance"
+    android:textStyle="normal" />
+
+  <RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_toLeftOf="@id/history_item_position"
+    android:layout_toRightOf="@id/history_item_icon" >
+
+    <TextView
+      android:id="@+id/history_item_name"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_alignParentLeft="true"
+      android:layout_alignParentTop="true"
+      android:layout_marginLeft="@dimen/default_margin"
+      android:layout_marginTop="@dimen/default_margin"
+      android:singleLine="true"
+      android:textAppearance="@style/primary_text_appearance" />
+
+    <TextView
+      android:id="@+id/history_item_directory"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_alignParentBottom="true"
+      android:layout_alignParentLeft="true"
+      android:layout_marginBottom="@dimen/default_margin"
+      android:layout_marginLeft="@dimen/default_margin"
+      android:singleLine="true"
+      android:textAppearance="@style/secondary_text_appearance" />
+  </RelativeLayout>
+
+</RelativeLayout>

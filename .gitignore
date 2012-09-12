@@ -1,0 +1,8 @@
+/.settings
+/bin
+/gen
+/.checkstyle
+/.classpath
+/.project
+/lint.xml
+/project.properties

@@ -327,7 +327,7 @@ public class BookmarksActivity extends Activity implements OnItemClickListener, 
 
         try {
             //Recovery sdcards from storage manager
-            //IMP!! Android SDK doesn't have a "getVolumeList" but is supported by CM9.
+            //IMP!! Android SDK doesn't have a "getVolumeList" but is supported by CM10.
             //Use reflect to get this value (if possible)
             StorageManager sm = (StorageManager) getSystemService(Context.STORAGE_SERVICE);
             Method method = sm.getClass().getMethod("getVolumeList"); //$NON-NLS-1$
@@ -337,13 +337,13 @@ public class BookmarksActivity extends Activity implements OnItemClickListener, 
                     bookmarks.add(
                             new Bookmark(
                                     BOOKMARK_TYPE.USB,
-                                    volumes[i].getDescription(),
+                                    getStorageVolumeDescription(volumes[i]),
                                     volumes[i].getPath()));
                 } else {
                     bookmarks.add(
                             new Bookmark(
                                     BOOKMARK_TYPE.SDCARD,
-                                    volumes[i].getDescription(),
+                                    getStorageVolumeDescription(volumes[i]),
                                     volumes[i].getPath()));
                 }
             }
@@ -385,6 +385,34 @@ public class BookmarksActivity extends Activity implements OnItemClickListener, 
 
         //No data
         return new ArrayList<Bookmark>();
+    }
+
+    /**
+     * Method that returns the storage volume description. This method uses
+     * reflection to retrieve the description because CM10 has a {@link Context}
+     * as first parameter, that AOSP hasn't.
+     *  
+     * @param volume The storage volume
+     * @return String The description of the storage volume
+     */
+    private String getStorageVolumeDescription(StorageVolume volume) {
+        try {
+            Method method = volume.getClass().getMethod(
+                                            "getDescription", //$NON-NLS-1$
+                                            new Class[]{Context.class});
+            if (method == null) {
+                // AOSP
+                method = volume.getClass().getMethod("getDescription"); //$NON-NLS-1$
+                return (String)method.invoke(volume);
+            }
+
+            // CM10
+            return (String)method.invoke(volume, (Context)getApplication());
+            
+        } catch (Throwable _throw) {
+            // Returns the volume storage path
+            return volume.getPath();
+        }
     }
 
     /**

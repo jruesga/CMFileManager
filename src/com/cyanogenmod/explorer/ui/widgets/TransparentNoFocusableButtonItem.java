@@ -66,6 +66,6 @@ public class TransparentNoFocusableButtonItem extends NoFocusableButtonItem {
      */
     private void init() {
         //Remove focus
-        setBackgroundDrawable(null);
+        setBackground(null);
     }
 }

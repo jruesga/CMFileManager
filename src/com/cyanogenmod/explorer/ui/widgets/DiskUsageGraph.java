@@ -79,11 +79,14 @@ public class DiskUsageGraph extends View {
      * @param diskUsage The disk usage
      */
     public void drawDiskUsage(DiskUsage diskUsage) {
+        // Clear if a current drawing exit
         if (this.mThread != null) {
             this.mThread.exit();
         }
         this.mDrawingObjects.clear();
         invalidate();
+
+        // Start drawing thread
         this.mThread = new AnimationDrawingThread(diskUsage);
         this.mThread.start();
     }
@@ -162,22 +165,21 @@ public class DiskUsageGraph extends View {
                     if (this.mIndex == 0 && dwo == null) {
                         //Initialize the total arc circle
                         DiskUsageGraph.this.mDrawingObjects.add(
-                                createDrawingObject(rect, R.color.disk_usage_total));
+                                createDrawingObject(rect, R.color.disk_usage_total, stroke));
                         continue;
                     }
                     if (this.mIndex == 1 && dwo == null) {
                         //Initialize the used arc circle
                         DiskUsageGraph.this.mDrawingObjects.add(
-                                createDrawingObject(rect, R.color.disk_usage_used));
+                                createDrawingObject(rect, R.color.disk_usage_used, stroke));
                         continue;
                     }
 
                     //Redraw the canvas
-                    final Rect r = rect;
                     post(new Runnable() {
                         @Override
                         public void run() {
-                            invalidate(r);
+                            invalidate();
                         }
                     });
 
@@ -234,14 +236,15 @@ public class DiskUsageGraph extends View {
          *
          * @param rect The area of drawing
          * @param colorResourceId The resource identifier of the color
+         * @param stroke The stroke width
          * @return DrawingObject The drawing object
          */
         @SuppressWarnings("synthetic-access")
-        private DrawingObject createDrawingObject(Rect rect, int colorResourceId) {
+        private DrawingObject createDrawingObject(Rect rect, int colorResourceId, int stroke) {
             DrawingObject out = new DrawingObject();
             out.mSweepAngle = 0;
             out.mPaint.setColor(getContext().getResources().getColor(colorResourceId));
-            out.mPaint.setStrokeWidth((rect.width() / 2) / 2);
+            out.mPaint.setStrokeWidth(stroke);
             out.mPaint.setAntiAlias(true);
             out.mPaint.setStrokeCap(Paint.Cap.BUTT);
             out.mPaint.setStyle(Paint.Style.STROKE);

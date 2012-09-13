@@ -380,9 +380,9 @@ public abstract class ShellConsole extends Console {
 
             //Random exit identifiers
             String exitId1 =
-                    String.format("/#%d#/", new Long(this.mRandom.nextLong())); //$NON-NLS-1$
+                    String.format("/#%d#/", Long.valueOf(this.mRandom.nextLong())); //$NON-NLS-1$
             String exitId2 =
-                    String.format("/#%d#/", new Long(this.mRandom.nextLong())); //$NON-NLS-1$
+                    String.format("/#%d#/", Long.valueOf(this.mRandom.nextLong())); //$NON-NLS-1$
 
             //Create command string
             String cmd = program.getCommand();

@@ -78,7 +78,6 @@ public abstract class Console implements AsyncResultExecutable.OnCancelListener 
     * @throws CommandNotFoundException If the executable program was not found
     * @throws ExecutionException If the operation returns a invalid exit code
     * @throws ReadOnlyFilesystemException If the operation writes in a read-only filesystem
-    *
     */
    public abstract void execute(final Executable executable)
            throws ConsoleAllocException, InsufficientPermissionsException, NoSuchFileOrDirectory,

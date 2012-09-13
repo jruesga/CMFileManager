@@ -26,12 +26,12 @@
      with the expected command for retrieve the exit code of the executed command
 -->
 <CommandList xmlns:androcommandId="http://schemas.android.com/apk/res/android">
-  <!-- Exit code (append to commands and used for retrieve the exit code) -->
+  <!-- Exit code (append to commands; for retrieve the exit code) -->
   <exitcode commandId="exitcode" commandPath=" ; /system/xbin/echo %1$s$?%2$s" />
 
   <!-- Shell commands -->
   <command commandId="bash" commandPath="/system/bin/sh" commandArgs="" />
-  <command commandId="su" commandPath="/system/xbin/su" commandArgs="-c %1$s" />
+  <command commandId="su" commandPath="/system/xbin/su" commandArgs="" />
 
   <!-- Program Comamnds -->
   <command commandId="cd" commandPath="cd" commandArgs="%1$s" />

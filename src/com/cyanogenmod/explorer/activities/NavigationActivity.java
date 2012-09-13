@@ -242,6 +242,7 @@ public class NavigationActivity extends Activity
             navigationViews[i] = this.mNavigationViews[i].onSaveState();
         }
         parcel.setNavigationViews(navigationViews);
+        state.putInt("currentNavigationView", this.mCurrentNavigationView); //$NON-NLS-1$
         //-
         parcel.setHistoryInfo(this.mHistory);
 
@@ -269,8 +270,14 @@ public class NavigationActivity extends Activity
                 for (int i = 0; i < navigationViews.length; i++) {
                     if (navigationViews[i] != null) {
                         this.mNavigationViews[i].onRestoreState(navigationViews[i]);
+                    } else {
+                        // Load a default one
+                        this.mNavigationViews[i] =
+                                (NavigationView)findViewById(R.id.navigation_view);
+                        this.mNavigationViews[i].setId(i);
                     }
                 }
+                this.mCurrentNavigationView = state.getInt("currentNavigationView"); //$NON-NLS-1$
 
                 //-
                 this.mHistory = info.getHistoryInfo();
@@ -718,7 +725,7 @@ public class NavigationActivity extends Activity
                                         getBoolean(
                                             setting.getId(),
                                             ((Boolean)setting.getDefaultValue()).booleanValue());
-                            Preferences.savePreference(setting, new Boolean(!newval), false);
+                            Preferences.savePreference(setting, Boolean.valueOf(!newval), false);
                         }
                         getCurrentNavigationView().refresh();
                     }

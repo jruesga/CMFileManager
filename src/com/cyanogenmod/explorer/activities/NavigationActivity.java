@@ -390,7 +390,7 @@ public class NavigationActivity extends Activity
             public void run() {
                 //Create the default console (from the preferences)
                 try {
-                    Console console = ConsoleBuilder.createDefaultConsole(NavigationActivity.this);
+                    Console console = ConsoleBuilder.getConsole(NavigationActivity.this);
                     if (console == null) {
                         throw new ConsoleAllocException("console == null"); //$NON-NLS-1$
                     }
@@ -981,7 +981,7 @@ public class NavigationActivity extends Activity
             if (history != null) {
                 Log.e(TAG,
                         String.format("Failed to navigate to history %d: %s", //$NON-NLS-1$
-                                new Integer(history.getPosition()),
+                                Integer.valueOf(history.getPosition()),
                                 history.getItem().getTitle()), ex);
             } else {
                 Log.e(TAG,

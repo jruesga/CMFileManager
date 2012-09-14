@@ -65,7 +65,7 @@ public class ProcessIdCommand extends SyncResultProgram implements ProcessIdExec
             }
 
             //Get the PID
-            this.mPID = new Integer(szLine.trim());
+            this.mPID = Integer.valueOf(szLine.trim());
 
         } catch (IOException ioEx) {
             throw new ParseException(ioEx.getMessage(), 0);

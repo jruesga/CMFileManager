@@ -48,7 +48,7 @@ public class IconHolder {
      */
     public Drawable getDrawable(Context context, final int resid) {
         //Check if the icon exists in the cache
-        Integer id = new Integer(resid);
+        Integer id = Integer.valueOf(resid);
         if (this.mIcons.containsKey(id)) {
             return this.mIcons.get(id);
         }

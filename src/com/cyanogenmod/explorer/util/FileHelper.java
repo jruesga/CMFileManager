@@ -142,11 +142,12 @@ public final class FileHelper {
         for (int i = 0; i < magnitude.length; i++) {
             long s = aux / 1024;
             if (aux < 1024) {
-                return String.format(format, new Long(aux), res.getString(magnitude[i]));
+                return String.format(format, Long.valueOf(aux), res.getString(magnitude[i]));
             }
             aux = s;
         }
-        return String.format(format, new Long(aux), res.getString(magnitude[magnitude.length - 1]));
+        return String.format(
+                format, Long.valueOf(aux), res.getString(magnitude[magnitude.length - 1]));
     }
 
     /**

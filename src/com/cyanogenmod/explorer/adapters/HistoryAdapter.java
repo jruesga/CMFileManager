@@ -141,7 +141,7 @@ public class HistoryAdapter extends ArrayAdapter<History> {
             }
             this.mData[i].mName = history.getItem().getTitle();
             this.mData[i].mDirectory = history.getItem().getDescription();
-            this.mData[i].mPosition = String.format("#%d", new Integer(i + 1)); //$NON-NLS-1$
+            this.mData[i].mPosition = String.format("#%d", Integer.valueOf(i + 1)); //$NON-NLS-1$
         }
     }
 

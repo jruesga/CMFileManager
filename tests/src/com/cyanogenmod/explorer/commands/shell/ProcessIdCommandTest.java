@@ -40,7 +40,7 @@ public class ProcessIdCommandTest extends AbstractConsoleTest {
      * @throws Exception If test failed
      */
     public void testId() throws Exception {
-        Integer main = new Integer(android.os.Process.myPid());
+        Integer main = Integer.valueOf(android.os.Process.myPid());
         Integer pid =
                 CommandHelper.getProcessId(
                         getContext(),

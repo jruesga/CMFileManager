@@ -88,15 +88,15 @@ public class RelevanceWidget extends View {
         this.mBorderPaint.setStrokeWidth((1 * density) + 0.5f);
         this.mRelevancePaint.setColor(Color.TRANSPARENT);
 
-        //Create the
+        //Create the color map
         this.mColors = new TreeMap<Integer, Integer>();
-        this.mColors.put(new Integer(25),
+        this.mColors.put(Integer.valueOf(25),
                 new Integer(getResources().getColor(R.color.relevance_percentil_25)));
-        this.mColors.put(new Integer(50),
+        this.mColors.put(Integer.valueOf(50),
                 new Integer(getResources().getColor(R.color.relevance_percentil_50)));
-        this.mColors.put(new Integer(75),
+        this.mColors.put(Integer.valueOf(75),
                 new Integer(getResources().getColor(R.color.relevance_percentil_75)));
-        this.mColors.put(new Integer(100),
+        this.mColors.put(Integer.valueOf(100),
                 new Integer(getResources().getColor(R.color.relevance_percentil_100)));
 
         //Relevance is 0 until is sets

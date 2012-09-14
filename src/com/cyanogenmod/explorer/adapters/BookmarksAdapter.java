@@ -176,7 +176,7 @@ public class BookmarksAdapter extends ArrayAdapter<Bookmark> {
             viewHolder.mTvName = (TextView)v.findViewById(RESOURCE_ITEM_NAME);
             viewHolder.mTvDirectory = (TextView)v.findViewById(RESOURCE_ITEM_DIRECTORY);
             viewHolder.mBtAction = (ImageButton)v.findViewById(RESOURCE_ITEM_ACTION);
-            viewHolder.mBtAction.setTag(new Integer(position));
+            viewHolder.mBtAction.setTag(Integer.valueOf(position));
             v.setTag(viewHolder);
         }
 

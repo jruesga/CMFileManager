@@ -113,7 +113,8 @@ public class SearchResult implements Serializable, Comparable<SearchResult> {
     @Override
     public int compareTo(SearchResult another) {
         if (this.mRelevance != another.mRelevance) {
-            return new Double(this.mRelevance).compareTo(new Double(another.mRelevance)) * -1;
+            return Double.valueOf(this.mRelevance).compareTo(
+                                        Double.valueOf(another.mRelevance)) * -1;
         }
         return this.mFso.compareTo(another.mFso);
     }

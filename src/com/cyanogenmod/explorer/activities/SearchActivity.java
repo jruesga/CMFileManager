@@ -565,7 +565,7 @@ public class SearchActivity extends Activity implements AsyncResultListener, OnI
                     String foundItems =
                             getResources().
                                 getQuantityString(
-                                    R.plurals.search_found_items, items, new Integer(items));
+                                    R.plurals.search_found_items, items, Integer.valueOf(items));
                     SearchActivity.this.mSearchFoundItems.setText(
                                             getString(
                                                 R.string.search_found_items_in_directory,

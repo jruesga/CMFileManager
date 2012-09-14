@@ -139,7 +139,10 @@ public class MessageProgressDialog implements DialogInterface.OnClickListener {
     public void setProgress(int progress) {
         Resources res = this.mDialog.getContext().getResources();
         this.mProgress.setText(
-                res.getQuantityString(this.mProgressResourceId, progress, new Integer(progress)));
+                res.getQuantityString(
+                        this.mProgressResourceId,
+                        progress,
+                        Integer.valueOf(progress)));
     }
 
     /**

@@ -78,7 +78,7 @@ public final class MimeTypeHelper {
                 int resId = ResourcesHelper.getIdentifier(
                         context.getResources(), "drawable", mime[1].trim()); //$NON-NLS-1$
                 if (resId != 0) {
-                    sCachedIndentifiers.put(ext, new Integer(resId));
+                    sCachedIndentifiers.put(ext, Integer.valueOf(resId));
                     return resId;
                 }
             }

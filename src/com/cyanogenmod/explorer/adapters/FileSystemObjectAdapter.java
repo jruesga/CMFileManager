@@ -282,13 +282,13 @@ public class FileSystemObjectAdapter
                 dataHolder.mName.compareTo(
                         FileHelper.PARENT_DIRECTORY) == 0 ? View.INVISIBLE : View.VISIBLE);
         viewHolder.mBtCheck.setImageDrawable(dataHolder.mDwCheck);
-        viewHolder.mBtCheck.setTag(new Integer(position));
+        viewHolder.mBtCheck.setTag(Integer.valueOf(position));
         v.setBackgroundResource(
                 dataHolder.mSelected
                     ? R.drawable.holo_list_selector_selected
                     : R.drawable.holo_list_selector_deseleted);
         viewHolder.mBtMenu.setVisibility(dataHolder.mHasMenu ? View.VISIBLE : View.GONE);
-        viewHolder.mBtMenu.setTag(new Integer(position));
+        viewHolder.mBtMenu.setTag(Integer.valueOf(position));
 
         //Return the view
         return v;

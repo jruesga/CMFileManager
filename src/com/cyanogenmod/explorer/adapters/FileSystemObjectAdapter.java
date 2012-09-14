@@ -398,6 +398,10 @@ public class FileSystemObjectAdapter
         if (this.mData != null && this.mData.length > 0) {
             for (int i = 0; i < this.mData.length; i++) {
                 DataHolder data = this.mData[i];
+                if (data.mName.compareTo(FileHelper.PARENT_DIRECTORY) == 0) {
+                    // No select the parent directory
+                    continue;
+                }
                 data.mSelected = select;
                 data.mDwCheck = data.mSelected
                         ? this.mIconHolder.getDrawable(

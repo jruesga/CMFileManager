@@ -26,7 +26,6 @@ import android.widget.Toast;
 
 import com.cyanogenmod.explorer.R;
 import com.cyanogenmod.explorer.commands.SyncResultExecutable;
-import com.cyanogenmod.explorer.commands.WritableExecutable;
 import com.cyanogenmod.explorer.commands.shell.InvalidCommandDefinitionException;
 import com.cyanogenmod.explorer.console.CommandNotFoundException;
 import com.cyanogenmod.explorer.console.ConsoleAllocException;
@@ -206,17 +205,19 @@ public final class ExceptionUtil {
                                         SyncResultExecutable executable = executables.get(i);
                                         Object result = CommandHelper.reexecute(
                                                 context, executable, null);
-                                        if (executable instanceof WritableExecutable) {
-                                            if (relaunchable.getTask() != null) {
-                                                relaunchable.getTask().execute(result);
-                                            }
+                                        if (relaunchable.getTask() != null) {
+                                            relaunchable.getTask().execute(result);
                                         }
                                     }
 
                                 } catch (Throwable ex) {
-                                    //Capture the exception, this time in quiet mode
+                                    //Capture the exception, this time in quiet mode, if the
+                                    //exception is the same
+                                    boolean quiet =
+                                            ex.getClass().getName().compareTo(
+                                                    relaunchable.getClass().getName()) == 0;
                                     translateException(
-                                            context, ex, ex.equals(relaunchable));
+                                            context, ex, quiet);
                                 }
                             }
                         }

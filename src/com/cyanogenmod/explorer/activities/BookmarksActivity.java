@@ -391,7 +391,7 @@ public class BookmarksActivity extends Activity implements OnItemClickListener, 
      * Method that returns the storage volume description. This method uses
      * reflection to retrieve the description because CM10 has a {@link Context}
      * as first parameter, that AOSP hasn't.
-     *  
+     *
      * @param volume The storage volume
      * @return String The description of the storage volume
      */
@@ -408,7 +408,7 @@ public class BookmarksActivity extends Activity implements OnItemClickListener, 
 
             // CM10
             return (String)method.invoke(volume, (Context)getApplication());
-            
+
         } catch (Throwable _throw) {
             // Returns the volume storage path
             return volume.getPath();

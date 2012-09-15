@@ -23,6 +23,7 @@ import android.widget.ProgressBar;
 
 import com.cyanogenmod.explorer.R;
 import com.cyanogenmod.explorer.adapters.SearchResultAdapter;
+import com.cyanogenmod.explorer.adapters.SearchResultAdapter.OnRequestMenuListener;
 import com.cyanogenmod.explorer.model.FileSystemObject;
 import com.cyanogenmod.explorer.model.Query;
 import com.cyanogenmod.explorer.model.SearchResult;
@@ -43,21 +44,25 @@ public class SearchResultDrawingAsyncTask extends AsyncTask<Object, Integer, Boo
     private final List<FileSystemObject> mFiles;
     private final Query mQueries;
     private boolean mRunning;
+    private final OnRequestMenuListener mOnRequestMenuListener;
 
     /**
      * Constructor of <code>SearchResultDrawingAsyncTask</code>.
      *
      * @param searchListView The {@link ListView} reference
      * @param searchWaiting A {@link ProgressBar} reference
+     * @param onRequestMenuListener The listener for display the actions menu
      * @param files The files to draw
      * @param queries The terms of the search
      */
     public SearchResultDrawingAsyncTask(
             ListView searchListView, ProgressBar searchWaiting,
+            OnRequestMenuListener onRequestMenuListener,
             List<FileSystemObject> files, Query queries) {
         super();
         this.mSearchListView = searchListView;
         this.mSearchWaiting = searchWaiting;
+        this.mOnRequestMenuListener = onRequestMenuListener;
         this.mFiles = files;
         this.mQueries = queries;
         this.mRunning = false;
@@ -99,12 +104,18 @@ public class SearchResultDrawingAsyncTask extends AsyncTask<Object, Integer, Boo
                         ((SearchResultAdapter)SearchResultDrawingAsyncTask.this.
                                 mSearchListView.getAdapter()).clear();
                     }
-                    SearchResultDrawingAsyncTask.this.mSearchListView.setAdapter(
-                            new SearchResultAdapter(
-                                    SearchResultDrawingAsyncTask.this.mSearchListView.getContext(),
-                                    result,
-                                    R.layout.search_item,
-                                    SearchResultDrawingAsyncTask.this.mQueries));
+
+                    // Recreate the adapter
+                    SearchResultAdapter adapter = new SearchResultAdapter(
+                            SearchResultDrawingAsyncTask.this.mSearchListView.getContext(),
+                            result,
+                            R.layout.search_item,
+                            SearchResultDrawingAsyncTask.this.mQueries);
+                    adapter.setOnRequestMenuListener(
+                            SearchResultDrawingAsyncTask.this.mOnRequestMenuListener);
+
+                    // Configure the listview
+                    SearchResultDrawingAsyncTask.this.mSearchListView.setAdapter(adapter);
                     SearchResultDrawingAsyncTask.this.mSearchListView.setSelection(0);
                 }
             });

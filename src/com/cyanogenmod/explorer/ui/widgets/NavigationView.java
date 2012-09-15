@@ -31,6 +31,7 @@ import com.cyanogenmod.explorer.adapters.FileSystemObjectAdapter;
 import com.cyanogenmod.explorer.adapters.FileSystemObjectAdapter.OnRequestMenuListener;
 import com.cyanogenmod.explorer.adapters.FileSystemObjectAdapter.OnSelectionChangedListener;
 import com.cyanogenmod.explorer.listeners.OnHistoryListener;
+import com.cyanogenmod.explorer.listeners.OnSelectionListener;
 import com.cyanogenmod.explorer.model.Directory;
 import com.cyanogenmod.explorer.model.FileSystemObject;
 import com.cyanogenmod.explorer.model.ParentDirectory;
@@ -55,8 +56,8 @@ import java.util.List;
  */
 public class NavigationView extends RelativeLayout implements
     AdapterView.OnItemClickListener, AdapterView.OnItemLongClickListener,
-    BreadcrumbListener, OnSelectionChangedListener, OnRequestMenuListener {
-
+    BreadcrumbListener, OnSelectionChangedListener, OnRequestMenuListener,
+    OnSelectionListener {
 
     /**
      * An interface to communicate selection changes events.
@@ -636,7 +637,7 @@ public class NavigationView extends RelativeLayout implements
     public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
 //        FileSystemObjectAdapter adapter = ((FileSystemObjectAdapter)parent.getAdapter());
 //        if (adapter.isSelectable(view)) {
-//            adapter.toogleSelection(view);
+//            adapter.toggleSelection(view);
 //        }
         //TODO Drag&Drop
         return true; //Always consume the event
@@ -694,32 +695,49 @@ public class NavigationView extends RelativeLayout implements
     }
 
     /**
-     * Method that selects in the {@link AdapterView} the passed item.
-     *
-     * @param fso The file system object to select
+     * {@inheritDoc}
      */
-    public void toogleSelection(FileSystemObject fso) {
+    @Override
+    public void onToggleSelection(FileSystemObject fso) {
         if (this.mAdapter != null) {
-            this.mAdapter.toogleSelection(fso);
+            this.mAdapter.toggleSelection(fso);
         }
     }
 
     /**
-     * Method that select all items.
+     * {@inheritDoc}
      */
-    public void selectedAll() {
+    @Override
+    public void onSelectAll() {
         if (this.mAdapter != null) {
             this.mAdapter.selectedAll();
         }
     }
 
     /**
-     * Method that deselect all items.
+     * {@inheritDoc}
      */
-    public void deselectedAll() {
+    @Override
+    public void onDeselectAll() {
         if (this.mAdapter != null) {
             this.mAdapter.deselectedAll();
         }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public List<FileSystemObject> onRequestSelectedFiles() {
+        return this.getSelectedFiles();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public String onRequestCurrentDirOfSelectionData() {
+        return this.getCurrentDir();
     }
 
 }

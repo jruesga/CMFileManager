@@ -37,8 +37,9 @@ import com.cyanogenmod.explorer.R;
 import com.cyanogenmod.explorer.adapters.TwoColumnsMenuListAdapter;
 import com.cyanogenmod.explorer.console.RelaunchableException;
 import com.cyanogenmod.explorer.listeners.OnRequestRefreshListener;
+import com.cyanogenmod.explorer.listeners.OnSelectionListener;
+import com.cyanogenmod.explorer.model.Directory;
 import com.cyanogenmod.explorer.model.FileSystemObject;
-import com.cyanogenmod.explorer.ui.widgets.NavigationView;
 import com.cyanogenmod.explorer.util.CommandHelper;
 import com.cyanogenmod.explorer.util.DialogHelper;
 import com.cyanogenmod.explorer.util.ExceptionUtil;
@@ -54,22 +55,21 @@ public class ActionsDialog implements OnItemClickListener, OnItemLongClickListen
 
     private AlertDialog mDialog;
     private ListView mListView;
-    private final NavigationView mNavigationView;
     private final FileSystemObject mFso;
 
     private OnRequestRefreshListener mOnRequestRefreshListener;
+
+    private OnSelectionListener mOnSelectionListener;
 
     /**
      * Constructor of <code>ActionsDialog</code>.
      *
      * @param context The current context
-     * @param navigationView The current navigation view
      */
-    public ActionsDialog(Context context, NavigationView navigationView) {
+    public ActionsDialog(Context context) {
         super();
 
-        //Save the data
-        this.mNavigationView = navigationView;
+        // Initialize data
         this.mFso = null;
 
         //Initialize dialog
@@ -80,14 +80,12 @@ public class ActionsDialog implements OnItemClickListener, OnItemLongClickListen
      * Constructor of <code>ActionsDialog</code>.
      *
      * @param context The current context
-     * @param navigationView The current navigation view
      * @param fso The file system object associated
      */
-    public ActionsDialog(Context context, NavigationView navigationView, FileSystemObject fso) {
+    public ActionsDialog(Context context, FileSystemObject fso) {
         super();
 
         //Save the data
-        this.mNavigationView = navigationView;
         this.mFso = fso;
 
         //Initialize dialog
@@ -106,7 +104,6 @@ public class ActionsDialog implements OnItemClickListener, OnItemLongClickListen
                 new TwoColumnsMenuListAdapter(context, R.menu.actions, group);
         adapter.setOnItemClickListener(this);
         adapter.setOnItemLongClickListener(this);
-        configureMenu(adapter.getMenu());
 
         //Create the list view
         this.mListView = new ListView(context);
@@ -133,9 +130,21 @@ public class ActionsDialog implements OnItemClickListener, OnItemLongClickListen
     }
 
     /**
+     * Method that sets the listener for requesting selection data
+     *
+     * @param onSelectionListener The request selection data  listener
+     */
+    public void setOnSelectionListener(OnSelectionListener onSelectionListener) {
+        this.mOnSelectionListener = onSelectionListener;
+    }
+
+    /**
      * Method that shows the dialog.
      */
     public void show() {
+        TwoColumnsMenuListAdapter adapter =
+                (TwoColumnsMenuListAdapter)this.mListView.getAdapter();
+        configureMenu(adapter.getMenu());
         this.mDialog.show();
     }
 
@@ -153,19 +162,27 @@ public class ActionsDialog implements OnItemClickListener, OnItemLongClickListen
             //- Create new object
             case R.id.mnu_actions_new_directory:
             case R.id.mnu_actions_new_file:
-                showInputNameDialog(menuItem);
+                if (this.mOnSelectionListener != null) {
+                    showInputNameDialog(menuItem);
+                }
                 return;
 
             //- Select/Deselect
             case R.id.mnu_actions_select:
             case R.id.mnu_actions_deselect:
-                this.mNavigationView.toogleSelection(this.mFso);
+                if (this.mOnSelectionListener != null) {
+                    this.mOnSelectionListener.onToggleSelection(this.mFso);
+                }
                 break;
             case R.id.mnu_actions_select_all:
-                this.mNavigationView.selectedAll();
+                if (this.mOnSelectionListener != null) {
+                    this.mOnSelectionListener.onSelectAll();
+                }
                 break;
             case R.id.mnu_actions_deselect_all:
-                this.mNavigationView.deselectedAll();
+                if (this.mOnSelectionListener != null) {
+                    this.mOnSelectionListener.onDeselectAll();
+                }
                 break;
 
             default:
@@ -189,7 +206,7 @@ public class ActionsDialog implements OnItemClickListener, OnItemLongClickListen
         final InputNameDialog inputNameDialog =
                 new InputNameDialog(
                         this.mDialog.getContext(),
-                        this.mNavigationView.getFiles(),
+                        this.mOnSelectionListener.onRequestSelectedFiles(),
                         menuItem.getTitle().toString());
         inputNameDialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
             @Override
@@ -238,7 +255,8 @@ public class ActionsDialog implements OnItemClickListener, OnItemLongClickListen
     private void createNewFileSystemObject(final int menuId, final String name) {
 
         //Create the absolute file name
-        File newFso = new File(this.mNavigationView.getCurrentDir(), name);
+        File newFso = new File(
+                this.mOnSelectionListener.onRequestCurrentDirOfSelectionData(), name);
         final String newName = newFso.getAbsolutePath();
 
         try {
@@ -291,7 +309,7 @@ public class ActionsDialog implements OnItemClickListener, OnItemLongClickListen
 
                 });
             }
-            ExceptionUtil.translateException(this.mNavigationView.getContext(), ex);
+            ExceptionUtil.translateException(this.mDialog.getContext(), ex);
         }
     }
 
@@ -302,13 +320,26 @@ public class ActionsDialog implements OnItemClickListener, OnItemLongClickListen
      * @param menu The menu to configure
      */
     private void configureMenu(Menu menu) {
-        //- Select/Deselect -> Only when the fso is selected or unselected
+        // Check actions that needs a valid reference
         if (this.mFso != null) {
-            boolean selected =
-                    SelectionHelper.isFileSystemObjectSelected(
-                            this.mNavigationView.getSelectedFiles(),
-                            this.mFso);
-            menu.removeItem(selected ? R.id.mnu_actions_select : R.id.mnu_actions_deselect);
+            //- Select/Deselect -> Only one of them
+            if (this.mOnSelectionListener != null) {
+                boolean selected =
+                        SelectionHelper.isFileSystemObjectSelected(
+                                this.mOnSelectionListener.onRequestSelectedFiles(),
+                                this.mFso);
+                menu.removeItem(selected ? R.id.mnu_actions_select : R.id.mnu_actions_deselect);
+            } else {
+                // Remove both menus
+                menu.removeItem(R.id.mnu_actions_select);
+                menu.removeItem(R.id.mnu_actions_deselect);
+            }
+
+            //- Open/Open with -> Only when the fso is a folder
+            if (this.mFso instanceof Directory) {
+                menu.removeItem(R.id.mnu_actions_open);
+                menu.removeItem(R.id.mnu_actions_open_with);
+            }
         }
     }
 }

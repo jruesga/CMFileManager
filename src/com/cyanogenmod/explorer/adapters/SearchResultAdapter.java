@@ -28,6 +28,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.cyanogenmod.explorer.R;
+import com.cyanogenmod.explorer.model.FileSystemObject;
 import com.cyanogenmod.explorer.model.Query;
 import com.cyanogenmod.explorer.model.SearchResult;
 import com.cyanogenmod.explorer.ui.IconHolder;
@@ -43,6 +44,20 @@ import java.util.List;
  * An implementation of {@link ArrayAdapter} for display search results.
  */
 public class SearchResultAdapter extends ArrayAdapter<SearchResult> implements OnClickListener {
+
+    /**
+     * An interface to communicate a request for show the menu associated
+     * with an item.
+     */
+    public interface OnRequestMenuListener {
+        /**
+         * Method invoked when a request to show the menu associated
+         * with an item is started.
+         *
+         * @param item The item for which the request was started
+         */
+        void onRequestMenu(FileSystemObject item);
+    }
 
     /**
      * A class that conforms with the ViewHolder pattern to performance
@@ -79,11 +94,11 @@ public class SearchResultAdapter extends ArrayAdapter<SearchResult> implements O
     }
 
 
-
-
     private DataHolder[] mData;
     private IconHolder mIconHolder;
     private final int mItemViewResourceId;
+
+    private OnRequestMenuListener mOnRequestMenuListener;
 
     private final List<String> mQueries;
 
@@ -117,6 +132,15 @@ public class SearchResultAdapter extends ArrayAdapter<SearchResult> implements O
         //Do cache of the data for better performance
         loadDefaultIcons();
         processData();
+    }
+
+    /**
+     * Method that sets the listener for menu item requests.
+     *
+     * @param onRequestMenuListener The listener reference
+     */
+    public void setOnRequestMenuListener(OnRequestMenuListener onRequestMenuListener) {
+        this.mOnRequestMenuListener = onRequestMenuListener;
     }
 
     /**
@@ -213,6 +237,7 @@ public class SearchResultAdapter extends ArrayAdapter<SearchResult> implements O
         viewHolder.mTvName.setText(dataHolder.mName, TextView.BufferType.SPANNABLE);
         viewHolder.mTvParentDir.setText(dataHolder.mParentDir);
         viewHolder.mWgRelevance.setRelevance(dataHolder.mRelevance);
+        viewHolder.mBtMenu.setTag(Integer.valueOf(position));
 
         //Return the view
         return v;
@@ -223,8 +248,18 @@ public class SearchResultAdapter extends ArrayAdapter<SearchResult> implements O
      */
     @Override
     public void onClick(View v) {
+      //Select or deselect the item
+        int pos = ((Integer)v.getTag()).intValue();
+
+        //Retrieve search result
+        final SearchResult sr = getItem(pos);
+
         switch (v.getId()) {
             case RESOURCE_ITEM_MENU:
+                //Notify menu request
+                if (this.mOnRequestMenuListener != null && sr.getFso() != null) {
+                    this.mOnRequestMenuListener.onRequestMenu(sr.getFso());
+                }
                 break;
             default:
                 break;

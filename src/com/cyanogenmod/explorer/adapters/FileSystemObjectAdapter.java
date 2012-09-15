@@ -309,7 +309,7 @@ public class FileSystemObjectAdapter
      *
      * @param item The view to select
      */
-    public void toogleSelection(View item) {
+    public void toggleSelection(View item) {
         ImageButton view = (ImageButton)item.findViewById(RESOURCE_ITEM_CHECK);
         onClick(view);
     }
@@ -319,8 +319,8 @@ public class FileSystemObjectAdapter
      *
      * @param fso The file system object to select
      */
-    public void toogleSelection(FileSystemObject fso) {
-        toogleSelection(null, fso);
+    public void toggleSelection(FileSystemObject fso) {
+        toggleSelection(null, fso);
     }
 
     /**
@@ -329,7 +329,7 @@ public class FileSystemObjectAdapter
      * @param v The check view object (can be null)
      * @param fso The file system object to select
      */
-    private void toogleSelection(View v, FileSystemObject fso) {
+    private void toggleSelection(View v, FileSystemObject fso) {
         if (this.mData != null) {
             for (int i = 0; i < this.mData.length; i++) {
                 DataHolder data = this.mData[i];
@@ -474,14 +474,14 @@ public class FileSystemObjectAdapter
         int pos = ((Integer)v.getTag()).intValue();
 
         //Retrieve data holder
-        final DataHolder dataHolder = FileSystemObjectAdapter.this.mData[pos];
+        final DataHolder dataHolder = this.mData[pos];
         final FileSystemObject fso = getItem(pos);
 
         //What button was pressed?
         switch (v.getId()) {
             case RESOURCE_ITEM_CHECK:
                 //Get the row item view
-                toogleSelection(v, fso);
+                toggleSelection(v, fso);
                 break;
 
             case RESOURCE_ITEM_MENU:

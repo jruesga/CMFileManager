@@ -561,8 +561,9 @@ public class NavigationActivity extends Activity
             //Action Bar buttons
             //######################
             case R.id.ab_actions:
-                ActionsDialog dialog = new ActionsDialog(this, getCurrentNavigationView());
+                ActionsDialog dialog = new ActionsDialog(this);
                 dialog.setOnRequestRefreshListener(this);
+                dialog.setOnSelectionListener(getCurrentNavigationView());
                 dialog.show();
                 break;
 
@@ -679,8 +680,9 @@ public class NavigationActivity extends Activity
      */
     @Override
     public void onRequestMenu(NavigationView navView, FileSystemObject item) {
-        ActionsDialog dialog = new ActionsDialog(this, getCurrentNavigationView(), item);
+        ActionsDialog dialog = new ActionsDialog(this, item);
         dialog.setOnRequestRefreshListener(this);
+        dialog.setOnSelectionListener(getCurrentNavigationView());
         dialog.show();
     }
 

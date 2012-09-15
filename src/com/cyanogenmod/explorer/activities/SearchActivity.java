@@ -42,6 +42,7 @@ import android.widget.Toast;
 import com.cyanogenmod.explorer.ExplorerApplication;
 import com.cyanogenmod.explorer.R;
 import com.cyanogenmod.explorer.adapters.SearchResultAdapter;
+import com.cyanogenmod.explorer.adapters.SearchResultAdapter.OnRequestMenuListener;
 import com.cyanogenmod.explorer.commands.AsyncResultExecutable;
 import com.cyanogenmod.explorer.commands.AsyncResultListener;
 import com.cyanogenmod.explorer.model.Directory;
@@ -54,6 +55,7 @@ import com.cyanogenmod.explorer.parcelables.SearchInfoParcelable;
 import com.cyanogenmod.explorer.preferences.Preferences;
 import com.cyanogenmod.explorer.providers.RecentSearchesContentProvider;
 import com.cyanogenmod.explorer.tasks.SearchResultDrawingAsyncTask;
+import com.cyanogenmod.explorer.ui.dialogs.ActionsDialog;
 import com.cyanogenmod.explorer.ui.dialogs.MessageProgressDialog;
 import com.cyanogenmod.explorer.util.CommandHelper;
 import com.cyanogenmod.explorer.util.DialogHelper;
@@ -66,7 +68,8 @@ import java.util.List;
 /**
  * An activity for search files and folders.
  */
-public class SearchActivity extends Activity implements AsyncResultListener, OnItemClickListener {
+public class SearchActivity extends Activity
+    implements AsyncResultListener, OnItemClickListener, OnRequestMenuListener {
 
     private static final String TAG = "SearchActivity"; //$NON-NLS-1$
 
@@ -374,6 +377,7 @@ public class SearchActivity extends Activity implements AsyncResultListener, OnI
         this.mAdapter =
                 new SearchResultAdapter(this,
                         new ArrayList<SearchResult>(), R.layout.search_item, this.mQuery);
+        this.mAdapter.setOnRequestMenuListener(this);
         this.mSearchListView.setAdapter(this.mAdapter);
 
         //Set terms
@@ -625,7 +629,15 @@ public class SearchActivity extends Activity implements AsyncResultListener, OnI
         } catch (Throwable ex) {
             ExceptionUtil.translateException(this.mSearchListView.getContext(), ex);
         }
+    }
 
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void onRequestMenu(FileSystemObject item) {
+        ActionsDialog dialog = new ActionsDialog(this, item);
+        dialog.show();
     }
 
     /**
@@ -698,6 +710,7 @@ public class SearchActivity extends Activity implements AsyncResultListener, OnI
                                             new SearchResultDrawingAsyncTask(
                                                     SearchActivity.this.mSearchListView,
                                                     SearchActivity.this.mSearchWaiting,
+                                                    SearchActivity.this,
                                                     SearchActivity.this.mResultList,
                                                     SearchActivity.this.mQuery);
                     SearchActivity.this.mDrawingSearchResultTask.execute();

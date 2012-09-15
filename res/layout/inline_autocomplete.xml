@@ -44,7 +44,7 @@
     android:ems="@integer/default_edit_text_ems"
     android:gravity="top"
     android:hint="@null"
-    android:inputType="textNoSuggestions|textMultiLine"
+    android:inputType="textNoSuggestions|textImeMultiLine"
     android:imeOptions="actionDone"
     android:paddingLeft="@dimen/small_buttom_width"
     android:singleLine="false"

@@ -18,6 +18,7 @@ package com.cyanogenmod.explorer.ui.widgets;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.res.Configuration;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.text.method.ScrollingMovementMethod;
@@ -25,9 +26,10 @@ import android.util.AttributeSet;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.cyanogenmod.explorer.R;
@@ -43,7 +45,7 @@ import java.util.List;
  */
 public class InlineAutocompleteTextView extends RelativeLayout
             implements View.OnClickListener, View.OnLongClickListener,
-            View.OnKeyListener, TextWatcher {
+            View.OnKeyListener {
 
     /**
      * An interface to communicate events when a text value is changed.
@@ -66,6 +68,7 @@ public class InlineAutocompleteTextView extends RelativeLayout
     private String mCompletionString = null;
 
     private int mFilter = 0;
+    private FilteredTextWatcher mTextWatcher;
 
     /**
      * Constructor of <code>InlineAutocompleteTextView</code>.
@@ -107,10 +110,12 @@ public class InlineAutocompleteTextView extends RelativeLayout
      * Method that initializes the view. This method loads all the necessary
      * information and create an appropriate layout for the view
      */
+    @SuppressWarnings("synthetic-access")
     private void init() {
         //Initialize data
         this.mData = new ArrayList<String>();
         this.mOnTextChangedListener = null;
+        this.mTextWatcher = new FilteredTextWatcher();
 
         //Inflate the view
         ViewGroup v = (ViewGroup)inflate(getContext(), R.layout.inline_autocomplete, null);
@@ -118,22 +123,19 @@ public class InlineAutocompleteTextView extends RelativeLayout
 
         //Retrieve views
         this.mBackgroundText = (EditText)findViewById(R.id.inline_autocomplete_bg_text);
+        this.mBackgroundText.setOnKeyListener(this);
         this.mForegroundText = (EditText)findViewById(R.id.inline_autocomplete_fg_text);
         this.mForegroundText.setMovementMethod(new ScrollingMovementMethod());
-        this.mForegroundText.addTextChangedListener(this);
+        this.mForegroundText.addTextChangedListener(this.mTextWatcher);
         this.mForegroundText.setOnKeyListener(this);
-        this.mForegroundText.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+        this.mForegroundText.requestFocus();
+        this.mForegroundText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
-            public void onFocusChange(View view, boolean hasFocus) {
-                if (hasFocus) {
-                    Activity activity = (Activity)getContext();
-                    activity.getWindow().
-                        setSoftInputMode(
-                                WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
-                }
+            public boolean onEditorAction(TextView view, int actionId, KeyEvent event) {
+                doDone(true);
+                return false;
             }
         });
-        this.mForegroundText.requestFocus();
 
         View button = findViewById(R.id.inline_autocomplete_button_tab);
         button.setOnClickListener(this);
@@ -143,19 +145,58 @@ public class InlineAutocompleteTextView extends RelativeLayout
         setText(""); //$NON-NLS-1$
     }
 
+    /* (non-Javadoc)
+     * @see android.view.View#onAttachedToWindow()
+     */
+    @Override
+    protected void onAttachedToWindow() {
+        super.onAttachedToWindow();
+
+        // Show the soft keyboard (only if the device has't a hardware keyboard)
+        Configuration config = getContext().getResources().getConfiguration();
+        if (config.keyboard == Configuration.KEYBOARD_NOKEYS) {
+            Activity activity = (Activity)getContext();
+            InputMethodManager imm =
+                    (InputMethodManager) activity.getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.showSoftInputFromInputMethod(
+                    this.mForegroundText.getWindowToken(), 0);
+        }
+    }
+
+    /* (non-Javadoc)
+     * @see android.view.View#onDetachedFromWindow()
+     */
+    @Override
+    protected void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+
+        // Hide the soft keyboard
+        Configuration config = getContext().getResources().getConfiguration();
+        if (config.keyboard == Configuration.KEYBOARD_NOKEYS) {
+            Activity activity = (Activity)getContext();
+            InputMethodManager imm =
+                    (InputMethodManager) activity.getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.hideSoftInputFromWindow(this.mForegroundText.getWindowToken(), 0);
+        }
+    }
+
     /**
      * {@inheritDoc}
      */
     @Override
     public boolean onKey(View v, int keyCode, KeyEvent event) {
-        if (event.getAction() == KeyEvent.ACTION_DOWN) {
-            switch (keyCode) {
-                case KeyEvent.KEYCODE_ENTER:
-                    //Ignore enter
-                    return true;
-                default:
-                    break;
-            }
+        switch (keyCode) {
+            case KeyEvent.KEYCODE_ENTER:
+            case KeyEvent.FLAG_EDITOR_ACTION:
+                //Consume the event
+                doDone(false);
+                return true;
+            case KeyEvent.KEYCODE_TAB:
+                //Do tab, and consume the event
+                doTab();
+                return true;
+            default:
+                break;
         }
         return false;
     }
@@ -169,7 +210,7 @@ public class InlineAutocompleteTextView extends RelativeLayout
         this.mBackgroundText.setVisibility(View.INVISIBLE);
         this.mForegroundText.setText(value);
         this.mBackgroundText.setText(""); //$NON-NLS-1$
-        onTextChanged(value, 0, 0, 0);
+        onTextChanged(value);
         this.mForegroundText.requestFocus();
         this.mForegroundText.setSelection(value.length());
         int lines = this.mBackgroundText.getLineCount();
@@ -186,7 +227,7 @@ public class InlineAutocompleteTextView extends RelativeLayout
     }
 
     /**
-     * Method that sets the listener for received text change events.
+     * Method that sets the listener for send text change events.
      *
      * @param onTextChangedListener The text changed listener
      */
@@ -219,44 +260,12 @@ public class InlineAutocompleteTextView extends RelativeLayout
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.inline_autocomplete_button_tab:
-                //Complete with current text
-                String current = this.mForegroundText.getText().toString();
-                String filter = this.mBackgroundText.getText().toString();
-                if (current.length() == 0) {
-                    return;
-                }
-                if (this.mCompletionString != null
-                        && current.endsWith(this.mCompletionString)) {
-                    if (this.mData.size() <= this.mFilter) {
-                        this.mFilter = 0;
-                    }
-                    if (this.mData.size() == 1 && this.mFilter == 0) {
-                        //Autocomplete with the only autocomplete option
-                        setText(this.mData.get(this.mFilter));
-                    } else {
-                        //Show the autocomplete options
-                        if (this.mData.size() > 0) {
-                            this.mBackgroundText.setText(this.mData.get(this.mFilter));
-                            this.mBackgroundText.setVisibility(View.VISIBLE);
-                            this.mFilter++;
-                        }
-                    }
-                } else {
-                    //Autocomplete
-                    if (filter != null && filter.length() > 0) {
-                        //Ensure that filter wraps the current text
-                        if (filter.startsWith(current)) {
-                            setText(filter);
-                        }
-                    }
-                }
+                doTab();
                 break;
             default:
                 break;
         }
     }
-
-
 
     /**
      * {@inheritDoc}
@@ -288,41 +297,21 @@ public class InlineAutocompleteTextView extends RelativeLayout
         return false;
     }
 
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-        /**NON BLOCK**/
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public void onTextChanged(CharSequence s, int start, int before, int count) {
+    private void onTextChanged(String value) {
         this.mFilter = 0;
         if (this.mOnTextChangedListener != null) {
             //Communicate the change
-            this.mOnTextChangedListener.onTextChanged(s.toString(), this.mData);
+            this.mOnTextChangedListener.onTextChanged(
+                                value.toString(), this.mData);
 
-            if (this.mCompletionString != null
-                    && !s.toString().endsWith(this.mCompletionString)) {
+            if (this.mCompletionString != null &&
+                    !value.toString().endsWith(this.mCompletionString)) {
                 //Autocomplete
                 autocomplete();
             } else {
                 this.mBackgroundText.setVisibility(View.INVISIBLE);
             }
-
         }
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public void afterTextChanged(Editable s) {
-        /**NON BLOCK**/
     }
 
     /**
@@ -344,6 +333,162 @@ public class InlineAutocompleteTextView extends RelativeLayout
             }
         }
         this.mBackgroundText.setVisibility(View.INVISIBLE);
+    }
+
+    /**
+     * Method invoked when a tab key event is requested (button or keyboard)
+     */
+    private void doTab() {
+        //Complete with current text
+        String current = this.mForegroundText.getText().toString();
+        String filter = this.mBackgroundText.getText().toString();
+        if (current.length() == 0) {
+            return;
+        }
+        if (this.mCompletionString != null
+                && current.endsWith(this.mCompletionString)) {
+            if (this.mData.size() <= this.mFilter) {
+                this.mFilter = 0;
+            }
+            if (this.mData.size() == 1 && this.mFilter == 0) {
+                //Autocomplete with the only autocomplete option
+                setText(this.mData.get(this.mFilter));
+            } else {
+                //Show the autocomplete options
+                if (this.mData.size() > 0) {
+                    this.mBackgroundText.setText(this.mData.get(this.mFilter));
+                    this.mBackgroundText.setVisibility(View.VISIBLE);
+                    this.mFilter++;
+                }
+            }
+        } else {
+            //Autocomplete
+            if (filter != null && filter.length() > 0) {
+                //Ensure that filter wraps the current text
+                if (filter.startsWith(current)) {
+                    setText(filter);
+                }
+            }
+        }
+    }
+
+    /**
+     * Method invoked when a enter key event is requested (button or keyboard)
+     *
+     * @param fromEditorAction It this method was invoked from editor action
+     */
+    private void doDone(boolean fromEditorAction) {
+        if (fromEditorAction) {
+            // Hide the soft keyboard
+            Configuration config = getContext().getResources().getConfiguration();
+            if (config.keyboard == Configuration.KEYBOARD_NOKEYS) {
+                Activity activity = (Activity)getContext();
+                InputMethodManager imm =
+                        (InputMethodManager) activity.getSystemService(
+                                                Context.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(this.mForegroundText.getWindowToken(), 0);
+            }
+        }
+    }
+
+    /**
+     * A class for filter the text introduced by the user
+     */
+    private class FilteredTextWatcher implements TextWatcher {
+
+        private String mText;
+        private int mStart;
+        private int mCount;
+
+        /**
+         * {@inheritDoc}
+         */
+        @Override
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            /**NON BLOCK**/
+        }
+
+        /**
+         * {@inheritDoc}
+         */
+        @Override
+        public void onTextChanged(CharSequence s, int start, int before, int count) {
+            this.mStart = start;
+            this.mCount = count;
+        }
+
+        /**
+         * {@inheritDoc}
+         */
+        @Override
+        @SuppressWarnings("synthetic-access")
+        public void afterTextChanged(Editable s) {
+            // Enter and Tab are not allowed, and have their own treatment
+            final String orig = s.toString();
+            String text = orig;
+            final int start = this.mStart;
+            final int count = this.mCount;
+
+            // Avoid recursive calls
+            if (this.mText != null && this.mText.compareTo(orig) == 0) {
+                return;
+            }
+
+            // Force to ignore Tab and Enter keys
+            text = replaceKeyEvent(text, '\t', true);
+            text = replaceKeyEvent(text, '\r', false);
+            text = replaceKeyEvent(text, '\n', false);
+            if (text.compareTo(orig) != 0) {
+                // Some key has internally changed
+                this.mText = text;
+                s.replace(0, orig.length(), text);
+            }
+
+            // Does the user input enter or tab keys?
+            boolean tab = false;
+            boolean enter = false;
+            String userInput = orig.substring(start, start + count);
+            tab = (userInput.indexOf("\t") != -1); //$NON-NLS-1$
+            enter = (userInput.indexOf("\r") != -1 ||  //$NON-NLS-1$
+                     userInput.indexOf("\n") != -1); //$NON-NLS-1$
+
+            // Check events
+            if (enter) {
+                // Broadcast enter event
+                doDone(false);
+                return;
+            }
+            if (tab) {
+                // Broadcast enter event
+                doTab();
+                return;
+            }
+
+            // Broadcast the new text value
+            InlineAutocompleteTextView.this.onTextChanged(text);
+        }
+
+        /**
+         * Method that replace a key char
+         *
+         * @param value The string in which search
+         * @param key The key char to search
+         * @param removeAfter If true the string will truncate after the first key char found
+         * @return String The replaced string
+         */
+        private String replaceKeyEvent(String value, char key, boolean removeAfter) {
+            String text = value;
+            int pos = text.indexOf(key);
+            while (pos != -1) {
+                if (removeAfter) {
+                    text = text.substring(0, pos);
+                } else {
+                    text = text.replaceAll(String.valueOf(key), ""); //$NON-NLS-1$
+                }
+                pos = text.indexOf(key);
+            }
+            return text;
+        }
     }
 
 }

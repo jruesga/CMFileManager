@@ -19,7 +19,7 @@ package com.cyanogenmod.explorer.preferences;
 /**
  * An enumeration of the view layout modes.
  */
-public enum NavigationLayoutMode implements Identifiable {
+public enum NavigationLayoutMode implements ObjectIdentifier {
 
     /**
      * That mode shows a icon based view (icon + name) on a {@link "GridView"}.

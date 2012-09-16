@@ -54,8 +54,8 @@ import com.cyanogenmod.explorer.parcelables.NavigationInfoParcelable;
 import com.cyanogenmod.explorer.parcelables.NavigationViewInfoParcelable;
 import com.cyanogenmod.explorer.parcelables.SearchInfoParcelable;
 import com.cyanogenmod.explorer.preferences.ExplorerSettings;
-import com.cyanogenmod.explorer.preferences.Identifiable;
 import com.cyanogenmod.explorer.preferences.NavigationLayoutMode;
+import com.cyanogenmod.explorer.preferences.ObjectIdentifier;
 import com.cyanogenmod.explorer.preferences.Preferences;
 import com.cyanogenmod.explorer.ui.dialogs.ActionsDialog;
 import com.cyanogenmod.explorer.ui.dialogs.ChooseConsoleDialog;
@@ -714,7 +714,7 @@ public class NavigationActivity extends Activity
                         //Save and refresh
                         if (setting.getDefaultValue() instanceof Enum<?>) {
                             //Enumeration
-                            Preferences.savePreference(setting, new Identifiable() {
+                            Preferences.savePreference(setting, new ObjectIdentifier() {
                                 @Override
                                 public int getId() {
                                     return value;

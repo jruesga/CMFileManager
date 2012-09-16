@@ -27,8 +27,8 @@ import com.cyanogenmod.explorer.model.ParentDirectory;
 import com.cyanogenmod.explorer.model.Symlink;
 import com.cyanogenmod.explorer.model.SystemFile;
 import com.cyanogenmod.explorer.preferences.ExplorerSettings;
-import com.cyanogenmod.explorer.preferences.Identifiable;
 import com.cyanogenmod.explorer.preferences.NavigationSortMode;
+import com.cyanogenmod.explorer.preferences.ObjectIdentifier;
 import com.cyanogenmod.explorer.preferences.Preferences;
 
 import java.io.File;
@@ -344,7 +344,7 @@ public final class FileHelper {
         final NavigationSortMode sortMode =
                 NavigationSortMode.fromId(
                         prefs.getInt(sortModePref.getId(),
-                        ((Identifiable)sortModePref.getDefaultValue()).getId()));
+                        ((ObjectIdentifier)sortModePref.getDefaultValue()).getId()));
         Collections.sort(files, new Comparator<FileSystemObject>() {
             @Override
             @SuppressWarnings("synthetic-access")

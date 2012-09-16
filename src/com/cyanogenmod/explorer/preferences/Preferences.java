@@ -189,9 +189,9 @@ public final class Preferences {
                 editor.putBoolean(pref.getId(), ((Boolean)value).booleanValue());
             } else if (value instanceof String && pref.getDefaultValue() instanceof String) {
                 editor.putString(pref.getId(), (String)value);
-            } else if (value instanceof Identifiable
-                    && pref.getDefaultValue() instanceof Identifiable) {
-                editor.putInt(pref.getId(), ((Identifiable)value).getId());
+            } else if (value instanceof ObjectIdentifier
+                    && pref.getDefaultValue() instanceof ObjectIdentifier) {
+                editor.putInt(pref.getId(), ((ObjectIdentifier)value).getId());
             } else {
                 //The object is not of the appropriate type
                 String msg = String.format(

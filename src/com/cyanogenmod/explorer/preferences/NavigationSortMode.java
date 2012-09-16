@@ -19,7 +19,7 @@ package com.cyanogenmod.explorer.preferences;
 /**
  * An enumeration of the sort modes.
  */
-public enum NavigationSortMode implements Identifiable {
+public enum NavigationSortMode implements ObjectIdentifier {
 
     /**
      * That mode sorts objects by name (ascending).

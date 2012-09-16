@@ -39,8 +39,8 @@ import com.cyanogenmod.explorer.model.Symlink;
 import com.cyanogenmod.explorer.parcelables.NavigationViewInfoParcelable;
 import com.cyanogenmod.explorer.parcelables.SearchInfoParcelable;
 import com.cyanogenmod.explorer.preferences.ExplorerSettings;
-import com.cyanogenmod.explorer.preferences.Identifiable;
 import com.cyanogenmod.explorer.preferences.NavigationLayoutMode;
+import com.cyanogenmod.explorer.preferences.ObjectIdentifier;
 import com.cyanogenmod.explorer.preferences.Preferences;
 import com.cyanogenmod.explorer.util.CommandHelper;
 import com.cyanogenmod.explorer.util.ExceptionUtil;
@@ -199,7 +199,8 @@ public class NavigationView extends RelativeLayout implements
         SharedPreferences preferences = Preferences.getSharedPreferences();
         int viewMode = preferences.getInt(
                 ExplorerSettings.SETTINGS_LAYOUT_MODE.getId(),
-                ((Identifiable)ExplorerSettings.SETTINGS_LAYOUT_MODE.getDefaultValue()).getId());
+                ((ObjectIdentifier)ExplorerSettings.
+                        SETTINGS_LAYOUT_MODE.getDefaultValue()).getId());
         changeViewMode(NavigationLayoutMode.fromId(viewMode));
     }
 

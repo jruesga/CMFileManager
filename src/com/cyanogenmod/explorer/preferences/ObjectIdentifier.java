@@ -17,9 +17,9 @@
 package com.cyanogenmod.explorer.preferences;
 
 /**
- * An interface that defines an object as identifiable.
+ * An interface that defines an object with an identifier.
  */
-public interface Identifiable {
+public interface ObjectIdentifier {
 
     /**
      * Method that returns the identifier of the object.

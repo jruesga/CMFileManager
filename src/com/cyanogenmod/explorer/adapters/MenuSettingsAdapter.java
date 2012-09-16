@@ -20,7 +20,7 @@ import android.content.Context;
 import android.content.res.Resources;
 
 import com.cyanogenmod.explorer.preferences.ExplorerSettings;
-import com.cyanogenmod.explorer.preferences.Identifiable;
+import com.cyanogenmod.explorer.preferences.ObjectIdentifier;
 import com.cyanogenmod.explorer.preferences.Preferences;
 import com.cyanogenmod.explorer.util.ResourcesHelper;
 
@@ -33,7 +33,7 @@ import java.util.List;
  * An implementation of {@link CheckableListAdapter} for display settings.<br/>
  * Only 2 type of settings are allowed:
  * <ul>
- * <li>{@link Enum}&lt;{@link Identifiable}&gt;</li>
+ * <li>{@link Enum}&lt;{@link ObjectIdentifier}&gt;</li>
  * <li>{@link Boolean}</li>
  * </ul>
  *
@@ -126,17 +126,17 @@ public class MenuSettingsAdapter extends CheckableListAdapter {
         //Only 2 type of settings are allowed
         final Resources res = context.getResources();
         try {
-            // Enum<Identifiable>
+            // Enum<ObjectIdentifier>
             if (setting.getDefaultValue() instanceof Enum<?>
-                && setting.getDefaultValue() instanceof Identifiable) {
+                && setting.getDefaultValue() instanceof ObjectIdentifier) {
                 //Retrieve all the items of the enumeration
                 int resid =
                         ResourcesHelper.getIdentifier(res, "array", setting.getId()); //$NON-NLS-1$
                 String[] titles = res.getStringArray(resid);
                 Method method =
                         setting.getDefaultValue().getClass().getMethod("values"); //$NON-NLS-1$
-                Identifiable[] ids = (Identifiable[])method.invoke(null);
-                int defaultid = ((Identifiable)setting.getDefaultValue()).getId();
+                ObjectIdentifier[] ids = (ObjectIdentifier[])method.invoke(null);
+                int defaultid = ((ObjectIdentifier)setting.getDefaultValue()).getId();
                 int selected =
                         Preferences.getSharedPreferences().getInt(setting.getId(), defaultid);
                 for (int i = 0; i < ids.length; i++) {

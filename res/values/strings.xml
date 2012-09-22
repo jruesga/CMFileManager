@@ -385,4 +385,19 @@
   <!-- Mime/Types * Unknown -->
   <string name="mime_unknown">Unknown</string>
 
+  <!-- Selection. All possibilities. [1 folder; >1 folders; 1 file; >1 files;
+     >1 folders and 1 file; 1 folder and >1 files; >1 folders and >1 files]
+     Avoid using plural item because is more complex to achieved all strings -->
+  <string name="selection_one_folder"><xliff:g id="folders">%1$s</xliff:g> folder selected.</string>
+  <string name="selection_other_folders"><xliff:g id="folders">%1$s</xliff:g> folders
+    selected.</string>
+  <string name="selection_one_file"><xliff:g id="files">%1$s</xliff:g> file selected.</string>
+  <string name="selection_other_files"><xliff:g id="files">%1$s</xliff:g> files selected.</string>
+  <string name="selection_other_folders_one_file"><xliff:g id="folders">%1$s</xliff:g> folders and
+    <xliff:g id="files">%2$s</xliff:g> file selected.</string>
+  <string name="selection_one_folder_other_files"><xliff:g id="folder2">%1$s</xliff:g> folder and
+    <xliff:g id="file2">%2$s</xliff:g> files selected.</string>
+  <string name="selection_other_folders_other_files"><xliff:g id="folder2">%1$s</xliff:g> folders
+    and <xliff:g id="files">%2$s</xliff:g> files selected.</string>
+
 </resources>

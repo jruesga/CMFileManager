@@ -84,14 +84,14 @@
   <style name="horizontal_divider">
     <item name="android:layout_marginTop">@dimen/default_margin</item>
     <item name="android:layout_marginBottom">@dimen/default_margin</item>
-    <item name="android:background">@android:color/darker_gray</item>
+    <item name="android:background">@color/divider_color_light</item>
   </style>
 
   <!-- Vertical Divider -->
   <style name="vertical_divider">
     <item name="android:layout_marginLeft">@dimen/default_margin</item>
     <item name="android:layout_marginRight">@dimen/default_margin</item>
-    <item name="android:background">@android:color/darker_gray</item>
+    <item name="android:background">@color/divider_color</item>
   </style>
 
 </resources>

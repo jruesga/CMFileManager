@@ -66,6 +66,7 @@ import com.cyanogenmod.explorer.ui.widgets.NavigationCustomTitleView;
 import com.cyanogenmod.explorer.ui.widgets.NavigationView;
 import com.cyanogenmod.explorer.ui.widgets.NavigationView.OnNavigationRequestMenuListener;
 import com.cyanogenmod.explorer.ui.widgets.NavigationView.OnNavigationSelectionChangedListener;
+import com.cyanogenmod.explorer.ui.widgets.SelectionView;
 import com.cyanogenmod.explorer.util.CommandHelper;
 import com.cyanogenmod.explorer.util.DialogHelper;
 import com.cyanogenmod.explorer.util.FileHelper;
@@ -124,7 +125,6 @@ public class NavigationActivity extends Activity
     public static final String EXTRA_SEARCH_LAST_SEARCH_DATA =
             "extra_search_last_search_data"; //$NON-NLS-1$
 
-
     //The key for the state data
     private static final String NAVIGATION_STATE = "explorer_navigation_state";  //$NON-NLS-1$
 
@@ -136,6 +136,7 @@ public class NavigationActivity extends Activity
     private int mCurrentNavigationView;
 
     private ViewGroup mActionBar;
+    private SelectionView mSelectionBar;
 
     private boolean mExitFlag = false;
 
@@ -167,6 +168,7 @@ public class NavigationActivity extends Activity
         //Initialize action bars
         initTitleActionBar();
         initStatusActionBar();
+        initSelectionBar();
 
         //Save state
         super.onCreate(state);
@@ -373,8 +375,13 @@ public class NavigationActivity extends Activity
                 }
             }
         });
+    }
 
-
+    /**
+     * Method that initializes the selectionbar of the activity.
+     */
+    private void initSelectionBar() {
+        this.mSelectionBar = (SelectionView)findViewById(R.id.navigation_selectionbar);
     }
 
     /**
@@ -558,6 +565,14 @@ public class NavigationActivity extends Activity
                 break;
 
             //######################
+            //Selection Actions
+            //######################
+            case R.id.ab_selection_done:
+                //Show information of the filesystem
+                getCurrentNavigationView().onDeselectAll();
+                break;
+
+            //######################
             //Action Bar buttons
             //######################
             case R.id.ab_actions:
@@ -672,7 +687,7 @@ public class NavigationActivity extends Activity
      */
     @Override
     public void onSelectionChanged(NavigationView navView, List<FileSystemObject> selectedItems) {
-        //FIXME Implement selection
+        this.mSelectionBar.setSelection(selectedItems);
     }
 
     /**

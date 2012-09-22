@@ -73,9 +73,9 @@
   <dimen name="popup_width">200dp</dimen>
 
   <!-- The horizontal divider width -->
-  <dimen name="horizontal_divider_width">1dp</dimen>
+  <dimen name="horizontal_divider_width">0.25dp</dimen>
   <!-- The vertical divider height -->
-  <dimen name="vertical_divider_height">1dp</dimen>
+  <dimen name="vertical_divider_height">0.75dp</dimen>
 
   <!-- The relevance widget width -->
   <dimen name="relevance_item_width">16dp</dimen>

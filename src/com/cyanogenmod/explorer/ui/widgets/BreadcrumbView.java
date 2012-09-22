@@ -39,7 +39,7 @@ import java.util.Collections;
 import java.util.List;
 
 /**
- * A fragment view that holds a navigation breadcrumb pattern.
+ * A view that holds a navigation breadcrumb pattern.
  */
 public class BreadcrumbView extends RelativeLayout implements Breadcrumb, OnClickListener {
 

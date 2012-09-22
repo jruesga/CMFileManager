@@ -181,7 +181,7 @@ public class DiskUsageGraph extends View {
                     }
 
                     if (this.mIndex == 1 && !disk_warning &&
-                            dwo.mSweepAngle >= DISK_WARNING_ANGLE ) {
+                            dwo.mSweepAngle >= DISK_WARNING_ANGLE) {
                         dwo.mPaint.setColor(getContext().
                                 getResources().getColor(R.color.disk_usage_used_warning));
                         disk_warning = true;

@@ -17,7 +17,6 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
   android:layout_width="match_parent"
   android:layout_height="@dimen/default_row_height"
-  android:layout_alignParentBottom="true"
   android:background="@drawable/bg_holo_statusbar" >
 
   <com.cyanogenmod.explorer.ui.widgets.ButtonItem
@@ -29,77 +28,51 @@
       android:onClick="onActionBarItemClick"
       android:src="@drawable/ic_holo_light_overflow" />
 
-    <LinearLayout
-      android:id="@+id/navigation_status_selection_group"
-      android:layout_width="wrap_content"
-      android:layout_height="match_parent"
-      android:orientation="horizontal"
-      android:visibility="gone">
+  <com.cyanogenmod.explorer.ui.widgets.ButtonItem
+    android:id="@+id/ab_actions"
+    android:layout_width="@dimen/default_buttom_width"
+    android:layout_height="match_parent"
+    android:contentDescription="@string/actionbar_button_actions_cd"
+    android:onClick="onActionBarItemClick"
+    android:src="@drawable/ic_holo_light_actions" />
 
-      <com.cyanogenmod.explorer.ui.widgets.ButtonItem
-        android:id="@+id/ab_selection_done"
-        android:layout_width="@dimen/default_buttom_width"
-        android:layout_height="match_parent"
-        android:contentDescription="@string/actionbar_button_selection_done_cd"
-        android:onClick="onActionBarItemClick"
-        android:src="@drawable/ic_holo_light_accept" />
-
-      <TextView
-        android:id="@+id/navigation_status_selection_label"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:singleLine="true"
-        android:gravity="left|center_vertical"
-        android:text="@null"
-        android:textAppearance="@style/primary_text_appearance" />
-
-    </LinearLayout>
+  <RelativeLayout
+    android:id="@+id/navigation_actionbar"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_toLeftOf="@id/ab_overflow"
+    android:layout_toRightOf="@id/ab_actions">
 
     <com.cyanogenmod.explorer.ui.widgets.ButtonItem
-      android:id="@+id/ab_actions"
+      android:id="@+id/ab_search"
       android:layout_width="@dimen/default_buttom_width"
       android:layout_height="match_parent"
-      android:contentDescription="@string/actionbar_button_actions_cd"
+      android:layout_alignParentRight="true"
+      android:contentDescription="@string/actionbar_button_search_cd"
       android:onClick="onActionBarItemClick"
-      android:src="@drawable/ic_holo_light_actions" />
+      android:src="@drawable/ic_holo_light_search"
+      android:visibility="invisible" />
 
-    <RelativeLayout
-      android:id="@+id/navigation_actionbar"
-      android:layout_width="match_parent"
+    <com.cyanogenmod.explorer.ui.widgets.ButtonItem
+      android:id="@+id/ab_bookmarks"
+      android:layout_width="@dimen/default_buttom_width"
       android:layout_height="match_parent"
-      android:layout_toLeftOf="@id/ab_overflow"
-      android:layout_toRightOf="@id/ab_actions">
+      android:layout_toLeftOf="@id/ab_search"
+      android:contentDescription="@string/actionbar_button_bookmarks_cd"
+      android:onClick="onActionBarItemClick"
+      android:src="@drawable/ic_holo_light_bookmarks"
+      android:visibility="invisible" />
 
-      <com.cyanogenmod.explorer.ui.widgets.ButtonItem
-        android:id="@+id/ab_search"
-        android:layout_width="@dimen/default_buttom_width"
-        android:layout_height="match_parent"
-        android:layout_alignParentRight="true"
-        android:contentDescription="@string/actionbar_button_search_cd"
-        android:onClick="onActionBarItemClick"
-        android:src="@drawable/ic_holo_light_search"
-        android:visibility="invisible" />
+    <com.cyanogenmod.explorer.ui.widgets.ButtonItem
+      android:id="@+id/ab_history"
+      android:layout_width="@dimen/default_buttom_width"
+      android:layout_height="match_parent"
+      android:layout_toLeftOf="@id/ab_bookmarks"
+      android:contentDescription="@string/actionbar_button_history_cd"
+      android:onClick="onActionBarItemClick"
+      android:src="@drawable/ic_holo_light_history"
+      android:visibility="invisible" />
 
-      <com.cyanogenmod.explorer.ui.widgets.ButtonItem
-        android:id="@+id/ab_bookmarks"
-        android:layout_width="@dimen/default_buttom_width"
-        android:layout_height="match_parent"
-        android:layout_toLeftOf="@id/ab_search"
-        android:contentDescription="@string/actionbar_button_bookmarks_cd"
-        android:onClick="onActionBarItemClick"
-        android:src="@drawable/ic_holo_light_bookmarks"
-        android:visibility="invisible" />
-
-      <com.cyanogenmod.explorer.ui.widgets.ButtonItem
-        android:id="@+id/ab_history"
-        android:layout_width="@dimen/default_buttom_width"
-        android:layout_height="match_parent"
-        android:layout_toLeftOf="@id/ab_bookmarks"
-        android:contentDescription="@string/actionbar_button_history_cd"
-        android:onClick="onActionBarItemClick"
-        android:src="@drawable/ic_holo_light_history"
-        android:visibility="invisible" />
-
-    </RelativeLayout>
+  </RelativeLayout>
 
 </RelativeLayout>

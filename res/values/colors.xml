@@ -41,4 +41,9 @@
   <!-- Relevance * 75% ~ 100% -->
   <color name="relevance_percentil_100">#be207da4</color>
 
+  <!--  Divider. Normal -->
+  <color name="divider_color">#90909090</color>
+  <!--  Divider. Light -->
+  <color name="divider_color_light">#50505050</color>
+
 </resources>

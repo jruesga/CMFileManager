@@ -14,7 +14,7 @@
  ** See the License for the specific language governing permissions and
  ** limitations under the License.
 -->
-<!--     Traslate from left to right (in view) -->
+<!-- Traslate from left to right (in view) -->
 <set xmlns:android="http://schemas.android.com/apk/res/android"
   android:interpolator="@android:anim/accelerate_decelerate_interpolator"
   android:shareInterpolator="false" >

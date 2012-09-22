@@ -14,12 +14,12 @@
  ** See the License for the specific language governing permissions and
  ** limitations under the License.
 -->
-<!--     Animation to holds the exiting view (do a small scale effect) -->
+<!-- Animation to holds the exiting view (do a small scale effect) -->
 <scale xmlns:android="http://schemas.android.com/apk/res/android"
   android:duration="@android:integer/config_shortAnimTime"
+  android:interpolator="@android:anim/accelerate_interpolator"
   android:fromXScale="98%"
   android:fromYScale="98%"
-  android:interpolator="@android:anim/accelerate_interpolator"
   android:pivotX="50%"
   android:pivotY="50%"
   android:toXScale="100%"

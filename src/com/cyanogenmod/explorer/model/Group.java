@@ -19,7 +19,7 @@ package com.cyanogenmod.explorer.model;
 /**
  * A class that represents a group of the operating system.
  */
-public class Group extends SID {
+public class Group extends AID {
 
     private static final long serialVersionUID = -6087834824505714560L;
 
@@ -38,7 +38,7 @@ public class Group extends SID {
      */
     @Override
     public String toString() {
-        return "Group [sid=" + super.toString() + "]"; //$NON-NLS-1$ //$NON-NLS-2$
+        return "Group [" + super.toString() + "]"; //$NON-NLS-1$ //$NON-NLS-2$
     }
 
 }

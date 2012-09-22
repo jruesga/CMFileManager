@@ -45,6 +45,7 @@ public class MessageProgressDialog implements DialogInterface.OnClickListener {
         boolean onCancel();
     }
 
+    private final Context mContext;
     private final AlertDialog mDialog;
     private final TextView mProgress;
     private final int mProgressResourceId;
@@ -82,6 +83,9 @@ public class MessageProgressDialog implements DialogInterface.OnClickListener {
             String labelMsg, int progressResourceId) {
         super();
 
+        //Save the context
+        this.mContext = context;
+
         //Saved progress message id
         this.mProgressResourceId = progressResourceId;
 
@@ -110,7 +114,7 @@ public class MessageProgressDialog implements DialogInterface.OnClickListener {
                     if (!MessageProgressDialog.this.mOnCancelListener.onCancel()) {
                         //The operation can't not be cancelled
                         DialogHelper.showToast(
-                                MessageProgressDialog.this.mDialog.getContext(),
+                                MessageProgressDialog.this.mContext,
                                 R.string.msgs_operation_can_not_be_cancelled, Toast.LENGTH_SHORT);
                     }
                 }
@@ -137,7 +141,7 @@ public class MessageProgressDialog implements DialogInterface.OnClickListener {
      * @param progress The progress of progress of the action
      */
     public void setProgress(int progress) {
-        Resources res = this.mDialog.getContext().getResources();
+        Resources res = this.mContext.getResources();
         this.mProgress.setText(
                 res.getQuantityString(
                         this.mProgressResourceId,

@@ -24,9 +24,9 @@ import java.io.Serializable;
  * @see Permission
  * @see FileSystemObject
  */
-public class Permissions implements Serializable {
+public class Permissions implements Serializable, Comparable<Permissions> {
 
-    private static final long serialVersionUID = 9020833074245865195L;
+    private static final long serialVersionUID = 297676577053698527L;
 
     private UserPermission mUser;
     private GroupPermission mGroup;
@@ -98,6 +98,16 @@ public class Permissions implements Serializable {
      */
     public void setOthers(OthersPermission others) {
         this.mOthers = others;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public int compareTo(Permissions another) {
+        String o1 = this.toRawString();
+        String o2 = another.toRawString();
+        return o1.compareTo(o2);
     }
 
     /**

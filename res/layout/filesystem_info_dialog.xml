@@ -71,7 +71,7 @@
     android:paddingBottom="@dimen/extra_large_margin"
     android:paddingTop="@dimen/default_margin" >
 
-    <!-- Mount Point -->
+    <!-- Status -->
     <TableRow
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
@@ -230,6 +230,7 @@
       android:drawablePadding="@dimen/default_margin"
       android:gravity="left|center_vertical"
       android:singleLine="false"
+      android:background="@drawable/holo_selector"
       android:text="@string/filesystem_info_mount_not_allowed_msg"
       android:textAppearance="@style/secondary_text_appearance"
       android:textSize="@dimen/note_text_size"

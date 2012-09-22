@@ -19,25 +19,25 @@ package com.cyanogenmod.explorer.model;
 import java.io.Serializable;
 
 /**
- * The base class for security identifiers objects.
+ * The base class for Android security identifiers objects.
  *
  * @see User
  * @see Group
  */
-public abstract class SID implements Serializable, Comparable<SID> {
+public class AID implements Serializable, Comparable<AID> {
 
-    private static final long serialVersionUID = -375507340403331504L;
+    private static final long serialVersionUID = 5603819450513225452L;
 
     private final int mId;
     private final String mName;
 
     /**
-     * Constructor of <code>SID</code>.
+     * Constructor of <code>AID</code>.
      *
      * @param id The identifier of the security identifier object
      * @param name The name  of the security identifier object
      */
-    public SID(int id, String name) {
+    public AID(int id, String name) {
         super();
         this.mId = id;
         this.mName = name;
@@ -65,7 +65,7 @@ public abstract class SID implements Serializable, Comparable<SID> {
      * {@inheritDoc}
      */
     @Override
-    public int compareTo(SID another) {
+    public int compareTo(AID another) {
         if (this.mId < another.mId) {
             return -1;
         }
@@ -104,7 +104,7 @@ public abstract class SID implements Serializable, Comparable<SID> {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        SID other = (SID) obj;
+        AID other = (AID) obj;
         if (this.mId != other.mId) {
             return false;
         }
@@ -123,7 +123,7 @@ public abstract class SID implements Serializable, Comparable<SID> {
      */
     @Override
     public String toString() {
-        return "SID [id=" + this.mId + ", name=" //$NON-NLS-1$ //$NON-NLS-2$
+        return "AID [id=" + this.mId + ", name=" //$NON-NLS-1$ //$NON-NLS-2$
                + this.mName + "]"; //$NON-NLS-1$
     }
 }

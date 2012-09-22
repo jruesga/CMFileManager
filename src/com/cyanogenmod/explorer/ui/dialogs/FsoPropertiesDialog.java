@@ -1,0 +1,791 @@
+/*
+ * Copyright (C) 2012 The CyanogenMod Project
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package com.cyanogenmod.explorer.ui.dialogs;
+
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
+import android.content.res.Resources;
+import android.os.AsyncTask;
+import android.util.SparseArray;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemSelectedListener;
+import android.widget.ArrayAdapter;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
+import android.widget.CompoundButton.OnCheckedChangeListener;
+import android.widget.Spinner;
+import android.widget.TextView;
+
+import com.cyanogenmod.explorer.R;
+import com.cyanogenmod.explorer.console.ConsoleBuilder;
+import com.cyanogenmod.explorer.model.AID;
+import com.cyanogenmod.explorer.model.FileSystemObject;
+import com.cyanogenmod.explorer.model.Group;
+import com.cyanogenmod.explorer.model.GroupPermission;
+import com.cyanogenmod.explorer.model.OthersPermission;
+import com.cyanogenmod.explorer.model.Permission;
+import com.cyanogenmod.explorer.model.Permissions;
+import com.cyanogenmod.explorer.model.Symlink;
+import com.cyanogenmod.explorer.model.User;
+import com.cyanogenmod.explorer.model.UserPermission;
+import com.cyanogenmod.explorer.util.AIDHelper;
+import com.cyanogenmod.explorer.util.CommandHelper;
+import com.cyanogenmod.explorer.util.DialogHelper;
+import com.cyanogenmod.explorer.util.ExceptionUtil;
+import com.cyanogenmod.explorer.util.FileHelper;
+import com.cyanogenmod.explorer.util.MimeTypeHelper;
+import com.cyanogenmod.explorer.util.ResourcesHelper;
+
+import java.text.DateFormat;
+
+/**
+ * A class that wraps a dialog for showing information about a {@link FileSystemObject}
+ */
+public class FsoPropertiesDialog
+    implements OnClickListener, OnCheckedChangeListener, OnItemSelectedListener,
+    DialogInterface.OnCancelListener, DialogInterface.OnDismissListener {
+
+    private static final String OWNER_TYPE = "owner"; //$NON-NLS-1$
+    private static final String GROUP_TYPE = "group"; //$NON-NLS-1$
+    private static final String OTHERS_TYPE = "others"; //$NON-NLS-1$
+
+    private static final String AID_FORMAT = "%05d - %s"; //$NON-NLS-1$
+    private static final String AID_SEPARATOR = " - "; //$NON-NLS-1$
+
+    private final FileSystemObject mFso;
+    private boolean mHasChanged;
+
+    private final Context mContext;
+    private final AlertDialog mDialog;
+    private final View mContentView;
+    private View mInfoViewTab;
+    private View mPermissionsViewTab;
+    private View mInfoView;
+    private View mPermissionsView;
+    private Spinner mSpnOwner;
+    private Spinner mSpnGroup;
+    private CheckBox[] mChkUserPermission;
+    private CheckBox[] mChkGroupPermission;
+    private CheckBox[] mChkOthersPermission;
+    private TextView mInfoMsgView;
+
+    private boolean mIgnoreCheckEvents;
+    private boolean mHasPrivileged;
+
+    private DialogInterface.OnDismissListener mOnDismissListener;
+
+    /**
+     * Constructor of <code>FsoPropertiesDialog</code>.
+     *
+     * @param context The current context
+     * @param fso The file system object reference
+     */
+    public FsoPropertiesDialog(Context context, FileSystemObject fso) {
+        super();
+
+        //Save the context
+        this.mContext = context;
+
+        //Save data
+        this.mFso = fso;
+        this.mHasChanged = false;
+        this.mIgnoreCheckEvents = true;
+        this.mHasPrivileged = false;
+
+        //Inflate the content
+        LayoutInflater li =
+                (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        this.mContentView = li.inflate(R.layout.fso_properties_dialog, null);
+
+        //Create the dialog
+        this.mDialog = DialogHelper.createDialog(
+                                        context,
+                                        R.drawable.ic_holo_light_properties,
+                                        R.string.fso_properties_dialog_title,
+                                        this.mContentView);
+        this.mDialog.setOnCancelListener(this);
+        this.mDialog.setOnDismissListener(this);
+
+        //Fill the dialog
+        fillData(this.mContentView);
+    }
+
+    /**
+     * Set a listener to be invoked when the dialog is dismissed.
+     *
+     * @param onDismissListener The {@link "OnDismissListener"} to use.
+     */
+    public void setOnDismissListener(DialogInterface.OnDismissListener onDismissListener) {
+        this.mOnDismissListener = onDismissListener;
+    }
+
+    /**
+     * Method that shows the dialog.
+     */
+    public void show() {
+        this.mDialog.show();
+    }
+
+    /**
+     * Method that return the associated {@link FileSystemObject} reference
+     *
+     * @return FileSystemObject The fso
+     */
+    public FileSystemObject getFso() {
+        return this.mFso;
+    }
+
+    /**
+     * Method that returns if the properties of the file was changed
+     *
+     * @return boolean If the properties of the file was changed
+     */
+    public boolean isHasChanged() {
+        return this.mHasChanged;
+    }
+
+    /**
+     * Method that fill the dialog with the data of the mount point.
+     *
+     * @param contentView The content view
+     */
+    private void fillData(View contentView) {
+        //Get the tab views
+        this.mInfoViewTab = contentView.findViewById(R.id.fso_properties_dialog_tab_info);
+        this.mPermissionsViewTab =
+                contentView.findViewById(R.id.fso_properties_dialog_tab_permissions);
+        this.mInfoView = contentView.findViewById(R.id.fso_tab_info);
+        this.mPermissionsView = contentView.findViewById(R.id.fso_tab_permissions);
+
+        //Register the listeners
+        this.mInfoViewTab.setOnClickListener(this);
+        this.mPermissionsViewTab.setOnClickListener(this);
+
+        //Gets text views
+        TextView tvName = (TextView)contentView.findViewById(R.id.fso_properties_name);
+        TextView tvParent = (TextView)contentView.findViewById(R.id.fso_properties_parent);
+        TextView tvType = (TextView)contentView.findViewById(R.id.fso_properties_type);
+        View vLinkRow = contentView.findViewById(R.id.fso_properties_link_row);
+        TextView tvLink = (TextView)contentView.findViewById(R.id.fso_properties_link);
+        TextView tvSize = (TextView)contentView.findViewById(R.id.fso_properties_size);
+        TextView tvDate = (TextView)contentView.findViewById(R.id.fso_properties_date);
+        this.mSpnOwner = (Spinner)contentView.findViewById(R.id.fso_properties_owner);
+        this.mSpnGroup = (Spinner)contentView.findViewById(R.id.fso_properties_group);
+        this.mInfoMsgView = (TextView)contentView.findViewById(R.id.fso_info_msg);
+
+        //Fill the text views
+        //- Info
+        tvName.setText(this.mFso.getName());
+        tvParent.setText(this.mFso.getParent());
+        tvType.setText(MimeTypeHelper.getLabel(this.mContext, this.mFso));
+        if (this.mFso instanceof Symlink) {
+            Symlink link = (Symlink)this.mFso;
+            tvLink.setText(link.getLinkRef().getFullPath());
+        }
+        vLinkRow.setVisibility(this.mFso instanceof Symlink ? View.VISIBLE : View.GONE);
+        String size = FileHelper.getHumanReadableSize(this.mFso);
+        if (size.length() == 0) {
+            //TODO Compute Size
+            size = "-"; //$NON-NLS-1$
+        }
+        tvSize.setText(size);
+        DateFormat df = DateFormat.getDateTimeInstance(DateFormat.SHORT, DateFormat.SHORT);
+        tvDate.setText(df.format(this.mFso.getLastModifiedTime()));
+
+        //- Permissions
+        String loadingMsg = this.mContext.getString(R.string.loading_message);
+        setSpinnerMsg(this.mContext, FsoPropertiesDialog.this.mSpnOwner, loadingMsg);
+        setSpinnerMsg(this.mContext, FsoPropertiesDialog.this.mSpnGroup, loadingMsg);
+        this.mSpnOwner.setOnItemSelectedListener(this);
+        this.mSpnGroup.setOnItemSelectedListener(this);
+        updatePermissions();
+
+        // Load owners and groups AIDs in background
+        AsyncTask<Void, Void, SparseArray<AID>> aidsTask =
+                        new AsyncTask<Void, Void, SparseArray<AID>>() {
+            @Override
+            @SuppressWarnings("synthetic-access")
+            protected SparseArray<AID> doInBackground(Void...params) {
+                return AIDHelper.getAIDs(FsoPropertiesDialog.this.mContext);
+            }
+
+            @Override
+            @SuppressWarnings("synthetic-access")
+            protected void onPostExecute(SparseArray<AID> aids) {
+                if (!isCancelled()) {
+                    // Ensure that at least one AID was loaded
+                    if (aids == null) {
+                        String errorMsg =
+                                FsoPropertiesDialog.this.mContext.getString(R.string.error_message);
+                        setSpinnerMsg(
+                                FsoPropertiesDialog.this.mContext,
+                                FsoPropertiesDialog.this.mSpnOwner, errorMsg);
+                        setSpinnerMsg(
+                                FsoPropertiesDialog.this.mContext,
+                                FsoPropertiesDialog.this.mSpnGroup, errorMsg);
+                        return;
+                    }
+
+                    // Position of the owner and group
+                    int owner = FsoPropertiesDialog.this.mFso.getUser().getId();
+                    int group = FsoPropertiesDialog.this.mFso.getGroup().getId();
+                    int ownerPosition = 0;
+                    int groupPosition = 0;
+
+                    // Convert the SparseArray in an array of string of "uid - name"
+                    int len = aids.size();
+                    final String[] data = new String[len];
+                    for (int i=0; i<len; i++) {
+                        AID aid = aids.valueAt(i);
+                        data[i] = String.format(AID_FORMAT,
+                                        Integer.valueOf(aid.getId()), aid.getName());
+                        if (owner == aid.getId()) ownerPosition = i;
+                        if (group == aid.getId()) groupPosition = i;
+                    }
+
+                    // Change the adapter of the spinners
+                    setSpinnerData(
+                            FsoPropertiesDialog.this.mContext,
+                            FsoPropertiesDialog.this.mSpnOwner, data, ownerPosition);
+                    setSpinnerData(
+                            FsoPropertiesDialog.this.mContext,
+                            FsoPropertiesDialog.this.mSpnGroup, data, groupPosition);
+                }
+            }
+        };
+        aidsTask.execute();
+
+        // Check if permissions operations are allowed
+        try {
+            this.mHasPrivileged = ConsoleBuilder.getConsole(this.mContext).isPrivileged();
+        } catch (Throwable ex) {/**NON BLOCK**/}
+        this.mSpnOwner.setEnabled(this.mHasPrivileged);
+        this.mSpnGroup.setEnabled(this.mHasPrivileged);
+        setCheckBoxesPermissionsEnable(this.mChkUserPermission, this.mHasPrivileged);
+        setCheckBoxesPermissionsEnable(this.mChkGroupPermission, this.mHasPrivileged);
+        setCheckBoxesPermissionsEnable(this.mChkOthersPermission, this.mHasPrivileged);
+        if (!this.mHasPrivileged) {
+            this.mInfoMsgView.setVisibility(View.VISIBLE);
+            this.mInfoMsgView.setOnClickListener(this);
+        }
+
+        //Change the tab
+        onClick(this.mInfoViewTab);
+        this.mIgnoreCheckEvents = false;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void onDismiss(DialogInterface dialog) {
+        if (this.mOnDismissListener != null) {
+            this.mOnDismissListener.onDismiss(dialog);
+        }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void onCancel(DialogInterface dialog) {
+        if (this.mOnDismissListener != null) {
+            this.mOnDismissListener.onDismiss(dialog);
+        }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.fso_properties_dialog_tab_info:
+                if (!this.mInfoViewTab.isSelected()) {
+                    this.mInfoViewTab.setSelected(true);
+                    ((TextView)this.mInfoViewTab).setTextAppearance(
+                            this.mContext, R.style.primary_text_appearance);
+                    this.mPermissionsViewTab.setSelected(false);
+                    ((TextView)this.mPermissionsViewTab).setTextAppearance(
+                            this.mContext, R.style.secondary_text_appearance);
+                    this.mInfoView.setVisibility(View.VISIBLE);
+                    this.mPermissionsView.setVisibility(View.GONE);
+                }
+                break;
+
+            case R.id.fso_properties_dialog_tab_permissions:
+                if (!this.mPermissionsViewTab.isSelected()) {
+                    this.mInfoViewTab.setSelected(false);
+                    ((TextView)this.mInfoViewTab).setTextAppearance(
+                            this.mContext, R.style.secondary_text_appearance);
+                    this.mPermissionsViewTab.setSelected(true);
+                    ((TextView)this.mPermissionsViewTab).setTextAppearance(
+                            this.mContext, R.style.primary_text_appearance);
+                    this.mInfoView.setVisibility(View.GONE);
+                    this.mPermissionsView.setVisibility(View.VISIBLE);
+                }
+                this.mInfoMsgView.setVisibility(this.mHasPrivileged ? View.GONE : View.VISIBLE);
+                break;
+
+            case R.id.fso_info_msg:
+                //Change the console
+                boolean superuser = ConsoleBuilder.changeToPrivilegedConsole(this.mContext);
+                if (superuser) {
+                    this.mInfoMsgView.setOnClickListener(null);
+                    this.mInfoMsgView.setVisibility(View.GONE);
+                    this.mInfoMsgView.setBackground(null);
+
+                    // Enable controls
+                    this.mSpnOwner.setEnabled(true);
+                    this.mSpnGroup.setEnabled(true);
+                    setCheckBoxesPermissionsEnable(this.mChkUserPermission, true);
+                    setCheckBoxesPermissionsEnable(this.mChkGroupPermission, true);
+                    setCheckBoxesPermissionsEnable(this.mChkOthersPermission, true);
+                    this.mHasPrivileged = true;
+                }
+                break;
+
+            default:
+                break;
+        }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+        if (this.mIgnoreCheckEvents) return;
+
+        try {
+            // Retrieve the permissions and send to operating system
+            Permissions permissions = getPermissions();
+            if (!CommandHelper.changePermissions(
+                    this.mContext, this.mFso.getFullPath(), permissions, null)) {
+                // Show the warning message
+                setMsg(this.mContext.getString(
+                        R.string.fso_properties_failed_to_change_permission_msg));
+
+                // Update the permissions with the previous information
+                updatePermissions();
+                return;
+            }
+
+            // Some filesystem, like sdcards, doesn't allow to change the permissions.
+            // But the system doesn't return the fail. Read again the fso and compare to
+            // ensure that the permission was changed
+            try {
+                FileSystemObject systemFso  =
+                        CommandHelper.getFileInfo(this.mContext, this.mFso.getFullPath(), null);
+                if (systemFso == null || systemFso.getPermissions().compareTo(permissions) != 0) {
+                    // Show the warning message
+                    setMsg(FsoPropertiesDialog.this.mContext.getString(
+                            R.string.fso_properties_failed_to_change_permission_msg));
+
+                    // Update the permissions with the previous information
+                    updatePermissions();
+                    return;
+                }
+            } catch (Exception e) {
+                // Show the warning message
+                setMsg(FsoPropertiesDialog.this.mContext.getString(
+                        R.string.fso_properties_failed_to_change_permission_msg));
+
+                // Update the permissions with the previous information
+                updatePermissions();
+                return;
+            }
+
+            // The permission was changed. Refresh the information
+            this.mFso.setPermissions(permissions);
+            this.mHasChanged = true;
+            setMsg(null);
+
+        } catch (Exception ex) {
+            // Capture the exception and show warning message
+            ExceptionUtil.translateException(
+                    this.mContext, ex, true, true, new ExceptionUtil.OnRelaunchCommandResult() {
+                @Override
+                @SuppressWarnings("synthetic-access")
+                public void onSuccess() {
+                    // Hide the message
+                    setMsg(null);
+                }
+
+                @Override
+                @SuppressWarnings("synthetic-access")
+                public void onCancelled() {
+                    // Update the permissions with the previous information
+                    updatePermissions();
+                    setMsg(null);
+                }
+
+                @Override
+                @SuppressWarnings("synthetic-access")
+                public void onFailed() {
+                    // Show the warning message
+                    setMsg(FsoPropertiesDialog.this.mContext.getString(
+                            R.string.fso_properties_failed_to_change_permission_msg));
+
+                    // Update the permissions with the previous information
+                    updatePermissions();
+                }
+            });
+
+        }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        User user = null;
+        Group group = null;
+        String msg = null;
+
+        try {
+            String row = parent.getItemAtPosition(position).toString();
+            int uid = Integer.parseInt(row.substring(0, row.indexOf(AID_SEPARATOR)));
+            String name = row.substring(row.indexOf(AID_SEPARATOR) + 3);
+
+            // Check which spinner was changed
+            switch (parent.getId()) {
+                case R.id.fso_properties_owner:
+                    //Owner
+                    user = new User(uid, name);
+                    group = this.mFso.getGroup();
+                    msg = this.mContext.getString(
+                            R.string.fso_properties_failed_to_change_owner_msg);
+                    break;
+                case R.id.fso_properties_group:
+                    //Group
+                    user = this.mFso.getUser();
+                    group = new Group(uid, name);
+                    msg = this.mContext.getString(
+                            R.string.fso_properties_failed_to_change_group_msg);
+                    break;
+
+                default:
+                    break;
+            }
+        } catch (Exception ex) {
+            // Capture the exception
+            ExceptionUtil.translateException(this.mContext, ex);
+
+            // Exit from dialog. The dialog may have inconsistency
+            this.mDialog.dismiss();
+            return;
+        }
+
+        // Has changed?
+        if (this.mFso.getUser().compareTo(user) == 0 &&
+             this.mFso.getGroup().compareTo(group) == 0) {
+            return;
+        }
+
+        // Change the owner and group of the fso
+        try {
+            if (!CommandHelper.changeOwner(
+                    this.mContext, this.mFso.getFullPath(), user, group, null)) {
+                // Show the warning message
+                setMsg(msg);
+
+                // Update the information of owner and group
+                updateSpinnerFromAid(this.mSpnOwner, this.mFso.getUser());
+                updateSpinnerFromAid(this.mSpnGroup, this.mFso.getGroup());
+                return;
+            }
+
+            //Change the fso reference
+            this.mFso.setUser(user);
+            this.mFso.setGroup(group);
+            this.mHasChanged = true;
+            setMsg(null);
+
+        } catch (Exception ex) {
+            // Capture the exception and show warning message
+            final String txtMsg = msg;
+            ExceptionUtil.translateException(
+                    this.mContext, ex, true, true, new ExceptionUtil.OnRelaunchCommandResult() {
+                @Override
+                @SuppressWarnings("synthetic-access")
+                public void onSuccess() {
+                    // Hide the message
+                    setMsg(null);
+                }
+
+                @Override
+                @SuppressWarnings("synthetic-access")
+                public void onCancelled() {
+                    // Update the information of owner and group
+                    updateSpinnerFromAid(
+                            FsoPropertiesDialog.this.mSpnOwner,
+                            FsoPropertiesDialog.this.mFso.getUser());
+                    updateSpinnerFromAid(
+                            FsoPropertiesDialog.this.mSpnGroup,
+                            FsoPropertiesDialog.this.mFso.getGroup());
+                    setMsg(null);
+                }
+
+                @Override
+                @SuppressWarnings("synthetic-access")
+                public void onFailed() {
+                    setMsg(txtMsg);
+
+                    // Update the information of owner and group
+                    updateSpinnerFromAid(
+                            FsoPropertiesDialog.this.mSpnOwner,
+                            FsoPropertiesDialog.this.mFso.getUser());
+                    updateSpinnerFromAid(
+                            FsoPropertiesDialog.this.mSpnGroup,
+                            FsoPropertiesDialog.this.mFso.getGroup());
+                    return;
+                }
+            });
+
+        }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {/**NON BLOCK**/}
+
+    /**
+     * Method that shows a simple message on the spinner (loading, error, ...)
+     *
+     * @param ctx The current context
+     * @param spinner The spinner
+     * @param msg The message
+     */
+    private static void setSpinnerMsg(Context ctx, Spinner spinner, String msg) {
+        ArrayAdapter<String> loadingAdapter =
+                new ArrayAdapter<String>(
+                        ctx, R.layout.spinner_item, new String[]{msg});
+        loadingAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(loadingAdapter);
+        spinner.setEnabled(false);
+    }
+
+    /**
+     * Method that fills the spinner with the data
+     *
+     * @param ctx The current context
+     * @param spinner The spinner
+     * @param data The data
+     * @param selection The object to select
+     */
+    private void setSpinnerData(
+            Context ctx, Spinner spinner, String[] data, int selection) {
+        ArrayAdapter<String> adapter =
+                new ArrayAdapter<String>(
+                        ctx, R.layout.spinner_item, data);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(adapter);
+        spinner.setSelection(selection);
+        spinner.setEnabled(this.mHasPrivileged);
+    }
+
+    /**
+     * Method that update a spinner from an {@link AID} reference
+     *
+     * @param spinner The spinner to update
+     * @param aid The {@link AID} reference
+     */
+    @SuppressWarnings({"unchecked", "boxing"})
+    public static void updateSpinnerFromAid(Spinner spinner, AID aid) {
+        ArrayAdapter<String> adapter = (ArrayAdapter<String>)spinner.getAdapter();
+        int position = adapter.getPosition(String.format(AID_FORMAT, aid.getId(), aid.getName()));
+        if (position != -1) {
+            spinner.setSelection(position);
+        }
+    }
+
+    /**
+     * Method that refresh the information of permissions
+     */
+    private void updatePermissions() {
+        // Update the permissions with the previous information
+        FsoPropertiesDialog.this.mIgnoreCheckEvents = true;
+        try {
+            Permissions permissions = this.mFso.getPermissions();
+            this.mChkUserPermission =
+                    loadCheckBoxUserPermission(
+                            this.mContext, this.mContentView, permissions.getUser());
+            this.mChkGroupPermission =
+                    loadCheckBoxGroupPermission(
+                            this.mContext, this.mContentView, permissions.getGroup());
+            this.mChkOthersPermission =
+                    loadCheckBoxOthersPermission(
+                            this.mContext, this.mContentView, permissions.getOthers());
+        } finally {
+            FsoPropertiesDialog.this.mIgnoreCheckEvents = false;
+        }
+    }
+
+    /**
+     * Method that load the checkboxes for a user permission
+     *
+     * @param ctx The current context
+     * @param rootView The root view
+     * @return UserPermission The user permission
+     */
+    private CheckBox[] loadCheckBoxUserPermission (
+            Context ctx, View rootView, UserPermission permission) {
+        CheckBox[] chkPermissions = loadPermissionCheckBoxes(ctx, rootView, OWNER_TYPE);
+        chkPermissions[0].setChecked(permission.isSetUID());
+        setCheckBoxesPermissions(chkPermissions, permission);
+        return chkPermissions;
+    }
+
+    /**
+     * Method that load the checkboxes for a group permission
+     *
+     * @param ctx The current context
+     * @param rootView The root view
+     * @return UserPermission The user permission
+     */
+    private CheckBox[] loadCheckBoxGroupPermission (
+            Context ctx, View rootView, GroupPermission permission) {
+        CheckBox[] chkPermissions = loadPermissionCheckBoxes(ctx, rootView, GROUP_TYPE);
+        chkPermissions[0].setChecked(permission.isSetGID());
+        setCheckBoxesPermissions(chkPermissions, permission);
+        return chkPermissions;
+    }
+
+    /**
+     * Method that load the checkboxes for a group permission
+     *
+     * @param ctx The current context
+     * @param rootView The root view
+     * @return UserPermission The user permission
+     */
+    private CheckBox[] loadCheckBoxOthersPermission (
+            Context ctx, View rootView, OthersPermission permission) {
+        CheckBox[] chkPermissions = loadPermissionCheckBoxes(ctx, rootView, OTHERS_TYPE);
+        chkPermissions[0].setChecked(permission.isStickybit());
+        setCheckBoxesPermissions(chkPermissions, permission);
+        return chkPermissions;
+    }
+
+    /**
+     * Method that check/uncheck the common permission for a permission checkboxes
+     *
+     * @param chkPermissions The checkboxes
+     * @param permission The permission
+     */
+    private static void setCheckBoxesPermissions (
+            CheckBox[] chkPermissions, Permission permission) {
+        chkPermissions[1].setChecked(permission.isRead());
+        chkPermissions[2].setChecked(permission.isWrite());
+        chkPermissions[3].setChecked(permission.isExecute());
+    }
+
+    /**
+     * Method that check/uncheck the common permission for a permission checkboxes
+     *
+     * @param chkPermissions The checkboxes
+     * @param enabled If the checkbox should be enabled
+     */
+    private static void setCheckBoxesPermissionsEnable (
+            CheckBox[] chkPermissions, boolean enabled) {
+        for (int i=0; i<chkPermissions.length; i++) {
+            chkPermissions[i].setEnabled(enabled);
+        }
+    }
+
+    /**
+     * Method that load the checkboxes associated with a type of permission
+     *
+     * @param ctx The current context
+     * @param rootView The root view
+     * @param type The type of permission [owner, group, others]
+     * @return CheckBox[] The checkboxes associated
+     */
+    private CheckBox[] loadPermissionCheckBoxes(Context ctx, View rootView, String type) {
+        Resources res = ctx.getResources();
+        CheckBox[] chkPermissions = new CheckBox[4];
+        chkPermissions[0] = (CheckBox)rootView.findViewById(
+                ResourcesHelper.getIdentifier(
+                        res, "id",  //$NON-NLS-1$
+                        String.format("fso_permissions_%s_read", type))); //$NON-NLS-1$
+        chkPermissions[1] = (CheckBox)rootView.findViewById(
+                ResourcesHelper.getIdentifier(
+                        res, "id",  //$NON-NLS-1$
+                        String.format("fso_permissions_%s_write", type))); //$NON-NLS-1$
+        chkPermissions[2] = (CheckBox)rootView.findViewById(
+                ResourcesHelper.getIdentifier(
+                        res, "id",  //$NON-NLS-1$
+                        String.format("fso_permissions_%s_execute", type))); //$NON-NLS-1$
+        chkPermissions[3] = (CheckBox)rootView.findViewById(
+                ResourcesHelper.getIdentifier(
+                        res, "id",  //$NON-NLS-1$
+                        String.format("fso_permissions_%s_special", type))); //$NON-NLS-1$
+        for (int i=0; i<chkPermissions.length; i++) {
+            chkPermissions[i].setOnCheckedChangeListener(this);
+        }
+        return chkPermissions;
+    }
+
+    /**
+     * Method that retrieves the current permissions selected by the user
+     *
+     * @return Permissions The permissions selected by the user
+     */
+    private Permissions getPermissions() {
+        UserPermission userPermission =
+                new UserPermission(
+                        this.mChkUserPermission[1].isChecked(),
+                        this.mChkUserPermission[2].isChecked(),
+                        this.mChkUserPermission[3].isChecked(),
+                        this.mChkUserPermission[0].isChecked());
+        GroupPermission groupPermission =
+                new GroupPermission(
+                        this.mChkGroupPermission[1].isChecked(),
+                        this.mChkGroupPermission[2].isChecked(),
+                        this.mChkGroupPermission[3].isChecked(),
+                        this.mChkGroupPermission[0].isChecked());
+        OthersPermission othersPermission =
+                new OthersPermission(
+                        this.mChkOthersPermission[1].isChecked(),
+                        this.mChkOthersPermission[2].isChecked(),
+                        this.mChkOthersPermission[3].isChecked(),
+                        this.mChkOthersPermission[0].isChecked());
+        Permissions permissions =
+                new Permissions(userPermission, groupPermission, othersPermission);
+        return permissions;
+    }
+
+    /**
+     * Method that set a message in the dialog. If the message is {@link null} then
+     * the view is hidden
+     *
+     * @param msg The message to show. {@link null} to hide the dialog
+     */
+    private void setMsg(String msg) {
+        this.mInfoMsgView.setText(msg);
+        this.mInfoMsgView.setVisibility(
+                this.mHasPrivileged && msg == null ? View.GONE : View.VISIBLE);
+    }
+
+}

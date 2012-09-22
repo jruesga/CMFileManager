@@ -21,6 +21,7 @@ import com.cyanogenmod.explorer.ExplorerApplication;
 import com.cyanogenmod.explorer.commands.MountExecutable;
 import com.cyanogenmod.explorer.console.Console;
 import com.cyanogenmod.explorer.model.DiskUsage;
+import com.cyanogenmod.explorer.model.FileSystemObject;
 import com.cyanogenmod.explorer.model.MountPoint;
 
 import java.util.Arrays;
@@ -49,6 +50,16 @@ public final class MountPointHelper {
      */
     private MountPointHelper() {
         super();
+    }
+
+    /**
+     * Method that retrieve the mount point information for a directory.
+     *
+     * @param dir The directory of which recovers his mount point information
+     * @return MountPoint The mount point information
+     */
+    public static MountPoint getMountPointFromDirectory(FileSystemObject dir) {
+        return getMountPointFromDirectory(dir.getFullPath());
     }
 
     /**
@@ -92,7 +103,7 @@ public final class MountPointHelper {
             }
 
         } catch (Exception e) {
-            Log.e(TAG, "No mount point information can't be retrieved", e); //$NON-NLS-1$
+            Log.e(TAG, "Failed to retrieve the mount point information", e); //$NON-NLS-1$
         }
 
         //No mount point found

@@ -55,6 +55,7 @@ public class ListCommand extends SyncResultProgram implements ListExecutable {
     private static final String SYMLINK_REF = ">SIMLINKS>";  //$NON-NLS-1$
     private static final String SYMLINK_DATA_REF = ">SIMLINKS_DATA>";  //$NON-NLS-1$
 
+    private final LIST_MODE mMode;
     private final List<FileSystemObject> mFiles;
     private String mParentDir;
 
@@ -91,6 +92,7 @@ public class ListCommand extends SyncResultProgram implements ListExecutable {
 
         //Initialize files to something distinct of null
         this.mFiles = new ArrayList<FileSystemObject>();
+        this.mMode = mode;
 
         //Retrieve parent directory information
         if (mode.compareTo(LIST_MODE.DIRECTORY) == 0) {
@@ -215,7 +217,8 @@ public class ListCommand extends SyncResultProgram implements ListExecutable {
             }
 
             //Now if not is the root directory
-            if (this.mParentDir.compareTo(FileHelper.ROOT_DIRECTORY) != 0) {
+            if (this.mParentDir.compareTo(FileHelper.ROOT_DIRECTORY) != 0 &&
+                    this.mMode.compareTo(LIST_MODE.DIRECTORY) == 0) {
                 this.mFiles.add(0, new ParentDirectory(new File(this.mParentDir).getParent()));
             }
 

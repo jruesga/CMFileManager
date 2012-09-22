@@ -17,11 +17,13 @@
 package com.cyanogenmod.explorer.util;
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.util.Log;
 
 import com.cyanogenmod.explorer.R;
 import com.cyanogenmod.explorer.model.Directory;
 import com.cyanogenmod.explorer.model.FileSystemObject;
+import com.cyanogenmod.explorer.model.Symlink;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -50,7 +52,7 @@ public final class MimeTypeHelper {
      *
      * @param context The current context
      * @param fso The file system object
-     * @return The associated icon
+     * @return int The associated icon
      */
     public static int getIcon(Context context, FileSystemObject fso) {
         //Ensure that mime types are loaded
@@ -84,6 +86,43 @@ public final class MimeTypeHelper {
             }
         }
         return R.drawable.ic_fso_default;
+    }
+
+
+    /**
+     * Method that returns the associated label.
+     *
+     * @param context The current context
+     * @param fso The file system object
+     * @return String The associated icon
+     */
+    public static String getLabel(Context context, FileSystemObject fso) {
+        Resources res = context.getResources();
+
+        //Ensure that mime types are loaded
+        if (sMimeTypes == null) {
+            loadMimeTypes(context);
+        }
+
+        //Check if the argument is a folder
+        if (fso instanceof Directory) {
+            return res.getString(R.string.mime_folder);
+        }
+        if (fso instanceof Symlink) {
+            return res.getString(R.string.mime_symlink);
+        }
+
+        //Get the extension and delivery
+        String ext = FileHelper.getExtension(fso);
+        if (ext != null) {
+            //Load from the raw mime type file
+            String mimeTypeInfo = sMimeTypes.getProperty(ext);
+            if (mimeTypeInfo != null) {
+                String[] mime = mimeTypeInfo.split("\\|");  //$NON-NLS-1$
+                return mime[0];
+            }
+        }
+        return res.getString(R.string.mime_unknown);
     }
 
     /**

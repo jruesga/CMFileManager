@@ -1,0 +1,528 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+ ** Copyright (C) 2012 The CyanogenMod Project
+ **
+ ** Licensed under the Apache License, Version 2.0 (the "License");
+ ** you may not use this file except in compliance with the License.
+ ** You may obtain a copy of the License at
+ **
+ **      http://www.apache.org/licenses/LICENSE-2.0
+ **
+ ** Unless required by applicable law or agreed to in writing, software
+ ** distributed under the License is distributed on an "AS IS" BASIS,
+ ** WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ ** See the License for the specific language governing permissions and
+ ** limitations under the License.
+-->
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  android:layout_width="wrap_content"
+  android:layout_height="wrap_content" >
+
+  <!-- Tabs -->
+  <TableLayout
+    android:id="@+id/fso_tabs"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content" >
+
+    <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="@dimen/default_row_height" >
+
+      <TextView
+        android:id="@+id/fso_properties_dialog_tab_info"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:background="@drawable/holo_selector"
+        android:clickable="true"
+        android:gravity="center"
+        android:text="@string/fso_properties_dialog_tab_info"
+        android:textAllCaps="true"
+        android:textAppearance="@style/primary_text_appearance" />
+
+      <include layout="@layout/horizontal_divider" />
+
+      <TextView
+        android:id="@+id/fso_properties_dialog_tab_permissions"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:background="@drawable/holo_selector"
+        android:clickable="true"
+        android:gravity="center"
+        android:text="@string/fso_properties_dialog_tab_permissions"
+        android:textAllCaps="true"
+        android:textAppearance="@style/primary_text_appearance" />
+    </LinearLayout>
+
+    <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content" >
+
+      <include layout="@layout/vertical_divider" />
+    </LinearLayout>
+  </TableLayout>
+
+  <!-- Info -->
+  <TableLayout
+    android:id="@+id/fso_tab_info"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_below="@id/fso_tabs"
+    android:paddingBottom="@dimen/extra_large_margin"
+    android:paddingTop="@dimen/default_margin" >
+
+    <!-- Name -->
+    <TableRow
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_marginLeft="@dimen/extra_large_margin"
+      android:layout_marginRight="@dimen/extra_large_margin" >
+
+      <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/default_margin"
+        android:gravity="left|center_vertical"
+        android:text="@string/fso_properties_dialog_name"
+        android:textAppearance="@style/primary_text_appearance" />
+
+      <TextView
+        android:id="@+id/fso_properties_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/default_margin"
+        android:gravity="left|center_vertical"
+        android:textAppearance="@style/secondary_text_appearance" />
+    </TableRow>
+
+    <!-- Parent -->
+    <TableRow
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_marginLeft="@dimen/extra_large_margin"
+      android:layout_marginRight="@dimen/extra_large_margin" >
+
+      <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/default_margin"
+        android:gravity="left|center_vertical"
+        android:text="@string/fso_properties_dialog_parent"
+        android:textAppearance="@style/primary_text_appearance" />
+
+      <TextView
+        android:id="@+id/fso_properties_parent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/default_margin"
+        android:gravity="left|center_vertical"
+        android:textAppearance="@style/secondary_text_appearance" />
+    </TableRow>
+
+    <!-- Type -->
+    <TableRow
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_marginLeft="@dimen/extra_large_margin"
+      android:layout_marginRight="@dimen/extra_large_margin" >
+
+      <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/default_margin"
+        android:gravity="left|center_vertical"
+        android:text="@string/fso_properties_dialog_type"
+        android:textAppearance="@style/primary_text_appearance" />
+
+      <TextView
+        android:id="@+id/fso_properties_type"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/default_margin"
+        android:gravity="left|center_vertical"
+        android:textAppearance="@style/secondary_text_appearance" />
+    </TableRow>
+
+    <!-- Link -->
+    <TableRow
+      android:id="@+id/fso_properties_link_row"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_marginLeft="@dimen/extra_large_margin"
+      android:layout_marginRight="@dimen/extra_large_margin"
+      android:visibility="gone" >
+
+      <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/default_margin"
+        android:gravity="left|center_vertical"
+        android:text="@string/fso_properties_dialog_link"
+        android:textAppearance="@style/primary_text_appearance" />
+
+      <TextView
+        android:id="@+id/fso_properties_link"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/default_margin"
+        android:gravity="left|center_vertical"
+        android:textAppearance="@style/secondary_text_appearance" />
+    </TableRow>
+
+    <!-- Size -->
+    <TableRow
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_marginLeft="@dimen/extra_large_margin"
+      android:layout_marginRight="@dimen/extra_large_margin" >
+
+      <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/default_margin"
+        android:gravity="left|center_vertical"
+        android:text="@string/fso_properties_dialog_size"
+        android:textAppearance="@style/primary_text_appearance" />
+
+      <TextView
+        android:id="@+id/fso_properties_size"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/default_margin"
+        android:gravity="left|center_vertical"
+        android:textAppearance="@style/secondary_text_appearance" />
+    </TableRow>
+
+    <!-- Date -->
+    <TableRow
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_marginLeft="@dimen/extra_large_margin"
+      android:layout_marginRight="@dimen/extra_large_margin" >
+
+      <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/default_margin"
+        android:gravity="left|center_vertical"
+        android:text="@string/fso_properties_dialog_date"
+        android:textAppearance="@style/primary_text_appearance" />
+
+      <TextView
+        android:id="@+id/fso_properties_date"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/default_margin"
+        android:gravity="left|center_vertical"
+        android:textAppearance="@style/secondary_text_appearance" />
+    </TableRow>
+
+    <!-- Info message -->
+    <TextView
+      android:id="@+id/fso_properties_msg"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_gravity="center_vertical"
+      android:layout_marginLeft="@dimen/extra_large_margin"
+      android:layout_marginRight="@dimen/extra_large_margin"
+      android:contentDescription="@null"
+      android:drawableLeft="@drawable/ic_holo_light_fs_warning"
+      android:drawablePadding="@dimen/default_margin"
+      android:gravity="left|center_vertical"
+      android:singleLine="false"
+      android:text="@null"
+      android:textAppearance="@style/secondary_text_appearance"
+      android:textSize="@dimen/note_text_size"
+      android:visibility="gone" />
+  </TableLayout>
+
+  <LinearLayout
+      android:id="@+id/fso_tab_permissions"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_below="@id/fso_tabs"
+      android:paddingBottom="@dimen/extra_large_margin"
+      android:paddingTop="@dimen/default_margin"
+      android:orientation="vertical" >
+
+    <!-- Owners -->
+    <TableLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content" >
+
+      <!-- Owner -->
+      <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/extra_large_margin"
+        android:layout_marginRight="@dimen/extra_large_margin" >
+
+        <TextView
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_margin="@dimen/default_margin"
+          android:gravity="left|center_vertical"
+          android:text="@string/fso_properties_dialog_owner"
+          android:textAppearance="@style/primary_text_appearance" />
+
+        <Spinner
+          android:id="@+id/fso_properties_owner"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_margin="@dimen/default_margin"
+          android:gravity="left|center_vertical"
+          android:spinnerMode="dialog"
+          android:textAppearance="@style/secondary_text_appearance" />
+      </TableRow>
+
+      <!-- Group -->
+      <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/extra_large_margin"
+        android:layout_marginRight="@dimen/extra_large_margin" >
+
+        <TextView
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_margin="@dimen/default_margin"
+          android:gravity="left|center_vertical"
+          android:text="@string/fso_properties_dialog_group"
+          android:textAppearance="@style/primary_text_appearance" />
+
+        <Spinner
+          android:id="@+id/fso_properties_group"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_margin="@dimen/default_margin"
+          android:gravity="left|center_vertical"
+          android:spinnerMode="dialog"
+          android:textAppearance="@style/secondary_text_appearance" />
+      </TableRow>
+
+    </TableLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp" >
+      <include layout="@layout/vertical_divider" />
+    </LinearLayout>
+
+    <!-- Permissions -->
+    <TableLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content" >
+
+      <!-- Title -->
+      <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/extra_large_margin"
+        android:layout_marginRight="@dimen/extra_large_margin" >
+
+        <TextView
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_weight="1"
+          android:layout_margin="@dimen/default_margin"
+          android:gravity="left|center_vertical"
+          android:text="@null"
+          android:textAppearance="@style/primary_text_appearance" />
+
+        <TextView
+          android:layout_width="0dip"
+          android:layout_height="wrap_content"
+          android:layout_weight="1"
+          android:layout_margin="@dimen/default_margin"
+          android:gravity="center"
+          android:text="@string/fso_properties_dialog_special"
+          android:textAppearance="@style/primary_text_appearance" />
+
+        <TextView
+          android:layout_width="0dip"
+          android:layout_height="wrap_content"
+          android:layout_weight="1"
+          android:layout_margin="@dimen/default_margin"
+          android:gravity="center"
+          android:text="@string/fso_properties_dialog_read"
+          android:textAppearance="@style/primary_text_appearance" />
+
+        <TextView
+          android:layout_width="0dip"
+          android:layout_height="wrap_content"
+          android:layout_weight="1"
+          android:layout_margin="@dimen/default_margin"
+          android:gravity="center"
+          android:text="@string/fso_properties_dialog_write"
+          android:textAppearance="@style/primary_text_appearance" />
+
+        <TextView
+          android:layout_width="0dip"
+          android:layout_height="wrap_content"
+          android:layout_weight="1"
+          android:layout_margin="@dimen/default_margin"
+          android:gravity="center"
+          android:text="@string/fso_properties_dialog_execute"
+          android:textAppearance="@style/primary_text_appearance" />
+      </TableRow>
+
+      <!-- Owner -->
+      <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/extra_large_margin"
+        android:layout_marginRight="@dimen/extra_large_margin" >
+
+        <TextView
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_weight="1"
+          android:layout_margin="@dimen/default_margin"
+          android:gravity="left|center_vertical"
+          android:text="@string/fso_properties_dialog_owner"
+          android:textAppearance="@style/primary_text_appearance" />
+
+        <CheckBox
+          android:id="@+id/fso_permissions_owner_read"
+          android:layout_width="0dip"
+          android:layout_height="wrap_content"
+          android:layout_weight="1"
+          android:layout_margin="@dimen/default_margin" />
+
+        <CheckBox
+          android:id="@+id/fso_permissions_owner_write"
+          android:layout_width="0dip"
+          android:layout_height="wrap_content"
+          android:layout_weight="1"
+          android:layout_margin="@dimen/default_margin" />
+
+        <CheckBox
+          android:id="@+id/fso_permissions_owner_execute"
+          android:layout_width="0dip"
+          android:layout_height="wrap_content"
+          android:layout_weight="1"
+          android:layout_margin="@dimen/default_margin" />
+
+        <CheckBox
+          android:id="@+id/fso_permissions_owner_special"
+          android:layout_width="0dip"
+          android:layout_height="wrap_content"
+          android:layout_weight="1"
+          android:layout_margin="@dimen/default_margin" />
+      </TableRow>
+
+      <!-- Group -->
+      <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/extra_large_margin"
+        android:layout_marginRight="@dimen/extra_large_margin" >
+
+        <TextView
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_weight="1"
+          android:layout_margin="@dimen/default_margin"
+          android:gravity="left|center_vertical"
+          android:text="@string/fso_properties_dialog_group"
+          android:textAppearance="@style/primary_text_appearance" />
+
+        <CheckBox
+          android:id="@+id/fso_permissions_group_read"
+          android:layout_width="0dip"
+          android:layout_height="wrap_content"
+          android:layout_weight="1"
+          android:layout_margin="@dimen/default_margin" />
+
+        <CheckBox
+          android:id="@+id/fso_permissions_group_write"
+          android:layout_width="0dip"
+          android:layout_height="wrap_content"
+          android:layout_weight="1"
+          android:layout_margin="@dimen/default_margin" />
+
+        <CheckBox
+          android:id="@+id/fso_permissions_group_execute"
+          android:layout_width="0dip"
+          android:layout_height="wrap_content"
+          android:layout_weight="1"
+          android:layout_margin="@dimen/default_margin" />
+
+        <CheckBox
+          android:id="@+id/fso_permissions_group_special"
+          android:layout_width="0dip"
+          android:layout_height="wrap_content"
+          android:layout_weight="1"
+          android:layout_margin="@dimen/default_margin" />
+      </TableRow>
+
+      <!-- Others -->
+      <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/extra_large_margin"
+        android:layout_marginRight="@dimen/extra_large_margin" >
+
+        <TextView
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_weight="1"
+          android:layout_margin="@dimen/default_margin"
+          android:gravity="left|center_vertical"
+          android:text="@string/fso_properties_dialog_others"
+          android:textAppearance="@style/primary_text_appearance" />
+
+        <CheckBox
+          android:id="@+id/fso_permissions_others_read"
+          android:layout_width="0dip"
+          android:layout_height="wrap_content"
+          android:layout_weight="1"
+          android:layout_margin="@dimen/default_margin" />
+
+        <CheckBox
+          android:id="@+id/fso_permissions_others_write"
+          android:layout_width="0dip"
+          android:layout_height="wrap_content"
+          android:layout_weight="1"
+          android:layout_margin="@dimen/default_margin" />
+
+        <CheckBox
+          android:id="@+id/fso_permissions_others_execute"
+          android:layout_width="0dip"
+          android:layout_height="wrap_content"
+          android:layout_weight="1"
+          android:layout_margin="@dimen/default_margin" />
+
+        <CheckBox
+          android:id="@+id/fso_permissions_others_special"
+          android:layout_width="0dip"
+          android:layout_height="wrap_content"
+          android:layout_weight="1"
+          android:layout_margin="@dimen/default_margin" />
+      </TableRow>
+
+    </TableLayout>
+
+    <!-- Info message -->
+    <TextView
+      android:id="@+id/fso_info_msg"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_gravity="center_vertical"
+      android:layout_marginLeft="@dimen/extra_large_margin"
+      android:layout_marginRight="@dimen/extra_large_margin"
+      android:contentDescription="@null"
+      android:drawableLeft="@drawable/ic_holo_light_fs_warning"
+      android:drawablePadding="@dimen/default_margin"
+      android:gravity="left|center_vertical"
+      android:singleLine="false"
+      android:background="@drawable/holo_selector"
+      android:text="@string/fso_properties_permissions_not_allowed_msg"
+      android:textSize="@dimen/note_text_size"
+      android:visibility="gone" />
+  </LinearLayout>
+
+</RelativeLayout>

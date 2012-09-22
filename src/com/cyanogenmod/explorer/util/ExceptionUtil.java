@@ -48,6 +48,26 @@ import java.util.List;
 public final class ExceptionUtil {
 
     /**
+     * An interface to communicate events related with the result of a command relaunch.
+     */
+    public interface OnRelaunchCommandResult {
+        /**
+         * Method invoked when the relaunch operation was success
+         */
+        void onSuccess();
+
+        /**
+         * Method invoked when the relaunch operation was cancelled by the user
+         */
+        void onCancelled();
+
+        /**
+         * Method invoked when the relaunch operation was failed
+         */
+        void onFailed();
+    }
+
+    /**
      * Constructor of <code>ExceptionUtil</code>.
      */
     private ExceptionUtil() {
@@ -118,7 +138,7 @@ public final class ExceptionUtil {
      */
     public static synchronized void translateException(
             final Context context, Throwable ex) {
-        translateException(context, ex, false);
+        translateException(context, ex, false, true);
     }
 
     /**
@@ -127,10 +147,29 @@ public final class ExceptionUtil {
      *
      * @param context The current context.
      * @param ex The exception
-     * @param quiet Don't ask the user
+     * @param quiet Don't show UI messages
+     * @param askUser Ask the user when if the exception could be relaunched with other privileged
      */
-    private static synchronized void translateException(
-            final Context context, final Throwable ex, final boolean quiet) {
+    public static synchronized void translateException(
+            final Context context, final Throwable ex,
+            final boolean quiet, final boolean askUser) {
+        translateException(context, ex, quiet, askUser, null);
+    }
+
+    /**
+     * Method that captures and translate an exception, showing a
+     * toast or a alert, according to the importance.
+     *
+     * @param context The current context.
+     * @param ex The exception
+     * @param quiet Don't show UI messages
+     * @param askUser Ask the user when if the exception could be relaunched with other privileged
+     * @param listener The listener where return the relaunch result
+     */
+    public static synchronized void translateException(
+            final Context context, final Throwable ex,
+            final boolean quiet, final boolean askUser,
+            final OnRelaunchCommandResult listener) {
 
         //Get the appropriate message for the exception
         int msgResId = R.string.msgs_unknown;
@@ -145,12 +184,12 @@ public final class ExceptionUtil {
         }
 
         //Check exceptions that can be asked to user
-        if (ex instanceof RelaunchableException && !quiet) {
+        if (ex instanceof RelaunchableException && askUser) {
             ((Activity)context).runOnUiThread(new Runnable() {
                 @Override
                 @SuppressWarnings("synthetic-access")
                 public void run() {
-                    askUser(context, (RelaunchableException)ex);
+                    askUser(context, (RelaunchableException)ex, quiet, listener);
                 }
             });
             return;
@@ -162,16 +201,18 @@ public final class ExceptionUtil {
         //Build the alert
         final int fMsgResId = msgResId;
         final boolean fToast = toast;
-        ((Activity)context).runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                if (fToast) {
-                    DialogHelper.showToast(context, fMsgResId, Toast.LENGTH_SHORT);
-                } else {
-                    DialogHelper.createErrorDialog(context, fMsgResId).show();
+        if (!quiet) {
+            ((Activity)context).runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    if (fToast) {
+                        DialogHelper.showToast(context, fMsgResId, Toast.LENGTH_SHORT);
+                    } else {
+                        DialogHelper.createErrorDialog(context, fMsgResId).show();
+                    }
                 }
-            }
-        });
+            });
+        }
     }
 
     /**
@@ -179,10 +220,38 @@ public final class ExceptionUtil {
      *
      * @param context The current context
      * @param relaunchable The exception that contains the command that must be re-executed.
-     *
+     * @param listener The listener where return the relaunch result
      */
     private static void askUser(
-            final Context context, final RelaunchableException relaunchable) {
+            final Context context,
+            final RelaunchableException relaunchable,
+            final boolean quiet,
+            final OnRelaunchCommandResult listener) {
+
+        //Is privileged?
+        boolean isPrivileged = false;
+        try {
+            isPrivileged = ConsoleBuilder.getConsole(context).isPrivileged();
+        } catch (Throwable ex) {
+            /**NON BLOCK**/
+        }
+
+        // If console is privileged there is not need to change
+        if (relaunchable instanceof InsufficientPermissionsException && isPrivileged) {
+            translateException(
+                    context, relaunchable, quiet, false, null);
+
+            // Operation failed
+            if (listener != null) {
+                listener.onFailed();
+            }
+            return;
+        }
+
+        // Operation failed
+        if (listener != null) {
+            listener.onFailed();
+        }
 
         //Create a yes/no dialog and ask the user
         AlertDialog alert = DialogHelper.createYesNoDialog(
@@ -198,7 +267,7 @@ public final class ExceptionUtil {
                                     //Prepare the system before re-launch the command
                                     prepare(context, relaunchable);
 
-                                    //Re-execute the program
+                                    //Re-execute the command
                                     List<SyncResultExecutable> executables =
                                             relaunchable.getExecutables();
                                     for (int i = 0; i < executables.size(); i++) {
@@ -210,14 +279,29 @@ public final class ExceptionUtil {
                                         }
                                     }
 
+                                    // Operation complete
+                                    if (listener != null) {
+                                        listener.onSuccess();
+                                    }
+
                                 } catch (Throwable ex) {
                                     //Capture the exception, this time in quiet mode, if the
                                     //exception is the same
-                                    boolean quiet =
+                                    boolean ask =
                                             ex.getClass().getName().compareTo(
                                                     relaunchable.getClass().getName()) == 0;
                                     translateException(
-                                            context, ex, quiet);
+                                            context, ex, quiet, !ask, listener);
+
+                                    // Operation failed
+                                    if (listener != null) {
+                                        listener.onFailed();
+                                    }
+                                }
+                            } else {
+                                // Operation cancelled
+                                if (listener != null) {
+                                    listener.onCancelled();
                                 }
                             }
                         }

@@ -19,7 +19,7 @@ package com.cyanogenmod.explorer.model;
 /**
  * A class that represents a user of the operating system.
  */
-public class User extends SID {
+public class User extends AID {
 
     private static final long serialVersionUID = 8250909336356908786L;
 
@@ -38,7 +38,7 @@ public class User extends SID {
      */
     @Override
     public String toString() {
-        return "User [sid=" + super.toString() + "]"; //$NON-NLS-1$ //$NON-NLS-2$
+        return "User [" + super.toString() + "]"; //$NON-NLS-1$ //$NON-NLS-2$
     }
 
 }

@@ -53,6 +53,8 @@ import java.io.File;
  */
 public class ActionsDialog implements OnItemClickListener, OnItemLongClickListener {
 
+    private final Context mContext;
+
     private AlertDialog mDialog;
     private ListView mListView;
     private final FileSystemObject mFso;
@@ -71,6 +73,7 @@ public class ActionsDialog implements OnItemClickListener, OnItemLongClickListen
 
         // Initialize data
         this.mFso = null;
+        this.mContext = context;
 
         //Initialize dialog
         init(context, R.id.mnu_actions_global);
@@ -87,6 +90,7 @@ public class ActionsDialog implements OnItemClickListener, OnItemLongClickListen
 
         //Save the data
         this.mFso = fso;
+        this.mContext = context;
 
         //Initialize dialog
         init(context, R.id.mnu_actions_fso);
@@ -185,6 +189,11 @@ public class ActionsDialog implements OnItemClickListener, OnItemLongClickListen
                 }
                 break;
 
+            //- Properties
+            case R.id.mnu_actions_properties:
+                showPropertiesDialog(this.mFso);
+                break;
+
             default:
                 break;
         }
@@ -205,7 +214,7 @@ public class ActionsDialog implements OnItemClickListener, OnItemLongClickListen
         //Show the input name dialog
         final InputNameDialog inputNameDialog =
                 new InputNameDialog(
-                        this.mDialog.getContext(),
+                        this.mContext,
                         this.mOnSelectionListener.onRequestSelectedFiles(),
                         menuItem.getTitle().toString());
         inputNameDialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
@@ -234,13 +243,37 @@ public class ActionsDialog implements OnItemClickListener, OnItemLongClickListen
     }
 
     /**
+     * Method that show a new dialog for show {@link FileSystemObject} properties.
+     *
+     * @param fso The file system object
+     */
+    private void showPropertiesDialog(final FileSystemObject fso) {
+        //Show a the filesystem info dialog
+        final FsoPropertiesDialog dialog = new FsoPropertiesDialog(this.mContext, fso);
+        dialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+            @Override
+            @SuppressWarnings("synthetic-access")
+            public void onDismiss(DialogInterface dlg) {
+                // Any change?
+                if (dialog.isHasChanged()) {
+                    if (ActionsDialog.this.mOnRequestRefreshListener != null) {
+                        ActionsDialog.this.
+                            mOnRequestRefreshListener.onRequestRefresh(dialog.getFso());
+                    }
+                }
+            }
+        });
+        dialog.show();
+    }
+
+    /**
      * {@inheritDoc}
      */
     @Override
     public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
         view.performHapticFeedback(HapticFeedbackConstants.LONG_PRESS);
         DialogHelper.showToast(
-                this.mDialog.getContext(),
+                this.mContext,
                 ((TextView)view).getText().toString(),
                 Toast.LENGTH_SHORT);
         return true;
@@ -262,10 +295,10 @@ public class ActionsDialog implements OnItemClickListener, OnItemLongClickListen
         try {
             switch (menuId) {
                 case R.id.mnu_actions_new_directory:
-                    CommandHelper.createDirectory(this.mDialog.getContext(), newName, null);
+                    CommandHelper.createDirectory(this.mContext, newName, null);
                     break;
                 case R.id.mnu_actions_new_file:
-                    CommandHelper.createFile(this.mDialog.getContext(), newName, null);
+                    CommandHelper.createFile(this.mContext, newName, null);
                     break;
                 default:
                     break;
@@ -275,7 +308,7 @@ public class ActionsDialog implements OnItemClickListener, OnItemLongClickListen
             if (ActionsDialog.this.mOnRequestRefreshListener != null) {
                 FileSystemObject file = null;
                 try {
-                    file = CommandHelper.getFileInfo(this.mDialog.getContext(), newName, null);
+                    file = CommandHelper.getFileInfo(this.mContext, newName, null);
                 } catch (Throwable ex2) {
                     /**NON BLOCK**/
                 }
@@ -298,7 +331,7 @@ public class ActionsDialog implements OnItemClickListener, OnItemLongClickListen
                             try {
                                 file =
                                     CommandHelper.getFileInfo(
-                                            ActionsDialog.this.mDialog.getContext(), newName, null);
+                                            ActionsDialog.this.mContext, newName, null);
                             } catch (Throwable ex2) {
                                 /**NON BLOCK**/
                             }
@@ -309,7 +342,7 @@ public class ActionsDialog implements OnItemClickListener, OnItemLongClickListen
 
                 });
             }
-            ExceptionUtil.translateException(this.mDialog.getContext(), ex);
+            ExceptionUtil.translateException(this.mContext, ex);
         }
     }
 

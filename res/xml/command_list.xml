@@ -46,7 +46,7 @@
   <command commandId="find" commandPath="/system/xbin/find" commandArgs="%1$s \\( -name %2$s -o -name %3$s -o -name %4$s -o -name %5$s -o -name %6$s \\) -exec /system/xbin/echo {} \\; -exec /system/bin/ls -ald {} \\;" />
   <command commandId="groups" commandPath="/system/xbin/groups" commandArgs="" />
   <command commandId="id" commandPath="/system/bin/id" commandArgs="-Gn" />
-  <command commandId="ls" commandPath="/system/bin/ls" commandArgs="-al %1$s | /system/xbin/grep -v -e '->' &amp;&amp; echo '>SIMLINKS>' &amp;&amp; /system/bin/ls -al %1$s | { /system/xbin/grep -e '->' || true; } &amp;&amp; echo '>SIMLINKS_DATA>' &amp;&amp; /system/bin/ls -aF %1$s | /system/xbin/grep -e '^l' | /system/xbin/awk '{print $2}' | /system/xbin/xargs -r -n1 /system/xbin/readlink -f &amp;&amp; /system/bin/ls -F %1$s | /system/xbin/grep -e '^l' | /system/xbin/awk '{print $2}' | /system/xbin/xargs -r -n1 /system/xbin/readlink -f | { /system/xbin/xargs -r -n1 /system/bin/ls -ald || true; }" />
+  <command commandId="ls" commandPath="cd" commandArgs="%1$s &amp;&amp; /system/bin/ls -al %1$s | /system/xbin/grep -v -e '->' &amp;&amp; echo '>SIMLINKS>' &amp;&amp; /system/bin/ls -al %1$s | { /system/xbin/grep -e '->' || true; } &amp;&amp; echo '>SIMLINKS_DATA>' &amp;&amp; /system/bin/ls -aF %1$s | /system/xbin/grep -e '^l' | /system/xbin/awk '{print $2}' | /system/xbin/xargs -r -n1 /system/xbin/readlink -f &amp;&amp; /system/bin/ls -F %1$s | /system/xbin/grep -e '^l' | /system/xbin/awk '{print $2}' | /system/xbin/xargs -r -n1 /system/xbin/readlink -f | { /system/xbin/xargs -r -n1 /system/bin/ls -ald || true; }" />
   <command commandId="mkdir" commandPath="/system/bin/mkdir" commandArgs="%1$s" />
   <command commandId="mount" commandPath="/system/bin/mount" commandArgs="-o %1$s,remount -t auto %2$s %3$s" />
   <command commandId="mountpointinfo" commandPath="/system/bin/cat" commandArgs="/proc/mounts" />
@@ -54,7 +54,7 @@
   <command commandId="pid" commandPath="/system/bin/ps" commandArgs="| /system/xbin/grep `ps | /system/xbin/grep %1$s | /system/xbin/awk '{print $1}'` | grep %2$s | /system/xbin/awk '{print $2}'" />
   <command commandId="pwd" commandPath="/system/xbin/pwd" commandArgs="-P" />
   <command commandId="quickfoldersearch" commandPath="/system/bin/ls" commandArgs="-aFd %1$s.* %1$s* | /system/xbin/grep -e '^d' -e '^ld' | /system/xbin/awk '{print $2}'" />
-  <command commandId="readlink" commandPath="/system/xbin/readlink" commandArgs="-f %1$s | awk -F// '{print &quot;\\&quot;&quot;$1&quot;\\&quot;&quot;}' | /system/xbin/xargs -n1 /system/xbin/dirname &amp;&amp; /system/xbin/readlink -f %1$s | awk -F// '{print &quot;\\&quot;&quot;$1&quot;\\&quot;&quot;}' | /system/xbin/xargs -n1 /system/bin/ls -ald" />
+  <command commandId="readlink" commandPath="cd" commandArgs="`/system/xbin/dirname %1$s` &amp;&amp; /system/xbin/readlink -f %1$s | awk -F// '{print &quot;\\&quot;&quot;$1&quot;\\&quot;&quot;}' | /system/xbin/xargs -n1 /system/xbin/dirname &amp;&amp; /system/xbin/readlink -f %1$s | awk -F// '{print &quot;\\&quot;&quot;$1&quot;\\&quot;&quot;}' | /system/xbin/xargs -n1 /system/bin/ls -ald" />
   <command commandId="rm" commandPath="/system/bin/rm" commandArgs="%1$s" />
   <command commandId="rmdir" commandPath="/system/bin/rm" commandArgs="-r %1$s" />
   <command commandId="touch" commandPath="/system/xbin/echo" commandArgs="-n '' >> %1$s" />

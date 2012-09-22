@@ -956,13 +956,13 @@ public final class CommandHelper {
                     //Mount point is already read-write
                 }
             } else {
-                //For security or physical reasons the mount point cann't be
+                //For security or physical reasons the mount point can't be
                 //mounted as read-write. Execute the command
-                //and translate to the user
+                //and notify to the user
             }
         } else {
             //Don't have information about the mount point. Execute the command
-            //and translate to the user
+            //and notify to the user
         }
 
         //Create the mount/unmount executables

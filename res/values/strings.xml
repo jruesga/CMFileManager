@@ -53,6 +53,11 @@
   <string name="title_error">Error</string>
   <string name="title_question">Question</string>
 
+  <!-- Loading waiting message -->
+  <string name="loading_message">Loading&#8230;</string>
+  <!-- Error message -->
+  <string name="error_message">Error.</string>
+
   <!-- A console can't not be create. Without a console the application can't continue -->
   <string name="msgs_cant_create_console">The application is not capable of create a console. The
     application can\'t work without a console.</string>
@@ -163,11 +168,16 @@
 
   <!-- Filesystem Info (no data) -->
   <string name="filesystem_info_warning_msg">There is no information about the filesystem</string>
+  <!-- Filesystem Info * Filesystem couldn't be mounted -->
+  <string name="filesystem_info_couldnt_be_mounted_msg">
+    The filesystem couldn\'t be mounted/unmounted.</string>
   <!-- Filesystem Info * Not allowed message -->
   <string name="filesystem_info_mount_not_allowed_msg">Mount filesystem operation is not allowed
-    by a non-privileged console. Try to change to a privileged console.</string>
+    by a non-privileged console. Tap to change to a privileged console.</string>
   <!-- Filesystem Info * Mount failed -->
-  <string name="filesystem_info_mount_failed_msg">Mount filesystem operation failed.</string>
+  <string name="filesystem_info_mount_failed_msg">Mount filesystem operation failed.
+    Some filesystem, like the internal sdcard, not allow to be mounted/unmounted, because
+    they are read-only filesystems.</string>
   <!-- Filesystem Info Dialog * Title -->
   <string name="filesystem_info_dialog_title">Filesystem Information</string>
   <!-- Filesystem Info Dialog * Tab * Info -->
@@ -192,6 +202,52 @@
   <string name="filesystem_info_dialog_used_disk_usage">Used:</string>
   <!-- Filesystem Info Dialog * Free Disk Usage -->
   <string name="filesystem_info_dialog_free_disk_usage">Free:</string>
+
+
+  <!-- Fso Properties * Not allowed message -->
+  <string name="fso_properties_permissions_not_allowed_msg">Permissions operations are not allowed
+    by a non-privileged console. Tap to change to a privileged console.</string>
+  <!-- Fso Properties * Failed to change owner to fso -->
+  <string name="fso_properties_failed_to_change_owner_msg">Change owner operation failed.
+    Some filesystem, like sdcards, not allow change the owner.</string>
+  <!-- Fso Properties * Failed to change group to fso -->
+  <string name="fso_properties_failed_to_change_group_msg">Change group operation failed.
+    Some filesystem, like sdcards, not allow change the group.</string>
+  <!-- Fso Properties * Failed to change group to fso -->
+  <string name="fso_properties_failed_to_change_permission_msg">Change permissions operation failed.
+    Some filesystem, like sdcards, not allow change the permission.</string>
+  <!-- Fso Properties Dialog * Title -->
+  <string name="fso_properties_dialog_title">Properties</string>
+  <!-- Fso Properties Dialog * Tab * Info -->
+  <string name="fso_properties_dialog_tab_info">Info</string>
+  <!-- Fso Properties Dialog * Tab * Permissions -->
+  <string name="fso_properties_dialog_tab_permissions">Permissions</string>
+  <!-- Fso Properties Dialog * Name Label -->
+  <string name="fso_properties_dialog_name">Name:</string>
+  <!-- Fso Properties Dialog * Parent Folder Label -->
+  <string name="fso_properties_dialog_parent">Parent:</string>
+  <!-- Fso Properties Dialog * Type Label -->
+  <string name="fso_properties_dialog_type">Type:</string>
+  <!-- Fso Properties Dialog * Link Label -->
+  <string name="fso_properties_dialog_link">Link:</string>
+  <!-- Fso Properties Dialog * Size Label -->
+  <string name="fso_properties_dialog_size">Size:</string>
+  <!-- Fso Properties Dialog * Date Label -->
+  <string name="fso_properties_dialog_date">Last Access:</string>
+  <!-- Fso Properties Dialog * Owner Label -->
+  <string name="fso_properties_dialog_owner">Owner:</string>
+  <!-- Fso Properties Dialog * Group Label -->
+  <string name="fso_properties_dialog_group">Group:</string>
+  <!-- Fso Properties Dialog * Others Label -->
+  <string name="fso_properties_dialog_others">Others:</string>
+  <!-- Fso Properties Dialog * Special Label -->
+  <string name="fso_properties_dialog_special" translatable="false">S</string>
+  <!-- Fso Properties Dialog * Read Label -->
+  <string name="fso_properties_dialog_read" translatable="false">R</string>
+  <!-- Fso Properties Dialog * Write Label -->
+  <string name="fso_properties_dialog_write" translatable="false">W</string>
+  <!-- Fso Properties Dialog * Execute Label -->
+  <string name="fso_properties_dialog_execute" translatable="false">X</string>
 
   <!-- Choose console dialog title -->
   <string name="choose_console_dialog_title">Choose console</string>
@@ -230,7 +286,7 @@
     Do you want to cancel the search?</string>
 
   <!-- Searching dialog title -->
-  <string name="searching">Please, wait…</string>
+  <string name="searching">Please, wait &#8230;</string>
   <!-- Searching label -->
   <string name="searching_action_label">Searching in progress</string>
 
@@ -321,5 +377,12 @@
 
   <!-- Inline Autocomplete Widget * Tab message nothing to complete -->
   <string name="inline_autocomplete_tab_nothing_to_complete_msg">Nothing to complete</string>
+
+  <!-- Mime/Types * Folder -->
+  <string name="mime_folder">Folder</string>
+  <!-- Mime/Types * Symlink -->
+  <string name="mime_symlink">Symlink</string>
+  <!-- Mime/Types * Unknown -->
+  <string name="mime_unknown">Unknown</string>
 
 </resources>

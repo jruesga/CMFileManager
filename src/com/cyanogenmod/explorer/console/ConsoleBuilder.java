@@ -166,8 +166,7 @@ public final class ConsoleBuilder {
             if (sHolder != null) {
                 if (
                     (sHolder.getConsole() instanceof NonPriviledgeConsole && requiredSuConsole)
-                    || (sHolder.getConsole() instanceof PrivilegedConsole && !requiredSuConsole)
-                  ) {
+                    || (sHolder.getConsole() instanceof PrivilegedConsole && !requiredSuConsole)) {
                     //Deallocate actual console
                     sHolder.dispose();
                     sHolder = null;

@@ -20,9 +20,9 @@ import com.cyanogenmod.explorer.commands.IdentityExecutable;
 import com.cyanogenmod.explorer.console.CommandNotFoundException;
 import com.cyanogenmod.explorer.console.ExecutionException;
 import com.cyanogenmod.explorer.console.InsufficientPermissionsException;
+import com.cyanogenmod.explorer.model.AID;
 import com.cyanogenmod.explorer.model.Group;
 import com.cyanogenmod.explorer.model.Identity;
-import com.cyanogenmod.explorer.model.SID;
 import com.cyanogenmod.explorer.model.User;
 import com.cyanogenmod.explorer.util.FileHelper;
 
@@ -93,10 +93,10 @@ public class IdentityCommand extends SyncResultProgram implements IdentityExecut
             }
 
             //1.- Extract user
-            User user = (User)createSID(p.getProperty(UID), User.class);
+            User user = (User)createAID(p.getProperty(UID), User.class);
 
             //2.- Extract group
-            Group group = (Group)createSID(p.getProperty(GID), Group.class);
+            Group group = (Group)createAID(p.getProperty(GID), Group.class);
 
             //3.- Extract groups
             List<Group> groups = new ArrayList<Group>();
@@ -104,7 +104,7 @@ public class IdentityCommand extends SyncResultProgram implements IdentityExecut
             if (szGroups != null && szGroups.length() > 0) {
                 String[] aGroups = szGroups.split(","); //$NON-NLS-1$
                 for (int i = 0; i < aGroups.length; i++) {
-                    groups.add((Group)createSID(aGroups[i], Group.class));
+                    groups.add((Group)createAID(aGroups[i], Group.class));
                 }
             }
 
@@ -151,31 +151,31 @@ public class IdentityCommand extends SyncResultProgram implements IdentityExecut
     }
 
     /**
-     * Method that creates the {@link SID} from the parsed string.
+     * Method that creates the {@link AID} from the parsed string.
      *
-     * @param src The string to parsed into a {@link SID}
-     * @param clazz The {@link User} or {@link Group} class from which create the SID object
-     * @return SID The identity reference
-     * @throws ParseException If can't create the {@link SID} reference from the string
+     * @param src The string to parsed into a {@link AID}
+     * @param clazz The {@link User} or {@link Group} class from which create the AID object
+     * @return AID The identity reference
+     * @throws ParseException If can't create the {@link AID} reference from the string
      * @throws NoSuchMethodException If the constructor can not be found.
      * @exception InstantiationException If the class cannot be instantiated
      * @exception IllegalAccessException If this constructor is not accessible
      * @exception InvocationTargetException If an exception was thrown by the invoked constructor
      */
     @SuppressWarnings({ "unchecked", "static-method", "boxing" })
-    private SID createSID(String src, Class<?> clazz)
+    private AID createAID(String src, Class<?> clazz)
             throws ParseException, NoSuchMethodException,
             InstantiationException, IllegalAccessException, InvocationTargetException {
         int id = 0;
         try {
             id = Integer.parseInt(src.substring(0, src.lastIndexOf('(')).trim());
         } catch (NumberFormatException nfEx) {
-            throw new ParseException(String.format("not valid SID id: %s", src), 0); //$NON-NLS-1$
+            throw new ParseException(String.format("not valid AID id: %s", src), 0); //$NON-NLS-1$
         }
         String szName = src.substring(src.lastIndexOf('(') + 1, src.lastIndexOf(')'));
 
-        Constructor<SID> constructor =
-                (Constructor<SID>)clazz.getConstructor(Integer.TYPE, String.class);
+        Constructor<AID> constructor =
+                (Constructor<AID>)clazz.getConstructor(Integer.TYPE, String.class);
         return constructor.newInstance(id, szName);
     }
 

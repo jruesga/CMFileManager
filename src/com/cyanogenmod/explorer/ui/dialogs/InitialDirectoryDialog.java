@@ -55,6 +55,7 @@ public class InitialDirectoryDialog implements DialogInterface.OnClickListener {
 
     private static final String TAG = "InitialDirectoryDialog"; //$NON-NLS-1$
 
+    private final Context mContext;
     private final AlertDialog mDialog;
     private final DirectoryInlineAutocompleteTextView mAutocomplete;
     private OnValueChangedListener mOnValueChangedListener;
@@ -67,6 +68,9 @@ public class InitialDirectoryDialog implements DialogInterface.OnClickListener {
      */
     public InitialDirectoryDialog(Context context, final List<Bookmark> bookmarks) {
         super();
+
+        //Save the context
+        this.mContext = context;
 
         //Extract current value
         String value = Preferences.getSharedPreferences().getString(
@@ -176,7 +180,7 @@ public class InitialDirectoryDialog implements DialogInterface.OnClickListener {
         } catch (Throwable ex) {
             Log.e(TAG, "The save initial directory setting operation fails", ex); //$NON-NLS-1$
             DialogHelper.showToast(
-                    this.mDialog.getContext(),
+                    this.mContext,
                     R.string.initial_directory_error_msg,
                     Toast.LENGTH_LONG);
         }

@@ -40,6 +40,7 @@ import java.util.List;
 public class InputNameDialog
     implements TextWatcher, DialogInterface.OnCancelListener, DialogInterface.OnDismissListener {
 
+    private final Context mContext;
     private final AlertDialog mDialog;
     private final TextView mMsg;
     private final EditText mEditText;
@@ -59,6 +60,9 @@ public class InputNameDialog
     public InputNameDialog(
             final Context context, List<FileSystemObject> files, String dialogTitle) {
         super();
+
+        //Save the context
+        this.mContext = context;
 
         //Save the files
         this.mFiles = files;
@@ -172,26 +176,26 @@ public class InputNameDialog
         if (txt.length() == 0) {
             //The name is empty
             setMsg(
-                InputNameDialog.this.mDialog.getContext().getResources().getString(
+                InputNameDialog.this.mContext.getString(
                       R.string.input_name_dialog_message_empty_name), false);
             return;
         }
         if (txt.indexOf("/") != -1) { //$NON-NLS-1$
             setMsg(
-                InputNameDialog.this.mDialog.getContext().getResources().getString(
+                InputNameDialog.this.mContext.getString(
                       R.string.input_name_dialog_message_invalid_path_name,
                       File.separator), false);
             return;
         }
         if (txt.compareTo(".") == 0 || txt.compareTo("..") == 0) { //$NON-NLS-1$ //$NON-NLS-2$
             setMsg(
-                InputNameDialog.this.mDialog.getContext().getResources().getString(
+                InputNameDialog.this.mContext.getString(
                         R.string.input_name_dialog_message_invalid_name), false);
             return;
         }
         if (isNameExists(txt)) {
             setMsg(
-                InputNameDialog.this.mDialog.getContext().getResources().getString(
+                InputNameDialog.this.mContext.getString(
                         R.string.input_name_dialog_message_name_exists), false);
             return;
         }

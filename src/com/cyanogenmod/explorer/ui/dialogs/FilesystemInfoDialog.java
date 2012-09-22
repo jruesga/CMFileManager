@@ -61,15 +61,19 @@ public class FilesystemInfoDialog implements OnClickListener {
     private final MountPoint mMountPoint;
     private final DiskUsage mDiskUsage;
 
+    private final Context mContext;
     private final AlertDialog mDialog;
     private View mInfoViewTab;
     private View mDiskUsageViewTab;
     private View mInfoView;
     private View mDiskUsageView;
+    private Switch mSwStatus;
     private DiskUsageGraph mDiskUsageGraph;
-    private View mInfoMsgView;
+    private TextView mInfoMsgView;
 
     private OnMountListener mOnMountListener;
+
+    private boolean mIsMountAllowed;
 
     /**
      * Constructor of <code>FilesystemInfoDialog</code>.
@@ -81,9 +85,13 @@ public class FilesystemInfoDialog implements OnClickListener {
     public FilesystemInfoDialog(Context context, MountPoint mountPoint, DiskUsage diskUsage) {
         super();
 
+        //Save the context
+        this.mContext = context;
+
         //Save data
         this.mMountPoint = mountPoint;
         this.mDiskUsage = diskUsage;
+        this.mIsMountAllowed = false;
 
         //Inflate the content
         LayoutInflater li =
@@ -132,16 +140,13 @@ public class FilesystemInfoDialog implements OnClickListener {
         this.mDiskUsageGraph =
                 (DiskUsageGraph)contentView.findViewById(R.id.filesystem_disk_usage_graph);
 
-        //Change the tab
-        onClick(this.mInfoViewTab);
-
         //Register the listeners
         this.mInfoViewTab.setOnClickListener(this);
         this.mDiskUsageViewTab.setOnClickListener(this);
 
         //Gets text views
-        Switch swStatus = (Switch)contentView.findViewById(R.id.filesystem_info_status);
-        swStatus.setOnClickListener(this);
+        this.mSwStatus = (Switch)contentView.findViewById(R.id.filesystem_info_status);
+        this.mSwStatus.setOnClickListener(this);
         TextView tvMountPoint =
                 (TextView)contentView.findViewById(R.id.filesystem_info_mount_point);
         TextView tvDevice = (TextView)contentView.findViewById(R.id.filesystem_info_device);
@@ -152,7 +157,7 @@ public class FilesystemInfoDialog implements OnClickListener {
                 (TextView)contentView.findViewById(R.id.filesystem_info_total_disk_usage);
         TextView tvUsed = (TextView)contentView.findViewById(R.id.filesystem_info_used_disk_usage);
         TextView tvFree = (TextView)contentView.findViewById(R.id.filesystem_info_free_disk_usage);
-        this.mInfoMsgView = contentView.findViewById(R.id.filesystem_info_msg);
+        this.mInfoMsgView = (TextView)contentView.findViewById(R.id.filesystem_info_msg);
 
         //Fill the text views
         tvMountPoint.setText(this.mMountPoint.getMountPoint());
@@ -176,17 +181,26 @@ public class FilesystemInfoDialog implements OnClickListener {
         //Configure status switch
         boolean hasPrivileged = false;
         try {
-            hasPrivileged = ConsoleBuilder.getConsole(this.mDialog.getContext()).isPrivileged();
-        } catch (Throwable ex) {
-            /**NON BLOCK**/
-        }
-        swStatus.setChecked(MountPointHelper.isReadWrite(this.mMountPoint));
+            hasPrivileged = ConsoleBuilder.getConsole(this.mContext).isPrivileged();
+        } catch (Throwable ex) {/**NON BLOCK**/}
+        boolean mountAllowed = MountPointHelper.isMountAllowed(this.mMountPoint);
         if (hasPrivileged) {
-            swStatus.setEnabled(MountPointHelper.isMountAllowed(this.mMountPoint));
+            this.mSwStatus.setEnabled(mountAllowed);
+            if (!mountAllowed) {
+                this.mInfoMsgView.setText(
+                        this.mContext.getString(R.string.filesystem_info_couldnt_be_mounted_msg));
+                this.mInfoMsgView.setVisibility(View.VISIBLE);
+            }
         } else {
             this.mInfoMsgView.setVisibility(View.VISIBLE);
-            swStatus.setEnabled(false);
+            this.mInfoMsgView.setOnClickListener(this);
         }
+        this.mIsMountAllowed = hasPrivileged && mountAllowed;
+        this.mSwStatus.setEnabled(this.mIsMountAllowed);
+        this.mSwStatus.setChecked(MountPointHelper.isReadWrite(this.mMountPoint));
+
+        //Change the tab
+        onClick(this.mInfoViewTab);
     }
 
     /**
@@ -199,23 +213,24 @@ public class FilesystemInfoDialog implements OnClickListener {
                 if (!this.mInfoViewTab.isSelected()) {
                     this.mInfoViewTab.setSelected(true);
                     ((TextView)this.mInfoViewTab).setTextAppearance(
-                            this.mDialog.getContext(), R.style.primary_text_appearance);
+                            this.mContext, R.style.primary_text_appearance);
                     this.mDiskUsageViewTab.setSelected(false);
                     ((TextView)this.mDiskUsageViewTab).setTextAppearance(
-                            this.mDialog.getContext(), R.style.secondary_text_appearance);
+                            this.mContext, R.style.secondary_text_appearance);
                     this.mInfoView.setVisibility(View.VISIBLE);
                     this.mDiskUsageView.setVisibility(View.GONE);
                 }
+                this.mInfoMsgView.setVisibility (this.mIsMountAllowed ? View.GONE : View.VISIBLE);
                 break;
 
             case R.id.filesystem_info_dialog_tab_disk_usage:
                 if (!this.mDiskUsageViewTab.isSelected()) {
                     this.mInfoViewTab.setSelected(false);
                     ((TextView)this.mInfoViewTab).setTextAppearance(
-                            this.mDialog.getContext(), R.style.secondary_text_appearance);
+                            this.mContext, R.style.secondary_text_appearance);
                     this.mDiskUsageViewTab.setSelected(true);
                     ((TextView)this.mDiskUsageViewTab).setTextAppearance(
-                            this.mDialog.getContext(), R.style.primary_text_appearance);
+                            this.mContext, R.style.primary_text_appearance);
                     this.mInfoView.setVisibility(View.GONE);
                     this.mDiskUsageView.setVisibility(View.VISIBLE);
                 }
@@ -236,7 +251,7 @@ public class FilesystemInfoDialog implements OnClickListener {
                 boolean ret = false;
                 try {
                     ret = CommandHelper.remount(
-                            this.mDialog.getContext(),
+                            this.mContext,
                             this.mMountPoint, sw.isChecked(), null);
                     //Hide warning message
                     this.mInfoMsgView.setVisibility(View.GONE);
@@ -253,11 +268,34 @@ public class FilesystemInfoDialog implements OnClickListener {
                 }
                 if (!ret) {
                     //Show warning message
-                    TextView tv =
-                            (TextView)this.mInfoMsgView.findViewById(R.id.filesystem_info_msg);
-                    tv.setText(R.string.filesystem_info_mount_failed_msg);
+                    this.mInfoMsgView.setText(R.string.filesystem_info_mount_failed_msg);
                     this.mInfoMsgView.setVisibility(View.VISIBLE);
                     sw.setChecked(!sw.isChecked());
+                }
+                break;
+
+            case R.id.filesystem_info_msg:
+                //Change the console
+                boolean superuser = ConsoleBuilder.changeToPrivilegedConsole(this.mContext);
+                if (superuser) {
+                    this.mInfoMsgView.setOnClickListener(null);
+
+                    // Is filesystem able to be mounted?
+                    boolean mountAllowed = MountPointHelper.isMountAllowed(this.mMountPoint);
+                    if (mountAllowed) {
+                        this.mInfoMsgView.setVisibility(View.GONE);
+                        this.mInfoMsgView.setBackground(null);
+                        this.mSwStatus.setEnabled(true);
+                        this.mIsMountAllowed = true;
+                        break;
+                    }
+
+                    // Show the message
+                    this.mInfoMsgView.setText(
+                            this.mContext.getString(
+                                    R.string.filesystem_info_couldnt_be_mounted_msg));
+                    this.mInfoMsgView.setVisibility(View.VISIBLE);
+                    this.mIsMountAllowed = false;
                 }
                 break;
 

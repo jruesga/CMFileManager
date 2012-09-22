@@ -145,8 +145,8 @@ public class InlineAutocompleteTextView extends RelativeLayout
         setText(""); //$NON-NLS-1$
     }
 
-    /* (non-Javadoc)
-     * @see android.view.View#onAttachedToWindow()
+    /**
+     * {@inheritDoc}
      */
     @Override
     protected void onAttachedToWindow() {
@@ -163,8 +163,8 @@ public class InlineAutocompleteTextView extends RelativeLayout
         }
     }
 
-    /* (non-Javadoc)
-     * @see android.view.View#onDetachedFromWindow()
+    /**
+     * {@inheritDoc}
      */
     @Override
     protected void onDetachedFromWindow() {

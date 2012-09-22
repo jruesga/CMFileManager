@@ -47,6 +47,7 @@ public class ChooseConsoleDialog implements OnItemClickListener {
 
     private static final String TAG = "ChooseConsoleDialog"; //$NON-NLS-1$
 
+    private final Context mContext;
     private final AlertDialog mDialog;
 
     //List of implemented consoles
@@ -60,6 +61,9 @@ public class ChooseConsoleDialog implements OnItemClickListener {
      */
     public ChooseConsoleDialog(Context context) {
         super();
+
+        // Save the context
+        this.mContext = context;
 
         //Retrieve the consoles
         Console console = null;
@@ -115,12 +119,12 @@ public class ChooseConsoleDialog implements OnItemClickListener {
         switch (position) {
             case 0:
                 //Change to non-privileged console
-                ret = ConsoleBuilder.changeToNonPrivilegedConsole(this.mDialog.getContext());
+                ret = ConsoleBuilder.changeToNonPrivilegedConsole(this.mContext);
                 break;
 
             case 1:
                 //Change to privileged console
-                ret = ConsoleBuilder.changeToPrivilegedConsole(this.mDialog.getContext());
+                ret = ConsoleBuilder.changeToPrivilegedConsole(this.mContext);
                 superuser = Boolean.TRUE;
                 break;
             default:
@@ -130,7 +134,7 @@ public class ChooseConsoleDialog implements OnItemClickListener {
         //Show a message
         if (!ret) {
             DialogHelper.createErrorDialog(
-                    this.mDialog.getContext(),
+                    this.mContext,
                     R.string.msgs_console_change_failed).show();
         } else {
             try {

@@ -112,14 +112,22 @@ public class FilesystemAsyncTask extends AsyncTask<String, Integer, Boolean> {
                 @SuppressWarnings("synthetic-access")
                 public void run() {
                     final DiskUsage du = MountPointHelper.getMountPointDiskUsage(mp);
+                    int usage = 0;
                     if (du != null && du.getTotal() != 0) {
-                        FilesystemAsyncTask.this.mDiskUsageInfo.setProgress(
-                                (int)(du.getUsed() * 100 / du.getTotal()));
+                        usage = (int)(du.getUsed() * 100 / du.getTotal());
+                        FilesystemAsyncTask.this.mDiskUsageInfo.setProgress(usage);
                         FilesystemAsyncTask.this.mDiskUsageInfo.setTag(du);
                     } else {
-                        FilesystemAsyncTask.this.mDiskUsageInfo.setProgress(du == null ? 0 : 100);
+                        usage = du == null ? 0 : 100;
+                        FilesystemAsyncTask.this.mDiskUsageInfo.setProgress(usage);
                         FilesystemAsyncTask.this.mDiskUsageInfo.setTag(null);
                     }
+
+                    // Advise about diskusage (>=95) with other color
+                    int filter = usage >= 95 ? 0x99FF0000 : 0xFFFFFFFF;
+                    FilesystemAsyncTask.this.mDiskUsageInfo.
+                                getProgressDrawable().setColorFilter(
+                                        filter, android.graphics.PorterDuff.Mode.MULTIPLY);
                 }
             });
         }

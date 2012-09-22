@@ -32,7 +32,7 @@ import com.cyanogenmod.explorer.model.FileSystemObject;
 import com.cyanogenmod.explorer.model.Query;
 import com.cyanogenmod.explorer.model.SearchResult;
 import com.cyanogenmod.explorer.ui.IconHolder;
-import com.cyanogenmod.explorer.ui.widgets.RelevanceWidget;
+import com.cyanogenmod.explorer.ui.widgets.RelevanceView;
 import com.cyanogenmod.explorer.util.MimeTypeHelper;
 import com.cyanogenmod.explorer.util.SearchHelper;
 
@@ -74,7 +74,7 @@ public class SearchResultAdapter extends ArrayAdapter<SearchResult> implements O
         TextView mTvName;
         TextView mTvParentDir;
         ImageButton mBtMenu;
-        RelevanceWidget mWgRelevance;
+        RelevanceView mWgRelevance;
     }
 
     /**
@@ -222,7 +222,7 @@ public class SearchResultAdapter extends ArrayAdapter<SearchResult> implements O
             viewHolder.mTvParentDir = (TextView)v.findViewById(RESOURCE_ITEM_PARENT_DIR);
             viewHolder.mBtMenu = (ImageButton)v.findViewById(RESOURCE_ITEM_MENU);
             viewHolder.mBtMenu.setOnClickListener(this);
-            viewHolder.mWgRelevance = (RelevanceWidget)v.findViewById(RESOURCE_ITEM_RELEVANCE);
+            viewHolder.mWgRelevance = (RelevanceView)v.findViewById(RESOURCE_ITEM_RELEVANCE);
             v.setTag(viewHolder);
         }
 

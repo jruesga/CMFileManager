@@ -19,35 +19,36 @@ package com.cyanogenmod.explorer.ui.widgets;
 import android.content.Context;
 import android.util.AttributeSet;
 
+import com.cyanogenmod.explorer.R;
+
 /**
- * A class that represents a button from an action bar that can't gain focus
- * without background.
+ * A class that represents a button from an action bar that can't gain focus.
  */
-public class TransparentNoFocusableButtonItem extends NoFocusableButtonItem {
+public class NonFocusableButtonItem extends ButtonItem {
 
     /**
-     * Constructor of <code>TransparentNoFocusableButtonItem</code>.
+     * Constructor of <code>NonFocusableButtonItem</code>.
      *
      * @param context The current context
      */
-    public TransparentNoFocusableButtonItem(Context context) {
+    public NonFocusableButtonItem(Context context) {
         super(context);
         init();
     }
 
     /**
-     * Constructor of <code>TransparentNoFocusableButtonItem</code>.
+     * Constructor of <code>NonFocusableButtonItem</code>.
      *
      * @param context The current context
      * @param attrs The attributes of the XML tag that is inflating the view.
      */
-    public TransparentNoFocusableButtonItem(Context context, AttributeSet attrs) {
+    public NonFocusableButtonItem(Context context, AttributeSet attrs) {
         super(context, attrs);
         init();
     }
 
     /**
-     * Constructor of <code>TransparentNoFocusableButtonItem</code>.
+     * Constructor of <code>NonFocusableButtonItem</code>.
      *
      * @param context The current context
      * @param attrs The attributes of the XML tag that is inflating the view.
@@ -56,7 +57,7 @@ public class TransparentNoFocusableButtonItem extends NoFocusableButtonItem {
      *        either be an attribute resource, whose value will be retrieved
      *        from the current theme, or an explicit style resource.
      */
-    public TransparentNoFocusableButtonItem(Context context, AttributeSet attrs, int defStyle) {
+    public NonFocusableButtonItem(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
         init();
     }
@@ -66,6 +67,8 @@ public class TransparentNoFocusableButtonItem extends NoFocusableButtonItem {
      */
     private void init() {
         //Remove focus
-        setBackground(null);
+        setBackgroundResource(R.drawable.holo_selector_nonfocusable);
+        setFocusable(false);
+        setFocusableInTouchMode(false);
     }
 }

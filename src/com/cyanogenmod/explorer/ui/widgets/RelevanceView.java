@@ -33,7 +33,7 @@ import java.util.TreeMap;
 /**
  * A widget for display a relevance widget.
  */
-public class RelevanceWidget extends View {
+public class RelevanceView extends View {
 
     private final Paint mBorderPaint = new Paint();
     private final Paint mRelevancePaint = new Paint();
@@ -42,28 +42,28 @@ public class RelevanceWidget extends View {
     private Map<Integer, Integer> mColors;
 
     /**
-     * Constructor of <code>RelevanceWidget</code>.
+     * Constructor of <code>RelevanceView</code>.
      *
      * @param context The current context
      */
-    public RelevanceWidget(Context context) {
+    public RelevanceView(Context context) {
         super(context);
         init();
     }
 
     /**
-     * Constructor of <code>RelevanceWidget</code>.
+     * Constructor of <code>RelevanceView</code>.
      *
      * @param context The current context
      * @param attrs The attributes of the XML tag that is inflating the view.
      */
-    public RelevanceWidget(Context context, AttributeSet attrs) {
+    public RelevanceView(Context context, AttributeSet attrs) {
         super(context, attrs);
         init();
     }
 
     /**
-     * Constructor of <code>RelevanceWidget</code>.
+     * Constructor of <code>RelevanceView</code>.
      *
      * @param context The current context
      * @param attrs The attributes of the XML tag that is inflating the view.
@@ -72,7 +72,7 @@ public class RelevanceWidget extends View {
      *        either be an attribute resource, whose value will be retrieved
      *        from the current theme, or an explicit style resource.
      */
-    public RelevanceWidget(Context context, AttributeSet attrs, int defStyle) {
+    public RelevanceView(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
         init();
     }

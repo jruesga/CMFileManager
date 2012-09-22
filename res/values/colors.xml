@@ -27,6 +27,8 @@
   <color name="disk_usage_total">#7ecccccc</color>
   <!-- Disk usage used color -->
   <color name="disk_usage_used">#7e0099cc</color>
+  <!-- Disk usage used color warning -->
+  <color name="disk_usage_used_warning">#ffff4444</color>
 
   <!-- Relevance * Border color -->
   <color name="relevance_border">#becccccc</color>

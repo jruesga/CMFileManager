@@ -36,6 +36,8 @@ import java.util.List;
  */
 public class DiskUsageGraph extends View {
 
+    private final static int DISK_WARNING_ANGLE = (360 * 95) / 100;
+
     private AnimationDrawingThread mThread;
     private final List<DrawingObject> mDrawingObjects =
             Collections.synchronizedList(new ArrayList<DiskUsageGraph.DrawingObject>(2));
@@ -143,7 +145,9 @@ public class DiskUsageGraph extends View {
             rect.bottom -= stroke / 2;
 
             float used = 0.0f;
-            if (this.mDiskUsage != null && this.mDiskUsage.getTotal() != 0) {
+            if (this.mDiskUsage == null) {
+                used = 100.0f;
+            } else if (this.mDiskUsage.getTotal() != 0) {
                 used = (this.mDiskUsage.getUsed() * 100) / this.mDiskUsage.getTotal();
             }
             //Translate to angle
@@ -153,6 +157,7 @@ public class DiskUsageGraph extends View {
                 this.mRunning = true;
             }
             try {
+                boolean disk_warning = false;
                 while (this.mRunning) {
                     //Get the current arc
                     DrawingObject dwo = null;
@@ -173,6 +178,13 @@ public class DiskUsageGraph extends View {
                         DiskUsageGraph.this.mDrawingObjects.add(
                                 createDrawingObject(rect, R.color.disk_usage_used, stroke));
                         continue;
+                    }
+
+                    if (this.mIndex == 1 && !disk_warning &&
+                            dwo.mSweepAngle >= DISK_WARNING_ANGLE ) {
+                        dwo.mPaint.setColor(getContext().
+                                getResources().getColor(R.color.disk_usage_used_warning));
+                        disk_warning = true;
                     }
 
                     //Redraw the canvas

@@ -144,7 +144,7 @@ public class FindCommand extends AsyncResultProgram implements FindExecutable {
                     if (fso.getName() != null && fso.getName().length() > 0) {
                         // Don't return the directory of the search. Only files under this
                         // directory
-                        if ( this.mDirectory.compareTo(fso.getFullPath()) != 0) {
+                        if (this.mDirectory.compareTo(fso.getFullPath()) != 0) {
                             this.mFiles.add(fso);
                             partialFiles.add(fso);
                         }

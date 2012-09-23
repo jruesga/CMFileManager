@@ -19,15 +19,15 @@
 
   <ImageButton
     android:id="@+id/dialog_title_icon"
-    android:layout_width="@dimen/small_row_height"
-    android:layout_height="@dimen/small_row_height"
+    android:layout_width="@dimen/smallest_row_height"
+    android:layout_height="@dimen/smallest_row_height"
     android:layout_gravity="center_vertical"
     android:layout_marginLeft="@dimen/extra_margin"
     android:layout_marginRight="@dimen/default_margin"
     android:contentDescription="@null"
-    android:height="@dimen/small_row_height"
-    android:src="@null"
-    android:width="@dimen/small_row_height" />
+    android:height="@dimen/smallest_row_height"
+    android:width="@dimen/smallest_row_height"
+    android:src="@null" />
 
   <TextView
     android:id="@+id/dialog_title_text"

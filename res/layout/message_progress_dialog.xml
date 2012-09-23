@@ -21,8 +21,8 @@
 
   <ProgressBar
     android:id="@+id/message_progress_dialog_waiting"
-    android:layout_width="@dimen/small_row_height"
-    android:layout_height="@dimen/small_row_height"
+    android:layout_width="@dimen/smallest_row_height"
+    android:layout_height="@dimen/smallest_row_height"
     android:layout_centerVertical="true"
     android:layout_marginLeft="@dimen/extra_large_margin"
     android:indeterminate="true"
@@ -36,7 +36,7 @@
     android:layout_marginRight="@dimen/extra_large_margin"
     android:layout_toRightOf="@id/message_progress_dialog_waiting"
     android:gravity="left|center_vertical"
-    android:minHeight="@dimen/small_row_height"
+    android:minHeight="@dimen/smallest_row_height"
     android:singleLine="false"
     android:text="@null"
     android:textAppearance="@style/primary_text_appearance"
@@ -51,7 +51,7 @@
     android:layout_marginRight="@dimen/extra_large_margin"
     android:layout_toRightOf="@id/message_progress_dialog_waiting"
     android:gravity="left|center_vertical"
-    android:minHeight="@dimen/small_row_height"
+    android:minHeight="@dimen/smallest_row_height"
     android:singleLine="false"
     android:text="@null"
     android:textAppearance="@style/secondary_text_appearance"

@@ -30,7 +30,8 @@
   <com.cyanogenmod.explorer.ui.widgets.SelectionView
     android:id="@+id/navigation_selectionbar"
     android:layout_width="match_parent"
-    android:layout_height="@dimen/default_row_height" />
+    android:layout_height="@dimen/small_row_height"
+    android:visibility="invisible" />
 
   <!-- StatusBar -->
   <include

@@ -193,6 +193,7 @@ public class SelectionView extends LinearLayout {
                 } else if (effect.compareTo(ExpandCollapseAnimation.ANIMATION_TYPE.COLLAPSE) == 0) {
                     params.height = SelectionView.this.mViewHeight;
                 }
+                SelectionView.this.setVisibility(View.VISIBLE);
             }
 
             @Override

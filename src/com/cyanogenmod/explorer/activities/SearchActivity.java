@@ -777,6 +777,10 @@ public class SearchActivity extends Activity
                         SearchActivity.this.mDialog.dismiss();
                     }
 
+                    // Resolve the symlinks
+                    FileHelper.resolveSymlinks(
+                                SearchActivity.this, SearchActivity.this.mResultList);
+
                     // Draw the results
                     drawResults();
 

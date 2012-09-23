@@ -16,11 +16,13 @@
 
 package com.cyanogenmod.explorer.util;
 
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
 
 import com.cyanogenmod.explorer.ExplorerApplication;
 import com.cyanogenmod.explorer.R;
+import com.cyanogenmod.explorer.commands.shell.ResolveLinkCommand;
 import com.cyanogenmod.explorer.model.Directory;
 import com.cyanogenmod.explorer.model.FileSystemObject;
 import com.cyanogenmod.explorer.model.ParentDirectory;
@@ -290,7 +292,6 @@ public final class FileHelper {
      *
      * @param files The listed files
      * @return List<FileSystemObject> The applied mode listed files
-     * @hide
      */
     public static List<FileSystemObject> applyUserPreferences(List<FileSystemObject> files) {
         //Retrieve user preferences
@@ -382,7 +383,26 @@ public final class FileHelper {
         return files;
     }
 
-
+    /**
+     * Method that resolve the symbolic links of the list of files passed as argument.<br />
+     * This method invokes the {@link ResolveLinkCommand} in those files that hasn't a valid
+     * symlink reference
+     *
+     * @param context The current context
+     * @param files The listed files
+     */
+    public static void resolveSymlinks(Context context, List<FileSystemObject> files) {
+        for (int i=0; i<files.size(); i++) {
+            FileSystemObject fso = files.get(i);
+            if (fso instanceof Symlink && ((Symlink)fso).getLinkRef() == null) {
+                String link = ((Symlink)fso).getLink();
+                try {
+                    FileSystemObject symlink = CommandHelper.getFileInfo(context, link, null);
+                    ((Symlink)fso).setLinkRef(symlink);
+                } catch (Throwable ex) {/**NON BLOCK**/}
+            }
+        }
+    }
 
     /**
      * Method that do a comparison between 2 file system objects.

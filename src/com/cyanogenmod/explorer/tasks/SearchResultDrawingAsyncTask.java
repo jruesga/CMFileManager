@@ -27,11 +27,16 @@ import com.cyanogenmod.explorer.adapters.SearchResultAdapter.OnRequestMenuListen
 import com.cyanogenmod.explorer.model.FileSystemObject;
 import com.cyanogenmod.explorer.model.Query;
 import com.cyanogenmod.explorer.model.SearchResult;
+import com.cyanogenmod.explorer.preferences.ExplorerSettings;
+import com.cyanogenmod.explorer.preferences.ObjectStringIdentifier;
+import com.cyanogenmod.explorer.preferences.Preferences;
+import com.cyanogenmod.explorer.preferences.SearchSortResultMode;
 import com.cyanogenmod.explorer.util.ExceptionUtil;
 import com.cyanogenmod.explorer.util.FileHelper;
 import com.cyanogenmod.explorer.util.SearchHelper;
 
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 /**
@@ -87,12 +92,30 @@ public class SearchResultDrawingAsyncTask extends AsyncTask<Object, Integer, Boo
             this.mRunning = true;
             showHideWaiting(true);
 
+            // Get sort mode
+            String defaultValue = ((ObjectStringIdentifier)ExplorerSettings.
+                    SETTINGS_SORT_SEARCH_RESULTS_MODE.getDefaultValue()).getId();
+            String value = Preferences.getSharedPreferences().getString(
+                                ExplorerSettings.SETTINGS_SORT_SEARCH_RESULTS_MODE.getId(),
+                                defaultValue);
+            SearchSortResultMode mode = SearchSortResultMode.fromId(value);
+
             //Process all the data
             final List<SearchResult> result =
                     SearchHelper.convertToResults(
-                            FileHelper.applyUserPreferences(this.mFiles),
+                            FileHelper.applyUserPreferences(this.mFiles, true),
                             this.mQueries);
-            Collections.sort(result);
+            if (mode.compareTo(SearchSortResultMode.NAME) == 0) {
+                Collections.sort(result, new Comparator<SearchResult>() {
+                    @Override
+                    public int compare(SearchResult lhs, SearchResult rhs) {
+                        // TODO Case comparison from settings
+                        return lhs.getFso().getFullPath().compareTo(rhs.getFso().getFullPath());
+                    }
+                });
+            } else if (mode.compareTo(SearchSortResultMode.RELEVANCE) == 0) {
+                Collections.sort(result);
+            }
 
             this.mSearchListView.post(new Runnable() {
                 @Override

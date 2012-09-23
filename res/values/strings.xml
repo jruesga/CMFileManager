@@ -440,6 +440,14 @@
   <!-- Preferences * Search * Show relevance widget summary off -->
   <string name="pref_highlight_terms_off">No highlight the matching terms of the search in search
     results</string>
+  <!-- Preferences * Search * Sort results mode -->
+  <string name="pref_sort_search_results_mode">Sort results mode</string>
+  <!-- Preferences * Search * Sort results mode. None -->
+  <string name="pref_sort_search_results_mode_none">No sort</string>
+  <!-- Preferences * Search * Sort results mode. None -->
+  <string name="pref_sort_search_results_mode_name">By name</string>
+  <!-- Preferences * Search * Sort results mode. Relevance -->
+  <string name="pref_sort_search_results_mode_relevance">By relevance</string>
   <!-- Preferences * Search * Privacity category -->
   <string name="pref_search_privacity_category">Privacity</string>
   <!-- Preferences * Search * Save search terms -->

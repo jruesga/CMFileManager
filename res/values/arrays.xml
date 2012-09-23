@@ -16,7 +16,7 @@
 <resources xmlns:android="http://schemas.android.com/apk/res/android">
 
   <!-- The strings of the menu for navigation sort mode enumeration -->
-  <string-array name="cm_explorer_sort_mode">
+  <string-array name="cm_explorer_sort_mode" translable="false">
     <item>@string/sort_by_name_asc</item>
     <item>@string/sort_by_name_desc</item>
     <item>@string/sort_by_date_asc</item>
@@ -24,16 +24,28 @@
   </string-array>
 
   <!-- The strings of the menu for navigation layout mode enumeration -->
-  <string-array name="cm_explorer_layout_mode">
+  <string-array name="cm_explorer_layout_mode" translable="false">
     <item>@string/layout_icons</item>
     <item>@string/layout_simple</item>
     <item>@string/layout_details</item>
   </string-array>
 
   <!-- The strings of the implemented consoles -->
-  <string-array name="implemented_consoles">
+  <string-array name="implemented_consoles" translable="false">
     <item>@string/non_privileged_console</item>
     <item>@string/privileged_console</item>
+  </string-array>
+
+  <!-- Search. Sort search results mode -->
+  <string-array name="sort_search_results_mode_labels" translable="false">
+    <item>@string/pref_sort_search_results_mode_none</item>
+    <item>@string/pref_sort_search_results_mode_name</item>
+    <item>@string/pref_sort_search_results_mode_relevance</item>
+  </string-array>
+  <string-array name="sort_search_results_mode_values" translable="false">
+    <item>0</item>
+    <item>1</item>
+    <item>2</item>
   </string-array>
 
 </resources>

@@ -294,6 +294,19 @@ public final class FileHelper {
      * @return List<FileSystemObject> The applied mode listed files
      */
     public static List<FileSystemObject> applyUserPreferences(List<FileSystemObject> files) {
+        return applyUserPreferences(files, false);
+    }
+
+    /**
+     * Method that applies the configuration modes to the listed files
+     * (sort mode, hidden files, ...).
+     *
+     * @param files The listed files
+     * @param noSort If sort must be applied
+     * @return List<FileSystemObject> The applied mode listed files
+     */
+    public static List<FileSystemObject> applyUserPreferences(
+            List<FileSystemObject> files, boolean noSort) {
         //Retrieve user preferences
         SharedPreferences prefs = Preferences.getSharedPreferences();
         ExplorerSettings sortModePref = ExplorerSettings.SETTINGS_SORT_MODE;
@@ -338,46 +351,49 @@ public final class FileHelper {
         }
 
         //Apply sort mode
-        final boolean showDirsFirst =
-                prefs.getBoolean(
-                        showDirsFirstPref.getId(),
-                    ((Boolean)showDirsFirstPref.getDefaultValue()).booleanValue());
-        final NavigationSortMode sortMode =
-                NavigationSortMode.fromId(
-                        prefs.getInt(sortModePref.getId(),
-                        ((ObjectIdentifier)sortModePref.getDefaultValue()).getId()));
-        Collections.sort(files, new Comparator<FileSystemObject>() {
-            @Override
-            @SuppressWarnings("synthetic-access")
-            public int compare(FileSystemObject lhs, FileSystemObject rhs) {
-                //Parent directory always goes first
-                boolean isLhsParentDirectory = lhs instanceof ParentDirectory;
-                boolean isRhsParentDirectory = rhs instanceof ParentDirectory;
-                if (isLhsParentDirectory || isRhsParentDirectory) {
-                    if (isLhsParentDirectory && isRhsParentDirectory) {
-                        return 0;
-                    }
-                    return (isLhsParentDirectory) ? -1 : 1;
-                }
-
-                //Need to sort directory first?
-                if (showDirsFirst) {
-                    boolean isLhsDirectory = FileHelper.isDirectory(lhs);
-                    boolean isRhsDirectory = FileHelper.isDirectory(rhs);
-                    if (isLhsDirectory || isRhsDirectory) {
-                        if (isLhsDirectory && isRhsDirectory) {
-                            //Apply sort mode
-                            return FileHelper.doCompare(lhs, rhs, sortMode);
+        if (!noSort) {
+            final boolean showDirsFirst =
+                    prefs.getBoolean(
+                            showDirsFirstPref.getId(),
+                        ((Boolean)showDirsFirstPref.getDefaultValue()).booleanValue());
+            final NavigationSortMode sortMode =
+                    NavigationSortMode.fromId(
+                            prefs.getInt(sortModePref.getId(),
+                            ((ObjectIdentifier)sortModePref.getDefaultValue()).getId()));
+            // TODO Case comparison from settings
+            Collections.sort(files, new Comparator<FileSystemObject>() {
+                @Override
+                @SuppressWarnings("synthetic-access")
+                public int compare(FileSystemObject lhs, FileSystemObject rhs) {
+                    //Parent directory always goes first
+                    boolean isLhsParentDirectory = lhs instanceof ParentDirectory;
+                    boolean isRhsParentDirectory = rhs instanceof ParentDirectory;
+                    if (isLhsParentDirectory || isRhsParentDirectory) {
+                        if (isLhsParentDirectory && isRhsParentDirectory) {
+                            return 0;
                         }
-                        return (isLhsDirectory) ? -1 : 1;
+                        return (isLhsParentDirectory) ? -1 : 1;
                     }
+
+                    //Need to sort directory first?
+                    if (showDirsFirst) {
+                        boolean isLhsDirectory = FileHelper.isDirectory(lhs);
+                        boolean isRhsDirectory = FileHelper.isDirectory(rhs);
+                        if (isLhsDirectory || isRhsDirectory) {
+                            if (isLhsDirectory && isRhsDirectory) {
+                                //Apply sort mode
+                                return FileHelper.doCompare(lhs, rhs, sortMode);
+                            }
+                            return (isLhsDirectory) ? -1 : 1;
+                        }
+                    }
+
+                    //Apply sort mode
+                    return FileHelper.doCompare(lhs, rhs, sortMode);
                 }
 
-                //Apply sort mode
-                return FileHelper.doCompare(lhs, rhs, sortMode);
-            }
-
-        });
+            });
+        }
 
         //Return the files
         return files;

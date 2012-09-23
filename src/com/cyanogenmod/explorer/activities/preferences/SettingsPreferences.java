@@ -20,12 +20,14 @@ import android.app.ActionBar;
 import android.content.Intent;
 import android.os.Bundle;
 import android.preference.CheckBoxPreference;
+import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.Preference.OnPreferenceChangeListener;
 import android.preference.Preference.OnPreferenceClickListener;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceFragment;
 import android.provider.SearchRecentSuggestions;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
@@ -33,6 +35,7 @@ import android.widget.Toast;
 
 import com.cyanogenmod.explorer.R;
 import com.cyanogenmod.explorer.preferences.ExplorerSettings;
+import com.cyanogenmod.explorer.preferences.ObjectStringIdentifier;
 import com.cyanogenmod.explorer.preferences.Preferences;
 import com.cyanogenmod.explorer.providers.RecentSearchesContentProvider;
 
@@ -42,6 +45,10 @@ import java.util.List;
  * The {@link SettingsPreferences} preferences
  */
 public class SettingsPreferences extends PreferenceActivity {
+
+    private static final boolean DEBUG = false;
+
+    private static final String LOG_TAG = "SettingsPreferences"; //$NON-NLS-1$
 
     /**
      * {@inheritDoc}
@@ -149,15 +156,24 @@ public class SettingsPreferences extends PreferenceActivity {
 
         private CheckBoxPreference mHighlightTerms;
         private CheckBoxPreference mShowRelevanceWidget;
+        private ListPreference mSortSearchResultMode;
         private CheckBoxPreference mSaveSearchTerms;
         private Preference mRemoveSearchTerms;
+
+        private boolean mLoaded = false;
 
         private final OnPreferenceChangeListener mOnChangeListener =
                 new OnPreferenceChangeListener() {
             @Override
             @SuppressWarnings("synthetic-access")
             public boolean onPreferenceChange(Preference preference, Object newValue) {
+                String key = preference.getKey();
+                if (DEBUG) Log.d(LOG_TAG,
+                        String.format("New value for %s: %s",  //$NON-NLS-1$
+                                key,
+                                String.valueOf(newValue)));
 
+                // Saved search terms
                 if (preference.getKey().compareTo(
                         ExplorerSettings.SETTINGS_SAVE_SEARCH_TERMS.getId()) == 0) {
                     if (!((Boolean)newValue).booleanValue()) {
@@ -165,12 +181,23 @@ public class SettingsPreferences extends PreferenceActivity {
                         // is not active by the user
                         clearRecentSearchTerms();
                     }
+
+                // Sort search result mode
+                } else if (ExplorerSettings.SETTINGS_SORT_SEARCH_RESULTS_MODE.
+                        getId().compareTo(key) == 0) {
+                    int value = Integer.valueOf((String)newValue).intValue();
+                    String[] summary = getResources().getStringArray(
+                            R.array.sort_search_results_mode_labels);
+                    preference.setSummary(summary[value]);
                 }
 
-                // Notify the change
-                Intent intent = new Intent(ExplorerSettings.INTENT_SETTING_CHANGED);
-                intent.putExtra(ExplorerSettings.EXTRA_SETTING_CHANGED_KEY, preference.getKey());
-                getActivity().sendBroadcast(intent);
+                // Notify the change (only if fragment is loaded. Default values are loaded
+                // while not in loaded mode)
+                if (SearchPreferenceFragment.this.mLoaded) {
+                    Intent intent = new Intent(ExplorerSettings.INTENT_SETTING_CHANGED);
+                    intent.putExtra(ExplorerSettings.EXTRA_SETTING_CHANGED_KEY, preference.getKey());
+                    getActivity().sendBroadcast(intent);
+                }
 
                 return true;
             }
@@ -205,6 +232,7 @@ public class SettingsPreferences extends PreferenceActivity {
             // Change the preference manager
             getPreferenceManager().setSharedPreferencesName(Preferences.SETTINGS_FILENAME);
             getPreferenceManager().setSharedPreferencesMode(MODE_PRIVATE);
+            this.mLoaded = false;
 
             // Add the preferences
             addPreferencesFromResource(R.xml.preferences_search);
@@ -221,6 +249,20 @@ public class SettingsPreferences extends PreferenceActivity {
                             ExplorerSettings.SETTINGS_SHOW_RELEVANCE_WIDGET.getId());
             this.mShowRelevanceWidget.setOnPreferenceChangeListener(this.mOnChangeListener);
 
+            // Sort search result mode
+            this.mSortSearchResultMode =
+                    (ListPreference)findPreference(
+                            ExplorerSettings.SETTINGS_SORT_SEARCH_RESULTS_MODE.getId());
+            this.mSortSearchResultMode.setOnPreferenceChangeListener(this.mOnChangeListener);
+            String defaultValue = ((ObjectStringIdentifier)ExplorerSettings.
+                                    SETTINGS_SORT_SEARCH_RESULTS_MODE.getDefaultValue()).getId();
+            String value = Preferences.getSharedPreferences().getString(
+                                    ExplorerSettings.SETTINGS_SORT_SEARCH_RESULTS_MODE.getId(),
+                                    defaultValue);
+            this.mOnChangeListener.onPreferenceChange(
+                    this.mSortSearchResultMode,
+                    value);
+
             // Saved search terms
             this.mSaveSearchTerms =
                     (CheckBoxPreference)findPreference(
@@ -230,6 +272,9 @@ public class SettingsPreferences extends PreferenceActivity {
             // Remove search terms
             this.mRemoveSearchTerms = findPreference(REMOVE_SEARCH_TERMS_KEY);
             this.mRemoveSearchTerms.setOnPreferenceClickListener(this.mOnClickListener);
+
+            // Loaded
+            this.mLoaded = true;
         }
 
         /**

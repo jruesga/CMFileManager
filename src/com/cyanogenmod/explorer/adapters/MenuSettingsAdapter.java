@@ -21,6 +21,7 @@ import android.content.res.Resources;
 
 import com.cyanogenmod.explorer.preferences.ExplorerSettings;
 import com.cyanogenmod.explorer.preferences.ObjectIdentifier;
+import com.cyanogenmod.explorer.preferences.ObjectStringIdentifier;
 import com.cyanogenmod.explorer.preferences.Preferences;
 import com.cyanogenmod.explorer.util.ResourcesHelper;
 
@@ -144,6 +145,35 @@ public class MenuSettingsAdapter extends CheckableListAdapter {
                     DataHolder dataHolder =
                             createDataHolder(
                                     ids[i].getId(),
+                                    setting,
+                                    titles[i],
+                                    ids[i].getId() == selected);
+                    this.mData.add(dataHolder);
+
+                    //Add to the list
+                    add(dataHolder.mItem);
+                }
+                return;
+            }
+
+            // Enum<ObjectStringIdentifier>
+            if (setting.getDefaultValue() instanceof Enum<?>
+                && setting.getDefaultValue() instanceof ObjectStringIdentifier) {
+                //Retrieve all the items of the enumeration
+                int resid =
+                        ResourcesHelper.getIdentifier(res, "array", setting.getId()); //$NON-NLS-1$
+                String[] titles = res.getStringArray(resid);
+                Method method =
+                        setting.getDefaultValue().getClass().getMethod("values"); //$NON-NLS-1$
+                ObjectStringIdentifier[] ids = (ObjectStringIdentifier[])method.invoke(null);
+                String defaultid = ((ObjectStringIdentifier)setting.getDefaultValue()).getId();
+                String selected =
+                        Preferences.getSharedPreferences().getString(setting.getId(), defaultid);
+                for (int i = 0; i < ids.length; i++) {
+                    //Create the data holder
+                    DataHolder dataHolder =
+                            createDataHolder(
+                                    i,
                                     setting,
                                     titles[i],
                                     ids[i].getId() == selected);

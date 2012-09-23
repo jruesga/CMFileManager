@@ -17,35 +17,31 @@
 package com.cyanogenmod.explorer.preferences;
 
 /**
- * An enumeration of the navigation sort modes.
+ * An enumeration of the search result sort modes.
  */
-public enum NavigationSortMode implements ObjectIdentifier {
+public enum SearchSortResultMode implements ObjectStringIdentifier {
 
     /**
-     * That mode sorts objects by name (ascending).
+     * No sort results.
      */
-    NAME_ASC(0),
+    NONE("0"), //$NON-NLS-1$
     /**
-     * That mode sorts objects by name (descending).
+     * Sort results by name
      */
-    NAME_DESC(1),
+    NAME("1"), //$NON-NLS-1$
     /**
-     * That mode sorts objects by date (ascending).
+     * Sort results by relevance
      */
-    DATE_ASC(2),
-    /**
-     * That mode sorts objects by date (descending).
-     */
-    DATE_DESC(3);
+    RELEVANCE("2"); //$NON-NLS-1$
 
-    private int mId;
+    private String mId;
 
     /**
-     * Constructor of <code>NavigationSortMode</code>.
+     * Constructor of <code>SearchSortResultMode</code>.
      *
      * @param id The unique identifier of the enumeration
      */
-    private NavigationSortMode(int id) {
+    private SearchSortResultMode(String id) {
         this.mId = id;
     }
 
@@ -53,21 +49,21 @@ public enum NavigationSortMode implements ObjectIdentifier {
      * {@inheritDoc}
      */
     @Override
-    public int getId() {
+    public String getId() {
         return this.mId;
     }
 
     /**
-     * Method that returns an instance of {@link NavigationSortMode} from its
+     * Method that returns an instance of {@link SearchSortResultMode} from its
      * unique identifier.
      *
      * @param id The unique identifier
-     * @return NavigationSortMode The navigation sort mode
+     * @return SearchSortResultMode The search result sort mode
      */
-    public static NavigationSortMode fromId(int id) {
-        NavigationSortMode[] values = values();
+    public static SearchSortResultMode fromId(String id) {
+        SearchSortResultMode[] values = values();
         for (int i = 0; i < values.length; i++) {
-            if (values[i].mId == id) {
+            if (values[i].mId.compareTo(id) == 0) {
                 return values[i];
             }
         }

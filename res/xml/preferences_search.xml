@@ -40,6 +40,15 @@
         android:persistent="true"
         android:defaultValue="true" />
 
+      <!-- Sort results mode -->
+      <ListPreference
+        android:key="cm_explorer_sort_search_results_mode"
+        android:title="@string/pref_sort_search_results_mode"
+        android:entries="@array/sort_search_results_mode_labels"
+        android:entryValues="@array/sort_search_results_mode_values"
+        android:defaultValue="2"
+        android:persistent="true" />
+
     </PreferenceCategory>
 
     <!-- Privacity -->

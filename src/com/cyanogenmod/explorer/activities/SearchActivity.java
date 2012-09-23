@@ -113,7 +113,9 @@ public class SearchActivity extends Activity
                 String key = intent.getStringExtra(ExplorerSettings.EXTRA_SETTING_CHANGED_KEY);
                 if (key != null && SearchActivity.this.mAdapter != null &&
                    (key.compareTo(ExplorerSettings.SETTINGS_HIGHLIGHT_TERMS.getId()) == 0 ||
-                    key.compareTo(ExplorerSettings.SETTINGS_SHOW_RELEVANCE_WIDGET.getId()) == 0)) {
+                    key.compareTo(ExplorerSettings.SETTINGS_SHOW_RELEVANCE_WIDGET.getId()) == 0 ||
+                    key.compareTo(
+                            ExplorerSettings.SETTINGS_SORT_SEARCH_RESULTS_MODE.getId()) == 0)) {
 
                     // Recreate the adapter
                     int pos = SearchActivity.this.mSearchListView.getFirstVisiblePosition();

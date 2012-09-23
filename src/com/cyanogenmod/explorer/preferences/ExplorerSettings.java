@@ -73,7 +73,16 @@ public enum ExplorerSettings {
      * When to show the relevance widget on searches
      * @hide
      */
-    SETTINGS_SHOW_RELEVANCE_WIDGET("cm_explorer_show_relevance_widget", Boolean.TRUE), //$NON-NLS-1$
+    SETTINGS_SHOW_RELEVANCE_WIDGET(
+            "cm_explorer_show_relevance_widget", //$NON-NLS-1$
+            Boolean.TRUE),
+    /**
+     * How to sort the search results
+     * @hide
+     */
+    SETTINGS_SORT_SEARCH_RESULTS_MODE(
+            "cm_explorer_sort_search_results_mode", //$NON-NLS-1$
+            SearchSortResultMode.RELEVANCE),
     /**
      * When to save the search terms
      * @hide
@@ -86,6 +95,8 @@ public enum ExplorerSettings {
      */
     SETTINGS_SHOW_TRACES("cm_explorer_show_debug_traces", Boolean.FALSE); //$NON-NLS-1$
 
+
+
     /**
      * A broadcast intent that is sent when a setting was changed
      */
@@ -96,6 +107,9 @@ public enum ExplorerSettings {
      * The extra key with the preference key that has changed
      */
     public final static String EXTRA_SETTING_CHANGED_KEY = "preference"; //$NON-NLS-1$
+
+
+
 
     private final String mId;
     private final Object mDefaultValue;

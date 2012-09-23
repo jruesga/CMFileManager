@@ -55,6 +55,7 @@ public class FindCommand extends AsyncResultProgram implements FindExecutable {
 
     private static final String ID_FIND_DIRECTORY = "find";  //$NON-NLS-1$
 
+    private final String mDirectory;
     private final List<FileSystemObject> mFiles;
     private String mPartial;
 
@@ -73,6 +74,7 @@ public class FindCommand extends AsyncResultProgram implements FindExecutable {
         super(ID_FIND_DIRECTORY, asyncResultListener, createArgs(directory, query));
         this.mFiles = new ArrayList<FileSystemObject>();
         this.mPartial = ""; //$NON-NLS-1$
+        this.mDirectory = directory;
     }
 
     /**
@@ -140,8 +142,12 @@ public class FindCommand extends AsyncResultProgram implements FindExecutable {
                     //Retrieve the file system object and calculate relevance
                     FileSystemObject fso = ParseHelper.toFileSystemObject(parentDir, lines.get(1));
                     if (fso.getName() != null && fso.getName().length() > 0) {
-                        this.mFiles.add(fso);
-                        partialFiles.add(fso);
+                        // Don't return the directory of the search. Only files under this
+                        // directory
+                        if ( this.mDirectory.compareTo(fso.getFullPath()) != 0 ) {
+                            this.mFiles.add(fso);
+                            partialFiles.add(fso);
+                        }
                     }
 
                 } catch (Exception ex) {

@@ -17,12 +17,17 @@
 package com.cyanogenmod.explorer;
 
 import android.app.Application;
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.res.Configuration;
 import android.util.Log;
 
 import com.cyanogenmod.explorer.console.Console;
 import com.cyanogenmod.explorer.console.ConsoleBuilder;
 import com.cyanogenmod.explorer.console.ConsoleHolder;
+import com.cyanogenmod.explorer.preferences.ExplorerSettings;
 import com.cyanogenmod.explorer.preferences.Preferences;
 import com.cyanogenmod.explorer.util.FileHelper;
 import com.cyanogenmod.explorer.util.MimeTypeHelper;
@@ -36,11 +41,7 @@ public final class ExplorerApplication extends Application {
 
     private static final String TAG = "ExplorerApplication"; //$NON-NLS-1$
 
-    /**
-     * A constant that indicates whether the application is running in debug mode.
-     * @hide
-     */
-    public static final boolean DEBUG = true;
+    private static boolean DEBUG = false;
 
     /**
      * A constant that contains the main process name.
@@ -51,6 +52,33 @@ public final class ExplorerApplication extends Application {
     //Static resources
     private static ExplorerApplication sApp;
     private static ConsoleHolder sBackgroundConsole;
+
+    private final BroadcastReceiver mOnSettingChangeReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            if (intent != null &&
+                intent.getAction().compareTo(ExplorerSettings.INTENT_SETTING_CHANGED) == 0) {
+
+                // The settings has changed
+                String key = intent.getStringExtra(ExplorerSettings.EXTRA_SETTING_CHANGED_KEY);
+                if (key != null &&
+                    key.compareTo(ExplorerSettings.SETTINGS_SHOW_TRACES.getId()) == 0) {
+
+                    // The debug traces setting has changed. Notify to consoles
+                    Console c = getBackgroundConsole();
+                    if (c != null) {
+                        c.reloadTrace();
+                    }
+                    try {
+                        c = ConsoleBuilder.getConsole(context, false);
+                        if (c != null) {
+                            c.reloadTrace();
+                        }
+                    } catch (Throwable _throw) {/**NON BLOCK**/}
+                }
+            }
+        }
+    };
 
 
     /**
@@ -86,6 +114,11 @@ public final class ExplorerApplication extends Application {
             Log.d(TAG, "onTerminate"); //$NON-NLS-1$
         }
         try {
+            unregisterReceiver(this.mOnSettingChangeReceiver);
+        } catch (Throwable ex) {
+            /**NON BLOCK**/
+        }
+        try {
             sBackgroundConsole.dispose();
         } catch (Throwable ex) {
             /**NON BLOCK**/
@@ -104,6 +137,11 @@ public final class ExplorerApplication extends Application {
     private void register() {
         //Save the static application reference
         sApp = this;
+
+        // Register the broadcast receiver
+        IntentFilter filter = new IntentFilter();
+        filter.addAction(ExplorerSettings.INTENT_SETTING_CHANGED);
+        registerReceiver(this.mOnSettingChangeReceiver, filter);
     }
 
     /**

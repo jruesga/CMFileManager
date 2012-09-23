@@ -47,7 +47,7 @@ public final class Preferences {
      * The name of the explorer settings file.
      * @hide
      */
-    private static final String SETTINGS_FILENAME = "explorer"; //$NON-NLS-1$
+    public static final String SETTINGS_FILENAME = "explorer"; //$NON-NLS-1$
 
     /**
      * The list of configuration listeners.

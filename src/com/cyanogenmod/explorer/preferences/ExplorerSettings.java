@@ -30,7 +30,7 @@ public enum ExplorerSettings {
      * The initial directory to be used.
      * @hide
      */
-    SETTINGS_INITIAL_DIR("cm_explorer_initial_dir", "/sdcard"), //$NON-NLS-1$ //$NON-NLS-2$
+    SETTINGS_INITIAL_DIR("cm_explorer_initial_dir", "/"), //$NON-NLS-1$ //$NON-NLS-2$
 
     /**
      * The view mode to use (simple, details, or icons).
@@ -62,9 +62,40 @@ public enum ExplorerSettings {
      * When to show the symlinks files.
      * @hide
      */
-    SETTINGS_SHOW_SYMLINKS("cm_explorer_show_symlinks", Boolean.TRUE); //$NON-NLS-1$
+    SETTINGS_SHOW_SYMLINKS("cm_explorer_show_symlinks", Boolean.TRUE), //$NON-NLS-1$
 
+    /**
+     * When to highlight the terms of the search in the search results
+     * @hide
+     */
+    SETTINGS_HIGHLIGHT_TERMS("cm_explorer_highlight_terms", Boolean.TRUE), //$NON-NLS-1$
+    /**
+     * When to show the relevance widget on searches
+     * @hide
+     */
+    SETTINGS_SHOW_RELEVANCE_WIDGET("cm_explorer_show_relevance_widget", Boolean.TRUE), //$NON-NLS-1$
+    /**
+     * When to save the search terms
+     * @hide
+     */
+    SETTINGS_SAVE_SEARCH_TERMS("cm_explorer_save_search_terms", Boolean.TRUE), //$NON-NLS-1$
 
+    /**
+     * When to show debug traces
+     * @hide
+     */
+    SETTINGS_SHOW_TRACES("cm_explorer_show_debug_traces", Boolean.FALSE); //$NON-NLS-1$
+
+    /**
+     * A broadcast intent that is sent when a setting was changed
+     */
+    public final static String INTENT_SETTING_CHANGED =
+                        "com.cyanogenmod.explorer.INTENT_SETTING_CHANGED"; //$NON-NLS-1$
+
+    /**
+     * The extra key with the preference key that has changed
+     */
+    public final static String EXTRA_SETTING_CHANGED_KEY = "preference"; //$NON-NLS-1$
 
     private final String mId;
     private final Object mDefaultValue;

@@ -30,7 +30,6 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.cyanogenmod.explorer.ExplorerApplication;
 import com.cyanogenmod.explorer.R;
 import com.cyanogenmod.explorer.adapters.HistoryAdapter;
 import com.cyanogenmod.explorer.model.History;
@@ -46,6 +45,8 @@ public class HistoryActivity extends Activity implements OnItemClickListener {
 
     private static final String TAG = "HistoryActivity"; //$NON-NLS-1$
 
+    private static boolean DEBUG = false;
+
     /**
      * Intent extra parameter for the history data.
      */
@@ -56,7 +57,7 @@ public class HistoryActivity extends Activity implements OnItemClickListener {
      */
     @Override
     protected void onCreate(Bundle state) {
-        if (ExplorerApplication.DEBUG) {
+        if (DEBUG) {
             Log.d(TAG, "NavigationActivity.onCreate"); //$NON-NLS-1$
         }
 

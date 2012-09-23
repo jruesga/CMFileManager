@@ -214,8 +214,8 @@
   <string name="fso_properties_failed_to_change_group_msg">Change group operation failed.
     Some filesystem, like sdcards, not allow change the group.</string>
   <!-- Fso Properties * Failed to change group to fso -->
-  <string name="fso_properties_failed_to_change_permission_msg">Change permissions operation failed.
-    Some filesystem, like sdcards, not allow change the permission.</string>
+  <string name="fso_properties_failed_to_change_permission_msg">Change permissions operation
+    failed. Some filesystem, like sdcards, not allow change the permission.</string>
   <!-- Fso Properties Dialog * Title -->
   <string name="fso_properties_dialog_title">Properties</string>
   <!-- Fso Properties Dialog * Tab * Info -->
@@ -388,7 +388,8 @@
   <!-- Selection. All possibilities. [1 folder; >1 folders; 1 file; >1 files;
      >1 folders and 1 file; 1 folder and >1 files; >1 folders and >1 files]
      Avoid using plural item because is more complex to achieved all strings -->
-  <string name="selection_one_folder"><xliff:g id="folders">%1$s</xliff:g> folder selected.</string>
+  <string name="selection_one_folder"><xliff:g id="folders">%1$s</xliff:g> folder
+    selected.</string>
   <string name="selection_other_folders"><xliff:g id="folders">%1$s</xliff:g> folders
     selected.</string>
   <string name="selection_one_file"><xliff:g id="files">%1$s</xliff:g> file selected.</string>
@@ -399,5 +400,68 @@
     <xliff:g id="file2">%2$s</xliff:g> files selected.</string>
   <string name="selection_other_folders_other_files"><xliff:g id="folder2">%1$s</xliff:g> folders
     and <xliff:g id="files">%2$s</xliff:g> files selected.</string>
+
+  <!-- Preferences title -->
+  <string name="pref">Settings</string>
+  <!-- Preferences * General title -->
+  <string name="pref_general">General</string>
+  <!-- Preferences * General summary -->
+  <string name="pref_general_summary">Configure the behaviour of some actions of the
+    application.</string>
+  <!-- Preferences * Search title -->
+  <string name="pref_search">Search</string>
+  <!-- Preferences * Search summary -->
+  <string name="pref_search_summary">Configure some options about the search engine of the
+    application application .</string>
+  <!-- Preferences * Debug title -->
+  <string name="pref_debug">Debug</string>
+  <!-- Preferences * Debug summary -->
+  <string name="pref_debug_summary">Configure the options for the debugging of the
+    application.</string>
+  <!-- Preferences * About title -->
+  <string name="pref_about">About</string>
+  <!-- Preferences * About summary -->
+  <string name="pref_about_summary">CMExplorer. v<xliff:g id="version">%1$s</xliff:g>.
+    \nCopyright \u00A9 2012 CyanogenMod</string>
+
+  <!-- Preferences * Search * Results category -->
+  <string name="pref_search_results_category">Results</string>
+  <!-- Preferences * Search * Show relevance widget -->
+  <string name="pref_show_relevance_widget">Relevance widget</string>
+  <!-- Preferences * Search * Show relevance widget summary on -->
+  <string name="pref_show_relevance_widget_on">Show the relevance widget</string>
+  <!-- Preferences * Search * Show relevance widget summary off -->
+  <string name="pref_show_relevance_widget_off">Hide the relevance widget</string>
+  <!-- Preferences * Search * Highlight search terms -->
+  <string name="pref_highlight_terms">Highlight terms</string>
+  <!-- Preferences * Search * Show relevance widget summary on -->
+  <string name="pref_highlight_terms_on">Highlight the matching terms of the search in search
+    results</string>
+  <!-- Preferences * Search * Show relevance widget summary off -->
+  <string name="pref_highlight_terms_off">No highlight the matching terms of the search in search
+    results</string>
+  <!-- Preferences * Search * Privacity category -->
+  <string name="pref_search_privacity_category">Privacity</string>
+  <!-- Preferences * Search * Save search terms -->
+  <string name="pref_save_search_terms">Save search terms</string>
+  <!-- Preferences * Search * Save search termss summary on -->
+  <string name="pref_save_search_terms_on">Save the terms introduced in search queries,
+    so they can be shown as suggestions in the following searches.</string>
+  <!-- Preferences * Search * Save search terms summary off -->
+  <string name="pref_save_search_terms_off">The terms introduced in search queries are
+    not saved.</string>
+  <!-- Preferences * Search * Remove saved search terms -->
+  <string name="pref_remove_saved_search_terms">Remove saved terms</string>
+  <!-- Preferences * Search * Remove saved search terms summary -->
+  <string name="pref_remove_saved_search_terms_summary">Tap to remove the saved terms of previous
+    searches</string>
+  <string name="pref_remove_saved_search_terms_msg">All saved search terms were removed</string>
+
+  <!-- Preferences * Debug * Capture debug traces -->
+  <string name="pref_debug_traces">Capture debug traces</string>
+  <!-- Preferences * Debug * Capture debug traces summary on -->
+  <string name="pref_debug_traces_on">Capture of debug traces is enabled</string>
+  <!-- Preferences * Debug * Capture debug traces summary off -->
+  <string name="pref_debug_traces_off">Capture of debug traces is disabled</string>
 
 </resources>

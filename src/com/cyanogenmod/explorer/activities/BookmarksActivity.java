@@ -38,7 +38,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.internal.util.XmlUtils;
-import com.cyanogenmod.explorer.ExplorerApplication;
 import com.cyanogenmod.explorer.R;
 import com.cyanogenmod.explorer.adapters.BookmarksAdapter;
 import com.cyanogenmod.explorer.model.Bookmark;
@@ -61,6 +60,8 @@ public class BookmarksActivity extends Activity implements OnItemClickListener, 
 
     private static final String TAG = "BookmarksActivity"; //$NON-NLS-1$
 
+    private static boolean DEBUG = false;
+
     // Bookmark list XML tags
     private static final String TAG_BOOKMARKS = "Bookmarks"; //$NON-NLS-1$
     private static final String TAG_BOOKMARK = "bookmark"; //$NON-NLS-1$
@@ -72,7 +73,7 @@ public class BookmarksActivity extends Activity implements OnItemClickListener, 
      */
     @Override
     protected void onCreate(Bundle state) {
-        if (ExplorerApplication.DEBUG) {
+        if (DEBUG) {
             Log.d(TAG, "NavigationActivity.onCreate"); //$NON-NLS-1$
         }
 

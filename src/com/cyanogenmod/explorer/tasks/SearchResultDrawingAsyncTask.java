@@ -92,7 +92,6 @@ public class SearchResultDrawingAsyncTask extends AsyncTask<Object, Integer, Boo
                     SearchHelper.convertToResults(
                             FileHelper.applyUserPreferences(this.mFiles),
                             this.mQueries);
-            this.mFiles.clear();  //Clean up
             Collections.sort(result);
 
             this.mSearchListView.post(new Runnable() {

@@ -15,7 +15,9 @@
  ** limitations under the License.
 -->
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-  package="com.cyanogenmod.explorer">
+  package="com.cyanogenmod.explorer"
+  android:versionCode="100"
+  android:versionName="1.0.0">
 
   <original-package android:name="com.cyanogenmod.explorer" />
 
@@ -81,6 +83,16 @@
       android:launchMode="singleTop"
       android:uiOptions="none"
       android:windowSoftInputMode="adjustNothing" >
+    </activity>
+
+    <activity
+      android:name=".activities.preferences.SettingsPreferences"
+      android:label="@string/pref"
+      android:icon="@drawable/ic_launcher_settings"
+      android:exported="false">
+      <intent-filter>
+         <category android:name="android.intent.category.PREFERENCE" />
+      </intent-filter>
     </activity>
 
   </application>

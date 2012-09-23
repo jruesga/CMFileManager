@@ -19,12 +19,44 @@ import com.cyanogenmod.explorer.commands.AsyncResultExecutable;
 import com.cyanogenmod.explorer.commands.Executable;
 import com.cyanogenmod.explorer.commands.ExecutableFactory;
 import com.cyanogenmod.explorer.model.Identity;
+import com.cyanogenmod.explorer.preferences.ExplorerSettings;
+import com.cyanogenmod.explorer.preferences.Preferences;
 
 /**
  * This class represents a class for executing commands in the operating system layer,
  * being the base for all type of consoles (shell, java, ...).
  */
 public abstract class Console implements AsyncResultExecutable.OnCancelListener {
+
+    private boolean mTrace;
+
+    /**
+     * Constructor of <code>Console</code>
+     */
+    public Console() {
+        super();
+
+        // Get the current trace value
+        reloadTrace();
+    }
+
+    /**
+     * Method that return id the console had to trace his operations
+     *
+     * @return boolean If the console had to trace
+     */
+    public boolean isTrace() {
+        return this.mTrace;
+    }
+
+    /**
+     * Method that reload the status of trace setting
+     */
+    public final void reloadTrace() {
+        this.mTrace = Preferences.getSharedPreferences().getBoolean(
+                ExplorerSettings.SETTINGS_SHOW_TRACES.getId(),
+                ((Boolean)ExplorerSettings.SETTINGS_SHOW_TRACES.getDefaultValue()).booleanValue());
+    }
 
     /**
      * Method that returns the identity of the console (the current user).

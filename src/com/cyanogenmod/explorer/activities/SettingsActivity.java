@@ -21,7 +21,6 @@ import android.os.Bundle;
 import android.preference.PreferenceActivity;
 import android.util.Log;
 
-import com.cyanogenmod.explorer.ExplorerApplication;
 import com.cyanogenmod.explorer.R;
 
 import java.util.List;
@@ -33,12 +32,14 @@ public class SettingsActivity extends PreferenceActivity {
 
     private static final String TAG = "SettingsActivity"; //$NON-NLS-1$
 
+    private static boolean DEBUG = false;
+
     /**
      * {@inheritDoc}
      */
     @Override
     public void onCreate(Bundle savedInstanceState) {
-        if (ExplorerApplication.DEBUG) {
+        if (DEBUG) {
             Log.d(TAG, "SettingsActivity.onCreate"); //$NON-NLS-1$
         }
 
@@ -54,7 +55,7 @@ public class SettingsActivity extends PreferenceActivity {
      */
     @Override
     protected void onDestroy() {
-        if (ExplorerApplication.DEBUG) {
+        if (DEBUG) {
             Log.d(TAG, "SettingsActivity.onDestroy"); //$NON-NLS-1$
         }
 

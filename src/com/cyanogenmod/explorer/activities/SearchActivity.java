@@ -20,11 +20,15 @@ import android.app.ActionBar;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.SearchManager;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.os.Parcelable;
+import android.preference.PreferenceActivity;
 import android.provider.SearchRecentSuggestions;
 import android.text.Html;
 import android.text.TextUtils;
@@ -39,8 +43,9 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.cyanogenmod.explorer.ExplorerApplication;
 import com.cyanogenmod.explorer.R;
+import com.cyanogenmod.explorer.activities.preferences.SettingsPreferences;
+import com.cyanogenmod.explorer.activities.preferences.SettingsPreferences.SearchPreferenceFragment;
 import com.cyanogenmod.explorer.adapters.SearchResultAdapter;
 import com.cyanogenmod.explorer.adapters.SearchResultAdapter.OnRequestMenuListener;
 import com.cyanogenmod.explorer.commands.AsyncResultExecutable;
@@ -52,11 +57,13 @@ import com.cyanogenmod.explorer.model.Query;
 import com.cyanogenmod.explorer.model.SearchResult;
 import com.cyanogenmod.explorer.model.Symlink;
 import com.cyanogenmod.explorer.parcelables.SearchInfoParcelable;
+import com.cyanogenmod.explorer.preferences.ExplorerSettings;
 import com.cyanogenmod.explorer.preferences.Preferences;
 import com.cyanogenmod.explorer.providers.RecentSearchesContentProvider;
 import com.cyanogenmod.explorer.tasks.SearchResultDrawingAsyncTask;
 import com.cyanogenmod.explorer.ui.dialogs.ActionsDialog;
 import com.cyanogenmod.explorer.ui.dialogs.MessageProgressDialog;
+import com.cyanogenmod.explorer.ui.widgets.ButtonItem;
 import com.cyanogenmod.explorer.util.CommandHelper;
 import com.cyanogenmod.explorer.util.DialogHelper;
 import com.cyanogenmod.explorer.util.ExceptionUtil;
@@ -72,6 +79,8 @@ public class SearchActivity extends Activity
     implements AsyncResultListener, OnItemClickListener, OnRequestMenuListener {
 
     private static final String TAG = "SearchActivity"; //$NON-NLS-1$
+
+    private static boolean DEBUG = false;
 
     /**
      * An {@link Intent} action for restore view information.
@@ -92,6 +101,28 @@ public class SearchActivity extends Activity
 
     //Minimum characters to allow query
     private static final int MIN_CHARS_SEARCH = 3;
+
+    private final BroadcastReceiver mOnSettingChangeReceiver = new BroadcastReceiver() {
+        @Override
+        @SuppressWarnings("synthetic-access")
+        public void onReceive(Context context, Intent intent) {
+            if (intent != null &&
+                intent.getAction().compareTo(ExplorerSettings.INTENT_SETTING_CHANGED) == 0) {
+
+                // The settings has changed
+                String key = intent.getStringExtra(ExplorerSettings.EXTRA_SETTING_CHANGED_KEY);
+                if (key != null && SearchActivity.this.mAdapter != null &&
+                   (key.compareTo(ExplorerSettings.SETTINGS_HIGHLIGHT_TERMS.getId()) == 0 ||
+                    key.compareTo(ExplorerSettings.SETTINGS_SHOW_RELEVANCE_WIDGET.getId()) == 0)) {
+
+                    // Recreate the adapter
+                    int pos = SearchActivity.this.mSearchListView.getFirstVisiblePosition();
+                    drawResults();
+                    SearchActivity.this.mSearchListView.setSelection(pos);
+                }
+            }
+        }
+    };
 
 
     private MessageProgressDialog mDialog = null;
@@ -118,9 +149,14 @@ public class SearchActivity extends Activity
      */
     @Override
     protected void onCreate(Bundle state) {
-        if (ExplorerApplication.DEBUG) {
+        if (DEBUG) {
             Log.d(TAG, "NavigationActivity.onCreate"); //$NON-NLS-1$
         }
+
+        // Register the broadcast receiver
+        IntentFilter filter = new IntentFilter();
+        filter.addAction(ExplorerSettings.INTENT_SETTING_CHANGED);
+        registerReceiver(this.mOnSettingChangeReceiver, filter);
 
         //Request features
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
@@ -180,8 +216,19 @@ public class SearchActivity extends Activity
      * {@inheritDoc}
      */
     @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        try {
+            unregisterReceiver(this.mOnSettingChangeReceiver);
+        } catch (Throwable ex) {/**NON BLOCK**/}
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     protected void onSaveInstanceState(Bundle outState) {
-        if (ExplorerApplication.DEBUG) {
+        if (DEBUG) {
             Log.d(TAG, "SearchActivity.onSaveInstanceState"); //$NON-NLS-1$
         }
         saveState(outState);
@@ -229,9 +276,13 @@ public class SearchActivity extends Activity
                 ActionBar.DISPLAY_SHOW_CUSTOM | ActionBar.DISPLAY_SHOW_HOME);
         getActionBar().setDisplayHomeAsUpEnabled(true);
         View customTitle = getLayoutInflater().inflate(R.layout.simple_customtitle, null, false);
+
         TextView title = (TextView)customTitle.findViewById(R.id.customtitle_title);
         title.setText(R.string.search);
         title.setContentDescription(getString(R.string.search));
+        ButtonItem configuration = (ButtonItem)customTitle.findViewById(R.id.ab_configuration);
+        configuration.setVisibility(View.VISIBLE);
+
         getActionBar().setCustomView(customTitle);
     }
 
@@ -251,6 +302,27 @@ public class SearchActivity extends Activity
         this.mSearchTerms = (TextView)findViewById(R.id.search_status_query_terms);
         this.mSearchTerms.setText(
                 Html.fromHtml(getString(R.string.search_terms, ""))); //$NON-NLS-1$
+    }
+
+    /**
+     * Method invoked when an action item is clicked.
+     *
+     * @param view The button pushed
+     */
+    public void onActionBarItemClick(View view) {
+        switch (view.getId()) {
+            case R.id.ab_configuration:
+                //Settings
+                Intent settings = new Intent(this, SettingsPreferences.class);
+                settings.putExtra(
+                        PreferenceActivity.EXTRA_SHOW_FRAGMENT,
+                        SearchPreferenceFragment.class.getName());
+                startActivity(settings);
+                break;
+
+            default:
+                break;
+        }
     }
 
     /**
@@ -360,15 +432,22 @@ public class SearchActivity extends Activity
     private void doSearch(
             final boolean voiceQuery, final Query query, final String searchDirectory) {
 
-        //Save every query for use as recent suggestions
-        SearchRecentSuggestions suggestions =
-                new SearchRecentSuggestions(this,
-                        RecentSearchesContentProvider.AUTHORITY,
-                        RecentSearchesContentProvider.MODE);
-        if (!voiceQuery) {
-            List<String> queries = query.getQueries();
-            for (int i = 0; i < queries.size(); i++) {
-                suggestions.saveRecentQuery(queries.get(i), null);
+        // Recovers the user preferences about save suggestions
+        boolean saveSuggestions = Preferences.getSharedPreferences().getBoolean(
+                ExplorerSettings.SETTINGS_SAVE_SEARCH_TERMS.getId(),
+                ((Boolean)ExplorerSettings.SETTINGS_SAVE_SEARCH_TERMS.
+                        getDefaultValue()).booleanValue());
+        if (saveSuggestions) {
+            //Save every query for use as recent suggestions
+            SearchRecentSuggestions suggestions =
+                    new SearchRecentSuggestions(this,
+                            RecentSearchesContentProvider.AUTHORITY,
+                            RecentSearchesContentProvider.MODE);
+            if (!voiceQuery) {
+                List<String> queries = query.getQueries();
+                for (int i = 0; i < queries.size(); i++) {
+                    suggestions.saveRecentQuery(queries.get(i), null);
+                }
             }
         }
 
@@ -698,28 +777,33 @@ public class SearchActivity extends Activity
                         SearchActivity.this.mDialog.dismiss();
                     }
 
-                    //Toggle results
-                    SearchActivity.this.toggleResults(
-                            SearchActivity.this.mResultList.size() > 0);
-                    setFoundItems(
-                            SearchActivity.this.mResultList.size(),
-                            SearchActivity.this.mSearchDirectory);
-
-                    //Create the task for drawing the data
-                    SearchActivity.this.mDrawingSearchResultTask =
-                                            new SearchResultDrawingAsyncTask(
-                                                    SearchActivity.this.mSearchListView,
-                                                    SearchActivity.this.mSearchWaiting,
-                                                    SearchActivity.this,
-                                                    SearchActivity.this.mResultList,
-                                                    SearchActivity.this.mQuery);
-                    SearchActivity.this.mDrawingSearchResultTask.execute();
+                    // Draw the results
+                    drawResults();
 
                 } catch (Throwable ex) {
                     Log.e(TAG, "onAsyncEnd method fails", ex); //$NON-NLS-1$
                 }
             }
         });
+    }
+
+    /**
+     * Method that draw the results in the listview
+     */
+    private void drawResults() {
+        //Toggle results
+        this.toggleResults(this.mResultList.size() > 0);
+        setFoundItems(this.mResultList.size(), this.mSearchDirectory);
+
+        //Create the task for drawing the data
+        this.mDrawingSearchResultTask =
+                                new SearchResultDrawingAsyncTask(
+                                        this.mSearchListView,
+                                        this.mSearchWaiting,
+                                        this,
+                                        this.mResultList,
+                                        this.mQuery);
+        this.mDrawingSearchResultTask.execute();
     }
 
     /**

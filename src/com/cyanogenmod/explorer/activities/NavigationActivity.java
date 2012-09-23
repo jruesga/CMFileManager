@@ -36,8 +36,8 @@ import android.widget.ListPopupWindow;
 import android.widget.PopupWindow;
 import android.widget.Toast;
 
-import com.cyanogenmod.explorer.ExplorerApplication;
 import com.cyanogenmod.explorer.R;
+import com.cyanogenmod.explorer.activities.preferences.SettingsPreferences;
 import com.cyanogenmod.explorer.adapters.MenuSettingsAdapter;
 import com.cyanogenmod.explorer.adapters.SimpleMenuListAdapter;
 import com.cyanogenmod.explorer.console.Console;
@@ -84,6 +84,8 @@ public class NavigationActivity extends Activity
     OnNavigationRequestMenuListener, OnNavigationSelectionChangedListener {
 
     private static final String TAG = "NavigationActivity"; //$NON-NLS-1$
+
+    private static boolean DEBUG = false;
 
     /**
      * Intent code for request a bookmark selection.
@@ -145,7 +147,7 @@ public class NavigationActivity extends Activity
      */
     @Override
     protected void onCreate(Bundle state) {
-        if (ExplorerApplication.DEBUG) {
+        if (DEBUG) {
             Log.d(TAG, "NavigationActivity.onCreate"); //$NON-NLS-1$
         }
 
@@ -209,7 +211,7 @@ public class NavigationActivity extends Activity
      */
     @Override
     protected void onDestroy() {
-        if (ExplorerApplication.DEBUG) {
+        if (DEBUG) {
             Log.d(TAG, "NavigationActivity.onDestroy"); //$NON-NLS-1$
         }
 
@@ -222,7 +224,7 @@ public class NavigationActivity extends Activity
      */
     @Override
     protected void onSaveInstanceState(Bundle outState) {
-        if (ExplorerApplication.DEBUG) {
+        if (DEBUG) {
             Log.d(TAG, "NavigationActivity.onSaveInstanceState"); //$NON-NLS-1$
         }
         saveState(outState);
@@ -821,6 +823,9 @@ public class NavigationActivity extends Activity
 
                             case R.id.mnu_settings:
                                 //Settings
+                                Intent settings = new Intent(
+                                        NavigationActivity.this, SettingsPreferences.class);
+                                startActivity(settings);
                                 break;
 
                             case R.id.mnu_console:

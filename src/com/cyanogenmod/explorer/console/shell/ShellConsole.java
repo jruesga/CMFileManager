@@ -184,7 +184,7 @@ public abstract class ShellConsole extends Console {
             synchronized (this.mSync) {
                 this.mActive = true;
             }
-            if (ExplorerApplication.DEBUG) {
+            if (isTrace()) {
                 Log.v(TAG,
                         String.format("Create console %s, command: %s, args: %s",  //$NON-NLS-1$
                                 this.mShell.getId(),
@@ -389,7 +389,7 @@ public abstract class ShellConsole extends Console {
             String args = program.getArguments();
 
             //Audit command
-            if (ExplorerApplication.DEBUG) {
+            if (isTrace()) {
                 Log.v(TAG,
                         String.format("%s-%s, command: %s, args: %s",  //$NON-NLS-1$
                                 ShellConsole.this.mShell.getId(),
@@ -572,7 +572,7 @@ public abstract class ShellConsole extends Console {
                         }
 
                         //Audit
-                        if (ExplorerApplication.DEBUG) {
+                        if (isTrace()) {
                             Log.v(TAG,
                                     String.format("stdin: %s", sb.toString())); //$NON-NLS-1$
                         }
@@ -641,7 +641,7 @@ public abstract class ShellConsole extends Console {
                         }
 
                         //Audit
-                        if (ExplorerApplication.DEBUG) {
+                        if (isTrace()) {
                             Log.v(TAG,
                                     String.format("stderr: %s", sb.toString())); //$NON-NLS-1$
                         }

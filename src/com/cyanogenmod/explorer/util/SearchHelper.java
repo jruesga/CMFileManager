@@ -111,9 +111,22 @@ public final class SearchHelper {
             }
         }
 
-        //??? Something is not wrong. Name should be matched by some of the queries
-        //No highlight
+        // Something is wrong!!!. Name should be matched by some of the queries
+        // No highlight terms
         return name;
+    }
+
+    /**
+     * Method that returns the name but not highlight the search terms
+     *
+     * @param result The result to highlight
+     * @return CharSequence The non highlighted name string
+     */
+    public static CharSequence getNonHighlightedName(SearchResult result) {
+        String name = result.getFso().getName();
+        Spannable span = (Spannable)Html.fromHtml(name);
+        span.setSpan(new StyleSpan(Typeface.BOLD), 0, name.length(), 0);
+        return span;
     }
 
     /**

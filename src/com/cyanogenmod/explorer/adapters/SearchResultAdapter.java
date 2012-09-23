@@ -31,6 +31,8 @@ import com.cyanogenmod.explorer.R;
 import com.cyanogenmod.explorer.model.FileSystemObject;
 import com.cyanogenmod.explorer.model.Query;
 import com.cyanogenmod.explorer.model.SearchResult;
+import com.cyanogenmod.explorer.preferences.ExplorerSettings;
+import com.cyanogenmod.explorer.preferences.Preferences;
 import com.cyanogenmod.explorer.ui.IconHolder;
 import com.cyanogenmod.explorer.ui.widgets.RelevanceView;
 import com.cyanogenmod.explorer.util.MimeTypeHelper;
@@ -90,13 +92,16 @@ public class SearchResultAdapter extends ArrayAdapter<SearchResult> implements O
         Drawable mDwIcon;
         CharSequence mName;
         String mParentDir;
-        float mRelevance;
+        Float mRelevance;
     }
 
 
     private DataHolder[] mData;
     private IconHolder mIconHolder;
     private final int mItemViewResourceId;
+
+    private final boolean mHighlightTerms;
+    private final boolean mShowRelevanceWidget;
 
     private OnRequestMenuListener mOnRequestMenuListener;
 
@@ -128,6 +133,16 @@ public class SearchResultAdapter extends ArrayAdapter<SearchResult> implements O
         this.mIconHolder = new IconHolder();
         this.mItemViewResourceId = itemViewResourceId;
         this.mQueries = queries.getQueries();
+
+        // Load settings
+        this.mHighlightTerms = Preferences.getSharedPreferences().getBoolean(
+                ExplorerSettings.SETTINGS_HIGHLIGHT_TERMS.getId(),
+                ((Boolean)ExplorerSettings.SETTINGS_HIGHLIGHT_TERMS.
+                        getDefaultValue()).booleanValue());
+        this.mShowRelevanceWidget = Preferences.getSharedPreferences().getBoolean(
+                ExplorerSettings.SETTINGS_SHOW_RELEVANCE_WIDGET.getId(),
+                ((Boolean)ExplorerSettings.SETTINGS_SHOW_RELEVANCE_WIDGET.
+                        getDefaultValue()).booleanValue());
 
         //Do cache of the data for better performance
         loadDefaultIcons();
@@ -183,10 +198,19 @@ public class SearchResultAdapter extends ArrayAdapter<SearchResult> implements O
             this.mData[i].mDwIcon =
                     this.mIconHolder.getDrawable(
                             getContext(), MimeTypeHelper.getIcon(getContext(), result.getFso()));
-            this.mData[i].mName = SearchHelper.getHighlightedName(result, this.mQueries);
+            if (this.mHighlightTerms) {
+                this.mData[i].mName = SearchHelper.getHighlightedName(result, this.mQueries);
+            } else {
+                this.mData[i].mName = SearchHelper.getNonHighlightedName(result);
+            }
             this.mData[i].mParentDir = new File(result.getFso().getFullPath()).getParent();
-            this.mData[i].mRelevance =
-                    (float)((result.getRelevance() * 100) / SearchResult.MAX_RELEVANCE);
+            if (this.mShowRelevanceWidget) {
+                this.mData[i].mRelevance =
+                        Float.valueOf(
+                                (float)(result.getRelevance() * 100) / SearchResult.MAX_RELEVANCE);
+            } else {
+                this.mData[i].mRelevance = null;
+            }
         }
     }
 
@@ -236,7 +260,11 @@ public class SearchResultAdapter extends ArrayAdapter<SearchResult> implements O
         viewHolder.mIvIcon.setImageDrawable(dataHolder.mDwIcon);
         viewHolder.mTvName.setText(dataHolder.mName, TextView.BufferType.SPANNABLE);
         viewHolder.mTvParentDir.setText(dataHolder.mParentDir);
-        viewHolder.mWgRelevance.setRelevance(dataHolder.mRelevance);
+        if (dataHolder.mRelevance != null) {
+            viewHolder.mWgRelevance.setRelevance(dataHolder.mRelevance.floatValue());
+        }
+        viewHolder.mWgRelevance.setVisibility(
+                dataHolder.mRelevance != null ? View.VISIBLE : View.GONE);
         viewHolder.mBtMenu.setTag(Integer.valueOf(position));
 
         //Return the view

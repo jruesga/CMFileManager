@@ -54,7 +54,7 @@ public final class ConsoleBuilder {
 
     /**
      * Method that returns a console, and creates a new console
-     * if no console is allocated.
+     * if no console is allocated. The console is create if not exists.
      *
      * @param context The current context
      * @return Console An allocated console
@@ -67,9 +67,31 @@ public final class ConsoleBuilder {
     public static Console getConsole(Context context)
             throws FileNotFoundException, IOException, InvalidCommandDefinitionException,
             ConsoleAllocException, InsufficientPermissionsException {
+        return getConsole(context, true);
+    }
+
+    /**
+     * Method that returns a console. If {@linkplain "createIfNotExists"} is specified
+     * a new console will be created
+     *
+     * @param context The current context
+     * @param createIfNotExists Indicates that the console should be create if not exists
+     * @return Console An allocated console
+     * @throws FileNotFoundException If the initial directory not exists
+     * @throws IOException If initial directory can't not be checked
+     * @throws InvalidCommandDefinitionException If the command has an invalid definition
+     * @throws ConsoleAllocException If the console can't be allocated
+     * @throws InsufficientPermissionsException If the console created is not a privileged console
+     */
+    public static Console getConsole(Context context, boolean createIfNotExists)
+            throws FileNotFoundException, IOException, InvalidCommandDefinitionException,
+            ConsoleAllocException, InsufficientPermissionsException {
 
         //Check if has a console. Otherwise create a new console
         if (sHolder == null || sHolder.getConsole() == null) {
+            if (!createIfNotExists) {
+                return null;
+            }
             createDefaultConsole(context);
         }
         return sHolder.getConsole();

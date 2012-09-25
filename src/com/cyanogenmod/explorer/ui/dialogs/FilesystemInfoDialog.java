@@ -144,9 +144,9 @@ public class FilesystemInfoDialog implements OnClickListener {
 
         // Set the user preference about free disk space warning level
         String fds = Preferences.getSharedPreferences().getString(
-                ExplorerSettings.SETTINGS_FREE_DISK_SPACE_WARNING_LEVEL.getId(),
+                ExplorerSettings.SETTINGS_DISK_USAGE_WARNING_LEVEL.getId(),
                 (String)ExplorerSettings.
-                    SETTINGS_FREE_DISK_SPACE_WARNING_LEVEL.getDefaultValue());
+                    SETTINGS_DISK_USAGE_WARNING_LEVEL.getDefaultValue());
         this.mDiskUsageGraph.setFreeDiskSpaceWarningLevel(Integer.parseInt(fds));
 
         //Register the listeners

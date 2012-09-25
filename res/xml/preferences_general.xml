@@ -31,12 +31,12 @@
         android:defaultValue="0"
         android:persistent="true" />
 
-      <!-- Free disk warning level -->
+      <!-- Disk usage warning level -->
       <ListPreference
-        android:key="cm_explorer_free_space_disk_warning_level"
-        android:title="@string/pref_free_disk_space_warning_level"
-        android:entries="@array/free_disk_space_warning_level_labels"
-        android:entryValues="@array/free_disk_space_warning_level_values"
+        android:key="cm_explorer_disk_usage_warning_level"
+        android:title="@string/pref_disk_usage_warning_level"
+        android:entries="@array/disk_usage_warning_level_labels"
+        android:entryValues="@array/disk_usage_warning_level_values"
         android:defaultValue="2"
         android:persistent="true" />
 

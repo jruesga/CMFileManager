@@ -143,14 +143,14 @@ public class NavigationActivity extends Activity
                 String key = intent.getStringExtra(ExplorerSettings.EXTRA_SETTING_CHANGED_KEY);
                 if (key != null &&
                     key.compareTo(ExplorerSettings.
-                            SETTINGS_FREE_DISK_SPACE_WARNING_LEVEL.getId()) == 0) {
+                            SETTINGS_DISK_USAGE_WARNING_LEVEL.getId()) == 0) {
        
                     // Set the free disk space warning level of the breadcrumb widget
                     Breadcrumb breadcrumb = getCurrentNavigationView().getBreadcrumb();
                     String fds = Preferences.getSharedPreferences().getString(
-                            ExplorerSettings.SETTINGS_FREE_DISK_SPACE_WARNING_LEVEL.getId(),
+                            ExplorerSettings.SETTINGS_DISK_USAGE_WARNING_LEVEL.getId(),
                             (String)ExplorerSettings.
-                                SETTINGS_FREE_DISK_SPACE_WARNING_LEVEL.getDefaultValue());
+                                SETTINGS_DISK_USAGE_WARNING_LEVEL.getDefaultValue());
                     breadcrumb.setFreeDiskSpaceWarningLevel(Integer.parseInt(fds));
                     breadcrumb.updateMountPointInfo();
                 }
@@ -380,8 +380,8 @@ public class NavigationActivity extends Activity
 
         // Set the free disk space warning level of the breadcrumb widget
         String fds = Preferences.getSharedPreferences().getString(
-                ExplorerSettings.SETTINGS_FREE_DISK_SPACE_WARNING_LEVEL.getId(),
-                (String)ExplorerSettings.SETTINGS_FREE_DISK_SPACE_WARNING_LEVEL.getDefaultValue());
+                ExplorerSettings.SETTINGS_DISK_USAGE_WARNING_LEVEL.getId(),
+                (String)ExplorerSettings.SETTINGS_DISK_USAGE_WARNING_LEVEL.getDefaultValue());
         breadcrumb.setFreeDiskSpaceWarningLevel(Integer.parseInt(fds));
 
         //Configure the action bar options

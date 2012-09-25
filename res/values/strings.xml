@@ -438,11 +438,14 @@
   <string name="pref_default_longclick_action_open_with">Open with</string>
   <!-- Preferences * General * Default long-click action * Show properties -->
   <string name="pref_default_longclick_action_show_properties">Show properties</string>
-  <!-- Preferences * General * Free disk space warning level title -->
-  <string name="pref_free_disk_space_warning_level">Free disk space</string>
-  <!-- Preferences * General * Free disk warning level summary -->
-  <string name="pref_free_disk_space_warning_level_summary">Display a different color in free disk
-    space\' widgets when they reach <xliff:g id="level">%1$s</xliff:g> of free disk space</string>
+  <!-- Preferences * General *Disk usage warning level title -->
+  <string name="pref_disk_usage_warning_level">Disk usage warning</string>
+  <!-- Preferences * General * Disk usage warning level summary -->
+  <!-- FIXME % symbol make crash the app on getSummary of ListPreference. This should be
+       fixed in frameworks base prior to add here. -->
+  <string name="pref_disk_usage_warning_level_summary" formatted="false">Display a different
+    color in disk usage\' widgets when they reach <xliff:g id="level">%1$s</xliff:g> percent
+    of free disk space</string>
   <!-- Preferences * Search * Results category -->
   <string name="pref_search_results_category">Results</string>
   <!-- Preferences * Search * Show relevance widget -->

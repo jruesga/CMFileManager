@@ -140,13 +140,13 @@ public class SettingsPreferences extends PreferenceActivity {
                     preference.setSummary(summary[value]);
                 }
 
-                // Free disk warning level
-                else if (ExplorerSettings.SETTINGS_FREE_DISK_SPACE_WARNING_LEVEL.
+                // Disk usage warning level
+                else if (ExplorerSettings.SETTINGS_DISK_USAGE_WARNING_LEVEL.
                         getId().compareTo(key) == 0) {
                     String value = (String)newValue;
                     preference.setSummary(
                             getResources().getString(
-                                    R.string.pref_free_disk_space_warning_level_summary, value));
+                                    R.string.pref_disk_usage_warning_level_summary, value));
                 }
 
                 // Notify the change (only if fragment is loaded. Default values are loaded
@@ -188,15 +188,15 @@ public class SettingsPreferences extends PreferenceActivity {
                                     defaultValue);
             this.mOnChangeListener.onPreferenceChange(this.mDefaultLongClickAction, value);
 
-            // Free disk space warning level
+            //Disk usage warning level
             this.mFreeDiskSpaceWarningLevel =
                     (ListPreference)findPreference(
-                            ExplorerSettings.SETTINGS_FREE_DISK_SPACE_WARNING_LEVEL.getId());
+                            ExplorerSettings.SETTINGS_DISK_USAGE_WARNING_LEVEL.getId());
             this.mFreeDiskSpaceWarningLevel.setOnPreferenceChangeListener(this.mOnChangeListener);
             defaultValue = ((String)ExplorerSettings.
-                                SETTINGS_FREE_DISK_SPACE_WARNING_LEVEL.getDefaultValue());
+                                SETTINGS_DISK_USAGE_WARNING_LEVEL.getDefaultValue());
             value = Preferences.getSharedPreferences().getString(
-                                ExplorerSettings.SETTINGS_FREE_DISK_SPACE_WARNING_LEVEL.getId(),
+                                ExplorerSettings.SETTINGS_DISK_USAGE_WARNING_LEVEL.getId(),
                                 defaultValue);
             this.mOnChangeListener.onPreferenceChange(this.mFreeDiskSpaceWarningLevel, value);
 

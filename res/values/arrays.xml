@@ -52,15 +52,15 @@
     <item>4</item>
   </string-array>
 
-  <!-- General. Free disk space warning level -->
-  <string-array name="free_disk_space_warning_level_labels" translable="false">
+  <!-- General. Disk usage warning level -->
+  <string-array name="disk_usage_warning_level_labels" translable="false">
     <item>75%</item>
     <item>90%</item>
     <item>95%</item>
     <item>98%</item>
     <item>100%</item>
   </string-array>
-  <string-array name="free_disk_space_warning_level_values" translable="false">
+  <string-array name="disk_usage_warning_level_values" translable="false">
     <item>75</item>
     <item>90</item>
     <item>95</item>

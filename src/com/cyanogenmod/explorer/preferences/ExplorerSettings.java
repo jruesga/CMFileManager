@@ -75,8 +75,8 @@ public enum ExplorerSettings {
      * When display a warning in free disk widget
      * @hide
      */
-    SETTINGS_FREE_DISK_SPACE_WARNING_LEVEL(
-            "cm_explorer_free_space_disk_warning_level", //$NON-NLS-1$
+    SETTINGS_DISK_USAGE_WARNING_LEVEL(
+            "cm_explorer_disk_usage_warning_level", //$NON-NLS-1$
             new String("95")), //$NON-NLS-1$
 
     /**

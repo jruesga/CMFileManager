@@ -19,7 +19,6 @@ package com.cyanogenmod.explorer.ui.dialogs;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.os.AsyncTask;
 import android.view.HapticFeedbackConstants;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -35,17 +34,13 @@ import android.widget.Toast;
 
 import com.cyanogenmod.explorer.R;
 import com.cyanogenmod.explorer.adapters.TwoColumnsMenuListAdapter;
-import com.cyanogenmod.explorer.console.RelaunchableException;
 import com.cyanogenmod.explorer.listeners.OnRequestRefreshListener;
 import com.cyanogenmod.explorer.listeners.OnSelectionListener;
 import com.cyanogenmod.explorer.model.Directory;
 import com.cyanogenmod.explorer.model.FileSystemObject;
-import com.cyanogenmod.explorer.util.CommandHelper;
+import com.cyanogenmod.explorer.ui.dialogs.policy.ActionsPolicy;
 import com.cyanogenmod.explorer.util.DialogHelper;
-import com.cyanogenmod.explorer.util.ExceptionUtil;
 import com.cyanogenmod.explorer.util.SelectionHelper;
-
-import java.io.File;
 
 /**
  * A class that wraps a dialog for showing the list of actions that
@@ -191,7 +186,8 @@ public class ActionsDialog implements OnItemClickListener, OnItemLongClickListen
 
             //- Properties
             case R.id.mnu_actions_properties:
-                showPropertiesDialog(this.mFso);
+                ActionsPolicy.showPropertiesDialog(
+                        this.mContext, this.mFso, this.mOnRequestRefreshListener);
                 break;
 
             default:
@@ -243,30 +239,6 @@ public class ActionsDialog implements OnItemClickListener, OnItemLongClickListen
     }
 
     /**
-     * Method that show a new dialog for show {@link FileSystemObject} properties.
-     *
-     * @param fso The file system object
-     */
-    private void showPropertiesDialog(final FileSystemObject fso) {
-        //Show a the filesystem info dialog
-        final FsoPropertiesDialog dialog = new FsoPropertiesDialog(this.mContext, fso);
-        dialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
-            @Override
-            @SuppressWarnings("synthetic-access")
-            public void onDismiss(DialogInterface dlg) {
-                // Any change?
-                if (dialog.isHasChanged()) {
-                    if (ActionsDialog.this.mOnRequestRefreshListener != null) {
-                        ActionsDialog.this.
-                            mOnRequestRefreshListener.onRequestRefresh(dialog.getFso());
-                    }
-                }
-            }
-        });
-        dialog.show();
-    }
-
-    /**
      * {@inheritDoc}
      */
     @Override
@@ -286,63 +258,19 @@ public class ActionsDialog implements OnItemClickListener, OnItemLongClickListen
      * @param name The name of the file system object
      */
     private void createNewFileSystemObject(final int menuId, final String name) {
-
-        //Create the absolute file name
-        File newFso = new File(
-                this.mOnSelectionListener.onRequestCurrentDirOfSelectionData(), name);
-        final String newName = newFso.getAbsolutePath();
-
-        try {
-            switch (menuId) {
-                case R.id.mnu_actions_new_directory:
-                    CommandHelper.createDirectory(this.mContext, newName, null);
-                    break;
-                case R.id.mnu_actions_new_file:
-                    CommandHelper.createFile(this.mContext, newName, null);
-                    break;
-                default:
-                    break;
-            }
-
-            //Operation complete. Show refresh
-            if (ActionsDialog.this.mOnRequestRefreshListener != null) {
-                FileSystemObject file = null;
-                try {
-                    file = CommandHelper.getFileInfo(this.mContext, newName, null);
-                } catch (Throwable ex2) {
-                    /**NON BLOCK**/
-                }
-                ActionsDialog.this.mOnRequestRefreshListener.onRequestRefresh(file);
-            }
-
-        } catch (Throwable ex) {
-            //Capture the exception
-            if (ex instanceof RelaunchableException) {
-                ExceptionUtil.attachAsyncTask(ex, new AsyncTask<Object, Integer, Boolean>() {
-                    /**
-                     * {@inheritDoc}
-                     */
-                    @Override
-                    @SuppressWarnings("synthetic-access")
-                    protected Boolean doInBackground(Object... params) {
-                        //Operation complete. Show refresh
-                        if (ActionsDialog.this.mOnRequestRefreshListener != null) {
-                            FileSystemObject file = null;
-                            try {
-                                file =
-                                    CommandHelper.getFileInfo(
-                                            ActionsDialog.this.mContext, newName, null);
-                            } catch (Throwable ex2) {
-                                /**NON BLOCK**/
-                            }
-                            ActionsDialog.this.mOnRequestRefreshListener.onRequestRefresh(file);
-                        }
-                        return Boolean.TRUE;
-                    }
-
-                });
-            }
-            ExceptionUtil.translateException(this.mContext, ex);
+        switch (menuId) {
+            case R.id.mnu_actions_new_directory:
+                ActionsPolicy.createNewDirectory(
+                        this.mContext, name,
+                        this.mOnSelectionListener, this.mOnRequestRefreshListener);
+                break;
+            case R.id.mnu_actions_new_file:
+                ActionsPolicy.createNewFile(
+                        this.mContext, name,
+                        this.mOnSelectionListener, this.mOnRequestRefreshListener);
+                break;
+            default:
+                break;
         }
     }
 

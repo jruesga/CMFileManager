@@ -22,6 +22,15 @@
       android:key="general_behaviour"
       android:title="@string/pref_general_behaviour_category">
 
+      <!-- Case sensitive order -->
+      <CheckBoxPreference
+        android:key="cm_explorer_case_sensitive_sort"
+        android:title="@string/pref_case_sensitive_sort"
+        android:summaryOn="@string/pref_case_sensitive_sort_on"
+        android:summaryOff="@string/pref_case_sensitive_sort_off"
+        android:persistent="true"
+        android:defaultValue="false" />
+
       <!-- Default longclick action -->
       <ListPreference
         android:key="cm_explorer_default_longclick_action"
@@ -39,6 +48,22 @@
         android:entryValues="@array/disk_usage_warning_level_values"
         android:defaultValue="2"
         android:persistent="true" />
+
+    </PreferenceCategory>
+
+    <!-- Advanced settings -->
+    <PreferenceCategory
+      android:key="general_advanced_settings"
+      android:title="@string/pref_general_advanced_settings_category">
+
+      <!-- Allow console selection -->
+      <CheckBoxPreference
+        android:key="cm_explorer_allow_console_selection"
+        android:title="@string/pref_allow_console_selection"
+        android:summaryOn="@string/pref_allow_console_selection_on"
+        android:summaryOff="@string/pref_allow_console_selection_off"
+        android:persistent="true"
+        android:defaultValue="false" />
 
     </PreferenceCategory>
 </PreferenceScreen>

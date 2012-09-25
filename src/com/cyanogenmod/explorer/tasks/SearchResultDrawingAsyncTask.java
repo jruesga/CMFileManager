@@ -28,6 +28,7 @@ import com.cyanogenmod.explorer.model.FileSystemObject;
 import com.cyanogenmod.explorer.model.Query;
 import com.cyanogenmod.explorer.model.SearchResult;
 import com.cyanogenmod.explorer.preferences.ExplorerSettings;
+import com.cyanogenmod.explorer.preferences.NavigationSortMode;
 import com.cyanogenmod.explorer.preferences.ObjectStringIdentifier;
 import com.cyanogenmod.explorer.preferences.Preferences;
 import com.cyanogenmod.explorer.preferences.SearchSortResultMode;
@@ -109,8 +110,8 @@ public class SearchResultDrawingAsyncTask extends AsyncTask<Object, Integer, Boo
                 Collections.sort(result, new Comparator<SearchResult>() {
                     @Override
                     public int compare(SearchResult lhs, SearchResult rhs) {
-                        // TODO Case comparison from settings
-                        return lhs.getFso().getFullPath().compareTo(rhs.getFso().getFullPath());
+                        return FileHelper.doCompare(
+                                lhs.getFso(), rhs.getFso(), NavigationSortMode.NAME_ASC);
                     }
                 });
             } else if (mode.compareTo(SearchSortResultMode.RELEVANCE) == 0) {

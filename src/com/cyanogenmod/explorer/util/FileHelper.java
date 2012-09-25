@@ -360,10 +360,8 @@ public final class FileHelper {
                     NavigationSortMode.fromId(
                             prefs.getInt(sortModePref.getId(),
                             ((ObjectIdentifier)sortModePref.getDefaultValue()).getId()));
-            // TODO Case comparison from settings
             Collections.sort(files, new Comparator<FileSystemObject>() {
                 @Override
-                @SuppressWarnings("synthetic-access")
                 public int compare(FileSystemObject lhs, FileSystemObject rhs) {
                     //Parent directory always goes first
                     boolean isLhsParentDirectory = lhs instanceof ParentDirectory;
@@ -430,19 +428,33 @@ public final class FileHelper {
      *         a positive integer if {@code fso1} is greater than {@code fso2};
      *         0 if {@code fso1} has the same order as {@code fso2}.
      */
-    private static int doCompare(
+    public static int doCompare(
             FileSystemObject fso1, FileSystemObject fso2, NavigationSortMode mode) {
 
         //Resolve references
         FileSystemObject o1 = FileHelper.getReference(fso1);
         FileSystemObject o2 = FileHelper.getReference(fso2);
 
+        // Retrieve the user preference for case sensitive sort
+        boolean caseSensitive =
+                Preferences.getSharedPreferences().
+                    getBoolean(
+                        ExplorerSettings.SETTINGS_CASE_SENSITIVE_SORT.getId(),
+                        ((Boolean)ExplorerSettings.SETTINGS_CASE_SENSITIVE_SORT.
+                                getDefaultValue()).booleanValue());
+
         //Name (ascending)
         if (mode.getId() == NavigationSortMode.NAME_ASC.getId()) {
+            if (!caseSensitive) {
+                return o1.getName().compareToIgnoreCase(o2.getName());
+            }
             return o1.getName().compareTo(o2.getName());
         }
         //Name (descending)
         if (mode.getId() == NavigationSortMode.NAME_DESC.getId()) {
+            if (!caseSensitive) {
+                return o1.getName().compareToIgnoreCase(o2.getName()) * -1;
+            }
             return o1.getName().compareTo(o2.getName()) * -1;
         }
 

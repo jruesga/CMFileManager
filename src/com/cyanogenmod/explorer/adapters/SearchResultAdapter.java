@@ -220,11 +220,31 @@ public class SearchResultAdapter extends ArrayAdapter<SearchResult> implements O
      * @return List<SearchResult> The adapter data
      */
     public List<SearchResult> getData() {
-        final List<SearchResult> data = new ArrayList<SearchResult>(getCount());
-        for (int i = 0; i < getCount(); i++) {
+        int count = getCount();
+        final List<SearchResult> data = new ArrayList<SearchResult>(count);
+        for (int i = 0; i < count; i++) {
             data.add(getItem(i));
         }
         return data;
+    }
+
+
+
+    /**
+     * Returns the position of the specified item in the array.
+     *
+     * @param item The item to retrieve the position of.
+     * @return The position of the specified item.
+     */
+    public int getPosition(FileSystemObject item) {
+        int count = getCount();
+        for (int i = 0; i < count; i++) {
+            SearchResult sr = getItem(i);
+            if (sr.getFso().compareTo(item) == 0) {
+                return i;
+            }
+        }
+        return -1;
     }
 
     /**

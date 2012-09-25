@@ -31,6 +31,7 @@ import com.cyanogenmod.explorer.adapters.FileSystemObjectAdapter;
 import com.cyanogenmod.explorer.adapters.FileSystemObjectAdapter.OnRequestMenuListener;
 import com.cyanogenmod.explorer.adapters.FileSystemObjectAdapter.OnSelectionChangedListener;
 import com.cyanogenmod.explorer.listeners.OnHistoryListener;
+import com.cyanogenmod.explorer.listeners.OnRequestRefreshListener;
 import com.cyanogenmod.explorer.listeners.OnSelectionListener;
 import com.cyanogenmod.explorer.model.Directory;
 import com.cyanogenmod.explorer.model.FileSystemObject;
@@ -38,10 +39,13 @@ import com.cyanogenmod.explorer.model.ParentDirectory;
 import com.cyanogenmod.explorer.model.Symlink;
 import com.cyanogenmod.explorer.parcelables.NavigationViewInfoParcelable;
 import com.cyanogenmod.explorer.parcelables.SearchInfoParcelable;
+import com.cyanogenmod.explorer.preferences.DefaultLongClickAction;
 import com.cyanogenmod.explorer.preferences.ExplorerSettings;
 import com.cyanogenmod.explorer.preferences.NavigationLayoutMode;
 import com.cyanogenmod.explorer.preferences.ObjectIdentifier;
+import com.cyanogenmod.explorer.preferences.ObjectStringIdentifier;
 import com.cyanogenmod.explorer.preferences.Preferences;
+import com.cyanogenmod.explorer.ui.dialogs.policy.ActionsPolicy;
 import com.cyanogenmod.explorer.util.CommandHelper;
 import com.cyanogenmod.explorer.util.ExceptionUtil;
 import com.cyanogenmod.explorer.util.FileHelper;
@@ -57,7 +61,7 @@ import java.util.List;
 public class NavigationView extends RelativeLayout implements
     AdapterView.OnItemClickListener, AdapterView.OnItemLongClickListener,
     BreadcrumbListener, OnSelectionChangedListener, OnRequestMenuListener,
-    OnSelectionListener {
+    OnSelectionListener, OnRequestRefreshListener {
 
     /**
      * An interface to communicate selection changes events.
@@ -95,6 +99,7 @@ public class NavigationView extends RelativeLayout implements
     private NavigationLayoutMode mCurrentMode;
     private List<FileSystemObject> mFiles;
     private FileSystemObjectAdapter mAdapter;
+    private DefaultLongClickAction mDefaultLongClickAction;
 
     private final Object mSync = new Object();
 
@@ -202,6 +207,15 @@ public class NavigationView extends RelativeLayout implements
                 ((ObjectIdentifier)ExplorerSettings.
                         SETTINGS_LAYOUT_MODE.getDefaultValue()).getId());
         changeViewMode(NavigationLayoutMode.fromId(viewMode));
+
+        // Default long-click action
+        String defaultValue = ((ObjectStringIdentifier)ExplorerSettings.
+                SETTINGS_DEFAULT_LONG_CLICK_ACTION.getDefaultValue()).getId();
+        String value = Preferences.getSharedPreferences().getString(
+                            ExplorerSettings.SETTINGS_DEFAULT_LONG_CLICK_ACTION.getId(),
+                            defaultValue);
+        DefaultLongClickAction mode = DefaultLongClickAction.fromId(value);
+        this.mDefaultLongClickAction = mode;
     }
 
     /**
@@ -263,6 +277,15 @@ public class NavigationView extends RelativeLayout implements
     public void setBreadcrumb(Breadcrumb breadcrumb) {
         this.mBreadcrumb = breadcrumb;
         this.mBreadcrumb.addBreadcrumbListener(this);
+    }
+
+    /**
+     * Method that sets the default long-click action
+     *
+     * @param mDefaultLongClickAction The default long-click action
+     */
+    public void setDefaultLongClickAction(DefaultLongClickAction mDefaultLongClickAction) {
+        this.mDefaultLongClickAction = mDefaultLongClickAction;
     }
 
     /**
@@ -636,11 +659,38 @@ public class NavigationView extends RelativeLayout implements
      */
     @Override
     public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-//        FileSystemObjectAdapter adapter = ((FileSystemObjectAdapter)parent.getAdapter());
-//        if (adapter.isSelectable(view)) {
-//            adapter.toggleSelection(view);
-//        }
-        //TODO Drag&Drop
+        // Different actions depending on user preference
+
+        // Get the adapter and the fso
+        FileSystemObjectAdapter adapter = ((FileSystemObjectAdapter)parent.getAdapter());
+        FileSystemObject fso = adapter.getItem(position);
+
+        // Select/deselect
+        if (this.mDefaultLongClickAction.compareTo(
+                DefaultLongClickAction.SELECT_DESELECT) == 0) {
+            if (adapter.isSelectable(view)) {
+                adapter.toggleSelection(view);
+            }
+        }
+
+        // Show content description
+        else if (this.mDefaultLongClickAction.compareTo(
+                DefaultLongClickAction.SHOW_CONTENT_DESCRIPTION) == 0) {
+            ActionsPolicy.showContentDescription(getContext(), fso);
+        }
+
+        // Show properties
+        else if (this.mDefaultLongClickAction.compareTo(
+                DefaultLongClickAction.SHOW_PROPERTIES) == 0) {
+            ActionsPolicy.showPropertiesDialog(getContext(), fso, this);
+        }
+
+        // Open with
+        else if (this.mDefaultLongClickAction.compareTo(
+                DefaultLongClickAction.OPEN_WITH) == 0) {
+            // FIXME Invoke ActionPolicy open with
+        }
+
         return true; //Always consume the event
     }
 
@@ -664,6 +714,16 @@ public class NavigationView extends RelativeLayout implements
             }
         } catch (Throwable ex) {
             ExceptionUtil.translateException(getContext(), ex);
+        }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void onRequestRefresh(Object o) {
+        if (o instanceof FileSystemObject) {
+            refresh((FileSystemObject)o);
         }
     }
 

@@ -23,10 +23,10 @@ import java.io.Serializable;
  */
 public class SearchResult implements Serializable, Comparable<SearchResult> {
 
-    private static final long serialVersionUID = -5855609558686450131L;
+    private static final long serialVersionUID = 3212483213561244650L;
 
-    private final double mRelevance;
-    private final FileSystemObject mFso;
+    private double mRelevance;
+    private FileSystemObject mFso;
 
     /**
      * The maximum relevance.
@@ -57,12 +57,32 @@ public class SearchResult implements Serializable, Comparable<SearchResult> {
     }
 
     /**
+     * Method that sets the relevance of the file system object found.<br />
+     * <br />
+     * This relevance goes from 0 (min) to 10 (max)
+     *
+     * @param relevance The relevance of the file system object found
+     */
+    public void setRelevance(double relevance) {
+        this.mRelevance = relevance;
+    }
+
+    /**
      * Method that returns the file system object found.
      *
      * @return FileSystemObject The file system object found
      */
     public FileSystemObject getFso() {
         return this.mFso;
+    }
+
+    /**
+     * Method that sets the file system object found.
+     *
+     * @param fso The file system object found
+     */
+    public void setFso(FileSystemObject fso) {
+        this.mFso = fso;
     }
 
     /**

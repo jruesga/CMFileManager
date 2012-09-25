@@ -56,9 +56,11 @@ import com.cyanogenmod.explorer.parcelables.HistoryNavigable;
 import com.cyanogenmod.explorer.parcelables.NavigationInfoParcelable;
 import com.cyanogenmod.explorer.parcelables.NavigationViewInfoParcelable;
 import com.cyanogenmod.explorer.parcelables.SearchInfoParcelable;
+import com.cyanogenmod.explorer.preferences.DefaultLongClickAction;
 import com.cyanogenmod.explorer.preferences.ExplorerSettings;
 import com.cyanogenmod.explorer.preferences.NavigationLayoutMode;
 import com.cyanogenmod.explorer.preferences.ObjectIdentifier;
+import com.cyanogenmod.explorer.preferences.ObjectStringIdentifier;
 import com.cyanogenmod.explorer.preferences.Preferences;
 import com.cyanogenmod.explorer.ui.dialogs.ActionsDialog;
 import com.cyanogenmod.explorer.ui.dialogs.ChooseConsoleDialog;
@@ -141,18 +143,41 @@ public class NavigationActivity extends Activity
 
                 // The settings has changed
                 String key = intent.getStringExtra(ExplorerSettings.EXTRA_SETTING_CHANGED_KEY);
-                if (key != null &&
-                    key.compareTo(ExplorerSettings.
+                if (key != null) {
+                    // Disk usage warning level
+                    if (key.compareTo(ExplorerSettings.
                             SETTINGS_DISK_USAGE_WARNING_LEVEL.getId()) == 0) {
-       
-                    // Set the free disk space warning level of the breadcrumb widget
-                    Breadcrumb breadcrumb = getCurrentNavigationView().getBreadcrumb();
-                    String fds = Preferences.getSharedPreferences().getString(
-                            ExplorerSettings.SETTINGS_DISK_USAGE_WARNING_LEVEL.getId(),
-                            (String)ExplorerSettings.
-                                SETTINGS_DISK_USAGE_WARNING_LEVEL.getDefaultValue());
-                    breadcrumb.setFreeDiskSpaceWarningLevel(Integer.parseInt(fds));
-                    breadcrumb.updateMountPointInfo();
+
+                        // Set the free disk space warning level of the breadcrumb widget
+                        Breadcrumb breadcrumb = getCurrentNavigationView().getBreadcrumb();
+                        String fds = Preferences.getSharedPreferences().getString(
+                                ExplorerSettings.SETTINGS_DISK_USAGE_WARNING_LEVEL.getId(),
+                                (String)ExplorerSettings.
+                                    SETTINGS_DISK_USAGE_WARNING_LEVEL.getDefaultValue());
+                        breadcrumb.setFreeDiskSpaceWarningLevel(Integer.parseInt(fds));
+                        breadcrumb.updateMountPointInfo();
+                        return;
+                    }
+
+                    // Default long-click action
+                    if (key.compareTo(ExplorerSettings.
+                            SETTINGS_DEFAULT_LONG_CLICK_ACTION.getId()) == 0) {
+                        String defaultValue = ((ObjectStringIdentifier)ExplorerSettings.
+                                SETTINGS_DEFAULT_LONG_CLICK_ACTION.getDefaultValue()).getId();
+                        String id = ExplorerSettings.SETTINGS_DEFAULT_LONG_CLICK_ACTION.getId();
+                        String value =
+                                Preferences.getSharedPreferences().getString(id, defaultValue);
+                        DefaultLongClickAction mode = DefaultLongClickAction.fromId(value);
+                        getCurrentNavigationView().setDefaultLongClickAction(mode);
+                        return;
+                    }
+
+                    // Case sensitive sort
+                    if (key.compareTo(ExplorerSettings.
+                            SETTINGS_CASE_SENSITIVE_SORT.getId()) == 0) {
+                        getCurrentNavigationView().refresh();
+                        return;
+                    }
                 }
             }
         }
@@ -189,7 +214,7 @@ public class NavigationActivity extends Activity
         //Set the main layout of the activity
         setContentView(R.layout.navigation);
 
-        //Get the navigation views
+        //Get the navigation views (wishlist: multiple view; for now only one view)
         this.mNavigationViews = new NavigationView[1];
         this.mCurrentNavigationView = 0;
         //- 0
@@ -724,8 +749,10 @@ public class NavigationActivity extends Activity
      * {@inheritDoc}
      */
     @Override
-    public void onRequestRefresh(FileSystemObject fso) {
-        this.getCurrentNavigationView().refresh(fso);
+    public void onRequestRefresh(Object o) {
+        if (o instanceof FileSystemObject) {
+            this.getCurrentNavigationView().refresh((FileSystemObject)o);
+        }
     }
 
     /**

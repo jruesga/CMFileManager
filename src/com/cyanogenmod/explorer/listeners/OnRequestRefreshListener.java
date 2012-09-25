@@ -16,8 +16,6 @@
 
 package com.cyanogenmod.explorer.listeners;
 
-import com.cyanogenmod.explorer.model.FileSystemObject;
-
 /**
  * A listener for requesting an object refresh.
  */
@@ -26,8 +24,7 @@ public interface OnRequestRefreshListener {
     /**
      * Invoked when a new refresh is needed.
      *
-     * @param fso If the request need to center in an object. <code>null</code>
-     * if not needed
+     * @param o The object that should be refreshed
      */
-    void onRequestRefresh(FileSystemObject fso);
+    void onRequestRefresh(Object o);
 }

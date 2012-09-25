@@ -65,6 +65,11 @@ public enum ExplorerSettings {
     SETTINGS_SHOW_SYMLINKS("cm_explorer_show_symlinks", Boolean.TRUE), //$NON-NLS-1$
 
     /**
+     * When to use case sensitive comparison in sorting of files
+     * @hide
+     */
+    SETTINGS_CASE_SENSITIVE_SORT("cm_explorer_case_sensitive_sort", Boolean.FALSE), //$NON-NLS-1$
+    /**
      * Default action when long-click over a FileSystemObject item
      * @hide
      */
@@ -78,6 +83,12 @@ public enum ExplorerSettings {
     SETTINGS_DISK_USAGE_WARNING_LEVEL(
             "cm_explorer_disk_usage_warning_level", //$NON-NLS-1$
             new String("95")), //$NON-NLS-1$
+    /**
+     * When to use case sensitive comparison in sorting of files
+     * @hide
+     */
+    SETTINGS_ALLOW_CONSOLE_SELECTION(
+            "cm_explorer_allow_console_selection", Boolean.FALSE), //$NON-NLS-1$
 
     /**
      * When to highlight the terms of the search in the search results

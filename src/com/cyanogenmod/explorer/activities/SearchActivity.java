@@ -38,6 +38,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -50,6 +51,7 @@ import com.cyanogenmod.explorer.adapters.SearchResultAdapter;
 import com.cyanogenmod.explorer.adapters.SearchResultAdapter.OnRequestMenuListener;
 import com.cyanogenmod.explorer.commands.AsyncResultExecutable;
 import com.cyanogenmod.explorer.commands.AsyncResultListener;
+import com.cyanogenmod.explorer.listeners.OnRequestRefreshListener;
 import com.cyanogenmod.explorer.model.Directory;
 import com.cyanogenmod.explorer.model.FileSystemObject;
 import com.cyanogenmod.explorer.model.ParentDirectory;
@@ -57,12 +59,15 @@ import com.cyanogenmod.explorer.model.Query;
 import com.cyanogenmod.explorer.model.SearchResult;
 import com.cyanogenmod.explorer.model.Symlink;
 import com.cyanogenmod.explorer.parcelables.SearchInfoParcelable;
+import com.cyanogenmod.explorer.preferences.DefaultLongClickAction;
 import com.cyanogenmod.explorer.preferences.ExplorerSettings;
+import com.cyanogenmod.explorer.preferences.ObjectStringIdentifier;
 import com.cyanogenmod.explorer.preferences.Preferences;
 import com.cyanogenmod.explorer.providers.RecentSearchesContentProvider;
 import com.cyanogenmod.explorer.tasks.SearchResultDrawingAsyncTask;
 import com.cyanogenmod.explorer.ui.dialogs.ActionsDialog;
 import com.cyanogenmod.explorer.ui.dialogs.MessageProgressDialog;
+import com.cyanogenmod.explorer.ui.dialogs.policy.ActionsPolicy;
 import com.cyanogenmod.explorer.ui.widgets.ButtonItem;
 import com.cyanogenmod.explorer.util.CommandHelper;
 import com.cyanogenmod.explorer.util.DialogHelper;
@@ -76,7 +81,8 @@ import java.util.List;
  * An activity for search files and folders.
  */
 public class SearchActivity extends Activity
-    implements AsyncResultListener, OnItemClickListener, OnRequestMenuListener {
+    implements AsyncResultListener, OnItemClickListener,
+               OnItemLongClickListener, OnRequestMenuListener, OnRequestRefreshListener {
 
     private static final String TAG = "SearchActivity"; //$NON-NLS-1$
 
@@ -111,16 +117,34 @@ public class SearchActivity extends Activity
 
                 // The settings has changed
                 String key = intent.getStringExtra(ExplorerSettings.EXTRA_SETTING_CHANGED_KEY);
-                if (key != null && SearchActivity.this.mAdapter != null &&
-                   (key.compareTo(ExplorerSettings.SETTINGS_HIGHLIGHT_TERMS.getId()) == 0 ||
-                    key.compareTo(ExplorerSettings.SETTINGS_SHOW_RELEVANCE_WIDGET.getId()) == 0 ||
-                    key.compareTo(
-                            ExplorerSettings.SETTINGS_SORT_SEARCH_RESULTS_MODE.getId()) == 0)) {
+                if (key != null) {
+                    if (SearchActivity.this.mAdapter != null &&
+                       (key.compareTo(
+                               ExplorerSettings.SETTINGS_HIGHLIGHT_TERMS.getId()) == 0 ||
+                        key.compareTo(
+                                ExplorerSettings.SETTINGS_SHOW_RELEVANCE_WIDGET.getId()) == 0 ||
+                        key.compareTo(
+                                ExplorerSettings.SETTINGS_SORT_SEARCH_RESULTS_MODE.getId()) == 0)) {
 
-                    // Recreate the adapter
-                    int pos = SearchActivity.this.mSearchListView.getFirstVisiblePosition();
-                    drawResults();
-                    SearchActivity.this.mSearchListView.setSelection(pos);
+                        // Recreate the adapter
+                        int pos = SearchActivity.this.mSearchListView.getFirstVisiblePosition();
+                        drawResults();
+                        SearchActivity.this.mSearchListView.setSelection(pos);
+                        return;
+                    }
+
+                    // Default long-click action
+                    if (key.compareTo(ExplorerSettings.
+                            SETTINGS_DEFAULT_LONG_CLICK_ACTION.getId()) == 0) {
+                        String defaultValue = ((ObjectStringIdentifier)ExplorerSettings.
+                                SETTINGS_DEFAULT_LONG_CLICK_ACTION.getDefaultValue()).getId();
+                        String id = ExplorerSettings.SETTINGS_DEFAULT_LONG_CLICK_ACTION.getId();
+                        String value =
+                                Preferences.getSharedPreferences().getString(id, defaultValue);
+                        SearchActivity.this.mDefaultLongClickAction =
+                                DefaultLongClickAction.fromId(value);
+                        return;
+                    }
                 }
             }
         }
@@ -136,6 +160,7 @@ public class SearchActivity extends Activity
     private TextView mSearchTerms;
     private View mEmptyListMsg;
     private SearchResultAdapter mAdapter;
+    private DefaultLongClickAction mDefaultLongClickAction;
 
     private String mSearchDirectory;
     private List<FileSystemObject> mResultList;
@@ -188,6 +213,15 @@ public class SearchActivity extends Activity
                 loadFromCacheData();
             }
         }
+
+        // Default long-click action
+        String defaultValue = ((ObjectStringIdentifier)ExplorerSettings.
+                SETTINGS_DEFAULT_LONG_CLICK_ACTION.getDefaultValue()).getId();
+        String value = Preferences.getSharedPreferences().getString(
+                            ExplorerSettings.SETTINGS_DEFAULT_LONG_CLICK_ACTION.getId(),
+                            defaultValue);
+        DefaultLongClickAction mode = DefaultLongClickAction.fromId(value);
+        this.mDefaultLongClickAction = mode;
 
         //Save state
         super.onCreate(state);
@@ -297,6 +331,7 @@ public class SearchActivity extends Activity
         //The list view
         this.mSearchListView = (ListView)findViewById(R.id.search_listview);
         this.mSearchListView.setOnItemClickListener(this);
+        this.mSearchListView.setOnItemLongClickListener(this);
         //Other components
         this.mSearchWaiting = (ProgressBar)findViewById(R.id.search_waiting);
         this.mSearchFoundItems = (TextView)findViewById(R.id.search_status_found_items);
@@ -716,9 +751,59 @@ public class SearchActivity extends Activity
      * {@inheritDoc}
      */
     @Override
+    public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+        // Different actions depending on user preference
+
+        // Get the adapter, the search result and the fso
+        SearchResultAdapter adapter = ((SearchResultAdapter)parent.getAdapter());
+        SearchResult searchResult = adapter.getItem(position);
+        FileSystemObject fso = searchResult.getFso();
+
+        // Select/deselect. Not apply here
+
+        // Show content description
+        if (this.mDefaultLongClickAction.compareTo(
+                DefaultLongClickAction.SHOW_CONTENT_DESCRIPTION) == 0) {
+            ActionsPolicy.showContentDescription(this, fso);
+        }
+
+        // Show properties
+        else if (this.mDefaultLongClickAction.compareTo(
+                DefaultLongClickAction.SHOW_PROPERTIES) == 0) {
+            ActionsPolicy.showPropertiesDialog(this, fso, this);
+        }
+
+        // Open with
+        else if (this.mDefaultLongClickAction.compareTo(
+                DefaultLongClickAction.OPEN_WITH) == 0) {
+            // FIXME Invoke ActionPolicy open with
+        }
+
+        return true; //Always consume the event
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public void onRequestMenu(FileSystemObject item) {
         ActionsDialog dialog = new ActionsDialog(this, item);
         dialog.show();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void onRequestRefresh(Object o) {
+        if (o instanceof FileSystemObject) {
+            FileSystemObject fso = (FileSystemObject)o;
+            int pos = this.mAdapter.getPosition(fso);
+            if (pos >= 0) {
+                SearchResult sr = this.mAdapter.getItem(pos);
+                sr.setFso(fso);
+            }
+        }
     }
 
     /**

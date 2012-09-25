@@ -115,8 +115,10 @@ public class SettingsPreferences extends PreferenceActivity {
      */
     public static class GeneralPreferenceFragment extends PreferenceFragment {
 
+        private CheckBoxPreference mCaseSensitiveSort;
         private ListPreference mDefaultLongClickAction;
         private ListPreference mFreeDiskSpaceWarningLevel;
+        private CheckBoxPreference mAllowConsoleSelection;
 
         private boolean mLoaded = false;
 
@@ -176,6 +178,12 @@ public class SettingsPreferences extends PreferenceActivity {
             // Add the preferences
             addPreferencesFromResource(R.xml.preferences_general);
 
+            // Case sensitive sort
+            this.mCaseSensitiveSort =
+                    (CheckBoxPreference)findPreference(
+                            ExplorerSettings.SETTINGS_CASE_SENSITIVE_SORT.getId());
+            this.mCaseSensitiveSort.setOnPreferenceChangeListener(this.mOnChangeListener);
+
             // Default long-click action
             this.mDefaultLongClickAction =
                     (ListPreference)findPreference(
@@ -199,6 +207,12 @@ public class SettingsPreferences extends PreferenceActivity {
                                 ExplorerSettings.SETTINGS_DISK_USAGE_WARNING_LEVEL.getId(),
                                 defaultValue);
             this.mOnChangeListener.onPreferenceChange(this.mFreeDiskSpaceWarningLevel, value);
+
+            // Allow console selection
+            this.mAllowConsoleSelection =
+                    (CheckBoxPreference)findPreference(
+                            ExplorerSettings.SETTINGS_ALLOW_CONSOLE_SELECTION.getId());
+            this.mAllowConsoleSelection.setOnPreferenceChangeListener(this.mOnChangeListener);
 
             // Loaded
             this.mLoaded = true;

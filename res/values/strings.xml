@@ -426,6 +426,14 @@
 
   <!-- Preferences * General * Behaviour category -->
   <string name="pref_general_behaviour_category">Behaviour</string>
+  <!-- Preferences * General * Case sensitive sort title -->
+  <string name="pref_case_sensitive_sort">Case sensitive sort</string>
+  <!-- Preferences * General * Case sensitive sort summary on -->
+  <string name="pref_case_sensitive_sort_on">Use case sensitive comparison in sorting
+    of files.</string>
+  <!-- Preferences * General * Case sensitive sort summary off -->
+  <string name="pref_case_sensitive_sort_off">Not use case sensitive comparison in sorting
+    of files.</string>
   <!-- Preferences * General * Default long-click action title -->
   <string name="pref_default_longclick_action">Default long-click action</string>
   <!-- Preferences * General * Default long-click action * No action -->
@@ -444,8 +452,19 @@
   <!-- FIXME % symbol make crash the app on getSummary of ListPreference. This should be
        fixed in frameworks base prior to add here. -->
   <string name="pref_disk_usage_warning_level_summary" formatted="false">Display a different
-    color in disk usage\' widgets when they reach <xliff:g id="level">%1$s</xliff:g> percent
-    of free disk space</string>
+    color in disk usage widgets when they reach <xliff:g id="level">%1$s</xliff:g> percent
+    of free disk space.</string>
+    <!-- Preferences * General * Advanced settings category -->
+  <string name="pref_general_advanced_settings_category">Advanced settings</string>
+  <!-- Preferences * General * Allow console selection title -->
+  <string name="pref_allow_console_selection">Allow console selection</string>
+  <!-- Preferences * General * Allow console selection summary on -->
+  <string name="pref_allow_console_selection_on">Allow select the type of console to
+    use on the app when navigate. This enable the \'Select console\' menu and adds some advices
+    when the app need to use a privileged action.</string>
+  <!-- Preferences * General * Allow console selection summary off -->
+  <string name="pref_allow_console_selection_off">Use only a privileged console. This requires
+    that the app have \'su\' privilege to run.</string>
   <!-- Preferences * Search * Results category -->
   <string name="pref_search_results_category">Results</string>
   <!-- Preferences * Search * Show relevance widget -->
@@ -458,10 +477,10 @@
   <string name="pref_highlight_terms">Highlight terms</string>
   <!-- Preferences * Search * Show relevance widget summary on -->
   <string name="pref_highlight_terms_on">Highlight the matching terms of the search in search
-    results</string>
+    results.</string>
   <!-- Preferences * Search * Show relevance widget summary off -->
   <string name="pref_highlight_terms_off">No highlight the matching terms of the search in search
-    results</string>
+    results.</string>
   <!-- Preferences * Search * Sort results mode -->
   <string name="pref_sort_search_results_mode">Sort results mode</string>
   <!-- Preferences * Search * Sort results mode. None -->
@@ -484,7 +503,7 @@
   <string name="pref_remove_saved_search_terms">Remove saved terms</string>
   <!-- Preferences * Search * Remove saved search terms summary -->
   <string name="pref_remove_saved_search_terms_summary">Tap to remove the saved terms of previous
-    searches</string>
+    searches.</string>
   <string name="pref_remove_saved_search_terms_msg">All saved search terms were removed</string>
 
   <!-- Preferences * Debug * Capture debug traces -->

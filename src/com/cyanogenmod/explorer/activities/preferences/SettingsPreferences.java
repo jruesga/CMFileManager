@@ -115,15 +115,48 @@ public class SettingsPreferences extends PreferenceActivity {
      */
     public static class GeneralPreferenceFragment extends PreferenceFragment {
 
+        private ListPreference mDefaultLongClickAction;
+        private ListPreference mFreeDiskSpaceWarningLevel;
+
+        private boolean mLoaded = false;
+
         private final OnPreferenceChangeListener mOnChangeListener =
                 new OnPreferenceChangeListener() {
             @Override
+            @SuppressWarnings("synthetic-access")
             public boolean onPreferenceChange(Preference preference, Object newValue) {
+                String key = preference.getKey();
+                if (DEBUG) Log.d(LOG_TAG,
+                        String.format("New value for %s: %s",  //$NON-NLS-1$
+                                key,
+                                String.valueOf(newValue)));
 
-                // Notify the change
-                Intent intent = new Intent(ExplorerSettings.INTENT_SETTING_CHANGED);
-                intent.putExtra(ExplorerSettings.EXTRA_SETTING_CHANGED_KEY, preference.getKey());
-                getActivity().sendBroadcast(intent);
+                // Default long-click action
+                if (ExplorerSettings.SETTINGS_DEFAULT_LONG_CLICK_ACTION.
+                        getId().compareTo(key) == 0) {
+                    int value = Integer.valueOf((String)newValue).intValue();
+                    String[] summary = getResources().getStringArray(
+                            R.array.default_longclick_action_labels);
+                    preference.setSummary(summary[value]);
+                }
+
+                // Free disk warning level
+                else if (ExplorerSettings.SETTINGS_FREE_DISK_SPACE_WARNING_LEVEL.
+                        getId().compareTo(key) == 0) {
+                    String value = (String)newValue;
+                    preference.setSummary(
+                            getResources().getString(
+                                    R.string.pref_free_disk_space_warning_level_summary, value));
+                }
+
+                // Notify the change (only if fragment is loaded. Default values are loaded
+                // while not in loaded mode)
+                if (GeneralPreferenceFragment.this.mLoaded) {
+                    Intent intent = new Intent(ExplorerSettings.INTENT_SETTING_CHANGED);
+                    intent.putExtra(
+                            ExplorerSettings.EXTRA_SETTING_CHANGED_KEY, preference.getKey());
+                    getActivity().sendBroadcast(intent);
+                }
 
                 return true;
             }
@@ -142,6 +175,33 @@ public class SettingsPreferences extends PreferenceActivity {
 
             // Add the preferences
             addPreferencesFromResource(R.xml.preferences_general);
+
+            // Default long-click action
+            this.mDefaultLongClickAction =
+                    (ListPreference)findPreference(
+                            ExplorerSettings.SETTINGS_DEFAULT_LONG_CLICK_ACTION.getId());
+            this.mDefaultLongClickAction.setOnPreferenceChangeListener(this.mOnChangeListener);
+            String defaultValue = ((ObjectStringIdentifier)ExplorerSettings.
+                                    SETTINGS_DEFAULT_LONG_CLICK_ACTION.getDefaultValue()).getId();
+            String value = Preferences.getSharedPreferences().getString(
+                                    ExplorerSettings.SETTINGS_DEFAULT_LONG_CLICK_ACTION.getId(),
+                                    defaultValue);
+            this.mOnChangeListener.onPreferenceChange(this.mDefaultLongClickAction, value);
+
+            // Free disk space warning level
+            this.mFreeDiskSpaceWarningLevel =
+                    (ListPreference)findPreference(
+                            ExplorerSettings.SETTINGS_FREE_DISK_SPACE_WARNING_LEVEL.getId());
+            this.mFreeDiskSpaceWarningLevel.setOnPreferenceChangeListener(this.mOnChangeListener);
+            defaultValue = ((String)ExplorerSettings.
+                                SETTINGS_FREE_DISK_SPACE_WARNING_LEVEL.getDefaultValue());
+            value = Preferences.getSharedPreferences().getString(
+                                ExplorerSettings.SETTINGS_FREE_DISK_SPACE_WARNING_LEVEL.getId(),
+                                defaultValue);
+            this.mOnChangeListener.onPreferenceChange(this.mFreeDiskSpaceWarningLevel, value);
+
+            // Loaded
+            this.mLoaded = true;
         }
     }
 
@@ -195,7 +255,8 @@ public class SettingsPreferences extends PreferenceActivity {
                 // while not in loaded mode)
                 if (SearchPreferenceFragment.this.mLoaded) {
                     Intent intent = new Intent(ExplorerSettings.INTENT_SETTING_CHANGED);
-                    intent.putExtra(ExplorerSettings.EXTRA_SETTING_CHANGED_KEY, preference.getKey());
+                    intent.putExtra(
+                            ExplorerSettings.EXTRA_SETTING_CHANGED_KEY, preference.getKey());
                     getActivity().sendBroadcast(intent);
                 }
 
@@ -259,9 +320,7 @@ public class SettingsPreferences extends PreferenceActivity {
             String value = Preferences.getSharedPreferences().getString(
                                     ExplorerSettings.SETTINGS_SORT_SEARCH_RESULTS_MODE.getId(),
                                     defaultValue);
-            this.mOnChangeListener.onPreferenceChange(
-                    this.mSortSearchResultMode,
-                    value);
+            this.mOnChangeListener.onPreferenceChange(this.mSortSearchResultMode, value);
 
             // Saved search terms
             this.mSaveSearchTerms =

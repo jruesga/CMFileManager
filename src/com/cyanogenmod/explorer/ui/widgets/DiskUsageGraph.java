@@ -17,6 +17,7 @@
 package com.cyanogenmod.explorer.ui.widgets;
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Rect;
@@ -36,7 +37,10 @@ import java.util.List;
  */
 public class DiskUsageGraph extends View {
 
-    private final static int DISK_WARNING_ANGLE = (360 * 95) / 100;
+    private static int sColorFilterNormal;
+    private static int sColorFilterWarning;
+
+    private int mDiskWarningAngle = (360 * 95) / 100;
 
     private AnimationDrawingThread mThread;
     private final List<DrawingObject> mDrawingObjects =
@@ -49,6 +53,7 @@ public class DiskUsageGraph extends View {
      */
     public DiskUsageGraph(Context context) {
         super(context);
+        init();
     }
 
     /**
@@ -59,6 +64,7 @@ public class DiskUsageGraph extends View {
      */
     public DiskUsageGraph(Context context, AttributeSet attrs) {
         super(context, attrs);
+        init();
     }
 
     /**
@@ -73,6 +79,28 @@ public class DiskUsageGraph extends View {
      */
     public DiskUsageGraph(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
+        init();
+    }
+
+    /**
+     * Method that initializes the widget
+     */
+    private void init() {
+        if (sColorFilterNormal == 0 || sColorFilterWarning == 0) {
+            Resources res = getContext().getResources();
+            sColorFilterNormal = res.getColor(R.color.disk_usage_color_filter_normal);
+            sColorFilterWarning = res.getColor(R.color.disk_usage_color_filter_warning);
+        }
+    }
+
+    /**
+     * Method that sets the free disk space percentage after the widget change his color
+     * to advise the user
+     *
+     * @param percentage The free disk space percentage
+     */
+    public void setFreeDiskSpaceWarningLevel(int percentage) {
+        this.mDiskWarningAngle = (360 * percentage) / 100;
     }
 
     /**
@@ -174,14 +202,14 @@ public class DiskUsageGraph extends View {
                         continue;
                     }
                     if (this.mIndex == 1 && dwo == null) {
-                        //Initialize the used arc circle
+                      //Initialize the used arc circle
                         DiskUsageGraph.this.mDrawingObjects.add(
                                 createDrawingObject(rect, R.color.disk_usage_used, stroke));
                         continue;
                     }
 
                     if (this.mIndex == 1 && !disk_warning &&
-                            dwo.mSweepAngle >= DISK_WARNING_ANGLE) {
+                            dwo.mSweepAngle >= DiskUsageGraph.this.mDiskWarningAngle) {
                         dwo.mPaint.setColor(getContext().
                                 getResources().getColor(R.color.disk_usage_used_warning));
                         disk_warning = true;

@@ -65,6 +65,21 @@ public enum ExplorerSettings {
     SETTINGS_SHOW_SYMLINKS("cm_explorer_show_symlinks", Boolean.TRUE), //$NON-NLS-1$
 
     /**
+     * Default action when long-click over a FileSystemObject item
+     * @hide
+     */
+    SETTINGS_DEFAULT_LONG_CLICK_ACTION(
+            "cm_explorer_default_longclick_action", //$NON-NLS-1$
+            DefaultLongClickAction.NONE),
+    /**
+     * When display a warning in free disk widget
+     * @hide
+     */
+    SETTINGS_FREE_DISK_SPACE_WARNING_LEVEL(
+            "cm_explorer_free_space_disk_warning_level", //$NON-NLS-1$
+            new String("95")), //$NON-NLS-1$
+
+    /**
      * When to highlight the terms of the search in the search results
      * @hide
      */

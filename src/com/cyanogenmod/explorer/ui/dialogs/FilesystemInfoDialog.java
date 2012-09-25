@@ -29,6 +29,8 @@ import com.cyanogenmod.explorer.R;
 import com.cyanogenmod.explorer.console.ConsoleBuilder;
 import com.cyanogenmod.explorer.model.DiskUsage;
 import com.cyanogenmod.explorer.model.MountPoint;
+import com.cyanogenmod.explorer.preferences.ExplorerSettings;
+import com.cyanogenmod.explorer.preferences.Preferences;
 import com.cyanogenmod.explorer.ui.widgets.DiskUsageGraph;
 import com.cyanogenmod.explorer.util.CommandHelper;
 import com.cyanogenmod.explorer.util.DialogHelper;
@@ -139,6 +141,13 @@ public class FilesystemInfoDialog implements OnClickListener {
         this.mDiskUsageView = contentView.findViewById(R.id.filesystem_tab_diskusage);
         this.mDiskUsageGraph =
                 (DiskUsageGraph)contentView.findViewById(R.id.filesystem_disk_usage_graph);
+
+        // Set the user preference about free disk space warning level
+        String fds = Preferences.getSharedPreferences().getString(
+                ExplorerSettings.SETTINGS_FREE_DISK_SPACE_WARNING_LEVEL.getId(),
+                (String)ExplorerSettings.
+                    SETTINGS_FREE_DISK_SPACE_WARNING_LEVEL.getDefaultValue());
+        this.mDiskUsageGraph.setFreeDiskSpaceWarningLevel(Integer.parseInt(fds));
 
         //Register the listeners
         this.mInfoViewTab.setOnClickListener(this);

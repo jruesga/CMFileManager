@@ -50,6 +50,8 @@ public class BreadcrumbView extends RelativeLayout implements Breadcrumb, OnClic
     private View mLoading;
     private FilesystemAsyncTask mFilesystemAsyncTask;
 
+    private int mFreeDiskSpaceWarningLevel = 95;
+
     private List<BreadcrumbListener> mBreadcrumbListeners;
 
     private String mCurrentPath;
@@ -108,6 +110,14 @@ public class BreadcrumbView extends RelativeLayout implements Breadcrumb, OnClic
         this.mFilesystemInfo = (ImageView)findViewById(R.id.ab_filesystem_info);
         this.mDiskUsageInfo = (ProgressBar)findViewById(R.id.breadcrumb_diskusage);
         this.mLoading = findViewById(R.id.breadcrumb_loading);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void setFreeDiskSpaceWarningLevel(int percentage) {
+        this.mFreeDiskSpaceWarningLevel = percentage;
     }
 
     /**
@@ -205,7 +215,10 @@ public class BreadcrumbView extends RelativeLayout implements Breadcrumb, OnClic
         }
         final ImageView filesystemInfo = (ImageView)findViewById(R.id.ab_filesystem_info);
         final ProgressBar diskUsageInfo = (ProgressBar)findViewById(R.id.breadcrumb_diskusage);
-        this.mFilesystemAsyncTask = new FilesystemAsyncTask(filesystemInfo, diskUsageInfo);
+        this.mFilesystemAsyncTask =
+                new FilesystemAsyncTask(
+                        getContext(), filesystemInfo,
+                        diskUsageInfo, this.mFreeDiskSpaceWarningLevel);
         this.mFilesystemAsyncTask.execute(this.mCurrentPath);
     }
 

@@ -424,6 +424,25 @@
   <string name="pref_about_summary">CMExplorer. v<xliff:g id="version">%1$s</xliff:g>.
     \nCopyright \u00A9 2012 CyanogenMod</string>
 
+  <!-- Preferences * General * Behaviour category -->
+  <string name="pref_general_behaviour_category">Behaviour</string>
+  <!-- Preferences * General * Default long-click action title -->
+  <string name="pref_default_longclick_action">Default long-click action</string>
+  <!-- Preferences * General * Default long-click action * No action -->
+  <string name="pref_default_longclick_action_none">None</string>
+  <!-- Preferences * General * Default long-click action * Show content description -->
+  <string name="pref_default_longclick_action_show_cd">Show content description</string>
+  <!-- Preferences * General * Default long-click action * Select/deselect -->
+  <string name="pref_default_longclick_action_select_deselect">Select/deselect</string>
+  <!-- Preferences * General * Default long-click action * Open with -->
+  <string name="pref_default_longclick_action_open_with">Open with</string>
+  <!-- Preferences * General * Default long-click action * Show properties -->
+  <string name="pref_default_longclick_action_show_properties">Show properties</string>
+  <!-- Preferences * General * Free disk space warning level title -->
+  <string name="pref_free_disk_space_warning_level">Free disk space</string>
+  <!-- Preferences * General * Free disk warning level summary -->
+  <string name="pref_free_disk_space_warning_level_summary">Display a different color in free disk
+    space\' widgets when they reach <xliff:g id="level">%1$s</xliff:g> of free disk space</string>
   <!-- Preferences * Search * Results category -->
   <string name="pref_search_results_category">Results</string>
   <!-- Preferences * Search * Show relevance widget -->

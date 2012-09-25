@@ -16,6 +16,10 @@
 
 package com.cyanogenmod.explorer.tasks;
 
+import android.content.Context;
+import android.content.res.Resources;
+import android.graphics.PorterDuff.Mode;
+import android.graphics.PorterDuffColorFilter;
 import android.os.AsyncTask;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
@@ -32,19 +36,35 @@ public class FilesystemAsyncTask extends AsyncTask<String, Integer, Boolean> {
 
     private final ImageView mMountPointInfo;
     private final ProgressBar mDiskUsageInfo;
+    private final int mFreeDiskSpaceWarningLevel;
     private boolean mRunning;
+
+    private static int sColorFilterNormal;
+    private static int sColorFilterWarning;
 
     /**
      * Constructor of <code>FilesystemAsyncTask</code>.
      *
+     * @param context The current context
      * @param mountPointInfo The mount point info view
      * @param diskUsageInfo The mount point info view
+     * @param freeDiskSpaceWarningLevel The free disk space warning level
      */
-    public FilesystemAsyncTask(ImageView mountPointInfo, ProgressBar diskUsageInfo) {
+    public FilesystemAsyncTask(
+            Context context, ImageView mountPointInfo,
+            ProgressBar diskUsageInfo, int freeDiskSpaceWarningLevel) {
         super();
         this.mMountPointInfo = mountPointInfo;
         this.mDiskUsageInfo = diskUsageInfo;
+        this.mFreeDiskSpaceWarningLevel = freeDiskSpaceWarningLevel;
         this.mRunning = false;
+
+        if (sColorFilterNormal == 0 || sColorFilterWarning == 0) {
+            Resources res = context.getResources();
+            sColorFilterNormal = res.getColor(R.color.disk_usage_color_filter_normal);
+            sColorFilterWarning = res.getColor(R.color.disk_usage_color_filter_warning);
+        }
+
     }
 
     /**
@@ -123,11 +143,14 @@ public class FilesystemAsyncTask extends AsyncTask<String, Integer, Boolean> {
                         FilesystemAsyncTask.this.mDiskUsageInfo.setTag(null);
                     }
 
-                    // Advise about diskusage (>=95) with other color
-                    int filter = usage >= 95 ? 0x99FF0000 : 0xFFFFFFFF;
+                    // Advise about diskusage (>=mFreeDiskSpaceWarningLevel) with other color
+                    int filter =
+                            usage >= FilesystemAsyncTask.this.mFreeDiskSpaceWarningLevel ?
+                            sColorFilterWarning :
+                            sColorFilterNormal;
                     FilesystemAsyncTask.this.mDiskUsageInfo.
                                 getProgressDrawable().setColorFilter(
-                                        filter, android.graphics.PorterDuff.Mode.MULTIPLY);
+                                        new PorterDuffColorFilter(filter, Mode.MULTIPLY));
                 }
             });
         }

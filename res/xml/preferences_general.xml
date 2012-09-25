@@ -16,4 +16,29 @@
 -->
 <PreferenceScreen
   xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Behaviour -->
+    <PreferenceCategory
+      android:key="general_behaviour"
+      android:title="@string/pref_general_behaviour_category">
+
+      <!-- Default longclick action -->
+      <ListPreference
+        android:key="cm_explorer_default_longclick_action"
+        android:title="@string/pref_default_longclick_action"
+        android:entries="@array/default_longclick_action_labels"
+        android:entryValues="@array/default_longclick_action_values"
+        android:defaultValue="0"
+        android:persistent="true" />
+
+      <!-- Free disk warning level -->
+      <ListPreference
+        android:key="cm_explorer_free_space_disk_warning_level"
+        android:title="@string/pref_free_disk_space_warning_level"
+        android:entries="@array/free_disk_space_warning_level_labels"
+        android:entryValues="@array/free_disk_space_warning_level_values"
+        android:defaultValue="2"
+        android:persistent="true" />
+
+    </PreferenceCategory>
 </PreferenceScreen>

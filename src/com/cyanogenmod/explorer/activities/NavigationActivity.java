@@ -20,7 +20,10 @@ import android.app.ActionBar;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.SearchManager;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.os.Parcelable;
@@ -130,6 +133,30 @@ public class NavigationActivity extends Activity
     //The key for the state data
     private static final String NAVIGATION_STATE = "explorer_navigation_state";  //$NON-NLS-1$
 
+    private final BroadcastReceiver mOnSettingChangeReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            if (intent != null &&
+                intent.getAction().compareTo(ExplorerSettings.INTENT_SETTING_CHANGED) == 0) {
+
+                // The settings has changed
+                String key = intent.getStringExtra(ExplorerSettings.EXTRA_SETTING_CHANGED_KEY);
+                if (key != null &&
+                    key.compareTo(ExplorerSettings.
+                            SETTINGS_FREE_DISK_SPACE_WARNING_LEVEL.getId()) == 0) {
+       
+                    // Set the free disk space warning level of the breadcrumb widget
+                    Breadcrumb breadcrumb = getCurrentNavigationView().getBreadcrumb();
+                    String fds = Preferences.getSharedPreferences().getString(
+                            ExplorerSettings.SETTINGS_FREE_DISK_SPACE_WARNING_LEVEL.getId(),
+                            (String)ExplorerSettings.
+                                SETTINGS_FREE_DISK_SPACE_WARNING_LEVEL.getDefaultValue());
+                    breadcrumb.setFreeDiskSpaceWarningLevel(Integer.parseInt(fds));
+                    breadcrumb.updateMountPointInfo();
+                }
+            }
+        }
+    };
 
 
     private NavigationView[] mNavigationViews;
@@ -150,6 +177,11 @@ public class NavigationActivity extends Activity
         if (DEBUG) {
             Log.d(TAG, "NavigationActivity.onCreate"); //$NON-NLS-1$
         }
+
+        // Register the broadcast receiver
+        IntentFilter filter = new IntentFilter();
+        filter.addAction(ExplorerSettings.INTENT_SETTING_CHANGED);
+        registerReceiver(this.mOnSettingChangeReceiver, filter);
 
         //Request features
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
@@ -213,6 +245,12 @@ public class NavigationActivity extends Activity
     protected void onDestroy() {
         if (DEBUG) {
             Log.d(TAG, "NavigationActivity.onDestroy"); //$NON-NLS-1$
+        }
+
+        try {
+            unregisterReceiver(this.mOnSettingChangeReceiver);
+        } catch (Throwable ex) {
+            /**NON BLOCK**/
         }
 
         //All destroy. Continue
@@ -339,6 +377,12 @@ public class NavigationActivity extends Activity
             this.mNavigationViews[i].setOnNavigationOnRequestMenuListener(this);
             this.mNavigationViews[i].setCustomTitle(title);
         }
+
+        // Set the free disk space warning level of the breadcrumb widget
+        String fds = Preferences.getSharedPreferences().getString(
+                ExplorerSettings.SETTINGS_FREE_DISK_SPACE_WARNING_LEVEL.getId(),
+                (String)ExplorerSettings.SETTINGS_FREE_DISK_SPACE_WARNING_LEVEL.getDefaultValue());
+        breadcrumb.setFreeDiskSpaceWarningLevel(Integer.parseInt(fds));
 
         //Configure the action bar options
         getActionBar().setBackgroundDrawable(

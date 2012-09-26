@@ -120,13 +120,15 @@ public class DirectoryInlineAutocompleteTextView
      */
     @Override
     public void onTextChanged(String newValue, List<String> currentFilterData) {
+        String value = newValue;
+
         //Check if directory is valid
-        if (newValue.length() == 0) {
+        if (value.length() == 0) {
             if (this.mOnValidationListener != null) {
                 this.mOnValidationListener.onVoidValue();
             }
         } else {
-            boolean relative = FileHelper.isRelativePath(newValue);
+            boolean relative = FileHelper.isRelativePath(value);
             if (relative) {
                 if (this.mOnValidationListener != null) {
                     this.mOnValidationListener.onInvalidValue();
@@ -139,31 +141,41 @@ public class DirectoryInlineAutocompleteTextView
         }
 
         //Ensure data
-        if (!newValue.startsWith(File.separator)) {
+        if (!value.startsWith(File.separator)) {
             currentFilterData.clear();
             this.mLastParent = ""; //$NON-NLS-1$
             return;
         }
 
-        //Get the new parent, or exits if not is the parent
-        String newParent = new File(newValue).getParent();
-        if (newValue.compareTo(FileHelper.ROOT_DIRECTORY) == 0) {
+        //Get the new parent
+        String newParent = new File(value).getParent();
+        if (newParent == null) {
+            newParent = FileHelper.ROOT_DIRECTORY;
+        }
+        if (!newParent.endsWith(FileHelper.ROOT_DIRECTORY)) {
+            newParent += FileHelper.ROOT_DIRECTORY;
+        }
+        if (value.compareTo(FileHelper.ROOT_DIRECTORY) == 0) {
             newParent = FileHelper.ROOT_DIRECTORY;
             currentFilterData.clear();
-        } else if (newValue.endsWith(FileHelper.ROOT_DIRECTORY)) {
+        } else if (value.endsWith(FileHelper.ROOT_DIRECTORY)) {
             //Force the change of parent
-            newParent = new File(newValue, "a").getParent(); //$NON-NLS-1$
+            newParent = new File(value, "a").getParent(); //$NON-NLS-1$
+            if (!newParent.endsWith(FileHelper.ROOT_DIRECTORY)) {
+                newParent += FileHelper.ROOT_DIRECTORY;
+            }
             currentFilterData.clear();
+        } else {
+            value = newParent;
         }
 
         //If a new path is detected, then load the new data
-        if (newParent != null
-                && (newParent.compareTo(this.mLastParent) != 0 || currentFilterData.isEmpty())) {
+        if (newParent.compareTo(this.mLastParent) != 0 || currentFilterData.isEmpty()) {
             this.mLastParent = newParent;
             currentFilterData.clear();
             try {
                 List<String> newData =
-                        CommandHelper.quickFolderSearch(getContext(), newValue, null);
+                        CommandHelper.quickFolderSearch(getContext(), value, null);
                 currentFilterData.addAll(newData);
             } catch (Throwable ex) {
                 Log.e(TAG, "Quick folder search failed", ex); //$NON-NLS-1$

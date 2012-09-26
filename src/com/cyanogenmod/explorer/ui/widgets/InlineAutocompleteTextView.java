@@ -341,35 +341,45 @@ public class InlineAutocompleteTextView extends RelativeLayout
     private void doTab() {
         //Complete with current text
         String current = this.mForegroundText.getText().toString();
-        String filter = this.mBackgroundText.getText().toString();
         if (current.length() == 0) {
             return;
         }
-        if (this.mCompletionString != null
-                && current.endsWith(this.mCompletionString)) {
-            if (this.mData.size() <= this.mFilter) {
-                this.mFilter = 0;
-            }
-            if (this.mData.size() == 1 && this.mFilter == 0) {
-                //Autocomplete with the only autocomplete option
-                setText(this.mData.get(this.mFilter));
-            } else {
-                //Show the autocomplete options
-                if (this.mData.size() > 0) {
-                    this.mBackgroundText.setText(this.mData.get(this.mFilter));
-                    this.mBackgroundText.setVisibility(View.VISIBLE);
-                    this.mFilter++;
-                }
-            }
+
+        //Get the data
+        List<String> filteredData = filter(this.mData, current);
+        if (filteredData.size() <= this.mFilter) {
+            this.mFilter = 0;
+        }
+        if (filteredData.size() == 1 && this.mFilter == 0) {
+            //Autocomplete with the only autocomplete option
+            setText(filteredData.get(this.mFilter));
         } else {
-            //Autocomplete
-            if (filter != null && filter.length() > 0) {
-                //Ensure that filter wraps the current text
-                if (filter.startsWith(current)) {
-                    setText(filter);
-                }
+            //Show the autocomplete options
+            if (filteredData.size() > 0) {
+                this.mBackgroundText.setText(filteredData.get(this.mFilter));
+                this.mBackgroundText.setVisibility(View.VISIBLE);
+                this.mFilter++;
             }
         }
+    }
+
+    /**
+     * Method that creates a temporary filter based in the current text
+     *
+     * @param data The global data array
+     * @param current The current text
+     * @return The filtered data array
+     */
+    private static List<String> filter(List<String> data, String current) {
+        List<String> filter = new ArrayList<String>(data);
+        int size = filter.size();
+        for (int i=size-1; i>=0; i--) {
+            String s = filter.get(i);
+            if (!s.startsWith(current)) {
+                filter.remove(i);
+            }
+        }
+        return filter;
     }
 
     /**

@@ -175,12 +175,12 @@ public class ActionsDialog implements OnItemClickListener, OnItemLongClickListen
                 break;
             case R.id.mnu_actions_select_all:
                 if (this.mOnSelectionListener != null) {
-                    this.mOnSelectionListener.onSelectAll();
+                    this.mOnSelectionListener.onSelectAllVisibleItems();
                 }
                 break;
             case R.id.mnu_actions_deselect_all:
                 if (this.mOnSelectionListener != null) {
-                    this.mOnSelectionListener.onDeselectAll();
+                    this.mOnSelectionListener.onDeselectAllVisibleItems();
                 }
                 break;
 

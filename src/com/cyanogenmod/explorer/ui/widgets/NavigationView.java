@@ -769,9 +769,9 @@ public class NavigationView extends RelativeLayout implements
      * {@inheritDoc}
      */
     @Override
-    public void onSelectAll() {
+    public void onDeselectAll() {
         if (this.mAdapter != null) {
-            this.mAdapter.selectedAll();
+            this.mAdapter.deselectedAll();
         }
     }
 
@@ -779,9 +779,19 @@ public class NavigationView extends RelativeLayout implements
      * {@inheritDoc}
      */
     @Override
-    public void onDeselectAll() {
+    public void onSelectAllVisibleItems() {
         if (this.mAdapter != null) {
-            this.mAdapter.deselectedAll();
+            this.mAdapter.selectedAllVisibleItems();
+        }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void onDeselectAllVisibleItems() {
+        if (this.mAdapter != null) {
+            this.mAdapter.deselectedAllVisibleItems();
         }
     }
 

@@ -32,14 +32,19 @@ public interface OnSelectionListener {
     void onToggleSelection(FileSystemObject fso);
 
     /**
-     * Method that request the selection all items.
-     */
-    void onSelectAll();
-
-    /**
      *Method that request the deselection all items.
      */
     void onDeselectAll();
+
+    /**
+     * Method that request the selection all visible items.
+     */
+    void onSelectAllVisibleItems();
+
+    /**
+     *Method that request the deselection all visible items.
+     */
+    void onDeselectAllVisibleItems();
 
     /**
      * Method that request the current {@link FileSystemObject} selection

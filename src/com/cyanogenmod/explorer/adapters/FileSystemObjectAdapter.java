@@ -376,17 +376,25 @@ public class FileSystemObjectAdapter
     }
 
     /**
-     * Method that select all items.
-     */
-    public void selectedAll() {
-        doAllSelection(true);
-    }
-
-    /**
      * Method that deselect all items.
      */
     public void deselectedAll() {
-        doAllSelection(false);
+        this.mSelectedItems.clear();
+        doSelectDeselectAllVisibleItems(false);
+    }
+
+    /**
+     * Method that select all visible items.
+     */
+    public void selectedAllVisibleItems() {
+        doSelectDeselectAllVisibleItems(true);
+    }
+
+    /**
+     * Method that deselect all visible items.
+     */
+    public void deselectedAllVisibleItems() {
+        doSelectDeselectAllVisibleItems(false);
     }
 
     /**
@@ -394,7 +402,7 @@ public class FileSystemObjectAdapter
      *
      * @param select Indicates if select (true) or deselect (false) all items.
      */
-    private void doAllSelection(boolean select) {
+    private void doSelectDeselectAllVisibleItems(boolean select) {
         if (this.mData != null && this.mData.length > 0) {
             for (int i = 0; i < this.mData.length; i++) {
                 DataHolder data = this.mData[i];
@@ -414,7 +422,9 @@ public class FileSystemObjectAdapter
                 if (data.mSelected) {
                     FileSystemObjectAdapter.this.mSelectedItems.add(fso);
                 } else {
-                    FileSystemObjectAdapter.this.mSelectedItems.remove(fso);
+                    if (FileSystemObjectAdapter.this.mSelectedItems.contains(fso)) {
+                        FileSystemObjectAdapter.this.mSelectedItems.remove(fso);
+                    }
                 }
             }
             //Invalidate data for repainting

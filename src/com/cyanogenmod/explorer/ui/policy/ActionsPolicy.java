@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.cyanogenmod.explorer.ui.dialogs.policy;
+package com.cyanogenmod.explorer.ui.policy;
 
 import android.content.Context;
 import android.content.DialogInterface;

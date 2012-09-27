@@ -67,7 +67,7 @@ import com.cyanogenmod.explorer.providers.RecentSearchesContentProvider;
 import com.cyanogenmod.explorer.tasks.SearchResultDrawingAsyncTask;
 import com.cyanogenmod.explorer.ui.dialogs.ActionsDialog;
 import com.cyanogenmod.explorer.ui.dialogs.MessageProgressDialog;
-import com.cyanogenmod.explorer.ui.dialogs.policy.ActionsPolicy;
+import com.cyanogenmod.explorer.ui.policy.ActionsPolicy;
 import com.cyanogenmod.explorer.ui.widgets.ButtonItem;
 import com.cyanogenmod.explorer.util.CommandHelper;
 import com.cyanogenmod.explorer.util.DialogHelper;

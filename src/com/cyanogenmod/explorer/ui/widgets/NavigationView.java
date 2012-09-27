@@ -45,7 +45,7 @@ import com.cyanogenmod.explorer.preferences.NavigationLayoutMode;
 import com.cyanogenmod.explorer.preferences.ObjectIdentifier;
 import com.cyanogenmod.explorer.preferences.ObjectStringIdentifier;
 import com.cyanogenmod.explorer.preferences.Preferences;
-import com.cyanogenmod.explorer.ui.dialogs.policy.ActionsPolicy;
+import com.cyanogenmod.explorer.ui.policy.ActionsPolicy;
 import com.cyanogenmod.explorer.util.CommandHelper;
 import com.cyanogenmod.explorer.util.ExceptionUtil;
 import com.cyanogenmod.explorer.util.FileHelper;

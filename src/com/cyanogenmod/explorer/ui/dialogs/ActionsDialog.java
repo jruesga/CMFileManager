@@ -38,7 +38,7 @@ import com.cyanogenmod.explorer.listeners.OnRequestRefreshListener;
 import com.cyanogenmod.explorer.listeners.OnSelectionListener;
 import com.cyanogenmod.explorer.model.Directory;
 import com.cyanogenmod.explorer.model.FileSystemObject;
-import com.cyanogenmod.explorer.ui.dialogs.policy.ActionsPolicy;
+import com.cyanogenmod.explorer.ui.policy.ActionsPolicy;
 import com.cyanogenmod.explorer.util.DialogHelper;
 import com.cyanogenmod.explorer.util.SelectionHelper;
 

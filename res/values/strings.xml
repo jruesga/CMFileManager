@@ -142,13 +142,13 @@
   <string name="actionbar_button_overflow_cd">More options</string>
 
   <!-- Sort by name (ascending) -->
-  <string name="sort_by_name_asc">By name (asc)</string>
+  <string name="sort_by_name_asc">By name &#x25B2;</string>
   <!-- Sort by name (descending) -->
-  <string name="sort_by_name_desc">By name (desc)</string>
+  <string name="sort_by_name_desc">By name &#x25BC;</string>
   <!-- Sort by date (ascending) -->
-  <string name="sort_by_date_asc">By date (asc)</string>
+  <string name="sort_by_date_asc">By date &#x25B2;</string>
   <!-- Sort by date (descending) -->
-  <string name="sort_by_date_desc">By date (desc)</string>
+  <string name="sort_by_date_desc">By date &#x25BC;</string>
 
   <!-- Layout * Icons -->
   <string name="layout_icons">Icons</string>

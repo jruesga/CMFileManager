@@ -41,6 +41,7 @@ import android.widget.Toast;
 
 import com.cyanogenmod.explorer.R;
 import com.cyanogenmod.explorer.activities.preferences.SettingsPreferences;
+import com.cyanogenmod.explorer.adapters.HighlightedSimpleMenuListAdapter;
 import com.cyanogenmod.explorer.adapters.MenuSettingsAdapter;
 import com.cyanogenmod.explorer.adapters.SimpleMenuListAdapter;
 import com.cyanogenmod.explorer.console.Console;
@@ -849,7 +850,8 @@ public class NavigationActivity extends Activity
      * @param anchor The action button that was pressed
      */
     private void showOverflowPopUp(View anchor) {
-        SimpleMenuListAdapter adapter = new SimpleMenuListAdapter(this, R.menu.navigation);
+        SimpleMenuListAdapter adapter =
+                new HighlightedSimpleMenuListAdapter(this, R.menu.navigation);
         Menu menu = adapter.getMenu();
         boolean hasActionBarMenus = false;
         int removed = 0;

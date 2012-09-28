@@ -200,14 +200,6 @@ public class NavigationView extends RelativeLayout implements
         //Initialize variables
         this.mFiles = new ArrayList<FileSystemObject>();
 
-        //Retrieve the default configuration
-        SharedPreferences preferences = Preferences.getSharedPreferences();
-        int viewMode = preferences.getInt(
-                ExplorerSettings.SETTINGS_LAYOUT_MODE.getId(),
-                ((ObjectIdentifier)ExplorerSettings.
-                        SETTINGS_LAYOUT_MODE.getDefaultValue()).getId());
-        changeViewMode(NavigationLayoutMode.fromId(viewMode));
-
         // Default long-click action
         String defaultValue = ((ObjectStringIdentifier)ExplorerSettings.
                 SETTINGS_DEFAULT_LONG_CLICK_ACTION.getDefaultValue()).getId();
@@ -216,6 +208,14 @@ public class NavigationView extends RelativeLayout implements
                             defaultValue);
         DefaultLongClickAction mode = DefaultLongClickAction.fromId(value);
         this.mDefaultLongClickAction = mode;
+
+        //Retrieve the default configuration
+        SharedPreferences preferences = Preferences.getSharedPreferences();
+        int viewMode = preferences.getInt(
+                ExplorerSettings.SETTINGS_LAYOUT_MODE.getId(),
+                ((ObjectIdentifier)ExplorerSettings.
+                        SETTINGS_LAYOUT_MODE.getDefaultValue()).getId());
+        changeViewMode(NavigationLayoutMode.fromId(viewMode));
     }
 
     /**
@@ -286,6 +286,14 @@ public class NavigationView extends RelativeLayout implements
      */
     public void setDefaultLongClickAction(DefaultLongClickAction mDefaultLongClickAction) {
         this.mDefaultLongClickAction = mDefaultLongClickAction;
+        
+        // Register the long-click listener only if needed
+        if (this.mDefaultLongClickAction.compareTo(
+                DefaultLongClickAction.NONE) != 0) {
+            this.mAdapterView.setOnItemLongClickListener(this);
+        } else {
+            this.mAdapterView.setOnItemLongClickListener(null);
+        }
     }
 
     /**
@@ -408,9 +416,14 @@ public class NavigationView extends RelativeLayout implements
 
             //Set the adapter
             this.mAdapter = adapter;
-            newView.setAdapter(adapter);
+            newView.setAdapter(this.mAdapter);
             newView.setOnItemClickListener(NavigationView.this);
-            newView.setOnItemLongClickListener(NavigationView.this);
+
+            // Register the long-click listener only if needed
+            if (this.mDefaultLongClickAction.compareTo(
+                    DefaultLongClickAction.NONE) != 0) {
+                newView.setOnItemLongClickListener(this);
+            }
 
             //Add the new layout
             this.mAdapterView = newView;

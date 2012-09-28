@@ -143,6 +143,15 @@ public class SearchActivity extends Activity
                                 Preferences.getSharedPreferences().getString(id, defaultValue);
                         SearchActivity.this.mDefaultLongClickAction =
                                 DefaultLongClickAction.fromId(value);
+
+                        // Register the long-click listener only if needed
+                        if (SearchActivity.this.mDefaultLongClickAction.compareTo(
+                                DefaultLongClickAction.NONE) != 0) {
+                            SearchActivity.this.
+                                mSearchListView.setOnItemLongClickListener(SearchActivity.this);
+                        } else {
+                            SearchActivity.this.mSearchListView.setOnItemLongClickListener(null);
+                        }
                         return;
                     }
                 }
@@ -180,6 +189,15 @@ public class SearchActivity extends Activity
             Log.d(TAG, "NavigationActivity.onCreate"); //$NON-NLS-1$
         }
 
+        // Default long-click action
+        String defaultValue = ((ObjectStringIdentifier)ExplorerSettings.
+                SETTINGS_DEFAULT_LONG_CLICK_ACTION.getDefaultValue()).getId();
+        String value = Preferences.getSharedPreferences().getString(
+                            ExplorerSettings.SETTINGS_DEFAULT_LONG_CLICK_ACTION.getId(),
+                            defaultValue);
+        DefaultLongClickAction mode = DefaultLongClickAction.fromId(value);
+        this.mDefaultLongClickAction = mode;
+
         // Register the broadcast receiver
         IntentFilter filter = new IntentFilter();
         filter.addAction(ExplorerSettings.INTENT_SETTING_CHANGED);
@@ -213,15 +231,6 @@ public class SearchActivity extends Activity
                 loadFromCacheData();
             }
         }
-
-        // Default long-click action
-        String defaultValue = ((ObjectStringIdentifier)ExplorerSettings.
-                SETTINGS_DEFAULT_LONG_CLICK_ACTION.getDefaultValue()).getId();
-        String value = Preferences.getSharedPreferences().getString(
-                            ExplorerSettings.SETTINGS_DEFAULT_LONG_CLICK_ACTION.getId(),
-                            defaultValue);
-        DefaultLongClickAction mode = DefaultLongClickAction.fromId(value);
-        this.mDefaultLongClickAction = mode;
 
         //Save state
         super.onCreate(state);
@@ -331,7 +340,13 @@ public class SearchActivity extends Activity
         //The list view
         this.mSearchListView = (ListView)findViewById(R.id.search_listview);
         this.mSearchListView.setOnItemClickListener(this);
-        this.mSearchListView.setOnItemLongClickListener(this);
+
+        // Register the long-click listener only if needed
+        if (this.mDefaultLongClickAction.compareTo(
+                DefaultLongClickAction.NONE) != 0) {
+            this.mSearchListView.setOnItemLongClickListener(this);
+        }
+
         //Other components
         this.mSearchWaiting = (ProgressBar)findViewById(R.id.search_waiting);
         this.mSearchFoundItems = (TextView)findViewById(R.id.search_status_found_items);

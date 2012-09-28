@@ -46,7 +46,7 @@
         android:title="@string/pref_disk_usage_warning_level"
         android:entries="@array/disk_usage_warning_level_labels"
         android:entryValues="@array/disk_usage_warning_level_values"
-        android:defaultValue="2"
+        android:defaultValue="95"
         android:persistent="true" />
 
     </PreferenceCategory>

@@ -50,7 +50,7 @@ public class ChangeOwnerCommand extends SyncResultProgram implements ChangeOwner
     public ChangeOwnerCommand(
             String fileName, User newUser, Group newGroup)
             throws InvalidCommandDefinitionException {
-        super(ID, newUser.getName(), newGroup.getName(), fileName);
+        super(ID, String.valueOf(newUser.getId()), String.valueOf(newGroup.getName()), fileName);
         this.mFileName = fileName;
     }
 

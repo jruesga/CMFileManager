@@ -85,6 +85,11 @@ public final class MimeTypeHelper {
                 }
             }
         }
+
+        // Check if the fso is executable
+        if (fso.getPermissions().getUser().isExecute()) {
+            return R.drawable.ic_fso_type_executable;
+        }
         return R.drawable.ic_fso_default;
     }
 

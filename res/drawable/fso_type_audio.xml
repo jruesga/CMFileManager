@@ -17,6 +17,6 @@
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android" >
 
   <item android:drawable="@drawable/ic_fso_default"/>
-  <item android:drawable="@drawable/ic_fso_type_pdf"/>
+  <item android:drawable="@drawable/ic_fso_type_audio"/>
 
 </layer-list>

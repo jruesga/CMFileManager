@@ -286,7 +286,7 @@ public class NavigationView extends RelativeLayout implements
      */
     public void setDefaultLongClickAction(DefaultLongClickAction mDefaultLongClickAction) {
         this.mDefaultLongClickAction = mDefaultLongClickAction;
-        
+
         // Register the long-click listener only if needed
         if (this.mDefaultLongClickAction.compareTo(
                 DefaultLongClickAction.NONE) != 0) {
@@ -692,16 +692,22 @@ public class NavigationView extends RelativeLayout implements
             ActionsPolicy.showContentDescription(getContext(), fso);
         }
 
+        // Open with
+        else if (this.mDefaultLongClickAction.compareTo(
+                DefaultLongClickAction.OPEN_WITH) == 0) {
+            // FIXME Invoke ActionPolicy open with
+        }
+
         // Show properties
         else if (this.mDefaultLongClickAction.compareTo(
                 DefaultLongClickAction.SHOW_PROPERTIES) == 0) {
             ActionsPolicy.showPropertiesDialog(getContext(), fso, this);
         }
 
-        // Open with
+        // Show actions
         else if (this.mDefaultLongClickAction.compareTo(
-                DefaultLongClickAction.OPEN_WITH) == 0) {
-            // FIXME Invoke ActionPolicy open with
+                DefaultLongClickAction.SHOW_ACTIONS) == 0) {
+            onRequestMenu(fso);
         }
 
         return true; //Always consume the event

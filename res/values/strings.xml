@@ -446,6 +446,8 @@
   <string name="pref_default_longclick_action_open_with">Open with</string>
   <!-- Preferences * General * Default long-click action * Show properties -->
   <string name="pref_default_longclick_action_show_properties">Show properties</string>
+  <!-- Preferences * General * Default long-click action * Show actions -->
+  <string name="pref_default_longclick_action_show_actions">Show actions</string>
   <!-- Preferences * General *Disk usage warning level title -->
   <string name="pref_disk_usage_warning_level">Disk usage warning</string>
   <!-- Preferences * General * Disk usage warning level summary -->

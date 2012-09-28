@@ -647,10 +647,7 @@ public class NavigationActivity extends Activity
             //Action Bar buttons
             //######################
             case R.id.ab_actions:
-                ActionsDialog dialog = new ActionsDialog(this);
-                dialog.setOnRequestRefreshListener(this);
-                dialog.setOnSelectionListener(getCurrentNavigationView());
-                dialog.show();
+                openActions();
                 break;
 
             case R.id.ab_bookmarks:
@@ -1108,6 +1105,16 @@ public class NavigationActivity extends Activity
 
         //Nothing to apply
         return false;
+    }
+
+    /**
+     * Method that opens the actions dialog
+     */
+    private void openActions() {
+        ActionsDialog dialog = new ActionsDialog(this);
+        dialog.setOnRequestRefreshListener(this);
+        dialog.setOnSelectionListener(getCurrentNavigationView());
+        dialog.show();
     }
 
     /**

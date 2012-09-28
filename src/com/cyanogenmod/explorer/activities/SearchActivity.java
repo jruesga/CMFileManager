@@ -782,17 +782,24 @@ public class SearchActivity extends Activity
             ActionsPolicy.showContentDescription(this, fso);
         }
 
+        // Open with
+        else if (this.mDefaultLongClickAction.compareTo(
+                DefaultLongClickAction.OPEN_WITH) == 0) {
+            // FIXME Invoke ActionPolicy open with
+        }
+
         // Show properties
         else if (this.mDefaultLongClickAction.compareTo(
                 DefaultLongClickAction.SHOW_PROPERTIES) == 0) {
             ActionsPolicy.showPropertiesDialog(this, fso, this);
         }
 
-        // Open with
+        // Show actions
         else if (this.mDefaultLongClickAction.compareTo(
-                DefaultLongClickAction.OPEN_WITH) == 0) {
-            // FIXME Invoke ActionPolicy open with
+                DefaultLongClickAction.SHOW_ACTIONS) == 0) {
+            onRequestMenu(fso);
         }
+
 
         return true; //Always consume the event
     }

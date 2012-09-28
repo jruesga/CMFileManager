@@ -32,7 +32,7 @@ public enum DefaultLongClickAction implements ObjectStringIdentifier {
     /**
      * Select/deselect the item
      */
-    SELECT_DESELECT("2"), //$NON-NLS-1$
+    SELECT_DESELECT("2"), //$NON-NLS-1$T
     /**
      * Open the item with ...
      */
@@ -40,7 +40,11 @@ public enum DefaultLongClickAction implements ObjectStringIdentifier {
     /**
      * Show the item properties
      */
-    SHOW_PROPERTIES("4"); //$NON-NLS-1$
+    SHOW_PROPERTIES("4"), //$NON-NLS-1$
+    /**
+     * Show the item actions
+     */
+    SHOW_ACTIONS("5"); //$NON-NLS-1$
 
     private String mId;
 

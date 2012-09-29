@@ -133,6 +133,11 @@ public class NavigationActivity extends Activity
     public static final String EXTRA_SEARCH_LAST_SEARCH_DATA =
             "extra_search_last_search_data"; //$NON-NLS-1$
 
+    // The timeout needed to reset the exit status for back button
+    // After this time user need to tap 2 times the back button to
+    // exit, and the toast is shown again after the first tap.
+    private static final int RELEASE_EXIT_CHECK_TIMEOUT = 3500;
+
     //The key for the state data
     private static final String NAVIGATION_STATE = "explorer_navigation_state";  //$NON-NLS-1$
 
@@ -194,6 +199,7 @@ public class NavigationActivity extends Activity
     private SelectionView mSelectionBar;
 
     private boolean mExitFlag = false;
+    private long mExitBackTimeout = -1;
 
     /**
      * {@inheritDoc}
@@ -979,11 +985,18 @@ public class NavigationActivity extends Activity
 
         //Do back operation over the navigation history
         boolean flag = this.mExitFlag;
+        
         this.mExitFlag = !back();
+        
+        // Retrieve if the exit status timeout has expired
+        long now = System.currentTimeMillis();
+        boolean timeout = (this.mExitBackTimeout == -1 ||
+                            (now - this.mExitBackTimeout) > RELEASE_EXIT_CHECK_TIMEOUT);
 
         //Check if there no history and if the user was advised in the last back action
-        if (this.mExitFlag && this.mExitFlag != flag) {
+        if (this.mExitFlag && (this.mExitFlag != flag || timeout)) {
             //Communicate the user that the next time the application will be closed
+            this.mExitBackTimeout = System.currentTimeMillis();
             DialogHelper.showToast(this, R.string.msgs_push_again_to_exit, Toast.LENGTH_SHORT);
             return true;
         }

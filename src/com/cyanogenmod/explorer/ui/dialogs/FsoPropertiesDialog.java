@@ -195,7 +195,7 @@ public class FsoPropertiesDialog
         //- Info
         tvName.setText(this.mFso.getName());
         tvParent.setText(this.mFso.getParent());
-        tvType.setText(MimeTypeHelper.getLabel(this.mContext, this.mFso));
+        tvType.setText(MimeTypeHelper.getDescription(this.mContext, this.mFso));
         if (this.mFso instanceof Symlink) {
             Symlink link = (Symlink)this.mFso;
             tvLink.setText(link.getLinkRef().getFullPath());

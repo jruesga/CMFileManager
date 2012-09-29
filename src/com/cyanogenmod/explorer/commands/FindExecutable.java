@@ -17,7 +17,7 @@
 package com.cyanogenmod.explorer.commands;
 
 /**
- * An interface that represents an executable for make search over
+ * An interface that represents an executable for make a search over
  * the filesystem.
  */
 public interface FindExecutable extends AsyncResultExecutable {

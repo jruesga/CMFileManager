@@ -51,7 +51,7 @@ public class FindCommandTest extends AbstractConsoleTest {
      * @throws Exception If test failed
      */
     @SuppressWarnings("synthetic-access")
-    public void testListWithPartialResult() throws Exception {
+    public void testFindWithPartialResult() throws Exception {
         this.mNewPartialData = false;
         Query query = new Query().setSlot(FIND_TERM_PARTIAL, 0);
         final List<FileSystemObject> files = new ArrayList<FileSystemObject>();
@@ -67,9 +67,10 @@ public class FindCommandTest extends AbstractConsoleTest {
                         public void onException(Exception cause) {
                             fail(cause.toString());
                         }
-                        public void onPartialResult(List<FileSystemObject> results) {
+                        @SuppressWarnings("unchecked")
+                        public void onPartialResult(Object results) {
                             FindCommandTest.this.mNewPartialData = true;
-                            files.addAll(results);
+                            files.addAll((List<FileSystemObject>)results);
                         }
                    }, getConsole());
         synchronized (FindCommandTest.this.mSync) {

@@ -56,35 +56,35 @@ public final class MimeTypeHelper {
          */
         DOCUMENT,
         /**
-         * CD Image file 
+         * CD Image file
          */
         CDIMAGE,
         /**
-         * Compressed file 
+         * Compressed file
          */
         COMPRESS,
         /**
-         * Executable file 
+         * Executable file
          */
         EXEC,
         /**
-         * Database file 
+         * Database file
          */
         DATABASE,
         /**
-         * Image file 
+         * Image file
          */
         IMAGE,
         /**
-         * Audio file 
+         * Audio file
          */
         AUDIO,
         /**
-         * Video file 
+         * Video file
          */
         VIDEO,
         /**
-         * Security file (certificate, keys, ...) 
+         * Security file (certificate, keys, ...)
          */
         SECURITY
     }
@@ -150,11 +150,10 @@ public final class MimeTypeHelper {
 
         // Check if the fso is executable
         if (fso.getPermissions().getUser().isExecute()) {
-            return R.drawable.ic_fso_type_executable;
+            return R.drawable.fso_type_executable;
         }
         return R.drawable.ic_fso_default;
     }
-
 
     /**
      * Method that returns the mime/type description of the {@link FileSystemObject}.
@@ -190,15 +189,20 @@ public final class MimeTypeHelper {
         }
         return res.getString(R.string.mime_unknown);
     }
-    
+
     /**
-     * Method that returns the mime/type category of the {@link FileSystemObject}
-     * 
+     * Method that returns the mime/type category of the file system object.
+     *
      * @param context The current context
      * @param fso The file system object
      * @return MimeTypeCategory The mime/type category
      */
     public static final MimeTypeCategory getCategory(Context context, FileSystemObject fso) {
+        // Ensure that have a context
+        if (context == null && sMimeTypes == null) {
+            // No category
+            return MimeTypeCategory.NONE;
+        }
         //Ensure that mime types are loaded
         if (sMimeTypes == null) {
             loadMimeTypes(context);
@@ -253,7 +257,7 @@ public final class MimeTypeHelper {
 
                     } catch (Exception e2) { /**NON BLOCK**/}
                 }
-                
+
             } catch (Exception e) {
                 Log.e(TAG, "Fail to load mime types raw file.", e); //$NON-NLS-1$
             }

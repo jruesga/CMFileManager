@@ -19,59 +19,51 @@ package com.cyanogenmod.explorer.commands.shell;
 import android.util.Log;
 
 import com.cyanogenmod.explorer.commands.AsyncResultListener;
-import com.cyanogenmod.explorer.commands.FindExecutable;
+import com.cyanogenmod.explorer.commands.FolderUsageExecutable;
 import com.cyanogenmod.explorer.console.CommandNotFoundException;
 import com.cyanogenmod.explorer.console.ExecutionException;
 import com.cyanogenmod.explorer.console.InsufficientPermissionsException;
+import com.cyanogenmod.explorer.model.Directory;
 import com.cyanogenmod.explorer.model.FileSystemObject;
-import com.cyanogenmod.explorer.model.Query;
+import com.cyanogenmod.explorer.model.FolderUsage;
+import com.cyanogenmod.explorer.model.Symlink;
 import com.cyanogenmod.explorer.util.FileHelper;
+import com.cyanogenmod.explorer.util.MimeTypeHelper;
+import com.cyanogenmod.explorer.util.MimeTypeHelper.MimeTypeCategory;
 import com.cyanogenmod.explorer.util.ParseHelper;
-import com.cyanogenmod.explorer.util.SearchHelper;
 
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.StringReader;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * A class for search files.
+ * A class for retrieve the disk usage of a folder
  *
- * {@link "http://unixhelp.ed.ac.uk/CGI/man-cgi?find"}
+ * {@link "http://unixhelp.ed.ac.uk/CGI/man-cgi?ls"}
  */
-public class FindCommand extends AsyncResultProgram implements FindExecutable {
+public class FolderUsageCommand extends AsyncResultProgram implements FolderUsageExecutable {
 
-    //IMP!! This command must returns in the same command a line with the
-    //full path of the file, and a list style line of the find file in
-    //the next line
-    //xe:
-    //
-    // /mnt/emmc/test79.txt
-    // ----rwxr-x system   sdcard_rw        0 2012-05-15 12:15 test79.txt
-    //
+    private static final String TAG = "FolderUsageCommand"; //$NON-NLS-1$
 
-    private static final String TAG = "FindCommand"; //$NON-NLS-1$
-
-    private static final String ID_FIND_DIRECTORY = "find";  //$NON-NLS-1$
+    private static final String ID_FOLDER_USAGE_DIRECTORY = "folderusage"; //$NON-NLS-1$
 
     private final String mDirectory;
-    private final List<FileSystemObject> mFiles;
+    private FolderUsage mFolderUsage;
     private String mPartial;
 
     /**
-     * Constructor of <code>FindCommand</code>.
+     * Constructor of <code>FolderUsageCommand</code>.
      *
-     * @param directory The "absolute" directory where start the search
-     * @param query The terms to be searched
+     * @param directory The "absolute" directory to compute
      * @param asyncResultListener The partial result listener
      * @throws InvalidCommandDefinitionException If the command has an invalid definition
      */
-    public FindCommand(
-            String directory, Query query, AsyncResultListener asyncResultListener)
+    public FolderUsageCommand(
+            String directory, AsyncResultListener asyncResultListener)
             throws InvalidCommandDefinitionException {
-        super(ID_FIND_DIRECTORY, asyncResultListener, createArgs(directory, query));
-        this.mFiles = new ArrayList<FileSystemObject>();
+        super(ID_FOLDER_USAGE_DIRECTORY, asyncResultListener, new String[]{directory});
+        this.mFolderUsage = new FolderUsage(directory);
         this.mPartial = ""; //$NON-NLS-1$
         this.mDirectory = directory;
     }
@@ -81,7 +73,7 @@ public class FindCommand extends AsyncResultProgram implements FindExecutable {
      */
     @Override
     public void onStartParsePartialResult() {
-        this.mFiles.clear();
+        this.mFolderUsage = new FolderUsage(this.mDirectory);
         this.mPartial = ""; //$NON-NLS-1$
     }
 
@@ -100,7 +92,6 @@ public class FindCommand extends AsyncResultProgram implements FindExecutable {
     public void onParsePartialResult(final String partialIn) {
 
         // Check the in buffer to extract information
-        final List<FileSystemObject> partialFiles = new ArrayList<FileSystemObject>();
         BufferedReader br = null;
         try {
             //Read the partial + previous partial and clean partial
@@ -118,43 +109,50 @@ public class FindCommand extends AsyncResultProgram implements FindExecutable {
             }
 
             //2 lines per file system object translation
-            while (lines.size() >= 2) {
+            boolean newData = false;
+            int c = 0;
+            while (lines.size() > 0) {
                 try {
-                    //Data is synchronized?? Have two valid lines?
-                    if (!lines.get(0).startsWith(File.separator)) {
-                        //Discard line. The data is no synchronized (some wrong in the output)
-                        lines.remove(0);
-                        continue;
-                    }
-                    if (lines.get(1).startsWith(File.separator)) {
-                        //Discard line. The data is no synchronized (some wrong in the output)
-                        lines.remove(1);
-                        continue;
+                    // Retrieve the info
+                    String szLine = lines.get(0).trim();
+
+                    // Parent folder is not necessary here. Only the information relative to
+                    // type and size
+                    FileSystemObject fso =
+                            ParseHelper.toFileSystemObject(
+                                    FileHelper.ROOT_DIRECTORY, szLine, true);
+
+                    // Only regular files or directories. No compute Symlinks
+                    if (fso instanceof Symlink) {
+
+                    // Directory
+                    } else if (fso instanceof Directory) {
+                        // Folder
+                        this.mFolderUsage.addFolder();
+                        newData = true;
+
+                    // Regular File, Block device, ...
+                    } else {
+                        this.mFolderUsage.addFile();
+                        // Compute statistics and size
+                        MimeTypeCategory category =
+                                MimeTypeHelper.getCategory(null, fso);
+                        this.mFolderUsage.addFileToCategory(category);
+                        this.mFolderUsage.addSize(fso.getSize());
+                        newData = true;
                     }
 
-                    //Extract the parent directory
-                    String parentDir = new File(lines.get(0)).getParent();
-                    if (parentDir == null || parentDir.trim().length() == 0) {
-                        parentDir = FileHelper.ROOT_DIRECTORY;
-                    }
-
-                    //Retrieve the file system object and calculate relevance
-                    FileSystemObject fso = ParseHelper.toFileSystemObject(parentDir, lines.get(1));
-                    if (fso.getName() != null && fso.getName().length() > 0) {
-                        // Don't return the directory of the search. Only files under this
-                        // directory
-                        if (this.mDirectory.compareTo(fso.getFullPath()) != 0) {
-                            this.mFiles.add(fso);
-                            partialFiles.add(fso);
+                    // Partial notification
+                    if (c % 5 == 0) {
+                        //If a listener is defined, then send the partial result
+                        if (getAsyncResultListener() != null && newData) {
+                            getAsyncResultListener().onPartialResult(this.mFolderUsage);
                         }
                     }
 
-                } catch (Exception ex) {
-                    Log.w(TAG, "Partial result fails", ex); //$NON-NLS-1$
-                }
+                } catch (Exception ex) { /**NON BLOCK **/ }
 
-                //Remove the pair of lines
-                lines.remove(0);
+                //Remove the the line
                 lines.remove(0);
             }
 
@@ -165,8 +163,8 @@ public class FindCommand extends AsyncResultProgram implements FindExecutable {
             }
 
             //If a listener is defined, then send the partial result
-            if (getAsyncResultListener() != null) {
-                getAsyncResultListener().onPartialResult(partialFiles);
+            if (getAsyncResultListener() != null && newData) {
+                getAsyncResultListener().onPartialResult(this.mFolderUsage);
             }
 
         } catch (Exception ex) {
@@ -198,7 +196,7 @@ public class FindCommand extends AsyncResultProgram implements FindExecutable {
     public void checkExitCode(int exitCode)
             throws InsufficientPermissionsException, CommandNotFoundException, ExecutionException {
 
-        //Search in a subdirectory without permissions returns 1, but this
+        //Access a subdirectory without permissions returns 1, but this
         //not must be treated as an error
         //Ignore exit code 143 (canceled)
         //Ignore exit code 137 (kill -9)
@@ -206,22 +204,5 @@ public class FindCommand extends AsyncResultProgram implements FindExecutable {
             throw new ExecutionException(
                         "exitcode != 0 && != 1 && != 143 && != 137"); //$NON-NLS-1$
         }
-    }
-
-    /**
-     * Method that create the arguments of this command, using the directory and
-     * arguments and creating the regular expressions of the search.
-     *
-     * @param directory The directory where to search
-     * @param query The query make for user
-     * @return String[] The arguments of the command
-     */
-    private static String[] createArgs(String directory, Query query) {
-        String[] args = new String[query.getSlotsCount() + 1];
-        args[0] = directory;
-        for (int i = 0; i < query.getSlotsCount(); i++) {
-            args[i + 1] = SearchHelper.toIgnoreCaseRegExp(query.getSlot(i));
-        }
-        return args;
     }
 }

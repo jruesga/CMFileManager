@@ -16,9 +16,6 @@
 
 package com.cyanogenmod.explorer.commands;
 
-import com.cyanogenmod.explorer.model.FileSystemObject;
-
-import java.util.List;
 
 /**
  * An interface for communicate partial results.
@@ -39,9 +36,9 @@ public interface AsyncResultListener {
     /**
      * Method invoked when new partial data are ready.
      *
-     * @param results New data results
+     * @param result New data result
      */
-    void onPartialResult(List<FileSystemObject> results);
+    void onPartialResult(Object result);
 
     /**
      * Method invoked when an exception occurs while executing the program.

@@ -34,17 +34,30 @@ import java.text.ParseException;
  */
 public class ProcessIdCommand extends SyncResultProgram implements ProcessIdExecutable {
 
-    private static final String ID = "pid";  //$NON-NLS-1$
+    private static final String ID_SHELL = "pid_shell";  //$NON-NLS-1$
+    private static final String ID_CMD = "pid_cmd";  //$NON-NLS-1$
     private Integer mPID;
 
     /**
-     * Constructor of <code>ProcessIdCommand</code>.
+     * Constructor of <code>ProcessIdCommand</code>.<br/>
+     * Use this to retrieve the PID of a shell.
      *
+     * @throws InvalidCommandDefinitionException If the command has an invalid definition
+     */
+    public ProcessIdCommand() throws InvalidCommandDefinitionException {
+        super(ID_SHELL);
+    }
+
+    /**
+     * Constructor of <code>ProcessIdCommand</code>.<br/>
+     * Use this to retrieve the PID of a command running on a shell.
+     *
+     * @param pid The process identifier of the shell when the process is running
      * @param processName The process name
      * @throws InvalidCommandDefinitionException If the command has an invalid definition
      */
-    public ProcessIdCommand(String processName) throws InvalidCommandDefinitionException {
-        super(ID, processName);
+    public ProcessIdCommand(int pid, String processName) throws InvalidCommandDefinitionException {
+        super(ID_CMD, new String[]{processName, String.valueOf(pid)});
     }
 
     /**

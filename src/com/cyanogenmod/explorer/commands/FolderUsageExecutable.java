@@ -14,22 +14,11 @@
  * limitations under the License.
  */
 
-package com.cyanogenmod.explorer.commands.shell;
+package com.cyanogenmod.explorer.commands;
+
 /**
- * A class for testing the {@link ProcessIdCommand} command.
- *
- * @see ProcessIdCommand
+ * An interface that represents an executable for retrieve a folder usage
  */
-public class ProcessIdCommandTest extends AbstractConsoleTest {
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public boolean isRootConsoleNeeded() {
-        return false;
-    }
-
-    // Can't perform any test, because a running program in a shell is needed, and PID of
-    // shell is not available for external use outside the console.
+public interface FolderUsageExecutable extends AsyncResultExecutable {
+    /**NON BLOCK**/
 }

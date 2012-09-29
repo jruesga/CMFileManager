@@ -55,6 +55,12 @@
 
   <!-- Loading waiting message -->
   <string name="loading_message">Loading&#8230;</string>
+  <!-- Computing message -->
+  <string name="computing_message">Computing&#8230; <xliff:g id="data">%1$s</xliff:g></string>
+  <!-- Computing new line message -->
+  <string name="computing_message_ln">Computing&#8230;\n<xliff:g id="data">%1$s</xliff:g></string>
+  <!-- Cancelled message -->
+  <string name="cancelled_message">Cancelled.</string>
   <!-- Error message -->
   <string name="error_message">Error.</string>
 
@@ -232,6 +238,8 @@
   <string name="fso_properties_dialog_link">Link:</string>
   <!-- Fso Properties Dialog * Size Label -->
   <string name="fso_properties_dialog_size">Size:</string>
+  <!-- Fso Properties Dialog * Contains Label -->
+  <string name="fso_properties_dialog_contains">Contains:</string>
   <!-- Fso Properties Dialog * Date Label -->
   <string name="fso_properties_dialog_date">Last Access:</string>
   <!-- Fso Properties Dialog * Owner Label -->
@@ -248,6 +256,21 @@
   <string name="fso_properties_dialog_write" translatable="false">W</string>
   <!-- Fso Properties Dialog * Execute Label -->
   <string name="fso_properties_dialog_execute" translatable="false">X</string>
+  <!-- Fso Properties Dialog * Execute Label -->
+  <string name="fso_properties_dialog_folder_items">
+    <xliff:g id="folders">%1$s</xliff:g> / <xliff:g id="files">%2$s</xliff:g></string>
+  <!-- Fso Properties Dialog * Folders -->
+  <plurals name="fso_properties_dialog_folders">
+    <item quantity="zero">0 folders</item>
+    <item quantity="one">1 folder</item>
+    <item quantity="other"><xliff:g id="folders">%1$d</xliff:g> folders</item>
+  </plurals>
+  <!-- Fso Properties Dialog * Files -->
+  <plurals name="fso_properties_dialog_files">
+    <item quantity="zero">0 files</item>
+    <item quantity="one">1 files</item>
+    <item quantity="other"><xliff:g id="files">%1$d</xliff:g> files</item>
+  </plurals>
 
   <!-- Choose console dialog title -->
   <string name="choose_console_dialog_title">Choose console</string>

@@ -985,9 +985,9 @@ public class NavigationActivity extends Activity
 
         //Do back operation over the navigation history
         boolean flag = this.mExitFlag;
-        
+
         this.mExitFlag = !back();
-        
+
         // Retrieve if the exit status timeout has expired
         long now = System.currentTimeMillis();
         boolean timeout = (this.mExitBackTimeout == -1 ||

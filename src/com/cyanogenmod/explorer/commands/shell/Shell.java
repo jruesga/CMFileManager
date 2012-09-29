@@ -31,6 +31,8 @@ import com.cyanogenmod.explorer.console.ReadOnlyFilesystemException;
  */
 public abstract class Shell extends Command {
 
+    private int mPid;
+
     /**
      * @Constructor of <code>Shell</code>
      *
@@ -41,6 +43,25 @@ public abstract class Shell extends Command {
      */
     public Shell(String id, String... args) throws InvalidCommandDefinitionException {
         super(id, args);
+        this.mPid = -1;
+    }
+
+    /**
+     * Method that returns the process identifier of the console
+     *
+     * @return int The process identifier
+     */
+    public final int getPid() {
+        return this.mPid;
+    }
+
+    /**
+     * Method that sets the process identifier of the console
+     *
+     * @param pid The process identifier
+     */
+    public final void setPid(int pid) {
+        this.mPid = pid;
     }
 
     /**

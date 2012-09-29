@@ -193,12 +193,23 @@ public final class FileHelper {
      * if <code>fso</code> has no extension.
      */
     public static String getExtension(FileSystemObject fso) {
+        return getExtension(fso.getName());
+    }
+
+    /**
+     * Method that returns the extension of a file system object.
+     *
+     * @param fso The file system object
+     * @return The extension of the file system object, or <code>null</code>
+     * if <code>fso</code> has no extension.
+     */
+    public static String getExtension(String fso) {
         final char dot = '.';
-        int pos = fso.getName().lastIndexOf(dot);
+        int pos = fso.lastIndexOf(dot);
         if (pos == -1) {
             return null;
         }
-        return fso.getName().substring(pos + 1);
+        return fso.substring(pos + 1);
     }
 
     /**

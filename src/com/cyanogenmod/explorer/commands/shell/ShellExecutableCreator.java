@@ -30,6 +30,7 @@ import com.cyanogenmod.explorer.commands.DiskUsageExecutable;
 import com.cyanogenmod.explorer.commands.EchoExecutable;
 import com.cyanogenmod.explorer.commands.ExecutableCreator;
 import com.cyanogenmod.explorer.commands.FindExecutable;
+import com.cyanogenmod.explorer.commands.FolderUsageExecutable;
 import com.cyanogenmod.explorer.commands.GroupsExecutable;
 import com.cyanogenmod.explorer.commands.IdentityExecutable;
 import com.cyanogenmod.explorer.commands.ListExecutable;
@@ -237,6 +238,20 @@ public class ShellExecutableCreator implements ExecutableCreator {
      * {@inheritDoc}
      */
     @Override
+    public FolderUsageExecutable createFolderUsageExecutable(
+            String directory, AsyncResultListener asyncResultListener)
+            throws CommandNotFoundException {
+        try {
+            return new FolderUsageCommand(directory, asyncResultListener);
+        } catch (InvalidCommandDefinitionException icdEx) {
+            throw new CommandNotFoundException("FolderUsageCommand", icdEx); //$NON-NLS-1$
+        }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public GroupsExecutable createGroupsExecutable() throws CommandNotFoundException {
         try {
             return new GroupsCommand();
@@ -326,10 +341,22 @@ public class ShellExecutableCreator implements ExecutableCreator {
      * {@inheritDoc}
      */
     @Override
-    public ProcessIdExecutable createProcessIdExecutable(String processName)
+    public ProcessIdExecutable createShellProcessIdExecutable() throws CommandNotFoundException {
+        try {
+            return new ProcessIdCommand();
+        } catch (InvalidCommandDefinitionException icdEx) {
+            throw new CommandNotFoundException("ProcessIdCommand", icdEx); //$NON-NLS-1$
+        }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public ProcessIdExecutable createProcessIdExecutable(int pid, String processName)
             throws CommandNotFoundException {
         try {
-            return new ProcessIdCommand(processName);
+            return new ProcessIdCommand(pid, processName);
         } catch (InvalidCommandDefinitionException icdEx) {
             throw new CommandNotFoundException("ProcessIdCommand", icdEx); //$NON-NLS-1$
         }

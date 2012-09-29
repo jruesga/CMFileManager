@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ ** Copyright (C) 2012 The CyanogenMod Project
+ **
+ ** Licensed under the Apache License, Version 2.0 (the "License");
+ ** you may not use this file except in compliance with the License.
+ ** You may obtain a copy of the License at
+ **
+ **      http://www.apache.org/licenses/LICENSE-2.0
+ **
+ ** Unless required by applicable law or agreed to in writing, software
+ ** distributed under the License is distributed on an "AS IS" BASIS,
+ ** WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ ** See the License for the specific language governing permissions and
+ ** limitations under the License.
+-->
+
+<!--
+  This file contains values that could be overlayed. This allow
+  configure special values for each device. Use overlay building folder on device tree
+  for overlay this values
+-->
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+
+  <!-- The buffer use to read files (in bytes). Default: 0.5 Mb -->
+  <integer name="read_buffer_size">512</integer>
+
+  <!-- The maximum file size that the app is able to read. Beyond this size the user will get a
+       warning message (in bytes). Default: 5 Mb
+       -->
+  <integer name="max_read_file_size">5120</integer>
+
+</resources>

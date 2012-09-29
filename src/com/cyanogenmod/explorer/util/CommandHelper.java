@@ -33,6 +33,7 @@ import com.cyanogenmod.explorer.commands.DiskUsageExecutable;
 import com.cyanogenmod.explorer.commands.EchoExecutable;
 import com.cyanogenmod.explorer.commands.Executable;
 import com.cyanogenmod.explorer.commands.FindExecutable;
+import com.cyanogenmod.explorer.commands.FolderUsageExecutable;
 import com.cyanogenmod.explorer.commands.GroupsExecutable;
 import com.cyanogenmod.explorer.commands.IdentityExecutable;
 import com.cyanogenmod.explorer.commands.ListExecutable;
@@ -102,8 +103,9 @@ public final class CommandHelper {
      * @see ChangeCurrentDirExecutable
      */
     public static boolean changeCurrentDir(Context context, String dst, Console console)
-            throws FileNotFoundException, IOException, ConsoleAllocException, NoSuchFileOrDirectory,
-            InsufficientPermissionsException, CommandNotFoundException, OperationTimeoutException,
+            throws FileNotFoundException, IOException, ConsoleAllocException,
+            NoSuchFileOrDirectory, InsufficientPermissionsException,
+            CommandNotFoundException, OperationTimeoutException,
             ExecutionException, InvalidCommandDefinitionException {
         Console c = ensureConsole(context, console);
         ChangeCurrentDirExecutable executable =
@@ -136,12 +138,14 @@ public final class CommandHelper {
      */
     public static boolean changeOwner(
             Context context, String src, User user, Group group, Console console)
-            throws FileNotFoundException, IOException, ConsoleAllocException, NoSuchFileOrDirectory,
-            InsufficientPermissionsException, CommandNotFoundException, OperationTimeoutException,
+            throws FileNotFoundException, IOException, ConsoleAllocException,
+            NoSuchFileOrDirectory, InsufficientPermissionsException,
+            CommandNotFoundException, OperationTimeoutException,
             ExecutionException, InvalidCommandDefinitionException, ReadOnlyFilesystemException {
         Console c = ensureConsole(context, console);
         ChangeOwnerExecutable executable =
-                c.getExecutableFactory().newCreator().createChangeOwnerExecutable(src, user, group);
+                c.getExecutableFactory().
+                    newCreator().createChangeOwnerExecutable(src, user, group);
         writableExecute(context, executable, c);
         return executable.getResult().booleanValue();
     }
@@ -169,8 +173,9 @@ public final class CommandHelper {
      */
     public static boolean changePermissions(
             Context context, String src, Permissions permissions, Console console)
-            throws FileNotFoundException, IOException, ConsoleAllocException, NoSuchFileOrDirectory,
-            InsufficientPermissionsException, CommandNotFoundException, OperationTimeoutException,
+            throws FileNotFoundException, IOException, ConsoleAllocException,
+            NoSuchFileOrDirectory, InsufficientPermissionsException,
+            CommandNotFoundException, OperationTimeoutException,
             ExecutionException, InvalidCommandDefinitionException, ReadOnlyFilesystemException {
         Console c = ensureConsole(context, console);
         ChangePermissionsExecutable executable =
@@ -201,8 +206,9 @@ public final class CommandHelper {
      * @see CreateDirExecutable
      */
     public static boolean createDirectory(Context context, String directory, Console console)
-            throws FileNotFoundException, IOException, ConsoleAllocException, NoSuchFileOrDirectory,
-            InsufficientPermissionsException, CommandNotFoundException, OperationTimeoutException,
+            throws FileNotFoundException, IOException, ConsoleAllocException,
+            NoSuchFileOrDirectory, InsufficientPermissionsException,
+            CommandNotFoundException, OperationTimeoutException,
             ExecutionException, InvalidCommandDefinitionException, ReadOnlyFilesystemException {
         Console c = ensureConsole(context, console);
         CreateDirExecutable executable =
@@ -232,8 +238,9 @@ public final class CommandHelper {
      * @see CreateFileExecutable
      */
     public static boolean createFile(Context context, String file, Console console)
-            throws FileNotFoundException, IOException, ConsoleAllocException, NoSuchFileOrDirectory,
-            InsufficientPermissionsException, CommandNotFoundException, OperationTimeoutException,
+            throws FileNotFoundException, IOException, ConsoleAllocException,
+            NoSuchFileOrDirectory, InsufficientPermissionsException,
+            CommandNotFoundException, OperationTimeoutException,
             ExecutionException, InvalidCommandDefinitionException, ReadOnlyFilesystemException {
         Console c = ensureConsole(context, console);
         CreateFileExecutable executable =
@@ -263,8 +270,9 @@ public final class CommandHelper {
      * @see DeleteDirExecutable
      */
     public static boolean deleteDirectory(Context context, String directory, Console console)
-            throws FileNotFoundException, IOException, ConsoleAllocException, NoSuchFileOrDirectory,
-            InsufficientPermissionsException, CommandNotFoundException, OperationTimeoutException,
+            throws FileNotFoundException, IOException, ConsoleAllocException,
+            NoSuchFileOrDirectory, InsufficientPermissionsException,
+            CommandNotFoundException, OperationTimeoutException,
             ExecutionException, InvalidCommandDefinitionException, ReadOnlyFilesystemException {
         Console c = ensureConsole(context, console);
         DeleteDirExecutable executable =
@@ -294,8 +302,9 @@ public final class CommandHelper {
      * @see DeleteFileExecutable
      */
     public static boolean deleteFile(Context context, String file, Console console)
-            throws FileNotFoundException, IOException, ConsoleAllocException, NoSuchFileOrDirectory,
-            InsufficientPermissionsException, CommandNotFoundException, OperationTimeoutException,
+            throws FileNotFoundException, IOException, ConsoleAllocException,
+            NoSuchFileOrDirectory, InsufficientPermissionsException,
+            CommandNotFoundException, OperationTimeoutException,
             ExecutionException, InvalidCommandDefinitionException, ReadOnlyFilesystemException {
         Console c = ensureConsole(context, console);
         DeleteFileExecutable executable =
@@ -324,8 +333,9 @@ public final class CommandHelper {
      * @see ResolveLinkExecutable
      */
     public static String getAbsolutePath(Context context, String path, Console console)
-            throws FileNotFoundException, IOException, ConsoleAllocException, NoSuchFileOrDirectory,
-            InsufficientPermissionsException, CommandNotFoundException, OperationTimeoutException,
+            throws FileNotFoundException, IOException, ConsoleAllocException,
+            NoSuchFileOrDirectory, InsufficientPermissionsException,
+            CommandNotFoundException, OperationTimeoutException,
             ExecutionException, InvalidCommandDefinitionException {
         Console c = ensureConsole(context, console);
         ResolveLinkExecutable executable =
@@ -358,8 +368,9 @@ public final class CommandHelper {
      * @see ResolveLinkExecutable
      */
     public static FileSystemObject resolveSymlink(Context context, String symlink, Console console)
-            throws FileNotFoundException, IOException, ConsoleAllocException, NoSuchFileOrDirectory,
-            InsufficientPermissionsException, CommandNotFoundException, OperationTimeoutException,
+            throws FileNotFoundException, IOException, ConsoleAllocException,
+            NoSuchFileOrDirectory, InsufficientPermissionsException,
+            CommandNotFoundException, OperationTimeoutException,
             ExecutionException, InvalidCommandDefinitionException {
         Console c = ensureConsole(context, console);
         ResolveLinkExecutable executable =
@@ -387,8 +398,9 @@ public final class CommandHelper {
      * @see CurrentDirExecutable
      */
     public static String getCurrentDir(Context context, Console console)
-            throws FileNotFoundException, IOException, ConsoleAllocException, NoSuchFileOrDirectory,
-            InsufficientPermissionsException, CommandNotFoundException, OperationTimeoutException,
+            throws FileNotFoundException, IOException, ConsoleAllocException,
+            NoSuchFileOrDirectory, InsufficientPermissionsException,
+            CommandNotFoundException, OperationTimeoutException,
             ExecutionException, InvalidCommandDefinitionException {
         Console c = ensureConsole(context, console);
         CurrentDirExecutable executable =
@@ -417,12 +429,14 @@ public final class CommandHelper {
      * @see ListExecutable
      */
     public static FileSystemObject getFileInfo(Context context, String src, Console console)
-            throws FileNotFoundException, IOException, ConsoleAllocException, NoSuchFileOrDirectory,
-            InsufficientPermissionsException, CommandNotFoundException, OperationTimeoutException,
+            throws FileNotFoundException, IOException, ConsoleAllocException,
+            NoSuchFileOrDirectory, InsufficientPermissionsException,
+            CommandNotFoundException, OperationTimeoutException,
             ExecutionException, InvalidCommandDefinitionException {
         Console c = ensureConsole(context, console);
         ListExecutable executable =
-                c.getExecutableFactory().newCreator().createListExecutable(src, LIST_MODE.FILEINFO);
+                c.getExecutableFactory().
+                    newCreator().createListExecutable(src, LIST_MODE.FILEINFO);
         execute(context, executable, c);
         List<FileSystemObject> files = executable.getResult();
         if (files != null && files.size() > 0) {
@@ -450,8 +464,9 @@ public final class CommandHelper {
      * @see GroupsExecutable
      */
     public static List<Group> getGroups(Context context, Console console)
-            throws FileNotFoundException, IOException, ConsoleAllocException, NoSuchFileOrDirectory,
-            InsufficientPermissionsException, CommandNotFoundException, OperationTimeoutException,
+            throws FileNotFoundException, IOException, ConsoleAllocException,
+            NoSuchFileOrDirectory, InsufficientPermissionsException,
+            CommandNotFoundException, OperationTimeoutException,
             ExecutionException, InvalidCommandDefinitionException {
         Console c = ensureConsole(context, console);
         GroupsExecutable executable =
@@ -479,8 +494,9 @@ public final class CommandHelper {
     * @see IdentityExecutable
     */
    public static Identity getIdentity(Context context, Console console)
-           throws FileNotFoundException, IOException, ConsoleAllocException, NoSuchFileOrDirectory,
-           InsufficientPermissionsException, CommandNotFoundException, OperationTimeoutException,
+           throws FileNotFoundException, IOException, ConsoleAllocException,
+           NoSuchFileOrDirectory, InsufficientPermissionsException,
+           CommandNotFoundException, OperationTimeoutException,
            ExecutionException, InvalidCommandDefinitionException {
        Console c = ensureConsole(context, console);
        IdentityExecutable executable =
@@ -509,8 +525,9 @@ public final class CommandHelper {
      * @see ParentDirExecutable
      */
     public static String getParentDir(Context context, String src, Console console)
-            throws FileNotFoundException, IOException, ConsoleAllocException, NoSuchFileOrDirectory,
-            InsufficientPermissionsException, CommandNotFoundException, OperationTimeoutException,
+            throws FileNotFoundException, IOException, ConsoleAllocException,
+            NoSuchFileOrDirectory, InsufficientPermissionsException,
+            CommandNotFoundException, OperationTimeoutException,
             ExecutionException, InvalidCommandDefinitionException {
         Console c = ensureConsole(context, console);
         ParentDirExecutable executable =
@@ -540,11 +557,13 @@ public final class CommandHelper {
      * @see EchoExecutable
      */
     public static String getVariable(Context context, String msg, Console console)
-            throws FileNotFoundException, IOException, ConsoleAllocException, NoSuchFileOrDirectory,
-            InsufficientPermissionsException, CommandNotFoundException, OperationTimeoutException,
+            throws FileNotFoundException, IOException, ConsoleAllocException,
+            NoSuchFileOrDirectory, InsufficientPermissionsException,
+            CommandNotFoundException, OperationTimeoutException,
             ExecutionException, InvalidCommandDefinitionException {
         Console c = ensureConsole(context, console);
-        EchoExecutable executable = c.getExecutableFactory().newCreator().createEchoExecutable(msg);
+        EchoExecutable executable =
+                c.getExecutableFactory().newCreator().createEchoExecutable(msg);
         execute(context, executable, c);
         return executable.getResult();
     }
@@ -570,8 +589,9 @@ public final class CommandHelper {
      */
     public static List<FileSystemObject> listFiles(
             Context context, String directory, Console console)
-            throws FileNotFoundException, IOException, ConsoleAllocException, NoSuchFileOrDirectory,
-            InsufficientPermissionsException, CommandNotFoundException, OperationTimeoutException,
+            throws FileNotFoundException, IOException, ConsoleAllocException,
+            NoSuchFileOrDirectory, InsufficientPermissionsException,
+            CommandNotFoundException, OperationTimeoutException,
             ExecutionException, InvalidCommandDefinitionException {
         Console c = ensureConsole(context, console);
         ListExecutable executable =
@@ -603,8 +623,9 @@ public final class CommandHelper {
      * @see MoveExecutable
      */
     public static boolean move(Context context, String src, String dst, Console console)
-            throws FileNotFoundException, IOException, ConsoleAllocException, NoSuchFileOrDirectory,
-            InsufficientPermissionsException, CommandNotFoundException, OperationTimeoutException,
+            throws FileNotFoundException, IOException, ConsoleAllocException,
+            NoSuchFileOrDirectory, InsufficientPermissionsException,
+            CommandNotFoundException, OperationTimeoutException,
             ExecutionException, InvalidCommandDefinitionException, ReadOnlyFilesystemException {
         Console c = ensureConsole(context, console);
         MoveExecutable executable =
@@ -635,8 +656,9 @@ public final class CommandHelper {
      * @see CopyExecutable
      */
     public static boolean copy(Context context, String src, String dst, Console console)
-            throws FileNotFoundException, IOException, ConsoleAllocException, NoSuchFileOrDirectory,
-            InsufficientPermissionsException, CommandNotFoundException, OperationTimeoutException,
+            throws FileNotFoundException, IOException, ConsoleAllocException,
+            NoSuchFileOrDirectory, InsufficientPermissionsException,
+            CommandNotFoundException, OperationTimeoutException,
             ExecutionException, InvalidCommandDefinitionException, ReadOnlyFilesystemException {
         Console c = ensureConsole(context, console);
         CopyExecutable executable =
@@ -646,7 +668,7 @@ public final class CommandHelper {
     }
 
     /**
-     * Method that makes a search in a directory for search a term.
+     * Method that does a search in a directory tree seeking for some terms.
      *
      * @param context The current context (needed if console == null)
      * @param directory The "absolute" directory where start the search
@@ -670,13 +692,50 @@ public final class CommandHelper {
     public static AsyncResultExecutable findFiles(
             Context context, String directory, Query search,
             AsyncResultListener asyncResultListener, Console console)
-            throws FileNotFoundException, IOException, ConsoleAllocException, NoSuchFileOrDirectory,
-            InsufficientPermissionsException, CommandNotFoundException, OperationTimeoutException,
+            throws FileNotFoundException, IOException, ConsoleAllocException,
+            NoSuchFileOrDirectory, InsufficientPermissionsException,
+            CommandNotFoundException, OperationTimeoutException,
             ExecutionException, InvalidCommandDefinitionException {
         Console c = ensureConsole(context, console);
         FindExecutable executable =
                 c.getExecutableFactory().newCreator().
                     createFindExecutable(directory, search, asyncResultListener);
+        execute(context, executable, c);
+        return executable;
+    }
+
+    /**
+     * Method that compute the disk usage of a folder.
+     *
+     * @param context The current context (needed if console == null)
+     * @param directory The "absolute" directory where start the search
+     * @param asyncResultListener The partial result listener
+     * @param console The console in which execute the program.
+     * <code>null</code> to attach to the default console
+     * @return AsyncResultProgram The command executed in background
+     * @throws FileNotFoundException If the initial directory not exists
+     * @throws IOException If initial directory can't not be checked
+     * @throws InvalidCommandDefinitionException If the command has an invalid definition
+     * @throws NoSuchFileOrDirectory If the file or directory was not found
+     * @throws ConsoleAllocException If the console can't be allocated
+     * @throws InsufficientPermissionsException If an operation requires elevated permissions
+     * @throws CommandNotFoundException If the command was not found
+     * @throws OperationTimeoutException If the operation exceeded the maximum time of wait
+     * @throws ExecutionException If the operation returns a invalid exit code
+     * @see "SearchResult"
+     * @see AsyncResultExecutable
+     */
+    public static AsyncResultExecutable getFolderUsage(
+            Context context, String directory,
+            AsyncResultListener asyncResultListener, Console console)
+            throws FileNotFoundException, IOException, ConsoleAllocException,
+            NoSuchFileOrDirectory, InsufficientPermissionsException,
+            CommandNotFoundException, OperationTimeoutException,
+            ExecutionException, InvalidCommandDefinitionException {
+        Console c = ensureConsole(context, console);
+        FolderUsageExecutable executable =
+                c.getExecutableFactory().newCreator().
+                    createFolderUsageExecutable(directory, asyncResultListener);
         execute(context, executable, c);
         return executable;
     }
@@ -700,8 +759,9 @@ public final class CommandHelper {
      * @see DiskUsageExecutable
      */
     public static List<DiskUsage> getDiskUsage(Context context, Console console)
-            throws FileNotFoundException, IOException, ConsoleAllocException, NoSuchFileOrDirectory,
-            InsufficientPermissionsException, CommandNotFoundException, OperationTimeoutException,
+            throws FileNotFoundException, IOException, ConsoleAllocException,
+            NoSuchFileOrDirectory, InsufficientPermissionsException,
+            CommandNotFoundException, OperationTimeoutException,
             ExecutionException, InvalidCommandDefinitionException {
         Console c = ensureConsole(context, console);
         DiskUsageExecutable executable =
@@ -730,8 +790,9 @@ public final class CommandHelper {
      * @see DiskUsageExecutable
      */
     public static DiskUsage getDiskUsage(Context context, String dir, Console console)
-            throws FileNotFoundException, IOException, ConsoleAllocException, NoSuchFileOrDirectory,
-            InsufficientPermissionsException, CommandNotFoundException, OperationTimeoutException,
+            throws FileNotFoundException, IOException, ConsoleAllocException,
+            NoSuchFileOrDirectory, InsufficientPermissionsException,
+            CommandNotFoundException, OperationTimeoutException,
             ExecutionException, InvalidCommandDefinitionException {
         Console c = ensureConsole(context, console);
         DiskUsageExecutable executable =
@@ -763,8 +824,9 @@ public final class CommandHelper {
      * @see MountPointInfoExecutable
      */
     public static List<MountPoint> getMountPoints(Context context, Console console)
-            throws FileNotFoundException, IOException, ConsoleAllocException, NoSuchFileOrDirectory,
-            InsufficientPermissionsException, CommandNotFoundException, OperationTimeoutException,
+            throws FileNotFoundException, IOException, ConsoleAllocException,
+            NoSuchFileOrDirectory, InsufficientPermissionsException,
+            CommandNotFoundException, OperationTimeoutException,
             ExecutionException, InvalidCommandDefinitionException {
         Console c = ensureConsole(context, console);
         MountPointInfoExecutable executable =
@@ -794,8 +856,9 @@ public final class CommandHelper {
      * @see MountExecutable
      */
     public static boolean remount(Context context, MountPoint mp, boolean rw, Console console)
-            throws FileNotFoundException, IOException, ConsoleAllocException, NoSuchFileOrDirectory,
-            InsufficientPermissionsException, CommandNotFoundException, OperationTimeoutException,
+            throws FileNotFoundException, IOException, ConsoleAllocException,
+            NoSuchFileOrDirectory, InsufficientPermissionsException,
+            CommandNotFoundException, OperationTimeoutException,
             ExecutionException, InvalidCommandDefinitionException {
         Console c = ensureConsole(context, console);
         MountExecutable executable =
@@ -824,8 +887,9 @@ public final class CommandHelper {
      * @see QuickFolderSearchExecutable
      */
     public static List<String> quickFolderSearch(Context context, String regexp, Console console)
-            throws FileNotFoundException, IOException, ConsoleAllocException, NoSuchFileOrDirectory,
-            InsufficientPermissionsException, CommandNotFoundException, OperationTimeoutException,
+            throws FileNotFoundException, IOException, ConsoleAllocException,
+            NoSuchFileOrDirectory, InsufficientPermissionsException,
+            CommandNotFoundException, OperationTimeoutException,
             ExecutionException, InvalidCommandDefinitionException {
         Console c = ensureConsole(context, console);
         QuickFolderSearchExecutable executable =
@@ -839,6 +903,7 @@ public final class CommandHelper {
      * owned by the main process of this application).
      *
      * @param context The current context (needed if console == null)
+     * @param pid The process id of the shell where the command is running
      * @param processName The process name
      * @param console The console in which execute the program. <code>null</code>
      * to attach to the default console
@@ -854,13 +919,15 @@ public final class CommandHelper {
      * @throws ExecutionException If the operation returns a invalid exit code
      * @see ProcessIdExecutable
      */
-    public static Integer getProcessId(Context context, String processName, Console console)
-            throws FileNotFoundException, IOException, ConsoleAllocException, NoSuchFileOrDirectory,
-            InsufficientPermissionsException, CommandNotFoundException, OperationTimeoutException,
+    public static Integer getProcessId(
+            Context context, int pid, String processName, Console console)
+            throws FileNotFoundException, IOException, ConsoleAllocException,
+            NoSuchFileOrDirectory, InsufficientPermissionsException,
+            CommandNotFoundException, OperationTimeoutException,
             ExecutionException, InvalidCommandDefinitionException {
         Console c = ensureConsole(context, console);
         ProcessIdExecutable executable =
-                c.getExecutableFactory().newCreator().createProcessIdExecutable(processName);
+                c.getExecutableFactory().newCreator().createProcessIdExecutable(pid, processName);
         execute(context, executable, c);
         return executable.getResult();
     }
@@ -917,8 +984,8 @@ public final class CommandHelper {
         try {
             console.execute(executable);
         } catch (ReadOnlyFilesystemException rofEx) {
-            //ReadOnlyFilesystemException don't have sense if command is not writable
-            //WritableExecutable must be used with "writableExecute" method
+            // ReadOnlyFilesystemException don't have sense if command is not writable
+            // WritableExecutable must be used with "writableExecute" method
             throw new ExecutionException(rofEx.getMessage(), rofEx);
         }
     }

@@ -67,6 +67,22 @@ public final class ParseHelper {
      * @param src The unix string style line
      * @return FileSystemObject The file system object reference
      * @throws ParseException If the line can't be parsed
+     * @see #toFileSystemObject(String, String, boolean)
+     */
+    public static FileSystemObject toFileSystemObject(
+            final String parent, final String src) throws ParseException {
+        return toFileSystemObject(parent, src, false);
+    }
+
+    /**
+     * Method that parses and creates a {@link FileSystemObject} references from
+     * a unix string style line.
+     *
+     * @param parent The parent of the object
+     * @param src The unix string style line
+     * @param quick Do not resolve data (User and Group doesn't have a valid reference)
+     * @return FileSystemObject The file system object reference
+     * @throws ParseException If the line can't be parsed
      */
     //
     //<permission> <user> <group> <size> <last modified>  <name>
@@ -119,7 +135,7 @@ public final class ParseHelper {
     //  - if object is a symlink, the value must be "link name -> real name"
     //
     public static FileSystemObject toFileSystemObject(
-            final String parent, final String src) throws ParseException {
+            final String parent, final String src, final boolean quick) throws ParseException {
 
         String raw = src;
 
@@ -146,17 +162,27 @@ public final class ParseHelper {
         String szStartLine = raw.substring(0, matcher.start()).trim();
         String szEndLine = raw.substring(matcher.end()).trim();
 
-        //3.- Extract user (user name has no spaces. Can ensure this?)
+        //3.- Extract user (user name has no spaces.
         int pos = szStartLine.indexOf(" "); //$NON-NLS-1$
         String szUser = szStartLine.substring(0, pos).trim();
         szStartLine = szStartLine.substring(pos).trim();
-        User oUser = new User(Process.getUidForName(szUser), szUser);
+        User oUser = null;
+        if (!quick) {
+            oUser = new User(Process.getUidForName(szUser), szUser);
+        } else {
+            oUser = new User(-1, szUser);
+        }
 
-        //4.- Extract group (group name has no spaces. Can ensure this?)
+        //4.- Extract group (group name has no spaces.
         pos = szStartLine.indexOf(" "); //$NON-NLS-1$
         String szGroup = szStartLine.substring(0, (pos == -1) ? szStartLine.length() : pos).trim();
         szStartLine = szStartLine.substring((pos == -1) ? szStartLine.length() : pos).trim();
-        Group oGroup = new Group(Process.getGidForName(szGroup), szGroup);
+        Group oGroup = null;
+        if (!quick) {
+            oGroup = new Group(Process.getGidForName(szGroup), szGroup);
+        } else {
+            oGroup = new Group(-1, szGroup);
+        }
 
         //5.- Extract size
         long lSize = 0;
@@ -360,24 +386,24 @@ public final class ParseHelper {
      * Method that converts to bytes the string representation
      * of a size (10M, 1G, 0K, ...).
      *
-     * @param szSize The size as a string representation
+     * @param size The size as a string representation
      * @return long The size in bytes
      */
-    private static long toBytes(String szSize) {
-        long size = Long.parseLong(szSize.substring(0, szSize.length() - 1));
-        String unit = szSize.substring(szSize.length() - 1);
+    private static long toBytes(String size) {
+        long bytes = Long.parseLong(size.substring(0, size.length() - 1));
+        String unit = size.substring(size.length() - 1);
         if (unit.compareToIgnoreCase("G") == 0) { //$NON-NLS-1$
-            return size * 1024 * 1024 * 1024;
+            return bytes * 1024 * 1024 * 1024;
         }
         if (unit.compareToIgnoreCase("M") == 0) { //$NON-NLS-1$
-            return size * 1024 * 1024;
+            return bytes * 1024 * 1024;
         }
         if (unit.compareToIgnoreCase("K") == 0) { //$NON-NLS-1$
-            return size * 1024;
+            return bytes * 1024;
         }
 
         //Don't touch
-        return size;
+        return bytes;
     }
 
 }

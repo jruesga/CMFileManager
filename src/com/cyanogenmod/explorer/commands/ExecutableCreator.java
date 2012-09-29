@@ -80,10 +80,12 @@ public interface ExecutableCreator {
      * Method that creates an executable for create a new directory.
      *
      * @param dir The absolute path of the new directory
-     * @return CreateDirExecutable A {@link CreateDirExecutable} executable implementation reference
+     * @return CreateDirExecutable A {@link CreateDirExecutable} executable implementation
+     * reference
      * @throws CommandNotFoundException If the executable can't be created
      */
-    CreateDirExecutable createCreateDirectoryExecutable(String dir) throws CommandNotFoundException;
+    CreateDirExecutable createCreateDirectoryExecutable(String dir)
+            throws CommandNotFoundException;
 
     /**
      * Method that creates an executable for create a new file.
@@ -108,7 +110,8 @@ public interface ExecutableCreator {
      * Method that creates an executable for delete a directory.
      *
      * @param dir The absolute path to the directory to be deleted
-     * @return DeleteDirExecutable A {@link DeleteDirExecutable} executable implementation reference
+     * @return DeleteDirExecutable A {@link DeleteDirExecutable} executable implementation
+     * reference
      * @throws CommandNotFoundException If the executable can't be created
      */
     DeleteDirExecutable createDeleteDirExecutable(String dir) throws CommandNotFoundException;
@@ -127,7 +130,8 @@ public interface ExecutableCreator {
      * Method that creates an executable for retrieve the disk usage.
      * for all filesystems
      *
-     * @return DiskUsageExecutable A {@link DiskUsageExecutable} executable implementation reference
+     * @return DiskUsageExecutable A {@link DiskUsageExecutable} executable implementation
+     * reference
      * @throws CommandNotFoundException If the executable can't be created
      */
     DiskUsageExecutable createDiskUsageExecutable() throws CommandNotFoundException;
@@ -137,7 +141,8 @@ public interface ExecutableCreator {
      * of the filesystem of a directory
      *
      * @param dir The absolute path to the directory
-     * @return DiskUsageExecutable A {@link DiskUsageExecutable} executable implementation reference
+     * @return DiskUsageExecutable A {@link DiskUsageExecutable} executable implementation
+     * reference
      * @throws CommandNotFoundException If the executable can't be created
      */
     DiskUsageExecutable createDiskUsageExecutable(String dir) throws CommandNotFoundException;
@@ -153,7 +158,7 @@ public interface ExecutableCreator {
     EchoExecutable createEchoExecutable(String msg) throws CommandNotFoundException;
 
     /**
-     * Method that creates an executable for make search over the filesystem.
+     * Method that creates an executable for make searches over the filesystem.
      *
      * @param directory The directory where to search
      * @param query The term of the query
@@ -163,6 +168,19 @@ public interface ExecutableCreator {
      */
     FindExecutable createFindExecutable(
             String directory, Query query, AsyncResultListener asyncResultListener)
+            throws CommandNotFoundException;
+
+    /**
+     * Method that creates an executable for compute the disk usage of a folder.
+     *
+     * @param directory The directory where to search
+     * @param asyncResultListener The listener where to return partial results
+     * @return FolderUsageExecutable A {@link FolderUsageExecutable} executable
+     * implementation reference
+     * @throws CommandNotFoundException If the executable can't be created
+     */
+    FolderUsageExecutable createFolderUsageExecutable(
+            String directory, AsyncResultListener asyncResultListener)
             throws CommandNotFoundException;
 
     /**
@@ -191,7 +209,8 @@ public interface ExecutableCreator {
      * @throws CommandNotFoundException If the executable can't be created
      * @see LIST_MODE
      */
-    ListExecutable createListExecutable(String src, LIST_MODE mode) throws CommandNotFoundException;
+    ListExecutable createListExecutable(String src, LIST_MODE mode)
+            throws CommandNotFoundException;
 
     /**
      * Method that creates an executable for retrieve identity information of the current user.
@@ -229,28 +248,42 @@ public interface ExecutableCreator {
      * of a file system object.
      *
      * @param fso The absolute path to the file system object
-     * @return ParentDirExecutable A {@link ParentDirExecutable} executable implementation reference
+     * @return ParentDirExecutable A {@link ParentDirExecutable} executable implementation
+     * reference
      * @throws CommandNotFoundException If the executable can't be created
      */
     ParentDirExecutable createParentDirExecutable(String fso) throws CommandNotFoundException;
 
     /**
      * Method that creates an executable for retrieve operating system process identifier of a
+     * shell.
+     *
+     * @return ProcessIdExecutable A {@link ProcessIdExecutable} executable implementation
+     * reference
+     * @throws CommandNotFoundException If the executable can't be created
+     */
+    ProcessIdExecutable createShellProcessIdExecutable() throws CommandNotFoundException;
+
+    /**
+     * Method that creates an executable for retrieve operating system process identifier of a
      * process.
      *
+     * @param pid The shell process id where the process is running
      * @param processName The process name
-     * @return ProcessIdExecutable A {@link ProcessIdExecutable} executable implementation reference
+     * @return ProcessIdExecutable A {@link ProcessIdExecutable} executable implementation
+     * reference
      * @throws CommandNotFoundException If the executable can't be created
      */
     ProcessIdExecutable createProcessIdExecutable(
-            String processName) throws CommandNotFoundException;
+            int pid, String processName) throws CommandNotFoundException;
 
     /**
      * Method that creates an executable for quickly retrieve the name of directories
      * that matches a string.
      *
      * @param regexp The regular expression
-     * @return ProcessIdExecutable A {@link ProcessIdExecutable} executable implementation reference
+     * @return ProcessIdExecutable A {@link ProcessIdExecutable} executable implementation
+     * reference
      * @throws CommandNotFoundException If the executable can't be created
      */
     QuickFolderSearchExecutable createQuickFolderSearchExecutable(

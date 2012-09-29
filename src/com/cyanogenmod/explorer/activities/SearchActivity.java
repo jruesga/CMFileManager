@@ -541,7 +541,8 @@ public class SearchActivity extends Activity
                                         if (SearchActivity.this.mExecutable.cancel()) {
                                             if (SearchActivity.this.mAdapter != null) {
                                                 SearchActivity.this.toggleResults(
-                                                   SearchActivity.this.mAdapter.getCount() > 0);
+                                                   SearchActivity.this.
+                                                       mAdapter.getCount() > 0, true);
                                             }
                                             return true;
                                         }
@@ -598,7 +599,7 @@ public class SearchActivity extends Activity
                 //Toggle results
                 List<SearchResult> list = SearchActivity.this.mRestoreState.getSearchResultList();
                 String directory = SearchActivity.this.mRestoreState.getSearchDirectory();
-                SearchActivity.this.toggleResults(list.size() > 0);
+                SearchActivity.this.toggleResults(list.size() > 0, true);
                 setFoundItems(list.size(), directory);
 
                 //Set terms
@@ -672,17 +673,18 @@ public class SearchActivity extends Activity
         this.mAdapter.clear();
         this.mAdapter.notifyDataSetChanged();
         this.mSearchListView.setSelection(0);
-        toggleResults(false);
+        toggleResults(false, true);
     }
 
     /**
      * Method that toggle the views when there are results.
      *
      * @param hasResults Indicates if there are results
+     * @param showEmpty Show the empty list message
      */
-    private void toggleResults(boolean hasResults) {
+    private void toggleResults(boolean hasResults, boolean showEmpty) {
         this.mSearchListView.setVisibility(hasResults ? View.VISIBLE : View.INVISIBLE);
-        this.mEmptyListMsg.setVisibility(!hasResults ? View.VISIBLE : View.INVISIBLE);
+        this.mEmptyListMsg.setVisibility(!hasResults && showEmpty ? View.VISIBLE : View.INVISIBLE);
     }
 
     /**
@@ -866,7 +868,7 @@ public class SearchActivity extends Activity
             @Override
             @SuppressWarnings("synthetic-access")
             public void run() {
-                SearchActivity.this.toggleResults(false);
+                SearchActivity.this.toggleResults(false, false);
             }
         });
     }
@@ -901,31 +903,13 @@ public class SearchActivity extends Activity
     }
 
     /**
-     * Method that draw the results in the listview
-     */
-    private void drawResults() {
-        //Toggle results
-        this.toggleResults(this.mResultList.size() > 0);
-        setFoundItems(this.mResultList.size(), this.mSearchDirectory);
-
-        //Create the task for drawing the data
-        this.mDrawingSearchResultTask =
-                                new SearchResultDrawingAsyncTask(
-                                        this.mSearchListView,
-                                        this.mSearchWaiting,
-                                        this,
-                                        this.mResultList,
-                                        this.mQuery);
-        this.mDrawingSearchResultTask.execute();
-    }
-
-    /**
      * {@inheritDoc}
      */
     @Override
-    public void onPartialResult(final List<FileSystemObject> partialResults) {
+    @SuppressWarnings("unchecked")
+    public void onPartialResult(final Object partialResults) {
       //Saved in the global result list, for save at the end
-        SearchActivity.this.mResultList.addAll(partialResults);
+        SearchActivity.this.mResultList.addAll((List<FileSystemObject>)partialResults);
 
         //Notify progress
         this.mSearchListView.post(new Runnable() {
@@ -947,6 +931,25 @@ public class SearchActivity extends Activity
     public void onException(Exception cause) {
         //Capture the exception
         ExceptionUtil.translateException(this, cause);
+    }
+
+    /**
+     * Method that draw the results in the listview
+     */
+    private void drawResults() {
+        //Toggle results
+        this.toggleResults(this.mResultList.size() > 0, true);
+        setFoundItems(this.mResultList.size(), this.mSearchDirectory);
+
+        //Create the task for drawing the data
+        this.mDrawingSearchResultTask =
+                                new SearchResultDrawingAsyncTask(
+                                        this.mSearchListView,
+                                        this.mSearchWaiting,
+                                        this,
+                                        this.mResultList,
+                                        this.mQuery);
+        this.mDrawingSearchResultTask.execute();
     }
 
     /**

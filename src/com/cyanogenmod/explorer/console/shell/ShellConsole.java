@@ -24,6 +24,7 @@ import com.cyanogenmod.explorer.commands.Executable;
 import com.cyanogenmod.explorer.commands.ExecutableFactory;
 import com.cyanogenmod.explorer.commands.GroupsExecutable;
 import com.cyanogenmod.explorer.commands.IdentityExecutable;
+import com.cyanogenmod.explorer.commands.ProcessIdExecutable;
 import com.cyanogenmod.explorer.commands.shell.AsyncResultProgram;
 import com.cyanogenmod.explorer.commands.shell.Command;
 import com.cyanogenmod.explorer.commands.shell.InvalidCommandDefinitionException;
@@ -219,6 +220,18 @@ public abstract class ShellConsole extends Console {
                     throw new ConsoleAllocException("Shell not started."); //$NON-NLS-1$
                 }
             }
+
+            // Retrieve the PID of the shell
+            ProcessIdExecutable processIdCmd =
+                    getExecutableFactory().
+                        newCreator().createShellProcessIdExecutable();
+            execute(processIdCmd);
+            Integer pid = processIdCmd.getResult();
+            if (pid == null) {
+                throw new ConsoleAllocException(
+                        "Can't retrieve the PID of the shell."); //$NON-NLS-1$
+            }
+            this.mShell.setPid(pid.intValue());
 
             //Retrieve identity
             IdentityExecutable identityCmd =
@@ -452,6 +465,14 @@ public abstract class ShellConsole extends Console {
 
             //Retrieve exit code
             int exitCode = getExitCode(this.mSbIn);
+            if (isTrace()) {
+                Log.v(TAG,
+                        String.format("%s-%s, command: %s, exitCode: %s",  //$NON-NLS-1$
+                                ShellConsole.this.mShell.getId(),
+                                program.getId(),
+                                cmd,
+                                String.valueOf(exitCode)));
+            }
 
             //Check if invocation was successfully or not
             if (!program.isIgnoreShellStdErrCheck()) {
@@ -805,6 +826,7 @@ public abstract class ShellConsole extends Console {
                         Integer pid =
                                 CommandHelper.getProcessId(
                                         null,
+                                        this.mShell.getPid(),
                                         program.getCommand(),
                                         ExplorerApplication.getBackgroundConsole());
                         if (pid != null) {

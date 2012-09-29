@@ -16,11 +16,13 @@
 
 package com.cyanogenmod.explorer.ui.dialogs;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.res.Resources;
 import android.os.AsyncTask;
+import android.util.Log;
 import android.util.SparseArray;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -35,9 +37,12 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.cyanogenmod.explorer.R;
+import com.cyanogenmod.explorer.commands.AsyncResultExecutable;
+import com.cyanogenmod.explorer.commands.AsyncResultListener;
 import com.cyanogenmod.explorer.console.ConsoleBuilder;
 import com.cyanogenmod.explorer.model.AID;
 import com.cyanogenmod.explorer.model.FileSystemObject;
+import com.cyanogenmod.explorer.model.FolderUsage;
 import com.cyanogenmod.explorer.model.Group;
 import com.cyanogenmod.explorer.model.GroupPermission;
 import com.cyanogenmod.explorer.model.OthersPermission;
@@ -61,7 +66,9 @@ import java.text.DateFormat;
  */
 public class FsoPropertiesDialog
     implements OnClickListener, OnCheckedChangeListener, OnItemSelectedListener,
-    DialogInterface.OnCancelListener, DialogInterface.OnDismissListener {
+    DialogInterface.OnCancelListener, DialogInterface.OnDismissListener, AsyncResultListener {
+
+    private static final String TAG = "FsoPropertiesDialog"; //$NON-NLS-1$
 
     private static final String OWNER_TYPE = "owner"; //$NON-NLS-1$
     private static final String GROUP_TYPE = "group"; //$NON-NLS-1$
@@ -86,9 +93,15 @@ public class FsoPropertiesDialog
     private CheckBox[] mChkGroupPermission;
     private CheckBox[] mChkOthersPermission;
     private TextView mInfoMsgView;
+    private TextView mTvSize;
+    private TextView mTvContains;
 
     private boolean mIgnoreCheckEvents;
     private boolean mHasPrivileged;
+
+    private AsyncResultExecutable mFolderUsageExecutable;
+    private FolderUsage mFolderUsage;
+    private boolean mDrawingFolderUsage;
 
     private DialogInterface.OnDismissListener mOnDismissListener;
 
@@ -185,7 +198,9 @@ public class FsoPropertiesDialog
         TextView tvType = (TextView)contentView.findViewById(R.id.fso_properties_type);
         View vLinkRow = contentView.findViewById(R.id.fso_properties_link_row);
         TextView tvLink = (TextView)contentView.findViewById(R.id.fso_properties_link);
-        TextView tvSize = (TextView)contentView.findViewById(R.id.fso_properties_size);
+        this.mTvSize = (TextView)contentView.findViewById(R.id.fso_properties_size);
+        View vContatinsRow = contentView.findViewById(R.id.fso_properties_contains_row);
+        this.mTvContains = (TextView)contentView.findViewById(R.id.fso_properties_contains);
         TextView tvDate = (TextView)contentView.findViewById(R.id.fso_properties_date);
         this.mSpnOwner = (Spinner)contentView.findViewById(R.id.fso_properties_owner);
         this.mSpnGroup = (Spinner)contentView.findViewById(R.id.fso_properties_group);
@@ -203,10 +218,10 @@ public class FsoPropertiesDialog
         vLinkRow.setVisibility(this.mFso instanceof Symlink ? View.VISIBLE : View.GONE);
         String size = FileHelper.getHumanReadableSize(this.mFso);
         if (size.length() == 0) {
-            //TODO Compute Size
             size = "-"; //$NON-NLS-1$
         }
-        tvSize.setText(size);
+        this.mTvSize.setText(size);
+        this.mTvContains.setText("-");  //$NON-NLS-1$
         DateFormat df = DateFormat.getDateTimeInstance(DateFormat.SHORT, DateFormat.SHORT);
         tvDate.setText(df.format(this.mFso.getLastModifiedTime()));
 
@@ -218,6 +233,38 @@ public class FsoPropertiesDialog
         this.mSpnGroup.setOnItemSelectedListener(this);
         updatePermissions();
 
+        // Load owners and groups AIDs in background
+        loadAIDs();
+
+        // Load owners and groups AIDs in background
+        if (FileHelper.isDirectory(this.mFso)) {
+            vContatinsRow.setVisibility(View.VISIBLE);
+            computeFolderUsage();
+        }
+
+        // Check if permissions operations are allowed
+        try {
+            this.mHasPrivileged = ConsoleBuilder.getConsole(this.mContext).isPrivileged();
+        } catch (Throwable ex) {/**NON BLOCK**/}
+        this.mSpnOwner.setEnabled(this.mHasPrivileged);
+        this.mSpnGroup.setEnabled(this.mHasPrivileged);
+        setCheckBoxesPermissionsEnable(this.mChkUserPermission, this.mHasPrivileged);
+        setCheckBoxesPermissionsEnable(this.mChkGroupPermission, this.mHasPrivileged);
+        setCheckBoxesPermissionsEnable(this.mChkOthersPermission, this.mHasPrivileged);
+        if (!this.mHasPrivileged) {
+            this.mInfoMsgView.setVisibility(View.VISIBLE);
+            this.mInfoMsgView.setOnClickListener(this);
+        }
+
+        //Change the tab
+        onClick(this.mInfoViewTab);
+        this.mIgnoreCheckEvents = false;
+    }
+
+    /**
+     * Method that loads the AIDs in background
+     */
+    private void loadAIDs() {
         // Load owners and groups AIDs in background
         AsyncTask<Void, Void, SparseArray<AID>> aidsTask =
                         new AsyncTask<Void, Void, SparseArray<AID>>() {
@@ -272,24 +319,21 @@ public class FsoPropertiesDialog
             }
         };
         aidsTask.execute();
+    }
 
-        // Check if permissions operations are allowed
+    /**
+     * Method that computes the disk usage of the folder in background
+     */
+    private void computeFolderUsage() {
         try {
-            this.mHasPrivileged = ConsoleBuilder.getConsole(this.mContext).isPrivileged();
-        } catch (Throwable ex) {/**NON BLOCK**/}
-        this.mSpnOwner.setEnabled(this.mHasPrivileged);
-        this.mSpnGroup.setEnabled(this.mHasPrivileged);
-        setCheckBoxesPermissionsEnable(this.mChkUserPermission, this.mHasPrivileged);
-        setCheckBoxesPermissionsEnable(this.mChkGroupPermission, this.mHasPrivileged);
-        setCheckBoxesPermissionsEnable(this.mChkOthersPermission, this.mHasPrivileged);
-        if (!this.mHasPrivileged) {
-            this.mInfoMsgView.setVisibility(View.VISIBLE);
-            this.mInfoMsgView.setOnClickListener(this);
+            this.mFolderUsageExecutable =
+                CommandHelper.getFolderUsage(this.mContext, this.mFso.getFullPath(), this, null);
+        } catch (Exception cause) {
+            //Capture the exception
+            ExceptionUtil.translateException(this.mContext, cause, true, false);
+            this.mTvSize.setText(R.string.error_message);
+            this.mTvContains.setText(R.string.error_message);
         }
-
-        //Change the tab
-        onClick(this.mInfoViewTab);
-        this.mIgnoreCheckEvents = false;
     }
 
     /**
@@ -297,6 +341,7 @@ public class FsoPropertiesDialog
      */
     @Override
     public void onDismiss(DialogInterface dialog) {
+        cancelFolderUsageCommand();
         if (this.mOnDismissListener != null) {
             this.mOnDismissListener.onDismiss(dialog);
         }
@@ -307,6 +352,7 @@ public class FsoPropertiesDialog
      */
     @Override
     public void onCancel(DialogInterface dialog) {
+        cancelFolderUsageCommand();
         if (this.mOnDismissListener != null) {
             this.mOnDismissListener.onDismiss(dialog);
         }
@@ -376,6 +422,9 @@ public class FsoPropertiesDialog
         if (this.mIgnoreCheckEvents) return;
 
         try {
+            // Cancel the folder usage command
+            cancelFolderUsageCommand();
+
             // Retrieve the permissions and send to operating system
             Permissions permissions = getPermissions();
             if (!CommandHelper.changePermissions(
@@ -501,6 +550,9 @@ public class FsoPropertiesDialog
              this.mFso.getGroup().compareTo(group) == 0) {
             return;
         }
+
+        // Cancel the folder usage command
+        cancelFolderUsageCommand();
 
         // Change the owner and group of the fso
         try {
@@ -786,6 +838,123 @@ public class FsoPropertiesDialog
         this.mInfoMsgView.setText(msg);
         this.mInfoMsgView.setVisibility(
                 this.mHasPrivileged && msg == null ? View.GONE : View.VISIBLE);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void onAsyncStart() {
+        this.mDrawingFolderUsage = false;
+        this.mFolderUsage = new FolderUsage(this.mFso.getFullPath());
+        printFolderUsage(true, false);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void onAsyncEnd(final boolean cancelled) {
+        printFolderUsage(false, cancelled);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void onPartialResult(final Object partialResults) {
+        try {
+            // Do not saturate ui thread
+            if (this.mDrawingFolderUsage) {
+                return;
+            }
+
+            // Clone the reference
+            FsoPropertiesDialog.this.mFolderUsage =
+                    (FolderUsage)(((FolderUsage)partialResults).clone());
+            printFolderUsage(true, false);
+        }catch (Exception ex) {/** NON BLOCK**/}
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void onException(Exception cause) {
+        //Capture the exception
+        ExceptionUtil.translateException(this.mContext, cause);
+    }
+
+    /**
+     * Method that cancels the folder usage command execution
+     */
+    private void cancelFolderUsageCommand() {
+        // Cancel the folder usage command
+        try {
+            if (this.mFolderUsageExecutable != null &&
+                this.mFolderUsageExecutable.isCancelable() &&
+                !this.mFolderUsageExecutable.isCanceled()) {
+                this.mFolderUsageExecutable.cancel();
+            }
+        } catch (Exception ex) {
+            Log.e(TAG, "Failed to cancel the folder usage command", ex); //$NON-NLS-1$
+        }
+    }
+
+    /**
+     * Method that redraws the information about folder usage
+     *
+     * @param computing If the process if computing the data
+     * @param cancelled If the process was cancelled
+     */
+    private void printFolderUsage(final boolean computing, final boolean cancelled) {
+        // Mark that a drawing is in progress
+        this.mDrawingFolderUsage = true;
+
+        final Resources res = this.mContext.getResources();
+        if (cancelled) {
+            FsoPropertiesDialog.this.mTvSize.setText(R.string.cancelled_message);
+            FsoPropertiesDialog.this.mTvContains.setText(R.string.cancelled_message);
+
+            // End of drawing
+            this.mDrawingFolderUsage = false;
+        } else {
+            // Calculate size prior to use ui thread
+            final String size = FileHelper.getHumanReadableSize(this.mFolderUsage.getTotalSize());
+
+            // Compute folders and files string
+            String folders = res.getQuantityString(
+                                        R.plurals.fso_properties_dialog_folders,
+                                        this.mFolderUsage.getNumberOfFolders(),
+                                        Integer.valueOf(this.mFolderUsage.getNumberOfFolders()));
+            String files = res.getQuantityString(
+                                        R.plurals.fso_properties_dialog_files,
+                                        this.mFolderUsage.getNumberOfFiles(),
+                                        Integer.valueOf(this.mFolderUsage.getNumberOfFiles()));
+            final String contains = res.getString(
+                                        R.string.fso_properties_dialog_folder_items,
+                                        folders, files);
+
+            // Update the dialog
+            ((Activity)this.mContext).runOnUiThread(new Runnable() {
+                @Override
+                @SuppressWarnings("synthetic-access")
+                public void run() {
+                    if (computing) {
+                        FsoPropertiesDialog.this.mTvSize.setText(
+                                res.getString(R.string.computing_message, size));
+                        FsoPropertiesDialog.this.mTvContains.setText(
+                                res.getString(R.string.computing_message_ln, contains));
+                    } else {
+                        FsoPropertiesDialog.this.mTvSize.setText(size);
+                        FsoPropertiesDialog.this.mTvContains.setText(contains);
+                    }
+
+                    // End of drawing
+                    FsoPropertiesDialog.this.mDrawingFolderUsage = false;
+                }
+            });
+        }
     }
 
 }

@@ -834,6 +834,7 @@ public class SearchActivity extends Activity
         }
 
         ActionsDialog dialog = new ActionsDialog(this, fso);
+        dialog.setOnRequestRefreshListener(this);
         dialog.show();
     }
 

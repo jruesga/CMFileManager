@@ -19,6 +19,14 @@
   <!-- Global Actions -->
   <group android:id="@+id/mnu_actions_global">
     <item
+      android:id="@+id/mnu_actions_properties_current_folder"
+      android:showAsAction="always"
+      android:title="@string/actions_menu_properties_current_folder"/>
+    <item
+      android:id="@+id/mnu_actions_refresh"
+      android:showAsAction="always"
+      android:title="@string/actions_menu_refresh"/>
+    <item
       android:id="@+id/mnu_actions_new_directory"
       android:showAsAction="always"
       android:title="@string/actions_menu_new_directory"/>

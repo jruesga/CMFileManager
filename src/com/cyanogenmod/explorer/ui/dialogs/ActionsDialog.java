@@ -49,6 +49,7 @@ import com.cyanogenmod.explorer.util.SelectionHelper;
 public class ActionsDialog implements OnItemClickListener, OnItemLongClickListener {
 
     private final Context mContext;
+    private final boolean mGlobal;
 
     private AlertDialog mDialog;
     private ListView mListView;
@@ -62,33 +63,19 @@ public class ActionsDialog implements OnItemClickListener, OnItemLongClickListen
      * Constructor of <code>ActionsDialog</code>.
      *
      * @param context The current context
-     */
-    public ActionsDialog(Context context) {
-        super();
-
-        // Initialize data
-        this.mFso = null;
-        this.mContext = context;
-
-        //Initialize dialog
-        init(context, R.id.mnu_actions_global);
-    }
-
-    /**
-     * Constructor of <code>ActionsDialog</code>.
-     *
-     * @param context The current context
      * @param fso The file system object associated
+     * @param global If the menu to display will be the global one (Global actions)
      */
-    public ActionsDialog(Context context, FileSystemObject fso) {
+    public ActionsDialog(Context context, FileSystemObject fso, boolean global) {
         super();
 
         //Save the data
         this.mFso = fso;
         this.mContext = context;
+        this.mGlobal = global;
 
         //Initialize dialog
-        init(context, R.id.mnu_actions_fso);
+        init(context, global ? R.id.mnu_actions_global : R.id.mnu_actions_fso);
     }
 
     /**
@@ -173,6 +160,14 @@ public class ActionsDialog implements OnItemClickListener, OnItemLongClickListen
                         this.mContext, this.mFso, this.mOnRequestRefreshListener);
                 return;
 
+            //- Delete
+            case R.id.mnu_actions_refresh:
+                this.mDialog.dismiss();
+                if (this.mOnRequestRefreshListener != null) {
+                    this.mOnRequestRefreshListener.onRequestRefresh(null); //Refresh all
+                }
+                return;
+
             //- Select/Deselect
             case R.id.mnu_actions_select:
             case R.id.mnu_actions_deselect:
@@ -193,6 +188,7 @@ public class ActionsDialog implements OnItemClickListener, OnItemLongClickListen
 
             //- Properties
             case R.id.mnu_actions_properties:
+            case R.id.mnu_actions_properties_current_folder:
                 ActionsPolicy.showPropertiesDialog(
                         this.mContext, this.mFso, this.mOnRequestRefreshListener);
                 break;
@@ -289,7 +285,7 @@ public class ActionsDialog implements OnItemClickListener, OnItemLongClickListen
      */
     private void configureMenu(Menu menu) {
         // Check actions that needs a valid reference
-        if (this.mFso != null) {
+        if (!this.mGlobal && this.mFso != null) {
             //- Select/Deselect -> Only one of them
             if (this.mOnSelectionListener != null) {
                 boolean selected =

@@ -657,7 +657,7 @@ public class NavigationActivity extends Activity
             //Action Bar buttons
             //######################
             case R.id.ab_actions:
-                openActions();
+                openActionsDialog(getCurrentNavigationView().getCurrentDir(), true);
                 break;
 
             case R.id.ab_bookmarks:
@@ -758,7 +758,11 @@ public class NavigationActivity extends Activity
     @Override
     public void onRequestRefresh(Object o) {
         if (o instanceof FileSystemObject) {
+            // Refresh only the item
             this.getCurrentNavigationView().refresh((FileSystemObject)o);
+        } else if (o == null) {
+            // Refresh all
+            getCurrentNavigationView().refresh();
         }
     }
 
@@ -785,27 +789,8 @@ public class NavigationActivity extends Activity
      */
     @Override
     public void onRequestMenu(NavigationView navView, FileSystemObject item) {
-        // Prior to show the dialog, refresh the item reference
-        FileSystemObject fso = null;
-        try {
-            fso = CommandHelper.getFileInfo(this, item.getFullPath(), null);
-
-        } catch (Exception e) {
-            // Notify the user
-            ExceptionUtil.translateException(this, e);
-
-            // Remove the object
-            if (e instanceof FileNotFoundException || e instanceof NoSuchFileOrDirectory) {
-                getCurrentNavigationView().removeItem(item);
-            }
-            return;
-        }
-
-        // Show the dialog
-        ActionsDialog dialog = new ActionsDialog(this, fso);
-        dialog.setOnRequestRefreshListener(this);
-        dialog.setOnSelectionListener(getCurrentNavigationView());
-        dialog.show();
+        // Show the actions dialog
+        openActionsDialog(item, false);
     }
 
     /**
@@ -1154,9 +1139,41 @@ public class NavigationActivity extends Activity
 
     /**
      * Method that opens the actions dialog
+     *
+     * @param item The path or the {@link FileSystemObject}
+     * @param global If the menu to display is the one with global actions
      */
-    private void openActions() {
-        ActionsDialog dialog = new ActionsDialog(this);
+    private void openActionsDialog(Object item, boolean global) {
+        // Resolve the full path
+        String path = String.valueOf(item);
+        if (item instanceof FileSystemObject) {
+            path = ((FileSystemObject)item).getFullPath();
+        }
+
+        // Prior to show the dialog, refresh the item reference
+        FileSystemObject fso = null;
+        try {
+            fso = CommandHelper.getFileInfo(this, path, null);
+
+        } catch (Exception e) {
+            // Notify the user
+            ExceptionUtil.translateException(this, e);
+
+            // Remove the object
+            if (e instanceof FileNotFoundException || e instanceof NoSuchFileOrDirectory) {
+                // If have a FileSystemObject reference then there is no need to search
+                // the path (less resources used)
+                if (item instanceof FileSystemObject) {
+                    getCurrentNavigationView().removeItem((FileSystemObject)item);
+                } else {
+                    getCurrentNavigationView().removeItem((String)item);
+                }
+            }
+            return;
+        }
+
+        // Show the dialog
+        ActionsDialog dialog = new ActionsDialog(this, fso, global);
         dialog.setOnRequestRefreshListener(this);
         dialog.setOnSelectionListener(getCurrentNavigationView());
         dialog.show();

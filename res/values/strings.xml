@@ -362,6 +362,10 @@
 
   <!-- Actions Dialog * Title -->
   <string name="actions_dialog_title">Actions</string>
+  <!-- Actions Dialog * Menu * Properties of current folder -->
+  <string name="actions_menu_properties_current_folder">Properties</string>
+  <!-- Actions Dialog * Menu * Refresh -->
+  <string name="actions_menu_refresh">Refresh</string>
   <!-- Actions Dialog * Menu * New directory -->
   <string name="actions_menu_new_directory">New folder</string>
   <!-- Actions Dialog * Menu * New file -->

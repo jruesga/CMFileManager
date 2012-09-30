@@ -228,8 +228,6 @@ public class SearchResultAdapter extends ArrayAdapter<SearchResult> implements O
         return data;
     }
 
-
-
     /**
      * Returns the position of the specified item in the array.
      *

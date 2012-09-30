@@ -174,7 +174,7 @@ public final class MimeTypeHelper {
         }
 
         // Check  system file
-        if (fso instanceof SystemFile) {
+        if (FileHelper.isSystemFile(fso)) {
             return R.drawable.fso_type_system;
         }
         // Check if the fso is executable
@@ -208,16 +208,16 @@ public final class MimeTypeHelper {
         }
 
         // System files
-        if (fso instanceof BlockDevice) {
+        if (fso instanceof BlockDevice || FileHelper.isSymlinkRefBlockDevice(fso)) {
             return context.getString(R.string.device_blockdevice);
         }
-        if (fso instanceof CharacterDevice) {
+        if (fso instanceof CharacterDevice || FileHelper.isSymlinkRefCharacterDevice(fso)) {
             return context.getString(R.string.device_characterdevice);
         }
-        if (fso instanceof NamedPipe) {
+        if (fso instanceof NamedPipe || FileHelper.isSymlinkRefNamedPipe(fso)) {
             return context.getString(R.string.device_namedpipe);
         }
-        if (fso instanceof DomainSocket) {
+        if (fso instanceof DomainSocket || FileHelper.isSymlinkRefDomainSocket(fso)) {
             return context.getString(R.string.device_domainsocket);
         }
 

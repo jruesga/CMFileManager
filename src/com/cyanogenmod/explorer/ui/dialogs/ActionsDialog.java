@@ -36,10 +36,10 @@ import com.cyanogenmod.explorer.R;
 import com.cyanogenmod.explorer.adapters.TwoColumnsMenuListAdapter;
 import com.cyanogenmod.explorer.listeners.OnRequestRefreshListener;
 import com.cyanogenmod.explorer.listeners.OnSelectionListener;
-import com.cyanogenmod.explorer.model.Directory;
 import com.cyanogenmod.explorer.model.FileSystemObject;
 import com.cyanogenmod.explorer.ui.policy.ActionsPolicy;
 import com.cyanogenmod.explorer.util.DialogHelper;
+import com.cyanogenmod.explorer.util.FileHelper;
 import com.cyanogenmod.explorer.util.SelectionHelper;
 
 /**
@@ -296,8 +296,8 @@ public class ActionsDialog implements OnItemClickListener, OnItemLongClickListen
                 menu.removeItem(R.id.mnu_actions_deselect);
             }
 
-            //- Open/Open with -> Only when the fso is a folder
-            if (this.mFso instanceof Directory) {
+            //- Open/Open with -> Only when the fso is not a folder or is not a system file
+            if (FileHelper.isDirectory(this.mFso) || FileHelper.isSystemFile(this.mFso)) {
                 menu.removeItem(R.id.mnu_actions_open);
                 menu.removeItem(R.id.mnu_actions_open_with);
             }

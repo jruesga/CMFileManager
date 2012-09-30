@@ -23,8 +23,12 @@ import android.content.res.Resources;
 import com.cyanogenmod.explorer.ExplorerApplication;
 import com.cyanogenmod.explorer.R;
 import com.cyanogenmod.explorer.commands.shell.ResolveLinkCommand;
+import com.cyanogenmod.explorer.model.BlockDevice;
+import com.cyanogenmod.explorer.model.CharacterDevice;
 import com.cyanogenmod.explorer.model.Directory;
+import com.cyanogenmod.explorer.model.DomainSocket;
 import com.cyanogenmod.explorer.model.FileSystemObject;
+import com.cyanogenmod.explorer.model.NamedPipe;
 import com.cyanogenmod.explorer.model.ParentDirectory;
 import com.cyanogenmod.explorer.model.Symlink;
 import com.cyanogenmod.explorer.model.SystemFile;
@@ -251,7 +255,6 @@ public final class FileHelper {
         return false;
     }
 
-
     /**
      * Method that check if the file system object is a {@link Symlink} and
      * the link reference is a directory.
@@ -267,6 +270,76 @@ public final class FileHelper {
     }
 
     /**
+     * Method that check if the file system object is a {@link Symlink} and
+     * the link reference is a system file.
+     *
+     * @param fso The file system object to check
+     * @return boolean If file system object the link reference is a system file
+     */
+    public static boolean isSymlinkRefSystemFile(FileSystemObject fso) {
+        if (!hasSymlinkRef(fso)) {
+            return false;
+        }
+        return ((Symlink)fso).getLinkRef() instanceof SystemFile;
+    }
+
+    /**
+     * Method that check if the file system object is a {@link Symlink} and
+     * the link reference is a block device.
+     *
+     * @param fso The file system object to check
+     * @return boolean If file system object the link reference is a block device
+     */
+    public static boolean isSymlinkRefBlockDevice(FileSystemObject fso) {
+        if (!hasSymlinkRef(fso)) {
+            return false;
+        }
+        return ((Symlink)fso).getLinkRef() instanceof BlockDevice;
+    }
+
+    /**
+     * Method that check if the file system object is a {@link Symlink} and
+     * the link reference is a character device.
+     *
+     * @param fso The file system object to check
+     * @return boolean If file system object the link reference is a character device
+     */
+    public static boolean isSymlinkRefCharacterDevice(FileSystemObject fso) {
+        if (!hasSymlinkRef(fso)) {
+            return false;
+        }
+        return ((Symlink)fso).getLinkRef() instanceof CharacterDevice;
+    }
+
+    /**
+     * Method that check if the file system object is a {@link Symlink} and
+     * the link reference is a named pipe.
+     *
+     * @param fso The file system object to check
+     * @return boolean If file system object the link reference is a named pipe
+     */
+    public static boolean isSymlinkRefNamedPipe(FileSystemObject fso) {
+        if (!hasSymlinkRef(fso)) {
+            return false;
+        }
+        return ((Symlink)fso).getLinkRef() instanceof NamedPipe;
+    }
+
+    /**
+     * Method that check if the file system object is a {@link Symlink} and
+     * the link reference is a domain socket.
+     *
+     * @param fso The file system object to check
+     * @return boolean If file system object the link reference is a domain socket
+     */
+    public static boolean isSymlinkRefDomainSocket(FileSystemObject fso) {
+        if (!hasSymlinkRef(fso)) {
+            return false;
+        }
+        return ((Symlink)fso).getLinkRef() instanceof DomainSocket;
+    }
+
+    /**
      * Method that checks if a file system object is a directory (real o symlink).
      *
      * @param fso The file system object to check
@@ -277,6 +350,22 @@ public final class FileHelper {
             return true;
         }
         if (isSymlinkRefDirectory(fso)) {
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * Method that checks if a file system object is a system file (real o symlink).
+     *
+     * @param fso The file system object to check
+     * @return boolean If file system object is a system file
+     */
+    public static boolean isSystemFile(FileSystemObject fso) {
+        if (fso instanceof SystemFile) {
+            return true;
+        }
+        if (isSymlinkRefSystemFile(fso)) {
             return true;
         }
         return false;

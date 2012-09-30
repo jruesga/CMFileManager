@@ -185,13 +185,38 @@ public final class MimeTypeHelper {
     }
 
     /**
+     * Method that returns the mime/type of the {@link FileSystemObject}.
+     *
+     * @param context The current context
+     * @param fso The file system object
+     * @return String The mime/type
+     */
+    public static final String getMimeType(Context context, FileSystemObject fso) {
+        //Ensure that mime types are loaded
+        if (sMimeTypes == null) {
+            loadMimeTypes(context);
+        }
+
+        //Get the extension and delivery
+        String ext = FileHelper.getExtension(fso);
+        if (ext != null) {
+            //Load from the database of mime types
+            MimeTypeInfo mimeTypeInfo = sMimeTypes.get(ext);
+            if (mimeTypeInfo != null) {
+                return mimeTypeInfo.mMimeType;
+            }
+        }
+        return null;
+    }
+
+    /**
      * Method that returns the mime/type description of the {@link FileSystemObject}.
      *
      * @param context The current context
      * @param fso The file system object
      * @return String The mime/type description
      */
-    public static final String getDescription(Context context, FileSystemObject fso) {
+    public static final String getMimeTypeDescription(Context context, FileSystemObject fso) {
         Resources res = context.getResources();
 
         //Ensure that mime types are loaded

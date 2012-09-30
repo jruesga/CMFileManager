@@ -40,7 +40,12 @@
 
     <provider
       android:name=".providers.RecentSearchesContentProvider"
-      android:authorities="com.cyanogenmod.explorer.providers.RecentSearchesContentProvider"
+      android:authorities="com.cyanogenmod.explorer.providers.recentsearches"
+      android:exported="false" />
+
+    <provider
+      android:name=".providers.BookmarksContentProvider"
+      android:authorities="com.cyanogenmod.explorer.providers.bookmarks"
       android:exported="false" />
 
     <activity

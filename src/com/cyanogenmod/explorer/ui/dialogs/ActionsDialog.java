@@ -148,25 +148,25 @@ public class ActionsDialog implements OnItemClickListener, OnItemLongClickListen
             //- Create new object
             case R.id.mnu_actions_new_directory:
             case R.id.mnu_actions_new_file:
+                // Dialog is dismissed inside showInputNameDialog
                 if (this.mOnSelectionListener != null) {
                     showInputNameDialog(menuItem);
+                    return;
                 }
-                return;
+                break;
 
             //- Delete
             case R.id.mnu_actions_delete:
-                this.mDialog.dismiss();
                 ActionsPolicy.removeFileSystemObject(
                         this.mContext, this.mFso, this.mOnRequestRefreshListener);
-                return;
+                break;
 
             //- Delete
             case R.id.mnu_actions_refresh:
-                this.mDialog.dismiss();
                 if (this.mOnRequestRefreshListener != null) {
                     this.mOnRequestRefreshListener.onRequestRefresh(null); //Refresh all
                 }
-                return;
+                break;
 
             //- Select/Deselect
             case R.id.mnu_actions_select:
@@ -184,6 +184,21 @@ public class ActionsDialog implements OnItemClickListener, OnItemLongClickListen
                 if (this.mOnSelectionListener != null) {
                     this.mOnSelectionListener.onDeselectAllVisibleItems();
                 }
+                break;
+
+            //- Open
+            case R.id.mnu_actions_open:
+                ActionsPolicy.openFileSystemObject(this.mContext, this.mFso, false);
+                break;
+            //- Open with
+            case R.id.mnu_actions_open_with:
+                ActionsPolicy.openFileSystemObject(this.mContext, this.mFso, true);
+                break;
+
+            //- Add to bookmarks
+            case R.id.mnu_actions_add_to_bookmarks:
+            case R.id.mnu_actions_add_to_bookmarks_current_folder:
+                ActionsPolicy.addToBookmarks(this.mContext, this.mFso);
                 break;
 
             //- Properties
@@ -304,6 +319,12 @@ public class ActionsDialog implements OnItemClickListener, OnItemLongClickListen
                 menu.removeItem(R.id.mnu_actions_open);
                 menu.removeItem(R.id.mnu_actions_open_with);
             }
+        }
+
+        //- Add to bookmarks -> Only directories
+        if (this.mFso != null && !FileHelper.isDirectory(this.mFso)) {
+            menu.removeItem(R.id.mnu_actions_add_to_bookmarks);
+            menu.removeItem(R.id.mnu_actions_add_to_bookmarks_current_folder);
         }
     }
 }

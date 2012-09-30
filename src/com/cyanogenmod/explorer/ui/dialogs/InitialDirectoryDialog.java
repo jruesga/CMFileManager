@@ -26,14 +26,12 @@ import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.cyanogenmod.explorer.R;
-import com.cyanogenmod.explorer.model.Bookmark;
 import com.cyanogenmod.explorer.preferences.ExplorerSettings;
 import com.cyanogenmod.explorer.preferences.Preferences;
 import com.cyanogenmod.explorer.ui.widgets.DirectoryInlineAutocompleteTextView;
 import com.cyanogenmod.explorer.util.DialogHelper;
 
 import java.io.File;
-import java.util.List;
 
 /**
  * A class that wraps a dialog for showing list of consoles for choosing one.
@@ -64,9 +62,8 @@ public class InitialDirectoryDialog implements DialogInterface.OnClickListener {
      * Constructor of <code>InitialDirectoryDialog</code>.
      *
      * @param context The current context
-     * @param bookmarks The current bookmarks
      */
-    public InitialDirectoryDialog(Context context, final List<Bookmark> bookmarks) {
+    public InitialDirectoryDialog(Context context) {
         super();
 
         //Save the context

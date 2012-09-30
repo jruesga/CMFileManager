@@ -38,16 +38,16 @@ public final class BookmarksHelper {
      * @return The associated icon
      */
     public static int getIcon(Bookmark bookmark) {
-        if (bookmark.getType().compareTo(Bookmark.BOOKMARK_TYPE.HOME) == 0) {
+        if (bookmark.mType.compareTo(Bookmark.BOOKMARK_TYPE.HOME) == 0) {
             return R.drawable.ic_holo_light_bookmarks_home;
         }
-        if (bookmark.getType().compareTo(Bookmark.BOOKMARK_TYPE.FILESYSTEM) == 0) {
+        if (bookmark.mType.compareTo(Bookmark.BOOKMARK_TYPE.FILESYSTEM) == 0) {
             return R.drawable.ic_holo_light_bookmarks_filesystem;
         }
-        if (bookmark.getType().compareTo(Bookmark.BOOKMARK_TYPE.SDCARD) == 0) {
+        if (bookmark.mType.compareTo(Bookmark.BOOKMARK_TYPE.SDCARD) == 0) {
             return R.drawable.ic_holo_light_bookmarks_sdcard;
         }
-        if (bookmark.getType().compareTo(Bookmark.BOOKMARK_TYPE.USB) == 0) {
+        if (bookmark.mType.compareTo(Bookmark.BOOKMARK_TYPE.USB) == 0) {
             return R.drawable.ic_holo_light_bookmarks_usb;
         }
         //Bookmark add by the user

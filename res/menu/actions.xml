@@ -50,6 +50,10 @@
       android:id="@+id/mnu_actions_move_selection"
       android:showAsAction="always"
       android:title="@string/actions_menu_move_selection"/>
+    <item
+      android:id="@+id/mnu_actions_add_to_bookmarks_current_folder"
+      android:showAsAction="always"
+      android:title="@string/actions_menu_add_to_bookmarks_current_folder"/>
   </group>
 
   <!-- FileSystemObject Actions -->
@@ -82,6 +86,10 @@
       android:id="@+id/mnu_actions_open_with"
       android:showAsAction="always"
       android:title="@string/actions_menu_open_with"/>
+    <item
+      android:id="@+id/mnu_actions_add_to_bookmarks"
+      android:showAsAction="always"
+      android:title="@string/actions_menu_add_to_bookmarks"/>
   </group>
 
 </menu>

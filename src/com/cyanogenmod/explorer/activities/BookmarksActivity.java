@@ -22,6 +22,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.content.res.XmlResourceParser;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.storage.StorageManager;
@@ -42,7 +43,7 @@ import com.cyanogenmod.explorer.R;
 import com.cyanogenmod.explorer.adapters.BookmarksAdapter;
 import com.cyanogenmod.explorer.model.Bookmark;
 import com.cyanogenmod.explorer.model.Bookmark.BOOKMARK_TYPE;
-import com.cyanogenmod.explorer.preferences.BookmarksDatabase;
+import com.cyanogenmod.explorer.preferences.Bookmarks;
 import com.cyanogenmod.explorer.preferences.ExplorerSettings;
 import com.cyanogenmod.explorer.preferences.Preferences;
 import com.cyanogenmod.explorer.ui.dialogs.InitialDirectoryDialog;
@@ -176,7 +177,7 @@ public class BookmarksActivity extends Activity implements OnItemClickListener, 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         Bookmark bookmark = ((BookmarksAdapter)parent.getAdapter()).getItem(position);
-        back(false, bookmark.getDirectory());
+        back(false, bookmark.mDirectory);
     }
 
     /**
@@ -190,10 +191,9 @@ public class BookmarksActivity extends Activity implements OnItemClickListener, 
       Bookmark bookmark = adapter.getItem(position);
 
       //Configure home
-      if (bookmark.getType().compareTo(BOOKMARK_TYPE.HOME) == 0) {
+      if (bookmark.mType.compareTo(BOOKMARK_TYPE.HOME) == 0) {
           //Show a dialog for configure initial directory
-          List<Bookmark> bookmarks = BookmarksDatabase.getInstance().getAllBookmarks();
-          InitialDirectoryDialog dialog = new InitialDirectoryDialog(this, bookmarks);
+          InitialDirectoryDialog dialog = new InitialDirectoryDialog(this);
           dialog.setOnValueChangedListener(new InitialDirectoryDialog.OnValueChangedListener() {
               @Override
               @SuppressWarnings("synthetic-access")
@@ -206,8 +206,8 @@ public class BookmarksActivity extends Activity implements OnItemClickListener, 
       }
 
       //Remove bookmark
-      if (bookmark.getType().compareTo(BOOKMARK_TYPE.USER_DEFINED) == 0) {
-          boolean result = BookmarksDatabase.getInstance().removeBookmark(bookmark);
+      if (bookmark.mType.compareTo(BOOKMARK_TYPE.USER_DEFINED) == 0) {
+          boolean result = Bookmarks.removeBookmark(this, bookmark);
           if (!result) {
               //Show warning
               DialogHelper.showToast(this, R.string.msgs_operation_failure, Toast.LENGTH_SHORT);
@@ -421,9 +421,16 @@ public class BookmarksActivity extends Activity implements OnItemClickListener, 
      *
      * @return List<Bookmark> The bookmarks loaded
      */
-    @SuppressWarnings("static-method")
     private List<Bookmark> loadUserBookmarks() {
-        return BookmarksDatabase.getInstance().getAllBookmarks();
+        List<Bookmark> bookmarks = new ArrayList<Bookmark>();
+        Cursor cursor = Bookmarks.getAllBookmarks(this.getContentResolver());
+        if (cursor != null && cursor.moveToFirst()) {
+            do {
+                bookmarks.add(new Bookmark(cursor));
+            } while (cursor.moveToNext());
+            cursor.close();
+        }
+        return bookmarks;
     }
 }
 

@@ -19,6 +19,10 @@ package com.cyanogenmod.explorer.ui.policy;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.util.Log;
 import android.widget.Toast;
@@ -27,15 +31,20 @@ import com.cyanogenmod.explorer.R;
 import com.cyanogenmod.explorer.console.RelaunchableException;
 import com.cyanogenmod.explorer.listeners.OnRequestRefreshListener;
 import com.cyanogenmod.explorer.listeners.OnSelectionListener;
+import com.cyanogenmod.explorer.model.Bookmark;
+import com.cyanogenmod.explorer.model.Bookmark.BOOKMARK_TYPE;
 import com.cyanogenmod.explorer.model.FileSystemObject;
+import com.cyanogenmod.explorer.preferences.Bookmarks;
 import com.cyanogenmod.explorer.ui.dialogs.FsoPropertiesDialog;
 import com.cyanogenmod.explorer.util.CommandHelper;
 import com.cyanogenmod.explorer.util.DialogHelper;
 import com.cyanogenmod.explorer.util.ExceptionUtil;
 import com.cyanogenmod.explorer.util.ExceptionUtil.OnRelaunchCommandResult;
 import com.cyanogenmod.explorer.util.FileHelper;
+import com.cyanogenmod.explorer.util.MimeTypeHelper;
 
 import java.io.File;
+import java.util.List;
 
 
 /**
@@ -115,6 +124,108 @@ public final class ActionsPolicy {
             }
         });
         dialog.show();
+    }
+
+    /**
+     * Method that opens a {@link FileSystemObject} with the default application registered
+     * by the system.
+     *
+     * @param ctx The current context
+     * @param fso The file system object
+     * @param choose If allow the user to select the app to open with
+     */
+    public static void openFileSystemObject(
+            final Context ctx, final FileSystemObject fso, final boolean choose) {
+        try {
+            // Create the intent to
+            Intent intent = new Intent();
+            intent.setAction(android.content.Intent.ACTION_VIEW);
+
+            // Obtain the mime/type and passed it to intent
+            String mime = MimeTypeHelper.getMimeType(ctx, fso);
+            File file = new File(fso.getFullPath());
+            if (mime != null) {
+                intent.setDataAndType(Uri.fromFile(file), mime);
+            } else {
+                intent.setData(Uri.fromFile(file));
+            }
+
+            //Retrieve the activities that can handle the file
+            final PackageManager packageManager = ctx.getPackageManager();
+            if (DEBUG) {
+                intent.addFlags(Intent.FLAG_DEBUG_LOG_RESOLUTION);
+            }
+            List<ResolveInfo> info =
+                    packageManager.
+                        queryIntentActivities(intent, PackageManager.MATCH_DEFAULT_ONLY);
+
+            // Now we have the list of activities that can handle the file. The next steps are:
+            //
+            // 1.- If choose, then show open with dialog
+            // 1.- If info size == 0. No default application, then show open with dialog
+            // 2.- If !choose, seek inside our database the default activity for the extension
+            //     and open the file with this application
+            // 3.- If no default activity saved, then use system default
+
+            if (choose || info.size() == 0) {
+                // Show open with dialog
+                return;
+            }
+
+
+
+            // 2.- info size == 0
+
+
+
+//            if (info.size() == 0) {
+//                DialogHelper.createWarningDialog(ctx, R.string.msgs_not_registered_app);
+//            }
+//
+//            // Open with?
+//            if (choose) {
+//                String title = ctx.getString(R.string.actions_menu_open_with);
+//                ((Activity)ctx).startActivity(Intent.createChooser(intent,title));
+//
+//            } else {
+//                ((Activity)ctx).startActivity(intent);
+//            }
+
+        } catch (Exception e) {
+            ExceptionUtil.translateException(ctx, e);
+        }
+    }
+
+    /**
+     * Method that adds the {@link FileSystemObject} to the bookmarks database.
+     *
+     * @param ctx The current context
+     * @param fso The file system object
+     */
+    public static void addToBookmarks(final Context ctx, final FileSystemObject fso) {
+        try {
+            // Create the bookmark
+            Bookmark bookmark =
+                    new Bookmark(BOOKMARK_TYPE.USER_DEFINED, fso.getName(), fso.getFullPath());
+            bookmark = Bookmarks.addBookmark(ctx, bookmark);
+            if (bookmark == null) {
+                // The operation fails
+                Toast.makeText(
+                        ctx,
+                        R.string.msgs_operation_failure,
+                        Toast.LENGTH_SHORT).show();
+            } else {
+                // Success
+                Toast.makeText(
+                        ctx,
+                        R.string.bookmarks_msgs_add_success,
+                        Toast.LENGTH_SHORT).show();
+
+            }
+
+        } catch (Exception e) {
+            ExceptionUtil.translateException(ctx, e);
+        }
     }
 
     /**

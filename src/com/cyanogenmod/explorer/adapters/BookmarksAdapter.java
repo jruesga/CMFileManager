@@ -140,16 +140,16 @@ public class BookmarksAdapter extends ArrayAdapter<Bookmark> {
             this.mData[i] = new BookmarksAdapter.DataHolder();
             this.mData[i].mDwIcon =
                     this.mIconHolder.getDrawable(getContext(), BookmarksHelper.getIcon(bookmark));
-            this.mData[i].mName = bookmark.getName();
-            this.mData[i].mDirectory = bookmark.getDirectory();
+            this.mData[i].mName = bookmark.mName;
+            this.mData[i].mDirectory = bookmark.mDirectory;
             this.mData[i].mDwAction = null;
             this.mData[i].mActionCd = null;
-            if (bookmark.getType().compareTo(BOOKMARK_TYPE.HOME) == 0) {
+            if (bookmark.mType.compareTo(BOOKMARK_TYPE.HOME) == 0) {
                 this.mData[i].mDwAction =
                         this.mIconHolder.getDrawable(getContext(), R.drawable.ic_holo_light_config);
                 this.mData[i].mActionCd =
                         getContext().getString(R.string.bookmarks_button_config_cd);
-            } else if (bookmark.getType().compareTo(BOOKMARK_TYPE.USER_DEFINED) == 0) {
+            } else if (bookmark.mType.compareTo(BOOKMARK_TYPE.USER_DEFINED) == 0) {
                 this.mData[i].mDwAction =
                         this.mIconHolder.getDrawable(getContext(), R.drawable.ic_holo_light_close);
                 this.mData[i].mActionCd =

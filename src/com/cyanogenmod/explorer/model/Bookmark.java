@@ -16,13 +16,19 @@
 
 package com.cyanogenmod.explorer.model;
 
+import android.database.Cursor;
+import android.net.Uri;
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.provider.BaseColumns;
 
+import com.cyanogenmod.explorer.providers.BookmarksContentProvider;
+
+import java.io.File;
 import java.io.Serializable;
 
 /**
- * A class that represent a folder bookmark.
+ * A class that represent a bookmark.
  */
 public class Bookmark implements Serializable, Comparable<Bookmark>, Parcelable {
 
@@ -52,13 +58,79 @@ public class Bookmark implements Serializable, Comparable<Bookmark>, Parcelable 
         USER_DEFINED
     }
 
-    private static final long serialVersionUID = -2326688160035972659L;
+    private static final long serialVersionUID = -7524744999056506867L;
 
+    /**
+     * Columns of the database
+     */
+    public static class Columns implements BaseColumns {
+        /**
+         * The content:// style URL for this table
+         */
+        public static final Uri CONTENT_URI =
+            Uri.parse(
+                String.format(
+                    "%s%s/%s", //$NON-NLS-1$
+                    "content://", //$NON-NLS-1$
+                    BookmarksContentProvider.AUTHORITY,
+                     "/bookmarks") //$NON-NLS-1$
+                    );
 
-    private final BOOKMARK_TYPE mType;
-    private final String mName;
-    private final String mDirectory;
+        /**
+         * The directory of the bookmark
+         * <P>Type: TEXT</P>
+         */
+        public static final String DIRECTORY = "directory"; //$NON-NLS-1$
 
+        /**
+         * The default sort order for this table
+         */
+        public static final String DEFAULT_SORT_ORDER =
+                DIRECTORY + " ASC"; //$NON-NLS-1$
+
+        /**
+         * @hide
+         */
+        public static final String[] BOOKMARK_QUERY_COLUMNS = {_ID, DIRECTORY};
+
+        /**
+         * These save calls to cursor.getColumnIndexOrThrow()
+         * THEY MUST BE KEPT IN SYNC WITH ABOVE QUERY COLUMNS
+         */
+        /**
+         * @hide
+         */
+        public static final int BOOKMARK_ID_INDEX = 0;
+        /**
+         * @hide
+         */
+        public static final int BOOKMARK_DIRECTORY_INDEX = 1;
+    }
+
+    /** @hide **/
+    public int mId;
+    /** @hide **/
+    public BOOKMARK_TYPE mType;
+    /** @hide **/
+    public String mName;
+    /** @hide **/
+    public String mDirectory;
+
+    /**
+     * Constructor of <code>Bookmark</code>.
+     *
+     * @param id The id of the bookmark
+     * @param type The type of the bookmark
+     * @param name The name of the bookmark
+     * @param directory The directory that the bookmark points to
+     */
+    private Bookmark(int id, BOOKMARK_TYPE type, String name, String directory) {
+        super();
+        this.mId = id;
+        this.mType = type;
+        this.mName = name;
+        this.mDirectory = directory;
+    }
 
     /**
      * Constructor of <code>Bookmark</code>.
@@ -69,36 +141,23 @@ public class Bookmark implements Serializable, Comparable<Bookmark>, Parcelable 
      */
     public Bookmark(BOOKMARK_TYPE type, String name, String directory) {
         super();
+        this.mId = -1;
         this.mType = type;
         this.mName = name;
         this.mDirectory = directory;
     }
 
     /**
-     * Method that returns the type of the bookmark.
+     * Constructor of <code>Bookmark</code>.
      *
-     * @return BOOKMARK_TYPE The type of the bookmark
+     * @param c The cursor with the information of the bookmark
      */
-    public BOOKMARK_TYPE getType() {
-        return this.mType;
-    }
-
-    /**
-     * Method that returns the name of the bookmark.
-     *
-     * @return String The name of the bookmark
-     */
-    public String getName() {
-        return this.mName;
-    }
-
-    /**
-     * Method that returns the directory that the bookmark points to.
-     *
-     * @return String The directory that the bookmark points to
-     */
-    public String getDirectory() {
-        return this.mDirectory;
+    public Bookmark(Cursor c) {
+        super();
+        this.mId = c.getInt(Columns.BOOKMARK_ID_INDEX);
+        this.mType = BOOKMARK_TYPE.USER_DEFINED;
+        this.mDirectory = c.getString(Columns.BOOKMARK_DIRECTORY_INDEX);
+        this.mName = new File(this.mDirectory).getName();
     }
 
     /**
@@ -162,6 +221,7 @@ public class Bookmark implements Serializable, Comparable<Bookmark>, Parcelable 
      */
     @Override
     public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(this.mId);
         dest.writeString(this.mType.toString());
         dest.writeString(this.mName);
         dest.writeString(this.mDirectory);
@@ -172,11 +232,13 @@ public class Bookmark implements Serializable, Comparable<Bookmark>, Parcelable 
      */
     public static final Parcelable.Creator<Bookmark> CREATOR = new Parcelable.Creator<Bookmark>() {
         @Override
+        @SuppressWarnings("synthetic-access")
         public Bookmark createFromParcel(Parcel in) {
+            int id = in.readInt();
             BOOKMARK_TYPE type = BOOKMARK_TYPE.valueOf(in.readString());
             String name = in.readString();
             String directory = in.readString();
-            return new Bookmark(type, name, directory);
+            return new Bookmark(id, type, name, directory);
         }
 
         @Override
@@ -202,7 +264,8 @@ public class Bookmark implements Serializable, Comparable<Bookmark>, Parcelable 
      */
     @Override
     public String toString() {
-        return "Bookmark [type=" + this.mType + ", name=" + this.mName +  //$NON-NLS-1$//$NON-NLS-2$
+        return "Bookmark [id=" + this.mId + ", type=" + //$NON-NLS-1$//$NON-NLS-2$
+                this.mType + ", name=" + this.mName +  //$NON-NLS-1$
                 ", directory=" + this.mDirectory + "]"; //$NON-NLS-1$//$NON-NLS-2$
     }
 

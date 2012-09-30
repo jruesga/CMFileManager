@@ -27,7 +27,7 @@ public class RecentSearchesContentProvider extends SearchRecentSuggestionsProvid
      * The authority string name.
      */
     public static final String AUTHORITY =
-            "com.cyanogenmod.explorer.providers.RecentSearchesContentProvider"; //$NON-NLS-1$
+            "com.cyanogenmod.explorer.providers.recentsearches"; //$NON-NLS-1$
 
     /**
      * The provider mode.

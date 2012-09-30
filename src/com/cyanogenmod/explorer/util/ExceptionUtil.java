@@ -18,6 +18,7 @@ package com.cyanogenmod.explorer.util;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.os.AsyncTask;
@@ -86,7 +87,8 @@ public final class ExceptionUtil {
                                                 CommandNotFoundException.class,
                                                 OperationTimeoutException.class,
                                                 ExecutionException.class,
-                                                ParseException.class
+                                                ParseException.class,
+                                                ActivityNotFoundException.class
                                                       };
     private static final int[] KNOWN_EXCEPTIONS_IDS = {
                                                 R.string.msgs_file_not_found,
@@ -99,7 +101,8 @@ public final class ExceptionUtil {
                                                 R.string.msgs_command_not_found,
                                                 R.string.msgs_operation_timeout,
                                                 R.string.msgs_operation_failure,
-                                                R.string.msgs_operation_failure
+                                                R.string.msgs_operation_failure,
+                                                R.string.msgs_not_registered_app
                                                      };
     private static final boolean[] KNOWN_EXCEPTIONS_TOAST = {
                                                             false,
@@ -112,7 +115,8 @@ public final class ExceptionUtil {
                                                             false,
                                                             true,
                                                             true,
-                                                            true
+                                                            true,
+                                                            false
                                                             };
 
     /**

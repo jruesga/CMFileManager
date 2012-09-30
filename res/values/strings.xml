@@ -79,7 +79,6 @@
     Changing to a non-privileged console.</string>
   <!-- The operation to change to other kind of console failed -->
   <string name="msgs_console_change_failed">Change to new type of console failed.</string>
-
   <!-- The selected setting was not applied nor stored -->
   <string name="msgs_settings_save_failure">The setting can\'t be stored or applied.</string>
   <!-- The initial directory has an invalid directory -->
@@ -123,6 +122,10 @@
   <!-- An operation requires elevated privileged -->
   <string name="advise_insufficient_permissions">The operation requires elevated privileged.\n\n
     Do you want to change to a privileged console?</string>
+
+  <!-- There is no registered application that can handle the mime/type -->
+  <string name="msgs_not_registered_app">There is not registered app that can handle
+    the file type selected.</string>
 
 
   <!-- The parent directory of the current directory in navigation view -->
@@ -333,6 +336,8 @@
   <string name="bookmarks_button_config_cd">Set the initial directory</string>
   <!-- Bookmark name * Button * Remove bookmark content description -->
   <string name="bookmarks_button_remove_bookmark_cd">Remove the bookmarks</string>
+  <!-- Bookmarks * Actions * Bookmark successfully added -->
+  <string name="bookmarks_msgs_add_success">The bookmark was added successfully.</string>
 
   <!-- Initial directory dialog title -->
   <string name="initial_directory_dialog_title">Initial directory</string>
@@ -382,6 +387,8 @@
   <string name="actions_menu_copy_selection">Copy selection</string>
   <!-- Actions Dialog * Menu * Move selection -->
   <string name="actions_menu_move_selection">Move selection</string>
+  <!-- Actions Dialog * Menu * Add to bookmarks the current folder -->
+  <string name="actions_menu_add_to_bookmarks_current_folder">Add to bookmarks</string>
   <!-- Actions Dialog * Menu * Open -->
   <string name="actions_menu_open">Open</string>
   <!-- Actions Dialog * Menu * Open with -->
@@ -392,6 +399,8 @@
   <string name="actions_menu_rename">Rename</string>
   <!-- Actions Dialog * Menu * Properties -->
   <string name="actions_menu_properties">Properties</string>
+  <!-- Actions Dialog * Menu * Add to bookmarks -->
+  <string name="actions_menu_add_to_bookmarks">Add to bookmarks</string>
 
   <!-- Actions * Ask user prior to remove files or folders -->
   <string name="actions_ask_remove_folder">Are you sure you want to delete this folder

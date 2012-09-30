@@ -146,8 +146,8 @@ public class FolderUsage implements Serializable, Cloneable {
         return this.mStatistics.get(category.ordinal()).longValue();
     }
 
-    /* (non-Javadoc)
-     * @see java.lang.Object#hashCode()
+    /**
+     * {@inheritDoc}
      */
     @Override
     public int hashCode() {
@@ -162,8 +162,8 @@ public class FolderUsage implements Serializable, Cloneable {
         return result;
     }
 
-    /* (non-Javadoc)
-     * @see java.lang.Object#equals(java.lang.Object)
+    /**
+     * {@inheritDoc}
      */
     @Override
     public boolean equals(Object obj) {
@@ -193,8 +193,8 @@ public class FolderUsage implements Serializable, Cloneable {
         return true;
     }
 
-    /* (non-Javadoc)
-     * @see java.lang.Object#clone()
+    /**
+     * {@inheritDoc}
      */
     @Override
     public Object clone() throws CloneNotSupportedException {
@@ -206,8 +206,8 @@ public class FolderUsage implements Serializable, Cloneable {
         return super.clone();
     }
 
-    /* (non-Javadoc)
-     * @see java.lang.Object#toString()
+    /**
+     * {@inheritDoc}
      */
     @Override
     public String toString() {

@@ -39,6 +39,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.AdapterView.OnItemLongClickListener;
+import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -51,6 +52,7 @@ import com.cyanogenmod.explorer.adapters.SearchResultAdapter;
 import com.cyanogenmod.explorer.adapters.SearchResultAdapter.OnRequestMenuListener;
 import com.cyanogenmod.explorer.commands.AsyncResultExecutable;
 import com.cyanogenmod.explorer.commands.AsyncResultListener;
+import com.cyanogenmod.explorer.console.NoSuchFileOrDirectory;
 import com.cyanogenmod.explorer.listeners.OnRequestRefreshListener;
 import com.cyanogenmod.explorer.model.Directory;
 import com.cyanogenmod.explorer.model.FileSystemObject;
@@ -74,6 +76,7 @@ import com.cyanogenmod.explorer.util.DialogHelper;
 import com.cyanogenmod.explorer.util.ExceptionUtil;
 import com.cyanogenmod.explorer.util.FileHelper;
 
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -118,7 +121,7 @@ public class SearchActivity extends Activity
                 // The settings has changed
                 String key = intent.getStringExtra(ExplorerSettings.EXTRA_SETTING_CHANGED_KEY);
                 if (key != null) {
-                    if (SearchActivity.this.mAdapter != null &&
+                    if (SearchActivity.this.mSearchListView.getAdapter() != null &&
                        (key.compareTo(
                                ExplorerSettings.SETTINGS_HIGHLIGHT_TERMS.getId()) == 0 ||
                         key.compareTo(
@@ -168,7 +171,7 @@ public class SearchActivity extends Activity
     private TextView mSearchFoundItems;
     private TextView mSearchTerms;
     private View mEmptyListMsg;
-    private SearchResultAdapter mAdapter;
+//    private SearchResultAdapter mAdapter;
     private DefaultLongClickAction mDefaultLongClickAction;
 
     private String mSearchDirectory;
@@ -287,7 +290,7 @@ public class SearchActivity extends Activity
      */
     private void saveState(Bundle state) {
         try {
-            if (this.mAdapter != null) {
+            if (this.mSearchListView.getAdapter() != null) {
                 state.putParcelable(EXTRA_SEARCH_RESTORE, createSearchInfo());
             }
         } catch (Throwable ex) {
@@ -505,11 +508,11 @@ public class SearchActivity extends Activity
 
         //Set the listview
         this.mResultList = new ArrayList<FileSystemObject>();
-        this.mAdapter =
+        SearchResultAdapter adapter =
                 new SearchResultAdapter(this,
                         new ArrayList<SearchResult>(), R.layout.search_item, this.mQuery);
-        this.mAdapter.setOnRequestMenuListener(this);
-        this.mSearchListView.setAdapter(this.mAdapter);
+        adapter.setOnRequestMenuListener(this);
+        this.mSearchListView.setAdapter(adapter);
 
         //Set terms
         this.mSearchTerms.setText(
@@ -539,10 +542,12 @@ public class SearchActivity extends Activity
                                     //Broadcast the cancellation
                                     if (!SearchActivity.this.mExecutable.isCanceled()) {
                                         if (SearchActivity.this.mExecutable.cancel()) {
-                                            if (SearchActivity.this.mAdapter != null) {
+                                            ListAdapter listAdapter =
+                                                    SearchActivity.
+                                                        this.mSearchListView.getAdapter();
+                                            if (listAdapter != null) {
                                                 SearchActivity.this.toggleResults(
-                                                   SearchActivity.this.
-                                                       mAdapter.getCount() > 0, true);
+                                                        listAdapter.getCount() > 0, true);
                                             }
                                             return true;
                                         }
@@ -670,8 +675,9 @@ public class SearchActivity extends Activity
      * Method that removes all items and display a message.
      */
     private void removeAll() {
-        this.mAdapter.clear();
-        this.mAdapter.notifyDataSetChanged();
+        SearchResultAdapter adapter = (SearchResultAdapter)this.mSearchListView.getAdapter();
+        adapter.clear();
+        adapter.notifyDataSetChanged();
         this.mSearchListView.setSelection(0);
         toggleResults(false, true);
     }
@@ -811,7 +817,35 @@ public class SearchActivity extends Activity
      */
     @Override
     public void onRequestMenu(FileSystemObject item) {
-        ActionsDialog dialog = new ActionsDialog(this, item);
+        // Prior to show the dialog, refresh the item reference
+        FileSystemObject fso = null;
+        try {
+            fso = CommandHelper.getFileInfo(this, item.getFullPath(), null);
+
+        } catch (Exception e) {
+            // Notify the user
+            ExceptionUtil.translateException(this, e);
+
+            // Remove the object
+            if (e instanceof FileNotFoundException || e instanceof NoSuchFileOrDirectory) {
+                SearchResultAdapter adapter =
+                        (SearchResultAdapter)this.mSearchListView.getAdapter();
+                if (adapter != null) {
+                    int pos = adapter.getPosition(item);
+                    if (pos != -1) {
+                        SearchResult sr = adapter.getItem(pos);
+                        adapter.remove(sr);
+                    }
+
+                    // Toggle resultset?
+                    toggleResults(adapter.getCount() > 0, true);
+                    setFoundItems(adapter.getCount(), this.mSearchDirectory);
+                }
+            }
+            return;
+        }
+
+        ActionsDialog dialog = new ActionsDialog(this, fso);
         dialog.show();
     }
 
@@ -821,11 +855,15 @@ public class SearchActivity extends Activity
     @Override
     public void onRequestRefresh(Object o) {
         if (o instanceof FileSystemObject) {
-            FileSystemObject fso = (FileSystemObject)o;
-            int pos = this.mAdapter.getPosition(fso);
-            if (pos >= 0) {
-                SearchResult sr = this.mAdapter.getItem(pos);
-                sr.setFso(fso);
+            SearchResultAdapter adapter =
+                    (SearchResultAdapter)this.mSearchListView.getAdapter();
+            if (adapter != null) {
+                FileSystemObject fso = (FileSystemObject)o;
+                int pos = adapter.getPosition(fso);
+                if (pos >= 0) {
+                    SearchResult sr = adapter.getItem(pos);
+                    sr.setFso(fso);
+                }
             }
         }
     }

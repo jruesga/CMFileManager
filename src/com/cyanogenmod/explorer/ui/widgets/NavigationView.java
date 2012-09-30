@@ -440,6 +440,16 @@ public class NavigationView extends RelativeLayout implements
     }
 
     /**
+     * Method that removes a {@link FileSystemObject} from the view
+     *
+     * @param fso The file system object
+     */
+    public void removeItem(FileSystemObject fso) {
+        this.mAdapter.remove(fso);
+        this.mAdapter.notifyDataSetChanged();
+    }
+
+    /**
      * Method that returns the current directory.
      *
      * @return String The current directory

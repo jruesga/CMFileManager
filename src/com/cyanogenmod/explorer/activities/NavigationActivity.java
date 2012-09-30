@@ -47,6 +47,7 @@ import com.cyanogenmod.explorer.adapters.SimpleMenuListAdapter;
 import com.cyanogenmod.explorer.console.Console;
 import com.cyanogenmod.explorer.console.ConsoleAllocException;
 import com.cyanogenmod.explorer.console.ConsoleBuilder;
+import com.cyanogenmod.explorer.console.NoSuchFileOrDirectory;
 import com.cyanogenmod.explorer.listeners.OnHistoryListener;
 import com.cyanogenmod.explorer.listeners.OnRequestRefreshListener;
 import com.cyanogenmod.explorer.model.DiskUsage;
@@ -75,8 +76,10 @@ import com.cyanogenmod.explorer.ui.widgets.NavigationView.OnNavigationSelectionC
 import com.cyanogenmod.explorer.ui.widgets.SelectionView;
 import com.cyanogenmod.explorer.util.CommandHelper;
 import com.cyanogenmod.explorer.util.DialogHelper;
+import com.cyanogenmod.explorer.util.ExceptionUtil;
 import com.cyanogenmod.explorer.util.FileHelper;
 
+import java.io.FileNotFoundException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -772,7 +775,24 @@ public class NavigationActivity extends Activity
      */
     @Override
     public void onRequestMenu(NavigationView navView, FileSystemObject item) {
-        ActionsDialog dialog = new ActionsDialog(this, item);
+        // Prior to show the dialog, refresh the item reference
+        FileSystemObject fso = null;
+        try {
+            fso = CommandHelper.getFileInfo(this, item.getFullPath(), null);
+
+        } catch (Exception e) {
+            // Notify the user
+            ExceptionUtil.translateException(this, e);
+
+            // Remove the object
+            if (e instanceof FileNotFoundException || e instanceof NoSuchFileOrDirectory) {
+                getCurrentNavigationView().removeItem(item);
+            }
+            return;
+        }
+
+        // Show the dialog
+        ActionsDialog dialog = new ActionsDialog(this, fso);
         dialog.setOnRequestRefreshListener(this);
         dialog.setOnSelectionListener(getCurrentNavigationView());
         dialog.show();

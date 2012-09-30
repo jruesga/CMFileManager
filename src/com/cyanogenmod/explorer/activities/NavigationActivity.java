@@ -766,6 +766,16 @@ public class NavigationActivity extends Activity
      * {@inheritDoc}
      */
     @Override
+    public void onRequestRemove(Object o) {
+        if (o instanceof FileSystemObject) {
+            this.getCurrentNavigationView().removeItem((FileSystemObject)o);
+        }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public void onSelectionChanged(NavigationView navView, List<FileSystemObject> selectedItems) {
         this.mSelectionBar.setSelection(selectedItems);
     }

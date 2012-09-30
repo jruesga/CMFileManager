@@ -760,6 +760,16 @@ public class NavigationView extends RelativeLayout implements
      * {@inheritDoc}
      */
     @Override
+    public void onRequestRemove(Object o) {
+        if (o instanceof FileSystemObject) {
+            removeItem((FileSystemObject)o);
+        }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public void onBreadcrumbItemClick(BreadcrumbItem item) {
         changeCurrentDir(item.getItemPath(), true, true, false, null, null);
     }

@@ -27,4 +27,11 @@ public interface OnRequestRefreshListener {
      * @param o The object that should be refreshed
      */
     void onRequestRefresh(Object o);
+
+    /**
+     * Invoked when the object was removed.
+     *
+     * @param o The object that was removed
+     */
+    void onRequestRemove(Object o);
 }

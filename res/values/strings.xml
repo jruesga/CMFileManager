@@ -389,6 +389,12 @@
   <!-- Actions Dialog * Menu * Properties -->
   <string name="actions_menu_properties">Properties</string>
 
+  <!-- Actions * Ask user prior to remove files or folders -->
+  <string name="actions_ask_remove_folder">Are you sure you want to delete this folder
+    permanently?</string>
+  <string name="actions_ask_remove_file">Are you sure you want to delete this file
+    permanently?</string>
+
 
   <!-- Enter Name Dialog * Label -->
   <string name="input_name_dialog_label">Name:</string>

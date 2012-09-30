@@ -166,6 +166,13 @@ public class ActionsDialog implements OnItemClickListener, OnItemLongClickListen
                 }
                 return;
 
+            //- Delete
+            case R.id.mnu_actions_delete:
+                this.mDialog.dismiss();
+                ActionsPolicy.removeFileSystemObject(
+                        this.mContext, this.mFso, this.mOnRequestRefreshListener);
+                return;
+
             //- Select/Deselect
             case R.id.mnu_actions_select:
             case R.id.mnu_actions_deselect:

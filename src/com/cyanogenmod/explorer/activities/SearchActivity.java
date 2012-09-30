@@ -828,25 +828,34 @@ public class SearchActivity extends Activity
 
             // Remove the object
             if (e instanceof FileNotFoundException || e instanceof NoSuchFileOrDirectory) {
-                SearchResultAdapter adapter =
-                        (SearchResultAdapter)this.mSearchListView.getAdapter();
-                if (adapter != null) {
-                    int pos = adapter.getPosition(item);
-                    if (pos != -1) {
-                        SearchResult sr = adapter.getItem(pos);
-                        adapter.remove(sr);
-                    }
-
-                    // Toggle resultset?
-                    toggleResults(adapter.getCount() > 0, true);
-                    setFoundItems(adapter.getCount(), this.mSearchDirectory);
-                }
+                removeItem(item);
             }
             return;
         }
 
         ActionsDialog dialog = new ActionsDialog(this, fso);
         dialog.show();
+    }
+
+    /**
+     * Method that removes the {@link FileSystemObject} reference
+     *
+     * @param fso The file system object
+     */
+    private void removeItem(FileSystemObject fso) {
+        SearchResultAdapter adapter =
+                (SearchResultAdapter)this.mSearchListView.getAdapter();
+        if (adapter != null) {
+            int pos = adapter.getPosition(fso);
+            if (pos != -1) {
+                SearchResult sr = adapter.getItem(pos);
+                adapter.remove(sr);
+            }
+
+            // Toggle resultset?
+            toggleResults(adapter.getCount() > 0, true);
+            setFoundItems(adapter.getCount(), this.mSearchDirectory);
+        }
     }
 
     /**
@@ -865,6 +874,16 @@ public class SearchActivity extends Activity
                     sr.setFso(fso);
                 }
             }
+        }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void onRequestRemove(Object o) {
+        if (o instanceof FileSystemObject) {
+            removeItem((FileSystemObject)o);
         }
     }
 

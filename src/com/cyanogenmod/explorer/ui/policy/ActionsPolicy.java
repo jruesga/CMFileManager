@@ -16,19 +16,24 @@
 
 package com.cyanogenmod.explorer.ui.policy;
 
+import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.os.AsyncTask;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.cyanogenmod.explorer.R;
 import com.cyanogenmod.explorer.console.RelaunchableException;
 import com.cyanogenmod.explorer.listeners.OnRequestRefreshListener;
 import com.cyanogenmod.explorer.listeners.OnSelectionListener;
 import com.cyanogenmod.explorer.model.FileSystemObject;
 import com.cyanogenmod.explorer.ui.dialogs.FsoPropertiesDialog;
 import com.cyanogenmod.explorer.util.CommandHelper;
+import com.cyanogenmod.explorer.util.DialogHelper;
 import com.cyanogenmod.explorer.util.ExceptionUtil;
+import com.cyanogenmod.explorer.util.ExceptionUtil.OnRelaunchCommandResult;
+import com.cyanogenmod.explorer.util.FileHelper;
 
 import java.io.File;
 
@@ -37,6 +42,31 @@ import java.io.File;
  * A class with the convenience methods for resolve actions
  */
 public final class ActionsPolicy {
+
+    // A class for listen the relaunch of commands
+    private static class RemoveItemListenter implements OnRelaunchCommandResult {
+        /**
+         * @hide
+         */
+        OnRequestRefreshListener mOnRequestRefreshListener;
+        /**
+         * @hide
+         */
+        FileSystemObject mFso;
+
+        @Override
+        public void onSuccess() {
+            //Operation complete. Refresh
+            if (this.mOnRequestRefreshListener != null) {
+                this.mOnRequestRefreshListener.onRequestRemove(this.mFso);
+            }
+        }
+        @Override
+        public void onCancelled() {/**NON BLOCK**/}
+        @Override
+        public void onFailed() {/**NON BLOCK**/}
+    }
+
 
     private static final String TAG = "ActionPolicy"; //$NON-NLS-1$
 
@@ -100,7 +130,7 @@ public final class ActionsPolicy {
             final Context ctx, final String name,
             final OnSelectionListener onSelectionListener,
             final OnRequestRefreshListener onRequestRefreshListener) {
-        createNewFso(ctx, name, false, onSelectionListener, onRequestRefreshListener);
+        createNewFileSystemObject(ctx, name, false, onSelectionListener, onRequestRefreshListener);
     }
 
     /**
@@ -116,11 +146,11 @@ public final class ActionsPolicy {
             final Context ctx, final String name,
             final OnSelectionListener onSelectionListener,
             final OnRequestRefreshListener onRequestRefreshListener) {
-        createNewFso(ctx, name, true, onSelectionListener, onRequestRefreshListener);
+        createNewFileSystemObject(ctx, name, true, onSelectionListener, onRequestRefreshListener);
     }
 
     /**
-     * Method that create the a new folder system object.
+     * Method that create the a new file system object.
      *
      * @param ctx The current context
      * @param name The name of the file to be created
@@ -130,7 +160,7 @@ public final class ActionsPolicy {
      * @param onRequestRefreshListener The listener for request a refresh after the new
      * folder was created (option)
      */
-    private static void createNewFso(
+    private static void createNewFileSystemObject(
             final Context ctx, final String name, final boolean folder,
             final OnSelectionListener onSelectionListener,
             final OnRequestRefreshListener onRequestRefreshListener) {
@@ -191,5 +221,57 @@ public final class ActionsPolicy {
             }
             ExceptionUtil.translateException(ctx, ex);
         }
+    }
+
+    /**
+     * Method that remove an existing file system object.
+     *
+     * @param ctx The current context
+     * @param fso The file system object
+     * @param onRequestRefreshListener The listener for request a refresh after the new
+     * folder was created (option)
+     */
+    public static void removeFileSystemObject(
+            final Context ctx, final FileSystemObject fso,
+            final OnRequestRefreshListener onRequestRefreshListener) {
+
+        final boolean isFolder = FileHelper.isDirectory(fso);
+        int msg =
+                isFolder ?
+                R.string.actions_ask_remove_folder :
+                R.string.actions_ask_remove_file;
+
+        // Ask the user before remove
+        AlertDialog dialog =DialogHelper.createYesNoDialog(
+            ctx, msg,
+            new DialogInterface.OnClickListener() {
+                @Override
+                @SuppressWarnings("synthetic-access")
+                public void onClick(DialogInterface alertDialog, int which) {
+                    if (which == DialogInterface.BUTTON_POSITIVE) {
+                        try {
+                            // Remove the item
+                            if (isFolder) {
+                                CommandHelper.deleteDirectory(ctx, fso.getFullPath(), null);
+                            } else {
+                                CommandHelper.deleteFile(ctx, fso.getFullPath(), null);
+                            }
+
+                            //Operation complete. Refresh
+                            if (onRequestRefreshListener != null) {
+                                onRequestRefreshListener.onRequestRemove(fso);
+                            }
+
+                        } catch (Throwable ex) {
+                            // Capture the exception
+                            RemoveItemListenter listener = new RemoveItemListenter();
+                            listener.mOnRequestRefreshListener = onRequestRefreshListener;
+                            listener.mFso = fso;
+                            ExceptionUtil.translateException(ctx, ex, false, true, listener);
+                        }
+                    }
+                }
+           });
+        dialog.show();
     }
 }

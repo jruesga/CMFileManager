@@ -102,14 +102,24 @@ public class ListCommand extends SyncResultProgram implements ListExecutable {
                         ExplorerApplication.getInstance().getApplicationContext(), src, console);
         } else {
             //Get the absolute path
-            String abspath =
-                CommandHelper.getAbsolutePath(
-                        ExplorerApplication.getInstance().getApplicationContext(), src, console);
-            //Resolve the parent directory
-            this.mParentDir =
-                CommandHelper.getParentDir(
-                        ExplorerApplication.getInstance().getApplicationContext(),
-                        abspath, console);
+            try {
+                // From console
+                String abspath =
+                    CommandHelper.getAbsolutePath(
+                            ExplorerApplication.getInstance().getApplicationContext(), src, console);
+                //Resolve the parent directory
+                this.mParentDir =
+                    CommandHelper.getParentDir(
+                            ExplorerApplication.getInstance().getApplicationContext(),
+                            abspath, console);
+
+            } catch (Exception e) {
+                // From Java
+                this.mParentDir = new File(src).getCanonicalFile().getParent();
+                if (this.mParentDir == null) {
+                    throw new CommandNotFoundException(ID_LS_INFO, e);
+                }
+            }
         }
     }
 

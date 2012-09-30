@@ -27,6 +27,12 @@
   <string name="size_megabytes" translatable="false">Mb</string>
   <string name="size_gigabytes" translatable="false">Gb</string>
 
+  <!-- Devices types -->
+  <string name="device_blockdevice">Block device</string>
+  <string name="device_characterdevice">Character device</string>
+  <string name="device_namedpipe">Named pipe</string>
+  <string name="device_domainsocket">Domain socket</string>
+
   <!-- Mount Point States -->
   <string name="mount_point_readonly">RO</string>
   <string name="mount_point_readwrite">RW</string>

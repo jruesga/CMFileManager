@@ -21,9 +21,14 @@ import android.content.res.Resources;
 import android.util.Log;
 
 import com.cyanogenmod.explorer.R;
+import com.cyanogenmod.explorer.model.BlockDevice;
+import com.cyanogenmod.explorer.model.CharacterDevice;
 import com.cyanogenmod.explorer.model.Directory;
+import com.cyanogenmod.explorer.model.DomainSocket;
 import com.cyanogenmod.explorer.model.FileSystemObject;
+import com.cyanogenmod.explorer.model.NamedPipe;
 import com.cyanogenmod.explorer.model.Symlink;
+import com.cyanogenmod.explorer.model.SystemFile;
 
 import java.util.Enumeration;
 import java.util.HashMap;
@@ -44,6 +49,14 @@ public final class MimeTypeHelper {
          */
         NONE,
         /**
+         * System file
+         */
+        SYSTEM,
+        /**
+         * Application, Installer, ...
+         */
+        APP,
+        /**
          * Binary file
          */
         BINARY,
@@ -55,6 +68,14 @@ public final class MimeTypeHelper {
          * Document file (text, spreedsheet, presentation, pdf, ...)
          */
         DOCUMENT,
+        /**
+         * e-Book file
+         */
+        EBOOK,
+        /**
+         * Internet document file
+         */
+        INTERNET,
         /**
          * CD Image file
          */
@@ -71,6 +92,10 @@ public final class MimeTypeHelper {
          * Database file
          */
         DATABASE,
+        /**
+         * Font file
+         */
+        FONT,
         /**
          * Image file
          */
@@ -148,6 +173,10 @@ public final class MimeTypeHelper {
             }
         }
 
+        // Check  system file
+        if (fso instanceof SystemFile) {
+            return R.drawable.fso_type_system;
+        }
         // Check if the fso is executable
         if (fso.getPermissions().getUser().isExecute()) {
             return R.drawable.fso_type_executable;
@@ -176,6 +205,20 @@ public final class MimeTypeHelper {
         }
         if (fso instanceof Symlink) {
             return res.getString(R.string.mime_symlink);
+        }
+
+        // System files
+        if (fso instanceof BlockDevice) {
+            return context.getString(R.string.device_blockdevice);
+        }
+        if (fso instanceof CharacterDevice) {
+            return context.getString(R.string.device_characterdevice);
+        }
+        if (fso instanceof NamedPipe) {
+            return context.getString(R.string.device_namedpipe);
+        }
+        if (fso instanceof DomainSocket) {
+            return context.getString(R.string.device_domainsocket);
         }
 
         //Get the extension and delivery
@@ -216,6 +259,15 @@ public final class MimeTypeHelper {
             if (mimeTypeInfo != null) {
                 return mimeTypeInfo.mCategory;
             }
+        }
+
+        // Check  system file
+        if (fso instanceof SystemFile) {
+            return MimeTypeCategory.SYSTEM;
+        }
+        // Check if the fso is executable
+        if (fso.getPermissions().getUser().isExecute()) {
+            return MimeTypeCategory.EXEC;
         }
 
         // No category

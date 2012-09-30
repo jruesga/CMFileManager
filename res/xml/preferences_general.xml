@@ -49,6 +49,15 @@
         android:defaultValue="95"
         android:persistent="true" />
 
+      <!-- Compute folder statistics -->
+      <CheckBoxPreference
+        android:key="cm_explorer_compute_folder_statistics"
+        android:title="@string/pref_compute_folder_statistics"
+        android:summaryOn="@string/pref_compute_folder_statistics_on"
+        android:summaryOff="@string/pref_compute_folder_statistics_off"
+        android:persistent="true"
+        android:defaultValue="false" />
+
     </PreferenceCategory>
 
     <!-- Advanced settings -->

@@ -118,6 +118,7 @@ public class SettingsPreferences extends PreferenceActivity {
         private CheckBoxPreference mCaseSensitiveSort;
         private ListPreference mDefaultLongClickAction;
         private ListPreference mFreeDiskSpaceWarningLevel;
+        private CheckBoxPreference mComputeFolderStatistics;
         private CheckBoxPreference mAllowConsoleSelection;
 
         private boolean mLoaded = false;
@@ -207,6 +208,12 @@ public class SettingsPreferences extends PreferenceActivity {
                                 ExplorerSettings.SETTINGS_DISK_USAGE_WARNING_LEVEL.getId(),
                                 defaultValue);
             this.mOnChangeListener.onPreferenceChange(this.mFreeDiskSpaceWarningLevel, value);
+
+            // Compute folder statistics
+            this.mComputeFolderStatistics =
+                    (CheckBoxPreference)findPreference(
+                            ExplorerSettings.SETTINGS_COMPUTE_FOLDER_STATISTICS.getId());
+            this.mComputeFolderStatistics.setOnPreferenceChangeListener(this.mOnChangeListener);
 
             // Allow console selection
             this.mAllowConsoleSelection =

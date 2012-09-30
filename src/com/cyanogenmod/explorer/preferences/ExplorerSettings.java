@@ -84,6 +84,12 @@ public enum ExplorerSettings {
             "cm_explorer_disk_usage_warning_level", //$NON-NLS-1$
             new String("95")), //$NON-NLS-1$
     /**
+     * When to compute folder statistics in folder properties dialog
+     * @hide
+     */
+    SETTINGS_COMPUTE_FOLDER_STATISTICS(
+            "cm_explorer_compute_folder_statistics", Boolean.TRUE), //$NON-NLS-1$
+    /**
      * When to use case sensitive comparison in sorting of files
      * @hide
      */

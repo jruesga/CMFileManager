@@ -51,6 +51,8 @@ import com.cyanogenmod.explorer.model.Permissions;
 import com.cyanogenmod.explorer.model.Symlink;
 import com.cyanogenmod.explorer.model.User;
 import com.cyanogenmod.explorer.model.UserPermission;
+import com.cyanogenmod.explorer.preferences.ExplorerSettings;
+import com.cyanogenmod.explorer.preferences.Preferences;
 import com.cyanogenmod.explorer.util.AIDHelper;
 import com.cyanogenmod.explorer.util.CommandHelper;
 import com.cyanogenmod.explorer.util.DialogHelper;
@@ -99,6 +101,7 @@ public class FsoPropertiesDialog
     private boolean mIgnoreCheckEvents;
     private boolean mHasPrivileged;
 
+    private final boolean mComputeFolderStatistics;
     private AsyncResultExecutable mFolderUsageExecutable;
     private FolderUsage mFolderUsage;
     private boolean mDrawingFolderUsage;
@@ -136,6 +139,14 @@ public class FsoPropertiesDialog
                                         this.mContentView);
         this.mDialog.setOnCancelListener(this);
         this.mDialog.setOnDismissListener(this);
+
+        // Retrieve the user settings about computing folder statistics
+        this.mComputeFolderStatistics =
+                Preferences.getSharedPreferences().
+                    getBoolean(
+                        ExplorerSettings.SETTINGS_COMPUTE_FOLDER_STATISTICS.getId(),
+                        ((Boolean)ExplorerSettings.SETTINGS_COMPUTE_FOLDER_STATISTICS.
+                                getDefaultValue()).booleanValue());
 
         //Fill the dialog
         fillData(this.mContentView);
@@ -239,7 +250,9 @@ public class FsoPropertiesDialog
         // Load owners and groups AIDs in background
         if (FileHelper.isDirectory(this.mFso)) {
             vContatinsRow.setVisibility(View.VISIBLE);
-            computeFolderUsage();
+            if (this.mComputeFolderStatistics) {
+                computeFolderUsage();
+            }
         }
 
         // Check if permissions operations are allowed
@@ -889,15 +902,17 @@ public class FsoPropertiesDialog
      * Method that cancels the folder usage command execution
      */
     private void cancelFolderUsageCommand() {
-        // Cancel the folder usage command
-        try {
-            if (this.mFolderUsageExecutable != null &&
-                this.mFolderUsageExecutable.isCancelable() &&
-                !this.mFolderUsageExecutable.isCanceled()) {
-                this.mFolderUsageExecutable.cancel();
+        if (this.mComputeFolderStatistics) {
+            // Cancel the folder usage command
+            try {
+                if (this.mFolderUsageExecutable != null &&
+                    this.mFolderUsageExecutable.isCancelable() &&
+                    !this.mFolderUsageExecutable.isCanceled()) {
+                    this.mFolderUsageExecutable.cancel();
+                }
+            } catch (Exception ex) {
+                Log.e(TAG, "Failed to cancel the folder usage command", ex); //$NON-NLS-1$
             }
-        } catch (Exception ex) {
-            Log.e(TAG, "Failed to cancel the folder usage command", ex); //$NON-NLS-1$
         }
     }
 

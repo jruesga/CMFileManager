@@ -121,12 +121,14 @@ public class SettingsPreferences extends PreferenceActivity {
         private CheckBoxPreference mComputeFolderStatistics;
         private CheckBoxPreference mAllowConsoleSelection;
 
-        private boolean mLoaded = false;
+        /**
+         * @hide
+         */
+        boolean mLoaded = false;
 
         private final OnPreferenceChangeListener mOnChangeListener =
                 new OnPreferenceChangeListener() {
             @Override
-            @SuppressWarnings("synthetic-access")
             public boolean onPreferenceChange(Preference preference, Object newValue) {
                 String key = preference.getKey();
                 if (DEBUG) Log.d(LOG_TAG,
@@ -241,12 +243,14 @@ public class SettingsPreferences extends PreferenceActivity {
         private CheckBoxPreference mSaveSearchTerms;
         private Preference mRemoveSearchTerms;
 
-        private boolean mLoaded = false;
+        /**
+         * @hide
+         */
+        boolean mLoaded = false;
 
         private final OnPreferenceChangeListener mOnChangeListener =
                 new OnPreferenceChangeListener() {
             @Override
-            @SuppressWarnings("synthetic-access")
             public boolean onPreferenceChange(Preference preference, Object newValue) {
                 String key = preference.getKey();
                 if (DEBUG) Log.d(LOG_TAG,
@@ -288,7 +292,6 @@ public class SettingsPreferences extends PreferenceActivity {
         private final OnPreferenceClickListener mOnClickListener =
                 new Preference.OnPreferenceClickListener() {
             @Override
-            @SuppressWarnings("synthetic-access")
             public boolean onPreferenceClick(Preference preference) {
                 if (preference.getKey().compareTo(REMOVE_SEARCH_TERMS_KEY) == 0) {
                     // Remove search terms
@@ -359,8 +362,9 @@ public class SettingsPreferences extends PreferenceActivity {
 
         /**
          * Method that removes the recent suggestions on search activity
+         * @hide
          */
-        private void clearRecentSearchTerms() {
+        void clearRecentSearchTerms() {
             SearchRecentSuggestions suggestions =
                     new SearchRecentSuggestions(getActivity(),
                             RecentSearchesContentProvider.AUTHORITY,

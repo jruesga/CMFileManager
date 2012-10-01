@@ -45,12 +45,24 @@ import java.util.List;
  */
 public class SearchResultDrawingAsyncTask extends AsyncTask<Object, Integer, Boolean> {
 
-    private final ListView mSearchListView;
-    private final ProgressBar mSearchWaiting;
+    /**
+     * @hide
+     */
+    final ListView mSearchListView;
+    /**
+     * @hide
+     */
+    final ProgressBar mSearchWaiting;
     private final List<FileSystemObject> mFiles;
-    private final Query mQueries;
+    /**
+     * @hide
+     */
+    final Query mQueries;
     private boolean mRunning;
-    private final OnRequestMenuListener mOnRequestMenuListener;
+    /**
+     * @hide
+     */
+    final OnRequestMenuListener mOnRequestMenuListener;
 
     /**
      * Constructor of <code>SearchResultDrawingAsyncTask</code>.
@@ -120,7 +132,6 @@ public class SearchResultDrawingAsyncTask extends AsyncTask<Object, Integer, Boo
 
             this.mSearchListView.post(new Runnable() {
                 @Override
-                @SuppressWarnings("synthetic-access")
                 public void run() {
                   //Add list to the listview
                     if (SearchResultDrawingAsyncTask.this.mSearchListView.getAdapter() != null) {
@@ -186,7 +197,6 @@ public class SearchResultDrawingAsyncTask extends AsyncTask<Object, Integer, Boo
         if (this.mSearchWaiting != null) {
             this.mSearchWaiting.post(new Runnable() {
                 @Override
-                @SuppressWarnings("synthetic-access")
                 public void run() {
                     SearchResultDrawingAsyncTask.this.mSearchWaiting.setVisibility(
                             show ? View.VISIBLE : View.GONE);

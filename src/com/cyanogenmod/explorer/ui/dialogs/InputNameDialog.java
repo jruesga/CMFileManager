@@ -43,12 +43,18 @@ public class InputNameDialog
     private final Context mContext;
     private final AlertDialog mDialog;
     private final TextView mMsg;
-    private final EditText mEditText;
+    /**
+     * @hide
+     */
+    final EditText mEditText;
     private final List<FileSystemObject> mFiles;
 
     private DialogInterface.OnCancelListener mOnCancelListener;
     private DialogInterface.OnDismissListener mOnDismissListener;
-    private boolean mCancelled;
+    /**
+     * @hide
+     */
+    boolean mCancelled;
 
     /**
      * Constructor of <code>InputNameDialog</code>.
@@ -91,14 +97,12 @@ public class InputNameDialog
                 context.getString(android.R.string.ok),
                 new DialogInterface.OnClickListener() {
                     @Override
-                    @SuppressWarnings("synthetic-access")
                     public void onClick(DialogInterface dialog, int which) {
                         InputNameDialog.this.mCancelled = false;
                     }
                 });
         this.mDialog.setOnShowListener(new DialogInterface.OnShowListener() {
             @Override
-            @SuppressWarnings("synthetic-access")
             public void onShow(DialogInterface dialog) {
                 InputMethodManager mgr =
                         (InputMethodManager)context.getSystemService(Context.INPUT_METHOD_SERVICE);

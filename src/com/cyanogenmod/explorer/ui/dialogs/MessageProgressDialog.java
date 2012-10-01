@@ -45,11 +45,17 @@ public class MessageProgressDialog implements DialogInterface.OnClickListener {
         boolean onCancel();
     }
 
-    private final Context mContext;
+    /**
+     * @hide
+     */
+    final Context mContext;
     private final AlertDialog mDialog;
     private final TextView mProgress;
     private final int mProgressResourceId;
-    private OnCancelListener mOnCancelListener;
+    /**
+     * @hide
+     */
+    OnCancelListener mOnCancelListener;
 
     /**
      * Constructor of <code>MessageProgressDialog</code>.
@@ -108,7 +114,6 @@ public class MessageProgressDialog implements DialogInterface.OnClickListener {
                 DialogInterface.BUTTON_NEUTRAL, context.getString(android.R.string.cancel), this);
         this.mDialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
             @Override
-            @SuppressWarnings("synthetic-access")
             public void onCancel(DialogInterface dialog) {
                 if (MessageProgressDialog.this.mOnCancelListener != null) {
                     if (!MessageProgressDialog.this.mOnCancelListener.onCancel()) {

@@ -34,9 +34,18 @@ public class FolderUsageCommandTest extends AbstractConsoleTest {
 
     private static final String PATH = "/system"; //$NON-NLS-1$
 
-    private final Object mSync = new Object();
-    private boolean mNewPartialData;
-    private FolderUsage mUsage;
+    /**
+     * @hide
+     */
+    final Object mSync = new Object();
+    /**
+     * @hide
+     */
+    boolean mNewPartialData;
+    /**
+     * @hide
+     */
+    FolderUsage mUsage;
 
     /**
      * {@inheritDoc}
@@ -51,7 +60,6 @@ public class FolderUsageCommandTest extends AbstractConsoleTest {
      *
      * @throws Exception If test failed
      */
-    @SuppressWarnings("synthetic-access")
     public void testFolderUsageWithPartialResult() throws Exception {
         this.mNewPartialData = false;
         this.mUsage = null;

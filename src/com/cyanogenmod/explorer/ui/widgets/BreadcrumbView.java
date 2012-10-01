@@ -43,11 +43,23 @@ import java.util.List;
  */
 public class BreadcrumbView extends RelativeLayout implements Breadcrumb, OnClickListener {
 
-    private HorizontalScrollView mScrollView;
+    /**
+     * @hide
+     */
+    HorizontalScrollView mScrollView;
     private ViewGroup mBreadcrumbBar;
-    private ImageView mFilesystemInfo;
-    private ProgressBar mDiskUsageInfo;
-    private View mLoading;
+    /**
+     * @hide
+     */
+    ImageView mFilesystemInfo;
+    /**
+     * @hide
+     */
+    ProgressBar mDiskUsageInfo;
+    /**
+     * @hide
+     */
+    View mLoading;
     private FilesystemAsyncTask mFilesystemAsyncTask;
 
     private int mFreeDiskSpaceWarningLevel = 95;
@@ -144,7 +156,6 @@ public class BreadcrumbView extends RelativeLayout implements Breadcrumb, OnClic
         //Show/Hide views
         this.post(new Runnable() {
             @Override
-            @SuppressWarnings("synthetic-access")
             public void run() {
                 BreadcrumbView.this.mFilesystemInfo.setVisibility(View.INVISIBLE);
                 BreadcrumbView.this.mDiskUsageInfo.setVisibility(View.INVISIBLE);
@@ -161,7 +172,6 @@ public class BreadcrumbView extends RelativeLayout implements Breadcrumb, OnClic
         //Show/Hide views
         this.post(new Runnable() {
             @Override
-            @SuppressWarnings("synthetic-access")
             public void run() {
                 BreadcrumbView.this.mLoading.setVisibility(View.INVISIBLE);
                 BreadcrumbView.this.mFilesystemInfo.setVisibility(View.VISIBLE);
@@ -197,7 +207,6 @@ public class BreadcrumbView extends RelativeLayout implements Breadcrumb, OnClic
         //Set scrollbar at the end
         this.mScrollView.post(new Runnable() {
             @Override
-            @SuppressWarnings("synthetic-access")
             public void run() {
                 BreadcrumbView.this.mScrollView.fullScroll(View.FOCUS_RIGHT);
             }

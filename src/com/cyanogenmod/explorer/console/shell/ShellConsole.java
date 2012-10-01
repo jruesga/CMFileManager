@@ -81,25 +81,46 @@ public abstract class ShellConsole extends Console {
     //Process References
     private final Object mSync = new Object();
     private final Object mPartialSync = new Object();
-    private boolean mActive = false;
+    /**
+     * @hide
+     */
+    boolean mActive = false;
     private boolean mFinished = true;
     private Process mProc = null;
-    private Program mActiveCommand = null;
-    private boolean mCancelled;
-    private boolean mStarted;
+    /**
+     * @hide
+     */
+    Program mActiveCommand = null;
+    /**
+     * @hide
+     */
+    boolean mCancelled;
+    /**
+     * @hide
+     */
+    boolean mStarted;
 
     //Buffers
     private InputStream mIn = null;
     private InputStream mErr = null;
     private OutputStream mOut = null;
-    private StringBuffer mSbIn = null;
-    private StringBuffer mSbErr = null;
+    /**
+     * @hide
+     */
+    StringBuffer mSbIn = null;
+    /**
+     * @hide
+     */
+    StringBuffer mSbErr = null;
 
     private final SecureRandom mRandom;
     private String mStartControlPattern;
     private String mEndControlPattern;
 
-    private int mBufferSize;
+    /**
+     * @hide
+     */
+    int mBufferSize;
 
     private final ShellExecutableFactory mExecutableFactory;
 
@@ -355,7 +376,6 @@ public abstract class ShellConsole extends Console {
         if (executable instanceof AsyncResultExecutable) {
             Thread asyncThread = new Thread(new Runnable() {
                 @Override
-                @SuppressWarnings("synthetic-access")
                 public void run() {
                     //Synchronous execution (but asynchronous running in a thread)
                     //This way syncExecute is locked until this thread ends
@@ -396,8 +416,9 @@ public abstract class ShellConsole extends Console {
      * @throws OperationTimeoutException If the operation exceeded the maximum time of wait
      * @throws ExecutionException If the operation returns a invalid exit code
      * @throws ReadOnlyFilesystemException If the operation writes in a read-only filesystem
+     * @hide
      */
-    private synchronized boolean syncExecute(final Program program, boolean reallocate)
+    synchronized boolean syncExecute(final Program program, boolean reallocate)
             throws ConsoleAllocException, InsufficientPermissionsException,
             CommandNotFoundException, NoSuchFileOrDirectory,
             OperationTimeoutException, ExecutionException, ReadOnlyFilesystemException {
@@ -571,7 +592,6 @@ public abstract class ShellConsole extends Console {
     private Thread createStdInThread(final InputStream in) {
         Thread t = new Thread(new Runnable() {
             @Override
-            @SuppressWarnings("synthetic-access")
             public void run() {
                 int read = 0;
                 try {
@@ -691,7 +711,6 @@ public abstract class ShellConsole extends Console {
     private Thread createStdErrThread(final InputStream err) {
         Thread t = new Thread(new Runnable() {
             @Override
-            @SuppressWarnings("synthetic-access")
             public void run() {
                 int read = 0;
                 try {
@@ -780,8 +799,9 @@ public abstract class ShellConsole extends Console {
 
     /**
      * Method that verifies if the process had exited.
+     * @hide
      */
-    private void checkIfProcessExits() {
+    void checkIfProcessExits() {
         try {
             if (this.mProc != null) {
                 synchronized (ShellConsole.this.mSync) {
@@ -799,8 +819,9 @@ public abstract class ShellConsole extends Console {
      *
      * @param ex The exception, only if the process exit with a exception.
      * Otherwise null
+     * @hide
      */
-    private void notifyProcessExit(Exception ex) {
+    void notifyProcessExit(Exception ex) {
         synchronized (ShellConsole.this.mSync) {
             if (this.mActive) {
                 this.mSync.notify();
@@ -815,8 +836,9 @@ public abstract class ShellConsole extends Console {
 
     /**
      * Method that notifies the ending of the command execution.
+     * @hide
      */
-    private void notifyProcessFinished() {
+    void notifyProcessFinished() {
         synchronized (ShellConsole.this.mSync) {
             if (this.mActive) {
                 this.mSync.notify();
@@ -832,8 +854,9 @@ public abstract class ShellConsole extends Console {
      *
      * @param stdin The standard in buffer
      * @return boolean If the command has started
+     * @hide
      */
-    private boolean isCommandStarted(StringBuffer stdin) {
+    boolean isCommandStarted(StringBuffer stdin) {
         Pattern pattern = Pattern.compile(this.mStartControlPattern);
         Matcher matcher = pattern.matcher(stdin.toString());
         if (matcher.find()) {
@@ -849,8 +872,9 @@ public abstract class ShellConsole extends Console {
      *
      * @param stdin The standard in buffer
      * @return boolean If the command has finished
+     * @hide
      */
-    private boolean isCommandFinished(StringBuffer stdin) {
+    boolean isCommandFinished(StringBuffer stdin) {
         Pattern pattern = Pattern.compile(this.mEndControlPattern);
         Matcher matcher = pattern.matcher(stdin.toString());
         return matcher.find();
@@ -889,9 +913,9 @@ public abstract class ShellConsole extends Console {
      * text to ensure that the exit code is in there.
      *
      * @param sb The buffer to trim
+     * @hide
      */
-    @SuppressWarnings("static-method")
-    private void trimBuffer(StringBuffer sb) {
+    @SuppressWarnings("static-method") void trimBuffer(StringBuffer sb) {
         final int bufferSize = 200;
         if (sb.length() > bufferSize) {
             sb.delete(0, sb.length() - bufferSize);

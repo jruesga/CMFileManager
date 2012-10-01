@@ -903,7 +903,6 @@ public class NavigationActivity extends Activity
                 final int itemId = (int)id;
                 getCurrentNavigationView().post(new Runnable() {
                     @Override
-                    @SuppressWarnings("synthetic-access")
                     public void run() {
                         popup.dismiss();
                         switch (itemId) {
@@ -1181,8 +1180,9 @@ public class NavigationActivity extends Activity
 
     /**
      * Method that opens the bookmarks activity.
+     * @hide
      */
-    private void openBookmarks() {
+    void openBookmarks() {
         Intent bookmarksIntent = new Intent(this, BookmarksActivity.class);
         bookmarksIntent.addFlags(Intent.FLAG_ACTIVITY_TASK_ON_HOME);
         startActivityForResult(bookmarksIntent, INTENT_REQUEST_BOOKMARK);
@@ -1190,8 +1190,9 @@ public class NavigationActivity extends Activity
 
     /**
      * Method that opens the history activity.
+     * @hide
      */
-    private void openHistory() {
+    void openHistory() {
         Intent historyIntent = new Intent(this, HistoryActivity.class);
         historyIntent.putExtra(HistoryActivity.EXTRA_HISTORY_LIST, (Serializable)this.mHistory);
         historyIntent.addFlags(Intent.FLAG_ACTIVITY_TASK_ON_HOME);
@@ -1200,8 +1201,9 @@ public class NavigationActivity extends Activity
 
     /**
      * Method that opens the search activity.
+     * @hide
      */
-    private void openSearch() {
+    void openSearch() {
         onSearchRequested();
     }
 

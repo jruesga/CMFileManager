@@ -191,7 +191,6 @@ public final class ExceptionUtil {
         if (ex instanceof RelaunchableException && askUser) {
             ((Activity)context).runOnUiThread(new Runnable() {
                 @Override
-                @SuppressWarnings("synthetic-access")
                 public void run() {
                     askUser(context, (RelaunchableException)ex, quiet, listener);
                 }
@@ -225,8 +224,9 @@ public final class ExceptionUtil {
      * @param context The current context
      * @param relaunchable The exception that contains the command that must be re-executed.
      * @param listener The listener where return the relaunch result
+     * @hide
      */
-    private static void askUser(
+    static void askUser(
             final Context context,
             final RelaunchableException relaunchable,
             final boolean quiet,
@@ -263,7 +263,6 @@ public final class ExceptionUtil {
                     relaunchable.getQuestionResourceId(),
                     new DialogInterface.OnClickListener() {
                         @Override
-                        @SuppressWarnings("synthetic-access")
                         public void onClick(DialogInterface dialog, int which) {
                             if (which == DialogInterface.BUTTON_POSITIVE) {
                                 //Run the executable again
@@ -318,8 +317,9 @@ public final class ExceptionUtil {
      *
      * @param context The current context
      * @param relaunchable The {@link RelaunchableException} reference
+     * @hide
      */
-    private static void prepare(final Context context, final RelaunchableException relaunchable) {
+    static void prepare(final Context context, final RelaunchableException relaunchable) {
         //- This exception need change the console before re-execute
         if (relaunchable instanceof InsufficientPermissionsException) {
             ConsoleBuilder.changeToPrivilegedConsole(context);

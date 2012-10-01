@@ -34,13 +34,28 @@ import com.cyanogenmod.explorer.util.MountPointHelper;
  */
 public class FilesystemAsyncTask extends AsyncTask<String, Integer, Boolean> {
 
-    private final ImageView mMountPointInfo;
-    private final ProgressBar mDiskUsageInfo;
-    private final int mFreeDiskSpaceWarningLevel;
+    /**
+     * @hide
+     */
+    final ImageView mMountPointInfo;
+    /**
+     * @hide
+     */
+    final ProgressBar mDiskUsageInfo;
+    /**
+     * @hide
+     */
+    final int mFreeDiskSpaceWarningLevel;
     private boolean mRunning;
 
-    private static int sColorFilterNormal;
-    private static int sColorFilterWarning;
+    /**
+     * @hide
+     */
+    static int sColorFilterNormal;
+    /**
+     * @hide
+     */
+    static int sColorFilterWarning;
 
     /**
      * Constructor of <code>FilesystemAsyncTask</code>.
@@ -99,7 +114,6 @@ public class FilesystemAsyncTask extends AsyncTask<String, Integer, Boolean> {
             }
             this.mMountPointInfo.post(new Runnable() {
                 @Override
-                @SuppressWarnings("synthetic-access")
                 public void run() {
                     FilesystemAsyncTask.this.mMountPointInfo.setImageResource(
                             R.drawable.ic_holo_light_fs_warning);
@@ -113,7 +127,6 @@ public class FilesystemAsyncTask extends AsyncTask<String, Integer, Boolean> {
             }
             this.mMountPointInfo.post(new Runnable() {
                 @Override
-                @SuppressWarnings("synthetic-access")
                 public void run() {
                     FilesystemAsyncTask.this.mMountPointInfo.setImageResource(
                             MountPointHelper.isReadOnly(mp)
@@ -129,7 +142,6 @@ public class FilesystemAsyncTask extends AsyncTask<String, Integer, Boolean> {
             }
             this.mDiskUsageInfo.post(new Runnable() {
                 @Override
-                @SuppressWarnings("synthetic-access")
                 public void run() {
                     final DiskUsage du = MountPointHelper.getMountPointDiskUsage(mp);
                     int usage = 0;

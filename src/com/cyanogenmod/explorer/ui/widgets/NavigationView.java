@@ -97,7 +97,10 @@ public class NavigationView extends RelativeLayout implements
     private int mId;
     private String mCurrentDir;
     private NavigationLayoutMode mCurrentMode;
-    private List<FileSystemObject> mFiles;
+    /**
+     * @hide
+     */
+    List<FileSystemObject> mFiles;
     private FileSystemObjectAdapter mAdapter;
     private DefaultLongClickAction mDefaultLongClickAction;
 
@@ -107,10 +110,18 @@ public class NavigationView extends RelativeLayout implements
     private OnNavigationSelectionChangedListener mOnNavigationSelectionChangedListener;
     private OnNavigationRequestMenuListener mOnNavigationRequestMenuListener;
 
-
-    private Breadcrumb mBreadcrumb;
-    private NavigationCustomTitleView mTitle;
-    private AdapterView<?> mAdapterView;
+    /**
+     * @hide
+     */
+    Breadcrumb mBreadcrumb;
+    /**
+     * @hide
+     */
+    NavigationCustomTitleView mTitle;
+    /**
+     * @hide
+     */
+    AdapterView<?> mAdapterView;
 
     //The layout for icons mode
     private static final int RESOURCE_MODE_ICONS_LAYOUT = R.layout.navigation_view_icons;
@@ -521,7 +532,6 @@ public class NavigationView extends RelativeLayout implements
                          * {@inheritDoc}
                          */
                         @Override
-                        @SuppressWarnings("synthetic-access")
                         protected List<FileSystemObject> doInBackground(String... params) {
                             try {
                                 //Reset the custom title view and returns to breadcrumb
@@ -592,7 +602,6 @@ public class NavigationView extends RelativeLayout implements
                          * {@inheritDoc}
                          */
                         @Override
-                        @SuppressWarnings("synthetic-access")
                         protected void onPostExecute(List<FileSystemObject> files) {
                             onPostExecuteTask(
                                     files, addToHistory, isNewHistory,
@@ -614,8 +623,9 @@ public class NavigationView extends RelativeLayout implements
      * @param searchInfo The search information (if calling activity is {@link "SearchActivity"})
      * @param newDir The new directory
      * @param scrollTo If not null, then listview must scroll to this item
+     * @hide
      */
-    private void onPostExecuteTask(
+    void onPostExecuteTask(
             List<FileSystemObject> files, boolean addToHistory, boolean isNewHistory,
             boolean hasChanged, SearchInfoParcelable searchInfo,
             String newDir, final FileSystemObject scrollTo) {

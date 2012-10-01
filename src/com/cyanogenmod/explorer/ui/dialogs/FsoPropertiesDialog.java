@@ -79,24 +79,42 @@ public class FsoPropertiesDialog
     private static final String AID_FORMAT = "%05d - %s"; //$NON-NLS-1$
     private static final String AID_SEPARATOR = " - "; //$NON-NLS-1$
 
-    private final FileSystemObject mFso;
+    /**
+     * @hide
+     */
+    final FileSystemObject mFso;
     private boolean mHasChanged;
 
-    private final Context mContext;
+    /**
+     * @hide
+     */
+    final Context mContext;
     private final AlertDialog mDialog;
     private final View mContentView;
     private View mInfoViewTab;
     private View mPermissionsViewTab;
     private View mInfoView;
     private View mPermissionsView;
-    private Spinner mSpnOwner;
-    private Spinner mSpnGroup;
+    /**
+     * @hide
+     */
+    Spinner mSpnOwner;
+    /**
+     * @hide
+     */
+    Spinner mSpnGroup;
     private CheckBox[] mChkUserPermission;
     private CheckBox[] mChkGroupPermission;
     private CheckBox[] mChkOthersPermission;
     private TextView mInfoMsgView;
-    private TextView mTvSize;
-    private TextView mTvContains;
+    /**
+     * @hide
+     */
+    TextView mTvSize;
+    /**
+     * @hide
+     */
+    TextView mTvContains;
 
     private boolean mIgnoreCheckEvents;
     private boolean mHasPrivileged;
@@ -104,7 +122,10 @@ public class FsoPropertiesDialog
     private final boolean mComputeFolderStatistics;
     private AsyncResultExecutable mFolderUsageExecutable;
     private FolderUsage mFolderUsage;
-    private boolean mDrawingFolderUsage;
+    /**
+     * @hide
+     */
+    boolean mDrawingFolderUsage;
 
     private DialogInterface.OnDismissListener mOnDismissListener;
 
@@ -282,13 +303,11 @@ public class FsoPropertiesDialog
         AsyncTask<Void, Void, SparseArray<AID>> aidsTask =
                         new AsyncTask<Void, Void, SparseArray<AID>>() {
             @Override
-            @SuppressWarnings("synthetic-access")
             protected SparseArray<AID> doInBackground(Void...params) {
                 return AIDHelper.getAIDs(FsoPropertiesDialog.this.mContext);
             }
 
             @Override
-            @SuppressWarnings("synthetic-access")
             protected void onPostExecute(SparseArray<AID> aids) {
                 if (!isCancelled()) {
                     // Ensure that at least one AID was loaded
@@ -486,14 +505,12 @@ public class FsoPropertiesDialog
             ExceptionUtil.translateException(
                     this.mContext, ex, true, true, new ExceptionUtil.OnRelaunchCommandResult() {
                 @Override
-                @SuppressWarnings("synthetic-access")
                 public void onSuccess() {
                     // Hide the message
                     setMsg(null);
                 }
 
                 @Override
-                @SuppressWarnings("synthetic-access")
                 public void onCancelled() {
                     // Update the permissions with the previous information
                     updatePermissions();
@@ -501,7 +518,6 @@ public class FsoPropertiesDialog
                 }
 
                 @Override
-                @SuppressWarnings("synthetic-access")
                 public void onFailed() {
                     // Show the warning message
                     setMsg(FsoPropertiesDialog.this.mContext.getString(
@@ -592,14 +608,12 @@ public class FsoPropertiesDialog
             ExceptionUtil.translateException(
                     this.mContext, ex, true, true, new ExceptionUtil.OnRelaunchCommandResult() {
                 @Override
-                @SuppressWarnings("synthetic-access")
                 public void onSuccess() {
                     // Hide the message
                     setMsg(null);
                 }
 
                 @Override
-                @SuppressWarnings("synthetic-access")
                 public void onCancelled() {
                     // Update the information of owner and group
                     updateSpinnerFromAid(
@@ -612,7 +626,6 @@ public class FsoPropertiesDialog
                 }
 
                 @Override
-                @SuppressWarnings("synthetic-access")
                 public void onFailed() {
                     setMsg(txtMsg);
 
@@ -642,8 +655,9 @@ public class FsoPropertiesDialog
      * @param ctx The current context
      * @param spinner The spinner
      * @param msg The message
+     * @hide
      */
-    private static void setSpinnerMsg(Context ctx, Spinner spinner, String msg) {
+    static void setSpinnerMsg(Context ctx, Spinner spinner, String msg) {
         ArrayAdapter<String> loadingAdapter =
                 new ArrayAdapter<String>(
                         ctx, R.layout.spinner_item, new String[]{msg});
@@ -659,8 +673,9 @@ public class FsoPropertiesDialog
      * @param spinner The spinner
      * @param data The data
      * @param selection The object to select
+     * @hide
      */
-    private void setSpinnerData(
+    void setSpinnerData(
             Context ctx, Spinner spinner, String[] data, int selection) {
         ArrayAdapter<String> adapter =
                 new ArrayAdapter<String>(
@@ -688,8 +703,9 @@ public class FsoPropertiesDialog
 
     /**
      * Method that refresh the information of permissions
+     * @hide
      */
-    private void updatePermissions() {
+    void updatePermissions() {
         // Update the permissions with the previous information
         FsoPropertiesDialog.this.mIgnoreCheckEvents = true;
         try {
@@ -846,8 +862,9 @@ public class FsoPropertiesDialog
      * the view is hidden
      *
      * @param msg The message to show. {@link null} to hide the dialog
+     * @hide
      */
-    private void setMsg(String msg) {
+    void setMsg(String msg) {
         this.mInfoMsgView.setText(msg);
         this.mInfoMsgView.setVisibility(
                 this.mHasPrivileged && msg == null ? View.GONE : View.VISIBLE);
@@ -955,7 +972,6 @@ public class FsoPropertiesDialog
             // Update the dialog
             ((Activity)this.mContext).runOnUiThread(new Runnable() {
                 @Override
-                @SuppressWarnings("synthetic-access")
                 public void run() {
                     if (computing) {
                         FsoPropertiesDialog.this.mTvSize.setText(

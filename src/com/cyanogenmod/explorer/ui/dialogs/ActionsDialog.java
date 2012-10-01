@@ -51,7 +51,10 @@ public class ActionsDialog implements OnItemClickListener, OnItemLongClickListen
     private final Context mContext;
     private final boolean mGlobal;
 
-    private AlertDialog mDialog;
+    /**
+     * @hide
+     */
+    AlertDialog mDialog;
     private ListView mListView;
     private final FileSystemObject mFso;
 
@@ -233,7 +236,6 @@ public class ActionsDialog implements OnItemClickListener, OnItemLongClickListen
                         menuItem.getTitle().toString());
         inputNameDialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
             @Override
-            @SuppressWarnings("synthetic-access")
             public void onCancel(DialogInterface dialog) {
                 //Show the menu again
                 ActionsDialog.this.mDialog.show();
@@ -241,7 +243,6 @@ public class ActionsDialog implements OnItemClickListener, OnItemLongClickListen
         });
         inputNameDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
             @Override
-            @SuppressWarnings("synthetic-access")
             public void onDismiss(DialogInterface dialog) {
                 //Retrieve the name an execute the action
                 try {
@@ -274,8 +275,9 @@ public class ActionsDialog implements OnItemClickListener, OnItemLongClickListen
      *
      * @param menuId The menu identifier (need to determine the fso type)
      * @param name The name of the file system object
+     * @hide
      */
-    private void createNewFileSystemObject(final int menuId, final String name) {
+    void createNewFileSystemObject(final int menuId, final String name) {
         switch (menuId) {
             case R.id.mnu_actions_new_directory:
                 ActionsPolicy.createNewDirectory(

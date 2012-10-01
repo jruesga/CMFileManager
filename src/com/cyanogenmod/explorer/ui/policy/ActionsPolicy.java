@@ -63,6 +63,8 @@ public final class ActionsPolicy {
          */
         FileSystemObject mFso;
 
+        RemoveItemListenter() {/**NON BLOCK**/}
+
         @Override
         public void onSuccess() {
             //Operation complete. Refresh
@@ -357,7 +359,6 @@ public final class ActionsPolicy {
             ctx, msg,
             new DialogInterface.OnClickListener() {
                 @Override
-                @SuppressWarnings("synthetic-access")
                 public void onClick(DialogInterface alertDialog, int which) {
                     if (which == DialogInterface.BUTTON_POSITIVE) {
                         try {

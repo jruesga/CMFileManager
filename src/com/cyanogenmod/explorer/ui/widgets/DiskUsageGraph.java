@@ -40,10 +40,16 @@ public class DiskUsageGraph extends View {
     private static int sColorFilterNormal;
     private static int sColorFilterWarning;
 
-    private int mDiskWarningAngle = (360 * 95) / 100;
+    /**
+     * @hide
+     */
+    int mDiskWarningAngle = (360 * 95) / 100;
 
     private AnimationDrawingThread mThread;
-    private final List<DrawingObject> mDrawingObjects =
+    /**
+     * @hide
+     */
+    final List<DrawingObject> mDrawingObjects =
             Collections.synchronizedList(new ArrayList<DiskUsageGraph.DrawingObject>(2));
 
     /**
@@ -161,7 +167,7 @@ public class DiskUsageGraph extends View {
          * {@inheritDoc}
          */
         @Override
-        @SuppressWarnings({ "synthetic-access", "null" })
+        @SuppressWarnings("null")
         public void run() {
             //Get information about the drawing zone, and adjust the size
             Rect rect = new Rect();
@@ -279,7 +285,6 @@ public class DiskUsageGraph extends View {
          * @param stroke The stroke width
          * @return DrawingObject The drawing object
          */
-        @SuppressWarnings("synthetic-access")
         private DrawingObject createDrawingObject(Rect rect, int colorResourceId, int stroke) {
             DrawingObject out = new DrawingObject();
             out.mSweepAngle = 0;
@@ -297,6 +302,7 @@ public class DiskUsageGraph extends View {
      * A class with information about a drawing object.
      */
     private class DrawingObject {
+        DrawingObject() {/**NON BLOCK**/}
         int mStartAngle = -180;
         int mSweepAngle = 0;
         Paint mPaint = new Paint(Paint.ANTI_ALIAS_FLAG);

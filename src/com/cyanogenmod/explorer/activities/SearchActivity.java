@@ -113,7 +113,6 @@ public class SearchActivity extends Activity
 
     private final BroadcastReceiver mOnSettingChangeReceiver = new BroadcastReceiver() {
         @Override
-        @SuppressWarnings("synthetic-access")
         public void onReceive(Context context, Intent intent) {
             if (intent != null &&
                 intent.getAction().compareTo(ExplorerSettings.INTENT_SETTING_CHANGED) == 0) {
@@ -162,23 +161,51 @@ public class SearchActivity extends Activity
         }
     };
 
+    /**
+     * @hide
+     */
+    MessageProgressDialog mDialog = null;
+    /**
+     * @hide
+     */
+    AsyncResultExecutable mExecutable = null;
 
-    private MessageProgressDialog mDialog = null;
-    private AsyncResultExecutable mExecutable = null;
-
-    private ListView mSearchListView;
-    private ProgressBar mSearchWaiting;
-    private TextView mSearchFoundItems;
-    private TextView mSearchTerms;
+    /**
+     * @hide
+     */
+    ListView mSearchListView;
+    /**
+     * @hide
+     */
+    ProgressBar mSearchWaiting;
+    /**
+     * @hide
+     */
+    TextView mSearchFoundItems;
+    /**
+     * @hide
+     */
+    TextView mSearchTerms;
     private View mEmptyListMsg;
-//    private SearchResultAdapter mAdapter;
-    private DefaultLongClickAction mDefaultLongClickAction;
+    /**
+     * @hide
+     */
+    DefaultLongClickAction mDefaultLongClickAction;
 
     private String mSearchDirectory;
-    private List<FileSystemObject> mResultList;
-    private Query mQuery;
+    /**
+     * @hide
+     */
+    List<FileSystemObject> mResultList;
+    /**
+     * @hide
+     */
+    Query mQuery;
 
-    private SearchInfoParcelable mRestoreState;
+    /**
+     * @hide
+     */
+    SearchInfoParcelable mRestoreState;
 
     private SearchResultDrawingAsyncTask mDrawingSearchResultTask;
 
@@ -463,7 +490,6 @@ public class SearchActivity extends Activity
                         this, R.string.search_few_characters_msg,
                         new DialogInterface.OnClickListener() {
                             @Override
-                            @SuppressWarnings("synthetic-access")
                             public void onClick(DialogInterface alertDialog, int which) {
                                 if (which == DialogInterface.BUTTON_NEGATIVE) {
                                     doSearch(voiceQuery, query, searchDirectory);
@@ -483,8 +509,9 @@ public class SearchActivity extends Activity
      * @param voiceQuery Indicates if the query is from voice recognition
      * @param query The terms of the search
      * @param searchDirectory The directory of the search
+     * @hide
      */
-    private void doSearch(
+    void doSearch(
             final boolean voiceQuery, final Query query, final String searchDirectory) {
 
         // Recovers the user preferences about save suggestions
@@ -522,7 +549,6 @@ public class SearchActivity extends Activity
         //Now, do the search in background
         this.mSearchListView.post(new Runnable() {
             @Override
-            @SuppressWarnings("synthetic-access")
             public void run() {
                 try {
                     //Retrieve the terms of the search
@@ -599,7 +625,6 @@ public class SearchActivity extends Activity
     private void loadFromCacheData() {
         this.mSearchListView.post(new Runnable() {
             @Override
-            @SuppressWarnings("synthetic-access")
             public void run() {
                 //Toggle results
                 List<SearchResult> list = SearchActivity.this.mRestoreState.getSearchResultList();
@@ -673,8 +698,9 @@ public class SearchActivity extends Activity
 
     /**
      * Method that removes all items and display a message.
+     * @hide
      */
-    private void removeAll() {
+    void removeAll() {
         SearchResultAdapter adapter = (SearchResultAdapter)this.mSearchListView.getAdapter();
         adapter.clear();
         adapter.notifyDataSetChanged();
@@ -687,8 +713,9 @@ public class SearchActivity extends Activity
      *
      * @param hasResults Indicates if there are results
      * @param showEmpty Show the empty list message
+     * @hide
      */
-    private void toggleResults(boolean hasResults, boolean showEmpty) {
+    void toggleResults(boolean hasResults, boolean showEmpty) {
         this.mSearchListView.setVisibility(hasResults ? View.VISIBLE : View.INVISIBLE);
         this.mEmptyListMsg.setVisibility(!hasResults && showEmpty ? View.VISIBLE : View.INVISIBLE);
     }
@@ -698,12 +725,12 @@ public class SearchActivity extends Activity
      *
      * @param items The number of items
      * @param searchDirectory The search directory path
+     * @hide
      */
-    private void setFoundItems(final int items, final String searchDirectory) {
+    void setFoundItems(final int items, final String searchDirectory) {
         if (this.mSearchFoundItems != null) {
             this.mSearchFoundItems.post(new Runnable() {
                 @Override
-                @SuppressWarnings("synthetic-access")
                 public void run() {
                     String foundItems =
                             getResources().
@@ -903,8 +930,9 @@ public class SearchActivity extends Activity
      *
      * @param canceled Indicates if the activity was canceled
      * @param directory The directory to which navigate to
+     * @hide
      */
-    private void back(final boolean canceled, String directory) {
+    void back(final boolean canceled, String directory) {
         Intent intent =  new Intent();
         if (canceled) {
             if (SearchActivity.this.mDrawingSearchResultTask != null
@@ -934,7 +962,6 @@ public class SearchActivity extends Activity
     public void onAsyncStart() {
         runOnUiThread(new Runnable() {
             @Override
-            @SuppressWarnings("synthetic-access")
             public void run() {
                 SearchActivity.this.toggleResults(false, false);
             }
@@ -948,7 +975,6 @@ public class SearchActivity extends Activity
     public void onAsyncEnd(boolean cancelled) {
         this.mSearchListView.post(new Runnable() {
             @Override
-            @SuppressWarnings("synthetic-access")
             public void run() {
                 try {
                     //Dismiss the dialog
@@ -982,7 +1008,6 @@ public class SearchActivity extends Activity
         //Notify progress
         this.mSearchListView.post(new Runnable() {
             @Override
-            @SuppressWarnings("synthetic-access")
             public void run() {
                 if (SearchActivity.this.mDialog != null) {
                     SearchActivity.this.mDialog.setProgress(
@@ -1003,8 +1028,9 @@ public class SearchActivity extends Activity
 
     /**
      * Method that draw the results in the listview
+     * @hide
      */
-    private void drawResults() {
+    void drawResults() {
         //Toggle results
         this.toggleResults(this.mResultList.size() > 0, true);
         setFoundItems(this.mResultList.size(), this.mSearchDirectory);

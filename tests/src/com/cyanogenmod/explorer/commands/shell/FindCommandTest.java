@@ -34,8 +34,14 @@ public class FindCommandTest extends AbstractConsoleTest {
     private static final String FIND_PATH = "/"; //$NON-NLS-1$
     private static final String FIND_TERM_PARTIAL = "xml"; //$NON-NLS-1$
 
-    private final Object mSync = new Object();
-    private boolean mNewPartialData;
+    /**
+     * @hide
+     */
+    final Object mSync = new Object();
+    /**
+     * @hide
+     */
+    boolean mNewPartialData;
 
     /**
      * {@inheritDoc}
@@ -50,7 +56,6 @@ public class FindCommandTest extends AbstractConsoleTest {
      *
      * @throws Exception If test failed
      */
-    @SuppressWarnings("synthetic-access")
     public void testFindWithPartialResult() throws Exception {
         this.mNewPartialData = false;
         Query query = new Query().setSlot(FIND_TERM_PARTIAL, 0);

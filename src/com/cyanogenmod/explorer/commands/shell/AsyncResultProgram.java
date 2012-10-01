@@ -33,9 +33,15 @@ public abstract class AsyncResultProgram
 
     private final AsyncResultListener mAsyncResultListener;
     private AsyncResultProgramThread mWorkerThread;
-    private final List<String> mPartialData;
+    /**
+     * @hide
+     */
+    final List<String> mPartialData;
     private final Object mSync = new Object();
-    private final Object mTerminateSync = new Object();
+    /**
+     * @hide
+     */
+    final Object mTerminateSync = new Object();
 
     private boolean mCanceled;
     private OnCancelListener mOnCancelListener;
@@ -249,7 +255,6 @@ public abstract class AsyncResultProgram
          * {@inheritDoc}
          */
         @Override
-        @SuppressWarnings("synthetic-access")
         public void run() {
             try {
                 this.mAlive = true;

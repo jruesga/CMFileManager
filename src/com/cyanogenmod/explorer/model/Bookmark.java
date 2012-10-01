@@ -122,8 +122,9 @@ public class Bookmark implements Serializable, Comparable<Bookmark>, Parcelable 
      * @param type The type of the bookmark
      * @param name The name of the bookmark
      * @param directory The directory that the bookmark points to
+     * @hide
      */
-    private Bookmark(int id, BOOKMARK_TYPE type, String name, String directory) {
+    Bookmark(int id, BOOKMARK_TYPE type, String name, String directory) {
         super();
         this.mId = id;
         this.mType = type;
@@ -231,7 +232,6 @@ public class Bookmark implements Serializable, Comparable<Bookmark>, Parcelable 
      */
     public static final Parcelable.Creator<Bookmark> CREATOR = new Parcelable.Creator<Bookmark>() {
         @Override
-        @SuppressWarnings("synthetic-access")
         public Bookmark createFromParcel(Parcel in) {
             int id = in.readInt();
             BOOKMARK_TYPE type = BOOKMARK_TYPE.valueOf(in.readString());

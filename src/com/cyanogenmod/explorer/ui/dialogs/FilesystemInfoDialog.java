@@ -61,7 +61,10 @@ public class FilesystemInfoDialog implements OnClickListener {
     private static final String TAG = "FilesystemInfoDialog"; //$NON-NLS-1$
 
     private final MountPoint mMountPoint;
-    private final DiskUsage mDiskUsage;
+    /**
+     * @hide
+     */
+    final DiskUsage mDiskUsage;
 
     private final Context mContext;
     private final AlertDialog mDialog;
@@ -70,7 +73,10 @@ public class FilesystemInfoDialog implements OnClickListener {
     private View mInfoView;
     private View mDiskUsageView;
     private Switch mSwStatus;
-    private DiskUsageGraph mDiskUsageGraph;
+    /**
+     * @hide
+     */
+    DiskUsageGraph mDiskUsageGraph;
     private TextView mInfoMsgView;
 
     private OnMountListener mOnMountListener;
@@ -245,7 +251,6 @@ public class FilesystemInfoDialog implements OnClickListener {
                 }
                 this.mDiskUsageGraph.post(new Runnable() {
                     @Override
-                    @SuppressWarnings("synthetic-access")
                     public void run() {
                         //Animate disk usage graph
                         FilesystemInfoDialog.this.mDiskUsageGraph.drawDiskUsage(

@@ -135,7 +135,7 @@ public class BookmarksActivity extends Activity implements OnItemClickListener, 
     /**
      * Method that makes the refresh of the data.
      */
-    private void refresh() {
+    void refresh() {
         BookmarksAdapter adapter = (BookmarksAdapter)this.mBookmarksListView.getAdapter();
         adapter.clear();
         adapter.addAll(loadBookmarks());
@@ -196,7 +196,6 @@ public class BookmarksActivity extends Activity implements OnItemClickListener, 
           InitialDirectoryDialog dialog = new InitialDirectoryDialog(this);
           dialog.setOnValueChangedListener(new InitialDirectoryDialog.OnValueChangedListener() {
               @Override
-              @SuppressWarnings("synthetic-access")
               public void onValueChanged(String newInitialDir) {
                   refresh();
               }

@@ -110,7 +110,6 @@ public class InlineAutocompleteTextView extends RelativeLayout
      * Method that initializes the view. This method loads all the necessary
      * information and create an appropriate layout for the view
      */
-    @SuppressWarnings("synthetic-access")
     private void init() {
         //Initialize data
         this.mData = new ArrayList<String>();
@@ -297,7 +296,13 @@ public class InlineAutocompleteTextView extends RelativeLayout
         return false;
     }
 
-    private void onTextChanged(String value) {
+    /**
+     * Method that need to be invoked when a string was changed
+     *
+     * @param value The new string
+     * @hide
+     */
+    void onTextChanged(String value) {
         this.mFilter = 0;
         if (this.mOnTextChangedListener != null) {
             //Communicate the change
@@ -337,8 +342,9 @@ public class InlineAutocompleteTextView extends RelativeLayout
 
     /**
      * Method invoked when a tab key event is requested (button or keyboard)
+     * @hide
      */
-    private void doTab() {
+    void doTab() {
         //Complete with current text
         String current = this.mForegroundText.getText().toString();
         if (current.length() == 0) {
@@ -386,8 +392,9 @@ public class InlineAutocompleteTextView extends RelativeLayout
      * Method invoked when a enter key event is requested (button or keyboard)
      *
      * @param fromEditorAction It this method was invoked from editor action
+     * @hide
      */
-    private void doDone(boolean fromEditorAction) {
+    void doDone(boolean fromEditorAction) {
         if (fromEditorAction) {
             // Hide the soft keyboard
             Configuration config = getContext().getResources().getConfiguration();
@@ -410,6 +417,8 @@ public class InlineAutocompleteTextView extends RelativeLayout
         private int mStart;
         private int mCount;
 
+        public FilteredTextWatcher() {/**NON BLOCK**/}
+
         /**
          * {@inheritDoc}
          */
@@ -431,7 +440,6 @@ public class InlineAutocompleteTextView extends RelativeLayout
          * {@inheritDoc}
          */
         @Override
-        @SuppressWarnings("synthetic-access")
         public void afterTextChanged(Editable s) {
             // Enter and Tab are not allowed, and have their own treatment
             final String orig = s.toString();

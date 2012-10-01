@@ -38,7 +38,10 @@ import java.util.List;
  */
 public class SelectionView extends LinearLayout {
 
-    private int mViewHeight;
+    /**
+     * @hide
+     */
+    int mViewHeight;
     private TextView mStatus;
     private int mEffectDuration;
 
@@ -82,7 +85,6 @@ public class SelectionView extends LinearLayout {
         getViewTreeObserver().addOnGlobalLayoutListener(
                 new ViewTreeObserver.OnGlobalLayoutListener() {
                     @Override
-                    @SuppressWarnings("synthetic-access")
                     public void onGlobalLayout() {
                         SelectionView.this.mViewHeight = getHeight();
                         getViewTreeObserver().removeOnGlobalLayoutListener(this);
@@ -185,7 +187,6 @@ public class SelectionView extends LinearLayout {
                                             effect);
         animation.setAnimationListener(new Animation.AnimationListener() {
             @Override
-            @SuppressWarnings("synthetic-access")
             public void onAnimationStart(Animation anim) {
                 LayoutParams params = (LayoutParams)getLayoutParams();
                 if (effect.compareTo(ExpandCollapseAnimation.ANIMATION_TYPE.EXPAND) == 0) {
@@ -200,7 +201,6 @@ public class SelectionView extends LinearLayout {
             public void onAnimationRepeat(Animation anim) {/**NON BLOCK**/}
 
             @Override
-            @SuppressWarnings("synthetic-access")
             public void onAnimationEnd(Animation anim) {
                 LayoutParams params = (LayoutParams)getLayoutParams();
                 if (effect.compareTo(ExpandCollapseAnimation.ANIMATION_TYPE.COLLAPSE) == 0) {

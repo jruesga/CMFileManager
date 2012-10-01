@@ -54,7 +54,10 @@ public class InitialDirectoryDialog implements DialogInterface.OnClickListener {
     private static final String TAG = "InitialDirectoryDialog"; //$NON-NLS-1$
 
     private final Context mContext;
-    private final AlertDialog mDialog;
+    /**
+     * @hide
+     */
+    final AlertDialog mDialog;
     private final DirectoryInlineAutocompleteTextView mAutocomplete;
     private OnValueChangedListener mOnValueChangedListener;
 
@@ -85,7 +88,6 @@ public class InitialDirectoryDialog implements DialogInterface.OnClickListener {
         this.mAutocomplete.setOnValidationListener(
                 new DirectoryInlineAutocompleteTextView.OnValidationListener() {
             @Override
-            @SuppressWarnings("synthetic-access")
             public void onVoidValue() {
                 msgView.setVisibility(View.GONE);
                 //The first invocation is valid. Can be ignore safely
@@ -95,7 +97,6 @@ public class InitialDirectoryDialog implements DialogInterface.OnClickListener {
                 }
             }
             @Override
-            @SuppressWarnings("synthetic-access")
             public void onValidValue() {
                 msgView.setVisibility(View.GONE);
                 //The first invocation is valid. Can be ignore safely
@@ -105,7 +106,6 @@ public class InitialDirectoryDialog implements DialogInterface.OnClickListener {
                 }
             }
             @Override
-            @SuppressWarnings("synthetic-access")
             public void onInvalidValue() {
                 msgView.setVisibility(View.VISIBLE);
                 //The first invocation is valid. Can be ignore safely

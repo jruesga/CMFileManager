@@ -118,6 +118,7 @@ public final class MimeTypeHelper {
      * An internal class for holding the mime/type database structure
      */
     private static class MimeTypeInfo {
+        MimeTypeInfo() {/**NON BLOCK**/}
         public MimeTypeCategory mCategory;
         public String mMimeType;
         public String mDrawable;
@@ -305,7 +306,6 @@ public final class MimeTypeHelper {
      * @param context The current context
      */
     //IMP! This must be invoked from the main activity creation
-    @SuppressWarnings("synthetic-access")
     public static synchronized void loadMimeTypes(Context context) {
         if (sMimeTypes == null) {
             try {

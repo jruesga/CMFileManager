@@ -189,7 +189,8 @@ public class SearchResultAdapter extends ArrayAdapter<SearchResult> implements O
      */
     private void processData() {
         this.mData = new DataHolder[getCount()];
-        for (int i = 0; i < getCount(); i++) {
+        int cc = getCount();
+        for (int i = 0; i < cc; i++) {
             //File system object info
             SearchResult result = getItem(i);
 
@@ -220,9 +221,9 @@ public class SearchResultAdapter extends ArrayAdapter<SearchResult> implements O
      * @return List<SearchResult> The adapter data
      */
     public List<SearchResult> getData() {
-        int count = getCount();
-        final List<SearchResult> data = new ArrayList<SearchResult>(count);
-        for (int i = 0; i < count; i++) {
+        int cc = getCount();
+        final List<SearchResult> data = new ArrayList<SearchResult>(cc);
+        for (int i = 0; i < cc; i++) {
             data.add(getItem(i));
         }
         return data;
@@ -235,8 +236,8 @@ public class SearchResultAdapter extends ArrayAdapter<SearchResult> implements O
      * @return The position of the specified item.
      */
     public int getPosition(FileSystemObject item) {
-        int count = getCount();
-        for (int i = 0; i < count; i++) {
+        int cc = getCount();
+        for (int i = 0; i < cc; i++) {
             SearchResult sr = getItem(i);
             if (sr.getFso().compareTo(item) == 0) {
                 return i;

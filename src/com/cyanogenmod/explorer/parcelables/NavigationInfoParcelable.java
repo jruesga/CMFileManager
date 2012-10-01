@@ -99,7 +99,8 @@ public class NavigationInfoParcelable implements Parcelable {
     public void writeToParcel(Parcel dest, int flags) {
         //- 0
         dest.writeInt(this.mNavigationViews.length);
-        for (int i = 0; i < this.mNavigationViews.length; i++) {
+        int cc = this.mNavigationViews.length;
+        for (int i = 0; i < cc; i++) {
             dest.writeParcelable(this.mNavigationViews[i], 0);
         }
         //- 1

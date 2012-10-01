@@ -90,7 +90,8 @@ public final class Preferences {
             Map<ExplorerSettings, Object> defaultPrefs =
                     new HashMap<ExplorerSettings, Object>();
             ExplorerSettings[] values = ExplorerSettings.values();
-            for (int i = 0; i < values.length; i++) {
+            int cc = values.length;
+            for (int i = 0; i < cc; i++) {
                 defaultPrefs.put(values[i], values[i].getDefaultValue());
             }
             savePreferences(defaultPrefs, false, true);
@@ -215,7 +216,8 @@ public final class Preferences {
             while (it.hasNext()) {
                 ExplorerSettings pref = it.next();
                 Object value = prefs.get(pref);
-                for (int i = 0; i < CONFIGURATION_LISTENERS.size(); i++) {
+                int cc = CONFIGURATION_LISTENERS.size();
+                for (int i = 0; i < cc; i++) {
                     CONFIGURATION_LISTENERS.get(i).onConfigurationChanged(pref, value, applied);
                 }
             }

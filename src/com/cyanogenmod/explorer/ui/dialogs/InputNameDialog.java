@@ -259,7 +259,8 @@ public class InputNameDialog
      */
     private boolean isNameExists(String name) {
         //Verify if the name exists in the current file list
-        for (int i = 0; i < this.mFiles.size(); i++) {
+        int cc = this.mFiles.size();
+        for (int i = 0; i < cc; i++) {
             FileSystemObject fso = this.mFiles.get(i);
             if (fso.getName().compareTo(name) == 0) {
                 return true;

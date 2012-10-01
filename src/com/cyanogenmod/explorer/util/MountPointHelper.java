@@ -95,7 +95,8 @@ public final class MountPointHelper {
             });
 
             //Search for the mount point information
-            for (int i = 0; i < mps.size(); i++) {
+            int cc = mps.size();
+            for (int i = 0; i < cc; i++) {
                 MountPoint mp = mps.get(i);
                 if (dir.startsWith(mp.getMountPoint())) {
                     return mp;

@@ -461,7 +461,8 @@ public class SearchActivity extends Activity
         //Check if some queries has lower than allowed, in this case
         //request the user for stop the search
         boolean ask = false;
-        for (int i = 0; i < queries.size(); i++) {
+        int cc = queries.size();
+        for (int i = 0; i < cc; i++) {
             if (queries.get(i).trim().length() < MIN_CHARS_SEARCH) {
                 ask = true;
                 break;
@@ -527,7 +528,8 @@ public class SearchActivity extends Activity
                             RecentSearchesContentProvider.MODE);
             if (!voiceQuery) {
                 List<String> queries = query.getQueries();
-                for (int i = 0; i < queries.size(); i++) {
+                int cc = queries.size();
+                for (int i = 0; i < cc; i++) {
                     suggestions.saveRecentQuery(queries.get(i), null);
                 }
             }
@@ -907,7 +909,8 @@ public class SearchActivity extends Activity
                 // Refresh all
                 List<SearchResult> results = adapter.getData();
                 this.mResultList = new ArrayList<FileSystemObject>(results.size());
-                for (int i=0; i<results.size(); i++) {
+                int cc = results.size();
+                for (int i=0; i < cc; i++) {
                     this.mResultList.add(results.get(i).getFso());
                 }
                 drawResults();

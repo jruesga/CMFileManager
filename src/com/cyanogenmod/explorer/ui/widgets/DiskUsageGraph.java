@@ -136,7 +136,8 @@ public class DiskUsageGraph extends View {
         super.onDraw(canvas);
 
         //Draw all the drawing objects
-        for (int i = 0; i < this.mDrawingObjects.size(); i++) {
+        int cc = this.mDrawingObjects.size();
+        for (int i = 0; i < cc; i++) {
             DrawingObject dwo = this.mDrawingObjects.get(i);
             canvas.drawArc(dwo.mRectF, dwo.mStartAngle, dwo.mSweepAngle, false, dwo.mPaint);
         }

@@ -82,7 +82,8 @@ public class MenuSettingsAdapter extends CheckableListAdapter {
 
         //Process the data
         this.mData = new ArrayList<MenuSettingsAdapter.DataHolder>();
-        for (int i = 0; i < settings.size(); i++) {
+        int cc = settings.size();
+        for (int i = 0; i < cc; i++) {
             addSetting(context, settings.get(i));
         }
     }
@@ -140,7 +141,8 @@ public class MenuSettingsAdapter extends CheckableListAdapter {
                 int defaultid = ((ObjectIdentifier)setting.getDefaultValue()).getId();
                 int selected =
                         Preferences.getSharedPreferences().getInt(setting.getId(), defaultid);
-                for (int i = 0; i < ids.length; i++) {
+                int cc = ids.length;
+                for (int i = 0; i < cc; i++) {
                     //Create the data holder
                     DataHolder dataHolder =
                             createDataHolder(
@@ -169,7 +171,8 @@ public class MenuSettingsAdapter extends CheckableListAdapter {
                 String defaultid = ((ObjectStringIdentifier)setting.getDefaultValue()).getId();
                 String selected =
                         Preferences.getSharedPreferences().getString(setting.getId(), defaultid);
-                for (int i = 0; i < ids.length; i++) {
+                int cc = ids.length;
+                for (int i = 0; i < cc; i++) {
                     //Create the data holder
                     DataHolder dataHolder =
                             createDataHolder(

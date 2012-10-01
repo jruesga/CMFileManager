@@ -103,7 +103,8 @@ public class IdentityCommand extends SyncResultProgram implements IdentityExecut
             String szGroups = p.getProperty(GROUPS);
             if (szGroups != null && szGroups.length() > 0) {
                 String[] aGroups = szGroups.split(","); //$NON-NLS-1$
-                for (int i = 0; i < aGroups.length; i++) {
+                int cc = aGroups.length;
+                for (int i = 0; i < cc; i++) {
                     groups.add((Group)createAID(aGroups[i], Group.class));
                 }
             }

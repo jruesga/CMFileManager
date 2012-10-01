@@ -199,7 +199,8 @@ public class BreadcrumbView extends RelativeLayout implements Breadcrumb, OnClic
 
         //Add the rest of the path
         String[] dirs = newPath.split(File.separator);
-        for (int i = 1; i < dirs.length; i++) {
+        int cc = dirs.length;
+        for (int i = 1; i < cc; i++) {
             this.mBreadcrumbBar.addView(createItemDivider());
             this.mBreadcrumbBar.addView(createBreadcrumbItem(createFile(dirs, i)));
         }
@@ -283,7 +284,8 @@ public class BreadcrumbView extends RelativeLayout implements Breadcrumb, OnClic
     @Override
     public void onClick(View v) {
         BreadcrumbItem item = (BreadcrumbItem)v;
-        for (int i = 0; i < this.mBreadcrumbListeners.size(); i++) {
+        int cc = this.mBreadcrumbListeners.size();
+        for (int i = 0; i < cc; i++) {
             this.mBreadcrumbListeners.get(i).onBreadcrumbItemClick(item);
         }
     }

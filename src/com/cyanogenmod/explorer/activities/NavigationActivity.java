@@ -249,7 +249,8 @@ public class NavigationActivity extends Activity
         }
 
         //Initialize navigation
-        for (int i = 0; i < this.mNavigationViews.length; i++) {
+        int cc = this.mNavigationViews.length;
+        for (int i = 0; i < cc; i++) {
             if  (this.mCurrentNavigationView == i) {
                 initNavigation(i, restore);
             } else {
@@ -315,7 +316,8 @@ public class NavigationActivity extends Activity
         //-
         NavigationViewInfoParcelable[] navigationViews =
                 new NavigationViewInfoParcelable[this.mNavigationViews.length];
-        for (int i = 0; i < this.mNavigationViews.length; i++) {
+        int cc = this.mNavigationViews.length;
+        for (int i = 0; i < cc; i++) {
             navigationViews[i] = this.mNavigationViews[i].onSaveState();
         }
         parcel.setNavigationViews(navigationViews);
@@ -344,7 +346,8 @@ public class NavigationActivity extends Activity
                     return false;
                 }
                 this.mNavigationViews = new NavigationView[navigationViews.length];
-                for (int i = 0; i < navigationViews.length; i++) {
+                int cc = navigationViews.length;
+                for (int i = 0; i < cc; i++) {
                     if (navigationViews[i] != null) {
                         this.mNavigationViews[i].onRestoreState(navigationViews[i]);
                     } else {
@@ -405,7 +408,8 @@ public class NavigationActivity extends Activity
                         R.layout.navigation_view_customtitle, null, false);
         title.setOnHistoryListener(this);
         Breadcrumb breadcrumb = (Breadcrumb)title.findViewById(R.id.breadcrumb_view);
-        for (int i = 0; i < this.mNavigationViews.length; i++) {
+        int cc = this.mNavigationViews.length;
+        for (int i = 0; i < cc; i++) {
             this.mNavigationViews[i].setBreadcrumb(breadcrumb);
             this.mNavigationViews[i].setOnHistoryListener(this);
             this.mNavigationViews[i].setOnNavigationSelectionChangedListener(this);
@@ -449,7 +453,8 @@ public class NavigationActivity extends Activity
                 int bw = (int)getResources().getDimension(R.dimen.default_buttom_width);
                 int cw = 0;
                 final ViewGroup abView = ((ViewGroup)v);
-                for (int i = 0; i < abView.getChildCount(); i++) {
+                int cc = abView.getChildCount();
+                for (int i = 0; i < cc; i++) {
                     View child = abView.getChildAt(i);
                     child.setVisibility(cw + bw > w ? View.INVISIBLE : View.VISIBLE);
                     cw += bw;
@@ -876,9 +881,8 @@ public class NavigationActivity extends Activity
         Menu menu = adapter.getMenu();
         boolean hasActionBarMenus = false;
         int removed = 0;
-        for (int i = 0, j = this.mActionBar.getChildCount() - 1;
-                i < this.mActionBar.getChildCount(); i++, j--) {
-
+        int cc = this.mActionBar.getChildCount();
+        for (int i = 0, j = this.mActionBar.getChildCount() - 1; i < cc; i++, j--) {
             View child = this.mActionBar.getChildAt(i);
             boolean visible = child.getVisibility() == View.VISIBLE;
             if (visible) {
@@ -1085,7 +1089,8 @@ public class NavigationActivity extends Activity
             }
 
             //Remove the old history
-            for (int i = this.mHistory.size() - 1; i >= realHistory.getPosition(); i--) {
+            int cc = realHistory.getPosition();
+            for (int i = this.mHistory.size() - 1; i >= cc; i--) {
                 this.mHistory.remove(i);
             }
             if (this.mHistory.size() == 0) {

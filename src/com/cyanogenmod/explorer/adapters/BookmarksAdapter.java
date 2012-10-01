@@ -132,7 +132,8 @@ public class BookmarksAdapter extends ArrayAdapter<Bookmark> {
      */
     private void processData() {
         this.mData = new DataHolder[getCount()];
-        for (int i = 0; i < getCount(); i++) {
+        int cc = getCount();
+        for (int i = 0; i < cc; i++) {
             //Bookmark info
             Bookmark bookmark = getItem(i);
 

@@ -66,7 +66,8 @@ public enum NavigationSortMode implements ObjectIdentifier {
      */
     public static NavigationSortMode fromId(int id) {
         NavigationSortMode[] values = values();
-        for (int i = 0; i < values.length; i++) {
+        int cc = values.length;
+        for (int i = 0; i < cc; i++) {
             if (values[i].mId == id) {
                 return values[i];
             }

@@ -790,7 +790,8 @@ public class FsoPropertiesDialog
      */
     private static void setCheckBoxesPermissionsEnable (
             CheckBox[] chkPermissions, boolean enabled) {
-        for (int i=0; i<chkPermissions.length; i++) {
+        int cc = chkPermissions.length;
+        for (int i=0; i<cc; i++) {
             chkPermissions[i].setEnabled(enabled);
         }
     }
@@ -822,7 +823,8 @@ public class FsoPropertiesDialog
                 ResourcesHelper.getIdentifier(
                         res, "id",  //$NON-NLS-1$
                         String.format("fso_permissions_%s_special", type))); //$NON-NLS-1$
-        for (int i=0; i<chkPermissions.length; i++) {
+        int cc = chkPermissions.length;
+        for (int i=0; i<cc; i++) {
             chkPermissions[i].setOnCheckedChangeListener(this);
         }
         return chkPermissions;

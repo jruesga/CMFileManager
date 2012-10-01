@@ -75,7 +75,8 @@ public class ChooseConsoleDialog implements OnItemClickListener {
         String[] consoles = context.getResources().getStringArray(R.array.implemented_consoles);
         List<CheckableListAdapter.CheckableItem> items =
                 new ArrayList<CheckableListAdapter.CheckableItem>(consoles.length);
-        for (int i = 0; i < consoles.length; i++) {
+        int cc = consoles.length;
+        for (int i = 0; i < cc; i++) {
             boolean checked = false;
             if (console != null) {
                 checked = CONSOLES[i].getCanonicalName().compareTo(

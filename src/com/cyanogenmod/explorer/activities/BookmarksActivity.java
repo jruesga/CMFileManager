@@ -332,7 +332,8 @@ public class BookmarksActivity extends Activity implements OnItemClickListener, 
             StorageManager sm = (StorageManager) getSystemService(Context.STORAGE_SERVICE);
             Method method = sm.getClass().getMethod("getVolumeList"); //$NON-NLS-1$
             StorageVolume[] volumes = (StorageVolume[])method.invoke(sm);
-            for (int i = 0; i < volumes.length; i++) {
+            int cc = volumes.length;
+            for (int i = 0; i < cc ; i++) {
                 if (volumes[i].getPath().toLowerCase().indexOf("usb") != -1) { //$NON-NLS-1$
                     bookmarks.add(
                             new Bookmark(

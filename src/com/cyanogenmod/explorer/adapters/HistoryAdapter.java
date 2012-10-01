@@ -125,7 +125,8 @@ public class HistoryAdapter extends ArrayAdapter<History> {
      */
     private void processData() {
         this.mData = new DataHolder[getCount()];
-        for (int i = 0; i < getCount(); i++) {
+        int cc = getCount();
+        for (int i = 0; i < cc; i++) {
             //History info
             History history = getItem(i);
 

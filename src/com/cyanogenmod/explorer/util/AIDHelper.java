@@ -74,7 +74,8 @@ public final class AIDHelper {
         final PackageManager pm = context.getPackageManager();
         List<ApplicationInfo> packages =
                 pm.getInstalledApplications(PackageManager.GET_META_DATA);
-        for (int i=0; i<packages.size(); i++) {
+        int cc = packages.size();
+        for (int i=0; i<cc; i++) {
             ApplicationInfo info = packages.get(i);
             int uid = info.uid;
             if (aids.indexOfKey(uid) < 0) {

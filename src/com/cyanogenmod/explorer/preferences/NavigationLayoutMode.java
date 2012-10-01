@@ -63,7 +63,8 @@ public enum NavigationLayoutMode implements ObjectIdentifier {
      */
     public static NavigationLayoutMode fromId(int id) {
         NavigationLayoutMode[] values = values();
-        for (int i = 0; i < values.length; i++) {
+        int cc = values.length;
+        for (int i = 0; i < cc; i++) {
             if (values[i].mId == id) {
                 return values[i];
             }

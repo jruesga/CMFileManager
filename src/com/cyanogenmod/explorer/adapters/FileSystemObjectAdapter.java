@@ -206,7 +206,8 @@ public class FileSystemObjectAdapter
      * @return FileSystemObject The file system object reference
      */
     public FileSystemObject getItem(String path) {
-        for (int i = 0; i < getCount(); i++) {
+        int cc = getCount();
+        for (int i = 0; i < cc; i++) {
           //File system object info
             FileSystemObject fso = getItem(i);
             if (fso.getFullPath().compareTo(path) == 0) {
@@ -223,7 +224,8 @@ public class FileSystemObjectAdapter
         Resources res = getContext().getResources();
         DateFormat df = DateFormat.getDateTimeInstance(DateFormat.SHORT, DateFormat.SHORT);
         this.mData = new DataHolder[getCount()];
-        for (int i = 0; i < getCount(); i++) {
+        int cc = getCount();
+        for (int i = 0; i < cc; i++) {
             //File system object info
             FileSystemObject fso = getItem(i);
 
@@ -348,7 +350,8 @@ public class FileSystemObjectAdapter
      */
     private void toggleSelection(View v, FileSystemObject fso) {
         if (this.mData != null) {
-            for (int i = 0; i < this.mData.length; i++) {
+            int cc = this.mData.length;
+            for (int i = 0; i < cc; i++) {
                 DataHolder data = this.mData[i];
                 if (data.mName.compareTo(fso.getName()) == 0) {
                     //Select/Deselect the item
@@ -421,7 +424,8 @@ public class FileSystemObjectAdapter
      */
     private void doSelectDeselectAllVisibleItems(boolean select) {
         if (this.mData != null && this.mData.length > 0) {
-            for (int i = 0; i < this.mData.length; i++) {
+            int cc = this.mData.length;
+            for (int i = 0; i < cc; i++) {
                 DataHolder data = this.mData[i];
                 if (data.mName.compareTo(FileHelper.PARENT_DIRECTORY) == 0) {
                     // No select the parent directory

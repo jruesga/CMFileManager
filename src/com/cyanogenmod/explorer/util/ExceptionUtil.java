@@ -178,7 +178,8 @@ public final class ExceptionUtil {
         //Get the appropriate message for the exception
         int msgResId = R.string.msgs_unknown;
         boolean toast = true;
-        for (int i = 0; i < KNOWN_EXCEPTIONS.length; i++) {
+        int cc = KNOWN_EXCEPTIONS.length;
+        for (int i = 0; i < cc; i++) {
             if (KNOWN_EXCEPTIONS[i].getCanonicalName().compareTo(
                     ex.getClass().getCanonicalName()) == 0) {
                 msgResId = KNOWN_EXCEPTIONS_IDS[i];
@@ -273,7 +274,8 @@ public final class ExceptionUtil {
                                     //Re-execute the command
                                     List<SyncResultExecutable> executables =
                                             relaunchable.getExecutables();
-                                    for (int i = 0; i < executables.size(); i++) {
+                                    int cc = executables.size();
+                                    for (int i = 0; i < cc; i++) {
                                         SyncResultExecutable executable = executables.get(i);
                                         Object result = CommandHelper.reexecute(
                                                 context, executable, null);

@@ -52,7 +52,8 @@ public class FolderUsage implements Serializable, Cloneable {
         // Fill the array of statistics
         MimeTypeCategory[] categories = MimeTypeCategory.values();
         this.mStatistics = new SparseArray<Long>(categories.length-1);
-        for (int i=0; i<categories.length; i++) {
+        int cc = categories.length;
+        for (int i=0; i<cc; i++) {
             this.mStatistics.put(categories[i].ordinal(), Long.valueOf(0));
         }
     }

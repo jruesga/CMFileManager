@@ -42,7 +42,8 @@ public final class SelectionHelper {
     public static boolean isFileSystemObjectSelected(
             List<FileSystemObject> selection, FileSystemObject fso) {
         if (selection != null) {
-            for (int i = 0; i < selection.size(); i++) {
+            int cc = selection.size();
+            for (int i = 0; i < cc; i++) {
                 if (selection.get(i).compareTo(fso) == 0) {
                     return true;
                 }

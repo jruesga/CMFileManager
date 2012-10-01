@@ -145,7 +145,8 @@ public final class FileHelper {
                                 };
 
         long aux = size;
-        for (int i = 0; i < magnitude.length; i++) {
+        int cc = magnitude.length;
+        for (int i = 0; i < cc; i++) {
             long s = aux / 1024;
             if (aux < 1024) {
                 return String.format(format, Long.valueOf(aux), res.getString(magnitude[i]));
@@ -518,7 +519,8 @@ public final class FileHelper {
      * @param files The listed files
      */
     public static void resolveSymlinks(Context context, List<FileSystemObject> files) {
-        for (int i=0; i<files.size(); i++) {
+        int cc = files.size();
+        for (int i=0; i<cc; i++) {
             FileSystemObject fso = files.get(i);
             if (fso instanceof Symlink && ((Symlink)fso).getLinkRef() == null) {
                 String link = ((Symlink)fso).getLink();

@@ -62,7 +62,8 @@ public enum SearchSortResultMode implements ObjectStringIdentifier {
      */
     public static SearchSortResultMode fromId(String id) {
         SearchSortResultMode[] values = values();
-        for (int i = 0; i < values.length; i++) {
+        int cc = values.length;
+        for (int i = 0; i < cc; i++) {
             if (values[i].mId.compareTo(id) == 0) {
                 return values[i];
             }

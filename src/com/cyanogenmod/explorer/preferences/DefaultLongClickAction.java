@@ -74,7 +74,8 @@ public enum DefaultLongClickAction implements ObjectStringIdentifier {
      */
     public static DefaultLongClickAction fromId(String id) {
         DefaultLongClickAction[] values = values();
-        for (int i = 0; i < values.length; i++) {
+        int cc = values.length;
+        for (int i = 0; i < cc; i++) {
             if (values[i].mId.compareTo(id) == 0) {
                 return values[i];
             }

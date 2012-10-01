@@ -219,7 +219,8 @@ public class FindCommand extends AsyncResultProgram implements FindExecutable {
     private static String[] createArgs(String directory, Query query) {
         String[] args = new String[query.getSlotsCount() + 1];
         args[0] = directory;
-        for (int i = 0; i < query.getSlotsCount(); i++) {
+        int cc = query.getSlotsCount();
+        for (int i = 0; i < cc; i++) {
             args[i + 1] = SearchHelper.toIgnoreCaseRegExp(query.getSlot(i));
         }
         return args;

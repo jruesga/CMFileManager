@@ -183,7 +183,8 @@ public enum ExplorerSettings {
      */
     public static ExplorerSettings fromId(String id) {
         ExplorerSettings[] values = values();
-        for (int i = 0; i < values.length; i++) {
+        int cc = values.length;
+        for (int i = 0; i < cc; i++) {
             if (values[i].mId == id) {
                 return values[i];
             }

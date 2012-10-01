@@ -66,7 +66,8 @@ public final class SearchHelper {
 
         //Create the regular expression filter
         StringBuffer sb = new StringBuffer();
-        for (int i = 0; i < lowerCase.length(); i++) {
+        int cc = lowerCase.length();
+        for (int i = 0; i < cc; i++) {
             char lower = lowerCase.charAt(i);
             char upper = upperCase.charAt(i);
             if (lower != upper) {
@@ -92,7 +93,8 @@ public final class SearchHelper {
      */
     public static CharSequence getHighlightedName(SearchResult result, List<String> queries) {
         String name = result.getFso().getName();
-        for (int i = 0; i < queries.size(); i++) {
+        int cc = queries.size();
+        for (int i = 0; i < cc; i++) {
             //Get the query removing wildcards
             String query =
                     queries.get(i)
@@ -139,7 +141,8 @@ public final class SearchHelper {
     public static List<SearchResult> convertToResults(List<FileSystemObject> files, Query queries) {
         //Converts the list of files in a list of search results
         List<SearchResult> results = new ArrayList<SearchResult>(files.size());
-        for (int i = 0; i < files.size(); i++) {
+        int cc = files.size();
+        for (int i = 0; i < cc; i++) {
             FileSystemObject fso = files.get(i);
             double relevance = calculateRelevance(fso, queries);
             SearchResult result = new SearchResult(relevance, fso);
@@ -179,7 +182,8 @@ public final class SearchHelper {
         double relevance = 1.0;  //Minimum relevance (is in the result so has some relevance)
         List<String> terms = queries.getQueries();
         String name = fso.getName();
-        for (int i = 0; i < terms.size(); i++) {
+        int cc = terms.size();
+        for (int i = 0; i < cc; i++) {
             String query =
                     terms.get(i)
                         .replace(".", "[.]") //$NON-NLS-1$//$NON-NLS-2$

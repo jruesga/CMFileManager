@@ -81,7 +81,8 @@ public abstract class Command {
 
         //Convert and quote arguments
         this.mCmdArgs = new Object[args.length];
-        for (int i = 0; i < args.length; i++) {
+        int cc = args.length;
+        for (int i = 0; i < cc; i++) {
             //Quote the arguments?
             if (prepare) {
                 this.mCmdArgs[i] =

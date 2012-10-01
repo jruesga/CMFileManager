@@ -520,7 +520,7 @@ public final class FileHelper {
      */
     public static void resolveSymlinks(Context context, List<FileSystemObject> files) {
         int cc = files.size();
-        for (int i=0; i<cc; i++) {
+        for (int i = 0; i < cc; i++) {
             FileSystemObject fso = files.get(i);
             if (fso instanceof Symlink && ((Symlink)fso).getLinkRef() == null) {
                 String link = ((Symlink)fso).getLink();

@@ -114,7 +114,7 @@ public class SelectionView extends LinearLayout {
         int folders = 0;
         int files = 0;
         int cc = selection.size();
-        for (int i=0; i<cc; i++) {
+        for (int i = 0; i < cc; i++) {
             FileSystemObject fso = selection.get(i);
             if (FileHelper.isDirectory(fso)) {
                 folders++;

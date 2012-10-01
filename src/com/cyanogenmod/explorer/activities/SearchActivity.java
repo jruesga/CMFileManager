@@ -910,7 +910,7 @@ public class SearchActivity extends Activity
                 List<SearchResult> results = adapter.getData();
                 this.mResultList = new ArrayList<FileSystemObject>(results.size());
                 int cc = results.size();
-                for (int i=0; i < cc; i++) {
+                for (int i = 0; i < cc; i++) {
                     this.mResultList.add(results.get(i).getFso());
                 }
                 drawResults();

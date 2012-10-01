@@ -332,7 +332,7 @@ public class FsoPropertiesDialog
                     // Convert the SparseArray in an array of string of "uid - name"
                     int len = aids.size();
                     final String[] data = new String[len];
-                    for (int i=0; i<len; i++) {
+                    for (int i = 0; i < len; i++) {
                         AID aid = aids.valueAt(i);
                         data[i] = String.format(AID_FORMAT,
                                         Integer.valueOf(aid.getId()), aid.getName());
@@ -791,7 +791,7 @@ public class FsoPropertiesDialog
     private static void setCheckBoxesPermissionsEnable (
             CheckBox[] chkPermissions, boolean enabled) {
         int cc = chkPermissions.length;
-        for (int i=0; i<cc; i++) {
+        for (int i = 0; i < cc; i++) {
             chkPermissions[i].setEnabled(enabled);
         }
     }
@@ -824,7 +824,7 @@ public class FsoPropertiesDialog
                         res, "id",  //$NON-NLS-1$
                         String.format("fso_permissions_%s_special", type))); //$NON-NLS-1$
         int cc = chkPermissions.length;
-        for (int i=0; i<cc; i++) {
+        for (int i = 0; i < cc; i++) {
             chkPermissions[i].setOnCheckedChangeListener(this);
         }
         return chkPermissions;

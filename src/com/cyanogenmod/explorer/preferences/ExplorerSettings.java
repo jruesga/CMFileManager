@@ -88,7 +88,7 @@ public enum ExplorerSettings {
      * @hide
      */
     SETTINGS_COMPUTE_FOLDER_STATISTICS(
-            "cm_explorer_compute_folder_statistics", Boolean.TRUE), //$NON-NLS-1$
+            "cm_explorer_compute_folder_statistics", Boolean.FALSE), //$NON-NLS-1$
     /**
      * When to use case sensitive comparison in sorting of files
      * @hide

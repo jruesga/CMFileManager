@@ -155,7 +155,8 @@ public final class ExplorerApplication extends Application {
         try {
             sBackgroundConsole =
                     new ConsoleHolder(
-                            ConsoleBuilder.createNonPrivilegedConsole(FileHelper.ROOT_DIRECTORY));
+                            ConsoleBuilder.createNonPrivilegedConsole(
+                                    getApplicationContext(), FileHelper.ROOT_DIRECTORY));
         } catch (Exception e) {
             Log.e(TAG,
                     "Background console creation failed. " +  //$NON-NLS-1$

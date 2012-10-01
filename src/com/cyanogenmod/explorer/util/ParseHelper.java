@@ -133,6 +133,7 @@ public final class ParseHelper {
     //  Can ensure this?)
     //<name>:
     //  - if object is a symlink, the value must be "link name -> real name"
+    //  - If the name is void, then assume that it is the root directory (/)
     //
     public static FileSystemObject toFileSystemObject(
             final String parent, final String src, final boolean quick) throws ParseException {
@@ -201,6 +202,10 @@ public final class ParseHelper {
 
         //6.- Extract object name
         String szName = szEndLine;
+        if (szName.trim().length() == 0) {
+            // Assume that the object name is the root folder
+            szName = FileHelper.ROOT_DIRECTORY;
+        }
         String szLink = null;
         if (type == Symlink.UNIX_ID) {
             //"link name -> real name"

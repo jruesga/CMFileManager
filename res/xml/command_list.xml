@@ -26,6 +26,8 @@
      with the expected command for retrieve the exit code of the executed command
 -->
 <CommandList xmlns:androcommandId="http://schemas.android.com/apk/res/android">
+  <!-- Start code (append to commands; for retrieve the exit code) -->
+  <startcode commandId="startcode" commandPath="/system/xbin/echo %1$s0%2$s ; " />
   <!-- Exit code (append to commands; for retrieve the exit code) -->
   <exitcode commandId="exitcode" commandPath=" ; /system/xbin/echo %1$s$?%2$s" />
 

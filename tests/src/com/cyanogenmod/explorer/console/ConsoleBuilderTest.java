@@ -65,11 +65,10 @@ public class ConsoleBuilderTest extends android.test.AndroidTestCase {
      * Method that performs a test over creating a non privileged console.
      *
      * @throws Exception If test failed
-     * @{link {@link ConsoleBuilder#createNonPrivilegedConsole(String)}
+     * @{link {@link ConsoleBuilder#createNonPrivilegedConsole(android.content.Context, String)}
      */
-    @SuppressWarnings("static-method")
     public void testCreateNonPrivilegedConsole() throws Exception {
-        Console console = ConsoleBuilder.createNonPrivilegedConsole(PATH);
+        Console console = ConsoleBuilder.createNonPrivilegedConsole(getContext(), PATH);
         try {
             assertNotNull("console==null", console); //$NON-NLS-1$
         } finally {

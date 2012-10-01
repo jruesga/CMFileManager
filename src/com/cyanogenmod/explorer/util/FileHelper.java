@@ -186,6 +186,18 @@ public final class FileHelper {
      * @return boolean if the file system object if the root directory
      */
     public static boolean isRootDirectory(FileSystemObject fso) {
+        if (fso.getName() == null) return true;
+        return fso.getName().compareTo(FileHelper.ROOT_DIRECTORY) == 0;
+    }
+
+    /**
+     * Method that returns if the parent file system object if the root directory.
+     *
+     * @param fso The parent file system object to check
+     * @return boolean if the parent file system object if the root directory
+     */
+    public static boolean isParentRootDirectory(FileSystemObject fso) {
+        if (fso.getParent() == null) return true;
         return fso.getParent().compareTo(FileHelper.ROOT_DIRECTORY) == 0;
     }
 

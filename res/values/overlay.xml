@@ -22,12 +22,7 @@
 -->
 <resources xmlns:android="http://schemas.android.com/apk/res/android">
 
-  <!-- The buffer use to read files (in bytes). Default: 0.5 Mb -->
-  <integer name="read_buffer_size">512</integer>
-
-  <!-- The maximum file size that the app is able to read. Beyond this size the user will get a
-       warning message (in bytes). Default: 5 Mb
-       -->
-  <integer name="max_read_file_size">5120</integer>
+  <!-- The size of the buffers use by the console (in bytes). Default: 0.5 Mb -->
+  <integer name="buffer_size">512</integer>
 
 </resources>

@@ -45,7 +45,7 @@ public abstract class AbstractConsoleTest extends android.test.AndroidTestCase {
         if (isRootConsoleNeeded()) {
             this.mConsole = ConsoleBuilder.createPrivilegedConsole(getContext(), INITIAL_DIR);
         } else {
-            this.mConsole = ConsoleBuilder.createNonPrivilegedConsole(INITIAL_DIR);
+            this.mConsole = ConsoleBuilder.createNonPrivilegedConsole(getContext(), INITIAL_DIR);
         }
 
         super.setUp();

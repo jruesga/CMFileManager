@@ -62,9 +62,9 @@
   <!-- Loading waiting message -->
   <string name="loading_message">Loading&#8230;</string>
   <!-- Computing message -->
-  <string name="computing_message">Computing&#8230; <xliff:g id="data">%1$s</xliff:g></string>
+  <string name="computing_message"><xliff:g id="data">%1$s</xliff:g></string>
   <!-- Computing new line message -->
-  <string name="computing_message_ln">Computing&#8230;\n<xliff:g id="data">%1$s</xliff:g></string>
+  <string name="computing_message_ln"><xliff:g id="data">%1$s</xliff:g></string>
   <!-- Cancelled message -->
   <string name="cancelled_message">Cancelled.</string>
   <!-- Error message -->
@@ -314,7 +314,7 @@
   <string name="search_terms">&lt;b>Terms:&lt;/b> <xliff:g id="terms">%1$s</xliff:g></string>
   <!-- Some terms of the search are too small. The operation can be very costly -->
   <string name="search_few_characters_msg">Some of terms of the search has few characters. In
-    this situation, the operation can be very costly in time and system resources.\n\n
+    this situation, the operation that can be very costly in time and system resources.\n\n
     Do you want to cancel the search?</string>
 
   <!-- Searching dialog title -->
@@ -508,9 +508,10 @@
   <string name="pref_compute_folder_statistics">Compute folder statistics</string>
   <!-- Preferences * General * Compute folder statistics summary on -->
   <string name="pref_compute_folder_statistics_on">Compute folder statistics in folder
-    properties dialog.</string>
+    properties dialog.\n\nWarning! Compute folder statistics is a operation very costly in time
+    and system resources.</string>
   <!-- Preferences * General * Compute folder statistics summary off -->
-  <string name="pref_compute_folder_statistics_off">Not compute folder statistics in folder
+  <string name="pref_compute_folder_statistics_off">No compute folder statistics in folder
     properties dialog.</string>
     <!-- Preferences * General * Advanced settings category -->
   <string name="pref_general_advanced_settings_category">Advanced settings</string>

@@ -115,7 +115,8 @@ public final class ConsoleBuilder {
         ConsoleHolder holder = null;
         try {
             //Create the console, destroy the current console, and marks as current
-            holder = new ConsoleHolder(createNonPrivilegedConsole(FileHelper.ROOT_DIRECTORY));
+            holder = new ConsoleHolder(
+                    createNonPrivilegedConsole(context, FileHelper.ROOT_DIRECTORY));
             destroyConsole();
             sHolder = holder;
             return true;
@@ -201,7 +202,7 @@ public final class ConsoleBuilder {
                         ? new ConsoleHolder(
                                 createPrivilegedConsole(context, FileHelper.ROOT_DIRECTORY))
                         : new ConsoleHolder(
-                                createNonPrivilegedConsole(FileHelper.ROOT_DIRECTORY));
+                                createNonPrivilegedConsole(context, FileHelper.ROOT_DIRECTORY));
             }
             return sHolder.getConsole();
         }
@@ -224,6 +225,7 @@ public final class ConsoleBuilder {
     /**
      * Method that creates a new non privileged console.
      *
+     * @param context The current context
      * @param initialDirectory The initial directory of the console
      * @return Console The non privileged console
      * @throws FileNotFoundException If the initial directory not exists
@@ -232,10 +234,11 @@ public final class ConsoleBuilder {
      * @throws ConsoleAllocException If the console can't be allocated
      * @see NonPriviledgeConsole
      */
-    public static Console createNonPrivilegedConsole(String initialDirectory)
+    public static Console createNonPrivilegedConsole(Context context, String initialDirectory)
             throws FileNotFoundException, IOException,
             InvalidCommandDefinitionException, ConsoleAllocException {
         NonPriviledgeConsole console = new NonPriviledgeConsole(initialDirectory);
+        console.setBufferSize(context.getResources().getInteger(R.integer.buffer_size));
         console.alloc();
         return console;
     }
@@ -281,6 +284,7 @@ public final class ConsoleBuilder {
             ConsoleAllocException, InsufficientPermissionsException {
         try {
             PrivilegedConsole console = new PrivilegedConsole(initialDirectory);
+            console.setBufferSize(context.getResources().getInteger(R.integer.buffer_size));
             console.alloc();
             if (console.getIdentity().getUser().getId() != ROOT_UID) {
                 //The console is not a privileged console

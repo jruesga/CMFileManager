@@ -73,8 +73,7 @@ public class Bookmark implements Serializable, Comparable<Bookmark>, Parcelable 
                     "%s%s/%s", //$NON-NLS-1$
                     "content://", //$NON-NLS-1$
                     BookmarksContentProvider.AUTHORITY,
-                     "/bookmarks") //$NON-NLS-1$
-                    );
+                     "/bookmarks")); //$NON-NLS-1$
 
         /**
          * The directory of the bookmark

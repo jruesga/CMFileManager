@@ -71,6 +71,8 @@ public abstract class ShellConsole extends Console {
 
     private static final long DEFAULT_TIMEOUT = 20000L;
 
+    private static final int DEFAULT_BUFFER = 512;
+
     //Shell References
     private final Shell mShell;
     private final String mInitialDirectory;
@@ -84,6 +86,7 @@ public abstract class ShellConsole extends Console {
     private Process mProc = null;
     private Program mActiveCommand = null;
     private boolean mCancelled;
+    private boolean mStarted;
 
     //Buffers
     private InputStream mIn = null;
@@ -93,7 +96,10 @@ public abstract class ShellConsole extends Console {
     private StringBuffer mSbErr = null;
 
     private final SecureRandom mRandom;
-    private String mControlPattern;
+    private String mStartControlPattern;
+    private String mEndControlPattern;
+
+    private int mBufferSize;
 
     private final ShellExecutableFactory mExecutableFactory;
 
@@ -123,6 +129,8 @@ public abstract class ShellConsole extends Console {
         super();
         this.mShell = shell;
         this.mExecutableFactory = new ShellExecutableFactory(this);
+
+        this.mBufferSize = DEFAULT_BUFFER;
 
         //Resolve and checks the initial directory
         File f = new File(initialDirectory);
@@ -160,6 +168,26 @@ public abstract class ShellConsole extends Console {
     @Override
     public Identity getIdentity() {
         return this.mIdentity;
+    }
+
+
+
+    /**
+     * Method that returns the buffer size
+     *
+     * @return int The buffer size
+     */
+    public int getBufferSize() {
+        return this.mBufferSize;
+    }
+
+    /**
+     * Method that sets the buffer size
+     *
+     * @param bufferSize the The buffer size
+     */
+    public void setBufferSize(int bufferSize) {
+        this.mBufferSize = bufferSize;
     }
 
     /**
@@ -388,13 +416,19 @@ public abstract class ShellConsole extends Console {
             this.mActiveCommand = program;
 
             //Reset the buffers
+            this.mStarted = false;
+            this.mCancelled = false;
             this.mSbIn = new StringBuffer();
             this.mSbErr = new StringBuffer();
 
-            //Random exit identifiers
-            String exitId1 =
+            //Random start/end identifiers
+            String startId1 =
                     String.format("/#%d#/", Long.valueOf(this.mRandom.nextLong())); //$NON-NLS-1$
-            String exitId2 =
+            String startId2 =
+                    String.format("/#%d#/", Long.valueOf(this.mRandom.nextLong())); //$NON-NLS-1$
+            String endId1 =
+                    String.format("/#%d#/", Long.valueOf(this.mRandom.nextLong())); //$NON-NLS-1$
+            String endId2 =
                     String.format("/#%d#/", Long.valueOf(this.mRandom.nextLong())); //$NON-NLS-1$
 
             //Create command string
@@ -424,19 +458,28 @@ public abstract class ShellConsole extends Console {
             //This control code is unique in every invocation and is secure random
             //generated (control code 1 + exit code + control code 2)
             try {
-                this.mControlPattern = exitId1 + "\\d{1,3}" + exitId2; //$NON-NLS-1$
-                String exitCmd =
+                this.mStartControlPattern = startId1 + "\\d{1,3}" + startId2 + "\\n"; //$NON-NLS-1$ //$NON-NLS-2$
+                this.mEndControlPattern = endId1 + "\\d{1,3}" + endId2; //$NON-NLS-1$
+                String startCmd =
+                        Command.getStartCodeCommandInfo(
+                                ExplorerApplication.getInstance().getResources());
+                startCmd = String.format(
+                        startCmd, "'" + startId1 +//$NON-NLS-1$
+                        "'", "'" + startId2 + "'"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+                String endCmd =
                         Command.getExitCodeCommandInfo(
                                 ExplorerApplication.getInstance().getResources());
-                exitCmd = String.format(
-                        exitCmd, "'" + exitId1 + "'", "'" //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-                        + exitId2 + "'"); //$NON-NLS-1$
+                endCmd = String.format(
+                        endCmd, "'" + endId1 + //$NON-NLS-1$
+                        "'", "'" + endId2 + "'"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
                 StringBuilder sb = new StringBuilder()
+                    .append(startCmd)
+                    .append(" ")  //$NON-NLS-1$
                     .append(cmd)
                     .append(" ")  //$NON-NLS-1$
                     .append(args)
                     .append(" ") //$NON-NLS-1$
-                    .append(exitCmd)
+                    .append(endCmd)
                     .append(FileHelper.NEWLINE);
                 this.mOut.write(sb.toString().getBytes());
             } catch (InvalidCommandDefinitionException icdEx) {
@@ -532,7 +575,7 @@ public abstract class ShellConsole extends Console {
             public void run() {
                 int read = 0;
                 try {
-                    //Notify the ending
+                    //Notify the start
                     if (ShellConsole.this.mActiveCommand != null
                             && ShellConsole.this.mActiveCommand instanceof AsyncResultProgram) {
                         AsyncResultProgram program =
@@ -547,15 +590,24 @@ public abstract class ShellConsole extends Console {
                             break;
                         }
                         StringBuffer sb = new StringBuffer();
-                        ShellConsole.this.mSbIn.append((char)r);
-                        sb.append((char)r);
+                        if (!ShellConsole.this.mCancelled) {
+                            ShellConsole.this.mSbIn.append((char)r);
+                            if (!ShellConsole.this.mStarted) {
+                                ShellConsole.this.mStarted =
+                                        isCommandStarted(ShellConsole.this.mSbIn);
+                                sb.append(ShellConsole.this.mSbIn.toString());
+                            } else {
+                                sb.append((char)r);
+                            }
 
-                        //Notify asynchronous partial data
-                        if (ShellConsole.this.mActiveCommand != null
-                                && ShellConsole.this.mActiveCommand instanceof AsyncResultProgram) {
-                            AsyncResultProgram program =
-                                    ((AsyncResultProgram)ShellConsole.this.mActiveCommand);
-                            program.parsePartialResult(new String(new char[]{(char)r}));
+                            //Notify asynchronous partial data
+                            if (ShellConsole.this.mStarted &&
+                                ShellConsole.this.mActiveCommand != null &&
+                                ShellConsole.this.mActiveCommand instanceof AsyncResultProgram) {
+                                AsyncResultProgram program =
+                                        ((AsyncResultProgram)ShellConsole.this.mActiveCommand);
+                                program.parsePartialResult(new String(new char[]{(char)r}));
+                            }
                         }
 
                         //Has more data? Read with available as more as exists
@@ -563,20 +615,31 @@ public abstract class ShellConsole extends Console {
                         int count = 0;
                         while (in.available() > 0 && count < 10) {
                             count++;
-                            byte[] data = new byte[in.available()];
+                            int available = Math.min(in.available(),
+                                                        ShellConsole.this.mBufferSize);
+                            byte[] data = new byte[available];
                             read = in.read(data);
+
+                            // Exit if active command is canceled
+                            if (ShellConsole.this.mCancelled) continue;
+
                             final String s = new String(data, 0, read);
                             ShellConsole.this.mSbIn.append(s);
-                            sb.append(s);
+                            if (!ShellConsole.this.mStarted) {
+                                ShellConsole.this.mStarted =
+                                        isCommandStarted(ShellConsole.this.mSbIn);
+                                sb.append(ShellConsole.this.mSbIn.toString());
+                            } else {
+                                sb.append(s);
+                            }
 
                             //Notify asynchronous partial data
-                            if (ShellConsole.this.mActiveCommand != null
-                               && ShellConsole.this.mActiveCommand  instanceof AsyncResultProgram) {
+                            if (ShellConsole.this.mActiveCommand != null &&
+                                ShellConsole.this.mActiveCommand  instanceof AsyncResultProgram) {
                                 AsyncResultProgram program =
                                         ((AsyncResultProgram)ShellConsole.this.mActiveCommand);
                                 program.parsePartialResult(s);
                             }
-
 
                             //Wait for buffer to be filled
                             try {
@@ -586,22 +649,22 @@ public abstract class ShellConsole extends Console {
                             }
 
                             //Check if the command has finished
-                            if (isCommandFinish(sb)) {
+                            if (isCommandFinished(ShellConsole.this.mSbIn)) {
                                 //Notify the end
                                 notifyProcessFinished();
                             }
                         }
 
-                        //Audit
-                        if (isTrace()) {
+                        //Audit (if not canceled)
+                        if (!ShellConsole.this.mCancelled && isTrace()) {
                             Log.v(TAG,
                                     String.format("stdin: %s", sb.toString())); //$NON-NLS-1$
                         }
 
                         //Asynchronous programs can cause a lot of output, control buffers
                         //for a low memory footprint
-                        if (ShellConsole.this.mActiveCommand != null
-                                && ShellConsole.this.mActiveCommand instanceof AsyncResultProgram) {
+                        if (ShellConsole.this.mActiveCommand != null &&
+                                ShellConsole.this.mActiveCommand instanceof AsyncResultProgram) {
                             trimBuffer(ShellConsole.this.mSbIn);
                             trimBuffer(ShellConsole.this.mSbErr);
                         }
@@ -639,16 +702,24 @@ public abstract class ShellConsole extends Console {
                             break;
                         }
                         StringBuffer sb = new StringBuffer();
-                        ShellConsole.this.mSbErr.append((char)r);
-                        sb.append((char)r);
+                        if (!ShellConsole.this.mCancelled) {
+                            ShellConsole.this.mSbErr.append((char)r);
+                            sb.append((char)r);
+                        }
 
                         //Has more data? Read with available as more as exists
                         //or maximum loop count is rebased
                         int count = 0;
                         while (err.available() > 0 && count < 10) {
                             count++;
-                            byte[] data = new byte[err.available()];
+                            int available = Math.min(err.available(),
+                                                        ShellConsole.this.mBufferSize);
+                            byte[] data = new byte[available];
                             read = err.read(data);
+
+                            // Exit if active command is canceled
+                            if (ShellConsole.this.mCancelled) continue;
+
                             String s = new String(data, 0, read);
                             ShellConsole.this.mSbErr.append(s);
                             sb.append(s);
@@ -661,16 +732,16 @@ public abstract class ShellConsole extends Console {
                             }
                         }
 
-                        //Audit
-                        if (isTrace()) {
+                        //Audit (if not canceled)
+                        if (!ShellConsole.this.mCancelled && isTrace()) {
                             Log.v(TAG,
                                     String.format("stderr: %s", sb.toString())); //$NON-NLS-1$
                         }
 
                         //Asynchronous programs can cause a lot of output, control buffers
                         //for a low memory footprint
-                        if (ShellConsole.this.mActiveCommand != null
-                                && ShellConsole.this.mActiveCommand instanceof AsyncResultProgram) {
+                        if (ShellConsole.this.mActiveCommand != null &&
+                                ShellConsole.this.mActiveCommand instanceof AsyncResultProgram) {
                             trimBuffer(ShellConsole.this.mSbIn);
                             trimBuffer(ShellConsole.this.mSbErr);
                         }
@@ -755,14 +826,32 @@ public abstract class ShellConsole extends Console {
     }
 
     /**
+     * Method that returns if the command has started by checking the
+     * standard input buffer. This method also removes the control start command
+     * from the buffer, if it's present, leaving in the buffer the new data bytes.
+     *
+     * @param stdin The standard in buffer
+     * @return boolean If the command has started
+     */
+    private boolean isCommandStarted(StringBuffer stdin) {
+        Pattern pattern = Pattern.compile(this.mStartControlPattern);
+        Matcher matcher = pattern.matcher(stdin.toString());
+        if (matcher.find()) {
+            stdin.replace(0, matcher.end(), ""); //$NON-NLS-1$
+            return true;
+        }
+        return false;
+    }
+
+    /**
      * Method that returns if the command has finished by checking the
      * standard input buffer.
      *
      * @param stdin The standard in buffer
      * @return boolean If the command has finished
      */
-    private boolean isCommandFinish(StringBuffer stdin) {
-        Pattern pattern = Pattern.compile(this.mControlPattern);
+    private boolean isCommandFinished(StringBuffer stdin) {
+        Pattern pattern = Pattern.compile(this.mEndControlPattern);
         Matcher matcher = pattern.matcher(stdin.toString());
         return matcher.find();
     }
@@ -774,8 +863,15 @@ public abstract class ShellConsole extends Console {
      * @return int The exit code of the last executed command
      */
     private int getExitCode(StringBuffer stdin) {
+        // If process was canceled, don't expect a exit code.
+        // Returns always 143 code
+        if (this.mCancelled) {
+            return 143;
+        }
+
+        // Parse the stdin seeking exit code pattern
         String txt = stdin.toString();
-        Pattern pattern = Pattern.compile(this.mControlPattern);
+        Pattern pattern = Pattern.compile(this.mEndControlPattern);
         Matcher matcher = pattern.matcher(txt);
         if (matcher.find()) {
             this.mSbIn = new StringBuffer(txt.substring(0, matcher.start()));
@@ -784,9 +880,6 @@ public abstract class ShellConsole extends Console {
                     exitTxt.substring(
                             exitTxt.indexOf("#/") + 2,  //$NON-NLS-1$
                             exitTxt.indexOf("/#", 2))); //$NON-NLS-1$
-        }
-        if (this.mCancelled) {
-            return 143;
         }
         return 255;
     }
@@ -838,6 +931,7 @@ public abstract class ShellConsole extends Console {
                                 /**NON BLOCK**/
                             }
                             this.mCancelled = true;
+                            notifyProcessFinished();
                             this.mSync.notify();
                             return this.mCancelled;
                         }

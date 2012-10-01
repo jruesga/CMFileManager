@@ -97,28 +97,30 @@ public class ListCommand extends SyncResultProgram implements ListExecutable {
         //Retrieve parent directory information
         if (mode.compareTo(LIST_MODE.DIRECTORY) == 0) {
             //Resolve the parent directory
-            this.mParentDir =
-                CommandHelper.getAbsolutePath(
-                        ExplorerApplication.getInstance().getApplicationContext(), src, console);
+            if (src.compareTo(FileHelper.ROOT_DIRECTORY) == 0) {
+                this.mParentDir = null;
+            } else {
+                this.mParentDir =
+                    CommandHelper.getAbsolutePath(
+                            ExplorerApplication.
+                                getInstance().getApplicationContext(), src, console);
+            }
         } else {
             //Get the absolute path
             try {
-                // From console
+                this.mParentDir = new File(src).getCanonicalFile().getParent();
+
+            } catch (Exception e) {
+                // Try to resolve from a console
                 String abspath =
                     CommandHelper.getAbsolutePath(
-                            ExplorerApplication.getInstance().getApplicationContext(), src, console);
+                            ExplorerApplication.getInstance().
+                                getApplicationContext(), src, console);
                 //Resolve the parent directory
                 this.mParentDir =
                     CommandHelper.getParentDir(
                             ExplorerApplication.getInstance().getApplicationContext(),
                             abspath, console);
-
-            } catch (Exception e) {
-                // From Java
-                this.mParentDir = new File(src).getCanonicalFile().getParent();
-                if (this.mParentDir == null) {
-                    throw new CommandNotFoundException(ID_LS_INFO, e);
-                }
             }
         }
     }
@@ -227,7 +229,8 @@ public class ListCommand extends SyncResultProgram implements ListExecutable {
             }
 
             //Now if not is the root directory
-            if (this.mParentDir.compareTo(FileHelper.ROOT_DIRECTORY) != 0 &&
+            if (this.mParentDir != null &&
+                    this.mParentDir.compareTo(FileHelper.ROOT_DIRECTORY) != 0 &&
                     this.mMode.compareTo(LIST_MODE.DIRECTORY) == 0) {
                 this.mFiles.add(0, new ParentDirectory(new File(this.mParentDir).getParent()));
             }

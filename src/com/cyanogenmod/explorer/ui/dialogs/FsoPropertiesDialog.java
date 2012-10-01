@@ -928,8 +928,10 @@ public class FsoPropertiesDialog
 
         final Resources res = this.mContext.getResources();
         if (cancelled) {
-            FsoPropertiesDialog.this.mTvSize.setText(R.string.cancelled_message);
-            FsoPropertiesDialog.this.mTvContains.setText(R.string.cancelled_message);
+            try {
+                FsoPropertiesDialog.this.mTvSize.setText(R.string.cancelled_message);
+                FsoPropertiesDialog.this.mTvContains.setText(R.string.cancelled_message);
+            } catch (Throwable e) {/**NON BLOCK**/}
 
             // End of drawing
             this.mDrawingFolderUsage = false;

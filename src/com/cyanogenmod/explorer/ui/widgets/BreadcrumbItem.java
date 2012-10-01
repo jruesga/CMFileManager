@@ -103,7 +103,7 @@ public class BreadcrumbItem extends TextView implements OnLongClickListener {
      */
     @Override
     public boolean onLongClick(View v) {
-        DialogHelper.showToast(getContext(), this.getItemPath(), Toast.LENGTH_SHORT);
+        DialogHelper.showToast(getContext(), this.mItemPath, Toast.LENGTH_SHORT);
         return true;
     }
 

@@ -870,7 +870,7 @@ public class NavigationView extends RelativeLayout implements
      */
     @Override
     public String onRequestCurrentDirOfSelectionData() {
-        return this.getCurrentDir();
+        return this.mCurrentDir;
     }
 
 }

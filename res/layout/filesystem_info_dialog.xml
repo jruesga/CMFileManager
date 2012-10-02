@@ -233,7 +233,7 @@
   </TableLayout>
 
   <!-- Disk Usage -->
-  <RelativeLayout
+  <LinearLayout
     android:id="@+id/filesystem_tab_diskusage"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -242,16 +242,16 @@
 
     <com.cyanogenmod.explorer.ui.widgets.DiskUsageGraph
       android:id="@+id/filesystem_disk_usage_graph"
-      android:layout_width="50dp"
-      android:layout_height="50dp"
-      android:layout_alignParentLeft="true"
-      android:layout_centerVertical="true"
+      android:layout_width="0dip"
+      android:layout_height="wrap_content"
+      android:layout_weight=".30"
       android:layout_margin="@dimen/extra_large_margin" />
 
     <TableLayout
-      android:layout_width="match_parent"
+      android:layout_width="0dip"
       android:layout_height="wrap_content"
-      android:layout_toRightOf="@id/filesystem_disk_usage_graph"
+      android:layout_weight=".70"
+      android:layout_gravity="left|center_vertical"
       android:paddingBottom="@dimen/extra_large_margin"
       android:paddingTop="@dimen/default_margin"
       android:shrinkColumns="1" >
@@ -322,6 +322,6 @@
           android:textAppearance="@style/secondary_text_appearance" />
       </TableRow>
     </TableLayout>
-  </RelativeLayout>
+  </LinearLayout>
 
 </RelativeLayout>

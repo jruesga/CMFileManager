@@ -100,6 +100,17 @@ public class DiskUsageGraph extends View {
     }
 
     /**
+     * {@inheritDoc}
+     */
+    @Override
+    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+        int parentWidth = MeasureSpec.getSize(widthMeasureSpec);
+        int parentHeight = MeasureSpec.getSize(heightMeasureSpec);
+        int size = Math.min(parentWidth, parentHeight);
+        this.setMeasuredDimension(size, size);
+    }
+
+    /**
      * Method that sets the free disk space percentage after the widget change his color
      * to advise the user
      *

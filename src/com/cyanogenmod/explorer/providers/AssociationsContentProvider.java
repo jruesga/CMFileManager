@@ -28,44 +28,44 @@ import android.net.Uri;
 import android.text.TextUtils;
 import android.util.Log;
 
-import com.cyanogenmod.explorer.model.Bookmark;
-import com.cyanogenmod.explorer.preferences.BookmarksDatabaseHelper;
+import com.cyanogenmod.explorer.model.Association;
+import com.cyanogenmod.explorer.preferences.AssociationsDatabaseHelper;
 
 /**
- * A content provider for manage the user-defined bookmarks
+ * A content provider for manage the user-defined associations
  */
-public class BookmarksContentProvider extends ContentProvider  {
+public class AssociationsContentProvider extends ContentProvider  {
 
     private static final boolean DEBUG = false;
 
-    private static final String TAG = "BookmarksContentProvider"; //$NON-NLS-1$
+    private static final String TAG = "AssociationsContentProvider"; //$NON-NLS-1$
 
-    private BookmarksDatabaseHelper mOpenHelper;
+    private AssociationsDatabaseHelper mOpenHelper;
 
-    private static final int BOOKMARKS = 1;
-    private static final int BOOKMARKS_ID = 2;
+    private static final int ASSOCIATIONS = 1;
+    private static final int ASSOCIATIONS_ID = 2;
 
     /**
      * The authority string name.
      */
     public static final String AUTHORITY =
-            "com.cyanogenmod.explorer.providers.bookmarks"; //$NON-NLS-1$
+            "com.cyanogenmod.explorer.providers.associations"; //$NON-NLS-1$
 
     private static final UriMatcher sURLMatcher = new UriMatcher(UriMatcher.NO_MATCH);
 
     static {
         sURLMatcher.addURI(
                 AUTHORITY,
-                "bookmarks", BOOKMARKS); //$NON-NLS-1$
+                "associations", ASSOCIATIONS); //$NON-NLS-1$
         sURLMatcher.addURI(
                 AUTHORITY,
-                "bookmarks/#", BOOKMARKS_ID); //$NON-NLS-1$
+                "associations/#", ASSOCIATIONS_ID); //$NON-NLS-1$
     }
 
     /**
-     * Constructor of <code>BookmarksContentProvider</code>.
+     * Constructor of <code>AssociationsContentProvider</code>.
      */
-    public BookmarksContentProvider() {
+    public AssociationsContentProvider() {
         super();
     }
 
@@ -74,7 +74,7 @@ public class BookmarksContentProvider extends ContentProvider  {
      */
     @Override
     public boolean onCreate() {
-        this.mOpenHelper = new BookmarksDatabaseHelper(getContext());
+        this.mOpenHelper = new AssociationsDatabaseHelper(getContext());
         return true;
     }
 
@@ -89,11 +89,11 @@ public class BookmarksContentProvider extends ContentProvider  {
         // Generate the body of the query
         int match = sURLMatcher.match(url);
         switch (match) {
-            case BOOKMARKS:
-                qb.setTables("bookmarks"); //$NON-NLS-1$
+            case ASSOCIATIONS:
+                qb.setTables("associations"); //$NON-NLS-1$
                 break;
-            case BOOKMARKS_ID:
-                qb.setTables("bookmarks"); //$NON-NLS-1$
+            case ASSOCIATIONS_ID:
+                qb.setTables("associations"); //$NON-NLS-1$
                 qb.appendWhere("_id="); //$NON-NLS-1$
                 qb.appendWhere(url.getPathSegments().get(1));
                 break;
@@ -107,7 +107,7 @@ public class BookmarksContentProvider extends ContentProvider  {
                               null, null, sort);
         if (cursor == null) {
             if (DEBUG) {
-                Log.v(TAG, "Bookmarks.query: failed"); //$NON-NLS-1$
+                Log.v(TAG, "Associations.query: failed"); //$NON-NLS-1$
             }
         } else {
             cursor.setNotificationUri(getContext().getContentResolver(), url);
@@ -123,10 +123,10 @@ public class BookmarksContentProvider extends ContentProvider  {
     public String getType(Uri url) {
         int match = sURLMatcher.match(url);
         switch (match) {
-            case BOOKMARKS:
-                return "vnd.android.cursor.dir/bookmarks"; //$NON-NLS-1$
-            case BOOKMARKS_ID:
-                return "vnd.android.cursor.item/bookmarks"; //$NON-NLS-1$
+            case ASSOCIATIONS:
+                return "vnd.android.cursor.dir/associations"; //$NON-NLS-1$
+            case ASSOCIATIONS_ID:
+                return "vnd.android.cursor.item/associations"; //$NON-NLS-1$
             default:
                 throw new IllegalArgumentException("Unknown URL"); //$NON-NLS-1$
         }
@@ -142,11 +142,11 @@ public class BookmarksContentProvider extends ContentProvider  {
         int match = sURLMatcher.match(url);
         SQLiteDatabase db = this.mOpenHelper.getWritableDatabase();
         switch (match) {
-            case BOOKMARKS_ID: {
+            case ASSOCIATIONS_ID: {
                 String segment = url.getPathSegments().get(1);
                 rowId = Long.parseLong(segment);
                 count = db.update(
-                        "bookmarks", values, "_id=" + rowId, null); //$NON-NLS-1$ //$NON-NLS-2$
+                        "associations", values, "_id=" + rowId, null); //$NON-NLS-1$ //$NON-NLS-2$
                 break;
             }
             default: {
@@ -168,20 +168,20 @@ public class BookmarksContentProvider extends ContentProvider  {
      */
     @Override
     public Uri insert(Uri url, ContentValues initialValues) {
-        if (sURLMatcher.match(url) != BOOKMARKS) {
+        if (sURLMatcher.match(url) != ASSOCIATIONS) {
             throw new IllegalArgumentException("Cannot insert into URL: " + url); //$NON-NLS-1$
         }
 
-        // Add the bookmark
+        // Add the association
         SQLiteDatabase db = this.mOpenHelper.getWritableDatabase();
-        long rowId = db.insert("bookmarks", null, initialValues); //$NON-NLS-1$
+        long rowId = db.insert("associations", null, initialValues); //$NON-NLS-1$
         if (rowId < 0) {
             throw new SQLException("Failed to insert row"); //$NON-NLS-1$
         }
         if (DEBUG) {
-            Log.v(TAG, "Added bookmark rowId = " + rowId); //$NON-NLS-1$
+            Log.v(TAG, "Added association rowId = " + rowId); //$NON-NLS-1$
         }
-        Uri newUrl = ContentUris.withAppendedId(Bookmark.Columns.CONTENT_URI, rowId);
+        Uri newUrl = ContentUris.withAppendedId(Association.Columns.CONTENT_URI, rowId);
 
         // Notify changes
         getContext().getContentResolver().notifyChange(newUrl, null);
@@ -197,10 +197,10 @@ public class BookmarksContentProvider extends ContentProvider  {
         int count;
         String whereQuery = where;
         switch (sURLMatcher.match(url)) {
-            case BOOKMARKS:
-                count = db.delete("bookmarks", whereQuery, whereArgs); //$NON-NLS-1$
+            case ASSOCIATIONS:
+                count = db.delete("associations", whereQuery, whereArgs); //$NON-NLS-1$
                 break;
-            case BOOKMARKS_ID:
+            case ASSOCIATIONS_ID:
                 String segment = url.getPathSegments().get(1);
                 if (TextUtils.isEmpty(whereQuery)) {
                     whereQuery = "_id=" + segment; //$NON-NLS-1$
@@ -208,7 +208,7 @@ public class BookmarksContentProvider extends ContentProvider  {
                     whereQuery = "_id=" + segment + //$NON-NLS-1$
                                  " AND (" + whereQuery + ")"; //$NON-NLS-1$ //$NON-NLS-2$
                 }
-                count = db.delete("bookmarks", whereQuery, whereArgs); //$NON-NLS-1$
+                count = db.delete("associations", whereQuery, whereArgs); //$NON-NLS-1$
                 break;
             default:
                 throw new IllegalArgumentException("Cannot delete from URL: " + url); //$NON-NLS-1$

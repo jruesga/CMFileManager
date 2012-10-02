@@ -48,6 +48,11 @@
       android:authorities="com.cyanogenmod.explorer.providers.bookmarks"
       android:exported="false" />
 
+    <provider
+      android:name=".providers.AssociationsContentProvider"
+      android:authorities="com.cyanogenmod.explorer.providers.associations"
+      android:exported="false" />
+
     <activity
       android:name=".activities.NavigationActivity"
       android:label="@string/app_name"

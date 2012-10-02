@@ -118,30 +118,13 @@ public class Bookmark implements Serializable, Comparable<Bookmark>, Parcelable 
     /**
      * Constructor of <code>Bookmark</code>.
      *
-     * @param id The id of the bookmark
      * @param type The type of the bookmark
      * @param name The name of the bookmark
      * @param directory The directory that the bookmark points to
      * @hide
      */
-    Bookmark(int id, BOOKMARK_TYPE type, String name, String directory) {
-        super();
-        this.mId = id;
-        this.mType = type;
-        this.mName = name;
-        this.mDirectory = directory;
-    }
-
-    /**
-     * Constructor of <code>Bookmark</code>.
-     *
-     * @param type The type of the bookmark
-     * @param name The name of the bookmark
-     * @param directory The directory that the bookmark points to
-     */
     public Bookmark(BOOKMARK_TYPE type, String name, String directory) {
         super();
-        this.mId = -1;
         this.mType = type;
         this.mName = name;
         this.mDirectory = directory;
@@ -237,7 +220,9 @@ public class Bookmark implements Serializable, Comparable<Bookmark>, Parcelable 
             BOOKMARK_TYPE type = BOOKMARK_TYPE.valueOf(in.readString());
             String name = in.readString();
             String directory = in.readString();
-            return new Bookmark(id, type, name, directory);
+            Bookmark b = new Bookmark(type, name, directory);
+            b.mId = id;
+            return b;
         }
 
         @Override

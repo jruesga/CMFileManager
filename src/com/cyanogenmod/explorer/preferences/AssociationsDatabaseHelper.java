@@ -22,24 +22,24 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
 /**
- * Helper class for opening the bookmark database from multiple providers. Also provides
+ * Helper class for opening the associations database from multiple providers. Also provides
  * some common functionality.
  */
-public class BookmarksDatabaseHelper extends SQLiteOpenHelper {
+public class AssociationsDatabaseHelper extends SQLiteOpenHelper {
 
-    private static final String TAG = "BookmarksDatabaseHelper"; //$NON-NLS-1$
+    private static final String TAG = "AssociationsDatabaseHelper"; //$NON-NLS-1$
 
     private static boolean DEBUG = false;
 
-    private static final String DATABASE_NAME = "bookmarks.db"; //$NON-NLS-1$
+    private static final String DATABASE_NAME = "associations.db"; //$NON-NLS-1$
     private static final int DATABASE_VERSION = 1;
 
     /**
-     * Constructor of <code>BookmarksDatabaseHelper</code>
+     * Constructor of <code>AssociationsDatabaseHelper</code>
      *
      * @param context The current context
      */
-    public BookmarksDatabaseHelper(Context context) {
+    public AssociationsDatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
@@ -48,9 +48,11 @@ public class BookmarksDatabaseHelper extends SQLiteOpenHelper {
      */
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("CREATE TABLE bookmarks (" + //$NON-NLS-1$
-                   "_id INTEGER PRIMARY KEY," + //$NON-NLS-1$
-                   "directory TEXT);"); //$NON-NLS-1$
+        db.execSQL("CREATE TABLE associations (" + //$NON-NLS-1$
+                   "_id INTEGER PRIMARY KEY, " + //$NON-NLS-1$
+                   "type TEXT, " + //$NON-NLS-1$
+                   "ref TEXT, " + //$NON-NLS-1$
+                   "intent TEXT);"); //$NON-NLS-1$
     }
 
     /**
@@ -59,11 +61,11 @@ public class BookmarksDatabaseHelper extends SQLiteOpenHelper {
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int currentVersion) {
         if (DEBUG) {
-            Log.v(TAG, "Upgrading bookmarks database from version " + //$NON-NLS-1$
+            Log.v(TAG, "Upgrading associations database from version " + //$NON-NLS-1$
                 oldVersion + " to " + currentVersion + //$NON-NLS-1$
                 ", which will destroy all old data"); //$NON-NLS-1$
         }
-        db.execSQL("DROP TABLE IF EXISTS bookmarks"); //$NON-NLS-1$
+        db.execSQL("DROP TABLE IF EXISTS associations"); //$NON-NLS-1$
         onCreate(db);
     }
 }

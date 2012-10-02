@@ -103,7 +103,7 @@ public class Bookmarks {
      * Method that return all the bookmarks in the database
      *
      * @param contentResolver The content resolver
-     * @return Bookmark The bookmark. null if no bookmark exists.
+     * @return Cursor The bookmarks cursor
      */
     public static Cursor getAllBookmarks(ContentResolver contentResolver) {
         return contentResolver.query(
@@ -116,7 +116,7 @@ public class Bookmarks {
      * Method that return the bookmark from his directory
      *
      * @param contentResolver The content resolver
-     * @param directory The bookmark identifier
+     * @param directory The bookmark directory
      * @return Bookmark The bookmark. null if no bookmark exists.
      */
     public static Bookmark getBookmark(ContentResolver contentResolver, String directory) {

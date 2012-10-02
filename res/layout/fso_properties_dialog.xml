@@ -70,12 +70,11 @@
     android:layout_height="wrap_content"
     android:layout_below="@id/fso_tabs"
     android:paddingBottom="@dimen/extra_large_margin"
-    android:paddingTop="@dimen/default_margin" >
+    android:paddingTop="@dimen/default_margin"
+    android:shrinkColumns="1" >
 
     <!-- Name -->
     <TableRow
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
       android:layout_marginLeft="@dimen/extra_large_margin"
       android:layout_marginRight="@dimen/extra_large_margin" >
 
@@ -99,8 +98,6 @@
 
     <!-- Parent -->
     <TableRow
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
       android:layout_marginLeft="@dimen/extra_large_margin"
       android:layout_marginRight="@dimen/extra_large_margin" >
 
@@ -124,8 +121,6 @@
 
     <!-- Type -->
     <TableRow
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
       android:layout_marginLeft="@dimen/extra_large_margin"
       android:layout_marginRight="@dimen/extra_large_margin" >
 
@@ -150,8 +145,6 @@
     <!-- Link -->
     <TableRow
       android:id="@+id/fso_properties_link_row"
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
       android:layout_marginLeft="@dimen/extra_large_margin"
       android:layout_marginRight="@dimen/extra_large_margin"
       android:visibility="gone" >
@@ -176,8 +169,6 @@
 
     <!-- Size -->
     <TableRow
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
       android:layout_marginLeft="@dimen/extra_large_margin"
       android:layout_marginRight="@dimen/extra_large_margin" >
 
@@ -202,8 +193,6 @@
     <!-- Contains -->
     <TableRow
       android:id="@+id/fso_properties_contains_row"
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
       android:layout_marginLeft="@dimen/extra_large_margin"
       android:layout_marginRight="@dimen/extra_large_margin"
       android:visibility="gone" >
@@ -228,8 +217,6 @@
 
     <!-- Date -->
     <TableRow
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
       android:layout_marginLeft="@dimen/extra_large_margin"
       android:layout_marginRight="@dimen/extra_large_margin" >
 
@@ -286,8 +273,6 @@
 
       <!-- Owner -->
       <TableRow
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/extra_large_margin"
         android:layout_marginRight="@dimen/extra_large_margin" >
 
@@ -311,8 +296,6 @@
 
       <!-- Group -->
       <TableRow
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/extra_large_margin"
         android:layout_marginRight="@dimen/extra_large_margin" >
 
@@ -351,8 +334,6 @@
 
       <!-- Title -->
       <TableRow
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/extra_large_margin"
         android:layout_marginRight="@dimen/extra_large_margin" >
 
@@ -404,8 +385,6 @@
 
       <!-- Owner -->
       <TableRow
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/extra_large_margin"
         android:layout_marginRight="@dimen/extra_large_margin" >
 
@@ -449,8 +428,6 @@
 
       <!-- Group -->
       <TableRow
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/extra_large_margin"
         android:layout_marginRight="@dimen/extra_large_margin" >
 
@@ -494,8 +471,6 @@
 
       <!-- Others -->
       <TableRow
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/extra_large_margin"
         android:layout_marginRight="@dimen/extra_large_margin" >
 

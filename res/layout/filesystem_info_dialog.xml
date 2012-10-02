@@ -18,14 +18,16 @@
   android:layout_height="wrap_content" >
 
   <!-- Tabs -->
-  <TableLayout
+  <LinearLayout
     android:id="@+id/filesystem_tabs"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content" >
+    android:layout_height="wrap_content"
+    android:orientation="vertical" >
 
     <LinearLayout
       android:layout_width="match_parent"
-      android:layout_height="@dimen/default_row_height" >
+      android:layout_height="@dimen/default_row_height"
+      android:orientation="horizontal" >
 
       <TextView
         android:id="@+id/filesystem_info_dialog_tab_info"
@@ -60,7 +62,7 @@
 
       <include layout="@layout/vertical_divider" />
     </LinearLayout>
-  </TableLayout>
+  </LinearLayout>
 
   <!-- Info -->
   <TableLayout
@@ -69,12 +71,11 @@
     android:layout_height="wrap_content"
     android:layout_below="@id/filesystem_tabs"
     android:paddingBottom="@dimen/extra_large_margin"
-    android:paddingTop="@dimen/default_margin" >
+    android:paddingTop="@dimen/default_margin"
+    android:shrinkColumns="1" >
 
     <!-- Status -->
     <TableRow
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
       android:layout_marginLeft="@dimen/extra_large_margin"
       android:layout_marginRight="@dimen/extra_large_margin" >
 
@@ -98,8 +99,6 @@
 
     <!-- Mount Point -->
     <TableRow
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
       android:layout_marginLeft="@dimen/extra_large_margin"
       android:layout_marginRight="@dimen/extra_large_margin" >
 
@@ -123,8 +122,6 @@
 
     <!-- Device -->
     <TableRow
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
       android:layout_marginLeft="@dimen/extra_large_margin"
       android:layout_marginRight="@dimen/extra_large_margin" >
 
@@ -148,8 +145,6 @@
 
     <!-- Type -->
     <TableRow
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
       android:layout_marginLeft="@dimen/extra_large_margin"
       android:layout_marginRight="@dimen/extra_large_margin" >
 
@@ -173,8 +168,6 @@
 
     <!-- Options -->
     <TableRow
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
       android:layout_marginLeft="@dimen/extra_large_margin"
       android:layout_marginRight="@dimen/extra_large_margin" >
 
@@ -198,8 +191,6 @@
 
     <!-- Dump/Pass -->
     <TableRow
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
       android:layout_marginLeft="@dimen/extra_large_margin"
       android:layout_marginRight="@dimen/extra_large_margin" >
 
@@ -262,12 +253,11 @@
       android:layout_height="wrap_content"
       android:layout_toRightOf="@id/filesystem_disk_usage_graph"
       android:paddingBottom="@dimen/extra_large_margin"
-      android:paddingTop="@dimen/default_margin" >
+      android:paddingTop="@dimen/default_margin"
+      android:shrinkColumns="1" >
 
       <!-- Total -->
       <TableRow
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/extra_large_margin"
         android:layout_marginRight="@dimen/extra_large_margin" >
 
@@ -290,8 +280,6 @@
 
       <!-- Used -->
       <TableRow
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/extra_large_margin"
         android:layout_marginRight="@dimen/extra_large_margin" >
 
@@ -314,8 +302,6 @@
 
       <!-- Free -->
       <TableRow
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/extra_large_margin"
         android:layout_marginRight="@dimen/extra_large_margin" >
 

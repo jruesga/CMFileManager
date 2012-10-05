@@ -20,39 +20,39 @@
   <group android:id="@+id/mnu_actions_global">
     <item
       android:id="@+id/mnu_actions_properties_current_folder"
-      android:showAsAction="always"
+      android:showAsAction="ifRoom"
       android:title="@string/actions_menu_properties_current_folder"/>
     <item
       android:id="@+id/mnu_actions_refresh"
-      android:showAsAction="always"
+      android:showAsAction="ifRoom"
       android:title="@string/actions_menu_refresh"/>
     <item
       android:id="@+id/mnu_actions_new_directory"
-      android:showAsAction="always"
+      android:showAsAction="ifRoom"
       android:title="@string/actions_menu_new_directory"/>
     <item
       android:id="@+id/mnu_actions_new_file"
-      android:showAsAction="always"
+      android:showAsAction="ifRoom"
       android:title="@string/actions_menu_new_file"/>
     <item
       android:id="@+id/mnu_actions_select_all"
-      android:showAsAction="always"
+      android:showAsAction="ifRoom"
       android:title="@string/actions_menu_select_all"/>
     <item
       android:id="@+id/mnu_actions_deselect_all"
-      android:showAsAction="always"
+      android:showAsAction="ifRoom"
       android:title="@string/actions_menu_deselect_all"/>
     <item
       android:id="@+id/mnu_actions_copy_selection"
-      android:showAsAction="always"
+      android:showAsAction="ifRoom"
       android:title="@string/actions_menu_copy_selection"/>
     <item
       android:id="@+id/mnu_actions_move_selection"
-      android:showAsAction="always"
+      android:showAsAction="ifRoom"
       android:title="@string/actions_menu_move_selection"/>
     <item
       android:id="@+id/mnu_actions_add_to_bookmarks_current_folder"
-      android:showAsAction="always"
+      android:showAsAction="ifRoom"
       android:title="@string/actions_menu_add_to_bookmarks_current_folder"/>
   </group>
 
@@ -60,35 +60,35 @@
   <group android:id="@+id/mnu_actions_fso">
     <item
       android:id="@+id/mnu_actions_properties"
-      android:showAsAction="always"
+      android:showAsAction="ifRoom"
       android:title="@string/actions_menu_properties"/>
     <item
       android:id="@+id/mnu_actions_select"
-      android:showAsAction="always"
+      android:showAsAction="ifRoom"
       android:title="@string/actions_menu_select"/>
     <item
       android:id="@+id/mnu_actions_deselect"
-      android:showAsAction="always"
+      android:showAsAction="ifRoom"
       android:title="@string/actions_menu_deselect"/>
     <item
       android:id="@+id/mnu_actions_delete"
-      android:showAsAction="always"
+      android:showAsAction="ifRoom"
       android:title="@string/actions_menu_delete"/>
     <item
       android:id="@+id/mnu_actions_rename"
-      android:showAsAction="always"
+      android:showAsAction="ifRoom"
       android:title="@string/actions_menu_rename"/>
     <item
       android:id="@+id/mnu_actions_open"
-      android:showAsAction="always"
+      android:showAsAction="ifRoom"
       android:title="@string/actions_menu_open"/>
     <item
       android:id="@+id/mnu_actions_open_with"
-      android:showAsAction="always"
+      android:showAsAction="ifRoom"
       android:title="@string/actions_menu_open_with"/>
     <item
       android:id="@+id/mnu_actions_add_to_bookmarks"
-      android:showAsAction="always"
+      android:showAsAction="ifRoom"
       android:title="@string/actions_menu_add_to_bookmarks"/>
   </group>
 

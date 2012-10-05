@@ -91,13 +91,13 @@ public class RelevanceView extends View {
         //Create the color map
         this.mColors = new TreeMap<Integer, Integer>();
         this.mColors.put(Integer.valueOf(25),
-                new Integer(getResources().getColor(R.color.relevance_percentil_25)));
+                Integer.valueOf(getResources().getColor(R.color.relevance_percentil_25)));
         this.mColors.put(Integer.valueOf(50),
-                new Integer(getResources().getColor(R.color.relevance_percentil_50)));
+                Integer.valueOf(getResources().getColor(R.color.relevance_percentil_50)));
         this.mColors.put(Integer.valueOf(75),
-                new Integer(getResources().getColor(R.color.relevance_percentil_75)));
+                Integer.valueOf(getResources().getColor(R.color.relevance_percentil_75)));
         this.mColors.put(Integer.valueOf(100),
-                new Integer(getResources().getColor(R.color.relevance_percentil_100)));
+                Integer.valueOf(getResources().getColor(R.color.relevance_percentil_100)));
 
         //Relevance is 0 until is sets
         this.mRelevance = 0.0f;

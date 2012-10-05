@@ -164,7 +164,11 @@ public final class DialogHelper {
                 (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View lyTitle = li.inflate(R.layout.dialog_title, null);
         ImageView vIcon = (ImageView)lyTitle.findViewById(R.id.dialog_title_icon);
-        vIcon.setBackgroundResource(icon);
+        if (icon != 0) {
+            vIcon.setBackgroundResource(icon);
+        } else {
+            vIcon.setVisibility(View.GONE);
+        }
         TextView vText = (TextView)lyTitle.findViewById(R.id.dialog_title_text);
         vText.setText(title);
         return lyTitle;

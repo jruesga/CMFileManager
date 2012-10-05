@@ -193,6 +193,9 @@ public final class Preferences {
             } else if (value instanceof ObjectIdentifier
                     && pref.getDefaultValue() instanceof ObjectIdentifier) {
                 editor.putInt(pref.getId(), ((ObjectIdentifier)value).getId());
+            } else if (value instanceof ObjectStringIdentifier
+                    && pref.getDefaultValue() instanceof ObjectStringIdentifier) {
+                editor.putString(pref.getId(), ((ObjectStringIdentifier)value).getId());
             } else {
                 //The object is not of the appropriate type
                 String msg = String.format(

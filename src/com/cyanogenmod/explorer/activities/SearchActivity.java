@@ -962,7 +962,7 @@ public class SearchActivity extends Activity
                     ActionsPolicy.openFileSystemObject(this, fso, false);
                     return;
                 }
-                
+
             } catch (Exception e) {
                 // Capture the exception
                 ExceptionUtil.translateException(this, e);

@@ -730,6 +730,10 @@ public class NavigationActivity extends Activity
                     if (searchInfo != null && searchInfo.isSuccessNavigation()) {
                         //Navigate to previous history
                         back();
+                    } else {
+                        // I don't know is the search view was changed, so do a refresh
+                        // of the navigation view
+                        getCurrentNavigationView().refresh();
                     }
                 }
                 break;
@@ -1146,7 +1150,7 @@ public class NavigationActivity extends Activity
             if (h.getItem() instanceof NavigationViewInfoParcelable) {
                 // Verify that the path exists
                 String path = ((NavigationViewInfoParcelable)h.getItem()).getCurrentDir();
-                
+
                 try {
                     CommandHelper.getFileInfo(this, path, null);
                     break;
@@ -1242,7 +1246,7 @@ public class NavigationActivity extends Activity
      * Method that remove the {@link FileSystemObject} from the history
      */
     private void removeFromHistory(FileSystemObject fso) {
-        if( this.mHistory != null ) {
+        if (this.mHistory != null) {
             for (int i = this.mHistory.size()-1; i >= 0 ; i--) {
                 History history = this.mHistory.get(i);
                 if (history.getItem() instanceof NavigationViewInfoParcelable) {

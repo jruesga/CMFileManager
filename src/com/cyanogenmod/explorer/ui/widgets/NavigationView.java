@@ -745,10 +745,10 @@ public class NavigationView extends RelativeLayout implements
 
         return true; //Always consume the event
     }
-    
+
     /**
      * Method that opens or navigates to the {@link FileSystemObject}
-     * 
+     *
      * @param fso The file system object
      */
     public void open(FileSystemObject fso) {
@@ -757,7 +757,7 @@ public class NavigationView extends RelativeLayout implements
 
     /**
      * Method that opens or navigates to the {@link FileSystemObject}
-     * 
+     *
      * @param fso The file system object
      * @param searchInfo The search info
      */

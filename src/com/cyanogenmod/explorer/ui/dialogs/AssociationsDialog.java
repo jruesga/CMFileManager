@@ -88,7 +88,7 @@ public class AssociationsDialog implements OnItemClickListener {
      * @param requestIntent The original request
      * @param intents The list of available intents that can handle an action
      * @param preferred The preferred intent. null if no preferred exists
-     * @param allowPreferred If allow the user to mark the selected app as preferred 
+     * @param allowPreferred If allow the user to mark the selected app as preferred
      */
     public AssociationsDialog(
             Context context, int icon, String title, String action,
@@ -408,7 +408,7 @@ public class AssociationsDialog implements OnItemClickListener {
                         }
 
                         // Use reflection to access the hidden replacePreferredActivity method
-                        // FIXME This need to be tested on a CM compilation. Now 
+                        // FIXME This need to be tested on a CM compilation. Now
                         // replacePreferredActivity is not working. Check also
                         // the use of addPreferredActivity.
                         PackageManager pm = this.mContext.getPackageManager();

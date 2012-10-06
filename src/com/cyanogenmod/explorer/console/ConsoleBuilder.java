@@ -153,6 +153,7 @@ public final class ConsoleBuilder {
             return sHolder.getConsole() instanceof PrivilegedConsole;
 
         } catch (Throwable e) {
+            destroyConsole();
             if (holder != null) {
                 holder.dispose();
             }
@@ -184,6 +185,21 @@ public final class ConsoleBuilder {
                             ExplorerSettings.SETTINGS_SUPERUSER_MODE.getId(),
                             ((Boolean)ExplorerSettings.SETTINGS_SUPERUSER_MODE.
                                     getDefaultValue()).booleanValue());
+            boolean allowConsoleSelection = Preferences.getSharedPreferences().getBoolean(
+                    ExplorerSettings.SETTINGS_ALLOW_CONSOLE_SELECTION.getId(),
+                    ((Boolean)ExplorerSettings.
+                            SETTINGS_ALLOW_CONSOLE_SELECTION.
+                                getDefaultValue()).booleanValue());
+            if (!requiredSuConsole && !allowConsoleSelection) {
+                // allowConsoleSelection forces the su console
+                try {
+                    Preferences.savePreference(
+                            ExplorerSettings.SETTINGS_SUPERUSER_MODE, Boolean.TRUE, true);
+                } catch (Throwable ex) {
+                    Log.w(TAG, "Can't save console preference", ex); //$NON-NLS-1$
+                }
+                requiredSuConsole = true;
+            }
 
             //Check if console settings has changed
             if (sHolder != null) {
@@ -308,21 +324,31 @@ public final class ConsoleBuilder {
                 }
             }
 
-            //Save settings
-            try {
-                Editor editor = Preferences.getSharedPreferences().edit();
-                editor.putBoolean(ExplorerSettings.SETTINGS_SUPERUSER_MODE.getId(), false);
-                editor.commit();
-            } catch (Exception ex) {
-                Log.e(TAG,
-                        String.format("Failed to save %s property",  //$NON-NLS-1$
-                        ExplorerSettings.SETTINGS_SUPERUSER_MODE.getId()), ex);
+            boolean allowConsoleSelection = Preferences.getSharedPreferences().getBoolean(
+                    ExplorerSettings.SETTINGS_ALLOW_CONSOLE_SELECTION.getId(),
+                    ((Boolean)ExplorerSettings.
+                            SETTINGS_ALLOW_CONSOLE_SELECTION.
+                                getDefaultValue()).booleanValue());
+            if (allowConsoleSelection) {
+                //Save settings
+                try {
+                    Editor editor = Preferences.getSharedPreferences().edit();
+                    editor.putBoolean(ExplorerSettings.SETTINGS_SUPERUSER_MODE.getId(), false);
+                    editor.commit();
+                } catch (Exception ex) {
+                    Log.e(TAG,
+                            String.format("Failed to save %s property",  //$NON-NLS-1$
+                            ExplorerSettings.SETTINGS_SUPERUSER_MODE.getId()), ex);
+                }
+
+                //Create the non-privileged console
+                NonPriviledgeConsole console = new NonPriviledgeConsole(initialDirectory);
+                console.alloc();
+                return console;
             }
 
-            //Create the non-privileged console
-            NonPriviledgeConsole console = new NonPriviledgeConsole(initialDirectory);
-            console.alloc();
-            return console;
+            // Rethrow the exception
+            throw caEx;
         }
 
     }

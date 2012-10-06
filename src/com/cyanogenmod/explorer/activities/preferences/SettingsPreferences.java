@@ -65,7 +65,7 @@ public class SettingsPreferences extends PreferenceActivity {
      * Method that initializes the titlebar of the activity.
      */
     private void initTitleActionBar() {
-      //Configure the action bar options
+        //Configure the action bar options
         getActionBar().setBackgroundDrawable(
                 getResources().getDrawable(R.drawable.bg_holo_titlebar));
         getActionBar().setDisplayOptions(

@@ -94,7 +94,7 @@ public enum ExplorerSettings {
      * @hide
      */
     SETTINGS_ALLOW_CONSOLE_SELECTION(
-            "cm_explorer_allow_console_selection", Boolean.FALSE), //$NON-NLS-1$
+            "cm_explorer_allow_console_selection", Boolean.TRUE), //$NON-NLS-1$
 
     /**
      * When to highlight the terms of the search in the search results

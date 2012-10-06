@@ -16,6 +16,7 @@
 
 package com.cyanogenmod.explorer.ui.widgets;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
@@ -25,11 +26,13 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListAdapter;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 import com.cyanogenmod.explorer.R;
 import com.cyanogenmod.explorer.adapters.FileSystemObjectAdapter;
 import com.cyanogenmod.explorer.adapters.FileSystemObjectAdapter.OnRequestMenuListener;
 import com.cyanogenmod.explorer.adapters.FileSystemObjectAdapter.OnSelectionChangedListener;
+import com.cyanogenmod.explorer.console.ConsoleAllocException;
 import com.cyanogenmod.explorer.listeners.OnHistoryListener;
 import com.cyanogenmod.explorer.listeners.OnRequestRefreshListener;
 import com.cyanogenmod.explorer.listeners.OnSelectionListener;
@@ -47,6 +50,7 @@ import com.cyanogenmod.explorer.preferences.ObjectStringIdentifier;
 import com.cyanogenmod.explorer.preferences.Preferences;
 import com.cyanogenmod.explorer.ui.policy.ActionsPolicy;
 import com.cyanogenmod.explorer.util.CommandHelper;
+import com.cyanogenmod.explorer.util.DialogHelper;
 import com.cyanogenmod.explorer.util.ExceptionUtil;
 import com.cyanogenmod.explorer.util.FileHelper;
 
@@ -561,6 +565,21 @@ public class NavigationView extends RelativeLayout implements
                                     files = CommandHelper.listFiles(getContext(), newDir, null);
                                 }
                                 return files;
+                            } catch (final ConsoleAllocException e) {
+                                //Show exception and exists
+                                NavigationView.this.mTitle.post(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        Context ctx = getContext();
+                                        Log.e(TAG, ctx.getString(
+                                                R.string.msgs_cant_create_console), e);
+                                        DialogHelper.showToast(ctx,
+                                                R.string.msgs_cant_create_console,
+                                                Toast.LENGTH_LONG);
+                                        ((Activity)ctx).finish();
+                                    }
+                                });
+                                return null;
 
                             } catch (Exception ex) {
                                 //End of loading data

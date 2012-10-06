@@ -209,10 +209,14 @@ public final class ExceptionUtil {
             ((Activity)context).runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
-                    if (fToast) {
-                        DialogHelper.showToast(context, fMsgResId, Toast.LENGTH_SHORT);
-                    } else {
-                        DialogHelper.createErrorDialog(context, fMsgResId).show();
+                    try {
+                        if (fToast) {
+                            DialogHelper.showToast(context, fMsgResId, Toast.LENGTH_SHORT);
+                        } else {
+                            DialogHelper.createErrorDialog(context, fMsgResId).show();
+                        }
+                    } catch (Exception e) {
+                        Log.e(context.getClass().getSimpleName(), "ExceptionUtil. Failed to show dialog", ex); //$NON-NLS-1$
                     }
                 }
             });

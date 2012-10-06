@@ -494,6 +494,7 @@ public class NavigationActivity extends Activity
                             NavigationActivity.this,
                             R.string.msgs_cant_create_console, Toast.LENGTH_LONG);
                     finish();
+                    return;
                 }
 
                 //Is necessary navigate?
@@ -904,6 +905,15 @@ public class NavigationActivity extends Activity
             } else {
                 hasActionBarMenus = true;
             }
+        }
+
+        // Check if console selection is allowed
+        boolean allowConsoleSelection = Preferences.getSharedPreferences().getBoolean(
+                ExplorerSettings.SETTINGS_ALLOW_CONSOLE_SELECTION.getId(),
+                ((Boolean)ExplorerSettings.
+                        SETTINGS_ALLOW_CONSOLE_SELECTION.getDefaultValue()).booleanValue());
+        if (!allowConsoleSelection) {
+            menu.removeItem(R.id.mnu_console);
         }
 
         //Hide separator

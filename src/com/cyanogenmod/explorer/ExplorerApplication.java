@@ -77,6 +77,23 @@ public final class ExplorerApplication extends Application {
                             c.reloadTrace();
                         }
                     } catch (Throwable _throw) {/**NON BLOCK**/}
+                } else if (key != null && key.compareTo(
+                        ExplorerSettings.SETTINGS_ALLOW_CONSOLE_SELECTION.getId()) == 0) {
+                    // Force to change to a privileged console.
+                    boolean allowConsoleSelection = Preferences.getSharedPreferences().getBoolean(
+                            ExplorerSettings.SETTINGS_ALLOW_CONSOLE_SELECTION.getId(),
+                            ((Boolean)ExplorerSettings.
+                                    SETTINGS_ALLOW_CONSOLE_SELECTION.
+                                        getDefaultValue()).booleanValue());
+                    if (!allowConsoleSelection) {
+                        ConsoleBuilder.changeToPrivilegedConsole(context);
+                        try {
+                            Preferences.savePreference(
+                                    ExplorerSettings.SETTINGS_SUPERUSER_MODE, Boolean.TRUE, true);
+                        } catch (Throwable ex) {
+                            Log.w(TAG, "Can't save console preference", ex); //$NON-NLS-1$
+                        }
+                    }
                 }
             }
         }

@@ -72,7 +72,7 @@
         android:summaryOn="@string/pref_allow_console_selection_on"
         android:summaryOff="@string/pref_allow_console_selection_off"
         android:persistent="true"
-        android:defaultValue="false" />
+        android:defaultValue="true" />
 
     </PreferenceCategory>
 </PreferenceScreen>

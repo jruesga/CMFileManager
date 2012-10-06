@@ -26,6 +26,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
+import android.os.Handler;
 import android.os.Parcelable;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -55,7 +56,6 @@ import com.cyanogenmod.explorer.model.FileSystemObject;
 import com.cyanogenmod.explorer.model.History;
 import com.cyanogenmod.explorer.model.MountPoint;
 import com.cyanogenmod.explorer.parcelables.HistoryNavigable;
-import com.cyanogenmod.explorer.parcelables.NavigationInfoParcelable;
 import com.cyanogenmod.explorer.parcelables.NavigationViewInfoParcelable;
 import com.cyanogenmod.explorer.parcelables.SearchInfoParcelable;
 import com.cyanogenmod.explorer.preferences.DefaultLongClickAction;
@@ -86,7 +86,16 @@ import java.util.Arrays;
 import java.util.List;
 
 /**
- * The main explorer activity.
+ * The main navigation activity. This activity is the center of the application.
+ * From this the user can navigate, search, make actions.<br/>
+ * This activity is singleTop, so when it is displayed no other activities exists in
+ * the stack.<br/>
+ * This cause an issue with the saved instance of this class, because if another activity
+ * is displayed, and the process is killed, NavigationActivity is started and the saved
+ * instance gets corrupted.<br/>
+ * For this reason the methods {link {@link Activity#onSaveInstanceState(Bundle)} and
+ * {@link Activity#onRestoreInstanceState(Bundle)} are not implemented, and every time
+ * the app is killed, is restarted from his initial state.
  */
 public class NavigationActivity extends Activity
     implements OnHistoryListener, OnRequestRefreshListener,
@@ -141,9 +150,6 @@ public class NavigationActivity extends Activity
     // exit, and the toast is shown again after the first tap.
     private static final int RELEASE_EXIT_CHECK_TIMEOUT = 3500;
 
-    //The key for the state data
-    private static final String NAVIGATION_STATE = "explorer_navigation_state";  //$NON-NLS-1$
-
     private final BroadcastReceiver mOnSettingChangeReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
@@ -192,8 +198,10 @@ public class NavigationActivity extends Activity
         }
     };
 
-
-    private NavigationView[] mNavigationViews;
+    /**
+     * @hide
+     */
+    NavigationView[] mNavigationViews;
     private List<History> mHistory;
 
     private int mCurrentNavigationView;
@@ -205,10 +213,16 @@ public class NavigationActivity extends Activity
     private long mExitBackTimeout = -1;
 
     /**
+     * @hide
+     */
+    Handler mHandler;
+
+    /**
      * {@inheritDoc}
      */
     @Override
     protected void onCreate(Bundle state) {
+
         if (DEBUG) {
             Log.d(TAG, "NavigationActivity.onCreate"); //$NON-NLS-1$
         }
@@ -224,42 +238,34 @@ public class NavigationActivity extends Activity
         //Set the main layout of the activity
         setContentView(R.layout.navigation);
 
-        //Get the navigation views (wishlist: multiple view; for now only one view)
-        this.mNavigationViews = new NavigationView[1];
-        this.mCurrentNavigationView = 0;
-        //- 0
-        this.mNavigationViews[0] = (NavigationView)findViewById(R.id.navigation_view);
-        this.mNavigationViews[0].setId(0);
-
         //Initialize activity
         init();
+
+        //Navigation views
+        initNavigationViews();
 
         //Initialize action bars
         initTitleActionBar();
         initStatusActionBar();
         initSelectionBar();
 
+        this.mHandler = new Handler();
+        this.mHandler.post(new Runnable() {
+            @Override
+            public void run() {
+                //Initialize navigation
+                int cc = NavigationActivity.this.mNavigationViews.length;
+                for (int i = 0; i < cc; i++) {
+                    initNavigation(i, false);
+                }
+
+                //Check the intent action
+                checkIntent(getIntent());
+            }
+        });
+
         //Save state
         super.onCreate(state);
-
-        //Restore state
-        boolean restore = false;
-        if (state != null) {
-            restore = restoreState(state);
-        }
-
-        //Initialize navigation
-        int cc = this.mNavigationViews.length;
-        for (int i = 0; i < cc; i++) {
-            if  (this.mCurrentNavigationView == i) {
-                initNavigation(i, restore);
-            } else {
-                initNavigation(i, true);
-            }
-        }
-
-        //Check the intent action
-        checkIntent(getIntent());
     }
 
     /**
@@ -267,7 +273,7 @@ public class NavigationActivity extends Activity
      */
     @Override
     protected void onNewIntent(Intent intent) {
-        //Initialize navigation (is restore sure)
+        //Initialize navigation
         initNavigation(this.mCurrentNavigationView, true);
 
         //Check the intent action
@@ -291,85 +297,6 @@ public class NavigationActivity extends Activity
 
         //All destroy. Continue
         super.onDestroy();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    protected void onSaveInstanceState(Bundle outState) {
-        if (DEBUG) {
-            Log.d(TAG, "NavigationActivity.onSaveInstanceState"); //$NON-NLS-1$
-        }
-        saveState(outState);
-        super.onSaveInstanceState(outState);
-    }
-
-    /**
-     * Method that save the instance of the activity.
-     *
-     * @param state The current state of the activity
-     */
-    private void saveState(Bundle state) {
-        //Create the parcel information
-        NavigationInfoParcelable parcel = new NavigationInfoParcelable();
-        //-
-        NavigationViewInfoParcelable[] navigationViews =
-                new NavigationViewInfoParcelable[this.mNavigationViews.length];
-        int cc = this.mNavigationViews.length;
-        for (int i = 0; i < cc; i++) {
-            navigationViews[i] = this.mNavigationViews[i].onSaveState();
-        }
-        parcel.setNavigationViews(navigationViews);
-        state.putInt("currentNavigationView", this.mCurrentNavigationView); //$NON-NLS-1$
-        //-
-        parcel.setHistoryInfo(this.mHistory);
-
-        //Save the parcel information
-        state.putParcelable(NAVIGATION_STATE, parcel);
-    }
-
-    /**
-     * Method that restore the instance of the activity.
-     *
-     * @param state The previous state of the activity
-     * @return boolean If the restoration was successful
-     */
-    private boolean restoreState(Bundle state) {
-        try {
-            //Restore the instance
-            NavigationInfoParcelable info = state.getParcelable(NAVIGATION_STATE);
-            if (info != null) {
-                //-
-                NavigationViewInfoParcelable[] navigationViews = info.getNavigationViews();
-                if (navigationViews == null) {
-                    return false;
-                }
-                this.mNavigationViews = new NavigationView[navigationViews.length];
-                int cc = navigationViews.length;
-                for (int i = 0; i < cc; i++) {
-                    if (navigationViews[i] != null) {
-                        this.mNavigationViews[i].onRestoreState(navigationViews[i]);
-                    } else {
-                        // Load a default one
-                        this.mNavigationViews[i] =
-                                (NavigationView)findViewById(R.id.navigation_view);
-                        this.mNavigationViews[i].setId(i);
-                    }
-                }
-                this.mCurrentNavigationView = state.getInt("currentNavigationView"); //$NON-NLS-1$
-
-                //-
-                this.mHistory = info.getHistoryInfo();
-
-                //Restored
-                return true;
-            }
-
-        } catch (Throwable ex) {
-            Log.e(TAG, "The state can't be restored", ex); //$NON-NLS-1$
-        }
-        return false;
     }
 
     /**
@@ -471,14 +398,27 @@ public class NavigationActivity extends Activity
     }
 
     /**
+     * Method that initializes the navigation views of the activity
+     */
+    private void initNavigationViews() {
+        //Get the navigation views (wishlist: multiple view; for now only one view)
+        this.mNavigationViews = new NavigationView[1];
+        this.mCurrentNavigationView = 0;
+        //- 0
+        this.mNavigationViews[0] = (NavigationView)findViewById(R.id.navigation_view);
+        this.mNavigationViews[0].setId(0);
+    }
+
+    /**
      * Method that initializes the navigation.
      *
      * @param viewId The navigation view identifier where apply the navigation
      * @param restore Initialize from a restore info
+     * @hide
      */
-    private void initNavigation(final int viewId, final boolean restore) {
+    void initNavigation(final int viewId, final boolean restore) {
         final NavigationView navigationView = getNavigationView(viewId);
-        navigationView.post(new Runnable() {
+        this.mHandler.post(new Runnable() {
             @Override
             public void run() {
                 //Create the default console (from the preferences)
@@ -532,8 +472,9 @@ public class NavigationActivity extends Activity
      * if a request is made like Search.
      *
      * @param intent The intent to check
+     * @hide
      */
-    private void checkIntent(Intent intent) {
+    void checkIntent(Intent intent) {
         //Search action
         if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
             Intent searchIntent = new Intent(this, SearchActivity.class);
@@ -692,55 +633,57 @@ public class NavigationActivity extends Activity
      */
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        switch (requestCode) {
-            case INTENT_REQUEST_BOOKMARK:
-                if (resultCode == RESULT_OK) {
-                    FileSystemObject fso =
-                            (FileSystemObject)data.getSerializableExtra(EXTRA_BOOKMARK_SELECTION);
-                    if (fso != null) {
-                        //Open the fso
-                        getCurrentNavigationView().open(fso);
+        if (data != null) {
+            switch (requestCode) {
+                case INTENT_REQUEST_BOOKMARK:
+                    if (resultCode == RESULT_OK) {
+                        FileSystemObject fso =
+                                (FileSystemObject)data.getSerializableExtra(EXTRA_BOOKMARK_SELECTION);
+                        if (fso != null) {
+                            //Open the fso
+                            getCurrentNavigationView().open(fso);
+                        }
                     }
-                }
-                break;
+                    break;
 
-            case INTENT_REQUEST_HISTORY:
-                if (resultCode == RESULT_OK) {
-                    //Change current directory
-                    History history =
-                            (History)data.getSerializableExtra(EXTRA_HISTORY_ENTRY_SELECTION);
-                    navigateToHistory(history);
-                }
-                break;
-
-            case INTENT_REQUEST_SEARCH:
-                if (resultCode == RESULT_OK) {
-                    //Change directory?
-                    FileSystemObject fso =
-                            (FileSystemObject)data.
-                                getSerializableExtra(EXTRA_SEARCH_ENTRY_SELECTION);
-                    SearchInfoParcelable searchInfo =
-                            data.getParcelableExtra(EXTRA_SEARCH_LAST_SEARCH_DATA);
-                    if (fso != null) {
-                        //Goto to new directory
-                        getCurrentNavigationView().open(fso, searchInfo);
+                case INTENT_REQUEST_HISTORY:
+                    if (resultCode == RESULT_OK) {
+                        //Change current directory
+                        History history =
+                                (History)data.getSerializableExtra(EXTRA_HISTORY_ENTRY_SELECTION);
+                        navigateToHistory(history);
                     }
-                } else if (resultCode == RESULT_CANCELED) {
-                    SearchInfoParcelable searchInfo =
-                            data.getParcelableExtra(EXTRA_SEARCH_LAST_SEARCH_DATA);
-                    if (searchInfo != null && searchInfo.isSuccessNavigation()) {
-                        //Navigate to previous history
-                        back();
-                    } else {
-                        // I don't know is the search view was changed, so do a refresh
-                        // of the navigation view
-                        getCurrentNavigationView().refresh();
-                    }
-                }
-                break;
+                    break;
 
-            default:
-                break;
+                case INTENT_REQUEST_SEARCH:
+                    if (resultCode == RESULT_OK) {
+                        //Change directory?
+                        FileSystemObject fso =
+                                (FileSystemObject)data.
+                                    getSerializableExtra(EXTRA_SEARCH_ENTRY_SELECTION);
+                        SearchInfoParcelable searchInfo =
+                                data.getParcelableExtra(EXTRA_SEARCH_LAST_SEARCH_DATA);
+                        if (fso != null) {
+                            //Goto to new directory
+                            getCurrentNavigationView().open(fso, searchInfo);
+                        }
+                    } else if (resultCode == RESULT_CANCELED) {
+                        SearchInfoParcelable searchInfo =
+                                data.getParcelableExtra(EXTRA_SEARCH_LAST_SEARCH_DATA);
+                        if (searchInfo != null && searchInfo.isSuccessNavigation()) {
+                            //Navigate to previous history
+                            back();
+                        } else {
+                            // I don't know is the search view was changed, so do a refresh
+                            // of the navigation view
+                            getCurrentNavigationView().refresh();
+                        }
+                    }
+                    break;
+
+                default:
+                    break;
+            }
         }
     }
 
@@ -859,7 +802,7 @@ public class NavigationActivity extends Activity
                     }
                 } catch (Exception e) {
                     Log.e(TAG, "Error applying navigation option", e); //$NON-NLS-1$
-                    getCurrentNavigationView().post(new Runnable() {
+                    NavigationActivity.this.mHandler.post(new Runnable() {
                         @Override
                         public void run() {
                             DialogHelper.showToast(
@@ -928,7 +871,7 @@ public class NavigationActivity extends Activity
                     final AdapterView<?> parent, final View v, final int position, final long id) {
 
                 final int itemId = (int)id;
-                getCurrentNavigationView().post(new Runnable() {
+                NavigationActivity.this.mHandler.post(new Runnable() {
                     @Override
                     public void run() {
                         popup.dismiss();
@@ -1097,8 +1040,6 @@ public class NavigationActivity extends Activity
                 NavigationView view = getNavigationView(viewId);
                 view.onRestoreState(info);
 
-                //TODO Change to navigation view (viewpager)
-
             } else if (realHistory.getItem() instanceof SearchInfoParcelable) {
                 //Search (open search with the search results)
                 SearchInfoParcelable info = (SearchInfoParcelable)realHistory.getItem();
@@ -1134,7 +1075,7 @@ public class NavigationActivity extends Activity
                 Log.e(TAG,
                         String.format("Failed to navigate to history: null", ex)); //$NON-NLS-1$
             }
-            getCurrentNavigationView().post(new Runnable() {
+            this.mHandler.post(new Runnable() {
                 @Override
                 public void run() {
                     DialogHelper.showToast(

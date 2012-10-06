@@ -84,11 +84,11 @@ public class ListCommand extends SyncResultProgram implements ListExecutable {
         //If the mode is listing directory, for avoid problems with symlink,
         //always append a / to the end of the path (if not exists)
         super(mode.compareTo(LIST_MODE.DIRECTORY) == 0 ? ID_LS_DIRECTORY : ID_LS_INFO,
-                new String[]{ mode.compareTo(LIST_MODE.DIRECTORY) == 0
-                ? (src.endsWith(File.separator)
-                        ? src
-                        : src + File.separator)
-                : src});
+                new String[]{
+                        mode.compareTo(LIST_MODE.DIRECTORY) == 0
+                            ? FileHelper.addTrailingSlash(src)
+                            : FileHelper.removeTrailingSlash(src)
+                    });
 
         //Initialize files to something distinct of null
         this.mFiles = new ArrayList<FileSystemObject>();
@@ -108,7 +108,9 @@ public class ListCommand extends SyncResultProgram implements ListExecutable {
         } else {
             //Get the absolute path
             try {
-                this.mParentDir = new File(src).getCanonicalFile().getParent();
+                this.mParentDir =
+                        FileHelper.removeTrailingSlash(
+                                new File(src).getCanonicalFile().getParent());
 
             } catch (Exception e) {
                 // Try to resolve from a console

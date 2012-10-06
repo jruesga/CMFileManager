@@ -130,8 +130,8 @@ public final class ActionsPolicy {
     }
 
     /**
-     * Method that opens a {@link FileSystemObject} with the default application registered
-     * by the system.
+     * Method that opens a {@link FileSystemObject} with the default registered application
+     * by the system, or ask the user for select a registered application.
      *
      * @param ctx The current context
      * @param fso The file system object
@@ -153,52 +153,114 @@ public final class ActionsPolicy {
                 intent.setData(Uri.fromFile(file));
             }
 
-            //Retrieve the activities that can handle the file
-            final PackageManager packageManager = ctx.getPackageManager();
-            if (DEBUG) {
-                intent.addFlags(Intent.FLAG_DEBUG_LOG_RESOLUTION);
-            }
-            List<ResolveInfo> info =
-                    packageManager.
-                        queryIntentActivities(intent, PackageManager.MATCH_DEFAULT_ONLY);
-
-            // Retrieve the preferred activity that can handle the file
-            final ResolveInfo mPreferredInfo = packageManager.resolveActivity(intent, 0);
-
-            // Now we have the list of activities that can handle the file. The next steps are:
-            //
-            // 1.- If choose, then show open with dialog
-            // 2.- If info size == 0. No default application, then show open with dialog
-            // 3.- If !choose, seek inside our database the default activity for the extension
-            //     and open the file with this application
-            // 4.- If no default activity saved, then use system default
-
-            // No registered application
-            if (info.size() == 0) {
-                DialogHelper.createWarningDialog(ctx, R.string.msgs_not_registered_app);
-            }
-
-            // Is a simple open and we have an application that can handle the file?
-            if (!choose && (mPreferredInfo.match != 0 || info.size() == 1)) {
-                ctx.startActivity(intent);
-                return;
-            }
-
-            // Otherwise, we have to show the open with dialog
-            AssociationsDialog dialog =
-                    new AssociationsDialog(
-                            ctx,
-                            R.drawable.ic_holo_light_open,
-                            ctx.getString(R.string.associations_dialog_openwith_title),
-                            ctx.getString(R.string.associations_dialog_openwith_action),
-                            intent,
-                            info,
-                            mPreferredInfo);
-            dialog.show();
+            // Resolve the intent
+            resolveIntent(
+                    ctx,
+                    intent,
+                    choose,
+                    R.drawable.ic_holo_light_open,
+                    R.string.associations_dialog_openwith_title,
+                    R.string.associations_dialog_openwith_action,
+                    true);
 
         } catch (Exception e) {
             ExceptionUtil.translateException(ctx, e);
         }
+    }
+
+    /**
+     * Method that sends a {@link FileSystemObject} with the default registered application
+     * by the system, or ask the user for select a registered application.
+     *
+     * @param ctx The current context
+     * @param fso The file system object
+     */
+    public static void sendFileSystemObject(
+            final Context ctx, final FileSystemObject fso) {
+        try {
+            // Create the intent to
+            Intent intent = new Intent();
+            intent.setAction(android.content.Intent.ACTION_SEND);
+            intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+            intent.setType(MimeTypeHelper.getMimeType(ctx, fso));
+            Uri uri = Uri.fromFile(new File(fso.getFullPath()));
+            intent.putExtra(Intent.EXTRA_STREAM, uri);
+
+            // Resolve the intent
+            resolveIntent(
+                    ctx,
+                    intent,
+                    false,
+                    R.drawable.ic_holo_light_send,
+                    R.string.associations_dialog_sendwith_title,
+                    R.string.associations_dialog_sendwith_action,
+                    false);
+
+        } catch (Exception e) {
+            ExceptionUtil.translateException(ctx, e);
+        }
+    }
+
+    /**
+     * Method that resolve
+     *
+     * @param ctx The current context
+     * @param intent The intent to resolve
+     * @param choose If allow the user to select the application to select the registered
+     * application. If no preferred app or more than one exists the dialog is shown.
+     * @param icon The icon of the dialog
+     * @param title The title of the dialog
+     * @param action The button title of the dialog
+     * @param allowPreferred If allow the user to mark the selected app as preferred
+     */
+    private static void resolveIntent(
+            Context ctx, Intent intent, boolean choose,
+            int icon, int title, int action, boolean allowPreferred) {
+        //Retrieve the activities that can handle the file
+        final PackageManager packageManager = ctx.getPackageManager();
+        if (DEBUG) {
+            intent.addFlags(Intent.FLAG_DEBUG_LOG_RESOLUTION);
+        }
+        List<ResolveInfo> info =
+                packageManager.
+                    queryIntentActivities(intent, PackageManager.MATCH_DEFAULT_ONLY);
+
+        // Retrieve the preferred activity that can handle the file
+        final ResolveInfo mPreferredInfo = packageManager.resolveActivity(intent, 0);
+
+        // Now we have the list of activities that can handle the file. The next steps are:
+        //
+        // 1.- If choose, then show open with dialog
+        // 2.- If info size == 0. No default application, then show open with dialog
+        // 3.- If !choose, seek inside our database the default activity for the extension
+        //     and open the file with this application
+        // 4.- If no default activity saved, then use system default
+
+        // No registered application
+        if (info.size() == 0) {
+            Toast.makeText(ctx, R.string.msgs_not_registered_app, Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        // Is a simple open and we have an application that can handle the file?
+        if (!choose &&
+                ((mPreferredInfo  != null && mPreferredInfo.match != 0) || info.size() == 1)) {
+            ctx.startActivity(intent);
+            return;
+        }
+
+        // Otherwise, we have to show the open with dialog
+        AssociationsDialog dialog =
+                new AssociationsDialog(
+                        ctx,
+                        icon,
+                        ctx.getString(title),
+                        ctx.getString(action),
+                        intent,
+                        info,
+                        mPreferredInfo,
+                        allowPreferred);
+        dialog.show();
     }
 
     /**

@@ -41,13 +41,13 @@ public class Bookmarks {
      */
     public static Bookmark addBookmark(Context context, Bookmark bookmark) {
         // Check that has a valid information
-        if (bookmark.mDirectory == null) return null;
+        if (bookmark.mPath == null) return null;
 
         // Retrieve the content resolver
         ContentResolver contentResolver = context.getContentResolver();
 
         // Check that the bookmarks not exists
-        Bookmark b = getBookmark(contentResolver, bookmark.mDirectory);
+        Bookmark b = getBookmark(contentResolver, bookmark.mPath);
         if (b != null) return b;
 
         // Create the content values
@@ -113,18 +113,18 @@ public class Bookmarks {
     }
 
     /**
-     * Method that return the bookmark from his directory
+     * Method that return the bookmark from his path
      *
      * @param contentResolver The content resolver
-     * @param directory The bookmark directory
+     * @param path The bookmark path
      * @return Bookmark The bookmark. null if no bookmark exists.
      */
-    public static Bookmark getBookmark(ContentResolver contentResolver, String directory) {
-        final String where = Bookmark.Columns.DIRECTORY + " = ?"; //$NON-NLS-1$
+    public static Bookmark getBookmark(ContentResolver contentResolver, String path) {
+        final String where = Bookmark.Columns.PATH + " = ?"; //$NON-NLS-1$
         Cursor cursor = contentResolver.query(
                 Bookmark.Columns.CONTENT_URI,
                 Bookmark.Columns.BOOKMARK_QUERY_COLUMNS,
-                where, new String[]{directory}, null);
+                where, new String[]{path}, null);
         Bookmark bookmark = null;
         if (cursor != null) {
             if (cursor.moveToFirst()) {
@@ -143,7 +143,7 @@ public class Bookmarks {
      */
     private static ContentValues createContentValues(Bookmark bookmark) {
         ContentValues values = new ContentValues(1);
-        values.put(Bookmark.Columns.DIRECTORY, bookmark.mDirectory);
+        values.put(Bookmark.Columns.PATH, bookmark.mPath);
         return values;
     }
 }

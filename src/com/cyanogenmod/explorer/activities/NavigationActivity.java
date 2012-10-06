@@ -694,15 +694,18 @@ public class NavigationActivity extends Activity
         switch (requestCode) {
             case INTENT_REQUEST_BOOKMARK:
                 if (resultCode == RESULT_OK) {
-                    //Change
-                    getCurrentNavigationView().changeCurrentDir(
-                            data.getStringExtra(EXTRA_BOOKMARK_SELECTION));
+                    FileSystemObject fso =
+                            (FileSystemObject)data.getSerializableExtra(EXTRA_BOOKMARK_SELECTION);
+                    if (fso != null) {
+                        //Open the fso
+                        getCurrentNavigationView().open(fso);
+                    }
                 }
                 break;
 
             case INTENT_REQUEST_HISTORY:
                 if (resultCode == RESULT_OK) {
-                    //Change
+                    //Change current directory
                     History history =
                             (History)data.getSerializableExtra(EXTRA_HISTORY_ENTRY_SELECTION);
                     navigateToHistory(history);
@@ -712,12 +715,14 @@ public class NavigationActivity extends Activity
             case INTENT_REQUEST_SEARCH:
                 if (resultCode == RESULT_OK) {
                     //Change directory?
-                    String newDir = data.getStringExtra(EXTRA_SEARCH_ENTRY_SELECTION);
+                    FileSystemObject fso =
+                            (FileSystemObject)data.
+                                getSerializableExtra(EXTRA_SEARCH_ENTRY_SELECTION);
                     SearchInfoParcelable searchInfo =
                             data.getParcelableExtra(EXTRA_SEARCH_LAST_SEARCH_DATA);
-                    if (newDir != null) {
+                    if (fso != null) {
                         //Goto to new directory
-                        getCurrentNavigationView().changeCurrentDir(newDir, searchInfo);
+                        getCurrentNavigationView().open(fso, searchInfo);
                     }
                 } else if (resultCode == RESULT_CANCELED) {
                     SearchInfoParcelable searchInfo =
@@ -777,7 +782,11 @@ public class NavigationActivity extends Activity
     @Override
     public void onRequestRemove(Object o) {
         if (o instanceof FileSystemObject) {
+            // Remove from view
             this.getCurrentNavigationView().removeItem((FileSystemObject)o);
+
+            //Remove from history
+            removeFromHistory((FileSystemObject)o);
         }
     }
 
@@ -1058,7 +1067,7 @@ public class NavigationActivity extends Activity
      * Method that navigates to the passed history reference.
      *
      * @param history The history reference
-     * @return boolean
+     * @return boolean A problem occurs while navigate
      */
     public boolean navigateToHistory(History history) {
         try {
@@ -1131,6 +1140,23 @@ public class NavigationActivity extends Activity
      * @return boolean If a back action was applied
      */
     public boolean back() {
+        // Check that has valid history
+        while (this.mHistory.size() > 0) {
+            History h = this.mHistory.get(this.mHistory.size() - 1);
+            if (h.getItem() instanceof NavigationViewInfoParcelable) {
+                // Verify that the path exists
+                String path = ((NavigationViewInfoParcelable)h.getItem()).getCurrentDir();
+                
+                try {
+                    CommandHelper.getFileInfo(this, path, null);
+                    break;
+                } catch (Exception e) {
+                    ExceptionUtil.translateException(this, e, true, false);
+                    this.mHistory.remove(this.mHistory.size() - 1);
+                }
+            }
+        }
+
         //Extract a history from the
         if (this.mHistory.size() > 0) {
             //Navigate to history
@@ -1210,6 +1236,25 @@ public class NavigationActivity extends Activity
      */
     void openSearch() {
         onSearchRequested();
+    }
+
+    /**
+     * Method that remove the {@link FileSystemObject} from the history
+     */
+    private void removeFromHistory(FileSystemObject fso) {
+        if( this.mHistory != null ) {
+            for (int i = this.mHistory.size()-1; i >= 0 ; i--) {
+                History history = this.mHistory.get(i);
+                if (history.getItem() instanceof NavigationViewInfoParcelable) {
+                    String p0 = fso.getFullPath();
+                    String p1 =
+                            ((NavigationViewInfoParcelable)history.getItem()).getCurrentDir();
+                    if (p0.compareTo(p1) == 0) {
+                        this.mHistory.remove(i);
+                    }
+                }
+            }
+        }
     }
 
 }

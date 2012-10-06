@@ -141,6 +141,10 @@ public class HistoryAdapter extends ArrayAdapter<History> {
                                 getContext(), R.drawable.ic_holo_light_history_search);
             }
             this.mData[i].mName = history.getItem().getTitle();
+            if (this.mData[i].mName == null || this.mData[i].mName.trim().length() == 0) {
+                // Root directory
+                this.mData[i].mName = getContext().getString(R.string.root_directory_name);
+            }
             this.mData[i].mDirectory = history.getItem().getDescription();
             this.mData[i].mPosition = String.format("#%d", Integer.valueOf(i + 1)); //$NON-NLS-1$
         }

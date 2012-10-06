@@ -76,21 +76,21 @@ public class Bookmark implements Serializable, Comparable<Bookmark>, Parcelable 
                      "/bookmarks")); //$NON-NLS-1$
 
         /**
-         * The directory of the bookmark
+         * The path of the bookmark
          * <P>Type: TEXT</P>
          */
-        public static final String DIRECTORY = "directory"; //$NON-NLS-1$
+        public static final String PATH = "path"; //$NON-NLS-1$
 
         /**
          * The default sort order for this table
          */
         public static final String DEFAULT_SORT_ORDER =
-                DIRECTORY + " ASC"; //$NON-NLS-1$
+                PATH + " ASC"; //$NON-NLS-1$
 
         /**
          * @hide
          */
-        public static final String[] BOOKMARK_QUERY_COLUMNS = {_ID, DIRECTORY};
+        public static final String[] BOOKMARK_QUERY_COLUMNS = {_ID, PATH};
 
         /**
          * These save calls to cursor.getColumnIndexOrThrow()
@@ -103,7 +103,7 @@ public class Bookmark implements Serializable, Comparable<Bookmark>, Parcelable 
         /**
          * @hide
          */
-        public static final int BOOKMARK_DIRECTORY_INDEX = 1;
+        public static final int BOOKMARK_PATH_INDEX = 1;
     }
 
     /** @hide **/
@@ -113,21 +113,21 @@ public class Bookmark implements Serializable, Comparable<Bookmark>, Parcelable 
     /** @hide **/
     public String mName;
     /** @hide **/
-    public String mDirectory;
+    public String mPath;
 
     /**
      * Constructor of <code>Bookmark</code>.
      *
      * @param type The type of the bookmark
      * @param name The name of the bookmark
-     * @param directory The directory that the bookmark points to
+     * @param path The path that the bookmark points to
      * @hide
      */
-    public Bookmark(BOOKMARK_TYPE type, String name, String directory) {
+    public Bookmark(BOOKMARK_TYPE type, String name, String path) {
         super();
         this.mType = type;
         this.mName = name;
-        this.mDirectory = directory;
+        this.mPath = path;
     }
 
     /**
@@ -139,8 +139,8 @@ public class Bookmark implements Serializable, Comparable<Bookmark>, Parcelable 
         super();
         this.mId = c.getInt(Columns.BOOKMARK_ID_INDEX);
         this.mType = BOOKMARK_TYPE.USER_DEFINED;
-        this.mDirectory = c.getString(Columns.BOOKMARK_DIRECTORY_INDEX);
-        this.mName = new File(this.mDirectory).getName();
+        this.mPath = c.getString(Columns.BOOKMARK_PATH_INDEX);
+        this.mName = new File(this.mPath).getName();
     }
 
     /**
@@ -150,7 +150,7 @@ public class Bookmark implements Serializable, Comparable<Bookmark>, Parcelable 
     public int hashCode() {
         final int prime = 31;
         int result = 1;
-        result = prime * result + ((this.mDirectory == null) ? 0 : this.mDirectory.hashCode());
+        result = prime * result + ((this.mPath == null) ? 0 : this.mPath.hashCode());
         result = prime * result + ((this.mName == null) ? 0 : this.mName.hashCode());
         result = prime * result + ((this.mType == null) ? 0 : this.mType.hashCode());
         return result;
@@ -171,11 +171,11 @@ public class Bookmark implements Serializable, Comparable<Bookmark>, Parcelable 
             return false;
         }
         Bookmark other = (Bookmark) obj;
-        if (this.mDirectory == null) {
-            if (other.mDirectory != null) {
+        if (this.mPath == null) {
+            if (other.mPath != null) {
                 return false;
             }
-        } else if (!this.mDirectory.equals(other.mDirectory)) {
+        } else if (!this.mPath.equals(other.mPath)) {
             return false;
         }
         if (this.mName == null) {
@@ -207,7 +207,7 @@ public class Bookmark implements Serializable, Comparable<Bookmark>, Parcelable 
         dest.writeInt(this.mId);
         dest.writeString(this.mType.toString());
         dest.writeString(this.mName);
-        dest.writeString(this.mDirectory);
+        dest.writeString(this.mPath);
     }
 
     /**
@@ -219,8 +219,8 @@ public class Bookmark implements Serializable, Comparable<Bookmark>, Parcelable 
             int id = in.readInt();
             BOOKMARK_TYPE type = BOOKMARK_TYPE.valueOf(in.readString());
             String name = in.readString();
-            String directory = in.readString();
-            Bookmark b = new Bookmark(type, name, directory);
+            String path = in.readString();
+            Bookmark b = new Bookmark(type, name, path);
             b.mId = id;
             return b;
         }
@@ -240,7 +240,7 @@ public class Bookmark implements Serializable, Comparable<Bookmark>, Parcelable 
         if (c != 0) {
             return c;
         }
-        return this.mDirectory.compareTo(another.mDirectory);
+        return this.mPath.compareTo(another.mPath);
     }
 
     /**
@@ -250,7 +250,7 @@ public class Bookmark implements Serializable, Comparable<Bookmark>, Parcelable 
     public String toString() {
         return "Bookmark [id=" + this.mId + ", type=" + //$NON-NLS-1$//$NON-NLS-2$
                 this.mType + ", name=" + this.mName +  //$NON-NLS-1$
-                ", directory=" + this.mDirectory + "]"; //$NON-NLS-1$//$NON-NLS-2$
+                ", path=" + this.mPath + "]"; //$NON-NLS-1$//$NON-NLS-2$
     }
 
 }

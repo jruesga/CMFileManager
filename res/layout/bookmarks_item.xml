@@ -55,7 +55,7 @@
       android:textAppearance="@style/primary_text_appearance" />
 
     <TextView
-      android:id="@+id/bookmarks_item_directory"
+      android:id="@+id/bookmarks_item_path"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:layout_alignParentBottom="true"

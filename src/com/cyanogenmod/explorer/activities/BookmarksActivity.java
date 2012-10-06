@@ -41,15 +41,20 @@ import android.widget.Toast;
 import com.android.internal.util.XmlUtils;
 import com.cyanogenmod.explorer.R;
 import com.cyanogenmod.explorer.adapters.BookmarksAdapter;
+import com.cyanogenmod.explorer.console.NoSuchFileOrDirectory;
 import com.cyanogenmod.explorer.model.Bookmark;
 import com.cyanogenmod.explorer.model.Bookmark.BOOKMARK_TYPE;
+import com.cyanogenmod.explorer.model.FileSystemObject;
 import com.cyanogenmod.explorer.preferences.Bookmarks;
 import com.cyanogenmod.explorer.preferences.ExplorerSettings;
 import com.cyanogenmod.explorer.preferences.Preferences;
 import com.cyanogenmod.explorer.ui.dialogs.InitialDirectoryDialog;
+import com.cyanogenmod.explorer.util.CommandHelper;
 import com.cyanogenmod.explorer.util.DialogHelper;
+import com.cyanogenmod.explorer.util.ExceptionUtil;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
@@ -177,7 +182,7 @@ public class BookmarksActivity extends Activity implements OnItemClickListener, 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         Bookmark bookmark = ((BookmarksAdapter)parent.getAdapter()).getItem(position);
-        back(false, bookmark.mDirectory);
+        back(false, bookmark.mPath);
     }
 
     /**
@@ -221,15 +226,31 @@ public class BookmarksActivity extends Activity implements OnItemClickListener, 
      * Method that returns to previous activity and.
      *
      * @param canceled Indicates if the activity was canceled
-     * @param directory The directory of the selected bookmark
+     * @param path The path of the selected bookmark
      */
-    private void back(final boolean canceled, final String directory) {
+    private void back(final boolean canceled, final String path) {
         Intent intent =  new Intent();
         if (canceled) {
             setResult(RESULT_CANCELED, intent);
         } else {
-            intent.putExtra(NavigationActivity.EXTRA_BOOKMARK_SELECTION, directory);
-            setResult(RESULT_OK, intent);
+            // Check that the bookmark exists
+            try {
+                FileSystemObject fso = CommandHelper.getFileInfo(this, path, null);
+                intent.putExtra(NavigationActivity.EXTRA_BOOKMARK_SELECTION, fso);
+                setResult(RESULT_OK, intent);
+            } catch (Exception e) {
+                // Capture the exception
+                ExceptionUtil.translateException(this, e);
+                if (e instanceof NoSuchFileOrDirectory || e instanceof FileNotFoundException) {
+                    // The bookmark not exists, delete the user-defined bookmark
+                    try {
+                        Bookmark b = Bookmarks.getBookmark(getContentResolver(), path);
+                        Bookmarks.removeBookmark(this, b);
+                        refresh();
+                    } catch (Exception ex) {/**NON BLOCK**/}
+                }
+                return;
+            }
         }
         finish();
     }

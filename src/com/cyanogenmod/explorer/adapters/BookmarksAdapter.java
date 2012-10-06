@@ -53,7 +53,7 @@ public class BookmarksAdapter extends ArrayAdapter<Bookmark> {
         }
         ImageView mIvIcon;
         TextView mTvName;
-        TextView mTvDirectory;
+        TextView mTvPath;
         ImageButton mBtAction;
     }
 
@@ -69,7 +69,7 @@ public class BookmarksAdapter extends ArrayAdapter<Bookmark> {
         }
         Drawable mDwIcon;
         String mName;
-        String mDirectory;
+        String mPath;
         Drawable mDwAction;
         String mActionCd;
     }
@@ -88,7 +88,7 @@ public class BookmarksAdapter extends ArrayAdapter<Bookmark> {
     //The resource of the item name
     private static final int RESOURCE_ITEM_NAME = R.id.bookmarks_item_name;
     //The resource of the item directory
-    private static final int RESOURCE_ITEM_DIRECTORY = R.id.bookmarks_item_directory;
+    private static final int RESOURCE_ITEM_PATH = R.id.bookmarks_item_path;
     //The resource of the item button action
     private static final int RESOURCE_ITEM_ACTION = R.id.bookmarks_item_action;
 
@@ -142,7 +142,7 @@ public class BookmarksAdapter extends ArrayAdapter<Bookmark> {
             this.mData[i].mDwIcon =
                     this.mIconHolder.getDrawable(getContext(), BookmarksHelper.getIcon(bookmark));
             this.mData[i].mName = bookmark.mName;
-            this.mData[i].mDirectory = bookmark.mDirectory;
+            this.mData[i].mPath = bookmark.mPath;
             this.mData[i].mDwAction = null;
             this.mData[i].mActionCd = null;
             if (bookmark.mType.compareTo(BOOKMARK_TYPE.HOME) == 0) {
@@ -175,7 +175,7 @@ public class BookmarksAdapter extends ArrayAdapter<Bookmark> {
             ViewHolder viewHolder = new BookmarksAdapter.ViewHolder();
             viewHolder.mIvIcon = (ImageView)v.findViewById(RESOURCE_ITEM_ICON);
             viewHolder.mTvName = (TextView)v.findViewById(RESOURCE_ITEM_NAME);
-            viewHolder.mTvDirectory = (TextView)v.findViewById(RESOURCE_ITEM_DIRECTORY);
+            viewHolder.mTvPath = (TextView)v.findViewById(RESOURCE_ITEM_PATH);
             viewHolder.mBtAction = (ImageButton)v.findViewById(RESOURCE_ITEM_ACTION);
             viewHolder.mBtAction.setTag(Integer.valueOf(position));
             v.setTag(viewHolder);
@@ -190,7 +190,7 @@ public class BookmarksAdapter extends ArrayAdapter<Bookmark> {
         //Set the data
         viewHolder.mIvIcon.setImageDrawable(dataHolder.mDwIcon);
         viewHolder.mTvName.setText(dataHolder.mName);
-        viewHolder.mTvDirectory.setText(dataHolder.mDirectory);
+        viewHolder.mTvPath.setText(dataHolder.mPath);
         boolean hasAction = dataHolder.mDwAction != null;
         viewHolder.mBtAction.setImageDrawable(hasAction ? dataHolder.mDwAction : null);
         viewHolder.mBtAction.setVisibility(hasAction ? View.VISIBLE : View.GONE);

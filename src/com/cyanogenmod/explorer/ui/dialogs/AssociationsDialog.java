@@ -57,9 +57,10 @@ public class AssociationsDialog implements OnItemClickListener {
 
     private static final String TAG = "AssociationsDialog"; //$NON-NLS-1$
 
-    final Context mContext;
+    private final Context mContext;
     private final List<ResolveInfo> mIntents;
     private final ResolveInfo mPreferred;
+    private final boolean mAllowPreferred;
     /**
      * @hide
      */
@@ -87,10 +88,12 @@ public class AssociationsDialog implements OnItemClickListener {
      * @param requestIntent The original request
      * @param intents The list of available intents that can handle an action
      * @param preferred The preferred intent. null if no preferred exists
+     * @param allowPreferred If allow the user to mark the selected app as preferred 
      */
     public AssociationsDialog(
             Context context, int icon, String title, String action,
-            Intent requestIntent, List<ResolveInfo> intents, ResolveInfo preferred) {
+            Intent requestIntent, List<ResolveInfo> intents, ResolveInfo preferred,
+            boolean allowPreferred) {
         super();
 
         //Save the data
@@ -98,6 +101,7 @@ public class AssociationsDialog implements OnItemClickListener {
         this.mRequestIntent = requestIntent;
         this.mIntents = intents;
         this.mPreferred = preferred;
+        this.mAllowPreferred = allowPreferred;
         this.mLoaded = false;
 
         //Initialize dialog
@@ -121,7 +125,8 @@ public class AssociationsDialog implements OnItemClickListener {
                 (LayoutInflater)this.mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View v = li.inflate(R.layout.associations_dialog, null, false);
         this.mRemember = (CheckBox)v.findViewById(R.id.associations_remember);
-        this.mRemember.setVisibility(isPlatformSigned ? View.VISIBLE : View.GONE);
+        this.mRemember.setVisibility(
+                isPlatformSigned && this.mAllowPreferred ? View.VISIBLE : View.GONE);
         this.mGrid = (GridView)v.findViewById(R.id.associations_gridview);
         this.mGrid.setAdapter(new AssociationsAdapter(this.mContext, this.mIntents, this));
 
@@ -388,7 +393,7 @@ public class AssociationsDialog implements OnItemClickListener {
             // intent
             boolean isPlatformSigned =
                     ExplorerApplication.isAppPlatformSignature(this.mContext);
-            if (isPlatformSigned) {
+            if (isPlatformSigned && this.mAllowPreferred) {
                 if (filter != null && !isPreferredSelected()) {
                     try {
                         AssociationsAdapter adapter = (AssociationsAdapter)this.mGrid.getAdapter();

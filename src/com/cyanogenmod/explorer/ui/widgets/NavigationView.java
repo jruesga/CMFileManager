@@ -728,7 +728,7 @@ public class NavigationView extends RelativeLayout implements
         // Open with
         else if (this.mDefaultLongClickAction.compareTo(
                 DefaultLongClickAction.OPEN_WITH) == 0) {
-            // FIXME Invoke ActionPolicy open with
+            ActionsPolicy.openFileSystemObject(getContext(), fso, true);
         }
 
         // Show properties
@@ -744,6 +744,31 @@ public class NavigationView extends RelativeLayout implements
         }
 
         return true; //Always consume the event
+    }
+    
+    /**
+     * Method that opens or navigates to the {@link FileSystemObject}
+     * 
+     * @param fso The file system object
+     */
+    public void open(FileSystemObject fso) {
+        open(fso, null);
+    }
+
+    /**
+     * Method that opens or navigates to the {@link FileSystemObject}
+     * 
+     * @param fso The file system object
+     * @param searchInfo The search info
+     */
+    public void open(FileSystemObject fso, SearchInfoParcelable searchInfo) {
+        // If is a folder, then navigate to
+        if (FileHelper.isDirectory(fso)) {
+            changeCurrentDir(fso.getFullPath(), searchInfo);
+        } else {
+            // Open the file with the preferred registered app
+            ActionsPolicy.openFileSystemObject(getContext(), fso, false);
+        }
     }
 
     /**
@@ -763,6 +788,9 @@ public class NavigationView extends RelativeLayout implements
                     changeCurrentDir(
                             symlink.getLinkRef().getFullPath(), true, false, false, null, null);
                 }
+            } else {
+                // Open the file with the preferred registered app
+                ActionsPolicy.openFileSystemObject(getContext(), fso, false);
             }
         } catch (Throwable ex) {
             ExceptionUtil.translateException(getContext(), ex);

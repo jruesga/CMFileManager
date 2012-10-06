@@ -18,7 +18,7 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:layout_margin="@dimen/default_margin">
+    android:gravity="center|center_horizontal">
 
     <GridView android:id="@+id/associations_gridview"
         android:layout_width="match_parent"
@@ -26,7 +26,6 @@
         android:stretchMode="columnWidth"
         android:scrollbars="vertical"
         android:horizontalSpacing="@dimen/default_margin"
-        android:verticalSpacing="@dimen/default_margin"
         android:numColumns="3" />
 
     <CheckBox android:id="@+id/associations_remember"

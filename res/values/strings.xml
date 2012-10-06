@@ -395,6 +395,10 @@
   <string name="actions_menu_open">Open</string>
   <!-- Actions Dialog * Menu * Open with -->
   <string name="actions_menu_open_with">Open with</string>
+  <!-- Actions Dialog * Menu * Send -->
+  <string name="actions_menu_send">Send</string>
+  <!-- Actions Dialog * Menu * Share -->
+  <string name="actions_menu_share">Share</string>
   <!-- Actions Dialog * Menu * Delete -->
   <string name="actions_menu_delete">Delete</string>
   <!-- Actions Dialog * Menu * Rename -->
@@ -431,6 +435,10 @@
   <string name="associations_dialog_openwith_title">Open with</string>
     <!-- Associations Dialog * Open action -->
   <string name="associations_dialog_openwith_action">Open</string>
+  <!-- Associations Dialog * Send with Title -->
+  <string name="associations_dialog_sendwith_title">Send with</string>
+    <!-- Associations Dialog * Send action -->
+  <string name="associations_dialog_sendwith_action">Send</string>
 
   <!-- Inline Autocomplete Widget * Tab message nothing to complete -->
   <string name="inline_autocomplete_tab_nothing_to_complete_msg">Nothing to complete</string>

@@ -56,7 +56,6 @@ import com.cyanogenmod.explorer.console.NoSuchFileOrDirectory;
 import com.cyanogenmod.explorer.listeners.OnRequestRefreshListener;
 import com.cyanogenmod.explorer.model.Directory;
 import com.cyanogenmod.explorer.model.FileSystemObject;
-import com.cyanogenmod.explorer.model.ParentDirectory;
 import com.cyanogenmod.explorer.model.Query;
 import com.cyanogenmod.explorer.model.SearchResult;
 import com.cyanogenmod.explorer.model.Symlink;
@@ -784,15 +783,16 @@ public class SearchActivity extends Activity
         try {
             SearchResult result = ((SearchResultAdapter)parent.getAdapter()).getItem(position);
             FileSystemObject fso = result.getFso();
-            if (fso instanceof ParentDirectory) {
-                back(false, fso.getParent());
-            } else if (fso instanceof Directory) {
-                back(false, fso.getFullPath());
+            if (fso instanceof Directory) {
+                back(false, fso);
             } else if (fso instanceof Symlink) {
                 Symlink symlink = (Symlink)fso;
                 if (symlink.getLinkRef() != null && symlink.getLinkRef() instanceof Directory) {
-                    back(false, symlink.getLinkRef().getFullPath());
+                    back(false, symlink.getLinkRef());
                 }
+            } else {
+                // Open the file with the preferred registered app
+                back(false, fso);
             }
         } catch (Throwable ex) {
             ExceptionUtil.translateException(this.mSearchListView.getContext(), ex);
@@ -822,7 +822,7 @@ public class SearchActivity extends Activity
         // Open with
         else if (this.mDefaultLongClickAction.compareTo(
                 DefaultLongClickAction.OPEN_WITH) == 0) {
-            // FIXME Invoke ActionPolicy open with
+            ActionsPolicy.openFileSystemObject(this, fso, true);
         }
 
         // Show properties
@@ -836,8 +836,6 @@ public class SearchActivity extends Activity
                 DefaultLongClickAction.SHOW_ACTIONS) == 0) {
             onRequestMenu(fso);
         }
-
-
         return true; //Always consume the event
     }
 
@@ -932,10 +930,10 @@ public class SearchActivity extends Activity
      * Method that returns to previous activity.
      *
      * @param canceled Indicates if the activity was canceled
-     * @param directory The directory to which navigate to
+     * @param item The fso
      * @hide
      */
-    void back(final boolean canceled, String directory) {
+    void back(final boolean canceled, FileSystemObject item) {
         Intent intent =  new Intent();
         if (canceled) {
             if (SearchActivity.this.mDrawingSearchResultTask != null
@@ -949,11 +947,33 @@ public class SearchActivity extends Activity
             }
             setResult(RESULT_CANCELED, intent);
         } else {
-            intent.putExtra(NavigationActivity.EXTRA_SEARCH_ENTRY_SELECTION, directory);
-            intent.putExtra(
-                    NavigationActivity.EXTRA_SEARCH_LAST_SEARCH_DATA,
-                    (Parcelable)createSearchInfo());
-            setResult(RESULT_OK, intent);
+            // Check that the bookmark exists
+            try {
+                FileSystemObject fso = CommandHelper.getFileInfo(this, item.getFullPath(), null);
+                if (FileHelper.isDirectory(fso)) {
+                    intent.putExtra(NavigationActivity.EXTRA_SEARCH_ENTRY_SELECTION, fso);
+                    intent.putExtra(
+                            NavigationActivity.EXTRA_SEARCH_LAST_SEARCH_DATA,
+                            (Parcelable)createSearchInfo());
+                    setResult(RESULT_OK, intent);
+                } else {
+                    // Open the file here, so when focus back to the app, the search activity
+                    // its in top of the stack
+                    ActionsPolicy.openFileSystemObject(this, fso, false);
+                    return;
+                }
+                
+            } catch (Exception e) {
+                // Capture the exception
+                ExceptionUtil.translateException(this, e);
+                if (e instanceof NoSuchFileOrDirectory || e instanceof FileNotFoundException) {
+                    // The fso not exists, delete the fso from the search
+                    try {
+                        removeItem(item);
+                    } catch (Exception ex) {/**NON BLOCK**/}
+                }
+                return;
+            }
         }
         finish();
     }

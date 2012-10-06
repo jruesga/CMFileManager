@@ -197,6 +197,10 @@ public class ActionsDialog implements OnItemClickListener, OnItemLongClickListen
             case R.id.mnu_actions_open_with:
                 ActionsPolicy.openFileSystemObject(this.mContext, this.mFso, true);
                 break;
+            //- Send
+            case R.id.mnu_actions_send:
+                ActionsPolicy.sendFileSystemObject(this.mContext, this.mFso);
+                break;
 
             //- Add to bookmarks
             case R.id.mnu_actions_add_to_bookmarks:
@@ -316,15 +320,16 @@ public class ActionsDialog implements OnItemClickListener, OnItemLongClickListen
                 menu.removeItem(R.id.mnu_actions_deselect);
             }
 
-            //- Open/Open with -> Only when the fso is not a folder or is not a system file
+            //- Open/Open with -> Only when the fso is not a folder and is not a system file
             if (FileHelper.isDirectory(this.mFso) || FileHelper.isSystemFile(this.mFso)) {
                 menu.removeItem(R.id.mnu_actions_open);
                 menu.removeItem(R.id.mnu_actions_open_with);
+                menu.removeItem(R.id.mnu_actions_send);
             }
         }
 
         //- Add to bookmarks -> Only directories
-        if (this.mFso != null && !FileHelper.isDirectory(this.mFso)) {
+        if (this.mFso != null && FileHelper.isRootDirectory(this.mFso)) {
             menu.removeItem(R.id.mnu_actions_add_to_bookmarks);
             menu.removeItem(R.id.mnu_actions_add_to_bookmarks_current_folder);
         }

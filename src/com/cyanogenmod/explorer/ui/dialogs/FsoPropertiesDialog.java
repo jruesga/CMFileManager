@@ -905,7 +905,7 @@ public class FsoPropertiesDialog
             FsoPropertiesDialog.this.mFolderUsage =
                     (FolderUsage)(((FolderUsage)partialResults).clone());
             printFolderUsage(true, false);
-        }catch (Exception ex) {/** NON BLOCK**/}
+        } catch (Exception ex) {/** NON BLOCK**/}
     }
 
     /**

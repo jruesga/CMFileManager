@@ -857,6 +857,7 @@ public abstract class ShellConsole extends Console {
      * @hide
      */
     boolean isCommandStarted(StringBuffer stdin) {
+        if (stdin == null) return false;
         Pattern pattern = Pattern.compile(this.mStartControlPattern);
         Matcher matcher = pattern.matcher(stdin.toString());
         if (matcher.find()) {
@@ -876,6 +877,7 @@ public abstract class ShellConsole extends Console {
      */
     boolean isCommandFinished(StringBuffer stdin) {
         Pattern pattern = Pattern.compile(this.mEndControlPattern);
+        if (stdin == null) return false;
         Matcher matcher = pattern.matcher(stdin.toString());
         return matcher.find();
     }

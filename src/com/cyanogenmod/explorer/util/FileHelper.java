@@ -585,4 +585,28 @@ public final class FileHelper {
         return o1.compareTo(fso2);
     }
 
+    /**
+     * Method that add to the path the trailing slash
+     *
+     * @param path The path
+     * @return String The path with the trailing slash
+     */
+    public static String addTrailingSlash(String path) {
+        return path.endsWith(File.separator) ? path : path + File.separator;
+    }
+
+    /**
+     * Method that cleans the path and removes the trailing slash
+     *
+     * @param path The path to clean
+     * @return String The path without the trailing slash
+     */
+    public static String removeTrailingSlash(String path) {
+        if (path.trim().compareTo(ROOT_DIRECTORY) == 0) return path;
+        if (path.endsWith(File.separator)) {
+            return path.substring(0, path.length()-1);
+        }
+        return path;
+    }
+
 }

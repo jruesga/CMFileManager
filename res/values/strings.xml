@@ -425,7 +425,7 @@
   <string name="input_name_dialog_message_invalid_name">Invalid name. The names \'.\' and
     \'..\' are not allowed.</string>
   <!-- Enter Name Dialog * Message * Name exists -->
-  <string name="input_name_dialog_message_name_exists">The namealready exists.</string>
+  <string name="input_name_dialog_message_name_exists">The name already exists.</string>
 
   <!-- Associations Dialog * Title -->
   <string name="associations_dialog_title">Associations</string>

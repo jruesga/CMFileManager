@@ -916,6 +916,14 @@ public class NavigationView extends RelativeLayout implements
      * {@inheritDoc}
      */
     @Override
+    public List<FileSystemObject> onRequestCurrentItems() {
+        return this.getFiles();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public String onRequestCurrentDirOfSelectionData() {
         return this.mCurrentDir;
     }

@@ -48,7 +48,10 @@ import com.cyanogenmod.explorer.util.SelectionHelper;
  */
 public class ActionsDialog implements OnItemClickListener, OnItemLongClickListener {
 
-    private final Context mContext;
+    /**
+     * @hide
+     */
+    final Context mContext;
     private final boolean mGlobal;
 
     /**
@@ -56,9 +59,15 @@ public class ActionsDialog implements OnItemClickListener, OnItemLongClickListen
      */
     AlertDialog mDialog;
     private ListView mListView;
-    private final FileSystemObject mFso;
+    /**
+     * @hide
+     */
+    final FileSystemObject mFso;
 
-    private OnRequestRefreshListener mOnRequestRefreshListener;
+    /**
+     * @hide
+     */
+    OnRequestRefreshListener mOnRequestRefreshListener;
 
     private OnSelectionListener mOnSelectionListener;
 
@@ -158,13 +167,22 @@ public class ActionsDialog implements OnItemClickListener, OnItemLongClickListen
                 }
                 break;
 
+            //- Rename
+            case R.id.mnu_actions_rename:
+                // Dialog is dismissed inside showInputNameDialog
+                if (this.mOnSelectionListener != null) {
+                    showFsoInputNameDialog(menuItem, this.mFso);
+                    return;
+                }
+                break;
+
             //- Delete
             case R.id.mnu_actions_delete:
                 ActionsPolicy.removeFileSystemObject(
                         this.mContext, this.mFso, this.mOnRequestRefreshListener);
                 break;
 
-            //- Delete
+            //- Refresh
             case R.id.mnu_actions_refresh:
                 if (this.mOnRequestRefreshListener != null) {
                     this.mOnRequestRefreshListener.onRequestRefresh(null); //Refresh all
@@ -236,7 +254,7 @@ public class ActionsDialog implements OnItemClickListener, OnItemLongClickListen
         final InputNameDialog inputNameDialog =
                 new InputNameDialog(
                         this.mContext,
-                        this.mOnSelectionListener.onRequestSelectedFiles(),
+                        this.mOnSelectionListener.onRequestCurrentItems(),
                         menuItem.getTitle().toString());
         inputNameDialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
             @Override
@@ -252,6 +270,56 @@ public class ActionsDialog implements OnItemClickListener, OnItemLongClickListen
                 try {
                     String name = inputNameDialog.getName();
                     createNewFileSystemObject(menuItem.getItemId(), name);
+
+                } finally {
+                    ActionsDialog.this.mDialog.dismiss();
+                }
+            }
+        });
+        inputNameDialog.show();
+    }
+
+    /**
+     * Method that show a new dialog for input a name for an existing fso.
+     *
+     * @param menuItem The item menu associated
+     * @param fso The file system object
+     */
+    private void showFsoInputNameDialog(final MenuItem menuItem, final FileSystemObject fso) {
+        //Hide the dialog
+        this.mDialog.hide();
+
+        //Show the input name dialog
+        final InputNameDialog inputNameDialog =
+                new InputNameDialog(
+                        this.mContext,
+                        this.mOnSelectionListener.onRequestCurrentItems(),
+                        fso,
+                        menuItem.getTitle().toString());
+        inputNameDialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
+            @Override
+            public void onCancel(DialogInterface dialog) {
+                //Show the menu again
+                ActionsDialog.this.mDialog.show();
+            }
+        });
+        inputNameDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+            @Override
+            public void onDismiss(DialogInterface dialog) {
+                //Retrieve the name an execute the action
+                try {
+                    String name = inputNameDialog.getName();
+                    switch (menuItem.getItemId()) {
+                        case R.id.mnu_actions_rename:
+                            ActionsPolicy.renameFileSystemObject(
+                                    ActionsDialog.this.mContext,
+                                    ActionsDialog.this.mFso,
+                                    name,
+                                    ActionsDialog.this.mOnRequestRefreshListener);
+                            break;
+                        default:
+                            break;
+                    }
 
                 } finally {
                     ActionsDialog.this.mDialog.dismiss();

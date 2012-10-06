@@ -451,4 +451,40 @@ public final class ActionsPolicy {
            });
         dialog.show();
     }
+
+    /**
+     * Method that remove an existing file system object.
+     *
+     * @param ctx The current context
+     * @param fso The file system object
+     * @param newName The new name of the object
+     * @param onRequestRefreshListener The listener for request a refresh after the new
+     * folder was created (option)
+     */
+    public static void renameFileSystemObject(
+            final Context ctx, final FileSystemObject fso, final String newName,
+            final OnRequestRefreshListener onRequestRefreshListener) {
+        try {
+            File newFile = new File(fso.getParent(), newName);
+            CommandHelper.move(ctx, fso.getFullPath(), newFile.getAbsolutePath(), null);
+
+            // Check that the operation was completed retrieving the fso modified
+            CommandHelper.getFileInfo(ctx, newFile.getAbsolutePath(), null);
+
+            //Operation complete. Refresh
+            if (onRequestRefreshListener != null) {
+                // The reference is not the same, so refresh the complete navigation view
+                onRequestRefreshListener.onRequestRefresh(null);
+            }
+
+            //Operation complete. Refresh
+            if (onRequestRefreshListener != null) {
+                onRequestRefreshListener.onRequestRemove(fso);
+            }
+
+        } catch (Throwable ex) {
+            // Capture the exception
+            ExceptionUtil.translateException(ctx, ex, false, true, null);
+        }
+    }
 }

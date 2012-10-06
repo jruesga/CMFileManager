@@ -54,6 +54,14 @@ public interface OnSelectionListener {
     List<FileSystemObject> onRequestSelectedFiles();
 
     /**
+     * Method that request the current directory items
+     *
+     * @return List<FileSystemObject> The array of {@link FileSystemObject} objects of the
+     * current directory.
+     */
+    List<FileSystemObject> onRequestCurrentItems();
+
+    /**
      * Method that request the current directory of the selection info.
      *
      * @return String The current directory of the selection info.

@@ -21,6 +21,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.util.Log;
 
@@ -29,6 +30,7 @@ import com.cyanogenmod.explorer.console.ConsoleBuilder;
 import com.cyanogenmod.explorer.console.ConsoleHolder;
 import com.cyanogenmod.explorer.preferences.ExplorerSettings;
 import com.cyanogenmod.explorer.preferences.Preferences;
+import com.cyanogenmod.explorer.util.ExceptionUtil;
 import com.cyanogenmod.explorer.util.FileHelper;
 import com.cyanogenmod.explorer.util.MimeTypeHelper;
 
@@ -177,7 +179,7 @@ public final class ExplorerApplication extends Application {
      * @return Application The application singleton reference
      * @hide
      */
-    public static Application getInstance() {
+    public static ExplorerApplication getInstance() {
         return sApp;
     }
 
@@ -188,6 +190,29 @@ public final class ExplorerApplication extends Application {
      */
     public static Console getBackgroundConsole() {
         return sBackgroundConsole.getConsole();
+    }
+
+
+
+    /**
+     * Method that check if the app is signed with the platform signature
+     *
+     * @param ctx The current context
+     * @return boolean If the app is signed with the platform signature
+     */
+    public static boolean isAppPlatformSignature(Context ctx) {
+        // TODO This need to be improved, checking if the app is really with the platform signature
+        try {
+            // For now only check that the app is installed in system directory
+            PackageManager pm = ctx.getPackageManager();
+            String appDir = pm.getApplicationInfo(ctx.getPackageName(), 0).sourceDir;
+            String systemDir = ctx.getString(R.string.system_dir);
+            return appDir.startsWith(systemDir);
+
+        } catch (Exception e) {
+            ExceptionUtil.translateException(ctx, e, true, false);
+        }
+        return false;
     }
 
 }

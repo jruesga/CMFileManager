@@ -112,6 +112,8 @@
   <!-- An operation can't not be cancelled -->
   <string name="msgs_read_only_filesystem">The filesystem is read-only. Try to mount the
     filesystem as read-write before do a write operation.</string>
+    <!-- An  association of an action failed -->
+  <string name="msgs_action_association_failed">The association of the action failed.</string>
 
   <!-- A message advise before close the application -->
   <string name="msgs_push_again_to_exit">Push again back button to exit.</string>
@@ -408,7 +410,6 @@
   <string name="actions_ask_remove_file">Are you sure you want to delete this file
     permanently?</string>
 
-
   <!-- Enter Name Dialog * Label -->
   <string name="input_name_dialog_label">Name:</string>
   <!-- Enter Name Dialog * Message * Empty name -->
@@ -422,6 +423,14 @@
   <!-- Enter Name Dialog * Message * Name exists -->
   <string name="input_name_dialog_message_name_exists">The namealready exists.</string>
 
+  <!-- Associations Dialog * Title -->
+  <string name="associations_dialog_title">Associations</string>
+  <!-- Associations Dialog * Remember the user action -->
+  <string name="associations_dialog_remember">Remember selection</string>
+  <!-- Associations Dialog * Open with Title -->
+  <string name="associations_dialog_openwith_title">Open with</string>
+    <!-- Associations Dialog * Open action -->
+  <string name="associations_dialog_openwith_action">Open</string>
 
   <!-- Inline Autocomplete Widget * Tab message nothing to complete -->
   <string name="inline_autocomplete_tab_nothing_to_complete_msg">Nothing to complete</string>

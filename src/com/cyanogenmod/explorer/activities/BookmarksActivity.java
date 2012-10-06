@@ -287,11 +287,23 @@ public class BookmarksActivity extends Activity implements OnItemClickListener, 
                     }
 
                     if (TAG_BOOKMARK.equals(element)) {
-                        CharSequence name =
-                                getString(parser.getAttributeResourceValue(
-                                        R.styleable.Bookmark_name, 0));
-                        CharSequence directory =
-                                parser.getAttributeValue(R.styleable.Bookmark_directory);
+                        CharSequence name = null;
+                        CharSequence directory = null;
+
+                        try {
+                            name =
+                                    getString(parser.getAttributeResourceValue(
+                                            R.styleable.Bookmark_name, 0));
+                        } catch (Exception e) {/**NON BLOCK**/}
+                        try {
+                            directory =
+                                    getString(parser.getAttributeResourceValue(
+                                            R.styleable.Bookmark_directory, 0));
+                        } catch (Exception e) {/**NON BLOCK**/}
+                        if (directory == null) {
+                            directory =
+                                    parser.getAttributeValue(R.styleable.Bookmark_directory);
+                        }
                         if (name != null && directory != null) {
                             bookmarks.add(
                                     new Bookmark(

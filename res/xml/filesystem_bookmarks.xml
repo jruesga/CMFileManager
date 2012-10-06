@@ -22,7 +22,7 @@
         name:   (string) The name of the bookmark
         directory:   (string) The folder where to point to
 -->
-<Bookmarks xmlns:androcommandId="http://schemas.android.com/apk/res/android">
+<Bookmarks xmlns="http://schemas.android.com/apk/res/com.cyanogenmod.explorer">
   <bookmark name="@string/bookmarks_root_folder" directory="/" />
-  <bookmark name="@string/bookmarks_system_folder" directory="/system" />
+  <bookmark name="@string/bookmarks_system_folder" directory="@string/system_dir" />
 </Bookmarks>

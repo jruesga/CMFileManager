@@ -35,6 +35,7 @@ import com.cyanogenmod.explorer.model.Bookmark;
 import com.cyanogenmod.explorer.model.Bookmark.BOOKMARK_TYPE;
 import com.cyanogenmod.explorer.model.FileSystemObject;
 import com.cyanogenmod.explorer.preferences.Bookmarks;
+import com.cyanogenmod.explorer.ui.dialogs.AssociationsDialog;
 import com.cyanogenmod.explorer.ui.dialogs.FsoPropertiesDialog;
 import com.cyanogenmod.explorer.util.CommandHelper;
 import com.cyanogenmod.explorer.util.DialogHelper;
@@ -134,7 +135,7 @@ public final class ActionsPolicy {
      *
      * @param ctx The current context
      * @param fso The file system object
-     * @param choose If allow the user to select the app to open with
+     * @param choose If allow the user to select the application to open with
      */
     public static void openFileSystemObject(
             final Context ctx, final FileSystemObject fso, final boolean choose) {
@@ -161,37 +162,39 @@ public final class ActionsPolicy {
                     packageManager.
                         queryIntentActivities(intent, PackageManager.MATCH_DEFAULT_ONLY);
 
+            // Retrieve the preferred activity that can handle the file
+            final ResolveInfo mPreferredInfo = packageManager.resolveActivity(intent, 0);
+
             // Now we have the list of activities that can handle the file. The next steps are:
             //
             // 1.- If choose, then show open with dialog
-            // 1.- If info size == 0. No default application, then show open with dialog
-            // 2.- If !choose, seek inside our database the default activity for the extension
+            // 2.- If info size == 0. No default application, then show open with dialog
+            // 3.- If !choose, seek inside our database the default activity for the extension
             //     and open the file with this application
-            // 3.- If no default activity saved, then use system default
+            // 4.- If no default activity saved, then use system default
 
-            if (choose || info.size() == 0) {
-                // Show open with dialog
+            // No registered application
+            if (info.size() == 0) {
+                DialogHelper.createWarningDialog(ctx, R.string.msgs_not_registered_app);
+            }
+
+            // Is a simple open and we have an application that can handle the file?
+            if (!choose && (mPreferredInfo.match != 0 || info.size() == 1)) {
+                ctx.startActivity(intent);
                 return;
             }
 
-
-
-            // 2.- info size == 0
-
-
-
-//            if (info.size() == 0) {
-//                DialogHelper.createWarningDialog(ctx, R.string.msgs_not_registered_app);
-//            }
-//
-//            // Open with?
-//            if (choose) {
-//                String title = ctx.getString(R.string.actions_menu_open_with);
-//                ((Activity)ctx).startActivity(Intent.createChooser(intent,title));
-//
-//            } else {
-//                ((Activity)ctx).startActivity(intent);
-//            }
+            // Otherwise, we have to show the open with dialog
+            AssociationsDialog dialog =
+                    new AssociationsDialog(
+                            ctx,
+                            R.drawable.ic_holo_light_open,
+                            ctx.getString(R.string.associations_dialog_openwith_title),
+                            ctx.getString(R.string.associations_dialog_openwith_action),
+                            intent,
+                            info,
+                            mPreferredInfo);
+            dialog.show();
 
         } catch (Exception e) {
             ExceptionUtil.translateException(ctx, e);

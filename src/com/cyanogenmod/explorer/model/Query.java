@@ -83,7 +83,7 @@ public class Query implements Serializable {
      */
     public Query fillSlots(List<String> queries) {
         int cc = queries.size();
-        for (int i = 0; i < queries.size(); i++) {
+        for (int i = 0; i < cc; i++) {
             if (i > this.mQUERIES.length) {
                 break;
             }
@@ -100,7 +100,7 @@ public class Query implements Serializable {
     public List<String> getQueries() {
         List<String> queries = new ArrayList<String>(getSlotsCount());
         int cc = this.mQUERIES.length;
-        for (int i = 0; i < this.mQUERIES.length; i++) {
+        for (int i = 0; i < cc; i++) {
             if (this.mQUERIES[i] != null && this.mQUERIES[i].length() > 0) {
                 queries.add(this.mQUERIES[i]);
             }

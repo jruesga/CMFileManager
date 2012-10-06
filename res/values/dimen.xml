@@ -71,6 +71,15 @@
   <!-- The navigation grid item height -->
   <dimen name="navigation_grid_item_height">48dp</dimen>
 
+  <!-- The grid width -->
+  <dimen name="grid_width">96dp</dimen>
+  <!-- The grid height -->
+  <dimen name="grid_height">96dp</dimen>
+  <!-- The grid image width -->
+  <dimen name="grid_image_width">48dp</dimen>
+  <!-- The grid image height -->
+  <dimen name="grid_image_height">48dp</dimen>
+
   <!-- The popup dimension width -->
   <dimen name="popup_width">200dp</dimen>
 

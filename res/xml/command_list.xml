@@ -39,7 +39,7 @@
   <command commandId="cd" commandPath="cd" commandArgs="%1$s" />
   <command commandId="chmod" commandPath="/system/bin/chmod" commandArgs="%1$s %2$s" />
   <command commandId="chown" commandPath="/system/bin/chown" commandArgs="%1$s.%2$s %3$s" />
-  <command commandId="cp" commandPath="/system/xbin/cp" commandArgs="-Rv %1$s %2$s" />
+  <command commandId="cp" commandPath="/system/xbin/cp" commandArgs="-a %1$s %2$s" />
   <command commandId="diskusage" commandPath="/system/bin/df" commandArgs="%1$s" />
   <command commandId="diskusageall" commandPath="/system/bin/df" commandArgs="" />
   <command commandId="dirname" commandPath="/system/xbin/dirname" commandArgs="%1$s" />

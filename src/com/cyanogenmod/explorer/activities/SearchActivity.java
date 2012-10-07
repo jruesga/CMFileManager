@@ -559,8 +559,11 @@ public class SearchActivity extends Activity
                     SearchActivity.this.mDialog =
                             new MessageProgressDialog(
                                     SearchActivity.this,
-                                    R.drawable.ic_holo_light_search, R.string.searching,
-                                    label, R.plurals.search_found_items);
+                                    R.drawable.ic_holo_light_search, R.string.searching, label);
+                    // Initialize the 
+                    setProgressMsg(0);
+
+                    // Set the cancel listener
                     SearchActivity.this.mDialog.setOnCancelListener(
                             new MessageProgressDialog.OnCancelListener() {
                                 @Override
@@ -1025,7 +1028,7 @@ public class SearchActivity extends Activity
     @Override
     @SuppressWarnings("unchecked")
     public void onPartialResult(final Object partialResults) {
-      //Saved in the global result list, for save at the end
+        //Saved in the global result list, for save at the end
         SearchActivity.this.mResultList.addAll((List<FileSystemObject>)partialResults);
 
         //Notify progress
@@ -1033,8 +1036,8 @@ public class SearchActivity extends Activity
             @Override
             public void run() {
                 if (SearchActivity.this.mDialog != null) {
-                    SearchActivity.this.mDialog.setProgress(
-                            SearchActivity.this.mResultList.size());
+                    int progress = SearchActivity.this.mResultList.size();
+                    setProgressMsg(progress);
                 }
             }
         });
@@ -1082,6 +1085,21 @@ public class SearchActivity extends Activity
                 ((SearchResultAdapter)this.mSearchListView.getAdapter()).getData());
         parcel.setSearchQuery(this.mQuery);
         return parcel;
+    }
+
+    /**
+     * Method that set the progress of the search
+     * 
+     * @param progress The progress
+     * @hide
+     */
+    void setProgressMsg(int progress) {
+        String msg = 
+                getResources().getQuantityString(
+                        R.plurals.search_found_items,
+                        progress,
+                        Integer.valueOf(progress));
+        SearchActivity.this.mDialog.setProgress(msg);
     }
 }
 

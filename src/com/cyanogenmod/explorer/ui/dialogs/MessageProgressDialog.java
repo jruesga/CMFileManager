@@ -19,7 +19,6 @@ package com.cyanogenmod.explorer.ui.dialogs;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.res.Resources;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -51,7 +50,6 @@ public class MessageProgressDialog implements DialogInterface.OnClickListener {
     final Context mContext;
     private final AlertDialog mDialog;
     private final TextView mProgress;
-    private final int mProgressResourceId;
     /**
      * @hide
      */
@@ -65,13 +63,11 @@ public class MessageProgressDialog implements DialogInterface.OnClickListener {
      * @param iconResourceId The icon dialog resource identifier
      * @param titleResourceId The title dialog resource identifier
      * @param labelResourceId The label resource identifier
-     * @param progressResourceId The message resource identifier
      */
     public MessageProgressDialog(
-            Context context, int iconResourceId, int titleResourceId,
-            int labelResourceId, int progressResourceId) {
+            Context context, int iconResourceId, int titleResourceId, int labelResourceId) {
         this(context, iconResourceId, titleResourceId,
-                context.getResources().getString(labelResourceId), progressResourceId);
+                context.getResources().getString(labelResourceId));
     }
 
     /**
@@ -82,18 +78,13 @@ public class MessageProgressDialog implements DialogInterface.OnClickListener {
      * @param iconResourceId The icon dialog resource identifier
      * @param titleResourceId The title dialog resource identifier
      * @param labelMsg The label message
-     * @param progressResourceId The message resource identifier
      */
     public MessageProgressDialog(
-            Context context, int iconResourceId, int titleResourceId,
-            String labelMsg, int progressResourceId) {
+            Context context, int iconResourceId, int titleResourceId, String labelMsg) {
         super();
 
         //Save the context
         this.mContext = context;
-
-        //Saved progress message id
-        this.mProgressResourceId = progressResourceId;
 
         //Create the layout
         LayoutInflater li =
@@ -126,9 +117,8 @@ public class MessageProgressDialog implements DialogInterface.OnClickListener {
             }
         });
 
-
         //Initialize the progress
-        setProgress(0);
+        this.mProgress.setText(null);
     }
 
     /**
@@ -145,13 +135,8 @@ public class MessageProgressDialog implements DialogInterface.OnClickListener {
      *
      * @param progress The progress of progress of the action
      */
-    public void setProgress(int progress) {
-        Resources res = this.mContext.getResources();
-        this.mProgress.setText(
-                res.getQuantityString(
-                        this.mProgressResourceId,
-                        progress,
-                        Integer.valueOf(progress)));
+    public void setProgress(String progress) {
+        this.mProgress.setText(progress);
     }
 
     /**

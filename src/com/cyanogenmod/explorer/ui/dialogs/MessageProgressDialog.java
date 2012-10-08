@@ -19,6 +19,7 @@ package com.cyanogenmod.explorer.ui.dialogs;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.text.Spanned;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -48,7 +49,10 @@ public class MessageProgressDialog implements DialogInterface.OnClickListener {
      * @hide
      */
     final Context mContext;
-    private final AlertDialog mDialog;
+    /**
+     * @hide
+     */
+    final AlertDialog mDialog;
     private final TextView mProgress;
     /**
      * @hide
@@ -63,11 +67,13 @@ public class MessageProgressDialog implements DialogInterface.OnClickListener {
      * @param iconResourceId The icon dialog resource identifier
      * @param titleResourceId The title dialog resource identifier
      * @param labelResourceId The label resource identifier
+     * @param cancelable If the dialog is cancelable
      */
     public MessageProgressDialog(
-            Context context, int iconResourceId, int titleResourceId, int labelResourceId) {
+            Context context, int iconResourceId,
+            int titleResourceId, int labelResourceId, boolean cancelable) {
         this(context, iconResourceId, titleResourceId,
-                context.getResources().getString(labelResourceId));
+                context.getResources().getString(labelResourceId), cancelable);
     }
 
     /**
@@ -78,9 +84,11 @@ public class MessageProgressDialog implements DialogInterface.OnClickListener {
      * @param iconResourceId The icon dialog resource identifier
      * @param titleResourceId The title dialog resource identifier
      * @param labelMsg The label message
+     * @param cancelable If the dialog is cancelable
      */
     public MessageProgressDialog(
-            Context context, int iconResourceId, int titleResourceId, String labelMsg) {
+            Context context, int iconResourceId,
+            int titleResourceId, String labelMsg, boolean cancelable) {
         super();
 
         //Save the context
@@ -106,6 +114,11 @@ public class MessageProgressDialog implements DialogInterface.OnClickListener {
         this.mDialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
             @Override
             public void onCancel(DialogInterface dialog) {
+                // Disable cancel button
+                MessageProgressDialog.this.mDialog.getButton(
+                        DialogInterface.BUTTON_NEUTRAL).setEnabled(false);
+
+                // Wait for cancellation
                 if (MessageProgressDialog.this.mOnCancelListener != null) {
                     if (!MessageProgressDialog.this.mOnCancelListener.onCancel()) {
                         //The operation can't not be cancelled
@@ -116,6 +129,18 @@ public class MessageProgressDialog implements DialogInterface.OnClickListener {
                 }
             }
         });
+
+        // Is cancelable
+        this.mDialog.setCancelable(cancelable);
+        if (!cancelable) {
+            this.mProgress.post(new Runnable() {
+                @Override
+                public void run() {
+                    MessageProgressDialog.this.mDialog.getButton(
+                            DialogInterface.BUTTON_NEUTRAL).setEnabled(false);
+                }
+            });
+        }
 
         //Initialize the progress
         this.mProgress.setText(null);
@@ -135,7 +160,7 @@ public class MessageProgressDialog implements DialogInterface.OnClickListener {
      *
      * @param progress The progress of progress of the action
      */
-    public void setProgress(String progress) {
+    public void setProgress(Spanned progress) {
         this.mProgress.setText(progress);
     }
 
@@ -167,6 +192,5 @@ public class MessageProgressDialog implements DialogInterface.OnClickListener {
                 break;
         }
     }
-
 
 }

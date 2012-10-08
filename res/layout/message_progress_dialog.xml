@@ -17,7 +17,7 @@
   android:layout_width="wrap_content"
   android:layout_height="wrap_content"
   android:minHeight="@dimen/default_row_height"
-  android:orientation="vertical" >
+  android:orientation="vertical">
 
   <ProgressBar
     android:id="@+id/message_progress_dialog_waiting"
@@ -53,8 +53,10 @@
     android:gravity="left|center_vertical"
     android:minHeight="@dimen/smallest_row_height"
     android:singleLine="false"
+    android:minLines="4"
     android:text="@null"
     android:textAppearance="@style/secondary_text_appearance"
-    android:textStyle="normal" />
+    android:textStyle="normal"
+    android:layout_marginBottom="@dimen/extra_margin" />
 
 </RelativeLayout>

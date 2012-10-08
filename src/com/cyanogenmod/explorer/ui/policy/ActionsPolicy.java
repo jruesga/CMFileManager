@@ -24,10 +24,13 @@ import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.net.Uri;
 import android.os.AsyncTask;
+import android.text.Html;
+import android.text.Spanned;
 import android.util.Log;
 import android.widget.Toast;
 
 import com.cyanogenmod.explorer.R;
+import com.cyanogenmod.explorer.console.ExecutionException;
 import com.cyanogenmod.explorer.console.RelaunchableException;
 import com.cyanogenmod.explorer.listeners.OnRequestRefreshListener;
 import com.cyanogenmod.explorer.listeners.OnSelectionListener;
@@ -37,6 +40,7 @@ import com.cyanogenmod.explorer.model.FileSystemObject;
 import com.cyanogenmod.explorer.preferences.Bookmarks;
 import com.cyanogenmod.explorer.ui.dialogs.AssociationsDialog;
 import com.cyanogenmod.explorer.ui.dialogs.FsoPropertiesDialog;
+import com.cyanogenmod.explorer.ui.dialogs.MessageProgressDialog;
 import com.cyanogenmod.explorer.util.CommandHelper;
 import com.cyanogenmod.explorer.util.DialogHelper;
 import com.cyanogenmod.explorer.util.ExceptionUtil;
@@ -45,6 +49,7 @@ import com.cyanogenmod.explorer.util.FileHelper;
 import com.cyanogenmod.explorer.util.MimeTypeHelper;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -53,30 +58,149 @@ import java.util.List;
  */
 public final class ActionsPolicy {
 
-    // A class for listen the relaunch of commands
-    private static class RemoveItemListenter implements OnRelaunchCommandResult {
-        /**
-         * @hide
-         */
-        OnRequestRefreshListener mOnRequestRefreshListener;
-        /**
-         * @hide
-         */
-        FileSystemObject mFso;
+    /**
+     * A class that holds a relationship between a source {@link File} and
+     * his destination {@link File}
+     */
+    public static class LinkedResources implements Comparable<LinkedResources> {
+        final File mSrc;
+        final File mDst;
 
-        RemoveItemListenter() {/**NON BLOCK**/}
+        /**
+         * Constructor of <code>LinkedResources</code>
+         *
+         * @param src The source file system object
+         * @param dst The destination file system object
+         */
+        public LinkedResources(File src, File dst) {
+            super();
+            this.mSrc = src;
+            this.mDst = dst;
+        }
+
+        /**
+         * {@inheritDoc}
+         */
+        @Override
+        public int compareTo(LinkedResources another) {
+            return this.mSrc.compareTo(another.mSrc);
+        }
+    }
+
+    /**
+     * An interface for using in conjunction with AsyncTask for have
+     * a
+     */
+    private interface BackgroundCallable {
+        /**
+         * Method that returns the resource identifier of the icon of the dialog
+         *
+         * @return int The resource identifier of the icon of the dialog
+         */
+        int getDialogIcon();
+
+        /**
+         * Method that returns the resource identifier of the title of the dialog
+         *
+         * @return int The resource identifier of the title of the dialog
+         */
+        int getDialogTitle();
+
+        /**
+         * Method invoked when need to update the progress of the dialog
+         *
+         * @return Spanned The text to show in the progress
+         */
+        Spanned requestProgress();
+
+        /**
+         * The method where the operation is done in background
+         *
+         * @param params The parameters
+         * @throws Throwable If the operation failed, must be launch and exception
+         */
+        void doInBackground(Object... params) throws Throwable;
+
+        /**
+         * Method invoked when the operation was successfully
+         */
+        void onSuccess();
+    }
+
+    /**
+     * A task class for run operations in the background. It uses a dialog while
+     * perform the operation.
+     *
+     * @see BackgroundCallable
+     */
+    private static class BackgroundAsyncTask
+            extends AsyncTask<Object, Void, Throwable> {
+
+        private final Context mCtx;
+        private final BackgroundCallable mCallable;
+        private MessageProgressDialog mDialog;
+
+        /**
+         * Constructor of <code>BackgroundAsyncTask</code>
+         *
+         * @param ctx The current context
+         * @param callable The {@link BackgroundCallable} interface
+         */
+        public BackgroundAsyncTask(Context ctx, BackgroundCallable callable) {
+            super();
+            this.mCtx = ctx;
+            this.mCallable = callable;
+        }
 
         @Override
-        public void onSuccess() {
-            //Operation complete. Refresh
-            if (this.mOnRequestRefreshListener != null) {
-                this.mOnRequestRefreshListener.onRequestRemove(this.mFso);
+        protected void onPreExecute() {
+            // Create the waiting dialog while doing some stuff on background
+            this.mDialog = new MessageProgressDialog(
+                    this.mCtx,
+                    R.drawable.ic_holo_light_operation,
+                    R.string.waiting_dialog_copying_title,
+                    R.string.waiting_dialog_msg,
+                    false);
+            Spanned progress = this.mCallable.requestProgress();
+            this.mDialog.setProgress(progress);
+            this.mDialog.show();
+        }
+
+        @Override
+        protected Throwable doInBackground(Object... params) {
+            try {
+                this.mCallable.doInBackground(params);
+
+                // Success
+                return null;
+
+            } catch (Throwable ex) {
+                // Capture the exception
+                return ex;
             }
         }
+
         @Override
-        public void onCancelled() {/**NON BLOCK**/}
-        @Override
-        public void onFailed() {/**NON BLOCK**/}
+        protected void onPostExecute(Throwable result) {
+            // Close the waiting dialog
+            this.mDialog.dismiss();
+
+            // Check the result (no relaunch, this is responsibility of callable doInBackground)
+            if (result != null) {
+                ExceptionUtil.translateException(this.mCtx, result, false, false);
+            } else {
+                //Operation complete.
+                this.mCallable.onSuccess();
+            }
+        }
+
+        /**
+         * @hide
+         */
+        void onRequestProgress() {
+            Spanned progress = this.mCallable.requestProgress();
+            this.mDialog.setProgress(progress);
+        }
     }
 
 
@@ -287,7 +411,6 @@ public final class ActionsPolicy {
                         ctx,
                         R.string.bookmarks_msgs_add_success,
                         Toast.LENGTH_SHORT).show();
-
             }
 
         } catch (Exception e) {
@@ -345,7 +468,7 @@ public final class ActionsPolicy {
 
         //Create the absolute file name
         File newFso = new File(
-                onSelectionListener.onRequestCurrentDirOfSelectionData(), name);
+                onSelectionListener.onRequestCurrentDir(), name);
         final String newName = newFso.getAbsolutePath();
 
         try {
@@ -405,51 +528,226 @@ public final class ActionsPolicy {
      * Method that remove an existing file system object.
      *
      * @param ctx The current context
-     * @param fso The file system object
-     * @param onRequestRefreshListener The listener for request a refresh after the new
-     * folder was created (option)
+     * @param fso The file system object to remove
+     * @param onSelectionListener The listener for obtain selection information (required)
+     * @param onRequestRefreshListener The listener for request a refresh (optional)
      */
     public static void removeFileSystemObject(
             final Context ctx, final FileSystemObject fso,
+            final OnSelectionListener onSelectionListener,
             final OnRequestRefreshListener onRequestRefreshListener) {
+        // Generate an array and invoke internal method
+        List<FileSystemObject> files = new ArrayList<FileSystemObject>(1);
+        files.add(fso);
+        removeFileSystemObjects(ctx, files, onSelectionListener, onRequestRefreshListener);
+    }
 
-        final boolean isFolder = FileHelper.isDirectory(fso);
-        int msg =
-                isFolder ?
-                R.string.actions_ask_remove_folder :
-                R.string.actions_ask_remove_file;
+    /**
+     * Method that remove an existing file system object.
+     *
+     * @param ctx The current context
+     * @param files The list of files to remove
+     * @param onSelectionListener The listener for obtain selection information (required)
+     * @param onRequestRefreshListener The listener for request a refresh (optional)
+     */
+    public static void removeFileSystemObjects(
+            final Context ctx, final List<FileSystemObject> files,
+            final OnSelectionListener onSelectionListener,
+            final OnRequestRefreshListener onRequestRefreshListener) {
 
         // Ask the user before remove
         AlertDialog dialog =DialogHelper.createYesNoDialog(
-            ctx, msg,
+            ctx, R.string.actions_ask_undone_operation,
             new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface alertDialog, int which) {
                     if (which == DialogInterface.BUTTON_POSITIVE) {
-                        try {
-                            // Remove the item
-                            if (isFolder) {
-                                CommandHelper.deleteDirectory(ctx, fso.getFullPath(), null);
-                            } else {
-                                CommandHelper.deleteFile(ctx, fso.getFullPath(), null);
-                            }
-
-                            //Operation complete. Refresh
-                            if (onRequestRefreshListener != null) {
-                                onRequestRefreshListener.onRequestRemove(fso);
-                            }
-
-                        } catch (Throwable ex) {
-                            // Capture the exception
-                            RemoveItemListenter listener = new RemoveItemListenter();
-                            listener.mOnRequestRefreshListener = onRequestRefreshListener;
-                            listener.mFso = fso;
-                            ExceptionUtil.translateException(ctx, ex, false, true, listener);
-                        }
+                        // Remove the items
+                        removeFileSystemObjectsInBackground(
+                                ctx,
+                                files,
+                                onSelectionListener,
+                                onRequestRefreshListener);
                     }
                 }
            });
         dialog.show();
+    }
+
+    /**
+     * Method that remove an existing file system object in background.
+     *
+     * @param ctx The current context
+     * @param files The list of files to remove
+     * @param onSelectionListener The listener for obtain selection information (optional)
+     * @param onRequestRefreshListener The listener for request a refresh (optional)
+     * @hide
+     */
+    static void removeFileSystemObjectsInBackground(
+            final Context ctx, final List<FileSystemObject> files,
+            final OnSelectionListener onSelectionListener,
+            final OnRequestRefreshListener onRequestRefreshListener) {
+
+        // Some previous checks prior to execute
+        // 1.- Check the operation consistency (only if it is viable)
+        if (onSelectionListener != null) {
+            final String currentDirectory = onSelectionListener.onRequestCurrentDir();
+            if (!checkRemoveConsistency(ctx, files, currentDirectory)) {
+                return;
+            }
+        }
+
+        // The callable interface
+        final BackgroundCallable callable = new BackgroundCallable() {
+            // The current items
+            private int mCurrent = 0;
+            final Context mCtx = ctx;
+            final List<FileSystemObject> mFiles = files;
+            final OnRequestRefreshListener mOnRequestRefreshListener = onRequestRefreshListener;
+
+            final Object mSync = new Object();
+            Throwable mCause;
+
+            @Override
+            public int getDialogTitle() {
+                return R.string.waiting_dialog_deleting_title;
+            }
+            @Override
+            public int getDialogIcon() {
+                return R.drawable.ic_holo_light_operation;
+            }
+
+            @Override
+            public Spanned requestProgress() {
+                FileSystemObject fso = this.mFiles.get(this.mCurrent);
+
+                // Return the current operation
+                String progress =
+                      this.mCtx.getResources().
+                          getString(
+                              R.string.waiting_dialog_deleting_msg,
+                              fso.getFullPath());
+                return Html.fromHtml(progress);
+            }
+
+            @Override
+            public void onSuccess() {
+                //Operation complete. Refresh
+                if (this.mOnRequestRefreshListener != null) {
+                  // The reference is not the same, so refresh the complete navigation view
+                  this.mOnRequestRefreshListener.onRequestRefresh(null);
+                }
+                ActionsPolicy.showOperationSuccessMsg(ctx);
+            }
+
+            @Override
+            public void doInBackground(Object... params) throws Throwable {
+                this.mCause = null;
+
+                // This method expect to receive
+                // 1.- BackgroundAsyncTask
+                BackgroundAsyncTask task = (BackgroundAsyncTask)params[0];
+
+                for (int i = 0; i < this.mFiles.size(); i++) {
+                    FileSystemObject fso = this.mFiles.get(i);
+
+                    doOperation(this.mCtx, fso);
+
+                    // Next file
+                    this.mCurrent++;
+                    if (this.mCurrent < this.mFiles.size()) {
+                        task.onRequestProgress();
+                    }
+                }
+            }
+
+            /**
+             * Method that copies on file to other location
+             *
+             * @param ctx The current context
+             * @param src The source file
+             * @param dst The destination file
+             * @param move Indicates if the files are going to be moved (true) or copied (false)
+             */
+            @SuppressWarnings("hiding")
+            private void doOperation(
+                    final Context ctx, final FileSystemObject fso) throws Throwable {
+                try {
+                    // Remove the item
+                    if (FileHelper.isDirectory(fso)) {
+                        CommandHelper.deleteDirectory(ctx, fso.getFullPath(), null);
+                    } else {
+                        CommandHelper.deleteFile(ctx, fso.getFullPath(), null);
+                    }
+                } catch (Exception e) {
+                    // Need to be relaunched?
+                    if (e instanceof RelaunchableException) {
+                        OnRelaunchCommandResult rl = new OnRelaunchCommandResult() {
+                            @Override
+                            @SuppressWarnings("unqualified-field-access")
+                            public void onSuccess() {
+                                synchronized (mSync) {
+                                    mSync.notify();
+                                }
+                            }
+
+                            @Override
+                            @SuppressWarnings("unqualified-field-access")
+                            public void onFailed(Throwable cause) {
+                                mCause = cause;
+                                synchronized (mSync) {
+                                    mSync.notify();
+                                }
+                            }
+                            @Override
+                            @SuppressWarnings("unqualified-field-access")
+                            public void onCancelled() {
+                                synchronized (mSync) {
+                                    mSync.notify();
+                                }
+                            }
+                        };
+
+                        // Translate the exception (and wait for the result)
+                        ExceptionUtil.translateException(ctx, e, false, true, rl);
+                        synchronized (this.mSync) {
+                            this.mSync.wait();
+                        }
+
+                        // Persist the exception?
+                        if (this.mCause != null) {
+                            // The exception must be elevated
+                            throw this.mCause;
+                        }
+
+                    } else {
+                        // The exception must be elevated
+                        throw e;
+                    }
+                }
+
+                // Check that the operation was completed retrieving the deleted fso
+                boolean failed = false;
+                try {
+                    CommandHelper.getFileInfo(ctx, fso.getFullPath(), null);
+
+                    // Failed. The file still exists
+                    failed = true;
+
+                } catch (Throwable e) {
+                    // Operation complete successfully
+                }
+                if (failed) {
+                    throw new ExecutionException(
+                            String.format(
+                                    "Failed to delete file: %s", fso.getFullPath())); //$NON-NLS-1$
+                }
+            }
+        };
+        final BackgroundAsyncTask task = new BackgroundAsyncTask(ctx, callable);
+
+        // Execute background task
+        task.execute(task);
     }
 
     /**
@@ -458,33 +756,459 @@ public final class ActionsPolicy {
      * @param ctx The current context
      * @param fso The file system object
      * @param newName The new name of the object
-     * @param onRequestRefreshListener The listener for request a refresh after the new
-     * folder was created (option)
+     * @param onSelectionListener The listener for obtain selection information (required)
+     * @param onRequestRefreshListener The listener for request a refresh (optional)
      */
     public static void renameFileSystemObject(
-            final Context ctx, final FileSystemObject fso, final String newName,
+            final Context ctx,
+            final FileSystemObject fso,
+            final String newName,
+            final OnSelectionListener onSelectionListener,
             final OnRequestRefreshListener onRequestRefreshListener) {
-        try {
-            File newFile = new File(fso.getParent(), newName);
-            CommandHelper.move(ctx, fso.getFullPath(), newFile.getAbsolutePath(), null);
 
-            // Check that the operation was completed retrieving the fso modified
-            CommandHelper.getFileInfo(ctx, newFile.getAbsolutePath(), null);
+        // Create the destination filename
+        File dst = new File(fso.getParent(), newName);
+        File src = new File(fso.getFullPath());
 
-            //Operation complete. Refresh
-            if (onRequestRefreshListener != null) {
-                // The reference is not the same, so refresh the complete navigation view
-                onRequestRefreshListener.onRequestRefresh(null);
-            }
+     // Create arguments
+        LinkedResources linkRes = new LinkedResources(src, dst);
+        List<LinkedResources> files = new ArrayList<ActionsPolicy.LinkedResources>(1);
+        files.add(linkRes);
 
-            //Operation complete. Refresh
-            if (onRequestRefreshListener != null) {
-                onRequestRefreshListener.onRequestRemove(fso);
-            }
+        // Internal copy
+        copyOrMoveFileSystemObjects(
+                ctx,
+                true,
+                files,
+                onSelectionListener,
+                onRequestRefreshListener);
+    }
 
-        } catch (Throwable ex) {
-            // Capture the exception
-            ExceptionUtil.translateException(ctx, ex, false, true, null);
+    /**
+     * Method that copy an existing file system object.
+     *
+     * @param ctx The current context
+     * @param fso The file system object
+     * @param onSelectionListener The listener for obtain selection information (required)
+     * @param onRequestRefreshListener The listener for request a refresh (optional)
+     */
+    public static void createCopyFileSystemObject(
+            final Context ctx,
+            final FileSystemObject fso,
+            final OnSelectionListener onSelectionListener,
+            final OnRequestRefreshListener onRequestRefreshListener) {
+
+        // Create a non-existing name
+        List<FileSystemObject> curFiles = onSelectionListener.onRequestCurrentItems();
+        String  newName = FileHelper.createNonExistingName(ctx, curFiles, fso);
+        final File dst = new File(fso.getParent(), newName);
+        File src = new File(fso.getFullPath());
+
+        // Create arguments
+        LinkedResources linkRes = new LinkedResources(src, dst);
+        List<LinkedResources> files = new ArrayList<ActionsPolicy.LinkedResources>(1);
+        files.add(linkRes);
+
+        // Internal copy
+        copyOrMoveFileSystemObjects(
+                ctx,
+                false,
+                files,
+                onSelectionListener,
+                onRequestRefreshListener);
+    }
+
+    /**
+     * Method that copy an existing file system object.
+     *
+     * @param ctx The current context
+     * @param files The list of files to copy
+     * @param onSelectionListener The listener for obtain selection information (required)
+     * @param onRequestRefreshListener The listener for request a refresh (optional)
+     */
+    public static void copyFileSystemObjects(
+            final Context ctx,
+            final List<LinkedResources> files,
+            final OnSelectionListener onSelectionListener,
+            final OnRequestRefreshListener onRequestRefreshListener) {
+        // Internal copy
+        copyOrMoveFileSystemObjects(
+                ctx,
+                false,
+                files,
+                onSelectionListener,
+                onRequestRefreshListener);
+    }
+
+    /**
+     * Method that copy an existing file system object.
+     *
+     * @param ctx The current context
+     * @param files The list of files to move
+     * @param onSelectionListener The listener for obtain selection information (required)
+     * @param onRequestRefreshListener The listener for request a refresh (optional)
+     */
+    public static void moveFileSystemObjects(
+            final Context ctx,
+            final List<LinkedResources> files,
+            final OnSelectionListener onSelectionListener,
+            final OnRequestRefreshListener onRequestRefreshListener) {
+        // Internal move
+        copyOrMoveFileSystemObjects(
+                ctx,
+                true,
+                files,
+                onSelectionListener,
+                onRequestRefreshListener);
+    }
+
+    /**
+     * Method that copy an existing file system object.
+     *
+     * @param ctx The current context
+     * @param move Indicates if the files are going to be moved (true) or copied (false)
+     * @param files The list of source/destination files to copy
+     * @param onSelectionListener The listener for obtain selection information (required)
+     * @param onRequestRefreshListener The listener for request a refresh (optional)
+     */
+    private static void copyOrMoveFileSystemObjects(
+            final Context ctx,
+            final boolean move,
+            final List<LinkedResources> files,
+            final OnSelectionListener onSelectionListener,
+            final OnRequestRefreshListener onRequestRefreshListener) {
+
+        // Some previous checks prior to execute
+        // 1.- Listener can't not be null
+        if (onSelectionListener == null) {
+            AlertDialog dialog =
+                    DialogHelper.createErrorDialog(ctx, R.string.msgs_illegal_argument);
+            dialog.show();
+            return;
         }
+        // 2.- All the destination files must have the same parent and it must be currentDirectory,
+        // and not be null
+        final String currentDirectory = onSelectionListener.onRequestCurrentDir();
+        for (int i = 0; i < files.size(); i++) {
+            LinkedResources linkedRes = files.get(i);
+            if (linkedRes.mSrc == null || linkedRes.mDst == null) {
+                AlertDialog dialog =
+                        DialogHelper.createErrorDialog(ctx, R.string.msgs_illegal_argument);
+                dialog.show();
+                return;
+            }
+            if (linkedRes.mDst.getParent() == null ||
+                linkedRes.mDst.getParent().compareTo(currentDirectory) != 0) {
+                AlertDialog dialog =
+                        DialogHelper.createErrorDialog(ctx, R.string.msgs_illegal_argument);
+                dialog.show();
+                return;
+            }
+        }
+        // 3.- Check the operation consistency
+        if (move) {
+            if (!checkMoveConsistency(ctx, files, currentDirectory)) {
+                return;
+            }
+        }
+
+        // The callable interface
+        final BackgroundCallable callable = new BackgroundCallable() {
+            // The current items
+            private int mCurrent = 0;
+            final Context mCtx = ctx;
+            final boolean mMove = move;
+            final List<LinkedResources> mFiles = files;
+            final OnRequestRefreshListener mOnRequestRefreshListener = onRequestRefreshListener;
+
+            final Object mSync = new Object();
+            Throwable mCause;
+
+            @Override
+            public int getDialogTitle() {
+                return this.mMove ?
+                        R.string.waiting_dialog_moving_title :
+                        R.string.waiting_dialog_copying_title;
+            }
+            @Override
+            public int getDialogIcon() {
+                return R.drawable.ic_holo_light_operation;
+            }
+
+            @Override
+            public Spanned requestProgress() {
+                File src = this.mFiles.get(this.mCurrent).mSrc;
+                File dst = this.mFiles.get(this.mCurrent).mDst;
+
+                // Return the current operation
+                String progress =
+                      this.mCtx.getResources().
+                          getString(
+                              this.mMove ?
+                                   R.string.waiting_dialog_moving_msg :
+                                   R.string.waiting_dialog_copying_msg,
+                              src.getAbsolutePath(),
+                              dst.getAbsolutePath());
+                return Html.fromHtml(progress);
+            }
+
+            @Override
+            public void onSuccess() {
+                //Operation complete. Refresh
+                if (this.mOnRequestRefreshListener != null) {
+                  // The reference is not the same, so refresh the complete navigation view
+                  this.mOnRequestRefreshListener.onRequestRefresh(null);
+                }
+                ActionsPolicy.showOperationSuccessMsg(ctx);
+            }
+
+            @Override
+            public void doInBackground(Object... params) throws Throwable {
+                this.mCause = null;
+
+                // This method expect to receive
+                // 1.- BackgroundAsyncTask
+                BackgroundAsyncTask task = (BackgroundAsyncTask)params[0];
+
+                for (int i = 0; i < this.mFiles.size(); i++) {
+                    File src = this.mFiles.get(i).mSrc;
+                    File dst = this.mFiles.get(i).mDst;
+
+                    doOperation(this.mCtx, src, dst, this.mMove);
+
+                    // Next file
+                    this.mCurrent++;
+                    if (this.mCurrent < this.mFiles.size()) {
+                        task.onRequestProgress();
+                    }
+                }
+            }
+
+            /**
+             * Method that copies on file to other location
+             *
+             * @param ctx The current context
+             * @param src The source file
+             * @param dst The destination file
+             * @param move Indicates if the files are going to be moved (true) or copied (false)
+             */
+            @SuppressWarnings("hiding")
+            private void doOperation(
+                    Context ctx, File src, File dst, boolean move) throws Throwable {
+                // If the source is the same as destiny then don't do the operation
+                if (src.compareTo(dst) == 0) return;
+
+                try {
+                    // Copy or move?
+                    if (move) {
+                        CommandHelper.move(
+                                ctx,
+                                src.getAbsolutePath(),
+                                dst.getAbsolutePath(),
+                                null);
+                    } else {
+                        CommandHelper.copy(
+                                ctx,
+                                src.getAbsolutePath(),
+                                dst.getAbsolutePath(),
+                                null);
+                    }
+                } catch (Exception e) {
+                    // Need to be relaunched?
+                    if (e instanceof RelaunchableException) {
+                        OnRelaunchCommandResult rl = new OnRelaunchCommandResult() {
+                            @Override
+                            @SuppressWarnings("unqualified-field-access")
+                            public void onSuccess() {
+                                synchronized (mSync) {
+                                    mSync.notify();
+                                }
+                            }
+
+                            @Override
+                            @SuppressWarnings("unqualified-field-access")
+                            public void onFailed(Throwable cause) {
+                                mCause = cause;
+                                synchronized (mSync) {
+                                    mSync.notify();
+                                }
+                            }
+                            @Override
+                            @SuppressWarnings("unqualified-field-access")
+                            public void onCancelled() {
+                                synchronized (mSync) {
+                                    mSync.notify();
+                                }
+                            }
+                        };
+
+                        // Translate the exception (and wait for the result)
+                        ExceptionUtil.translateException(ctx, e, false, true, rl);
+                        synchronized (this.mSync) {
+                            this.mSync.wait();
+                        }
+
+                        // Persist the exception?
+                        if (this.mCause != null) {
+                            // The exception must be elevated
+                            throw this.mCause;
+                        }
+
+                    } else {
+                        // The exception must be elevated
+                        throw e;
+                    }
+                }
+
+                // Check that the operation was completed retrieving the fso modified
+                CommandHelper.getFileInfo(ctx, dst.getAbsolutePath(), null);
+            }
+        };
+        final BackgroundAsyncTask task = new BackgroundAsyncTask(ctx, callable);
+
+        // Prior to execute, we need to check if some of the files will be overwritten
+        List<FileSystemObject> curFiles = onSelectionListener.onRequestCurrentItems();
+        if (curFiles != null) {
+            // Is necessary to ask the user?
+            if (isOverwriteNeeded(files, curFiles)) {
+                //Show a dialog asking the user for overwrite the files
+                AlertDialog dialog =
+                        DialogHelper.createTwoButtonsQuestionDialog(
+                                ctx,
+                                android.R.string.cancel,
+                                R.string.overwrite,
+                                ctx.getString(R.string.msgs_overwrite_files),
+                                new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface alertDialog, int which) {
+                                        // NEGATIVE (overwrite)  POSITIVE (cancel)
+                                        if (which == DialogInterface.BUTTON_NEGATIVE) {
+                                            // Execute background task
+                                            task.execute(task);
+                                        }
+                                    }
+                               });
+                dialog.show();
+                return;
+            }
+        }
+
+        // Execute background task
+        task.execute(task);
+    }
+
+    /**
+     * Method that check if is needed to prompt the user for overwrite prior to do
+     * the operation.
+     *
+     * @param files The list of source/destination files.
+     * @param currentFiles The list of the current files in the destination directory.
+     * @return boolean If is needed to prompt the user for overwrite
+     */
+    private static boolean isOverwriteNeeded(
+            List<LinkedResources> files, List<FileSystemObject> currentFiles) {
+        boolean askUser = false;
+        for (int i = 0; i < currentFiles.size(); i++) {
+            for (int j = 0; j < files.size(); j++) {
+                FileSystemObject dst1 =  currentFiles.get(i);
+                File dst2 = files.get(j).mDst;
+
+                // The file exists in the destination directory
+                if (dst1.getFullPath().compareTo(dst2.getAbsolutePath()) == 0) {
+                    askUser = true;
+                    break;
+                }
+            }
+            if (askUser) break;
+        }
+        return askUser;
+    }
+
+    /**
+     * Method that check the consistency of move operations.<br/>
+     * <br/>
+     * The method checks the following rules:<br/>
+     * <ul>
+     * <li>Any of the files of the move operation can not include the
+     * current directory.</li>
+     * <li>Any of the files of the move operation can not include the
+     * current directory.</li>
+     * </ul>
+     *
+     * @param ctx The current context
+     * @param files The list of source/destination files
+     * @param currentDirectory The current directory
+     * @return boolean If the consistency is validate successfully
+     */
+    private static boolean checkMoveConsistency(
+            Context ctx, List<LinkedResources> files, String currentDirectory) {
+        for (int i = 0; i < files.size(); i++) {
+            LinkedResources linkRes = files.get(i);
+            String src = linkRes.mSrc.getAbsolutePath();
+            String dst = linkRes.mDst.getAbsolutePath();
+
+            // 1.- Current directory can't be moved
+            if (currentDirectory.startsWith(src)) {
+                // Operation not allowed
+                AlertDialog dialog =
+                        DialogHelper.createErrorDialog(
+                                ctx, R.string.msgs_unresolved_inconsistencies);
+                dialog.show();
+                return false;
+            }
+
+            // 2.- Destination can't be a child of source
+            if (dst.startsWith(src)) {
+                // Operation not allowed
+                AlertDialog dialog =
+                        DialogHelper.createErrorDialog(
+                                ctx, R.string.msgs_unresolved_inconsistencies);
+                dialog.show();
+                return false;
+            }
+        }
+        return true;
+    }
+
+    /**
+     * Method that check the consistency of delete operations.<br/>
+     * <br/>
+     * The method checks the following rules:<br/>
+     * <ul>
+     * <li>Any of the files of the move or delete operation can not include the
+     * current directory.</li>
+     * </ul>
+     *
+     * @param ctx The current context
+     * @param files The list of source/destination files
+     * @param currentDirectory The current directory
+     * @return boolean If the consistency is validate successfully
+     */
+    private static boolean checkRemoveConsistency(
+            Context ctx, List<FileSystemObject> files, String currentDirectory) {
+        for (int i = 0; i < files.size(); i++) {
+            FileSystemObject fso = files.get(i);
+
+            // 1.- Current directory can't be deleted
+            if (currentDirectory.startsWith(fso.getFullPath())) {
+                // Operation not allowed
+                AlertDialog dialog =
+                        DialogHelper.createErrorDialog(
+                                ctx, R.string.msgs_unresolved_inconsistencies);
+                dialog.show();
+                return false;
+            }
+        }
+        return true;
+    }
+
+    /**
+     * Method that shows a message when the operation is complete successfully
+     *
+     * @param ctx The current context
+     * @hide
+     */
+    static void showOperationSuccessMsg(Context ctx) {
+        Toast.makeText(ctx, R.string.msgs_success, Toast.LENGTH_SHORT).show();
     }
 }

@@ -24,6 +24,7 @@ import com.cyanogenmod.explorer.model.FileSystemObject;
 import com.cyanogenmod.explorer.util.ParseHelper;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.StringReader;
 import java.text.ParseException;
 
@@ -46,7 +47,7 @@ public class ResolveLinkCommand extends SyncResultProgram implements ResolveLink
      * @throws InvalidCommandDefinitionException If the command has an invalid definition
      */
     public ResolveLinkCommand(String src) throws InvalidCommandDefinitionException {
-        super(ID, src);
+        super(ID, src, new File(src).getAbsolutePath());
     }
 
     /**

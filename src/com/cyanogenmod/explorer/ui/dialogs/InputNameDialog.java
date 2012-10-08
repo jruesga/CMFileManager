@@ -212,13 +212,14 @@ public class InputNameDialog
     @Override
     public void afterTextChanged(Editable s) {
         String txt = s.toString().trim();
+        //The name is empty
         if (txt.length() == 0) {
-            //The name is empty
             setMsg(
                 InputNameDialog.this.mContext.getString(
                       R.string.input_name_dialog_message_empty_name), false);
             return;
         }
+        // The path is invalid
         if (txt.indexOf(File.separator) != -1) {
             setMsg(
                 InputNameDialog.this.mContext.getString(
@@ -226,6 +227,7 @@ public class InputNameDialog
                       File.separator), false);
             return;
         }
+        // No allow . or ..
         if (txt.compareTo(FileHelper.CURRENT_DIRECTORY) == 0 ||
             txt.compareTo(FileHelper.PARENT_DIRECTORY) == 0) {
             setMsg(
@@ -233,11 +235,13 @@ public class InputNameDialog
                         R.string.input_name_dialog_message_invalid_name), false);
             return;
         }
+        // The same name
         if (this.mFso != null && txt.compareTo(this.mFso.getName()) == 0) {
             setMsg(null, false);
             return;
         }
-        if (isNameExists(txt)) {
+        // Name exists
+        if (FileHelper.isNameExists(this.mFiles, txt)) {
             setMsg(
                 InputNameDialog.this.mContext.getString(
                         R.string.input_name_dialog_message_name_exists), false);
@@ -291,21 +295,4 @@ public class InputNameDialog
         this.mDialog.getButton(DialogInterface.BUTTON_POSITIVE).setEnabled(activate);
     }
 
-    /**
-     * Method that checks if a name exists in the current directory.
-     *
-     * @param name The name to check
-     * @return boolean Indicate if the name exists in the current directory
-     */
-    private boolean isNameExists(String name) {
-        //Verify if the name exists in the current file list
-        int cc = this.mFiles.size();
-        for (int i = 0; i < cc; i++) {
-            FileSystemObject fso = this.mFiles.get(i);
-            if (fso.getName().compareTo(name) == 0) {
-                return true;
-            }
-        }
-        return false;
-    }
 }

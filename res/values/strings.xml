@@ -40,17 +40,17 @@
   <!-- Default buttons -->
   <string name="ok">@android:string/ok</string>
   <string name="cancel">@android:string/cancel</string>
-  <!-- @android:string/yes and @android:string/no in android are asigned to OK and Cancel.
-       Use a string with own yes and no string -->
   <string name="yes">Yes</string>
   <string name="no">No</string>
+  <string name="all">All</string>
+  <string name="overwrite">Overwrite</string>
 
   <!-- Consoles -->
   <string name="non_privileged_console">Non-Privileged Console</string>
   <string name="privileged_console">Privileged Console</string>
 
   <!-- The root directory name -->
-  <string name="root_directory_name">&lt;Root directory&gt;</string>
+  <string name="root_directory_name"><![CDATA[<Root directory>]]></string>
   <!-- The search result name -->
   <string name="search_result_name">Search: <xliff:g id="terms">%1$s</xliff:g></string>
 
@@ -112,11 +112,25 @@
   <!-- An operation can't not be cancelled -->
   <string name="msgs_read_only_filesystem">The filesystem is read-only. Try to mount the
     filesystem as read-write before do a write operation.</string>
-    <!-- An  association of an action failed -->
-  <string name="msgs_action_association_failed">The association of the action failed.</string>
+  <!-- Illegal argument -->
+  <string name="msgs_illegal_argument">Illegal argument. Invocation failed.</string>
+  <!-- An operation will cause incosistencies -->
+  <string name="msgs_unresolved_inconsistencies">
+    The operation is now allowed, because it would create inconsistencies.</string>
 
   <!-- A message advise before close the application -->
   <string name="msgs_push_again_to_exit">Push again back button to exit.</string>
+
+  <!-- There is no registered application that can handle the mime/type -->
+  <string name="msgs_not_registered_app">There is not registered app that can handle
+    the file type selected.</string>
+
+  <!-- Overwrite files? -->
+  <string name="msgs_overwrite_files">
+    Some of the files exist in the destination directory.</string>
+
+  <!-- An association of an action failed -->
+  <string name="msgs_action_association_failed">The association of the action failed.</string>
 
   <!-- An operation requires a read-write filesystem -->
   <string name="advise_read_only_filesystem">The operation requires a read-write filesystem.\n\n
@@ -124,10 +138,6 @@
   <!-- An operation requires elevated privileged -->
   <string name="advise_insufficient_permissions">The operation requires elevated privileged.\n\n
     Do you want to change to a privileged console?</string>
-
-  <!-- There is no registered application that can handle the mime/type -->
-  <string name="msgs_not_registered_app">There is not registered app that can handle
-    the file type selected.</string>
 
 
   <!-- The parent directory of the current directory in navigation view -->
@@ -313,7 +323,7 @@
   <string name="search_found_items_in_directory"><xliff:g id="items">%1$s</xliff:g> in
     <xliff:g id="path">%2$s</xliff:g></string>
   <!-- Search query terms -->
-  <string name="search_terms">&lt;b>Terms:&lt;/b> <xliff:g id="terms">%1$s</xliff:g></string>
+  <string name="search_terms"><![CDATA[<b>Terms:</b>]]> <xliff:g id="terms">%1$s</xliff:g></string>
   <!-- Some terms of the search are too small. The operation can be very costly -->
   <string name="search_few_characters_msg">Some of terms of the search has few characters. In
     this situation, the operation that can be very costly in time and system resources.\n\n
@@ -366,6 +376,29 @@
   <!-- Menu * Exit -->
   <string name="menu_exit">Exit</string>
 
+  <!-- Create copy regexp -->
+  <string name="create_copy_regexp">
+    <xliff:g id="name">%1$s</xliff:g> - copy<xliff:g id="extension">%2$s</xliff:g></string>
+
+  <!-- Waiting dialog * Performing operation message -->
+  <string name="waiting_dialog_msg">Performing operation&#8230;</string>
+  <!-- Waiting dialog * Copying title -->
+  <string name="waiting_dialog_copying_title">Copying&#8230;</string>
+  <!-- Waiting dialog * Copying message -->
+  <string name="waiting_dialog_copying_msg">
+    <![CDATA[<b>From</b>]]> <xliff:g id="from">%1$s</xliff:g><![CDATA[<br/>]]>
+    <![CDATA[<b>To</b>]]> <xliff:g id="to">%2$s</xliff:g></string>
+  <!-- Waiting dialog * Moving title -->
+  <string name="waiting_dialog_moving_title">Moving&#8230;</string>
+  <!-- Waiting dialog * Moving message -->
+  <string name="waiting_dialog_moving_msg">
+    <![CDATA[<b>From</b>]]> <xliff:g id="from">%1$s</xliff:g><![CDATA[<br/>]]>
+    <![CDATA[<b>To</b>]]> <xliff:g id="to">%2$s</xliff:g></string>
+  <!-- Waiting dialog * Deleting title -->
+  <string name="waiting_dialog_deleting_title">Deleting&#8230;</string>
+  <!-- Waiting dialog * Deleting message -->
+  <string name="waiting_dialog_deleting_msg">
+    <b>File</b> <xliff:g id="filr">%1$s</xliff:g></string>
 
   <!-- Actions Dialog * Title -->
   <string name="actions_dialog_title">Actions</string>
@@ -385,8 +418,8 @@
   <string name="actions_menu_select">Select</string>
   <!-- Actions Dialog * Menu * Deselect -->
   <string name="actions_menu_deselect">Deselect</string>
-  <!-- Actions Dialog * Menu * Copy selection -->
-  <string name="actions_menu_copy_selection">Copy selection</string>
+  <!-- Actions Dialog * Menu * Paste selection -->
+  <string name="actions_menu_paste_selection">Paste selection</string>
   <!-- Actions Dialog * Menu * Move selection -->
   <string name="actions_menu_move_selection">Move selection</string>
   <!-- Actions Dialog * Menu * Add to bookmarks the current folder -->
@@ -403,16 +436,16 @@
   <string name="actions_menu_delete">Delete</string>
   <!-- Actions Dialog * Menu * Rename -->
   <string name="actions_menu_rename">Rename</string>
+  <!-- Actions Dialog * Menu * Create copy -->
+  <string name="actions_menu_create_copy">Create copy</string>
   <!-- Actions Dialog * Menu * Properties -->
   <string name="actions_menu_properties">Properties</string>
   <!-- Actions Dialog * Menu * Add to bookmarks -->
   <string name="actions_menu_add_to_bookmarks">Add to bookmarks</string>
 
-  <!-- Actions * Ask user prior to remove files or folders -->
-  <string name="actions_ask_remove_folder">Are you sure you want to delete this folder
-    permanently?</string>
-  <string name="actions_ask_remove_file">Are you sure you want to delete this file
-    permanently?</string>
+  <!-- Actions * Ask user prior to do an undone operation -->
+  <string name="actions_ask_undone_operation">
+    This action can\'t be undone. Do you want to continue?</string>
 
   <!-- Enter Name Dialog * Label -->
   <string name="input_name_dialog_label">Name:</string>

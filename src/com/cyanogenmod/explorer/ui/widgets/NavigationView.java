@@ -347,8 +347,12 @@ public class NavigationView extends RelativeLayout implements
      */
     public void scrollTo(FileSystemObject fso) {
         if (fso != null) {
-            int position = this.mAdapter.getPosition(fso);
-            this.mAdapterView.setSelection(position);
+            try {
+                int position = this.mAdapter.getPosition(fso);
+                this.mAdapterView.setSelection(position);
+            } catch (Exception e) {
+                this.mAdapterView.setSelection(0);
+            }
         }
     }
 
@@ -356,7 +360,15 @@ public class NavigationView extends RelativeLayout implements
      * Method that refresh the view data.
      */
     public void refresh() {
-        refresh(null);
+        FileSystemObject fso = null;
+        // Try to restore the previous scroll position
+        try {
+            if (this.mAdapterView != null && this.mAdapter != null) {
+                int position = this.mAdapterView.getFirstVisiblePosition();
+                fso = this.mAdapter.getItem(position);
+            }
+        } catch (Throwable _throw) {/**NON BLOCK**/}
+        refresh(fso);
     }
 
     /**
@@ -924,7 +936,7 @@ public class NavigationView extends RelativeLayout implements
      * {@inheritDoc}
      */
     @Override
-    public String onRequestCurrentDirOfSelectionData() {
+    public String onRequestCurrentDir() {
         return this.mCurrentDir;
     }
 

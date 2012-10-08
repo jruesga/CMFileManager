@@ -518,7 +518,7 @@ public class FsoPropertiesDialog
                 }
 
                 @Override
-                public void onFailed() {
+                public void onFailed(Throwable cause) {
                     // Show the warning message
                     setMsg(FsoPropertiesDialog.this.mContext.getString(
                             R.string.fso_properties_failed_to_change_permission_msg));
@@ -626,7 +626,7 @@ public class FsoPropertiesDialog
                 }
 
                 @Override
-                public void onFailed() {
+                public void onFailed(Throwable cause) {
                     setMsg(txtMsg);
 
                     // Update the information of owner and group

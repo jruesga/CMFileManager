@@ -62,9 +62,9 @@ public interface OnSelectionListener {
     List<FileSystemObject> onRequestCurrentItems();
 
     /**
-     * Method that request the current directory of the selection info.
+     * Method that request the current directory.
      *
-     * @return String The current directory of the selection info.
+     * @return String The current directory.
      */
-    String onRequestCurrentDirOfSelectionData();
+    String onRequestCurrentDir();
 }

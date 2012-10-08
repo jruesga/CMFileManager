@@ -186,6 +186,7 @@
         android:layout_margin="@dimen/default_margin"
         android:gravity="left|center_vertical"
         android:singleLine="false"
+        android:maxLines="5"
         android:textAppearance="@style/secondary_text_appearance" />
     </TableRow>
 

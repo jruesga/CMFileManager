@@ -559,8 +559,9 @@ public class SearchActivity extends Activity
                     SearchActivity.this.mDialog =
                             new MessageProgressDialog(
                                     SearchActivity.this,
-                                    R.drawable.ic_holo_light_search, R.string.searching, label);
-                    // Initialize the 
+                                    R.drawable.ic_holo_light_search,
+                                    R.string.searching, label, true);
+                    // Initialize the
                     setProgressMsg(0);
 
                     // Set the cancel listener
@@ -1089,17 +1090,17 @@ public class SearchActivity extends Activity
 
     /**
      * Method that set the progress of the search
-     * 
+     *
      * @param progress The progress
      * @hide
      */
     void setProgressMsg(int progress) {
-        String msg = 
+        String msg =
                 getResources().getQuantityString(
                         R.plurals.search_found_items,
                         progress,
                         Integer.valueOf(progress));
-        SearchActivity.this.mDialog.setProgress(msg);
+        SearchActivity.this.mDialog.setProgress(Html.fromHtml(msg));
     }
 }
 

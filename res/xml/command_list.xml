@@ -39,7 +39,7 @@
   <command commandId="cd" commandPath="cd" commandArgs="%1$s" />
   <command commandId="chmod" commandPath="/system/bin/chmod" commandArgs="%1$s %2$s" />
   <command commandId="chown" commandPath="/system/bin/chown" commandArgs="%1$s.%2$s %3$s" />
-  <command commandId="cp" commandPath="/system/xbin/cp" commandArgs="-a %1$s %2$s" />
+  <command commandId="cp" commandPath="/system/xbin/cp" commandArgs="-af %1$s %2$s" />
   <command commandId="diskusage" commandPath="/system/bin/df" commandArgs="%1$s" />
   <command commandId="diskusageall" commandPath="/system/bin/df" commandArgs="" />
   <command commandId="dirname" commandPath="/system/xbin/dirname" commandArgs="%1$s" />
@@ -58,9 +58,9 @@
   <command commandId="pid_cmd" commandPath="/system/bin/ps" commandArgs="| /system/xbin/grep %1$s | /system/xbin/grep -w %2$s | /system/xbin/awk '{print $2}'" />
   <command commandId="pwd" commandPath="/system/xbin/pwd" commandArgs="-P" />
   <command commandId="quickfoldersearch" commandPath="/system/bin/ls" commandArgs="-aFd %1$s.* %1$s* | /system/xbin/grep -e '^d' -e '^ld' | /system/xbin/awk '{print $2}'" />
-  <command commandId="readlink" commandPath="cd" commandArgs="`/system/xbin/dirname %1$s` &amp;&amp; /system/xbin/readlink -f %1$s | /system/xbin/awk -F// '{print &quot;\\&quot;&quot;$1&quot;\\&quot;&quot;}' | /system/xbin/xargs -n1 /system/xbin/dirname &amp;&amp; /system/xbin/readlink -f %1$s | /system/xbin/awk -F// '{print &quot;\\&quot;&quot;$1&quot;\\&quot;&quot;}' | /system/xbin/xargs -n1 /system/bin/ls -ald" />
-  <command commandId="rm" commandPath="/system/bin/rm" commandArgs="%1$s" />
-  <command commandId="rmdir" commandPath="/system/bin/rm" commandArgs="-r %1$s" />
+  <command commandId="readlink" commandPath="cd" commandArgs="%2$s &amp;&amp; /system/xbin/readlink -f %1$s | /system/xbin/awk -F// '{print &quot;\\&quot;&quot;$1&quot;\\&quot;&quot;}' | /system/xbin/xargs -n1 /system/xbin/dirname &amp;&amp; /system/xbin/readlink -f %1$s | /system/xbin/awk -F// '{print &quot;\\&quot;&quot;$1&quot;\\&quot;&quot;}' | /system/xbin/xargs -n1 /system/bin/ls -ald" />
+  <command commandId="rm" commandPath="/system/bin/rm" commandArgs="-f %1$s" />
+  <command commandId="rmdir" commandPath="/system/bin/rm" commandArgs="-Rf %1$s" />
   <command commandId="touch" commandPath="/system/xbin/echo" commandArgs="-n '' >> %1$s" />
 
 </CommandList>

@@ -64,8 +64,10 @@ public final class ExceptionUtil {
 
         /**
          * Method invoked when the relaunch operation was failed
+         *
+         * @param cause The cause of the failed operation
          */
-        void onFailed();
+        void onFailed(Throwable cause);
     }
 
     /**
@@ -252,14 +254,9 @@ public final class ExceptionUtil {
 
             // Operation failed
             if (listener != null) {
-                listener.onFailed();
+                listener.onFailed(relaunchable);
             }
             return;
-        }
-
-        // Operation failed
-        if (listener != null) {
-            listener.onFailed();
         }
 
         //Create a yes/no dialog and ask the user
@@ -304,7 +301,7 @@ public final class ExceptionUtil {
 
                                     // Operation failed
                                     if (listener != null) {
-                                        listener.onFailed();
+                                        listener.onFailed(ex);
                                     }
                                 }
                             } else {

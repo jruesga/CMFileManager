@@ -42,6 +42,8 @@ import com.cyanogenmod.explorer.util.DialogHelper;
 import com.cyanogenmod.explorer.util.FileHelper;
 import com.cyanogenmod.explorer.util.SelectionHelper;
 
+import java.util.List;
+
 /**
  * A class that wraps a dialog for showing the list of actions that
  * the user can do.
@@ -68,8 +70,10 @@ public class ActionsDialog implements OnItemClickListener, OnItemLongClickListen
      * @hide
      */
     OnRequestRefreshListener mOnRequestRefreshListener;
-
-    private OnSelectionListener mOnSelectionListener;
+    /**
+     * @hide
+     */
+    OnSelectionListener mOnSelectionListener;
 
     /**
      * Constructor of <code>ActionsDialog</code>.
@@ -179,7 +183,10 @@ public class ActionsDialog implements OnItemClickListener, OnItemLongClickListen
             //- Delete
             case R.id.mnu_actions_delete:
                 ActionsPolicy.removeFileSystemObject(
-                        this.mContext, this.mFso, this.mOnRequestRefreshListener);
+                        this.mContext,
+                        this.mFso,
+                        this.mOnSelectionListener,
+                        this.mOnRequestRefreshListener);
                 break;
 
             //- Refresh
@@ -218,6 +225,18 @@ public class ActionsDialog implements OnItemClickListener, OnItemLongClickListen
             //- Send
             case R.id.mnu_actions_send:
                 ActionsPolicy.sendFileSystemObject(this.mContext, this.mFso);
+                break;
+
+            //- Create copy
+            case R.id.mnu_actions_create_copy:
+                // Create a copy of the fso
+                if (this.mOnSelectionListener != null) {
+                    ActionsPolicy.createCopyFileSystemObject(
+                                this.mContext,
+                                this.mFso,
+                                this.mOnSelectionListener,
+                                this.mOnRequestRefreshListener);
+                }
                 break;
 
             //- Add to bookmarks
@@ -311,11 +330,15 @@ public class ActionsDialog implements OnItemClickListener, OnItemLongClickListen
                     String name = inputNameDialog.getName();
                     switch (menuItem.getItemId()) {
                         case R.id.mnu_actions_rename:
-                            ActionsPolicy.renameFileSystemObject(
-                                    ActionsDialog.this.mContext,
-                                    ActionsDialog.this.mFso,
-                                    name,
-                                    ActionsDialog.this.mOnRequestRefreshListener);
+                            // Rename the fso
+                            if (ActionsDialog.this.mOnSelectionListener != null) {
+                                ActionsPolicy.renameFileSystemObject(
+                                        ActionsDialog.this.mContext,
+                                        ActionsDialog.this.mFso,
+                                        name,
+                                        ActionsDialog.this.mOnSelectionListener,
+                                        ActionsDialog.this.mOnRequestRefreshListener);
+                            }
                             break;
                         default:
                             break;
@@ -400,6 +423,20 @@ public class ActionsDialog implements OnItemClickListener, OnItemLongClickListen
         if (this.mFso != null && FileHelper.isRootDirectory(this.mFso)) {
             menu.removeItem(R.id.mnu_actions_add_to_bookmarks);
             menu.removeItem(R.id.mnu_actions_add_to_bookmarks_current_folder);
+        }
+
+        // Paste/Move only when have a selection
+        if (this.mGlobal) {
+            List<FileSystemObject> selection = null;
+            if (this.mOnSelectionListener != null) {
+                selection = this.mOnSelectionListener.onRequestSelectedFiles();
+            }
+            if (selection == null || selection.size() == 0 ||
+                    (this.mFso != null && !FileHelper.isDirectory(this.mFso))) {
+                // Remove paste/move actions
+                menu.removeItem(R.id.mnu_actions_paste_selection);
+                menu.removeItem(R.id.mnu_actions_move_selection);
+            }
         }
     }
 }

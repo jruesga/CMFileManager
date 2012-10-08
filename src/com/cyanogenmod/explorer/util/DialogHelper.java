@@ -50,6 +50,17 @@ public final class DialogHelper {
      * @return AlertDialog The alert dialog reference
      */
     public static AlertDialog createWarningDialog(Context context, int message) {
+        return createWarningDialog(context, context.getString(message));
+    }
+
+    /**
+     * Method that creates a new warning {@link AlertDialog}.
+     *
+     * @param context The current context
+     * @param message The message of the alert dialog
+     * @return AlertDialog The alert dialog reference
+     */
+    public static AlertDialog createWarningDialog(Context context, String message) {
         return createAlertDialog(
                 context,
                 R.drawable.ic_holo_light_warning,
@@ -65,6 +76,17 @@ public final class DialogHelper {
      * @return AlertDialog The alert dialog reference
      */
     public static AlertDialog createErrorDialog(Context context, int message) {
+        return createErrorDialog(context, context.getString(message));
+    }
+
+    /**
+     * Method that creates a new error {@link AlertDialog}.
+     *
+     * @param context The current context
+     * @param message The message of the alert dialog
+     * @return AlertDialog The alert dialog reference
+     */
+    public static AlertDialog createErrorDialog(Context context, String message) {
         return createAlertDialog(
                 context,
                 R.drawable.ic_holo_light_error,
@@ -81,7 +103,22 @@ public final class DialogHelper {
      * @param message The resource identifier of the message of the alert dialog
      * @return AlertDialog The alert dialog reference
      */
-    public static AlertDialog createAlertDialog(Context context, int icon, int title, int message) {
+    public static AlertDialog createAlertDialog(
+            Context context, int icon, int title, int message) {
+        return createAlertDialog(context, icon, title, context.getString(message));
+    }
+
+    /**
+     * Method that creates a new {@link AlertDialog}.
+     *
+     * @param context The current context
+     * @param icon The icon resource
+     * @param title The resource identifier of the title of the alert dialog
+     * @param message The message of the alert dialog
+     * @return AlertDialog The alert dialog reference
+     */
+    public static AlertDialog createAlertDialog(
+            Context context, int icon, int title, String message) {
         //Create the alert dialog
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         builder.setCustomTitle(createTitle(context, icon, context.getString(title)));
@@ -100,6 +137,19 @@ public final class DialogHelper {
      */
     public static AlertDialog createYesNoDialog(
             Context context, int message, OnClickListener onClickListener) {
+        return createYesNoDialog(context, context.getString(message), onClickListener);
+    }
+
+    /**
+     * Method that creates a new YES/NO {@link AlertDialog}.
+     *
+     * @param context The current context
+     * @param message The message of the alert dialog
+     * @param onClickListener The listener where returns the button pressed
+     * @return AlertDialog The alert dialog reference
+     */
+    public static AlertDialog createYesNoDialog(
+            Context context, String message, OnClickListener onClickListener) {
         //Create the alert dialog
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         builder.setCustomTitle(
@@ -113,6 +163,108 @@ public final class DialogHelper {
                 DialogInterface.BUTTON_POSITIVE, context.getString(R.string.yes), onClickListener);
         dialog.setButton(
                 DialogInterface.BUTTON_NEGATIVE, context.getString(R.string.no), onClickListener);
+        return dialog;
+    }
+
+    /**
+     * Method that creates a new YES/ALL/NO {@link AlertDialog}.
+     *
+     * @param context The current context
+     * @param message The resource identifier of the message of the alert dialog
+     * @param onClickListener The listener where returns the button pressed
+     * @return AlertDialog The alert dialog reference
+     */
+    public static AlertDialog createYesNoAllDialog(
+            Context context, int message, OnClickListener onClickListener) {
+        return createYesNoAllDialog(context, context.getString(message), onClickListener);
+    }
+
+    /**
+     * Method that creates a new YES/ALL/NO {@link AlertDialog}.
+     *
+     * @param context The current context
+     * @param message The message of the alert dialog
+     * @param onClickListener The listener where returns the button pressed
+     * @return AlertDialog The alert dialog reference
+     */
+    public static AlertDialog createYesNoAllDialog(
+            Context context, String message, OnClickListener onClickListener) {
+        //Create the alert dialog
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        builder.setCustomTitle(
+                createTitle(
+                        context,
+                        R.drawable.ic_holo_light_question,
+                        context.getString(R.string.title_question)));
+        builder.setView(createMessage(context, message));
+        AlertDialog dialog = builder.create();
+        dialog.setButton(
+                DialogInterface.BUTTON_POSITIVE, context.getString(R.string.yes), onClickListener);
+        dialog.setButton(
+                DialogInterface.BUTTON_NEGATIVE, context.getString(R.string.no), onClickListener);
+        dialog.setButton(
+                DialogInterface.BUTTON_NEUTRAL, context.getString(R.string.all), onClickListener);
+        return dialog;
+    }
+
+    /**
+     * Method that creates a two buttons question {@link AlertDialog}.
+     *
+     * @param context The current context
+     * @param button1 The resource identifier of the text of the button 1 (POSITIVE)
+     * @param button2 The resource identifier of the text of the button 2 (NEGATIVE)
+     * @param message The message of the alert dialog
+     * @param onClickListener The listener where returns the button pressed
+     * @return AlertDialog The alert dialog reference
+     */
+    public static AlertDialog createTwoButtonsQuestionDialog(
+            Context context, int button1, int button2,
+            String message, OnClickListener onClickListener) {
+        //Create the alert dialog
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        builder.setCustomTitle(
+                createTitle(
+                        context,
+                        R.drawable.ic_holo_light_question,
+                        context.getString(R.string.title_question)));
+        builder.setView(createMessage(context, message));
+        AlertDialog dialog = builder.create();
+        dialog.setButton(
+                DialogInterface.BUTTON_POSITIVE, context.getString(button1), onClickListener);
+        dialog.setButton(
+                DialogInterface.BUTTON_NEGATIVE, context.getString(button2), onClickListener);
+        return dialog;
+    }
+
+    /**
+     * Method that creates a three buttons question {@link AlertDialog}.
+     *
+     * @param context The current context
+     * @param button1 The resource identifier of the text of the button 1 (POSITIVE)
+     * @param button2 The resource identifier of the text of the button 2 (NEUTRAL)
+     * @param button3 The resource identifier of the text of the button 3 (NEGATIVE)
+     * @param message The message of the alert dialog
+     * @param onClickListener The listener where returns the button pressed
+     * @return AlertDialog The alert dialog reference
+     */
+    public static AlertDialog createThreeButtonsQuestionDialog(
+            Context context, int button1, int button2, int button3,
+            String message, OnClickListener onClickListener) {
+        //Create the alert dialog
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        builder.setCustomTitle(
+                createTitle(
+                        context,
+                        R.drawable.ic_holo_light_question,
+                        context.getString(R.string.title_question)));
+        builder.setView(createMessage(context, message));
+        AlertDialog dialog = builder.create();
+        dialog.setButton(
+                DialogInterface.BUTTON_POSITIVE, context.getString(button1), onClickListener);
+        dialog.setButton(
+                DialogInterface.BUTTON_NEUTRAL, context.getString(button2), onClickListener);
+        dialog.setButton(
+                DialogInterface.BUTTON_NEGATIVE, context.getString(button3), onClickListener);
         return dialog;
     }
 
@@ -178,10 +330,10 @@ public final class DialogHelper {
      * Method that creates and returns the title of the dialog.
      *
      * @param context The current context
-     * @param message The resource identifier of the message of the alert dialog
+     * @param message The the message of the alert dialog
      * @return The title view
      */
-    private static View createMessage(Context context, int message) {
+    private static View createMessage(Context context, String message) {
         //Inflate the dialog layouts
         LayoutInflater li =
                 (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);

@@ -203,6 +203,28 @@ public final class FileHelper {
     }
 
     /**
+     * Method that returns the name without the extension of a file system object.
+     *
+     * @param fso The file system object
+     * @return The name without the extension of the file system object.
+     */
+    public static String getName(FileSystemObject fso) {
+        return getName(fso.getName());
+    }
+
+    /**
+     * Method that returns the name without the extension of a file system object.
+     *
+     * @param name The name of file system object
+     * @return The name without the extension of the file system object.
+     */
+    public static String getName(String name) {
+       String ext = getExtension(name);
+       if (ext == null) return name;
+       return name.substring(0, name.length() - ext.length() - 1);
+    }
+
+    /**
      * Method that returns the extension of a file system object.
      *
      * @param fso The file system object
@@ -216,17 +238,17 @@ public final class FileHelper {
     /**
      * Method that returns the extension of a file system object.
      *
-     * @param fso The file system object
+     * @param name The name of file system object
      * @return The extension of the file system object, or <code>null</code>
      * if <code>fso</code> has no extension.
      */
-    public static String getExtension(String fso) {
+    public static String getExtension(String name) {
         final char dot = '.';
-        int pos = fso.lastIndexOf(dot);
-        if (pos == -1) {
+        int pos = name.lastIndexOf(dot);
+        if (pos == -1 || pos == 0) { // Hidden files doesn't have extensions
             return null;
         }
-        return fso.substring(pos + 1);
+        return name.substring(pos + 1);
     }
 
     /**
@@ -609,4 +631,48 @@ public final class FileHelper {
         return path;
     }
 
+    /**
+     * Method that creates a new name based on the name of the {@link FileSystemObject}
+     * that is not current used by the filesystem.
+     *
+     * @param ctx The current context
+     * @param files The list of files of the current directory
+     * @param fso The file system object
+     * @return String The new non-existing name
+     */
+    public static String createNonExistingName(
+            final Context ctx, final List<FileSystemObject> files, final FileSystemObject fso) {
+        // Find a non-exiting name
+        String newName = fso.getName();
+        do {
+            String name  = FileHelper.getName(newName);
+            String ext  = FileHelper.getExtension(newName);
+            if (ext == null) {
+                ext = ""; //$NON-NLS-1$
+            } else {
+                ext = String.format(".%s", ext); //$NON-NLS-1$
+            }
+            newName = ctx.getString(R.string.create_copy_regexp, name, ext);
+        } while (isNameExists(files, newName));
+        return newName;
+    }
+
+    /**
+     * Method that checks if a name exists in the current directory.
+     *
+     * @param files The list of files of the current directory
+     * @param name The name to check
+     * @return boolean Indicate if the name exists in the current directory
+     */
+    public static boolean isNameExists(List<FileSystemObject> files, String name) {
+        //Verify if the name exists in the current file list
+        int cc = files.size();
+        for (int i = 0; i < cc; i++) {
+            FileSystemObject fso = files.get(i);
+            if (fso.getName().compareTo(name) == 0) {
+                return true;
+            }
+        }
+        return false;
+    }
 }

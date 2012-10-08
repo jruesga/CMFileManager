@@ -22,6 +22,7 @@ import android.app.AlertDialog;
 import android.app.SearchManager;
 import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.ActivityInfo;
@@ -428,12 +429,27 @@ public class NavigationActivity extends Activity
                         throw new ConsoleAllocException("console == null"); //$NON-NLS-1$
                     }
                 } catch (Throwable ex) {
-                    //Show exception and exists
-                    Log.e(TAG, getString(R.string.msgs_cant_create_console), ex);
-                    DialogHelper.showToast(
-                            NavigationActivity.this,
-                            R.string.msgs_cant_create_console, Toast.LENGTH_LONG);
-                    finish();
+                    boolean allowConsoleSelection = Preferences.getSharedPreferences().getBoolean(
+                            ExplorerSettings.SETTINGS_ALLOW_CONSOLE_SELECTION.getId(),
+                            ((Boolean)ExplorerSettings.
+                                    SETTINGS_ALLOW_CONSOLE_SELECTION.
+                                        getDefaultValue()).booleanValue());
+                    if (allowConsoleSelection) {
+                        //Show exception and exists
+                        Log.e(TAG, getString(R.string.msgs_cant_create_console), ex);
+                        // We don't have any console
+                        // Show exception and exists
+                        DialogHelper.showToast(
+                                NavigationActivity.this,
+                                R.string.msgs_cant_create_console, Toast.LENGTH_LONG);
+                        finish();
+                        return;
+                    }
+
+                    // We are in a trouble (something is not allowing su console)
+                    // Ask the user to return to Advanced Console Selection with
+                    // Non-privileged console prior to make crash the application
+                    askOrExit();
                     return;
                 }
 
@@ -1210,6 +1226,55 @@ public class NavigationActivity extends Activity
                 }
             }
         }
+    }
+
+    /**
+     * Method that ask the user to change to to advanced console
+     * @hide
+     */
+    void askOrExit() {
+        //Show a dialog asking the user
+        AlertDialog dialog =
+            DialogHelper.createYesNoDialog(
+                this, R.string.msgs_change_to_advanced_console_selection,
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface alertDialog, int which) {
+                        if (which == DialogInterface.BUTTON_NEGATIVE) {
+                            // We don't have any console
+                            // Show exception and exists
+                            DialogHelper.showToast(
+                                    NavigationActivity.this,
+                                    R.string.msgs_cant_create_console, Toast.LENGTH_LONG);
+                            finish();
+                            return;
+                        }
+
+                        // Ok. Now try to change to advanced selection console. Any crash
+                        // here is a fatal error. We don't have any console
+                        try {
+                            // Change console
+                            ConsoleBuilder.changeToNonPrivilegedConsole(NavigationActivity.this);
+
+                            // Save preferences
+                            Preferences.savePreference(
+                                    ExplorerSettings.SETTINGS_ALLOW_CONSOLE_SELECTION,
+                                    Boolean.TRUE, true);
+                            Preferences.savePreference(
+                                    ExplorerSettings.SETTINGS_SUPERUSER_MODE,
+                                    Boolean.FALSE, true);
+
+                        } catch (Exception e) {
+                            //Show exception and exists
+                            Log.e(TAG, getString(R.string.msgs_cant_create_console), e);
+                            DialogHelper.showToast(
+                                    NavigationActivity.this,
+                                    R.string.msgs_cant_create_console, Toast.LENGTH_LONG);
+                            finish();
+                        }
+                    }
+               });
+        dialog.show();
     }
 
 }

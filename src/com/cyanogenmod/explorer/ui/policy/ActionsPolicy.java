@@ -50,6 +50,8 @@ import com.cyanogenmod.explorer.util.MimeTypeHelper;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 
@@ -596,13 +598,21 @@ public final class ActionsPolicy {
                 return;
             }
         }
+        // 2.- Sort the items by path to avoid delete parents fso prior to child fso
+        final List<FileSystemObject> sortedFsos  = new ArrayList<FileSystemObject>(files);
+        Collections.sort(sortedFsos, new Comparator<FileSystemObject>() {
+            @Override
+            public int compare(FileSystemObject lhs, FileSystemObject rhs) {
+                return lhs.compareTo(rhs) * -1; //Reverse
+            }
+        });
 
         // The callable interface
         final BackgroundCallable callable = new BackgroundCallable() {
             // The current items
             private int mCurrent = 0;
             final Context mCtx = ctx;
-            final List<FileSystemObject> mFiles = files;
+            final List<FileSystemObject> mFiles = sortedFsos;
             final OnRequestRefreshListener mOnRequestRefreshListener = onRequestRefreshListener;
 
             final Object mSync = new Object();

@@ -1125,6 +1125,8 @@ public class NavigationActivity extends Activity
                     ExceptionUtil.translateException(this, e, true, false);
                     this.mHistory.remove(this.mHistory.size() - 1);
                 }
+            } else {
+                break;
             }
         }
 

@@ -490,7 +490,7 @@ public final class ActionsPolicy {
             if (onRequestRefreshListener != null) {
                 FileSystemObject fso = null;
                 try {
-                    fso = CommandHelper.getFileInfo(ctx, newName, null);
+                    fso = CommandHelper.getFileInfo(ctx, newName, false, null);
                 } catch (Throwable ex2) {
                     /**NON BLOCK**/
                 }
@@ -511,7 +511,7 @@ public final class ActionsPolicy {
                             FileSystemObject fso = null;
                             try {
                                 fso =
-                                    CommandHelper.getFileInfo(ctx, newName, null);
+                                    CommandHelper.getFileInfo(ctx, newName, false, null);
                             } catch (Throwable ex2) {
                                 /**NON BLOCK**/
                             }
@@ -739,7 +739,7 @@ public final class ActionsPolicy {
                 // Check that the operation was completed retrieving the deleted fso
                 boolean failed = false;
                 try {
-                    CommandHelper.getFileInfo(ctx, fso.getFullPath(), null);
+                    CommandHelper.getFileInfo(ctx, fso.getFullPath(), false, null);
 
                     // Failed. The file still exists
                     failed = true;
@@ -1071,7 +1071,7 @@ public final class ActionsPolicy {
                 }
 
                 // Check that the operation was completed retrieving the fso modified
-                CommandHelper.getFileInfo(ctx, dst.getAbsolutePath(), null);
+                CommandHelper.getFileInfo(ctx, dst.getAbsolutePath(), false, null);
             }
         };
         final BackgroundAsyncTask task = new BackgroundAsyncTask(ctx, callable);

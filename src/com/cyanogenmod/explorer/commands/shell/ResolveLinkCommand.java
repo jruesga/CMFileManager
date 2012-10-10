@@ -47,7 +47,7 @@ public class ResolveLinkCommand extends SyncResultProgram implements ResolveLink
      * @throws InvalidCommandDefinitionException If the command has an invalid definition
      */
     public ResolveLinkCommand(String src) throws InvalidCommandDefinitionException {
-        super(ID, src, new File(src).getAbsolutePath());
+        super(ID, src, new File(src).getParentFile().getAbsolutePath());
     }
 
     /**

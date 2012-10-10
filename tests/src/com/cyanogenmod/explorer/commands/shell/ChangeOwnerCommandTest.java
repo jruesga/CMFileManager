@@ -49,7 +49,7 @@ public class ChangeOwnerCommandTest extends AbstractConsoleTest {
             //Create and list the file
             CommandHelper.createFile(getContext(), PATH_FILE, getConsole());
             FileSystemObject file =
-                    CommandHelper.getFileInfo(getContext(), PATH_FILE, getConsole());
+                    CommandHelper.getFileInfo(getContext(), PATH_FILE, false, getConsole());
 
             //Change the permissions
             User oldUser = file.getUser();
@@ -60,7 +60,7 @@ public class ChangeOwnerCommandTest extends AbstractConsoleTest {
             assertTrue("response==false", ret); //$NON-NLS-1$
 
             //List the file again
-            file = CommandHelper.getFileInfo(getContext(), PATH_FILE, getConsole());
+            file = CommandHelper.getFileInfo(getContext(), PATH_FILE, false, getConsole());
             Group lsGroup = file.getGroup();
             assertTrue("set group!=list group",  //$NON-NLS-1$
                     newGroup.getName().compareTo(lsGroup.getName()) == 0);

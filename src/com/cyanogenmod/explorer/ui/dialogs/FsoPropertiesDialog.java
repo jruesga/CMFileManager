@@ -245,7 +245,11 @@ public class FsoPropertiesDialog
         tvType.setText(MimeTypeHelper.getMimeTypeDescription(this.mContext, this.mFso));
         if (this.mFso instanceof Symlink) {
             Symlink link = (Symlink)this.mFso;
-            tvLink.setText(link.getLinkRef().getFullPath());
+            if (link.getLinkRef() != null) {
+                tvLink.setText(link.getLinkRef().getFullPath());
+            } else {
+                tvLink.setText("-"); //$NON-NLS-1$
+            }
         }
         vLinkRow.setVisibility(this.mFso instanceof Symlink ? View.VISIBLE : View.GONE);
         String size = FileHelper.getHumanReadableSize(this.mFso);
@@ -475,7 +479,8 @@ public class FsoPropertiesDialog
             // ensure that the permission was changed
             try {
                 FileSystemObject systemFso  =
-                        CommandHelper.getFileInfo(this.mContext, this.mFso.getFullPath(), null);
+                        CommandHelper.getFileInfo(
+                                this.mContext, this.mFso.getFullPath(), false, null);
                 if (systemFso == null || systemFso.getPermissions().compareTo(permissions) != 0) {
                     // Show the warning message
                     setMsg(FsoPropertiesDialog.this.mContext.getString(

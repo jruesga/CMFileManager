@@ -204,12 +204,23 @@ public interface ExecutableCreator {
      * Method that creates an executable for list files of a directory.
      *
      * @param src The directory where to do the listing
-     * @param mode The listing mode
      * @return ListExecutable A {@link ListExecutable} executable implementation reference
      * @throws CommandNotFoundException If the executable can't be created
      * @see LIST_MODE
      */
-    ListExecutable createListExecutable(String src, LIST_MODE mode)
+    ListExecutable createListExecutable(String src)
+            throws CommandNotFoundException;
+
+    /**
+     * Method that creates an executable for retrieve information of a file
+     *
+     * @param src The directory where to do the listing
+     * @param followSymlinks If follow the symlink
+     * @return ListExecutable A {@link ListExecutable} executable implementation reference
+     * @throws CommandNotFoundException If the executable can't be created
+     * @see LIST_MODE
+     */
+    ListExecutable createFileInfoExecutable(String src, boolean followSymlinks)
             throws CommandNotFoundException;
 
     /**

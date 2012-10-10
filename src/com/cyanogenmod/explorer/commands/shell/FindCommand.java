@@ -144,6 +144,12 @@ public class FindCommand extends AsyncResultProgram implements FindExecutable {
                         // Don't return the directory of the search. Only files under this
                         // directory
                         if (this.mDirectory.compareTo(fso.getFullPath()) != 0) {
+                            String name = new File(lines.get(0)).getName();
+                            // In some situations, xe when the name has a -> the name is
+                            // incorrect resolved, but src name should by fine in this case
+                            fso.setName(name);
+                            // The symlink is not resolved here
+
                             this.mFiles.add(fso);
                             partialFiles.add(fso);
                         }

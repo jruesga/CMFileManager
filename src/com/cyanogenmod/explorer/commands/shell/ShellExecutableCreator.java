@@ -34,7 +34,6 @@ import com.cyanogenmod.explorer.commands.FolderUsageExecutable;
 import com.cyanogenmod.explorer.commands.GroupsExecutable;
 import com.cyanogenmod.explorer.commands.IdentityExecutable;
 import com.cyanogenmod.explorer.commands.ListExecutable;
-import com.cyanogenmod.explorer.commands.ListExecutable.LIST_MODE;
 import com.cyanogenmod.explorer.commands.MountExecutable;
 import com.cyanogenmod.explorer.commands.MountPointInfoExecutable;
 import com.cyanogenmod.explorer.commands.MoveExecutable;
@@ -276,12 +275,25 @@ public class ShellExecutableCreator implements ExecutableCreator {
      * {@inheritDoc}
      */
     @Override
-    public ListExecutable createListExecutable(String src, LIST_MODE mode)
+    public ListExecutable createListExecutable(String src)
             throws CommandNotFoundException {
         try {
-            return new ListCommand(src, mode, this.mConsole);
+            return new ListCommand(src, this.mConsole);
         } catch (Throwable throwEx) {
-            throw new CommandNotFoundException("ListCommand", throwEx); //$NON-NLS-1$
+            throw new CommandNotFoundException("ListCommand (DIRECTORY)", throwEx); //$NON-NLS-1$
+        }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public ListExecutable createFileInfoExecutable(String src, boolean followSymlinks)
+            throws CommandNotFoundException {
+        try {
+            return new ListCommand(src, followSymlinks, this.mConsole);
+        } catch (Throwable throwEx) {
+            throw new CommandNotFoundException("ListCommand (FILEINFO)", throwEx); //$NON-NLS-1$
         }
     }
 

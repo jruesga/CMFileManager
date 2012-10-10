@@ -18,7 +18,6 @@ package com.cyanogenmod.explorer.commands.shell;
 
 import java.util.List;
 
-import com.cyanogenmod.explorer.commands.ListExecutable.LIST_MODE;
 import com.cyanogenmod.explorer.model.BlockDevice;
 import com.cyanogenmod.explorer.model.CharacterDevice;
 import com.cyanogenmod.explorer.model.Directory;
@@ -81,7 +80,7 @@ public class ListCommandTest extends AbstractConsoleTest {
      * {@link ListCommand#parse(String, String)}
      */
     public void testParse() throws Exception {
-        ListCommand cmd = new ListCommand(LS_PATH, LIST_MODE.DIRECTORY, getConsole());
+        ListCommand cmd = new ListCommand(LS_PATH, getConsole());
         String in =
             "drwxr-xr-x root     root              2012-05-04 01:51 acct\n" + //$NON-NLS-1$
             "-rw-r--r-- root     root2         229 2012-05-04 01:51 boot.txt\n" + //$NON-NLS-1$

@@ -1154,7 +1154,7 @@ public class NavigationActivity extends Activity
         // Prior to show the dialog, refresh the item reference
         FileSystemObject fso = null;
         try {
-            fso = CommandHelper.getFileInfo(this, path, null);
+            fso = CommandHelper.getFileInfo(this, path, false, null);
 
         } catch (Exception e) {
             // Notify the user

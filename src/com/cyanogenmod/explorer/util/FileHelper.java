@@ -545,9 +545,9 @@ public final class FileHelper {
         for (int i = 0; i < cc; i++) {
             FileSystemObject fso = files.get(i);
             if (fso instanceof Symlink && ((Symlink)fso).getLinkRef() == null) {
-                String link = ((Symlink)fso).getLink();
                 try {
-                    FileSystemObject symlink = CommandHelper.getFileInfo(context, link, null);
+                    FileSystemObject symlink =
+                            CommandHelper.resolveSymlink(context, fso.getFullPath(), null);
                     ((Symlink)fso).setLinkRef(symlink);
                 } catch (Throwable ex) {/**NON BLOCK**/}
             }

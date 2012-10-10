@@ -851,7 +851,7 @@ public class SearchActivity extends Activity
         // Prior to show the dialog, refresh the item reference
         FileSystemObject fso = null;
         try {
-            fso = CommandHelper.getFileInfo(this, item.getFullPath(), null);
+            fso = CommandHelper.getFileInfo(this, item.getFullPath(), false, null);
 
         } catch (Exception e) {
             // Notify the user

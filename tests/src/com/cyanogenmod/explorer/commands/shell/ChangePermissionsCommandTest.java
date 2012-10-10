@@ -47,7 +47,7 @@ public class ChangePermissionsCommandTest extends AbstractConsoleTest {
             //Create and list the file
             CommandHelper.createFile(getContext(), PATH_FILE, getConsole());
             FileSystemObject file =
-                    CommandHelper.getFileInfo(getContext(), PATH_FILE, getConsole());
+                    CommandHelper.getFileInfo(getContext(), PATH_FILE, false, getConsole());
 
             //Change the permissions
             Permissions oldpermissions = file.getPermissions();
@@ -60,7 +60,7 @@ public class ChangePermissionsCommandTest extends AbstractConsoleTest {
             assertTrue("response==false", ret); //$NON-NLS-1$
 
             //List the files again
-            file = CommandHelper.getFileInfo(getContext(), PATH_FILE, getConsole());
+            file = CommandHelper.getFileInfo(getContext(), PATH_FILE, false, getConsole());
             Permissions newpermissions = file.getPermissions();
             String newOctalPermissions = newpermissions.toOctalString();
             assertTrue("newpermissions==oldpermissions",  //$NON-NLS-1$

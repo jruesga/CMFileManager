@@ -139,9 +139,15 @@ public class ListCommand extends SyncResultProgram implements ListExecutable {
 
         //Get the absolute path
         try {
-            this.mParentDir =
-                    FileHelper.removeTrailingSlash(
-                            new File(src).getCanonicalFile().getParent());
+            if (followSymlinks) {
+                this.mParentDir =
+                        FileHelper.removeTrailingSlash(
+                                new File(src).getCanonicalFile().getParent());
+            } else {
+                this.mParentDir =
+                        FileHelper.removeTrailingSlash(
+                                new File(src).getAbsoluteFile().getParent());
+            }
 
         } catch (Exception e) {
             // Try to resolve from a console
@@ -216,12 +222,26 @@ public class ListCommand extends SyncResultProgram implements ListExecutable {
                         szLine = br.readLine();
                         line++;
 
-                        //The next information is known:  symlinksCount * 2
+                        //The next information is known:  symlinksCount * 3
+                        String[] name = new String[symlinksCount];
                         String[] absPath = new String[symlinksCount];
                         String[] refPath = new String[symlinksCount];
                         for (int i = 0; i < symlinksCount; i++) {
                             if (szLine == null || szLine.trim().length() == 0) {
+                                name[i] = null;
+                                szLine = br.readLine();
+                                line++;
+                                continue;
+                            }
+                            name[i] = szLine;
+                            szLine = br.readLine();
+                            line++;
+                        }
+                        for (int i = 0; i < symlinksCount; i++) {
+                            if (szLine == null || szLine.trim().length() == 0) {
                                 absPath[i] = null;
+                                szLine = br.readLine();
+                                line++;
                                 continue;
                             }
                             absPath[i] = szLine;
@@ -231,11 +251,34 @@ public class ListCommand extends SyncResultProgram implements ListExecutable {
                         for (int i = 0; i < symlinksCount; i++) {
                             if (szLine == null || szLine.trim().length() == 0) {
                                 refPath[i] = null;
+                                szLine = br.readLine();
+                                line++;
                                 continue;
                             }
                             refPath[i] = szLine;
                             szLine = br.readLine();
                             line++;
+                        }
+
+                        //Fill the parent if is null
+                        for (int i = 0; i < symlinksCount; i++) {
+                            Symlink symLink =
+                                    ((Symlink)this.mFiles.get(
+                                            this.mFiles.size() - symlinksCount + i));
+                            if (symLink.getParent() == null) {
+                                symLink.setParent(FileHelper.ROOT_DIRECTORY);
+                            }
+                        }
+
+                        // Symlink can cause incoherences in the name because "->" string
+                        // Now, we have the real name of the symlink
+                        for (int i = 0; i < symlinksCount; i++) {
+                            if (name[i] != null) {
+                                Symlink symLink =
+                                        ((Symlink)this.mFiles.get(
+                                                this.mFiles.size() - symlinksCount + i));
+                                symLink.setName(name[i]);
+                            }
                         }
 
                         //Fill the data
@@ -245,12 +288,13 @@ public class ListCommand extends SyncResultProgram implements ListExecutable {
                                     Symlink symLink =
                                             ((Symlink)this.mFiles.get(
                                                     this.mFiles.size() - symlinksCount + i));
-                                    String name = new File(absPath[i]).getName();
-                                    symLink.setName(name);
-                                    String parent = new File(absPath[i]).getParent();
+                                    String parentLink = new File(absPath[i]).getParent();
+                                    if (parentLink == null) {
+                                        parentLink = FileHelper.ROOT_DIRECTORY;
+                                    }
                                     String info = refPath[i];
                                     FileSystemObject fsoRef =
-                                            ParseHelper.toFileSystemObject(parent, info);
+                                            ParseHelper.toFileSystemObject(parentLink, info);
                                     symLink.setLinkRef(fsoRef);
                                 }
                             } catch (Throwable ex) {
@@ -264,10 +308,10 @@ public class ListCommand extends SyncResultProgram implements ListExecutable {
                     //Add the symlink
                     try {
                         this.mFiles.add(ParseHelper.toFileSystemObject(this.mParentDir, szLine));
+                        symlinksCount++;
                     } catch (ParseException pEx) {
                         throw new ParseException(pEx.getMessage(), line);
                     }
-                    symlinksCount++;
                 }
 
                 line++;

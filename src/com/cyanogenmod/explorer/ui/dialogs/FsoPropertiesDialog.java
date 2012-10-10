@@ -362,8 +362,16 @@ public class FsoPropertiesDialog
      */
     private void computeFolderUsage() {
         try {
-            this.mFolderUsageExecutable =
-                CommandHelper.getFolderUsage(this.mContext, this.mFso.getFullPath(), this, null);
+            if (this.mFso instanceof Symlink && ((Symlink) this.mFso).getLinkRef() != null) {
+                this.mFolderUsageExecutable =
+                        CommandHelper.getFolderUsage(
+                                this.mContext, 
+                                ((Symlink) this.mFso).getLinkRef().getFullPath(), this, null);
+            } else {
+                this.mFolderUsageExecutable =
+                    CommandHelper.getFolderUsage(
+                            this.mContext, this.mFso.getFullPath(), this, null);
+            }
         } catch (Exception cause) {
             //Capture the exception
             ExceptionUtil.translateException(this.mContext, cause, true, false);

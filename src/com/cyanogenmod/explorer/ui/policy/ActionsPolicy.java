@@ -136,7 +136,7 @@ public final class ActionsPolicy {
      * @see BackgroundCallable
      */
     private static class BackgroundAsyncTask
-            extends AsyncTask<Object, Void, Throwable> {
+            extends AsyncTask<Object, Spanned, Throwable> {
 
         private final Context mCtx;
         private final BackgroundCallable mCallable;
@@ -196,12 +196,17 @@ public final class ActionsPolicy {
             }
         }
 
+        @Override
+        protected void onProgressUpdate(Spanned... values) {
+            this.mDialog.setProgress(values[0]);
+        }
+
         /**
          * @hide
          */
         void onRequestProgress() {
-            Spanned progress = this.mCallable.requestProgress();
-            this.mDialog.setProgress(progress);
+            Spanned mProgress = this.mCallable.requestProgress();
+            publishProgress(mProgress);
         }
     }
 

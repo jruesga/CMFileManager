@@ -226,6 +226,20 @@ public class ActionsDialog implements OnItemClickListener, OnItemLongClickListen
             case R.id.mnu_actions_send:
                 ActionsPolicy.sendFileSystemObject(this.mContext, this.mFso);
                 break;
+                
+
+            // Delete selection
+            case R.id.mnu_actions_delete_selection:
+                if (this.mOnSelectionListener != null) {
+                    List<FileSystemObject> selection =
+                            this.mOnSelectionListener.onRequestSelectedFiles();
+                    ActionsPolicy.removeFileSystemObjects(
+                            this.mContext,
+                            selection,
+                            this.mOnSelectionListener,
+                            this.mOnRequestRefreshListener);
+                }
+                break;
 
             //- Create copy
             case R.id.mnu_actions_create_copy:
@@ -436,6 +450,7 @@ public class ActionsDialog implements OnItemClickListener, OnItemLongClickListen
                 // Remove paste/move actions
                 menu.removeItem(R.id.mnu_actions_paste_selection);
                 menu.removeItem(R.id.mnu_actions_move_selection);
+                menu.removeItem(R.id.mnu_actions_delete_selection);
             }
         }
     }

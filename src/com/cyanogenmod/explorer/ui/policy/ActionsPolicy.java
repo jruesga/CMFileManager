@@ -499,7 +499,7 @@ public final class ActionsPolicy {
                 } catch (Throwable ex2) {
                     /**NON BLOCK**/
                 }
-                onRequestRefreshListener.onRequestRefresh(null);
+                onRequestRefreshListener.onRequestRefresh(fso);
             }
 
         } catch (Throwable ex) {
@@ -520,7 +520,7 @@ public final class ActionsPolicy {
                             } catch (Throwable ex2) {
                                 /**NON BLOCK**/
                             }
-                            onRequestRefreshListener.onRequestRefresh(null);
+                            onRequestRefreshListener.onRequestRefresh(fso);
                         }
                         return Boolean.TRUE;
                     }

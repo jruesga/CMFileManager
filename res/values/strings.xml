@@ -151,6 +151,10 @@
 
   <!-- The parent directory of the current directory in navigation view -->
   <string name="parent_dir">Parent Directory</string>
+  <!-- External Storage descripton -->
+  <string name="external_storage">External storage</string>
+  <!-- Usb Storage descripton -->
+  <string name="usb_storage">Usb storage</string>
 
   <!-- ActionBar Buttons > FileSystem -->
   <string name="actionbar_button_filesystem_cd">Filesystem info</string>
@@ -351,8 +355,6 @@
   <string name="bookmarks_root_folder">Root folder</string>
   <!-- Bookmark name * System folder -->
   <string name="bookmarks_system_folder">System folder</string>
-  <!-- Bookmark name * External Storage -->
-  <string name="bookmarks_external_storage">External storage</string>
   <!-- Bookmark name * Button * Initial directory content description -->
   <string name="bookmarks_button_config_cd">Set the initial directory</string>
   <!-- Bookmark name * Button * Remove bookmark content description -->

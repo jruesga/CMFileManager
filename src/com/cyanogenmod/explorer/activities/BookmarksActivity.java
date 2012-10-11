@@ -18,14 +18,11 @@ package com.cyanogenmod.explorer.activities;
 
 import android.app.ActionBar;
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.content.res.XmlResourceParser;
 import android.database.Cursor;
 import android.os.Bundle;
-import android.os.Environment;
-import android.os.storage.StorageManager;
 import android.os.storage.StorageVolume;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -52,10 +49,9 @@ import com.cyanogenmod.explorer.ui.dialogs.InitialDirectoryDialog;
 import com.cyanogenmod.explorer.util.CommandHelper;
 import com.cyanogenmod.explorer.util.DialogHelper;
 import com.cyanogenmod.explorer.util.ExceptionUtil;
+import com.cyanogenmod.explorer.util.StorageHelper;
 
-import java.io.File;
 import java.io.FileNotFoundException;
-import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -360,93 +356,34 @@ public class BookmarksActivity extends Activity implements OnItemClickListener, 
 
         try {
             //Recovery sdcards from storage manager
-            //IMP!! Android SDK doesn't have a "getVolumeList" but is supported by CM10.
-            //Use reflect to get this value (if possible)
-            StorageManager sm = (StorageManager) getSystemService(Context.STORAGE_SERVICE);
-            Method method = sm.getClass().getMethod("getVolumeList"); //$NON-NLS-1$
-            StorageVolume[] volumes = (StorageVolume[])method.invoke(sm);
+            StorageVolume[] volumes = StorageHelper.getStorageVolumes(getApplication());
             int cc = volumes.length;
             for (int i = 0; i < cc ; i++) {
                 if (volumes[i].getPath().toLowerCase().indexOf("usb") != -1) { //$NON-NLS-1$
                     bookmarks.add(
                             new Bookmark(
                                     BOOKMARK_TYPE.USB,
-                                    getStorageVolumeDescription(volumes[i]),
+                                    StorageHelper.getStorageVolumeDescription(
+                                            getApplication(), volumes[i]),
                                     volumes[i].getPath()));
                 } else {
                     bookmarks.add(
                             new Bookmark(
                                     BOOKMARK_TYPE.SDCARD,
-                                    getStorageVolumeDescription(volumes[i]),
+                                    StorageHelper.getStorageVolumeDescription(
+                                            getApplication(), volumes[i]),
                                     volumes[i].getPath()));
                 }
             }
 
             //Return the bookmarks
             return bookmarks;
-
-        } catch (NoSuchMethodException nsmex) {
-            //Ignore. Android SDK StorageManager class doesn't have this method
-            //Use default android information from environment
-            try {
-                File externalStorage = Environment.getExternalStorageDirectory();
-                if (externalStorage != null) {
-                    String path = externalStorage.getCanonicalPath();
-                    if (path.toLowerCase().indexOf("usb") != -1) { //$NON-NLS-1$
-                        bookmarks.add(
-                                new Bookmark(
-                                        BOOKMARK_TYPE.USB,
-                                        getString(R.string.bookmarks_external_storage),
-                                        path));
-                    } else {
-                        bookmarks.add(
-                                new Bookmark(
-                                        BOOKMARK_TYPE.SDCARD,
-                                        getString(R.string.bookmarks_external_storage),
-                                        path));
-                    }
-                }
-                //Return the bookmarks
-                return bookmarks;
-            } catch (Throwable ex) {
-                /**NON BLOCK**/
-            }
-
-
         } catch (Throwable ex) {
             Log.e(TAG, "Load filesystem bookmarks failed", ex); //$NON-NLS-1$
         }
 
         //No data
         return new ArrayList<Bookmark>();
-    }
-
-    /**
-     * Method that returns the storage volume description. This method uses
-     * reflection to retrieve the description because CM10 has a {@link Context}
-     * as first parameter, that AOSP hasn't.
-     *
-     * @param volume The storage volume
-     * @return String The description of the storage volume
-     */
-    private String getStorageVolumeDescription(StorageVolume volume) {
-        try {
-            Method method = volume.getClass().getMethod(
-                                            "getDescription", //$NON-NLS-1$
-                                            new Class[]{Context.class});
-            if (method == null) {
-                // AOSP
-                method = volume.getClass().getMethod("getDescription"); //$NON-NLS-1$
-                return (String)method.invoke(volume);
-            }
-
-            // CM10
-            return (String)method.invoke(volume, (Context)getApplication());
-
-        } catch (Throwable _throw) {
-            // Returns the volume storage path
-            return volume.getPath();
-        }
     }
 
     /**

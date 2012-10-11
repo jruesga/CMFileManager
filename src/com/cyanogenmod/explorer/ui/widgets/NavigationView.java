@@ -836,6 +836,7 @@ public class NavigationView extends RelativeLayout implements
         if (o instanceof FileSystemObject) {
             refresh((FileSystemObject)o);
         }
+        onDeselectAll();
     }
 
     /**
@@ -846,6 +847,7 @@ public class NavigationView extends RelativeLayout implements
         if (o instanceof FileSystemObject) {
             removeItem((FileSystemObject)o);
         }
+        onDeselectAll();
     }
 
     /**

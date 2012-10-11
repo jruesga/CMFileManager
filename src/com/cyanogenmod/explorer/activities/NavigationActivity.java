@@ -738,6 +738,7 @@ public class NavigationActivity extends Activity
             // Refresh all
             getCurrentNavigationView().refresh();
         }
+        this.getCurrentNavigationView().onDeselectAll();
     }
 
     /**
@@ -752,6 +753,7 @@ public class NavigationActivity extends Activity
             //Remove from history
             removeFromHistory((FileSystemObject)o);
         }
+        this.getCurrentNavigationView().onDeselectAll();
     }
 
     /**

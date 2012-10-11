@@ -64,17 +64,17 @@ public final class ActionsPolicy {
      * A class that holds a relationship between a source {@link File} and
      * his destination {@link File}
      */
-    public static class LinkedResources implements Comparable<LinkedResources> {
+    public static class LinkedResource implements Comparable<LinkedResource> {
         final File mSrc;
         final File mDst;
 
         /**
-         * Constructor of <code>LinkedResources</code>
+         * Constructor of <code>LinkedResource</code>
          *
          * @param src The source file system object
          * @param dst The destination file system object
          */
-        public LinkedResources(File src, File dst) {
+        public LinkedResource(File src, File dst) {
             super();
             this.mSrc = src;
             this.mDst = dst;
@@ -84,7 +84,7 @@ public final class ActionsPolicy {
          * {@inheritDoc}
          */
         @Override
-        public int compareTo(LinkedResources another) {
+        public int compareTo(LinkedResource another) {
             return this.mSrc.compareTo(another.mSrc);
         }
     }
@@ -499,7 +499,7 @@ public final class ActionsPolicy {
                 } catch (Throwable ex2) {
                     /**NON BLOCK**/
                 }
-                onRequestRefreshListener.onRequestRefresh(fso);
+                onRequestRefreshListener.onRequestRefresh(null);
             }
 
         } catch (Throwable ex) {
@@ -520,7 +520,7 @@ public final class ActionsPolicy {
                             } catch (Throwable ex2) {
                                 /**NON BLOCK**/
                             }
-                            onRequestRefreshListener.onRequestRefresh(fso);
+                            onRequestRefreshListener.onRequestRefresh(null);
                         }
                         return Boolean.TRUE;
                     }
@@ -786,8 +786,8 @@ public final class ActionsPolicy {
         File src = new File(fso.getFullPath());
 
      // Create arguments
-        LinkedResources linkRes = new LinkedResources(src, dst);
-        List<LinkedResources> files = new ArrayList<ActionsPolicy.LinkedResources>(1);
+        LinkedResource linkRes = new LinkedResource(src, dst);
+        List<LinkedResource> files = new ArrayList<ActionsPolicy.LinkedResource>(1);
         files.add(linkRes);
 
         // Internal copy
@@ -820,8 +820,8 @@ public final class ActionsPolicy {
         File src = new File(fso.getFullPath());
 
         // Create arguments
-        LinkedResources linkRes = new LinkedResources(src, dst);
-        List<LinkedResources> files = new ArrayList<ActionsPolicy.LinkedResources>(1);
+        LinkedResource linkRes = new LinkedResource(src, dst);
+        List<LinkedResource> files = new ArrayList<ActionsPolicy.LinkedResource>(1);
         files.add(linkRes);
 
         // Internal copy
@@ -843,7 +843,7 @@ public final class ActionsPolicy {
      */
     public static void copyFileSystemObjects(
             final Context ctx,
-            final List<LinkedResources> files,
+            final List<LinkedResource> files,
             final OnSelectionListener onSelectionListener,
             final OnRequestRefreshListener onRequestRefreshListener) {
         // Internal copy
@@ -865,7 +865,7 @@ public final class ActionsPolicy {
      */
     public static void moveFileSystemObjects(
             final Context ctx,
-            final List<LinkedResources> files,
+            final List<LinkedResource> files,
             final OnSelectionListener onSelectionListener,
             final OnRequestRefreshListener onRequestRefreshListener) {
         // Internal move
@@ -889,7 +889,7 @@ public final class ActionsPolicy {
     private static void copyOrMoveFileSystemObjects(
             final Context ctx,
             final boolean move,
-            final List<LinkedResources> files,
+            final List<LinkedResource> files,
             final OnSelectionListener onSelectionListener,
             final OnRequestRefreshListener onRequestRefreshListener) {
 
@@ -905,7 +905,7 @@ public final class ActionsPolicy {
         // and not be null
         final String currentDirectory = onSelectionListener.onRequestCurrentDir();
         for (int i = 0; i < files.size(); i++) {
-            LinkedResources linkedRes = files.get(i);
+            LinkedResource linkedRes = files.get(i);
             if (linkedRes.mSrc == null || linkedRes.mDst == null) {
                 AlertDialog dialog =
                         DialogHelper.createErrorDialog(ctx, R.string.msgs_illegal_argument);
@@ -933,7 +933,7 @@ public final class ActionsPolicy {
             private int mCurrent = 0;
             final Context mCtx = ctx;
             final boolean mMove = move;
-            final List<LinkedResources> mFiles = files;
+            final List<LinkedResource> mFiles = files;
             final OnRequestRefreshListener mOnRequestRefreshListener = onRequestRefreshListener;
 
             final Object mSync = new Object();
@@ -1121,7 +1121,7 @@ public final class ActionsPolicy {
      * @return boolean If is needed to prompt the user for overwrite
      */
     private static boolean isOverwriteNeeded(
-            List<LinkedResources> files, List<FileSystemObject> currentFiles) {
+            List<LinkedResource> files, List<FileSystemObject> currentFiles) {
         boolean askUser = false;
         for (int i = 0; i < currentFiles.size(); i++) {
             for (int j = 0; j < files.size(); j++) {
@@ -1156,9 +1156,9 @@ public final class ActionsPolicy {
      * @return boolean If the consistency is validate successfully
      */
     private static boolean checkMoveConsistency(
-            Context ctx, List<LinkedResources> files, String currentDirectory) {
+            Context ctx, List<LinkedResource> files, String currentDirectory) {
         for (int i = 0; i < files.size(); i++) {
-            LinkedResources linkRes = files.get(i);
+            LinkedResource linkRes = files.get(i);
             String src = linkRes.mSrc.getAbsolutePath();
             String dst = linkRes.mDst.getAbsolutePath();
 
@@ -1177,7 +1177,7 @@ public final class ActionsPolicy {
                 // Operation not allowed
                 AlertDialog dialog =
                         DialogHelper.createErrorDialog(
-                                ctx, R.string.msgs_unresolved_inconsistencies);
+                                ctx, R.string.msgs_operation_not_allowed_in_current_directory);
                 dialog.show();
                 return false;
             }

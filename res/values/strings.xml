@@ -123,6 +123,9 @@
   <!-- An operation will cause incosistencies -->
   <string name="msgs_unresolved_inconsistencies">
     The operation is now allowed, because it would create inconsistencies.</string>
+  <!-- The operation is now allowed in the current directory -->
+  <string name="msgs_operation_not_allowed_in_current_directory">
+    The operation is now allowed in the current directory.</string>
 
   <!-- A message advise before close the application -->
   <string name="msgs_push_again_to_exit">Push again back button to exit.</string>

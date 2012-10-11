@@ -38,10 +38,13 @@ import com.cyanogenmod.explorer.listeners.OnRequestRefreshListener;
 import com.cyanogenmod.explorer.listeners.OnSelectionListener;
 import com.cyanogenmod.explorer.model.FileSystemObject;
 import com.cyanogenmod.explorer.ui.policy.ActionsPolicy;
+import com.cyanogenmod.explorer.ui.policy.ActionsPolicy.LinkedResource;
 import com.cyanogenmod.explorer.util.DialogHelper;
 import com.cyanogenmod.explorer.util.FileHelper;
 import com.cyanogenmod.explorer.util.SelectionHelper;
 
+import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -228,6 +231,30 @@ public class ActionsDialog implements OnItemClickListener, OnItemLongClickListen
                 break;
                 
 
+            // Paste selection
+            case R.id.mnu_actions_paste_selection:
+                if (this.mOnSelectionListener != null) {
+                    List<FileSystemObject> selection =
+                            this.mOnSelectionListener.onRequestSelectedFiles();
+                    ActionsPolicy.copyFileSystemObjects(
+                            this.mContext,
+                            createLinkedResource(selection, this.mFso),
+                            this.mOnSelectionListener,
+                            this.mOnRequestRefreshListener);
+                }
+                break;
+            // Move selection
+            case R.id.mnu_actions_move_selection:
+                if (this.mOnSelectionListener != null) {
+                    List<FileSystemObject> selection =
+                            this.mOnSelectionListener.onRequestSelectedFiles();
+                    ActionsPolicy.moveFileSystemObjects(
+                            this.mContext,
+                            createLinkedResource(selection, this.mFso),
+                            this.mOnSelectionListener,
+                            this.mOnRequestRefreshListener);
+                }
+                break;
             // Delete selection
             case R.id.mnu_actions_delete_selection:
                 if (this.mOnSelectionListener != null) {
@@ -453,5 +480,25 @@ public class ActionsDialog implements OnItemClickListener, OnItemLongClickListen
                 menu.removeItem(R.id.mnu_actions_delete_selection);
             }
         }
+    }
+
+    /**
+     * Method that creates a {@link LinkedResource} for the list of object to the
+     * destination directory
+     * 
+     * @param items The list of the source items
+     * @param directory The destination directory
+     */
+    private static List<LinkedResource> createLinkedResource(
+            List<FileSystemObject> items, FileSystemObject directory) {
+        List<LinkedResource> resources =
+                new ArrayList<ActionsPolicy.LinkedResource>(items.size());
+        for (int i = 0; i < items.size(); i++) {
+            FileSystemObject fso = items.get(i);
+            File src = new File(fso.getFullPath());
+            File dst = new File(directory.getFullPath(), fso.getName());
+            resources.add(new LinkedResource(src, dst));
+        }
+        return resources;
     }
 }

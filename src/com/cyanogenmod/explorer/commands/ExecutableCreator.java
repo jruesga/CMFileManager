@@ -201,6 +201,17 @@ public interface ExecutableCreator {
     IdentityExecutable createIdentityExecutable() throws CommandNotFoundException;
 
     /**
+     * Method that creates a symlink of an other file system object.
+     *
+     * @param src The absolute path to the source fso
+     * @param link The absolute path to the link fso
+     * @return LinkExecutable A {@link LinkExecutable} executable implementation reference
+     * @throws CommandNotFoundException If the executable can't be created
+     */
+    LinkExecutable createLinkExecutable(
+            String src, String link) throws CommandNotFoundException;
+
+    /**
      * Method that creates an executable for list files of a directory.
      *
      * @param src The directory where to do the listing

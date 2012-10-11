@@ -20,6 +20,7 @@ import android.os.Environment;
 import android.os.storage.StorageManager;
 import android.os.storage.StorageVolume;
 
+import com.cyanogenmod.explorer.ExplorerApplication;
 import com.cyanogenmod.explorer.R;
 
 import java.io.File;
@@ -94,6 +95,24 @@ public final class StorageHelper {
             // Returns the volume storage path
             return volume.getPath();
         }
+    }
+
+    /**
+     * Method that returns if the path is in a volume storage
+     * 
+     * @param path The path
+     * @return boolean If the path is in a volume storage
+     */
+    public static boolean isPathInStorageVolume(String path) {
+        StorageVolume[] volumes =
+                getStorageVolumes(ExplorerApplication.getInstance().getApplicationContext());
+        for (int i=0; i < volumes.length; i++) {
+            StorageVolume vol = volumes[i];
+            if (path.startsWith(vol.getPath())) {
+                return true;
+            }
+        }
+        return false;
     }
 
 }

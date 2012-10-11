@@ -33,6 +33,7 @@ import com.cyanogenmod.explorer.commands.FindExecutable;
 import com.cyanogenmod.explorer.commands.FolderUsageExecutable;
 import com.cyanogenmod.explorer.commands.GroupsExecutable;
 import com.cyanogenmod.explorer.commands.IdentityExecutable;
+import com.cyanogenmod.explorer.commands.LinkExecutable;
 import com.cyanogenmod.explorer.commands.ListExecutable;
 import com.cyanogenmod.explorer.commands.MountExecutable;
 import com.cyanogenmod.explorer.commands.MountPointInfoExecutable;
@@ -270,6 +271,20 @@ public class ShellExecutableCreator implements ExecutableCreator {
             throw new CommandNotFoundException("IdentityCommand", icdEx); //$NON-NLS-1$
         }
     }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public LinkExecutable createLinkExecutable(String src, String link)
+            throws CommandNotFoundException {
+        try {
+            return new LinkCommand(src, link);
+        } catch (InvalidCommandDefinitionException icdEx) {
+            throw new CommandNotFoundException("LinkCommand", icdEx); //$NON-NLS-1$
+        }
+    }
+
 
     /**
      * {@inheritDoc}

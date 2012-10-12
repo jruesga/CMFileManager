@@ -18,6 +18,8 @@ package com.cyanogenmod.explorer.commands.shell;
 
 import java.util.List;
 
+import android.test.suitebuilder.annotation.SmallTest;
+
 import com.cyanogenmod.explorer.model.Group;
 import com.cyanogenmod.explorer.util.CommandHelper;
 
@@ -41,6 +43,7 @@ public class GroupsCommandTest extends AbstractConsoleTest {
      *
      * @throws Exception If test failed
      */
+    @SmallTest
     public void testGroups() throws Exception {
         List<Group> groups = CommandHelper.getGroups(getContext(), getConsole());
         assertNotNull("groups==null", groups); //$NON-NLS-1$
@@ -54,6 +57,7 @@ public class GroupsCommandTest extends AbstractConsoleTest {
      * {@link GroupsCommand#parse(String, String)}
      */
     @SuppressWarnings("static-method")
+    @SmallTest
     public void testParse() throws Exception {
         GroupsCommand cmd = new GroupsCommand();
         String in =

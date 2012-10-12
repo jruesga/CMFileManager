@@ -16,6 +16,8 @@
 
 package com.cyanogenmod.explorer.commands.shell;
 
+import android.test.suitebuilder.annotation.MediumTest;
+
 import com.cyanogenmod.explorer.model.MountPoint;
 import com.cyanogenmod.explorer.util.CommandHelper;
 import com.cyanogenmod.explorer.util.MountPointHelper;
@@ -42,6 +44,7 @@ public class MountCommandTest extends AbstractConsoleTest {
      *
      * @throws Exception If test failed
      */
+    @MediumTest
     public void testRemountOk() throws Exception {
         MountPoint mp = MountPointHelper.getMountPointFromDirectory(getConsole(), MOUNT_POINT_DIR);
         boolean rw = MountPointHelper.isReadWrite(mp);

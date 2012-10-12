@@ -16,8 +16,11 @@
 
 package com.cyanogenmod.explorer.commands.shell;
 
+import android.test.suitebuilder.annotation.SmallTest;
+
 import com.cyanogenmod.explorer.console.NoSuchFileOrDirectory;
 import com.cyanogenmod.explorer.util.CommandHelper;
+import com.cyanogenmod.explorer.util.FileHelper;
 
 /**
  * A class for testing the {@link ChangeCurrentDirCommand} command.
@@ -26,8 +29,8 @@ import com.cyanogenmod.explorer.util.CommandHelper;
  */
 public class ChangeCurrentDirCommandTest extends AbstractConsoleTest {
 
-    private static final String PATH_OK = "/"; //$NON-NLS-1$
-    private static final String PATH_ERROR = "/mnt/sdcard121212"; //$NON-NLS-1$
+    private static final String PATH_OK = FileHelper.ROOT_DIRECTORY;
+    private static final String PATH_ERROR = "/foo/foo121212"; //$NON-NLS-1$
 
     /**
      * {@inheritDoc}
@@ -42,6 +45,7 @@ public class ChangeCurrentDirCommandTest extends AbstractConsoleTest {
      *
      * @throws Exception If test failed
      */
+    @SmallTest
     public void testChangeDirOk() throws Exception {
         boolean ret = CommandHelper.changeCurrentDir(getContext(), PATH_OK, getConsole());
         assertTrue("response==false", ret); //$NON-NLS-1$
@@ -58,6 +62,7 @@ public class ChangeCurrentDirCommandTest extends AbstractConsoleTest {
      *
      * @throws Exception If test failed
      */
+    @SmallTest
     public void testChangeDirFail() throws Exception {
         String oldPwd = CommandHelper.getCurrentDir(getContext(), getConsole());
         try {

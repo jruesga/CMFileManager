@@ -16,6 +16,9 @@
 
 package com.cyanogenmod.explorer.commands.shell;
 
+import android.os.Environment;
+import android.test.suitebuilder.annotation.SmallTest;
+
 import com.cyanogenmod.explorer.model.FileSystemObject;
 import com.cyanogenmod.explorer.model.Group;
 import com.cyanogenmod.explorer.model.User;
@@ -28,7 +31,8 @@ import com.cyanogenmod.explorer.util.CommandHelper;
  */
 public class ChangeOwnerCommandTest extends AbstractConsoleTest {
 
-    private static final String PATH_FILE = "/data/chowntest.txt"; //$NON-NLS-1$
+    private static final String PATH_FILE =
+            Environment.getDataDirectory().getAbsolutePath() + "/chowntest.txt"; //$NON-NLS-1$
     private static final String NEW_GROUP = "graphics"; //$NON-NLS-1$
 
     /**
@@ -44,6 +48,7 @@ public class ChangeOwnerCommandTest extends AbstractConsoleTest {
      *
      * @throws Exception If test failed
      */
+    @SmallTest
     public void testChangeOwnerOk() throws Exception {
         try {
             //Create and list the file

@@ -16,6 +16,9 @@
 
 package com.cyanogenmod.explorer.commands.shell;
 
+import android.os.Environment;
+import android.test.suitebuilder.annotation.SmallTest;
+
 import com.cyanogenmod.explorer.model.FileSystemObject;
 import com.cyanogenmod.explorer.model.Permissions;
 import com.cyanogenmod.explorer.util.CommandHelper;
@@ -27,7 +30,8 @@ import com.cyanogenmod.explorer.util.CommandHelper;
  */
 public class ChangePermissionsCommandTest extends AbstractConsoleTest {
 
-    private static final String PATH_FILE = "/data/chmodtest.txt"; //$NON-NLS-1$
+    private static final String PATH_FILE =
+            Environment.getDataDirectory().getAbsolutePath() + "/chmodtest.txt"; //$NON-NLS-1$
 
     /**
      * {@inheritDoc}
@@ -42,6 +46,7 @@ public class ChangePermissionsCommandTest extends AbstractConsoleTest {
      *
      * @throws Exception If test failed
      */
+    @SmallTest
     public void testChangePermissionsOk() throws Exception {
         try {
             //Create and list the file

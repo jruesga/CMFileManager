@@ -16,7 +16,10 @@
 
 package com.cyanogenmod.explorer.commands.shell;
 
-import com.cyanogenmod.explorer.console.ExecutionException;
+import android.os.Environment;
+import android.test.suitebuilder.annotation.SmallTest;
+
+import com.cyanogenmod.explorer.console.NoSuchFileOrDirectory;
 import com.cyanogenmod.explorer.util.CommandHelper;
 
 /**
@@ -26,15 +29,16 @@ import com.cyanogenmod.explorer.util.CommandHelper;
  */
 public class CreateFileCommandTest extends AbstractConsoleTest {
 
-    private static final String PATH_NEWFILE_OK = "/mnt/sdcard/newtest.txt"; //$NON-NLS-1$
-    private static final String PATH_NEWFILE_ERROR = "/mnt/sdcard121212/newtest.txt"; //$NON-NLS-1$
+    private static final String PATH_NEWFILE_OK =
+            Environment.getDataDirectory().getAbsolutePath() + "/newtest.txt"; //$NON-NLS-1$
+    private static final String PATH_NEWFILE_ERROR = "/foo/foo121212/newtest.txt"; //$NON-NLS-1$
 
     /**
      * {@inheritDoc}
      */
     @Override
     public boolean isRootConsoleNeeded() {
-        return false;
+        return true;
     }
 
     /**
@@ -42,6 +46,7 @@ public class CreateFileCommandTest extends AbstractConsoleTest {
      *
      * @throws Exception If test failed
      */
+    @SmallTest
     public void testCreateFileOk() throws Exception {
         try {
             boolean ret = CommandHelper.createFile(getContext(), PATH_NEWFILE_OK, getConsole());
@@ -60,12 +65,19 @@ public class CreateFileCommandTest extends AbstractConsoleTest {
      *
      * @throws Exception If test failed
      */
+    @SmallTest
     public void testCreateFileFail() throws Exception {
         try {
             CommandHelper.createFile(getContext(), PATH_NEWFILE_ERROR, getConsole());
             assertTrue("exit code==0", false); //$NON-NLS-1$
-        } catch (ExecutionException error) {
+        } catch (NoSuchFileOrDirectory error) {
           //This command must failed. exit code !=0
+        } finally {
+            try {
+                CommandHelper.deleteFile(getContext(), PATH_NEWFILE_ERROR, getConsole());
+            } catch (Throwable ex) {
+                /**NON BLOCK**/
+            }
         }
     }
 

@@ -16,6 +16,9 @@
 
 package com.cyanogenmod.explorer.commands.shell;
 
+import android.os.Environment;
+import android.test.suitebuilder.annotation.SmallTest;
+
 import com.cyanogenmod.explorer.console.NoSuchFileOrDirectory;
 import com.cyanogenmod.explorer.util.CommandHelper;
 
@@ -26,15 +29,16 @@ import com.cyanogenmod.explorer.util.CommandHelper;
  */
 public class DeleteFileCommandTest extends AbstractConsoleTest {
 
-    private static final String PATH_DELFILE_OK = "/mnt/sdcard/deltest.txt"; //$NON-NLS-1$
-    private static final String PATH_DELFILE_ERROR = "/mnt/sdcard121212/deltest.txt"; //$NON-NLS-1$
+    private static final String PATH_DELFILE_OK =
+            Environment.getDataDirectory().getAbsolutePath() + "/deltest.txt"; //$NON-NLS-1$
+    private static final String PATH_DELFILE_ERROR = "/foo/foo121212/deltest.txt"; //$NON-NLS-1$
 
     /**
      * {@inheritDoc}
      */
     @Override
     public boolean isRootConsoleNeeded() {
-        return false;
+        return true;
     }
 
     /**
@@ -42,6 +46,7 @@ public class DeleteFileCommandTest extends AbstractConsoleTest {
      *
      * @throws Exception If test failed
      */
+    @SmallTest
     public void testDeleteFileOk() throws Exception {
         CommandHelper.createFile(getContext(), PATH_DELFILE_OK, getConsole());
         boolean ret = CommandHelper.deleteFile(getContext(), PATH_DELFILE_OK, getConsole());
@@ -53,6 +58,7 @@ public class DeleteFileCommandTest extends AbstractConsoleTest {
      *
      * @throws Exception If test failed
      */
+    @SmallTest
     public void testDeleteFileFail() throws Exception {
         try {
             CommandHelper.deleteFile(getContext(), PATH_DELFILE_ERROR, getConsole());

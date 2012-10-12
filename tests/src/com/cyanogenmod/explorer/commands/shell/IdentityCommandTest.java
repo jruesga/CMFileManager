@@ -16,6 +16,8 @@
 
 package com.cyanogenmod.explorer.commands.shell;
 
+import android.test.suitebuilder.annotation.SmallTest;
+
 import com.cyanogenmod.explorer.model.Identity;
 import com.cyanogenmod.explorer.util.CommandHelper;
 
@@ -39,6 +41,7 @@ public class IdentityCommandTest extends AbstractConsoleTest {
      *
      * @throws Exception If test failed
      */
+    @SmallTest
     public void testId() throws Exception {
         Identity identity = CommandHelper.getIdentity(getContext(), getConsole());
         assertNotNull("identity==null", identity); //$NON-NLS-1$
@@ -55,6 +58,7 @@ public class IdentityCommandTest extends AbstractConsoleTest {
      * {@link IdentityCommand#parse(String, String)}
      */
     @SuppressWarnings("static-method")
+    @SmallTest
     public void testParse() throws Exception {
         IdentityCommand cmd = new IdentityCommand();
         String in = "uid=2000(shell) gid=2000(shell2) groups=1003(graphics)," //$NON-NLS-1$

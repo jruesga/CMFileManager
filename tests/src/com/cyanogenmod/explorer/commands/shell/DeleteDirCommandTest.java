@@ -16,6 +16,9 @@
 
 package com.cyanogenmod.explorer.commands.shell;
 
+import android.os.Environment;
+import android.test.suitebuilder.annotation.SmallTest;
+
 import com.cyanogenmod.explorer.console.NoSuchFileOrDirectory;
 import com.cyanogenmod.explorer.util.CommandHelper;
 
@@ -26,15 +29,16 @@ import com.cyanogenmod.explorer.util.CommandHelper;
  */
 public class DeleteDirCommandTest extends AbstractConsoleTest {
 
-    private static final String PATH_DELDIR_OK = "/mnt/sdcard/deltestfolder"; //$NON-NLS-1$
-    private static final String PATH_DELDIR_ERROR = "/mnt/sdcard121212/deltestfolder"; //$NON-NLS-1$
+    private static final String PATH_DELDIR_OK =
+            Environment.getDataDirectory().getAbsolutePath() + "/deltestfolder"; //$NON-NLS-1$
+    private static final String PATH_DELDIR_ERROR = "/foo/foo121212/deltestfolder"; //$NON-NLS-1$
 
     /**
      * {@inheritDoc}
      */
     @Override
     public boolean isRootConsoleNeeded() {
-        return false;
+        return true;
     }
 
     /**
@@ -42,10 +46,14 @@ public class DeleteDirCommandTest extends AbstractConsoleTest {
      *
      * @throws Exception If test failed
      */
+    @SmallTest
     public void testDeleteDirOk() throws Exception {
-        CommandHelper.createDirectory(getContext(), PATH_DELDIR_OK, getConsole());
-        boolean ret = CommandHelper.deleteDirectory(getContext(), PATH_DELDIR_OK, getConsole());
-        assertTrue("response==false", ret); //$NON-NLS-1$
+        try {
+            CommandHelper.createDirectory(getContext(), PATH_DELDIR_OK, getConsole());
+        } finally {
+            boolean ret = CommandHelper.deleteDirectory(getContext(), PATH_DELDIR_OK, getConsole());
+            assertTrue("response==false", ret); //$NON-NLS-1$
+        }
     }
 
     /**
@@ -53,6 +61,7 @@ public class DeleteDirCommandTest extends AbstractConsoleTest {
      *
      * @throws Exception If test failed
      */
+    @SmallTest
     public void testDeleteDirFail() throws Exception {
         try {
             CommandHelper.deleteDirectory(getContext(), PATH_DELDIR_ERROR, getConsole());

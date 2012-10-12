@@ -16,6 +16,9 @@
 
 package com.cyanogenmod.explorer.console;
 
+import android.os.Environment;
+import android.test.suitebuilder.annotation.SmallTest;
+
 
 /**
  * A class for testing list command.
@@ -24,7 +27,8 @@ package com.cyanogenmod.explorer.console;
  */
 public class ConsoleBuilderTest extends android.test.AndroidTestCase {
 
-    private static final String PATH = "/mnt/sdcard"; //$NON-NLS-1$
+    private static final String PATH =
+            Environment.getExternalStorageDirectory().getAbsolutePath();
 
     /**
      * {@inheritDoc}
@@ -48,6 +52,7 @@ public class ConsoleBuilderTest extends android.test.AndroidTestCase {
      * @throws Exception If test failed
      * @{link {@link ConsoleBuilder#createPrivilegedConsole(android.content.Context, String)}
      */
+    @SmallTest
     public void testCreatePrivilegedConsole() throws Exception {
         Console console = ConsoleBuilder.createPrivilegedConsole(getContext(), PATH);
         try {
@@ -67,6 +72,7 @@ public class ConsoleBuilderTest extends android.test.AndroidTestCase {
      * @throws Exception If test failed
      * @{link {@link ConsoleBuilder#createNonPrivilegedConsole(android.content.Context, String)}
      */
+    @SmallTest
     public void testCreateNonPrivilegedConsole() throws Exception {
         Console console = ConsoleBuilder.createNonPrivilegedConsole(getContext(), PATH);
         try {

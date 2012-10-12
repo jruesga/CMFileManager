@@ -18,6 +18,9 @@ package com.cyanogenmod.explorer.commands.shell;
 
 import java.util.List;
 
+import android.os.Environment;
+import android.test.suitebuilder.annotation.LargeTest;
+
 import com.cyanogenmod.explorer.util.CommandHelper;
 
 /**
@@ -27,15 +30,17 @@ import com.cyanogenmod.explorer.util.CommandHelper;
  */
 public class QuickFolderSearchCommandTest extends AbstractConsoleTest {
 
-    private static final String SEARCH_EXPRESSION = "/mnt/sdcard/And"; //$NON-NLS-1$
-    private static final String SEARCH_FOLDER = "/mnt/sdcard/Android/"; //$NON-NLS-1$
+    private static final String SEARCH_EXPRESSION =
+            Environment.getDataDirectory().getAbsolutePath() + "/dal"; //$NON-NLS-1$
+    private static final String SEARCH_CONTAINS =
+            Environment.getDataDirectory().getAbsolutePath() + "/dalvik-cache/"; //$NON-NLS-1$
 
     /**
      * {@inheritDoc}
      */
     @Override
     public boolean isRootConsoleNeeded() {
-        return false;
+        return true;
     }
 
     /**
@@ -43,14 +48,15 @@ public class QuickFolderSearchCommandTest extends AbstractConsoleTest {
      *
      * @throws Exception If test failed
      */
+    @LargeTest
     public void testQuickFolderSearchOk() throws Exception {
         List<String> result =
                 CommandHelper.quickFolderSearch(getContext(), SEARCH_EXPRESSION, getConsole());
         assertNotNull("result==null", result); //$NON-NLS-1$
         assertTrue("result.size==0", result.size() != 0); //$NON-NLS-1$
         assertTrue(
-                String.format("result not contains %s", SEARCH_FOLDER), //$NON-NLS-1$
-                result.contains(SEARCH_FOLDER));
+                String.format("result not contains %s", SEARCH_CONTAINS), //$NON-NLS-1$
+                result.contains(SEARCH_CONTAINS));
     }
 
 }

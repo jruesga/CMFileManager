@@ -19,6 +19,10 @@ package com.cyanogenmod.explorer.commands.shell;
 import java.util.ArrayList;
 import java.util.List;
 
+import android.os.Environment;
+import android.test.suitebuilder.annotation.LargeTest;
+
+import com.cyanogenmod.explorer.commands.AsyncResultExecutable;
 import com.cyanogenmod.explorer.commands.AsyncResultListener;
 import com.cyanogenmod.explorer.model.FileSystemObject;
 import com.cyanogenmod.explorer.model.Query;
@@ -31,8 +35,9 @@ import com.cyanogenmod.explorer.util.CommandHelper;
  */
 public class FindCommandTest extends AbstractConsoleTest {
 
-    private static final String FIND_PATH = "/"; //$NON-NLS-1$
-    private static final String FIND_TERM_PARTIAL = "xml"; //$NON-NLS-1$
+    private static final String FIND_PATH =
+            Environment.getDataDirectory().getAbsolutePath();
+    private static final String FIND_TERM_PARTIAL = "shared"; //$NON-NLS-1$
 
     /**
      * @hide
@@ -42,13 +47,17 @@ public class FindCommandTest extends AbstractConsoleTest {
      * @hide
      */
     boolean mNewPartialData;
+    /**
+     * @hide
+     */
+    boolean mNormalEnd;
 
     /**
      * {@inheritDoc}
      */
     @Override
     public boolean isRootConsoleNeeded() {
-        return false;
+        return true;
     }
 
     /**
@@ -56,16 +65,20 @@ public class FindCommandTest extends AbstractConsoleTest {
      *
      * @throws Exception If test failed
      */
+    @LargeTest
     public void testFindWithPartialResult() throws Exception {
         this.mNewPartialData = false;
+        this.mNormalEnd = false;
         Query query = new Query().setSlot(FIND_TERM_PARTIAL, 0);
         final List<FileSystemObject> files = new ArrayList<FileSystemObject>();
-        CommandHelper.findFiles(getContext(), FIND_PATH, query, new AsyncResultListener() {
+        AsyncResultExecutable cmd =
+                CommandHelper.findFiles(getContext(), FIND_PATH, query, new AsyncResultListener() {
                         public void onAsyncStart() {
                             /**NON BLOCK**/
                         }
-                        public void onAsyncEnd(boolean cancelled) {
+                        public void onAsyncEnd(boolean canceled) {
                             synchronized (FindCommandTest.this.mSync) {
+                                FindCommandTest.this.mNormalEnd = true;
                                 FindCommandTest.this.mSync.notifyAll();
                             }
                         }
@@ -81,6 +94,11 @@ public class FindCommandTest extends AbstractConsoleTest {
         synchronized (FindCommandTest.this.mSync) {
             FindCommandTest.this.mSync.wait(15000L);
         }
+        try {
+            if (!this.mNormalEnd && cmd != null && cmd.isCancelable() && !cmd.isCanceled()) {
+                cmd.cancel();
+            }
+        } catch (Exception e) {/**NON BLOCK**/}
         assertTrue("no new partial data", this.mNewPartialData); //$NON-NLS-1$
         assertNotNull("files==null", files); //$NON-NLS-1$
         assertTrue("no objects returned", files.size() > 0); //$NON-NLS-1$

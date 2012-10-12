@@ -16,6 +16,9 @@
 
 package com.cyanogenmod.explorer.commands.shell;
 
+import android.os.Environment;
+import android.test.suitebuilder.annotation.SmallTest;
+
 import com.cyanogenmod.explorer.console.InsufficientPermissionsException;
 import com.cyanogenmod.explorer.model.FileSystemObject;
 import com.cyanogenmod.explorer.model.Symlink;
@@ -28,10 +31,16 @@ import com.cyanogenmod.explorer.util.CommandHelper;
  */
 public class LinkCommandTest extends AbstractConsoleTest {
 
-    private static final String PATH_SOURCE_OK = "/data/source.txt"; //$NON-NLS-1$
-    private static final String PATH_LINK_OK = "/data/source-link"; //$NON-NLS-1$
-    private static final String PATH_SOURCE_ERROR = "/sdcard/source.txt"; //$NON-NLS-1$
-    private static final String PATH_LINK_ERROR = "/sdcard/source-link"; //$NON-NLS-1$
+    private static final String PATH_SOURCE_OK =
+            Environment.getDataDirectory().getAbsolutePath() + "/source.txt"; //$NON-NLS-1$
+    private static final String PATH_LINK_OK =
+            Environment.getDataDirectory().getAbsolutePath() + "/source-link"; //$NON-NLS-1$
+    private static final String PATH_SOURCE_ERROR =
+            Environment.getExternalStorageDirectory().getAbsolutePath() +
+            "/source.txt"; //$NON-NLS-1$
+    private static final String PATH_LINK_ERROR =
+            Environment.getExternalStorageDirectory().getAbsolutePath() +
+            "/source-link"; //$NON-NLS-1$
 
     /**
      * {@inheritDoc}
@@ -46,6 +55,7 @@ public class LinkCommandTest extends AbstractConsoleTest {
      *
      * @throws Exception If test failed
      */
+    @SmallTest
     public void testCreateSymlinkOk() throws Exception {
         try {
             CommandHelper.createFile(getContext(), PATH_SOURCE_OK, getConsole());
@@ -70,6 +80,7 @@ public class LinkCommandTest extends AbstractConsoleTest {
      *
      * @throws Exception If test failed
      */
+    @SmallTest
     public void testCreateSymlinkFail() throws Exception {
         try {
             CommandHelper.createFile(getContext(), PATH_SOURCE_ERROR, getConsole());

@@ -16,6 +16,9 @@
 
 package com.cyanogenmod.explorer.commands.shell;
 
+import android.os.Environment;
+import android.test.suitebuilder.annotation.SmallTest;
+
 import com.cyanogenmod.explorer.util.CommandHelper;
 
 /**
@@ -25,15 +28,17 @@ import com.cyanogenmod.explorer.util.CommandHelper;
  */
 public class MoveCommandTest extends AbstractConsoleTest {
 
-    private static final String PATH_FILE_SRC = "/mnt/sdcard/movetest.txt"; //$NON-NLS-1$
-    private static final String PATH_FILE_DST = "/mnt/sdcard/movetest2.txt"; //$NON-NLS-1$
+    private static final String PATH_FILE_SRC =
+            Environment.getDataDirectory().getAbsolutePath() + "/movetest.txt"; //$NON-NLS-1$
+    private static final String PATH_FILE_DST =
+            Environment.getDataDirectory().getAbsolutePath() + "/movetest2.txt"; //$NON-NLS-1$
 
     /**
      * {@inheritDoc}
      */
     @Override
     public boolean isRootConsoleNeeded() {
-        return false;
+        return true;
     }
 
     /**
@@ -41,6 +46,7 @@ public class MoveCommandTest extends AbstractConsoleTest {
      *
      * @throws Exception If test failed
      */
+    @SmallTest
     public void testMoveOk() throws Exception {
         try {
             CommandHelper.createFile(getContext(), PATH_FILE_SRC, getConsole());

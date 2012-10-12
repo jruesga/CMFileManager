@@ -16,6 +16,9 @@
 
 package com.cyanogenmod.explorer.commands.shell;
 
+import android.os.Environment;
+import android.test.suitebuilder.annotation.SmallTest;
+
 import com.cyanogenmod.explorer.util.CommandHelper;
 
 /**
@@ -25,15 +28,17 @@ import com.cyanogenmod.explorer.util.CommandHelper;
  */
 public class CopyCommandTest extends AbstractConsoleTest {
 
-    private static final String PATH_FILE_SRC = "/mnt/sdcard/copytest.txt"; //$NON-NLS-1$
-    private static final String PATH_FILE_DST = "/mnt/sdcard/copytest2.txt"; //$NON-NLS-1$
+    private static final String PATH_FILE_SRC =
+            Environment.getDataDirectory().getAbsolutePath() + "/copytest.txt"; //$NON-NLS-1$
+    private static final String PATH_FILE_DST =
+            Environment.getDataDirectory().getAbsolutePath() + "/copytest2.txt"; //$NON-NLS-1$
 
     /**
      * {@inheritDoc}
      */
     @Override
     public boolean isRootConsoleNeeded() {
-        return false;
+        return true;
     }
 
     /**
@@ -41,6 +46,7 @@ public class CopyCommandTest extends AbstractConsoleTest {
      *
      * @throws Exception If test failed
      */
+    @SmallTest
     public void testCopyOk() throws Exception {
         try {
             CommandHelper.createFile(getContext(), PATH_FILE_SRC, getConsole());

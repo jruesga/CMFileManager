@@ -18,6 +18,8 @@ package com.cyanogenmod.explorer.commands.shell;
 
 import java.util.List;
 
+import android.test.suitebuilder.annotation.SmallTest;
+
 import com.cyanogenmod.explorer.model.DiskUsage;
 import com.cyanogenmod.explorer.util.CommandHelper;
 
@@ -41,6 +43,7 @@ public class DiskUsageCommandTest extends AbstractConsoleTest {
      *
      * @throws Exception If test failed
      */
+    @SmallTest
     public void testDiskUsage() throws Exception {
         List<DiskUsage> du = CommandHelper.getDiskUsage(getContext(), getConsole());
         assertNotNull("diskusage==null", du); //$NON-NLS-1$
@@ -54,6 +57,7 @@ public class DiskUsageCommandTest extends AbstractConsoleTest {
      * {@link ListCommand#parse(String, String)}
      */
     @SuppressWarnings("static-method")
+    @SmallTest
     public void testParse() throws Exception {
         DiskUsageCommand cmd = new DiskUsageCommand();
         String in = "Filesystem             Size   Used   Free   Blksize\n" + //$NON-NLS-1$

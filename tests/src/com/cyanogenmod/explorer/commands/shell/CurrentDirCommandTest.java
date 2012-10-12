@@ -16,6 +16,9 @@
 
 package com.cyanogenmod.explorer.commands.shell;
 
+import android.os.Environment;
+import android.test.suitebuilder.annotation.SmallTest;
+
 import com.cyanogenmod.explorer.util.CommandHelper;
 
 /**
@@ -25,7 +28,8 @@ import com.cyanogenmod.explorer.util.CommandHelper;
  */
 public class CurrentDirCommandTest extends AbstractConsoleTest {
 
-    private static final String PATH = "/mnt/sdcard"; //$NON-NLS-1$
+    private static final String PATH =
+            Environment.getExternalStorageDirectory().getAbsolutePath();
 
     /**
      * {@inheritDoc}
@@ -40,6 +44,7 @@ public class CurrentDirCommandTest extends AbstractConsoleTest {
      *
      * @throws Exception If test failed
      */
+    @SmallTest
     public void testCurrentDir() throws Exception {
         CommandHelper.changeCurrentDir(getContext(), PATH, getConsole());
         String curDir = CommandHelper.getCurrentDir(getContext(), getConsole());

@@ -19,6 +19,9 @@ package com.cyanogenmod.explorer.commands.shell;
 import java.io.File;
 import java.io.FileWriter;
 
+import android.os.Environment;
+import android.test.suitebuilder.annotation.MediumTest;
+
 import com.cyanogenmod.explorer.commands.AsyncResultListener;
 import com.cyanogenmod.explorer.util.CommandHelper;
 
@@ -29,7 +32,8 @@ import com.cyanogenmod.explorer.util.CommandHelper;
  */
 public class ExecCommandTest extends AbstractConsoleTest {
 
-    private static final String EXEC_CMD = "/sdcard/source.sh"; //$NON-NLS-1$
+    private static final String EXEC_CMD =
+            Environment.getDataDirectory().getAbsolutePath() + "/source.sh"; //$NON-NLS-1$
     private static final String EXEC_PROGRAM =
             "#!/system/bin/sh\necho \"List of files:\"\nls -la\n"; //$NON-NLS-1$
 
@@ -55,6 +59,7 @@ public class ExecCommandTest extends AbstractConsoleTest {
      *
      * @throws Exception If test failed
      */
+    @MediumTest
     public void testExecWithPartialResult() throws Exception {
         try {
             // Create the test program
@@ -68,7 +73,7 @@ public class ExecCommandTest extends AbstractConsoleTest {
                 public void onAsyncStart() {
                     /**NON BLOCK**/
                 }
-                public void onAsyncEnd(boolean cancelled) {
+                public void onAsyncEnd(boolean canceled) {
                     synchronized (ExecCommandTest.this.mSync) {
                         ExecCommandTest.this.mSync.notifyAll();
                     }

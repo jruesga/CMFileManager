@@ -18,6 +18,8 @@ package com.cyanogenmod.explorer.commands.shell;
 
 import java.util.List;
 
+import android.test.suitebuilder.annotation.SmallTest;
+
 import com.cyanogenmod.explorer.model.MountPoint;
 import com.cyanogenmod.explorer.util.CommandHelper;
 
@@ -41,6 +43,7 @@ public class MountPointInfoCommandTest extends AbstractConsoleTest {
      *
      * @throws Exception If test failed
      */
+    @SmallTest
     public void testMountPoint() throws Exception {
         List<MountPoint> mp = CommandHelper.getMountPoints(getContext(), getConsole());
         assertNotNull("mountpoints==null", mp); //$NON-NLS-1$
@@ -54,6 +57,7 @@ public class MountPointInfoCommandTest extends AbstractConsoleTest {
      * {@link ListCommand#parse(String, String)}
      */
     @SuppressWarnings("static-method")
+    @SmallTest
     public void testParse() throws Exception {
         MountPointInfoCommand cmd = new MountPointInfoCommand();
         String in = "rootfs / rootfs ro,relatime 0 0\n" + //$NON-NLS-1$

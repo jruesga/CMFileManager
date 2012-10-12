@@ -16,8 +16,11 @@
 
 package com.cyanogenmod.explorer.commands.shell;
 
+import android.os.Environment;
+import android.test.suitebuilder.annotation.LargeTest;
 import android.util.Log;
 
+import com.cyanogenmod.explorer.commands.AsyncResultExecutable;
 import com.cyanogenmod.explorer.commands.AsyncResultListener;
 import com.cyanogenmod.explorer.model.FolderUsage;
 import com.cyanogenmod.explorer.util.CommandHelper;
@@ -26,13 +29,14 @@ import com.cyanogenmod.explorer.util.MimeTypeHelper.MimeTypeCategory;
 /**
  * A class for testing folder usage command.
  *
- * @see FindCommand
+ * @see FolderUsageCommand
  */
 public class FolderUsageCommandTest extends AbstractConsoleTest {
 
     private static final String TAG = "FolderUsageCommandTest"; //$NON-NLS-1$
 
-    private static final String PATH = "/system"; //$NON-NLS-1$
+    private static final String PATH =
+            Environment.getDataDirectory().getAbsolutePath() + "/app"; //$NON-NLS-1$
 
     /**
      * @hide
@@ -45,6 +49,10 @@ public class FolderUsageCommandTest extends AbstractConsoleTest {
     /**
      * @hide
      */
+    boolean mNormalEnd;
+    /**
+     * @hide
+     */
     FolderUsage mUsage;
 
     /**
@@ -52,7 +60,7 @@ public class FolderUsageCommandTest extends AbstractConsoleTest {
      */
     @Override
     public boolean isRootConsoleNeeded() {
-        return false;
+        return true;
     }
 
     /**
@@ -60,15 +68,19 @@ public class FolderUsageCommandTest extends AbstractConsoleTest {
      *
      * @throws Exception If test failed
      */
+    @LargeTest
     public void testFolderUsageWithPartialResult() throws Exception {
         this.mNewPartialData = false;
+        this.mNormalEnd = false;
         this.mUsage = null;
-        CommandHelper.getFolderUsage(getContext(), PATH, new AsyncResultListener() {
+        AsyncResultExecutable cmd =
+                CommandHelper.getFolderUsage(getContext(), PATH, new AsyncResultListener() {
                         public void onAsyncStart() {
                             /**NON BLOCK**/
                         }
-                        public void onAsyncEnd(boolean cancelled) {
+                        public void onAsyncEnd(boolean canceled) {
                             synchronized (FolderUsageCommandTest.this.mSync) {
+                                FolderUsageCommandTest.this.mNormalEnd = true;
                                 FolderUsageCommandTest.this.mSync.notifyAll();
                             }
                         }
@@ -85,15 +97,19 @@ public class FolderUsageCommandTest extends AbstractConsoleTest {
                         }
                    }, getConsole());
         synchronized (FolderUsageCommandTest.this.mSync) {
-            FolderUsageCommandTest.this.mSync.wait(25000L);
+            FolderUsageCommandTest.this.mSync.wait(15000L);
         }
+        try {
+            if (!this.mNormalEnd && cmd != null && cmd.isCancelable() && !cmd.isCanceled()) {
+                cmd.cancel();
+            }
+        } catch (Exception e) {/**NON BLOCK**/}
         assertTrue("no new partial data", this.mNewPartialData); //$NON-NLS-1$
         assertNotNull("usage==null", this.mUsage); //$NON-NLS-1$
-        assertTrue("no folder returned", this.mUsage.getNumberOfFolders() > 0); //$NON-NLS-1$
         assertTrue("no files returned", this.mUsage.getNumberOfFiles() > 0); //$NON-NLS-1$
         assertTrue("no size returned", this.mUsage.getTotalSize() > 0); //$NON-NLS-1$
         assertTrue("no text category returned", //$NON-NLS-1$
-                this.mUsage.getStatisticsForCategory(MimeTypeCategory.TEXT) > 0);
+                this.mUsage.getStatisticsForCategory(MimeTypeCategory.APP) > 0);
     }
 
 }

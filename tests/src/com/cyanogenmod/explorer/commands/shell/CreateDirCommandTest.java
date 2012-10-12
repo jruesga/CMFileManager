@@ -16,6 +16,9 @@
 
 package com.cyanogenmod.explorer.commands.shell;
 
+import android.os.Environment;
+import android.test.suitebuilder.annotation.SmallTest;
+
 import com.cyanogenmod.explorer.console.NoSuchFileOrDirectory;
 import com.cyanogenmod.explorer.util.CommandHelper;
 
@@ -26,15 +29,16 @@ import com.cyanogenmod.explorer.util.CommandHelper;
  */
 public class CreateDirCommandTest extends AbstractConsoleTest {
 
-    private static final String PATH_NEWDIR_OK = "/mnt/sdcard/newtestdir"; //$NON-NLS-1$
-    private static final String PATH_NEWDIR_ERROR = "/mnt/sdcard121212/newtestdir"; //$NON-NLS-1$
+    private static final String PATH_NEWDIR_OK =
+            Environment.getDataDirectory().getAbsolutePath() + "/newtestdir"; //$NON-NLS-1$
+    private static final String PATH_NEWDIR_ERROR = "/foo/foo121212/newtestdir"; //$NON-NLS-1$
 
     /**
      * {@inheritDoc}
      */
     @Override
     public boolean isRootConsoleNeeded() {
-        return false;
+        return true;
     }
 
     /**
@@ -42,6 +46,7 @@ public class CreateDirCommandTest extends AbstractConsoleTest {
      *
      * @throws Exception If test failed
      */
+    @SmallTest
     public void testCreateDirOk() throws Exception {
         try {
             boolean ret = CommandHelper.createDirectory(getContext(), PATH_NEWDIR_OK, getConsole());
@@ -50,9 +55,7 @@ public class CreateDirCommandTest extends AbstractConsoleTest {
         } finally {
             try {
                 CommandHelper.deleteDirectory(getContext(), PATH_NEWDIR_OK, getConsole());
-            } catch (Throwable ex) {
-                /**NON BLOCK**/
-            }
+            } catch (Throwable ex) {/**NON BLOCK**/}
         }
     }
 
@@ -61,12 +64,17 @@ public class CreateDirCommandTest extends AbstractConsoleTest {
      *
      * @throws Exception If test failed
      */
+    @SmallTest
     public void testCreateDirFail() throws Exception {
         try {
             CommandHelper.createDirectory(getContext(), PATH_NEWDIR_ERROR, getConsole());
             assertTrue("exit code==0", false); //$NON-NLS-1$
         } catch (NoSuchFileOrDirectory error) {
           //This command must failed. exit code !=0
+        } finally {
+            try {
+                CommandHelper.deleteDirectory(getContext(), PATH_NEWDIR_ERROR, getConsole());
+            } catch (Throwable ex) {/**NON BLOCK**/}
         }
     }
 

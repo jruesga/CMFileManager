@@ -16,6 +16,8 @@
 
 package com.cyanogenmod.explorer.commands.shell;
 
+import android.test.suitebuilder.annotation.SmallTest;
+
 import com.cyanogenmod.explorer.model.FileSystemObject;
 import com.cyanogenmod.explorer.util.CommandHelper;
 
@@ -42,6 +44,7 @@ public class ResolveLinkCommandTest extends AbstractConsoleTest {
      *
      * @throws Exception If test failed
      */
+    @SmallTest
     public void testReadLinkOk() throws Exception {
         FileSystemObject fso = CommandHelper.resolveSymlink(getContext(), LINK, getConsole());
         assertNotNull("fso==null)", fso); //$NON-NLS-1$

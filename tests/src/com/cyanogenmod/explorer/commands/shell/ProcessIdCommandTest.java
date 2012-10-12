@@ -30,6 +30,6 @@ public class ProcessIdCommandTest extends AbstractConsoleTest {
         return false;
     }
 
-    // Can't perform any test, because a running program in a shell is needed, and PID of
-    // shell is not available for external use outside the console.
+    // Can't perform any test, because a running program in a shell is needed, and the PID of
+    // the shell is not available for external use outside the console.
 }

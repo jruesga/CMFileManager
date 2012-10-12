@@ -16,6 +16,8 @@
 
 package com.cyanogenmod.explorer.commands.shell;
 
+import android.test.suitebuilder.annotation.SmallTest;
+
 import com.cyanogenmod.explorer.util.CommandHelper;
 
 /**
@@ -42,6 +44,7 @@ public class EchoCommandTest extends AbstractConsoleTest {
      *
      * @throws Exception If test failed
      */
+    @SmallTest
     public void testEchoOk() throws Exception {
         String echo = CommandHelper.getVariable(getContext(), ECHO_MSG, getConsole());
         assertNotNull("echo==null", echo); //$NON-NLS-1$
@@ -53,6 +56,7 @@ public class EchoCommandTest extends AbstractConsoleTest {
      *
      * @throws Exception If test failed
      */
+    @SmallTest
     public void testEchoVoid() throws Exception {
         String echo = CommandHelper.getVariable(getContext(), ECHO_MSG_VOID, getConsole());
         assertNotNull("exitCode==null", echo); //$NON-NLS-1$

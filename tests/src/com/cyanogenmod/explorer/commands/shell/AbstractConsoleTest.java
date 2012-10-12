@@ -19,13 +19,14 @@ package com.cyanogenmod.explorer.commands.shell;
 import com.cyanogenmod.explorer.console.Console;
 import com.cyanogenmod.explorer.console.ConsoleBuilder;
 import com.cyanogenmod.explorer.console.shell.ShellConsole;
+import com.cyanogenmod.explorer.util.FileHelper;
 
 /**
  * An abstract class that manages tests that needs a console.
  */
 public abstract class AbstractConsoleTest extends android.test.AndroidTestCase {
 
-    private static final String INITIAL_DIR = "/";  //$NON-NLS-1$
+    private static final String INITIAL_DIR = FileHelper.ROOT_DIRECTORY;
 
     private Console mConsole;
 

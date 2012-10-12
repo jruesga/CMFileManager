@@ -18,6 +18,9 @@ package com.cyanogenmod.explorer.commands.shell;
 
 import java.util.List;
 
+import android.test.suitebuilder.annotation.MediumTest;
+import android.test.suitebuilder.annotation.SmallTest;
+
 import com.cyanogenmod.explorer.model.BlockDevice;
 import com.cyanogenmod.explorer.model.CharacterDevice;
 import com.cyanogenmod.explorer.model.Directory;
@@ -27,6 +30,7 @@ import com.cyanogenmod.explorer.model.NamedPipe;
 import com.cyanogenmod.explorer.model.RegularFile;
 import com.cyanogenmod.explorer.model.Symlink;
 import com.cyanogenmod.explorer.util.CommandHelper;
+import com.cyanogenmod.explorer.util.FileHelper;
 
 /**
  * A class for testing list command.
@@ -35,7 +39,7 @@ import com.cyanogenmod.explorer.util.CommandHelper;
  */
 public class ListCommandTest extends AbstractConsoleTest {
 
-    private static final String LS_PATH = "/"; //$NON-NLS-1$
+    private static final String LS_PATH = FileHelper.ROOT_DIRECTORY;
     private static final String LS_INFOFILE = "/boot.txt"; //$NON-NLS-1$
     private static final String LS_INFOFILE_NAME = "boot.txt"; //$NON-NLS-1$
 
@@ -53,6 +57,7 @@ public class ListCommandTest extends AbstractConsoleTest {
      *
      * @throws Exception If test failed
      */
+    @MediumTest
     public void testList() throws Exception {
         List<FileSystemObject> files = CommandHelper.listFiles(getContext(), LS_PATH, getConsole());
         assertNotNull("files==null", files); //$NON-NLS-1$
@@ -65,6 +70,7 @@ public class ListCommandTest extends AbstractConsoleTest {
      *
      * @throws Exception If test failed
      */
+    @MediumTest
     public void testListInfo() throws Exception {
         FileSystemObject file = CommandHelper.getFileInfo(getContext(), LS_INFOFILE, getConsole());
         assertNotNull("file==null", file); //$NON-NLS-1$
@@ -79,6 +85,7 @@ public class ListCommandTest extends AbstractConsoleTest {
      * @throws Exception If test failed
      * {@link ListCommand#parse(String, String)}
      */
+    @SmallTest
     public void testParse() throws Exception {
         ListCommand cmd = new ListCommand(LS_PATH, getConsole());
         String in =

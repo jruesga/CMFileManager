@@ -16,6 +16,9 @@
 
 package com.cyanogenmod.explorer.commands.shell;
 
+import android.os.Environment;
+import android.test.suitebuilder.annotation.SmallTest;
+
 import com.cyanogenmod.explorer.util.CommandHelper;
 
 /**
@@ -25,15 +28,16 @@ import com.cyanogenmod.explorer.util.CommandHelper;
  */
 public class ParentDirCommandTest extends AbstractConsoleTest {
 
-    private static final String FILE = "/mnt/sdcard/parentdirtest.txt"; //$NON-NLS-1$
-    private static final String PARENT = "/mnt/sdcard"; //$NON-NLS-1$
+    private static final String FILE =
+            Environment.getDataDirectory().getAbsolutePath() + "/parentdirtest.txt"; //$NON-NLS-1$
+    private static final String PARENT = Environment.getDataDirectory().getAbsolutePath();
 
     /**
      * {@inheritDoc}
      */
     @Override
     public boolean isRootConsoleNeeded() {
-        return false;
+        return true;
     }
 
     /**
@@ -41,6 +45,7 @@ public class ParentDirCommandTest extends AbstractConsoleTest {
      *
      * @throws Exception If test failed
      */
+    @SmallTest
     public void testParentDirOk() throws Exception {
         try {
             CommandHelper.createFile(getContext(), FILE, getConsole());
@@ -50,7 +55,11 @@ public class ParentDirCommandTest extends AbstractConsoleTest {
                     String.format(
                             "parent!=%s", PARENT), parent.compareTo(PARENT) == 0); //$NON-NLS-1$
         } finally {
-            CommandHelper.deleteFile(getContext(), FILE, getConsole());
+            try {
+                CommandHelper.deleteFile(getContext(), FILE, getConsole());
+            } catch (Throwable ex) {
+                /**NON BLOCK**/
+            }
         }
     }
 

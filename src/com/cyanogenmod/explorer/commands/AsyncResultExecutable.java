@@ -27,7 +27,7 @@ public interface AsyncResultExecutable extends Executable {
      */
     public interface OnCancelListener {
         /**
-         * Invokes when a request of cancellation of the current
+         * Invoked when a request of cancellation of the current
          * execution is started.
          *
          *  @return boolean If the execution was canceled

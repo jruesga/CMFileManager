@@ -46,6 +46,8 @@ import com.cyanogenmod.explorer.preferences.Preferences;
 import com.cyanogenmod.explorer.util.CommandHelper;
 import com.cyanogenmod.explorer.util.FileHelper;
 
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -65,7 +67,7 @@ import java.util.regex.Pattern;
  * a wrapper to execute all other programs (like shell does in linux), capturing the
  * output (stdin and stderr) and the exit code of the program executed.
  */
-public abstract class ShellConsole extends Console {
+public abstract class ShellConsole extends Console implements Program.ProgramListener {
 
     private static final String TAG = "ShellConsole"; //$NON-NLS-1$
 
@@ -85,6 +87,10 @@ public abstract class ShellConsole extends Console {
      * @hide
      */
     boolean mActive = false;
+    /**
+     * @hide
+     */
+    boolean mReady = false;
     private boolean mFinished = true;
     private Process mProc = null;
     /**
@@ -243,9 +249,9 @@ public abstract class ShellConsole extends Console {
             }
 
             //Allocate buffers
-            this.mIn = this.mProc.getInputStream();
-            this.mErr = this.mProc.getErrorStream();
-            this.mOut = this.mProc.getOutputStream();
+            this.mIn = new BufferedInputStream(this.mProc.getInputStream(), this.mBufferSize);
+            this.mErr = new BufferedInputStream(this.mProc.getErrorStream(), this.mBufferSize);
+            this.mOut = new BufferedOutputStream(this.mProc.getOutputStream(), this.mBufferSize);
             if (this.mIn == null || this.mErr == null || this.mOut == null) {
                 try {
                     dealloc();
@@ -437,6 +443,7 @@ public abstract class ShellConsole extends Console {
             this.mActiveCommand = program;
 
             //Reset the buffers
+            this.mReady = false;
             this.mStarted = false;
             this.mCanceled = false;
             this.mSbIn = new StringBuffer();
@@ -467,6 +474,7 @@ public abstract class ShellConsole extends Console {
             }
 
             //Is asynchronous program? Then set asynchronous
+            program.setProgramListener(this);
             if (program instanceof AsyncResultProgram) {
                 ((AsyncResultProgram)program).setOnCancelListener(this);
                 synchronized (this.mPartialSync) {
@@ -538,6 +546,9 @@ public abstract class ShellConsole extends Console {
                                 String.valueOf(exitCode)));
             }
 
+            // Process is not ready
+            this.mReady = false;
+
             //Check if invocation was successfully or not
             if (!program.isIgnoreShellStdErrCheck()) {
                 this.mShell.checkStdErr(this.mActiveCommand, exitCode, this.mSbErr.toString());
@@ -595,14 +606,6 @@ public abstract class ShellConsole extends Console {
             public void run() {
                 int read = 0;
                 try {
-                    //Notify the start
-                    if (ShellConsole.this.mActiveCommand != null
-                            && ShellConsole.this.mActiveCommand instanceof AsyncResultProgram) {
-                        AsyncResultProgram program =
-                                ((AsyncResultProgram)ShellConsole.this.mActiveCommand);
-                        program.startParsePartialResult();
-                    }
-
                     while (ShellConsole.this.mActive) {
                         //Read only one byte with active wait
                         final int r = in.read();
@@ -618,6 +621,16 @@ public abstract class ShellConsole extends Console {
                                 sb.append(ShellConsole.this.mSbIn.toString());
                             } else {
                                 sb.append((char)r);
+                            }
+
+                            //
+                            if (ShellConsole.this.mStarted &&
+                                   ShellConsole.this.mActiveCommand != null) {
+                                if (!ShellConsole.this.mReady) {
+                                    ShellConsole.this.mReady = true;
+                                    ShellConsole.this.mActiveCommand.onProgramReady();
+                                }
+                                
                             }
 
                             //Notify asynchronous partial data
@@ -858,6 +871,7 @@ public abstract class ShellConsole extends Console {
     void notifyProcessFinished() {
         synchronized (ShellConsole.this.mSync) {
             if (this.mActive) {
+                this.mReady = false;
                 this.mSync.notify();
                 this.mFinished = true;
             }
@@ -996,6 +1010,25 @@ public abstract class ShellConsole extends Console {
     public boolean onCancel() {
         //Kill the current command on cancel request
         return killCurrentCommand();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public boolean onRequestWrite(byte[] data) throws ExecutionException {
+        try {
+            // Method that write to the stdin the data requested by the program
+            if (this.mReady && this.mOut != null) {
+                this.mOut.write(data);
+                return true;
+            }
+        } catch (Exception ex) {
+            Log.w(TAG,
+                    String.format("Unable to write data to program: %s", //$NON-NLS-1$
+                            this.mActiveCommand.getCommand(), ex));
+        }
+        return false;
     }
 
 }

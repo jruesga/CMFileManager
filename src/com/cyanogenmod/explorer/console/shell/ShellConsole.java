@@ -46,8 +46,6 @@ import com.cyanogenmod.explorer.preferences.Preferences;
 import com.cyanogenmod.explorer.util.CommandHelper;
 import com.cyanogenmod.explorer.util.FileHelper;
 
-import java.io.BufferedInputStream;
-import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -249,9 +247,9 @@ public abstract class ShellConsole extends Console implements Program.ProgramLis
             }
 
             //Allocate buffers
-            this.mIn = new BufferedInputStream(this.mProc.getInputStream(), this.mBufferSize);
-            this.mErr = new BufferedInputStream(this.mProc.getErrorStream(), this.mBufferSize);
-            this.mOut = new BufferedOutputStream(this.mProc.getOutputStream(), this.mBufferSize);
+            this.mIn = this.mProc.getInputStream();
+            this.mErr = this.mProc.getErrorStream();
+            this.mOut = this.mProc.getOutputStream();
             if (this.mIn == null || this.mErr == null || this.mOut == null) {
                 try {
                     dealloc();

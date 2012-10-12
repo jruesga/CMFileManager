@@ -58,7 +58,7 @@ public class ExecCommand extends AsyncResultProgram implements ExecExecutable {
      * {@inheritDoc}
      */
     @Override
-    public void onEndParsePartialResult(boolean cancelled) {/** NON BLOCK **/}
+    public void onEndParsePartialResult(boolean canceled) {/** NON BLOCK **/}
 
     /**
      * {@inheritDoc}

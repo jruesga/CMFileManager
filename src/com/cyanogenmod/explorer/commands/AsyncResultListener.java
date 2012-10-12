@@ -29,9 +29,9 @@ public interface AsyncResultListener {
     /**
      * Method invoked when the partial data has finalized.
      *
-     * @param cancelled Indicates if the program was cancelled
+     * @param canceled Indicates if the program was canceled
      */
-    void onAsyncEnd(boolean cancelled);
+    void onAsyncEnd(boolean canceled);
 
     /**
      * Method invoked when new partial data are ready.

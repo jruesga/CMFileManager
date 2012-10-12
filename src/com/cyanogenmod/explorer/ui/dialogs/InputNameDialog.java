@@ -66,7 +66,7 @@ public class InputNameDialog
     /**
      * @hide
      */
-    boolean mCancelled;
+    boolean mCanceled;
 
     /**
      * Constructor of <code>InputNameDialog</code>.
@@ -101,7 +101,7 @@ public class InputNameDialog
         this.mFiles = files;
         this.mFso = fso;
         this.mAllowFsoName = allowFsoName;
-        this.mCancelled = true;
+        this.mCanceled = true;
 
         //Create the
         LayoutInflater li =
@@ -131,7 +131,7 @@ public class InputNameDialog
                 new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        InputNameDialog.this.mCancelled = false;
+                        InputNameDialog.this.mCanceled = false;
                     }
                 });
         this.mDialog.setOnShowListener(new DialogInterface.OnShowListener() {
@@ -282,7 +282,7 @@ public class InputNameDialog
      */
     @Override
     public void onDismiss(DialogInterface dialog) {
-        if (!InputNameDialog.this.mCancelled) {
+        if (!InputNameDialog.this.mCanceled) {
             if (this.mOnDismissListener != null) {
                 this.mOnDismissListener.onDismiss(dialog);
             }

@@ -65,8 +65,8 @@
   <string name="computing_message"><xliff:g id="data">%1$s</xliff:g></string>
   <!-- Computing new line message -->
   <string name="computing_message_ln"><xliff:g id="data">%1$s</xliff:g></string>
-  <!-- Cancelled message -->
-  <string name="cancelled_message">Cancelled.</string>
+  <!-- Canceled message -->
+  <string name="canceled_message">Canceled.</string>
   <!-- Error message -->
   <string name="error_message">Error.</string>
 
@@ -113,9 +113,9 @@
   <string name="msgs_operation_failure">The operation failed</string>
   <!-- A console can't not be allocated (FATAL. There is no way to execute commands) -->
   <string name="msgs_console_alloc_failure">A privileged console can\'t be allocated.</string>
-  <!-- An operation can't not be cancelled -->
-  <string name="msgs_operation_can_not_be_cancelled">The operation can\'t be cancelled.</string>
-  <!-- An operation can't not be cancelled -->
+  <!-- An operation can't not be canceled -->
+  <string name="msgs_operation_can_not_be_canceled">The operation can\'t be canceled.</string>
+  <!-- An operation can't not be canceled -->
   <string name="msgs_read_only_filesystem">The filesystem is read-only. Try to mount the
     filesystem as read-write before do a write operation.</string>
   <!-- Illegal argument -->

@@ -119,10 +119,10 @@ public abstract class AsyncResultProgram
      * Method that communicates that partial result is ended and no new result
      * will be received.
      *
-     * @param cancelled If the program was cancelled
+     * @param canceled If the program was canceled
      * @hide
      */
-    public final void endParsePartialResult(boolean cancelled) {
+    public final void endParsePartialResult(boolean canceled) {
         synchronized (this.mSync) {
             this.mWorkerThread.mAlive = false;
             this.mSync.notify();
@@ -143,11 +143,11 @@ public abstract class AsyncResultProgram
         }
 
         //Notify end to command class
-        this.onEndParsePartialResult(cancelled);
+        this.onEndParsePartialResult(canceled);
 
         //If a listener is defined, then send the start event
         if (getAsyncResultListener() != null) {
-            getAsyncResultListener().onAsyncEnd(cancelled);
+            getAsyncResultListener().onAsyncEnd(canceled);
         }
     }
 

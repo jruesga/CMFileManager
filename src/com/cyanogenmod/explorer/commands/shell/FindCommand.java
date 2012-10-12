@@ -89,7 +89,7 @@ public class FindCommand extends AsyncResultProgram implements FindExecutable {
      * {@inheritDoc}
      */
     @Override
-    public void onEndParsePartialResult(boolean cancelled) {
+    public void onEndParsePartialResult(boolean canceled) {
         this.mPartial = ""; //$NON-NLS-1$
     }
 

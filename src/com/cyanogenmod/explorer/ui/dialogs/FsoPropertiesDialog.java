@@ -524,7 +524,7 @@ public class FsoPropertiesDialog
                 }
 
                 @Override
-                public void onCancelled() {
+                public void onCanceled() {
                     // Update the permissions with the previous information
                     updatePermissions();
                     setMsg(null);
@@ -627,7 +627,7 @@ public class FsoPropertiesDialog
                 }
 
                 @Override
-                public void onCancelled() {
+                public void onCanceled() {
                     // Update the information of owner and group
                     updateSpinnerFromAid(
                             FsoPropertiesDialog.this.mSpnOwner,
@@ -899,8 +899,8 @@ public class FsoPropertiesDialog
      * {@inheritDoc}
      */
     @Override
-    public void onAsyncEnd(final boolean cancelled) {
-        printFolderUsage(false, cancelled);
+    public void onAsyncEnd(final boolean canceled) {
+        printFolderUsage(false, canceled);
     }
 
     /**
@@ -952,17 +952,17 @@ public class FsoPropertiesDialog
      * Method that redraws the information about folder usage
      *
      * @param computing If the process if computing the data
-     * @param cancelled If the process was cancelled
+     * @param canceled If the process was canceled
      */
-    private void printFolderUsage(final boolean computing, final boolean cancelled) {
+    private void printFolderUsage(final boolean computing, final boolean canceled) {
         // Mark that a drawing is in progress
         this.mDrawingFolderUsage = true;
 
         final Resources res = this.mContext.getResources();
-        if (cancelled) {
+        if (canceled) {
             try {
-                FsoPropertiesDialog.this.mTvSize.setText(R.string.cancelled_message);
-                FsoPropertiesDialog.this.mTvContains.setText(R.string.cancelled_message);
+                FsoPropertiesDialog.this.mTvSize.setText(R.string.canceled_message);
+                FsoPropertiesDialog.this.mTvContains.setText(R.string.canceled_message);
             } catch (Throwable e) {/**NON BLOCK**/}
 
             // End of drawing

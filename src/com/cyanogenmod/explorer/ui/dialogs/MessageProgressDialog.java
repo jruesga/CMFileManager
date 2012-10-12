@@ -121,10 +121,10 @@ public class MessageProgressDialog implements DialogInterface.OnClickListener {
                 // Wait for cancellation
                 if (MessageProgressDialog.this.mOnCancelListener != null) {
                     if (!MessageProgressDialog.this.mOnCancelListener.onCancel()) {
-                        //The operation can't not be cancelled
+                        //The operation can't not be canceled
                         DialogHelper.showToast(
                                 MessageProgressDialog.this.mContext,
-                                R.string.msgs_operation_can_not_be_cancelled, Toast.LENGTH_SHORT);
+                                R.string.msgs_operation_can_not_be_canceled, Toast.LENGTH_SHORT);
                     }
                 }
             }

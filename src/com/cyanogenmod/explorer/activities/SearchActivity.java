@@ -999,7 +999,7 @@ public class SearchActivity extends Activity
      * {@inheritDoc}
      */
     @Override
-    public void onAsyncEnd(boolean cancelled) {
+    public void onAsyncEnd(boolean canceled) {
         this.mSearchListView.post(new Runnable() {
             @Override
             public void run() {

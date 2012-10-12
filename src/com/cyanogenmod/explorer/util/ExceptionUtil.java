@@ -58,9 +58,9 @@ public final class ExceptionUtil {
         void onSuccess();
 
         /**
-         * Method invoked when the relaunch operation was cancelled by the user
+         * Method invoked when the relaunch operation was canceled by the user
          */
-        void onCancelled();
+        void onCanceled();
 
         /**
          * Method invoked when the relaunch operation was failed
@@ -305,9 +305,9 @@ public final class ExceptionUtil {
                                     }
                                 }
                             } else {
-                                // Operation cancelled
+                                // Operation canceled
                                 if (listener != null) {
-                                    listener.onCancelled();
+                                    listener.onCanceled();
                                 }
                             }
                         }

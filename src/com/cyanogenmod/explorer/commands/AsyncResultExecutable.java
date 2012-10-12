@@ -30,7 +30,7 @@ public interface AsyncResultExecutable extends Executable {
          * Invokes when a request of cancellation of the current
          * execution is started.
          *
-         *  @return boolean If the execution was cancelled
+         *  @return boolean If the execution was canceled
          */
         boolean onCancel();
     }
@@ -45,7 +45,7 @@ public interface AsyncResultExecutable extends Executable {
     /**
      * Method that cancels the execution of the program.
      *
-     * @return boolean If the program was cancelled
+     * @return boolean If the program was canceled
      */
     boolean cancel();
 

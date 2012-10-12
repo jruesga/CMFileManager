@@ -814,7 +814,7 @@ public final class ActionsPolicy {
                             }
                             @Override
                             @SuppressWarnings("unqualified-field-access")
-                            public void onCancelled() {
+                            public void onCanceled() {
                                 synchronized (mSync) {
                                     mSync.notify();
                                 }
@@ -1152,7 +1152,7 @@ public final class ActionsPolicy {
                             }
                             @Override
                             @SuppressWarnings("unqualified-field-access")
-                            public void onCancelled() {
+                            public void onCanceled() {
                                 synchronized (mSync) {
                                     mSync.notify();
                                 }

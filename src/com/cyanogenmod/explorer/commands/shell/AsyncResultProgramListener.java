@@ -30,9 +30,9 @@ public interface AsyncResultProgramListener {
      * Method invoked when the parse of results is ended and no new result.
      * will be received
      *
-     * @param cancelled Indicates if the program was cancelled
+     * @param canceled Indicates if the program was canceled
      */
-    void onEndParsePartialResult(boolean cancelled);
+    void onEndParsePartialResult(boolean canceled);
 
     /**
      * Method invoked when a parse of new results are needed.

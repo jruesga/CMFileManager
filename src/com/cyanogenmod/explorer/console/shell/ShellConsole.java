@@ -94,7 +94,7 @@ public abstract class ShellConsole extends Console {
     /**
      * @hide
      */
-    boolean mCancelled;
+    boolean mCanceled;
     /**
      * @hide
      */
@@ -438,7 +438,7 @@ public abstract class ShellConsole extends Console {
 
             //Reset the buffers
             this.mStarted = false;
-            this.mCancelled = false;
+            this.mCanceled = false;
             this.mSbIn = new StringBuffer();
             this.mSbErr = new StringBuffer();
 
@@ -523,7 +523,7 @@ public abstract class ShellConsole extends Console {
             //End partial results?
             if (program instanceof AsyncResultProgram) {
                 synchronized (this.mPartialSync) {
-                    ((AsyncResultProgram)program).endParsePartialResult(this.mCancelled);
+                    ((AsyncResultProgram)program).endParsePartialResult(this.mCanceled);
                 }
             }
 
@@ -610,7 +610,7 @@ public abstract class ShellConsole extends Console {
                             break;
                         }
                         StringBuffer sb = new StringBuffer();
-                        if (!ShellConsole.this.mCancelled) {
+                        if (!ShellConsole.this.mCanceled) {
                             ShellConsole.this.mSbIn.append((char)r);
                             if (!ShellConsole.this.mStarted) {
                                 ShellConsole.this.mStarted =
@@ -641,7 +641,7 @@ public abstract class ShellConsole extends Console {
                             read = in.read(data);
 
                             // Exit if active command is canceled
-                            if (ShellConsole.this.mCancelled) continue;
+                            if (ShellConsole.this.mCanceled) continue;
 
                             final String s = new String(data, 0, read);
                             ShellConsole.this.mSbIn.append(s);
@@ -676,7 +676,7 @@ public abstract class ShellConsole extends Console {
                         }
 
                         //Audit (if not canceled)
-                        if (!ShellConsole.this.mCancelled && isTrace()) {
+                        if (!ShellConsole.this.mCanceled && isTrace()) {
                             Log.v(TAG,
                                     String.format("stdin: %s", sb.toString())); //$NON-NLS-1$
                         }
@@ -721,7 +721,7 @@ public abstract class ShellConsole extends Console {
                             break;
                         }
                         StringBuffer sb = new StringBuffer();
-                        if (!ShellConsole.this.mCancelled) {
+                        if (!ShellConsole.this.mCanceled) {
                             ShellConsole.this.mSbErr.append((char)r);
                             sb.append((char)r);
 
@@ -746,7 +746,7 @@ public abstract class ShellConsole extends Console {
                             read = err.read(data);
 
                             // Exit if active command is canceled
-                            if (ShellConsole.this.mCancelled) continue;
+                            if (ShellConsole.this.mCanceled) continue;
 
                             String s = new String(data, 0, read);
                             ShellConsole.this.mSbErr.append(s);
@@ -769,7 +769,7 @@ public abstract class ShellConsole extends Console {
                         }
 
                         //Audit (if not canceled)
-                        if (!ShellConsole.this.mCancelled && isTrace()) {
+                        if (!ShellConsole.this.mCanceled && isTrace()) {
                             Log.v(TAG,
                                     String.format("stderr: %s", sb.toString())); //$NON-NLS-1$
                         }
@@ -908,7 +908,7 @@ public abstract class ShellConsole extends Console {
     private int getExitCode(StringBuffer stdin) {
         // If process was canceled, don't expect a exit code.
         // Returns always 143 code
-        if (this.mCancelled) {
+        if (this.mCanceled) {
             return 143;
         }
 
@@ -949,7 +949,7 @@ public abstract class ShellConsole extends Console {
      */
     private boolean killCurrentCommand() {
         synchronized (this.mSync) {
-            //Is synchronous program? Otherwise it can't be cancelled
+            //Is synchronous program? Otherwise it can't be canceled
             if (!(this.mActiveCommand instanceof AsyncResultProgram)) {
                 return false;
             }
@@ -973,10 +973,10 @@ public abstract class ShellConsole extends Console {
                             } catch (Throwable ex) {
                                 /**NON BLOCK**/
                             }
-                            this.mCancelled = true;
+                            this.mCanceled = true;
                             notifyProcessFinished();
                             this.mSync.notify();
-                            return this.mCancelled;
+                            return this.mCanceled;
                         }
                     }
                 } catch (Throwable ex) {

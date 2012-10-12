@@ -31,6 +31,7 @@ import com.cyanogenmod.explorer.commands.DeleteDirExecutable;
 import com.cyanogenmod.explorer.commands.DeleteFileExecutable;
 import com.cyanogenmod.explorer.commands.DiskUsageExecutable;
 import com.cyanogenmod.explorer.commands.EchoExecutable;
+import com.cyanogenmod.explorer.commands.ExecExecutable;
 import com.cyanogenmod.explorer.commands.Executable;
 import com.cyanogenmod.explorer.commands.FindExecutable;
 import com.cyanogenmod.explorer.commands.FolderUsageExecutable;
@@ -731,6 +732,40 @@ public final class CommandHelper {
                 c.getExecutableFactory().newCreator().createCopyExecutable(src, dst);
         writableExecute(context, executable, c);
         return executable.getResult().booleanValue();
+    }
+
+    /**
+     * Method that executes a command.
+     *
+     * @param context The current context (needed if console == null)
+     * @param cmd The command to execute
+     * @param asyncResultListener The partial result listener
+     * @param console The console in which execute the program.
+     * <code>null</code> to attach to the default console
+     * @return AsyncResultProgram The command executed in background
+     * @throws FileNotFoundException If the initial directory not exists
+     * @throws IOException If initial directory can't not be checked
+     * @throws InvalidCommandDefinitionException If the command has an invalid definition
+     * @throws NoSuchFileOrDirectory If the file or directory was not found
+     * @throws ConsoleAllocException If the console can't be allocated
+     * @throws InsufficientPermissionsException If an operation requires elevated permissions
+     * @throws CommandNotFoundException If the command was not found
+     * @throws OperationTimeoutException If the operation exceeded the maximum time of wait
+     * @throws ExecutionException If the operation returns a invalid exit code
+     * @see AsyncResultExecutable
+     */
+    public static AsyncResultExecutable exec(
+            Context context, String cmd, AsyncResultListener asyncResultListener, Console console)
+            throws FileNotFoundException, IOException, ConsoleAllocException,
+            NoSuchFileOrDirectory, InsufficientPermissionsException,
+            CommandNotFoundException, OperationTimeoutException,
+            ExecutionException, InvalidCommandDefinitionException {
+        Console c = ensureConsole(context, console);
+        ExecExecutable executable =
+                c.getExecutableFactory().newCreator().
+                    createExecExecutable(cmd, asyncResultListener);
+        execute(context, executable, c);
+        return executable;
     }
 
     /**

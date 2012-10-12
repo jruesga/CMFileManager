@@ -28,6 +28,7 @@ import com.cyanogenmod.explorer.commands.DeleteDirExecutable;
 import com.cyanogenmod.explorer.commands.DeleteFileExecutable;
 import com.cyanogenmod.explorer.commands.DiskUsageExecutable;
 import com.cyanogenmod.explorer.commands.EchoExecutable;
+import com.cyanogenmod.explorer.commands.ExecExecutable;
 import com.cyanogenmod.explorer.commands.ExecutableCreator;
 import com.cyanogenmod.explorer.commands.FindExecutable;
 import com.cyanogenmod.explorer.commands.FolderUsageExecutable;
@@ -217,6 +218,19 @@ public class ShellExecutableCreator implements ExecutableCreator {
             return new EchoCommand(msg);
         } catch (InvalidCommandDefinitionException icdEx) {
             throw new CommandNotFoundException("EchoCommand", icdEx); //$NON-NLS-1$
+        }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public ExecExecutable createExecExecutable(
+            String cmd, AsyncResultListener asyncResultListener) throws CommandNotFoundException {
+        try {
+            return new ExecCommand(cmd, asyncResultListener);
+        } catch (InvalidCommandDefinitionException icdEx) {
+            throw new CommandNotFoundException("ExecCommand", icdEx); //$NON-NLS-1$
         }
     }
 

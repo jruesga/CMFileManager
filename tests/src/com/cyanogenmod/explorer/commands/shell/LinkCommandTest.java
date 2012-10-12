@@ -24,7 +24,7 @@ import com.cyanogenmod.explorer.util.CommandHelper;
 /**
  * A class for testing the {@link LinkCommandTest} command.
  *
- * @see DeleteFileCommand
+ * @see LinkCommand
  */
 public class LinkCommandTest extends AbstractConsoleTest {
 
@@ -42,7 +42,7 @@ public class LinkCommandTest extends AbstractConsoleTest {
     }
 
     /**
-     * Method that performs a test to delete a file.
+     * Method that performs a test to link to a file.
      *
      * @throws Exception If test failed
      */
@@ -66,7 +66,7 @@ public class LinkCommandTest extends AbstractConsoleTest {
     }
 
     /**
-     * Method that performs a test to delete an invalid file.
+     * Method that performs a test to link to an invalid file.
      *
      * @throws Exception If test failed
      */

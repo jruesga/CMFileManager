@@ -724,6 +724,15 @@ public abstract class ShellConsole extends Console {
                         if (!ShellConsole.this.mCancelled) {
                             ShellConsole.this.mSbErr.append((char)r);
                             sb.append((char)r);
+                            
+                            //Notify asynchronous partial data
+                            if (ShellConsole.this.mStarted &&
+                                ShellConsole.this.mActiveCommand != null &&
+                                ShellConsole.this.mActiveCommand instanceof AsyncResultProgram) {
+                                AsyncResultProgram program =
+                                        ((AsyncResultProgram)ShellConsole.this.mActiveCommand);
+                                program.parsePartialErrResult(new String(new char[]{(char)r}));
+                            }
                         }
 
                         //Has more data? Read with available as more as exists
@@ -742,6 +751,14 @@ public abstract class ShellConsole extends Console {
                             String s = new String(data, 0, read);
                             ShellConsole.this.mSbErr.append(s);
                             sb.append(s);
+
+                            //Notify asynchronous partial data
+                            if (ShellConsole.this.mActiveCommand != null &&
+                                ShellConsole.this.mActiveCommand  instanceof AsyncResultProgram) {
+                                AsyncResultProgram program =
+                                        ((AsyncResultProgram)ShellConsole.this.mActiveCommand);
+                                program.parsePartialErrResult(s);
+                            }
 
                             //Wait for buffer to be filled
                             try {

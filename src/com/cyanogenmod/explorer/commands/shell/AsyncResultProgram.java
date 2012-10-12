@@ -31,12 +31,25 @@ import java.util.List;
 public abstract class AsyncResultProgram
     extends Program implements AsyncResultExecutable, AsyncResultProgramListener {
 
+    /**
+     * @hide
+     */
+    static final Byte STDIN = new Byte((byte)0);
+    /**
+     * @hide
+     */
+    static final Byte STDERR = new Byte((byte)1); 
+
     private final AsyncResultListener mAsyncResultListener;
     private AsyncResultProgramThread mWorkerThread;
     /**
      * @hide
      */
     final List<String> mPartialData;
+    /**
+     * @hide
+     */
+    final List<Byte> mPartialDataType;
     private final Object mSync = new Object();
     /**
      * @hide
@@ -79,6 +92,7 @@ public abstract class AsyncResultProgram
         super(id, prepare, args);
         this.mAsyncResultListener = asyncResultListener;
         this.mPartialData = Collections.synchronizedList(new ArrayList<String>());
+        this.mPartialDataType = Collections.synchronizedList(new ArrayList<Byte>());
         this.mTempBuffer = new StringBuffer();
         this.mOnCancelListener = null;
         this.mCanceled = false;
@@ -158,6 +172,35 @@ public abstract class AsyncResultProgram
                 data = this.mTempBuffer.append(partialIn.substring(0, pos + 1)).toString();
             }
 
+            this.mPartialDataType.add(STDIN);
+            this.mPartialData.add(data);
+            this.mTempBuffer = new StringBuffer();
+            this.mSync.notify();
+        }
+    }
+    
+    /**
+     * Method that parse the error result of a program invocation.
+     *
+     * @param partialErr A partial standard err buffer (incremental buffer)
+     * @hide
+     */
+    public final void parsePartialErrResult(String partialErr) {
+        synchronized (this.mSync) {
+            String data = partialErr;
+            if (parseOnlyCompleteLines()) {
+                int pos = partialErr.lastIndexOf(FileHelper.NEWLINE);
+                if (pos == -1) {
+                    //Save partial data
+                    this.mTempBuffer.append(partialErr);
+                    return;
+                }
+
+                //Retrieve the data
+                data = this.mTempBuffer.append(partialErr.substring(0, pos + 1)).toString();
+            }
+
+            this.mPartialDataType.add(STDERR);
             this.mPartialData.add(data);
             this.mTempBuffer = new StringBuffer();
             this.mSync.notify();
@@ -265,9 +308,14 @@ public abstract class AsyncResultProgram
                            if (!this.mAlive) {
                                return;
                            }
+                           Byte type = AsyncResultProgram.this.mPartialDataType.remove(0);
                            String data = AsyncResultProgram.this.mPartialData.remove(0);
                            try {
-                               AsyncResultProgram.this.onParsePartialResult(data);
+                               if (type.compareTo(STDIN) == 0) {
+                                   AsyncResultProgram.this.onParsePartialResult(data);
+                               } else {
+                                   AsyncResultProgram.this.onParseErrorPartialResult(data);
+                               }
                            } catch (Throwable ex) {
                                /**NON BLOCK**/
                            }

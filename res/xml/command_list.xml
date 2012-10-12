@@ -44,6 +44,7 @@
   <command commandId="diskusageall" commandPath="/system/bin/df" commandArgs="" />
   <command commandId="dirname" commandPath="/system/xbin/dirname" commandArgs="%1$s" />
   <command commandId="echo" commandPath="/system/xbin/echo" commandArgs="%1$s" />
+  <command commandId="exec" commandPath="/system/bin/sh" commandArgs="-c %1$s" />
   <command commandId="fileinfo" commandPath="/system/bin/ls" commandArgs="-ald %1$s" />
   <command commandId="find" commandPath="/system/xbin/find" commandArgs="%1$s \\( -name %2$s -o -name %3$s -o -name %4$s -o -name %5$s -o -name %6$s \\) -exec /system/xbin/echo {} \\; -exec /system/bin/ls -ald {} \\;" />
   <command commandId="folderusage" commandPath="/system/bin/ls" commandArgs="-alR %1$s" />

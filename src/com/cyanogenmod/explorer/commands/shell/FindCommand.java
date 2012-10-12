@@ -193,6 +193,12 @@ public class FindCommand extends AsyncResultProgram implements FindExecutable {
      * {@inheritDoc}
      */
     @Override
+    public void onParseErrorPartialResult(String partialErr) {/**NON BLOCK**/}
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public boolean isIgnoreShellStdErrCheck() {
         return true;
     }

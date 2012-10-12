@@ -158,6 +158,17 @@ public interface ExecutableCreator {
     EchoExecutable createEchoExecutable(String msg) throws CommandNotFoundException;
 
     /**
+     * Method that execute a command
+     *
+     * @param cmd The command to execute
+     * @param asyncResultListener The listener where to return partial results
+     * @return ExecExecutable A {@link ExecExecutable} executable implementation reference
+     * @throws CommandNotFoundException If the executable can't be created
+     */
+    ExecExecutable createExecExecutable(
+            String cmd, AsyncResultListener asyncResultListener) throws CommandNotFoundException;
+
+    /**
      * Method that creates an executable for make searches over the filesystem.
      *
      * @param directory The directory where to search

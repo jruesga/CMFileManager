@@ -46,7 +46,7 @@ public class FolderUsageCommand extends AsyncResultProgram implements FolderUsag
 
     private static final String TAG = "FolderUsageCommand"; //$NON-NLS-1$
 
-    private static final String ID_FOLDER_USAGE_DIRECTORY = "folderusage"; //$NON-NLS-1$
+    private static final String ID = "folderusage"; //$NON-NLS-1$
 
     private final String mDirectory;
     private FolderUsage mFolderUsage;
@@ -62,7 +62,7 @@ public class FolderUsageCommand extends AsyncResultProgram implements FolderUsag
     public FolderUsageCommand(
             String directory, AsyncResultListener asyncResultListener)
             throws InvalidCommandDefinitionException {
-        super(ID_FOLDER_USAGE_DIRECTORY, asyncResultListener, new String[]{directory});
+        super(ID, asyncResultListener, new String[]{directory});
         this.mFolderUsage = new FolderUsage(directory);
         this.mPartial = ""; //$NON-NLS-1$
         this.mDirectory = directory;
@@ -180,6 +180,12 @@ public class FolderUsageCommand extends AsyncResultProgram implements FolderUsag
             }
         }
     }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void onParseErrorPartialResult(String partialErr) {/**NON BLOCK**/}
 
     /**
      * {@inheritDoc}

@@ -42,6 +42,7 @@ import com.cyanogenmod.explorer.ui.policy.ActionsPolicy.LinkedResource;
 import com.cyanogenmod.explorer.util.DialogHelper;
 import com.cyanogenmod.explorer.util.FileHelper;
 import com.cyanogenmod.explorer.util.SelectionHelper;
+import com.cyanogenmod.explorer.util.StorageHelper;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -496,6 +497,11 @@ public class ActionsDialog implements OnItemClickListener, OnItemLongClickListen
                 menu.removeItem(R.id.mnu_actions_open_with);
                 menu.removeItem(R.id.mnu_actions_send);
             }
+            
+            // Create link (not allow in storage volume)
+            if (StorageHelper.isPathInStorageVolume(this.mFso.getFullPath())) {
+                menu.removeItem(R.id.mnu_actions_create_link);
+            }
         }
 
         //- Add to bookmarks -> Only directories
@@ -521,6 +527,12 @@ public class ActionsDialog implements OnItemClickListener, OnItemLongClickListen
             if (selection == null || selection.size() == 0 || selection.size() > 1) {
                 // Only when one item is selected
                 menu.removeItem(R.id.mnu_actions_create_link_global);
+            } else {
+                // Create link (not allow in storage volume)
+                FileSystemObject fso = selection.get(0);
+                if (StorageHelper.isPathInStorageVolume(fso.getFullPath())) {
+                    menu.removeItem(R.id.mnu_actions_create_link);
+                }
             }
         }
     }

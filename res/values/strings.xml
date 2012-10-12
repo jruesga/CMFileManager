@@ -409,7 +409,7 @@
   <string name="waiting_dialog_deleting_title">Deleting&#8230;</string>
   <!-- Waiting dialog * Deleting message -->
   <string name="waiting_dialog_deleting_msg">
-    <b>File</b> <xliff:g id="filr">%1$s</xliff:g></string>
+    <![CDATA[<b>File</b>]]> <xliff:g id="filr">%1$s</xliff:g></string>
 
   <!-- Actions Dialog * Title -->
   <string name="actions_dialog_title">Actions</string>
@@ -435,6 +435,8 @@
   <string name="actions_menu_move_selection">Move selection</string>
   <!-- Actions Dialog * Menu * Delete selection -->
   <string name="actions_menu_delete_selection">Delete selection</string>
+  <!-- Actions Dialog * Menu * Create link -->
+  <string name="actions_menu_create_link">Create link</string>
   <!-- Actions Dialog * Menu * Add to bookmarks the current folder -->
   <string name="actions_menu_add_to_bookmarks_current_folder">Add to bookmarks</string>
   <!-- Actions Dialog * Menu * Open -->

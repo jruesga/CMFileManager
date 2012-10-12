@@ -51,8 +51,15 @@ public class InputNameDialog
      * @hide
      */
     final EditText mEditText;
-    private final List<FileSystemObject> mFiles;
-    private final FileSystemObject mFso;
+    /**
+     * @hide
+     */
+    final List<FileSystemObject> mFiles;
+    /**
+     * @hide
+     */
+    final FileSystemObject mFso;
+    private final boolean mAllowFsoName;
 
     private DialogInterface.OnCancelListener mOnCancelListener;
     private DialogInterface.OnDismissListener mOnDismissListener;
@@ -70,7 +77,7 @@ public class InputNameDialog
      */
     public InputNameDialog(
             final Context context, List<FileSystemObject> files, String dialogTitle) {
-        this(context, files, null, dialogTitle);
+        this(context, files, null, false, dialogTitle);
     }
 
     /**
@@ -79,11 +86,12 @@ public class InputNameDialog
      * @param context The current context
      * @param files The files of the current directory (used to validate the name)
      * @param fso The original file system object. null if not needed.
+     * @param allowFsoName If allow that the name of the fso will be returned
      * @param dialogTitle The dialog title
      */
     public InputNameDialog(
-            final Context context, List<FileSystemObject> files,
-            FileSystemObject fso, String dialogTitle) {
+            final Context context, final List<FileSystemObject> files,
+            final FileSystemObject fso, boolean allowFsoName, final String dialogTitle) {
         super();
 
         //Save the context
@@ -92,6 +100,7 @@ public class InputNameDialog
         //Save the files
         this.mFiles = files;
         this.mFso = fso;
+        this.mAllowFsoName = allowFsoName;
         this.mCancelled = true;
 
         //Create the
@@ -141,12 +150,19 @@ public class InputNameDialog
         this.mDialog.setOnDismissListener(this);
 
         // Disable accept button, because name is the same as fso
-        if (this.mFso != null) {
+        if (this.mFso != null && !this.mAllowFsoName) {
             this.mEditText.post(new Runnable() {
                 @Override
                 public void run() {
                     InputNameDialog.this.mDialog.getButton(
                             DialogInterface.BUTTON_POSITIVE).setEnabled(false);
+                }
+            });
+        } else {
+            this.mEditText.post(new Runnable() {
+                @Override
+                public void run() {
+                    checkName(InputNameDialog.this.mEditText.getText().toString());
                 }
             });
         }
@@ -211,16 +227,25 @@ public class InputNameDialog
      */
     @Override
     public void afterTextChanged(Editable s) {
-        String txt = s.toString().trim();
+        String name = s.toString().trim();
+        checkName(name);
+    }
+
+    /**
+     * Method that checks the input name
+     * @param name
+     * @hide
+     */
+    void checkName(String name) {
         //The name is empty
-        if (txt.length() == 0) {
+        if (name.length() == 0) {
             setMsg(
                 InputNameDialog.this.mContext.getString(
                       R.string.input_name_dialog_message_empty_name), false);
             return;
         }
         // The path is invalid
-        if (txt.indexOf(File.separator) != -1) {
+        if (name.indexOf(File.separator) != -1) {
             setMsg(
                 InputNameDialog.this.mContext.getString(
                       R.string.input_name_dialog_message_invalid_path_name,
@@ -228,20 +253,20 @@ public class InputNameDialog
             return;
         }
         // No allow . or ..
-        if (txt.compareTo(FileHelper.CURRENT_DIRECTORY) == 0 ||
-            txt.compareTo(FileHelper.PARENT_DIRECTORY) == 0) {
+        if (name.compareTo(FileHelper.CURRENT_DIRECTORY) == 0 ||
+                name.compareTo(FileHelper.PARENT_DIRECTORY) == 0) {
             setMsg(
                 InputNameDialog.this.mContext.getString(
                         R.string.input_name_dialog_message_invalid_name), false);
             return;
         }
         // The same name
-        if (this.mFso != null && txt.compareTo(this.mFso.getName()) == 0) {
+        if (this.mFso != null && !this.mAllowFsoName && name.compareTo(this.mFso.getName()) == 0) {
             setMsg(null, false);
             return;
         }
         // Name exists
-        if (FileHelper.isNameExists(this.mFiles, txt)) {
+        if (FileHelper.isNameExists(this.mFiles, name)) {
             setMsg(
                 InputNameDialog.this.mContext.getString(
                         R.string.input_name_dialog_message_name_exists), false);

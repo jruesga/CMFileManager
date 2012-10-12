@@ -210,6 +210,16 @@ public final class ActionsPolicy {
         }
     }
 
+    /**
+     * @hide
+     */
+    private enum COPY_MOVE_OPERATION {
+        COPY,
+        MOVE,
+        RENAME,
+        CREATE_COPY,
+    }
+
 
     private static final String TAG = "ActionPolicy"; //$NON-NLS-1$
 
@@ -501,6 +511,7 @@ public final class ActionsPolicy {
                 }
                 onRequestRefreshListener.onRequestRefresh(fso);
             }
+            showOperationSuccessMsg(ctx);
 
         } catch (Throwable ex) {
             //Capture the exception
@@ -523,6 +534,93 @@ public final class ActionsPolicy {
                             onRequestRefreshListener.onRequestRefresh(fso);
                         }
                         return Boolean.TRUE;
+                    }
+
+                    /**
+                     * {@inheritDoc}
+                     */
+                    @Override
+                    protected void onPostExecute(Boolean result) {
+                        if (result != null && result.booleanValue()) {
+                            showOperationSuccessMsg(ctx);
+                        }
+                    }
+                });
+            }
+            ExceptionUtil.translateException(ctx, ex);
+        }
+    }
+
+    /**
+     * Method that remove an existing file system object.
+     *
+     * @param ctx The current context
+     * @param src The source file system object
+     * @param lnkName The new name of the link
+     * @param onSelectionListener The listener for obtain selection information (required)
+     * @param onRequestRefreshListener The listener for request a refresh (optional)
+     */
+    public static void createSymlink(
+            final Context ctx,
+            final FileSystemObject src,
+            final String lnkName,
+            final OnSelectionListener onSelectionListener,
+            final OnRequestRefreshListener onRequestRefreshListener) {
+
+        //Create the absolute file name
+        File newFso = new File(
+                onSelectionListener.onRequestCurrentDir(), lnkName);
+        final String link = newFso.getAbsolutePath();
+
+        try {
+            if (DEBUG) {
+                Log.d(TAG, String.format(
+                        "Creating new symlink: %s -> %s", src.getFullPath(), link)); //$NON-NLS-1$
+            }
+            CommandHelper.createLink(ctx, src.getFullPath(), link, null);
+
+            //Operation complete. Show refresh
+            if (onRequestRefreshListener != null) {
+                FileSystemObject fso = null;
+                try {
+                    fso = CommandHelper.getFileInfo(ctx, link, false, null);
+                } catch (Throwable ex2) {
+                    /**NON BLOCK**/
+                }
+                onRequestRefreshListener.onRequestRefresh(fso);
+            }
+            showOperationSuccessMsg(ctx);
+
+        } catch (Throwable ex) {
+            //Capture the exception
+            if (ex instanceof RelaunchableException) {
+                ExceptionUtil.attachAsyncTask(ex, new AsyncTask<Object, Integer, Boolean>() {
+                    /**
+                     * {@inheritDoc}
+                     */
+                    @Override
+                    protected Boolean doInBackground(Object... params) {
+                        //Operation complete. Show refresh
+                        if (onRequestRefreshListener != null) {
+                            FileSystemObject fso = null;
+                            try {
+                                fso = CommandHelper.getFileInfo(ctx, link, false, null);
+                            } catch (Throwable ex2) {
+                                /**NON BLOCK**/
+                            }
+                            onRequestRefreshListener.onRequestRefresh(fso);
+                        }
+                        return Boolean.TRUE;
+                    }
+
+                    /**
+                     * {@inheritDoc}
+                     */
+                    @Override
+                    protected void onPostExecute(Boolean result) {
+                        if (result != null && result.booleanValue()) {
+                            showOperationSuccessMsg(ctx);
+                        }
                     }
 
                 });
@@ -785,7 +883,7 @@ public final class ActionsPolicy {
         File dst = new File(fso.getParent(), newName);
         File src = new File(fso.getFullPath());
 
-     // Create arguments
+        // Create arguments
         LinkedResource linkRes = new LinkedResource(src, dst);
         List<LinkedResource> files = new ArrayList<ActionsPolicy.LinkedResource>(1);
         files.add(linkRes);
@@ -793,7 +891,7 @@ public final class ActionsPolicy {
         // Internal copy
         copyOrMoveFileSystemObjects(
                 ctx,
-                true,
+                COPY_MOVE_OPERATION.RENAME,
                 files,
                 onSelectionListener,
                 onRequestRefreshListener);
@@ -827,7 +925,7 @@ public final class ActionsPolicy {
         // Internal copy
         copyOrMoveFileSystemObjects(
                 ctx,
-                false,
+                COPY_MOVE_OPERATION.CREATE_COPY,
                 files,
                 onSelectionListener,
                 onRequestRefreshListener);
@@ -849,7 +947,7 @@ public final class ActionsPolicy {
         // Internal copy
         copyOrMoveFileSystemObjects(
                 ctx,
-                false,
+                COPY_MOVE_OPERATION.COPY,
                 files,
                 onSelectionListener,
                 onRequestRefreshListener);
@@ -871,7 +969,7 @@ public final class ActionsPolicy {
         // Internal move
         copyOrMoveFileSystemObjects(
                 ctx,
-                true,
+                COPY_MOVE_OPERATION.MOVE,
                 files,
                 onSelectionListener,
                 onRequestRefreshListener);
@@ -881,14 +979,14 @@ public final class ActionsPolicy {
      * Method that copy an existing file system object.
      *
      * @param ctx The current context
-     * @param move Indicates if the files are going to be moved (true) or copied (false)
+     * @param operation Indicates the operation to do
      * @param files The list of source/destination files to copy
      * @param onSelectionListener The listener for obtain selection information (required)
      * @param onRequestRefreshListener The listener for request a refresh (optional)
      */
     private static void copyOrMoveFileSystemObjects(
             final Context ctx,
-            final boolean move,
+            final COPY_MOVE_OPERATION operation,
             final List<LinkedResource> files,
             final OnSelectionListener onSelectionListener,
             final OnRequestRefreshListener onRequestRefreshListener) {
@@ -921,7 +1019,7 @@ public final class ActionsPolicy {
             }
         }
         // 3.- Check the operation consistency
-        if (move) {
+        if (operation.compareTo(COPY_MOVE_OPERATION.MOVE) == 0) {
             if (!checkMoveConsistency(ctx, files, currentDirectory)) {
                 return;
             }
@@ -932,7 +1030,7 @@ public final class ActionsPolicy {
             // The current items
             private int mCurrent = 0;
             final Context mCtx = ctx;
-            final boolean mMove = move;
+            final COPY_MOVE_OPERATION mOperation = operation;
             final List<LinkedResource> mFiles = files;
             final OnRequestRefreshListener mOnRequestRefreshListener = onRequestRefreshListener;
 
@@ -941,7 +1039,8 @@ public final class ActionsPolicy {
 
             @Override
             public int getDialogTitle() {
-                return this.mMove ?
+                return this.mOperation.compareTo(COPY_MOVE_OPERATION.MOVE) == 0 ||
+                       this.mOperation.compareTo(COPY_MOVE_OPERATION.RENAME) == 0 ?
                         R.string.waiting_dialog_moving_title :
                         R.string.waiting_dialog_copying_title;
             }
@@ -959,7 +1058,8 @@ public final class ActionsPolicy {
                 String progress =
                       this.mCtx.getResources().
                           getString(
-                              this.mMove ?
+                              this.mOperation.compareTo(COPY_MOVE_OPERATION.MOVE) == 0 ||
+                              this.mOperation.compareTo(COPY_MOVE_OPERATION.RENAME) == 0 ?
                                    R.string.waiting_dialog_moving_msg :
                                    R.string.waiting_dialog_copying_msg,
                               src.getAbsolutePath(),
@@ -989,7 +1089,7 @@ public final class ActionsPolicy {
                     File src = this.mFiles.get(i).mSrc;
                     File dst = this.mFiles.get(i).mDst;
 
-                    doOperation(this.mCtx, src, dst, this.mMove);
+                    doOperation(this.mCtx, src, dst, this.mOperation);
 
                     // Next file
                     this.mCurrent++;
@@ -1005,17 +1105,19 @@ public final class ActionsPolicy {
              * @param ctx The current context
              * @param src The source file
              * @param dst The destination file
-             * @param move Indicates if the files are going to be moved (true) or copied (false)
+             * @param operation Indicates the operation to do
              */
             @SuppressWarnings("hiding")
             private void doOperation(
-                    Context ctx, File src, File dst, boolean move) throws Throwable {
+                    Context ctx, File src, File dst, COPY_MOVE_OPERATION operation)
+                    throws Throwable {
                 // If the source is the same as destiny then don't do the operation
                 if (src.compareTo(dst) == 0) return;
 
                 try {
                     // Copy or move?
-                    if (move) {
+                    if (operation.compareTo(COPY_MOVE_OPERATION.MOVE) == 0 ||
+                            operation.compareTo(COPY_MOVE_OPERATION.RENAME) == 0) {
                         CommandHelper.move(
                                 ctx,
                                 src.getAbsolutePath(),
@@ -1163,7 +1265,7 @@ public final class ActionsPolicy {
             String dst = linkRes.mDst.getAbsolutePath();
 
             // 1.- Current directory can't be moved
-            if (currentDirectory.startsWith(src)) {
+            if (currentDirectory != null && currentDirectory.startsWith(src)) {
                 // Operation not allowed
                 AlertDialog dialog =
                         DialogHelper.createErrorDialog(

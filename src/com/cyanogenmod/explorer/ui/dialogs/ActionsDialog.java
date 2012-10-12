@@ -178,7 +178,28 @@ public class ActionsDialog implements OnItemClickListener, OnItemLongClickListen
             case R.id.mnu_actions_rename:
                 // Dialog is dismissed inside showInputNameDialog
                 if (this.mOnSelectionListener != null) {
-                    showFsoInputNameDialog(menuItem, this.mFso);
+                    showFsoInputNameDialog(menuItem, this.mFso, false);
+                    return;
+                }
+                break;
+
+            //- Create link
+            case R.id.mnu_actions_create_link:
+                // Dialog is dismissed inside showInputNameDialog
+                if (this.mOnSelectionListener != null) {
+                    showFsoInputNameDialog(menuItem, this.mFso, true);
+                    return;
+                }
+                break;
+            case R.id.mnu_actions_create_link_global:
+                // Dialog is dismissed inside showInputNameDialog
+                if (this.mOnSelectionListener != null) {
+                    // The selection must be only 1 item
+                    List<FileSystemObject> selection =
+                            this.mOnSelectionListener.onRequestSelectedFiles();
+                    if (selection != null && selection.size() == 1) {
+                        showFsoInputNameDialog(menuItem, selection.get(0), true);
+                    }
                     return;
                 }
                 break;
@@ -344,8 +365,10 @@ public class ActionsDialog implements OnItemClickListener, OnItemLongClickListen
      *
      * @param menuItem The item menu associated
      * @param fso The file system object
+     * @param allowFsoName If allow that the name of the fso will be returned
      */
-    private void showFsoInputNameDialog(final MenuItem menuItem, final FileSystemObject fso) {
+    private void showFsoInputNameDialog(
+            final MenuItem menuItem, final FileSystemObject fso, final boolean allowFsoName) {
         //Hide the dialog
         this.mDialog.hide();
 
@@ -355,6 +378,7 @@ public class ActionsDialog implements OnItemClickListener, OnItemLongClickListen
                         this.mContext,
                         this.mOnSelectionListener.onRequestCurrentItems(),
                         fso,
+                        allowFsoName,
                         menuItem.getTitle().toString());
         inputNameDialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
             @Override
@@ -375,12 +399,26 @@ public class ActionsDialog implements OnItemClickListener, OnItemLongClickListen
                             if (ActionsDialog.this.mOnSelectionListener != null) {
                                 ActionsPolicy.renameFileSystemObject(
                                         ActionsDialog.this.mContext,
-                                        ActionsDialog.this.mFso,
+                                        inputNameDialog.mFso,
                                         name,
                                         ActionsDialog.this.mOnSelectionListener,
                                         ActionsDialog.this.mOnRequestRefreshListener);
                             }
                             break;
+
+                        case R.id.mnu_actions_create_link:
+                        case R.id.mnu_actions_create_link_global:
+                            // Create a link to the fso
+                            if (ActionsDialog.this.mOnSelectionListener != null) {
+                                ActionsPolicy.createSymlink(
+                                        ActionsDialog.this.mContext,
+                                        inputNameDialog.mFso,
+                                        name,
+                                        ActionsDialog.this.mOnSelectionListener,
+                                        ActionsDialog.this.mOnRequestRefreshListener);
+                            }
+                            break;
+
                         default:
                             break;
                     }
@@ -467,6 +505,7 @@ public class ActionsDialog implements OnItemClickListener, OnItemLongClickListen
         }
 
         // Paste/Move only when have a selection
+        // Create link
         if (this.mGlobal) {
             List<FileSystemObject> selection = null;
             if (this.mOnSelectionListener != null) {
@@ -478,6 +517,10 @@ public class ActionsDialog implements OnItemClickListener, OnItemLongClickListen
                 menu.removeItem(R.id.mnu_actions_paste_selection);
                 menu.removeItem(R.id.mnu_actions_move_selection);
                 menu.removeItem(R.id.mnu_actions_delete_selection);
+            }
+            if (selection == null || selection.size() == 0 || selection.size() > 1) {
+                // Only when one item is selected
+                menu.removeItem(R.id.mnu_actions_create_link_global);
             }
         }
     }

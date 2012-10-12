@@ -36,7 +36,7 @@ public final class StorageHelper {
      * Method that returns the storage volumes defined in the system.  This method uses
      * reflection to retrieve the method because CM10 has a {@link Context}
      * as first parameter, that AOSP hasn't.
-     * 
+     *
      * @param ctx The current context
      * @return StorageVolume[] The storage volumes defined in the system
      */
@@ -99,7 +99,7 @@ public final class StorageHelper {
 
     /**
      * Method that returns if the path is in a volume storage
-     * 
+     *
      * @param path The path
      * @return boolean If the path is in a volume storage
      */

@@ -365,7 +365,7 @@ public class FsoPropertiesDialog
             if (this.mFso instanceof Symlink && ((Symlink) this.mFso).getLinkRef() != null) {
                 this.mFolderUsageExecutable =
                         CommandHelper.getFolderUsage(
-                                this.mContext, 
+                                this.mContext,
                                 ((Symlink) this.mFso).getLinkRef().getFullPath(), this, null);
             } else {
                 this.mFolderUsageExecutable =

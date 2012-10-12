@@ -229,7 +229,7 @@ public class ActionsDialog implements OnItemClickListener, OnItemLongClickListen
             case R.id.mnu_actions_send:
                 ActionsPolicy.sendFileSystemObject(this.mContext, this.mFso);
                 break;
-                
+
 
             // Paste selection
             case R.id.mnu_actions_paste_selection:
@@ -485,7 +485,7 @@ public class ActionsDialog implements OnItemClickListener, OnItemLongClickListen
     /**
      * Method that creates a {@link LinkedResource} for the list of object to the
      * destination directory
-     * 
+     *
      * @param items The list of the source items
      * @param directory The destination directory
      */

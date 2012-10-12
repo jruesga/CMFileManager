@@ -38,7 +38,7 @@ public abstract class AsyncResultProgram
     /**
      * @hide
      */
-    static final Byte STDERR = new Byte((byte)1); 
+    static final Byte STDERR = new Byte((byte)1);
 
     private final AsyncResultListener mAsyncResultListener;
     private AsyncResultProgramThread mWorkerThread;
@@ -178,7 +178,7 @@ public abstract class AsyncResultProgram
             this.mSync.notify();
         }
     }
-    
+
     /**
      * Method that parse the error result of a program invocation.
      *

@@ -724,7 +724,7 @@ public abstract class ShellConsole extends Console {
                         if (!ShellConsole.this.mCancelled) {
                             ShellConsole.this.mSbErr.append((char)r);
                             sb.append((char)r);
-                            
+
                             //Notify asynchronous partial data
                             if (ShellConsole.this.mStarted &&
                                 ShellConsole.this.mActiveCommand != null &&

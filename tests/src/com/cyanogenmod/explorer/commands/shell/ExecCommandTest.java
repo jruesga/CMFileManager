@@ -51,11 +51,11 @@ public class ExecCommandTest extends AbstractConsoleTest {
     }
 
     /**
-     * Method that performs a test over known search results.
+     * Method that performs a test over known executable program.
      *
      * @throws Exception If test failed
      */
-    public void testFindWithPartialResult() throws Exception {
+    public void testExecWithPartialResult() throws Exception {
         try {
             // Create the test program
             FileWriter fw = new FileWriter(new File(EXEC_CMD));
@@ -84,7 +84,7 @@ public class ExecCommandTest extends AbstractConsoleTest {
                 ExecCommandTest.this.mSync.wait(15000L);
             }
             assertTrue("no new partial data", this.mNewPartialData); //$NON-NLS-1$
-            
+
         } finally {
             try {
                 CommandHelper.deleteFile(getContext(), EXEC_CMD, getConsole());

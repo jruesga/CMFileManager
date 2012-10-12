@@ -565,11 +565,9 @@ public final class FileHelper {
      *         0 if {@code fso1} has the same order as {@code fso2}.
      */
     public static int doCompare(
-            FileSystemObject fso1, FileSystemObject fso2, NavigationSortMode mode) {
-
-        //Resolve references
-        FileSystemObject o1 = FileHelper.getReference(fso1);
-        FileSystemObject o2 = FileHelper.getReference(fso2);
+            final FileSystemObject fso1, 
+            final FileSystemObject fso2,
+            final NavigationSortMode mode) {
 
         // Retrieve the user preference for case sensitive sort
         boolean caseSensitive =
@@ -582,29 +580,29 @@ public final class FileHelper {
         //Name (ascending)
         if (mode.getId() == NavigationSortMode.NAME_ASC.getId()) {
             if (!caseSensitive) {
-                return o1.getName().compareToIgnoreCase(o2.getName());
+                return fso1.getName().compareToIgnoreCase(fso2.getName());
             }
-            return o1.getName().compareTo(o2.getName());
+            return fso1.getName().compareTo(fso2.getName());
         }
         //Name (descending)
         if (mode.getId() == NavigationSortMode.NAME_DESC.getId()) {
             if (!caseSensitive) {
-                return o1.getName().compareToIgnoreCase(o2.getName()) * -1;
+                return fso1.getName().compareToIgnoreCase(fso2.getName()) * -1;
             }
-            return o1.getName().compareTo(o2.getName()) * -1;
+            return fso1.getName().compareTo(fso2.getName()) * -1;
         }
 
         //Date (ascending)
         if (mode.getId() == NavigationSortMode.DATE_ASC.getId()) {
-            return o1.getLastModifiedTime().compareTo(o2.getLastModifiedTime());
+            return fso1.getLastModifiedTime().compareTo(fso2.getLastModifiedTime());
         }
         //Date (descending)
         if (mode.getId() == NavigationSortMode.DATE_DESC.getId()) {
-            return o1.getLastModifiedTime().compareTo(o2.getLastModifiedTime()) * -1;
+            return fso1.getLastModifiedTime().compareTo(fso2.getLastModifiedTime()) * -1;
         }
 
         //Comparison between files directly
-        return o1.compareTo(fso2);
+        return fso1.compareTo(fso2);
     }
 
     /**

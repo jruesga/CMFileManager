@@ -19,6 +19,7 @@ package com.cyanogenmod.explorer.util;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
+import android.os.Environment;
 
 import com.cyanogenmod.explorer.ExplorerApplication;
 import com.cyanogenmod.explorer.R;
@@ -59,7 +60,8 @@ public final class FileHelper {
      * The root directory.
      * @hide
      */
-    public static final String ROOT_DIRECTORY = File.separator;
+    public static final String ROOT_DIRECTORY =
+            Environment.getRootDirectory().getAbsolutePath();
 
     /**
      * The parent directory string.

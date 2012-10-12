@@ -141,7 +141,7 @@ public class DirectoryInlineAutocompleteTextView
         }
 
         //Ensure data
-        if (!value.startsWith(File.separator)) {
+        if (!value.startsWith(FileHelper.ROOT_DIRECTORY)) {
             currentFilterData.clear();
             this.mLastParent = ""; //$NON-NLS-1$
             return;

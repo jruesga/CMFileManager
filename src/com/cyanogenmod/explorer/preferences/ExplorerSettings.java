@@ -16,6 +16,8 @@
 
 package com.cyanogenmod.explorer.preferences;
 
+import com.cyanogenmod.explorer.util.FileHelper;
+
 
 /**
  * The enumeration of settings of Explorer application.
@@ -30,7 +32,7 @@ public enum ExplorerSettings {
      * The initial directory to be used.
      * @hide
      */
-    SETTINGS_INITIAL_DIR("cm_explorer_initial_dir", "/"), //$NON-NLS-1$ //$NON-NLS-2$
+    SETTINGS_INITIAL_DIR("cm_explorer_initial_dir", FileHelper.ROOT_DIRECTORY), //$NON-NLS-1$
 
     /**
      * The view mode to use (simple, details, or icons).

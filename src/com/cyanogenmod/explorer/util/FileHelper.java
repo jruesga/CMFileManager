@@ -567,7 +567,7 @@ public final class FileHelper {
      *         0 if {@code fso1} has the same order as {@code fso2}.
      */
     public static int doCompare(
-            final FileSystemObject fso1, 
+            final FileSystemObject fso1,
             final FileSystemObject fso2,
             final NavigationSortMode mode) {
 

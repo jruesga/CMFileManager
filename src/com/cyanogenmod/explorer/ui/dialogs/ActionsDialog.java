@@ -497,7 +497,7 @@ public class ActionsDialog implements OnItemClickListener, OnItemLongClickListen
                 menu.removeItem(R.id.mnu_actions_open_with);
                 menu.removeItem(R.id.mnu_actions_send);
             }
-            
+
             // Create link (not allow in storage volume)
             if (StorageHelper.isPathInStorageVolume(this.mFso.getFullPath())) {
                 menu.removeItem(R.id.mnu_actions_create_link);

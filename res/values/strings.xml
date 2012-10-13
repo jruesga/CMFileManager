@@ -268,6 +268,8 @@
   <string name="fso_properties_dialog_parent">Parent:</string>
   <!-- Fso Properties Dialog * Type Label -->
   <string name="fso_properties_dialog_type">Type:</string>
+  <!-- Fso Properties Dialog * Category Label -->
+  <string name="fso_properties_dialog_category">Category:</string>
   <!-- Fso Properties Dialog * Link Label -->
   <string name="fso_properties_dialog_link">Link:</string>
   <!-- Fso Properties Dialog * Size Label -->
@@ -513,6 +515,23 @@
     <xliff:g id="file2">%2$s</xliff:g> files selected.</string>
   <string name="selection_other_folders_other_files"><xliff:g id="folder2">%1$s</xliff:g> folders
     and <xliff:g id="files">%2$s</xliff:g> files selected.</string>
+    
+  <!-- Category descriptions -->
+  <string name="category_system">SYSTEM</string>
+  <string name="category_app">APP</string>
+  <string name="category_binary">BINARY</string>
+  <string name="category_text">TEXT</string>
+  <string name="category_document">DOCUMENT</string>
+  <string name="category_ebook">EBOOK</string>
+  <string name="category_mail">MAIL</string>
+  <string name="category_compress">COMPRESS</string>
+  <string name="category_exec">EXECUTABLE</string>
+  <string name="category_database">DATABASE</string>
+  <string name="category_font">FONT</string>
+  <string name="category_image">IMAGE</string>
+  <string name="category_audio">AUDIO</string>
+  <string name="category_video">VIDEO</string>
+  <string name="category_security">SECURITY</string>
 
   <!-- Preferences title -->
   <string name="pref">Settings</string>

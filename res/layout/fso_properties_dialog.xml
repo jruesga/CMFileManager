@@ -143,6 +143,30 @@
         android:textAppearance="@style/secondary_text_appearance" />
     </TableRow>
 
+    <!-- Category -->
+    <TableRow
+      android:id="@+id/fso_properties_category_row"
+      android:layout_marginLeft="@dimen/extra_large_margin"
+      android:layout_marginRight="@dimen/extra_large_margin" >
+
+      <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/default_margin"
+        android:gravity="left|center_vertical"
+        android:text="@string/fso_properties_dialog_category"
+        android:textAppearance="@style/primary_text_appearance" />
+
+      <TextView
+        android:id="@+id/fso_properties_category"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/default_margin"
+        android:gravity="left|center_vertical"
+        android:singleLine="false"
+        android:textAppearance="@style/secondary_text_appearance" />
+    </TableRow>
+
     <!-- Link -->
     <TableRow
       android:id="@+id/fso_properties_link_row"

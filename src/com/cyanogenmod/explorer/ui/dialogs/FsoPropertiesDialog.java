@@ -59,6 +59,7 @@ import com.cyanogenmod.explorer.util.DialogHelper;
 import com.cyanogenmod.explorer.util.ExceptionUtil;
 import com.cyanogenmod.explorer.util.FileHelper;
 import com.cyanogenmod.explorer.util.MimeTypeHelper;
+import com.cyanogenmod.explorer.util.MimeTypeHelper.MimeTypeCategory;
 import com.cyanogenmod.explorer.util.ResourcesHelper;
 
 import java.text.DateFormat;
@@ -228,6 +229,8 @@ public class FsoPropertiesDialog
         TextView tvName = (TextView)contentView.findViewById(R.id.fso_properties_name);
         TextView tvParent = (TextView)contentView.findViewById(R.id.fso_properties_parent);
         TextView tvType = (TextView)contentView.findViewById(R.id.fso_properties_type);
+        View vCategoryRow = contentView.findViewById(R.id.fso_properties_category_row);
+        TextView tvCategory = (TextView)contentView.findViewById(R.id.fso_properties_category);
         View vLinkRow = contentView.findViewById(R.id.fso_properties_link_row);
         TextView tvLink = (TextView)contentView.findViewById(R.id.fso_properties_link);
         this.mTvSize = (TextView)contentView.findViewById(R.id.fso_properties_size);
@@ -254,6 +257,14 @@ public class FsoPropertiesDialog
             } else {
                 tvLink.setText("-"); //$NON-NLS-1$
             }
+        }
+        MimeTypeCategory category = MimeTypeHelper.getCategory(this.mContext, this.mFso);
+        if (category.compareTo(MimeTypeCategory.NONE) == 0) {
+            vCategoryRow.setVisibility(View.GONE);
+        } else {
+            tvCategory.setText(
+                    MimeTypeHelper.getCategoryDescription(
+                            this.mContext, category));
         }
         vLinkRow.setVisibility(this.mFso instanceof Symlink ? View.VISIBLE : View.GONE);
         String size = FileHelper.getHumanReadableSize(this.mFso);

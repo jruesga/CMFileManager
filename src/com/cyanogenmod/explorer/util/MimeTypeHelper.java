@@ -73,13 +73,9 @@ public final class MimeTypeHelper {
          */
         EBOOK,
         /**
-         * Internet document file
+         * Mail file (email, message, contact, calendar, ...)
          */
-        INTERNET,
-        /**
-         * CD Image file
-         */
-        CDIMAGE,
+        MAIL,
         /**
          * Compressed file
          */
@@ -277,6 +273,14 @@ public final class MimeTypeHelper {
             loadMimeTypes(context);
         }
 
+        // Directory and Symlinks no computes as category
+        if (FileHelper.isDirectory(fso)) {
+            return MimeTypeCategory.NONE;
+        }
+        if (fso instanceof Symlink) {
+            return MimeTypeCategory.NONE;
+        }
+
         //Get the extension and delivery
         String ext = FileHelper.getExtension(fso);
         if (ext != null) {
@@ -286,18 +290,34 @@ public final class MimeTypeHelper {
                 return mimeTypeInfo.mCategory;
             }
         }
-
         // Check  system file
         if (fso instanceof SystemFile) {
             return MimeTypeCategory.SYSTEM;
         }
-        // Check if the fso is executable
-        if (fso.getPermissions().getUser().isExecute()) {
-            return MimeTypeCategory.EXEC;
-        }
 
         // No category
         return MimeTypeCategory.NONE;
+    }
+
+    /**
+     * Method that returns the description of the category
+     *
+     * @param context The current context
+     * @param category The category
+     * @return String The description of the category
+     */
+    public static final String getCategoryDescription(
+                    Context context, MimeTypeCategory category) {
+        if (category == null || category.compareTo(MimeTypeCategory.NONE) == 0) {
+            return "-";  //$NON-NLS-1$
+        }
+        try {
+            String id = "category_" + category.toString().toLowerCase(); //$NON-NLS-1$
+            int resid = ResourcesHelper.getIdentifier(
+                    context.getResources(), "string", id); //$NON-NLS-1$
+            return context.getString(resid);
+        } catch (Throwable e) {/**NON BLOCK**/}
+        return "-";  //$NON-NLS-1$
     }
 
     /**

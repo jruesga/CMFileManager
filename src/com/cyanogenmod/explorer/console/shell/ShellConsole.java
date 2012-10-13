@@ -620,14 +620,18 @@ public abstract class ShellConsole extends Console implements Program.ProgramLis
                             if (!ShellConsole.this.mStarted) {
                                 ShellConsole.this.mStarted =
                                         isCommandStarted(ShellConsole.this.mSbIn);
-                                sb = new StringBuffer(ShellConsole.this.mSbIn.toString());
-                                if (ShellConsole.this.mActiveCommand instanceof AsyncResultProgram
-                                        && ShellConsole.this.mStarted) {
-                                    synchronized (ShellConsole.this.mPartialSync) {
-                                        ((AsyncResultProgram)ShellConsole.
-                                                this.mActiveCommand).
-                                                    startParsePartialResult();
+                                if (ShellConsole.this.mStarted) {
+                                    sb = new StringBuffer(ShellConsole.this.mSbIn.toString());
+                                    if (ShellConsole.this.mActiveCommand
+                                                instanceof AsyncResultProgram) {
+                                        synchronized (ShellConsole.this.mPartialSync) {
+                                            ((AsyncResultProgram)ShellConsole.
+                                                    this.mActiveCommand).
+                                                        startParsePartialResult();
+                                        }
                                     }
+                                } else {
+                                    sb.append(ShellConsole.this.mSbIn.toString());
                                 }
                             } else {
                                 sb.append((char)r);
@@ -661,30 +665,36 @@ public abstract class ShellConsole extends Console implements Program.ProgramLis
                             if (!ShellConsole.this.mStarted) {
                                 ShellConsole.this.mStarted =
                                         isCommandStarted(ShellConsole.this.mSbIn);
-                                sb = new StringBuffer(ShellConsole.this.mSbIn.toString());
-                                if (ShellConsole.this.mActiveCommand instanceof AsyncResultProgram
-                                        && ShellConsole.this.mStarted) {
-                                    synchronized (ShellConsole.this.mPartialSync) {
-                                        ((AsyncResultProgram)ShellConsole.
-                                                this.mActiveCommand).
-                                                    startParsePartialResult();
+                                if (ShellConsole.this.mStarted) {
+                                    sb = new StringBuffer(ShellConsole.this.mSbIn.toString());
+                                    if (ShellConsole.this.mActiveCommand
+                                                instanceof AsyncResultProgram) {
+                                        synchronized (ShellConsole.this.mPartialSync) {
+                                            ((AsyncResultProgram)ShellConsole.
+                                                    this.mActiveCommand).
+                                                        startParsePartialResult();
+                                        }
                                     }
+                                } else {
+                                    sb.append(ShellConsole.this.mSbIn.toString());
                                 }
                             } else {
                                 sb.append(s);
                             }
 
-                            //Check if the command has finished
-                            if (isCommandFinished(ShellConsole.this.mSbIn, sb)) {
-                                //Notify asynchronous partial data
-                                if (ShellConsole.this.mActiveCommand != null &&
-                                    ShellConsole.this.mActiveCommand
-                                            instanceof AsyncResultProgram) {
-                                    AsyncResultProgram program =
-                                            ((AsyncResultProgram)ShellConsole.this.mActiveCommand);
-                                    program.parsePartialResult(sb.toString());
-                                }
+                            //Check if the command has finished (and extract the control)
+                            boolean finished = isCommandFinished(ShellConsole.this.mSbIn, sb);
 
+                            //Notify asynchronous partial data
+                            if (ShellConsole.this.mActiveCommand != null &&
+                                ShellConsole.this.mActiveCommand
+                                        instanceof AsyncResultProgram) {
+                                AsyncResultProgram program =
+                                        ((AsyncResultProgram)ShellConsole.this.mActiveCommand);
+                                program.parsePartialResult(sb.toString());
+                            }
+
+                            if (finished) {
                                 //Notify the end
                                 notifyProcessFinished();
                                 break;

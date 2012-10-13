@@ -37,8 +37,8 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.cyanogenmod.explorer.R;
-import com.cyanogenmod.explorer.commands.AsyncResultExecutable;
 import com.cyanogenmod.explorer.commands.AsyncResultListener;
+import com.cyanogenmod.explorer.commands.FolderUsageExecutable;
 import com.cyanogenmod.explorer.console.ConsoleBuilder;
 import com.cyanogenmod.explorer.model.AID;
 import com.cyanogenmod.explorer.model.FileSystemObject;
@@ -120,7 +120,7 @@ public class FsoPropertiesDialog
     private boolean mHasPrivileged;
 
     private final boolean mComputeFolderStatistics;
-    private AsyncResultExecutable mFolderUsageExecutable;
+    private FolderUsageExecutable mFolderUsageExecutable;
     private FolderUsage mFolderUsage;
     /**
      * @hide
@@ -241,7 +241,11 @@ public class FsoPropertiesDialog
         //Fill the text views
         //- Info
         tvName.setText(this.mFso.getName());
-        tvParent.setText(this.mFso.getParent());
+        if (FileHelper.isRootDirectory(this.mFso)) {
+            tvParent.setText("-"); //$NON-NLS-1$
+        } else {
+            tvParent.setText(this.mFso.getParent());
+        }
         tvType.setText(MimeTypeHelper.getMimeTypeDescription(this.mContext, this.mFso));
         if (this.mFso instanceof Symlink) {
             Symlink link = (Symlink)this.mFso;
@@ -364,13 +368,13 @@ public class FsoPropertiesDialog
         try {
             if (this.mFso instanceof Symlink && ((Symlink) this.mFso).getLinkRef() != null) {
                 this.mFolderUsageExecutable =
-                        CommandHelper.getFolderUsage(
-                                this.mContext,
-                                ((Symlink) this.mFso).getLinkRef().getFullPath(), this, null);
+                    (FolderUsageExecutable)CommandHelper.getFolderUsage(
+                            this.mContext,
+                            ((Symlink) this.mFso).getLinkRef().getFullPath(), this, null);
             } else {
                 this.mFolderUsageExecutable =
-                    CommandHelper.getFolderUsage(
-                            this.mContext, this.mFso.getFullPath(), this, null);
+                    (FolderUsageExecutable)CommandHelper.getFolderUsage(
+                        this.mContext, this.mFso.getFullPath(), this, null);
             }
         } catch (Exception cause) {
             //Capture the exception
@@ -900,7 +904,12 @@ public class FsoPropertiesDialog
      */
     @Override
     public void onAsyncEnd(final boolean canceled) {
-        printFolderUsage(false, canceled);
+        try {
+            // Clone the reference
+            FsoPropertiesDialog.this.mFolderUsage =
+                    (FolderUsage)this.mFolderUsageExecutable.getFolderUsage().clone();
+            printFolderUsage(true, canceled);
+        } catch (Exception ex) {/** NON BLOCK**/}
     }
 
     /**

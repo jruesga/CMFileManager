@@ -200,6 +200,14 @@ public class FolderUsageCommand extends AsyncResultProgram implements FolderUsag
      * {@inheritDoc}
      */
     @Override
+    public FolderUsage getFolderUsage() {
+        return this.mFolderUsage;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public boolean isIgnoreShellStdErrCheck() {
         return true;
     }

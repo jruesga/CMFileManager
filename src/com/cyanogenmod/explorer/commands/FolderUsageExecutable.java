@@ -16,9 +16,17 @@
 
 package com.cyanogenmod.explorer.commands;
 
+import com.cyanogenmod.explorer.model.FolderUsage;
+
 /**
  * An interface that represents an executable for retrieve a folder usage
  */
 public interface FolderUsageExecutable extends AsyncResultExecutable {
-    /**NON BLOCK**/
+
+    /**
+     * Method that returns the folder usage.
+     *
+     * @return FolderUsage The folder usage
+     */
+    FolderUsage getFolderUsage();
 }

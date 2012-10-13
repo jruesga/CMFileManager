@@ -98,7 +98,7 @@ public abstract class Shell extends Command {
             throws InsufficientPermissionsException, NoSuchFileOrDirectory,
             CommandNotFoundException, ExecutionException, ReadOnlyFilesystemException {
         //Check problems in the standard error
-        if (err.indexOf("No such file or directory") != -1) { //$NON-NLS-1$
+        if (exitCode != 0 && err.indexOf("No such file or directory") != -1) { //$NON-NLS-1$
             throw new NoSuchFileOrDirectory();
         }
         //Normally usage code is generated for invalid commands, but let's assume

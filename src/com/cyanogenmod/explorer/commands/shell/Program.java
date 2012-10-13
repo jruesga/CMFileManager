@@ -22,6 +22,8 @@ import com.cyanogenmod.explorer.console.ExecutionException;
 import com.cyanogenmod.explorer.console.InsufficientPermissionsException;
 import com.cyanogenmod.explorer.console.NoSuchFileOrDirectory;
 
+import java.io.OutputStream;
+
 
 /**
  * An abstract class that represents a command that need a shell
@@ -34,14 +36,22 @@ public abstract class Program extends Command implements Executable {
      */
     public interface ProgramListener {
         /**
-         * Invoked when a request the program need to write in the shell program. This
-         * method only can be invoked when {@link #onProgramReady()} method was invoked.
+         * Invoked when a request the program need to write in the shell program.
          *
          * @param data The data to write to the shell console
+         * @param offset The initial position in buffer to store the bytes read from this stream
+         * @param byteCount The maximum number of bytes to store in b
          * @return boolean If the write was transmitted successfully
          * @throws ExecutionException If the console is not ready
          */
-        boolean onRequestWrite(byte[] data) throws ExecutionException;
+        boolean onRequestWrite(byte[] data, int offset, int byteCount) throws ExecutionException;
+
+        /**
+         * Method that returns the output stream of the console.
+         *
+         * @return OutputStream The output stream of the console
+         */
+        OutputStream getOutputStream();
     }
 
     // The listener for the program
@@ -75,7 +85,7 @@ public abstract class Program extends Command implements Executable {
 
     /**
      * Method that returns the program listener
-     * 
+     *
      * @return ProgramListener The program listener
      */
     protected ProgramListener getProgramListener() {
@@ -84,7 +94,7 @@ public abstract class Program extends Command implements Executable {
 
     /**
      * Method that sets the program listener
-     * 
+     *
      * @param programListener The program listener
      */
     public void setProgramListener(ProgramListener programListener) {
@@ -120,14 +130,6 @@ public abstract class Program extends Command implements Executable {
     public void checkStdErr(int exitCode, String err)
             throws InsufficientPermissionsException, NoSuchFileOrDirectory,
             CommandNotFoundException, ExecutionException {
-        /**NON BLOCK**/
-    }
-
-    /**
-     * Method invoked when the program is ready. At this point the program allow
-     * write back to the stdout.
-     */
-    public void onProgramReady() {
         /**NON BLOCK**/
     }
 

@@ -45,9 +45,13 @@ import com.cyanogenmod.explorer.commands.MoveExecutable;
 import com.cyanogenmod.explorer.commands.ParentDirExecutable;
 import com.cyanogenmod.explorer.commands.ProcessIdExecutable;
 import com.cyanogenmod.explorer.commands.QuickFolderSearchExecutable;
+import com.cyanogenmod.explorer.commands.ReadExecutable;
 import com.cyanogenmod.explorer.commands.ResolveLinkExecutable;
+import com.cyanogenmod.explorer.commands.SIGNAL;
+import com.cyanogenmod.explorer.commands.SendSignalExecutable;
 import com.cyanogenmod.explorer.commands.SyncResultExecutable;
 import com.cyanogenmod.explorer.commands.WritableExecutable;
+import com.cyanogenmod.explorer.commands.WriteExecutable;
 import com.cyanogenmod.explorer.commands.shell.InvalidCommandDefinitionException;
 import com.cyanogenmod.explorer.console.CommandNotFoundException;
 import com.cyanogenmod.explorer.console.Console;
@@ -60,11 +64,13 @@ import com.cyanogenmod.explorer.console.OperationTimeoutException;
 import com.cyanogenmod.explorer.console.ReadOnlyFilesystemException;
 import com.cyanogenmod.explorer.model.DiskUsage;
 import com.cyanogenmod.explorer.model.FileSystemObject;
+import com.cyanogenmod.explorer.model.FolderUsage;
 import com.cyanogenmod.explorer.model.Group;
 import com.cyanogenmod.explorer.model.Identity;
 import com.cyanogenmod.explorer.model.MountPoint;
 import com.cyanogenmod.explorer.model.Permissions;
 import com.cyanogenmod.explorer.model.Query;
+import com.cyanogenmod.explorer.model.SearchResult;
 import com.cyanogenmod.explorer.model.User;
 
 import java.io.FileNotFoundException;
@@ -753,6 +759,7 @@ public final class CommandHelper {
      * @throws OperationTimeoutException If the operation exceeded the maximum time of wait
      * @throws ExecutionException If the operation returns a invalid exit code
      * @see AsyncResultExecutable
+     * @see ExecExecutable
      */
     public static AsyncResultExecutable exec(
             Context context, String cmd, AsyncResultListener asyncResultListener, Console console)
@@ -787,8 +794,9 @@ public final class CommandHelper {
      * @throws CommandNotFoundException If the command was not found
      * @throws OperationTimeoutException If the operation exceeded the maximum time of wait
      * @throws ExecutionException If the operation returns a invalid exit code
-     * @see "SearchResult"
+     * @see SearchResult
      * @see AsyncResultExecutable
+     * @see FindExecutable
      */
     public static AsyncResultExecutable findFiles(
             Context context, String directory, Query search,
@@ -823,8 +831,9 @@ public final class CommandHelper {
      * @throws CommandNotFoundException If the command was not found
      * @throws OperationTimeoutException If the operation exceeded the maximum time of wait
      * @throws ExecutionException If the operation returns a invalid exit code
-     * @see "SearchResult"
+     * @see FolderUsage
      * @see AsyncResultExecutable
+     * @see FolderUsageExecutable
      */
     public static AsyncResultExecutable getFolderUsage(
             Context context, String directory,
@@ -1031,6 +1040,149 @@ public final class CommandHelper {
                 c.getExecutableFactory().newCreator().createProcessIdExecutable(pid, processName);
         execute(context, executable, c);
         return executable.getResult();
+    }
+
+    /**
+     * Method that send a signal to a process.
+     *
+     * @param context The current context (needed if console == null)
+     * @param process The process which to send the signal
+     * @param signal The signal to send
+     * @param console The console in which execute the program. <code>null</code>
+     * to attach to the default console
+     * @throws FileNotFoundException If the initial directory not exists
+     * @throws IOException If initial directory can't not be checked
+     * @throws InvalidCommandDefinitionException If the command has an invalid definition
+     * @throws NoSuchFileOrDirectory If the file or directory was not found
+     * @throws ConsoleAllocException If the console can't be allocated
+     * @throws InsufficientPermissionsException If an operation requires elevated permissions
+     * @throws CommandNotFoundException If the command was not found
+     * @throws OperationTimeoutException If the operation exceeded the maximum time of wait
+     * @throws ExecutionException If the operation returns a invalid exit code
+     * @see ProcessIdExecutable
+     */
+    public static void sendSignal(
+            Context context, int process, SIGNAL signal, Console console)
+            throws FileNotFoundException, IOException, ConsoleAllocException,
+            NoSuchFileOrDirectory, InsufficientPermissionsException,
+            CommandNotFoundException, OperationTimeoutException,
+            ExecutionException, InvalidCommandDefinitionException {
+        Console c = ensureConsole(context, console);
+        SendSignalExecutable executable =
+                c.getExecutableFactory().newCreator().createSendSignalExecutable(process, signal);
+        execute(context, executable, c);
+    }
+
+    /**
+     * Method that send a kill signal to a process.
+     *
+     * @param context The current context (needed if console == null)
+     * @param process The process which to send the signal
+     * @param console The console in which execute the program. <code>null</code>
+     * to attach to the default console
+     * @throws FileNotFoundException If the initial directory not exists
+     * @throws IOException If initial directory can't not be checked
+     * @throws InvalidCommandDefinitionException If the command has an invalid definition
+     * @throws NoSuchFileOrDirectory If the file or directory was not found
+     * @throws ConsoleAllocException If the console can't be allocated
+     * @throws InsufficientPermissionsException If an operation requires elevated permissions
+     * @throws CommandNotFoundException If the command was not found
+     * @throws OperationTimeoutException If the operation exceeded the maximum time of wait
+     * @throws ExecutionException If the operation returns a invalid exit code
+     * @see ProcessIdExecutable
+     */
+    public static void sendSignal(
+            Context context, int process, Console console)
+            throws FileNotFoundException, IOException, ConsoleAllocException,
+            NoSuchFileOrDirectory, InsufficientPermissionsException,
+            CommandNotFoundException, OperationTimeoutException,
+            ExecutionException, InvalidCommandDefinitionException {
+        Console c = ensureConsole(context, console);
+        SendSignalExecutable executable =
+                c.getExecutableFactory().newCreator().createKillExecutable(process);
+        execute(context, executable, c);
+    }
+
+    /**
+     * Method that read data from disk.
+     *
+     * @param context The current context (needed if console == null)
+     * @param file The file where to read the data
+     * @param asyncResultListener The partial result listener
+     * @param console The console in which execute the program.
+     * <code>null</code> to attach to the default console
+     * @return AsyncResultProgram The command executed in background
+     * @throws FileNotFoundException If the initial directory not exists
+     * @throws IOException If initial directory can't not be checked
+     * @throws InvalidCommandDefinitionException If the command has an invalid definition
+     * @throws NoSuchFileOrDirectory If the file or directory was not found
+     * @throws ConsoleAllocException If the console can't be allocated
+     * @throws InsufficientPermissionsException If an operation requires elevated permissions
+     * @throws CommandNotFoundException If the command was not found
+     * @throws OperationTimeoutException If the operation exceeded the maximum time of wait
+     * @throws ExecutionException If the operation returns a invalid exit code
+     * @see "byte[]"
+     * @see AsyncResultExecutable
+     */
+    public static AsyncResultExecutable read(
+            Context context, String file,
+            AsyncResultListener asyncResultListener, Console console)
+            throws FileNotFoundException, IOException, ConsoleAllocException,
+            NoSuchFileOrDirectory, InsufficientPermissionsException,
+            CommandNotFoundException, OperationTimeoutException,
+            ExecutionException, InvalidCommandDefinitionException {
+        Console c = ensureConsole(context, console);
+        ReadExecutable executable =
+                c.getExecutableFactory().newCreator().
+                    createReadExecutable(file, asyncResultListener);
+        execute(context, executable, c);
+        return executable;
+    }
+
+    /**
+     * Method that writes data to disk.
+     *
+     * @param context The current context (needed if console == null)
+     * @param file The file where to write the data
+     * @param asyncResultListener The partial result listener
+     * @param console The console in which execute the program.
+     * <code>null</code> to attach to the default console
+     * @return AsyncResultProgram The command executed in background
+     * @throws FileNotFoundException If the initial directory not exists
+     * @throws IOException If initial directory can't not be checked
+     * @throws InvalidCommandDefinitionException If the command has an invalid definition
+     * @throws NoSuchFileOrDirectory If the file or directory was not found
+     * @throws ConsoleAllocException If the console can't be allocated
+     * @throws InsufficientPermissionsException If an operation requires elevated permissions
+     * @throws CommandNotFoundException If the command was not found
+     * @throws OperationTimeoutException If the operation exceeded the maximum time of wait
+     * @throws ExecutionException If the operation returns a invalid exit code
+     * @throws ReadOnlyFilesystemException If the operation writes in a read-only filesystem
+     * @see WriteExecutable
+     */
+    public static WriteExecutable write(
+            Context context, String file,
+            AsyncResultListener asyncResultListener, Console console)
+            throws FileNotFoundException, IOException, ConsoleAllocException,
+            NoSuchFileOrDirectory, InsufficientPermissionsException,
+            CommandNotFoundException, OperationTimeoutException,
+            ExecutionException, InvalidCommandDefinitionException, ReadOnlyFilesystemException {
+        Console c = ensureConsole(context, console);
+        // Prior to write to disk the data, ensure that can write to the disk using
+        // createFile method
+        //- Create
+        CreateFileExecutable executable1 =
+                c.getExecutableFactory().newCreator().createCreateFileExecutable(file);
+        writableExecute(context, executable1, c);
+        if (executable1.getResult().booleanValue()) {
+            //- Write
+            WriteExecutable executable2 =
+                    c.getExecutableFactory().newCreator().
+                        createWriteExecutable(file, asyncResultListener);
+            execute(context, executable2, c);
+            return executable2;
+        }
+        throw new ExecutionException(String.format("Fail to create file %s", file)); //$NON-NLS-1$
     }
 
     /**

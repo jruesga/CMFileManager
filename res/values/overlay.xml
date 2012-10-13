@@ -28,7 +28,7 @@
   <!-- The system directory -->
   <string name="system_dir">/system</string>
 
-  <!-- The size of the buffers use by the console (in bytes). Default: 0.5 Mb -->
-  <integer name="buffer_size">512</integer>
+  <!-- The size of the buffers use by the console (in bytes). Default: 4k -->
+  <integer name="buffer_size">4096</integer>
 
 </resources>

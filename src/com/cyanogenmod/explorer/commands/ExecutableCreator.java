@@ -323,6 +323,18 @@ public interface ExecutableCreator {
             String regexp) throws CommandNotFoundException;
 
     /**
+     * Method that creates an executable for read data from disk.
+     *
+     * @param file The file where to read the data
+     * @param asyncResultListener The listener where to return partial results
+     * @return ReadExecutable A {@link ReadExecutable} executable implementation reference
+     * @throws CommandNotFoundException If the executable can't be created
+     */
+    ReadExecutable createReadExecutable(
+            String file, AsyncResultListener asyncResultListener)
+            throws CommandNotFoundException;
+
+    /**
      * Method that creates an executable for resolves the real
      * path of a symlink or file system object.
      *
@@ -332,5 +344,39 @@ public interface ExecutableCreator {
      * @throws CommandNotFoundException If the executable can't be created
      */
     ResolveLinkExecutable createResolveLinkExecutable(String fso) throws CommandNotFoundException;
+
+    /**
+     * Method that creates an executable for send a signal to the current process.
+     *
+     * @param process The process which to send the signal
+     * @param signal The signal to send
+     * @return SendSignalExecutable A {@link SendSignalExecutable} executable implementation reference
+     * @throws CommandNotFoundException If the executable can't be created
+     */
+    SendSignalExecutable createSendSignalExecutable(
+            int process, SIGNAL signal) throws CommandNotFoundException;
+
+    /**
+     * Method that creates an executable for send a kill signal to the current process.
+     *
+     * @param process The process which to send the signal
+     * @param signal The signal to send
+     * @return SendSignalExecutable A {@link SendSignalExecutable} executable implementation reference
+     * @throws CommandNotFoundException If the executable can't be created
+     */
+    SendSignalExecutable createKillExecutable(
+            int process) throws CommandNotFoundException;
+
+    /**
+     * Method that creates an executable for write data to disk.
+     *
+     * @param file The file where to write the data
+     * @param asyncResultListener The listener where to return partial results
+     * @return WriteExecutable A {@link WriteExecutable} executable implementation reference
+     * @throws CommandNotFoundException If the executable can't be created
+     */
+    WriteExecutable createWriteExecutable(
+            String file, AsyncResultListener asyncResultListener)
+            throws CommandNotFoundException;
 
 }

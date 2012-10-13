@@ -26,7 +26,8 @@ import com.cyanogenmod.explorer.preferences.Preferences;
  * This class represents a class for executing commands in the operating system layer,
  * being the base for all type of consoles (shell, java, ...).
  */
-public abstract class Console implements AsyncResultExecutable.OnCancelListener {
+public abstract class Console
+    implements AsyncResultExecutable.OnEndListener, AsyncResultExecutable.OnCancelListener {
 
     private boolean mTrace;
 

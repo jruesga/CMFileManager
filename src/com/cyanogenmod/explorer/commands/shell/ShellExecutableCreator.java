@@ -42,7 +42,11 @@ import com.cyanogenmod.explorer.commands.MoveExecutable;
 import com.cyanogenmod.explorer.commands.ParentDirExecutable;
 import com.cyanogenmod.explorer.commands.ProcessIdExecutable;
 import com.cyanogenmod.explorer.commands.QuickFolderSearchExecutable;
+import com.cyanogenmod.explorer.commands.ReadExecutable;
 import com.cyanogenmod.explorer.commands.ResolveLinkExecutable;
+import com.cyanogenmod.explorer.commands.SIGNAL;
+import com.cyanogenmod.explorer.commands.SendSignalExecutable;
+import com.cyanogenmod.explorer.commands.WriteExecutable;
 import com.cyanogenmod.explorer.console.CommandNotFoundException;
 import com.cyanogenmod.explorer.console.shell.ShellConsole;
 import com.cyanogenmod.explorer.model.Group;
@@ -420,12 +424,66 @@ public class ShellExecutableCreator implements ExecutableCreator {
      * {@inheritDoc}
      */
     @Override
+    public ReadExecutable createReadExecutable(
+            String file, AsyncResultListener asyncResultListener)
+            throws CommandNotFoundException {
+        try {
+            return new ReadCommand(file, asyncResultListener);
+        } catch (InvalidCommandDefinitionException icdEx) {
+            throw new CommandNotFoundException("ReadCommand", icdEx); //$NON-NLS-1$
+        }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public ResolveLinkExecutable createResolveLinkExecutable(String fso)
             throws CommandNotFoundException {
         try {
             return new ResolveLinkCommand(fso);
         } catch (InvalidCommandDefinitionException icdEx) {
             throw new CommandNotFoundException("ResolveLinkCommand", icdEx); //$NON-NLS-1$
+        }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public SendSignalExecutable createSendSignalExecutable(int process, SIGNAL signal)
+            throws CommandNotFoundException {
+        try {
+            return new SendSignalCommand(process, signal);
+        } catch (InvalidCommandDefinitionException icdEx) {
+            throw new CommandNotFoundException("SendSignalCommand", icdEx); //$NON-NLS-1$
+        }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public SendSignalExecutable createKillExecutable(int process)
+            throws CommandNotFoundException {
+        try {
+            return new SendSignalCommand(process);
+        } catch (InvalidCommandDefinitionException icdEx) {
+            throw new CommandNotFoundException("SendSignalCommand", icdEx); //$NON-NLS-1$
+        }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public WriteExecutable createWriteExecutable(
+            String file, AsyncResultListener asyncResultListener)
+            throws CommandNotFoundException {
+        try {
+            return new WriteCommand(file, asyncResultListener);
+        } catch (InvalidCommandDefinitionException icdEx) {
+            throw new CommandNotFoundException("WriteCommand", icdEx); //$NON-NLS-1$
         }
     }
 

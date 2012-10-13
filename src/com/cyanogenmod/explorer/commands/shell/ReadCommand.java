@@ -17,43 +17,39 @@
 package com.cyanogenmod.explorer.commands.shell;
 
 import com.cyanogenmod.explorer.commands.AsyncResultListener;
-import com.cyanogenmod.explorer.commands.ExecExecutable;
+import com.cyanogenmod.explorer.commands.ReadExecutable;
 import com.cyanogenmod.explorer.commands.SIGNAL;
 import com.cyanogenmod.explorer.console.CommandNotFoundException;
 import com.cyanogenmod.explorer.console.ExecutionException;
 import com.cyanogenmod.explorer.console.InsufficientPermissionsException;
 
 /**
- * A class for execute a command
+ * A class for read a file
  *
- * {@link "http://unixhelp.ed.ac.uk/CGI/man-cgi?sh"}
+ * {@link "http://unixhelp.ed.ac.uk/CGI/man-cgi?cat"}
  */
-public class ExecCommand extends AsyncResultProgram implements ExecExecutable {
+public class ReadCommand extends AsyncResultProgram implements ReadExecutable {
 
-    private static final String ID = "exec"; //$NON-NLS-1$
-
-    private int mExitCode;
+    private static final String ID = "read"; //$NON-NLS-1$
 
     /**
      * Constructor of <code>ExecCommand</code>.
      *
-     * @param cmd The "absolute" directory to compute
+     * @param file The file to read
      * @param asyncResultListener The partial result listener
      * @throws InvalidCommandDefinitionException If the command has an invalid definition
      */
-    public ExecCommand(
-            String cmd, AsyncResultListener asyncResultListener)
+    public ReadCommand(
+            String file, AsyncResultListener asyncResultListener)
             throws InvalidCommandDefinitionException {
-        super(ID, asyncResultListener, new String[]{cmd});
+        super(ID, asyncResultListener, new String[]{file});
     }
 
     /**
      * {@inheritDoc}
      */
     @Override
-    public void onStartParsePartialResult() {
-        this.mExitCode = 0;
-    }
+    public void onStartParsePartialResult() {/** NON BLOCK **/}
 
     /**
      * {@inheritDoc}
@@ -69,7 +65,7 @@ public class ExecCommand extends AsyncResultProgram implements ExecExecutable {
         //If a listener is defined, then send the partial result
         if (partialIn != null && partialIn.length() > 0) {
             if (getAsyncResultListener() != null) {
-                getAsyncResultListener().onPartialResult(partialIn);
+                getAsyncResultListener().onPartialResult(partialIn.getBytes());
             }
         }
     }
@@ -78,14 +74,7 @@ public class ExecCommand extends AsyncResultProgram implements ExecExecutable {
      * {@inheritDoc}
      */
     @Override
-    public void onParseErrorPartialResult(String partialErr) {
-        //If a listener is defined, then send the partial result
-        if (partialErr != null && partialErr.length() > 0) {
-            if (getAsyncResultListener() != null) {
-                getAsyncResultListener().onPartialResult(partialErr);
-            }
-        }
-    }
+    public void onParseErrorPartialResult(String partialErr) {/** NON BLOCK **/}
 
     /**
      * {@inheritDoc}
@@ -93,14 +82,6 @@ public class ExecCommand extends AsyncResultProgram implements ExecExecutable {
     @Override
     public SIGNAL onRequestEnd() {
         return null;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public int getExitCode() {
-        return this.mExitCode;
     }
 
     /**
@@ -117,6 +98,11 @@ public class ExecCommand extends AsyncResultProgram implements ExecExecutable {
     @Override
     public void checkExitCode(int exitCode)
             throws InsufficientPermissionsException, CommandNotFoundException, ExecutionException {
-        this.mExitCode = exitCode;
+        //Ignore exit code 143 (canceled)
+        //Ignore exit code 137 (kill -9)
+        if (exitCode != 0 && exitCode != 143 && exitCode != 137) {
+            throw new ExecutionException(
+                        "exitcode != 0 && != 143 && != 137"); //$NON-NLS-1$
+        }
     }
 }

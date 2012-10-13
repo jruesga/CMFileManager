@@ -16,6 +16,7 @@
 
 package com.cyanogenmod.explorer.commands.shell;
 
+import com.cyanogenmod.explorer.ExplorerApplication;
 import com.cyanogenmod.explorer.console.Console;
 import com.cyanogenmod.explorer.console.ConsoleBuilder;
 import com.cyanogenmod.explorer.console.shell.ShellConsole;
@@ -44,6 +45,7 @@ public abstract class AbstractConsoleTest extends android.test.AndroidTestCase {
     protected void setUp() throws Exception {
         //Setup the console
         if (isRootConsoleNeeded()) {
+            ExplorerApplication.changeBackgroundConsoleToPriviligedConsole();
             this.mConsole = ConsoleBuilder.createPrivilegedConsole(getContext(), INITIAL_DIR);
         } else {
             this.mConsole = ConsoleBuilder.createNonPrivilegedConsole(getContext(), INITIAL_DIR);

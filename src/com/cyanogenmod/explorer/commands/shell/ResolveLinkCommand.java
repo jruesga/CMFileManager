@@ -21,6 +21,7 @@ import com.cyanogenmod.explorer.console.CommandNotFoundException;
 import com.cyanogenmod.explorer.console.ExecutionException;
 import com.cyanogenmod.explorer.console.InsufficientPermissionsException;
 import com.cyanogenmod.explorer.model.FileSystemObject;
+import com.cyanogenmod.explorer.util.FileHelper;
 import com.cyanogenmod.explorer.util.ParseHelper;
 
 import java.io.BufferedReader;
@@ -47,7 +48,10 @@ public class ResolveLinkCommand extends SyncResultProgram implements ResolveLink
      * @throws InvalidCommandDefinitionException If the command has an invalid definition
      */
     public ResolveLinkCommand(String src) throws InvalidCommandDefinitionException {
-        super(ID, src, new File(src).getParentFile().getAbsolutePath());
+        super(ID, src,
+                (src.compareTo(FileHelper.ROOT_DIRECTORY) == 0) ?
+                   FileHelper.ROOT_DIRECTORY :
+                   new File(src).getParentFile().getAbsolutePath());
     }
 
     /**

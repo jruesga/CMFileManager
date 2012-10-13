@@ -16,13 +16,14 @@
 
 package com.cyanogenmod.explorer.commands.shell;
 
-import java.io.File;
-import java.io.FileWriter;
+import java.io.OutputStream;
 
 import android.os.Environment;
 import android.test.suitebuilder.annotation.MediumTest;
 
 import com.cyanogenmod.explorer.commands.AsyncResultListener;
+import com.cyanogenmod.explorer.commands.WriteExecutable;
+import com.cyanogenmod.explorer.model.Permissions;
 import com.cyanogenmod.explorer.util.CommandHelper;
 
 /**
@@ -36,6 +37,7 @@ public class ExecCommandTest extends AbstractConsoleTest {
             Environment.getDataDirectory().getAbsolutePath() + "/source.sh"; //$NON-NLS-1$
     private static final String EXEC_PROGRAM =
             "#!/system/bin/sh\necho \"List of files:\"\nls -la\n"; //$NON-NLS-1$
+    private static final String EXEC_CMD_PERMISSIONS = "0755"; //$NON-NLS-1$
 
     /**
      * @hide
@@ -63,9 +65,18 @@ public class ExecCommandTest extends AbstractConsoleTest {
     public void testExecWithPartialResult() throws Exception {
         try {
             // Create the test program
-            FileWriter fw = new FileWriter(new File(EXEC_CMD));
-            fw.write(EXEC_PROGRAM);
-            fw.close();
+            WriteExecutable writeCmd =
+                    CommandHelper.write(getContext(), EXEC_CMD, null, getConsole());
+            OutputStream os = writeCmd.createOutputStream();
+            os.write(EXEC_PROGRAM.getBytes());
+            writeCmd.end();
+
+            // Enable execute permission
+            CommandHelper.changePermissions(
+                    getContext(),
+                    EXEC_CMD,
+                    Permissions.fromOctalString(EXEC_CMD_PERMISSIONS),
+                    getConsole());
 
             // Execute the test program
             this.mNewPartialData = false;
@@ -75,11 +86,11 @@ public class ExecCommandTest extends AbstractConsoleTest {
                 }
                 public void onAsyncEnd(boolean canceled) {
                     synchronized (ExecCommandTest.this.mSync) {
-                        ExecCommandTest.this.mSync.notifyAll();
+                        ExecCommandTest.this.mSync.notify();
                     }
                 }
                 public void onException(Exception cause) {
-                    fail(cause.toString());
+                    fail(String.valueOf(cause));
                 }
                 public void onPartialResult(Object results) {
                     ExecCommandTest.this.mNewPartialData = true;

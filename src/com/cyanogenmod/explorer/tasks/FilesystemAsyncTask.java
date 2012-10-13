@@ -21,6 +21,7 @@ import android.content.res.Resources;
 import android.graphics.PorterDuff.Mode;
 import android.graphics.PorterDuffColorFilter;
 import android.os.AsyncTask;
+import android.util.Log;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 
@@ -33,6 +34,8 @@ import com.cyanogenmod.explorer.util.MountPointHelper;
  * A class for recovery information about filesystem status (mount point, disk usage, ...).
  */
 public class FilesystemAsyncTask extends AsyncTask<String, Integer, Boolean> {
+
+    private static final String TAG = "FilesystemAsyncTask"; //$NON-NLS-1$
 
     /**
      * @hide
@@ -143,7 +146,14 @@ public class FilesystemAsyncTask extends AsyncTask<String, Integer, Boolean> {
             this.mDiskUsageInfo.post(new Runnable() {
                 @Override
                 public void run() {
-                    final DiskUsage du = MountPointHelper.getMountPointDiskUsage(mp);
+                    DiskUsage du = null;
+                    try {
+                         du = MountPointHelper.getMountPointDiskUsage(mp);
+                    } catch (Exception e) {
+                        Log.e(TAG, "Failed to retrieve disk usage information", e); //$NON-NLS-1$
+                        du = new DiskUsage(
+                                mp.getMountPoint(), 0, 0, 0);
+                    }
                     int usage = 0;
                     if (du != null && du.getTotal() != 0) {
                         usage = (int)(du.getUsed() * 100 / du.getTotal());

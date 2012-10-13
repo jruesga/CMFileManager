@@ -81,11 +81,11 @@ public class FolderUsageCommandTest extends AbstractConsoleTest {
                         public void onAsyncEnd(boolean canceled) {
                             synchronized (FolderUsageCommandTest.this.mSync) {
                                 FolderUsageCommandTest.this.mNormalEnd = true;
-                                FolderUsageCommandTest.this.mSync.notifyAll();
+                                FolderUsageCommandTest.this.mSync.notify();
                             }
                         }
                         public void onException(Exception cause) {
-                            fail(cause.toString());
+                            fail(String.valueOf(cause));
                         }
                         public void onPartialResult(Object result) {
                             FolderUsageCommandTest.this.mNewPartialData = true;

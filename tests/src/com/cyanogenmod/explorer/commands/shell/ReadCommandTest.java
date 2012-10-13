@@ -16,28 +16,23 @@
 
 package com.cyanogenmod.explorer.commands.shell;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import android.os.Environment;
-import android.test.suitebuilder.annotation.LargeTest;
+import android.test.suitebuilder.annotation.MediumTest;
+import android.util.Log;
 
 import com.cyanogenmod.explorer.commands.AsyncResultExecutable;
 import com.cyanogenmod.explorer.commands.AsyncResultListener;
-import com.cyanogenmod.explorer.model.FileSystemObject;
-import com.cyanogenmod.explorer.model.Query;
 import com.cyanogenmod.explorer.util.CommandHelper;
 
 /**
- * A class for testing find command.
+ * A class for testing read command.
  *
- * @see FindCommand
+ * @see ReadCommand
  */
-public class FindCommandTest extends AbstractConsoleTest {
+public class ReadCommandTest extends AbstractConsoleTest {
 
-    private static final String FIND_PATH =
-            Environment.getDataDirectory().getAbsolutePath();
-    private static final String FIND_TERM_PARTIAL = "shared"; //$NON-NLS-1$
+    private static final String TAG = "ReadCommandTest"; //$NON-NLS-1$
+
+    private static final String READ_FILE = "/boot.txt"; //$NON-NLS-1$
 
     /**
      * @hide
@@ -52,6 +47,7 @@ public class FindCommandTest extends AbstractConsoleTest {
      */
     boolean mNormalEnd;
 
+
     /**
      * {@inheritDoc}
      */
@@ -61,38 +57,36 @@ public class FindCommandTest extends AbstractConsoleTest {
     }
 
     /**
-     * Method that performs a test over known search results.
+     * Method that performs a read of a file
      *
-     * @throws Exception If test failed
+     * @throws Exception If an exception occurs while executing the test
      */
-    @LargeTest
-    public void testFindWithPartialResult() throws Exception {
+    @MediumTest
+    public void testReadWithPartialResult() throws Exception {
         this.mNewPartialData = false;
         this.mNormalEnd = false;
-        Query query = new Query().setSlot(FIND_TERM_PARTIAL, 0);
-        final List<FileSystemObject> files = new ArrayList<FileSystemObject>();
+        final StringBuffer sb = new StringBuffer();
         AsyncResultExecutable cmd =
-                CommandHelper.findFiles(getContext(), FIND_PATH, query, new AsyncResultListener() {
+                CommandHelper.read(getContext(), READ_FILE, new AsyncResultListener() {
                         public void onAsyncStart() {
                             /**NON BLOCK**/
                         }
                         public void onAsyncEnd(boolean canceled) {
-                            synchronized (FindCommandTest.this.mSync) {
-                                FindCommandTest.this.mNormalEnd = true;
-                                FindCommandTest.this.mSync.notify();
+                            synchronized (ReadCommandTest.this.mSync) {
+                                ReadCommandTest.this.mNormalEnd = true;
+                                ReadCommandTest.this.mSync.notify();
                             }
                         }
                         public void onException(Exception cause) {
                             fail(String.valueOf(cause));
                         }
-                        @SuppressWarnings("unchecked")
                         public void onPartialResult(Object results) {
-                            FindCommandTest.this.mNewPartialData = true;
-                            files.addAll((List<FileSystemObject>)results);
+                            ReadCommandTest.this.mNewPartialData = true;
+                            sb.append(new String((byte[])results));
                         }
                    }, getConsole());
-        synchronized (FindCommandTest.this.mSync) {
-            FindCommandTest.this.mSync.wait(15000L);
+        synchronized (ReadCommandTest.this.mSync) {
+            ReadCommandTest.this.mSync.wait(15000L);
         }
         try {
             if (!this.mNormalEnd && cmd != null && cmd.isCancelable() && !cmd.isCanceled()) {
@@ -100,8 +94,9 @@ public class FindCommandTest extends AbstractConsoleTest {
             }
         } catch (Exception e) {/**NON BLOCK**/}
         assertTrue("no new partial data", this.mNewPartialData); //$NON-NLS-1$
-        assertNotNull("files==null", files); //$NON-NLS-1$
-        assertTrue("no objects returned", files.size() > 0); //$NON-NLS-1$
+        assertNotNull("sb==null", sb); //$NON-NLS-1$
+        Log.v(TAG, String.format("read data: %s", sb.toString())); //$NON-NLS-1$
+        assertTrue("read.size > 0", sb.length() > 0); //$NON-NLS-1$
     }
 
 }

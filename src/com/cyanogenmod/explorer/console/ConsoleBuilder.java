@@ -21,6 +21,7 @@ import android.content.SharedPreferences.Editor;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.cyanogenmod.explorer.ExplorerApplication;
 import com.cyanogenmod.explorer.R;
 import com.cyanogenmod.explorer.commands.shell.InvalidCommandDefinitionException;
 import com.cyanogenmod.explorer.console.shell.NonPriviledgeConsole;
@@ -147,9 +148,14 @@ public final class ConsoleBuilder {
         ConsoleHolder holder = null;
         try {
             //Create the console, destroy the current console, and marks as current
-            holder = new ConsoleHolder(createPrivilegedConsole(context, FileHelper.ROOT_DIRECTORY));
+            holder = new ConsoleHolder(
+                    createAndCheckPrivilegedConsole(context, FileHelper.ROOT_DIRECTORY));
             destroyConsole();
             sHolder = holder;
+
+            // Change also the background console to privileged
+            ExplorerApplication.changeBackgroundConsoleToPriviligedConsole();
+
             return sHolder.getConsole() instanceof PrivilegedConsole;
 
         } catch (Throwable e) {
@@ -216,9 +222,14 @@ public final class ConsoleBuilder {
             if (sHolder == null) {
                 sHolder = (requiredSuConsole)
                         ? new ConsoleHolder(
-                                createPrivilegedConsole(context, FileHelper.ROOT_DIRECTORY))
+                                createAndCheckPrivilegedConsole(
+                                        context, FileHelper.ROOT_DIRECTORY))
                         : new ConsoleHolder(
                                 createNonPrivilegedConsole(context, FileHelper.ROOT_DIRECTORY));
+                if (requiredSuConsole) {
+                    // Change also the background console to privileged
+                    ExplorerApplication.changeBackgroundConsoleToPriviligedConsole();
+                }
             }
             return sHolder.getConsole();
         }
@@ -276,7 +287,39 @@ public final class ConsoleBuilder {
     public static Console createPrivilegedConsole(Context context, String initialDirectory)
             throws FileNotFoundException, IOException, InvalidCommandDefinitionException,
             ConsoleAllocException, InsufficientPermissionsException {
-        return createPrivilegedConsole(context, initialDirectory, true);
+        PrivilegedConsole console = new PrivilegedConsole(initialDirectory);
+        console.setBufferSize(context.getResources().getInteger(R.integer.buffer_size));
+        console.alloc();
+        if (console.getIdentity().getUser().getId() != ROOT_UID) {
+            //The console is not a privileged console
+            try {
+                console.dealloc();
+            } catch (Throwable ex) {
+                /**NON BLOCK**/
+            }
+            throw new InsufficientPermissionsException(null);
+        }
+        return console;
+    }
+
+    /**
+     * Method that creates a new privileged console. If the allocation of the
+     * privileged console fails, the a non privileged console
+     *
+     * @param context The current context
+     * @param initialDirectory The initial directory of the console
+     * @return Console The privileged console
+     * @throws FileNotFoundException If the initial directory not exists
+     * @throws IOException If initial directory can't not be checked
+     * @throws InvalidCommandDefinitionException If the command has an invalid definition
+     * @throws ConsoleAllocException If the console can't be allocated
+     * @throws InsufficientPermissionsException If the console created is not a privileged console
+     * @see PrivilegedConsole
+     */
+    public static Console createAndCheckPrivilegedConsole(Context context, String initialDirectory)
+            throws FileNotFoundException, IOException, InvalidCommandDefinitionException,
+            ConsoleAllocException, InsufficientPermissionsException {
+        return createAndCheckPrivilegedConsole(context, initialDirectory, true);
     }
 
     /**
@@ -294,7 +337,7 @@ public final class ConsoleBuilder {
      * @throws InsufficientPermissionsException If the console created is not a privileged console
      * @see PrivilegedConsole
      */
-    public static Console createPrivilegedConsole(
+    public static Console createAndCheckPrivilegedConsole(
             Context context, String initialDirectory, boolean silent)
             throws FileNotFoundException, IOException, InvalidCommandDefinitionException,
             ConsoleAllocException, InsufficientPermissionsException {
@@ -350,7 +393,6 @@ public final class ConsoleBuilder {
             // Rethrow the exception
             throw caEx;
         }
-
     }
 
 }

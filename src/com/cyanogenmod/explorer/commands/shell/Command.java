@@ -25,6 +25,8 @@ import com.cyanogenmod.explorer.R;
 import com.cyanogenmod.explorer.console.CommandNotFoundException;
 import com.cyanogenmod.explorer.console.ExecutionException;
 import com.cyanogenmod.explorer.console.InsufficientPermissionsException;
+import com.cyanogenmod.explorer.preferences.ExplorerSettings;
+import com.cyanogenmod.explorer.preferences.Preferences;
 import com.cyanogenmod.explorer.util.ShellHelper;
 
 import org.xmlpull.v1.XmlPullParserException;
@@ -52,6 +54,8 @@ public abstract class Command {
 
     private static String sStartCodeCmd;
     private static String sExitCodeCmd;
+
+    private boolean mTrace;
 
     /**
      * @Constructor of <code>Command</code>
@@ -95,6 +99,27 @@ public abstract class Command {
 
         //Load the command info
         getCommandInfo(ExplorerApplication.getInstance().getResources());
+
+        // Get the current trace value
+        reloadTrace();
+    }
+
+    /**
+     * Method that return id the command had to trace his operations
+     *
+     * @return boolean If the command had to trace
+     */
+    public boolean isTrace() {
+        return this.mTrace;
+    }
+
+    /**
+     * Method that reload the status of trace setting
+     */
+    public final void reloadTrace() {
+        this.mTrace = Preferences.getSharedPreferences().getBoolean(
+                ExplorerSettings.SETTINGS_SHOW_TRACES.getId(),
+                ((Boolean)ExplorerSettings.SETTINGS_SHOW_TRACES.getDefaultValue()).booleanValue());
     }
 
     /**

@@ -69,7 +69,12 @@ public final class MountPointHelper {
      * @return MountPoint The mount point information
      */
     public static MountPoint getMountPointFromDirectory(String dir) {
-        return getMountPointFromDirectory(ExplorerApplication.getBackgroundConsole(), dir);
+        try {
+            return getMountPointFromDirectory(ExplorerApplication.getBackgroundConsole(), dir);
+        } catch (Exception e) {
+            Log.e(TAG, "Failed to retrieve mount point information.", e); //$NON-NLS-1$
+        }
+        return null;
     }
 
     /**

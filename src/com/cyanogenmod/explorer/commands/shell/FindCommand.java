@@ -20,6 +20,7 @@ import android.util.Log;
 
 import com.cyanogenmod.explorer.commands.AsyncResultListener;
 import com.cyanogenmod.explorer.commands.FindExecutable;
+import com.cyanogenmod.explorer.commands.SIGNAL;
 import com.cyanogenmod.explorer.console.CommandNotFoundException;
 import com.cyanogenmod.explorer.console.ExecutionException;
 import com.cyanogenmod.explorer.console.InsufficientPermissionsException;
@@ -53,7 +54,7 @@ public class FindCommand extends AsyncResultProgram implements FindExecutable {
 
     private static final String TAG = "FindCommand"; //$NON-NLS-1$
 
-    private static final String ID_FIND_DIRECTORY = "find";  //$NON-NLS-1$
+    private static final String ID = "find";  //$NON-NLS-1$
 
     private final String mDirectory;
     private final List<FileSystemObject> mFiles;
@@ -70,7 +71,7 @@ public class FindCommand extends AsyncResultProgram implements FindExecutable {
     public FindCommand(
             String directory, Query query, AsyncResultListener asyncResultListener)
             throws InvalidCommandDefinitionException {
-        super(ID_FIND_DIRECTORY, asyncResultListener, createArgs(directory, query));
+        super(ID, asyncResultListener, createArgs(directory, query));
         this.mFiles = new ArrayList<FileSystemObject>();
         this.mPartial = ""; //$NON-NLS-1$
         this.mDirectory = directory;
@@ -194,6 +195,14 @@ public class FindCommand extends AsyncResultProgram implements FindExecutable {
      */
     @Override
     public void onParseErrorPartialResult(String partialErr) {/**NON BLOCK**/}
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public SIGNAL onRequestEnd() {
+        return null;
+    }
 
     /**
      * {@inheritDoc}

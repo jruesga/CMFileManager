@@ -18,6 +18,7 @@ package com.cyanogenmod.explorer.commands.shell;
 
 import com.cyanogenmod.explorer.commands.AsyncResultExecutable;
 import com.cyanogenmod.explorer.commands.AsyncResultListener;
+import com.cyanogenmod.explorer.commands.SIGNAL;
 import com.cyanogenmod.explorer.util.FileHelper;
 
 import java.util.ArrayList;
@@ -58,6 +59,7 @@ public abstract class AsyncResultProgram
 
     private boolean mCanceled;
     private OnCancelListener mOnCancelListener;
+    private OnEndListener mOnEndListener;
 
     private StringBuffer mTempBuffer;
 
@@ -95,6 +97,7 @@ public abstract class AsyncResultProgram
         this.mPartialDataType = Collections.synchronizedList(new ArrayList<Byte>());
         this.mTempBuffer = new StringBuffer();
         this.mOnCancelListener = null;
+        this.mOnEndListener = null;
         this.mCanceled = false;
     }
 
@@ -263,6 +266,38 @@ public abstract class AsyncResultProgram
      * {@inheritDoc}
      */
     @Override
+    public final boolean end() {
+        // Internally this method do the same things that cancel method, but invokes
+        // onEnd instead of onCancel
+
+        //Is't cancelable by definition?
+        if (!isCancelable()) {
+            return false;
+        }
+
+        //Stop the thread
+        synchronized (this.mSync) {
+            this.mWorkerThread.mAlive = false;
+            this.mSync.notify();
+        }
+
+        //Notify ending
+        SIGNAL signal = onRequestEnd();
+        if (this.mOnEndListener != null) {
+            if (signal == null) {
+                this.mCanceled = this.mOnEndListener.onEnd();
+            } else {
+                this.mCanceled = this.mOnEndListener.onSendSignal(signal);
+            }
+            return this.mCanceled;
+        }
+        return false;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public final void setOnCancelListener(OnCancelListener onCancelListener) {
         this.mOnCancelListener = onCancelListener;
     }
@@ -271,8 +306,27 @@ public abstract class AsyncResultProgram
      * {@inheritDoc}
      */
     @Override
+    public final void setOnEndListener(OnEndListener onEndListener) {
+        this.mOnEndListener = onEndListener;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public boolean isCancelable() {
         //By defect an asynchronous command is cancelable
+        return true;
+    }
+
+    /**
+     * Method that returns if the command is expected to finalize by it self, or needs
+     * a call to end method.
+     *
+     * @return boolean If the command is expected to finalize by it self.
+     */
+    @SuppressWarnings("static-method")
+    public boolean isExpectEnd() {
         return true;
     }
 

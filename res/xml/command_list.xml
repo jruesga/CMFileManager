@@ -15,15 +15,20 @@
  ** limitations under the License.
 -->
 
-<!-- The <CommandList> element should contain one or more <command> elements.
-     Every command should contain and unique id attribute an the follow
-     requiered attributes:
+<!--
+  The <CommandList> element should contain one or more <command> elements.
+  Every command should contain and unique id attribute an the follow
+  requiered attributes:
 
         path:   (string) The fully qualified path to the executable command
         args:   (string) The arguments that invoke the executable
 
-     The required exitcode element must have the required attributes commandId and commandPath
-     with the expected command for retrieve the exit code of the executed command
+  The required exitcode element must have the required attributes commandId and commandPath
+  with the expected command for retrieve the exit code of the executed command
+
+  This file contains values that could be overlayed. This allow
+  configure special values for each device. Use overlay building folder on device tree
+  for overlay this values
 -->
 <CommandList xmlns="http://schemas.android.com/apk/res/com.cyanogenmod.explorer">
   <!-- Start code (append to commands; for retrieve the exit code) -->
@@ -60,9 +65,13 @@
   <command commandId="pid_cmd" commandPath="/system/bin/ps" commandArgs="| /system/xbin/grep %1$s | /system/xbin/grep -w %2$s | /system/xbin/awk '{print $2}'" />
   <command commandId="pwd" commandPath="/system/xbin/pwd" commandArgs="-P" />
   <command commandId="quickfoldersearch" commandPath="/system/bin/ls" commandArgs="-aFd %1$s.* %1$s* | /system/xbin/grep -e '^d' -e '^ld' | /system/xbin/awk '{print $2}'" />
+  <command commandId="read" commandPath="/system/bin/cat" commandArgs="&lt; %1$s" />
   <command commandId="readlink" commandPath="cd" commandArgs="%2$s &amp;&amp; /system/xbin/readlink -f %1$s | /system/xbin/awk -F// '{print &quot;\\&quot;&quot;$1&quot;\\&quot;&quot;}' | /system/xbin/xargs -n1 /system/xbin/dirname &amp;&amp; /system/xbin/readlink -f %1$s | /system/xbin/awk -F// '{print &quot;\\&quot;&quot;$1&quot;\\&quot;&quot;}' | /system/xbin/xargs -n1 /system/bin/ls -ald" />
   <command commandId="rm" commandPath="/system/bin/rm" commandArgs="%1$s" />
   <command commandId="rmdir" commandPath="/system/bin/rm" commandArgs="-R %1$s" />
+  <command commandId="sendsignal" commandPath="/system/bin/kill" commandArgs="-%1$s %2$s" />
+  <command commandId="terminate" commandPath="/system/bin/kill" commandArgs="%1$s" />
   <command commandId="touch" commandPath="/system/xbin/echo" commandArgs="-n '' >> %1$s" />
+  <command commandId="write" commandPath="/system/bin/dd" commandArgs="bs=4k of=%1$s" />
 
 </CommandList>

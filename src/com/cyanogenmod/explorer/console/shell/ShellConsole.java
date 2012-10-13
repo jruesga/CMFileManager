@@ -25,6 +25,7 @@ import com.cyanogenmod.explorer.commands.ExecutableFactory;
 import com.cyanogenmod.explorer.commands.GroupsExecutable;
 import com.cyanogenmod.explorer.commands.IdentityExecutable;
 import com.cyanogenmod.explorer.commands.ProcessIdExecutable;
+import com.cyanogenmod.explorer.commands.SIGNAL;
 import com.cyanogenmod.explorer.commands.shell.AsyncResultProgram;
 import com.cyanogenmod.explorer.commands.shell.Command;
 import com.cyanogenmod.explorer.commands.shell.InvalidCommandDefinitionException;
@@ -80,15 +81,14 @@ public abstract class ShellConsole extends Console implements Program.ProgramLis
 
     //Process References
     private final Object mSync = new Object();
-    private final Object mPartialSync = new Object();
+    /**
+     * @hide
+     */
+    final Object mPartialSync = new Object();
     /**
      * @hide
      */
     boolean mActive = false;
-    /**
-     * @hide
-     */
-    boolean mReady = false;
     private boolean mFinished = true;
     private Process mProc = null;
     /**
@@ -317,7 +317,11 @@ public abstract class ShellConsole extends Console implements Program.ProgramLis
     public final void dealloc() {
         synchronized (this.mSync) {
             if (this.mActive) {
-                this.mProc.destroy();
+// Call destroy doesn't ensure that the process can be destroyed. Delegate in close
+// his buffers to do kill the process.
+//                try {
+//                    this.mProc.destroy();
+//                } catch (Throwable e) {/**NON BLOCK**/}
                 this.mActive = false;
                 this.mFinished = true;
 
@@ -441,7 +445,6 @@ public abstract class ShellConsole extends Console implements Program.ProgramLis
             this.mActiveCommand = program;
 
             //Reset the buffers
-            this.mReady = false;
             this.mStarted = false;
             this.mCanceled = false;
             this.mSbIn = new StringBuffer();
@@ -475,9 +478,7 @@ public abstract class ShellConsole extends Console implements Program.ProgramLis
             program.setProgramListener(this);
             if (program instanceof AsyncResultProgram) {
                 ((AsyncResultProgram)program).setOnCancelListener(this);
-                synchronized (this.mPartialSync) {
-                    ((AsyncResultProgram)program).startParsePartialResult();
-                }
+                ((AsyncResultProgram)program).setOnEndListener(this);
             }
 
             //Send the command + a control code with exit code
@@ -485,6 +486,10 @@ public abstract class ShellConsole extends Console implements Program.ProgramLis
             //This control code is unique in every invocation and is secure random
             //generated (control code 1 + exit code + control code 2)
             try {
+                boolean hasEndControl = (!(program instanceof AsyncResultProgram) ||
+                                           (program instanceof AsyncResultProgram &&
+                                            ((AsyncResultProgram)program).isExpectEnd()));
+
                 this.mStartControlPattern = startId1 + "\\d{1,3}" + startId2 + "\\n"; //$NON-NLS-1$ //$NON-NLS-2$
                 this.mEndControlPattern = endId1 + "\\d{1,3}" + endId2; //$NON-NLS-1$
                 String startCmd =
@@ -504,10 +509,12 @@ public abstract class ShellConsole extends Console implements Program.ProgramLis
                     .append(" ")  //$NON-NLS-1$
                     .append(cmd)
                     .append(" ")  //$NON-NLS-1$
-                    .append(args)
-                    .append(" ") //$NON-NLS-1$
-                    .append(endCmd)
-                    .append(FileHelper.NEWLINE);
+                    .append(args);
+               if (hasEndControl) {
+                   sb = sb.append(" ") //$NON-NLS-1$
+                          .append(endCmd);
+               }
+               sb.append(FileHelper.NEWLINE);
                 this.mOut.write(sb.toString().getBytes());
             } catch (InvalidCommandDefinitionException icdEx) {
                 throw new CommandNotFoundException(
@@ -543,9 +550,6 @@ public abstract class ShellConsole extends Console implements Program.ProgramLis
                                 cmd,
                                 String.valueOf(exitCode)));
             }
-
-            // Process is not ready
-            this.mReady = false;
 
             //Check if invocation was successfully or not
             if (!program.isIgnoreShellStdErrCheck()) {
@@ -616,19 +620,17 @@ public abstract class ShellConsole extends Console implements Program.ProgramLis
                             if (!ShellConsole.this.mStarted) {
                                 ShellConsole.this.mStarted =
                                         isCommandStarted(ShellConsole.this.mSbIn);
-                                sb.append(ShellConsole.this.mSbIn.toString());
+                                sb = new StringBuffer(ShellConsole.this.mSbIn.toString());
+                                if (ShellConsole.this.mActiveCommand instanceof AsyncResultProgram
+                                        && ShellConsole.this.mStarted) {
+                                    synchronized (ShellConsole.this.mPartialSync) {
+                                        ((AsyncResultProgram)ShellConsole.
+                                                this.mActiveCommand).
+                                                    startParsePartialResult();
+                                    }
+                                }
                             } else {
                                 sb.append((char)r);
-                            }
-
-                            //
-                            if (ShellConsole.this.mStarted &&
-                                   ShellConsole.this.mActiveCommand != null) {
-                                if (!ShellConsole.this.mReady) {
-                                    ShellConsole.this.mReady = true;
-                                    ShellConsole.this.mActiveCommand.onProgramReady();
-                                }
-                                
                             }
 
                             //Notify asynchronous partial data
@@ -637,7 +639,7 @@ public abstract class ShellConsole extends Console implements Program.ProgramLis
                                 ShellConsole.this.mActiveCommand instanceof AsyncResultProgram) {
                                 AsyncResultProgram program =
                                         ((AsyncResultProgram)ShellConsole.this.mActiveCommand);
-                                program.parsePartialResult(new String(new char[]{(char)r}));
+                                program.parsePartialResult(sb.toString());
                             }
                         }
 
@@ -659,17 +661,33 @@ public abstract class ShellConsole extends Console implements Program.ProgramLis
                             if (!ShellConsole.this.mStarted) {
                                 ShellConsole.this.mStarted =
                                         isCommandStarted(ShellConsole.this.mSbIn);
-                                sb.append(ShellConsole.this.mSbIn.toString());
+                                sb = new StringBuffer(ShellConsole.this.mSbIn.toString());
+                                if (ShellConsole.this.mActiveCommand instanceof AsyncResultProgram
+                                        && ShellConsole.this.mStarted) {
+                                    synchronized (ShellConsole.this.mPartialSync) {
+                                        ((AsyncResultProgram)ShellConsole.
+                                                this.mActiveCommand).
+                                                    startParsePartialResult();
+                                    }
+                                }
                             } else {
                                 sb.append(s);
                             }
 
-                            //Notify asynchronous partial data
-                            if (ShellConsole.this.mActiveCommand != null &&
-                                ShellConsole.this.mActiveCommand  instanceof AsyncResultProgram) {
-                                AsyncResultProgram program =
-                                        ((AsyncResultProgram)ShellConsole.this.mActiveCommand);
-                                program.parsePartialResult(s);
+                            //Check if the command has finished
+                            if (isCommandFinished(ShellConsole.this.mSbIn, sb)) {
+                                //Notify asynchronous partial data
+                                if (ShellConsole.this.mActiveCommand != null &&
+                                    ShellConsole.this.mActiveCommand
+                                            instanceof AsyncResultProgram) {
+                                    AsyncResultProgram program =
+                                            ((AsyncResultProgram)ShellConsole.this.mActiveCommand);
+                                    program.parsePartialResult(sb.toString());
+                                }
+
+                                //Notify the end
+                                notifyProcessFinished();
+                                break;
                             }
 
                             //Wait for buffer to be filled
@@ -677,12 +695,6 @@ public abstract class ShellConsole extends Console implements Program.ProgramLis
                                 Thread.sleep(50L);
                             } catch (Throwable ex) {
                                 /**NON BLOCK**/
-                            }
-
-                            //Check if the command has finished
-                            if (isCommandFinished(ShellConsole.this.mSbIn)) {
-                                //Notify the end
-                                notifyProcessFinished();
                             }
                         }
 
@@ -869,7 +881,6 @@ public abstract class ShellConsole extends Console implements Program.ProgramLis
     void notifyProcessFinished() {
         synchronized (ShellConsole.this.mSync) {
             if (this.mActive) {
-                this.mReady = false;
                 this.mSync.notify();
                 this.mFinished = true;
             }
@@ -904,11 +915,19 @@ public abstract class ShellConsole extends Console implements Program.ProgramLis
      * @return boolean If the command has finished
      * @hide
      */
-    boolean isCommandFinished(StringBuffer stdin) {
+    boolean isCommandFinished(StringBuffer stdin, StringBuffer partial) {
         Pattern pattern = Pattern.compile(this.mEndControlPattern);
         if (stdin == null) return false;
         Matcher matcher = pattern.matcher(stdin.toString());
-        return matcher.find();
+        boolean ret = matcher.find();
+        // Remove partial
+        if (ret && partial != null) {
+            matcher = pattern.matcher(partial.toString());
+            if (matcher.find()) {
+                partial.replace(matcher.start(), matcher.end(), ""); //$NON-NLS-1$
+            }
+        }
+        return ret;
     }
 
     /**
@@ -965,6 +984,13 @@ public abstract class ShellConsole extends Console implements Program.ProgramLis
             if (!(this.mActiveCommand instanceof AsyncResultProgram)) {
                 return false;
             }
+            // Check background console
+            try {
+                ExplorerApplication.getBackgroundConsole();
+            } catch (Exception e) {
+                Log.w(TAG, "There is not background console. Not allowed.", e); //$NON-NLS-1$
+                return false;
+            }
 
             final AsyncResultProgram program = (AsyncResultProgram)this.mActiveCommand;
             if (program.getCommand() != null) {
@@ -978,7 +1004,10 @@ public abstract class ShellConsole extends Console implements Program.ProgramLis
                                         program.getCommand(),
                                         ExplorerApplication.getBackgroundConsole());
                         if (pid != null) {
-                            android.os.Process.killProcess(pid.intValue());
+                            CommandHelper.sendSignal(
+                                    null,
+                                    pid.intValue(),
+                                    ExplorerApplication.getBackgroundConsole());
                             try {
                                 //Wait for process kill
                                 Thread.sleep(100L);
@@ -1002,6 +1031,88 @@ public abstract class ShellConsole extends Console implements Program.ProgramLis
     }
 
     /**
+     * Method that send a signal to the current command.
+     *
+     * @param SIGNAL The signal to send
+     * @return boolean If the signal was sent
+     * @hide
+     */
+    private boolean sendSignalToCurrentCommand(SIGNAL signal) {
+        synchronized (this.mSync) {
+            //Is synchronous program? Otherwise it can't be canceled
+            if (!(this.mActiveCommand instanceof AsyncResultProgram)) {
+                return false;
+            }
+            // Check background console
+            try {
+                ExplorerApplication.getBackgroundConsole();
+            } catch (Exception e) {
+                Log.w(TAG, "There is not background console. Not allowed.", e); //$NON-NLS-1$
+                return false;
+            }
+
+            final AsyncResultProgram program = (AsyncResultProgram)this.mActiveCommand;
+            if (program.getCommand() != null) {
+                try {
+                    if (program.isCancelable()) {
+                        try {
+                            //Get the PID in background
+                            Integer pid =
+                                    CommandHelper.getProcessId(
+                                            null,
+                                            this.mShell.getPid(),
+                                            program.getCommand(),
+                                            ExplorerApplication.getBackgroundConsole());
+                            if (pid != null) {
+                                CommandHelper.sendSignal(
+                                        null,
+                                        pid.intValue(),
+                                        signal,
+                                        ExplorerApplication.getBackgroundConsole());
+                                try {
+                                    //Wait for process kill
+                                    Thread.sleep(100L);
+                                } catch (Throwable ex) {
+                                    /**NON BLOCK**/
+                                }
+                                return true;
+                            }
+                        } finally {
+                            // It's finished
+                            this.mCanceled = true;
+                            notifyProcessFinished();
+                            this.mSync.notify();
+                        }
+                    }
+                } catch (Throwable ex) {
+                    Log.w(TAG,
+                        String.format("Unable to send signal to current program: %s", //$NON-NLS-1$
+                                program.getCommand()), ex);
+                }
+            }
+        }
+        return false;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public boolean onEnd() {
+        //Kill the current command on end request
+        return killCurrentCommand();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public boolean onSendSignal(SIGNAL signal) {
+        //Send a signal to the current command on end request
+        return sendSignalToCurrentCommand(signal);
+    }
+
+    /**
      * {@inheritDoc}
      */
     @Override
@@ -1014,19 +1125,31 @@ public abstract class ShellConsole extends Console implements Program.ProgramLis
      * {@inheritDoc}
      */
     @Override
-    public boolean onRequestWrite(byte[] data) throws ExecutionException {
+    public boolean onRequestWrite(
+            byte[] data, int offset, int byteCount) throws ExecutionException {
         try {
             // Method that write to the stdin the data requested by the program
-            if (this.mReady && this.mOut != null) {
-                this.mOut.write(data);
+            if (this.mOut != null) {
+                this.mOut.write(data, offset, byteCount);
+                this.mOut.flush();
+                Thread.yield();
                 return true;
             }
         } catch (Exception ex) {
-            Log.w(TAG,
-                    String.format("Unable to write data to program: %s", //$NON-NLS-1$
-                            this.mActiveCommand.getCommand(), ex));
+            String msg = String.format("Unable to write data to program: %s", //$NON-NLS-1$
+                                                this.mActiveCommand.getCommand());
+            Log.e(TAG, msg, ex);
+            throw new ExecutionException(msg, ex);
         }
         return false;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public OutputStream getOutputStream() {
+        return this.mOut;
     }
 
 }

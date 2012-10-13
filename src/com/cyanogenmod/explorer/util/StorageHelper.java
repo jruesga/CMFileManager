@@ -106,7 +106,7 @@ public final class StorageHelper {
     public static boolean isPathInStorageVolume(String path) {
         StorageVolume[] volumes =
                 getStorageVolumes(ExplorerApplication.getInstance().getApplicationContext());
-        for (int i=0; i < volumes.length; i++) {
+        for (int i = 0; i < volumes.length; i++) {
             StorageVolume vol = volumes[i];
             if (path.startsWith(vol.getPath())) {
                 return true;

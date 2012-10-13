@@ -16,10 +16,19 @@
 
 package com.cyanogenmod.explorer.commands.shell;
 
+import com.cyanogenmod.explorer.commands.SIGNAL;
+
 /**
  * An interface for communicate shell results in a asynchronous way.
  */
 public interface AsyncResultProgramListener {
+
+    /**
+     * Method invoked when an end of the program start.
+     *
+     * @return SIGNAL The signal to send to the process
+     */
+    SIGNAL onRequestEnd();
 
     /**
      * Method invoked when the parse of results will start.

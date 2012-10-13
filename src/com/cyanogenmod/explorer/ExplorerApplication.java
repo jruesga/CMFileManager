@@ -26,8 +26,10 @@ import android.content.res.Configuration;
 import android.util.Log;
 
 import com.cyanogenmod.explorer.console.Console;
+import com.cyanogenmod.explorer.console.ConsoleAllocException;
 import com.cyanogenmod.explorer.console.ConsoleBuilder;
 import com.cyanogenmod.explorer.console.ConsoleHolder;
+import com.cyanogenmod.explorer.console.shell.PrivilegedConsole;
 import com.cyanogenmod.explorer.preferences.ExplorerSettings;
 import com.cyanogenmod.explorer.preferences.Preferences;
 import com.cyanogenmod.explorer.util.ExceptionUtil;
@@ -67,7 +69,10 @@ public final class ExplorerApplication extends Application {
                     key.compareTo(ExplorerSettings.SETTINGS_SHOW_TRACES.getId()) == 0) {
 
                     // The debug traces setting has changed. Notify to consoles
-                    Console c = getBackgroundConsole();
+                    Console c = null;
+                    try {
+                        c = getBackgroundConsole();
+                    } catch (Exception e) {/**NON BLOCK**/}
                     if (c != null) {
                         c.reloadTrace();
                     }
@@ -168,6 +173,7 @@ public final class ExplorerApplication extends Application {
      */
     private void init() {
         //Sets the default preferences if no value is set yet
+        FileHelper.ROOT_DIRECTORY = getString(R.string.root_dir);
         Preferences.loadDefaults();
 
         //Create a non-privileged console for background non-privileged tasks
@@ -207,6 +213,41 @@ public final class ExplorerApplication extends Application {
      */
     public static Console getBackgroundConsole() {
         return sBackgroundConsole.getConsole();
+    }
+
+    /**
+     * Method that changes the background console to a privileged console
+     *
+     * @throws ConsoleAllocException If the console can't be allocated
+     */
+    public static void changeBackgroundConsoleToPriviligedConsole()
+            throws ConsoleAllocException {
+        if (sBackgroundConsole == null ||
+              !(sBackgroundConsole.getConsole() instanceof PrivilegedConsole)) {
+            try {
+                if (sBackgroundConsole != null) {
+                    sBackgroundConsole.dispose();
+                }
+            } catch (Throwable ex) {/**NON BLOCK**/}
+
+            // Change the privileged console
+            try {
+                sBackgroundConsole =
+                        new ConsoleHolder(
+                                ConsoleBuilder.createPrivilegedConsole(
+                                        getInstance().getApplicationContext(),
+                                        FileHelper.ROOT_DIRECTORY));
+            } catch (Exception e) {
+                try {
+                    if (sBackgroundConsole != null) {
+                        sBackgroundConsole.dispose();
+                    }
+                } catch (Throwable ex) {/**NON BLOCK**/}
+                sBackgroundConsole = null;
+                throw new ConsoleAllocException(
+                        "Failed to alloc background console", e); //$NON-NLS-1$
+            }
+        }
     }
 
 

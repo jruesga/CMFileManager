@@ -20,6 +20,7 @@ import android.util.Log;
 
 import com.cyanogenmod.explorer.commands.AsyncResultListener;
 import com.cyanogenmod.explorer.commands.FolderUsageExecutable;
+import com.cyanogenmod.explorer.commands.SIGNAL;
 import com.cyanogenmod.explorer.console.CommandNotFoundException;
 import com.cyanogenmod.explorer.console.ExecutionException;
 import com.cyanogenmod.explorer.console.InsufficientPermissionsException;
@@ -186,6 +187,14 @@ public class FolderUsageCommand extends AsyncResultProgram implements FolderUsag
      */
     @Override
     public void onParseErrorPartialResult(String partialErr) {/**NON BLOCK**/}
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public SIGNAL onRequestEnd() {
+        return null;
+    }
 
     /**
      * {@inheritDoc}

@@ -59,8 +59,7 @@ public final class FileHelper {
      * The root directory.
      * @hide
      */
-    public static final String ROOT_DIRECTORY =
-            ExplorerApplication.getInstance().getApplicationContext().getString(R.string.root_dir);
+    public static String ROOT_DIRECTORY = "/";  //$NON-NLS-1$
 
     /**
      * The parent directory string.

@@ -22,15 +22,35 @@ package com.cyanogenmod.explorer.commands;
 public interface AsyncResultExecutable extends Executable {
 
     /**
+     * An interface that let to request the ending of the current
+     * execution of an {@link Executable}.
+     */
+    public interface OnEndListener {
+        /**
+         * Invoked when a request of ending of the current execution
+         *
+         * @param signal The signal to send
+         * @return boolean If the execution was ended
+         */
+        boolean onSendSignal(SIGNAL signal);
+
+        /**
+         * Invoked when a request of ending of the current execution
+         *
+         * @return boolean If the execution was ended
+         */
+        boolean onEnd();
+    }
+
+    /**
      * An interface that let to request the cancellation of the current
      * execution of an {@link Executable}.
      */
     public interface OnCancelListener {
         /**
-         * Invoked when a request of cancellation of the current
-         * execution is started.
+         * Invoked when a request of cancellation of the current execution
          *
-         *  @return boolean If the execution was canceled
+         * @return boolean If the execution was canceled
          */
         boolean onCancel();
     }
@@ -48,6 +68,20 @@ public interface AsyncResultExecutable extends Executable {
      * @return boolean If the program was canceled
      */
     boolean cancel();
+
+    /**
+     * Method that ends the execution of the program.
+     *
+     * @return boolean If the program was ended
+     */
+    boolean end();
+
+    /**
+     * Method that sets the end listener.
+     *
+     * @param onEndListener The end listener
+     */
+    void setOnEndListener(OnEndListener onEndListener);
 
     /**
      * Method that sets the cancel listener.

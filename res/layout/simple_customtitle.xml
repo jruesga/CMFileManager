@@ -18,14 +18,12 @@
   android:layout_height="match_parent" >
 
   <com.cyanogenmod.explorer.ui.widgets.ButtonItem
-    android:id="@+id/ab_configuration"
+    android:id="@+id/ab_button1"
     style="@style/breadcrumb_actionbar_buttom"
     android:layout_width="wrap_content"
     android:layout_height="match_parent"
     android:layout_alignParentRight="true"
-    android:contentDescription="@string/actionbar_button_configuration_cd"
     android:onClick="onActionBarItemClick"
-    android:src="@drawable/ic_holo_light_config"
     android:visibility="gone" />
 
   <TextView
@@ -36,7 +34,7 @@
     android:layout_marginRight="@dimen/extra_large_margin"
     android:textAppearance="@style/title_text_appearance"
     android:layout_alignParentLeft="true"
-    android:layout_toLeftOf="@id/ab_configuration"
+    android:layout_toLeftOf="@id/ab_button1"
     android:layout_alignWithParentIfMissing="true"
     android:contentDescription="@null"
     android:gravity="left|center_vertical"

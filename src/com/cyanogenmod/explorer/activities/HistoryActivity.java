@@ -27,12 +27,17 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.ListPopupWindow;
 import android.widget.ListView;
 import android.widget.TextView;
 
 import com.cyanogenmod.explorer.R;
+import com.cyanogenmod.explorer.adapters.HighlightedSimpleMenuListAdapter;
 import com.cyanogenmod.explorer.adapters.HistoryAdapter;
+import com.cyanogenmod.explorer.adapters.SimpleMenuListAdapter;
 import com.cyanogenmod.explorer.model.History;
+import com.cyanogenmod.explorer.ui.widgets.ButtonItem;
+import com.cyanogenmod.explorer.util.DialogHelper;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -47,6 +52,11 @@ public class HistoryActivity extends Activity implements OnItemClickListener {
 
     private static boolean DEBUG = false;
 
+    private ListView mListView;
+    private HistoryAdapter mAdapter;
+    private boolean mIsEmpty;
+    private boolean mIsClearHistory;
+
     /**
      * Intent extra parameter for the history data.
      */
@@ -60,6 +70,9 @@ public class HistoryActivity extends Activity implements OnItemClickListener {
         if (DEBUG) {
             Log.d(TAG, "NavigationActivity.onCreate"); //$NON-NLS-1$
         }
+
+        this.mIsEmpty = false;
+        this.mIsClearHistory = false;
 
         //Request features
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
@@ -101,7 +114,29 @@ public class HistoryActivity extends Activity implements OnItemClickListener {
         TextView title = (TextView)customTitle.findViewById(R.id.customtitle_title);
         title.setText(R.string.history);
         title.setContentDescription(getString(R.string.history));
+        ButtonItem configuration = (ButtonItem)customTitle.findViewById(R.id.ab_button1);
+        configuration.setImageResource(R.drawable.ic_holo_light_overflow);
+        configuration.setContentDescription(getString(R.string.actionbar_button_overflow_cd));
+        configuration.setVisibility(View.VISIBLE);
+
         getActionBar().setCustomView(customTitle);
+    }
+
+    /**
+     * Method invoked when an action item is clicked.
+     *
+     * @param view The button pushed
+     */
+    public void onActionBarItemClick(View view) {
+        switch (view.getId()) {
+            case R.id.ab_button1:
+                //Overflow
+                showOverflowPopUp(view);
+                break;
+
+            default:
+                break;
+        }
     }
 
     /**
@@ -115,15 +150,16 @@ public class HistoryActivity extends Activity implements OnItemClickListener {
             msg.setVisibility(View.VISIBLE);
             return;
         }
+        this.mIsEmpty = history.isEmpty();
 
         //Show inverted history
         final List<History> adapterList = new ArrayList<History>(history);
         Collections.reverse(adapterList);
 
-        ListView lv = (ListView)findViewById(R.id.history_listview);
-        HistoryAdapter adapter = new HistoryAdapter(this, adapterList);
-        lv.setAdapter(adapter);
-        lv.setOnItemClickListener(this);
+        this.mListView = (ListView)findViewById(R.id.history_listview);
+        this.mAdapter = new HistoryAdapter(this, adapterList);
+        this.mListView.setAdapter(this.mAdapter);
+        this.mListView.setOnItemClickListener(this);
     }
 
     /**
@@ -132,6 +168,11 @@ public class HistoryActivity extends Activity implements OnItemClickListener {
     @Override
     public boolean onKeyUp(int keyCode, KeyEvent event) {
         switch (keyCode) {
+            case KeyEvent.KEYCODE_MENU:
+                if (!this.mIsEmpty) {
+                    showOverflowPopUp(findViewById(R.id.ab_button1));
+                }
+                return true;
             case KeyEvent.KEYCODE_BACK:
                 back(true, null);
                 return true;
@@ -172,12 +213,56 @@ public class HistoryActivity extends Activity implements OnItemClickListener {
     private void back(final boolean canceled, final History history) {
         Intent intent =  new Intent();
         if (canceled) {
+            if (this.mIsClearHistory) {
+                intent.putExtra(NavigationActivity.EXTRA_HISTORY_CLEAR, true);
+            }
             setResult(RESULT_CANCELED, intent);
         } else {
             intent.putExtra(NavigationActivity.EXTRA_HISTORY_ENTRY_SELECTION, history);
             setResult(RESULT_OK, intent);
         }
         finish();
+    }
+
+    /**
+     * Method that clean the history and return back to navigation view
+     *  @hide
+     */
+    void clearHistory() {
+        if (this.mAdapter != null) {
+            this.mAdapter.clear();
+            this.mAdapter.notifyDataSetChanged();
+            View msg = findViewById(R.id.history_empty_msg);
+            msg.setVisibility(View.VISIBLE);
+            this.mIsClearHistory = true;
+        }
+    }
+
+    /**
+     * Method that shows a popup with the activity main menu.
+     *
+     * @param anchor The anchor of the popup
+     */
+    private void showOverflowPopUp(View anchor) {
+        SimpleMenuListAdapter adapter =
+                new HighlightedSimpleMenuListAdapter(this, R.menu.history);
+        final ListPopupWindow popup =
+                DialogHelper.createListPopupWindow(this, adapter, anchor);
+        popup.setOnItemClickListener(new OnItemClickListener() {
+            @Override
+            public void onItemClick(
+                    final AdapterView<?> parent, final View v,
+                    final int position, final long id) {
+                final int itemId = (int)id;
+                switch (itemId) {
+                    case R.id.mnu_clear_history:
+                        popup.dismiss();
+                        clearHistory();
+                        break;
+                }
+            }
+        });
+        popup.show();
     }
 }
 

@@ -376,18 +376,20 @@
   <string name="initial_directory_error_msg">An error occurred while saving initial
     directory\'s preference.</string>
 
-  <!-- Menu * History -->
+  <!-- Menu * Navigation * History -->
   <string name="menu_history">History</string>
-  <!-- Menu * Bookmarks -->
+  <!-- Menu * Navigation * Bookmarks -->
   <string name="menu_bookmarks">Bookmarks</string>
-  <!-- Menu * Search -->
+  <!-- Menu * Navigation * Search -->
   <string name="menu_search">Search</string>
-  <!-- Menu * Settings -->
+  <!-- Menu * Navigation * Settings -->
   <string name="menu_settings">Settings</string>
-  <!-- Menu * Console -->
+  <!-- Menu * Navigation * Console -->
   <string name="menu_console">Select console</string>
-  <!-- Menu * Exit -->
+  <!-- Menu * Navigation * Exit -->
   <string name="menu_exit">Exit</string>
+  <!-- Menu * History * Clear history -->
+  <string name="menu_clear_history">Clear history</string>
 
   <!-- Create copy regexp -->
   <string name="create_copy_regexp">

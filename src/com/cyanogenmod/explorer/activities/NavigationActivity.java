@@ -135,6 +135,12 @@ public class NavigationActivity extends Activity
             "extra_history_entry_selection"; //$NON-NLS-1$
 
     /**
+     * Constant for extra information about clear selection action.
+     */
+    public static final String EXTRA_HISTORY_CLEAR =
+            "extra_history_clear_history"; //$NON-NLS-1$
+
+    /**
      * Constant for extra information about selected search entry.
      */
     public static final String EXTRA_SEARCH_ENTRY_SELECTION =
@@ -668,6 +674,11 @@ public class NavigationActivity extends Activity
                         History history =
                                 (History)data.getSerializableExtra(EXTRA_HISTORY_ENTRY_SELECTION);
                         navigateToHistory(history);
+                    } else if (resultCode == RESULT_CANCELED) {
+                        boolean clear = data.getBooleanExtra(EXTRA_HISTORY_CLEAR, false);
+                        if (clear) {
+                            clearHistory();
+                        }
                     }
                     break;
 
@@ -1022,20 +1033,10 @@ public class NavigationActivity extends Activity
 
     /**
      * Method that returns the history size.
-     *
-     * @return int The history size
      */
-    public int getHistorySize() {
-        return this.mHistory.size();
-    }
-
-    /**
-     * Method that returns the history list.
-     *
-     * @return List<History> The history list
-     */
-    public List<History> getHistory() {
-        return new ArrayList<History>(this.mHistory);
+    private void clearHistory() {
+        this.mHistory.clear();
+        onCheckHistory();
     }
 
     /**

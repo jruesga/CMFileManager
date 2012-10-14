@@ -354,7 +354,9 @@ public class SearchActivity extends Activity
         TextView title = (TextView)customTitle.findViewById(R.id.customtitle_title);
         title.setText(R.string.search);
         title.setContentDescription(getString(R.string.search));
-        ButtonItem configuration = (ButtonItem)customTitle.findViewById(R.id.ab_configuration);
+        ButtonItem configuration = (ButtonItem)customTitle.findViewById(R.id.ab_button1);
+        configuration.setImageResource(R.drawable.ic_holo_light_config);
+        configuration.setContentDescription(getString(R.string.actionbar_button_configuration_cd));
         configuration.setVisibility(View.VISIBLE);
 
         getActionBar().setCustomView(customTitle);
@@ -392,7 +394,7 @@ public class SearchActivity extends Activity
      */
     public void onActionBarItemClick(View view) {
         switch (view.getId()) {
-            case R.id.ab_configuration:
+            case R.id.ab_button1:
                 //Settings
                 Intent settings = new Intent(this, SettingsPreferences.class);
                 settings.putExtra(

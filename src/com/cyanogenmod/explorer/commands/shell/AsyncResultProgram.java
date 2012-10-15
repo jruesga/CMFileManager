@@ -105,7 +105,7 @@ public abstract class AsyncResultProgram
      * Method that communicates that a new partial result parse will start.
      * @hide
      */
-    public final void startParsePartialResult() {
+    public final void onRequestStartParsePartialResult() {
         this.mWorkerThread = new AsyncResultProgramThread(this.mSync);
         this.mWorkerThread.start();
 
@@ -125,7 +125,7 @@ public abstract class AsyncResultProgram
      * @param canceled If the program was canceled
      * @hide
      */
-    public final void endParsePartialResult(boolean canceled) {
+    public final void onRequestEndParsePartialResult(boolean canceled) {
         synchronized (this.mSync) {
             this.mWorkerThread.mAlive = false;
             this.mSync.notify();
@@ -155,12 +155,25 @@ public abstract class AsyncResultProgram
     }
 
     /**
+     * Method that communicates the exit code of the program
+     *
+     * @param exitCode The exit code of the program
+     * @hide
+     */
+    public final void onRequestExitCode(int exitCode) {
+        //If a listener is defined, then send the start event
+        if (getAsyncResultListener() != null) {
+            getAsyncResultListener().onAsyncExitCode(exitCode);
+        }
+    }
+
+    /**
      * Method that parse the result of a program invocation.
      *
      * @param partialIn A partial standard input buffer (incremental buffer)
      * @hide
      */
-    public final void parsePartialResult(String partialIn) {
+    public final void onRequestParsePartialResult(String partialIn) {
         synchronized (this.mSync) {
             String data = partialIn;
             if (parseOnlyCompleteLines()) {

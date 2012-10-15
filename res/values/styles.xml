@@ -51,6 +51,12 @@
     <item name="android:textColor">@color/black_transparent</item>
     <item name="android:textStyle">normal</item>
   </style>
+  <!-- The text appearance for a console widget -->
+  <style name="console_text_appearance">
+    <item name="android:textSize">@dimen/console_text_size</item>
+    <item name="android:textColor">@color/console_fg</item>
+    <item name="android:textStyle">normal</item>
+  </style>
 
   <!-- Breadcrumb Element -->
   <style name="breadcrumb_elemement">

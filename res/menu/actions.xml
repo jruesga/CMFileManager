@@ -103,6 +103,10 @@
       android:showAsAction="ifRoom"
       android:title="@string/actions_menu_create_link"/>
     <item
+      android:id="@+id/mnu_actions_execute"
+      android:showAsAction="ifRoom"
+      android:title="@string/actions_menu_execute"/>
+    <item
       android:id="@+id/mnu_actions_send"
       android:showAsAction="ifRoom"
       android:title="@string/actions_menu_send"/>

@@ -82,6 +82,9 @@ public class FindCommandTest extends AbstractConsoleTest {
                                 FindCommandTest.this.mSync.notify();
                             }
                         }
+                        public void onAsyncExitCode(int exitCode) {
+                            /**NON BLOCK**/
+                        }
                         public void onException(Exception cause) {
                             fail(String.valueOf(cause));
                         }

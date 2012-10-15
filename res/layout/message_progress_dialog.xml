@@ -16,8 +16,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
   android:layout_width="wrap_content"
   android:layout_height="wrap_content"
-  android:minHeight="@dimen/default_row_height"
-  android:orientation="vertical">
+  android:minHeight="@dimen/default_row_height">
 
   <ProgressBar
     android:id="@+id/message_progress_dialog_waiting"

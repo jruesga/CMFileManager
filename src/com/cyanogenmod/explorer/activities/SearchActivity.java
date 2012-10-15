@@ -1050,6 +1050,12 @@ public class SearchActivity extends Activity
      * {@inheritDoc}
      */
     @Override
+    public void onAsyncExitCode(int exitCode) {/**NON BLOCK**/}
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public void onException(Exception cause) {
         //Capture the exception
         ExceptionUtil.translateException(this, cause);

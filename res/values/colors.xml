@@ -50,4 +50,8 @@
   <!--  Divider. Light -->
   <color name="divider_color_light">#50505050</color>
 
+  <!-- Execution console -->
+  <color name="console_bg">#99000000</color>
+  <color name="console_fg">#99FFFFFF</color>
+
 </resources>

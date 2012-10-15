@@ -536,12 +536,17 @@ public abstract class ShellConsole extends Console implements Program.ProgramLis
             //End partial results?
             if (program instanceof AsyncResultProgram) {
                 synchronized (this.mPartialSync) {
-                    ((AsyncResultProgram)program).endParsePartialResult(this.mCanceled);
+                    ((AsyncResultProgram)program).onRequestEndParsePartialResult(this.mCanceled);
                 }
             }
 
             //Retrieve exit code
             int exitCode = getExitCode(this.mSbIn);
+            if (program instanceof AsyncResultProgram) {
+                synchronized (this.mPartialSync) {
+                    ((AsyncResultProgram)program).onRequestExitCode(exitCode);
+                }
+            }
             if (isTrace()) {
                 Log.v(TAG,
                         String.format("%s-%s, command: %s, exitCode: %s",  //$NON-NLS-1$
@@ -627,7 +632,7 @@ public abstract class ShellConsole extends Console implements Program.ProgramLis
                                         synchronized (ShellConsole.this.mPartialSync) {
                                             ((AsyncResultProgram)ShellConsole.
                                                     this.mActiveCommand).
-                                                        startParsePartialResult();
+                                                        onRequestStartParsePartialResult();
                                         }
                                     }
                                 } else {
@@ -643,7 +648,7 @@ public abstract class ShellConsole extends Console implements Program.ProgramLis
                                 ShellConsole.this.mActiveCommand instanceof AsyncResultProgram) {
                                 AsyncResultProgram program =
                                         ((AsyncResultProgram)ShellConsole.this.mActiveCommand);
-                                program.parsePartialResult(sb.toString());
+                                program.onRequestParsePartialResult(sb.toString());
                             }
                         }
 
@@ -672,7 +677,7 @@ public abstract class ShellConsole extends Console implements Program.ProgramLis
                                         synchronized (ShellConsole.this.mPartialSync) {
                                             ((AsyncResultProgram)ShellConsole.
                                                     this.mActiveCommand).
-                                                        startParsePartialResult();
+                                                        onRequestStartParsePartialResult();
                                         }
                                     }
                                 } else {
@@ -691,7 +696,7 @@ public abstract class ShellConsole extends Console implements Program.ProgramLis
                                         instanceof AsyncResultProgram) {
                                 AsyncResultProgram program =
                                         ((AsyncResultProgram)ShellConsole.this.mActiveCommand);
-                                program.parsePartialResult(sb.toString());
+                                program.onRequestParsePartialResult(sb.toString());
                             }
 
                             if (finished) {

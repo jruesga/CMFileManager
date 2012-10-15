@@ -34,6 +34,13 @@ public interface AsyncResultListener {
     void onAsyncEnd(boolean canceled);
 
     /**
+     * Method invoked when the program is ended.
+     *
+     * @param exitCode The exit code of the program
+     */
+    void onAsyncExitCode(int exitCode);
+
+    /**
      * Method invoked when new partial data are ready.
      *
      * @param result New data result

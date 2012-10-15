@@ -41,6 +41,8 @@ import com.cyanogenmod.explorer.ui.policy.ActionsPolicy;
 import com.cyanogenmod.explorer.ui.policy.ActionsPolicy.LinkedResource;
 import com.cyanogenmod.explorer.util.DialogHelper;
 import com.cyanogenmod.explorer.util.FileHelper;
+import com.cyanogenmod.explorer.util.MimeTypeHelper;
+import com.cyanogenmod.explorer.util.MimeTypeHelper.MimeTypeCategory;
 import com.cyanogenmod.explorer.util.SelectionHelper;
 import com.cyanogenmod.explorer.util.StorageHelper;
 
@@ -247,6 +249,12 @@ public class ActionsDialog implements OnItemClickListener, OnItemLongClickListen
             case R.id.mnu_actions_open_with:
                 ActionsPolicy.openFileSystemObject(this.mContext, this.mFso, true);
                 break;
+
+            //- Execute
+            case R.id.mnu_actions_execute:
+                ActionsPolicy.execute(this.mContext, this.mFso);
+                break;
+
             //- Send
             case R.id.mnu_actions_send:
                 ActionsPolicy.sendFileSystemObject(this.mContext, this.mFso);
@@ -501,6 +509,12 @@ public class ActionsDialog implements OnItemClickListener, OnItemLongClickListen
             // Create link (not allow in storage volume)
             if (StorageHelper.isPathInStorageVolume(this.mFso.getFullPath())) {
                 menu.removeItem(R.id.mnu_actions_create_link);
+            }
+
+            //Execute only if mime/type category is EXEC
+            MimeTypeCategory category = MimeTypeHelper.getCategory(this.mContext, this.mFso);
+            if (category.compareTo(MimeTypeCategory.EXEC) != 0) {
+                menu.removeItem(R.id.mnu_actions_execute);
             }
         }
 

@@ -31,4 +31,10 @@
   <!-- The size of the buffers use by the console (in bytes). Default: 4k -->
   <integer name="buffer_size">4096</integer>
 
+  <!-- The number of lines to show in the console dialog -->
+  <integer name="console_max_lines">80</integer>
+
+  <!-- The number of characters per line to show in the console dialog -->
+  <integer name="console_max_chars_per_line">150</integer>
+
 </resources>

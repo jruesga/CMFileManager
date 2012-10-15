@@ -30,6 +30,8 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.cyanogenmod.explorer.R;
+import com.cyanogenmod.explorer.commands.AsyncResultListener;
+import com.cyanogenmod.explorer.commands.ExecExecutable;
 import com.cyanogenmod.explorer.console.ExecutionException;
 import com.cyanogenmod.explorer.console.RelaunchableException;
 import com.cyanogenmod.explorer.listeners.OnRequestRefreshListener;
@@ -39,6 +41,7 @@ import com.cyanogenmod.explorer.model.Bookmark.BOOKMARK_TYPE;
 import com.cyanogenmod.explorer.model.FileSystemObject;
 import com.cyanogenmod.explorer.preferences.Bookmarks;
 import com.cyanogenmod.explorer.ui.dialogs.AssociationsDialog;
+import com.cyanogenmod.explorer.ui.dialogs.ExecutionDialog;
 import com.cyanogenmod.explorer.ui.dialogs.FsoPropertiesDialog;
 import com.cyanogenmod.explorer.ui.dialogs.MessageProgressDialog;
 import com.cyanogenmod.explorer.util.CommandHelper;
@@ -207,6 +210,48 @@ public final class ActionsPolicy {
         void onRequestProgress() {
             Spanned mProgress = this.mCallable.requestProgress();
             publishProgress(mProgress);
+        }
+    }
+
+
+    /**
+     * A class that holds a listener of the execution of a program
+     */
+    private static class ExecutionListener implements AsyncResultListener {
+
+        private final ExecutionDialog mDialog;
+
+        /**
+         * Constructor of <code>ExecutionListener</code>
+         *
+         * @param dialog The console dialog
+         */
+        public ExecutionListener(ExecutionDialog dialog) {
+            super();
+            this.mDialog = dialog;
+        }
+
+        @Override
+        public void onPartialResult(Object result) {
+            this.mDialog.onAppendData((String)result);
+        }
+
+        @Override
+        public void onException(Exception cause) {
+            this.mDialog.onAppendData(ExceptionUtil.toStackTrace(cause));
+        }
+
+        @Override
+        public void onAsyncStart() {
+            this.mDialog.onStart();
+        }
+
+        @Override
+        public void onAsyncEnd(boolean canceled) {/**NON BLOCK**/}
+
+        @Override
+        public void onAsyncExitCode(int exitCode) {
+            this.mDialog.onEnd(exitCode);
         }
     }
 
@@ -429,6 +474,44 @@ public final class ActionsPolicy {
                         R.string.bookmarks_msgs_add_success,
                         Toast.LENGTH_SHORT).show();
             }
+
+        } catch (Exception e) {
+            ExceptionUtil.translateException(ctx, e);
+        }
+    }
+
+    /**
+     * Method that executes a {@link FileSystemObject} and show the output in the console
+     * dialog.
+     *
+     * @param ctx The current context
+     * @param fso The file system object
+     */
+    public static void execute(
+            final Context ctx, final FileSystemObject fso) {
+        try {
+            // Create a console dialog for display the script output
+            final ExecutionDialog dialog = new ExecutionDialog(ctx, fso);
+            dialog.show();
+
+            Thread t = new Thread() {
+                @Override
+                public void run() {
+                    final ExecutionListener listener = new ExecutionListener(dialog);
+                    try {
+                        Thread.sleep(250L);
+
+                        // Execute the script
+                        ExecExecutable cmd =
+                                (ExecExecutable)CommandHelper.exec(
+                                        ctx, fso.getFullPath(), listener, null);
+                        dialog.setCmd(cmd);
+                    } catch (Exception e) {
+                        listener.onException(e);
+                    }
+                }
+            };
+            t.start();
 
         } catch (Exception e) {
             ExceptionUtil.translateException(ctx, e);

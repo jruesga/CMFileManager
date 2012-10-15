@@ -59,7 +59,7 @@ public final class StorageHelper {
                 } else {
                     description = ctx.getString(R.string.external_storage);
                 }
-                StorageVolume sv =new StorageVolume(path, description, false, false, 0, false, 0);
+                StorageVolume sv = new StorageVolume(path, description, false, false, 0, false, 0);
                 return new StorageVolume[]{sv};
             } catch (Exception ex2) {
                 /**NON BLOCK**/

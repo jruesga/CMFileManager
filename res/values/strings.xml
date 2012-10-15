@@ -447,6 +447,8 @@
   <string name="actions_menu_open">Open</string>
   <!-- Actions Dialog * Menu * Open with -->
   <string name="actions_menu_open_with">Open with</string>
+  <!-- Actions Dialog * Menu * Execute -->
+  <string name="actions_menu_execute">Execute</string>
   <!-- Actions Dialog * Menu * Send -->
   <string name="actions_menu_send">Send</string>
   <!-- Actions Dialog * Menu * Share -->
@@ -495,6 +497,18 @@
   <!-- Inline Autocomplete Widget * Tab message nothing to complete -->
   <string name="inline_autocomplete_tab_nothing_to_complete_msg">Nothing to complete</string>
 
+  <!-- Execution console * Title -->
+  <string name="execution_console_title">Console</string>
+  <!-- Execution console * The script name label -->
+  <string name="execution_console_script_name_label">Script:</string>
+  <!-- Execution console * The script execution time label -->
+  <string name="execution_console_script_execution_time_label">Time:</string>
+  <!-- Execution console * The script exit code label -->
+  <string name="execution_console_script_exitcode_label">Exit code:</string>
+  <!-- Execution console * The script execution time seconds string -->
+  <string name="execution_console_script_execution_time_text">
+    <xliff:g id="seconds">%1$s</xliff:g> sec.</string>
+
   <!-- Mime/Types * Folder -->
   <string name="mime_folder">Folder</string>
   <!-- Mime/Types * Symlink -->
@@ -517,7 +531,7 @@
     <xliff:g id="file2">%2$s</xliff:g> files selected.</string>
   <string name="selection_other_folders_other_files"><xliff:g id="folder2">%1$s</xliff:g> folders
     and <xliff:g id="files">%2$s</xliff:g> files selected.</string>
-    
+
   <!-- Category descriptions -->
   <string name="category_system">SYSTEM</string>
   <string name="category_app">APP</string>

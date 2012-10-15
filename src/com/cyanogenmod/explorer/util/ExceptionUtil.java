@@ -40,6 +40,8 @@ import com.cyanogenmod.explorer.console.RelaunchableException;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.io.StringWriter;
 import java.text.ParseException;
 import java.util.List;
 
@@ -326,6 +328,25 @@ public final class ExceptionUtil {
         //- This exception need change the console before re-execute
         if (relaunchable instanceof InsufficientPermissionsException) {
             ConsoleBuilder.changeToPrivilegedConsole(context);
+        }
+    }
+
+    /**
+     * Method that prints the exception to an string
+     *
+     * @param cause The exception
+     * @return String The stack trace in an string
+     */
+    public static String toStackTrace(Exception cause) {
+        StringWriter sw = new StringWriter();
+        PrintWriter pw = new PrintWriter(sw);
+        try {
+            cause.printStackTrace(pw);
+            return sw.toString();
+        } finally {
+            try {
+                pw.close();
+            } catch (Exception e) {/**NON BLOCK**/}
         }
     }
 }

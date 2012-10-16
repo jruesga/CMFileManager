@@ -248,6 +248,13 @@ public final class FileHelper {
         if (pos == -1 || pos == 0) { // Hidden files doesn't have extensions
             return null;
         }
+
+        // 3 exceptions to the general form: tar.gz, tar.bz2 and tar.lzma
+        if (name.endsWith(".tar.gz")) return "tar.gz"; //$NON-NLS-1$ //$NON-NLS-2$
+        if (name.endsWith(".tar.bz2")) return "tar.bz2"; //$NON-NLS-1$ //$NON-NLS-2$
+        if (name.endsWith(".tar.lzma")) return "tar.lzma"; //$NON-NLS-1$ //$NON-NLS-2$
+
+        // General form
         return name.substring(pos + 1);
     }
 

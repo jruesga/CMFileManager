@@ -414,14 +414,6 @@ public final class ActionsPolicy {
         // Retrieve the preferred activity that can handle the file
         final ResolveInfo mPreferredInfo = packageManager.resolveActivity(intent, 0);
 
-        // Now we have the list of activities that can handle the file. The next steps are:
-        //
-        // 1.- If choose, then show open with dialog
-        // 2.- If info size == 0. No default application, then show open with dialog
-        // 3.- If !choose, seek inside our database the default activity for the extension
-        //     and open the file with this application
-        // 4.- If no default activity saved, then use system default
-
         // No registered application
         if (info.size() == 0) {
             Toast.makeText(ctx, R.string.msgs_not_registered_app, Toast.LENGTH_SHORT).show();

@@ -63,7 +63,7 @@ public class FindCommand extends AsyncResultProgram implements FindExecutable {
     /**
      * Constructor of <code>FindCommand</code>.
      *
-     * @param directory The "absolute" directory where start the search
+     * @param directory The absolute directory where start the search
      * @param query The terms to be searched
      * @param asyncResultListener The partial result listener
      * @throws InvalidCommandDefinitionException If the command has an invalid definition

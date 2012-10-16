@@ -56,7 +56,7 @@ public class FolderUsageCommand extends AsyncResultProgram implements FolderUsag
     /**
      * Constructor of <code>FolderUsageCommand</code>.
      *
-     * @param directory The "absolute" directory to compute
+     * @param directory The absolute directory to compute
      * @param asyncResultListener The partial result listener
      * @throws InvalidCommandDefinitionException If the command has an invalid definition
      */

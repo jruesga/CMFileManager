@@ -37,7 +37,7 @@ public class ExecCommand extends AsyncResultProgram implements ExecExecutable {
     /**
      * Constructor of <code>ExecCommand</code>.
      *
-     * @param cmd The "absolute" directory to compute
+     * @param cmd The absolute directory to compute
      * @param asyncResultListener The partial result listener
      * @throws InvalidCommandDefinitionException If the command has an invalid definition
      */

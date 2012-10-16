@@ -40,38 +40,61 @@
   <command commandId="bash" commandPath="/system/bin/sh" commandArgs="" />
   <command commandId="su" commandPath="/system/xbin/su" commandArgs="" />
 
-  <!-- Program Comamnds -->
+  <!-- Directory -->
   <command commandId="cd" commandPath="cd" commandArgs="%1$s" />
+  <command commandId="pwd" commandPath="/system/xbin/pwd" commandArgs="-P" />
+
+  <!-- Console info -->
+  <command commandId="groups" commandPath="/system/xbin/groups" commandArgs="" />
+  <command commandId="id" commandPath="/system/bin/id" commandArgs="-Gn" />
+
+  <!-- FileSystem -->
+  <command commandId="mount" commandPath="/system/bin/mount" commandArgs="-o %1$s,remount -t auto %2$s %3$s" />
+  <command commandId="mountpointinfo" commandPath="/system/bin/cat" commandArgs="/proc/mounts" />
+
+  <!-- List/Find/Info -->
+  <command commandId="ls" commandPath="cd" commandArgs="%1$s &amp;&amp; /system/bin/ls -al %1$s | { /system/xbin/grep -v -e '^l' || true; } &amp;&amp; echo '>SIMLINKS>' &amp;&amp; /system/bin/ls -al %1$s | { /system/xbin/grep -e '^l' || true; } &amp;&amp; echo '>SIMLINKS_DATA>' &amp;&amp; /system/bin/ls -aF %1$s | /system/xbin/grep -e '^l' | /system/xbin/cut -d ' ' -f2- &amp;&amp; /system/bin/ls -aF %1$s | /system/xbin/grep -e '^l' | /system/xbin/cut -d ' ' -f2- | awk '{print &quot;\\&quot;&quot;$0&quot;\\&quot;&quot;}' | /system/xbin/xargs -r -n1 /system/xbin/readlink -f &amp;&amp; /system/bin/ls -F %1$s | /system/xbin/grep -e '^l' | /system/xbin/cut -d ' ' -f2- | awk '{print &quot;\\&quot;&quot;$0&quot;\\&quot;&quot;}' | /system/xbin/xargs -r -n1 /system/xbin/readlink -f | awk '{print &quot;\\&quot;&quot;$0&quot;\\&quot;&quot;}' | { /system/xbin/xargs -r /system/bin/ls -ald || echo; }" />
+  <command commandId="fileinfo" commandPath="/system/bin/ls" commandArgs="-ald %1$s" />
+  <command commandId="find" commandPath="/system/xbin/find" commandArgs="%1$s \\( -name %2$s -o -name %3$s -o -name %4$s -o -name %5$s -o -name %6$s \\) -exec /system/xbin/echo {} \\; -exec /system/bin/ls -ald {} \\;" />
+  <command commandId="quickfoldersearch" commandPath="/system/bin/ls" commandArgs="-aFd %1$s.* %1$s* | /system/xbin/grep -e '^d' -e '^ld' | /system/xbin/awk '{print $2}'" />
+  <command commandId="readlink" commandPath="cd" commandArgs="%2$s &amp;&amp; /system/xbin/readlink -f %1$s | /system/xbin/awk -F// '{print &quot;\\&quot;&quot;$1&quot;\\&quot;&quot;}' | /system/xbin/xargs -n1 /system/xbin/dirname &amp;&amp; /system/xbin/readlink -f %1$s | /system/xbin/awk -F// '{print &quot;\\&quot;&quot;$1&quot;\\&quot;&quot;}' | /system/xbin/xargs -n1 /system/bin/ls -ald" />
+
+  <!-- Operational -->
   <command commandId="chmod" commandPath="/system/bin/chmod" commandArgs="%1$s %2$s" />
   <command commandId="chown" commandPath="/system/bin/chown" commandArgs="%1$s.%2$s %3$s" />
   <command commandId="cp" commandPath="/system/xbin/cp" commandArgs="-af %1$s %2$s" />
-  <command commandId="diskusage" commandPath="/system/bin/df" commandArgs="%1$s" />
-  <command commandId="diskusageall" commandPath="/system/bin/df" commandArgs="" />
-  <command commandId="dirname" commandPath="/system/xbin/dirname" commandArgs="%1$s" />
-  <command commandId="echo" commandPath="/system/xbin/echo" commandArgs="%1$s" />
-  <command commandId="exec" commandPath="/system/bin/sh" commandArgs="-c %1$s" />
-  <command commandId="fileinfo" commandPath="/system/bin/ls" commandArgs="-ald %1$s" />
-  <command commandId="find" commandPath="/system/xbin/find" commandArgs="%1$s \\( -name %2$s -o -name %3$s -o -name %4$s -o -name %5$s -o -name %6$s \\) -exec /system/xbin/echo {} \\; -exec /system/bin/ls -ald {} \\;" />
-  <command commandId="folderusage" commandPath="/system/bin/ls" commandArgs="-alR %1$s" />
-  <command commandId="groups" commandPath="/system/xbin/groups" commandArgs="" />
-  <command commandId="id" commandPath="/system/bin/id" commandArgs="-Gn" />
   <command commandId="link" commandPath="/system/bin/ln" commandArgs="-s %1$s %2$s" />
-  <command commandId="ls" commandPath="cd" commandArgs="%1$s &amp;&amp; /system/bin/ls -al %1$s | { /system/xbin/grep -v -e '^l' || true; } &amp;&amp; echo '>SIMLINKS>' &amp;&amp; /system/bin/ls -al %1$s | { /system/xbin/grep -e '^l' || true; } &amp;&amp; echo '>SIMLINKS_DATA>' &amp;&amp; /system/bin/ls -aF %1$s | /system/xbin/grep -e '^l' | /system/xbin/cut -d ' ' -f2- &amp;&amp; /system/bin/ls -aF %1$s | /system/xbin/grep -e '^l' | /system/xbin/cut -d ' ' -f2- | awk '{print &quot;\\&quot;&quot;$0&quot;\\&quot;&quot;}' | /system/xbin/xargs -r -n1 /system/xbin/readlink -f &amp;&amp; /system/bin/ls -F %1$s | /system/xbin/grep -e '^l' | /system/xbin/cut -d ' ' -f2- | awk '{print &quot;\\&quot;&quot;$0&quot;\\&quot;&quot;}' | /system/xbin/xargs -r -n1 /system/xbin/readlink -f | awk '{print &quot;\\&quot;&quot;$0&quot;\\&quot;&quot;}' | { /system/xbin/xargs -r /system/bin/ls -ald || echo; }" />
   <command commandId="mkdir" commandPath="/system/bin/mkdir" commandArgs="%1$s" />
-  <command commandId="mount" commandPath="/system/bin/mount" commandArgs="-o %1$s,remount -t auto %2$s %3$s" />
-  <command commandId="mountpointinfo" commandPath="/system/bin/cat" commandArgs="/proc/mounts" />
   <command commandId="mv" commandPath="/system/bin/mv" commandArgs="%1$s %2$s" />
-  <command commandId="pid_shell" commandPath="/system/xbin/echo" commandArgs="$$" />
-  <command commandId="pid_cmd" commandPath="/system/bin/ps" commandArgs="| /system/xbin/grep %1$s | /system/xbin/grep -w %2$s | /system/xbin/awk '{print $2}'" />
-  <command commandId="pwd" commandPath="/system/xbin/pwd" commandArgs="-P" />
-  <command commandId="quickfoldersearch" commandPath="/system/bin/ls" commandArgs="-aFd %1$s.* %1$s* | /system/xbin/grep -e '^d' -e '^ld' | /system/xbin/awk '{print $2}'" />
-  <command commandId="read" commandPath="/system/bin/cat" commandArgs="&lt; %1$s" />
-  <command commandId="readlink" commandPath="cd" commandArgs="%2$s &amp;&amp; /system/xbin/readlink -f %1$s | /system/xbin/awk -F// '{print &quot;\\&quot;&quot;$1&quot;\\&quot;&quot;}' | /system/xbin/xargs -n1 /system/xbin/dirname &amp;&amp; /system/xbin/readlink -f %1$s | /system/xbin/awk -F// '{print &quot;\\&quot;&quot;$1&quot;\\&quot;&quot;}' | /system/xbin/xargs -n1 /system/bin/ls -ald" />
   <command commandId="rm" commandPath="/system/bin/rm" commandArgs="%1$s" />
   <command commandId="rmdir" commandPath="/system/bin/rm" commandArgs="-R %1$s" />
-  <command commandId="sendsignal" commandPath="/system/bin/kill" commandArgs="-%1$s %2$s" />
-  <command commandId="terminate" commandPath="/system/bin/kill" commandArgs="%1$s" />
+
+  <!-- Usage -->
+  <command commandId="diskusage" commandPath="/system/bin/df" commandArgs="%1$s" />
+  <command commandId="diskusageall" commandPath="/system/bin/df" commandArgs="" />
+  <command commandId="folderusage" commandPath="/system/bin/ls" commandArgs="-alR %1$s" />
+
+  <!-- I/O -->
+  <command commandId="read" commandPath="/system/bin/cat" commandArgs="&lt; %1$s" />
   <command commandId="touch" commandPath="/system/xbin/echo" commandArgs="-n '' >> %1$s" />
   <command commandId="write" commandPath="/system/bin/dd" commandArgs="bs=4k of=%1$s" />
+
+  <!-- Run -->
+  <command commandId="exec" commandPath="/system/bin/sh" commandArgs="-c %1$s" />
+
+  <!-- Misc -->
+  <command commandId="dirname" commandPath="/system/xbin/dirname" commandArgs="%1$s" />
+  <command commandId="echo" commandPath="/system/xbin/echo" commandArgs="%1$s" />
+
+  <!-- Process control and info -->
+  <command commandId="pid_shell" commandPath="/system/xbin/echo" commandArgs="$$" />
+  <command commandId="pid_cmd" commandPath="/system/bin/ps" commandArgs="| /system/xbin/grep %1$s | /system/xbin/grep -w %2$s | /system/xbin/awk '{print $2}'" />
+  <command commandId="sendsignal" commandPath="/system/bin/kill" commandArgs="-%1$s %2$s" />
+  <command commandId="terminate" commandPath="/system/bin/kill" commandArgs="%1$s" />
+
+  <!-- Compress commands -->
+  <command commandId="compress" commandPath="/system/xbin/tar" commandArgs="%1$scvf %2$s [@]" />
+  <command commandId="gzip" commandPath="/system/bin/gzip" commandArgs="%1$s" />
+  <command commandId="bzip" commandPath="/system/xbin/bzip2" commandArgs="-f %1$s" />
 
 </CommandList>

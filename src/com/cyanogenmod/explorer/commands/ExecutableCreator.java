@@ -17,6 +17,7 @@
 package com.cyanogenmod.explorer.commands;
 
 import com.cyanogenmod.explorer.commands.ListExecutable.LIST_MODE;
+import com.cyanogenmod.explorer.commands.shell.CompressCommand.CompressionMode;
 import com.cyanogenmod.explorer.console.CommandNotFoundException;
 import com.cyanogenmod.explorer.model.Group;
 import com.cyanogenmod.explorer.model.MountPoint;
@@ -377,6 +378,34 @@ public interface ExecutableCreator {
      */
     WriteExecutable createWriteExecutable(
             String file, AsyncResultListener asyncResultListener)
+            throws CommandNotFoundException;
+
+    /**
+     * Method that creates an executable for archive-compress file system objects.
+     *
+     * @param mode The compression mode
+     * @param dst The destination compressed file
+     * @param src The array of source files to compress
+     * @param asyncResultListener The listener where to return partial results
+     * @return CompressExecutable A {@link CompressExecutable} executable implementation reference
+     * @throws CommandNotFoundException If the executable can't be created
+     */
+    CompressExecutable createCompressExecutable(
+            CompressionMode mode, String dst, String[] src,
+            AsyncResultListener asyncResultListener)
+            throws CommandNotFoundException;
+
+    /**
+     * Method that creates an executable for compress a file system object.
+     *
+     * @param mode The compression mode
+     * @param src The file to compress
+     * @param asyncResultListener The listener where to return partial results
+     * @return CompressExecutable A {@link CompressExecutable} executable implementation reference
+     * @throws CommandNotFoundException If the executable can't be created
+     */
+    CompressExecutable createCompressExecutable(
+            CompressionMode mode, String src, AsyncResultListener asyncResultListener)
             throws CommandNotFoundException;
 
 }

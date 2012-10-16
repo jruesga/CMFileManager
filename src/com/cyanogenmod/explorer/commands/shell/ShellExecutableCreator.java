@@ -47,6 +47,7 @@ import com.cyanogenmod.explorer.commands.ResolveLinkExecutable;
 import com.cyanogenmod.explorer.commands.SIGNAL;
 import com.cyanogenmod.explorer.commands.SendSignalExecutable;
 import com.cyanogenmod.explorer.commands.WriteExecutable;
+import com.cyanogenmod.explorer.commands.shell.CompressCommand.CompressionMode;
 import com.cyanogenmod.explorer.console.CommandNotFoundException;
 import com.cyanogenmod.explorer.console.shell.ShellConsole;
 import com.cyanogenmod.explorer.model.Group;
@@ -484,6 +485,36 @@ public class ShellExecutableCreator implements ExecutableCreator {
             return new WriteCommand(file, asyncResultListener);
         } catch (InvalidCommandDefinitionException icdEx) {
             throw new CommandNotFoundException("WriteCommand", icdEx); //$NON-NLS-1$
+        }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public CompressCommand createCompressExecutable(
+            CompressionMode mode, String dst, String[] src,
+            AsyncResultListener asyncResultListener)
+            throws CommandNotFoundException {
+        try {
+            return new CompressCommand(mode, dst, src, asyncResultListener);
+        } catch (InvalidCommandDefinitionException icdEx) {
+            throw new CommandNotFoundException("CompressCommand", icdEx); //$NON-NLS-1$
+        }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public CompressCommand createCompressExecutable(
+            CompressionMode mode, String src,
+            AsyncResultListener asyncResultListener)
+            throws CommandNotFoundException {
+        try {
+            return new CompressCommand(mode, src, asyncResultListener);
+        } catch (InvalidCommandDefinitionException icdEx) {
+            throw new CommandNotFoundException("CompressCommand", icdEx); //$NON-NLS-1$
         }
     }
 

@@ -26,7 +26,7 @@ import com.cyanogenmod.explorer.commands.shell.CompressCommand.CompressionMode;
 import com.cyanogenmod.explorer.util.CommandHelper;
 
 /**
- * A class for testing folder usage command.
+ * A class for testing the compression of file system objects.
  *
  * @see CompressCommand
  */
@@ -127,6 +127,8 @@ public class CompressCommandTest extends AbstractConsoleTest {
     /**
      * Method that archive and compress data.
      *
+     * @param mode The compress mode
+     * @param dst The destination file
      * @throws Exception If test failed
      */
     private void testArchiveAndCompress(CompressionMode mode, String dst) throws Exception {
@@ -183,6 +185,7 @@ public class CompressCommandTest extends AbstractConsoleTest {
     /**
      * Method that compress data.
      *
+     * @param mode The compress mode
      * @throws Exception If test failed
      */
     private void testCompress(CompressionMode mode) throws Exception {

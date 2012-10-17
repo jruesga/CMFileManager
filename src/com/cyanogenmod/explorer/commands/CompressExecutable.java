@@ -29,9 +29,9 @@ public interface CompressExecutable extends AsyncResultExecutable {
     Boolean getResult();
 
     /**
-     * Method that returns the name out compressed file
+     * Method that returns the path out compressed file
      *
-     * @return Method that returns the name of the compressed file
+     * @return String The path of the compressed file
      */
     String getOutCompressedFile();
 }

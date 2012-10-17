@@ -27,6 +27,8 @@ import com.cyanogenmod.explorer.console.InsufficientPermissionsException;
  * A class for compress file system objects
  *
  * {@link "http://unixhelp.ed.ac.uk/CGI/man-cgi?tar"}
+ * {@link "http://unixhelp.ed.ac.uk/CGI/man-cgi?gzip"}
+ * {@link "http://unixhelp.ed.ac.uk/CGI/man-cgi?bzip2"}
  */
 public class CompressCommand extends AsyncResultProgram implements CompressExecutable {
 
@@ -56,6 +58,7 @@ public class CompressCommand extends AsyncResultProgram implements CompressExecu
          *
          * @param id The command identifier
          * @param flag The tar compression flag
+         * @param extension The file extension
          */
         private CompressionMode(String id, String flag, String extension) {
             this.mId = id;
@@ -125,7 +128,7 @@ public class CompressCommand extends AsyncResultProgram implements CompressExecu
      */
     @Override
     public void onEndParsePartialResult(boolean canceled) {
-        // Send the las partial data
+        // Send the last partial data
         if (this.mPartial != null && this.mPartial.length() > 0) {
             if (getAsyncResultListener() != null) {
                 getAsyncResultListener().onPartialResult(this.mPartial);
@@ -147,7 +150,7 @@ public class CompressCommand extends AsyncResultProgram implements CompressExecu
         lines[0] = this.mPartial + lines[0];
 
         // Return all the lines, except the last
-        for (int i=0; i<lines.length-1; i++) {
+        for (int i = 0; i < lines.length-1; i++) {
             if (getAsyncResultListener() != null) {
                 getAsyncResultListener().onPartialResult(lines[i]);
             }
@@ -194,13 +197,11 @@ public class CompressCommand extends AsyncResultProgram implements CompressExecu
     public void checkExitCode(int exitCode)
             throws InsufficientPermissionsException, CommandNotFoundException, ExecutionException {
 
-        //Access a subdirectory without permissions returns 1, but this
-        //not must be treated as an error
         //Ignore exit code 143 (canceled)
         //Ignore exit code 137 (kill -9)
         if (exitCode != 0 && exitCode != 1 && exitCode != 143 && exitCode != 137) {
             throw new ExecutionException(
-                        "exitcode != 0 && != 1 && != 143 && != 137"); //$NON-NLS-1$
+                        "exitcode != 0 && != 143 && != 137"); //$NON-NLS-1$
         }
 
         // Correct
@@ -231,9 +232,9 @@ public class CompressCommand extends AsyncResultProgram implements CompressExecu
     }
 
     /**
-     * Method that resolves the output name of the compressed file
+     * Method that resolves the output path of the compressed file
      *
-     * @return String The output name of the compressed file
+     * @return String The output path of the compressed file
      */
     private static String resolveOutputFile(CompressionMode mode, String src) {
         return String.format("%s.%s", src, mode.mExtension); //$NON-NLS-1$

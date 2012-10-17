@@ -50,6 +50,7 @@ import com.cyanogenmod.explorer.commands.ResolveLinkExecutable;
 import com.cyanogenmod.explorer.commands.SIGNAL;
 import com.cyanogenmod.explorer.commands.SendSignalExecutable;
 import com.cyanogenmod.explorer.commands.SyncResultExecutable;
+import com.cyanogenmod.explorer.commands.UncompressExecutable;
 import com.cyanogenmod.explorer.commands.WritableExecutable;
 import com.cyanogenmod.explorer.commands.WriteExecutable;
 import com.cyanogenmod.explorer.commands.shell.CompressCommand.CompressionMode;
@@ -1287,7 +1288,69 @@ public final class CommandHelper {
             return executable1;
         }
         throw new ExecutionException(
-                String.format("Fail to create file %s", compressOutFile)); //$NON-NLS-1$
+                String.format("Fail to compress to file %s", compressOutFile)); //$NON-NLS-1$
+    }
+
+    /**
+     * Method that uncompress file system objects.
+     *
+     * @param context The current context (needed if console == null)
+     * @param src The file to compress
+     * @param asyncResultListener The partial result listener
+     * @param console The console in which execute the program.
+     * <code>null</code> to attach to the default console
+     * @return AsyncResultProgram The command executed in background
+     * @throws FileNotFoundException If the initial directory not exists
+     * @throws IOException If initial directory can't not be checked
+     * @throws InvalidCommandDefinitionException If the command has an invalid definition
+     * @throws NoSuchFileOrDirectory If the file or directory was not found
+     * @throws ConsoleAllocException If the console can't be allocated
+     * @throws InsufficientPermissionsException If an operation requires elevated permissions
+     * @throws CommandNotFoundException If the command was not found
+     * @throws OperationTimeoutException If the operation exceeded the maximum time of wait
+     * @throws ExecutionException If the operation returns a invalid exit code
+     * @throws ReadOnlyFilesystemException If the operation writes in a read-only filesystem
+     * @see CompressExecutable
+     */
+    public static UncompressExecutable uncompress(
+            Context context, String src,
+            AsyncResultListener asyncResultListener, Console console)
+            throws FileNotFoundException, IOException, ConsoleAllocException,
+            NoSuchFileOrDirectory, InsufficientPermissionsException,
+            CommandNotFoundException, OperationTimeoutException,
+            ExecutionException, InvalidCommandDefinitionException, ReadOnlyFilesystemException {
+        Console c = ensureConsole(context, console);
+
+        UncompressExecutable executable1 =
+                c.getExecutableFactory().newCreator().
+                    createUncompressExecutable(src, asyncResultListener);
+
+        // Prior to write to disk the data, ensure that can write to the disk using
+        // createFile or createFolder method
+
+        String compressOutFile = executable1.getOutUncompressedFile();
+        WritableExecutable executable2 = null;
+        if (executable1.IsArchive()) {
+            //- Create Folder
+            executable2 =
+                    c.getExecutableFactory().
+                        newCreator().
+                            createCreateDirectoryExecutable(compressOutFile);
+        } else {
+            //- Create File
+            executable2 =
+                    c.getExecutableFactory().
+                        newCreator().
+                            createCreateFileExecutable(compressOutFile);
+        }
+        writableExecute(context, executable2, c);
+        if (((Boolean)executable2.getResult()).booleanValue()) {
+            //- Compress
+            execute(context, executable1, c);
+            return executable1;
+        }
+        throw new ExecutionException(
+                String.format("Fail to uncompress to %s", compressOutFile)); //$NON-NLS-1$
     }
 
     /**

@@ -408,4 +408,16 @@ public interface ExecutableCreator {
             CompressionMode mode, String src, AsyncResultListener asyncResultListener)
             throws CommandNotFoundException;
 
+    /**
+     * Method that creates an executable for uncompress file system objects.
+     *
+     * @param src The compressed file
+     * @param asyncResultListener The listener where to return partial results
+     * @return UncompressExecutable A {@link UncompressExecutable} executable implementation reference
+     * @throws CommandNotFoundException If the executable can't be created
+     */
+    UncompressExecutable createUncompressExecutable(
+            String src, AsyncResultListener asyncResultListener)
+            throws CommandNotFoundException;
+
 }

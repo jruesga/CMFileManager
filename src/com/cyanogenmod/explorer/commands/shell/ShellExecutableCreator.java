@@ -518,4 +518,19 @@ public class ShellExecutableCreator implements ExecutableCreator {
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public UncompressCommand createUncompressExecutable(
+            String src,
+            AsyncResultListener asyncResultListener)
+            throws CommandNotFoundException {
+        try {
+            return new UncompressCommand(src, asyncResultListener);
+        } catch (InvalidCommandDefinitionException icdEx) {
+            throw new CommandNotFoundException("UncompressCommand", icdEx); //$NON-NLS-1$
+        }
+    }
+
 }

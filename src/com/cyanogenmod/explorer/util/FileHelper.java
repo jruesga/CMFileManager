@@ -49,11 +49,12 @@ import java.util.List;
 public final class FileHelper {
 
     /**
-     * Constructor of <code>FileHelper</code>.
+     * Special extension for compressed tar files
      */
-    private FileHelper() {
-        super();
-    }
+    private static final String[] COMPRESSED_TAR =
+        {
+         "tar.gz", "tar.bz2", "tar.lzma" //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+        };
 
     /**
      * The root directory.
@@ -84,6 +85,13 @@ public final class FileHelper {
      * @hide
      */
     public static final String NEWLINE = System.getProperty("line.separator"); //$NON-NLS-1$
+
+    /**
+     * Constructor of <code>FileHelper</code>.
+     */
+    private FileHelper() {
+        super();
+    }
 
     /**
      * Method that check if a file is a symbolic link.
@@ -249,12 +257,14 @@ public final class FileHelper {
             return null;
         }
 
-        // 3 exceptions to the general form: tar.gz, tar.bz2 and tar.lzma
-        if (name.endsWith(".tar.gz")) return "tar.gz"; //$NON-NLS-1$ //$NON-NLS-2$
-        if (name.endsWith(".tar.bz2")) return "tar.bz2"; //$NON-NLS-1$ //$NON-NLS-2$
-        if (name.endsWith(".tar.lzma")) return "tar.lzma"; //$NON-NLS-1$ //$NON-NLS-2$
+        // Exceptions to the general extraction method
+        for (int i = 0; i < COMPRESSED_TAR.length; i++) {
+            if (name.endsWith("." + COMPRESSED_TAR[i])) { //$NON-NLS-1$
+                return COMPRESSED_TAR[i];
+            }
+        }
 
-        // General form
+        // General extraction method
         return name.substring(pos + 1);
     }
 
@@ -675,6 +685,35 @@ public final class FileHelper {
         for (int i = 0; i < cc; i++) {
             FileSystemObject fso = files.get(i);
             if (fso.getName().compareTo(name) == 0) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * Method that returns is a {@link FileSystemObject} can be handled by this application
+     * allowing the uncompression of the file
+     *
+     * @param fso The file system object to verify
+     * @return boolean If the file is supported
+     */
+    @SuppressWarnings("nls")
+    public static boolean isSupportedUnCompressedFile(FileSystemObject fso) {
+        // Valid uncompressed formats are:
+        final String[] VALID =
+                {
+                    "tar", "tgz", "tar.gz", "tar.bz2", "tar.lzma",
+                    "unzip", "gz", "bz2", "lzma", "xz", "Z"
+                };
+
+        //Only regular files
+        if (isDirectory(fso) || fso instanceof Symlink) {
+            return false;
+        }
+        String ext = getExtension(fso);
+        for (int i = 0; i < VALID.length; i++) {
+            if (VALID[i].compareTo(ext) == 0) {
                 return true;
             }
         }

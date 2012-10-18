@@ -699,13 +699,16 @@ public final class FileHelper {
      * @return boolean If the file is supported
      */
     @SuppressWarnings("nls")
-    public static boolean isSupportedUnCompressedFile(FileSystemObject fso) {
+    public static boolean isSupportedUncompressedFile(FileSystemObject fso) {
         // Valid uncompressed formats are:
         final String[] VALID =
                 {
                     "tar", "tgz", "tar.gz", "tar.bz2", "tar.lzma",
-                    "unzip", "gz", "bz2", "lzma", "xz", "Z"
+                    "zip", "gz", "bz2", "lzma", "xz", "Z"
                 };
+
+        // Check that have a valid file
+        if (fso == null) return false;
 
         //Only regular files
         if (isDirectory(fso) || fso instanceof Symlink) {

@@ -72,7 +72,8 @@ public class ListCommandTest extends AbstractConsoleTest {
      */
     @MediumTest
     public void testListInfo() throws Exception {
-        FileSystemObject file = CommandHelper.getFileInfo(getContext(), LS_INFOFILE, getConsole());
+        FileSystemObject file =
+                CommandHelper.getFileInfo(getContext(), LS_INFOFILE, getConsole());
         assertNotNull("file==null", file); //$NON-NLS-1$
         assertTrue(
                 String.format("file!=%s", LS_INFOFILE_NAME), //$NON-NLS-1$

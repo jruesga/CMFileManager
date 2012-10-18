@@ -956,17 +956,24 @@ public class SearchActivity extends Activity
             // Check that the bookmark exists
             try {
                 FileSystemObject fso = CommandHelper.getFileInfo(this, item.getFullPath(), null);
-                if (FileHelper.isDirectory(fso)) {
-                    intent.putExtra(NavigationActivity.EXTRA_SEARCH_ENTRY_SELECTION, fso);
-                    intent.putExtra(
-                            NavigationActivity.EXTRA_SEARCH_LAST_SEARCH_DATA,
-                            (Parcelable)createSearchInfo());
-                    setResult(RESULT_OK, intent);
+                if (fso != null) {
+                    if (FileHelper.isDirectory(fso)) {
+                        intent.putExtra(NavigationActivity.EXTRA_SEARCH_ENTRY_SELECTION, fso);
+                        intent.putExtra(
+                                NavigationActivity.EXTRA_SEARCH_LAST_SEARCH_DATA,
+                                (Parcelable)createSearchInfo());
+                        setResult(RESULT_OK, intent);
+                    } else {
+                        // Open the file here, so when focus back to the app, the search activity
+                        // its in top of the stack
+                        ActionsPolicy.openFileSystemObject(this, fso, false);
+                        return;
+                    }
                 } else {
-                    // Open the file here, so when focus back to the app, the search activity
-                    // its in top of the stack
-                    ActionsPolicy.openFileSystemObject(this, fso, false);
-                    return;
+                    // The fso not exists, delete the fso from the search
+                    try {
+                        removeItem(item);
+                    } catch (Exception ex) {/**NON BLOCK**/}
                 }
 
             } catch (Exception e) {

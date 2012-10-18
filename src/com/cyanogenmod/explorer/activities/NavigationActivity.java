@@ -1122,8 +1122,11 @@ public class NavigationActivity extends Activity
                 String path = ((NavigationViewInfoParcelable)h.getItem()).getCurrentDir();
 
                 try {
-                    CommandHelper.getFileInfo(this, path, null);
-                    break;
+                    FileSystemObject info = CommandHelper.getFileInfo(this, path, null);
+                    if (info != null) {
+                        break;
+                    }
+                    this.mHistory.remove(this.mHistory.size() - 1);
                 } catch (Exception e) {
                     ExceptionUtil.translateException(this, e, true, false);
                     this.mHistory.remove(this.mHistory.size() - 1);

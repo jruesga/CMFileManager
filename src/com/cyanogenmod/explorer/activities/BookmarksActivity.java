@@ -232,8 +232,17 @@ public class BookmarksActivity extends Activity implements OnItemClickListener, 
             // Check that the bookmark exists
             try {
                 FileSystemObject fso = CommandHelper.getFileInfo(this, path, null);
-                intent.putExtra(NavigationActivity.EXTRA_BOOKMARK_SELECTION, fso);
-                setResult(RESULT_OK, intent);
+                if (fso != null) {
+                    intent.putExtra(NavigationActivity.EXTRA_BOOKMARK_SELECTION, fso);
+                    setResult(RESULT_OK, intent);
+                } else {
+                    // The bookmark not exists, delete the user-defined bookmark
+                    try {
+                        Bookmark b = Bookmarks.getBookmark(getContentResolver(), path);
+                        Bookmarks.removeBookmark(this, b);
+                        refresh();
+                    } catch (Exception ex) {/**NON BLOCK**/}
+                }
             } catch (Exception e) {
                 // Capture the exception
                 ExceptionUtil.translateException(this, e);

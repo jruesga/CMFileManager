@@ -52,19 +52,19 @@ public class UncompressCommand extends AsyncResultProgram implements UncompressE
         /**
          * Uncompress using Gzip algorithm
          */
-        AC_GUNZIP(GUNZIP_ID, "z", "tar.gz", true), //$NON-NLS-1$ //$NON-NLS-2$
+        AC_GUNZIP(UNTAR_ID, "z", "tar.gz", true), //$NON-NLS-1$ //$NON-NLS-2$
         /**
          * Uncompress using Gzip algorithm
          */
-        AC_GUNZIP2(GUNZIP_ID, "z", "tgz", true), //$NON-NLS-1$ //$NON-NLS-2$
+        AC_GUNZIP2(UNTAR_ID, "z", "tgz", true), //$NON-NLS-1$ //$NON-NLS-2$
         /**
          * Uncompress using Bzip algorithm
          */
-        AC_BUNZIP(BUNZIP_ID, "j", "tar.bz2", true), //$NON-NLS-1$ //$NON-NLS-2$
+        AC_BUNZIP(UNTAR_ID, "j", "tar.bz2", true), //$NON-NLS-1$ //$NON-NLS-2$
         /**
          * Uncompress using Lzma algorithm
          */
-        AC_UNLZMA(UNLZMA_ID, "a", "tar.lzma", true), //$NON-NLS-1$ //$NON-NLS-2$
+        AC_UNLZMA(UNTAR_ID, "a", "tar.lzma", true), //$NON-NLS-1$ //$NON-NLS-2$
         /**
          * Uncompress using Gzip algorithm
          */
@@ -80,11 +80,11 @@ public class UncompressCommand extends AsyncResultProgram implements UncompressE
         /**
          * Uncompress using Unix compress algorithm
          */
-        C_UNCOMPRESS(UNCOMPRESS_ID, "", ".Z", false), //$NON-NLS-1$ //$NON-NLS-2$
+        C_UNCOMPRESS(UNCOMPRESS_ID, "", "Z", false), //$NON-NLS-1$ //$NON-NLS-2$
         /**
          * Uncompress using Unix compress algorithm
          */
-        C_UNXZ(UNXZ_ID, "", ".xz", false); //$NON-NLS-1$ //$NON-NLS-2$
+        C_UNXZ(UNXZ_ID, "", "xz", false); //$NON-NLS-1$ //$NON-NLS-2$
 
         String mId;
         String mFlag;
@@ -282,8 +282,7 @@ public class UncompressCommand extends AsyncResultProgram implements UncompressE
      * @return String[] The arguments
      */
     private static String[] resolveArguments(String src) {
-        String name = FileHelper.getName(src);
-        File dst = new File(new File(src).getParent(), name);
+        String dst = resolveOutputFile(src);
         UncompressionMode mode = getMode(src);
         if (mode != null) {
             switch (mode) {
@@ -292,10 +291,10 @@ public class UncompressCommand extends AsyncResultProgram implements UncompressE
                 case AC_GUNZIP2:
                 case AC_BUNZIP:
                 case AC_UNLZMA:
-                    return new String[]{mode.mFlag, dst.getAbsolutePath(), src};
+                    return new String[]{mode.mFlag, dst, src};
 
                 case A_UNZIP:
-                    return new String[]{dst.getAbsolutePath(), src};
+                    return new String[]{dst, src};
 
                 case C_GUNZIP:
                 case C_BUNZIP:
@@ -317,7 +316,7 @@ public class UncompressCommand extends AsyncResultProgram implements UncompressE
      * @return String The output path of the uncompressed file
      */
     private static String resolveOutputFile(String src) {
-        String name = FileHelper.getName(src);
+        String name = new File(FileHelper.getName(src)).getName();
         File dst = new File(new File(src).getParent(), name);
         return dst.getAbsolutePath();
     }

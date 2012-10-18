@@ -64,7 +64,7 @@
   <command commandId="chown" commandPath="/system/bin/chown" commandArgs="%1$s.%2$s %3$s" />
   <command commandId="cp" commandPath="/system/xbin/cp" commandArgs="-af %1$s %2$s" />
   <command commandId="link" commandPath="/system/bin/ln" commandArgs="-s %1$s %2$s" />
-  <command commandId="mkdir" commandPath="/system/bin/mkdir" commandArgs="%1$s" />
+  <command commandId="mkdir" commandPath="/system/bin/mkdir" commandArgs="-p %1$s" />
   <command commandId="mv" commandPath="/system/bin/mv" commandArgs="%1$s %2$s" />
   <command commandId="rm" commandPath="/system/bin/rm" commandArgs="%1$s" />
   <command commandId="rmdir" commandPath="/system/bin/rm" commandArgs="-R %1$s" />
@@ -93,12 +93,12 @@
   <command commandId="terminate" commandPath="/system/bin/kill" commandArgs="%1$s" />
 
   <!-- Compress -->
-  <command commandId="compress" commandPath="/system/xbin/tar" commandArgs="%1$scvf %2$s [@]" />
+  <command commandId="compress" commandPath="/system/xbin/tar" commandArgs="-%1$scvf %2$s [@]" />
   <command commandId="gzip" commandPath="/system/bin/gzip" commandArgs="%1$s" />
   <command commandId="bzip" commandPath="/system/xbin/bzip2" commandArgs="-f %1$s" />
 
   <!-- Uncompress -->
-  <command commandId="untar" commandPath="/system/bin/mkdir" commandArgs="-p %2$s &amp;&amp; /system/xbin/tar -C %2$s %1$sxvf %3$s" />
+  <command commandId="untar" commandPath="/system/bin/mkdir" commandArgs="-p %2$s &amp;&amp; /system/xbin/tar -C %2$s -%1$sxvf %3$s" />
   <command commandId="unzip" commandPath="/system/bin/mkdir" commandArgs="-p %1$s &amp;&amp; /system/xbin/unzip -o %2$s -d %1$s" />
   <command commandId="gunzip" commandPath="/system/xbin/gunzip" commandArgs="-f %1$s" />
   <command commandId="bunzip" commandPath="/system/xbin/bunzip2" commandArgs="-f %1$s" />

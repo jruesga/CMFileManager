@@ -95,6 +95,10 @@
       android:showAsAction="ifRoom"
       android:title="@string/actions_menu_rename"/>
     <item
+      android:id="@+id/mnu_actions_extract"
+      android:showAsAction="ifRoom"
+      android:title="@string/actions_menu_extract"/>
+    <item
       android:id="@+id/mnu_actions_create_copy"
       android:showAsAction="ifRoom"
       android:title="@string/actions_menu_create_copy"/>

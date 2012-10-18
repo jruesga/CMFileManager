@@ -413,7 +413,15 @@
   <string name="waiting_dialog_deleting_title">Deleting&#8230;</string>
   <!-- Waiting dialog * Deleting message -->
   <string name="waiting_dialog_deleting_msg">
-    <![CDATA[<b>File</b>]]> <xliff:g id="filr">%1$s</xliff:g></string>
+    <![CDATA[<b>File</b>]]> <xliff:g id="file">%1$s</xliff:g></string>
+  <!-- Waiting dialog * Extracting title -->
+  <string name="waiting_dialog_extracting_title">Extracting&#8230;</string>
+  <!-- Waiting dialog * Extracting message -->
+  <string name="waiting_dialog_extracting_msg">
+    <![CDATA[<b>File</b>]]> <xliff:g id="file">%1$s</xliff:g></string>
+  <!-- Waiting dialog * Initializing the dialog -->
+  <string name="waiting_dialog_extracting_analizing_msg">
+    <![CDATA[<b>Analizing&#8230;</b>]]></string>
 
   <!-- Actions Dialog * Title -->
   <string name="actions_dialog_title">Actions</string>
@@ -451,6 +459,8 @@
   <string name="actions_menu_execute">Execute</string>
   <!-- Actions Dialog * Menu * Send -->
   <string name="actions_menu_send">Send</string>
+  <!-- Actions Dialog * Menu * Extract -->
+  <string name="actions_menu_extract">Extract</string>
   <!-- Actions Dialog * Menu * Share -->
   <string name="actions_menu_share">Share</string>
   <!-- Actions Dialog * Menu * Delete -->
@@ -671,5 +681,12 @@
   <string name="pref_debug_traces_on">Capture of debug traces is enabled</string>
   <!-- Preferences * Debug * Capture debug traces summary off -->
   <string name="pref_debug_traces_off">Capture of debug traces is disabled</string>
+
+  <!-- Security * Extract relative or absolute files -->
+  <string name="security_warning_extract">Warning!\n\n
+    Extracting an archive file with relative or absolute paths may cause damage to your system,
+    because the operation could overwrite of some system files.\n\n
+    Continue?</string>
+
 
 </resources>

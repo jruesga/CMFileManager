@@ -298,6 +298,14 @@ public class ActionsDialog implements OnItemClickListener, OnItemLongClickListen
                 }
                 break;
 
+            //- Uncompress
+            case R.id.mnu_actions_extract:
+                ActionsPolicy.uncompress(
+                            this.mContext,
+                            this.mFso,
+                            this.mOnRequestRefreshListener);
+                break;
+
             //- Create copy
             case R.id.mnu_actions_create_copy:
                 // Create a copy of the fso
@@ -549,6 +557,15 @@ public class ActionsDialog implements OnItemClickListener, OnItemLongClickListen
                 }
             }
         }
+
+        // Compress/Uncompress (only when selection is available)
+        if (this.mOnSelectionListener != null) {
+            //Uncompress
+            if (!this.mGlobal && !FileHelper.isSupportedUncompressedFile(this.mFso)) {
+                menu.removeItem(R.id.mnu_actions_extract);
+            }
+        }
+
     }
 
     /**

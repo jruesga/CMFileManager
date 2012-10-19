@@ -37,8 +37,16 @@ import com.cyanogenmod.explorer.adapters.TwoColumnsMenuListAdapter;
 import com.cyanogenmod.explorer.listeners.OnRequestRefreshListener;
 import com.cyanogenmod.explorer.listeners.OnSelectionListener;
 import com.cyanogenmod.explorer.model.FileSystemObject;
-import com.cyanogenmod.explorer.ui.policy.ActionsPolicy;
-import com.cyanogenmod.explorer.ui.policy.ActionsPolicy.LinkedResource;
+import com.cyanogenmod.explorer.model.SystemFile;
+import com.cyanogenmod.explorer.ui.policy.BookmarksActionPolicy;
+import com.cyanogenmod.explorer.ui.policy.CompressActionPolicy;
+import com.cyanogenmod.explorer.ui.policy.CopyMoveActionPolicy;
+import com.cyanogenmod.explorer.ui.policy.CopyMoveActionPolicy.LinkedResource;
+import com.cyanogenmod.explorer.ui.policy.DeleteActionPolicy;
+import com.cyanogenmod.explorer.ui.policy.ExecutionActionPolicy;
+import com.cyanogenmod.explorer.ui.policy.InfoActionPolicy;
+import com.cyanogenmod.explorer.ui.policy.IntentsActionPolicy;
+import com.cyanogenmod.explorer.ui.policy.NewActionPolicy;
 import com.cyanogenmod.explorer.util.DialogHelper;
 import com.cyanogenmod.explorer.util.FileHelper;
 import com.cyanogenmod.explorer.util.MimeTypeHelper;
@@ -116,7 +124,8 @@ public class ActionsDialog implements OnItemClickListener, OnItemLongClickListen
         //Create the list view
         this.mListView = new ListView(context);
         LinearLayout.LayoutParams params =
-                new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
+                new LinearLayout.LayoutParams(
+                        LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
         this.mListView.setLayoutParams(params);
         this.mListView.setAdapter(adapter);
 
@@ -209,7 +218,7 @@ public class ActionsDialog implements OnItemClickListener, OnItemLongClickListen
 
             //- Delete
             case R.id.mnu_actions_delete:
-                ActionsPolicy.removeFileSystemObject(
+                DeleteActionPolicy.removeFileSystemObject(
                         this.mContext,
                         this.mFso,
                         this.mOnSelectionListener,
@@ -243,21 +252,21 @@ public class ActionsDialog implements OnItemClickListener, OnItemLongClickListen
 
             //- Open
             case R.id.mnu_actions_open:
-                ActionsPolicy.openFileSystemObject(this.mContext, this.mFso, false);
+                IntentsActionPolicy.openFileSystemObject(this.mContext, this.mFso, false);
                 break;
             //- Open with
             case R.id.mnu_actions_open_with:
-                ActionsPolicy.openFileSystemObject(this.mContext, this.mFso, true);
+                IntentsActionPolicy.openFileSystemObject(this.mContext, this.mFso, true);
                 break;
 
             //- Execute
             case R.id.mnu_actions_execute:
-                ActionsPolicy.execute(this.mContext, this.mFso);
+                ExecutionActionPolicy.execute(this.mContext, this.mFso);
                 break;
 
             //- Send
             case R.id.mnu_actions_send:
-                ActionsPolicy.sendFileSystemObject(this.mContext, this.mFso);
+                IntentsActionPolicy.sendFileSystemObject(this.mContext, this.mFso);
                 break;
 
 
@@ -266,7 +275,7 @@ public class ActionsDialog implements OnItemClickListener, OnItemLongClickListen
                 if (this.mOnSelectionListener != null) {
                     List<FileSystemObject> selection =
                             this.mOnSelectionListener.onRequestSelectedFiles();
-                    ActionsPolicy.copyFileSystemObjects(
+                    CopyMoveActionPolicy.copyFileSystemObjects(
                             this.mContext,
                             createLinkedResource(selection, this.mFso),
                             this.mOnSelectionListener,
@@ -278,7 +287,7 @@ public class ActionsDialog implements OnItemClickListener, OnItemLongClickListen
                 if (this.mOnSelectionListener != null) {
                     List<FileSystemObject> selection =
                             this.mOnSelectionListener.onRequestSelectedFiles();
-                    ActionsPolicy.moveFileSystemObjects(
+                    CopyMoveActionPolicy.moveFileSystemObjects(
                             this.mContext,
                             createLinkedResource(selection, this.mFso),
                             this.mOnSelectionListener,
@@ -290,7 +299,7 @@ public class ActionsDialog implements OnItemClickListener, OnItemLongClickListen
                 if (this.mOnSelectionListener != null) {
                     List<FileSystemObject> selection =
                             this.mOnSelectionListener.onRequestSelectedFiles();
-                    ActionsPolicy.removeFileSystemObjects(
+                    DeleteActionPolicy.removeFileSystemObjects(
                             this.mContext,
                             selection,
                             this.mOnSelectionListener,
@@ -300,7 +309,7 @@ public class ActionsDialog implements OnItemClickListener, OnItemLongClickListen
 
             //- Uncompress
             case R.id.mnu_actions_extract:
-                ActionsPolicy.uncompress(
+                CompressActionPolicy.uncompress(
                             this.mContext,
                             this.mFso,
                             this.mOnRequestRefreshListener);
@@ -310,7 +319,7 @@ public class ActionsDialog implements OnItemClickListener, OnItemLongClickListen
             case R.id.mnu_actions_create_copy:
                 // Create a copy of the fso
                 if (this.mOnSelectionListener != null) {
-                    ActionsPolicy.createCopyFileSystemObject(
+                    CopyMoveActionPolicy.createCopyFileSystemObject(
                                 this.mContext,
                                 this.mFso,
                                 this.mOnSelectionListener,
@@ -321,13 +330,13 @@ public class ActionsDialog implements OnItemClickListener, OnItemLongClickListen
             //- Add to bookmarks
             case R.id.mnu_actions_add_to_bookmarks:
             case R.id.mnu_actions_add_to_bookmarks_current_folder:
-                ActionsPolicy.addToBookmarks(this.mContext, this.mFso);
+                BookmarksActionPolicy.addToBookmarks(this.mContext, this.mFso);
                 break;
 
             //- Properties
             case R.id.mnu_actions_properties:
             case R.id.mnu_actions_properties_current_folder:
-                ActionsPolicy.showPropertiesDialog(
+                InfoActionPolicy.showPropertiesDialog(
                         this.mContext, this.mFso, this.mOnRequestRefreshListener);
                 break;
 
@@ -414,7 +423,7 @@ public class ActionsDialog implements OnItemClickListener, OnItemLongClickListen
                         case R.id.mnu_actions_rename:
                             // Rename the fso
                             if (ActionsDialog.this.mOnSelectionListener != null) {
-                                ActionsPolicy.renameFileSystemObject(
+                                CopyMoveActionPolicy.renameFileSystemObject(
                                         ActionsDialog.this.mContext,
                                         inputNameDialog.mFso,
                                         name,
@@ -427,7 +436,7 @@ public class ActionsDialog implements OnItemClickListener, OnItemLongClickListen
                         case R.id.mnu_actions_create_link_global:
                             // Create a link to the fso
                             if (ActionsDialog.this.mOnSelectionListener != null) {
-                                ActionsPolicy.createSymlink(
+                                NewActionPolicy.createSymlink(
                                         ActionsDialog.this.mContext,
                                         inputNameDialog.mFso,
                                         name,
@@ -471,12 +480,12 @@ public class ActionsDialog implements OnItemClickListener, OnItemLongClickListen
     void createNewFileSystemObject(final int menuId, final String name) {
         switch (menuId) {
             case R.id.mnu_actions_new_directory:
-                ActionsPolicy.createNewDirectory(
+                NewActionPolicy.createNewDirectory(
                         this.mContext, name,
                         this.mOnSelectionListener, this.mOnRequestRefreshListener);
                 break;
             case R.id.mnu_actions_new_file:
-                ActionsPolicy.createNewFile(
+                NewActionPolicy.createNewFile(
                         this.mContext, name,
                         this.mOnSelectionListener, this.mOnRequestRefreshListener);
                 break;
@@ -560,7 +569,22 @@ public class ActionsDialog implements OnItemClickListener, OnItemLongClickListen
 
         // Compress/Uncompress (only when selection is available)
         if (this.mOnSelectionListener != null) {
-            //Uncompress
+            //Compress
+            if (this.mGlobal) {
+                List<FileSystemObject> selection = null;
+                if (this.mOnSelectionListener != null) {
+                    selection = this.mOnSelectionListener.onRequestSelectedFiles();
+                }
+                if (selection == null || selection.size() == 0) {
+                    menu.removeItem(R.id.mnu_actions_compress_selection);
+                }
+            } else {
+                // Ignore for system files
+                if (this.mFso instanceof SystemFile) {
+                    menu.removeItem(R.id.mnu_actions_compress);
+                }
+            }
+            //Uncompress (Only supported files)
             if (!this.mGlobal && !FileHelper.isSupportedUncompressedFile(this.mFso)) {
                 menu.removeItem(R.id.mnu_actions_extract);
             }
@@ -578,7 +602,7 @@ public class ActionsDialog implements OnItemClickListener, OnItemLongClickListen
     private static List<LinkedResource> createLinkedResource(
             List<FileSystemObject> items, FileSystemObject directory) {
         List<LinkedResource> resources =
-                new ArrayList<ActionsPolicy.LinkedResource>(items.size());
+                new ArrayList<LinkedResource>(items.size());
         for (int i = 0; i < items.size(); i++) {
             FileSystemObject fso = items.get(i);
             File src = new File(fso.getFullPath());

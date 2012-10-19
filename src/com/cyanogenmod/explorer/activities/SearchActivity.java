@@ -68,7 +68,8 @@ import com.cyanogenmod.explorer.providers.RecentSearchesContentProvider;
 import com.cyanogenmod.explorer.tasks.SearchResultDrawingAsyncTask;
 import com.cyanogenmod.explorer.ui.dialogs.ActionsDialog;
 import com.cyanogenmod.explorer.ui.dialogs.MessageProgressDialog;
-import com.cyanogenmod.explorer.ui.policy.ActionsPolicy;
+import com.cyanogenmod.explorer.ui.policy.InfoActionPolicy;
+import com.cyanogenmod.explorer.ui.policy.IntentsActionPolicy;
 import com.cyanogenmod.explorer.ui.widgets.ButtonItem;
 import com.cyanogenmod.explorer.util.CommandHelper;
 import com.cyanogenmod.explorer.util.DialogHelper;
@@ -822,19 +823,19 @@ public class SearchActivity extends Activity
         // Show content description
         if (this.mDefaultLongClickAction.compareTo(
                 DefaultLongClickAction.SHOW_CONTENT_DESCRIPTION) == 0) {
-            ActionsPolicy.showContentDescription(this, fso);
+            InfoActionPolicy.showContentDescription(this, fso);
         }
 
         // Open with
         else if (this.mDefaultLongClickAction.compareTo(
                 DefaultLongClickAction.OPEN_WITH) == 0) {
-            ActionsPolicy.openFileSystemObject(this, fso, true);
+            IntentsActionPolicy.openFileSystemObject(this, fso, true);
         }
 
         // Show properties
         else if (this.mDefaultLongClickAction.compareTo(
                 DefaultLongClickAction.SHOW_PROPERTIES) == 0) {
-            ActionsPolicy.showPropertiesDialog(this, fso, this);
+            InfoActionPolicy.showPropertiesDialog(this, fso, this);
         }
 
         // Show actions
@@ -966,7 +967,7 @@ public class SearchActivity extends Activity
                     } else {
                         // Open the file here, so when focus back to the app, the search activity
                         // its in top of the stack
-                        ActionsPolicy.openFileSystemObject(this, fso, false);
+                        IntentsActionPolicy.openFileSystemObject(this, fso, false);
                         return;
                     }
                 } else {

@@ -48,7 +48,8 @@ import com.cyanogenmod.explorer.preferences.NavigationLayoutMode;
 import com.cyanogenmod.explorer.preferences.ObjectIdentifier;
 import com.cyanogenmod.explorer.preferences.ObjectStringIdentifier;
 import com.cyanogenmod.explorer.preferences.Preferences;
-import com.cyanogenmod.explorer.ui.policy.ActionsPolicy;
+import com.cyanogenmod.explorer.ui.policy.InfoActionPolicy;
+import com.cyanogenmod.explorer.ui.policy.IntentsActionPolicy;
 import com.cyanogenmod.explorer.util.CommandHelper;
 import com.cyanogenmod.explorer.util.DialogHelper;
 import com.cyanogenmod.explorer.util.ExceptionUtil;
@@ -753,19 +754,19 @@ public class NavigationView extends RelativeLayout implements
         // Show content description
         else if (this.mDefaultLongClickAction.compareTo(
                 DefaultLongClickAction.SHOW_CONTENT_DESCRIPTION) == 0) {
-            ActionsPolicy.showContentDescription(getContext(), fso);
+            InfoActionPolicy.showContentDescription(getContext(), fso);
         }
 
         // Open with
         else if (this.mDefaultLongClickAction.compareTo(
                 DefaultLongClickAction.OPEN_WITH) == 0) {
-            ActionsPolicy.openFileSystemObject(getContext(), fso, true);
+            IntentsActionPolicy.openFileSystemObject(getContext(), fso, true);
         }
 
         // Show properties
         else if (this.mDefaultLongClickAction.compareTo(
                 DefaultLongClickAction.SHOW_PROPERTIES) == 0) {
-            ActionsPolicy.showPropertiesDialog(getContext(), fso, this);
+            InfoActionPolicy.showPropertiesDialog(getContext(), fso, this);
         }
 
         // Show actions
@@ -798,7 +799,7 @@ public class NavigationView extends RelativeLayout implements
             changeCurrentDir(fso.getFullPath(), searchInfo);
         } else {
             // Open the file with the preferred registered app
-            ActionsPolicy.openFileSystemObject(getContext(), fso, false);
+            IntentsActionPolicy.openFileSystemObject(getContext(), fso, false);
         }
     }
 
@@ -821,7 +822,7 @@ public class NavigationView extends RelativeLayout implements
                 }
             } else {
                 // Open the file with the preferred registered app
-                ActionsPolicy.openFileSystemObject(getContext(), fso, false);
+                IntentsActionPolicy.openFileSystemObject(getContext(), fso, false);
             }
         } catch (Throwable ex) {
             ExceptionUtil.translateException(getContext(), ex);

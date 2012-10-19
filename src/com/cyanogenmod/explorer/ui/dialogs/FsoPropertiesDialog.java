@@ -379,12 +379,12 @@ public class FsoPropertiesDialog
         try {
             if (this.mFso instanceof Symlink && ((Symlink) this.mFso).getLinkRef() != null) {
                 this.mFolderUsageExecutable =
-                    (FolderUsageExecutable)CommandHelper.getFolderUsage(
+                    CommandHelper.getFolderUsage(
                             this.mContext,
                             ((Symlink) this.mFso).getLinkRef().getFullPath(), this, null);
             } else {
                 this.mFolderUsageExecutable =
-                    (FolderUsageExecutable)CommandHelper.getFolderUsage(
+                    CommandHelper.getFolderUsage(
                         this.mContext, this.mFso.getFullPath(), this, null);
             }
         } catch (Exception cause) {

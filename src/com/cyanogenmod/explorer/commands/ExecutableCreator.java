@@ -17,13 +17,13 @@
 package com.cyanogenmod.explorer.commands;
 
 import com.cyanogenmod.explorer.commands.ListExecutable.LIST_MODE;
-import com.cyanogenmod.explorer.commands.shell.CompressCommand.CompressionMode;
 import com.cyanogenmod.explorer.console.CommandNotFoundException;
 import com.cyanogenmod.explorer.model.Group;
 import com.cyanogenmod.explorer.model.MountPoint;
 import com.cyanogenmod.explorer.model.Permissions;
 import com.cyanogenmod.explorer.model.Query;
 import com.cyanogenmod.explorer.model.User;
+import com.cyanogenmod.explorer.preferences.CompressionMode;
 
 /**
  * A interface that defines methods for create {@link Executable} objects.
@@ -412,12 +412,14 @@ public interface ExecutableCreator {
      * Method that creates an executable for uncompress file system objects.
      *
      * @param src The compressed file
+     * @param dst The destination file of folder (if null this method resolve with the best
+     * fit based on the src)
      * @param asyncResultListener The listener where to return partial results
      * @return UncompressExecutable A {@link UncompressExecutable} executable implementation reference
      * @throws CommandNotFoundException If the executable can't be created
      */
     UncompressExecutable createUncompressExecutable(
-            String src, AsyncResultListener asyncResultListener)
+            String src, String dst, AsyncResultListener asyncResultListener)
             throws CommandNotFoundException;
 
 }

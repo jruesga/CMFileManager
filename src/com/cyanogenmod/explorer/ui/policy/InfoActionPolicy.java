@@ -23,6 +23,7 @@ import android.widget.Toast;
 import com.cyanogenmod.explorer.listeners.OnRequestRefreshListener;
 import com.cyanogenmod.explorer.model.FileSystemObject;
 import com.cyanogenmod.explorer.ui.dialogs.FsoPropertiesDialog;
+import com.cyanogenmod.explorer.util.DialogHelper;
 
 /**
  * A class with the convenience methods for resolve the display of info actions
@@ -37,7 +38,7 @@ public final class InfoActionPolicy extends ActionsPolicy {
      */
     public static void showContentDescription(final Context ctx, final FileSystemObject fso) {
         String contentDescription = fso.getFullPath();
-        Toast.makeText(ctx, contentDescription, Toast.LENGTH_SHORT).show();
+        DialogHelper.showToast(ctx, contentDescription, Toast.LENGTH_SHORT);
     }
 
     /**

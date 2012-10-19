@@ -93,7 +93,7 @@
   <command commandId="terminate" commandPath="/system/bin/kill" commandArgs="%1$s" />
 
   <!-- Compress -->
-  <command commandId="compress" commandPath="/system/xbin/tar" commandArgs="-%1$scvf %2$s [@]" />
+  <command commandId="tar" commandPath="/system/xbin/tar" commandArgs="-%1$scvf %2$s [@]" />
   <command commandId="gzip" commandPath="/system/bin/gzip" commandArgs="%1$s" />
   <command commandId="bzip" commandPath="/system/xbin/bzip2" commandArgs="-f %1$s" />
 

@@ -22,7 +22,7 @@ import android.util.Log;
 
 import com.cyanogenmod.explorer.commands.AsyncResultListener;
 import com.cyanogenmod.explorer.commands.CompressExecutable;
-import com.cyanogenmod.explorer.commands.shell.CompressCommand.CompressionMode;
+import com.cyanogenmod.explorer.preferences.CompressionMode;
 import com.cyanogenmod.explorer.util.CommandHelper;
 
 /**
@@ -81,7 +81,7 @@ public class CompressCommandTest extends AbstractConsoleTest {
      */
     @LargeTest
     public void testArchiveTAR() throws Exception {
-        testArchiveAndCompress(CompressionMode.NONE, TAR_OUTFILE);
+        testArchiveAndCompress(CompressionMode.A_TAR, TAR_OUTFILE);
     }
 
     /**
@@ -91,7 +91,7 @@ public class CompressCommandTest extends AbstractConsoleTest {
      */
     @LargeTest
     public void testArchiveCompressGZIP() throws Exception {
-        testArchiveAndCompress(CompressionMode.GZIP, TAR_GZIP_OUTFILE);
+        testArchiveAndCompress(CompressionMode.AC_GZIP, TAR_GZIP_OUTFILE);
     }
 
     /**
@@ -101,7 +101,7 @@ public class CompressCommandTest extends AbstractConsoleTest {
      */
     @LargeTest
     public void testArchiveCompressBZIP() throws Exception {
-        testArchiveAndCompress(CompressionMode.BZIP, TAR_BZIP_OUTFILE);
+        testArchiveAndCompress(CompressionMode.AC_BZIP, TAR_BZIP_OUTFILE);
     }
 
     /**
@@ -111,7 +111,7 @@ public class CompressCommandTest extends AbstractConsoleTest {
      */
     @LargeTest
     public void testCompressGZIP() throws Exception {
-        testCompress(CompressionMode.GZIP);
+        testCompress(CompressionMode.C_GZIP);
     }
 
     /**
@@ -121,7 +121,7 @@ public class CompressCommandTest extends AbstractConsoleTest {
      */
     @LargeTest
     public void testCompressBZIP() throws Exception {
-        testCompress(CompressionMode.BZIP);
+        testCompress(CompressionMode.C_BZIP);
     }
 
     /**

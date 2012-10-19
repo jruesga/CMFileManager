@@ -22,6 +22,7 @@ import com.cyanogenmod.explorer.commands.UncompressExecutable;
 import com.cyanogenmod.explorer.console.CommandNotFoundException;
 import com.cyanogenmod.explorer.console.ExecutionException;
 import com.cyanogenmod.explorer.console.InsufficientPermissionsException;
+import com.cyanogenmod.explorer.preferences.UncompressionMode;
 import com.cyanogenmod.explorer.util.FileHelper;
 
 import java.io.File;
@@ -40,70 +41,67 @@ public class UncompressCommand extends AsyncResultProgram implements UncompressE
     /**
      * An enumeration of implemented uncompression modes.
      */
-    public enum UncompressionMode {
+    private enum Mode {
         /**
          * Uncompress using Tar algorithm
          */
-        A_UNTAR(UNTAR_ID, "", "tar", true), //$NON-NLS-1$ //$NON-NLS-2$
+        A_UNTAR(UNTAR_ID, "", UncompressionMode.A_UNTAR), //$NON-NLS-1$
         /**
          * Uncompress using Tar algorithm
          */
-        A_UNZIP(UNZIP_ID, "", "zip", true), //$NON-NLS-1$ //$NON-NLS-2$
+        A_UNZIP(UNZIP_ID, "", UncompressionMode.A_UNZIP), //$NON-NLS-1$
         /**
          * Uncompress using Gzip algorithm
          */
-        AC_GUNZIP(UNTAR_ID, "z", "tar.gz", true), //$NON-NLS-1$ //$NON-NLS-2$
+        AC_GUNZIP(UNTAR_ID, "z", UncompressionMode.AC_GUNZIP), //$NON-NLS-1$
         /**
          * Uncompress using Gzip algorithm
          */
-        AC_GUNZIP2(UNTAR_ID, "z", "tgz", true), //$NON-NLS-1$ //$NON-NLS-2$
+        AC_GUNZIP2(UNTAR_ID, "z", UncompressionMode.AC_GUNZIP2), //$NON-NLS-1$
         /**
          * Uncompress using Bzip algorithm
          */
-        AC_BUNZIP(UNTAR_ID, "j", "tar.bz2", true), //$NON-NLS-1$ //$NON-NLS-2$
+        AC_BUNZIP(UNTAR_ID, "j", UncompressionMode.AC_BUNZIP), //$NON-NLS-1$
         /**
          * Uncompress using Lzma algorithm
          */
-        AC_UNLZMA(UNTAR_ID, "a", "tar.lzma", true), //$NON-NLS-1$ //$NON-NLS-2$
+        AC_UNLZMA(UNTAR_ID, "a", UncompressionMode.AC_UNLZMA), //$NON-NLS-1$
         /**
          * Uncompress using Gzip algorithm
          */
-        C_GUNZIP(GUNZIP_ID, "", "gz", false), //$NON-NLS-1$ //$NON-NLS-2$
+        C_GUNZIP(GUNZIP_ID, "", UncompressionMode.C_GUNZIP), //$NON-NLS-1$
         /**
          * Uncompress using Bzip algorithm
          */
-        C_BUNZIP(BUNZIP_ID, "", "bz2", false), //$NON-NLS-1$ //$NON-NLS-2$
+        C_BUNZIP(BUNZIP_ID, "", UncompressionMode.C_BUNZIP), //$NON-NLS-1$
         /**
          * Uncompress using Lzma algorithm
          */
-        C_UNLZMA(UNLZMA_ID, "", "lzma", false), //$NON-NLS-1$ //$NON-NLS-2$
+        C_UNLZMA(UNLZMA_ID, "", UncompressionMode.C_UNLZMA), //$NON-NLS-1$
         /**
          * Uncompress using Unix compress algorithm
          */
-        C_UNCOMPRESS(UNCOMPRESS_ID, "", "Z", false), //$NON-NLS-1$ //$NON-NLS-2$
+        C_UNCOMPRESS(UNCOMPRESS_ID, "", UncompressionMode.C_UNCOMPRESS), //$NON-NLS-1$
         /**
          * Uncompress using Unix compress algorithm
          */
-        C_UNXZ(UNXZ_ID, "", "xz", false); //$NON-NLS-1$ //$NON-NLS-2$
+        C_UNXZ(UNXZ_ID, "", UncompressionMode.C_UNXZ); //$NON-NLS-1$
 
-        String mId;
-        String mFlag;
-        String mExtension;
-        boolean mArchive;
+        final String mId;
+        final String mFlag;
+        UncompressionMode mMode;
 
         /**
-         * Constructor of <code>UncompressionMode</code>
+         * Constructor of <code>Mode</code>
          *
          * @param id The command identifier
          * @param flag The tar compression flag
-         * @param extension The file extension
-         * @param archive If the file is an archive or archive-compressed
+         * @param mode The uncompressed mode
          */
-        private UncompressionMode(String id, String flag, String extension, boolean archive) {
+        private Mode(String id, String flag, UncompressionMode mode) {
             this.mId = id;
             this.mFlag = flag;
-            this.mExtension = extension;
-            this.mArchive = archive;
+            this.mMode = mode;
         }
     }
 
@@ -132,24 +130,30 @@ public class UncompressCommand extends AsyncResultProgram implements UncompressE
      * </ul>
      *
      * @param src The archive-compressed file
+     * @param dst The destination file of folder (if null this method resolve with the best
+     * fit based on the src)
      * @param asyncResultListener The partial result listener
      * @throws InvalidCommandDefinitionException If the command has an invalid definition
      */
     public UncompressCommand(
-            String src, AsyncResultListener asyncResultListener)
+            String src, String dst, AsyncResultListener asyncResultListener)
             throws InvalidCommandDefinitionException {
-        super(resolveId(src), asyncResultListener, resolveArguments(src));
+        super(resolveId(src), asyncResultListener, resolveArguments(src, dst));
 
         // Check that have a valid
-        UncompressionMode mode = getMode(src);
+        Mode mode = getMode(src);
         if (mode == null) {
             throw new InvalidCommandDefinitionException(
                             "Unsupported uncompress mode"); //$NON-NLS-1$
         }
 
         // Retrieve information about the uncompress process
-        this.mOutFile = resolveOutputFile(src);
-        this.mIsArchive = mode.mArchive;
+        if (dst != null) {
+            this.mOutFile = dst;
+        } else {
+            this.mOutFile = resolveOutputFile(src);
+        }
+        this.mIsArchive = mode.mMode.mArchive;
     }
 
     /**
@@ -269,7 +273,7 @@ public class UncompressCommand extends AsyncResultProgram implements UncompressE
      * @return String The identifier of the command
      */
     private static String resolveId(String src) {
-        UncompressionMode mode = getMode(src);
+        Mode mode = getMode(src);
         if (mode != null) {
             return mode.mId;
         }
@@ -279,11 +283,16 @@ public class UncompressCommand extends AsyncResultProgram implements UncompressE
     /**
      * Method that resolves the arguments for the uncompression
      *
+     * @param src The source file
+     * @param dst The destination file
      * @return String[] The arguments
      */
-    private static String[] resolveArguments(String src) {
-        String dst = resolveOutputFile(src);
-        UncompressionMode mode = getMode(src);
+    private static String[] resolveArguments(String src, String dst) {
+        String out = dst;
+        if (out == null) {
+            out = resolveOutputFile(src);
+        }
+        Mode mode = getMode(src);
         if (mode != null) {
             switch (mode) {
                 case A_UNTAR:
@@ -291,10 +300,10 @@ public class UncompressCommand extends AsyncResultProgram implements UncompressE
                 case AC_GUNZIP2:
                 case AC_BUNZIP:
                 case AC_UNLZMA:
-                    return new String[]{mode.mFlag, dst, src};
+                    return new String[]{mode.mFlag, out, src};
 
                 case A_UNZIP:
-                    return new String[]{dst, src};
+                    return new String[]{out, src};
 
                 case C_GUNZIP:
                 case C_BUNZIP:
@@ -325,14 +334,15 @@ public class UncompressCommand extends AsyncResultProgram implements UncompressE
      * Method that returns the uncompression mode from the compressed file
      *
      * @param src The compressed file
-     * @return UncompressionMode The uncompression mode. <code>null</code> if no mode found
+     * @return Mode The uncompression mode. <code>null</code> if no mode found
      */
-    private static UncompressionMode getMode(String src) {
+    private static Mode getMode(String src) {
         String extension = FileHelper.getExtension(src);
-        UncompressionMode[] modes = UncompressionMode.values();
-        for (int i = 0; i < modes.length; i++) {
-            UncompressionMode mode = modes[i];
-            if (mode.mExtension.compareTo(extension) == 0) {
+        Mode[] modes = Mode.values();
+        int cc = modes.length;
+        for (int i = 0; i < cc; i++) {
+            Mode mode = modes[i];
+            if (mode.mMode.mExtension.compareTo(extension) == 0) {
                 return mode;
             }
         }

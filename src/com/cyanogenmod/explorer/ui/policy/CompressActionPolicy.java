@@ -21,16 +21,20 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.text.Html;
 import android.text.Spanned;
+import android.widget.Toast;
 
 import com.cyanogenmod.explorer.ExplorerApplication;
 import com.cyanogenmod.explorer.R;
 import com.cyanogenmod.explorer.commands.AsyncResultListener;
+import com.cyanogenmod.explorer.commands.CompressExecutable;
 import com.cyanogenmod.explorer.commands.UncompressExecutable;
 import com.cyanogenmod.explorer.console.ConsoleBuilder;
 import com.cyanogenmod.explorer.console.ExecutionException;
 import com.cyanogenmod.explorer.console.RelaunchableException;
 import com.cyanogenmod.explorer.listeners.OnRequestRefreshListener;
+import com.cyanogenmod.explorer.listeners.OnSelectionListener;
 import com.cyanogenmod.explorer.model.FileSystemObject;
+import com.cyanogenmod.explorer.preferences.CompressionMode;
 import com.cyanogenmod.explorer.util.CommandHelper;
 import com.cyanogenmod.explorer.util.DialogHelper;
 import com.cyanogenmod.explorer.util.ExceptionUtil;
@@ -38,6 +42,8 @@ import com.cyanogenmod.explorer.util.ExceptionUtil.OnRelaunchCommandResult;
 import com.cyanogenmod.explorer.util.FileHelper;
 import com.cyanogenmod.explorer.util.FixedQueue;
 
+import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -50,7 +56,6 @@ public final class CompressActionPolicy extends ActionsPolicy {
      */
     private static class CompressListener implements AsyncResultListener {
 
-        Object mSync;
         final FixedQueue<String> mQueue;
         boolean mEnd;
         Throwable mCause;
@@ -61,23 +66,18 @@ public final class CompressActionPolicy extends ActionsPolicy {
         public CompressListener() {
             super();
             this.mEnd = false;
-            this.mSync = new Object();
             this.mQueue = new FixedQueue<String>(2); //Holds only one item
             this.mCause = null;
         }
 
         @Override
         public void onPartialResult(Object result) {
-            synchronized (this.mSync) {
-                this.mQueue.insert((String)result);
-            }
+            this.mQueue.insert((String)result);
         }
 
         @Override
         public void onException(Exception cause) {
-            synchronized (this.mSync) {
-                this.mCause = cause;
-            }
+            this.mCause = cause;
         }
 
         @Override
@@ -88,9 +88,389 @@ public final class CompressActionPolicy extends ActionsPolicy {
 
         @Override
         public void onAsyncExitCode(int exitCode) {
-            synchronized (this.mSync) {
-                this.mEnd = true;
+            this.mEnd = true;
+        }
+    }
+
+    /**
+     * Method that compresses the list of files of the selection.
+     *
+     * @param ctx The current context
+     * @param onSelectionListener The listener for obtain selection information (required)
+     * @param onRequestRefreshListener The listener for request a refresh (optional)
+     * @hide
+     */
+    public static void compress(
+            final Context ctx,
+            final OnSelectionListener onSelectionListener,
+            final OnRequestRefreshListener onRequestRefreshListener) {
+
+        // Retrieve the current selection
+        final List<FileSystemObject> selection = onSelectionListener.onRequestSelectedFiles();
+        if (selection != null && selection.size() > 0) {
+            // Show a dialog to allow the user make the compression mode choice
+            AlertDialog dialog = DialogHelper.createSingleChoiceDialog(
+                    ctx, R.drawable.ic_holo_light_compress, R.string.compression_mode_title,
+                    getSupportedCompressionModesLabels(ctx, selection),
+                    CompressionMode.AC_GZIP.ordinal(),
+                    new DialogHelper.OnSelectChoiceListener() {
+                        @Override
+                        public void onSelectChoice(int choice) {
+                            // Do the compression
+                            compress(
+                                    ctx,
+                                    getCompressionModeFromUserChoice(choice),
+                                    selection,
+                                    onSelectionListener,
+                                    onRequestRefreshListener);
+                        }
+
+                        @Override
+                        public void onNoSelectChoice() {/**NON BLOCK**/}
+                    });
+            dialog.show();
+        }
+    }
+
+    /**
+     * Method that compresses an uncompressed file.
+     *
+     * @param ctx The current context
+     * @param fso The compressed file
+     * @param onSelectionListener The listener for obtain selection information (required)
+     * @param onRequestRefreshListener The listener for request a refresh (optional)
+     * @hide
+     */
+    public static void compress(
+            final Context ctx, final FileSystemObject fso,
+            final OnSelectionListener onSelectionListener,
+            final OnRequestRefreshListener onRequestRefreshListener) {
+
+        // Create a list with the item
+        final List<FileSystemObject> items = new ArrayList<FileSystemObject>();
+        items.add(fso);
+
+        // Show a dialog to allow the user make the compression mode choice
+        AlertDialog dialog = DialogHelper.createSingleChoiceDialog(
+                ctx, R.drawable.ic_holo_light_compress, R.string.compression_mode_title,
+                getSupportedCompressionModesLabels(ctx, items),
+                CompressionMode.AC_GZIP.ordinal(),
+                new DialogHelper.OnSelectChoiceListener() {
+                    @Override
+                    public void onSelectChoice(int choice) {
+                        // Do the compression
+                        compress(
+                                ctx,
+                                getCompressionModeFromUserChoice(choice),
+                                items,
+                                onSelectionListener,
+                                onRequestRefreshListener);
+                    }
+
+                    @Override
+                    public void onNoSelectChoice() {/**NON BLOCK**/}
+                });
+        dialog.show();
+    }
+
+
+    /**
+     * Method that compresses some uncompressed files or folders
+     *
+     * @param ctx The current context
+     * @param mode The compression mode
+     * @param fsos The list of files to compress
+     * @param onSelectionListener The listener for obtain selection information (required)
+     * @param onRequestRefreshListener The listener for request a refresh (optional)
+     * @hide
+     */
+    static void compress(
+            final Context ctx, final CompressionMode mode, final List<FileSystemObject> fsos,
+            final OnSelectionListener onSelectionListener,
+            final OnRequestRefreshListener onRequestRefreshListener) {
+
+        // The callable interface
+        final BackgroundCallable callable = new BackgroundCallable() {
+            // The current items
+            final Context mCtx = ctx;
+            final CompressionMode mMode = mode;
+            final List<FileSystemObject> mFsos = fsos;
+            final OnRequestRefreshListener mOnRequestRefreshListener = onRequestRefreshListener;
+
+            final Object mSync = new Object();
+            Throwable mCause;
+            CompressExecutable cmd = null;
+
+            final CompressListener mListener =
+                                new CompressListener();
+            private String mMsg;
+            private boolean mStarted = false;
+
+            @Override
+            public int getDialogTitle() {
+                return R.string.waiting_dialog_compressing_title;
             }
+            @Override
+            public int getDialogIcon() {
+                return R.drawable.ic_holo_light_operation;
+            }
+            @Override
+            public boolean isDialogCancelable() {
+                return true;
+            }
+
+            @Override
+            public Spanned requestProgress() {
+                // Initializing the dialog
+                if (!this.mStarted) {
+                    String progress =
+                            this.mCtx.getResources().
+                                getString(
+                                    R.string.waiting_dialog_analizing_msg);
+                    return Html.fromHtml(progress);
+                }
+
+                // Return the current operation
+                String msg = (this.mMsg == null) ? "" : this.mMsg; //$NON-NLS-1$
+                String progress =
+                      this.mCtx.getResources().
+                          getString(
+                              R.string.waiting_dialog_compressing_msg,
+                              msg);
+                return Html.fromHtml(progress);
+            }
+
+            @Override
+            public void onSuccess() {
+                try {
+                    if (this.cmd != null && this.cmd.isCancelable() && !this.cmd.isCanceled()) {
+                        this.cmd.cancel();
+                    }
+                } catch (Exception e) {/**NON BLOCK**/}
+
+                //Operation complete. Refresh
+                if (this.mOnRequestRefreshListener != null) {
+                  // The reference is not the same, so refresh the complete navigation view
+                  this.mOnRequestRefreshListener.onRequestRefresh(null);
+                }
+                if (this.cmd != null) {
+                    showOperationSuccessMsg(
+                            ctx,
+                            R.string.msgs_extracting_success,
+                            this.cmd.getOutCompressedFile());
+                } else {
+                    ActionsPolicy.showOperationSuccessMsg(ctx);
+                }
+            }
+
+            @Override
+            public void doInBackground(Object... params) throws Throwable {
+                this.mCause = null;
+                this.mStarted = true;
+
+                // This method expect to receive
+                // 1.- BackgroundAsyncTask
+                BackgroundAsyncTask task = (BackgroundAsyncTask)params[0];
+                String out = null;
+                try {
+                    // Archive or Archive-Compression
+                    if (this.mMode.mArchive) {
+                        // Convert the list to an array of full paths
+                        String[] src = new String[this.mFsos.size()];
+                        int cc = this.mFsos.size();
+                        for (int i = 0; i < cc; i++) {
+                            src[i] = this.mFsos.get(i).getFullPath();
+                        }
+
+                        // Use the current directory name for create the compressed file
+                        String curDirName =
+                                new File(onSelectionListener.onRequestCurrentDir()).getName();
+                        if (src.length == 1) {
+                            // But only one file is passed, then used the name of unique file
+                            curDirName = FileHelper.getName(this.mFsos.get(0).getName());
+                        }
+                        String name =
+                                String.format(
+                                        "%s.%s", curDirName, this.mMode.mExtension); //$NON-NLS-1$
+                        String newName =
+                                FileHelper.createNonExistingName(
+                                        ctx,
+                                        onSelectionListener.onRequestCurrentItems(),
+                                        name,
+                                        R.string.create_new_compress_file_regexp);
+                        String newNameAbs =
+                                new File(
+                                        onSelectionListener.onRequestCurrentDir(),
+                                        newName).getAbsolutePath();
+
+                        // Do the compression
+                        this.cmd =
+                           CommandHelper.compress(
+                                ctx,
+                                this.mMode,
+                                newNameAbs,
+                                src,
+                                this.mListener, null);
+
+                    // Compression
+                    } else {
+                        // Only the first item from the list is valid. If there are more in the
+                        // list, then discard them
+                        String src = this.mFsos.get(0).getFullPath();
+
+                        // Do the compression
+                        this.cmd =
+                           CommandHelper.compress(
+                                ctx,
+                                this.mMode,
+                                src,
+                                this.mListener, null);
+                    }
+                    out = this.cmd.getOutCompressedFile();
+
+                    // Request paint the
+                    this.mListener.mQueue.insert(out);
+                    task.onRequestProgress();
+
+                    // Don't use an active blocking because this suppose that all message
+                    // will be processed by the UI. Instead, refresh with a delay and
+                    // display the active file
+                    while (!this.mListener.mEnd) {
+                        // Sleep to don't saturate the UI thread
+                        Thread.sleep(50L);
+
+                        List<String> msgs = this.mListener.mQueue.peekAll();
+                        if (msgs.size() > 0) {
+                            this.mMsg = msgs.get(msgs.size()-1);
+                            task.onRequestProgress();
+                        }
+                    }
+
+                    // Dialog is ended. Force the last redraw
+                    List<String> msgs = this.mListener.mQueue.peekAll();
+                    if (msgs.size() > 0) {
+                        this.mMsg = msgs.get(msgs.size()-1);
+                        task.onRequestProgress();
+                    }
+
+                } catch (Exception e) {
+                    // Need to be relaunched?
+                    if (e instanceof RelaunchableException) {
+                        OnRelaunchCommandResult rl = new OnRelaunchCommandResult() {
+                            @Override
+                            @SuppressWarnings("unqualified-field-access")
+                            public void onSuccess() {
+                                synchronized (mSync) {
+                                    mSync.notify();
+                                }
+                            }
+
+                            @Override
+                            @SuppressWarnings("unqualified-field-access")
+                            public void onFailed(Throwable cause) {
+                                mCause = cause;
+                                synchronized (mSync) {
+                                    mSync.notify();
+                                }
+                            }
+                            @Override
+                            @SuppressWarnings("unqualified-field-access")
+                            public void onCanceled() {
+                                synchronized (mSync) {
+                                    mSync.notify();
+                                }
+                            }
+                        };
+
+                        // Translate the exception (and wait for the result)
+                        ExceptionUtil.translateException(ctx, e, false, true, rl);
+                        synchronized (this.mSync) {
+                            this.mSync.wait();
+                        }
+
+                        // Persist the exception?
+                        if (this.mCause != null) {
+                            // The exception must be elevated
+                            throw this.mCause;
+                        }
+
+                    } else {
+                        // The exception must be elevated
+                        throw e;
+                    }
+                }
+
+
+                // Any exception?
+                if (this.mListener.mCause != null) {
+                    throw this.mListener.mCause;
+                }
+
+                // Check that the operation was completed retrieving the extracted file or folder
+                boolean failed = true;
+                try {
+                    CommandHelper.getFileInfo(ctx, out, false, null);
+
+                    // Failed. The file exists
+                    failed = false;
+
+                } catch (Throwable e) {
+                    // Operation complete successfully
+                }
+                if (failed) {
+                    throw new ExecutionException(
+                            String.format(
+                                    "Failed to compress file(s) to: %s", out)); //$NON-NLS-1$
+                }
+            }
+        };
+        final BackgroundAsyncTask task = new BackgroundAsyncTask(ctx, callable);
+
+        // Check if the output exists. When the mode is archive, this method generate a new
+        // name based in the current directory. When the mode is compressed then the name
+        // is the name of the file to compress without extension. In this case the name should
+        // be validate prior to compress
+        boolean askUser = false;
+        try {
+            if (!mode.mArchive) {
+                // Only the first item from the list is valid. If there are more in the
+                // list, then discard them
+                String src = fsos.get(0).getFullPath();
+                CompressExecutable ucmd =
+                        ExplorerApplication.getBackgroundConsole().
+                            getExecutableFactory().newCreator().
+                                createCompressExecutable(mode, src, null);
+                String dst = ucmd.getOutCompressedFile();
+                FileSystemObject info = CommandHelper.getFileInfo(ctx, dst, null);
+                if (info != null) {
+                    askUser = true;
+                }
+            }
+        } catch (Exception e) {/**NON BLOCK**/}
+
+        // Ask the user because the destination file or folder exists
+        if (askUser) {
+            //Show a dialog asking the user for overwrite the files
+            AlertDialog dialog =
+                    DialogHelper.createTwoButtonsQuestionDialog(
+                            ctx,
+                            android.R.string.cancel,
+                            R.string.overwrite,
+                            ctx.getString(R.string.msgs_overwrite_files),
+                            new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface alertDialog, int which) {
+                                    // NEGATIVE (overwrite)  POSITIVE (cancel)
+                                    if (which == DialogInterface.BUTTON_NEGATIVE) {
+                                        // Execute background task
+                                        task.execute(task);
+                                    }
+                                }
+                           });
+            dialog.show();
+        } else {
+            // Execute background task
+            task.execute(task);
         }
     }
 
@@ -115,6 +495,7 @@ public final class CompressActionPolicy extends ActionsPolicy {
 
             final Object mSync = new Object();
             Throwable mCause;
+            UncompressExecutable cmd;
 
             final CompressListener mListener =
                                 new CompressListener();
@@ -129,6 +510,10 @@ public final class CompressActionPolicy extends ActionsPolicy {
             public int getDialogIcon() {
                 return R.drawable.ic_holo_light_operation;
             }
+            @Override
+            public boolean isDialogCancelable() {
+                return true;
+            }
 
             @Override
             public Spanned requestProgress() {
@@ -137,7 +522,7 @@ public final class CompressActionPolicy extends ActionsPolicy {
                     String progress =
                             this.mCtx.getResources().
                                 getString(
-                                    R.string.waiting_dialog_extracting_analizing_msg);
+                                    R.string.waiting_dialog_analizing_msg);
                     return Html.fromHtml(progress);
                 }
 
@@ -153,12 +538,25 @@ public final class CompressActionPolicy extends ActionsPolicy {
 
             @Override
             public void onSuccess() {
+                try {
+                    if (this.cmd != null && this.cmd.isCancelable() && !this.cmd.isCanceled()) {
+                        this.cmd.cancel();
+                    }
+                } catch (Exception e) {/**NON BLOCK**/}
+
                 //Operation complete. Refresh
                 if (this.mOnRequestRefreshListener != null) {
                   // The reference is not the same, so refresh the complete navigation view
                   this.mOnRequestRefreshListener.onRequestRefresh(null);
                 }
-                ActionsPolicy.showOperationSuccessMsg(ctx);
+                if (this.cmd != null) {
+                    showOperationSuccessMsg(
+                            ctx,
+                            R.string.msgs_extracting_success,
+                            this.cmd.getOutUncompressedFile());
+                } else {
+                    ActionsPolicy.showOperationSuccessMsg(ctx);
+                }
             }
 
             @Override
@@ -171,12 +569,13 @@ public final class CompressActionPolicy extends ActionsPolicy {
                 BackgroundAsyncTask task = (BackgroundAsyncTask)params[0];
                 String out = null;
                 try {
-                    UncompressExecutable cmd =
-                            CommandHelper.uncompress(
-                                    ctx,
-                                    this.mFso.getFullPath(),
-                                    this.mListener, null);
-                    out = cmd.getOutUncompressedFile();
+                    this.cmd =
+                        CommandHelper.uncompress(
+                                ctx,
+                                this.mFso.getFullPath(),
+                                null,
+                                this.mListener, null);
+                    out = this.cmd.getOutUncompressedFile();
 
                     // Request paint the
                     this.mListener.mQueue.insert(out);
@@ -283,7 +682,7 @@ public final class CompressActionPolicy extends ActionsPolicy {
             UncompressExecutable ucmd =
                     ExplorerApplication.getBackgroundConsole().
                         getExecutableFactory().newCreator().
-                            createUncompressExecutable(fso.getFullPath(), null);
+                            createUncompressExecutable(fso.getFullPath(), null, null);
             String dst = ucmd.getOutUncompressedFile();
             FileSystemObject info = CommandHelper.getFileInfo(ctx, dst, null);
             if (info != null) {
@@ -334,7 +733,7 @@ public final class CompressActionPolicy extends ActionsPolicy {
         // make the extraction
         String ext = FileHelper.getExtension(fso);
         if (ConsoleBuilder.isPrivileged() && ext.compareTo("zip") == 0) { //$NON-NLS-1$
-            AlertDialog dialog =DialogHelper.createYesNoDialog(
+            AlertDialog dialog = DialogHelper.createYesNoDialog(
                 ctx, R.string.security_warning_extract,
                 new DialogInterface.OnClickListener() {
                     @Override
@@ -350,5 +749,60 @@ public final class CompressActionPolicy extends ActionsPolicy {
             // Execute background task
             task.execute(task);
         }
+    }
+
+    /**
+     * Method that returns the supported compression modes
+     *
+     * @param ctx The current context
+     * @param fsos The list of file system objects to compress
+     * @return String[] An array with the compression mode labels
+     */
+    private static String[] getSupportedCompressionModesLabels(
+                                Context ctx, List<FileSystemObject> fsos) {
+        String[] labels = ctx.getResources().getStringArray(R.array.compression_modes_labels);
+        if (fsos.size() > 1 || (fsos.size() == 1 && FileHelper.isDirectory(fsos.get(0)))) {
+            // If more that a file is requested, compression is not available
+            // The same applies if the unique item is a folder
+            ArrayList<String> validLabels = new ArrayList<String>();
+            CompressionMode[] values = CompressionMode.values();
+            int cc = values.length;
+            for (int i = 0; i < cc; i++) {
+                if (values[i].mArchive) {
+                    validLabels.add(labels[i]);
+                }
+            }
+            labels = validLabels.toArray(new String[]{});
+        }
+        return labels;
+    }
+
+    /**
+     * Method that returns the compression mode from the user choice
+     *
+     * @param choice The choice of the user
+     * @return CompressionMode The compression mode
+     */
+    static CompressionMode getCompressionModeFromUserChoice(int choice) {
+        CompressionMode[] values = CompressionMode.values();
+        int cc = values.length;
+        for (int i = 0; i < cc; i++) {
+            if (values[i].ordinal() == choice) {
+                return values[i];
+            }
+        }
+        return null;
+    }
+
+    /**
+     * Method that shows a message when the operation is complete successfully
+     *
+     * @param ctx The current context
+     * @param res The resource identifier
+     * @param dst The destination output
+     * @hide
+     */
+    protected static void showOperationSuccessMsg(Context ctx, int res, String dst) {
+        DialogHelper.showToast(ctx, ctx.getString(res, dst), Toast.LENGTH_LONG);
     }
 }

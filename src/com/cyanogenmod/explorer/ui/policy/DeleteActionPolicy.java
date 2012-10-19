@@ -145,6 +145,10 @@ public final class DeleteActionPolicy extends ActionsPolicy {
             public int getDialogIcon() {
                 return R.drawable.ic_holo_light_operation;
             }
+            @Override
+            public boolean isDialogCancelable() {
+                return false;
+            }
 
             @Override
             public Spanned requestProgress() {
@@ -177,7 +181,8 @@ public final class DeleteActionPolicy extends ActionsPolicy {
                 // 1.- BackgroundAsyncTask
                 BackgroundAsyncTask task = (BackgroundAsyncTask)params[0];
 
-                for (int i = 0; i < this.mFiles.size(); i++) {
+                int cc = this.mFiles.size();
+                for (int i = 0; i < cc; i++) {
                     FileSystemObject fso = this.mFiles.get(i);
 
                     doOperation(this.mCtx, fso);
@@ -293,7 +298,8 @@ public final class DeleteActionPolicy extends ActionsPolicy {
      */
     private static boolean checkRemoveConsistency(
             Context ctx, List<FileSystemObject> files, String currentDirectory) {
-        for (int i = 0; i < files.size(); i++) {
+        int cc = files.size();
+        for (int i = 0; i < cc; i++) {
             FileSystemObject fso = files.get(i);
 
             // 1.- Current directory can't be deleted

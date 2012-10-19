@@ -41,7 +41,7 @@ import java.util.List;
  * A class with the convenience methods for resolve copy/move related actions
  */
 public final class CopyMoveActionPolicy extends ActionsPolicy {
-    
+
     /**
      * @hide
      */
@@ -51,7 +51,7 @@ public final class CopyMoveActionPolicy extends ActionsPolicy {
         RENAME,
         CREATE_COPY,
     }
-    
+
 
     /**
      * A class that holds a relationship between a source {@link File} and
@@ -132,7 +132,9 @@ public final class CopyMoveActionPolicy extends ActionsPolicy {
 
         // Create a non-existing name
         List<FileSystemObject> curFiles = onSelectionListener.onRequestCurrentItems();
-        String  newName = FileHelper.createNonExistingName(ctx, curFiles, fso);
+        String  newName =
+                FileHelper.createNonExistingName(
+                        ctx, curFiles, fso.getName(), R.string.create_copy_regexp);
         final File dst = new File(fso.getParent(), newName);
         File src = new File(fso.getFullPath());
 
@@ -221,7 +223,8 @@ public final class CopyMoveActionPolicy extends ActionsPolicy {
         // 2.- All the destination files must have the same parent and it must be currentDirectory,
         // and not be null
         final String currentDirectory = onSelectionListener.onRequestCurrentDir();
-        for (int i = 0; i < files.size(); i++) {
+        int cc = files.size();
+        for (int i = 0; i < cc; i++) {
             LinkedResource linkedRes = files.get(i);
             if (linkedRes.mSrc == null || linkedRes.mDst == null) {
                 AlertDialog dialog =
@@ -267,6 +270,10 @@ public final class CopyMoveActionPolicy extends ActionsPolicy {
             public int getDialogIcon() {
                 return R.drawable.ic_holo_light_operation;
             }
+            @Override
+            public boolean isDialogCancelable() {
+                return false;
+            }
 
             @Override
             public Spanned requestProgress() {
@@ -304,7 +311,8 @@ public final class CopyMoveActionPolicy extends ActionsPolicy {
                 // 1.- BackgroundAsyncTask
                 BackgroundAsyncTask task = (BackgroundAsyncTask)params[0];
 
-                for (int i = 0; i < this.mFiles.size(); i++) {
+                int cc2 = this.mFiles.size();
+                for (int i = 0; i < cc2; i++) {
                     File src = this.mFiles.get(i).mSrc;
                     File dst = this.mFiles.get(i).mDst;
 
@@ -444,8 +452,10 @@ public final class CopyMoveActionPolicy extends ActionsPolicy {
     private static boolean isOverwriteNeeded(
             List<LinkedResource> files, List<FileSystemObject> currentFiles) {
         boolean askUser = false;
-        for (int i = 0; i < currentFiles.size(); i++) {
-            for (int j = 0; j < files.size(); j++) {
+        int cc = currentFiles.size();
+        for (int i = 0; i < cc; i++) {
+            int cc2 = files.size();
+            for (int j = 0; j < cc2; j++) {
                 FileSystemObject dst1 =  currentFiles.get(i);
                 File dst2 = files.get(j).mDst;
 
@@ -479,7 +489,8 @@ public final class CopyMoveActionPolicy extends ActionsPolicy {
      */
     private static boolean checkMoveConsistency(
             Context ctx, List<LinkedResource> files, String currentDirectory) {
-        for (int i = 0; i < files.size(); i++) {
+        int cc = files.size();
+        for (int i = 0; i < cc; i++) {
             LinkedResource linkRes = files.get(i);
             String src = linkRes.mSrc.getAbsolutePath();
             String dst = linkRes.mDst.getAbsolutePath();

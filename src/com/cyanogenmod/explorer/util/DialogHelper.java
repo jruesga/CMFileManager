@@ -22,18 +22,43 @@ import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup.LayoutParams;
+import android.widget.AbsListView;
+import android.widget.AdapterView;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 import android.widget.ListPopupWindow;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.cyanogenmod.explorer.R;
+import com.cyanogenmod.explorer.adapters.CheckableListAdapter;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A helper class with useful methods for deal with dialogs.
  */
 public final class DialogHelper {
+
+    /**
+     * An interface to listen the selection make for the user.
+     */
+    public interface OnSelectChoiceListener {
+        /**
+         * Method invoked when the user select an option
+         *
+         * @param choice The selected option
+         */
+        public void onSelectChoice(int choice);
+        /**
+         * Method invoked when the user not select any option
+         */
+        public void onNoSelectChoice();
+    }
 
     /**
      * Constructor of <code>DialogHelper</code>.
@@ -124,6 +149,72 @@ public final class DialogHelper {
         builder.setCustomTitle(createTitle(context, icon, context.getString(title)));
         builder.setView(createMessage(context, message));
         builder.setPositiveButton(context.getString(R.string.ok), null);
+        return builder.create();
+    }
+
+    /**
+     * Method that creates a new {@link AlertDialog} for choice between single options.
+     *
+     * @param context The current context
+     * @param icon The icon resource
+     * @param title The resource identifier of the title of the alert dialog
+     * @param options An array with the options
+     * @param defOption The default option
+     * @param onSelectChoiceListener The listener for user choice
+     * @return AlertDialog The alert dialog reference
+     */
+    public static AlertDialog createSingleChoiceDialog(
+            Context context, int icon, int title,
+            String[] options, int defOption,
+            final OnSelectChoiceListener onSelectChoiceListener) {
+        //Create the alert dialog
+        final StringBuffer item = new StringBuffer().append(defOption);
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        builder.setCustomTitle(createTitle(context, icon, context.getString(title)));
+
+        // Create the adapter
+        List<CheckableListAdapter.CheckableItem> items =
+                new ArrayList<CheckableListAdapter.CheckableItem>(options.length);
+        int cc = options.length;
+        for (int i = 0; i < cc; i++) {
+            boolean checked = (i == defOption);
+            items.add(new CheckableListAdapter.CheckableItem(options[i], true, checked));
+        }
+        final CheckableListAdapter adapter = new CheckableListAdapter(context, items);
+
+        // Create the list view and set as view
+        final ListView listView = new ListView(context);
+        LinearLayout.LayoutParams params =
+                new LinearLayout.LayoutParams(
+                        LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
+        listView.setLayoutParams(params);
+        listView.setAdapter(adapter);
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                item.delete(0, item.length());
+                item.append(position);
+                adapter.setSelectedItem(position);
+            }
+        });
+        adapter.setSelectedItem(defOption);
+        listView.setChoiceMode(AbsListView.CHOICE_MODE_SINGLE);
+        builder.setView(listView);
+
+        builder.setNegativeButton(context.getString(R.string.cancel), new OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                onSelectChoiceListener.onNoSelectChoice();
+                dialog.cancel();
+            }
+        });
+        builder.setPositiveButton(context.getString(R.string.ok), new OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                onSelectChoiceListener.onSelectChoice(Integer.parseInt(item.toString()));
+                dialog.dismiss();
+            }
+        });
         return builder.create();
     }
 
@@ -380,7 +471,7 @@ public final class DialogHelper {
      * @param duration How long to display the message.
      */
     public static void showToast(Context context, int msgResourceId, int duration) {
-        Toast.makeText(context, msgResourceId, duration).show();
+        showToast(context, context.getString(msgResourceId), duration);
     }
 
 }

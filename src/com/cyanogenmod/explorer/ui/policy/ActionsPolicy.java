@@ -23,6 +23,7 @@ import android.widget.Toast;
 
 import com.cyanogenmod.explorer.R;
 import com.cyanogenmod.explorer.ui.dialogs.MessageProgressDialog;
+import com.cyanogenmod.explorer.util.DialogHelper;
 import com.cyanogenmod.explorer.util.ExceptionUtil;
 
 
@@ -49,6 +50,13 @@ public abstract class ActionsPolicy {
          * @return int The resource identifier of the title of the dialog
          */
         int getDialogTitle();
+
+        /**
+         * Method that returns if the dialog is cancelable
+         *
+         * @return boolean If the dialog is cancelable
+         */
+        boolean isDialogCancelable();
 
         /**
          * Method invoked when need to update the progress of the dialog
@@ -99,12 +107,19 @@ public abstract class ActionsPolicy {
         @Override
         protected void onPreExecute() {
             // Create the waiting dialog while doing some stuff on background
+            final BackgroundAsyncTask task = this;
             this.mDialog = new MessageProgressDialog(
                     this.mCtx,
-                    R.drawable.ic_holo_light_operation,
-                    R.string.waiting_dialog_copying_title,
+                    this.mCallable.getDialogIcon(),
+                    this.mCallable.getDialogTitle(),
                     R.string.waiting_dialog_msg,
-                    false);
+                    this.mCallable.isDialogCancelable());
+            this.mDialog.setOnCancelListener(new MessageProgressDialog.OnCancelListener() {
+                @Override
+                public boolean onCancel() {
+                    return task.cancel(true);
+                }
+            });
             Spanned progress = this.mCallable.requestProgress();
             this.mDialog.setProgress(progress);
             this.mDialog.show();
@@ -139,6 +154,12 @@ public abstract class ActionsPolicy {
         }
 
         @Override
+        protected void onCancelled() {
+            //Operation complete.
+            this.mCallable.onSuccess();
+        }
+
+        @Override
         protected void onProgressUpdate(Spanned... values) {
             this.mDialog.setProgress(values[0]);
         }
@@ -159,6 +180,6 @@ public abstract class ActionsPolicy {
      * @hide
      */
     protected static void showOperationSuccessMsg(Context ctx) {
-        Toast.makeText(ctx, R.string.msgs_success, Toast.LENGTH_SHORT).show();
+        DialogHelper.showToast(ctx, R.string.msgs_success, Toast.LENGTH_SHORT);
     }
 }

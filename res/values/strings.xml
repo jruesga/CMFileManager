@@ -394,6 +394,9 @@
   <!-- Create copy regexp -->
   <string name="create_copy_regexp">
     <xliff:g id="name">%1$s</xliff:g> - copy<xliff:g id="extension">%2$s</xliff:g></string>
+  <!-- New compressed file -->
+  <string name="create_new_compress_file_regexp">
+    <xliff:g id="name">%1$s</xliff:g> - new<xliff:g id="extension">%2$s</xliff:g></string>
 
   <!-- Waiting dialog * Performing operation message -->
   <string name="waiting_dialog_msg">Performing operation&#8230;</string>
@@ -419,9 +422,22 @@
   <!-- Waiting dialog * Extracting message -->
   <string name="waiting_dialog_extracting_msg">
     <![CDATA[<b>File</b>]]> <xliff:g id="file">%1$s</xliff:g></string>
+  <!-- Waiting dialog * Extracting title -->
+  <string name="waiting_dialog_compressing_title">Compressing&#8230;</string>
+  <!-- Waiting dialog * Extracting message -->
+  <string name="waiting_dialog_compressing_msg">
+    <![CDATA[<b>File</b>]]> <xliff:g id="file">%1$s</xliff:g></string>
   <!-- Waiting dialog * Initializing the dialog -->
-  <string name="waiting_dialog_extracting_analizing_msg">
+  <string name="waiting_dialog_analizing_msg">
     <![CDATA[<b>Analizing&#8230;</b>]]></string>
+  <!-- Extracting * Success message -->
+  <string name="msgs_extracting_success">
+    The extracting operation was completed successfully. The data was extracted to
+    <xliff:g id="destination">%1$s</xliff:g></string>
+  <!-- Compressing * Success message -->
+  <string name="msgs_compressing_success">
+    The compressing operation was completed successfully. The data was compressed to
+    <xliff:g id="destination">%1$s</xliff:g></string>
 
   <!-- Actions Dialog * Title -->
   <string name="actions_dialog_title">Actions</string>
@@ -447,6 +463,8 @@
   <string name="actions_menu_move_selection">Move selection</string>
   <!-- Actions Dialog * Menu * Delete selection -->
   <string name="actions_menu_delete_selection">Delete selection</string>
+  <!-- Actions Dialog * Menu * Compress selection -->
+  <string name="actions_menu_compress_selection">Compress selection</string>
   <!-- Actions Dialog * Menu * Create link -->
   <string name="actions_menu_create_link">Create link</string>
   <!-- Actions Dialog * Menu * Add to bookmarks the current folder -->
@@ -459,6 +477,8 @@
   <string name="actions_menu_execute">Execute</string>
   <!-- Actions Dialog * Menu * Send -->
   <string name="actions_menu_send">Send</string>
+  <!-- Actions Dialog * Menu * Compress -->
+  <string name="actions_menu_compress">Compress</string>
   <!-- Actions Dialog * Menu * Extract -->
   <string name="actions_menu_extract">Extract</string>
   <!-- Actions Dialog * Menu * Share -->
@@ -558,6 +578,16 @@
   <string name="category_audio">AUDIO</string>
   <string name="category_video">VIDEO</string>
   <string name="category_security">SECURITY</string>
+
+  <!-- Compression modes dialog title -->
+  <string name="compression_mode_title">Compression mode</string>
+  <!-- Compression modes -->
+  <string name="compression_mode_tar" translatable="false">Tar (tar)</string>
+  <string name="compression_mode_tar_gzip" translatable="false">Tar/Gzip (tar.gz)</string>
+  <string name="compression_mode_tar_gzip2" translatable="false">Tar/Gzip (tgz)</string>
+  <string name="compression_mode_tar_bzip" translatable="false">Tar/Bzip (tar.bz2)</string>
+  <string name="compression_mode_gzip" translatable="false">Gzip (gz)</string>
+  <string name="compression_mode_bzip" translatable="false">Bzip (bz2)</string>
 
   <!-- Preferences title -->
   <string name="pref">Settings</string>

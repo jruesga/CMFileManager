@@ -47,7 +47,6 @@ import com.cyanogenmod.explorer.commands.ResolveLinkExecutable;
 import com.cyanogenmod.explorer.commands.SIGNAL;
 import com.cyanogenmod.explorer.commands.SendSignalExecutable;
 import com.cyanogenmod.explorer.commands.WriteExecutable;
-import com.cyanogenmod.explorer.commands.shell.CompressCommand.CompressionMode;
 import com.cyanogenmod.explorer.console.CommandNotFoundException;
 import com.cyanogenmod.explorer.console.shell.ShellConsole;
 import com.cyanogenmod.explorer.model.Group;
@@ -55,6 +54,7 @@ import com.cyanogenmod.explorer.model.MountPoint;
 import com.cyanogenmod.explorer.model.Permissions;
 import com.cyanogenmod.explorer.model.Query;
 import com.cyanogenmod.explorer.model.User;
+import com.cyanogenmod.explorer.preferences.CompressionMode;
 
 /**
  * A class for create shell {@link "Executable"} objects.
@@ -523,11 +523,11 @@ public class ShellExecutableCreator implements ExecutableCreator {
      */
     @Override
     public UncompressCommand createUncompressExecutable(
-            String src,
+            String src, String dst,
             AsyncResultListener asyncResultListener)
             throws CommandNotFoundException {
         try {
-            return new UncompressCommand(src, asyncResultListener);
+            return new UncompressCommand(src, dst, asyncResultListener);
         } catch (InvalidCommandDefinitionException icdEx) {
             throw new CommandNotFoundException("UncompressCommand", icdEx); //$NON-NLS-1$
         }

@@ -26,6 +26,7 @@ import android.widget.Toast;
 import com.cyanogenmod.explorer.R;
 import com.cyanogenmod.explorer.model.FileSystemObject;
 import com.cyanogenmod.explorer.ui.dialogs.AssociationsDialog;
+import com.cyanogenmod.explorer.util.DialogHelper;
 import com.cyanogenmod.explorer.util.ExceptionUtil;
 import com.cyanogenmod.explorer.util.MimeTypeHelper;
 
@@ -140,7 +141,7 @@ public final class IntentsActionPolicy extends ActionsPolicy {
 
         // No registered application
         if (info.size() == 0) {
-            Toast.makeText(ctx, R.string.msgs_not_registered_app, Toast.LENGTH_SHORT).show();
+            DialogHelper.showToast(ctx, R.string.msgs_not_registered_app, Toast.LENGTH_SHORT);
             return;
         }
 

@@ -55,6 +55,10 @@
       android:showAsAction="ifRoom"
       android:title="@string/actions_menu_delete_selection"/>
     <item
+      android:id="@+id/mnu_actions_compress_selection"
+      android:showAsAction="ifRoom"
+      android:title="@string/actions_menu_compress_selection"/>
+    <item
       android:id="@+id/mnu_actions_create_link_global"
       android:showAsAction="ifRoom"
       android:title="@string/actions_menu_create_link"/>
@@ -94,6 +98,10 @@
       android:id="@+id/mnu_actions_rename"
       android:showAsAction="ifRoom"
       android:title="@string/actions_menu_rename"/>
+    <item
+      android:id="@+id/mnu_actions_compress"
+      android:showAsAction="ifRoom"
+      android:title="@string/actions_menu_compress"/>
     <item
       android:id="@+id/mnu_actions_extract"
       android:showAsAction="ifRoom"

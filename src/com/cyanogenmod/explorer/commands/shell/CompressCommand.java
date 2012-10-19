@@ -22,6 +22,10 @@ import com.cyanogenmod.explorer.commands.SIGNAL;
 import com.cyanogenmod.explorer.console.CommandNotFoundException;
 import com.cyanogenmod.explorer.console.ExecutionException;
 import com.cyanogenmod.explorer.console.InsufficientPermissionsException;
+import com.cyanogenmod.explorer.preferences.CompressionMode;
+import com.cyanogenmod.explorer.util.FileHelper;
+
+import java.io.File;
 
 /**
  * A class for compress file system objects
@@ -35,39 +39,68 @@ public class CompressCommand extends AsyncResultProgram implements CompressExecu
     /**
      * An enumeration of implemented compression modes.
      */
-    public enum CompressionMode {
+    private enum Mode {
         /**
-         * Without compression
+         * Archive using Tar algorithm
          */
-        NONE("", "", ""), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+        A_TAR(TAR_ID, "", CompressionMode.A_TAR), //$NON-NLS-1$
+        /**
+         * Archive and compress using Gzip algorithm
+         */
+        AC_GZIP(TAR_ID, "z", CompressionMode.AC_GZIP), //$NON-NLS-1$
+        /**
+         * Archive and compress using Gzip algorithm
+         */
+        AC_GZIP2(TAR_ID, "z", CompressionMode.AC_GZIP2), //$NON-NLS-1$
+        /**
+         * Archive and compress using Bzip algorithm
+         */
+        AC_BZIP(TAR_ID, "j", CompressionMode.AC_BZIP), //$NON-NLS-1$
         /**
          * Compress using Gzip algorithm
          */
-        GZIP(GZIP_ID, "z", "gz"), //$NON-NLS-1$ //$NON-NLS-2$
+        C_GZIP(GZIP_ID, "z", CompressionMode.C_GZIP), //$NON-NLS-1$
         /**
          * Compress using Bzip algorithm
          */
-        BZIP(BZIP_ID, "j", "bz2"); //$NON-NLS-1$ //$NON-NLS-2$
+        C_BZIP(BZIP_ID, "j", CompressionMode.C_BZIP); //$NON-NLS-1$
 
-        String mId;
-        String mFlag;
-        String mExtension;
+        final String mId;
+        final String mFlag;
+        final CompressionMode mMode;
 
         /**
-         * Constructor of <code>CompressionMode</code>
+         * Constructor of <code>Mode</code>
          *
          * @param id The command identifier
          * @param flag The tar compression flag
-         * @param extension The file extension
+         * @param mode The compression mode
          */
-        private CompressionMode(String id, String flag, String extension) {
+        private Mode(String id, String flag, CompressionMode mode) {
             this.mId = id;
             this.mFlag = flag;
-            this.mExtension = extension;
+            this.mMode = mode;
+        }
+
+        /**
+         * Method that return the mode from his compression mode
+         *
+         * @param mode The compression mode
+         * @return Mode The mode
+         */
+        public static Mode fromCompressionMode(CompressionMode mode) {
+            Mode[] modes = Mode.values();
+            int cc = modes.length;
+            for (int i = 0; i < cc; i++) {
+                if (modes[i].mMode.compareTo(mode) == 0) {
+                    return modes[i];
+                }
+            }
+            return null;
         }
     }
 
-    private static final String TAR_ID = "compress"; //$NON-NLS-1$
+    private static final String TAR_ID = "tar"; //$NON-NLS-1$
     private static final String GZIP_ID = "gzip"; //$NON-NLS-1$
     private static final String BZIP_ID = "bzip"; //$NON-NLS-1$
 
@@ -89,8 +122,12 @@ public class CompressCommand extends AsyncResultProgram implements CompressExecu
     public CompressCommand(
             CompressionMode mode, String dst, String[] src, AsyncResultListener asyncResultListener)
             throws InvalidCommandDefinitionException {
-        super(TAR_ID, asyncResultListener, new String[]{mode.mFlag, dst});
-        addExpandedArguments(src, true);
+        super(TAR_ID, asyncResultListener,
+                new String[]{Mode.fromCompressionMode(mode).mFlag, dst});
+
+        //Convert the arguments from absolute to relative
+        addExpandedArguments(
+                convertAbsolutePathsToRelativePaths(dst, src), true);
 
         // Create the output file
         this.mOutFile = dst;
@@ -108,7 +145,11 @@ public class CompressCommand extends AsyncResultProgram implements CompressExecu
     public CompressCommand(
             CompressionMode mode, String src, AsyncResultListener asyncResultListener)
             throws InvalidCommandDefinitionException {
-        super(mode.mId, asyncResultListener, resolveArguments(mode, src));
+        super(Mode.fromCompressionMode(mode).mId, asyncResultListener, resolveArguments(mode, src));
+        if (Mode.fromCompressionMode(mode).mMode.mArchive) {
+            throw new InvalidCommandDefinitionException(
+                            "Unsupported compression mode"); //$NON-NLS-1$
+        }
 
         // Create the output file
         this.mOutFile = resolveOutputFile(mode, src);
@@ -150,7 +191,8 @@ public class CompressCommand extends AsyncResultProgram implements CompressExecu
         lines[0] = this.mPartial + lines[0];
 
         // Return all the lines, except the last
-        for (int i = 0; i < lines.length-1; i++) {
+        int cc = lines.length;
+        for (int i = 0; i < cc-1; i++) {
             if (getAsyncResultListener() != null) {
                 getAsyncResultListener().onPartialResult(lines[i]);
             }
@@ -223,8 +265,8 @@ public class CompressCommand extends AsyncResultProgram implements CompressExecu
      */
     private static String[] resolveArguments(CompressionMode mode, String src) {
         switch (mode) {
-            case GZIP:
-            case BZIP:
+            case C_GZIP:
+            case C_BZIP:
                 return new String[]{src};
             default:
                 return new String[]{};
@@ -238,5 +280,28 @@ public class CompressCommand extends AsyncResultProgram implements CompressExecu
      */
     private static String resolveOutputFile(CompressionMode mode, String src) {
         return String.format("%s.%s", src, mode.mExtension); //$NON-NLS-1$
+    }
+
+    /**
+     * Method that converts the absolute paths of the source files to relative paths
+     *
+     * @param dst The destination compressed file
+     * @param src The source uncompressed files
+     * @return String[] The array of relative paths
+     */
+    private static String[] convertAbsolutePathsToRelativePaths(String dst, String[] src) {
+        File parent  = new File(dst).getParentFile();
+        String p = File.separator;
+        if (parent != null) {
+            p = parent.getAbsolutePath();
+        }
+
+        // Converts every path
+        String[] out = new String[src.length];
+        int cc = src.length;
+        for (int i = 0; i < cc; i++) {
+            out[i] = FileHelper.toRelativePath(src[i], p);
+        }
+        return out;
     }
 }

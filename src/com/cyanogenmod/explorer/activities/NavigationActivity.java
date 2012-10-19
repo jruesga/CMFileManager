@@ -1222,7 +1222,8 @@ public class NavigationActivity extends Activity
      */
     private void removeFromHistory(FileSystemObject fso) {
         if (this.mHistory != null) {
-            for (int i = this.mHistory.size()-1; i >= 0 ; i--) {
+            int cc = this.mHistory.size();
+            for (int i = cc-1; i >= 0 ; i--) {
                 History history = this.mHistory.get(i);
                 if (history.getItem() instanceof NavigationViewInfoParcelable) {
                     String p0 = fso.getFullPath();

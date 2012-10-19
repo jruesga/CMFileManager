@@ -53,7 +53,6 @@ import com.cyanogenmod.explorer.commands.SyncResultExecutable;
 import com.cyanogenmod.explorer.commands.UncompressExecutable;
 import com.cyanogenmod.explorer.commands.WritableExecutable;
 import com.cyanogenmod.explorer.commands.WriteExecutable;
-import com.cyanogenmod.explorer.commands.shell.CompressCommand.CompressionMode;
 import com.cyanogenmod.explorer.commands.shell.InvalidCommandDefinitionException;
 import com.cyanogenmod.explorer.console.CommandNotFoundException;
 import com.cyanogenmod.explorer.console.Console;
@@ -74,6 +73,7 @@ import com.cyanogenmod.explorer.model.Permissions;
 import com.cyanogenmod.explorer.model.Query;
 import com.cyanogenmod.explorer.model.SearchResult;
 import com.cyanogenmod.explorer.model.User;
+import com.cyanogenmod.explorer.preferences.CompressionMode;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -1296,6 +1296,8 @@ public final class CommandHelper {
      *
      * @param context The current context (needed if console == null)
      * @param src The file to compress
+     * @param dst The destination file of folder (if null this method resolve with the best
+     * fit based on the src)
      * @param asyncResultListener The partial result listener
      * @param console The console in which execute the program.
      * <code>null</code> to attach to the default console
@@ -1313,7 +1315,7 @@ public final class CommandHelper {
      * @see CompressExecutable
      */
     public static UncompressExecutable uncompress(
-            Context context, String src,
+            Context context, String src, String dst,
             AsyncResultListener asyncResultListener, Console console)
             throws FileNotFoundException, IOException, ConsoleAllocException,
             NoSuchFileOrDirectory, InsufficientPermissionsException,
@@ -1323,7 +1325,7 @@ public final class CommandHelper {
 
         UncompressExecutable executable1 =
                 c.getExecutableFactory().newCreator().
-                    createUncompressExecutable(src, asyncResultListener);
+                    createUncompressExecutable(src, dst, asyncResultListener);
 
         // Prior to write to disk the data, ensure that can write to the disk using
         // createFile or createFolder method

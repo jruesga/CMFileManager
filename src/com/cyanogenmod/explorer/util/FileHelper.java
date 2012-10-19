@@ -258,7 +258,8 @@ public final class FileHelper {
         }
 
         // Exceptions to the general extraction method
-        for (int i = 0; i < COMPRESSED_TAR.length; i++) {
+        int cc = COMPRESSED_TAR.length;
+        for (int i = 0; i < cc; i++) {
             if (name.endsWith("." + COMPRESSED_TAR[i])) { //$NON-NLS-1$
                 return COMPRESSED_TAR[i];
             }
@@ -468,7 +469,8 @@ public final class FileHelper {
         ExplorerSettings showSymlinksPref = ExplorerSettings.SETTINGS_SHOW_SYMLINKS;
 
         //Remove all unnecessary files (no required by the user)
-        for (int i = files.size() - 1; i >= 0; i--) {
+        int cc = files.size();
+        for (int i = cc - 1; i >= 0; i--) {
             FileSystemObject file = files.get(i);
 
             //Hidden files
@@ -652,13 +654,16 @@ public final class FileHelper {
      *
      * @param ctx The current context
      * @param files The list of files of the current directory
-     * @param fso The file system object
+     * @param attemptedName The attempted name
+     * @param regexp The resource of the regular expression to create the new name
      * @return String The new non-existing name
      */
     public static String createNonExistingName(
-            final Context ctx, final List<FileSystemObject> files, final FileSystemObject fso) {
+            final Context ctx, final List<FileSystemObject> files,
+            final String attemptedName, int regexp) {
         // Find a non-exiting name
-        String newName = fso.getName();
+        String newName = attemptedName;
+        if (!isNameExists(files, newName)) return newName;
         do {
             String name  = FileHelper.getName(newName);
             String ext  = FileHelper.getExtension(newName);
@@ -667,7 +672,7 @@ public final class FileHelper {
             } else {
                 ext = String.format(".%s", ext); //$NON-NLS-1$
             }
-            newName = ctx.getString(R.string.create_copy_regexp, name, ext);
+            newName = ctx.getString(regexp, name, ext);
         } while (isNameExists(files, newName));
         return newName;
     }
@@ -715,11 +720,44 @@ public final class FileHelper {
             return false;
         }
         String ext = getExtension(fso);
-        for (int i = 0; i < VALID.length; i++) {
+        int cc = VALID.length;
+        for (int i = 0; i < cc; i++) {
             if (VALID[i].compareTo(ext) == 0) {
                 return true;
             }
         }
         return false;
+    }
+
+    /**
+     * Method that converts an absolute path to a relative path
+     *
+     * @param path The absolute path to convert
+     * @param relativeTo The absolute path from which make path relative to (a folder)
+     * @return String The relative path
+     */
+    public static String toRelativePath(String path, String relativeTo) {
+        // Normalize the paths
+        File f1 = new File(path);
+        File f2 = new File(relativeTo);
+        String s1 = f1.getAbsolutePath();
+        String s2 = f2.getAbsolutePath();
+        if (!s2.endsWith(File.separator)) {
+            s2 = s2 + File.separator;
+        }
+
+        // If s2 contains s1 then the relative is replace of the start of the path
+        if (s1.startsWith(s2)) {
+            return s1.substring(s2.length());
+        }
+
+        StringBuffer relative = new StringBuffer();
+        do {
+            File f3 = new File(s2);
+            relative.append(String.format("..%s", File.separator)); //$NON-NLS-1$
+            s2 = f3.getParent() + File.separator;
+        } while (!s1.startsWith(s2) && !s1.startsWith(new File(s2).getAbsolutePath()));
+        s2 = new File(s2).getAbsolutePath();
+        return relative.toString() + s1.substring(s2.length());
     }
 }

@@ -421,10 +421,10 @@ public class AssociationsDialog implements OnItemClickListener {
                     } catch (Exception e) {
                         // Capture the exception
                         ExceptionUtil.translateException(this.mContext, e, true, false);
-                        Toast.makeText(
+                        DialogHelper.showToast(
                                 this.mContext,
                                 R.string.msgs_action_association_failed,
-                                Toast.LENGTH_SHORT).show();
+                                Toast.LENGTH_SHORT);
                     }
                 }
             }

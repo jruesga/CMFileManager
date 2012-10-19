@@ -82,4 +82,15 @@
     <item>2</item>
   </string-array>
 
+  <!-- Compression modes -->
+  <!-- Note: Archive modes must be before that compression modes -->
+  <string-array name="compression_modes_labels" translable="false">
+    <item>@string/compression_mode_tar</item>
+    <item>@string/compression_mode_tar_gzip</item>
+    <item>@string/compression_mode_tar_gzip2</item>
+    <item>@string/compression_mode_tar_bzip</item>
+    <item>@string/compression_mode_gzip</item>
+    <item>@string/compression_mode_bzip</item>
+  </string-array>
+
 </resources>

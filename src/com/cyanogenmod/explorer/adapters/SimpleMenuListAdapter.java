@@ -65,7 +65,8 @@ public class SimpleMenuListAdapter extends BaseAdapter {
         this(context, menuResourceId);
 
         //Remove all item menus that no belongs to the group
-        for (int i = this.mMenu.size() - 1; i >= 0; i--) {
+        int cc = this.mMenu.size();
+        for (int i = cc - 1; i >= 0; i--) {
             MenuItem menuItem = this.mMenu.getItem(i);
             if (menuItem.getGroupId() != menuGroupResourceId) {
                 this.mMenu.removeItem(menuItem.getItemId());

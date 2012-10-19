@@ -38,6 +38,7 @@ import com.cyanogenmod.explorer.preferences.ExplorerSettings;
 import com.cyanogenmod.explorer.preferences.ObjectStringIdentifier;
 import com.cyanogenmod.explorer.preferences.Preferences;
 import com.cyanogenmod.explorer.providers.RecentSearchesContentProvider;
+import com.cyanogenmod.explorer.util.DialogHelper;
 
 import java.util.List;
 
@@ -298,10 +299,10 @@ public class SettingsPreferences extends PreferenceActivity {
                     clearRecentSearchTerms();
 
                     // Advise the user
-                    Toast.makeText(
+                    DialogHelper.showToast(
                             getActivity(),
                             getActivity().getString(R.string.pref_remove_saved_search_terms_msg),
-                            Toast.LENGTH_SHORT).show();
+                            Toast.LENGTH_SHORT);
                 }
                 return false;
             }

@@ -314,6 +314,24 @@ public class ActionsDialog implements OnItemClickListener, OnItemLongClickListen
                             this.mFso,
                             this.mOnRequestRefreshListener);
                 break;
+            //- Compress
+            case R.id.mnu_actions_compress:
+                if (this.mOnSelectionListener != null) {
+                    CompressActionPolicy.compress(
+                            this.mContext,
+                            this.mFso,
+                            this.mOnSelectionListener,
+                            this.mOnRequestRefreshListener);
+                }
+                break;
+            case R.id.mnu_actions_compress_selection:
+                if (this.mOnSelectionListener != null) {
+                    CompressActionPolicy.compress(
+                            this.mContext,
+                            this.mOnSelectionListener,
+                            this.mOnRequestRefreshListener);
+                }
+                break;
 
             //- Create copy
             case R.id.mnu_actions_create_copy:
@@ -603,7 +621,8 @@ public class ActionsDialog implements OnItemClickListener, OnItemLongClickListen
             List<FileSystemObject> items, FileSystemObject directory) {
         List<LinkedResource> resources =
                 new ArrayList<LinkedResource>(items.size());
-        for (int i = 0; i < items.size(); i++) {
+        int cc = items.size();
+        for (int i = 0; i < cc; i++) {
             FileSystemObject fso = items.get(i);
             File src = new File(fso.getFullPath());
             File dst = new File(directory.getFullPath(), fso.getName());

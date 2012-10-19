@@ -92,7 +92,8 @@ public class TwoColumnsMenuListAdapter extends SimpleMenuListAdapter
      */
     private void removeSeparators() {
         Menu menu = getMenu();
-        for (int i = menu.size() - 1; i >= 0; i--) {
+        int cc = menu.size();
+        for (int i = cc - 1; i >= 0; i--) {
             MenuItem menuItem = menu.getItem(i);
             if (menuItem.getTitle() == null || menuItem.getTitle().length() == 0) {
                 menu.removeItem(menuItem.getItemId());

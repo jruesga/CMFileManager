@@ -24,6 +24,7 @@ import com.cyanogenmod.explorer.model.Bookmark;
 import com.cyanogenmod.explorer.model.Bookmark.BOOKMARK_TYPE;
 import com.cyanogenmod.explorer.model.FileSystemObject;
 import com.cyanogenmod.explorer.preferences.Bookmarks;
+import com.cyanogenmod.explorer.util.DialogHelper;
 import com.cyanogenmod.explorer.util.ExceptionUtil;
 
 /**
@@ -45,16 +46,16 @@ public final class BookmarksActionPolicy extends ActionsPolicy {
             bookmark = Bookmarks.addBookmark(ctx, bookmark);
             if (bookmark == null) {
                 // The operation fails
-                Toast.makeText(
+                DialogHelper.showToast(
                         ctx,
                         R.string.msgs_operation_failure,
-                        Toast.LENGTH_SHORT).show();
+                        Toast.LENGTH_SHORT);
             } else {
                 // Success
-                Toast.makeText(
+                DialogHelper.showToast(
                         ctx,
                         R.string.bookmarks_msgs_add_success,
-                        Toast.LENGTH_SHORT).show();
+                        Toast.LENGTH_SHORT);
             }
 
         } catch (Exception e) {

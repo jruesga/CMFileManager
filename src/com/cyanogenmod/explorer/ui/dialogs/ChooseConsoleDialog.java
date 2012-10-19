@@ -21,6 +21,7 @@ import android.content.Context;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup.LayoutParams;
+import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.LinearLayout;
@@ -89,10 +90,12 @@ public class ChooseConsoleDialog implements OnItemClickListener {
         //Create the list view
         ListView listView = new ListView(context);
         LinearLayout.LayoutParams params =
-                new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
+                new LinearLayout.LayoutParams(
+                        LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
         listView.setLayoutParams(params);
         listView.setAdapter(adapter);
         listView.setOnItemClickListener(this);
+        listView.setChoiceMode(AbsListView.CHOICE_MODE_SINGLE);
 
         //Create the dialog
         this.mDialog = DialogHelper.createDialog(
@@ -114,6 +117,9 @@ public class ChooseConsoleDialog implements OnItemClickListener {
      */
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        try {
+            ((CheckableListAdapter)((ListView)parent).getAdapter()).setSelectedItem(position);
+        } catch (Exception e) {/**NON BLOCK**/}
         this.mDialog.dismiss();
         boolean ret = false;
         Boolean superuser = Boolean.FALSE;

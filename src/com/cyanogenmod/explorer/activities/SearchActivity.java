@@ -695,7 +695,8 @@ public class SearchActivity extends Activity
     @SuppressWarnings("static-method")
     private List<String> filterQuery(List<String> original) {
         List<String> dst = new ArrayList<String>(original);
-        for (int i = dst.size() - 1; i >= 0; i--) {
+        int cc = dst.size();
+        for (int i = cc - 1; i >= 0; i--) {
             String query = dst.get(i);
             if (query == null || query.trim().length() < MIN_CHARS_SEARCH) {
                 dst.remove(i);

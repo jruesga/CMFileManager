@@ -183,7 +183,7 @@ public class UncompressCommandTest extends AbstractConsoleTest {
             this.mNormalEnd = false;
             cmd =
                 CommandHelper.uncompress(
-                    getContext(), src, new AsyncResultListener() {
+                    getContext(), src, null, new AsyncResultListener() {
                         public void onAsyncStart() {
                             /**NON BLOCK**/
                         }

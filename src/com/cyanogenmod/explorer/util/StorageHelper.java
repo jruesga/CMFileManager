@@ -24,6 +24,7 @@ import com.cyanogenmod.explorer.ExplorerApplication;
 import com.cyanogenmod.explorer.R;
 
 import java.io.File;
+import java.lang.reflect.Constructor;
 import java.lang.reflect.Method;
 
 
@@ -42,6 +43,7 @@ public final class StorageHelper {
      * @param ctx The current context
      * @return StorageVolume[] The storage volumes defined in the system
      */
+    @SuppressWarnings("boxing")
     public static synchronized StorageVolume[] getStorageVolumes(Context ctx) {
         if (sStorageVolumes == null) {
             //IMP!! Android SDK doesn't have a "getVolumeList" but is supported by CM10.
@@ -63,7 +65,20 @@ public final class StorageHelper {
                     } else {
                         description = ctx.getString(R.string.external_storage);
                     }
-                    StorageVolume sv = new StorageVolume(path, description, false, false, 0, false, 0);
+                    // Android SDK has a different constructor for StorageVolume. In CM10 the
+                    // description is a resource id. Create the object by reflection
+                    Constructor<StorageVolume> constructor =
+                            StorageVolume.class.
+                                getConstructor(
+                                        String.class,
+                                        String.class,
+                                        boolean.class,
+                                        boolean.class,
+                                        int.class,
+                                        boolean.class,
+                                        long.class);
+                    StorageVolume sv =
+                            constructor.newInstance(path, description, false, false, 0, false, 0);
                     sStorageVolumes = new StorageVolume[]{sv};
                 } catch (Exception ex2) {
                     /**NON BLOCK**/

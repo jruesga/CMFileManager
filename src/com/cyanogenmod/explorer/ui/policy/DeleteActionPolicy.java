@@ -77,7 +77,7 @@ public final class DeleteActionPolicy extends ActionsPolicy {
             final OnRequestRefreshListener onRequestRefreshListener) {
 
         // Ask the user before remove
-        AlertDialog dialog =DialogHelper.createYesNoDialog(
+        AlertDialog dialog = DialogHelper.createYesNoDialog(
             ctx, R.string.actions_ask_undone_operation,
             new DialogInterface.OnClickListener() {
                 @Override

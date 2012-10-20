@@ -709,9 +709,23 @@
   <string name="pref_debug_traces_off">Capture of debug traces is disabled</string>
 
   <!-- Security * Extract relative or absolute files -->
-  <string name="security_warning_extract">Warning!\n\n
-    Extracting an archive file with relative or absolute paths may cause damage to your system,
+  <string name="security_warning_extract">Warning!\n
+    \nExtracting an archive file with relative or absolute paths may cause damage to your system,
     because the operation could overwrite some of the system files.\n\n
     Continue?</string>
+
+  <!-- Welcome Dialog * Title -->
+  <string name="welcome_title">Welcome</string>
+  <!-- Welcome Dialog * Message -->
+  <string name="welcome_msg">
+    Welcome to the CyanogenMod file manager.
+    \n\nThis app allow you to explore all the file system and do operations that could break
+    your device. For this reason, the first time, the app will run in a low-privileged environment.
+    This ensure you to break anything.
+    \n\nYou can access to a privileged environment at general settings. Using the advanced mode
+    allow you to select between a low-privileged environment (where you are asked to gain
+    privileges) and a full privileged environment. Under, this environment, it\'s your
+    responsability to ensure that an operation doesn\'t break your system.
+    \n\nThe CyanogenMod Team.</string>
 
 </resources>

@@ -24,6 +24,12 @@ import com.cyanogenmod.explorer.util.FileHelper;
  */
 public enum ExplorerSettings {
     /**
+     * Whether is the first use of the application
+     * @hide
+     */
+    SETTINGS_FIRST_USE("cm_explorer_first_use", Boolean.TRUE),  //$NON-NLS-1$
+
+    /**
      * Whether use SUPERUSER mode.
      * @hide
      */

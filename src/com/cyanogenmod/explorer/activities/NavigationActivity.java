@@ -245,6 +245,9 @@ public class NavigationActivity extends Activity
         //Set the main layout of the activity
         setContentView(R.layout.navigation);
 
+        // Show welcome message
+        showWelcomeMsg();
+
         //Initialize activity
         init();
 
@@ -330,6 +333,29 @@ public class NavigationActivity extends Activity
      */
     private void init() {
         this.mHistory = new ArrayList<History>();
+    }
+
+    /**
+     * Method that displays a welcome message the first time the user
+     * access the application
+     */
+    private void showWelcomeMsg() {
+        boolean firstUse = Preferences.getSharedPreferences().getBoolean(
+                ExplorerSettings.SETTINGS_FIRST_USE.getId(),
+                ((Boolean)ExplorerSettings.SETTINGS_FIRST_USE.getDefaultValue()).booleanValue());
+
+        //Display the welcome message?
+        if (firstUse) {
+            AlertDialog dialog = DialogHelper.createAlertDialog(
+                this, R.drawable.ic_launcher, R.string.welcome_title, R.string.welcome_msg);
+            dialog.show();
+
+            // Don't display again this dialog
+            try {
+                Preferences.savePreference(
+                        ExplorerSettings.SETTINGS_FIRST_USE, Boolean.FALSE, true);
+            } catch (Exception e) {/**NON BLOCK**/}
+        }
     }
 
     /**

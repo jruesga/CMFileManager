@@ -21,6 +21,7 @@ import android.view.View;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 
+import com.cyanogenmod.explorer.ExplorerApplication;
 import com.cyanogenmod.explorer.R;
 import com.cyanogenmod.explorer.adapters.SearchResultAdapter;
 import com.cyanogenmod.explorer.adapters.SearchResultAdapter.OnRequestMenuListener;
@@ -113,10 +114,13 @@ public class SearchResultDrawingAsyncTask extends AsyncTask<Object, Integer, Boo
                                 defaultValue);
             SearchSortResultMode mode = SearchSortResultMode.fromId(value);
 
+            // Is in jail room?
+            boolean jailRoom = !ExplorerApplication.isAdvancedMode();
+
             //Process all the data
             final List<SearchResult> result =
                     SearchHelper.convertToResults(
-                            FileHelper.applyUserPreferences(this.mFiles, true),
+                            FileHelper.applyUserPreferences(this.mFiles, true, jailRoom),
                             this.mQueries);
             if (mode.compareTo(SearchSortResultMode.NAME) == 0) {
                 Collections.sort(result, new Comparator<SearchResult>() {

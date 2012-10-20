@@ -30,5 +30,5 @@ public class SendSignalCommandTest extends AbstractConsoleTest {
         return false;
     }
 
-    // Can't perform any test, because a running program in a shell is needed.
+    // cann't perform any test, because a running program in a shell is needed.
 }

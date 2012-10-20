@@ -66,7 +66,7 @@ public final class ParseHelper {
      * @param parent The parent of the object
      * @param src The unix string style line
      * @return FileSystemObject The file system object reference
-     * @throws ParseException If the line can't be parsed
+     * @throws ParseException If the line cann't be parsed
      * @see #toFileSystemObject(String, String, boolean)
      */
     public static FileSystemObject toFileSystemObject(
@@ -82,7 +82,7 @@ public final class ParseHelper {
      * @param src The unix string style line
      * @param quick Do not resolve data (User and Group doesn't have a valid reference)
      * @return FileSystemObject The file system object reference
-     * @throws ParseException If the line can't be parsed
+     * @throws ParseException If the line cann't be parsed
      */
     //
     //<permission> <user> <group> <size> <last modified>  <name>
@@ -226,7 +226,7 @@ public final class ParseHelper {
      *
      * @param permissions The raw permissions
      * @return Permissions An object with all the permissions
-     * @throws ParseException If the permissions can't be parsed
+     * @throws ParseException If the permissions cann't be parsed
      * @{link "http://en.wikipedia.org/wiki/File_system_permissions"}
      */
     public static Permissions parsePermission(String permissions) throws ParseException {
@@ -308,7 +308,7 @@ public final class ParseHelper {
      *
      * @param src The disk usage line
      * @return DiskUsage The disk usage information
-     * @throws ParseException If the line can't be parsed
+     * @throws ParseException If the line cann't be parsed
      */
     // Filesystem             Size   Used   Free   Blksize
     // /dev                   414M    48K   414M   4096
@@ -348,7 +348,7 @@ public final class ParseHelper {
      *
      * @param src The mount point line
      * @return MountPoint The mount point information
-     * @throws ParseException If the line can't be parsed
+     * @throws ParseException If the line cann't be parsed
      */
     // rootfs / rootfs ro,relatime 0 0
     // tmpfs /dev tmpfs rw,nosuid,relatime,mode=755 0 0

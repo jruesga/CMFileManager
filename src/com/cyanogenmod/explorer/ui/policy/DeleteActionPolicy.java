@@ -302,7 +302,7 @@ public final class DeleteActionPolicy extends ActionsPolicy {
         for (int i = 0; i < cc; i++) {
             FileSystemObject fso = files.get(i);
 
-            // 1.- Current directory can't be deleted
+            // 1.- Current directory cann't be deleted
             if (currentDirectory.startsWith(fso.getFullPath())) {
                 // Operation not allowed
                 AlertDialog dialog =

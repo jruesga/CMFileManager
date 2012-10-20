@@ -65,14 +65,14 @@
       android:key="general_advanced_settings"
       android:title="@string/pref_general_advanced_settings_category">
 
-      <!-- Allow console selection -->
+      <!-- Advanced mode -->
       <CheckBoxPreference
-        android:key="cm_explorer_allow_console_selection"
-        android:title="@string/pref_allow_console_selection"
-        android:summaryOn="@string/pref_allow_console_selection_on"
-        android:summaryOff="@string/pref_allow_console_selection_off"
+        android:key="cm_explorer_advanced_mode"
+        android:title="@string/pref_advanced_mode"
+        android:summaryOn="@string/pref_advanced_mode_on"
+        android:summaryOff="@string/pref_advanced_mode_off"
         android:persistent="true"
-        android:defaultValue="true" />
+        android:defaultValue="false" />
 
     </PreferenceCategory>
 </PreferenceScreen>

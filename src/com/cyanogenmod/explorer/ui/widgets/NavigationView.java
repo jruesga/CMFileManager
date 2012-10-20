@@ -20,6 +20,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
+import android.os.storage.StorageVolume;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
@@ -28,6 +29,7 @@ import android.widget.ListAdapter;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
+import com.cyanogenmod.explorer.ExplorerApplication;
 import com.cyanogenmod.explorer.R;
 import com.cyanogenmod.explorer.adapters.FileSystemObjectAdapter;
 import com.cyanogenmod.explorer.adapters.FileSystemObjectAdapter.OnRequestMenuListener;
@@ -54,6 +56,7 @@ import com.cyanogenmod.explorer.util.CommandHelper;
 import com.cyanogenmod.explorer.util.DialogHelper;
 import com.cyanogenmod.explorer.util.ExceptionUtil;
 import com.cyanogenmod.explorer.util.FileHelper;
+import com.cyanogenmod.explorer.util.StorageHelper;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -114,6 +117,8 @@ public class NavigationView extends RelativeLayout implements
     private OnHistoryListener mOnHistoryListener;
     private OnNavigationSelectionChangedListener mOnNavigationSelectionChangedListener;
     private OnNavigationRequestMenuListener mOnNavigationRequestMenuListener;
+
+    private boolean mJailRoom;
 
     /**
      * @hide
@@ -187,6 +192,7 @@ public class NavigationView extends RelativeLayout implements
         NavigationViewInfoParcelable parcel = new NavigationViewInfoParcelable();
         parcel.setId(this.mId);
         parcel.setCurrentDir(this.mCurrentDir);
+        parcel.setJailRoom(this.mJailRoom);
         parcel.setSelectedFiles(this.mAdapter.getSelectedItems());
         parcel.setFiles(this.mFiles);
         return parcel;
@@ -201,6 +207,7 @@ public class NavigationView extends RelativeLayout implements
         //Restore the data
         this.mId = info.getId();
         this.mCurrentDir = info.getCurrentDir();
+        this.mJailRoom = info.getJailRoom();
         this.mFiles = info.getFiles();
         this.mAdapter.setSelectedItems(info.getSelectedFiles());
 
@@ -215,6 +222,9 @@ public class NavigationView extends RelativeLayout implements
     private void init() {
         //Initialize variables
         this.mFiles = new ArrayList<FileSystemObject>();
+        
+        // Is in jail room?
+        this.mJailRoom = !ExplorerApplication.isAdvancedMode();
 
         // Default long-click action
         String defaultValue = ((ObjectStringIdentifier)ExplorerSettings.
@@ -532,14 +542,19 @@ public class NavigationView extends RelativeLayout implements
             final String newDir, final boolean addToHistory,
             final boolean reload, final boolean useCurrent,
             final SearchInfoParcelable searchInfo, final FileSystemObject scrollTo) {
+
+        // Check navigation security (don't allow to go outside the jail room if one
+        // is created)
+        final String fNewDir = checkJailRoomNavigation(newDir);
+        
         synchronized (this.mSync) {
             //Check that it is really necessary change the directory
-            if (!reload && this.mCurrentDir != null && this.mCurrentDir.compareTo(newDir) == 0) {
+            if (!reload && this.mCurrentDir != null && this.mCurrentDir.compareTo(fNewDir) == 0) {
                 return;
             }
 
             final boolean hasChanged =
-                    !(this.mCurrentDir != null && this.mCurrentDir.compareTo(newDir) == 0);
+                    !(this.mCurrentDir != null && this.mCurrentDir.compareTo(fNewDir) == 0);
             final boolean isNewHistory = (this.mCurrentDir != null);
 
             //Execute the listing in a background process
@@ -575,7 +590,7 @@ public class NavigationView extends RelativeLayout implements
                                 //(sort, hidden, ...)
                                 List<FileSystemObject> files = NavigationView.this.mFiles;
                                 if (!useCurrent) {
-                                    files = CommandHelper.listFiles(getContext(), newDir, null);
+                                    files = CommandHelper.listFiles(getContext(), fNewDir, null);
                                 }
                                 return files;
                             } catch (final ConsoleAllocException e) {
@@ -618,7 +633,7 @@ public class NavigationView extends RelativeLayout implements
                                                             onPostExecuteTask(
                                                                     files, addToHistory,
                                                                     isNewHistory, hasChanged,
-                                                                    searchInfo, newDir, scrollTo);
+                                                                    searchInfo, fNewDir, scrollTo);
                                                         }
                                                     });
                                             return Boolean.TRUE;
@@ -637,10 +652,10 @@ public class NavigationView extends RelativeLayout implements
                         protected void onPostExecute(List<FileSystemObject> files) {
                             onPostExecuteTask(
                                     files, addToHistory, isNewHistory,
-                                    hasChanged, searchInfo, newDir, scrollTo);
+                                    hasChanged, searchInfo, fNewDir, scrollTo);
                         }
                    };
-            task.execute(newDir);
+            task.execute(fNewDir);
         }
     }
 
@@ -669,7 +684,7 @@ public class NavigationView extends RelativeLayout implements
 
             //Apply user preferences
             List<FileSystemObject> sortedFiles =
-                    FileHelper.applyUserPreferences(files);
+                    FileHelper.applyUserPreferences(files, this.mJailRoom);
 
             //Load the data
             loadData(sortedFiles);
@@ -688,7 +703,7 @@ public class NavigationView extends RelativeLayout implements
 
             //Change the breadcrumb
             if (NavigationView.this.mBreadcrumb != null) {
-                NavigationView.this.mBreadcrumb.changeBreadcrumbPath(newDir);
+                NavigationView.this.mBreadcrumb.changeBreadcrumbPath(newDir, this.mJailRoom);
             }
 
             //Scroll to object?
@@ -949,6 +964,56 @@ public class NavigationView extends RelativeLayout implements
     @Override
     public String onRequestCurrentDir() {
         return this.mCurrentDir;
+    }
+
+    /**
+     * Method that creates a jail room, protecting the user to break anything in the device
+     * @hide
+     */
+    public void createJailRoom() {
+        // If we are in a jail room, then do nothing
+        if (this.mJailRoom) return;
+        this.mJailRoom = true;
+
+        //Change to first storage volume
+        StorageVolume[] volumes =
+                StorageHelper.getStorageVolumes(getContext());
+        if (volumes != null && volumes.length > 0) {
+            changeCurrentDir(volumes[0].getPath(), false, true, false, null, null);
+        }
+    }
+
+    /**
+     * Method that exits from a jail room
+     * @hide
+     */
+    public void exitJailRoom() {
+        // If we aren't in a jail room, then do nothing
+        if (!this.mJailRoom) return;
+        this.mJailRoom = false;
+
+        // Refresh
+        refresh();
+    }
+
+    /**
+     * Method that ensures that the user don't go outside the jail room
+     * 
+     * @param newDir The new directory to navigate to
+     * @return String
+     */
+    private String checkJailRoomNavigation(String newDir) {
+        // If we aren't in jail room, then there is nothing to check
+        if (!this.mJailRoom) return newDir;
+
+        // Check if the path is owned by one of the storage volumes
+        if (!StorageHelper.isPathInStorageVolume(newDir)) {
+            StorageVolume[] volumes = StorageHelper.getStorageVolumes(getContext());
+            if (volumes != null && volumes.length > 0) {
+                return volumes[0].getPath();
+            }
+        }
+        return newDir;
     }
 
 }

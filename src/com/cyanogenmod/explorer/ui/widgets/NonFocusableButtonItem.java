@@ -22,7 +22,7 @@ import android.util.AttributeSet;
 import com.cyanogenmod.explorer.R;
 
 /**
- * A class that represents a button from an action bar that can't gain focus.
+ * A class that represents a button from an action bar that cann't gain focus.
  */
 public class NonFocusableButtonItem extends ButtonItem {
 

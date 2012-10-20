@@ -321,7 +321,7 @@ public class SearchActivity extends Activity
                 state.putParcelable(EXTRA_SEARCH_RESTORE, createSearchInfo());
             }
         } catch (Throwable ex) {
-            Log.w(TAG, "The state can't be saved", ex); //$NON-NLS-1$
+            Log.w(TAG, "The state cann't be saved", ex); //$NON-NLS-1$
         }
     }
 
@@ -336,7 +336,7 @@ public class SearchActivity extends Activity
                 this.mRestoreState = state.getParcelable(EXTRA_SEARCH_RESTORE);
             }
         } catch (Throwable ex) {
-            Log.w(TAG, "The state can't be restored", ex); //$NON-NLS-1$
+            Log.w(TAG, "The state cann't be restored", ex); //$NON-NLS-1$
         }
     }
 

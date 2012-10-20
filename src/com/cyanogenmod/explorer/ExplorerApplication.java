@@ -83,21 +83,31 @@ public final class ExplorerApplication extends Application {
                         }
                     } catch (Throwable _throw) {/**NON BLOCK**/}
                 } else if (key != null && key.compareTo(
-                        ExplorerSettings.SETTINGS_ALLOW_CONSOLE_SELECTION.getId()) == 0) {
+                        ExplorerSettings.SETTINGS_ADVANCE_MODE.getId()) == 0) {
                     // Force to change to a privileged console.
-                    boolean allowConsoleSelection = Preferences.getSharedPreferences().getBoolean(
-                            ExplorerSettings.SETTINGS_ALLOW_CONSOLE_SELECTION.getId(),
-                            ((Boolean)ExplorerSettings.
-                                    SETTINGS_ALLOW_CONSOLE_SELECTION.
-                                        getDefaultValue()).booleanValue());
-                    if (!allowConsoleSelection) {
-                        ConsoleBuilder.changeToPrivilegedConsole(context);
-                        try {
-                            Preferences.savePreference(
-                                    ExplorerSettings.SETTINGS_SUPERUSER_MODE, Boolean.TRUE, true);
-                        } catch (Throwable ex) {
-                            Log.w(TAG, "Can't save console preference", ex); //$NON-NLS-1$
+                    boolean advancedMode = isAdvancedMode();
+                    if (!advancedMode) {
+                        // First change to non-privileged console
+                        if (!ConsoleBuilder.changeToNonPrivilegedConsole(context)) {
+                            // Try with a privileged console
+                            ConsoleBuilder.changeToPrivilegedConsole(context);
+                            try {
+                                Preferences.savePreference(
+                                        ExplorerSettings.SETTINGS_SUPERUSER_MODE,
+                                        Boolean.TRUE, true);
+                            } catch (Throwable ex) {
+                                Log.w(TAG, "cann't save console preference", ex); //$NON-NLS-1$
+                            }
+                        } else {
+                            try {
+                                Preferences.savePreference(
+                                        ExplorerSettings.SETTINGS_SUPERUSER_MODE,
+                                        Boolean.FALSE, true);
+                            } catch (Throwable ex) {
+                                Log.w(TAG, "cann't save console preference", ex); //$NON-NLS-1$
+                            }
                         }
+                        
                     }
                 }
             }
@@ -218,7 +228,7 @@ public final class ExplorerApplication extends Application {
     /**
      * Method that changes the background console to a privileged console
      *
-     * @throws ConsoleAllocException If the console can't be allocated
+     * @throws ConsoleAllocException If the console cann't be allocated
      */
     public static void changeBackgroundConsoleToPriviligedConsole()
             throws ConsoleAllocException {
@@ -271,6 +281,34 @@ public final class ExplorerApplication extends Application {
             ExceptionUtil.translateException(ctx, e, true, false);
         }
         return false;
+    }
+
+    /**
+     * Method that returns if the application is running in superuser mode
+     * 
+     * @return boolean If the application is running in superuser mode
+     */
+    public static boolean isSuperuserMode() {
+        boolean defaultValue =
+                ((Boolean)ExplorerSettings.
+                        SETTINGS_SUPERUSER_MODE.
+                            getDefaultValue()).booleanValue();
+       String id = ExplorerSettings.SETTINGS_SUPERUSER_MODE.getId();
+       return Preferences.getSharedPreferences().getBoolean(id, defaultValue);
+    }
+
+    /**
+     * Method that returns if the application is running in advanced mode
+     * 
+     * @return boolean If the application is running in advanced mode
+     */
+    public static boolean isAdvancedMode() {
+        boolean defaultValue =
+                ((Boolean)ExplorerSettings.
+                        SETTINGS_ADVANCE_MODE.
+                            getDefaultValue()).booleanValue();
+        String id = ExplorerSettings.SETTINGS_ADVANCE_MODE.getId();
+       return Preferences.getSharedPreferences().getBoolean(id, defaultValue);
     }
 
 }

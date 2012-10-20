@@ -32,6 +32,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.cyanogenmod.explorer.ExplorerApplication;
 import com.cyanogenmod.explorer.R;
 import com.cyanogenmod.explorer.adapters.TwoColumnsMenuListAdapter;
 import com.cyanogenmod.explorer.listeners.OnRequestRefreshListener;
@@ -71,6 +72,7 @@ public class ActionsDialog implements OnItemClickListener, OnItemLongClickListen
     final Context mContext;
     private final boolean mGlobal;
     private final boolean mSearch;
+    private final boolean mJailRoom;
 
     /**
      * @hide
@@ -107,6 +109,7 @@ public class ActionsDialog implements OnItemClickListener, OnItemLongClickListen
         this.mContext = context;
         this.mGlobal = global;
         this.mSearch = search;
+        this.mJailRoom = !ExplorerApplication.isAdvancedMode();
 
         //Initialize dialog
         init(context, global ? R.id.mnu_actions_global : R.id.mnu_actions_fso);
@@ -529,7 +532,13 @@ public class ActionsDialog implements OnItemClickListener, OnItemLongClickListen
      * @param menu The menu to configure
      */
     private void configureMenu(Menu menu) {
-        // Check actions that needs a valid reference
+        // Selection
+        List<FileSystemObject> selection = null;
+        if (this.mOnSelectionListener != null) {
+            selection = this.mOnSelectionListener.onRequestSelectedFiles();
+        }
+
+        //- Check actions that needs a valid reference
         if (!this.mGlobal && this.mFso != null) {
             //- Select/Deselect -> Only one of them
             if (this.mOnSelectionListener != null) {
@@ -569,13 +578,8 @@ public class ActionsDialog implements OnItemClickListener, OnItemLongClickListen
             menu.removeItem(R.id.mnu_actions_add_to_bookmarks_current_folder);
         }
 
-        // Paste/Move only when have a selection
-        // Create link
+        //- Paste/Move only when have a selection
         if (this.mGlobal) {
-            List<FileSystemObject> selection = null;
-            if (this.mOnSelectionListener != null) {
-                selection = this.mOnSelectionListener.onRequestSelectedFiles();
-            }
             if (selection == null || selection.size() == 0 ||
                     (this.mFso != null && !FileHelper.isDirectory(this.mFso))) {
                 // Remove paste/move actions
@@ -583,26 +587,28 @@ public class ActionsDialog implements OnItemClickListener, OnItemLongClickListen
                 menu.removeItem(R.id.mnu_actions_move_selection);
                 menu.removeItem(R.id.mnu_actions_delete_selection);
             }
-            if (selection == null || selection.size() == 0 || selection.size() > 1) {
-                // Only when one item is selected
-                menu.removeItem(R.id.mnu_actions_create_link_global);
-            } else {
-                // Create link (not allow in storage volume)
-                FileSystemObject fso = selection.get(0);
-                if (StorageHelper.isPathInStorageVolume(fso.getFullPath())) {
-                    menu.removeItem(R.id.mnu_actions_create_link);
-                }
+        }
+        //- Create link
+        if (this.mGlobal && (selection == null || selection.size() == 0 || selection.size() > 1)) {
+            // Only when one item is selected
+            menu.removeItem(R.id.mnu_actions_create_link_global);
+        } else if (this.mGlobal  && selection != null) {
+            // Create link (not allow in storage volume)
+            FileSystemObject fso = selection.get(0);
+            if (StorageHelper.isPathInStorageVolume(fso.getFullPath())) {
+                menu.removeItem(R.id.mnu_actions_create_link);
+            }
+        } else if (!this.mGlobal) {
+            // Create link (not allow in storage volume)
+            if (StorageHelper.isPathInStorageVolume(this.mFso.getFullPath())) {
+                menu.removeItem(R.id.mnu_actions_create_link);
             }
         }
 
-        // Compress/Uncompress (only when selection is available)
+        //- Compress/Uncompress (only when selection is available)
         if (this.mOnSelectionListener != null) {
             //Compress
             if (this.mGlobal) {
-                List<FileSystemObject> selection = null;
-                if (this.mOnSelectionListener != null) {
-                    selection = this.mOnSelectionListener.onRequestSelectedFiles();
-                }
                 if (selection == null || selection.size() == 0) {
                     menu.removeItem(R.id.mnu_actions_compress_selection);
                 }
@@ -628,6 +634,15 @@ public class ActionsDialog implements OnItemClickListener, OnItemLongClickListen
         // Not allowed if not in search
         if (!this.mSearch) {
             menu.removeItem(R.id.mnu_actions_open_parent_folder);
+        }
+
+        // Remove jail room actions (actions that cann't be present when running in
+        // unprivileged mode)
+        if (this.mJailRoom) {
+            menu.removeItem(R.id.mnu_actions_create_link);
+            menu.removeItem(R.id.mnu_actions_create_link_global);
+            menu.removeItem(R.id.mnu_actions_execute);
+            menu.removeItem(R.id.mnu_actions_execute);
         }
     }
 

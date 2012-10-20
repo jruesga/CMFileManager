@@ -17,7 +17,6 @@
 package com.cyanogenmod.explorer.console;
 
 import android.content.Context;
-import android.content.SharedPreferences.Editor;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -62,7 +61,7 @@ public final class ConsoleBuilder {
      * @throws FileNotFoundException If the initial directory not exists
      * @throws IOException If initial directory couldn't be checked
      * @throws InvalidCommandDefinitionException If the command has an invalid definition
-     * @throws ConsoleAllocException If the console can't be allocated
+     * @throws ConsoleAllocException If the console cann't be allocated
      * @throws InsufficientPermissionsException If the console created is not a privileged console
      */
     public static Console getConsole(Context context)
@@ -81,7 +80,7 @@ public final class ConsoleBuilder {
      * @throws FileNotFoundException If the initial directory not exists
      * @throws IOException If initial directory couldn't be checked
      * @throws InvalidCommandDefinitionException If the command has an invalid definition
-     * @throws ConsoleAllocException If the console can't be allocated
+     * @throws ConsoleAllocException If the console cann't be allocated
      * @throws InsufficientPermissionsException If the console created is not a privileged console
      */
     public static Console getConsole(Context context, boolean createIfNotExists)
@@ -176,7 +175,7 @@ public final class ConsoleBuilder {
      * @throws FileNotFoundException If the initial directory not exists
      * @throws IOException If initial directory couldn't be checked
      * @throws InvalidCommandDefinitionException If the command has an invalid definition
-     * @throws ConsoleAllocException If the console can't be allocated
+     * @throws ConsoleAllocException If the console cann't be allocated
      * @throws InsufficientPermissionsException If the console created is not a privileged console
      */
     //IMP! This must be invoked from the main activity creation
@@ -186,32 +185,23 @@ public final class ConsoleBuilder {
 
         synchronized (ConsoleBuilder.SYNC) {
             //Gets superuser mode settings
-            boolean requiredSuConsole =
-                    Preferences.getSharedPreferences().getBoolean(
-                            ExplorerSettings.SETTINGS_SUPERUSER_MODE.getId(),
-                            ((Boolean)ExplorerSettings.SETTINGS_SUPERUSER_MODE.
-                                    getDefaultValue()).booleanValue());
-            boolean allowConsoleSelection = Preferences.getSharedPreferences().getBoolean(
-                    ExplorerSettings.SETTINGS_ALLOW_CONSOLE_SELECTION.getId(),
-                    ((Boolean)ExplorerSettings.
-                            SETTINGS_ALLOW_CONSOLE_SELECTION.
-                                getDefaultValue()).booleanValue());
-            if (!requiredSuConsole && !allowConsoleSelection) {
-                // allowConsoleSelection forces the su console
+            boolean superuserMode = ExplorerApplication.isSuperuserMode();
+            boolean advancedMode = ExplorerApplication.isAdvancedMode();
+            if (superuserMode && !advancedMode) {
                 try {
                     Preferences.savePreference(
-                            ExplorerSettings.SETTINGS_SUPERUSER_MODE, Boolean.TRUE, true);
+                            ExplorerSettings.SETTINGS_SUPERUSER_MODE, Boolean.FALSE, true);
                 } catch (Throwable ex) {
-                    Log.w(TAG, "Can't save console preference", ex); //$NON-NLS-1$
+                    Log.w(TAG, "cann't save console preference", ex); //$NON-NLS-1$
                 }
-                requiredSuConsole = true;
+                superuserMode = false;
             }
 
             //Check if console settings has changed
             if (sHolder != null) {
                 if (
-                    (sHolder.getConsole() instanceof NonPriviledgeConsole && requiredSuConsole)
-                    || (sHolder.getConsole() instanceof PrivilegedConsole && !requiredSuConsole)) {
+                    (sHolder.getConsole() instanceof NonPriviledgeConsole && superuserMode)
+                    || (sHolder.getConsole() instanceof PrivilegedConsole && !superuserMode)) {
                     //Deallocate actual console
                     sHolder.dispose();
                     sHolder = null;
@@ -220,13 +210,13 @@ public final class ConsoleBuilder {
 
             //Is there a console allocated
             if (sHolder == null) {
-                sHolder = (requiredSuConsole)
+                sHolder = (superuserMode)
                         ? new ConsoleHolder(
                                 createAndCheckPrivilegedConsole(
                                         context, FileHelper.ROOT_DIRECTORY))
                         : new ConsoleHolder(
                                 createNonPrivilegedConsole(context, FileHelper.ROOT_DIRECTORY));
-                if (requiredSuConsole) {
+                if (superuserMode) {
                     // Change also the background console to privileged
                     ExplorerApplication.changeBackgroundConsoleToPriviligedConsole();
                 }
@@ -258,7 +248,7 @@ public final class ConsoleBuilder {
      * @throws FileNotFoundException If the initial directory not exists
      * @throws IOException If initial directory couldn't be checked
      * @throws InvalidCommandDefinitionException If the command has an invalid definition
-     * @throws ConsoleAllocException If the console can't be allocated
+     * @throws ConsoleAllocException If the console cann't be allocated
      * @see NonPriviledgeConsole
      */
     public static Console createNonPrivilegedConsole(Context context, String initialDirectory)
@@ -280,7 +270,7 @@ public final class ConsoleBuilder {
      * @throws FileNotFoundException If the initial directory not exists
      * @throws IOException If initial directory couldn't be checked
      * @throws InvalidCommandDefinitionException If the command has an invalid definition
-     * @throws ConsoleAllocException If the console can't be allocated
+     * @throws ConsoleAllocException If the console cann't be allocated
      * @throws InsufficientPermissionsException If the console created is not a privileged console
      * @see PrivilegedConsole
      */
@@ -312,7 +302,7 @@ public final class ConsoleBuilder {
      * @throws FileNotFoundException If the initial directory not exists
      * @throws IOException If initial directory couldn't be checked
      * @throws InvalidCommandDefinitionException If the command has an invalid definition
-     * @throws ConsoleAllocException If the console can't be allocated
+     * @throws ConsoleAllocException If the console cann't be allocated
      * @throws InsufficientPermissionsException If the console created is not a privileged console
      * @see PrivilegedConsole
      */
@@ -333,7 +323,7 @@ public final class ConsoleBuilder {
      * @throws FileNotFoundException If the initial directory not exists
      * @throws IOException If initial directory couldn't be checked
      * @throws InvalidCommandDefinitionException If the command has an invalid definition
-     * @throws ConsoleAllocException If the console can't be allocated
+     * @throws ConsoleAllocException If the console cann't be allocated
      * @throws InsufficientPermissionsException If the console created is not a privileged console
      * @see PrivilegedConsole
      */
@@ -363,21 +353,16 @@ public final class ConsoleBuilder {
                     DialogHelper.showToast(context,
                             R.string.msgs_privileged_console_alloc_failed, Toast.LENGTH_LONG);
                 } catch (Exception ex) {
-                    Log.e(TAG, "Can't show toast", ex);  //$NON-NLS-1$
+                    Log.e(TAG, "cann't show toast", ex);  //$NON-NLS-1$
                 }
             }
 
-            boolean allowConsoleSelection = Preferences.getSharedPreferences().getBoolean(
-                    ExplorerSettings.SETTINGS_ALLOW_CONSOLE_SELECTION.getId(),
-                    ((Boolean)ExplorerSettings.
-                            SETTINGS_ALLOW_CONSOLE_SELECTION.
-                                getDefaultValue()).booleanValue());
-            if (allowConsoleSelection) {
+            boolean advancedMode = ExplorerApplication.isAdvancedMode();
+            if (advancedMode) {
                 //Save settings
                 try {
-                    Editor editor = Preferences.getSharedPreferences().edit();
-                    editor.putBoolean(ExplorerSettings.SETTINGS_SUPERUSER_MODE.getId(), false);
-                    editor.commit();
+                    Preferences.savePreference(
+                            ExplorerSettings.SETTINGS_SUPERUSER_MODE, Boolean.FALSE, true);
                 } catch (Exception ex) {
                     Log.e(TAG,
                             String.format("Failed to save %s property",  //$NON-NLS-1$

@@ -36,7 +36,7 @@ public interface ExecutableCreator {
      * @param dir The absolute path of the new directory to establish as current directory
      * @return ChangeCurrentDirExecutable A {@link ChangeCurrentDirExecutable} executable
      * implementation reference
-     * @throws CommandNotFoundException If the executable can't be created
+     * @throws CommandNotFoundException If the executable cann't be created
      */
     ChangeCurrentDirExecutable createChangeCurrentDirExecutable(
             String dir) throws CommandNotFoundException;
@@ -49,7 +49,7 @@ public interface ExecutableCreator {
      * @param newGroup The new group of the file system object
      * @return ChangeOwnerExecutable A {@link ChangeOwnerExecutable} executable
      * implementation reference
-     * @throws CommandNotFoundException If the executable can't be created
+     * @throws CommandNotFoundException If the executable cann't be created
      */
     ChangeOwnerExecutable createChangeOwnerExecutable(
             String fso, User newUser, Group newGroup) throws CommandNotFoundException;
@@ -61,7 +61,7 @@ public interface ExecutableCreator {
      * @param newPermissions The new permissions of the file system object
      * @return ChangePermissionsExecutable A {@link ChangePermissionsExecutable} executable
      * implementation reference
-     * @throws CommandNotFoundException If the executable can't be created
+     * @throws CommandNotFoundException If the executable cann't be created
      */
     ChangePermissionsExecutable createChangePermissionsExecutable(
             String fso, Permissions newPermissions) throws CommandNotFoundException;
@@ -73,7 +73,7 @@ public interface ExecutableCreator {
      * @param src The absolute path to the source file system object
      * @param dst The absolute path to the destination file system object
      * @return CopyExecutable A {@link CopyExecutable} executable implementation reference
-     * @throws CommandNotFoundException If the executable can't be created
+     * @throws CommandNotFoundException If the executable cann't be created
      */
     CopyExecutable createCopyExecutable(String src, String dst) throws CommandNotFoundException;
 
@@ -83,7 +83,7 @@ public interface ExecutableCreator {
      * @param dir The absolute path of the new directory
      * @return CreateDirExecutable A {@link CreateDirExecutable} executable implementation
      * reference
-     * @throws CommandNotFoundException If the executable can't be created
+     * @throws CommandNotFoundException If the executable cann't be created
      */
     CreateDirExecutable createCreateDirectoryExecutable(String dir)
             throws CommandNotFoundException;
@@ -94,7 +94,7 @@ public interface ExecutableCreator {
      * @param file The absolute path of the new file
      * @return CreateFileExecutable A {@link CreateFileExecutable} executable
      * implementation reference
-     * @throws CommandNotFoundException If the executable can't be created
+     * @throws CommandNotFoundException If the executable cann't be created
      */
     CreateFileExecutable createCreateFileExecutable(String file) throws CommandNotFoundException;
 
@@ -103,7 +103,7 @@ public interface ExecutableCreator {
      *
      * @return CurrentDirExecutable A {@link CurrentDirExecutable} executable
      * implementation reference
-     * @throws CommandNotFoundException If the executable can't be created
+     * @throws CommandNotFoundException If the executable cann't be created
      */
     CurrentDirExecutable createCurrentDirExecutable() throws CommandNotFoundException;
 
@@ -113,7 +113,7 @@ public interface ExecutableCreator {
      * @param dir The absolute path to the directory to be deleted
      * @return DeleteDirExecutable A {@link DeleteDirExecutable} executable implementation
      * reference
-     * @throws CommandNotFoundException If the executable can't be created
+     * @throws CommandNotFoundException If the executable cann't be created
      */
     DeleteDirExecutable createDeleteDirExecutable(String dir) throws CommandNotFoundException;
 
@@ -123,7 +123,7 @@ public interface ExecutableCreator {
      * @param file The absolute path to the file to be deleted
      * @return DeleteFileExecutable A {@link DeleteFileExecutable} executable
      * implementation reference
-     * @throws CommandNotFoundException If the executable can't be created
+     * @throws CommandNotFoundException If the executable cann't be created
      */
     DeleteFileExecutable createDeleteFileExecutable(String file) throws CommandNotFoundException;
 
@@ -133,7 +133,7 @@ public interface ExecutableCreator {
      *
      * @return DiskUsageExecutable A {@link DiskUsageExecutable} executable implementation
      * reference
-     * @throws CommandNotFoundException If the executable can't be created
+     * @throws CommandNotFoundException If the executable cann't be created
      */
     DiskUsageExecutable createDiskUsageExecutable() throws CommandNotFoundException;
 
@@ -144,7 +144,7 @@ public interface ExecutableCreator {
      * @param dir The absolute path to the directory
      * @return DiskUsageExecutable A {@link DiskUsageExecutable} executable implementation
      * reference
-     * @throws CommandNotFoundException If the executable can't be created
+     * @throws CommandNotFoundException If the executable cann't be created
      */
     DiskUsageExecutable createDiskUsageExecutable(String dir) throws CommandNotFoundException;
 
@@ -154,7 +154,7 @@ public interface ExecutableCreator {
      *
      * @param msg The message to expand
      * @return EchoExecutable A {@link EchoExecutable} executable implementation reference
-     * @throws CommandNotFoundException If the executable can't be created
+     * @throws CommandNotFoundException If the executable cann't be created
      */
     EchoExecutable createEchoExecutable(String msg) throws CommandNotFoundException;
 
@@ -164,7 +164,7 @@ public interface ExecutableCreator {
      * @param cmd The command to execute
      * @param asyncResultListener The listener where to return partial results
      * @return ExecExecutable A {@link ExecExecutable} executable implementation reference
-     * @throws CommandNotFoundException If the executable can't be created
+     * @throws CommandNotFoundException If the executable cann't be created
      */
     ExecExecutable createExecExecutable(
             String cmd, AsyncResultListener asyncResultListener) throws CommandNotFoundException;
@@ -176,7 +176,7 @@ public interface ExecutableCreator {
      * @param query The term of the query
      * @param asyncResultListener The listener where to return partial results
      * @return FindExecutable A {@link FindExecutable} executable implementation reference
-     * @throws CommandNotFoundException If the executable can't be created
+     * @throws CommandNotFoundException If the executable cann't be created
      */
     FindExecutable createFindExecutable(
             String directory, Query query, AsyncResultListener asyncResultListener)
@@ -189,7 +189,7 @@ public interface ExecutableCreator {
      * @param asyncResultListener The listener where to return partial results
      * @return FolderUsageExecutable A {@link FolderUsageExecutable} executable
      * implementation reference
-     * @throws CommandNotFoundException If the executable can't be created
+     * @throws CommandNotFoundException If the executable cann't be created
      */
     FolderUsageExecutable createFolderUsageExecutable(
             String directory, AsyncResultListener asyncResultListener)
@@ -199,7 +199,7 @@ public interface ExecutableCreator {
      * Method that creates an executable for retrieve the groups of the current user.
      *
      * @return GroupsExecutable A {@link GroupsExecutable} executable implementation reference
-     * @throws CommandNotFoundException If the executable can't be created
+     * @throws CommandNotFoundException If the executable cann't be created
      */
     GroupsExecutable createGroupsExecutable()
             throws com.cyanogenmod.explorer.console.CommandNotFoundException;
@@ -208,7 +208,7 @@ public interface ExecutableCreator {
      * Method that creates an executable for retrieve identity information of the current user.
      *
      * @return IdentityExecutable A {@link IdentityExecutable} executable implementation reference
-     * @throws CommandNotFoundException If the executable can't be created
+     * @throws CommandNotFoundException If the executable cann't be created
      */
     IdentityExecutable createIdentityExecutable() throws CommandNotFoundException;
 
@@ -218,7 +218,7 @@ public interface ExecutableCreator {
      * @param src The absolute path to the source fso
      * @param link The absolute path to the link fso
      * @return LinkExecutable A {@link LinkExecutable} executable implementation reference
-     * @throws CommandNotFoundException If the executable can't be created
+     * @throws CommandNotFoundException If the executable cann't be created
      */
     LinkExecutable createLinkExecutable(
             String src, String link) throws CommandNotFoundException;
@@ -228,7 +228,7 @@ public interface ExecutableCreator {
      *
      * @param src The directory where to do the listing
      * @return ListExecutable A {@link ListExecutable} executable implementation reference
-     * @throws CommandNotFoundException If the executable can't be created
+     * @throws CommandNotFoundException If the executable cann't be created
      * @see LIST_MODE
      */
     ListExecutable createListExecutable(String src)
@@ -240,7 +240,7 @@ public interface ExecutableCreator {
      * @param src The directory where to do the listing
      * @param followSymlinks If follow the symlink
      * @return ListExecutable A {@link ListExecutable} executable implementation reference
-     * @throws CommandNotFoundException If the executable can't be created
+     * @throws CommandNotFoundException If the executable cann't be created
      * @see LIST_MODE
      */
     ListExecutable createFileInfoExecutable(String src, boolean followSymlinks)
@@ -252,7 +252,7 @@ public interface ExecutableCreator {
      * @param mp The mount point to mount
      * @param rw Indicates if the operation mount the device as read-write
      * @return MountExecutable A {@link MountExecutable} executable implementation reference
-     * @throws CommandNotFoundException If the executable can't be created
+     * @throws CommandNotFoundException If the executable cann't be created
      */
     MountExecutable createMountExecutable(
             MountPoint mp, boolean rw) throws CommandNotFoundException;
@@ -262,7 +262,7 @@ public interface ExecutableCreator {
      *
      * @return MountPointInfoExecutable A {@link MountPointInfoExecutable} executable
      * implementation reference
-     * @throws CommandNotFoundException If the executable can't be created
+     * @throws CommandNotFoundException If the executable cann't be created
      */
     MountPointInfoExecutable createMountPointInfoExecutable() throws CommandNotFoundException;
 
@@ -273,7 +273,7 @@ public interface ExecutableCreator {
      * @param src The absolute path to the source file system object
      * @param dst The absolute path to the destination file system object
      * @return MoveExecutable A {@link MoveExecutable} executable implementation reference
-     * @throws CommandNotFoundException If the executable can't be created
+     * @throws CommandNotFoundException If the executable cann't be created
      */
     MoveExecutable createMoveExecutable(String src, String dst) throws CommandNotFoundException;
 
@@ -284,7 +284,7 @@ public interface ExecutableCreator {
      * @param fso The absolute path to the file system object
      * @return ParentDirExecutable A {@link ParentDirExecutable} executable implementation
      * reference
-     * @throws CommandNotFoundException If the executable can't be created
+     * @throws CommandNotFoundException If the executable cann't be created
      */
     ParentDirExecutable createParentDirExecutable(String fso) throws CommandNotFoundException;
 
@@ -294,7 +294,7 @@ public interface ExecutableCreator {
      *
      * @return ProcessIdExecutable A {@link ProcessIdExecutable} executable implementation
      * reference
-     * @throws CommandNotFoundException If the executable can't be created
+     * @throws CommandNotFoundException If the executable cann't be created
      */
     ProcessIdExecutable createShellProcessIdExecutable() throws CommandNotFoundException;
 
@@ -306,7 +306,7 @@ public interface ExecutableCreator {
      * @param processName The process name
      * @return ProcessIdExecutable A {@link ProcessIdExecutable} executable implementation
      * reference
-     * @throws CommandNotFoundException If the executable can't be created
+     * @throws CommandNotFoundException If the executable cann't be created
      */
     ProcessIdExecutable createProcessIdExecutable(
             int pid, String processName) throws CommandNotFoundException;
@@ -318,7 +318,7 @@ public interface ExecutableCreator {
      * @param regexp The regular expression
      * @return ProcessIdExecutable A {@link ProcessIdExecutable} executable implementation
      * reference
-     * @throws CommandNotFoundException If the executable can't be created
+     * @throws CommandNotFoundException If the executable cann't be created
      */
     QuickFolderSearchExecutable createQuickFolderSearchExecutable(
             String regexp) throws CommandNotFoundException;
@@ -329,7 +329,7 @@ public interface ExecutableCreator {
      * @param file The file where to read the data
      * @param asyncResultListener The listener where to return partial results
      * @return ReadExecutable A {@link ReadExecutable} executable implementation reference
-     * @throws CommandNotFoundException If the executable can't be created
+     * @throws CommandNotFoundException If the executable cann't be created
      */
     ReadExecutable createReadExecutable(
             String file, AsyncResultListener asyncResultListener)
@@ -342,7 +342,7 @@ public interface ExecutableCreator {
      * @param fso The absolute path to the file system object
      * @return ResolveLinkExecutable A {@link ResolveLinkExecutable} executable
      * implementation reference
-     * @throws CommandNotFoundException If the executable can't be created
+     * @throws CommandNotFoundException If the executable cann't be created
      */
     ResolveLinkExecutable createResolveLinkExecutable(String fso) throws CommandNotFoundException;
 
@@ -352,7 +352,7 @@ public interface ExecutableCreator {
      * @param process The process which to send the signal
      * @param signal The signal to send
      * @return SendSignalExecutable A {@link SendSignalExecutable} executable implementation reference
-     * @throws CommandNotFoundException If the executable can't be created
+     * @throws CommandNotFoundException If the executable cann't be created
      */
     SendSignalExecutable createSendSignalExecutable(
             int process, SIGNAL signal) throws CommandNotFoundException;
@@ -363,7 +363,7 @@ public interface ExecutableCreator {
      * @param process The process which to send the signal
      * @param signal The signal to send
      * @return SendSignalExecutable A {@link SendSignalExecutable} executable implementation reference
-     * @throws CommandNotFoundException If the executable can't be created
+     * @throws CommandNotFoundException If the executable cann't be created
      */
     SendSignalExecutable createKillExecutable(
             int process) throws CommandNotFoundException;
@@ -374,7 +374,7 @@ public interface ExecutableCreator {
      * @param file The file where to write the data
      * @param asyncResultListener The listener where to return partial results
      * @return WriteExecutable A {@link WriteExecutable} executable implementation reference
-     * @throws CommandNotFoundException If the executable can't be created
+     * @throws CommandNotFoundException If the executable cann't be created
      */
     WriteExecutable createWriteExecutable(
             String file, AsyncResultListener asyncResultListener)
@@ -388,7 +388,7 @@ public interface ExecutableCreator {
      * @param src The array of source files to compress
      * @param asyncResultListener The listener where to return partial results
      * @return CompressExecutable A {@link CompressExecutable} executable implementation reference
-     * @throws CommandNotFoundException If the executable can't be created
+     * @throws CommandNotFoundException If the executable cann't be created
      */
     CompressExecutable createCompressExecutable(
             CompressionMode mode, String dst, String[] src,
@@ -402,7 +402,7 @@ public interface ExecutableCreator {
      * @param src The file to compress
      * @param asyncResultListener The listener where to return partial results
      * @return CompressExecutable A {@link CompressExecutable} executable implementation reference
-     * @throws CommandNotFoundException If the executable can't be created
+     * @throws CommandNotFoundException If the executable cann't be created
      */
     CompressExecutable createCompressExecutable(
             CompressionMode mode, String src, AsyncResultListener asyncResultListener)
@@ -416,7 +416,7 @@ public interface ExecutableCreator {
      * fit based on the src)
      * @param asyncResultListener The listener where to return partial results
      * @return UncompressExecutable A {@link UncompressExecutable} executable implementation reference
-     * @throws CommandNotFoundException If the executable can't be created
+     * @throws CommandNotFoundException If the executable cann't be created
      */
     UncompressExecutable createUncompressExecutable(
             String src, String dst, AsyncResultListener asyncResultListener)

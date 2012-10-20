@@ -70,7 +70,7 @@ public class ListCommand extends SyncResultProgram implements ListExecutable {
      * @throws FileNotFoundException If the initial directory not exists
      * @throws NoSuchFileOrDirectory If the file or directory was not found
      * @throws IOException If initial directory couldn't be checked
-     * @throws ConsoleAllocException If the console can't be allocated
+     * @throws ConsoleAllocException If the console cann't be allocated
      * @throws InsufficientPermissionsException If an operation requires elevated permissions
      * @throws CommandNotFoundException If the command was not found
      * @throws OperationTimeoutException If the operation exceeded the maximum time of wait
@@ -112,7 +112,7 @@ public class ListCommand extends SyncResultProgram implements ListExecutable {
      * @throws FileNotFoundException If the initial directory not exists
      * @throws NoSuchFileOrDirectory If the file or directory was not found
      * @throws IOException If initial directory couldn't be checked
-     * @throws ConsoleAllocException If the console can't be allocated
+     * @throws ConsoleAllocException If the console cann't be allocated
      * @throws InsufficientPermissionsException If an operation requires elevated permissions
      * @throws CommandNotFoundException If the command was not found
      * @throws OperationTimeoutException If the operation exceeded the maximum time of wait
@@ -299,7 +299,7 @@ public class ListCommand extends SyncResultProgram implements ListExecutable {
                                 }
                             } catch (Throwable ex) {
                                 //If parsing the file failed, ignore it and threat as a regular
-                                //file (the destination file not exists or can't be resolved)
+                                //file (the destination file not exists or cann't be resolved)
                             }
                         }
                         break;

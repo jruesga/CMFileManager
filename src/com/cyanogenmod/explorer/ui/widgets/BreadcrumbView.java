@@ -32,6 +32,7 @@ import com.cyanogenmod.explorer.model.DiskUsage;
 import com.cyanogenmod.explorer.model.MountPoint;
 import com.cyanogenmod.explorer.tasks.FilesystemAsyncTask;
 import com.cyanogenmod.explorer.util.FileHelper;
+import com.cyanogenmod.explorer.util.StorageHelper;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -184,7 +185,7 @@ public class BreadcrumbView extends RelativeLayout implements Breadcrumb, OnClic
      * {@inheritDoc}
      */
     @Override
-    public void changeBreadcrumbPath(final String newPath) {
+    public void changeBreadcrumbPath(final String newPath, final boolean jailRoom) {
         //Sets the current path
         this.mCurrentPath = newPath;
 
@@ -194,15 +195,31 @@ public class BreadcrumbView extends RelativeLayout implements Breadcrumb, OnClic
         //Remove all views
         this.mBreadcrumbBar.removeAllViews();
 
-        //The first is always the root
-        this.mBreadcrumbBar.addView(createBreadcrumbItem(new File(FileHelper.ROOT_DIRECTORY)));
+        //The first is always the root (if not in a jail room)
+        if (!jailRoom) {
+            this.mBreadcrumbBar.addView(createBreadcrumbItem(new File(FileHelper.ROOT_DIRECTORY)));
+        }
 
         //Add the rest of the path
         String[] dirs = newPath.split(File.separator);
         int cc = dirs.length;
-        for (int i = 1; i < cc; i++) {
-            this.mBreadcrumbBar.addView(createItemDivider());
-            this.mBreadcrumbBar.addView(createBreadcrumbItem(createFile(dirs, i)));
+        if (jailRoom) {
+            boolean first = true;
+            for (int i = 1; i < cc; i++) {
+                File f = createFile(dirs, i);
+                if (StorageHelper.isPathInStorageVolume(f.getAbsolutePath())) {
+                    if (!first) {
+                        this.mBreadcrumbBar.addView(createItemDivider());
+                    }
+                    first = false;
+                    this.mBreadcrumbBar.addView(createBreadcrumbItem(f));
+                } 
+            }
+        } else {
+            for (int i = 1; i < cc; i++) {
+                this.mBreadcrumbBar.addView(createItemDivider());
+                this.mBreadcrumbBar.addView(createBreadcrumbItem(createFile(dirs, i)));
+            }
         }
 
         //Set scrollbar at the end

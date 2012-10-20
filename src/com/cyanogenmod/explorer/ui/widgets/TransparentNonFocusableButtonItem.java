@@ -20,7 +20,7 @@ import android.content.Context;
 import android.util.AttributeSet;
 
 /**
- * A class that represents a button from an action bar that can't gain focus
+ * A class that represents a button from an action bar that cann't gain focus
  * without background.
  */
 public class TransparentNonFocusableButtonItem extends NonFocusableButtonItem {

@@ -37,6 +37,7 @@ public class NavigationViewInfoParcelable extends HistoryNavigable {
 
     private int mId;
     private String mCurrentDir;
+    private boolean mJailRoom;
     private List<FileSystemObject> mFiles;
     private List<FileSystemObject> mSelectedFiles;
 
@@ -113,6 +114,24 @@ public class NavigationViewInfoParcelable extends HistoryNavigable {
     }
 
     /**
+     * Method that returns if the view is in a jail room.
+     *
+     * @return boolean If the view is in a jail room
+     */
+    public boolean getJailRoom() {
+        return this.mJailRoom;
+    }
+
+    /**
+     * Method that sets if the view is in a jail room.
+     *
+     * @param jailRoom If the view is in a jail room
+     */
+    public void setJailRoom(boolean jailRoom) {
+        this.mJailRoom = jailRoom;
+    }
+
+    /**
      * Method that returns the current file list.
      *
      * @return List<FileSystemObject> The current file list
@@ -169,11 +188,13 @@ public class NavigationViewInfoParcelable extends HistoryNavigable {
             dest.writeString(this.mCurrentDir);
         }
         //- 2
+        dest.writeInt(this.mJailRoom ? 1 : 0);
+        //- 3
         dest.writeInt(this.mSelectedFiles == null ? 0 : 1);
         if (this.mSelectedFiles != null) {
             dest.writeList(this.mSelectedFiles);
         }
-        //- 3
+        //- 4
         dest.writeInt(this.mFiles == null ? 0 : 1);
         if (this.mFiles != null) {
             dest.writeList(this.mFiles);
@@ -194,13 +215,15 @@ public class NavigationViewInfoParcelable extends HistoryNavigable {
             this.mCurrentDir = in.readString();
         }
         //- 2
+        this.mJailRoom = (in.readInt() == 1);
+        //- 3
         int hasSelectedFiles = in.readInt();
         if (hasSelectedFiles == 1) {
             List<FileSystemObject> selectedFiles = new ArrayList<FileSystemObject>();
             in.readList(selectedFiles, NavigationViewInfoParcelable.class.getClassLoader());
             this.mSelectedFiles = new ArrayList<FileSystemObject>(selectedFiles);
         }
-        //- 3
+        //- 4
         int hasFiles = in.readInt();
         if (hasFiles == 1) {
             List<FileSystemObject> files = new ArrayList<FileSystemObject>();

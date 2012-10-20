@@ -444,10 +444,12 @@ public final class FileHelper {
      * (sort mode, hidden files, ...).
      *
      * @param files The listed files
+     * @param jailRoom If app run with no privileges
      * @return List<FileSystemObject> The applied mode listed files
      */
-    public static List<FileSystemObject> applyUserPreferences(List<FileSystemObject> files) {
-        return applyUserPreferences(files, false);
+    public static List<FileSystemObject> applyUserPreferences(
+                    List<FileSystemObject> files, boolean jailRoom) {
+        return applyUserPreferences(files, false, jailRoom);
     }
 
     /**
@@ -456,10 +458,11 @@ public final class FileHelper {
      *
      * @param files The listed files
      * @param noSort If sort must be applied
+     * @param jailRoom If app run with no privileges
      * @return List<FileSystemObject> The applied mode listed files
      */
     public static List<FileSystemObject> applyUserPreferences(
-            List<FileSystemObject> files, boolean noSort) {
+            List<FileSystemObject> files, boolean noSort, boolean jailRoom) {
         //Retrieve user preferences
         SharedPreferences prefs = Preferences.getSharedPreferences();
         ExplorerSettings sortModePref = ExplorerSettings.SETTINGS_SORT_MODE;
@@ -476,7 +479,7 @@ public final class FileHelper {
             //Hidden files
             if (!prefs.getBoolean(
                     showHiddenPref.getId(),
-                    ((Boolean)showHiddenPref.getDefaultValue()).booleanValue())) {
+                    ((Boolean)showHiddenPref.getDefaultValue()).booleanValue()) || jailRoom) {
                 if (file.isHidden()) {
                     files.remove(i);
                     continue;
@@ -486,7 +489,7 @@ public final class FileHelper {
             //System files
             if (!prefs.getBoolean(
                     showSystemPref.getId(),
-                    ((Boolean)showSystemPref.getDefaultValue()).booleanValue())) {
+                    ((Boolean)showSystemPref.getDefaultValue()).booleanValue()) || jailRoom) {
                 if (file instanceof SystemFile) {
                     files.remove(i);
                     continue;
@@ -496,7 +499,7 @@ public final class FileHelper {
             //Symlinks files
             if (!prefs.getBoolean(
                     showSymlinksPref.getId(),
-                    ((Boolean)showSymlinksPref.getDefaultValue()).booleanValue())) {
+                    ((Boolean)showSymlinksPref.getDefaultValue()).booleanValue()) || jailRoom) {
                 if (file instanceof Symlink) {
                     files.remove(i);
                     continue;

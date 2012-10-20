@@ -36,6 +36,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.internal.util.XmlUtils;
+import com.cyanogenmod.explorer.ExplorerApplication;
 import com.cyanogenmod.explorer.R;
 import com.cyanogenmod.explorer.adapters.BookmarksAdapter;
 import com.cyanogenmod.explorer.console.NoSuchFileOrDirectory;
@@ -70,6 +71,8 @@ public class BookmarksActivity extends Activity implements OnItemClickListener, 
 
     private ListView mBookmarksListView;
 
+    private boolean mJailRoom;
+
     /**
      * {@inheritDoc}
      */
@@ -78,6 +81,9 @@ public class BookmarksActivity extends Activity implements OnItemClickListener, 
         if (DEBUG) {
             Log.d(TAG, "NavigationActivity.onCreate"); //$NON-NLS-1$
         }
+
+        // Is in jail room?
+        this.mJailRoom = !ExplorerApplication.isAdvancedMode();
 
         //Request features
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
@@ -267,10 +273,13 @@ public class BookmarksActivity extends Activity implements OnItemClickListener, 
      * @return List<Bookmark>
      */
     private List<Bookmark> loadBookmarks() {
-        //Bookmarks = HOME + FILESYSTEM + SD STORAGES + USER DEFINED
+        // Bookmarks = HOME + FILESYSTEM + SD STORAGES + USER DEFINED
+        // In jail room mode = SD STORAGES + USER DEFINED (from SD STORAGES)
         List<Bookmark> bookmarks = new ArrayList<Bookmark>();
-        bookmarks.add(loadHomeBookmarks());
-        bookmarks.addAll(loadFilesystemBookmarks());
+        if (!this.mJailRoom) {
+            bookmarks.add(loadHomeBookmarks());
+            bookmarks.addAll(loadFilesystemBookmarks());
+        }
         bookmarks.addAll(loadSdStorageBookmarks());
         bookmarks.addAll(loadUserBookmarks());
         return bookmarks;
@@ -405,7 +414,11 @@ public class BookmarksActivity extends Activity implements OnItemClickListener, 
         Cursor cursor = Bookmarks.getAllBookmarks(this.getContentResolver());
         if (cursor != null && cursor.moveToFirst()) {
             do {
-                bookmarks.add(new Bookmark(cursor));
+                Bookmark bm = new Bookmark(cursor);
+                if (this.mJailRoom && StorageHelper.isPathInStorageVolume(bm.mPath)) {
+                    continue;
+                }
+                bookmarks.add(bm);
             } while (cursor.moveToNext());
             cursor.close();
         }

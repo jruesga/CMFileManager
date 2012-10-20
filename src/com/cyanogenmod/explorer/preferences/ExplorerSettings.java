@@ -98,11 +98,11 @@ public enum ExplorerSettings {
     SETTINGS_COMPUTE_FOLDER_STATISTICS(
             "cm_explorer_compute_folder_statistics", Boolean.FALSE), //$NON-NLS-1$
     /**
-     * When to use case sensitive comparison in sorting of files
+     * When to run in advanced mode
      * @hide
      */
-    SETTINGS_ALLOW_CONSOLE_SELECTION(
-            "cm_explorer_allow_console_selection", Boolean.TRUE), //$NON-NLS-1$
+    SETTINGS_ADVANCE_MODE(
+            "cm_explorer_advanced_mode", Boolean.FALSE), //$NON-NLS-1$
 
     /**
      * When to highlight the terms of the search in the search results

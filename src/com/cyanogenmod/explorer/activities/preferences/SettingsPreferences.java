@@ -221,7 +221,7 @@ public class SettingsPreferences extends PreferenceActivity {
             // Allow console selection
             this.mAllowConsoleSelection =
                     (CheckBoxPreference)findPreference(
-                            ExplorerSettings.SETTINGS_ALLOW_CONSOLE_SELECTION.getId());
+                            ExplorerSettings.SETTINGS_ADVANCE_MODE.getId());
             this.mAllowConsoleSelection.setOnPreferenceChangeListener(this.mOnChangeListener);
 
             // Loaded

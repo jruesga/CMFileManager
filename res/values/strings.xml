@@ -113,7 +113,7 @@
   <string name="msgs_operation_failure">The operation failed.</string>
   <!-- A console couldn\'t be allocated -->
   <string name="msgs_console_alloc_failure">A console couldn\'t be allocated.</string>
-  <!-- An operation can't be cancelled -->
+  <!-- An operation cann't be cancelled -->
   <string name="msgs_operation_can_not_be_cancelled">The operation can\'t be cancelled.</string>
   <!-- The operation requieres mount the filesystem prior to execute the command -->
   <string name="msgs_read_only_filesystem">The filesystem is read-only. Try to mount the
@@ -650,15 +650,14 @@
     properties dialog.</string>
     <!-- Preferences * General * Advanced settings category -->
   <string name="pref_general_advanced_settings_category">Advanced settings</string>
-  <!-- Preferences * General * Allow console selection title -->
-  <string name="pref_allow_console_selection">Allow console selection</string>
-  <!-- Preferences * General * Allow console selection summary on -->
-  <string name="pref_allow_console_selection_on">Allow select the type of console to
-    use on the app when navigate. This enable the \'Select console\' menu and adds some advices
-    when the app need to use a privileged action.</string>
-  <!-- Preferences * General * Allow console selection summary off -->
-  <string name="pref_allow_console_selection_off">Use only a privileged console. This requires
-    that the app have \'su\' privilege to run.</string>
+  <!-- Preferences * General * Advanced mode -->
+  <string name="pref_advanced_mode">Advanced mode</string>
+  <!-- Preferences * General * Advanced mode summary on -->
+  <string name="pref_advanced_mode_on">Advanced mode is enabled. You are running in a privileged
+    environment. You are under your own risk.</string>
+  <!-- Preferences * General * Advanced mode summary off -->
+  <string name="pref_advanced_mode_off">Advanced mode is disabled. You are running in a
+    secure environment.</string>
   <!-- Preferences * Search * Results category -->
   <string name="pref_search_results_category">Results</string>
   <!-- Preferences * Search * Show relevance widget -->

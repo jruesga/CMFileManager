@@ -29,6 +29,7 @@ import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Parcelable;
+import android.os.storage.StorageVolume;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
@@ -41,6 +42,7 @@ import android.widget.ListPopupWindow;
 import android.widget.PopupWindow;
 import android.widget.Toast;
 
+import com.cyanogenmod.explorer.ExplorerApplication;
 import com.cyanogenmod.explorer.R;
 import com.cyanogenmod.explorer.activities.preferences.SettingsPreferences;
 import com.cyanogenmod.explorer.adapters.HighlightedSimpleMenuListAdapter;
@@ -79,6 +81,7 @@ import com.cyanogenmod.explorer.util.CommandHelper;
 import com.cyanogenmod.explorer.util.DialogHelper;
 import com.cyanogenmod.explorer.util.ExceptionUtil;
 import com.cyanogenmod.explorer.util.FileHelper;
+import com.cyanogenmod.explorer.util.StorageHelper;
 
 import java.io.FileNotFoundException;
 import java.io.Serializable;
@@ -200,6 +203,20 @@ public class NavigationActivity extends Activity
                         getCurrentNavigationView().refresh();
                         return;
                     }
+
+                    // Advanced mode
+                    if (key.compareTo(ExplorerSettings.
+                            SETTINGS_ADVANCE_MODE.getId()) == 0) {
+                        // Is it necessary to create or exit of the jail room?
+                        boolean jailRoom = !ExplorerApplication.isAdvancedMode();
+                        if (jailRoom != NavigationActivity.this.mJailRoom) {  
+                            if (jailRoom) {
+                                createJailRoom();
+                            } else {
+                                exitJailRoom();
+                            }
+                        }
+                    }
                 }
             }
         }
@@ -218,6 +235,11 @@ public class NavigationActivity extends Activity
 
     private boolean mExitFlag = false;
     private long mExitBackTimeout = -1;
+
+    /**
+     * @hide
+     */
+    boolean mJailRoom;
 
     /**
      * @hide
@@ -333,6 +355,7 @@ public class NavigationActivity extends Activity
      */
     private void init() {
         this.mHistory = new ArrayList<History>();
+        this.mJailRoom = !ExplorerApplication.isAdvancedMode();
     }
 
     /**
@@ -461,12 +484,7 @@ public class NavigationActivity extends Activity
                         throw new ConsoleAllocException("console == null"); //$NON-NLS-1$
                     }
                 } catch (Throwable ex) {
-                    boolean allowConsoleSelection = Preferences.getSharedPreferences().getBoolean(
-                            ExplorerSettings.SETTINGS_ALLOW_CONSOLE_SELECTION.getId(),
-                            ((Boolean)ExplorerSettings.
-                                    SETTINGS_ALLOW_CONSOLE_SELECTION.
-                                        getDefaultValue()).booleanValue());
-                    if (allowConsoleSelection) {
+                    if (!NavigationActivity.this.mJailRoom) {
                         //Show exception and exists
                         Log.e(TAG, getString(R.string.msgs_cant_create_console), ex);
                         // We don't have any console
@@ -492,6 +510,14 @@ public class NavigationActivity extends Activity
                             Preferences.getSharedPreferences().getString(
                                 ExplorerSettings.SETTINGS_INITIAL_DIR.getId(),
                                 (String)ExplorerSettings.SETTINGS_INITIAL_DIR.getDefaultValue());
+                    if (NavigationActivity.this.mJailRoom) {
+                        // Initial directory is the first external sdcard (sdcard, emmc, usb, ...)
+                        StorageVolume[] volumes =
+                                StorageHelper.getStorageVolumes(NavigationActivity.this);
+                        if (volumes != null && volumes.length > 0) {
+                            initialDir = volumes[0].getPath();
+                        }
+                    }
 
                     //Ensure initial is an absolute directory
                     try {
@@ -632,12 +658,20 @@ public class NavigationActivity extends Activity
                                 new ExplorerSettings[]{ExplorerSettings.SETTINGS_LAYOUT_MODE}));
                 break;
             case R.id.ab_view_options:
-                showSettingsPopUp(view,
-                        Arrays.asList(new ExplorerSettings[]{
-                                ExplorerSettings.SETTINGS_SHOW_DIRS_FIRST,
-                                ExplorerSettings.SETTINGS_SHOW_HIDDEN,
-                                ExplorerSettings.SETTINGS_SHOW_SYSTEM,
-                                ExplorerSettings.SETTINGS_SHOW_SYMLINKS}));
+                // If we are in jail room, then don't show non-secure items
+                if (this.mJailRoom) {
+                    showSettingsPopUp(view,
+                            Arrays.asList(new ExplorerSettings[]{
+                                    ExplorerSettings.SETTINGS_SHOW_DIRS_FIRST}));
+                } else {
+                    showSettingsPopUp(view,
+                            Arrays.asList(new ExplorerSettings[]{
+                                    ExplorerSettings.SETTINGS_SHOW_DIRS_FIRST,
+                                    ExplorerSettings.SETTINGS_SHOW_HIDDEN,
+                                    ExplorerSettings.SETTINGS_SHOW_SYSTEM,
+                                    ExplorerSettings.SETTINGS_SHOW_SYMLINKS}));
+                }
+                
                 break;
 
             //######################
@@ -914,11 +948,7 @@ public class NavigationActivity extends Activity
         }
 
         // Check if console selection is allowed
-        boolean allowConsoleSelection = Preferences.getSharedPreferences().getBoolean(
-                ExplorerSettings.SETTINGS_ALLOW_CONSOLE_SELECTION.getId(),
-                ((Boolean)ExplorerSettings.
-                        SETTINGS_ALLOW_CONSOLE_SELECTION.getDefaultValue()).booleanValue());
-        if (!allowConsoleSelection) {
+        if (this.mJailRoom) {
             menu.removeItem(R.id.mnu_console);
         }
 
@@ -1294,14 +1324,14 @@ public class NavigationActivity extends Activity
                         }
 
                         // Ok. Now try to change to advanced selection console. Any crash
-                        // here is a fatal error. We don't have any console
+                        // here is a fatal error. We won't have any console to operate.
                         try {
                             // Change console
                             ConsoleBuilder.changeToNonPrivilegedConsole(NavigationActivity.this);
 
                             // Save preferences
                             Preferences.savePreference(
-                                    ExplorerSettings.SETTINGS_ALLOW_CONSOLE_SELECTION,
+                                    ExplorerSettings.SETTINGS_ADVANCE_MODE,
                                     Boolean.TRUE, true);
                             Preferences.savePreference(
                                     ExplorerSettings.SETTINGS_SUPERUSER_MODE,
@@ -1318,6 +1348,45 @@ public class NavigationActivity extends Activity
                     }
                });
         dialog.show();
+    }
+
+    /**
+     * Method that creates a jail room, protecting the user to break anything in the device
+     * @hide
+     */
+    void createJailRoom() {
+        // If we are in a jail room, then do nothing
+        if (this.mJailRoom) return;
+        this.mJailRoom = true;
+
+        int cc = this.mNavigationViews.length;
+        for (int i = 0; i < cc; i++) {
+            this.mNavigationViews[i].createJailRoom();
+        }
+
+        // Remove the selection
+        cc = this.mNavigationViews.length;
+        for (int i = 0; i < cc; i++) {
+            getCurrentNavigationView().onDeselectAll();
+        }
+
+        // Remove the history (don't allow to access to previous data)
+        clearHistory();
+    }
+
+    /**
+     * Method that exits from a jail room
+     * @hide
+     */
+    void exitJailRoom() {
+        // If we aren't in a jail room, then do nothing
+        if (!this.mJailRoom) return;
+        this.mJailRoom = false;
+
+        int cc = this.mNavigationViews.length;
+        for (int i = 0; i < cc; i++) {
+            this.mNavigationViews[i].exitJailRoom();
+        }
     }
 
 }

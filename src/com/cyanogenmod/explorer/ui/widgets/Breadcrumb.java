@@ -38,8 +38,9 @@ public interface Breadcrumb {
      * Method that changes the path of the breadcrumb.
      *
      * @param newPath The new path
+     * @param jailRoom If the breadcrumb should be in a jail room
      */
-    void changeBreadcrumbPath(final String newPath);
+    void changeBreadcrumbPath(final String newPath, boolean jailRoom);
 
     /**
      * Method that adds a new breadcrumb listener.

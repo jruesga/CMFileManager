@@ -31,6 +31,8 @@ import java.lang.reflect.Method;
  * A helper class with useful methods for deal with storages.
  */
 public final class StorageHelper {
+    
+    private static StorageVolume[] sStorageVolumes;
 
     /**
      * Method that returns the storage volumes defined in the system.  This method uses
@@ -40,32 +42,38 @@ public final class StorageHelper {
      * @param ctx The current context
      * @return StorageVolume[] The storage volumes defined in the system
      */
-    public static StorageVolume[] getStorageVolumes(Context ctx) {
-        //IMP!! Android SDK doesn't have a "getVolumeList" but is supported by CM10.
-        //Use reflect to get this value (if possible)
-        try {
-            StorageManager sm = (StorageManager) ctx.getSystemService(Context.STORAGE_SERVICE);
-            Method method = sm.getClass().getMethod("getVolumeList"); //$NON-NLS-1$
-            return (StorageVolume[])method.invoke(sm);
-        } catch (Exception ex) {
-            //Ignore. Android SDK StorageManager class doesn't have this method
-            //Use default android information from environment
+    public static synchronized StorageVolume[] getStorageVolumes(Context ctx) {
+        if (sStorageVolumes == null) {
+            //IMP!! Android SDK doesn't have a "getVolumeList" but is supported by CM10.
+            //Use reflect to get this value (if possible)
             try {
-                File externalStorage = Environment.getExternalStorageDirectory();
-                String path = externalStorage.getCanonicalPath();
-                String description = null;
-                if (path.toLowerCase().indexOf("usb") != -1) { //$NON-NLS-1$
-                    description = ctx.getString(R.string.usb_storage);
-                } else {
-                    description = ctx.getString(R.string.external_storage);
+                StorageManager sm = (StorageManager) ctx.getSystemService(Context.STORAGE_SERVICE);
+                Method method = sm.getClass().getMethod("getVolumeList"); //$NON-NLS-1$
+                sStorageVolumes = (StorageVolume[])method.invoke(sm);
+                
+            } catch (Exception ex) {
+                //Ignore. Android SDK StorageManager class doesn't have this method
+                //Use default android information from environment
+                try {
+                    File externalStorage = Environment.getExternalStorageDirectory();
+                    String path = externalStorage.getCanonicalPath();
+                    String description = null;
+                    if (path.toLowerCase().indexOf("usb") != -1) { //$NON-NLS-1$
+                        description = ctx.getString(R.string.usb_storage);
+                    } else {
+                        description = ctx.getString(R.string.external_storage);
+                    }
+                    StorageVolume sv = new StorageVolume(path, description, false, false, 0, false, 0);
+                    sStorageVolumes = new StorageVolume[]{sv};
+                } catch (Exception ex2) {
+                    /**NON BLOCK**/
                 }
-                StorageVolume sv = new StorageVolume(path, description, false, false, 0, false, 0);
-                return new StorageVolume[]{sv};
-            } catch (Exception ex2) {
-                /**NON BLOCK**/
+            }
+            if (sStorageVolumes == null) {
+                sStorageVolumes = new StorageVolume[]{};
             }
         }
-        return new StorageVolume[]{};
+        return sStorageVolumes;
     }
 
     /**

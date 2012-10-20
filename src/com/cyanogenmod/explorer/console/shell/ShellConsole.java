@@ -282,7 +282,7 @@ public abstract class ShellConsole extends Console implements Program.ProgramLis
             Integer pid = processIdCmd.getResult();
             if (pid == null) {
                 throw new ConsoleAllocException(
-                        "Can't retrieve the PID of the shell."); //$NON-NLS-1$
+                        "cann't retrieve the PID of the shell."); //$NON-NLS-1$
             }
             this.mShell.setPid(pid.intValue());
 
@@ -834,7 +834,7 @@ public abstract class ShellConsole extends Console implements Program.ProgramLis
      * Method that checks the console status and restart the console
      * if this is unusable.
      *
-     * @throws ConsoleAllocException If the console can't be reallocated
+     * @throws ConsoleAllocException If the console cann't be reallocated
      */
     private void checkConsole() throws ConsoleAllocException {
         try {
@@ -995,7 +995,7 @@ public abstract class ShellConsole extends Console implements Program.ProgramLis
      */
     private boolean killCurrentCommand() {
         synchronized (this.mSync) {
-            //Is synchronous program? Otherwise it can't be cancelled
+            //Is synchronous program? Otherwise it cann't be cancelled
             if (!(this.mActiveCommand instanceof AsyncResultProgram)) {
                 return false;
             }
@@ -1054,7 +1054,7 @@ public abstract class ShellConsole extends Console implements Program.ProgramLis
      */
     private boolean sendSignalToCurrentCommand(SIGNAL signal) {
         synchronized (this.mSync) {
-            //Is synchronous program? Otherwise it can't be cancelled
+            //Is synchronous program? Otherwise it cann't be cancelled
             if (!(this.mActiveCommand instanceof AsyncResultProgram)) {
                 return false;
             }

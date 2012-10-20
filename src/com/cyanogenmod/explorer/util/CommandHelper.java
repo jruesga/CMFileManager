@@ -104,7 +104,7 @@ public final class CommandHelper {
      * @throws IOException If initial directory couldn't be checked
      * @throws InvalidCommandDefinitionException If the command has an invalid definition
      * @throws NoSuchFileOrDirectory If the file or directory was not found
-     * @throws ConsoleAllocException If the console can't be allocated
+     * @throws ConsoleAllocException If the console cann't be allocated
      * @throws InsufficientPermissionsException If an operation requires elevated permissions
      * @throws CommandNotFoundException If the command was not found
      * @throws OperationTimeoutException If the operation exceeded the maximum time of wait
@@ -137,7 +137,7 @@ public final class CommandHelper {
      * @throws IOException If initial directory couldn't be checked
      * @throws InvalidCommandDefinitionException If the command has an invalid definition
      * @throws NoSuchFileOrDirectory If the file or directory was not found
-     * @throws ConsoleAllocException If the console can't be allocated
+     * @throws ConsoleAllocException If the console cann't be allocated
      * @throws InsufficientPermissionsException If an operation requires elevated permissions
      * @throws CommandNotFoundException If the command was not found
      * @throws OperationTimeoutException If the operation exceeded the maximum time of wait
@@ -172,7 +172,7 @@ public final class CommandHelper {
      * @throws IOException If initial directory couldn't be checked
      * @throws InvalidCommandDefinitionException If the command has an invalid definition
      * @throws NoSuchFileOrDirectory If the file or directory was not found
-     * @throws ConsoleAllocException If the console can't be allocated
+     * @throws ConsoleAllocException If the console cann't be allocated
      * @throws InsufficientPermissionsException If an operation requires elevated permissions
      * @throws CommandNotFoundException If the command was not found
      * @throws OperationTimeoutException If the operation exceeded the maximum time of wait
@@ -206,7 +206,7 @@ public final class CommandHelper {
      * @throws IOException If initial directory couldn't be checked
      * @throws InvalidCommandDefinitionException If the command has an invalid definition
      * @throws NoSuchFileOrDirectory If the file or directory was not found
-     * @throws ConsoleAllocException If the console can't be allocated
+     * @throws ConsoleAllocException If the console cann't be allocated
      * @throws InsufficientPermissionsException If an operation requires elevated permissions
      * @throws CommandNotFoundException If the command was not found
      * @throws OperationTimeoutException If the operation exceeded the maximum time of wait
@@ -238,7 +238,7 @@ public final class CommandHelper {
      * @throws IOException If initial directory couldn't be checked
      * @throws InvalidCommandDefinitionException If the command has an invalid definition
      * @throws NoSuchFileOrDirectory If the file or directory was not found
-     * @throws ConsoleAllocException If the console can't be allocated
+     * @throws ConsoleAllocException If the console cann't be allocated
      * @throws InsufficientPermissionsException If an operation requires elevated permissions
      * @throws CommandNotFoundException If the command was not found
      * @throws OperationTimeoutException If the operation exceeded the maximum time of wait
@@ -270,7 +270,7 @@ public final class CommandHelper {
      * @throws IOException If initial directory couldn't be checked
      * @throws InvalidCommandDefinitionException If the command has an invalid definition
      * @throws NoSuchFileOrDirectory If the file or directory was not found
-     * @throws ConsoleAllocException If the console can't be allocated
+     * @throws ConsoleAllocException If the console cann't be allocated
      * @throws InsufficientPermissionsException If an operation requires elevated permissions
      * @throws CommandNotFoundException If the command was not found
      * @throws OperationTimeoutException If the operation exceeded the maximum time of wait
@@ -302,7 +302,7 @@ public final class CommandHelper {
      * @throws IOException If initial directory couldn't be checked
      * @throws InvalidCommandDefinitionException If the command has an invalid definition
      * @throws NoSuchFileOrDirectory If the file or directory was not found
-     * @throws ConsoleAllocException If the console can't be allocated
+     * @throws ConsoleAllocException If the console cann't be allocated
      * @throws InsufficientPermissionsException If an operation requires elevated permissions
      * @throws CommandNotFoundException If the command was not found
      * @throws OperationTimeoutException If the operation exceeded the maximum time of wait
@@ -334,7 +334,7 @@ public final class CommandHelper {
      * @throws IOException If initial directory couldn't be checked
      * @throws InvalidCommandDefinitionException If the command has an invalid definition
      * @throws NoSuchFileOrDirectory If the file or directory was not found
-     * @throws ConsoleAllocException If the console can't be allocated
+     * @throws ConsoleAllocException If the console cann't be allocated
      * @throws InsufficientPermissionsException If an operation requires elevated permissions
      * @throws CommandNotFoundException If the command was not found
      * @throws OperationTimeoutException If the operation exceeded the maximum time of wait
@@ -369,7 +369,7 @@ public final class CommandHelper {
      * @throws IOException If initial directory couldn't be checked
      * @throws InvalidCommandDefinitionException If the command has an invalid definition
      * @throws NoSuchFileOrDirectory If the file or directory was not found
-     * @throws ConsoleAllocException If the console can't be allocated
+     * @throws ConsoleAllocException If the console cann't be allocated
      * @throws InsufficientPermissionsException If an operation requires elevated permissions
      * @throws CommandNotFoundException If the command was not found
      * @throws OperationTimeoutException If the operation exceeded the maximum time of wait
@@ -399,7 +399,7 @@ public final class CommandHelper {
      * @throws IOException If initial directory couldn't be checked
      * @throws InvalidCommandDefinitionException If the command has an invalid definition
      * @throws NoSuchFileOrDirectory If the file or directory was not found
-     * @throws ConsoleAllocException If the console can't be allocated
+     * @throws ConsoleAllocException If the console cann't be allocated
      * @throws InsufficientPermissionsException If an operation requires elevated permissions
      * @throws CommandNotFoundException If the command was not found
      * @throws OperationTimeoutException If the operation exceeded the maximum time of wait
@@ -430,7 +430,7 @@ public final class CommandHelper {
      * @throws IOException If initial directory couldn't be checked
      * @throws InvalidCommandDefinitionException If the command has an invalid definition
      * @throws NoSuchFileOrDirectory If the file or directory was not found
-     * @throws ConsoleAllocException If the console can't be allocated
+     * @throws ConsoleAllocException If the console cann't be allocated
      * @throws InsufficientPermissionsException If an operation requires elevated permissions
      * @throws CommandNotFoundException If the command was not found
      * @throws OperationTimeoutException If the operation exceeded the maximum time of wait
@@ -458,7 +458,7 @@ public final class CommandHelper {
      * @throws IOException If initial directory couldn't be checked
      * @throws InvalidCommandDefinitionException If the command has an invalid definition
      * @throws NoSuchFileOrDirectory If the file or directory was not found
-     * @throws ConsoleAllocException If the console can't be allocated
+     * @throws ConsoleAllocException If the console cann't be allocated
      * @throws InsufficientPermissionsException If an operation requires elevated permissions
      * @throws CommandNotFoundException If the command was not found
      * @throws OperationTimeoutException If the operation exceeded the maximum time of wait
@@ -496,7 +496,7 @@ public final class CommandHelper {
      * @throws IOException If initial directory couldn't be checked
      * @throws InvalidCommandDefinitionException If the command has an invalid definition
      * @throws NoSuchFileOrDirectory If the file or directory was not found
-     * @throws ConsoleAllocException If the console can't be allocated
+     * @throws ConsoleAllocException If the console cann't be allocated
      * @throws InsufficientPermissionsException If an operation requires elevated permissions
      * @throws CommandNotFoundException If the command was not found
      * @throws OperationTimeoutException If the operation exceeded the maximum time of wait
@@ -526,7 +526,7 @@ public final class CommandHelper {
     * @throws IOException If initial directory couldn't be checked
     * @throws InvalidCommandDefinitionException If the command has an invalid definition
     * @throws NoSuchFileOrDirectory If the file or directory was not found
-    * @throws ConsoleAllocException If the console can't be allocated
+    * @throws ConsoleAllocException If the console cann't be allocated
     * @throws InsufficientPermissionsException If an operation requires elevated permissions
     * @throws CommandNotFoundException If the command was not found
     * @throws OperationTimeoutException If the operation exceeded the maximum time of wait
@@ -558,7 +558,7 @@ public final class CommandHelper {
     * @throws IOException If initial directory couldn't be checked
     * @throws InvalidCommandDefinitionException If the command has an invalid definition
     * @throws NoSuchFileOrDirectory If the file or directory was not found
-    * @throws ConsoleAllocException If the console can't be allocated
+    * @throws ConsoleAllocException If the console cann't be allocated
     * @throws InsufficientPermissionsException If an operation requires elevated permissions
     * @throws CommandNotFoundException If the command was not found
     * @throws OperationTimeoutException If the operation exceeded the maximum time of wait
@@ -590,7 +590,7 @@ public final class CommandHelper {
      * @throws IOException If initial directory couldn't be checked
      * @throws InvalidCommandDefinitionException If the command has an invalid definition
      * @throws NoSuchFileOrDirectory If the file or directory was not found
-     * @throws ConsoleAllocException If the console can't be allocated
+     * @throws ConsoleAllocException If the console cann't be allocated
      * @throws InsufficientPermissionsException If an operation requires elevated permissions
      * @throws CommandNotFoundException If the command was not found
      * @throws OperationTimeoutException If the operation exceeded the maximum time of wait
@@ -622,7 +622,7 @@ public final class CommandHelper {
      * @throws IOException If initial directory couldn't be checked
      * @throws InvalidCommandDefinitionException If the command has an invalid definition
      * @throws NoSuchFileOrDirectory If the file or directory was not found
-     * @throws ConsoleAllocException If the console can't be allocated
+     * @throws ConsoleAllocException If the console cann't be allocated
      * @throws InsufficientPermissionsException If an operation requires elevated permissions
      * @throws CommandNotFoundException If the command was not found
      * @throws OperationTimeoutException If the operation exceeded the maximum time of wait
@@ -653,7 +653,7 @@ public final class CommandHelper {
      * @throws IOException If initial directory couldn't be checked
      * @throws InvalidCommandDefinitionException If the command has an invalid definition
      * @throws NoSuchFileOrDirectory If the file or directory was not found
-     * @throws ConsoleAllocException If the console can't be allocated
+     * @throws ConsoleAllocException If the console cann't be allocated
      * @throws InsufficientPermissionsException If an operation requires elevated permissions
      * @throws CommandNotFoundException If the command was not found
      * @throws OperationTimeoutException If the operation exceeded the maximum time of wait
@@ -689,7 +689,7 @@ public final class CommandHelper {
      * @throws IOException If initial directory couldn't be checked
      * @throws InvalidCommandDefinitionException If the command has an invalid definition
      * @throws NoSuchFileOrDirectory If the file or directory was not found
-     * @throws ConsoleAllocException If the console can't be allocated
+     * @throws ConsoleAllocException If the console cann't be allocated
      * @throws InsufficientPermissionsException If an operation requires elevated permissions
      * @throws CommandNotFoundException If the command was not found
      * @throws OperationTimeoutException If the operation exceeded the maximum time of wait
@@ -722,7 +722,7 @@ public final class CommandHelper {
      * @throws IOException If initial directory couldn't be checked
      * @throws InvalidCommandDefinitionException If the command has an invalid definition
      * @throws NoSuchFileOrDirectory If the file or directory was not found
-     * @throws ConsoleAllocException If the console can't be allocated
+     * @throws ConsoleAllocException If the console cann't be allocated
      * @throws InsufficientPermissionsException If an operation requires elevated permissions
      * @throws CommandNotFoundException If the command was not found
      * @throws OperationTimeoutException If the operation exceeded the maximum time of wait
@@ -755,7 +755,7 @@ public final class CommandHelper {
      * @throws IOException If initial directory couldn't be checked
      * @throws InvalidCommandDefinitionException If the command has an invalid definition
      * @throws NoSuchFileOrDirectory If the file or directory was not found
-     * @throws ConsoleAllocException If the console can't be allocated
+     * @throws ConsoleAllocException If the console cann't be allocated
      * @throws InsufficientPermissionsException If an operation requires elevated permissions
      * @throws CommandNotFoundException If the command was not found
      * @throws OperationTimeoutException If the operation exceeded the maximum time of wait
@@ -790,7 +790,7 @@ public final class CommandHelper {
      * @throws IOException If initial directory couldn't be checked
      * @throws InvalidCommandDefinitionException If the command has an invalid definition
      * @throws NoSuchFileOrDirectory If the file or directory was not found
-     * @throws ConsoleAllocException If the console can't be allocated
+     * @throws ConsoleAllocException If the console cann't be allocated
      * @throws InsufficientPermissionsException If an operation requires elevated permissions
      * @throws CommandNotFoundException If the command was not found
      * @throws OperationTimeoutException If the operation exceeded the maximum time of wait
@@ -826,7 +826,7 @@ public final class CommandHelper {
      * @throws IOException If initial directory couldn't be checked
      * @throws InvalidCommandDefinitionException If the command has an invalid definition
      * @throws NoSuchFileOrDirectory If the file or directory was not found
-     * @throws ConsoleAllocException If the console can't be allocated
+     * @throws ConsoleAllocException If the console cann't be allocated
      * @throws InsufficientPermissionsException If an operation requires elevated permissions
      * @throws CommandNotFoundException If the command was not found
      * @throws OperationTimeoutException If the operation exceeded the maximum time of wait
@@ -860,7 +860,7 @@ public final class CommandHelper {
      * @throws IOException If initial directory couldn't be checked
      * @throws InvalidCommandDefinitionException If the command has an invalid definition
      * @throws NoSuchFileOrDirectory If the file or directory was not found
-     * @throws ConsoleAllocException If the console can't be allocated
+     * @throws ConsoleAllocException If the console cann't be allocated
      * @throws InsufficientPermissionsException If an operation requires elevated permissions
      * @throws CommandNotFoundException If the command was not found
      * @throws OperationTimeoutException If the operation exceeded the maximum time of wait
@@ -891,7 +891,7 @@ public final class CommandHelper {
      * @throws IOException If initial directory couldn't be checked
      * @throws InvalidCommandDefinitionException If the command has an invalid definition
      * @throws NoSuchFileOrDirectory If the file or directory was not found
-     * @throws ConsoleAllocException If the console can't be allocated
+     * @throws ConsoleAllocException If the console cann't be allocated
      * @throws InsufficientPermissionsException If an operation requires elevated permissions
      * @throws CommandNotFoundException If the command was not found
      * @throws OperationTimeoutException If the operation exceeded the maximum time of wait
@@ -925,7 +925,7 @@ public final class CommandHelper {
      * @throws IOException If initial directory couldn't be checked
      * @throws InvalidCommandDefinitionException If the command has an invalid definition
      * @throws NoSuchFileOrDirectory If the file or directory was not found
-     * @throws ConsoleAllocException If the console can't be allocated
+     * @throws ConsoleAllocException If the console cann't be allocated
      * @throws InsufficientPermissionsException If an operation requires elevated permissions
      * @throws CommandNotFoundException If the command was not found
      * @throws OperationTimeoutException If the operation exceeded the maximum time of wait
@@ -957,7 +957,7 @@ public final class CommandHelper {
      * @throws IOException If initial directory couldn't be checked
      * @throws InvalidCommandDefinitionException If the command has an invalid definition
      * @throws NoSuchFileOrDirectory If the file or directory was not found
-     * @throws ConsoleAllocException If the console can't be allocated
+     * @throws ConsoleAllocException If the console cann't be allocated
      * @throws InsufficientPermissionsException If an operation requires elevated permissions
      * @throws CommandNotFoundException If the command was not found
      * @throws OperationTimeoutException If the operation exceeded the maximum time of wait
@@ -988,7 +988,7 @@ public final class CommandHelper {
      * @throws IOException If initial directory couldn't be checked
      * @throws InvalidCommandDefinitionException If the command has an invalid definition
      * @throws NoSuchFileOrDirectory If the file or directory was not found
-     * @throws ConsoleAllocException If the console can't be allocated
+     * @throws ConsoleAllocException If the console cann't be allocated
      * @throws InsufficientPermissionsException If an operation requires elevated permissions
      * @throws CommandNotFoundException If the command was not found
      * @throws OperationTimeoutException If the operation exceeded the maximum time of wait
@@ -1021,7 +1021,7 @@ public final class CommandHelper {
      * @throws IOException If initial directory couldn't be checked
      * @throws InvalidCommandDefinitionException If the command has an invalid definition
      * @throws NoSuchFileOrDirectory If the file or directory was not found
-     * @throws ConsoleAllocException If the console can't be allocated
+     * @throws ConsoleAllocException If the console cann't be allocated
      * @throws InsufficientPermissionsException If an operation requires elevated permissions
      * @throws CommandNotFoundException If the command was not found
      * @throws OperationTimeoutException If the operation exceeded the maximum time of wait
@@ -1053,7 +1053,7 @@ public final class CommandHelper {
      * @throws IOException If initial directory couldn't be checked
      * @throws InvalidCommandDefinitionException If the command has an invalid definition
      * @throws NoSuchFileOrDirectory If the file or directory was not found
-     * @throws ConsoleAllocException If the console can't be allocated
+     * @throws ConsoleAllocException If the console cann't be allocated
      * @throws InsufficientPermissionsException If an operation requires elevated permissions
      * @throws CommandNotFoundException If the command was not found
      * @throws OperationTimeoutException If the operation exceeded the maximum time of wait
@@ -1083,7 +1083,7 @@ public final class CommandHelper {
      * @throws IOException If initial directory couldn't be checked
      * @throws InvalidCommandDefinitionException If the command has an invalid definition
      * @throws NoSuchFileOrDirectory If the file or directory was not found
-     * @throws ConsoleAllocException If the console can't be allocated
+     * @throws ConsoleAllocException If the console cann't be allocated
      * @throws InsufficientPermissionsException If an operation requires elevated permissions
      * @throws CommandNotFoundException If the command was not found
      * @throws OperationTimeoutException If the operation exceeded the maximum time of wait
@@ -1115,7 +1115,7 @@ public final class CommandHelper {
      * @throws IOException If initial directory couldn't be checked
      * @throws InvalidCommandDefinitionException If the command has an invalid definition
      * @throws NoSuchFileOrDirectory If the file or directory was not found
-     * @throws ConsoleAllocException If the console can't be allocated
+     * @throws ConsoleAllocException If the console cann't be allocated
      * @throws InsufficientPermissionsException If an operation requires elevated permissions
      * @throws CommandNotFoundException If the command was not found
      * @throws OperationTimeoutException If the operation exceeded the maximum time of wait
@@ -1151,7 +1151,7 @@ public final class CommandHelper {
      * @throws IOException If initial directory couldn't be checked
      * @throws InvalidCommandDefinitionException If the command has an invalid definition
      * @throws NoSuchFileOrDirectory If the file or directory was not found
-     * @throws ConsoleAllocException If the console can't be allocated
+     * @throws ConsoleAllocException If the console cann't be allocated
      * @throws InsufficientPermissionsException If an operation requires elevated permissions
      * @throws CommandNotFoundException If the command was not found
      * @throws OperationTimeoutException If the operation exceeded the maximum time of wait
@@ -1199,7 +1199,7 @@ public final class CommandHelper {
      * @throws IOException If initial directory couldn't be checked
      * @throws InvalidCommandDefinitionException If the command has an invalid definition
      * @throws NoSuchFileOrDirectory If the file or directory was not found
-     * @throws ConsoleAllocException If the console can't be allocated
+     * @throws ConsoleAllocException If the console cann't be allocated
      * @throws InsufficientPermissionsException If an operation requires elevated permissions
      * @throws CommandNotFoundException If the command was not found
      * @throws OperationTimeoutException If the operation exceeded the maximum time of wait
@@ -1252,7 +1252,7 @@ public final class CommandHelper {
      * @throws IOException If initial directory couldn't be checked
      * @throws InvalidCommandDefinitionException If the command has an invalid definition
      * @throws NoSuchFileOrDirectory If the file or directory was not found
-     * @throws ConsoleAllocException If the console can't be allocated
+     * @throws ConsoleAllocException If the console cann't be allocated
      * @throws InsufficientPermissionsException If an operation requires elevated permissions
      * @throws CommandNotFoundException If the command was not found
      * @throws OperationTimeoutException If the operation exceeded the maximum time of wait
@@ -1306,7 +1306,7 @@ public final class CommandHelper {
      * @throws IOException If initial directory couldn't be checked
      * @throws InvalidCommandDefinitionException If the command has an invalid definition
      * @throws NoSuchFileOrDirectory If the file or directory was not found
-     * @throws ConsoleAllocException If the console can't be allocated
+     * @throws ConsoleAllocException If the console cann't be allocated
      * @throws InsufficientPermissionsException If an operation requires elevated permissions
      * @throws CommandNotFoundException If the command was not found
      * @throws OperationTimeoutException If the operation exceeded the maximum time of wait
@@ -1364,7 +1364,7 @@ public final class CommandHelper {
      * to attach to the default console
      * @return Object The result of the re-execution
      * @throws NoSuchFileOrDirectory If the file or directory was not found
-     * @throws ConsoleAllocException If the console can't be allocated
+     * @throws ConsoleAllocException If the console cann't be allocated
      * @throws InsufficientPermissionsException If an operation requires elevated permissions
      * @throws CommandNotFoundException If the command was not found
      * @throws OperationTimeoutException If the operation exceeded the maximum time of wait
@@ -1394,7 +1394,7 @@ public final class CommandHelper {
      * @param console The console in which execute the program. <code>null</code> to attach
      * to the default console
      * @throws NoSuchFileOrDirectory If the file or directory was not found
-     * @throws ConsoleAllocException If the console can't be allocated
+     * @throws ConsoleAllocException If the console cann't be allocated
      * @throws InsufficientPermissionsException If an operation requires elevated permissions
      * @throws CommandNotFoundException If the command was not found
      * @throws OperationTimeoutException If the operation exceeded the maximum time of wait
@@ -1422,7 +1422,7 @@ public final class CommandHelper {
      * @param console The console in which execute the program. <code>null</code> to attach
      * to the default console
      * @throws NoSuchFileOrDirectory If the file or directory was not found
-     * @throws ConsoleAllocException If the console can't be allocated
+     * @throws ConsoleAllocException If the console cann't be allocated
      * @throws InsufficientPermissionsException If an operation requires elevated permissions
      * @throws CommandNotFoundException If the command was not found
      * @throws OperationTimeoutException If the operation exceeded the maximum time of wait
@@ -1446,7 +1446,7 @@ public final class CommandHelper {
                     //Mount point is already read-write
                 }
             } else {
-                //For security or physical reasons the mount point can't be
+                //For security or physical reasons the mount point cann't be
                 //mounted as read-write. Execute the command
                 //and notify to the user
             }
@@ -1515,7 +1515,7 @@ public final class CommandHelper {
      * @param console The console passed
      * @return Console The console passed if not is null. Otherwise, the default console
      * @throws InsufficientPermissionsException If an operation requires elevated permissions
-     * @throws ConsoleAllocException If the console can't be allocated
+     * @throws ConsoleAllocException If the console cann't be allocated
      * @throws InvalidCommandDefinitionException If the command has an invalid definition
      * @throws IOException If initial directory couldn't be checked
      * @throws FileNotFoundException If the initial directory not exists

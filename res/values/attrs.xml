@@ -27,10 +27,19 @@
 
   <!-- Bookmark definition -->
   <declare-styleable name="Bookmark">
-    <!-- The name of the bookmak -->
+    <!-- The name of the bookmark -->
     <attr name="name" format="string" />
     <!-- The folder which the bookmark point to -->
     <attr name="directory" format="string" />
+  </declare-styleable>
+
+  <!-- Navigable definition -->
+  <declare-styleable name="Navigable">
+    <!-- The type of navigation -->
+    <attr name="navigation" format="integer">
+      <enum name="browsable" value="0" />
+      <enum name="pickable" value="1" />
+    </attr>
   </declare-styleable>
 
 </resources>

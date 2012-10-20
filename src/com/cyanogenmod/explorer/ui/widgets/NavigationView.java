@@ -19,6 +19,7 @@ package com.cyanogenmod.explorer.ui.widgets;
 import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.content.res.TypedArray;
 import android.os.AsyncTask;
 import android.os.storage.StorageVolume;
 import android.util.AttributeSet;
@@ -56,6 +57,7 @@ import com.cyanogenmod.explorer.util.CommandHelper;
 import com.cyanogenmod.explorer.util.DialogHelper;
 import com.cyanogenmod.explorer.util.ExceptionUtil;
 import com.cyanogenmod.explorer.util.FileHelper;
+import com.cyanogenmod.explorer.util.MimeTypeHelper;
 import com.cyanogenmod.explorer.util.StorageHelper;
 
 import java.util.ArrayList;
@@ -99,6 +101,32 @@ public class NavigationView extends RelativeLayout implements
         void onRequestMenu(NavigationView navView, FileSystemObject item);
     }
 
+    /**
+     * An interface to communicate a request when the user choose a file.
+     */
+    public interface OnFilePickedListener {
+        /**
+         * Method invoked when a request when the user choose a file.
+         *
+         * @param item The item choose
+         */
+        void onFilePicked(FileSystemObject item);
+    }
+
+    /**
+     * The navigation view mode
+     * @hide
+     */
+    public enum NAVIGATION_MODE {
+        /**
+         * The navigation view acts as a browser, and allow open files itself.
+         */
+        BROWSABLE,
+        /**
+         * The navigation view acts as a picker of files
+         */
+        PICKABLE,
+    }
 
     private static final String TAG = "NavigationView"; //$NON-NLS-1$
 
@@ -117,8 +145,13 @@ public class NavigationView extends RelativeLayout implements
     private OnHistoryListener mOnHistoryListener;
     private OnNavigationSelectionChangedListener mOnNavigationSelectionChangedListener;
     private OnNavigationRequestMenuListener mOnNavigationRequestMenuListener;
+    private OnFilePickedListener mOnFilePickedListener;
 
     private boolean mJailRoom;
+
+    private NAVIGATION_MODE mNavigationMode;
+
+    private String mMimeType = MimeTypeHelper.ALL_MIME_TYPES;
 
     /**
      * @hide
@@ -150,21 +183,16 @@ public class NavigationView extends RelativeLayout implements
      * Constructor of <code>NavigationView</code>.
      *
      * @param context The current context
-     */
-    public NavigationView(Context context) {
-        super(context);
-        init();
-    }
-
-    /**
-     * Constructor of <code>NavigationView</code>.
-     *
-     * @param context The current context
      * @param attrs The attributes of the XML tag that is inflating the view.
      */
     public NavigationView(Context context, AttributeSet attrs) {
         super(context, attrs);
-        init();
+        TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.Navigable);
+        try {
+            init(a);
+        } finally {
+            a.recycle();
+        }
     }
 
     /**
@@ -179,7 +207,13 @@ public class NavigationView extends RelativeLayout implements
      */
     public NavigationView(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
-        init();
+        TypedArray a = context.obtainStyledAttributes(
+                attrs, R.styleable.Navigable, defStyle, 0);
+        try {
+            init(a);
+        } finally {
+            a.recycle();
+        }
     }
 
     /**
@@ -218,13 +252,29 @@ public class NavigationView extends RelativeLayout implements
     /**
      * Method that initializes the view. This method loads all the necessary
      * information and create an appropriate layout for the view.
+     *
+     * @param tarray The type array
      */
-    private void init() {
+    private void init(TypedArray tarray) {
+        // Retrieve the mode
+        this.mNavigationMode = NAVIGATION_MODE.BROWSABLE;
+        int mode = tarray.getInteger(
+                                R.styleable.Navigable_navigation,
+                                NAVIGATION_MODE.BROWSABLE.ordinal());
+        if (mode >= 0 && mode < NAVIGATION_MODE.values().length) {
+            this.mNavigationMode = NAVIGATION_MODE.values()[mode];
+        }
+
         //Initialize variables
         this.mFiles = new ArrayList<FileSystemObject>();
 
         // Is in jail room?
-        this.mJailRoom = !ExplorerApplication.isAdvancedMode();
+        if (this.mNavigationMode.compareTo(NAVIGATION_MODE.PICKABLE) == 0) {
+            // Pick mode is jail room always
+            this.mJailRoom = true;
+        } else {
+            this.mJailRoom = !ExplorerApplication.isAdvancedMode();
+        }
 
         // Default long-click action
         String defaultValue = ((ObjectStringIdentifier)ExplorerSettings.
@@ -232,16 +282,41 @@ public class NavigationView extends RelativeLayout implements
         String value = Preferences.getSharedPreferences().getString(
                             ExplorerSettings.SETTINGS_DEFAULT_LONG_CLICK_ACTION.getId(),
                             defaultValue);
-        DefaultLongClickAction mode = DefaultLongClickAction.fromId(value);
-        this.mDefaultLongClickAction = mode;
+        DefaultLongClickAction lcMode = DefaultLongClickAction.fromId(value);
+        this.mDefaultLongClickAction = lcMode;
 
         //Retrieve the default configuration
-        SharedPreferences preferences = Preferences.getSharedPreferences();
-        int viewMode = preferences.getInt(
-                ExplorerSettings.SETTINGS_LAYOUT_MODE.getId(),
-                ((ObjectIdentifier)ExplorerSettings.
-                        SETTINGS_LAYOUT_MODE.getDefaultValue()).getId());
-        changeViewMode(NavigationLayoutMode.fromId(viewMode));
+        if (this.mNavigationMode.compareTo(NAVIGATION_MODE.BROWSABLE) == 0) {
+            SharedPreferences preferences = Preferences.getSharedPreferences();
+            int viewMode = preferences.getInt(
+                    ExplorerSettings.SETTINGS_LAYOUT_MODE.getId(),
+                    ((ObjectIdentifier)ExplorerSettings.
+                            SETTINGS_LAYOUT_MODE.getDefaultValue()).getId());
+            changeViewMode(NavigationLayoutMode.fromId(viewMode));
+        } else {
+            // Pick mode has always a details layout
+            changeViewMode(NavigationLayoutMode.DETAILS);
+        }
+    }
+
+    /**
+     * Method that returns the mime/type used by this class. Only the files with this mime/type
+     * are shown.
+     *
+     * @return String The mime/type
+     */
+    public String getMimeType() {
+        return this.mMimeType;
+    }
+
+    /**
+     * Method that sets the mime/type used by this class. Only the files with this mime/type
+     * are shown.
+     *
+     * @param mimeType String The mime/type
+     */
+    public void setMimeType(String mimeType) {
+        this.mMimeType = mimeType;
     }
 
     /**
@@ -313,10 +388,15 @@ public class NavigationView extends RelativeLayout implements
     public void setDefaultLongClickAction(DefaultLongClickAction mDefaultLongClickAction) {
         this.mDefaultLongClickAction = mDefaultLongClickAction;
 
-        // Register the long-click listener only if needed
-        if (this.mDefaultLongClickAction.compareTo(
-                DefaultLongClickAction.NONE) != 0) {
-            this.mAdapterView.setOnItemLongClickListener(this);
+        // Pick mode doesn't implements the onlongclick
+        if (this.mNavigationMode.compareTo(NAVIGATION_MODE.BROWSABLE) == 0) {
+            // Register the long-click listener only if needed
+            if (this.mDefaultLongClickAction.compareTo(
+                    DefaultLongClickAction.NONE) != 0) {
+                this.mAdapterView.setOnItemLongClickListener(this);
+            } else {
+                this.mAdapterView.setOnItemLongClickListener(null);
+            }
         } else {
             this.mAdapterView.setOnItemLongClickListener(null);
         }
@@ -349,6 +429,22 @@ public class NavigationView extends RelativeLayout implements
     public void setOnNavigationOnRequestMenuListener(
             OnNavigationRequestMenuListener onNavigationRequestMenuListener) {
         this.mOnNavigationRequestMenuListener = onNavigationRequestMenuListener;
+    }
+
+    /**
+     * @return the mOnFilePickedListener
+     */
+    public OnFilePickedListener getOnFilePickedListener() {
+        return this.mOnFilePickedListener;
+    }
+
+    /**
+     * Method that sets the listener for picked items
+     *
+     * @param onFilePickedListener The listener reference
+     */
+    public void setOnFilePickedListener(OnFilePickedListener onFilePickedListener) {
+        this.mOnFilePickedListener = onFilePickedListener;
     }
 
     /**
@@ -433,7 +529,10 @@ public class NavigationView extends RelativeLayout implements
                     (AdapterView<ListAdapter>)findViewById(RESOURCE_CURRENT_LAYOUT);
             FileSystemObjectAdapter adapter =
                     new FileSystemObjectAdapter(
-                            getContext(), new ArrayList<FileSystemObject>(), itemResourceId);
+                            getContext(),
+                            new ArrayList<FileSystemObject>(),
+                            itemResourceId,
+                            this.mNavigationMode.compareTo(NAVIGATION_MODE.PICKABLE) == 0);
             adapter.setOnSelectionChangedListener(this);
             adapter.setOnRequestMenuListener(this);
 
@@ -457,10 +556,13 @@ public class NavigationView extends RelativeLayout implements
             newView.setAdapter(this.mAdapter);
             newView.setOnItemClickListener(NavigationView.this);
 
-            // Register the long-click listener only if needed
-            if (this.mDefaultLongClickAction.compareTo(
-                    DefaultLongClickAction.NONE) != 0) {
-                newView.setOnItemLongClickListener(this);
+            // Pick mode doesn't implements the onlongclick
+            if (this.mNavigationMode.compareTo(NAVIGATION_MODE.BROWSABLE) == 0) {
+                // Register the long-click listener only if needed
+                if (this.mDefaultLongClickAction.compareTo(
+                        DefaultLongClickAction.NONE) != 0) {
+                    newView.setOnItemLongClickListener(this);
+                }
             }
 
             //Add the new layout
@@ -468,11 +570,14 @@ public class NavigationView extends RelativeLayout implements
             addView(newView, 0);
             this.mCurrentMode = newMode;
 
-            //Save the preference
-            try {
-                Preferences.savePreference(ExplorerSettings.SETTINGS_LAYOUT_MODE, newMode, true);
-            } catch (Exception ex) {
-                Log.e(TAG, "Save of view mode preference fails", ex); //$NON-NLS-1$
+            //Save the preference (only in navigation browse mode)
+            if (this.mNavigationMode.compareTo(NAVIGATION_MODE.BROWSABLE) == 0) {
+                try {
+                    Preferences.savePreference(
+                            ExplorerSettings.SETTINGS_LAYOUT_MODE, newMode, true);
+                } catch (Exception ex) {
+                    Log.e(TAG, "Save of view mode preference fails", ex); //$NON-NLS-1$
+                }
             }
         }
     }
@@ -567,23 +672,27 @@ public class NavigationView extends RelativeLayout implements
                         protected List<FileSystemObject> doInBackground(String... params) {
                             try {
                                 //Reset the custom title view and returns to breadcrumb
-                                NavigationView.this.mTitle.post(new Runnable() {
-                                    @Override
-                                    public void run() {
-                                        try {
-                                            NavigationView.this.mTitle.restoreView();
-                                        } catch (Exception e) {
-                                            e.printStackTrace();
+                                if (NavigationView.this.mTitle != null) {
+                                    NavigationView.this.mTitle.post(new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            try {
+                                                NavigationView.this.mTitle.restoreView();
+                                            } catch (Exception e) {
+                                                e.printStackTrace();
+                                            }
                                         }
-                                    }
-                                });
+                                    });
+                                }
 
 
                                 //Start of loading data
-                                try {
-                                    NavigationView.this.mBreadcrumb.startLoading();
-                                } catch (Throwable ex) {
-                                    /**NON BLOCK**/
+                                if (NavigationView.this.mBreadcrumb != null) {
+                                    try {
+                                        NavigationView.this.mBreadcrumb.startLoading();
+                                    } catch (Throwable ex) {
+                                        /**NON BLOCK**/
+                                    }
                                 }
 
                                 //Get the files, resolve links and apply configuration
@@ -595,7 +704,7 @@ public class NavigationView extends RelativeLayout implements
                                 return files;
                             } catch (final ConsoleAllocException e) {
                                 //Show exception and exists
-                                NavigationView.this.mTitle.post(new Runnable() {
+                                NavigationView.this.post(new Runnable() {
                                     @Override
                                     public void run() {
                                         Context ctx = getContext();
@@ -611,10 +720,12 @@ public class NavigationView extends RelativeLayout implements
 
                             } catch (Exception ex) {
                                 //End of loading data
-                                try {
-                                    NavigationView.this.mBreadcrumb.endLoading();
-                                } catch (Throwable ex2) {
-                                    /**NON BLOCK**/
+                                if (NavigationView.this.mBreadcrumb != null) {
+                                    try {
+                                        NavigationView.this.mBreadcrumb.endLoading();
+                                    } catch (Throwable ex2) {
+                                        /**NON BLOCK**/
+                                    }
                                 }
 
                                 //Capture exception
@@ -684,7 +795,7 @@ public class NavigationView extends RelativeLayout implements
 
             //Apply user preferences
             List<FileSystemObject> sortedFiles =
-                    FileHelper.applyUserPreferences(files, this.mJailRoom);
+                    FileHelper.applyUserPreferences(files, this.mMimeType, this.mJailRoom);
 
             //Load the data
             loadData(sortedFiles);
@@ -836,8 +947,15 @@ public class NavigationView extends RelativeLayout implements
                             symlink.getLinkRef().getFullPath(), true, false, false, null, null);
                 }
             } else {
-                // Open the file with the preferred registered app
-                IntentsActionPolicy.openFileSystemObject(getContext(), fso, false);
+                if (this.mNavigationMode.compareTo(NAVIGATION_MODE.BROWSABLE) == 0) {
+                    // Open the file with the preferred registered app
+                    IntentsActionPolicy.openFileSystemObject(getContext(), fso, false);
+                } else {
+                    // Request a file pick selection
+                    if (this.mOnFilePickedListener != null) {
+                        this.mOnFilePickedListener.onFilePicked(fso);
+                    }
+                }
             }
         } catch (Throwable ex) {
             ExceptionUtil.translateException(getContext(), ex);

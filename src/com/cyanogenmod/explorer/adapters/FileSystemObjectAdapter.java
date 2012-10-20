@@ -114,6 +114,7 @@ public class FileSystemObjectAdapter
     private IconHolder mIconHolder;
     private final int mItemViewResourceId;
     private List<FileSystemObject> mSelectedItems;
+    private final boolean mPickable;
 
     private OnSelectionChangedListener mOnSelectionChangedListener;
     private OnRequestMenuListener mOnRequestMenuListener;
@@ -138,13 +139,16 @@ public class FileSystemObjectAdapter
      * @param files The list of file system objects
      * @param itemViewResourceId The identifier of the layout that represents an item
      * of the list adapter
+     * @param pickable If the adapter should act as a pickable browser.
      */
     public FileSystemObjectAdapter(
-            Context context, List<FileSystemObject> files, int itemViewResourceId) {
+            Context context, List<FileSystemObject> files,
+            int itemViewResourceId, boolean pickable) {
         super(context, RESOURCE_ITEM_NAME, files);
         this.mIconHolder = new IconHolder();
         this.mItemViewResourceId = itemViewResourceId;
         this.mSelectedItems = new ArrayList<FileSystemObject>();
+        this.mPickable = pickable;
 
         //Do cache of the data for better performance
         loadDefaultIcons();
@@ -275,10 +279,17 @@ public class FileSystemObjectAdapter
             viewHolder.mTvName = (TextView)v.findViewById(RESOURCE_ITEM_NAME);
             viewHolder.mTvSummary = (TextView)v.findViewById(RESOURCE_ITEM_SUMMARY);
             viewHolder.mTvSize = (TextView)v.findViewById(RESOURCE_ITEM_SIZE);
-            viewHolder.mBtCheck = (ImageButton)v.findViewById(RESOURCE_ITEM_CHECK);
-            viewHolder.mBtCheck.setOnClickListener(this);
-            viewHolder.mBtMenu = (ImageButton)v.findViewById(RESOURCE_ITEM_MENU);
-            viewHolder.mBtMenu.setOnClickListener(this);
+            if (!this.mPickable) {
+                viewHolder.mBtCheck = (ImageButton)v.findViewById(RESOURCE_ITEM_CHECK);
+                viewHolder.mBtCheck.setOnClickListener(this);
+                viewHolder.mBtMenu = (ImageButton)v.findViewById(RESOURCE_ITEM_MENU);
+                viewHolder.mBtMenu.setOnClickListener(this);
+            } else {
+                viewHolder.mBtCheck = (ImageButton)v.findViewById(RESOURCE_ITEM_CHECK);
+                viewHolder.mBtCheck.setVisibility(View.GONE);
+                viewHolder.mBtMenu = (ImageButton)v.findViewById(RESOURCE_ITEM_MENU);
+                viewHolder.mBtMenu.setVisibility(View.GONE);
+            }
             v.setTag(viewHolder);
         }
 
@@ -297,17 +308,19 @@ public class FileSystemObjectAdapter
         if (viewHolder.mTvSize != null) {
             viewHolder.mTvSize.setText(dataHolder.mSize);
         }
-        viewHolder.mBtCheck.setVisibility(
-                dataHolder.mName.compareTo(
-                        FileHelper.PARENT_DIRECTORY) == 0 ? View.INVISIBLE : View.VISIBLE);
-        viewHolder.mBtCheck.setImageDrawable(dataHolder.mDwCheck);
-        viewHolder.mBtCheck.setTag(Integer.valueOf(position));
-        v.setBackgroundResource(
-                dataHolder.mSelected
-                    ? R.drawable.holo_list_selector_selected
-                    : R.drawable.holo_list_selector_deseleted);
-        viewHolder.mBtMenu.setVisibility(dataHolder.mHasMenu ? View.VISIBLE : View.GONE);
-        viewHolder.mBtMenu.setTag(Integer.valueOf(position));
+        if (!this.mPickable) {
+            viewHolder.mBtCheck.setVisibility(
+                    dataHolder.mName.compareTo(
+                            FileHelper.PARENT_DIRECTORY) == 0 ? View.INVISIBLE : View.VISIBLE);
+            viewHolder.mBtCheck.setImageDrawable(dataHolder.mDwCheck);
+            viewHolder.mBtCheck.setTag(Integer.valueOf(position));
+            v.setBackgroundResource(
+                    dataHolder.mSelected
+                        ? R.drawable.holo_list_selector_selected
+                        : R.drawable.holo_list_selector_deseleted);
+            viewHolder.mBtMenu.setVisibility(dataHolder.mHasMenu ? View.VISIBLE : View.GONE);
+            viewHolder.mBtMenu.setTag(Integer.valueOf(position));
+        }
 
         //Return the view
         return v;

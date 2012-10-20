@@ -444,12 +444,13 @@ public final class FileHelper {
      * (sort mode, hidden files, ...).
      *
      * @param files The listed files
+     * @param mimeType The mime-type to apply. if null returns all.
      * @param jailRoom If app run with no privileges
      * @return List<FileSystemObject> The applied mode listed files
      */
     public static List<FileSystemObject> applyUserPreferences(
-                    List<FileSystemObject> files, boolean jailRoom) {
-        return applyUserPreferences(files, false, jailRoom);
+                    List<FileSystemObject> files, String mimeType, boolean jailRoom) {
+        return applyUserPreferences(files, mimeType, false, jailRoom);
     }
 
     /**
@@ -457,12 +458,13 @@ public final class FileHelper {
      * (sort mode, hidden files, ...).
      *
      * @param files The listed files
+     * @param mimeType The mime-type to apply. if null returns all.
      * @param noSort If sort must be applied
      * @param jailRoom If app run with no privileges
      * @return List<FileSystemObject> The applied mode listed files
      */
     public static List<FileSystemObject> applyUserPreferences(
-            List<FileSystemObject> files, boolean noSort, boolean jailRoom) {
+            List<FileSystemObject> files, String mimeType, boolean noSort, boolean jailRoom) {
         //Retrieve user preferences
         SharedPreferences prefs = Preferences.getSharedPreferences();
         ExplorerSettings sortModePref = ExplorerSettings.SETTINGS_SORT_MODE;
@@ -503,6 +505,18 @@ public final class FileHelper {
                 if (file instanceof Symlink) {
                     files.remove(i);
                     continue;
+                }
+            }
+
+            //Mime/Type
+            if (jailRoom && !isDirectory(file)) {
+                if (mimeType != null && mimeType.compareTo(MimeTypeHelper.ALL_MIME_TYPES) != 0) {
+                    // NOTE: We don't need the context here, because mime-type database should
+                    // be loaded prior to this call
+                    if (!MimeTypeHelper.matchesMimeType(null, file, mimeType)) {
+                        files.remove(i);
+                        continue;
+                    }
                 }
             }
         }

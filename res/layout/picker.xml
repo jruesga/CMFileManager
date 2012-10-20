@@ -18,26 +18,27 @@
   xmlns:cmexplorer="http://schemas.android.com/apk/res/com.cyanogenmod.explorer"
   android:layout_width="match_parent"
   android:layout_height="match_parent"
+  android:background="@color/default_background"
   android:orientation="vertical">
 
-  <!-- Navigation View -->
+  <!-- Breadcrumb -->
+  <com.cyanogenmod.explorer.ui.widgets.BreadcrumbView
+    android:id="@+id/breadcrumb_view"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/default_row_height"
+    android:layout_marginLeft="@dimen/extra_large_margin"
+    android:layout_marginRight="@dimen/extra_large_margin"/>
+
+  <include layout="@layout/vertical_divider" />
+
+  <!-- Picker Navigation View -->
   <com.cyanogenmod.explorer.ui.widgets.NavigationView
     android:id="@+id/navigation_view"
     android:layout_width="match_parent"
     android:layout_height="0dp"
     android:layout_weight="1"
-    cmexplorer:navigation="browsable" />
-
-  <!-- SelectionBar -->
-  <com.cyanogenmod.explorer.ui.widgets.SelectionView
-    android:id="@+id/navigation_selectionbar"
-    android:layout_width="match_parent"
-    android:layout_height="@dimen/small_row_height"
-    android:visibility="invisible" />
-
-  <!-- StatusBar -->
-  <include
-    android:id="@+id/navigation_statusbar"
-    layout="@layout/navigation_view_statusbar" />
+    android:layout_marginLeft="@dimen/extra_margin"
+    android:layout_marginRight="@dimen/extra_margin"
+    cmexplorer:navigation="pickable" />
 
 </LinearLayout>

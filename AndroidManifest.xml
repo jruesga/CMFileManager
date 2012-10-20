@@ -93,6 +93,19 @@
     </activity>
 
     <activity
+      android:name=".activities.PickerActivity"
+      android:label="@string/picker"
+      android:uiOptions="none"
+      android:theme="@style/Explorer.Theme.Holo.Ligth.Overlay">
+      <intent-filter>
+        <action android:name="android.intent.action.GET_CONTENT" />
+        <category android:name="android.intent.category.OPENABLE" />
+        <category android:name="android.intent.category.DEFAULT" />
+        <data android:mimeType="*/*" />
+      </intent-filter>
+    </activity>
+
+    <activity
       android:name=".activities.preferences.SettingsPreferences"
       android:label="@string/pref"
       android:icon="@drawable/ic_launcher_settings"

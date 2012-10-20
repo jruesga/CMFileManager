@@ -122,6 +122,11 @@ public final class MimeTypeHelper {
 
     private static final String TAG = "MimeTypeHelper"; //$NON-NLS-1$
 
+    /**
+     * A constant that defines a string of all mime-types
+     */
+    public static final String ALL_MIME_TYPES = "*/*"; //$NON-NLS-1$
+
     private static Map<String, Integer> sCachedIndentifiers;
     private static Map<String, MimeTypeInfo> sMimeTypes;
 
@@ -321,6 +326,21 @@ public final class MimeTypeHelper {
     }
 
     /**
+     * Method that returns if a file system object matches with a mime-type expression.
+     *
+     * @param ctx The current context
+     * @param fso The file system object to check
+     * @param mimeTypeExpression The mime-type expression (xe: *&#47;*, audio&#47;*)
+     * @return boolean If the file system object matches the mime-type expression
+     */
+    public static final boolean matchesMimeType(
+            Context ctx, FileSystemObject fso, String mimeTypeExpression) {
+        String mimeType = getMimeType(ctx, fso);
+        if (mimeType == null) return false;
+        return mimeType.matches(convertToRegExp(mimeTypeExpression));
+    }
+
+    /**
      * Method that loads the mime type information.
      *
      * @param context The current context
@@ -359,6 +379,16 @@ public final class MimeTypeHelper {
                 Log.e(TAG, "Fail to load mime types raw file.", e); //$NON-NLS-1$
             }
         }
+    }
+
+    /**
+     * Method that converts the mime-type expression to a regular expression
+     *
+     * @param mimeTypeExpression The mime-type expression
+     * @return String The regular expression
+     */
+    private static String convertToRegExp(String mimeTypeExpression) {
+        return mimeTypeExpression.replaceAll("\\*", ".\\*"); //$NON-NLS-1$ //$NON-NLS-2$
     }
 
 }

@@ -33,14 +33,25 @@
     android:layout_height="match_parent"
     android:layout_alignParentTop="true"
     android:layout_toRightOf="@id/navigation_view_item_check"
+    android:layout_alignWithParentIfMissing="true"
     android:contentDescription="@null"
     android:src="@null" />
+
+  <com.cyanogenmod.explorer.ui.widgets.NonFocusableButtonItem
+    android:id="@+id/navigation_view_item_menu"
+    android:layout_width="@dimen/item_menu_row_button_width"
+    android:layout_height="match_parent"
+    android:layout_alignParentRight="true"
+    android:contentDescription="@null"
+    android:src="@drawable/ic_holo_light_arrow" />
 
   <RelativeLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_toLeftOf="@id/navigation_view_item_menu"
-    android:layout_toRightOf="@id/navigation_view_item_icon" >
+    android:layout_toRightOf="@id/navigation_view_item_icon"
+
+    android:layout_alignWithParentIfMissing="true" >
 
     <TextView
       android:id="@+id/navigation_view_item_name"
@@ -53,13 +64,5 @@
       android:singleLine="true"
       android:textAppearance="@style/primary_text_appearance" />
   </RelativeLayout>
-
-  <com.cyanogenmod.explorer.ui.widgets.NonFocusableButtonItem
-    android:id="@+id/navigation_view_item_menu"
-    android:layout_width="@dimen/item_menu_row_button_width"
-    android:layout_height="match_parent"
-    android:layout_alignParentRight="true"
-    android:contentDescription="@null"
-    android:src="@drawable/ic_holo_light_arrow" />
 
 </RelativeLayout>

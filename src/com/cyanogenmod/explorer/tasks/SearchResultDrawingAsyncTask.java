@@ -35,6 +35,7 @@ import com.cyanogenmod.explorer.preferences.Preferences;
 import com.cyanogenmod.explorer.preferences.SearchSortResultMode;
 import com.cyanogenmod.explorer.util.ExceptionUtil;
 import com.cyanogenmod.explorer.util.FileHelper;
+import com.cyanogenmod.explorer.util.MimeTypeHelper;
 import com.cyanogenmod.explorer.util.SearchHelper;
 
 import java.util.Collections;
@@ -120,7 +121,8 @@ public class SearchResultDrawingAsyncTask extends AsyncTask<Object, Integer, Boo
             //Process all the data
             final List<SearchResult> result =
                     SearchHelper.convertToResults(
-                            FileHelper.applyUserPreferences(this.mFiles, true, jailRoom),
+                            FileHelper.applyUserPreferences(
+                                    this.mFiles, MimeTypeHelper.ALL_MIME_TYPES, true, jailRoom),
                             this.mQueries);
             if (mode.compareTo(SearchSortResultMode.NAME) == 0) {
                 Collections.sort(result, new Comparator<SearchResult>() {

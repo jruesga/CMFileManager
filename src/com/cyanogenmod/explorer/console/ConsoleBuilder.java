@@ -182,21 +182,42 @@ public final class ConsoleBuilder {
     public static Console createDefaultConsole(Context context)
             throws FileNotFoundException, IOException, InvalidCommandDefinitionException,
             ConsoleAllocException, InsufficientPermissionsException {
+        //Gets superuser mode settings
+        boolean superuserMode = ExplorerApplication.isSuperuserMode();
+        boolean advancedMode = ExplorerApplication.isAdvancedMode();
+        if (superuserMode && !advancedMode) {
+            try {
+                Preferences.savePreference(
+                        ExplorerSettings.SETTINGS_SUPERUSER_MODE, Boolean.FALSE, true);
+            } catch (Throwable ex) {
+                Log.w(TAG, "can't save console preference", ex); //$NON-NLS-1$
+            }
+            superuserMode = false;
+        }
+        return createDefaultConsole(context, superuserMode, advancedMode);
+    }
+
+    /**
+     * Method that returns a console, and creates a new console if no
+     * console is allocated or if the settings preferences has changed.
+     *
+     * @param context The current context
+     * @param superuserMode If create with a superuser mode console
+     * @param advancedMode If create with a advanced mode console
+     * @return Console An allocated console
+     * @throws FileNotFoundException If the initial directory not exists
+     * @throws IOException If initial directory couldn't be checked
+     * @throws InvalidCommandDefinitionException If the command has an invalid definition
+     * @throws ConsoleAllocException If the console can't be allocated
+     * @throws InsufficientPermissionsException If the console created is not a privileged console
+     */
+    //IMP! This must be invoked from the main activity creation
+    public static Console createDefaultConsole(Context context,
+            boolean superuserMode, boolean advancedMode)
+            throws FileNotFoundException, IOException, InvalidCommandDefinitionException,
+            ConsoleAllocException, InsufficientPermissionsException {
 
         synchronized (ConsoleBuilder.SYNC) {
-            //Gets superuser mode settings
-            boolean superuserMode = ExplorerApplication.isSuperuserMode();
-            boolean advancedMode = ExplorerApplication.isAdvancedMode();
-            if (superuserMode && !advancedMode) {
-                try {
-                    Preferences.savePreference(
-                            ExplorerSettings.SETTINGS_SUPERUSER_MODE, Boolean.FALSE, true);
-                } catch (Throwable ex) {
-                    Log.w(TAG, "can't save console preference", ex); //$NON-NLS-1$
-                }
-                superuserMode = false;
-            }
-
             //Check if console settings has changed
             if (sHolder != null) {
                 if (
@@ -378,6 +399,18 @@ public final class ConsoleBuilder {
             // Rethrow the exception
             throw caEx;
         }
+    }
+
+    /**
+     * Method that returns if the current console is a privileged console
+     *
+     * @return boolean If the current console is a privileged console
+     */
+    public static boolean isAlloc() {
+        if (sHolder != null && sHolder.getConsole() != null) {
+            return true;
+        }
+        return false;
     }
 
     /**

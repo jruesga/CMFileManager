@@ -154,30 +154,32 @@
   <!-- Usb storage descripton -->
   <string name="usb_storage">Usb storage</string>
 
-  <!-- ActionBar Buttons > FileSystem -->
+  <!-- ActionBar Buttons * FileSystem -->
   <string name="actionbar_button_filesystem_cd">Filesystem info</string>
-  <!-- ActionBar Buttons > Navigation View Configuration -->
+  <!-- ActionBar Buttons * Navigation View Configuration -->
   <string name="actionbar_button_configuration_cd">Configuration</string>
-  <!-- ActionBar Buttons > Sort Mode -->
+  <!-- ActionBar Buttons * Sort Mode -->
   <string name="actionbar_button_sort_mode_cd">Sort mode</string>
-  <!-- ActionBar Buttons > Layout Mode -->
+  <!-- ActionBar Buttons * Layout Mode -->
   <string name="actionbar_button_layout_mode_cd">Layout mode</string>
-  <!-- ActionBar Buttons > Other View Options -->
+  <!-- ActionBar Buttons * Other View Options -->
   <string name="actionbar_button_other_view_options_cd">Other view options</string>
-  <!-- ActionBar Buttons > Close -->
+  <!-- ActionBar Buttons * Close -->
   <string name="actionbar_button_nav_close_cd">Close</string>
-  <!-- ActionBar Buttons > Done -->
+  <!-- ActionBar Buttons * Done -->
   <string name="actionbar_button_selection_done_cd">Done</string>
-  <!-- ActionBar Buttons > Actions -->
+  <!-- ActionBar Buttons * Actions -->
   <string name="actionbar_button_actions_cd">Actions</string>
-  <!-- ActionBar Buttons > History -->
+  <!-- ActionBar Buttons * History -->
   <string name="actionbar_button_history_cd">History</string>
-  <!-- ActionBar Buttons > Bookmarks -->
+  <!-- ActionBar Buttons * Bookmarks -->
   <string name="actionbar_button_bookmarks_cd">Bookmarks</string>
-  <!-- ActionBar Buttons > Search -->
+  <!-- ActionBar Buttons * Search -->
   <string name="actionbar_button_search_cd">Search</string>
-  <!-- ActionBar Buttons > Overflow -->
+  <!-- ActionBar Buttons * Overflow -->
   <string name="actionbar_button_overflow_cd">More options</string>
+  <!-- ActionBar Buttons * Storage volumes -->
+  <string name="actionbar_button_storage_cd">Storage volumes</string>
 
   <!-- Navigation View * Sort * Sort by name (ascending) -->
   <string name="sort_by_name_asc">By name &#x25B2;</string>
@@ -348,6 +350,11 @@
   <string name="searching">Please, wait &#8230;</string>
   <!-- Search * Searching label -->
   <string name="searching_action_label">Searching in progress</string>
+
+  <!-- Picker Activity -->
+  <string name="picker">@string/app_name</string>
+  <!-- Picker Activity * Dialog title -->
+  <string name="picker_title">Pick a file</string>
 
   <!-- Bookmarks * Bookmarks activity title -->
   <string name="bookmarks">Bookmarks</string>

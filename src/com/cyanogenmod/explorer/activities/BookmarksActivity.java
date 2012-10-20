@@ -221,12 +221,12 @@ public class BookmarksActivity extends Activity implements OnItemClickListener, 
     /**
      * Method that returns to previous activity and.
      *
-     * @param canceled Indicates if the activity was canceled
+     * @param cancelled Indicates if the activity was cancelled
      * @param path The path of the selected bookmark
      */
-    private void back(final boolean canceled, final String path) {
+    private void back(final boolean cancelled, final String path) {
         Intent intent =  new Intent();
-        if (canceled) {
+        if (cancelled) {
             setResult(RESULT_CANCELED, intent);
         } else {
             // Check that the bookmark exists

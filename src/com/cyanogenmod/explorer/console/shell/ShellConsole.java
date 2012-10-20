@@ -98,7 +98,7 @@ public abstract class ShellConsole extends Console implements Program.ProgramLis
     /**
      * @hide
      */
-    boolean mCanceled;
+    boolean mCancelled;
     /**
      * @hide
      */
@@ -133,7 +133,7 @@ public abstract class ShellConsole extends Console implements Program.ProgramLis
      *
      * @param shell The shell used to execute commands
      * @throws FileNotFoundException If the default initial directory not exists
-     * @throws IOException If initial directory can't not be resolved
+     * @throws IOException If initial directory couldn't be resolved
      */
     public ShellConsole(Shell shell) throws FileNotFoundException, IOException {
         this(shell, Preferences.getSharedPreferences().getString(
@@ -147,7 +147,7 @@ public abstract class ShellConsole extends Console implements Program.ProgramLis
      * @param shell The shell used to execute commands
      * @param initialDirectory The initial directory of the shell
      * @throws FileNotFoundException If the initial directory not exists
-     * @throws IOException If initial directory can't not be resolved
+     * @throws IOException If initial directory couldn't be resolved
      */
     public ShellConsole(Shell shell, String initialDirectory)
             throws FileNotFoundException, IOException {
@@ -446,7 +446,7 @@ public abstract class ShellConsole extends Console implements Program.ProgramLis
 
             //Reset the buffers
             this.mStarted = false;
-            this.mCanceled = false;
+            this.mCancelled = false;
             this.mSbIn = new StringBuffer();
             this.mSbErr = new StringBuffer();
 
@@ -536,7 +536,7 @@ public abstract class ShellConsole extends Console implements Program.ProgramLis
             //End partial results?
             if (program instanceof AsyncResultProgram) {
                 synchronized (this.mPartialSync) {
-                    ((AsyncResultProgram)program).onRequestEndParsePartialResult(this.mCanceled);
+                    ((AsyncResultProgram)program).onRequestEndParsePartialResult(this.mCancelled);
                 }
             }
 
@@ -620,7 +620,7 @@ public abstract class ShellConsole extends Console implements Program.ProgramLis
                             break;
                         }
                         StringBuffer sb = new StringBuffer();
-                        if (!ShellConsole.this.mCanceled) {
+                        if (!ShellConsole.this.mCancelled) {
                             ShellConsole.this.mSbIn.append((char)r);
                             if (!ShellConsole.this.mStarted) {
                                 ShellConsole.this.mStarted =
@@ -662,8 +662,8 @@ public abstract class ShellConsole extends Console implements Program.ProgramLis
                             byte[] data = new byte[available];
                             read = in.read(data);
 
-                            // Exit if active command is canceled
-                            if (ShellConsole.this.mCanceled) continue;
+                            // Exit if active command is cancelled
+                            if (ShellConsole.this.mCancelled) continue;
 
                             final String s = new String(data, 0, read);
                             ShellConsole.this.mSbIn.append(s);
@@ -713,8 +713,8 @@ public abstract class ShellConsole extends Console implements Program.ProgramLis
                             }
                         }
 
-                        //Audit (if not canceled)
-                        if (!ShellConsole.this.mCanceled && isTrace()) {
+                        //Audit (if not cancelled)
+                        if (!ShellConsole.this.mCancelled && isTrace()) {
                             Log.v(TAG,
                                     String.format("stdin: %s", sb.toString())); //$NON-NLS-1$
                         }
@@ -759,7 +759,7 @@ public abstract class ShellConsole extends Console implements Program.ProgramLis
                             break;
                         }
                         StringBuffer sb = new StringBuffer();
-                        if (!ShellConsole.this.mCanceled) {
+                        if (!ShellConsole.this.mCancelled) {
                             ShellConsole.this.mSbErr.append((char)r);
                             sb.append((char)r);
 
@@ -783,8 +783,8 @@ public abstract class ShellConsole extends Console implements Program.ProgramLis
                             byte[] data = new byte[available];
                             read = err.read(data);
 
-                            // Exit if active command is canceled
-                            if (ShellConsole.this.mCanceled) continue;
+                            // Exit if active command is cancelled
+                            if (ShellConsole.this.mCancelled) continue;
 
                             String s = new String(data, 0, read);
                             ShellConsole.this.mSbErr.append(s);
@@ -806,8 +806,8 @@ public abstract class ShellConsole extends Console implements Program.ProgramLis
                             }
                         }
 
-                        //Audit (if not canceled)
-                        if (!ShellConsole.this.mCanceled && isTrace()) {
+                        //Audit (if not cancelled)
+                        if (!ShellConsole.this.mCancelled && isTrace()) {
                             Log.v(TAG,
                                     String.format("stderr: %s", sb.toString())); //$NON-NLS-1$
                         }
@@ -952,9 +952,9 @@ public abstract class ShellConsole extends Console implements Program.ProgramLis
      * @return int The exit code of the last executed command
      */
     private int getExitCode(StringBuffer stdin) {
-        // If process was canceled, don't expect a exit code.
+        // If process was cancelled, don't expect a exit code.
         // Returns always 143 code
-        if (this.mCanceled) {
+        if (this.mCancelled) {
             return 143;
         }
 
@@ -995,7 +995,7 @@ public abstract class ShellConsole extends Console implements Program.ProgramLis
      */
     private boolean killCurrentCommand() {
         synchronized (this.mSync) {
-            //Is synchronous program? Otherwise it can't be canceled
+            //Is synchronous program? Otherwise it can't be cancelled
             if (!(this.mActiveCommand instanceof AsyncResultProgram)) {
                 return false;
             }
@@ -1010,7 +1010,7 @@ public abstract class ShellConsole extends Console implements Program.ProgramLis
             final AsyncResultProgram program = (AsyncResultProgram)this.mActiveCommand;
             if (program.getCommand() != null) {
                 try {
-                    if (program.isCancelable()) {
+                    if (program.isCancellable()) {
                         //Get the PID in background
                         Integer pid =
                                 CommandHelper.getProcessId(
@@ -1029,10 +1029,10 @@ public abstract class ShellConsole extends Console implements Program.ProgramLis
                             } catch (Throwable ex) {
                                 /**NON BLOCK**/
                             }
-                            this.mCanceled = true;
+                            this.mCancelled = true;
                             notifyProcessFinished();
                             this.mSync.notify();
-                            return this.mCanceled;
+                            return this.mCancelled;
                         }
                     }
                 } catch (Throwable ex) {
@@ -1054,7 +1054,7 @@ public abstract class ShellConsole extends Console implements Program.ProgramLis
      */
     private boolean sendSignalToCurrentCommand(SIGNAL signal) {
         synchronized (this.mSync) {
-            //Is synchronous program? Otherwise it can't be canceled
+            //Is synchronous program? Otherwise it can't be cancelled
             if (!(this.mActiveCommand instanceof AsyncResultProgram)) {
                 return false;
             }
@@ -1069,7 +1069,7 @@ public abstract class ShellConsole extends Console implements Program.ProgramLis
             final AsyncResultProgram program = (AsyncResultProgram)this.mActiveCommand;
             if (program.getCommand() != null) {
                 try {
-                    if (program.isCancelable()) {
+                    if (program.isCancellable()) {
                         try {
                             //Get the PID in background
                             Integer pid =
@@ -1094,7 +1094,7 @@ public abstract class ShellConsole extends Console implements Program.ProgramLis
                             }
                         } finally {
                             // It's finished
-                            this.mCanceled = true;
+                            this.mCancelled = true;
                             notifyProcessFinished();
                             this.mSync.notify();
                         }

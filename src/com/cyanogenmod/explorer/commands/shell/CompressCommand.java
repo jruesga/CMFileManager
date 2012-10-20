@@ -168,7 +168,7 @@ public class CompressCommand extends AsyncResultProgram implements CompressExecu
      * {@inheritDoc}
      */
     @Override
-    public void onEndParsePartialResult(boolean canceled) {
+    public void onEndParsePartialResult(boolean cancelled) {
         // Send the last partial data
         if (this.mPartial != null && this.mPartial.length() > 0) {
             if (getAsyncResultListener() != null) {
@@ -239,7 +239,7 @@ public class CompressCommand extends AsyncResultProgram implements CompressExecu
     public void checkExitCode(int exitCode)
             throws InsufficientPermissionsException, CommandNotFoundException, ExecutionException {
 
-        //Ignore exit code 143 (canceled)
+        //Ignore exit code 143 (cancelled)
         //Ignore exit code 137 (kill -9)
         if (exitCode != 0 && exitCode != 1 && exitCode != 143 && exitCode != 137) {
             throw new ExecutionException(

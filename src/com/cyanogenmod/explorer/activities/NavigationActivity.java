@@ -452,9 +452,9 @@ public class NavigationActivity extends Activity
                         return;
                     }
 
-                    // We are in a trouble (something is not allowing su console)
-                    // Ask the user to return to Advanced Console Selection with
-                    // Non-privileged console prior to make crash the application
+                    // We are in a trouble (something is not allowing creating the console)
+                    // Ask the user to return to advanced console mode with a
+                    // non-privileged console, prior to make crash the application
                     askOrExit();
                     return;
                 }
@@ -1253,7 +1253,7 @@ public class NavigationActivity extends Activity
         //Show a dialog asking the user
         AlertDialog dialog =
             DialogHelper.createYesNoDialog(
-                this, R.string.msgs_change_to_advanced_console_selection,
+                this, R.string.msgs_change_to_advanced_console_mode,
                 new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface alertDialog, int which) {

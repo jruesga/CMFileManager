@@ -39,18 +39,18 @@ public final class BookmarksHelper {
      */
     public static int getIcon(Bookmark bookmark) {
         if (bookmark.mType.compareTo(Bookmark.BOOKMARK_TYPE.HOME) == 0) {
-            return R.drawable.ic_holo_light_bookmarks_home;
+            return R.drawable.ic_holo_light_home;
         }
         if (bookmark.mType.compareTo(Bookmark.BOOKMARK_TYPE.FILESYSTEM) == 0) {
-            return R.drawable.ic_holo_light_bookmarks_filesystem;
+            return R.drawable.ic_holo_light_filesystem;
         }
         if (bookmark.mType.compareTo(Bookmark.BOOKMARK_TYPE.SDCARD) == 0) {
-            return R.drawable.ic_holo_light_bookmarks_sdcard;
+            return R.drawable.ic_holo_light_sdcard;
         }
         if (bookmark.mType.compareTo(Bookmark.BOOKMARK_TYPE.USB) == 0) {
-            return R.drawable.ic_holo_light_bookmarks_usb;
+            return R.drawable.ic_holo_light_usb;
         }
         //Bookmark add by the user
-        return R.drawable.ic_holo_light_bookmarks_user_defined;
+        return R.drawable.ic_holo_light_user_defined_bookmark;
     }
 }

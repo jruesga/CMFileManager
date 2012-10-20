@@ -539,7 +539,7 @@ public class FsoPropertiesDialog
                 }
 
                 @Override
-                public void onCanceled() {
+                public void onCancelled() {
                     // Update the permissions with the previous information
                     updatePermissions();
                     setMsg(null);
@@ -642,7 +642,7 @@ public class FsoPropertiesDialog
                 }
 
                 @Override
-                public void onCanceled() {
+                public void onCancelled() {
                     // Update the information of owner and group
                     updateSpinnerFromAid(
                             FsoPropertiesDialog.this.mSpnOwner,
@@ -914,12 +914,12 @@ public class FsoPropertiesDialog
      * {@inheritDoc}
      */
     @Override
-    public void onAsyncEnd(final boolean canceled) {
+    public void onAsyncEnd(final boolean cancelled) {
         try {
             // Clone the reference
             FsoPropertiesDialog.this.mFolderUsage =
                     (FolderUsage)this.mFolderUsageExecutable.getFolderUsage().clone();
-            printFolderUsage(true, canceled);
+            printFolderUsage(true, cancelled);
         } catch (Exception ex) {/** NON BLOCK**/}
     }
 
@@ -964,8 +964,8 @@ public class FsoPropertiesDialog
             // Cancel the folder usage command
             try {
                 if (this.mFolderUsageExecutable != null &&
-                    this.mFolderUsageExecutable.isCancelable() &&
-                    !this.mFolderUsageExecutable.isCanceled()) {
+                    this.mFolderUsageExecutable.isCancellable() &&
+                    !this.mFolderUsageExecutable.isCancelled()) {
                     this.mFolderUsageExecutable.cancel();
                 }
             } catch (Exception ex) {
@@ -978,17 +978,17 @@ public class FsoPropertiesDialog
      * Method that redraws the information about folder usage
      *
      * @param computing If the process if computing the data
-     * @param canceled If the process was canceled
+     * @param cancelled If the process was cancelled
      */
-    private void printFolderUsage(final boolean computing, final boolean canceled) {
+    private void printFolderUsage(final boolean computing, final boolean cancelled) {
         // Mark that a drawing is in progress
         this.mDrawingFolderUsage = true;
 
         final Resources res = this.mContext.getResources();
-        if (canceled) {
+        if (cancelled) {
             try {
-                FsoPropertiesDialog.this.mTvSize.setText(R.string.canceled_message);
-                FsoPropertiesDialog.this.mTvContains.setText(R.string.canceled_message);
+                FsoPropertiesDialog.this.mTvSize.setText(R.string.cancelled_message);
+                FsoPropertiesDialog.this.mTvContains.setText(R.string.cancelled_message);
             } catch (Throwable e) {/**NON BLOCK**/}
 
             // End of drawing

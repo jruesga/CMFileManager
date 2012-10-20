@@ -57,7 +57,7 @@ public abstract class AsyncResultProgram
      */
     final Object mTerminateSync = new Object();
 
-    private boolean mCanceled;
+    private boolean mCancelled;
     private OnCancelListener mOnCancelListener;
     private OnEndListener mOnEndListener;
 
@@ -98,7 +98,7 @@ public abstract class AsyncResultProgram
         this.mTempBuffer = new StringBuffer();
         this.mOnCancelListener = null;
         this.mOnEndListener = null;
-        this.mCanceled = false;
+        this.mCancelled = false;
     }
 
     /**
@@ -122,10 +122,10 @@ public abstract class AsyncResultProgram
      * Method that communicates that partial result is ended and no new result
      * will be received.
      *
-     * @param canceled If the program was canceled
+     * @param cancelled If the program was cancelled
      * @hide
      */
-    public final void onRequestEndParsePartialResult(boolean canceled) {
+    public final void onRequestEndParsePartialResult(boolean cancelled) {
         synchronized (this.mSync) {
             this.mWorkerThread.mAlive = false;
             this.mSync.notify();
@@ -146,11 +146,11 @@ public abstract class AsyncResultProgram
         }
 
         //Notify end to command class
-        this.onEndParsePartialResult(canceled);
+        this.onEndParsePartialResult(cancelled);
 
         //If a listener is defined, then send the start event
         if (getAsyncResultListener() != null) {
-            getAsyncResultListener().onAsyncEnd(canceled);
+            getAsyncResultListener().onAsyncEnd(cancelled);
         }
     }
 
@@ -247,8 +247,8 @@ public abstract class AsyncResultProgram
      * {@inheritDoc}
      */
     @Override
-    public final boolean isCanceled() {
-        return this.mCanceled;
+    public final boolean isCancelled() {
+        return this.mCancelled;
     }
 
     /**
@@ -256,8 +256,8 @@ public abstract class AsyncResultProgram
      */
     @Override
     public final boolean cancel() {
-        //Is't cancelable by definition?
-        if (!isCancelable()) {
+        //Is't cancellable by definition?
+        if (!isCancellable()) {
             return false;
         }
 
@@ -269,8 +269,8 @@ public abstract class AsyncResultProgram
 
         //Notify cancellation
         if (this.mOnCancelListener != null) {
-            this.mCanceled = this.mOnCancelListener.onCancel();
-            return this.mCanceled;
+            this.mCancelled = this.mOnCancelListener.onCancel();
+            return this.mCancelled;
         }
         return false;
     }
@@ -283,8 +283,8 @@ public abstract class AsyncResultProgram
         // Internally this method do the same things that cancel method, but invokes
         // onEnd instead of onCancel
 
-        //Is't cancelable by definition?
-        if (!isCancelable()) {
+        //Is't cancellable by definition?
+        if (!isCancellable()) {
             return false;
         }
 
@@ -298,11 +298,11 @@ public abstract class AsyncResultProgram
         SIGNAL signal = onRequestEnd();
         if (this.mOnEndListener != null) {
             if (signal == null) {
-                this.mCanceled = this.mOnEndListener.onEnd();
+                this.mCancelled = this.mOnEndListener.onEnd();
             } else {
-                this.mCanceled = this.mOnEndListener.onSendSignal(signal);
+                this.mCancelled = this.mOnEndListener.onSendSignal(signal);
             }
-            return this.mCanceled;
+            return this.mCancelled;
         }
         return false;
     }
@@ -327,8 +327,8 @@ public abstract class AsyncResultProgram
      * {@inheritDoc}
      */
     @Override
-    public boolean isCancelable() {
-        //By defect an asynchronous command is cancelable
+    public boolean isCancellable() {
+        //By defect an asynchronous command is cancellable
         return true;
     }
 

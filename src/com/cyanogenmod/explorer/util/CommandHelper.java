@@ -101,7 +101,7 @@ public final class CommandHelper {
      * @param console The console in which execute the program. <code>null</code>
      * to attach to the default console
      * @throws FileNotFoundException If the initial directory not exists
-     * @throws IOException If initial directory can't not be checked
+     * @throws IOException If initial directory couldn't be checked
      * @throws InvalidCommandDefinitionException If the command has an invalid definition
      * @throws NoSuchFileOrDirectory If the file or directory was not found
      * @throws ConsoleAllocException If the console can't be allocated
@@ -134,7 +134,7 @@ public final class CommandHelper {
      * to attach to the default console
      * @return boolean The operation result
      * @throws FileNotFoundException If the initial directory not exists
-     * @throws IOException If initial directory can't not be checked
+     * @throws IOException If initial directory couldn't be checked
      * @throws InvalidCommandDefinitionException If the command has an invalid definition
      * @throws NoSuchFileOrDirectory If the file or directory was not found
      * @throws ConsoleAllocException If the console can't be allocated
@@ -169,7 +169,7 @@ public final class CommandHelper {
      * to attach to the default console
      * @return boolean The operation result
      * @throws FileNotFoundException If the initial directory not exists
-     * @throws IOException If initial directory can't not be checked
+     * @throws IOException If initial directory couldn't be checked
      * @throws InvalidCommandDefinitionException If the command has an invalid definition
      * @throws NoSuchFileOrDirectory If the file or directory was not found
      * @throws ConsoleAllocException If the console can't be allocated
@@ -203,7 +203,7 @@ public final class CommandHelper {
      * to attach to the default console
      * @return boolean The operation result
      * @throws FileNotFoundException If the initial directory not exists
-     * @throws IOException If initial directory can't not be checked
+     * @throws IOException If initial directory couldn't be checked
      * @throws InvalidCommandDefinitionException If the command has an invalid definition
      * @throws NoSuchFileOrDirectory If the file or directory was not found
      * @throws ConsoleAllocException If the console can't be allocated
@@ -235,7 +235,7 @@ public final class CommandHelper {
      * to attach to the default console
      * @return boolean The operation result
      * @throws FileNotFoundException If the initial directory not exists
-     * @throws IOException If initial directory can't not be checked
+     * @throws IOException If initial directory couldn't be checked
      * @throws InvalidCommandDefinitionException If the command has an invalid definition
      * @throws NoSuchFileOrDirectory If the file or directory was not found
      * @throws ConsoleAllocException If the console can't be allocated
@@ -267,7 +267,7 @@ public final class CommandHelper {
      * to attach to the default console
      * @return boolean The operation result
      * @throws FileNotFoundException If the initial directory not exists
-     * @throws IOException If initial directory can't not be checked
+     * @throws IOException If initial directory couldn't be checked
      * @throws InvalidCommandDefinitionException If the command has an invalid definition
      * @throws NoSuchFileOrDirectory If the file or directory was not found
      * @throws ConsoleAllocException If the console can't be allocated
@@ -299,7 +299,7 @@ public final class CommandHelper {
      * to attach to the default console
      * @return boolean The operation result
      * @throws FileNotFoundException If the initial directory not exists
-     * @throws IOException If initial directory can't not be checked
+     * @throws IOException If initial directory couldn't be checked
      * @throws InvalidCommandDefinitionException If the command has an invalid definition
      * @throws NoSuchFileOrDirectory If the file or directory was not found
      * @throws ConsoleAllocException If the console can't be allocated
@@ -331,7 +331,7 @@ public final class CommandHelper {
      * to attach to the default console
      * @return String The absolute path of the directory
      * @throws FileNotFoundException If the initial directory not exists
-     * @throws IOException If initial directory can't not be checked
+     * @throws IOException If initial directory couldn't be checked
      * @throws InvalidCommandDefinitionException If the command has an invalid definition
      * @throws NoSuchFileOrDirectory If the file or directory was not found
      * @throws ConsoleAllocException If the console can't be allocated
@@ -366,7 +366,7 @@ public final class CommandHelper {
      * to attach to the default console
      * @return String The resolved link
      * @throws FileNotFoundException If the initial directory not exists
-     * @throws IOException If initial directory can't not be checked
+     * @throws IOException If initial directory couldn't be checked
      * @throws InvalidCommandDefinitionException If the command has an invalid definition
      * @throws NoSuchFileOrDirectory If the file or directory was not found
      * @throws ConsoleAllocException If the console can't be allocated
@@ -396,7 +396,7 @@ public final class CommandHelper {
      * to attach to the default console
      * @return String The current directory
      * @throws FileNotFoundException If the initial directory not exists
-     * @throws IOException If initial directory can't not be checked
+     * @throws IOException If initial directory couldn't be checked
      * @throws InvalidCommandDefinitionException If the command has an invalid definition
      * @throws NoSuchFileOrDirectory If the file or directory was not found
      * @throws ConsoleAllocException If the console can't be allocated
@@ -427,7 +427,7 @@ public final class CommandHelper {
      * to attach to the default console
      * @return FileSystemObject The file system object reference
      * @throws FileNotFoundException If the initial directory not exists
-     * @throws IOException If initial directory can't not be checked
+     * @throws IOException If initial directory couldn't be checked
      * @throws InvalidCommandDefinitionException If the command has an invalid definition
      * @throws NoSuchFileOrDirectory If the file or directory was not found
      * @throws ConsoleAllocException If the console can't be allocated
@@ -455,7 +455,7 @@ public final class CommandHelper {
      * to attach to the default console
      * @return FileSystemObject The file system object reference
      * @throws FileNotFoundException If the initial directory not exists
-     * @throws IOException If initial directory can't not be checked
+     * @throws IOException If initial directory couldn't be checked
      * @throws InvalidCommandDefinitionException If the command has an invalid definition
      * @throws NoSuchFileOrDirectory If the file or directory was not found
      * @throws ConsoleAllocException If the console can't be allocated
@@ -493,7 +493,7 @@ public final class CommandHelper {
      * to attach to the default console
      * @return List<Group> The groups of the current user
      * @throws FileNotFoundException If the initial directory not exists
-     * @throws IOException If initial directory can't not be checked
+     * @throws IOException If initial directory couldn't be checked
      * @throws InvalidCommandDefinitionException If the command has an invalid definition
      * @throws NoSuchFileOrDirectory If the file or directory was not found
      * @throws ConsoleAllocException If the console can't be allocated
@@ -523,7 +523,7 @@ public final class CommandHelper {
     * to attach to the default console
     * @return Identity The identity of the current user
     * @throws FileNotFoundException If the initial directory not exists
-    * @throws IOException If initial directory can't not be checked
+    * @throws IOException If initial directory couldn't be checked
     * @throws InvalidCommandDefinitionException If the command has an invalid definition
     * @throws NoSuchFileOrDirectory If the file or directory was not found
     * @throws ConsoleAllocException If the console can't be allocated
@@ -555,7 +555,7 @@ public final class CommandHelper {
     * to attach to the default console
     * @return boolean The operation result
     * @throws FileNotFoundException If the initial directory not exists
-    * @throws IOException If initial directory can't not be checked
+    * @throws IOException If initial directory couldn't be checked
     * @throws InvalidCommandDefinitionException If the command has an invalid definition
     * @throws NoSuchFileOrDirectory If the file or directory was not found
     * @throws ConsoleAllocException If the console can't be allocated
@@ -587,7 +587,7 @@ public final class CommandHelper {
      * to attach to the default console
      * @return String The current directory
      * @throws FileNotFoundException If the initial directory not exists
-     * @throws IOException If initial directory can't not be checked
+     * @throws IOException If initial directory couldn't be checked
      * @throws InvalidCommandDefinitionException If the command has an invalid definition
      * @throws NoSuchFileOrDirectory If the file or directory was not found
      * @throws ConsoleAllocException If the console can't be allocated
@@ -619,7 +619,7 @@ public final class CommandHelper {
      * to attach to the default console
      * @return String The value  of the variable
      * @throws FileNotFoundException If the initial directory not exists
-     * @throws IOException If initial directory can't not be checked
+     * @throws IOException If initial directory couldn't be checked
      * @throws InvalidCommandDefinitionException If the command has an invalid definition
      * @throws NoSuchFileOrDirectory If the file or directory was not found
      * @throws ConsoleAllocException If the console can't be allocated
@@ -650,7 +650,7 @@ public final class CommandHelper {
      * to attach to the default console
      * @return List<FileSystemObject> The list of files of the directory
      * @throws FileNotFoundException If the initial directory not exists
-     * @throws IOException If initial directory can't not be checked
+     * @throws IOException If initial directory couldn't be checked
      * @throws InvalidCommandDefinitionException If the command has an invalid definition
      * @throws NoSuchFileOrDirectory If the file or directory was not found
      * @throws ConsoleAllocException If the console can't be allocated
@@ -686,7 +686,7 @@ public final class CommandHelper {
      * to attach to the default console
      * @return boolean The operation result
      * @throws FileNotFoundException If the initial directory not exists
-     * @throws IOException If initial directory can't not be checked
+     * @throws IOException If initial directory couldn't be checked
      * @throws InvalidCommandDefinitionException If the command has an invalid definition
      * @throws NoSuchFileOrDirectory If the file or directory was not found
      * @throws ConsoleAllocException If the console can't be allocated
@@ -719,7 +719,7 @@ public final class CommandHelper {
      * to attach to the default console
      * @return boolean The operation result
      * @throws FileNotFoundException If the initial directory not exists
-     * @throws IOException If initial directory can't not be checked
+     * @throws IOException If initial directory couldn't be checked
      * @throws InvalidCommandDefinitionException If the command has an invalid definition
      * @throws NoSuchFileOrDirectory If the file or directory was not found
      * @throws ConsoleAllocException If the console can't be allocated
@@ -752,7 +752,7 @@ public final class CommandHelper {
      * <code>null</code> to attach to the default console
      * @return AsyncResultProgram The command executed in background
      * @throws FileNotFoundException If the initial directory not exists
-     * @throws IOException If initial directory can't not be checked
+     * @throws IOException If initial directory couldn't be checked
      * @throws InvalidCommandDefinitionException If the command has an invalid definition
      * @throws NoSuchFileOrDirectory If the file or directory was not found
      * @throws ConsoleAllocException If the console can't be allocated
@@ -787,7 +787,7 @@ public final class CommandHelper {
      * <code>null</code> to attach to the default console
      * @return AsyncResultProgram The command executed in background
      * @throws FileNotFoundException If the initial directory not exists
-     * @throws IOException If initial directory can't not be checked
+     * @throws IOException If initial directory couldn't be checked
      * @throws InvalidCommandDefinitionException If the command has an invalid definition
      * @throws NoSuchFileOrDirectory If the file or directory was not found
      * @throws ConsoleAllocException If the console can't be allocated
@@ -823,7 +823,7 @@ public final class CommandHelper {
      * <code>null</code> to attach to the default console
      * @return AsyncResultProgram The command executed in background
      * @throws FileNotFoundException If the initial directory not exists
-     * @throws IOException If initial directory can't not be checked
+     * @throws IOException If initial directory couldn't be checked
      * @throws InvalidCommandDefinitionException If the command has an invalid definition
      * @throws NoSuchFileOrDirectory If the file or directory was not found
      * @throws ConsoleAllocException If the console can't be allocated
@@ -857,7 +857,7 @@ public final class CommandHelper {
      * to attach to the default console
      * @return List<DiskUsage> The disk usage of all the mount points
      * @throws FileNotFoundException If the initial directory not exists
-     * @throws IOException If initial directory can't not be checked
+     * @throws IOException If initial directory couldn't be checked
      * @throws InvalidCommandDefinitionException If the command has an invalid definition
      * @throws NoSuchFileOrDirectory If the file or directory was not found
      * @throws ConsoleAllocException If the console can't be allocated
@@ -888,7 +888,7 @@ public final class CommandHelper {
      * to attach to the default console
      * @return DiskUsage The disk usage information
      * @throws FileNotFoundException If the initial directory not exists
-     * @throws IOException If initial directory can't not be checked
+     * @throws IOException If initial directory couldn't be checked
      * @throws InvalidCommandDefinitionException If the command has an invalid definition
      * @throws NoSuchFileOrDirectory If the file or directory was not found
      * @throws ConsoleAllocException If the console can't be allocated
@@ -922,7 +922,7 @@ public final class CommandHelper {
      * to attach to the default console
      * @return List<MountPoint> The filesystem mount points
      * @throws FileNotFoundException If the initial directory not exists
-     * @throws IOException If initial directory can't not be checked
+     * @throws IOException If initial directory couldn't be checked
      * @throws InvalidCommandDefinitionException If the command has an invalid definition
      * @throws NoSuchFileOrDirectory If the file or directory was not found
      * @throws ConsoleAllocException If the console can't be allocated
@@ -954,7 +954,7 @@ public final class CommandHelper {
      * to attach to the default console
      * @return boolean The operation result
      * @throws FileNotFoundException If the initial directory not exists
-     * @throws IOException If initial directory can't not be checked
+     * @throws IOException If initial directory couldn't be checked
      * @throws InvalidCommandDefinitionException If the command has an invalid definition
      * @throws NoSuchFileOrDirectory If the file or directory was not found
      * @throws ConsoleAllocException If the console can't be allocated
@@ -985,7 +985,7 @@ public final class CommandHelper {
      * to attach to the default console
      * @return List<String> The list of directories found
      * @throws FileNotFoundException If the initial directory not exists
-     * @throws IOException If initial directory can't not be checked
+     * @throws IOException If initial directory couldn't be checked
      * @throws InvalidCommandDefinitionException If the command has an invalid definition
      * @throws NoSuchFileOrDirectory If the file or directory was not found
      * @throws ConsoleAllocException If the console can't be allocated
@@ -1018,7 +1018,7 @@ public final class CommandHelper {
      * to attach to the default console
      * @return Integer The process identifier of the program or <code>null</code> if not exists
      * @throws FileNotFoundException If the initial directory not exists
-     * @throws IOException If initial directory can't not be checked
+     * @throws IOException If initial directory couldn't be checked
      * @throws InvalidCommandDefinitionException If the command has an invalid definition
      * @throws NoSuchFileOrDirectory If the file or directory was not found
      * @throws ConsoleAllocException If the console can't be allocated
@@ -1050,7 +1050,7 @@ public final class CommandHelper {
      * @param console The console in which execute the program. <code>null</code>
      * to attach to the default console
      * @throws FileNotFoundException If the initial directory not exists
-     * @throws IOException If initial directory can't not be checked
+     * @throws IOException If initial directory couldn't be checked
      * @throws InvalidCommandDefinitionException If the command has an invalid definition
      * @throws NoSuchFileOrDirectory If the file or directory was not found
      * @throws ConsoleAllocException If the console can't be allocated
@@ -1080,7 +1080,7 @@ public final class CommandHelper {
      * @param console The console in which execute the program. <code>null</code>
      * to attach to the default console
      * @throws FileNotFoundException If the initial directory not exists
-     * @throws IOException If initial directory can't not be checked
+     * @throws IOException If initial directory couldn't be checked
      * @throws InvalidCommandDefinitionException If the command has an invalid definition
      * @throws NoSuchFileOrDirectory If the file or directory was not found
      * @throws ConsoleAllocException If the console can't be allocated
@@ -1112,7 +1112,7 @@ public final class CommandHelper {
      * <code>null</code> to attach to the default console
      * @return AsyncResultProgram The command executed in background
      * @throws FileNotFoundException If the initial directory not exists
-     * @throws IOException If initial directory can't not be checked
+     * @throws IOException If initial directory couldn't be checked
      * @throws InvalidCommandDefinitionException If the command has an invalid definition
      * @throws NoSuchFileOrDirectory If the file or directory was not found
      * @throws ConsoleAllocException If the console can't be allocated
@@ -1148,7 +1148,7 @@ public final class CommandHelper {
      * <code>null</code> to attach to the default console
      * @return AsyncResultProgram The command executed in background
      * @throws FileNotFoundException If the initial directory not exists
-     * @throws IOException If initial directory can't not be checked
+     * @throws IOException If initial directory couldn't be checked
      * @throws InvalidCommandDefinitionException If the command has an invalid definition
      * @throws NoSuchFileOrDirectory If the file or directory was not found
      * @throws ConsoleAllocException If the console can't be allocated
@@ -1196,7 +1196,7 @@ public final class CommandHelper {
      * <code>null</code> to attach to the default console
      * @return AsyncResultProgram The command executed in background
      * @throws FileNotFoundException If the initial directory not exists
-     * @throws IOException If initial directory can't not be checked
+     * @throws IOException If initial directory couldn't be checked
      * @throws InvalidCommandDefinitionException If the command has an invalid definition
      * @throws NoSuchFileOrDirectory If the file or directory was not found
      * @throws ConsoleAllocException If the console can't be allocated
@@ -1249,7 +1249,7 @@ public final class CommandHelper {
      * <code>null</code> to attach to the default console
      * @return AsyncResultProgram The command executed in background
      * @throws FileNotFoundException If the initial directory not exists
-     * @throws IOException If initial directory can't not be checked
+     * @throws IOException If initial directory couldn't be checked
      * @throws InvalidCommandDefinitionException If the command has an invalid definition
      * @throws NoSuchFileOrDirectory If the file or directory was not found
      * @throws ConsoleAllocException If the console can't be allocated
@@ -1303,7 +1303,7 @@ public final class CommandHelper {
      * <code>null</code> to attach to the default console
      * @return AsyncResultProgram The command executed in background
      * @throws FileNotFoundException If the initial directory not exists
-     * @throws IOException If initial directory can't not be checked
+     * @throws IOException If initial directory couldn't be checked
      * @throws InvalidCommandDefinitionException If the command has an invalid definition
      * @throws NoSuchFileOrDirectory If the file or directory was not found
      * @throws ConsoleAllocException If the console can't be allocated
@@ -1371,7 +1371,7 @@ public final class CommandHelper {
      * @throws ExecutionException If the operation returns a invalid exit code
      * @throws ReadOnlyFilesystemException If the operation writes in a read-only filesystem
      * @throws InvalidCommandDefinitionException If the command has an invalid definition
-     * @throws IOException If initial directory can't not be checked
+     * @throws IOException If initial directory couldn't be checked
      * @throws FileNotFoundException If the initial directory not exists
      */
     public static Object reexecute(
@@ -1517,7 +1517,7 @@ public final class CommandHelper {
      * @throws InsufficientPermissionsException If an operation requires elevated permissions
      * @throws ConsoleAllocException If the console can't be allocated
      * @throws InvalidCommandDefinitionException If the command has an invalid definition
-     * @throws IOException If initial directory can't not be checked
+     * @throws IOException If initial directory couldn't be checked
      * @throws FileNotFoundException If the initial directory not exists
      */
     private static Console ensureConsole(Context context, Console console)

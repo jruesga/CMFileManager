@@ -69,7 +69,7 @@ public class ListCommand extends SyncResultProgram implements ListExecutable {
      * @throws InvalidCommandDefinitionException If the command has an invalid definition
      * @throws FileNotFoundException If the initial directory not exists
      * @throws NoSuchFileOrDirectory If the file or directory was not found
-     * @throws IOException If initial directory can't not be checked
+     * @throws IOException If initial directory couldn't be checked
      * @throws ConsoleAllocException If the console can't be allocated
      * @throws InsufficientPermissionsException If an operation requires elevated permissions
      * @throws CommandNotFoundException If the command was not found
@@ -111,7 +111,7 @@ public class ListCommand extends SyncResultProgram implements ListExecutable {
      * @throws InvalidCommandDefinitionException If the command has an invalid definition
      * @throws FileNotFoundException If the initial directory not exists
      * @throws NoSuchFileOrDirectory If the file or directory was not found
-     * @throws IOException If initial directory can't not be checked
+     * @throws IOException If initial directory couldn't be checked
      * @throws ConsoleAllocException If the console can't be allocated
      * @throws InsufficientPermissionsException If an operation requires elevated permissions
      * @throws CommandNotFoundException If the command was not found

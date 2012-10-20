@@ -76,7 +76,7 @@ public class FindCommandTest extends AbstractConsoleTest {
                         public void onAsyncStart() {
                             /**NON BLOCK**/
                         }
-                        public void onAsyncEnd(boolean canceled) {
+                        public void onAsyncEnd(boolean cancelled) {
                             synchronized (FindCommandTest.this.mSync) {
                                 FindCommandTest.this.mNormalEnd = true;
                                 FindCommandTest.this.mSync.notify();
@@ -98,7 +98,7 @@ public class FindCommandTest extends AbstractConsoleTest {
             FindCommandTest.this.mSync.wait(15000L);
         }
         try {
-            if (!this.mNormalEnd && cmd != null && cmd.isCancelable() && !cmd.isCanceled()) {
+            if (!this.mNormalEnd && cmd != null && cmd.isCancellable() && !cmd.isCancelled()) {
                 cmd.cancel();
             }
         } catch (Exception e) {/**NON BLOCK**/}

@@ -270,7 +270,7 @@ public final class ParseHelper {
      * @param lastModifiedTime The last time that the object was modified
      * @param size The size in bytes of the object
      * @return FileSystemObject The file system object reference
-     * @throws ParseException If type can't not be translate into a reference
+     * @throws ParseException If type couldn't be translate into a reference
      * file system object
      */
     private static FileSystemObject createObject(

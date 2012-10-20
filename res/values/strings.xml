@@ -19,7 +19,7 @@
   <!-- The name of the application -->
   <string name="app_name">CMExplorer</string>
   <!-- The description of the application -->
-  <string name="app_description">A CyanogenMod file manager.</string>
+  <string name="app_description">CyanogenMod file manager.</string>
 
   <!-- Human readable sizes -->
   <string name="size_bytes" translatable="false">B </string>
@@ -54,106 +54,104 @@
   <!-- The search result name -->
   <string name="search_result_name">Search: <xliff:g id="terms">%1$s</xliff:g></string>
 
-  <!-- Messages titles -->
+  <!-- Messages for titles -->
   <string name="title_warning">Warning</string>
   <string name="title_error">Error</string>
   <string name="title_question">Question</string>
 
   <!-- Loading waiting message -->
-  <string name="loading_message">Loading&#8230;</string>
+  <string name="loading_message">Loading &#8230;</string>
   <!-- Computing message -->
   <string name="computing_message"><xliff:g id="data">%1$s</xliff:g></string>
   <!-- Computing new line message -->
   <string name="computing_message_ln"><xliff:g id="data">%1$s</xliff:g></string>
-  <!-- Canceled message -->
-  <string name="canceled_message">Canceled.</string>
+  <!-- Cancelled message -->
+  <string name="cancelled_message">Cancelled.</string>
   <!-- Error message -->
   <string name="error_message">Error.</string>
 
-  <!-- A console can't not be created. Ask the user to change to advanced model -->
-  <string name="msgs_change_to_advanced_console_selection">
+  <!-- A console couldn't be created. Ask the user to change to advanced console mode -->
+  <string name="msgs_change_to_advanced_console_mode">
     The application is not capable of create a console. The only way to run the application
-    is to change to advanced console selection and to a non-privileged console.\n\n
+    is to change to advanced console mode and move to a non-privileged console.\n\n
     Apply this changes?</string>
 
-  <!-- A console can't not be created. Without a console the application can't continue -->
+  <!-- A console couldn't be created. Without a console, the application won't work -->
   <string name="msgs_cant_create_console">The application is not capable of create a console. The
-    application can\'t work without a console.</string>
-  <!-- The message show when a allocation of a privileged console fails, and a non
+    application won\'t work without a console.</string>
+  <!-- The message shown when a allocation of a privileged console fails, and a non
        privileged is allocated -->
-  <string name="msgs_privileged_console_alloc_failed">A privileged console can\'t be allocated.\n
-    Changing to a non-privileged console.</string>
-  <!-- The operation to change to other kind of console failed -->
-  <string name="msgs_console_change_failed">Change to new type of console failed.</string>
-  <!-- The selected setting was not applied nor stored -->
-  <string name="msgs_settings_save_failure">The setting can\'t be stored or applied.</string>
-  <!-- The initial directory has an invalid directory -->
+  <string name="msgs_privileged_console_alloc_failed">A privileged console could not be allocated.
+    \nChanging to a non-privileged console.</string>
+  <!-- Changing to other type of console failed -->
+  <string name="msgs_console_change_failed">The change to new type of console failed.</string>
+  <!-- The selected setting was not applied or stored -->
+  <string name="msgs_settings_save_failure">The setting couldn\'t be applied or stored.</string>
+  <!-- The initial directory has an invalid or inaccessible reference -->
   <string name="msgs_settings_invalid_initial_directory">Initial directory
-    "<xliff:g id="initial_dir">%1$s</xliff:g>" is invalid. Changing to root directory</string>
+    "<xliff:g id="initial_dir">%1$s</xliff:g>" is invalid. Changing to root directory.</string>
 
   <!-- Success -->
   <string name="msgs_success">The operation was completed successfully.</string>
   <!-- Unknown error -->
   <string name="msgs_unknown">An error was detected. The operation was unsuccessful.</string>
-  <!-- When an operation requires elevated privileged (normally because a non-privileged
-       was used) -->
+  <!-- When an operation requires elevated privileged (normally caused for the use of a
+       non-privileged console ) -->
   <string name="msgs_insufficient_permissions">The operation requires elevated permissions. Try
-    to change to a privileged console.</string>
+    changing to a privileged console.</string>
   <!-- The file or directory was not found -->
   <string name="msgs_file_not_found">The file or folder was not found.</string>
-  <!-- The command reference can't be created (not found or invalid definition)
-       (cause by a development error) -->
-  <string name="msgs_command_not_found">The operation\'s command is not found or has an
+  <!-- The command reference couldn't be created (not found or invalid definition)
+       (normally caused by a development error) -->
+  <string name="msgs_command_not_found">The operation\'s command was not found or has an
     invalid definition.</string>
   <!-- I/O exception -->
   <string name="msgs_io_failed">Read/write failure.</string>
   <!-- Operation timeout detected -->
   <string name="msgs_operation_timeout">Operation timeout!</string>
   <!-- The operation returns an invalid exit code -->
-  <string name="msgs_operation_failure">The operation failed</string>
-  <!-- A console can't not be allocated (FATAL. There is no way to execute commands) -->
-  <string name="msgs_console_alloc_failure">A privileged console can\'t be allocated.</string>
-  <!-- An operation can't not be canceled -->
-  <string name="msgs_operation_can_not_be_canceled">The operation can\'t be canceled.</string>
-  <!-- An operation can't not be canceled -->
+  <string name="msgs_operation_failure">The operation failed.</string>
+  <!-- A console couldn\'t be allocated -->
+  <string name="msgs_console_alloc_failure">A console couldn\'t be allocated.</string>
+  <!-- An operation can't be cancelled -->
+  <string name="msgs_operation_can_not_be_cancelled">The operation can\'t be cancelled.</string>
+  <!-- The operation requieres mount the filesystem prior to execute the command -->
   <string name="msgs_read_only_filesystem">The filesystem is read-only. Try to mount the
-    filesystem as read-write before do a write operation.</string>
-  <!-- Illegal argument -->
+    filesystem as read-write prior to do the operation.</string>
+  <!-- Illegal argument (normally caused by a development error when calling internal api) -->
   <string name="msgs_illegal_argument">Illegal argument. Invocation failed.</string>
-  <!-- An operation will cause incosistencies -->
+  <!-- The operation will cause inconsistencies -->
   <string name="msgs_unresolved_inconsistencies">
-    The operation is now allowed, because it would create inconsistencies.</string>
-  <!-- The operation is now allowed in the current directory -->
+    Operation not permitted because it would create inconsistencies.</string>
+  <!-- Operation not permitted in current directory -->
   <string name="msgs_operation_not_allowed_in_current_directory">
-    The operation is now allowed in the current directory.</string>
+    Operation not permitted in current directory.</string>
 
-  <!-- A message advise before close the application -->
+  <!-- The advice message prior to exit the application -->
   <string name="msgs_push_again_to_exit">Push again back button to exit.</string>
 
-  <!-- There is no registered application that can handle the mime/type -->
+  <!-- There is no registered application that can handle the mime-type -->
   <string name="msgs_not_registered_app">There is not registered app that can handle
-    the file type selected.</string>
+    the type of file selected.</string>
 
   <!-- Overwrite files? -->
   <string name="msgs_overwrite_files">
-    Some of the files exist in the destination directory.</string>
+    Some of the files exist in the destination directory.\n\nOverwrite?</string>
 
-  <!-- An association of an action failed -->
-  <string name="msgs_action_association_failed">The association of the action failed.</string>
+  <!-- The association of an action to the application failed -->
+  <string name="msgs_action_association_failed">The association of the action to the
+    application failed.</string>
 
-  <!-- An operation requires a read-write filesystem -->
-  <string name="advise_read_only_filesystem">The operation requires a read-write filesystem.\n\n
-    Do you want to remount the filesystem as read-write?</string>
-  <!-- An operation requires elevated privileged -->
+  <!-- An operation requires elevated privileged. Ask the user. -->
   <string name="advise_insufficient_permissions">The operation requires elevated privileged.\n\n
     Do you want to change to a privileged console?</string>
 
 
   <!-- The parent directory of the current directory in navigation view -->
   <string name="parent_dir">Parent Directory</string>
-  <!-- External Storage descripton -->
+  <!-- External storage descripton -->
   <string name="external_storage">External storage</string>
-  <!-- Usb Storage descripton -->
+  <!-- Usb storage descripton -->
   <string name="usb_storage">Usb storage</string>
 
   <!-- ActionBar Buttons > FileSystem -->
@@ -181,29 +179,29 @@
   <!-- ActionBar Buttons > Overflow -->
   <string name="actionbar_button_overflow_cd">More options</string>
 
-  <!-- Sort by name (ascending) -->
+  <!-- Navigation View * Sort * Sort by name (ascending) -->
   <string name="sort_by_name_asc">By name &#x25B2;</string>
-  <!-- Sort by name (descending) -->
+  <!-- Navigation View * Sort * Sort by name (descending) -->
   <string name="sort_by_name_desc">By name &#x25BC;</string>
-  <!-- Sort by date (ascending) -->
+  <!-- Navigation View * Sort * Sort by date (ascending) -->
   <string name="sort_by_date_asc">By date &#x25B2;</string>
-  <!-- Sort by date (descending) -->
+  <!-- Navigation View * Sort * Sort by date (descending) -->
   <string name="sort_by_date_desc">By date &#x25BC;</string>
 
-  <!-- Layout * Icons -->
+  <!-- Navigation View * Layout * Icons -->
   <string name="layout_icons">Icons</string>
-  <!-- Layout * Simple -->
+  <!-- Navigation View * Layout * Simple -->
   <string name="layout_simple">Simple</string>
-  <!-- Layout * Details -->
+  <!-- Navigation View * Layout * Details -->
   <string name="layout_details">Details</string>
 
-  <!-- Show directories first -->
-  <string name="cm_explorer_show_dirs_first">Show directories first</string>
-  <!-- Show hidden files option -->
+  <!-- Navigation View * View * Show folders first -->
+  <string name="cm_explorer_show_dirs_first">Show folders first</string>
+  <!-- Navigation View * View * Show hidden files option -->
   <string name="cm_explorer_show_hidden">Show hidden files</string>
-  <!-- Show system files option -->
+  <!-- Navigation View * View * Show system files option -->
   <string name="cm_explorer_show_system">Show system files</string>
-  <!-- Show symlinks option -->
+  <!-- Navigation View * View * Show symlinks option -->
   <string name="cm_explorer_show_symlinks">Show symlinks</string>
 
   <!-- Filesystem Info (no data) -->
@@ -212,12 +210,12 @@
   <string name="filesystem_info_couldnt_be_mounted_msg">
     The filesystem couldn\'t be mounted/unmounted.</string>
   <!-- Filesystem Info * Not allowed message -->
-  <string name="filesystem_info_mount_not_allowed_msg">Mount filesystem operation is not allowed
+  <string name="filesystem_info_mount_not_allowed_msg">Mount filesystem\'s operations are not allowed
     by a non-privileged console. Tap to change to a privileged console.</string>
   <!-- Filesystem Info * Mount failed -->
-  <string name="filesystem_info_mount_failed_msg">Mount filesystem operation failed.
-    Some filesystem, like the internal sdcard, not allow to be mounted/unmounted, because
-    they are read-only filesystems.</string>
+  <string name="filesystem_info_mount_failed_msg">Mount filesystem\'s operation failed.
+    Some filesystem, like sdcards, not allow to be mounted/unmounted, because
+    they are built-in as read-only filesystems.</string>
   <!-- Filesystem Info Dialog * Title -->
   <string name="filesystem_info_dialog_title">Filesystem Information</string>
   <!-- Filesystem Info Dialog * Tab * Info -->
@@ -248,14 +246,17 @@
   <string name="fso_properties_permissions_not_allowed_msg">Permissions operations are not allowed
     by a non-privileged console. Tap to change to a privileged console.</string>
   <!-- Fso Properties * Failed to change owner to fso -->
-  <string name="fso_properties_failed_to_change_owner_msg">Change owner operation failed.
-    Some filesystem, like sdcards, not allow change the owner.</string>
+  <string name="fso_properties_failed_to_change_owner_msg">The change of owner\'s operation failed.
+    Some filesystem, like sdcards, not allow to change the owner, because of
+    security concerns.</string>
   <!-- Fso Properties * Failed to change group to fso -->
-  <string name="fso_properties_failed_to_change_group_msg">Change group operation failed.
-    Some filesystem, like sdcards, not allow change the group.</string>
+  <string name="fso_properties_failed_to_change_group_msg">The change of group\'s operation failed.
+    Some filesystem, like sdcards, not allow to change the group, because of
+    security concerns.</string>
   <!-- Fso Properties * Failed to change group to fso -->
-  <string name="fso_properties_failed_to_change_permission_msg">Change permissions operation
-    failed. Some filesystem, like sdcards, not allow change the permission.</string>
+  <string name="fso_properties_failed_to_change_permission_msg">The change of permissions\'s
+    operation failed. Some filesystem, like sdcards, not allow to change the permissions, because
+    of security concerns.</string>
   <!-- Fso Properties Dialog * Title -->
   <string name="fso_properties_dialog_title">Properties</string>
   <!-- Fso Properties Dialog * Tab * Info -->
@@ -308,69 +309,66 @@
     <item quantity="other"><xliff:g id="files">%1$d</xliff:g> files</item>
   </plurals>
 
-  <!-- Choose console dialog title -->
+  <!-- Consoles * Choose console dialog title -->
   <string name="choose_console_dialog_title">Choose console</string>
 
-  <!-- History activity title -->
+  <!-- History * History activity title -->
   <string name="history">History</string>
-  <!-- The history is empty -->
+  <!-- History * The history is empty -->
   <string name="msgs_history_empty">History is empty.</string>
-  <!-- The history references is not in the actual history list -->
+  <!-- History * The history reference is not in the actual history list -->
   <string name="msgs_history_unknown">Unknown history item.</string>
 
-  <!-- Search activity title -->
+  <!-- Search * Search activity title -->
   <string name="search">Search results</string>
-  <!-- Search hint message -->
+  <!-- Search * Search hint message -->
   <string name="search_hint">Type your search</string>
-  <!-- Voice search hint message -->
-  <string name="search_voice_hint">Talk your search</string>
-  <!-- Search error message -->
+  <!-- Search * Voice search hint message -->
+  <string name="search_voice_hint">Speak your search</string>
+  <!-- Search * Search error message -->
   <string name="search_error_msg">An error occurred while searching. No results found.</string>
-  <!-- Search no results message -->
+  <!-- Search * Search no results message -->
   <string name="search_no_results_msg">No results found.</string>
-  <!-- Search found items -->
+  <!-- Search * Search found items -->
   <plurals name="search_found_items">
     <item quantity="zero">No items found</item>
     <item quantity="one">1 item found</item>
     <item quantity="other"><xliff:g id="count">%d</xliff:g> items found</item>
   </plurals>
-  <!-- Message of items found in directory -->
+  <!-- Search * Number of items found in directory -->
   <string name="search_found_items_in_directory"><xliff:g id="items">%1$s</xliff:g> in
     <xliff:g id="path">%2$s</xliff:g></string>
-  <!-- Search query terms -->
+  <!-- Search * Search query terms -->
   <string name="search_terms"><![CDATA[<b>Terms:</b>]]> <xliff:g id="terms">%1$s</xliff:g></string>
-  <!-- Some terms of the search are too small. The operation can be very costly -->
+  <!-- Search * Some terms of the search are too small. The operation could be very costly -->
   <string name="search_few_characters_msg">Some of terms of the search has few characters. In
-    this situation, the operation that can be very costly in time and system resources.\n\n
-    Do you want to cancel the search?</string>
-
-  <!-- Searching dialog title -->
+    this situation, the operation could be very costly in time and system resources.\n\n
+    Do you want to continue?</string>
+  <!-- Search * Searching dialog title -->
   <string name="searching">Please, wait &#8230;</string>
-  <!-- Searching label -->
+  <!-- Search * Searching label -->
   <string name="searching_action_label">Searching in progress</string>
 
-  <!-- Bookmarks activity title -->
+  <!-- Bookmarks * Bookmarks activity title -->
   <string name="bookmarks">Bookmarks</string>
-  <!-- Bookmark name * Home -->
+  <!-- Bookmarks * Bookmark name * Home -->
   <string name="bookmarks_home">Home</string>
-  <!-- Bookmark name * Root folder -->
+  <!-- Bookmarks * Bookmark name * Root folder -->
   <string name="bookmarks_root_folder">Root folder</string>
-  <!-- Bookmark name * System folder -->
+  <!-- Bookmarks * Bookmark name * System folder -->
   <string name="bookmarks_system_folder">System folder</string>
-  <!-- Bookmark name * Button * Initial directory content description -->
-  <string name="bookmarks_button_config_cd">Set the initial directory</string>
-  <!-- Bookmark name * Button * Remove bookmark content description -->
-  <string name="bookmarks_button_remove_bookmark_cd">Remove the bookmarks</string>
-  <!-- Bookmarks * Actions * Bookmark successfully added -->
+  <!-- Bookmarks * Bookmark name * Button * Initial directory content description -->
+  <string name="bookmarks_button_config_cd">Set the initial directory.</string>
+  <!-- Bookmarks * Bookmark name * Button * Remove bookmark content description -->
+  <string name="bookmarks_button_remove_bookmark_cd">Remove the bookmark.</string>
+  <!-- Bookmarks * Bookmarks * Actions * Bookmark successfully added -->
   <string name="bookmarks_msgs_add_success">The bookmark was added successfully.</string>
 
   <!-- Initial directory dialog title -->
   <string name="initial_directory_dialog_title">Initial directory</string>
   <!-- Initial directory label -->
   <string name="initial_directory_label">Choose the initial directory:</string>
-  <!-- Initial directory text hint -->
-  <string name="initial_directory_text_hint">Type initial directory</string>
-  <!-- Initial directory is relative and this is not allowed -->
+  <!-- Initial directory is relative -->
   <string name="initial_directory_relative_msg">Relative paths are not allowed.</string>
   <!-- Initial directory error message -->
   <string name="initial_directory_error_msg">An error occurred while saving initial
@@ -391,53 +389,53 @@
   <!-- Menu * History * Clear history -->
   <string name="menu_clear_history">Clear history</string>
 
-  <!-- Create copy regexp -->
+  <!-- Regular expression for create copy action -->
   <string name="create_copy_regexp">
     <xliff:g id="name">%1$s</xliff:g> - copy<xliff:g id="extension">%2$s</xliff:g></string>
-  <!-- New compressed file -->
+  <!-- Regular expression for new compressed file -->
   <string name="create_new_compress_file_regexp">
     <xliff:g id="name">%1$s</xliff:g> - new<xliff:g id="extension">%2$s</xliff:g></string>
 
   <!-- Waiting dialog * Performing operation message -->
-  <string name="waiting_dialog_msg">Performing operation&#8230;</string>
+  <string name="waiting_dialog_msg">Performing operation &#8230;</string>
   <!-- Waiting dialog * Copying title -->
-  <string name="waiting_dialog_copying_title">Copying&#8230;</string>
+  <string name="waiting_dialog_copying_title">Copying &#8230;</string>
   <!-- Waiting dialog * Copying message -->
   <string name="waiting_dialog_copying_msg">
     <![CDATA[<b>From</b>]]> <xliff:g id="from">%1$s</xliff:g><![CDATA[<br/>]]>
     <![CDATA[<b>To</b>]]> <xliff:g id="to">%2$s</xliff:g></string>
   <!-- Waiting dialog * Moving title -->
-  <string name="waiting_dialog_moving_title">Moving&#8230;</string>
+  <string name="waiting_dialog_moving_title">Moving &#8230;</string>
   <!-- Waiting dialog * Moving message -->
   <string name="waiting_dialog_moving_msg">
     <![CDATA[<b>From</b>]]> <xliff:g id="from">%1$s</xliff:g><![CDATA[<br/>]]>
     <![CDATA[<b>To</b>]]> <xliff:g id="to">%2$s</xliff:g></string>
   <!-- Waiting dialog * Deleting title -->
-  <string name="waiting_dialog_deleting_title">Deleting&#8230;</string>
+  <string name="waiting_dialog_deleting_title">Deleting &#8230;</string>
   <!-- Waiting dialog * Deleting message -->
   <string name="waiting_dialog_deleting_msg">
     <![CDATA[<b>File</b>]]> <xliff:g id="file">%1$s</xliff:g></string>
   <!-- Waiting dialog * Extracting title -->
-  <string name="waiting_dialog_extracting_title">Extracting&#8230;</string>
+  <string name="waiting_dialog_extracting_title">Extracting &#8230;</string>
   <!-- Waiting dialog * Extracting message -->
   <string name="waiting_dialog_extracting_msg">
     <![CDATA[<b>File</b>]]> <xliff:g id="file">%1$s</xliff:g></string>
   <!-- Waiting dialog * Extracting title -->
-  <string name="waiting_dialog_compressing_title">Compressing&#8230;</string>
+  <string name="waiting_dialog_compressing_title">Compressing &#8230;</string>
   <!-- Waiting dialog * Extracting message -->
   <string name="waiting_dialog_compressing_msg">
     <![CDATA[<b>File</b>]]> <xliff:g id="file">%1$s</xliff:g></string>
   <!-- Waiting dialog * Initializing the dialog -->
   <string name="waiting_dialog_analizing_msg">
-    <![CDATA[<b>Analizing&#8230;</b>]]></string>
+    <![CDATA[<b>Analizing &#8230;</b>]]></string>
   <!-- Extracting * Success message -->
   <string name="msgs_extracting_success">
     The extracting operation was completed successfully. The data was extracted to
-    <xliff:g id="destination">%1$s</xliff:g></string>
+    <xliff:g id="destination">%1$s</xliff:g>.</string>
   <!-- Compressing * Success message -->
   <string name="msgs_compressing_success">
     The compressing operation was completed successfully. The data was compressed to
-    <xliff:g id="destination">%1$s</xliff:g></string>
+    <xliff:g id="destination">%1$s</xliff:g>.</string>
 
   <!-- Actions Dialog * Title -->
   <string name="actions_dialog_title">Actions</string>
@@ -467,8 +465,6 @@
   <string name="actions_menu_compress_selection">Compress selection</string>
   <!-- Actions Dialog * Menu * Create link -->
   <string name="actions_menu_create_link">Create link</string>
-  <!-- Actions Dialog * Menu * Add to bookmarks the current folder -->
-  <string name="actions_menu_add_to_bookmarks_current_folder">Add to bookmarks</string>
   <!-- Actions Dialog * Menu * Open -->
   <string name="actions_menu_open">Open</string>
   <!-- Actions Dialog * Menu * Open with -->
@@ -481,8 +477,6 @@
   <string name="actions_menu_compress">Compress</string>
   <!-- Actions Dialog * Menu * Extract -->
   <string name="actions_menu_extract">Extract</string>
-  <!-- Actions Dialog * Menu * Share -->
-  <string name="actions_menu_share">Share</string>
   <!-- Actions Dialog * Menu * Delete -->
   <string name="actions_menu_delete">Delete</string>
   <!-- Actions Dialog * Menu * Rename -->
@@ -503,7 +497,7 @@
   <!-- Enter Name Dialog * Label -->
   <string name="input_name_dialog_label">Name:</string>
   <!-- Enter Name Dialog * Message * Empty name -->
-  <string name="input_name_dialog_message_empty_name">The name can\'t not be empty.</string>
+  <string name="input_name_dialog_message_empty_name">The name can\'t be empty.</string>
   <!-- Enter Name Dialog * Message * Invalid name -->
   <string name="input_name_dialog_message_invalid_path_name">Invalid name. The characters
     \'<xliff:g id="invalid_characters">%1$s</xliff:g>\' are not allowed.</string>
@@ -527,7 +521,7 @@
   <string name="associations_dialog_sendwith_action">Send</string>
 
   <!-- Inline Autocomplete Widget * Tab message nothing to complete -->
-  <string name="inline_autocomplete_tab_nothing_to_complete_msg">Nothing to complete</string>
+  <string name="inline_autocomplete_tab_nothing_to_complete_msg">Nothing to complete.</string>
 
   <!-- Execution console * Title -->
   <string name="execution_console_title">Console</string>
@@ -581,9 +575,9 @@
   <string name="category_video">VIDEO</string>
   <string name="category_security">SECURITY</string>
 
-  <!-- Compression modes dialog title -->
+  <!-- Compression * Compression modes dialog title -->
   <string name="compression_mode_title">Compression mode</string>
-  <!-- Compression modes -->
+  <!-- Compression * Supported archive and compression modes -->
   <string name="compression_mode_tar" translatable="false">Tar (tar)</string>
   <string name="compression_mode_tar_gzip" translatable="false">Tar/Gzip (tar.gz)</string>
   <string name="compression_mode_tar_gzip2" translatable="false">Tar/Gzip (tgz)</string>
@@ -596,13 +590,12 @@
   <!-- Preferences * General title -->
   <string name="pref_general">General</string>
   <!-- Preferences * General summary -->
-  <string name="pref_general_summary">Configure the behaviour of some actions of the
-    application.</string>
+  <string name="pref_general_summary">Configure the behaviour of the application.</string>
   <!-- Preferences * Search title -->
   <string name="pref_search">Search</string>
   <!-- Preferences * Search summary -->
-  <string name="pref_search_summary">Configure some options about the search engine of the
-    application application .</string>
+  <string name="pref_search_summary">Configure the options about the search engine of the
+    application.</string>
   <!-- Preferences * Debug title -->
   <string name="pref_debug">Debug</string>
   <!-- Preferences * Debug summary -->
@@ -622,14 +615,14 @@
   <string name="pref_case_sensitive_sort_on">Use case sensitive comparison in sorting
     of files.</string>
   <!-- Preferences * General * Case sensitive sort summary off -->
-  <string name="pref_case_sensitive_sort_off">Not use case sensitive comparison in sorting
+  <string name="pref_case_sensitive_sort_off">Don\'t use case sensitive comparison in sorting
     of files.</string>
   <!-- Preferences * General * Default long-click action title -->
   <string name="pref_default_longclick_action">Default long-click action</string>
   <!-- Preferences * General * Default long-click action * No action -->
   <string name="pref_default_longclick_action_none">None</string>
   <!-- Preferences * General * Default long-click action * Show content description -->
-  <string name="pref_default_longclick_action_show_cd">Show content description</string>
+  <string name="pref_default_longclick_action_show_cd">Show description</string>
   <!-- Preferences * General * Default long-click action * Select/deselect -->
   <string name="pref_default_longclick_action_select_deselect">Select/deselect</string>
   <!-- Preferences * General * Default long-click action * Open with -->
@@ -641,8 +634,8 @@
   <!-- Preferences * General *Disk usage warning level title -->
   <string name="pref_disk_usage_warning_level">Disk usage warning</string>
   <!-- Preferences * General * Disk usage warning level summary -->
-  <!-- FIXME % symbol make crash the app on getSummary of ListPreference. This should be
-       fixed in frameworks base prior to add here. -->
+  <!-- FIXME Use "percent" instead of "%" symbol, because it make crash the app on getSummary
+       of ListPreference. This should be fixed in frameworks base prior to be added here. -->
   <string name="pref_disk_usage_warning_level_summary" formatted="false">Display a different
     color in disk usage widgets when they reach <xliff:g id="level">%1$s</xliff:g> percent
     of free disk space.</string>
@@ -650,10 +643,10 @@
   <string name="pref_compute_folder_statistics">Compute folder statistics</string>
   <!-- Preferences * General * Compute folder statistics summary on -->
   <string name="pref_compute_folder_statistics_on">Compute folder statistics in folder
-    properties dialog.\n\nWarning! Compute folder statistics is a operation very costly in time
-    and system resources.</string>
+    properties dialog.\n\nWarning! The computation of folder statistics is a operation very costly
+    in time and system resources.</string>
   <!-- Preferences * General * Compute folder statistics summary off -->
-  <string name="pref_compute_folder_statistics_off">No compute folder statistics in folder
+  <string name="pref_compute_folder_statistics_off">Don\'t compute folder statistics in folder
     properties dialog.</string>
     <!-- Preferences * General * Advanced settings category -->
   <string name="pref_general_advanced_settings_category">Advanced settings</string>
@@ -680,8 +673,8 @@
   <string name="pref_highlight_terms_on">Highlight the matching terms of the search in search
     results.</string>
   <!-- Preferences * Search * Show relevance widget summary off -->
-  <string name="pref_highlight_terms_off">No highlight the matching terms of the search in search
-    results.</string>
+  <string name="pref_highlight_terms_off">Don\'t highlight the matching terms of the search
+    in search results.</string>
   <!-- Preferences * Search * Sort results mode -->
   <string name="pref_sort_search_results_mode">Sort results mode</string>
   <!-- Preferences * Search * Sort results mode. None -->
@@ -694,18 +687,19 @@
   <string name="pref_search_privacity_category">Privacity</string>
   <!-- Preferences * Search * Save search terms -->
   <string name="pref_save_search_terms">Save search terms</string>
-  <!-- Preferences * Search * Save search termss summary on -->
-  <string name="pref_save_search_terms_on">Save the terms introduced in search queries,
-    so they can be shown as suggestions in the following searches.</string>
+  <!-- Preferences * Search * Save search terms summary on -->
+  <string name="pref_save_search_terms_on">The terms introduced in the searches are
+    saved, so they can be shown as suggestions in the following searches.</string>
   <!-- Preferences * Search * Save search terms summary off -->
-  <string name="pref_save_search_terms_off">The terms introduced in search queries are
+  <string name="pref_save_search_terms_off">The terms introduced in the searches are
     not saved.</string>
   <!-- Preferences * Search * Remove saved search terms -->
   <string name="pref_remove_saved_search_terms">Remove saved terms</string>
   <!-- Preferences * Search * Remove saved search terms summary -->
   <string name="pref_remove_saved_search_terms_summary">Tap to remove the saved terms of previous
     searches.</string>
-  <string name="pref_remove_saved_search_terms_msg">All saved search terms were removed</string>
+  <!-- Preferences * Search * Suggestions were truncated -->
+  <string name="pref_remove_saved_search_terms_msg">All saved search terms were removed.</string>
 
   <!-- Preferences * Debug * Capture debug traces -->
   <string name="pref_debug_traces">Capture debug traces</string>
@@ -717,8 +711,7 @@
   <!-- Security * Extract relative or absolute files -->
   <string name="security_warning_extract">Warning!\n\n
     Extracting an archive file with relative or absolute paths may cause damage to your system,
-    because the operation could overwrite of some system files.\n\n
+    because the operation could overwrite some of the system files.\n\n
     Continue?</string>
-
 
 </resources>

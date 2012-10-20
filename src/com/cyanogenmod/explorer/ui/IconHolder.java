@@ -19,23 +19,21 @@ package com.cyanogenmod.explorer.ui;
 import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
-
-import java.util.HashMap;
-import java.util.Map;
+import android.util.SparseArray;
 
 /**
  * A class that holds icons for a more efficient access.
  */
 public class IconHolder {
 
-    private final Map<Integer, Drawable> mIcons;
+    private final SparseArray<Drawable> mIcons;
 
     /**
      * Constructor of <code>IconHolder</code>.
      */
     public IconHolder() {
         super();
-        this.mIcons = new HashMap<Integer, Drawable>();
+        this.mIcons = new SparseArray<Drawable>();
     }
 
     /**
@@ -48,15 +46,14 @@ public class IconHolder {
      */
     public Drawable getDrawable(Context context, final int resid) {
         //Check if the icon exists in the cache
-        Integer id = Integer.valueOf(resid);
-        if (this.mIcons.containsKey(id)) {
-            return this.mIcons.get(id);
+        if (this.mIcons.indexOfKey(resid) > 0) {
+            return this.mIcons.get(resid);
         }
 
         //Load the drawable, cache and returns reference
         Resources res = context.getResources();
         Drawable dw = res.getDrawable(resid);
-        this.mIcons.put(id, dw);
+        this.mIcons.put(resid, dw);
         return dw;
     }
 

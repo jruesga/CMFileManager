@@ -63,7 +63,7 @@ public final class ExecutionActionPolicy extends ActionsPolicy {
         }
 
         @Override
-        public void onAsyncEnd(boolean canceled) {/**NON BLOCK**/}
+        public void onAsyncEnd(boolean cancelled) {/**NON BLOCK**/}
 
         @Override
         public void onAsyncExitCode(int exitCode) {

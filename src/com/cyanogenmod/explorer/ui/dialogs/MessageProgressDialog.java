@@ -67,13 +67,13 @@ public class MessageProgressDialog implements DialogInterface.OnClickListener {
      * @param iconResourceId The icon dialog resource identifier
      * @param titleResourceId The title dialog resource identifier
      * @param labelResourceId The label resource identifier
-     * @param cancelable If the dialog is cancelable
+     * @param cancellable If the dialog is cancellable
      */
     public MessageProgressDialog(
             Context context, int iconResourceId,
-            int titleResourceId, int labelResourceId, boolean cancelable) {
+            int titleResourceId, int labelResourceId, boolean cancellable) {
         this(context, iconResourceId, titleResourceId,
-                context.getResources().getString(labelResourceId), cancelable);
+                context.getResources().getString(labelResourceId), cancellable);
     }
 
     /**
@@ -84,11 +84,11 @@ public class MessageProgressDialog implements DialogInterface.OnClickListener {
      * @param iconResourceId The icon dialog resource identifier
      * @param titleResourceId The title dialog resource identifier
      * @param labelMsg The label message
-     * @param cancelable If the dialog is cancelable
+     * @param cancellable If the dialog is cancellable
      */
     public MessageProgressDialog(
             Context context, int iconResourceId,
-            int titleResourceId, String labelMsg, boolean cancelable) {
+            int titleResourceId, String labelMsg, boolean cancellable) {
         super();
 
         //Save the context
@@ -121,18 +121,18 @@ public class MessageProgressDialog implements DialogInterface.OnClickListener {
                 // Wait for cancellation
                 if (MessageProgressDialog.this.mOnCancelListener != null) {
                     if (!MessageProgressDialog.this.mOnCancelListener.onCancel()) {
-                        //The operation can't not be canceled
+                        //The operation couldn't be cancelled
                         DialogHelper.showToast(
                                 MessageProgressDialog.this.mContext,
-                                R.string.msgs_operation_can_not_be_canceled, Toast.LENGTH_SHORT);
+                                R.string.msgs_operation_can_not_be_cancelled, Toast.LENGTH_SHORT);
                     }
                 }
             }
         });
 
-        // Is cancelable
-        this.mDialog.setCancelable(cancelable);
-        if (!cancelable) {
+        // Is cancellable
+        this.mDialog.setCancelable(cancellable);
+        if (!cancellable) {
             this.mProgress.post(new Runnable() {
                 @Override
                 public void run() {

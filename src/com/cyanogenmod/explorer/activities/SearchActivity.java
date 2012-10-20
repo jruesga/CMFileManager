@@ -574,7 +574,7 @@ public class SearchActivity extends Activity
                                 public boolean onCancel() {
                                     //User has requested the cancellation of the search
                                     //Broadcast the cancellation
-                                    if (!SearchActivity.this.mExecutable.isCanceled()) {
+                                    if (!SearchActivity.this.mExecutable.isCancelled()) {
                                         if (SearchActivity.this.mExecutable.cancel()) {
                                             ListAdapter listAdapter =
                                                     SearchActivity.
@@ -947,13 +947,13 @@ public class SearchActivity extends Activity
     /**
      * Method that returns to previous activity.
      *
-     * @param canceled Indicates if the activity was canceled
+     * @param cancelled Indicates if the activity was cancelled
      * @param item The fso
      * @hide
      */
-    void back(final boolean canceled, FileSystemObject item, boolean isChecked) {
+    void back(final boolean cancelled, FileSystemObject item, boolean isChecked) {
         Intent intent =  new Intent();
-        if (canceled) {
+        if (cancelled) {
             if (SearchActivity.this.mDrawingSearchResultTask != null
                     && SearchActivity.this.mDrawingSearchResultTask.isRunning()) {
                 SearchActivity.this.mDrawingSearchResultTask.cancel(true);
@@ -1023,7 +1023,7 @@ public class SearchActivity extends Activity
      * {@inheritDoc}
      */
     @Override
-    public void onAsyncEnd(boolean canceled) {
+    public void onAsyncEnd(boolean cancelled) {
         this.mSearchListView.post(new Runnable() {
             @Override
             public void run() {

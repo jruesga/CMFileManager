@@ -141,7 +141,7 @@ public class CompressCommandTest extends AbstractConsoleTest {
                             public void onAsyncStart() {
                                 /**NON BLOCK**/
                             }
-                            public void onAsyncEnd(boolean canceled) {
+                            public void onAsyncEnd(boolean cancelled) {
                                 synchronized (CompressCommandTest.this.mSync) {
                                     CompressCommandTest.this.mNormalEnd = true;
                                     CompressCommandTest.this.mSync.notify();
@@ -162,7 +162,7 @@ public class CompressCommandTest extends AbstractConsoleTest {
                 CompressCommandTest.this.mSync.wait(60000L);
             }
             try {
-                if (!this.mNormalEnd && cmd != null && cmd.isCancelable() && !cmd.isCanceled()) {
+                if (!this.mNormalEnd && cmd != null && cmd.isCancellable() && !cmd.isCancelled()) {
                     cmd.cancel();
                 }
             } catch (Exception e) {/**NON BLOCK**/}
@@ -202,7 +202,7 @@ public class CompressCommandTest extends AbstractConsoleTest {
                             public void onAsyncStart() {
                                 /**NON BLOCK**/
                             }
-                            public void onAsyncEnd(boolean canceled) {
+                            public void onAsyncEnd(boolean cancelled) {
                                 synchronized (CompressCommandTest.this.mSync) {
                                     CompressCommandTest.this.mNormalEnd = true;
                                     CompressCommandTest.this.mSync.notify();
@@ -223,7 +223,7 @@ public class CompressCommandTest extends AbstractConsoleTest {
                 CompressCommandTest.this.mSync.wait(15000L);
             }
             try {
-                if (!this.mNormalEnd && cmd != null && cmd.isCancelable() && !cmd.isCanceled()) {
+                if (!this.mNormalEnd && cmd != null && cmd.isCancellable() && !cmd.isCancelled()) {
                     cmd.cancel();
                 }
             } catch (Exception e) {/**NON BLOCK**/}

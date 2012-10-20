@@ -213,7 +213,7 @@ public final class CopyMoveActionPolicy extends ActionsPolicy {
             final OnRequestRefreshListener onRequestRefreshListener) {
 
         // Some previous checks prior to execute
-        // 1.- Listener can't not be null
+        // 1.- Listener couldn't be null
         if (onSelectionListener == null) {
             AlertDialog dialog =
                     DialogHelper.createErrorDialog(ctx, R.string.msgs_illegal_argument);
@@ -271,7 +271,7 @@ public final class CopyMoveActionPolicy extends ActionsPolicy {
                 return R.drawable.ic_holo_light_operation;
             }
             @Override
-            public boolean isDialogCancelable() {
+            public boolean isDialogCancellable() {
                 return false;
             }
 
@@ -379,7 +379,7 @@ public final class CopyMoveActionPolicy extends ActionsPolicy {
                             }
                             @Override
                             @SuppressWarnings("unqualified-field-access")
-                            public void onCanceled() {
+                            public void onCancelled() {
                                 synchronized (mSync) {
                                     mSync.notify();
                                 }

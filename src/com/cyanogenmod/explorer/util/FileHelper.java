@@ -98,7 +98,7 @@ public final class FileHelper {
      *
      * @param file File to check
      * @return boolean If file is a symbolic link
-     * @throws IOException If real file can't not be checked
+     * @throws IOException If real file couldn't be checked
      */
     public static boolean isSymlink(File file) throws IOException {
         return file.getAbsolutePath().compareTo(file.getCanonicalPath()) != 0;
@@ -109,7 +109,7 @@ public final class FileHelper {
      *
      * @param file File to check
      * @return File The real file or directory
-     * @throws IOException If real file can't not be resolved
+     * @throws IOException If real file couldn't be resolved
      */
     public static File resolveSymlink(File file) throws IOException {
         return file.getCanonicalFile();

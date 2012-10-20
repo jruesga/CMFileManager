@@ -82,7 +82,7 @@ public class FolderUsageCommand extends AsyncResultProgram implements FolderUsag
      * {@inheritDoc}
      */
     @Override
-    public void onEndParsePartialResult(boolean canceled) {
+    public void onEndParsePartialResult(boolean cancelled) {
         this.mPartial = ""; //$NON-NLS-1$
     }
 
@@ -221,7 +221,7 @@ public class FolderUsageCommand extends AsyncResultProgram implements FolderUsag
 
         //Access a subdirectory without permissions returns 1, but this
         //not must be treated as an error
-        //Ignore exit code 143 (canceled)
+        //Ignore exit code 143 (cancelled)
         //Ignore exit code 137 (kill -9)
         if (exitCode != 0 && exitCode != 1 && exitCode != 143 && exitCode != 137) {
             throw new ExecutionException(

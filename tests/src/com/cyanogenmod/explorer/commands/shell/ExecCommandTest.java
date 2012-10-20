@@ -84,7 +84,7 @@ public class ExecCommandTest extends AbstractConsoleTest {
                 public void onAsyncStart() {
                     /**NON BLOCK**/
                 }
-                public void onAsyncEnd(boolean canceled) {
+                public void onAsyncEnd(boolean cancelled) {
                     synchronized (ExecCommandTest.this.mSync) {
                         ExecCommandTest.this.mSync.notify();
                     }

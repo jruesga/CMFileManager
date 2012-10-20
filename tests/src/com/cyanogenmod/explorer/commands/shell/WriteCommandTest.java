@@ -62,7 +62,7 @@ public class WriteCommandTest extends AbstractConsoleTest {
                     CommandHelper.write(getContext(),
                     WRITE_FILE_SMALL, new AsyncResultListener() {
                             public void onAsyncStart() {/**NON BLOCK**/}
-                            public void onAsyncEnd(boolean canceled) {/**NON BLOCK**/}
+                            public void onAsyncEnd(boolean cancelled) {/**NON BLOCK**/}
                             public void onAsyncExitCode(int exitCode) {/**NON BLOCK**/}
                             public void onException(Exception cause) {
                                 fail(String.valueOf(cause));
@@ -94,7 +94,7 @@ public class WriteCommandTest extends AbstractConsoleTest {
                     CommandHelper.write(getContext(),
                     WRITE_FILE_LARGE, new AsyncResultListener() {
                             public void onAsyncStart() {/**NON BLOCK**/}
-                            public void onAsyncEnd(boolean canceled) {/**NON BLOCK**/}
+                            public void onAsyncEnd(boolean cancelled) {/**NON BLOCK**/}
                             public void onAsyncExitCode(int exitCode) {/**NON BLOCK**/}
                             public void onException(Exception cause) {
                                 fail(String.valueOf(cause));

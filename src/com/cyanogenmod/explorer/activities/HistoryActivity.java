@@ -207,12 +207,12 @@ public class HistoryActivity extends Activity implements OnItemClickListener {
     /**
      * Method that returns to previous activity and.
      *
-     * @param canceled Indicates if the activity was canceled
+     * @param cancelled Indicates if the activity was cancelled
      * @param history The selected history
      */
-    private void back(final boolean canceled, final History history) {
+    private void back(final boolean cancelled, final History history) {
         Intent intent =  new Intent();
-        if (canceled) {
+        if (cancelled) {
             if (this.mIsClearHistory) {
                 intent.putExtra(NavigationActivity.EXTRA_HISTORY_CLEAR, true);
             }

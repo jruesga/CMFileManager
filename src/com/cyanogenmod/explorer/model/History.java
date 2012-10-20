@@ -105,7 +105,7 @@ public class History implements Serializable, Comparable<History> {
      */
     @Override
     public int compareTo(History another) {
-        return Integer.valueOf(this.mPosition).compareTo(new Integer(another.mPosition));
+        return Integer.valueOf(this.mPosition).compareTo(Integer.valueOf(another.mPosition));
     }
 
     /**

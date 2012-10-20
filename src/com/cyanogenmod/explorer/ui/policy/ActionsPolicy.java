@@ -52,11 +52,11 @@ public abstract class ActionsPolicy {
         int getDialogTitle();
 
         /**
-         * Method that returns if the dialog is cancelable
+         * Method that returns if the dialog is cancellable
          *
-         * @return boolean If the dialog is cancelable
+         * @return boolean If the dialog is cancellable
          */
-        boolean isDialogCancelable();
+        boolean isDialogCancellable();
 
         /**
          * Method invoked when need to update the progress of the dialog
@@ -113,7 +113,7 @@ public abstract class ActionsPolicy {
                     this.mCallable.getDialogIcon(),
                     this.mCallable.getDialogTitle(),
                     R.string.waiting_dialog_msg,
-                    this.mCallable.isDialogCancelable());
+                    this.mCallable.isDialogCancellable());
             this.mDialog.setOnCancelListener(new MessageProgressDialog.OnCancelListener() {
                 @Override
                 public boolean onCancel() {

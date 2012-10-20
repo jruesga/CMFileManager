@@ -161,7 +161,7 @@ public class ExecutionDialog implements DialogInterface.OnClickListener {
         this.mDialog.setButton(
                 DialogInterface.BUTTON_NEUTRAL, context.getString(android.R.string.ok), this);
 
-        // Is cancelable
+        // Is cancellable
         this.mDialog.setCancelable(false);
         this.mTvOutput.post(new Runnable() {
             @Override
@@ -295,7 +295,7 @@ public class ExecutionDialog implements DialogInterface.OnClickListener {
                 // Cancel the program?
                 try {
                     if (this.mCmd != null && !this.mFinished) {
-                        if (this.mCmd.isCancelable() && !this.mCmd.isCanceled()) {
+                        if (this.mCmd.isCancellable() && !this.mCmd.isCancelled()) {
                             this.mCmd.cancel();
                         }
                     }

@@ -84,7 +84,7 @@ public final class CompressActionPolicy extends ActionsPolicy {
         public void onAsyncStart() {/**NON BLOCK**/}
 
         @Override
-        public void onAsyncEnd(boolean canceled) {/**NON BLOCK**/}
+        public void onAsyncEnd(boolean cancelled) {/**NON BLOCK**/}
 
         @Override
         public void onAsyncExitCode(int exitCode) {
@@ -215,7 +215,7 @@ public final class CompressActionPolicy extends ActionsPolicy {
                 return R.drawable.ic_holo_light_operation;
             }
             @Override
-            public boolean isDialogCancelable() {
+            public boolean isDialogCancellable() {
                 return true;
             }
 
@@ -243,7 +243,7 @@ public final class CompressActionPolicy extends ActionsPolicy {
             @Override
             public void onSuccess() {
                 try {
-                    if (this.cmd != null && this.cmd.isCancelable() && !this.cmd.isCanceled()) {
+                    if (this.cmd != null && this.cmd.isCancellable() && !this.cmd.isCancelled()) {
                         this.cmd.cancel();
                     }
                 } catch (Exception e) {/**NON BLOCK**/}
@@ -256,7 +256,7 @@ public final class CompressActionPolicy extends ActionsPolicy {
                 if (this.cmd != null) {
                     showOperationSuccessMsg(
                             ctx,
-                            R.string.msgs_extracting_success,
+                            R.string.msgs_compressing_success,
                             this.cmd.getOutCompressedFile());
                 } else {
                     ActionsPolicy.showOperationSuccessMsg(ctx);
@@ -375,7 +375,7 @@ public final class CompressActionPolicy extends ActionsPolicy {
                             }
                             @Override
                             @SuppressWarnings("unqualified-field-access")
-                            public void onCanceled() {
+                            public void onCancelled() {
                                 synchronized (mSync) {
                                     mSync.notify();
                                 }
@@ -511,7 +511,7 @@ public final class CompressActionPolicy extends ActionsPolicy {
                 return R.drawable.ic_holo_light_operation;
             }
             @Override
-            public boolean isDialogCancelable() {
+            public boolean isDialogCancellable() {
                 return true;
             }
 
@@ -539,7 +539,7 @@ public final class CompressActionPolicy extends ActionsPolicy {
             @Override
             public void onSuccess() {
                 try {
-                    if (this.cmd != null && this.cmd.isCancelable() && !this.cmd.isCanceled()) {
+                    if (this.cmd != null && this.cmd.isCancellable() && !this.cmd.isCancelled()) {
                         this.cmd.cancel();
                     }
                 } catch (Exception e) {/**NON BLOCK**/}
@@ -624,7 +624,7 @@ public final class CompressActionPolicy extends ActionsPolicy {
                             }
                             @Override
                             @SuppressWarnings("unqualified-field-access")
-                            public void onCanceled() {
+                            public void onCancelled() {
                                 synchronized (mSync) {
                                     mSync.notify();
                                 }

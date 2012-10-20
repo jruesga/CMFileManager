@@ -23,5 +23,6 @@
   android:searchSuggestSelection=" ?"
   android:searchSuggestThreshold="3"
   android:voiceMaxResults="5"
+  android:hint="@string/search_hint"
   android:voicePromptText="@string/search_voice_hint"
   android:voiceSearchMode="showVoiceSearchButton|launchRecognizer" />

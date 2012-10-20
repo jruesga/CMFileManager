@@ -60,7 +60,7 @@ public final class ConsoleBuilder {
      * @param context The current context
      * @return Console An allocated console
      * @throws FileNotFoundException If the initial directory not exists
-     * @throws IOException If initial directory can't not be checked
+     * @throws IOException If initial directory couldn't be checked
      * @throws InvalidCommandDefinitionException If the command has an invalid definition
      * @throws ConsoleAllocException If the console can't be allocated
      * @throws InsufficientPermissionsException If the console created is not a privileged console
@@ -79,7 +79,7 @@ public final class ConsoleBuilder {
      * @param createIfNotExists Indicates that the console should be create if not exists
      * @return Console An allocated console
      * @throws FileNotFoundException If the initial directory not exists
-     * @throws IOException If initial directory can't not be checked
+     * @throws IOException If initial directory couldn't be checked
      * @throws InvalidCommandDefinitionException If the command has an invalid definition
      * @throws ConsoleAllocException If the console can't be allocated
      * @throws InsufficientPermissionsException If the console created is not a privileged console
@@ -174,7 +174,7 @@ public final class ConsoleBuilder {
      * @param context The current context
      * @return Console An allocated console
      * @throws FileNotFoundException If the initial directory not exists
-     * @throws IOException If initial directory can't not be checked
+     * @throws IOException If initial directory couldn't be checked
      * @throws InvalidCommandDefinitionException If the command has an invalid definition
      * @throws ConsoleAllocException If the console can't be allocated
      * @throws InsufficientPermissionsException If the console created is not a privileged console
@@ -256,7 +256,7 @@ public final class ConsoleBuilder {
      * @param initialDirectory The initial directory of the console
      * @return Console The non privileged console
      * @throws FileNotFoundException If the initial directory not exists
-     * @throws IOException If initial directory can't not be checked
+     * @throws IOException If initial directory couldn't be checked
      * @throws InvalidCommandDefinitionException If the command has an invalid definition
      * @throws ConsoleAllocException If the console can't be allocated
      * @see NonPriviledgeConsole
@@ -278,7 +278,7 @@ public final class ConsoleBuilder {
      * @param initialDirectory The initial directory of the console
      * @return Console The privileged console
      * @throws FileNotFoundException If the initial directory not exists
-     * @throws IOException If initial directory can't not be checked
+     * @throws IOException If initial directory couldn't be checked
      * @throws InvalidCommandDefinitionException If the command has an invalid definition
      * @throws ConsoleAllocException If the console can't be allocated
      * @throws InsufficientPermissionsException If the console created is not a privileged console
@@ -310,7 +310,7 @@ public final class ConsoleBuilder {
      * @param initialDirectory The initial directory of the console
      * @return Console The privileged console
      * @throws FileNotFoundException If the initial directory not exists
-     * @throws IOException If initial directory can't not be checked
+     * @throws IOException If initial directory couldn't be checked
      * @throws InvalidCommandDefinitionException If the command has an invalid definition
      * @throws ConsoleAllocException If the console can't be allocated
      * @throws InsufficientPermissionsException If the console created is not a privileged console
@@ -331,7 +331,7 @@ public final class ConsoleBuilder {
      * @param silent Indicates that no message have to be displayed
      * @return Console The privileged console
      * @throws FileNotFoundException If the initial directory not exists
-     * @throws IOException If initial directory can't not be checked
+     * @throws IOException If initial directory couldn't be checked
      * @throws InvalidCommandDefinitionException If the command has an invalid definition
      * @throws ConsoleAllocException If the console can't be allocated
      * @throws InsufficientPermissionsException If the console created is not a privileged console

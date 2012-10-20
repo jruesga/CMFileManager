@@ -78,7 +78,7 @@ public class FolderUsageCommandTest extends AbstractConsoleTest {
                         public void onAsyncStart() {
                             /**NON BLOCK**/
                         }
-                        public void onAsyncEnd(boolean canceled) {
+                        public void onAsyncEnd(boolean cancelled) {
                             synchronized (FolderUsageCommandTest.this.mSync) {
                                 FolderUsageCommandTest.this.mNormalEnd = true;
                                 FolderUsageCommandTest.this.mSync.notify();
@@ -103,7 +103,7 @@ public class FolderUsageCommandTest extends AbstractConsoleTest {
             FolderUsageCommandTest.this.mSync.wait(15000L);
         }
         try {
-            if (!this.mNormalEnd && cmd != null && cmd.isCancelable() && !cmd.isCanceled()) {
+            if (!this.mNormalEnd && cmd != null && cmd.isCancellable() && !cmd.isCancelled()) {
                 cmd.cancel();
             }
         } catch (Exception e) {/**NON BLOCK**/}

@@ -55,7 +55,7 @@ public class ReadCommand extends AsyncResultProgram implements ReadExecutable {
      * {@inheritDoc}
      */
     @Override
-    public void onEndParsePartialResult(boolean canceled) {/** NON BLOCK **/}
+    public void onEndParsePartialResult(boolean cancelled) {/** NON BLOCK **/}
 
     /**
      * {@inheritDoc}
@@ -98,7 +98,7 @@ public class ReadCommand extends AsyncResultProgram implements ReadExecutable {
     @Override
     public void checkExitCode(int exitCode)
             throws InsufficientPermissionsException, CommandNotFoundException, ExecutionException {
-        //Ignore exit code 143 (canceled)
+        //Ignore exit code 143 (cancelled)
         //Ignore exit code 137 (kill -9)
         if (exitCode != 0 && exitCode != 143 && exitCode != 137) {
             throw new ExecutionException(

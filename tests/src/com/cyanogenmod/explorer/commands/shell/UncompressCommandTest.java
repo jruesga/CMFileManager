@@ -187,7 +187,7 @@ public class UncompressCommandTest extends AbstractConsoleTest {
                         public void onAsyncStart() {
                             /**NON BLOCK**/
                         }
-                        public void onAsyncEnd(boolean canceled) {
+                        public void onAsyncEnd(boolean cancelled) {
                             synchronized (UncompressCommandTest.this.mSync) {
                                 UncompressCommandTest.this.mNormalEnd = true;
                                 UncompressCommandTest.this.mSync.notify();
@@ -208,7 +208,7 @@ public class UncompressCommandTest extends AbstractConsoleTest {
                 UncompressCommandTest.this.mSync.wait(60000L);
             }
             try {
-                if (!this.mNormalEnd && cmd != null && cmd.isCancelable() && !cmd.isCanceled()) {
+                if (!this.mNormalEnd && cmd != null && cmd.isCancellable() && !cmd.isCancelled()) {
                     cmd.cancel();
                 }
             } catch (Exception e) {/**NON BLOCK**/}

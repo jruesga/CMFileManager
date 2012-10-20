@@ -146,7 +146,7 @@ public final class DeleteActionPolicy extends ActionsPolicy {
                 return R.drawable.ic_holo_light_operation;
             }
             @Override
-            public boolean isDialogCancelable() {
+            public boolean isDialogCancellable() {
                 return false;
             }
 
@@ -233,7 +233,7 @@ public final class DeleteActionPolicy extends ActionsPolicy {
                             }
                             @Override
                             @SuppressWarnings("unqualified-field-access")
-                            public void onCanceled() {
+                            public void onCancelled() {
                                 synchronized (mSync) {
                                     mSync.notify();
                                 }

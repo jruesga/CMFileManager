@@ -49,13 +49,13 @@ public class ReadCommand extends AsyncResultProgram implements ReadExecutable {
      * {@inheritDoc}
      */
     @Override
-    public void onStartParsePartialResult() {/** NON BLOCK **/}
+    public void onStartParsePartialResult() {/**NON BLOCK**/}
 
     /**
      * {@inheritDoc}
      */
     @Override
-    public void onEndParsePartialResult(boolean cancelled) {/** NON BLOCK **/}
+    public void onEndParsePartialResult(boolean cancelled) {/**NON BLOCK**/}
 
     /**
      * {@inheritDoc}
@@ -74,7 +74,7 @@ public class ReadCommand extends AsyncResultProgram implements ReadExecutable {
      * {@inheritDoc}
      */
     @Override
-    public void onParseErrorPartialResult(String partialErr) {/** NON BLOCK **/}
+    public void onParseErrorPartialResult(String partialErr) {/**NON BLOCK**/}
 
     /**
      * {@inheritDoc}

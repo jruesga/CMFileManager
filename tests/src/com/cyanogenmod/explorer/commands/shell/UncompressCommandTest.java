@@ -65,7 +65,7 @@ public class UncompressCommandTest extends AbstractConsoleTest {
     @LargeTest
     @SuppressWarnings("unused")
     public void testArchiveUnTAR() throws Exception {
-        // Cann't not reproduce without sample compress file
+        // Can't not reproduce without sample compress file
     }
 
     /**
@@ -76,7 +76,7 @@ public class UncompressCommandTest extends AbstractConsoleTest {
     @LargeTest
     @SuppressWarnings("unused")
     public void testArchiveUnZIP() throws Exception {
-        // Cann't not reproduce without sample compress file
+        // Can't not reproduce without sample compress file
     }
 
     /**
@@ -87,7 +87,7 @@ public class UncompressCommandTest extends AbstractConsoleTest {
     @LargeTest
     @SuppressWarnings("unused")
     public void testArchiveUnTarGZIP() throws Exception {
-        // Cann't not reproduce without sample compress file
+        // Can't not reproduce without sample compress file
     }
 
     /**
@@ -98,7 +98,7 @@ public class UncompressCommandTest extends AbstractConsoleTest {
     @LargeTest
     @SuppressWarnings("unused")
     public void testArchiveUnTarBZIP() throws Exception {
-        // Cann't not reproduce without sample compress file
+        // Can't not reproduce without sample compress file
     }
 
     /**
@@ -109,7 +109,7 @@ public class UncompressCommandTest extends AbstractConsoleTest {
     @LargeTest
     @SuppressWarnings("unused")
     public void testArchiveUnTarLZMA() throws Exception {
-        // Cann't not reproduce without sample compress file
+        // Can't not reproduce without sample compress file
     }
 
     /**
@@ -120,7 +120,7 @@ public class UncompressCommandTest extends AbstractConsoleTest {
     @LargeTest
     @SuppressWarnings("unused")
     public void testArchiveUnGZIP() throws Exception {
-        // Cann't not reproduce without sample compress file
+        // Can't not reproduce without sample compress file
     }
 
     /**
@@ -131,7 +131,7 @@ public class UncompressCommandTest extends AbstractConsoleTest {
     @LargeTest
     @SuppressWarnings("unused")
     public void testArchiveUnBZIP() throws Exception {
-        // Cann't not reproduce without sample compress file
+        // Can't not reproduce without sample compress file
     }
 
     /**
@@ -142,7 +142,7 @@ public class UncompressCommandTest extends AbstractConsoleTest {
     @LargeTest
     @SuppressWarnings("unused")
     public void testArchiveUnLZMA() throws Exception {
-        // Cann't not reproduce without sample compress file
+        // Can't not reproduce without sample compress file
     }
 
     /**
@@ -153,7 +153,7 @@ public class UncompressCommandTest extends AbstractConsoleTest {
     @LargeTest
     @SuppressWarnings("unused")
     public void testArchiveUnCompress() throws Exception {
-        // Cann't not reproduce without sample compress file
+        // Can't not reproduce without sample compress file
     }
 
     /**
@@ -164,7 +164,7 @@ public class UncompressCommandTest extends AbstractConsoleTest {
     @LargeTest
     @SuppressWarnings("unused")
     public void testArchiveUnXZ() throws Exception {
-        // Cann't not reproduce without sample compress file
+        // Can't not reproduce without sample compress file
     }
 
 

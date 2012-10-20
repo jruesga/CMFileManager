@@ -157,7 +157,7 @@ public class IdentityCommand extends SyncResultProgram implements IdentityExecut
      * @param src The string to parsed into a {@link AID}
      * @param clazz The {@link User} or {@link Group} class from which create the AID object
      * @return AID The identity reference
-     * @throws ParseException If cann't create the {@link AID} reference from the string
+     * @throws ParseException If can't create the {@link AID} reference from the string
      * @throws NoSuchMethodException If the constructor can not be found.
      * @exception InstantiationException If the class cannot be instantiated
      * @exception IllegalAccessException If this constructor is not accessible

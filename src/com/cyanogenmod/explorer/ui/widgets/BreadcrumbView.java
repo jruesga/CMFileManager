@@ -213,7 +213,7 @@ public class BreadcrumbView extends RelativeLayout implements Breadcrumb, OnClic
                     }
                     first = false;
                     this.mBreadcrumbBar.addView(createBreadcrumbItem(f));
-                } 
+                }
             }
         } else {
             for (int i = 1; i < cc; i++) {

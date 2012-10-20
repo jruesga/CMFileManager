@@ -36,6 +36,7 @@ import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.cyanogenmod.explorer.ExplorerApplication;
 import com.cyanogenmod.explorer.R;
 import com.cyanogenmod.explorer.commands.AsyncResultListener;
 import com.cyanogenmod.explorer.commands.FolderUsageExecutable;
@@ -119,6 +120,7 @@ public class FsoPropertiesDialog
 
     private boolean mIgnoreCheckEvents;
     private boolean mHasPrivileged;
+    private final boolean mIsAdvancedMode;
 
     private final boolean mComputeFolderStatistics;
     private FolderUsageExecutable mFolderUsageExecutable;
@@ -147,6 +149,7 @@ public class FsoPropertiesDialog
         this.mHasChanged = false;
         this.mIgnoreCheckEvents = true;
         this.mHasPrivileged = false;
+        this.mIsAdvancedMode = ExplorerApplication.isAdvancedMode();
 
         //Inflate the content
         LayoutInflater li =
@@ -304,7 +307,7 @@ public class FsoPropertiesDialog
         setCheckBoxesPermissionsEnable(this.mChkUserPermission, this.mHasPrivileged);
         setCheckBoxesPermissionsEnable(this.mChkGroupPermission, this.mHasPrivileged);
         setCheckBoxesPermissionsEnable(this.mChkOthersPermission, this.mHasPrivileged);
-        if (!this.mHasPrivileged) {
+        if (!this.mHasPrivileged && this.mIsAdvancedMode) {
             this.mInfoMsgView.setVisibility(View.VISIBLE);
             this.mInfoMsgView.setOnClickListener(this);
         }
@@ -447,7 +450,8 @@ public class FsoPropertiesDialog
                     this.mInfoView.setVisibility(View.GONE);
                     this.mPermissionsView.setVisibility(View.VISIBLE);
                 }
-                this.mInfoMsgView.setVisibility(this.mHasPrivileged ? View.GONE : View.VISIBLE);
+                this.mInfoMsgView.setVisibility(
+                        this.mHasPrivileged || !this.mIsAdvancedMode ? View.GONE : View.VISIBLE);
                 break;
 
             case R.id.fso_info_msg:
@@ -897,7 +901,9 @@ public class FsoPropertiesDialog
     void setMsg(String msg) {
         this.mInfoMsgView.setText(msg);
         this.mInfoMsgView.setVisibility(
-                this.mHasPrivileged && msg == null ? View.GONE : View.VISIBLE);
+                !this.mIsAdvancedMode || (this.mHasPrivileged && msg == null) ?
+                        View.GONE :
+                        View.VISIBLE);
     }
 
     /**
@@ -920,7 +926,7 @@ public class FsoPropertiesDialog
             FsoPropertiesDialog.this.mFolderUsage =
                     (FolderUsage)this.mFolderUsageExecutable.getFolderUsage().clone();
             printFolderUsage(true, cancelled);
-        } catch (Exception ex) {/** NON BLOCK**/}
+        } catch (Exception ex) {/**NON BLOCK**/}
     }
 
     /**
@@ -938,7 +944,7 @@ public class FsoPropertiesDialog
             FsoPropertiesDialog.this.mFolderUsage =
                     (FolderUsage)(((FolderUsage)partialResults).clone());
             printFolderUsage(true, false);
-        } catch (Exception ex) {/** NON BLOCK**/}
+        } catch (Exception ex) {/**NON BLOCK**/}
     }
 
     /**

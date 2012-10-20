@@ -250,7 +250,7 @@ public class Permissions implements Serializable, Comparable<Permissions> {
      *
      * @param rawPermissions The raw permissions
      * @return Permissions An object with all the permissions
-     * @throws ParseException If the permissions cann't be parsed
+     * @throws ParseException If the permissions can't be parsed
      * @see ParseHelper#parsePermission(String)
      */
     public static Permissions fromRawString(String rawPermissions) throws ParseException {
@@ -262,7 +262,7 @@ public class Permissions implements Serializable, Comparable<Permissions> {
      *
      * @param octalPermissions The octal permissions
      * @return Permissions An object with all the permissions
-     * @throws ParseException If the permissions cann't be parsed
+     * @throws ParseException If the permissions can't be parsed
      */
     public static Permissions fromOctalString(String octalPermissions) throws ParseException {
         int size = octalPermissions.length();

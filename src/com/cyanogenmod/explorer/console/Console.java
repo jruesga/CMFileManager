@@ -69,7 +69,7 @@ public abstract class Console
     /**
      * Method that allocates the console.
      *
-     * @throws ConsoleAllocException If the console cann't be allocated
+     * @throws ConsoleAllocException If the console can't be allocated
      */
     public abstract void alloc() throws ConsoleAllocException;
 
@@ -82,7 +82,7 @@ public abstract class Console
     * Method that reallocates the console. This method drops the actual console
     * and create a new one exactly as the current.
     *
-    * @throws ConsoleAllocException If the console cann't be reallocated
+    * @throws ConsoleAllocException If the console can't be reallocated
     */
    public abstract void realloc() throws ConsoleAllocException;
 

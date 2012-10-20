@@ -495,7 +495,7 @@ public final class CopyMoveActionPolicy extends ActionsPolicy {
             String src = linkRes.mSrc.getAbsolutePath();
             String dst = linkRes.mDst.getAbsolutePath();
 
-            // 1.- Current directory cann't be moved
+            // 1.- Current directory can't be moved
             if (currentDirectory != null && currentDirectory.startsWith(src)) {
                 // Operation not allowed
                 AlertDialog dialog =
@@ -505,7 +505,7 @@ public final class CopyMoveActionPolicy extends ActionsPolicy {
                 return false;
             }
 
-            // 2.- Destination cann't be a child of source
+            // 2.- Destination can't be a child of source
             if (dst.startsWith(src)) {
                 // Operation not allowed
                 AlertDialog dialog =

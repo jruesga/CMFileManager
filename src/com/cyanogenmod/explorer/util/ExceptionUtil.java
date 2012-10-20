@@ -25,6 +25,7 @@ import android.os.AsyncTask;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.cyanogenmod.explorer.ExplorerApplication;
 import com.cyanogenmod.explorer.R;
 import com.cyanogenmod.explorer.commands.SyncResultExecutable;
 import com.cyanogenmod.explorer.commands.shell.InvalidCommandDefinitionException;
@@ -250,7 +251,9 @@ public final class ExceptionUtil {
         }
 
         // If console is privileged there is not need to change
-        if (relaunchable instanceof InsufficientPermissionsException && isPrivileged) {
+        // If we are in a jail room, resolve the error without do anymore
+        if (relaunchable instanceof InsufficientPermissionsException &&
+                (isPrivileged || !ExplorerApplication.isAdvancedMode())) {
             translateException(
                     context, relaunchable, quiet, false, null);
 

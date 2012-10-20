@@ -209,7 +209,7 @@ public class NavigationActivity extends Activity
                             SETTINGS_ADVANCE_MODE.getId()) == 0) {
                         // Is it necessary to create or exit of the jail room?
                         boolean jailRoom = !ExplorerApplication.isAdvancedMode();
-                        if (jailRoom != NavigationActivity.this.mJailRoom) {  
+                        if (jailRoom != NavigationActivity.this.mJailRoom) {
                             if (jailRoom) {
                                 createJailRoom();
                             } else {
@@ -671,7 +671,7 @@ public class NavigationActivity extends Activity
                                     ExplorerSettings.SETTINGS_SHOW_SYSTEM,
                                     ExplorerSettings.SETTINGS_SHOW_SYMLINKS}));
                 }
-                
+
                 break;
 
             //######################

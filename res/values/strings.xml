@@ -96,7 +96,7 @@
   <!-- Unknown error -->
   <string name="msgs_unknown">An error was detected. The operation was unsuccessful.</string>
   <!-- When an operation requires elevated privileged (normally caused for the use of a
-       non-privileged console ) -->
+       non-privileged console) -->
   <string name="msgs_insufficient_permissions">The operation requires elevated permissions. Try
     changing to a privileged console.</string>
   <!-- The file or directory was not found -->
@@ -113,7 +113,7 @@
   <string name="msgs_operation_failure">The operation failed.</string>
   <!-- A console couldn\'t be allocated -->
   <string name="msgs_console_alloc_failure">A console couldn\'t be allocated.</string>
-  <!-- An operation cann't be cancelled -->
+  <!-- An operation can't be cancelled -->
   <string name="msgs_operation_can_not_be_cancelled">The operation can\'t be cancelled.</string>
   <!-- The operation requieres mount the filesystem prior to execute the command -->
   <string name="msgs_read_only_filesystem">The filesystem is read-only. Try to mount the

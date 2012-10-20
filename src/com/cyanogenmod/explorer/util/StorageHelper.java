@@ -31,7 +31,7 @@ import java.lang.reflect.Method;
  * A helper class with useful methods for deal with storages.
  */
 public final class StorageHelper {
-    
+
     private static StorageVolume[] sStorageVolumes;
 
     /**
@@ -50,7 +50,7 @@ public final class StorageHelper {
                 StorageManager sm = (StorageManager) ctx.getSystemService(Context.STORAGE_SERVICE);
                 Method method = sm.getClass().getMethod("getVolumeList"); //$NON-NLS-1$
                 sStorageVolumes = (StorageVolume[])method.invoke(sm);
-                
+
             } catch (Exception ex) {
                 //Ignore. Android SDK StorageManager class doesn't have this method
                 //Use default android information from environment

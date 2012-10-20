@@ -107,9 +107,9 @@ public class ExecutionDialog implements DialogInterface.OnClickListener {
                         try {
                             Thread.yield();
                             Thread.sleep(250L);
-                        } catch (Throwable _throw) {/** NON BLOCK**/}
+                        } catch (Throwable _throw) {/**NON BLOCK**/}
                     }
-                } catch (Exception e) {/** NON BLOCK**/}
+                } catch (Exception e) {/**NON BLOCK**/}
             }
             return null;
         }

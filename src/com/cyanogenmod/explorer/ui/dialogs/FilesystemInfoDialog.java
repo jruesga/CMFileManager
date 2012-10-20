@@ -25,6 +25,7 @@ import android.view.View.OnClickListener;
 import android.widget.Switch;
 import android.widget.TextView;
 
+import com.cyanogenmod.explorer.ExplorerApplication;
 import com.cyanogenmod.explorer.R;
 import com.cyanogenmod.explorer.console.ConsoleBuilder;
 import com.cyanogenmod.explorer.model.DiskUsage;
@@ -82,6 +83,7 @@ public class FilesystemInfoDialog implements OnClickListener {
     private OnMountListener mOnMountListener;
 
     private boolean mIsMountAllowed;
+    private final boolean mIsAdvancedMode;
 
     /**
      * Constructor of <code>FilesystemInfoDialog</code>.
@@ -100,6 +102,7 @@ public class FilesystemInfoDialog implements OnClickListener {
         this.mMountPoint = mountPoint;
         this.mDiskUsage = diskUsage;
         this.mIsMountAllowed = false;
+        this.mIsAdvancedMode = ExplorerApplication.isAdvancedMode();
 
         //Inflate the content
         LayoutInflater li =
@@ -198,19 +201,25 @@ public class FilesystemInfoDialog implements OnClickListener {
         try {
             hasPrivileged = ConsoleBuilder.getConsole(this.mContext).isPrivileged();
         } catch (Throwable ex) {/**NON BLOCK**/}
-        boolean mountAllowed = MountPointHelper.isMountAllowed(this.mMountPoint);
-        if (hasPrivileged) {
-            this.mSwStatus.setEnabled(mountAllowed);
-            if (!mountAllowed) {
-                this.mInfoMsgView.setText(
-                        this.mContext.getString(R.string.filesystem_info_couldnt_be_mounted_msg));
+        boolean mountAllowed =
+                MountPointHelper.isMountAllowed(this.mMountPoint) && !this.mIsAdvancedMode;
+        if (this.mIsAdvancedMode) {
+            if (hasPrivileged) {
+                if (!mountAllowed) {
+                    this.mInfoMsgView.setText(
+                            this.mContext.getString(
+                                    R.string.filesystem_info_couldnt_be_mounted_msg));
+                    this.mInfoMsgView.setVisibility(View.VISIBLE);
+                }
+            } else {
                 this.mInfoMsgView.setVisibility(View.VISIBLE);
+                this.mInfoMsgView.setOnClickListener(this);
             }
         } else {
-            this.mInfoMsgView.setVisibility(View.VISIBLE);
-            this.mInfoMsgView.setOnClickListener(this);
+            this.mInfoMsgView.setVisibility(View.GONE);
+            this.mInfoMsgView.setOnClickListener(null);
         }
-        this.mIsMountAllowed = hasPrivileged && mountAllowed;
+        this.mIsMountAllowed = hasPrivileged && mountAllowed && this.mIsAdvancedMode;
         this.mSwStatus.setEnabled(this.mIsMountAllowed);
         this.mSwStatus.setChecked(MountPointHelper.isReadWrite(this.mMountPoint));
 
@@ -235,7 +244,8 @@ public class FilesystemInfoDialog implements OnClickListener {
                     this.mInfoView.setVisibility(View.VISIBLE);
                     this.mDiskUsageView.setVisibility(View.GONE);
                 }
-                this.mInfoMsgView.setVisibility (this.mIsMountAllowed ? View.GONE : View.VISIBLE);
+                this.mInfoMsgView.setVisibility(
+                        this.mIsMountAllowed || !this.mIsAdvancedMode ? View.GONE : View.VISIBLE);
                 break;
 
             case R.id.filesystem_info_dialog_tab_disk_usage:

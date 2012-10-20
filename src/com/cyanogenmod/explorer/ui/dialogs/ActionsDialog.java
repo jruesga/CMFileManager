@@ -636,7 +636,7 @@ public class ActionsDialog implements OnItemClickListener, OnItemLongClickListen
             menu.removeItem(R.id.mnu_actions_open_parent_folder);
         }
 
-        // Remove jail room actions (actions that cann't be present when running in
+        // Remove jail room actions (actions that can't be present when running in
         // unprivileged mode)
         if (this.mJailRoom) {
             menu.removeItem(R.id.mnu_actions_create_link);

@@ -390,7 +390,7 @@ public abstract class AsyncResultProgram
                    }
                 }
             } catch (Exception e) {
-                /** NON BLOCK**/
+                /**NON BLOCK**/
 
             } finally {
                 this.mAlive = false;

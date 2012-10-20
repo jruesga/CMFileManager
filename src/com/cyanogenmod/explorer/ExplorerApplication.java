@@ -96,7 +96,7 @@ public final class ExplorerApplication extends Application {
                                         ExplorerSettings.SETTINGS_SUPERUSER_MODE,
                                         Boolean.TRUE, true);
                             } catch (Throwable ex) {
-                                Log.w(TAG, "cann't save console preference", ex); //$NON-NLS-1$
+                                Log.w(TAG, "can't save console preference", ex); //$NON-NLS-1$
                             }
                         } else {
                             try {
@@ -104,10 +104,10 @@ public final class ExplorerApplication extends Application {
                                         ExplorerSettings.SETTINGS_SUPERUSER_MODE,
                                         Boolean.FALSE, true);
                             } catch (Throwable ex) {
-                                Log.w(TAG, "cann't save console preference", ex); //$NON-NLS-1$
+                                Log.w(TAG, "can't save console preference", ex); //$NON-NLS-1$
                             }
                         }
-                        
+
                     }
                 }
             }
@@ -228,7 +228,7 @@ public final class ExplorerApplication extends Application {
     /**
      * Method that changes the background console to a privileged console
      *
-     * @throws ConsoleAllocException If the console cann't be allocated
+     * @throws ConsoleAllocException If the console can't be allocated
      */
     public static void changeBackgroundConsoleToPriviligedConsole()
             throws ConsoleAllocException {
@@ -285,7 +285,7 @@ public final class ExplorerApplication extends Application {
 
     /**
      * Method that returns if the application is running in superuser mode
-     * 
+     *
      * @return boolean If the application is running in superuser mode
      */
     public static boolean isSuperuserMode() {
@@ -299,7 +299,7 @@ public final class ExplorerApplication extends Application {
 
     /**
      * Method that returns if the application is running in advanced mode
-     * 
+     *
      * @return boolean If the application is running in advanced mode
      */
     public static boolean isAdvancedMode() {

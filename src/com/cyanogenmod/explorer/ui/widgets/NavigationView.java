@@ -222,7 +222,7 @@ public class NavigationView extends RelativeLayout implements
     private void init() {
         //Initialize variables
         this.mFiles = new ArrayList<FileSystemObject>();
-        
+
         // Is in jail room?
         this.mJailRoom = !ExplorerApplication.isAdvancedMode();
 
@@ -546,7 +546,7 @@ public class NavigationView extends RelativeLayout implements
         // Check navigation security (don't allow to go outside the jail room if one
         // is created)
         final String fNewDir = checkJailRoomNavigation(newDir);
-        
+
         synchronized (this.mSync) {
             //Check that it is really necessary change the directory
             if (!reload && this.mCurrentDir != null && this.mCurrentDir.compareTo(fNewDir) == 0) {
@@ -998,7 +998,7 @@ public class NavigationView extends RelativeLayout implements
 
     /**
      * Method that ensures that the user don't go outside the jail room
-     * 
+     *
      * @param newDir The new directory to navigate to
      * @return String
      */

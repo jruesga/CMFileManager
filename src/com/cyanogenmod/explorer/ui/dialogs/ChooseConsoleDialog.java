@@ -148,7 +148,7 @@ public class ChooseConsoleDialog implements OnItemClickListener {
                 Preferences.savePreference(
                         ExplorerSettings.SETTINGS_SUPERUSER_MODE, superuser, true);
             } catch (Throwable ex) {
-                Log.w(TAG, "cann't save console preference", ex); //$NON-NLS-1$
+                Log.w(TAG, "can't save console preference", ex); //$NON-NLS-1$
             }
         }
     }

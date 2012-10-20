@@ -61,7 +61,7 @@ public final class ConsoleBuilder {
      * @throws FileNotFoundException If the initial directory not exists
      * @throws IOException If initial directory couldn't be checked
      * @throws InvalidCommandDefinitionException If the command has an invalid definition
-     * @throws ConsoleAllocException If the console cann't be allocated
+     * @throws ConsoleAllocException If the console can't be allocated
      * @throws InsufficientPermissionsException If the console created is not a privileged console
      */
     public static Console getConsole(Context context)
@@ -80,7 +80,7 @@ public final class ConsoleBuilder {
      * @throws FileNotFoundException If the initial directory not exists
      * @throws IOException If initial directory couldn't be checked
      * @throws InvalidCommandDefinitionException If the command has an invalid definition
-     * @throws ConsoleAllocException If the console cann't be allocated
+     * @throws ConsoleAllocException If the console can't be allocated
      * @throws InsufficientPermissionsException If the console created is not a privileged console
      */
     public static Console getConsole(Context context, boolean createIfNotExists)
@@ -175,7 +175,7 @@ public final class ConsoleBuilder {
      * @throws FileNotFoundException If the initial directory not exists
      * @throws IOException If initial directory couldn't be checked
      * @throws InvalidCommandDefinitionException If the command has an invalid definition
-     * @throws ConsoleAllocException If the console cann't be allocated
+     * @throws ConsoleAllocException If the console can't be allocated
      * @throws InsufficientPermissionsException If the console created is not a privileged console
      */
     //IMP! This must be invoked from the main activity creation
@@ -192,7 +192,7 @@ public final class ConsoleBuilder {
                     Preferences.savePreference(
                             ExplorerSettings.SETTINGS_SUPERUSER_MODE, Boolean.FALSE, true);
                 } catch (Throwable ex) {
-                    Log.w(TAG, "cann't save console preference", ex); //$NON-NLS-1$
+                    Log.w(TAG, "can't save console preference", ex); //$NON-NLS-1$
                 }
                 superuserMode = false;
             }
@@ -248,7 +248,7 @@ public final class ConsoleBuilder {
      * @throws FileNotFoundException If the initial directory not exists
      * @throws IOException If initial directory couldn't be checked
      * @throws InvalidCommandDefinitionException If the command has an invalid definition
-     * @throws ConsoleAllocException If the console cann't be allocated
+     * @throws ConsoleAllocException If the console can't be allocated
      * @see NonPriviledgeConsole
      */
     public static Console createNonPrivilegedConsole(Context context, String initialDirectory)
@@ -270,7 +270,7 @@ public final class ConsoleBuilder {
      * @throws FileNotFoundException If the initial directory not exists
      * @throws IOException If initial directory couldn't be checked
      * @throws InvalidCommandDefinitionException If the command has an invalid definition
-     * @throws ConsoleAllocException If the console cann't be allocated
+     * @throws ConsoleAllocException If the console can't be allocated
      * @throws InsufficientPermissionsException If the console created is not a privileged console
      * @see PrivilegedConsole
      */
@@ -302,7 +302,7 @@ public final class ConsoleBuilder {
      * @throws FileNotFoundException If the initial directory not exists
      * @throws IOException If initial directory couldn't be checked
      * @throws InvalidCommandDefinitionException If the command has an invalid definition
-     * @throws ConsoleAllocException If the console cann't be allocated
+     * @throws ConsoleAllocException If the console can't be allocated
      * @throws InsufficientPermissionsException If the console created is not a privileged console
      * @see PrivilegedConsole
      */
@@ -323,7 +323,7 @@ public final class ConsoleBuilder {
      * @throws FileNotFoundException If the initial directory not exists
      * @throws IOException If initial directory couldn't be checked
      * @throws InvalidCommandDefinitionException If the command has an invalid definition
-     * @throws ConsoleAllocException If the console cann't be allocated
+     * @throws ConsoleAllocException If the console can't be allocated
      * @throws InsufficientPermissionsException If the console created is not a privileged console
      * @see PrivilegedConsole
      */
@@ -353,7 +353,7 @@ public final class ConsoleBuilder {
                     DialogHelper.showToast(context,
                             R.string.msgs_privileged_console_alloc_failed, Toast.LENGTH_LONG);
                 } catch (Exception ex) {
-                    Log.e(TAG, "cann't show toast", ex);  //$NON-NLS-1$
+                    Log.e(TAG, "can't show toast", ex);  //$NON-NLS-1$
                 }
             }
 

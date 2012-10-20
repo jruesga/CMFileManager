@@ -493,6 +493,8 @@
   <string name="actions_menu_properties">Properties</string>
   <!-- Actions Dialog * Menu * Add to bookmarks -->
   <string name="actions_menu_add_to_bookmarks">Add to bookmarks</string>
+  <!-- Actions Dialog * Menu * Open parent folder -->
+  <string name="actions_menu_open_parent_folder">Open parent</string>
 
   <!-- Actions * Ask user prior to do an undone operation -->
   <string name="actions_ask_undone_operation">

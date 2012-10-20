@@ -771,6 +771,14 @@ public class NavigationActivity extends Activity
      * {@inheritDoc}
      */
     @Override
+    public void onNavigateTo(Object o) {
+        // Ignored
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public void onSelectionChanged(NavigationView navView, List<FileSystemObject> selectedItems) {
         this.mSelectionBar.setSelection(selectedItems);
     }
@@ -1182,7 +1190,7 @@ public class NavigationActivity extends Activity
         }
 
         // Show the dialog
-        ActionsDialog dialog = new ActionsDialog(this, fso, global);
+        ActionsDialog dialog = new ActionsDialog(this, fso, global, false);
         dialog.setOnRequestRefreshListener(this);
         dialog.setOnSelectionListener(getCurrentNavigationView());
         dialog.show();

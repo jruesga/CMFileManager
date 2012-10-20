@@ -34,4 +34,11 @@ public interface OnRequestRefreshListener {
      * @param o The object that was removed
      */
     void onRequestRemove(Object o);
+
+    /**
+     * Invoked when the object need to navigate to.
+     *
+     * @param o The object where to navigate to
+     */
+    void onNavigateTo(Object o);
 }

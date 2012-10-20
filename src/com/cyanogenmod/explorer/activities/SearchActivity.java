@@ -500,7 +500,7 @@ public class SearchActivity extends Activity
                                 }
 
                                 //Close search activity
-                                back(true, null);
+                                back(true, null, false);
                             }
                        });
         dialog.show();
@@ -762,7 +762,7 @@ public class SearchActivity extends Activity
     public boolean onKeyUp(int keyCode, KeyEvent event) {
         switch (keyCode) {
             case KeyEvent.KEYCODE_BACK:
-                back(true, null);
+                back(true, null, false);
                 return true;
             default:
                 return super.onKeyUp(keyCode, event);
@@ -776,7 +776,7 @@ public class SearchActivity extends Activity
     public boolean onOptionsItemSelected(MenuItem item) {
        switch (item.getItemId()) {
           case android.R.id.home:
-              back(true, null);
+              back(true, null, false);
               return true;
           default:
              return super.onOptionsItemSelected(item);
@@ -792,15 +792,15 @@ public class SearchActivity extends Activity
             SearchResult result = ((SearchResultAdapter)parent.getAdapter()).getItem(position);
             FileSystemObject fso = result.getFso();
             if (fso instanceof Directory) {
-                back(false, fso);
+                back(false, fso, false);
             } else if (fso instanceof Symlink) {
                 Symlink symlink = (Symlink)fso;
                 if (symlink.getLinkRef() != null && symlink.getLinkRef() instanceof Directory) {
-                    back(false, symlink.getLinkRef());
+                    back(false, symlink.getLinkRef(), false);
                 }
             } else {
                 // Open the file with the preferred registered app
-                back(false, fso);
+                back(false, fso, false);
             }
         } catch (Throwable ex) {
             ExceptionUtil.translateException(this.mSearchListView.getContext(), ex);
@@ -868,7 +868,7 @@ public class SearchActivity extends Activity
             return;
         }
 
-        ActionsDialog dialog = new ActionsDialog(this, fso, false);
+        ActionsDialog dialog = new ActionsDialog(this, fso, false, true);
         dialog.setOnRequestRefreshListener(this);
         dialog.show();
     }
@@ -935,13 +935,23 @@ public class SearchActivity extends Activity
     }
 
     /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void onNavigateTo(Object o) {
+        if (o instanceof FileSystemObject) {
+            back(false, (FileSystemObject)o, true);
+        }
+    }
+
+    /**
      * Method that returns to previous activity.
      *
      * @param canceled Indicates if the activity was canceled
      * @param item The fso
      * @hide
      */
-    void back(final boolean canceled, FileSystemObject item) {
+    void back(final boolean canceled, FileSystemObject item, boolean isChecked) {
         Intent intent =  new Intent();
         if (canceled) {
             if (SearchActivity.this.mDrawingSearchResultTask != null
@@ -957,7 +967,10 @@ public class SearchActivity extends Activity
         } else {
             // Check that the bookmark exists
             try {
-                FileSystemObject fso = CommandHelper.getFileInfo(this, item.getFullPath(), null);
+                FileSystemObject fso = item;
+                if (!isChecked) {
+                    fso = CommandHelper.getFileInfo(this, item.getFullPath(), null);
+                }
                 if (fso != null) {
                     if (FileHelper.isDirectory(fso)) {
                         intent.putExtra(NavigationActivity.EXTRA_SEARCH_ENTRY_SELECTION, fso);

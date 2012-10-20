@@ -855,6 +855,14 @@ public class NavigationView extends RelativeLayout implements
      * {@inheritDoc}
      */
     @Override
+    public void onNavigateTo(Object o) {
+        // Ignored
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public void onBreadcrumbItemClick(BreadcrumbItem item) {
         changeCurrentDir(item.getItemPath(), true, true, false, null, null);
     }

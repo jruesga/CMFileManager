@@ -46,6 +46,7 @@ import com.cyanogenmod.explorer.ui.policy.DeleteActionPolicy;
 import com.cyanogenmod.explorer.ui.policy.ExecutionActionPolicy;
 import com.cyanogenmod.explorer.ui.policy.InfoActionPolicy;
 import com.cyanogenmod.explorer.ui.policy.IntentsActionPolicy;
+import com.cyanogenmod.explorer.ui.policy.NavigationActionPolicy;
 import com.cyanogenmod.explorer.ui.policy.NewActionPolicy;
 import com.cyanogenmod.explorer.util.DialogHelper;
 import com.cyanogenmod.explorer.util.FileHelper;
@@ -69,6 +70,7 @@ public class ActionsDialog implements OnItemClickListener, OnItemLongClickListen
      */
     final Context mContext;
     private final boolean mGlobal;
+    private final boolean mSearch;
 
     /**
      * @hide
@@ -95,14 +97,16 @@ public class ActionsDialog implements OnItemClickListener, OnItemLongClickListen
      * @param context The current context
      * @param fso The file system object associated
      * @param global If the menu to display will be the global one (Global actions)
+     * @param search If the call is from search activity
      */
-    public ActionsDialog(Context context, FileSystemObject fso, boolean global) {
+    public ActionsDialog(Context context, FileSystemObject fso, boolean global, boolean search) {
         super();
 
         //Save the data
         this.mFso = fso;
         this.mContext = context;
         this.mGlobal = global;
+        this.mSearch = search;
 
         //Initialize dialog
         init(context, global ? R.id.mnu_actions_global : R.id.mnu_actions_fso);
@@ -358,6 +362,12 @@ public class ActionsDialog implements OnItemClickListener, OnItemLongClickListen
                         this.mContext, this.mFso, this.mOnRequestRefreshListener);
                 break;
 
+            //- Navigate to parent
+            case R.id.mnu_actions_open_parent_folder:
+                NavigationActionPolicy.openParentFolder(
+                        this.mContext, this.mFso, this.mOnRequestRefreshListener);
+                break;
+
             default:
                 break;
         }
@@ -608,6 +618,17 @@ public class ActionsDialog implements OnItemClickListener, OnItemLongClickListen
             }
         }
 
+        // Not allowed in search
+        if (this.mSearch) {
+            menu.removeItem(R.id.mnu_actions_extract);
+            menu.removeItem(R.id.mnu_actions_compress);
+            menu.removeItem(R.id.mnu_actions_create_link);
+        }
+
+        // Not allowed if not in search
+        if (!this.mSearch) {
+            menu.removeItem(R.id.mnu_actions_open_parent_folder);
+        }
     }
 
     /**

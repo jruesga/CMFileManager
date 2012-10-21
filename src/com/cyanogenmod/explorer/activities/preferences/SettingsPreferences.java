@@ -33,6 +33,7 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.cyanogenmod.explorer.ExplorerApplication;
 import com.cyanogenmod.explorer.R;
 import com.cyanogenmod.explorer.preferences.ExplorerSettings;
 import com.cyanogenmod.explorer.preferences.ObjectStringIdentifier;
@@ -120,7 +121,7 @@ public class SettingsPreferences extends PreferenceActivity {
         private ListPreference mDefaultLongClickAction;
         private ListPreference mFreeDiskSpaceWarningLevel;
         private CheckBoxPreference mComputeFolderStatistics;
-        private CheckBoxPreference mAllowConsoleSelection;
+        private CheckBoxPreference mAdvancedSettings;
 
         /**
          * @hide
@@ -218,11 +219,16 @@ public class SettingsPreferences extends PreferenceActivity {
                             ExplorerSettings.SETTINGS_COMPUTE_FOLDER_STATISTICS.getId());
             this.mComputeFolderStatistics.setOnPreferenceChangeListener(this.mOnChangeListener);
 
-            // Allow console selection
-            this.mAllowConsoleSelection =
+            // Advanced settings
+            this.mAdvancedSettings =
                     (CheckBoxPreference)findPreference(
                             ExplorerSettings.SETTINGS_ADVANCE_MODE.getId());
-            this.mAllowConsoleSelection.setOnPreferenceChangeListener(this.mOnChangeListener);
+            if (ExplorerApplication.isDeviceRooted()) {
+                this.mAdvancedSettings.setOnPreferenceChangeListener(this.mOnChangeListener);
+            } else {
+                // Disable the advanced mode
+                this.mAdvancedSettings.setEnabled(false);
+            }
 
             // Loaded
             this.mLoaded = true;

@@ -60,8 +60,8 @@ public final class ExplorerApplication extends Application {
     private static ExplorerApplication sApp;
     private static ConsoleHolder sBackgroundConsole;
 
-    private static boolean sDebuggable = false;
-    private static boolean sRootedDevice = false;
+    private static boolean sIsDebuggable = false;
+    private static boolean sIsDeviceRooted = false;
 
     private final BroadcastReceiver mOnSettingChangeReceiver = new BroadcastReceiver() {
         @Override
@@ -179,10 +179,10 @@ public final class ExplorerApplication extends Application {
         sApp = this;
 
         // Check if the application is debuggable
-        sDebuggable = (0 != (getApplicationInfo().flags &= ApplicationInfo.FLAG_DEBUGGABLE));
+        sIsDebuggable = (0 != (getApplicationInfo().flags &= ApplicationInfo.FLAG_DEBUGGABLE));
         
         // Check if the device is rooted
-        sRootedDevice = new File(getString(R.string.su_binary)).exists();
+        sIsDeviceRooted = new File(getString(R.string.su_binary)).exists();
 
         // Register the broadcast receiver
         IntentFilter filter = new IntentFilter();
@@ -225,7 +225,7 @@ public final class ExplorerApplication extends Application {
      * @return boolean If the application is debuggable
      */
     public static boolean isDebuggable() {
-        return sDebuggable;
+        return sIsDebuggable;
     }
 
     /**
@@ -233,8 +233,8 @@ public final class ExplorerApplication extends Application {
      *
      * @return boolean If the device is rooted
      */
-    public static boolean isRooted() {
-        return sRootedDevice;
+    public static boolean isDeviceRooted() {
+        return sIsDeviceRooted;
     }
 
     /**
@@ -370,12 +370,15 @@ public final class ExplorerApplication extends Application {
      * @return boolean If the application is running in advanced mode
      */
     public static boolean isAdvancedMode() {
+        // If device is not rooted, don't allow advanced mode
+        if (isDeviceRooted()) return false;
+
         boolean defaultValue =
                 ((Boolean)ExplorerSettings.
                         SETTINGS_ADVANCE_MODE.
                             getDefaultValue()).booleanValue();
         String id = ExplorerSettings.SETTINGS_ADVANCE_MODE.getId();
-       return Preferences.getSharedPreferences().getBoolean(id, defaultValue);
+        return Preferences.getSharedPreferences().getBoolean(id, defaultValue);
     }
 
 }

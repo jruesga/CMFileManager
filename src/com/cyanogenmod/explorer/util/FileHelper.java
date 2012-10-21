@@ -737,10 +737,12 @@ public final class FileHelper {
             return false;
         }
         String ext = getExtension(fso);
-        int cc = VALID.length;
-        for (int i = 0; i < cc; i++) {
-            if (VALID[i].compareTo(ext) == 0) {
-                return true;
+        if (ext != null) {
+            int cc = VALID.length;
+            for (int i = 0; i < cc; i++) {
+                if (VALID[i].compareTo(ext) == 0) {
+                    return true;
+                }
             }
         }
         return false;

@@ -80,7 +80,7 @@
   <command commandId="write" commandPath="/system/bin/dd" commandArgs="bs=4k of=%1$s" />
 
   <!-- Run -->
-  <command commandId="exec" commandPath="/system/bin/sh" commandArgs="-c %1$s" />
+  <command commandId="exec" commandPath="/system/bin/sh" commandArgs="%1$s" />
 
   <!-- Misc -->
   <command commandId="dirname" commandPath="/system/xbin/dirname" commandArgs="%1$s" />

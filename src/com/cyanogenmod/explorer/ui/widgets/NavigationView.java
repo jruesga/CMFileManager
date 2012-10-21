@@ -147,7 +147,7 @@ public class NavigationView extends RelativeLayout implements
     private OnNavigationRequestMenuListener mOnNavigationRequestMenuListener;
     private OnFilePickedListener mOnFilePickedListener;
 
-    private boolean mJailRoom;
+    private boolean mChRooted;
 
     private NAVIGATION_MODE mNavigationMode;
 
@@ -226,7 +226,7 @@ public class NavigationView extends RelativeLayout implements
         NavigationViewInfoParcelable parcel = new NavigationViewInfoParcelable();
         parcel.setId(this.mId);
         parcel.setCurrentDir(this.mCurrentDir);
-        parcel.setJailRoom(this.mJailRoom);
+        parcel.setChRooted(this.mChRooted);
         parcel.setSelectedFiles(this.mAdapter.getSelectedItems());
         parcel.setFiles(this.mFiles);
         return parcel;
@@ -241,7 +241,7 @@ public class NavigationView extends RelativeLayout implements
         //Restore the data
         this.mId = info.getId();
         this.mCurrentDir = info.getCurrentDir();
-        this.mJailRoom = info.getJailRoom();
+        this.mChRooted = info.getChRooted();
         this.mFiles = info.getFiles();
         this.mAdapter.setSelectedItems(info.getSelectedFiles());
 
@@ -268,12 +268,12 @@ public class NavigationView extends RelativeLayout implements
         //Initialize variables
         this.mFiles = new ArrayList<FileSystemObject>();
 
-        // Is in jail room?
+        // Is ChRooted environment?
         if (this.mNavigationMode.compareTo(NAVIGATION_MODE.PICKABLE) == 0) {
-            // Pick mode is jail room always
-            this.mJailRoom = true;
+            // Pick mode is always ChRooted
+            this.mChRooted = true;
         } else {
-            this.mJailRoom = !ExplorerApplication.isAdvancedMode();
+            this.mChRooted = !ExplorerApplication.isAdvancedMode();
         }
 
         // Default long-click action
@@ -648,9 +648,9 @@ public class NavigationView extends RelativeLayout implements
             final boolean reload, final boolean useCurrent,
             final SearchInfoParcelable searchInfo, final FileSystemObject scrollTo) {
 
-        // Check navigation security (don't allow to go outside the jail room if one
+        // Check navigation security (don't allow to go outside the ChRooted environment if one
         // is created)
-        final String fNewDir = checkJailRoomNavigation(newDir);
+        final String fNewDir = checkChRootedNavigation(newDir);
 
         synchronized (this.mSync) {
             //Check that it is really necessary change the directory
@@ -795,7 +795,7 @@ public class NavigationView extends RelativeLayout implements
 
             //Apply user preferences
             List<FileSystemObject> sortedFiles =
-                    FileHelper.applyUserPreferences(files, this.mMimeType, this.mJailRoom);
+                    FileHelper.applyUserPreferences(files, this.mMimeType, this.mChRooted);
 
             //Load the data
             loadData(sortedFiles);
@@ -814,7 +814,7 @@ public class NavigationView extends RelativeLayout implements
 
             //Change the breadcrumb
             if (NavigationView.this.mBreadcrumb != null) {
-                NavigationView.this.mBreadcrumb.changeBreadcrumbPath(newDir, this.mJailRoom);
+                NavigationView.this.mBreadcrumb.changeBreadcrumbPath(newDir, this.mChRooted);
             }
 
             //Scroll to object?
@@ -1085,13 +1085,14 @@ public class NavigationView extends RelativeLayout implements
     }
 
     /**
-     * Method that creates a jail room, protecting the user to break anything in the device
+     * Method that creates a ChRooted environment, protecting the user to break anything
+     * in the device
      * @hide
      */
-    public void createJailRoom() {
-        // If we are in a jail room, then do nothing
-        if (this.mJailRoom) return;
-        this.mJailRoom = true;
+    public void createChRooted() {
+        // If we are in a ChRooted environment, then do nothing
+        if (this.mChRooted) return;
+        this.mChRooted = true;
 
         //Change to first storage volume
         StorageVolume[] volumes =
@@ -1102,27 +1103,27 @@ public class NavigationView extends RelativeLayout implements
     }
 
     /**
-     * Method that exits from a jail room
+     * Method that exits from a ChRooted environment
      * @hide
      */
-    public void exitJailRoom() {
-        // If we aren't in a jail room, then do nothing
-        if (!this.mJailRoom) return;
-        this.mJailRoom = false;
+    public void exitChRooted() {
+        // If we aren't in a ChRooted environment, then do nothing
+        if (!this.mChRooted) return;
+        this.mChRooted = false;
 
         // Refresh
         refresh();
     }
 
     /**
-     * Method that ensures that the user don't go outside the jail room
+     * Method that ensures that the user don't go outside the ChRooted environment
      *
      * @param newDir The new directory to navigate to
      * @return String
      */
-    private String checkJailRoomNavigation(String newDir) {
-        // If we aren't in jail room, then there is nothing to check
-        if (!this.mJailRoom) return newDir;
+    private String checkChRootedNavigation(String newDir) {
+        // If we aren't in ChRooted environment, then there is nothing to check
+        if (!this.mChRooted) return newDir;
 
         // Check if the path is owned by one of the storage volumes
         if (!StorageHelper.isPathInStorageVolume(newDir)) {

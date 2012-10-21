@@ -185,7 +185,7 @@ public class BreadcrumbView extends RelativeLayout implements Breadcrumb, OnClic
      * {@inheritDoc}
      */
     @Override
-    public void changeBreadcrumbPath(final String newPath, final boolean jailRoom) {
+    public void changeBreadcrumbPath(final String newPath, final boolean chRooted) {
         //Sets the current path
         this.mCurrentPath = newPath;
 
@@ -195,15 +195,15 @@ public class BreadcrumbView extends RelativeLayout implements Breadcrumb, OnClic
         //Remove all views
         this.mBreadcrumbBar.removeAllViews();
 
-        //The first is always the root (if not in a jail room)
-        if (!jailRoom) {
+        // The first is always the root (except if we are in a ChRooted environment)
+        if (!chRooted) {
             this.mBreadcrumbBar.addView(createBreadcrumbItem(new File(FileHelper.ROOT_DIRECTORY)));
         }
 
         //Add the rest of the path
         String[] dirs = newPath.split(File.separator);
         int cc = dirs.length;
-        if (jailRoom) {
+        if (chRooted) {
             boolean first = true;
             for (int i = 1; i < cc; i++) {
                 File f = createFile(dirs, i);

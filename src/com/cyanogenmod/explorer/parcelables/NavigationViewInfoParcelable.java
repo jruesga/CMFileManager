@@ -37,7 +37,7 @@ public class NavigationViewInfoParcelable extends HistoryNavigable {
 
     private int mId;
     private String mCurrentDir;
-    private boolean mJailRoom;
+    private boolean mChRooted;
     private List<FileSystemObject> mFiles;
     private List<FileSystemObject> mSelectedFiles;
 
@@ -114,21 +114,21 @@ public class NavigationViewInfoParcelable extends HistoryNavigable {
     }
 
     /**
-     * Method that returns if the view is in a jail room.
+     * Method that returns if the view is in a ChRooted environment.
      *
-     * @return boolean If the view is in a jail room
+     * @return boolean If the view is in a ChRooted environment
      */
-    public boolean getJailRoom() {
-        return this.mJailRoom;
+    public boolean getChRooted() {
+        return this.mChRooted;
     }
 
     /**
-     * Method that sets if the view is in a jail room.
+     * Method that sets if the view is in a ChRooted environment.
      *
-     * @param jailRoom If the view is in a jail room
+     * @param chRooted If the view is in a ChRooted environment
      */
-    public void setJailRoom(boolean jailRoom) {
-        this.mJailRoom = jailRoom;
+    public void setChRooted(boolean chRooted) {
+        this.mChRooted = chRooted;
     }
 
     /**
@@ -188,7 +188,7 @@ public class NavigationViewInfoParcelable extends HistoryNavigable {
             dest.writeString(this.mCurrentDir);
         }
         //- 2
-        dest.writeInt(this.mJailRoom ? 1 : 0);
+        dest.writeInt(this.mChRooted ? 1 : 0);
         //- 3
         dest.writeInt(this.mSelectedFiles == null ? 0 : 1);
         if (this.mSelectedFiles != null) {
@@ -215,7 +215,7 @@ public class NavigationViewInfoParcelable extends HistoryNavigable {
             this.mCurrentDir = in.readString();
         }
         //- 2
-        this.mJailRoom = (in.readInt() == 1);
+        this.mChRooted = (in.readInt() == 1);
         //- 3
         int hasSelectedFiles = in.readInt();
         if (hasSelectedFiles == 1) {

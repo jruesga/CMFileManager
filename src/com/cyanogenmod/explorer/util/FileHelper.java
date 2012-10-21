@@ -445,12 +445,12 @@ public final class FileHelper {
      *
      * @param files The listed files
      * @param mimeType The mime-type to apply. if null returns all.
-     * @param jailRoom If app run with no privileges
+     * @param chRooted If app run with no privileges
      * @return List<FileSystemObject> The applied mode listed files
      */
     public static List<FileSystemObject> applyUserPreferences(
-                    List<FileSystemObject> files, String mimeType, boolean jailRoom) {
-        return applyUserPreferences(files, mimeType, false, jailRoom);
+                    List<FileSystemObject> files, String mimeType, boolean chRooted) {
+        return applyUserPreferences(files, mimeType, false, chRooted);
     }
 
     /**
@@ -460,11 +460,11 @@ public final class FileHelper {
      * @param files The listed files
      * @param mimeType The mime-type to apply. if null returns all.
      * @param noSort If sort must be applied
-     * @param jailRoom If app run with no privileges
+     * @param chRooted If app run with no privileges
      * @return List<FileSystemObject> The applied mode listed files
      */
     public static List<FileSystemObject> applyUserPreferences(
-            List<FileSystemObject> files, String mimeType, boolean noSort, boolean jailRoom) {
+            List<FileSystemObject> files, String mimeType, boolean noSort, boolean chRooted) {
         //Retrieve user preferences
         SharedPreferences prefs = Preferences.getSharedPreferences();
         ExplorerSettings sortModePref = ExplorerSettings.SETTINGS_SORT_MODE;
@@ -481,7 +481,7 @@ public final class FileHelper {
             //Hidden files
             if (!prefs.getBoolean(
                     showHiddenPref.getId(),
-                    ((Boolean)showHiddenPref.getDefaultValue()).booleanValue()) || jailRoom) {
+                    ((Boolean)showHiddenPref.getDefaultValue()).booleanValue()) || chRooted) {
                 if (file.isHidden()) {
                     files.remove(i);
                     continue;
@@ -491,7 +491,7 @@ public final class FileHelper {
             //System files
             if (!prefs.getBoolean(
                     showSystemPref.getId(),
-                    ((Boolean)showSystemPref.getDefaultValue()).booleanValue()) || jailRoom) {
+                    ((Boolean)showSystemPref.getDefaultValue()).booleanValue()) || chRooted) {
                 if (file instanceof SystemFile) {
                     files.remove(i);
                     continue;
@@ -501,7 +501,7 @@ public final class FileHelper {
             //Symlinks files
             if (!prefs.getBoolean(
                     showSymlinksPref.getId(),
-                    ((Boolean)showSymlinksPref.getDefaultValue()).booleanValue()) || jailRoom) {
+                    ((Boolean)showSymlinksPref.getDefaultValue()).booleanValue()) || chRooted) {
                 if (file instanceof Symlink) {
                     files.remove(i);
                     continue;
@@ -509,7 +509,7 @@ public final class FileHelper {
             }
 
             //Mime/Type
-            if (jailRoom && !isDirectory(file)) {
+            if (chRooted && !isDirectory(file)) {
                 if (mimeType != null && mimeType.compareTo(MimeTypeHelper.ALL_MIME_TYPES) != 0) {
                     // NOTE: We don't need the context here, because mime-type database should
                     // be loaded prior to this call

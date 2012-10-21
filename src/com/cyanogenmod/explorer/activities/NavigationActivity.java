@@ -207,13 +207,13 @@ public class NavigationActivity extends Activity
                     // Advanced mode
                     if (key.compareTo(ExplorerSettings.
                             SETTINGS_ADVANCE_MODE.getId()) == 0) {
-                        // Is it necessary to create or exit of the jail room?
-                        boolean jailRoom = !ExplorerApplication.isAdvancedMode();
-                        if (jailRoom != NavigationActivity.this.mJailRoom) {
-                            if (jailRoom) {
-                                createJailRoom();
+                        // Is it necessary to create or exit of the ChRooted?
+                        boolean chRooted = !ExplorerApplication.isAdvancedMode();
+                        if (chRooted != NavigationActivity.this.mChRooted) {
+                            if (chRooted) {
+                                createChRooted();
                             } else {
-                                exitJailRoom();
+                                exitChRooted();
                             }
                         }
                     }
@@ -239,7 +239,7 @@ public class NavigationActivity extends Activity
     /**
      * @hide
      */
-    boolean mJailRoom;
+    boolean mChRooted;
 
     /**
      * @hide
@@ -355,7 +355,7 @@ public class NavigationActivity extends Activity
      */
     private void init() {
         this.mHistory = new ArrayList<History>();
-        this.mJailRoom = !ExplorerApplication.isAdvancedMode();
+        this.mChRooted = !ExplorerApplication.isAdvancedMode();
     }
 
     /**
@@ -484,7 +484,7 @@ public class NavigationActivity extends Activity
                         throw new ConsoleAllocException("console == null"); //$NON-NLS-1$
                     }
                 } catch (Throwable ex) {
-                    if (!NavigationActivity.this.mJailRoom) {
+                    if (!NavigationActivity.this.mChRooted) {
                         //Show exception and exists
                         Log.e(TAG, getString(R.string.msgs_cant_create_console), ex);
                         // We don't have any console
@@ -510,7 +510,7 @@ public class NavigationActivity extends Activity
                             Preferences.getSharedPreferences().getString(
                                 ExplorerSettings.SETTINGS_INITIAL_DIR.getId(),
                                 (String)ExplorerSettings.SETTINGS_INITIAL_DIR.getDefaultValue());
-                    if (NavigationActivity.this.mJailRoom) {
+                    if (NavigationActivity.this.mChRooted) {
                         // Initial directory is the first external sdcard (sdcard, emmc, usb, ...)
                         StorageVolume[] volumes =
                                 StorageHelper.getStorageVolumes(NavigationActivity.this);
@@ -658,8 +658,8 @@ public class NavigationActivity extends Activity
                                 new ExplorerSettings[]{ExplorerSettings.SETTINGS_LAYOUT_MODE}));
                 break;
             case R.id.ab_view_options:
-                // If we are in jail room, then don't show non-secure items
-                if (this.mJailRoom) {
+                // If we are in ChRooted mode, then don't show non-secure items
+                if (this.mChRooted) {
                     showSettingsPopUp(view,
                             Arrays.asList(new ExplorerSettings[]{
                                     ExplorerSettings.SETTINGS_SHOW_DIRS_FIRST}));
@@ -948,7 +948,7 @@ public class NavigationActivity extends Activity
         }
 
         // Check if console selection is allowed
-        if (this.mJailRoom) {
+        if (this.mChRooted) {
             menu.removeItem(R.id.mnu_console);
         }
 
@@ -1354,17 +1354,18 @@ public class NavigationActivity extends Activity
     }
 
     /**
-     * Method that creates a jail room, protecting the user to break anything in the device
+     * Method that creates a ChRooted environment, protecting the user to break anything in
+     * the device
      * @hide
      */
-    void createJailRoom() {
-        // If we are in a jail room, then do nothing
-        if (this.mJailRoom) return;
-        this.mJailRoom = true;
+    void createChRooted() {
+        // If we are in a ChRooted mode, then do nothing
+        if (this.mChRooted) return;
+        this.mChRooted = true;
 
         int cc = this.mNavigationViews.length;
         for (int i = 0; i < cc; i++) {
-            this.mNavigationViews[i].createJailRoom();
+            this.mNavigationViews[i].createChRooted();
         }
 
         // Remove the selection
@@ -1378,17 +1379,17 @@ public class NavigationActivity extends Activity
     }
 
     /**
-     * Method that exits from a jail room
+     * Method that exits from a ChRooted
      * @hide
      */
-    void exitJailRoom() {
-        // If we aren't in a jail room, then do nothing
-        if (!this.mJailRoom) return;
-        this.mJailRoom = false;
+    void exitChRooted() {
+        // If we aren't in a ChRooted mode, then do nothing
+        if (!this.mChRooted) return;
+        this.mChRooted = false;
 
         int cc = this.mNavigationViews.length;
         for (int i = 0; i < cc; i++) {
-            this.mNavigationViews[i].exitJailRoom();
+            this.mNavigationViews[i].exitChRooted();
         }
     }
 

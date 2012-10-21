@@ -71,7 +71,7 @@ public class BookmarksActivity extends Activity implements OnItemClickListener, 
 
     private ListView mBookmarksListView;
 
-    private boolean mJailRoom;
+    private boolean mChRooted;
 
     /**
      * {@inheritDoc}
@@ -82,8 +82,8 @@ public class BookmarksActivity extends Activity implements OnItemClickListener, 
             Log.d(TAG, "NavigationActivity.onCreate"); //$NON-NLS-1$
         }
 
-        // Is in jail room?
-        this.mJailRoom = !ExplorerApplication.isAdvancedMode();
+        // Is ChRooted?
+        this.mChRooted = !ExplorerApplication.isAdvancedMode();
 
         //Request features
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
@@ -274,9 +274,9 @@ public class BookmarksActivity extends Activity implements OnItemClickListener, 
      */
     private List<Bookmark> loadBookmarks() {
         // Bookmarks = HOME + FILESYSTEM + SD STORAGES + USER DEFINED
-        // In jail room mode = SD STORAGES + USER DEFINED (from SD STORAGES)
+        // In ChRooted mode = SD STORAGES + USER DEFINED (from SD STORAGES)
         List<Bookmark> bookmarks = new ArrayList<Bookmark>();
-        if (!this.mJailRoom) {
+        if (!this.mChRooted) {
             bookmarks.add(loadHomeBookmarks());
             bookmarks.addAll(loadFilesystemBookmarks());
         }
@@ -415,7 +415,7 @@ public class BookmarksActivity extends Activity implements OnItemClickListener, 
         if (cursor != null && cursor.moveToFirst()) {
             do {
                 Bookmark bm = new Bookmark(cursor);
-                if (this.mJailRoom && StorageHelper.isPathInStorageVolume(bm.mPath)) {
+                if (this.mChRooted && StorageHelper.isPathInStorageVolume(bm.mPath)) {
                     continue;
                 }
                 bookmarks.add(bm);

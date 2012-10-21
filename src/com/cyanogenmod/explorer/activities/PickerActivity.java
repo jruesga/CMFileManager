@@ -181,7 +181,7 @@ public class PickerActivity extends Activity
         try {
             // Is there a console allocate
             if (!ConsoleBuilder.isAlloc()) {
-                // Create a jail room console
+                // Create a ChRooted console
                 ConsoleBuilder.createDefaultConsole(this, false, false);
             }
             // There is a console allocated. Use it.

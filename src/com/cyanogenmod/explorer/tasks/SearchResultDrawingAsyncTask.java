@@ -115,14 +115,14 @@ public class SearchResultDrawingAsyncTask extends AsyncTask<Object, Integer, Boo
                                 defaultValue);
             SearchSortResultMode mode = SearchSortResultMode.fromId(value);
 
-            // Is in jail room?
-            boolean jailRoom = !ExplorerApplication.isAdvancedMode();
+            // Are we in ChRooted environment?
+            boolean chRooted = !ExplorerApplication.isAdvancedMode();
 
             //Process all the data
             final List<SearchResult> result =
                     SearchHelper.convertToResults(
                             FileHelper.applyUserPreferences(
-                                    this.mFiles, MimeTypeHelper.ALL_MIME_TYPES, true, jailRoom),
+                                    this.mFiles, MimeTypeHelper.ALL_MIME_TYPES, true, chRooted),
                             this.mQueries);
             if (mode.compareTo(SearchSortResultMode.NAME) == 0) {
                 Collections.sort(result, new Comparator<SearchResult>() {

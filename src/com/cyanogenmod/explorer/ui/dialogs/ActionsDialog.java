@@ -72,7 +72,7 @@ public class ActionsDialog implements OnItemClickListener, OnItemLongClickListen
     final Context mContext;
     private final boolean mGlobal;
     private final boolean mSearch;
-    private final boolean mJailRoom;
+    private final boolean mChRooted;
 
     /**
      * @hide
@@ -109,7 +109,7 @@ public class ActionsDialog implements OnItemClickListener, OnItemLongClickListen
         this.mContext = context;
         this.mGlobal = global;
         this.mSearch = search;
-        this.mJailRoom = !ExplorerApplication.isAdvancedMode();
+        this.mChRooted = !ExplorerApplication.isAdvancedMode();
 
         //Initialize dialog
         init(context, global ? R.id.mnu_actions_global : R.id.mnu_actions_fso);
@@ -636,9 +636,9 @@ public class ActionsDialog implements OnItemClickListener, OnItemLongClickListen
             menu.removeItem(R.id.mnu_actions_open_parent_folder);
         }
 
-        // Remove jail room actions (actions that can't be present when running in
+        // Remove not-ChRooted actions (actions that can't be present when running in
         // unprivileged mode)
-        if (this.mJailRoom) {
+        if (this.mChRooted) {
             menu.removeItem(R.id.mnu_actions_create_link);
             menu.removeItem(R.id.mnu_actions_create_link_global);
             menu.removeItem(R.id.mnu_actions_execute);

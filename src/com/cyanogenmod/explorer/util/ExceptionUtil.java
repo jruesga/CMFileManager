@@ -251,7 +251,7 @@ public final class ExceptionUtil {
         }
 
         // If console is privileged there is not need to change
-        // If we are in a jail room, resolve the error without do anymore
+        // If we are in a ChRooted environment, resolve the error without do anymore
         if (relaunchable instanceof InsufficientPermissionsException &&
                 (isPrivileged || !ExplorerApplication.isAdvancedMode())) {
             translateException(

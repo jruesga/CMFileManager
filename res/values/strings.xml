@@ -209,8 +209,8 @@
   <!-- Filesystem Info (no data) -->
   <string name="filesystem_info_warning_msg">There is no information about the filesystem</string>
   <!-- Filesystem Info * Filesystem couldn't be mounted -->
-  <string name="filesystem_info_couldnt_be_mounted_msg">
-    The filesystem couldn\'t be mounted/unmounted.</string>
+  <string name="filesystem_info_cant_be_mounted_msg">
+    The filesystem can\'t be mounted/unmounted.</string>
   <!-- Filesystem Info * Not allowed message -->
   <string name="filesystem_info_mount_not_allowed_msg">Mount filesystem\'s operations are not allowed
     by a non-privileged console. Tap to change to a privileged console.</string>

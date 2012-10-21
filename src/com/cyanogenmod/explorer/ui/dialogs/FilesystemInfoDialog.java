@@ -199,16 +199,16 @@ public class FilesystemInfoDialog implements OnClickListener {
         //Configure status switch
         boolean hasPrivileged = false;
         try {
-            hasPrivileged = ConsoleBuilder.getConsole(this.mContext).isPrivileged();
+            hasPrivileged = ConsoleBuilder.isPrivileged();
         } catch (Throwable ex) {/**NON BLOCK**/}
         boolean mountAllowed =
-                MountPointHelper.isMountAllowed(this.mMountPoint) && !this.mIsAdvancedMode;
+                MountPointHelper.isMountAllowed(this.mMountPoint);
         if (this.mIsAdvancedMode) {
             if (hasPrivileged) {
                 if (!mountAllowed) {
                     this.mInfoMsgView.setText(
                             this.mContext.getString(
-                                    R.string.filesystem_info_couldnt_be_mounted_msg));
+                                    R.string.filesystem_info_cant_be_mounted_msg));
                     this.mInfoMsgView.setVisibility(View.VISIBLE);
                 }
             } else {
@@ -216,6 +216,7 @@ public class FilesystemInfoDialog implements OnClickListener {
                 this.mInfoMsgView.setOnClickListener(this);
             }
         } else {
+            mountAllowed = false;
             this.mInfoMsgView.setVisibility(View.GONE);
             this.mInfoMsgView.setOnClickListener(null);
         }
@@ -317,7 +318,7 @@ public class FilesystemInfoDialog implements OnClickListener {
                     // Show the message
                     this.mInfoMsgView.setText(
                             this.mContext.getString(
-                                    R.string.filesystem_info_couldnt_be_mounted_msg));
+                                    R.string.filesystem_info_cant_be_mounted_msg));
                     this.mInfoMsgView.setVisibility(View.VISIBLE);
                     this.mIsMountAllowed = false;
                 }

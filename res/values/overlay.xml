@@ -28,6 +28,9 @@
   <!-- The system directory -->
   <string name="system_dir">/system</string>
 
+  <!-- The su binary -->
+  <string name="su_binary">/system/xbin/su</string>
+
   <!-- The size of the buffers use by the console (in bytes). Default: 4k -->
   <integer name="buffer_size">4096</integer>
 

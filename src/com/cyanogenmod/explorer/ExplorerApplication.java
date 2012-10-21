@@ -37,6 +37,8 @@ import com.cyanogenmod.explorer.util.ExceptionUtil;
 import com.cyanogenmod.explorer.util.FileHelper;
 import com.cyanogenmod.explorer.util.MimeTypeHelper;
 
+import java.io.File;
+
 /**
  * A class that wraps the information of the application (constants,
  * identifiers, statics variables, ...).
@@ -59,6 +61,7 @@ public final class ExplorerApplication extends Application {
     private static ConsoleHolder sBackgroundConsole;
 
     private static boolean sDebuggable = false;
+    private static boolean sRootedDevice = false;
 
     private final BroadcastReceiver mOnSettingChangeReceiver = new BroadcastReceiver() {
         @Override
@@ -177,6 +180,9 @@ public final class ExplorerApplication extends Application {
 
         // Check if the application is debuggable
         sDebuggable = (0 != (getApplicationInfo().flags &= ApplicationInfo.FLAG_DEBUGGABLE));
+        
+        // Check if the device is rooted
+        sRootedDevice = new File(getString(R.string.su_binary)).exists();
 
         // Register the broadcast receiver
         IntentFilter filter = new IntentFilter();
@@ -220,6 +226,15 @@ public final class ExplorerApplication extends Application {
      */
     public static boolean isDebuggable() {
         return sDebuggable;
+    }
+
+    /**
+     * Method that returns if the device is rooted
+     *
+     * @return boolean If the device is rooted
+     */
+    public static boolean isRooted() {
+        return sRootedDevice;
     }
 
     /**

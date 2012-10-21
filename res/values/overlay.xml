@@ -23,13 +23,16 @@
 <resources xmlns:android="http://schemas.android.com/apk/res/android">
 
   <!-- The root directory -->
-  <string name="root_dir">/</string>
+  <string name="root_dir" translatable="false">/</string>
 
   <!-- The system directory -->
-  <string name="system_dir">/system</string>
+  <string name="system_dir" translatable="false">/system</string>
 
   <!-- The su binary -->
-  <string name="su_binary">/system/xbin/su</string>
+  <string name="su_binary" translatable="false">/system/xbin/su</string>
+  
+  <!-- The mounts file -->
+  <string name="mounts_file" translatable="false">/proc/mounts</string>
 
   <!-- The size of the buffers use by the console (in bytes). Default: 4k -->
   <integer name="buffer_size">4096</integer>

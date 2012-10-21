@@ -19,9 +19,6 @@ include $(CLEAR_VARS)
 
 LOCAL_SRC_FILES := $(call all-subdir-java-files)
 
-LOCAL_STATIC_JAVA_LIBRARIES := \
-    android-support-v4
-
 LOCAL_PACKAGE_NAME := CMExplorer
 LOCAL_CERTIFICATE := platform
 LOCAL_PROGUARD_FLAG_FILES := proguard.flags

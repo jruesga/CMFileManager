@@ -307,9 +307,16 @@ public class FsoPropertiesDialog
         } catch (Throwable ex) {/**NON BLOCK**/}
         this.mSpnOwner.setEnabled(this.mHasPrivileged);
         this.mSpnGroup.setEnabled(this.mHasPrivileged);
-        setCheckBoxesPermissionsEnable(this.mChkUserPermission, this.mHasPrivileged);
-        setCheckBoxesPermissionsEnable(this.mChkGroupPermission, this.mHasPrivileged);
-        setCheckBoxesPermissionsEnable(this.mChkOthersPermission, this.mHasPrivileged);
+        // Not allowed for symlinks
+        if (!(this.mFso instanceof Symlink)) {
+            setCheckBoxesPermissionsEnable(this.mChkUserPermission, this.mHasPrivileged);
+            setCheckBoxesPermissionsEnable(this.mChkGroupPermission, this.mHasPrivileged);
+            setCheckBoxesPermissionsEnable(this.mChkOthersPermission, this.mHasPrivileged);
+        } else {
+            setCheckBoxesPermissionsEnable(this.mChkUserPermission, false);
+            setCheckBoxesPermissionsEnable(this.mChkGroupPermission, false);
+            setCheckBoxesPermissionsEnable(this.mChkOthersPermission, false);
+        }
         if (!this.mHasPrivileged && this.mIsAdvancedMode) {
             this.mInfoMsgView.setVisibility(View.VISIBLE);
             this.mInfoMsgView.setOnClickListener(this);
@@ -475,6 +482,12 @@ public class FsoPropertiesDialog
                     setCheckBoxesPermissionsEnable(this.mChkUserPermission, true);
                     setCheckBoxesPermissionsEnable(this.mChkGroupPermission, true);
                     setCheckBoxesPermissionsEnable(this.mChkOthersPermission, true);
+                    // Not allowed for symlinks
+                    if (!(this.mFso instanceof Symlink)) {
+                        setCheckBoxesPermissionsEnable(this.mChkUserPermission, true);
+                        setCheckBoxesPermissionsEnable(this.mChkGroupPermission, true);
+                        setCheckBoxesPermissionsEnable(this.mChkOthersPermission, true);
+                    }
                     this.mHasPrivileged = true;
                 }
                 break;

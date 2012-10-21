@@ -105,7 +105,10 @@ public class FsoPropertiesDialog
      * @hide
      */
     Spinner mSpnGroup;
-    private CheckBox[] mChkUserPermission;
+    /**
+     * @hide
+     */
+    CheckBox[] mChkUserPermission;
     private CheckBox[] mChkGroupPermission;
     private CheckBox[] mChkOthersPermission;
     private TextView mInfoMsgView;
@@ -449,6 +452,10 @@ public class FsoPropertiesDialog
                             this.mContext, R.style.primary_text_appearance);
                     this.mInfoView.setVisibility(View.GONE);
                     this.mPermissionsView.setVisibility(View.VISIBLE);
+
+                    // Adjust the size of the spinners
+                    adjustSpinnerSize(this.mSpnOwner);
+                    adjustSpinnerSize(this.mSpnGroup);
                 }
                 this.mInfoMsgView.setVisibility(
                         this.mHasPrivileged || !this.mIsAdvancedMode ? View.GONE : View.VISIBLE);
@@ -1035,6 +1042,29 @@ public class FsoPropertiesDialog
                 }
             });
         }
+    }
+
+    /**
+     * Method that adjust the size of the spinner to fit the window
+     *
+     * @param spinner The spinner
+     */
+    private void adjustSpinnerSize(final Spinner spinner) {
+        spinner.post(new Runnable() {
+            @Override
+            public void run() {
+                // Align with the last checkbox of the column
+                CheckBox cb = FsoPropertiesDialog.this.mChkUserPermission[3];
+                int cbW = cb.getMeasuredWidth();
+                int[] cbPos = new int[2];
+                cb.getLocationInWindow(cbPos);
+                int[] cbSpn = new int[2];
+                spinner.getLocationInWindow(cbSpn);
+
+                // Set the width
+                spinner.getLayoutParams().width = (cbPos[0] - cbSpn[0]) + cbW;
+            }
+        });
     }
 
 }

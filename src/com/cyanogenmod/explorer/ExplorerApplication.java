@@ -21,6 +21,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.util.Log;
@@ -56,6 +57,8 @@ public final class ExplorerApplication extends Application {
     //Static resources
     private static ExplorerApplication sApp;
     private static ConsoleHolder sBackgroundConsole;
+    
+    private static boolean sDebuggable = false;
 
     private final BroadcastReceiver mOnSettingChangeReceiver = new BroadcastReceiver() {
         @Override
@@ -172,6 +175,9 @@ public final class ExplorerApplication extends Application {
         //Save the static application reference
         sApp = this;
 
+        // Check if the application is debuggable
+        sDebuggable = (0 != (getApplicationInfo().flags &= ApplicationInfo.FLAG_DEBUGGABLE));
+
         // Register the broadcast receiver
         IntentFilter filter = new IntentFilter();
         filter.addAction(ExplorerSettings.INTENT_SETTING_CHANGED);
@@ -205,6 +211,15 @@ public final class ExplorerApplication extends Application {
      */
     public static ExplorerApplication getInstance() {
         return sApp;
+    }
+
+    /**
+     * Method that returns if the application is debuggable
+     * 
+     * @return boolean If the application is debuggable
+     */
+    public static boolean isDebuggable() {
+        return sDebuggable;
     }
 
     /**

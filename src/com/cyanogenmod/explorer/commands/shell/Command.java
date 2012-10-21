@@ -141,9 +141,9 @@ public abstract class Command {
     }
 
     /**
-     * Method that return id the command had to trace his operations
+     * Method that return if the command has to trace his operations
      *
-     * @return boolean If the command had to trace
+     * @return boolean If the command has to trace
      */
     public boolean isTrace() {
         return this.mTrace;

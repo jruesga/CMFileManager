@@ -42,9 +42,9 @@ public abstract class Console
     }
 
     /**
-     * Method that return id the console had to trace his operations
+     * Method that return if the console has to trace his operations
      *
-     * @return boolean If the console had to trace
+     * @return boolean If the console has to trace
      */
     public boolean isTrace() {
         return this.mTrace;

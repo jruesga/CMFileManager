@@ -71,7 +71,7 @@ public abstract class ShellConsole extends Console implements Program.ProgramLis
     private static final String TAG = "ShellConsole"; //$NON-NLS-1$
 
     // A timeout of 5 seconds should be enough for no-debugging environments
-    private static final long DEFAULT_TIMEOUT = 
+    private static final long DEFAULT_TIMEOUT =
             ExplorerApplication.isDebuggable() ? 20000L : 5000L;
 
     private static final int DEFAULT_BUFFER = 512;

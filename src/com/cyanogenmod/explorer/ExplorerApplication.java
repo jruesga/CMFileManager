@@ -57,7 +57,7 @@ public final class ExplorerApplication extends Application {
     //Static resources
     private static ExplorerApplication sApp;
     private static ConsoleHolder sBackgroundConsole;
-    
+
     private static boolean sDebuggable = false;
 
     private final BroadcastReceiver mOnSettingChangeReceiver = new BroadcastReceiver() {
@@ -215,7 +215,7 @@ public final class ExplorerApplication extends Application {
 
     /**
      * Method that returns if the application is debuggable
-     * 
+     *
      * @return boolean If the application is debuggable
      */
     public static boolean isDebuggable() {
@@ -247,7 +247,7 @@ public final class ExplorerApplication extends Application {
 
     /**
      * Method that allocate a new background console
-     * 
+     *
      * @param ctx The current context
      */
     private static synchronized void allocBackgroundConsole(Context ctx) {

@@ -321,6 +321,7 @@ public class NavigationActivity extends Activity
             Log.d(TAG, "NavigationActivity.onDestroy"); //$NON-NLS-1$
         }
 
+        // Unregister the receiver
         try {
             unregisterReceiver(this.mOnSettingChangeReceiver);
         } catch (Throwable ex) {
@@ -492,7 +493,7 @@ public class NavigationActivity extends Activity
                         DialogHelper.showToast(
                                 NavigationActivity.this,
                                 R.string.msgs_cant_create_console, Toast.LENGTH_LONG);
-                        finish();
+                        exit();
                         return;
                     }
 
@@ -971,7 +972,7 @@ public class NavigationActivity extends Activity
                         switch (itemId) {
                             case R.id.mnu_exit:
                                 //Exit
-                                finish();
+                                exit();
                                 break;
 
                             case R.id.mnu_settings:
@@ -1322,7 +1323,7 @@ public class NavigationActivity extends Activity
                             DialogHelper.showToast(
                                     NavigationActivity.this,
                                     R.string.msgs_cant_create_console, Toast.LENGTH_LONG);
-                            finish();
+                            exit();
                             return;
                         }
 
@@ -1346,7 +1347,7 @@ public class NavigationActivity extends Activity
                             DialogHelper.showToast(
                                     NavigationActivity.this,
                                     R.string.msgs_cant_create_console, Toast.LENGTH_LONG);
-                            finish();
+                            exit();
                         }
                     }
                });
@@ -1391,6 +1392,24 @@ public class NavigationActivity extends Activity
         for (int i = 0; i < cc; i++) {
             this.mNavigationViews[i].exitChRooted();
         }
+    }
+
+    /**
+     * Method called when a controlled exit is required
+     * @hide
+     */
+    void exit() {
+        try {
+            ExplorerApplication.destroyBackgroundConsole();
+        } catch (Throwable ex) {
+            /**NON BLOCK**/
+        }
+        try {
+            ConsoleBuilder.destroyConsole();
+        } catch (Throwable ex) {
+            /**NON BLOCK**/
+        }
+        finish();
     }
 
 }

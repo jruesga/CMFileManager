@@ -391,9 +391,7 @@ public final class ConsoleBuilder {
                 }
 
                 //Create the non-privileged console
-                NonPriviledgeConsole console = new NonPriviledgeConsole(initialDirectory);
-                console.alloc();
-                return console;
+                return createNonPrivilegedConsole(context, initialDirectory);
             }
 
             // Rethrow the exception

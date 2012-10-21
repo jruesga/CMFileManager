@@ -797,6 +797,13 @@ public class NavigationView extends RelativeLayout implements
             List<FileSystemObject> sortedFiles =
                     FileHelper.applyUserPreferences(files, this.mMimeType, this.mChRooted);
 
+            //Remove parent directory if we are in the root of a chrooted environment
+            if (this.mChRooted && StorageHelper.isStorageVolume(newDir)) {
+                if (files.size() > 0 && files.get(0) instanceof ParentDirectory) {
+                    files.remove(0);
+                }
+            }
+
             //Load the data
             loadData(sortedFiles);
             NavigationView.this.mFiles = sortedFiles;

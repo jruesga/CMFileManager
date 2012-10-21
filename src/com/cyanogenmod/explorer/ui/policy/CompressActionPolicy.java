@@ -406,16 +406,20 @@ public final class CompressActionPolicy extends ActionsPolicy {
                     throw this.mListener.mCause;
                 }
 
-                // Check that the operation was completed retrieving the extracted file or folder
-                boolean failed = true;
+                // Check that the operation was completed retrieving the compressed file or folder
+                boolean failed = false;
                 try {
-                    CommandHelper.getFileInfo(ctx, out, false, null);
+                    FileSystemObject fso = CommandHelper.getFileInfo(ctx, out, false, null);
+                    if (fso == null) {
+                        // Failed. The file or folder not exists
+                        failed = true;
+                    }
 
-                    // Failed. The file exists
-                    failed = false;
+                    // Operation complete successfully
 
                 } catch (Throwable e) {
-                    // Operation complete successfully
+                    // Failed. The file or folder not exists
+                    failed = true;
                 }
                 if (failed) {
                     throw new ExecutionException(
@@ -655,16 +659,21 @@ public final class CompressActionPolicy extends ActionsPolicy {
                     throw this.mListener.mCause;
                 }
 
-                // Check that the operation was completed retrieving the extracted file or folder
-                boolean failed = true;
+                // Check that the operation was completed retrieving the uncompressed
+                // file or folder
+                boolean failed = false;
                 try {
-                    CommandHelper.getFileInfo(ctx, out, false, null);
+                    FileSystemObject fso2 = CommandHelper.getFileInfo(ctx, out, false, null);
+                    if (fso2 == null) {
+                        // Failed. The file or folder not exists
+                        failed = true;
+                    }
 
-                    // Failed. The file exists
-                    failed = false;
+                    // Operation complete successfully
 
                 } catch (Throwable e) {
-                    // Operation complete successfully
+                    // Failed. The file or folder not exists
+                    failed = true;
                 }
                 if (failed) {
                     throw new ExecutionException(

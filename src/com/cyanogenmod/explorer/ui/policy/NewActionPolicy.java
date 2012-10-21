@@ -109,9 +109,7 @@ public final class NewActionPolicy extends ActionsPolicy {
                 FileSystemObject fso = null;
                 try {
                     fso = CommandHelper.getFileInfo(ctx, newName, false, null);
-                } catch (Throwable ex2) {
-                    /**NON BLOCK**/
-                }
+                } catch (Throwable ex2) {/**NON BLOCK**/}
                 onRequestRefreshListener.onRequestRefresh(fso);
             }
             showOperationSuccessMsg(ctx);
@@ -129,11 +127,8 @@ public final class NewActionPolicy extends ActionsPolicy {
                         if (onRequestRefreshListener != null) {
                             FileSystemObject fso = null;
                             try {
-                                fso =
-                                    CommandHelper.getFileInfo(ctx, newName, false, null);
-                            } catch (Throwable ex2) {
-                                /**NON BLOCK**/
-                            }
+                                fso = CommandHelper.getFileInfo(ctx, newName, false, null);
+                            } catch (Throwable ex2) {/**NON BLOCK**/}
                             onRequestRefreshListener.onRequestRefresh(fso);
                         }
                         return Boolean.TRUE;
@@ -208,9 +203,7 @@ public final class NewActionPolicy extends ActionsPolicy {
                             FileSystemObject fso = null;
                             try {
                                 fso = CommandHelper.getFileInfo(ctx, link, false, null);
-                            } catch (Throwable ex2) {
-                                /**NON BLOCK**/
-                            }
+                            } catch (Throwable ex2) {/**NON BLOCK**/}
                             onRequestRefreshListener.onRequestRefresh(fso);
                         }
                         return Boolean.TRUE;

@@ -856,6 +856,9 @@ public class SearchActivity extends Activity
         FileSystemObject fso = null;
         try {
             fso = CommandHelper.getFileInfo(this, item.getFullPath(), false, null);
+            if (fso == null) {
+                throw new NoSuchFileOrDirectory(item.getFullPath());
+            }
 
         } catch (Exception e) {
             // Notify the user

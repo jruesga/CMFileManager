@@ -262,9 +262,12 @@ public final class DeleteActionPolicy extends ActionsPolicy {
                 boolean failed = false;
                 try {
                     CommandHelper.getFileInfo(ctx, fso.getFullPath(), false, null);
-
-                    // Failed. The file still exists
-                    failed = true;
+                    FileSystemObject fso2 =
+                            CommandHelper.getFileInfo(ctx, fso.getFullPath(), false, null);
+                    if (fso2 != null) {
+                        // Failed. The file still exists
+                        failed = true;
+                    }
 
                 } catch (Throwable e) {
                     // Operation complete successfully

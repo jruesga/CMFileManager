@@ -64,6 +64,7 @@ public class LinkCommandTest extends AbstractConsoleTest {
             FileSystemObject fso =
                     CommandHelper.getFileInfo(getContext(), PATH_LINK_OK, false, getConsole());
             assertTrue("response==false", ret); //$NON-NLS-1$
+            assertNotNull("fso==null", fso); //$NON-NLS-1$
             assertTrue("fso not is Symlink", fso instanceof Symlink); //$NON-NLS-1$
         } finally {
             try {

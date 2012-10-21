@@ -23,6 +23,7 @@ import android.text.Html;
 import android.text.Spanned;
 
 import com.cyanogenmod.explorer.R;
+import com.cyanogenmod.explorer.console.NoSuchFileOrDirectory;
 import com.cyanogenmod.explorer.console.RelaunchableException;
 import com.cyanogenmod.explorer.listeners.OnRequestRefreshListener;
 import com.cyanogenmod.explorer.listeners.OnSelectionListener;
@@ -405,7 +406,11 @@ public final class CopyMoveActionPolicy extends ActionsPolicy {
                 }
 
                 // Check that the operation was completed retrieving the fso modified
-                CommandHelper.getFileInfo(ctx, dst.getAbsolutePath(), false, null);
+                FileSystemObject fso =
+                        CommandHelper.getFileInfo(ctx, dst.getAbsolutePath(), false, null);
+                if (fso == null) {
+                    throw new NoSuchFileOrDirectory(dst.getAbsolutePath());
+                }
             }
         };
         final BackgroundAsyncTask task = new BackgroundAsyncTask(ctx, callable);

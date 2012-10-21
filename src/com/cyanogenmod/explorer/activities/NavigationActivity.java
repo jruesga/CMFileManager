@@ -1227,6 +1227,9 @@ public class NavigationActivity extends Activity
         FileSystemObject fso = null;
         try {
             fso = CommandHelper.getFileInfo(this, path, false, null);
+            if (fso == null) {
+                throw new NoSuchFileOrDirectory(path);
+            }
 
         } catch (Exception e) {
             // Notify the user

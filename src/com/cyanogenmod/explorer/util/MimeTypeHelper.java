@@ -179,9 +179,13 @@ public final class MimeTypeHelper {
         if (FileHelper.isSystemFile(fso)) {
             return R.drawable.fso_type_system;
         }
-        // Check if the fso is executable
-        if (fso.getPermissions().getUser().isExecute()) {
-            return R.drawable.fso_type_executable;
+        // Check if the fso is executable (but not a symlink)
+        if (!(fso instanceof Symlink)) {
+            if (fso.getPermissions().getUser().isExecute() ||
+                fso.getPermissions().getGroup().isExecute() ||
+                fso.getPermissions().getOthers().isExecute()) {
+                return R.drawable.fso_type_executable;
+            }
         }
         return R.drawable.ic_fso_default;
     }

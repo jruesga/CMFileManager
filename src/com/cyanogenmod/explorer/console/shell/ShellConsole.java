@@ -70,7 +70,7 @@ public abstract class ShellConsole extends Console implements Program.ProgramLis
 
     private static final String TAG = "ShellConsole"; //$NON-NLS-1$
 
-    private static final long DEFAULT_TIMEOUT = 20000L;
+    private static final long DEFAULT_TIMEOUT = 5000L;
 
     private static final int DEFAULT_BUFFER = 512;
 
@@ -195,8 +195,6 @@ public abstract class ShellConsole extends Console implements Program.ProgramLis
         return this.mIdentity;
     }
 
-
-
     /**
      * Method that returns the buffer size
      *
@@ -213,6 +211,14 @@ public abstract class ShellConsole extends Console implements Program.ProgramLis
      */
     public void setBufferSize(int bufferSize) {
         this.mBufferSize = bufferSize;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public final boolean isActive() {
+        return this.mActive;
     }
 
     /**
@@ -730,7 +736,7 @@ public abstract class ShellConsole extends Console implements Program.ProgramLis
                         //Check if process has exited
                         checkIfProcessExits();
                     }
-                } catch (IOException ioEx) {
+                } catch (Exception ioEx) {
                     notifyProcessExit(ioEx);
                 }
             }
@@ -820,7 +826,7 @@ public abstract class ShellConsole extends Console implements Program.ProgramLis
                             trimBuffer(ShellConsole.this.mSbErr);
                         }
                     }
-                } catch (IOException ioEx) {
+                } catch (Exception ioEx) {
                     notifyProcessExit(ioEx);
                 }
             }

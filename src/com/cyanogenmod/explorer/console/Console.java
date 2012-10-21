@@ -94,6 +94,13 @@ public abstract class Console
    public abstract boolean isPrivileged();
 
    /**
+    * Method that returns if the console is active and allocated.
+    *
+    * @return boolean Indicates if the console is active and allocated
+    */
+   public abstract boolean isActive();
+
+   /**
     * Method that retrieves the {@link ExecutableFactory} associated with the {@link Console}.
     *
     * @return ExecutableFactory The execution program factory

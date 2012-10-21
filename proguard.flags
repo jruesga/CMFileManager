@@ -49,3 +49,8 @@
     android.os.storage.StorageVolume[] getVolumeList();
 }
 
+#keep preference's classes
+-keep public class * extends android.preference.PreferenceFragment {
+  public <init>(...);
+}
+

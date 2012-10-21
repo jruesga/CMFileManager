@@ -44,7 +44,6 @@ import com.cyanogenmod.explorer.adapters.AssociationsAdapter;
 import com.cyanogenmod.explorer.util.DialogHelper;
 import com.cyanogenmod.explorer.util.ExceptionUtil;
 
-import java.lang.reflect.Method;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
@@ -319,7 +318,7 @@ public class AssociationsDialog implements OnItemClickListener {
      * @see ResolverActivity (copied from)
      * @hide
      */
-    @SuppressWarnings({"boxing"})
+    @SuppressWarnings({"deprecation"})
     void onIntentSelected(ResolveInfo ri, Intent intent, boolean remember) {
         if (remember) {
             // Build a reasonable intent filter, based on what matched.
@@ -404,19 +403,23 @@ public class AssociationsDialog implements OnItemClickListener {
                             ResolveInfo r = adapter.getItem(i);
                             set[i] = new ComponentName(
                                     r.activityInfo.packageName, r.activityInfo.name);
-                            if (r.match > bestMatch) bestMatch = r.match;
+                            // Use the match of the selected intent
+                            if (intent.getComponent().compareTo(set[i]) == 0) {
+                                bestMatch = r.match;
+                            }
                         }
 
-                        // Use reflection to access the hidden replacePreferredActivity method
-                        // FIXME This need to be tested on a CM compilation. Now
-                        // replacePreferredActivity is not working. Check also
-                        // the use of addPreferredActivity.
                         PackageManager pm = this.mContext.getPackageManager();
-                        Method m = pm.getClass().getMethod(
-                                            "replacePreferredActivity", //$NON-NLS-1$
-                                            IntentFilter.class, int.class,
-                                            ComponentName[].class, ComponentName.class);
-                        m.invoke(pm, filter, bestMatch, set, intent.getComponent());
+
+                        // The only way i found to ensure of the use of the preferred activity
+                        // selected is to clear preferred activity associations
+                        // Maybe it's necessary also remove the rest of activities?
+                        pm.clearPackagePreferredActivities(
+                                this.mPreferred.activityInfo.packageName);
+
+                        // This is allowed for now in AOSP, but probably in the future this will
+                        // not work at all
+                        pm.addPreferredActivity(filter, bestMatch, set, intent.getComponent());
 
                     } catch (Exception e) {
                         // Capture the exception

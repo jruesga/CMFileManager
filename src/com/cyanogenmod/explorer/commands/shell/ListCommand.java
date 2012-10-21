@@ -317,7 +317,7 @@ public class ListCommand extends SyncResultProgram implements ListExecutable {
                 line++;
             }
 
-            //Now if not is the root directory
+            // Add the parent directory
             if (this.mParentDir != null &&
                     this.mParentDir.compareTo(FileHelper.ROOT_DIRECTORY) != 0 &&
                     this.mMode.compareTo(LIST_MODE.DIRECTORY) == 0) {

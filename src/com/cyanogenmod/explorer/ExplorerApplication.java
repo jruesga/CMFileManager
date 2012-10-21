@@ -51,7 +51,7 @@ public final class ExplorerApplication extends Application {
      * A constant that contains the main process name.
      * @hide
      */
-    public static final String MAIN_PROCESS = "com.cyanogenmod.explorer:main"; //$NON-NLS-1$
+    public static final String MAIN_PROCESS = "com.cyanogenmod.explorer"; //$NON-NLS-1$
 
     //Static resources
     private static ExplorerApplication sApp;
@@ -153,7 +153,7 @@ public final class ExplorerApplication extends Application {
             /**NON BLOCK**/
         }
         try {
-            sBackgroundConsole.dispose();
+            destroyBackgroundConsole();
         } catch (Throwable ex) {
             /**NON BLOCK**/
         }
@@ -186,17 +186,8 @@ public final class ExplorerApplication extends Application {
         FileHelper.ROOT_DIRECTORY = getString(R.string.root_dir);
         Preferences.loadDefaults();
 
-        //Create a non-privileged console for background non-privileged tasks
-        try {
-            sBackgroundConsole =
-                    new ConsoleHolder(
-                            ConsoleBuilder.createNonPrivilegedConsole(
-                                    getApplicationContext(), FileHelper.ROOT_DIRECTORY));
-        } catch (Exception e) {
-            Log.e(TAG,
-                    "Background console creation failed. " +  //$NON-NLS-1$
-                    "This probably will cause a force close.", e); //$NON-NLS-1$
-        }
+        //Create a console for background tasks
+        allocBackgroundConsole(getApplicationContext());
 
         //Force the load of mime types
         try {
@@ -222,7 +213,53 @@ public final class ExplorerApplication extends Application {
      * @return Console The background console
      */
     public static Console getBackgroundConsole() {
+        if (!sBackgroundConsole.getConsole().isActive()) {
+            allocBackgroundConsole(getInstance().getApplicationContext());
+        }
         return sBackgroundConsole.getConsole();
+    }
+
+    /**
+     * Method that destroy the background console
+     */
+    public static void destroyBackgroundConsole() {
+        try {
+            sBackgroundConsole.dispose();
+        } catch (Throwable ex) {
+            /**NON BLOCK**/
+        }
+    }
+
+    /**
+     * Method that allocate a new background console
+     * 
+     * @param ctx The current context
+     */
+    private static synchronized void allocBackgroundConsole(Context ctx) {
+        try {
+            // Dispose the current console
+            if (sBackgroundConsole != null) {
+                sBackgroundConsole.dispose();
+                sBackgroundConsole = null;
+            }
+
+            //Create a console for background tasks
+            if (ConsoleBuilder.isPrivileged()) {
+                sBackgroundConsole =
+                        new ConsoleHolder(
+                                ConsoleBuilder.createPrivilegedConsole(
+                                        ctx, FileHelper.ROOT_DIRECTORY));
+            } else {
+                sBackgroundConsole =
+                        new ConsoleHolder(
+                                ConsoleBuilder.createNonPrivilegedConsole(
+                                        ctx, FileHelper.ROOT_DIRECTORY));
+            }
+        } catch (Exception e) {
+            Log.e(TAG,
+                    "Background console creation failed. " +  //$NON-NLS-1$
+                    "This probably will cause a force close.", e); //$NON-NLS-1$
+        }
     }
 
     /**

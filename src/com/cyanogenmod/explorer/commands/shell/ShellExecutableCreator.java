@@ -20,6 +20,7 @@ import com.cyanogenmod.explorer.commands.AsyncResultListener;
 import com.cyanogenmod.explorer.commands.ChangeCurrentDirExecutable;
 import com.cyanogenmod.explorer.commands.ChangeOwnerExecutable;
 import com.cyanogenmod.explorer.commands.ChangePermissionsExecutable;
+import com.cyanogenmod.explorer.commands.CompressExecutable;
 import com.cyanogenmod.explorer.commands.CopyExecutable;
 import com.cyanogenmod.explorer.commands.CreateDirExecutable;
 import com.cyanogenmod.explorer.commands.CreateFileExecutable;
@@ -46,6 +47,7 @@ import com.cyanogenmod.explorer.commands.ReadExecutable;
 import com.cyanogenmod.explorer.commands.ResolveLinkExecutable;
 import com.cyanogenmod.explorer.commands.SIGNAL;
 import com.cyanogenmod.explorer.commands.SendSignalExecutable;
+import com.cyanogenmod.explorer.commands.UncompressExecutable;
 import com.cyanogenmod.explorer.commands.WriteExecutable;
 import com.cyanogenmod.explorer.console.CommandNotFoundException;
 import com.cyanogenmod.explorer.console.shell.ShellConsole;
@@ -492,7 +494,7 @@ public class ShellExecutableCreator implements ExecutableCreator {
      * {@inheritDoc}
      */
     @Override
-    public CompressCommand createCompressExecutable(
+    public CompressExecutable createCompressExecutable(
             CompressionMode mode, String dst, String[] src,
             AsyncResultListener asyncResultListener)
             throws CommandNotFoundException {
@@ -507,7 +509,7 @@ public class ShellExecutableCreator implements ExecutableCreator {
      * {@inheritDoc}
      */
     @Override
-    public CompressCommand createCompressExecutable(
+    public CompressExecutable createCompressExecutable(
             CompressionMode mode, String src,
             AsyncResultListener asyncResultListener)
             throws CommandNotFoundException {
@@ -522,7 +524,7 @@ public class ShellExecutableCreator implements ExecutableCreator {
      * {@inheritDoc}
      */
     @Override
-    public UncompressCommand createUncompressExecutable(
+    public UncompressExecutable createUncompressExecutable(
             String src, String dst,
             AsyncResultListener asyncResultListener)
             throws CommandNotFoundException {

@@ -74,7 +74,7 @@ public class ReadCommand extends Program implements ReadExecutable {
         if (isTrace()) {
             Log.v(TAG,
                     String.format("Reading file %s", this.mFile)); //$NON-NLS-1$
-                            
+
         }
         if (this.mAsyncResultListener != null) {
             this.mAsyncResultListener.onAsyncStart();
@@ -87,7 +87,7 @@ public class ReadCommand extends Program implements ReadExecutable {
             }
             if (this.mAsyncResultListener != null) {
                 this.mAsyncResultListener.onException(new NoSuchFileOrDirectory(this.mFile));
-            } 
+            }
         }
         if (!f.isFile()) {
             if (isTrace()) {
@@ -96,7 +96,7 @@ public class ReadCommand extends Program implements ReadExecutable {
             if (this.mAsyncResultListener != null) {
                 this.mAsyncResultListener.onException(
                         new ExecutionException("path exists but it's not a file")); //$NON-NLS-1$
-            } 
+            }
         }
 
         // Read the file
@@ -116,7 +116,7 @@ public class ReadCommand extends Program implements ReadExecutable {
 
     /**
      * Method that read the file
-     * 
+     *
      * @param file The file to read
      */
     private void read(File file) {
@@ -150,7 +150,7 @@ public class ReadCommand extends Program implements ReadExecutable {
             }
             if (this.mAsyncResultListener != null) {
                 this.mAsyncResultListener.onException(new InsufficientPermissionsException());
-            } 
+            }
 
         } finally {
             try {

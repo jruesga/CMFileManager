@@ -51,7 +51,7 @@ public final class JavaConsole extends Console {
     private String mCurrentDir;
 
     private final Context mCtx;
-    private final int mBufferSize; 
+    private final int mBufferSize;
 
     /**
      * Constructor of <code>JavaConsole</code>

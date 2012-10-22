@@ -812,7 +812,7 @@ public final class FileHelper {
             User user = new User(userAID.getId(), userAID.getName());
             Group group = new Group(groupAID.getId(), groupAID.getName());
             Permissions perm = Permissions.fromRawString(PERMISSIONS);
-    
+
             // Build a directory?
             if (file.isDirectory()) {
                 return
@@ -822,7 +822,7 @@ public final class FileHelper {
                             user, group, perm,
                             new Date(file.lastModified()));
             }
-    
+
             // Build a regular file
             return
                 new RegularFile(

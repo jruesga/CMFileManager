@@ -93,8 +93,8 @@ public final class SearchHelper {
     }
 
     /**
-     * Method that cleans and prepares the query of the user to conform with a valid regexp. 
-     * 
+     * Method that cleans and prepares the query of the user to conform with a valid regexp.
+     *
      * @param query The query requested by the user
      * @return String The prepared the query
      */

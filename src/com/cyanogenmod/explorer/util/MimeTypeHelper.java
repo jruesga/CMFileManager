@@ -264,7 +264,7 @@ public final class MimeTypeHelper {
         }
         return res.getString(R.string.mime_unknown);
     }
-    
+
     /**
      * Method that returns the mime/type category of the file.
      *

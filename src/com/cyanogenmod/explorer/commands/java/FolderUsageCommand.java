@@ -98,7 +98,7 @@ public class FolderUsageCommand extends Program implements FolderUsageExecutable
             }
             if (this.mAsyncResultListener != null) {
                 this.mAsyncResultListener.onException(new NoSuchFileOrDirectory(this.mDirectory));
-            } 
+            }
         }
         if (!f.isDirectory()) {
             if (isTrace()) {
@@ -107,7 +107,7 @@ public class FolderUsageCommand extends Program implements FolderUsageExecutable
             if (this.mAsyncResultListener != null) {
                 this.mAsyncResultListener.onException(
                         new ExecutionException("path exists but it's not a folder")); //$NON-NLS-1$
-            } 
+            }
         }
 
         // Compute data recursively
@@ -132,7 +132,7 @@ public class FolderUsageCommand extends Program implements FolderUsageExecutable
 
     /**
      * Method that computes the folder usage recursively
-     * 
+     *
      * @param folder The folder where to start the computation
      */
     private void computeRecursive(File folder) {
@@ -154,7 +154,7 @@ public class FolderUsageCommand extends Program implements FolderUsageExecutable
                         this.mFolderUsage.addFileToCategory(category);
                         this.mFolderUsage.addSize(files[i].length());
                     }
-    
+
                     // Partial notification
                     if (c % 5 == 0) {
                         //If a listener is defined, then send the partial result
@@ -162,7 +162,7 @@ public class FolderUsageCommand extends Program implements FolderUsageExecutable
                             getAsyncResultListener().onPartialResult(this.mFolderUsage);
                         }
                     }
-    
+
                     // Check if the process was cancelled
                     try {
                         synchronized (this.mSync) {

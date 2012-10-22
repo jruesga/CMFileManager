@@ -97,7 +97,7 @@ public class FindCommand extends Program implements FindExecutable {
             }
             if (this.mAsyncResultListener != null) {
                 this.mAsyncResultListener.onException(new NoSuchFileOrDirectory(this.mDirectory));
-            } 
+            }
         }
         if (!f.isDirectory()) {
             if (isTrace()) {
@@ -106,7 +106,7 @@ public class FindCommand extends Program implements FindExecutable {
             if (this.mAsyncResultListener != null) {
                 this.mAsyncResultListener.onException(
                         new ExecutionException("path exists but it's not a folder")); //$NON-NLS-1$
-            } 
+            }
         }
 
         // Find the data

@@ -90,7 +90,7 @@ public final class AIDHelper {
 
     /**
      * Method that return AID from his user identifier
-     * 
+     *
      * @param ctx The current context
      * @param name The user identifier
      * @return AID The AID

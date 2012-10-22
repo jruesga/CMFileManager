@@ -112,11 +112,11 @@ public class WriteCommand extends Program implements WriteExecutable {
             this.mReady = true;
             this.mSync.notify();
         }
-        
+
         if (isTrace()) {
             Log.v(TAG,
                     String.format("Writing file %s", this.mFile)); //$NON-NLS-1$
-                            
+
         }
         if (this.mAsyncResultListener != null) {
             this.mAsyncResultListener.onAsyncStart();

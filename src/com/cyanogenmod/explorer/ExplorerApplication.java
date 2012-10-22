@@ -390,7 +390,7 @@ public final class ExplorerApplication extends Application {
      */
     public static boolean isAdvancedMode() {
         // If device is not rooted, don't allow advanced mode
-        if (isDeviceRooted()) return false;
+        if (!isDeviceRooted()) return false;
 
         boolean defaultValue =
                 ((Boolean)ExplorerSettings.

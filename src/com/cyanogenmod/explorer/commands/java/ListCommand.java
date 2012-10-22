@@ -16,28 +16,19 @@
 
 package com.cyanogenmod.explorer.commands.java;
 
-import android.os.Process;
+import android.content.Context;
 import android.util.Log;
 
 import com.cyanogenmod.explorer.commands.ListExecutable;
 import com.cyanogenmod.explorer.console.ExecutionException;
 import com.cyanogenmod.explorer.console.InsufficientPermissionsException;
 import com.cyanogenmod.explorer.console.NoSuchFileOrDirectory;
-import com.cyanogenmod.explorer.model.Directory;
 import com.cyanogenmod.explorer.model.FileSystemObject;
-import com.cyanogenmod.explorer.model.Group;
-import com.cyanogenmod.explorer.model.GroupPermission;
-import com.cyanogenmod.explorer.model.OthersPermission;
 import com.cyanogenmod.explorer.model.ParentDirectory;
-import com.cyanogenmod.explorer.model.Permissions;
-import com.cyanogenmod.explorer.model.RegularFile;
-import com.cyanogenmod.explorer.model.User;
-import com.cyanogenmod.explorer.model.UserPermission;
 import com.cyanogenmod.explorer.util.FileHelper;
 
 import java.io.File;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 
@@ -48,6 +39,7 @@ public class ListCommand extends Program implements ListExecutable {
 
     private static final String TAG = "ListCommand"; //$NON-NLS-1$
 
+    private final Context mCtx;
     private final String mSrc;
     private final LIST_MODE mMode;
     private final List<FileSystemObject> mFiles;
@@ -55,11 +47,13 @@ public class ListCommand extends Program implements ListExecutable {
     /**
      * Constructor of <code>ListCommand</code>. List mode.
      *
+     * @param ctx The current context
      * @param src The file system object to be listed
      * @param mode The mode of listing
      */
-    public ListCommand(String src, LIST_MODE mode) {
+    public ListCommand(Context ctx, String src, LIST_MODE mode) {
         super();
+        this.mCtx = ctx;
         this.mSrc = src;
         this.mMode = mode;
         this.mFiles = new ArrayList<FileSystemObject>();
@@ -106,9 +100,13 @@ public class ListCommand extends Program implements ListExecutable {
             File[] files = f.listFiles();
             if (files != null) {
                 for (int i = 0; i < files.length; i++) {
-                    FileSystemObject fso = createFileSystemObject(files[i]);
-                    Log.v(TAG, String.valueOf(fso));
-                    this.mFiles.add(fso);
+                    FileSystemObject fso = FileHelper.createFileSystemObject(this.mCtx, files[i]);
+                    if (fso != null) {
+                        if (isTrace()) {
+                            Log.v(TAG, String.valueOf(fso));
+                        }
+                        this.mFiles.add(fso);
+                    }
                 }
             }
 
@@ -121,11 +119,13 @@ public class ListCommand extends Program implements ListExecutable {
 
         } else {
             // Build the parent information
-            FileSystemObject fso = createFileSystemObject(f);
-            if (isTrace()) {
-                Log.v(TAG, String.valueOf(fso));
+            FileSystemObject fso = FileHelper.createFileSystemObject(this.mCtx, f);
+            if (fso != null) {
+                if (isTrace()) {
+                    Log.v(TAG, String.valueOf(fso));
+                }
+                this.mFiles.add(fso);
             }
-            this.mFiles.add(fso);
         }
 
         if (isTrace()) {
@@ -133,40 +133,4 @@ public class ListCommand extends Program implements ListExecutable {
         }
     }
 
-    /**
-     * Method that creates a {@link FileSystemObject}.
-     *
-     * @param f The file or folder reference
-     * @return FileSystemObject The file system object reference
-     */
-    @SuppressWarnings("static-method")
-    private FileSystemObject createFileSystemObject(File f) {
-        // The only information i have is if a can read, write or execute but not the groups
-        // Assign all the groups the same information
-        User user = new User(Process.myUid(), ""); //$NON-NLS-1$ // TODO Retrieve the name
-        Group group = new Group(Process.myUid(), ""); //$NON-NLS-1$ // TODO Retrieve the name
-        UserPermission u = new UserPermission(f.canRead(), f.canWrite(), f.canExecute());
-        GroupPermission g = new GroupPermission(f.canRead(), f.canWrite(), f.canExecute());
-        OthersPermission o = new OthersPermission(f.canRead(), f.canWrite(), f.canExecute());
-        Permissions perm = new Permissions(u, g, o);
-
-        // Build a directory?
-        if (f.isDirectory()) {
-            return
-                new Directory(
-                        f.getName(),
-                        f.getParent(),
-                        user, group, perm,
-                        new Date(f.lastModified()));
-        }
-
-        // Build a regular file
-        return
-            new RegularFile(
-                    f.getName(),
-                    f.getParent(),
-                    user, group, perm,
-                    new Date(f.lastModified()),
-                    f.length());
-    }
 }

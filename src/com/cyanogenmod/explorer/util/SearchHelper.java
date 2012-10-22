@@ -39,6 +39,7 @@ import java.util.regex.Pattern;
 public final class SearchHelper {
 
     private static final String REGEXP_WILCARD = "*";  //$NON-NLS-1$
+    private static final String REGEXP_WILCARD_JAVA = ".*";  //$NON-NLS-1$
 
     /**
      * Constructor of <code>SearchHelper</code>.
@@ -51,18 +52,25 @@ public final class SearchHelper {
      * Method that create a regular expression from a user query.
      *
      * @param query The query requested by the user
+     * @param javaRegExp If returns a java regexp
      * @return String The regular expressions of the query to match an ignore case search
      */
     @SuppressWarnings("boxing")
-    public static String toIgnoreCaseRegExp(final String query) {
+    public static String toIgnoreCaseRegExp(final String query, boolean javaRegExp) {
         //Check that all is correct
         if (query == null || query.trim().length() == 0) {
             return "";  //$NON-NLS-1$
         }
 
+        // If the regexp for java, then prepare the query
+        String q = query;
+        if (javaRegExp) {
+            q = prepareQuery(q);
+        }
+
         //Convert the string to lower and upper
-        final String lowerCase = query.toLowerCase();
-        final String upperCase = query.toUpperCase();
+        final String lowerCase = q.toLowerCase();
+        final String upperCase = q.toUpperCase();
 
         //Create the regular expression filter
         StringBuffer sb = new StringBuffer();
@@ -80,8 +88,29 @@ public final class SearchHelper {
         }
         return String.format(
                     "%s%s%s",  //$NON-NLS-1$;
-                    REGEXP_WILCARD,
-                    sb.toString(), REGEXP_WILCARD);
+                    javaRegExp ? REGEXP_WILCARD_JAVA : REGEXP_WILCARD,
+                    sb.toString(), javaRegExp ? REGEXP_WILCARD_JAVA : REGEXP_WILCARD);
+    }
+
+    /**
+     * Method that cleans and prepares the query of the user to conform with a valid regexp. 
+     * 
+     * @param query The query requested by the user
+     * @return String The prepared the query
+     */
+    private static String prepareQuery(String query) {
+        StringBuilder sb = new StringBuilder(query.length());
+        for (int i = 0; i < query.length(); ++i) {
+            char ch = query.charAt(i);
+            if (Character.isLetterOrDigit(ch) ||
+                    ch == ' ' ||
+                    ch == '\'') {
+                sb.append(ch);
+            } else if (ch == '*') {
+                sb.append(".*"); //$NON-NLS-1$
+            }
+        }
+        return sb.toString();
     }
 
     /**

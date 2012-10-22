@@ -31,7 +31,7 @@ public abstract class Program implements Executable {
     private int mBufferSize;
 
     /**
-     * Constructor of
+     * Constructor of <code>Program</code>
      */
     public Program() {
         super();
@@ -71,6 +71,17 @@ public abstract class Program implements Executable {
      */
     public void setBufferSize(int bufferSize) {
         this.mBufferSize = bufferSize;
+    }
+
+    /**
+     * Method that returns if this program uses an asynchronous model. <code>false</code>
+     * by default.
+     * 
+     * @return boolean If this program uses an asynchronous model
+     */
+    @SuppressWarnings("static-method")
+    public boolean isAsynchronous() {
+        return false;
     }
 
     /**

@@ -750,7 +750,7 @@ public final class CommandHelper {
      * @param asyncResultListener The partial result listener
      * @param console The console in which execute the program.
      * <code>null</code> to attach to the default console
-     * @return AsyncResultProgram The command executed in background
+     * @return ExecExecutable The command executed in background
      * @throws FileNotFoundException If the initial directory not exists
      * @throws IOException If initial directory couldn't be checked
      * @throws InvalidCommandDefinitionException If the command has an invalid definition
@@ -785,7 +785,7 @@ public final class CommandHelper {
      * @param asyncResultListener The partial result listener
      * @param console The console in which execute the program.
      * <code>null</code> to attach to the default console
-     * @return AsyncResultProgram The command executed in background
+     * @return FindExecutable The command executed in background
      * @throws FileNotFoundException If the initial directory not exists
      * @throws IOException If initial directory couldn't be checked
      * @throws InvalidCommandDefinitionException If the command has an invalid definition
@@ -821,7 +821,7 @@ public final class CommandHelper {
      * @param asyncResultListener The partial result listener
      * @param console The console in which execute the program.
      * <code>null</code> to attach to the default console
-     * @return AsyncResultProgram The command executed in background
+     * @return FolderUsageExecutable The command executed in background
      * @throws FileNotFoundException If the initial directory not exists
      * @throws IOException If initial directory couldn't be checked
      * @throws InvalidCommandDefinitionException If the command has an invalid definition
@@ -1110,7 +1110,7 @@ public final class CommandHelper {
      * @param asyncResultListener The partial result listener
      * @param console The console in which execute the program.
      * <code>null</code> to attach to the default console
-     * @return AsyncResultProgram The command executed in background
+     * @return ReadExecutable The command executed in background
      * @throws FileNotFoundException If the initial directory not exists
      * @throws IOException If initial directory couldn't be checked
      * @throws InvalidCommandDefinitionException If the command has an invalid definition
@@ -1146,7 +1146,7 @@ public final class CommandHelper {
      * @param asyncResultListener The partial result listener
      * @param console The console in which execute the program.
      * <code>null</code> to attach to the default console
-     * @return AsyncResultProgram The command executed in background
+     * @return WriteExecutable The command executed in background
      * @throws FileNotFoundException If the initial directory not exists
      * @throws IOException If initial directory couldn't be checked
      * @throws InvalidCommandDefinitionException If the command has an invalid definition
@@ -1194,7 +1194,7 @@ public final class CommandHelper {
      * @param asyncResultListener The partial result listener
      * @param console The console in which execute the program.
      * <code>null</code> to attach to the default console
-     * @return AsyncResultProgram The command executed in background
+     * @return CompressExecutable The command executed in background
      * @throws FileNotFoundException If the initial directory not exists
      * @throws IOException If initial directory couldn't be checked
      * @throws InvalidCommandDefinitionException If the command has an invalid definition
@@ -1247,7 +1247,7 @@ public final class CommandHelper {
      * @param asyncResultListener The partial result listener
      * @param console The console in which execute the program.
      * <code>null</code> to attach to the default console
-     * @return AsyncResultProgram The command executed in background
+     * @return CompressExecutable The command executed in background
      * @throws FileNotFoundException If the initial directory not exists
      * @throws IOException If initial directory couldn't be checked
      * @throws InvalidCommandDefinitionException If the command has an invalid definition
@@ -1301,7 +1301,7 @@ public final class CommandHelper {
      * @param asyncResultListener The partial result listener
      * @param console The console in which execute the program.
      * <code>null</code> to attach to the default console
-     * @return AsyncResultProgram The command executed in background
+     * @return UncompressExecutable The command executed in background
      * @throws FileNotFoundException If the initial directory not exists
      * @throws IOException If initial directory couldn't be checked
      * @throws InvalidCommandDefinitionException If the command has an invalid definition

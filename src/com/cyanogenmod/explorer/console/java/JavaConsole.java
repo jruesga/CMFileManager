@@ -51,7 +51,7 @@ public final class JavaConsole extends Console {
     private String mCurrentDir;
 
     private final Context mCtx;
-    private final int mBufferSize;
+    private final int mBufferSize; 
 
     /**
      * Constructor of <code>JavaConsole</code>
@@ -181,7 +181,7 @@ public final class JavaConsole extends Console {
      * {@inheritDoc}
      */
     @Override
-    public void execute(Executable executable) throws ConsoleAllocException,
+    public synchronized void execute(Executable executable) throws ConsoleAllocException,
                                 InsufficientPermissionsException, NoSuchFileOrDirectory,
                                 OperationTimeoutException, ExecutionException,
                                 CommandNotFoundException, ReadOnlyFilesystemException {
@@ -202,10 +202,30 @@ public final class JavaConsole extends Console {
         }
 
         // Execute the program
-        Program program = (Program)executable;
+        final Program program = (Program)executable;
         program.setTrace(isTrace());
         program.setBufferSize(this.mBufferSize);
-        program.execute();
+        if (program.isAsynchronous()) {
+            // Execute in a thread
+            Thread t = new Thread() {
+                @Override
+                public void run() {
+                    try {
+                        program.execute();
+                    } catch (Exception e) {
+                        // Program must use onException to communicate exceptions
+                        Log.v(TAG,
+                                String.format("Async execute failed program: %s", //$NON-NLS-1$
+                                program.getClass().toString()));
+                    }
+                }
+            };
+            t.start();
+
+        } else {
+            // Synchronous execution
+            program.execute();
+        }
     }
 
     /**

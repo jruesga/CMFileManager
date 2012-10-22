@@ -92,7 +92,7 @@ public class JavaExecutableCreator implements ExecutableCreator {
     @Override
     public ChangeOwnerExecutable createChangeOwnerExecutable(
             String fso, User newUser, Group newGroup) throws CommandNotFoundException {
-        return new ChangeOwnerCommand(fso, newUser, newGroup);
+        throw new CommandNotFoundException("Not implemented"); //$NON-NLS-1$
     }
 
     /**
@@ -101,7 +101,7 @@ public class JavaExecutableCreator implements ExecutableCreator {
     @Override
     public ChangePermissionsExecutable createChangePermissionsExecutable(
             String fso, Permissions newPermissions) throws CommandNotFoundException {
-        return new ChangePermissionsCommand(fso, newPermissions);
+        throw new CommandNotFoundException("Not implemented"); //$NON-NLS-1$
     }
 
     /**
@@ -200,12 +200,7 @@ public class JavaExecutableCreator implements ExecutableCreator {
     public FindExecutable createFindExecutable(
             String directory, Query query, AsyncResultListener asyncResultListener)
             throws CommandNotFoundException {
-//        try {
-//            return new FindCommand(directory, query, asyncResultListener);
-//        } catch (InvalidCommandDefinitionException icdEx) {
-//            throw new CommandNotFoundException("FindCommand", icdEx); //$NON-NLS-1$
-//        }
-        throw new CommandNotFoundException("Not implemented"); //$NON-NLS-1$
+        return new FindCommand(this.mConsole.getCtx(), directory, query, asyncResultListener);
     }
 
     /**
@@ -215,12 +210,7 @@ public class JavaExecutableCreator implements ExecutableCreator {
     public FolderUsageExecutable createFolderUsageExecutable(
             String directory, AsyncResultListener asyncResultListener)
             throws CommandNotFoundException {
-//        try {
-//            return new FolderUsageCommand(directory, asyncResultListener);
-//        } catch (InvalidCommandDefinitionException icdEx) {
-//            throw new CommandNotFoundException("FolderUsageCommand", icdEx); //$NON-NLS-1$
-//        }
-        return null;
+        return new FolderUsageCommand(directory, asyncResultListener);
     }
 
     /**
@@ -255,7 +245,7 @@ public class JavaExecutableCreator implements ExecutableCreator {
     @Override
     public ListExecutable createListExecutable(String src)
             throws CommandNotFoundException {
-        return new ListCommand(src, LIST_MODE.DIRECTORY);
+        return new ListCommand(this.mConsole.getCtx(), src, LIST_MODE.DIRECTORY);
     }
 
     /**
@@ -264,7 +254,7 @@ public class JavaExecutableCreator implements ExecutableCreator {
     @Override
     public ListExecutable createFileInfoExecutable(String src, boolean followSymlinks)
             throws CommandNotFoundException {
-        return new ListCommand(src, LIST_MODE.FILEINFO);
+        return new ListCommand(this.mConsole.getCtx(), src, LIST_MODE.FILEINFO);
     }
 
     /**
@@ -356,7 +346,7 @@ public class JavaExecutableCreator implements ExecutableCreator {
     @Override
     public ResolveLinkExecutable createResolveLinkExecutable(String fso)
             throws CommandNotFoundException {
-        return new ResolveLinkCommand(fso);
+        return new ResolveLinkCommand(this.mConsole.getCtx(), fso);
     }
 
     /**

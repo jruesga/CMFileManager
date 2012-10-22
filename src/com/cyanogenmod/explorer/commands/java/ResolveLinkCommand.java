@@ -16,6 +16,7 @@
 
 package com.cyanogenmod.explorer.commands.java;
 
+import android.content.Context;
 import android.util.Log;
 
 import com.cyanogenmod.explorer.commands.ListExecutable.LIST_MODE;
@@ -36,16 +37,19 @@ public class ResolveLinkCommand extends Program implements ResolveLinkExecutable
 
     private static final String TAG = "ResolveLinkCommand"; //$NON-NLS-1$
 
+    private final Context mCtx;
     private final String mSrc;
     private FileSystemObject mFso;
 
     /**
      * Constructor of <code>ResolveLinkCommand</code>.
      *
+     * @param ctx The current context
      * @param src The file system object to read
      */
-    public ResolveLinkCommand(String src) {
+    public ResolveLinkCommand(Context ctx, String src) {
         super();
+        this.mCtx = ctx;
         this.mSrc = src;
     }
 
@@ -78,7 +82,7 @@ public class ResolveLinkCommand extends Program implements ResolveLinkExecutable
         }
         try {
             String absPath = f.getCanonicalPath();
-            ListCommand cmd = new ListCommand(absPath, LIST_MODE.FILEINFO);
+            ListCommand cmd = new ListCommand(this.mCtx, absPath, LIST_MODE.FILEINFO);
             cmd.execute();
             this.mFso = cmd.getSingleResult();
         } catch (Exception e) {

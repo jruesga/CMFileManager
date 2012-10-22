@@ -155,7 +155,7 @@ public class CopyCommand extends Program implements CopyExecutable {
         BufferedOutputStream bos = null;
         try {
             bis = new BufferedInputStream(new FileInputStream(src), getBufferSize());
-            bos = new BufferedOutputStream(new FileOutputStream(src), getBufferSize());
+            bos = new BufferedOutputStream(new FileOutputStream(dst), getBufferSize());
             int read = 0;
             byte[] data = new byte[getBufferSize()];
             while ((read = bis.read(data, 0, getBufferSize())) != -1) {

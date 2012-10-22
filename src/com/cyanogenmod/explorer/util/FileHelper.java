@@ -19,19 +19,25 @@ package com.cyanogenmod.explorer.util;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
+import android.util.Log;
 
 import com.cyanogenmod.explorer.ExplorerApplication;
 import com.cyanogenmod.explorer.R;
 import com.cyanogenmod.explorer.commands.shell.ResolveLinkCommand;
+import com.cyanogenmod.explorer.model.AID;
 import com.cyanogenmod.explorer.model.BlockDevice;
 import com.cyanogenmod.explorer.model.CharacterDevice;
 import com.cyanogenmod.explorer.model.Directory;
 import com.cyanogenmod.explorer.model.DomainSocket;
 import com.cyanogenmod.explorer.model.FileSystemObject;
+import com.cyanogenmod.explorer.model.Group;
 import com.cyanogenmod.explorer.model.NamedPipe;
 import com.cyanogenmod.explorer.model.ParentDirectory;
+import com.cyanogenmod.explorer.model.Permissions;
+import com.cyanogenmod.explorer.model.RegularFile;
 import com.cyanogenmod.explorer.model.Symlink;
 import com.cyanogenmod.explorer.model.SystemFile;
+import com.cyanogenmod.explorer.model.User;
 import com.cyanogenmod.explorer.preferences.ExplorerSettings;
 import com.cyanogenmod.explorer.preferences.NavigationSortMode;
 import com.cyanogenmod.explorer.preferences.ObjectIdentifier;
@@ -41,12 +47,15 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.Date;
 import java.util.List;
 
 /**
  * A helper class with useful methods for deal with files.
  */
 public final class FileHelper {
+
+    private static final String TAG = "FileHelper"; //$NON-NLS-1$
 
     /**
      * Special extension for compressed tar files
@@ -778,5 +787,53 @@ public final class FileHelper {
         } while (!s1.startsWith(s2) && !s1.startsWith(new File(s2).getAbsolutePath()));
         s2 = new File(s2).getAbsolutePath();
         return relative.toString() + s1.substring(s2.length());
+    }
+
+    /**
+     * Method that creates a {@link FileSystemObject} from a {@link File}
+     *
+     * @param ctx The current context
+     * @param file The file or folder reference
+     * @return FileSystemObject The file system object reference
+     */
+    public static FileSystemObject createFileSystemObject(Context ctx, File file) {
+        try {
+            // The user and group name of the files. In ChRoot, aosp give restrict access to
+            // this user and group.
+            final String USER = "system"; //$NON-NLS-1$
+            final String GROUP = "sdcard_r"; //$NON-NLS-1$
+            final String PERMISSIONS = "----rwxr-x"; //$NON-NLS-1$
+
+            // The user and group name of the files. In ChRoot, aosp give restrict access to
+            // this user and group. This applies for permission also. This has no really much
+            // interest if we not allow to change the permissions
+            AID userAID = AIDHelper.getAIDFromName(ctx, USER);
+            AID groupAID = AIDHelper.getAIDFromName(ctx, GROUP);
+            User user = new User(userAID.getId(), userAID.getName());
+            Group group = new Group(groupAID.getId(), groupAID.getName());
+            Permissions perm = Permissions.fromRawString(PERMISSIONS);
+    
+            // Build a directory?
+            if (file.isDirectory()) {
+                return
+                    new Directory(
+                            file.getName(),
+                            file.getParent(),
+                            user, group, perm,
+                            new Date(file.lastModified()));
+            }
+    
+            // Build a regular file
+            return
+                new RegularFile(
+                        file.getName(),
+                        file.getParent(),
+                        user, group, perm,
+                        new Date(file.lastModified()),
+                        file.length());
+        } catch (Exception e) {
+            Log.e(TAG, "Exception retrieving the fso", e); //$NON-NLS-1$
+        }
+        return null;
     }
 }

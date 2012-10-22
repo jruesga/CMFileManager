@@ -30,6 +30,7 @@ import com.cyanogenmod.explorer.model.NamedPipe;
 import com.cyanogenmod.explorer.model.Symlink;
 import com.cyanogenmod.explorer.model.SystemFile;
 
+import java.io.File;
 import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Map;
@@ -262,6 +263,43 @@ public final class MimeTypeHelper {
             }
         }
         return res.getString(R.string.mime_unknown);
+    }
+    
+    /**
+     * Method that returns the mime/type category of the file.
+     *
+     * @param context The current context
+     * @param file The file
+     * @return MimeTypeCategory The mime/type category
+     */
+    public static final MimeTypeCategory getCategory(Context context, File file) {
+        // Ensure that have a context
+        if (context == null && sMimeTypes == null) {
+            // No category
+            return MimeTypeCategory.NONE;
+        }
+        //Ensure that mime types are loaded
+        if (sMimeTypes == null) {
+            loadMimeTypes(context);
+        }
+
+        // Directory and Symlinks no computes as category
+        if (file.isDirectory()) {
+            return MimeTypeCategory.NONE;
+        }
+
+        //Get the extension and delivery
+        String ext = FileHelper.getExtension(file.getName());
+        if (ext != null) {
+            //Load from the database of mime types
+            MimeTypeInfo mimeTypeInfo = sMimeTypes.get(ext);
+            if (mimeTypeInfo != null) {
+                return mimeTypeInfo.mCategory;
+            }
+        }
+
+        // No category
+        return MimeTypeCategory.NONE;
     }
 
     /**

@@ -88,4 +88,23 @@ public final class AIDHelper {
         return aids;
     }
 
+    /**
+     * Method that return AID from his user identifier
+     * 
+     * @param ctx The current context
+     * @param name The user identifier
+     * @return AID The AID
+     */
+    public static AID getAIDFromName(Context ctx, String name) {
+        SparseArray<AID> aids = getAIDs(ctx);
+        int len = aids.size();
+        for (int i = 0; i < len; i++) {
+            AID aid = aids.valueAt(i);
+            if (aid.getName().compareTo(name) == 0) {
+                return aid;
+            }
+        }
+        return null;
+    }
+
 }

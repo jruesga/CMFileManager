@@ -242,7 +242,7 @@ public class FindCommand extends AsyncResultProgram implements FindExecutable {
         args[0] = directory;
         int cc = query.getSlotsCount();
         for (int i = 0; i < cc; i++) {
-            args[i + 1] = SearchHelper.toIgnoreCaseRegExp(query.getSlot(i));
+            args[i + 1] = SearchHelper.toIgnoreCaseRegExp(query.getSlot(i), false);
         }
         return args;
     }

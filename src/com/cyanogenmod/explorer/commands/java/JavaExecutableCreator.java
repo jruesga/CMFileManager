@@ -317,12 +317,7 @@ public class JavaExecutableCreator implements ExecutableCreator {
     @Override
     public QuickFolderSearchExecutable createQuickFolderSearchExecutable(String regexp)
             throws CommandNotFoundException {
-//        try {
-//            return new QuickFolderSearchCommand(regexp);
-//        } catch (InvalidCommandDefinitionException icdEx) {
-//            throw new CommandNotFoundException("QuickFolderSearchCommand", icdEx); //$NON-NLS-1$
-//        }
-        return null;
+        throw new CommandNotFoundException("Not implemented"); //$NON-NLS-1$
     }
 
     /**
@@ -332,12 +327,7 @@ public class JavaExecutableCreator implements ExecutableCreator {
     public ReadExecutable createReadExecutable(
             String file, AsyncResultListener asyncResultListener)
             throws CommandNotFoundException {
-//        try {
-//            return new ReadCommand(file, asyncResultListener);
-//        } catch (InvalidCommandDefinitionException icdEx) {
-//            throw new CommandNotFoundException("ReadCommand", icdEx); //$NON-NLS-1$
-//        }
-        return null;
+        return new ReadCommand(file, asyncResultListener);
     }
 
     /**
@@ -374,12 +364,7 @@ public class JavaExecutableCreator implements ExecutableCreator {
     public WriteExecutable createWriteExecutable(
             String file, AsyncResultListener asyncResultListener)
             throws CommandNotFoundException {
-//        try {
-//            return new WriteCommand(file, asyncResultListener);
-//        } catch (InvalidCommandDefinitionException icdEx) {
-//            throw new CommandNotFoundException("WriteCommand", icdEx); //$NON-NLS-1$
-//        }
-        return null;
+        return new WriteCommand(file, asyncResultListener);
     }
 
     /**
@@ -390,12 +375,7 @@ public class JavaExecutableCreator implements ExecutableCreator {
             CompressionMode mode, String dst, String[] src,
             AsyncResultListener asyncResultListener)
             throws CommandNotFoundException {
-//        try {
-//            return new CompressCommand(mode, dst, src, asyncResultListener);
-//        } catch (InvalidCommandDefinitionException icdEx) {
-//            throw new CommandNotFoundException("CompressCommand", icdEx); //$NON-NLS-1$
-//        }
-        return null;
+        throw new CommandNotFoundException("Not implemented"); //$NON-NLS-1$
     }
 
     /**
@@ -406,12 +386,7 @@ public class JavaExecutableCreator implements ExecutableCreator {
             CompressionMode mode, String src,
             AsyncResultListener asyncResultListener)
             throws CommandNotFoundException {
-//        try {
-//            return new CompressCommand(mode, src, asyncResultListener);
-//        } catch (InvalidCommandDefinitionException icdEx) {
-//            throw new CommandNotFoundException("CompressCommand", icdEx); //$NON-NLS-1$
-//        }
-        return null;
+        throw new CommandNotFoundException("Not implemented"); //$NON-NLS-1$
     }
 
     /**
@@ -422,12 +397,7 @@ public class JavaExecutableCreator implements ExecutableCreator {
             String src, String dst,
             AsyncResultListener asyncResultListener)
             throws CommandNotFoundException {
-//        try {
-//            return new UncompressCommand(src, dst, asyncResultListener);
-//        } catch (InvalidCommandDefinitionException icdEx) {
-//            throw new CommandNotFoundException("UncompressCommand", icdEx); //$NON-NLS-1$
-//        }
-        return null;
+        throw new CommandNotFoundException("Not implemented"); //$NON-NLS-1$
     }
 
 }

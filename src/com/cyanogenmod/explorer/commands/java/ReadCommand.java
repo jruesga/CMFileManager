@@ -16,32 +16,26 @@
 
 package com.cyanogenmod.explorer.commands.java;
 
-import android.content.Context;
 import android.util.Log;
 
 import com.cyanogenmod.explorer.commands.AsyncResultListener;
-import com.cyanogenmod.explorer.commands.FindExecutable;
+import com.cyanogenmod.explorer.commands.ReadExecutable;
 import com.cyanogenmod.explorer.console.ExecutionException;
 import com.cyanogenmod.explorer.console.InsufficientPermissionsException;
 import com.cyanogenmod.explorer.console.NoSuchFileOrDirectory;
-import com.cyanogenmod.explorer.model.FileSystemObject;
-import com.cyanogenmod.explorer.model.Query;
-import com.cyanogenmod.explorer.util.FileHelper;
-import com.cyanogenmod.explorer.util.SearchHelper;
 
+import java.io.BufferedReader;
 import java.io.File;
-import java.util.Arrays;
+import java.io.FileReader;
 
 /**
- * A class for search files.
+ * A class for read a file.
  */
-public class FindCommand extends Program implements FindExecutable {
+public class ReadCommand extends Program implements ReadExecutable {
 
-    private static final String TAG = "FindCommand"; //$NON-NLS-1$
+    private static final String TAG = "ReadCommand"; //$NON-NLS-1$
 
-    private final Context mCtx;
-    private final String mDirectory;
-    private final String[] mQueryRegExp;
+    private final String mFile;
     private final AsyncResultListener mAsyncResultListener;
 
     private boolean mCancelled;
@@ -49,19 +43,15 @@ public class FindCommand extends Program implements FindExecutable {
     private final Object mSync = new Object();
 
     /**
-     * Constructor of <code>FindCommand</code>.
+     * Constructor of <code>ExecCommand</code>.
      *
-     * @param ctx The current context
-     * @param directory The absolute directory where start the search
-     * @param query The terms to be searched
+     * @param file The file to read
      * @param asyncResultListener The partial result listener
      */
-    public FindCommand(
-            Context ctx, String directory, Query query, AsyncResultListener asyncResultListener) {
+    public ReadCommand(
+            String file, AsyncResultListener asyncResultListener) {
         super();
-        this.mCtx = ctx;
-        this.mDirectory = directory;
-        this.mQueryRegExp = createRegexp(directory, query);
+        this.mFile = file;
         this.mAsyncResultListener = asyncResultListener;
         this.mCancelled = false;
         this.mEnded = false;
@@ -83,34 +73,34 @@ public class FindCommand extends Program implements FindExecutable {
             throws InsufficientPermissionsException, NoSuchFileOrDirectory, ExecutionException {
         if (isTrace()) {
             Log.v(TAG,
-                    String.format("Finding in %s the query %s", //$NON-NLS-1$
-                            this.mDirectory, Arrays.toString(this.mQueryRegExp)));
+                    String.format("Reading file %s", this.mFile)); //$NON-NLS-1$
+                            
         }
         if (this.mAsyncResultListener != null) {
             this.mAsyncResultListener.onAsyncStart();
         }
 
-        File f = new File(this.mDirectory);
+        File f = new File(this.mFile);
         if (!f.exists()) {
             if (isTrace()) {
                 Log.v(TAG, "Result: FAIL. NoSuchFileOrDirectory"); //$NON-NLS-1$
             }
             if (this.mAsyncResultListener != null) {
-                this.mAsyncResultListener.onException(new NoSuchFileOrDirectory(this.mDirectory));
+                this.mAsyncResultListener.onException(new NoSuchFileOrDirectory(this.mFile));
             } 
         }
-        if (!f.isDirectory()) {
+        if (!f.isFile()) {
             if (isTrace()) {
                 Log.v(TAG, "Result: FAIL. NoSuchFileOrDirectory"); //$NON-NLS-1$
             }
             if (this.mAsyncResultListener != null) {
                 this.mAsyncResultListener.onException(
-                        new ExecutionException("path exists but it's not a folder")); //$NON-NLS-1$
+                        new ExecutionException("path exists but it's not a file")); //$NON-NLS-1$
             } 
         }
 
-        // Find the data
-        findRecursive(f);
+        // Read the file
+        read(f);
 
         if (this.mAsyncResultListener != null) {
             this.mAsyncResultListener.onAsyncEnd(this.mCancelled);
@@ -125,49 +115,49 @@ public class FindCommand extends Program implements FindExecutable {
     }
 
     /**
-     * Method that search files recursively
-     *
-     * @param folder The folder where to start the search
+     * Method that read the file
+     * 
+     * @param file The file to read
      */
-    private void findRecursive(File folder) {
-        // Obtains the files and folders of the folders
-        File[] files = folder.listFiles();
-        if (files != null) {
-            int cc = files.length;
-            for (int i = 0; i < cc; i++) {
-                if (files[i].isDirectory()) {
-                    findRecursive(files[i]);
-                }
+    private void read(File file) {
+        // Read the file
+        BufferedReader br = null;
+        try {
+            br = new BufferedReader(new FileReader(file), getBufferSize());
+            int read = 0;
+            char[] data = new char[getBufferSize()];
+            while ((read = br.read(data, 0, getBufferSize())) != -1) {
+                if (this.mAsyncResultListener != null) {
+                    byte[] readData = new byte[read];
+                    System.arraycopy(data, 0, readData, 0, read);
+                    this.mAsyncResultListener.onPartialResult(readData);
 
-                // Check if the file or folder matches the regexp
-                try {
-                    int ccc = this.mQueryRegExp.length;
-                    for (int j = 0; j < ccc; j++) {
-                        if (files[i].getName().matches(this.mQueryRegExp[j])) {
-                            FileSystemObject fso =
-                                    FileHelper.createFileSystemObject(this.mCtx, files[i]);
-                            if (fso != null) {
-                                if (isTrace()) {
-                                    Log.v(TAG, String.valueOf(fso));
-                                }
-                                if (this.mAsyncResultListener != null) {
-                                    this.mAsyncResultListener.onPartialResult(fso);
-                                }
+                    // Check if the process was cancelled
+                    try {
+                        synchronized (this.mSync) {
+                            if (this.mCancelled  || this.mEnded) {
+                                this.mSync.notify();
+                                break;
                             }
                         }
-                    }
-                } catch (Exception e) {/**NON-BLOCK**/}
-
-                // Check if the process was cancelled
-                try {
-                    synchronized (this.mSync) {
-                        if (this.mCancelled  || this.mEnded) {
-                            this.mSync.notify();
-                            break;
-                        }
-                    }
-                } catch (Exception e) {/**NON BLOCK**/}
+                    } catch (Exception e) {/**NON BLOCK**/}
+                }
             }
+
+        } catch (Exception e) {
+            if (isTrace()) {
+                Log.v(TAG, "Result: FAIL. InsufficientPermissionsException"); //$NON-NLS-1$
+            }
+            if (this.mAsyncResultListener != null) {
+                this.mAsyncResultListener.onException(new InsufficientPermissionsException());
+            } 
+
+        } finally {
+            try {
+                if (br != null) {
+                    br.close();
+                }
+            } catch (Throwable _throw) {/**NON BLOCK**/}
         }
     }
 
@@ -239,22 +229,5 @@ public class FindCommand extends Program implements FindExecutable {
     @Override
     public AsyncResultListener getAsyncResultListener() {
         return this.mAsyncResultListener;
-    }
-
-    /**
-     * Method that create the regexp of this command, using the directory and
-     * arguments and creating the regular expressions of the search.
-     *
-     * @param directory The directory where to search
-     * @param query The query make for user
-     * @return String[] The regexp for filtering files
-     */
-    private static String[] createRegexp(String directory, Query query) {
-        String[] args = new String[query.getSlotsCount()];
-        int cc = query.getSlotsCount();
-        for (int i = 0; i < cc; i++) {
-            args[i] = SearchHelper.toIgnoreCaseRegExp(query.getSlot(i), true);
-        }
-        return args;
     }
 }

@@ -132,7 +132,8 @@ public class FolderUsageCommand extends Program implements FolderUsageExecutable
 
     /**
      * Method that computes the folder usage recursively
-     * @param folder
+     * 
+     * @param folder The folder where to start the computation
      */
     private void computeRecursive(File folder) {
         // Obtains the files and folders of the folders

@@ -642,7 +642,15 @@ public class ActionsDialog implements OnItemClickListener, OnItemLongClickListen
             menu.removeItem(R.id.mnu_actions_create_link);
             menu.removeItem(R.id.mnu_actions_create_link_global);
             menu.removeItem(R.id.mnu_actions_execute);
-            menu.removeItem(R.id.mnu_actions_execute);
+
+            // NOTE: This actions are not implemented in chrooted environments. The reason is
+            // that the main target of this application is CyanogenMod (a rooted environment).
+            // Adding this actions requires the use of commons-compress, an external Apache
+            // library that will add more size to the ending apk.
+            // For now, will maintain without implementation. Maybe, in the future.
+            menu.removeItem(R.id.mnu_actions_compress);
+            menu.removeItem(R.id.mnu_actions_compress_selection);
+            menu.removeItem(R.id.mnu_actions_extract);
         }
     }
 

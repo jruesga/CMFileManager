@@ -23,6 +23,7 @@ import android.widget.Toast;
 import com.cyanogenmod.explorer.ExplorerApplication;
 import com.cyanogenmod.explorer.R;
 import com.cyanogenmod.explorer.commands.shell.InvalidCommandDefinitionException;
+import com.cyanogenmod.explorer.console.java.JavaConsole;
 import com.cyanogenmod.explorer.console.shell.NonPriviledgeConsole;
 import com.cyanogenmod.explorer.console.shell.PrivilegedConsole;
 import com.cyanogenmod.explorer.preferences.ExplorerSettings;
@@ -275,8 +276,19 @@ public final class ConsoleBuilder {
     public static Console createNonPrivilegedConsole(Context context, String initialDirectory)
             throws FileNotFoundException, IOException,
             InvalidCommandDefinitionException, ConsoleAllocException {
-        NonPriviledgeConsole console = new NonPriviledgeConsole(initialDirectory);
-        console.setBufferSize(context.getResources().getInteger(R.integer.buffer_size));
+
+        int bufferSize = context.getResources().getInteger(R.integer.buffer_size);
+
+        // Is rooted? Then create a shell console
+        if (ExplorerApplication.isDeviceRooted()) {
+            NonPriviledgeConsole console = new NonPriviledgeConsole(initialDirectory);
+            console.setBufferSize(bufferSize);
+            console.alloc();
+            return console;
+        }
+
+        // No rooted. Then create a java console
+        JavaConsole console = new JavaConsole(context, initialDirectory, bufferSize);
         console.alloc();
         return console;
     }

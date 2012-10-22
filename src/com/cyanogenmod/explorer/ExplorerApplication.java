@@ -38,6 +38,8 @@ import com.cyanogenmod.explorer.util.FileHelper;
 import com.cyanogenmod.explorer.util.MimeTypeHelper;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.util.Properties;
 
 /**
  * A class that wraps the information of the application (constants,
@@ -49,6 +51,7 @@ public final class ExplorerApplication extends Application {
     private static final String TAG = "ExplorerApplication"; //$NON-NLS-1$
 
     private static boolean DEBUG = false;
+    private static Properties sSystemProperties;
 
     /**
      * A constant that contains the main process name.
@@ -178,11 +181,17 @@ public final class ExplorerApplication extends Application {
         //Save the static application reference
         sApp = this;
 
+        // Read the system properties
+        sSystemProperties = new Properties();
+        readSystemProperties();
+
         // Check if the application is debuggable
         sIsDebuggable = (0 != (getApplicationInfo().flags &= ApplicationInfo.FLAG_DEBUGGABLE));
-        
+
         // Check if the device is rooted
-        sIsDeviceRooted = new File(getString(R.string.su_binary)).exists();
+        sIsDeviceRooted =
+                new File(getString(R.string.su_binary)).exists() &&
+                getSystemProperty("ro.cm.version") != null; //$NON-NLS-1$
 
         // Register the broadcast receiver
         IntentFilter filter = new IntentFilter();
@@ -235,6 +244,16 @@ public final class ExplorerApplication extends Application {
      */
     public static boolean isDeviceRooted() {
         return sIsDeviceRooted;
+    }
+
+    /**
+     * Method that returns a system property value
+     *
+     * @param property The system property key
+     * @return String The system property value
+     */
+    public static String getSystemProperty(String property) {
+        return sSystemProperties.getProperty(property);
     }
 
     /**
@@ -379,6 +398,22 @@ public final class ExplorerApplication extends Application {
                             getDefaultValue()).booleanValue();
         String id = ExplorerSettings.SETTINGS_ADVANCE_MODE.getId();
         return Preferences.getSharedPreferences().getBoolean(id, defaultValue);
+    }
+
+    /**
+     * Method that reads the system properties
+     */
+    private static void readSystemProperties() {
+        try {
+            String propsFile =
+                    getInstance().getApplicationContext().getString(R.string.system_props_file);
+            Properties props = new Properties();
+            props.load(new FileInputStream(new File(propsFile)));
+            sSystemProperties = props;
+        } catch (Throwable e) {
+            Log.e(TAG,
+                    "Failed to read system properties.", e); //$NON-NLS-1$
+        }
     }
 
 }

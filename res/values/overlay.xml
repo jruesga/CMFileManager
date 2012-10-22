@@ -30,9 +30,12 @@
 
   <!-- The su binary -->
   <string name="su_binary" translatable="false">/system/xbin/su</string>
-  
+
   <!-- The mounts file -->
   <string name="mounts_file" translatable="false">/proc/mounts</string>
+
+  <!-- The system properties -->
+  <string name="system_props_file" translatable="false">/system/build.prop</string>
 
   <!-- The size of the buffers use by the console (in bytes). Default: 4k -->
   <integer name="buffer_size">4096</integer>

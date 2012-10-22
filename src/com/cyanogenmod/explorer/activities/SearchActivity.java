@@ -45,6 +45,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.cyanogenmod.explorer.ExplorerApplication;
 import com.cyanogenmod.explorer.R;
 import com.cyanogenmod.explorer.activities.preferences.SettingsPreferences;
 import com.cyanogenmod.explorer.activities.preferences.SettingsPreferences.SearchPreferenceFragment;
@@ -75,6 +76,7 @@ import com.cyanogenmod.explorer.util.CommandHelper;
 import com.cyanogenmod.explorer.util.DialogHelper;
 import com.cyanogenmod.explorer.util.ExceptionUtil;
 import com.cyanogenmod.explorer.util.FileHelper;
+import com.cyanogenmod.explorer.util.StorageHelper;
 
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
@@ -209,6 +211,11 @@ public class SearchActivity extends Activity
 
     private SearchResultDrawingAsyncTask mDrawingSearchResultTask;
 
+    /**
+     * @hide
+     */
+    boolean mChRooted;
+
 
     /**
      * {@inheritDoc}
@@ -218,6 +225,9 @@ public class SearchActivity extends Activity
         if (DEBUG) {
             Log.d(TAG, "NavigationActivity.onCreate"); //$NON-NLS-1$
         }
+
+        // Check if app is running in chrooted mode
+        this.mChRooted = !ExplorerApplication.isAdvancedMode();
 
         // Default long-click action
         String defaultValue = ((ObjectStringIdentifier)ExplorerSettings.
@@ -741,6 +751,12 @@ public class SearchActivity extends Activity
             this.mSearchFoundItems.post(new Runnable() {
                 @Override
                 public void run() {
+                    String directory = searchDirectory;
+                    if (SearchActivity.this.mChRooted &&
+                            directory != null && directory.length() > 0) {
+                        directory = StorageHelper.getChrootedPath(directory);
+                    }
+
                     String foundItems =
                             getResources().
                                 getQuantityString(
@@ -749,7 +765,7 @@ public class SearchActivity extends Activity
                                             getString(
                                                 R.string.search_found_items_in_directory,
                                                 foundItems,
-                                                searchDirectory));
+                                                directory));
                 }
             });
         }
@@ -1057,7 +1073,11 @@ public class SearchActivity extends Activity
     @SuppressWarnings("unchecked")
     public void onPartialResult(final Object partialResults) {
         //Saved in the global result list, for save at the end
-        SearchActivity.this.mResultList.addAll((List<FileSystemObject>)partialResults);
+        if (partialResults instanceof FileSystemObject) {
+            SearchActivity.this.mResultList.add((FileSystemObject)partialResults);
+        } else {
+            SearchActivity.this.mResultList.addAll((List<FileSystemObject>)partialResults);
+        }
 
         //Notify progress
         this.mSearchListView.post(new Runnable() {

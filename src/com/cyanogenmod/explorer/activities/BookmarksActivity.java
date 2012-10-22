@@ -415,7 +415,7 @@ public class BookmarksActivity extends Activity implements OnItemClickListener, 
         if (cursor != null && cursor.moveToFirst()) {
             do {
                 Bookmark bm = new Bookmark(cursor);
-                if (this.mChRooted && StorageHelper.isPathInStorageVolume(bm.mPath)) {
+                if (this.mChRooted && !StorageHelper.isPathInStorageVolume(bm.mPath)) {
                     continue;
                 }
                 bookmarks.add(bm);

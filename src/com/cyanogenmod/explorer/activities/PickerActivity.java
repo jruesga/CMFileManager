@@ -22,6 +22,7 @@ import android.content.DialogInterface;
 import android.content.DialogInterface.OnCancelListener;
 import android.content.DialogInterface.OnDismissListener;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
@@ -83,6 +84,9 @@ public class PickerActivity extends Activity
         if (DEBUG) {
             Log.d(TAG, "PickerActivity.onCreate"); //$NON-NLS-1$
         }
+
+        //Request features
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         // Initialize the activity
         init();

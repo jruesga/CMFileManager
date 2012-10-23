@@ -23,7 +23,6 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
-import android.content.res.Configuration;
 import android.util.Log;
 
 import com.cyanogenmod.explorer.console.Console;
@@ -131,18 +130,6 @@ public final class ExplorerApplication extends Application {
     public void onCreate() {
         if (DEBUG) {
             Log.d(TAG, "ExplorerApplication.onCreate"); //$NON-NLS-1$
-        }
-        register();
-        init();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public void onConfigurationChanged(Configuration newConfig) {
-        if (DEBUG) {
-            Log.d(TAG, "ExplorerApplication.onConfigurationChanged"); //$NON-NLS-1$
         }
         register();
         init();

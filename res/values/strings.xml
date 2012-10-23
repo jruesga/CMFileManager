@@ -494,6 +494,8 @@
   <string name="actions_menu_properties">Properties</string>
   <!-- Actions Dialog * Menu * Add to bookmarks -->
   <string name="actions_menu_add_to_bookmarks">Add to bookmarks</string>
+  <!-- Actions Dialog * Menu * Add shortcut -->
+  <string name="actions_menu_add_shortcut">Add shortcut</string>
   <!-- Actions Dialog * Menu * Open parent folder -->
   <string name="actions_menu_open_parent_folder">Open parent</string>
 
@@ -591,6 +593,13 @@
   <string name="compression_mode_tar_bzip" translatable="false">Tar/Bzip (tar.bz2)</string>
   <string name="compression_mode_gzip" translatable="false">Gzip (gz)</string>
   <string name="compression_mode_bzip" translatable="false">Bzip (bz2)</string>
+
+  <!-- Shortcut. Failed to handle the shortcut -->
+  <string name="shortcut_failed_msg">Failed to handle the shortcut</string>
+  <!-- Shortcut. The shortcut was created -->
+  <string name="shortcut_creation_success_msg">Shortcut created sucessfully</string>
+  <!-- Shortcut. The shortcut wasn't created -->
+  <string name="shortcut_creation_failed_msg">Shortcut creation failed</string>
 
   <!-- Preferences title -->
   <string name="pref">Settings</string>

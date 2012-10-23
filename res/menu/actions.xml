@@ -66,6 +66,10 @@
       android:id="@+id/mnu_actions_add_to_bookmarks_current_folder"
       android:showAsAction="ifRoom"
       android:title="@string/actions_menu_add_to_bookmarks"/>
+    <item
+      android:id="@+id/mnu_actions_add_shortcut_current_folder"
+      android:showAsAction="ifRoom"
+      android:title="@string/actions_menu_add_shortcut"/>
   </group>
 
   <!-- FileSystemObject Actions -->
@@ -126,6 +130,10 @@
       android:id="@+id/mnu_actions_add_to_bookmarks"
       android:showAsAction="ifRoom"
       android:title="@string/actions_menu_add_to_bookmarks"/>
+    <item
+      android:id="@+id/mnu_actions_add_shortcut"
+      android:showAsAction="ifRoom"
+      android:title="@string/actions_menu_add_shortcut"/>
     <item
       android:id="@+id/mnu_actions_open_parent_folder"
       android:showAsAction="ifRoom"

@@ -893,7 +893,7 @@ public class NavigationView extends RelativeLayout implements
         // Open with
         else if (this.mDefaultLongClickAction.compareTo(
                 DefaultLongClickAction.OPEN_WITH) == 0) {
-            IntentsActionPolicy.openFileSystemObject(getContext(), fso, true);
+            IntentsActionPolicy.openFileSystemObject(getContext(), fso, true, null, null);
         }
 
         // Show properties
@@ -932,7 +932,7 @@ public class NavigationView extends RelativeLayout implements
             changeCurrentDir(fso.getFullPath(), searchInfo);
         } else {
             // Open the file with the preferred registered app
-            IntentsActionPolicy.openFileSystemObject(getContext(), fso, false);
+            IntentsActionPolicy.openFileSystemObject(getContext(), fso, false, null, null);
         }
     }
 
@@ -956,7 +956,7 @@ public class NavigationView extends RelativeLayout implements
             } else {
                 if (this.mNavigationMode.compareTo(NAVIGATION_MODE.BROWSABLE) == 0) {
                     // Open the file with the preferred registered app
-                    IntentsActionPolicy.openFileSystemObject(getContext(), fso, false);
+                    IntentsActionPolicy.openFileSystemObject(getContext(), fso, false, null, null);
                 } else {
                     // Request a file pick selection
                     if (this.mOnFilePickedListener != null) {

@@ -155,6 +155,12 @@ public class NavigationActivity extends Activity
     public static final String EXTRA_SEARCH_LAST_SEARCH_DATA =
             "extra_search_last_search_data"; //$NON-NLS-1$
 
+    /**
+     * Constant for extra information for request a navigation to the passed path.
+     */
+    public static final String EXTRA_NAVIGATE_TO =
+            "extra_navigate_to"; //$NON-NLS-1$
+
     // The timeout needed to reset the exit status for back button
     // After this time user need to tap 2 times the back button to
     // exit, and the toast is shown again after the first tap.
@@ -535,8 +541,14 @@ public class NavigationActivity extends Activity
                         initialDir = FileHelper.ROOT_DIRECTORY;
                     }
 
-                    //Change the current directory to the preference initial directory
-                    navigationView.changeCurrentDir(initialDir);
+                    // Change the current directory to the preference initial directory or the
+                    // request if exists
+                    String navigateTo = getIntent().getStringExtra(EXTRA_NAVIGATE_TO);
+                    if (navigateTo != null && navigateTo.length() > 0) {
+                        navigationView.changeCurrentDir(navigateTo);
+                    } else {
+                        navigationView.changeCurrentDir(initialDir);
+                    }
                 }
             }
         });
@@ -577,6 +589,13 @@ public class NavigationActivity extends Activity
                         android.speech.RecognizerIntent.EXTRA_RESULTS, extraResults);
             }
             startActivityForResult(searchIntent, INTENT_REQUEST_SEARCH);
+            return;
+        }
+
+        // Navigate to the requested path
+        String navigateTo = intent.getStringExtra(EXTRA_NAVIGATE_TO);
+        if (navigateTo != null && navigateTo.length() >= 0) {
+            getCurrentNavigationView().changeCurrentDir(navigateTo);
         }
     }
 
@@ -721,7 +740,8 @@ public class NavigationActivity extends Activity
                 case INTENT_REQUEST_BOOKMARK:
                     if (resultCode == RESULT_OK) {
                         FileSystemObject fso =
-                                (FileSystemObject)data.getSerializableExtra(EXTRA_BOOKMARK_SELECTION);
+                                (FileSystemObject)data.
+                                    getSerializableExtra(EXTRA_BOOKMARK_SELECTION);
                         if (fso != null) {
                             //Open the fso
                             getCurrentNavigationView().open(fso);

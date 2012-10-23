@@ -259,11 +259,13 @@ public class ActionsDialog implements OnItemClickListener, OnItemLongClickListen
 
             //- Open
             case R.id.mnu_actions_open:
-                IntentsActionPolicy.openFileSystemObject(this.mContext, this.mFso, false);
+                IntentsActionPolicy.openFileSystemObject(
+                        this.mContext, this.mFso, false, null, null);
                 break;
             //- Open with
             case R.id.mnu_actions_open_with:
-                IntentsActionPolicy.openFileSystemObject(this.mContext, this.mFso, true);
+                IntentsActionPolicy.openFileSystemObject(
+                        this.mContext, this.mFso, true, null, null);
                 break;
 
             //- Execute
@@ -273,7 +275,8 @@ public class ActionsDialog implements OnItemClickListener, OnItemLongClickListen
 
             //- Send
             case R.id.mnu_actions_send:
-                IntentsActionPolicy.sendFileSystemObject(this.mContext, this.mFso);
+                IntentsActionPolicy.sendFileSystemObject(
+                        this.mContext, this.mFso, null, null);
                 break;
 
 
@@ -356,6 +359,12 @@ public class ActionsDialog implements OnItemClickListener, OnItemLongClickListen
             case R.id.mnu_actions_add_to_bookmarks:
             case R.id.mnu_actions_add_to_bookmarks_current_folder:
                 BookmarksActionPolicy.addToBookmarks(this.mContext, this.mFso);
+                break;
+
+            //- Add shortcut
+            case R.id.mnu_actions_add_shortcut:
+            case R.id.mnu_actions_add_shortcut_current_folder:
+                IntentsActionPolicy.createShortcut(this.mContext, this.mFso);
                 break;
 
             //- Properties

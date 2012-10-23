@@ -848,7 +848,7 @@ public class SearchActivity extends Activity
         // Open with
         else if (this.mDefaultLongClickAction.compareTo(
                 DefaultLongClickAction.OPEN_WITH) == 0) {
-            IntentsActionPolicy.openFileSystemObject(this, fso, true);
+            IntentsActionPolicy.openFileSystemObject(this, fso, true, null, null);
         }
 
         // Show properties
@@ -1002,7 +1002,7 @@ public class SearchActivity extends Activity
                     } else {
                         // Open the file here, so when focus back to the app, the search activity
                         // its in top of the stack
-                        IntentsActionPolicy.openFileSystemObject(this, fso, false);
+                        IntentsActionPolicy.openFileSystemObject(this, fso, false, null, null);
                         return;
                     }
                 } else {

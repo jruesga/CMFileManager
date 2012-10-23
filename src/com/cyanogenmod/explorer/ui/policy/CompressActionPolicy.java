@@ -812,6 +812,6 @@ public final class CompressActionPolicy extends ActionsPolicy {
      * @hide
      */
     protected static void showOperationSuccessMsg(Context ctx, int res, String dst) {
-        DialogHelper.showToast(ctx, ctx.getString(res, dst), Toast.LENGTH_LONG);
+        DialogHelper.showToast(ctx, ctx.getString(res, dst), Toast.LENGTH_SHORT);
     }
 }

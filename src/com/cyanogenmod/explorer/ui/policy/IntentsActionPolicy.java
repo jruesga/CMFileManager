@@ -17,17 +17,22 @@
 package com.cyanogenmod.explorer.ui.policy;
 
 import android.content.Context;
+import android.content.DialogInterface.OnCancelListener;
+import android.content.DialogInterface.OnDismissListener;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.net.Uri;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.cyanogenmod.explorer.R;
+import com.cyanogenmod.explorer.activities.ShortcutActivity;
 import com.cyanogenmod.explorer.model.FileSystemObject;
 import com.cyanogenmod.explorer.ui.dialogs.AssociationsDialog;
 import com.cyanogenmod.explorer.util.DialogHelper;
 import com.cyanogenmod.explorer.util.ExceptionUtil;
+import com.cyanogenmod.explorer.util.FileHelper;
 import com.cyanogenmod.explorer.util.MimeTypeHelper;
 
 import java.io.File;
@@ -38,6 +43,8 @@ import java.util.List;
  */
 public final class IntentsActionPolicy extends ActionsPolicy {
 
+    private static final String TAG = "IntentsActionPolicy"; //$NON-NLS-1$
+
     private static boolean DEBUG = false;
 
     /**
@@ -47,9 +54,12 @@ public final class IntentsActionPolicy extends ActionsPolicy {
      * @param ctx The current context
      * @param fso The file system object
      * @param choose If allow the user to select the application to open with
+     * @param onCancelListener The cancel listener
+     * @param onDismissListener The dismiss listener
      */
     public static void openFileSystemObject(
-            final Context ctx, final FileSystemObject fso, final boolean choose) {
+            final Context ctx, final FileSystemObject fso, final boolean choose,
+            OnCancelListener onCancelListener, OnDismissListener onDismissListener) {
         try {
             // Create the intent to
             Intent intent = new Intent();
@@ -72,7 +82,7 @@ public final class IntentsActionPolicy extends ActionsPolicy {
                     R.drawable.ic_holo_light_open,
                     R.string.associations_dialog_openwith_title,
                     R.string.associations_dialog_openwith_action,
-                    true);
+                    true, onCancelListener, onDismissListener);
 
         } catch (Exception e) {
             ExceptionUtil.translateException(ctx, e);
@@ -85,9 +95,12 @@ public final class IntentsActionPolicy extends ActionsPolicy {
      *
      * @param ctx The current context
      * @param fso The file system object
+     * @param onCancelListener The cancel listener
+     * @param onDismissListener The dismiss listener
      */
     public static void sendFileSystemObject(
-            final Context ctx, final FileSystemObject fso) {
+            final Context ctx, final FileSystemObject fso,
+            OnCancelListener onCancelListener, OnDismissListener onDismissListener) {
         try {
             // Create the intent to
             Intent intent = new Intent();
@@ -105,7 +118,7 @@ public final class IntentsActionPolicy extends ActionsPolicy {
                     R.drawable.ic_holo_light_send,
                     R.string.associations_dialog_sendwith_title,
                     R.string.associations_dialog_sendwith_action,
-                    false);
+                    false, onCancelListener, onDismissListener);
 
         } catch (Exception e) {
             ExceptionUtil.translateException(ctx, e);
@@ -123,10 +136,13 @@ public final class IntentsActionPolicy extends ActionsPolicy {
      * @param title The title of the dialog
      * @param action The button title of the dialog
      * @param allowPreferred If allow the user to mark the selected app as preferred
+     * @param onCancelListener The cancel listener
+     * @param onDismissListener The dismiss listener
      */
     private static void resolveIntent(
             Context ctx, Intent intent, boolean choose,
-            int icon, int title, int action, boolean allowPreferred) {
+            int icon, int title, int action, boolean allowPreferred,
+            OnCancelListener onCancelListener, OnDismissListener onDismissListener) {
         //Retrieve the activities that can handle the file
         final PackageManager packageManager = ctx.getPackageManager();
         if (DEBUG) {
@@ -162,7 +178,51 @@ public final class IntentsActionPolicy extends ActionsPolicy {
                         intent,
                         info,
                         mPreferredInfo,
-                        allowPreferred);
+                        allowPreferred,
+                        onCancelListener,
+                        onDismissListener);
         dialog.show();
+    }
+
+    /**
+     * Method that creates a shortcut in the desktop of the device of {@link FileSystemObject}.
+     *
+     * @param ctx The current context
+     * @param fso The file system object
+     */
+    public static void createShortcut(Context ctx, FileSystemObject fso) {
+        try {
+            // Create the intent that will handle the shortcut
+            Intent shortcutIntent = new Intent(ctx, ShortcutActivity.class);
+            shortcutIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            shortcutIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            if (FileHelper.isDirectory(fso)) {
+                shortcutIntent.putExtra(
+                        ShortcutActivity.EXTRA_TYPE,ShortcutActivity.SHORTCUT_TYPE_NAVIGATE);
+            } else {
+                shortcutIntent.putExtra(
+                        ShortcutActivity.EXTRA_TYPE, ShortcutActivity.SHORTCUT_TYPE_OPEN);
+            }
+            shortcutIntent.putExtra(ShortcutActivity.EXTRA_FSO, fso.getFullPath());
+
+            // The intent to send to broadcast for register the shortcut intent
+            Intent intent = new Intent();
+            intent.putExtra(Intent.EXTRA_SHORTCUT_INTENT, shortcutIntent);
+            intent.putExtra(Intent.EXTRA_SHORTCUT_NAME, fso.getName());
+            intent.putExtra(Intent.EXTRA_SHORTCUT_ICON_RESOURCE,
+                    Intent.ShortcutIconResource.fromContext(
+                            ctx, MimeTypeHelper.getIcon(ctx, fso)));
+            intent.setAction("com.android.launcher.action.INSTALL_SHORTCUT"); //$NON-NLS-1$
+            ctx.sendBroadcast(intent);
+
+            // Show the confirmation
+            DialogHelper.showToast(
+                    ctx, R.string.shortcut_creation_success_msg, Toast.LENGTH_SHORT);
+
+        } catch (Exception e) {
+            Log.e(TAG, "Failed to create the shortcut", e); //$NON-NLS-1$
+            DialogHelper.showToast(
+                    ctx, R.string.shortcut_creation_failed_msg, Toast.LENGTH_SHORT);
+        }
     }
 }

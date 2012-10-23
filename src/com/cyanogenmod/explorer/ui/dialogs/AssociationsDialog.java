@@ -21,6 +21,8 @@ import android.app.AlertDialog;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.DialogInterface.OnCancelListener;
+import android.content.DialogInterface.OnDismissListener;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.PackageManager;
@@ -88,11 +90,14 @@ public class AssociationsDialog implements OnItemClickListener {
      * @param intents The list of available intents that can handle an action
      * @param preferred The preferred intent. null if no preferred exists
      * @param allowPreferred If allow the user to mark the selected app as preferred
+     * @param onCancelListener The cancel listener
+     * @param onDismissListener The dismiss listener
      */
     public AssociationsDialog(
             Context context, int icon, String title, String action,
             Intent requestIntent, List<ResolveInfo> intents, ResolveInfo preferred,
-            boolean allowPreferred) {
+            boolean allowPreferred, OnCancelListener onCancelListener,
+            OnDismissListener onDismissListener) {
         super();
 
         //Save the data
@@ -104,7 +109,7 @@ public class AssociationsDialog implements OnItemClickListener {
         this.mLoaded = false;
 
         //Initialize dialog
-        init(icon, title, action);
+        init(icon, title, action, onCancelListener, onDismissListener);
     }
 
     /**
@@ -114,8 +119,11 @@ public class AssociationsDialog implements OnItemClickListener {
      * @param icon The icon of the dialog
      * @param title The title of the dialog
      * @param action The title of the action button
+     * @param onCancelListener The cancel listener
+     * @param onCancelListener The dismiss listener
      */
-    private void init(int icon, String title, String action) {
+    private void init(int icon, String title, String action,
+            OnCancelListener onCancelListener, OnDismissListener onDismissListener) {
         boolean isPlatformSigned =
                 ExplorerApplication.isAppPlatformSignature(this.mContext);
 
@@ -171,6 +179,8 @@ public class AssociationsDialog implements OnItemClickListener {
                 DialogInterface.BUTTON_NEGATIVE,
                 this.mContext.getString(android.R.string.cancel),
                 (DialogInterface.OnClickListener)null);
+        this.mDialog.setOnCancelListener(onCancelListener);
+        this.mDialog.setOnDismissListener(onDismissListener);
     }
 
     /**

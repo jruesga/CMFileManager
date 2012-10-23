@@ -295,7 +295,7 @@ public class SearchResultAdapter extends ArrayAdapter<SearchResult> implements O
      */
     @Override
     public void onClick(View v) {
-      //Select or deselect the item
+        //Select or deselect the item
         int pos = ((Integer)v.getTag()).intValue();
 
         //Retrieve search result

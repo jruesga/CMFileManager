@@ -671,12 +671,14 @@ public class SearchActivity extends Activity
                         ((SearchResultAdapter)SearchActivity.this.
                                 mSearchListView.getAdapter()).clear();
                     }
-                    SearchActivity.this.mSearchListView.setAdapter(
+                    SearchResultAdapter adapter =
                             new SearchResultAdapter(
-                                    SearchActivity.this.mSearchListView.getContext(),
-                                    list,
-                                    R.layout.search_item,
-                                    query));
+                                                SearchActivity.this.mSearchListView.getContext(),
+                                                list,
+                                                R.layout.search_item,
+                                                query);
+                    adapter.setOnRequestMenuListener(SearchActivity.this);
+                    SearchActivity.this.mSearchListView.setAdapter(adapter);
                     SearchActivity.this.mSearchListView.setSelection(0);
 
                 } catch (Throwable ex) {

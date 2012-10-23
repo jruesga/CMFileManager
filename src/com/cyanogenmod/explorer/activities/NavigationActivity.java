@@ -1092,6 +1092,7 @@ public class NavigationActivity extends Activity
         bundle.putString(
                 SearchActivity.EXTRA_SEARCH_DIRECTORY,
                 getCurrentNavigationView().getCurrentDir());
+        // TODO VoiceSearch icon is now shown. This must be a bug of CM. Verify with a test app.
         startSearch(Preferences.getLastSearch(), true, bundle, false);
         return true;
     }

@@ -325,11 +325,6 @@ public abstract class ShellConsole extends Console implements Program.ProgramLis
     public final void dealloc() {
         synchronized (this.mSync) {
             if (this.mActive) {
-// Call destroy doesn't ensure that the process can be destroyed. Delegate in close
-// his buffers to do kill the process.
-//                try {
-//                    this.mProc.destroy();
-//                } catch (Throwable e) {/**NON BLOCK**/}
                 this.mActive = false;
                 this.mFinished = true;
 
@@ -355,6 +350,9 @@ public abstract class ShellConsole extends Console implements Program.ProgramLis
                 } catch (Throwable ex) {
                     /**NON BLOCK**/
                 }
+                try {
+                    this.mProc.destroy();
+                } catch (Throwable e) {/**NON BLOCK**/}
                 this.mIn = null;
                 this.mErr = null;
                 this.mOut = null;

@@ -34,7 +34,7 @@
     android:icon="@drawable/ic_launcher"
     android:label="@string/app_name"
     android:largeHeap="true"
-    android:theme="@style/Explorer.Theme.Holo.Ligth" >
+    android:theme="@style/Explorer.Theme.Holo.Light" >
 
     <meta-data
       android:name="android.app.default_searchable"
@@ -100,7 +100,7 @@
       android:name=".activities.PickerActivity"
       android:label="@string/picker"
       android:uiOptions="none"
-      android:theme="@style/Explorer.Theme.Holo.Ligth.Overlay"
+      android:theme="@style/Explorer.Theme.Holo.Light.Overlay"
       android:exported="true">
       <intent-filter>
         <action android:name="android.intent.action.GET_CONTENT" />
@@ -124,7 +124,7 @@
       android:name=".activities.ShortcutActivity"
       android:label="@string/app_name"
       android:uiOptions="none"
-      android:theme="@style/Explorer.Theme.Holo.Ligth.Overlay"
+      android:theme="@style/Explorer.Theme.Holo.Light.Overlay"
       android:exported="true">
       <intent-filter>
         <action android:name="android.intent.action.VIEW" />

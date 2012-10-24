@@ -655,6 +655,9 @@ public abstract class ShellConsole extends Console implements Program.ProgramLis
                                 AsyncResultProgram program =
                                         ((AsyncResultProgram)ShellConsole.this.mActiveCommand);
                                 program.onRequestParsePartialResult(sb.toString());
+
+                                // Reset the temp buffer
+                                sb = new StringBuffer();
                             }
                         }
 
@@ -703,6 +706,9 @@ public abstract class ShellConsole extends Console implements Program.ProgramLis
                                 AsyncResultProgram program =
                                         ((AsyncResultProgram)ShellConsole.this.mActiveCommand);
                                 program.onRequestParsePartialResult(sb.toString());
+
+                                // Reset the temp buffer
+                                sb = new StringBuffer();
                             }
 
                             if (finished) {

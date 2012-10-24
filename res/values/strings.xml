@@ -114,10 +114,10 @@
   <!-- A console couldn\'t be allocated -->
   <string name="msgs_console_alloc_failure">A console couldn\'t be allocated.</string>
   <!-- An operation can't be cancelled -->
-  <string name="msgs_operation_can_not_be_cancelled">The operation can\'t be cancelled.</string>
-  <!-- The operation requieres mount the filesystem prior to execute the command -->
-  <string name="msgs_read_only_filesystem">The filesystem is read-only. Try to mount the
-    filesystem as read-write before attepting the operation.</string>
+  <string name="msgs_operation_can_not_be_cancelled">The operation cannot be cancelled.</string>
+  <!-- The operation requieres mount the file system prior to execute the command -->
+  <string name="msgs_read_only_filesystem">The file system is read-only. Try to mount the
+    file system as read-write before attepting the operation.</string>
   <!-- Illegal argument (normally caused by a development error when calling internal api) -->
   <string name="msgs_illegal_argument">Illegal argument. Invocation failed.</string>
   <!-- The operation will cause inconsistencies -->
@@ -155,7 +155,7 @@
   <string name="usb_storage">USB storage</string>
 
   <!-- ActionBar Buttons * FileSystem -->
-  <string name="actionbar_button_filesystem_cd">Filesystem info</string>
+  <string name="actionbar_button_filesystem_cd">File system info</string>
   <!-- ActionBar Buttons * Navigation View Configuration -->
   <string name="actionbar_button_configuration_cd">Configuration</string>
   <!-- ActionBar Buttons * Sort Mode -->
@@ -210,7 +210,7 @@
   <string name="filesystem_info_warning_msg">There is no information available for the file system.</string>
   <!-- Filesystem Info * Filesystem couldn't be mounted -->
   <string name="filesystem_info_cant_be_mounted_msg">
-    The file system can\'t be mounted/unmounted.</string>
+    The file system cannot be mounted/unmounted.</string>
   <!-- Filesystem Info * Not allowed message -->
   <string name="filesystem_info_mount_not_allowed_msg">File system mounting operations are not allowed
     within a non-privileged console. Tap to change to a privileged console.</string>
@@ -723,7 +723,7 @@
     \n\nThis app allows you to explore the file system and do operations that could break
     your device. To prevent damage, the app will start in a safe, low-privileged mode.
     \n\nYou can access the advanced, full-privileged mode via Settings. It\'s your
-    responsability to ensure that an operation doesn\'t break your system.
+    responsibility to ensure that an operation doesn\'t break your system.
     \n\nThe CyanogenMod Team.</string>
 
 </resources>

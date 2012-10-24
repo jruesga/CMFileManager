@@ -12,16 +12,17 @@
  ** distributed under the License is distributed on an "AS IS" BASIS,
  ** WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  ** See the License for the specific language governing permissions and
- ** limitations under the License.-->
+ ** limitations under the License.
+-->
 <resources xmlns:android="http://schemas.android.com/apk/res/android">
 
   <!-- The default theme -->
-  <style name="Explorer.Theme.Holo.Ligth" parent="@android:style/Theme.Holo.Light">
+  <style name="Explorer.Theme.Holo.Light" parent="@android:style/Theme.Holo.Light">
     <item name="android:windowBackground">@color/default_background</item>
   </style>
 
   <!-- A theme with overlay -->
-  <style name="Explorer.Theme.Holo.Ligth.Overlay" parent="@android:style/Theme.Holo.Light">
+  <style name="Explorer.Theme.Holo.Light.Overlay" parent="@android:style/Theme.Holo.Light">
     <item name="android:windowIsTranslucent">true</item>
     <item name="android:windowBackground">@color/black_transparent</item>
     <item name="android:windowContentOverlay">@null</item>

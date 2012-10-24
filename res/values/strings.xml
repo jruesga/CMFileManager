@@ -46,8 +46,8 @@
   <string name="overwrite">Overwrite</string>
 
   <!-- Consoles -->
-  <string name="non_privileged_console">Non-privileged console</string>
-  <string name="privileged_console">Privileged console</string>
+  <string name="non_privileged_console">Non-Privileged Console</string>
+  <string name="privileged_console">Privileged Console</string>
 
   <!-- The root directory name -->
   <string name="root_directory_name"><![CDATA[<Root directory>]]></string>
@@ -117,7 +117,7 @@
   <string name="msgs_operation_can_not_be_cancelled">The operation can\'t be cancelled.</string>
   <!-- The operation requieres mount the filesystem prior to execute the command -->
   <string name="msgs_read_only_filesystem">The filesystem is read-only. Try to mount the
-    filesystem as read-write before attepting the operation.</string>
+    filesystem as read-write prior to do the operation.</string>
   <!-- Illegal argument (normally caused by a development error when calling internal api) -->
   <string name="msgs_illegal_argument">Illegal argument. Invocation failed.</string>
   <!-- The operation will cause inconsistencies -->
@@ -128,10 +128,10 @@
     Operation not permitted in current directory.</string>
 
   <!-- The advice message prior to exit the application -->
-  <string name="msgs_push_again_to_exit">Press again to exit.</string>
+  <string name="msgs_push_again_to_exit">Push again back button to exit.</string>
 
   <!-- There is no registered application that can handle the mime-type -->
-  <string name="msgs_not_registered_app">There is no app registered to handle
+  <string name="msgs_not_registered_app">There is not registered app that can handle
     the type of file selected.</string>
 
   <!-- Overwrite files? -->
@@ -143,7 +143,7 @@
     application failed.</string>
 
   <!-- An operation requires elevated privileged. Ask the user. -->
-  <string name="advise_insufficient_permissions">The operation requires elevated privileges.\n\n
+  <string name="advise_insufficient_permissions">The operation requires elevated privileged.\n\n
     Do you want to change to a privileged console?</string>
 
 
@@ -152,7 +152,7 @@
   <!-- External storage descripton -->
   <string name="external_storage">External storage</string>
   <!-- Usb storage descripton -->
-  <string name="usb_storage">USB storage</string>
+  <string name="usb_storage">Usb storage</string>
 
   <!-- ActionBar Buttons * FileSystem -->
   <string name="actionbar_button_filesystem_cd">Filesystem info</string>
@@ -207,27 +207,27 @@
   <string name="cm_explorer_show_symlinks">Show symlinks</string>
 
   <!-- Filesystem Info (no data) -->
-  <string name="filesystem_info_warning_msg">There is no information available for the file system.</string>
+  <string name="filesystem_info_warning_msg">There is no information about the filesystem</string>
   <!-- Filesystem Info * Filesystem couldn't be mounted -->
   <string name="filesystem_info_cant_be_mounted_msg">
-    The file system can\'t be mounted/unmounted.</string>
+    The filesystem can\'t be mounted/unmounted.</string>
   <!-- Filesystem Info * Not allowed message -->
-  <string name="filesystem_info_mount_not_allowed_msg">File system mounting operations are not allowed
-    within a non-privileged console. Tap to change to a privileged console.</string>
+  <string name="filesystem_info_mount_not_allowed_msg">Mount filesystem\'s operations are not allowed
+    by a non-privileged console. Tap to change to a privileged console.</string>
   <!-- Filesystem Info * Mount failed -->
-  <string name="filesystem_info_mount_failed_msg">File system mounting operation failed.
-    Some file systems, like sdcards, cannot be mounted/unmounted because
-    they are built-in as read-only file systems.</string>
+  <string name="filesystem_info_mount_failed_msg">Mount filesystem\'s operation failed.
+    Some filesystem, like sdcards, not allow to be mounted/unmounted, because
+    they are built-in as read-only filesystems.</string>
   <!-- Filesystem Info Dialog * Title -->
-  <string name="filesystem_info_dialog_title">File system information</string>
+  <string name="filesystem_info_dialog_title">Filesystem Information</string>
   <!-- Filesystem Info Dialog * Tab * Info -->
   <string name="filesystem_info_dialog_tab_info">Info</string>
   <!-- Filesystem Info Dialog * Tab * Disk Usage -->
-  <string name="filesystem_info_dialog_tab_disk_usage">Disk usage</string>
+  <string name="filesystem_info_dialog_tab_disk_usage">Disk Usage</string>
   <!-- Filesystem Info Dialog * Status Label -->
   <string name="filesystem_info_dialog_status">Status:</string>
   <!-- Filesystem Info Dialog * Mount Point Label -->
-  <string name="filesystem_info_dialog_mount_point">Mount point:</string>
+  <string name="filesystem_info_dialog_mount_point">Mount Point:</string>
   <!-- Filesystem Info Dialog * Device Label -->
   <string name="filesystem_info_dialog_device">Device:</string>
   <!-- Filesystem Info Dialog * Type Label -->
@@ -246,16 +246,19 @@
 
   <!-- Fso Properties * Not allowed message -->
   <string name="fso_properties_permissions_not_allowed_msg">Permissions operations are not allowed
-    within a non-privileged console. Tap to change to a privileged console.</string>
+    by a non-privileged console. Tap to change to a privileged console.</string>
   <!-- Fso Properties * Failed to change owner to fso -->
-  <string name="fso_properties_failed_to_change_owner_msg">The change of owner operation failed.\n\n
-    For security reasons, some file systems, like sdcards, do not allow changing the owner.</string>
+  <string name="fso_properties_failed_to_change_owner_msg">The change of owner\'s operation failed.
+    Some filesystem, like sdcards, not allow to change the owner, because of
+    security concerns.</string>
   <!-- Fso Properties * Failed to change group to fso -->
-  <string name="fso_properties_failed_to_change_group_msg">The change of group operation failed.\n\n
-    For security reasons, some file systems, like sdcards, not allow changing the group.</string>
+  <string name="fso_properties_failed_to_change_group_msg">The change of group\'s operation failed.
+    Some filesystem, like sdcards, not allow to change the group, because of
+    security concerns.</string>
   <!-- Fso Properties * Failed to change group to fso -->
-  <string name="fso_properties_failed_to_change_permission_msg">The change of permissions
-    operation failed.\n\nFor security reasons, some file systems, like sdcards, not allow changing the permissions.</string>
+  <string name="fso_properties_failed_to_change_permission_msg">The change of permissions\'s
+    operation failed. Some filesystem, like sdcards, not allow to change the permissions, because
+    of security concerns.</string>
   <!-- Fso Properties Dialog * Title -->
   <string name="fso_properties_dialog_title">Properties</string>
   <!-- Fso Properties Dialog * Tab * Info -->
@@ -277,7 +280,7 @@
   <!-- Fso Properties Dialog * Contains Label -->
   <string name="fso_properties_dialog_contains">Contains:</string>
   <!-- Fso Properties Dialog * Date Label -->
-  <string name="fso_properties_dialog_date">Last access:</string>
+  <string name="fso_properties_dialog_date">Last Access:</string>
   <!-- Fso Properties Dialog * Owner Label -->
   <string name="fso_properties_dialog_owner">Owner:</string>
   <!-- Fso Properties Dialog * Group Label -->
@@ -340,10 +343,11 @@
   <!-- Search * Search query terms -->
   <string name="search_terms"><![CDATA[<b>Terms:</b>]]> <xliff:g id="terms">%1$s</xliff:g></string>
   <!-- Search * Some terms of the search are too small. The operation could be very costly -->
-  <string name="search_few_characters_msg">Some of the search terms has a small number characters. The
-      operation could be very costly in time and system resources.\n\nDo you want to continue?</string>
+  <string name="search_few_characters_msg">Some of terms of the search has few characters. In
+    this situation, the operation could be very costly in time and system resources.\n\n
+    Do you want to continue?</string>
   <!-- Search * Searching dialog title -->
-  <string name="searching">Please wait &#8230;</string>
+  <string name="searching">Please, wait &#8230;</string>
   <!-- Search * Searching label -->
   <string name="searching_action_label">Searching in progress</string>
 
@@ -374,8 +378,8 @@
   <!-- Initial directory is relative -->
   <string name="initial_directory_relative_msg">Relative paths are not allowed.</string>
   <!-- Initial directory error message -->
-  <string name="initial_directory_error_msg">An error occurred while saving the initial
-    directory.</string>
+  <string name="initial_directory_error_msg">An error occurred while saving initial
+    directory\'s preference.</string>
 
   <!-- Menu * Navigation * History -->
   <string name="menu_history">History</string>
@@ -497,7 +501,7 @@
 
   <!-- Actions * Ask user prior to do an undone operation -->
   <string name="actions_ask_undone_operation">
-    This action cannot be undone. Do you want to continue?</string>
+    This action can\'t be undone. Do you want to continue?</string>
 
   <!-- Enter Name Dialog * Label -->
   <string name="input_name_dialog_label">Name:</string>
@@ -550,8 +554,10 @@
   <!-- Selection. All possibilities. [1 folder; >1 folders; 1 file; >1 files;
      >1 folders and 1 file; 1 folder and >1 files; >1 folders and >1 files]
      Avoid using plural item because is more complex to achieved all strings -->
-  <string name="selection_one_folder"><xliff:g id="folders">%1$s</xliff:g> folder selected.</string>
-  <string name="selection_other_folders"><xliff:g id="folders">%1$s</xliff:g> folders selected.</string>
+  <string name="selection_one_folder"><xliff:g id="folders">%1$s</xliff:g> folder
+    selected.</string>
+  <string name="selection_other_folders"><xliff:g id="folders">%1$s</xliff:g> folders
+    selected.</string>
   <string name="selection_one_file"><xliff:g id="files">%1$s</xliff:g> file selected.</string>
   <string name="selection_other_files"><xliff:g id="files">%1$s</xliff:g> files selected.</string>
   <string name="selection_other_folders_one_file"><xliff:g id="folders">%1$s</xliff:g> folders and
@@ -591,7 +597,7 @@
   <!-- Shortcut. Failed to handle the shortcut -->
   <string name="shortcut_failed_msg">Failed to handle the shortcut</string>
   <!-- Shortcut. The shortcut was created -->
-  <string name="shortcut_creation_success_msg">Shortcut created successfully</string>
+  <string name="shortcut_creation_success_msg">Shortcut created sucessfully</string>
   <!-- Shortcut. The shortcut wasn't created -->
   <string name="shortcut_creation_failed_msg">Shortcut creation failed</string>
 
@@ -600,15 +606,17 @@
   <!-- Preferences * General title -->
   <string name="pref_general">General</string>
   <!-- Preferences * General summary -->
-  <string name="pref_general_summary">Configure basic application behaviour</string>
+  <string name="pref_general_summary">Configure the behaviour of the application.</string>
   <!-- Preferences * Search title -->
   <string name="pref_search">Search</string>
   <!-- Preferences * Search summary -->
-  <string name="pref_search_summary">Configure search engine options</string>
+  <string name="pref_search_summary">Configure the options about the search engine of the
+    application.</string>
   <!-- Preferences * Debug title -->
   <string name="pref_debug">Debug</string>
   <!-- Preferences * Debug summary -->
-  <string name="pref_debug_summary">Configure debugging options</string>
+  <string name="pref_debug_summary">Configure the options for the debugging of the
+    application.</string>
   <!-- Preferences * About title -->
   <string name="pref_about">About</string>
   <!-- Preferences * About summary -->
@@ -620,10 +628,11 @@
   <!-- Preferences * General * Case sensitive sort title -->
   <string name="pref_case_sensitive_sort">Case sensitive sort</string>
   <!-- Preferences * General * Case sensitive sort summary on -->
-  <string name="pref_case_sensitive_sort_on">Use case sensitive comparison in sorting of files</string>
+  <string name="pref_case_sensitive_sort_on">Use case sensitive comparison in sorting
+    of files.</string>
   <!-- Preferences * General * Case sensitive sort summary off -->
   <string name="pref_case_sensitive_sort_off">Don\'t use case sensitive comparison in sorting
-    of files</string>
+    of files.</string>
   <!-- Preferences * General * Default long-click action title -->
   <string name="pref_default_longclick_action">Default long-click action</string>
   <!-- Preferences * General * Default long-click action * No action -->
@@ -645,25 +654,26 @@
        of ListPreference. This should be fixed in frameworks base prior to be added here. -->
   <string name="pref_disk_usage_warning_level_summary" formatted="false">Display a different
     color in disk usage widgets when they reach <xliff:g id="level">%1$s</xliff:g> percent
-    of free disk space</string>
+    of free disk space.</string>
   <!-- Preferences * General * Compute folder statistics title -->
   <string name="pref_compute_folder_statistics">Compute folder statistics</string>
   <!-- Preferences * General * Compute folder statistics summary on -->
   <string name="pref_compute_folder_statistics_on">Compute folder statistics in folder
-    properties dialog.\n\nWarning! The computation of folder statistics is costly in time and
-    system resources</string>
+    properties dialog.\n\nWarning! The computation of folder statistics is a operation very costly
+    in time and system resources.</string>
   <!-- Preferences * General * Compute folder statistics summary off -->
   <string name="pref_compute_folder_statistics_off">Don\'t compute folder statistics in folder
-    properties dialog</string>
+    properties dialog.</string>
     <!-- Preferences * General * Advanced settings category -->
   <string name="pref_general_advanced_settings_category">Advanced settings</string>
   <!-- Preferences * General * Advanced mode -->
   <string name="pref_advanced_mode">Advanced mode</string>
   <!-- Preferences * General * Advanced mode summary on -->
-  <string name="pref_advanced_mode_on">Advanced mode is enabled. You are running a privileged
-    environment at your own risk</string>
+  <string name="pref_advanced_mode_on">Advanced mode is enabled. You are running in a privileged
+    environment. You are under your own risk.</string>
   <!-- Preferences * General * Advanced mode summary off -->
-  <string name="pref_advanced_mode_off">Advanced mode is disabled. You are running in safe mode</string>
+  <string name="pref_advanced_mode_off">Advanced mode is disabled. You are running in a
+    secure environment.</string>
   <!-- Preferences * Search * Results category -->
   <string name="pref_search_results_category">Results</string>
   <!-- Preferences * Search * Show relevance widget -->
@@ -675,9 +685,11 @@
   <!-- Preferences * Search * Highlight search terms -->
   <string name="pref_highlight_terms">Highlight terms</string>
   <!-- Preferences * Search * Show relevance widget summary on -->
-  <string name="pref_highlight_terms_on">Highlight the matching search terms in the search results</string>
+  <string name="pref_highlight_terms_on">Highlight the matching terms of the search in search
+    results.</string>
   <!-- Preferences * Search * Show relevance widget summary off -->
-  <string name="pref_highlight_terms_off">Don\'t highlight the matching search terms in search results</string>
+  <string name="pref_highlight_terms_off">Don\'t highlight the matching terms of the search
+    in search results.</string>
   <!-- Preferences * Search * Sort results mode -->
   <string name="pref_sort_search_results_mode">Sort results mode</string>
   <!-- Preferences * Search * Sort results mode. None -->
@@ -687,42 +699,47 @@
   <!-- Preferences * Search * Sort results mode. Relevance -->
   <string name="pref_sort_search_results_mode_relevance">By relevance</string>
   <!-- Preferences * Search * Privacity category -->
-  <string name="pref_search_privacity_category">Privacy</string>
+  <string name="pref_search_privacity_category">Privacity</string>
   <!-- Preferences * Search * Save search terms -->
   <string name="pref_save_search_terms">Save search terms</string>
   <!-- Preferences * Search * Save search terms summary on -->
-  <string name="pref_save_search_terms_on">Search terms will be saved and used as suggestions
-      in future searches</string>
+  <string name="pref_save_search_terms_on">The terms introduced in the searches are
+    saved, so they can be shown as suggestions in the following searches.</string>
   <!-- Preferences * Search * Save search terms summary off -->
-  <string name="pref_save_search_terms_off">Search terms will not be saved</string>
+  <string name="pref_save_search_terms_off">The terms introduced in the searches are
+    not saved.</string>
   <!-- Preferences * Search * Remove saved search terms -->
-  <string name="pref_remove_saved_search_terms">Remove saved search terms</string>
+  <string name="pref_remove_saved_search_terms">Remove saved terms</string>
   <!-- Preferences * Search * Remove saved search terms summary -->
-  <string name="pref_remove_saved_search_terms_summary">Tap to remove the saved search terms</string>
+  <string name="pref_remove_saved_search_terms_summary">Tap to remove the saved terms of previous
+    searches.</string>
   <!-- Preferences * Search * Suggestions were truncated -->
   <string name="pref_remove_saved_search_terms_msg">All saved search terms were removed.</string>
 
   <!-- Preferences * Debug * Capture debug traces -->
   <string name="pref_debug_traces">Capture debug traces</string>
   <!-- Preferences * Debug * Capture debug traces summary on -->
-  <string name="pref_debug_traces_on">Enabled</string>
+  <string name="pref_debug_traces_on">Capture of debug traces is enabled</string>
   <!-- Preferences * Debug * Capture debug traces summary off -->
-  <string name="pref_debug_traces_off">Disabled</string>
+  <string name="pref_debug_traces_off">Capture of debug traces is disabled</string>
 
   <!-- Security * Extract relative or absolute files -->
-  <string name="security_warning_extract">Warning!\n\n
-      Extracting an archive file with relative or absolute paths may cause damage to your device
-      by overwriting system files.\n\n
-      Do you want to continue?</string>
+  <string name="security_warning_extract">Warning!\n
+    \nExtracting an archive file with relative or absolute paths may cause damage to your system,
+    because the operation could overwrite some of the system files.\n\n
+    Continue?</string>
 
   <!-- Welcome Dialog * Title -->
   <string name="welcome_title">Welcome</string>
   <!-- Welcome Dialog * Message -->
   <string name="welcome_msg">
     Welcome to the CyanogenMod file manager.
-    \n\nThis app allows you to explore the file system and do operations that could break
-    your device. To prevent damage, the app will start in a safe, low-privileged mode.
-    \n\nYou can access the advanced, full-privileged mode via Settings. In this mode, it\'s your
+    \n\nThis app allow you to explore all the file system and do operations that could break
+    your device. For this reason, the first time, the app will run in a low-privileged environment.
+    This ensure you to break anything.
+    \n\nYou can access to a privileged environment at general settings. Using the advanced mode
+    allow you to select between a low-privileged environment (where you are asked to gain
+    privileges) and a full privileged environment. Under, this environment, it\'s your
     responsability to ensure that an operation doesn\'t break your system.
     \n\nThe CyanogenMod Team.</string>
 

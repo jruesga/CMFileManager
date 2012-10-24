@@ -26,8 +26,6 @@
       <CheckBoxPreference
         android:key="cm_explorer_case_sensitive_sort"
         android:title="@string/pref_case_sensitive_sort"
-        android:summaryOn="@string/pref_case_sensitive_sort_on"
-        android:summaryOff="@string/pref_case_sensitive_sort_off"
         android:persistent="true"
         android:defaultValue="false" />
 
@@ -54,7 +52,6 @@
         android:key="cm_explorer_compute_folder_statistics"
         android:title="@string/pref_compute_folder_statistics"
         android:summaryOn="@string/pref_compute_folder_statistics_on"
-        android:summaryOff="@string/pref_compute_folder_statistics_off"
         android:persistent="true"
         android:defaultValue="false" />
 
@@ -70,7 +67,13 @@
         android:key="cm_explorer_advanced_mode"
         android:title="@string/pref_advanced_mode"
         android:summaryOn="@string/pref_advanced_mode_on"
-        android:summaryOff="@string/pref_advanced_mode_off"
+        android:persistent="true"
+        android:defaultValue="false" />
+
+      <!-- Capture debug traces -->
+      <CheckBoxPreference
+        android:key="cm_explorer_show_debug_traces"
+        android:title="@string/pref_debug_traces"
         android:persistent="true"
         android:defaultValue="false" />
 

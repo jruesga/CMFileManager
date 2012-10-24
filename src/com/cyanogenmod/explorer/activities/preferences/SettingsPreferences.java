@@ -122,6 +122,7 @@ public class SettingsPreferences extends PreferenceActivity {
         private ListPreference mFreeDiskSpaceWarningLevel;
         private CheckBoxPreference mComputeFolderStatistics;
         private CheckBoxPreference mAdvancedSettings;
+        private CheckBoxPreference mDebugTraces;
 
         /**
          * @hide
@@ -229,6 +230,12 @@ public class SettingsPreferences extends PreferenceActivity {
                 // Disable the advanced mode
                 this.mAdvancedSettings.setEnabled(false);
             }
+
+            // Capture Debug traces
+            this.mDebugTraces =
+                    (CheckBoxPreference)findPreference(
+                            ExplorerSettings.SETTINGS_SHOW_TRACES.getId());
+            this.mDebugTraces.setOnPreferenceChangeListener(this.mOnChangeListener);
 
             // Loaded
             this.mLoaded = true;
@@ -378,49 +385,6 @@ public class SettingsPreferences extends PreferenceActivity {
                             RecentSearchesContentProvider.MODE);
             suggestions.clearHistory();
             Preferences.setLastSearch(null);
-        }
-    }
-
-    /**
-     * A class that manages the debug options of the application
-     */
-    public static class DebugPreferenceFragment extends PreferenceFragment {
-
-        private CheckBoxPreference mDebugTraces;
-
-        private final OnPreferenceChangeListener mOnChangeListener =
-                new OnPreferenceChangeListener() {
-            @Override
-            public boolean onPreferenceChange(Preference preference, Object newValue) {
-
-                // Notify the change
-                Intent intent = new Intent(ExplorerSettings.INTENT_SETTING_CHANGED);
-                intent.putExtra(ExplorerSettings.EXTRA_SETTING_CHANGED_KEY, preference.getKey());
-                getActivity().sendBroadcast(intent);
-
-                return true;
-            }
-        };
-
-        /**
-         * {@inheritDoc}
-         */
-        @Override
-        public void onCreate(Bundle savedInstanceState) {
-            super.onCreate(savedInstanceState);
-
-            // Change the preference manager
-            getPreferenceManager().setSharedPreferencesName(Preferences.SETTINGS_FILENAME);
-            getPreferenceManager().setSharedPreferencesMode(MODE_PRIVATE);
-
-            // Add the preferences
-            addPreferencesFromResource(R.xml.preferences_debug);
-
-            // Capture Debug traces
-            this.mDebugTraces =
-                    (CheckBoxPreference)findPreference(
-                            ExplorerSettings.SETTINGS_SHOW_TRACES.getId());
-            this.mDebugTraces.setOnPreferenceChangeListener(this.mOnChangeListener);
         }
     }
 

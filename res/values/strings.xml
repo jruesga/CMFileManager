@@ -50,7 +50,7 @@
   <string name="privileged_console">Privileged console</string>
 
   <!-- The root directory name -->
-  <string name="root_directory_name"><![CDATA[<Root directory>]]></string>
+  <string name="root_directory_name"><![CDATA[<Root folder>]]></string>
   <!-- The search result name -->
   <string name="search_result_name">Search: <xliff:g id="terms">%1$s</xliff:g></string>
 
@@ -88,8 +88,8 @@
   <!-- The selected setting was not applied or stored -->
   <string name="msgs_settings_save_failure">The setting couldn\'t be applied or stored.</string>
   <!-- The initial directory has an invalid or inaccessible reference -->
-  <string name="msgs_settings_invalid_initial_directory">Initial directory
-    "<xliff:g id="initial_dir">%1$s</xliff:g>" is invalid. Changing to root directory.</string>
+  <string name="msgs_settings_invalid_initial_directory">Initial folder
+    "<xliff:g id="initial_dir">%1$s</xliff:g>" is invalid. Changing to root folder.</string>
 
   <!-- Success -->
   <string name="msgs_success">The operation was completed successfully.</string>
@@ -125,7 +125,7 @@
     Operation not permitted because it would create inconsistencies.</string>
   <!-- Operation not permitted in current directory -->
   <string name="msgs_operation_not_allowed_in_current_directory">
-    Operation not permitted in current directory.</string>
+    Operation not permitted in current folder.</string>
 
   <!-- The advice message prior to exit the application -->
   <string name="msgs_push_again_to_exit">Press again to exit.</string>
@@ -136,7 +136,7 @@
 
   <!-- Overwrite files? -->
   <string name="msgs_overwrite_files">
-    Some of the files exist in the destination directory.\n\nOverwrite?</string>
+    Some of the files exist in the destination folder.\n\nOverwrite?</string>
 
   <!-- The association of an action to the application failed -->
   <string name="msgs_action_association_failed">The association of the action to the
@@ -148,7 +148,7 @@
 
 
   <!-- The parent directory of the current directory in navigation view -->
-  <string name="parent_dir">Parent Directory</string>
+  <string name="parent_dir">Parent folder</string>
   <!-- External storage descripton -->
   <string name="external_storage">External storage</string>
   <!-- Usb storage descripton -->
@@ -361,21 +361,20 @@
   <!-- Bookmarks * Bookmark name * System folder -->
   <string name="bookmarks_system_folder">System folder</string>
   <!-- Bookmarks * Bookmark name * Button * Initial directory content description -->
-  <string name="bookmarks_button_config_cd">Set the initial directory.</string>
+  <string name="bookmarks_button_config_cd">Set the initial folder.</string>
   <!-- Bookmarks * Bookmark name * Button * Remove bookmark content description -->
   <string name="bookmarks_button_remove_bookmark_cd">Remove the bookmark.</string>
   <!-- Bookmarks * Bookmarks * Actions * Bookmark successfully added -->
   <string name="bookmarks_msgs_add_success">The bookmark was added successfully.</string>
 
   <!-- Initial directory dialog title -->
-  <string name="initial_directory_dialog_title">Initial directory</string>
+  <string name="initial_directory_dialog_title">Initial folder</string>
   <!-- Initial directory label -->
-  <string name="initial_directory_label">Choose the initial directory:</string>
+  <string name="initial_directory_label">Choose the initial folder:</string>
   <!-- Initial directory is relative -->
   <string name="initial_directory_relative_msg">Relative paths are not allowed.</string>
   <!-- Initial directory error message -->
-  <string name="initial_directory_error_msg">An error occurred while saving the initial
-    directory.</string>
+  <string name="initial_directory_error_msg">An error occurred while saving the initial folder.</string>
 
   <!-- Menu * Navigation * History -->
   <string name="menu_history">History</string>
@@ -502,7 +501,7 @@
   <!-- Enter Name Dialog * Label -->
   <string name="input_name_dialog_label">Name:</string>
   <!-- Enter Name Dialog * Message * Empty name -->
-  <string name="input_name_dialog_message_empty_name">The name can\'t be empty.</string>
+  <string name="input_name_dialog_message_empty_name">The name cannot be empty.</string>
   <!-- Enter Name Dialog * Message * Invalid name -->
   <string name="input_name_dialog_message_invalid_path_name">Invalid name. The characters
     \'<xliff:g id="invalid_characters">%1$s</xliff:g>\' are not allowed.</string>
@@ -598,32 +597,21 @@
   <!-- Preferences title -->
   <string name="pref">Settings</string>
   <!-- Preferences * General title -->
-  <string name="pref_general">General</string>
-  <!-- Preferences * General summary -->
-  <string name="pref_general_summary">Configure basic application behaviour</string>
+  <string name="pref_general">General settings</string>
   <!-- Preferences * Search title -->
-  <string name="pref_search">Search</string>
-  <!-- Preferences * Search summary -->
-  <string name="pref_search_summary">Configure search engine options</string>
+  <string name="pref_search">Search engine options</string>
   <!-- Preferences * Debug title -->
-  <string name="pref_debug">Debug</string>
-  <!-- Preferences * Debug summary -->
-  <string name="pref_debug_summary">Configure debugging options</string>
+  <string name="pref_debug">Debugging options</string>
   <!-- Preferences * About title -->
   <string name="pref_about">About</string>
   <!-- Preferences * About summary -->
-  <string name="pref_about_summary">CMExplorer. v<xliff:g id="version">%1$s</xliff:g>.
+  <string name="pref_about_summary">CM Explorer. v<xliff:g id="version">%1$s</xliff:g>.
     \nCopyright \u00A9 2012 CyanogenMod</string>
 
   <!-- Preferences * General * Behaviour category -->
-  <string name="pref_general_behaviour_category">Behaviour</string>
+  <string name="pref_general_behaviour_category">General</string>
   <!-- Preferences * General * Case sensitive sort title -->
-  <string name="pref_case_sensitive_sort">Case sensitive sort</string>
-  <!-- Preferences * General * Case sensitive sort summary on -->
-  <string name="pref_case_sensitive_sort_on">Use case sensitive comparison in sorting of files</string>
-  <!-- Preferences * General * Case sensitive sort summary off -->
-  <string name="pref_case_sensitive_sort_off">Don\'t use case sensitive comparison in sorting
-    of files</string>
+  <string name="pref_case_sensitive_sort">Use case sensitive sorting</string>
   <!-- Preferences * General * Default long-click action title -->
   <string name="pref_default_longclick_action">Default long-click action</string>
   <!-- Preferences * General * Default long-click action * No action -->
@@ -649,35 +637,21 @@
   <!-- Preferences * General * Compute folder statistics title -->
   <string name="pref_compute_folder_statistics">Compute folder statistics</string>
   <!-- Preferences * General * Compute folder statistics summary on -->
-  <string name="pref_compute_folder_statistics_on">Compute folder statistics in folder
-    properties dialog.\n\nWarning! The computation of folder statistics is costly in time and
+  <string name="pref_compute_folder_statistics_on">Warning! The computation of folder statistics is costly in time and
     system resources</string>
-  <!-- Preferences * General * Compute folder statistics summary off -->
-  <string name="pref_compute_folder_statistics_off">Don\'t compute folder statistics in folder
-    properties dialog</string>
     <!-- Preferences * General * Advanced settings category -->
   <string name="pref_general_advanced_settings_category">Advanced settings</string>
   <!-- Preferences * General * Advanced mode -->
-  <string name="pref_advanced_mode">Advanced mode</string>
+  <string name="pref_advanced_mode">Privileged mode</string>
   <!-- Preferences * General * Advanced mode summary on -->
-  <string name="pref_advanced_mode_on">Advanced mode is enabled. You are running a privileged
-    environment at your own risk</string>
-  <!-- Preferences * General * Advanced mode summary off -->
-  <string name="pref_advanced_mode_off">Advanced mode is disabled. You are running in safe mode</string>
+  <string name="pref_advanced_mode_on">Warning! Privileged mode allows operations that could break
+    your device. It\'s your responsibility to ensure that an operation is safe</string>
   <!-- Preferences * Search * Results category -->
   <string name="pref_search_results_category">Results</string>
   <!-- Preferences * Search * Show relevance widget -->
-  <string name="pref_show_relevance_widget">Relevance widget</string>
-  <!-- Preferences * Search * Show relevance widget summary on -->
-  <string name="pref_show_relevance_widget_on">Show the relevance widget</string>
-  <!-- Preferences * Search * Show relevance widget summary off -->
-  <string name="pref_show_relevance_widget_off">Hide the relevance widget</string>
+  <string name="pref_show_relevance_widget">Show relevance widget</string>
   <!-- Preferences * Search * Highlight search terms -->
-  <string name="pref_highlight_terms">Highlight terms</string>
-  <!-- Preferences * Search * Show relevance widget summary on -->
-  <string name="pref_highlight_terms_on">Highlight the matching search terms in the search results</string>
-  <!-- Preferences * Search * Show relevance widget summary off -->
-  <string name="pref_highlight_terms_off">Don\'t highlight the matching search terms in search results</string>
+  <string name="pref_highlight_terms">Highlight matching search terms</string>
   <!-- Preferences * Search * Sort results mode -->
   <string name="pref_sort_search_results_mode">Sort results mode</string>
   <!-- Preferences * Search * Sort results mode. None -->
@@ -703,11 +677,7 @@
   <string name="pref_remove_saved_search_terms_msg">All saved search terms were removed.</string>
 
   <!-- Preferences * Debug * Capture debug traces -->
-  <string name="pref_debug_traces">Capture debug traces</string>
-  <!-- Preferences * Debug * Capture debug traces summary on -->
-  <string name="pref_debug_traces_on">Enabled</string>
-  <!-- Preferences * Debug * Capture debug traces summary off -->
-  <string name="pref_debug_traces_off">Disabled</string>
+  <string name="pref_debug_traces">Log debugging information</string>
 
   <!-- Security * Extract relative or absolute files -->
   <string name="security_warning_extract">Warning!\n\n

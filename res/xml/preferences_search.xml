@@ -26,8 +26,6 @@
       <CheckBoxPreference
         android:key="cm_explorer_highlight_terms"
         android:title="@string/pref_highlight_terms"
-        android:summaryOn="@string/pref_highlight_terms_on"
-        android:summaryOff="@string/pref_highlight_terms_off"
         android:persistent="true"
         android:defaultValue="true" />
 
@@ -35,8 +33,6 @@
       <CheckBoxPreference
         android:key="cm_explorer_show_relevance_widget"
         android:title="@string/pref_show_relevance_widget"
-        android:summaryOn="@string/pref_show_relevance_widget_on"
-        android:summaryOff="@string/pref_show_relevance_widget_off"
         android:persistent="true"
         android:defaultValue="true" />
 

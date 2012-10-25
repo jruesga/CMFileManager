@@ -24,6 +24,7 @@ import android.text.Layout;
 import android.text.method.ScrollingMovementMethod;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.cyanogenmod.explorer.R;
@@ -159,7 +160,7 @@ public class ExecutionDialog implements DialogInterface.OnClickListener {
                                         title,
                                         layout);
         this.mDialog.setButton(
-                DialogInterface.BUTTON_NEUTRAL, context.getString(android.R.string.ok), this);
+                DialogInterface.BUTTON_NEUTRAL, context.getString(android.R.string.cancel), this);
 
         // Is cancellable
         this.mDialog.setCancelable(false);
@@ -248,8 +249,10 @@ public class ExecutionDialog implements DialogInterface.OnClickListener {
 
                 // Enable the Ok button
                 ExecutionDialog.this.mDialog.setCancelable(true);
-                ExecutionDialog.this.mDialog.getButton(
-                        DialogInterface.BUTTON_NEUTRAL).setEnabled(true);
+                Button button =
+                        ExecutionDialog.this.mDialog.getButton(DialogInterface.BUTTON_NEUTRAL); 
+                button.setText(R.string.ok);
+                button.setEnabled(true);
             }
         });
     }

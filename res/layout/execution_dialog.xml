@@ -89,19 +89,24 @@
   </LinearLayout>
 
   <!-- Console -->
-  <TextView
-    android:id="@+id/execution_output"
-    android:layout_width="match_parent"
-    android:layout_height="0dip"
-    android:layout_weight="1"
-    android:height="@dimen/console_height"
-    android:layout_margin="@dimen/default_margin"
-    android:background="@color/console_bg"
-    android:scrollHorizontally="true"
-    android:scrollbars="horizontal|vertical"
-    android:fadeScrollbars="false"
-    android:singleLine="false"
-    android:text="@null"
-    android:textAppearance="@style/console_text_appearance" />
+  <ScrollView
+      android:id="@+id/editor_scroller"
+      android:layout_width="match_parent"
+      android:layout_height="@dimen/console_height"
+      android:layout_margin="@dimen/default_margin"
+      android:scrollbars="vertical"
+      android:fadeScrollbars="false"
+      android:fillViewport="true">
+
+    <TextView
+      android:id="@+id/execution_output"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:background="@color/console_bg"
+      android:singleLine="false"
+      android:text="@null"
+      android:textAppearance="@style/console_text_appearance" />
+
+  </ScrollView>
 
 </LinearLayout>

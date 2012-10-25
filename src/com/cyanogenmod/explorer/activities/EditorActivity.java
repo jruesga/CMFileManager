@@ -43,6 +43,7 @@ import com.cyanogenmod.explorer.commands.AsyncResultListener;
 import com.cyanogenmod.explorer.commands.WriteExecutable;
 import com.cyanogenmod.explorer.console.ConsoleBuilder;
 import com.cyanogenmod.explorer.model.FileSystemObject;
+import com.cyanogenmod.explorer.preferences.ExplorerSettings;
 import com.cyanogenmod.explorer.ui.widgets.ButtonItem;
 import com.cyanogenmod.explorer.util.CommandHelper;
 import com.cyanogenmod.explorer.util.DialogHelper;
@@ -592,6 +593,12 @@ public class EditorActivity extends Activity implements TextWatcher {
                 DialogHelper.showToast(
                         this, R.string.editor_successfully_saved, Toast.LENGTH_SHORT);
                 setDirty(false);
+
+                // Send a message that allow other activities to update his data
+                Intent intent = new Intent(ExplorerSettings.INTENT_FILE_CHANGED);
+                intent.putExtra(
+                        ExplorerSettings.EXTRA_FILE_CHANGED_KEY, this.mFso.getFullPath());
+                sendBroadcast(intent);
             }
 
         } catch (Exception e) {

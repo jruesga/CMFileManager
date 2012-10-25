@@ -144,9 +144,20 @@ public enum ExplorerSettings {
                         "com.cyanogenmod.explorer.INTENT_SETTING_CHANGED"; //$NON-NLS-1$
 
     /**
-     * The extra key with the preference key that has changed
+     * A broadcast intent that is sent when a file was changed
+     */
+    public final static String INTENT_FILE_CHANGED =
+                        "com.cyanogenmod.explorer.INTENT_FILE_CHANGED"; //$NON-NLS-1$
+
+    /**
+     * The extra key with the preference key that was changed
      */
     public final static String EXTRA_SETTING_CHANGED_KEY = "preference"; //$NON-NLS-1$
+
+    /**
+     * The extra key with the file key that was changed
+     */
+    public final static String EXTRA_FILE_CHANGED_KEY = "file"; //$NON-NLS-1$
 
 
 

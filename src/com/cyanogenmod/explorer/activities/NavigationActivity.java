@@ -169,59 +169,74 @@ public class NavigationActivity extends Activity
     private final BroadcastReceiver mOnSettingChangeReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
-            if (intent != null &&
-                intent.getAction().compareTo(ExplorerSettings.INTENT_SETTING_CHANGED) == 0) {
-
-                // The settings has changed
-                String key = intent.getStringExtra(ExplorerSettings.EXTRA_SETTING_CHANGED_KEY);
-                if (key != null) {
-                    // Disk usage warning level
-                    if (key.compareTo(ExplorerSettings.
-                            SETTINGS_DISK_USAGE_WARNING_LEVEL.getId()) == 0) {
-
-                        // Set the free disk space warning level of the breadcrumb widget
-                        Breadcrumb breadcrumb = getCurrentNavigationView().getBreadcrumb();
-                        String fds = Preferences.getSharedPreferences().getString(
-                                ExplorerSettings.SETTINGS_DISK_USAGE_WARNING_LEVEL.getId(),
-                                (String)ExplorerSettings.
-                                    SETTINGS_DISK_USAGE_WARNING_LEVEL.getDefaultValue());
-                        breadcrumb.setFreeDiskSpaceWarningLevel(Integer.parseInt(fds));
-                        breadcrumb.updateMountPointInfo();
-                        return;
-                    }
-
-                    // Default long-click action
-                    if (key.compareTo(ExplorerSettings.
-                            SETTINGS_DEFAULT_LONG_CLICK_ACTION.getId()) == 0) {
-                        String defaultValue = ((ObjectStringIdentifier)ExplorerSettings.
-                                SETTINGS_DEFAULT_LONG_CLICK_ACTION.getDefaultValue()).getId();
-                        String id = ExplorerSettings.SETTINGS_DEFAULT_LONG_CLICK_ACTION.getId();
-                        String value =
-                                Preferences.getSharedPreferences().getString(id, defaultValue);
-                        DefaultLongClickAction mode = DefaultLongClickAction.fromId(value);
-                        getCurrentNavigationView().setDefaultLongClickAction(mode);
-                        return;
-                    }
-
-                    // Case sensitive sort
-                    if (key.compareTo(ExplorerSettings.
-                            SETTINGS_CASE_SENSITIVE_SORT.getId()) == 0) {
-                        getCurrentNavigationView().refresh();
-                        return;
-                    }
-
-                    // Advanced mode
-                    if (key.compareTo(ExplorerSettings.
-                            SETTINGS_ADVANCE_MODE.getId()) == 0) {
-                        // Is it necessary to create or exit of the ChRooted?
-                        boolean chRooted = !ExplorerApplication.isAdvancedMode();
-                        if (chRooted != NavigationActivity.this.mChRooted) {
-                            if (chRooted) {
-                                createChRooted();
-                            } else {
-                                exitChRooted();
+            if (intent != null) {
+                if (intent.getAction().compareTo(ExplorerSettings.INTENT_SETTING_CHANGED) == 0) {
+                    // The settings has changed
+                    String key = intent.getStringExtra(ExplorerSettings.EXTRA_SETTING_CHANGED_KEY);
+                    if (key != null) {
+                        // Disk usage warning level
+                        if (key.compareTo(ExplorerSettings.
+                                SETTINGS_DISK_USAGE_WARNING_LEVEL.getId()) == 0) {
+    
+                            // Set the free disk space warning level of the breadcrumb widget
+                            Breadcrumb breadcrumb = getCurrentNavigationView().getBreadcrumb();
+                            String fds = Preferences.getSharedPreferences().getString(
+                                    ExplorerSettings.SETTINGS_DISK_USAGE_WARNING_LEVEL.getId(),
+                                    (String)ExplorerSettings.
+                                        SETTINGS_DISK_USAGE_WARNING_LEVEL.getDefaultValue());
+                            breadcrumb.setFreeDiskSpaceWarningLevel(Integer.parseInt(fds));
+                            breadcrumb.updateMountPointInfo();
+                            return;
+                        }
+    
+                        // Default long-click action
+                        if (key.compareTo(ExplorerSettings.
+                                SETTINGS_DEFAULT_LONG_CLICK_ACTION.getId()) == 0) {
+                            String defaultValue = ((ObjectStringIdentifier)ExplorerSettings.
+                                    SETTINGS_DEFAULT_LONG_CLICK_ACTION.getDefaultValue()).getId();
+                            String id = ExplorerSettings.
+                                    SETTINGS_DEFAULT_LONG_CLICK_ACTION.getId();
+                            String value =
+                                    Preferences.getSharedPreferences().getString(id, defaultValue);
+                            DefaultLongClickAction mode = DefaultLongClickAction.fromId(value);
+                            getCurrentNavigationView().setDefaultLongClickAction(mode);
+                            return;
+                        }
+    
+                        // Case sensitive sort
+                        if (key.compareTo(ExplorerSettings.
+                                SETTINGS_CASE_SENSITIVE_SORT.getId()) == 0) {
+                            getCurrentNavigationView().refresh();
+                            return;
+                        }
+    
+                        // Advanced mode
+                        if (key.compareTo(ExplorerSettings.
+                                SETTINGS_ADVANCE_MODE.getId()) == 0) {
+                            // Is it necessary to create or exit of the ChRooted?
+                            boolean chRooted = !ExplorerApplication.isAdvancedMode();
+                            if (chRooted != NavigationActivity.this.mChRooted) {
+                                if (chRooted) {
+                                    createChRooted();
+                                } else {
+                                    exitChRooted();
+                                }
                             }
                         }
+                    }
+
+                } else if (intent.getAction().compareTo(
+                        ExplorerSettings.INTENT_FILE_CHANGED) == 0) {
+                    // Retrieve the file that was changed
+                    String file =
+                            intent.getStringExtra(ExplorerSettings.EXTRA_FILE_CHANGED_KEY);
+                    try {
+                        FileSystemObject fso = CommandHelper.getFileInfo(context, file, null);
+                        if (fso != null) {
+                            getCurrentNavigationView().refresh(fso);
+                        }
+                    } catch (Exception e) {
+                        ExceptionUtil.translateException(context, e, true, false);
                     }
                 }
             }
@@ -265,6 +280,7 @@ public class NavigationActivity extends Activity
         // Register the broadcast receiver
         IntentFilter filter = new IntentFilter();
         filter.addAction(ExplorerSettings.INTENT_SETTING_CHANGED);
+        filter.addAction(ExplorerSettings.INTENT_FILE_CHANGED);
         registerReceiver(this.mOnSettingChangeReceiver, filter);
 
         //Request features

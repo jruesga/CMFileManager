@@ -86,6 +86,103 @@ import java.util.List;
 public final class CommandHelper {
 
     /**
+     * A wrapper class for asynchronous operations that need restore the filesystem
+     * after the operation.
+     */
+    private static class UnmountAsyncResultListener implements AsyncResultListener {
+
+        Context mCtx;
+        AsyncResultListener mRef;
+        boolean mUnmount = false;
+        Console mConsole;
+        MountPoint mMountPoint;
+
+        /**
+         * Constructor of <code>UnmountAsyncResultListener</code>
+         */
+        public UnmountAsyncResultListener() {
+            super();
+        }
+
+        /**
+         * {@inheritDoc}
+         */
+        @Override
+        public void onAsyncStart() {
+            if (this.mRef != null) {
+                this.mRef.onAsyncStart();
+            }
+        }
+
+        /**
+         * {@inheritDoc}
+         */
+        @Override
+        public void onAsyncEnd(boolean cancelled) {
+            if (this.mRef != null) {
+                this.mRef.onAsyncEnd(cancelled);
+            }
+        }
+
+        /**
+         * {@inheritDoc}
+         */
+        @Override
+        public void onAsyncExitCode(int exitCode) {
+            if (this.mRef != null) {
+                this.mRef.onAsyncExitCode(exitCode);
+            }
+
+            // Now if that the process has finished check if the operation
+            // requires to unmount the filesystem
+            if (this.mUnmount && this.mConsole != null &&
+                this.mMountPoint != null && this.mCtx != null) {
+                // Run in background because the console is still executing
+                // the command
+                Thread t = new Thread() {
+                    @Override
+                    public void run() {
+                        try {
+                            MountExecutable unmountExecutable =
+                                    UnmountAsyncResultListener.this.mConsole.
+                                        getExecutableFactory().newCreator().
+                                            createMountExecutable(
+                                                    UnmountAsyncResultListener.this.mMountPoint,
+                                                    false);
+                            UnmountAsyncResultListener.this.mConsole.execute(unmountExecutable);
+                        } catch (Exception e) {
+                            // Capture the exception but not show to the user
+                            ExceptionUtil.translateException(
+                                    UnmountAsyncResultListener.this.mCtx, e, true, false);
+                        }
+                    }
+                };
+                t.start();
+            }
+        }
+
+        /**
+         * {@inheritDoc}
+         */
+        @Override
+        public void onPartialResult(Object result) {
+            if (this.mRef != null) {
+                this.mRef.onPartialResult(result);
+            }
+        }
+
+        /**
+         * {@inheritDoc}
+         */
+        @Override
+        public void onException(Exception cause) {
+            if (this.mRef != null) {
+                this.mRef.onException(cause);
+            }
+        }
+    }
+
+    /**
      * Constructor of <code>CommandHelper</code>.
      */
     private CommandHelper() {
@@ -1167,17 +1264,28 @@ public final class CommandHelper {
             CommandNotFoundException, OperationTimeoutException,
             ExecutionException, InvalidCommandDefinitionException, ReadOnlyFilesystemException {
         Console c = ensureConsole(context, console);
+
+        // Create a wrapper listener, for unmount the filesystem if necessary
+        UnmountAsyncResultListener wrapperListener = new UnmountAsyncResultListener();
+        wrapperListener.mCtx = context;
+        wrapperListener.mConsole = c;
+        wrapperListener.mRef = asyncResultListener;
+
         // Prior to write to disk the data, ensure that can write to the disk using
         // createFile method
         //- Create
         CreateFileExecutable executable1 =
                 c.getExecutableFactory().newCreator().createCreateFileExecutable(file);
-        writableExecute(context, executable1, c);
+        boolean unmount = writableExecute(context, executable1, c, true);
         if (executable1.getResult().booleanValue()) {
+            // Configure the rest of attributes of the wrapper listener
+            wrapperListener.mUnmount = unmount;
+            wrapperListener.mMountPoint = executable1.getWritableMountPoint();
+
             //- Write
             WriteExecutable executable2 =
                     c.getExecutableFactory().newCreator().
-                        createWriteExecutable(file, asyncResultListener);
+                        createWriteExecutable(file, wrapperListener);
             execute(context, executable2, c);
             return executable2;
         }
@@ -1216,9 +1324,15 @@ public final class CommandHelper {
             ExecutionException, InvalidCommandDefinitionException, ReadOnlyFilesystemException {
         Console c = ensureConsole(context, console);
 
+        // Create a wrapper listener, for unmount the filesystem if necessary
+        UnmountAsyncResultListener wrapperListener = new UnmountAsyncResultListener();
+        wrapperListener.mCtx = context;
+        wrapperListener.mConsole = c;
+        wrapperListener.mRef = asyncResultListener;
+
         CompressExecutable executable1 =
                 c.getExecutableFactory().newCreator().
-                    createCompressExecutable(mode, dst, src, asyncResultListener);
+                    createCompressExecutable(mode, dst, src, wrapperListener);
 
         // Prior to write to disk the data, ensure that can write to the disk using
         // createFile method
@@ -1228,8 +1342,12 @@ public final class CommandHelper {
                 c.getExecutableFactory().
                     newCreator().
                         createCreateFileExecutable(compressOutFile);
-        writableExecute(context, executable2, c);
+        boolean unmount = writableExecute(context, executable2, c, true);
         if (executable2.getResult().booleanValue()) {
+            // Configure the rest of attributes of the wrapper listener
+            wrapperListener.mUnmount = unmount;
+            wrapperListener.mMountPoint = executable2.getWritableMountPoint();
+
             //- Compress
             execute(context, executable1, c);
             return executable1;
@@ -1269,9 +1387,15 @@ public final class CommandHelper {
             ExecutionException, InvalidCommandDefinitionException, ReadOnlyFilesystemException {
         Console c = ensureConsole(context, console);
 
+        // Create a wrapper listener, for unmount the filesystem if necessary
+        UnmountAsyncResultListener wrapperListener = new UnmountAsyncResultListener();
+        wrapperListener.mCtx = context;
+        wrapperListener.mConsole = c;
+        wrapperListener.mRef = asyncResultListener;
+
         CompressExecutable executable1 =
                 c.getExecutableFactory().newCreator().
-                    createCompressExecutable(mode, src, asyncResultListener);
+                    createCompressExecutable(mode, src, wrapperListener);
 
         // Prior to write to disk the data, ensure that can write to the disk using
         // createFile method
@@ -1281,8 +1405,12 @@ public final class CommandHelper {
                 c.getExecutableFactory().
                     newCreator().
                         createCreateFileExecutable(compressOutFile);
-        writableExecute(context, executable2, c);
+        boolean unmount = writableExecute(context, executable2, c, true);
         if (executable2.getResult().booleanValue()) {
+            // Configure the rest of attributes of the wrapper listener
+            wrapperListener.mUnmount = unmount;
+            wrapperListener.mMountPoint = executable2.getWritableMountPoint();
+
             //- Compress
             execute(context, executable1, c);
             return executable1;
@@ -1323,9 +1451,15 @@ public final class CommandHelper {
             ExecutionException, InvalidCommandDefinitionException, ReadOnlyFilesystemException {
         Console c = ensureConsole(context, console);
 
+        // Create a wrapper listener, for unmount the filesystem if necessary
+        UnmountAsyncResultListener wrapperListener = new UnmountAsyncResultListener();
+        wrapperListener.mCtx = context;
+        wrapperListener.mConsole = c;
+        wrapperListener.mRef = asyncResultListener;
+
         UncompressExecutable executable1 =
                 c.getExecutableFactory().newCreator().
-                    createUncompressExecutable(src, dst, asyncResultListener);
+                    createUncompressExecutable(src, dst, wrapperListener);
 
         // Prior to write to disk the data, ensure that can write to the disk using
         // createFile or createFolder method
@@ -1345,8 +1479,12 @@ public final class CommandHelper {
                         newCreator().
                             createCreateFileExecutable(compressOutFile);
         }
-        writableExecute(context, executable2, c);
+        boolean unmount = writableExecute(context, executable2, c, true);
         if (((Boolean)executable2.getResult()).booleanValue()) {
+            // Configure the rest of attributes of the wrapper listener
+            wrapperListener.mUnmount = unmount;
+            wrapperListener.mMountPoint = executable2.getWritableMountPoint();
+
             //- Compress
             execute(context, executable1, c);
             return executable1;
@@ -1434,6 +1572,34 @@ public final class CommandHelper {
             throws ConsoleAllocException, InsufficientPermissionsException, NoSuchFileOrDirectory,
             OperationTimeoutException, ExecutionException,
             CommandNotFoundException, ReadOnlyFilesystemException {
+        writableExecute(context, executable, console, false);
+    }
+
+    /**
+     * Method that execute a program that requires write permissions over the filesystem. This
+     * method ensure mount/unmount the filesystem before/after executing the operation.
+     *
+     * @param context The current context (needed if console == null)
+     * @param executable The writable executable program to execute
+     * @param console The console in which execute the program. <code>null</code> to attach
+     * to the default console
+     * @param leaveDeviceMounted If the operation must leave the filesystem mounted after
+     * the execution
+     * @return boolean If the filesystem was left unmount
+     * @throws NoSuchFileOrDirectory If the file or directory was not found
+     * @throws ConsoleAllocException If the console can't be allocated
+     * @throws InsufficientPermissionsException If an operation requires elevated permissions
+     * @throws CommandNotFoundException If the command was not found
+     * @throws OperationTimeoutException If the operation exceeded the maximum time of wait
+     * @throws ExecutionException If the operation returns a invalid exit code
+     * @throws ReadOnlyFilesystemException If the operation writes in a read-only filesystem
+     */
+    private static boolean writableExecute(
+            Context context, WritableExecutable executable, Console console,
+            boolean leaveDeviceMounted)
+            throws ConsoleAllocException, InsufficientPermissionsException, NoSuchFileOrDirectory,
+            OperationTimeoutException, ExecutionException,
+            CommandNotFoundException, ReadOnlyFilesystemException {
 
         //Retrieve the mount point information to check if a remount operation is required
         boolean needMount = false;
@@ -1467,7 +1633,6 @@ public final class CommandHelper {
                         createMountExecutable(mp, false);
         }
 
-
         //Execute the commands
         boolean mountExecuted = false;
         try {
@@ -1498,13 +1663,14 @@ public final class CommandHelper {
         } finally {
             //If previously was a mount successful execution, then execute
             //and unmount operation
-            if (mountExecuted) {
+            if (mountExecuted && !leaveDeviceMounted) {
                 //Execute the unmount command
                 console.execute(unmountExecutable);
             }
         }
 
-
+        // If the needed unmount was executed 
+        return mountExecuted && leaveDeviceMounted;
     }
 
     /**

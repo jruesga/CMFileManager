@@ -158,6 +158,16 @@ public class AssociationsDialog implements OnItemClickListener {
                     public void onClick(DialogInterface dialog, int which) {
                         ResolveInfo ri = getSelected();
                         Intent intent = new Intent(AssociationsDialog.this.mRequestIntent);
+                        if (isInternalEditor(ri)) {
+                            // The action for internal editors (for default VIEW)
+                            String a = Intent.ACTION_VIEW;
+                            if (ri.activityInfo.metaData != null) {
+                                a = ri.activityInfo.metaData.getString(
+                                        IntentsActionPolicy.EXTRA_INTERNAL_ACTION,
+                                        Intent.ACTION_VIEW);
+                            }
+                            intent.setAction(a);
+                        }
                         intent.setFlags(
                                 intent.getFlags() &~
                                 Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS);
@@ -454,9 +464,10 @@ public class AssociationsDialog implements OnItemClickListener {
      *
      * @param ri The resolve info
      * @return boolean  If the selected resolve info is about an internal viewer
+     * @hide
      */
     @SuppressWarnings("static-method")
-    private boolean isInternalEditor(ResolveInfo ri) {
+    boolean isInternalEditor(ResolveInfo ri) {
         return ri.activityInfo.metaData != null &&
                 ri.activityInfo.metaData.getBoolean(
                         IntentsActionPolicy.CATEGORY_INTERNAL_VIEWER, false);

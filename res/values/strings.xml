@@ -365,6 +365,8 @@
   <string name="editor_dirty_ask">There are unsaved changes.\n\nExit without saving?</string>
   <!-- Editor * Save operation success -->
   <string name="editor_successfully_saved">The file was successfully saved.</string>
+  <!-- Editor * Read-only file mode -->
+  <string name="editor_read_only_mode">The file is opened in read-only mode.</string>
 
   <!-- Bookmarks * Bookmarks activity title -->
   <string name="bookmarks">Bookmarks</string>

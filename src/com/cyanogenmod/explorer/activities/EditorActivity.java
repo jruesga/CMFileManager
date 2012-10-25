@@ -26,6 +26,7 @@ import android.content.pm.ActivityInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.Editable;
+import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -33,7 +34,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ProgressBar;
-import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.TextView.BufferType;
 import android.widget.Toast;
@@ -60,6 +60,8 @@ public class EditorActivity extends Activity implements TextWatcher {
     private static final String TAG = "EditorActivity"; //$NON-NLS-1$
 
     private static boolean DEBUG = false;
+
+    private static final char[] VALID_NON_PRINTABLE_CHARS = {' ', '\t', '\r', '\n'};
 
     /**
      * Internal interface to notify progress update
@@ -120,6 +122,18 @@ public class EditorActivity extends Activity implements TextWatcher {
         public void onPartialResult(Object result) {
             try {
                 byte[] partial = (byte[])result;
+
+                // Check if the file is a binary file. In this case the editor
+                // is read-only
+                if (!EditorActivity.this.mReadOnly && partial != null) {
+                    for (int i = 0; i < partial.length-1; i++) {
+                        if (!isPrintableCharacter((char)partial[i])) {
+                            EditorActivity.this.mReadOnly = true;
+                            break;
+                        }
+                    }
+                }
+
                 this.mBuffer.append(new String(partial));
                 this.mSize += this.mBuffer.length();
                 if (this.mListener != null && this.mFso != null) {
@@ -211,10 +225,6 @@ public class EditorActivity extends Activity implements TextWatcher {
     /**
      * @hide
      */
-    ScrollView mScroll;
-    /**
-     * @hide
-     */
     EditText mEditor;
     /**
      * @hide
@@ -294,9 +304,7 @@ public class EditorActivity extends Activity implements TextWatcher {
         this.mEditor = (EditText)findViewById(R.id.editor);
         this.mEditor.setText(null);
         this.mEditor.addTextChangedListener(this);
-
-        this.mScroll = (ScrollView)findViewById(R.id.editor_scroller);
-        this.mScroll.setEnabled(false);
+        this.mEditor.setEnabled(false);
 
         this.mProgress = findViewById(R.id.editor_progress);
         this.mProgressBar = (ProgressBar)findViewById(R.id.editor_progress_bar);
@@ -383,7 +391,7 @@ public class EditorActivity extends Activity implements TextWatcher {
                     this, R.string.editor_invalid_file_msg, Toast.LENGTH_SHORT);
             return;
         }
-        this.mReadOnly  = (action.compareTo(Intent.ACTION_VIEW) == 0);
+        this.mReadOnly = (action.compareTo(Intent.ACTION_VIEW) == 0);
 
         // Read the intent and check that is has a valid request
         String path = getIntent().getData().getPath();
@@ -499,7 +507,15 @@ public class EditorActivity extends Activity implements TextWatcher {
                             this.mReader.mBuffer, BufferType.EDITABLE);
                     this.mReader.mBuffer = null; //Cleanup
                     setDirty(false);
-                    EditorActivity.this.mScroll.setEnabled(!EditorActivity.this.mReadOnly);
+                    EditorActivity.this.mEditor.setEnabled(!EditorActivity.this.mReadOnly);
+
+                    // Notify read-only mode
+                    if (EditorActivity.this.mReadOnly) {
+                        DialogHelper.showToast(
+                                EditorActivity.this,
+                                R.string.editor_read_only_mode,
+                                Toast.LENGTH_SHORT);
+                    }
                 }
             }
 
@@ -640,6 +656,23 @@ public class EditorActivity extends Activity implements TextWatcher {
         }
         setResult(Activity.RESULT_OK);
         finish();
+    }
+
+    /**
+     * Method that check if a character is valid printable character
+     * 
+     * @param c The character to check
+     * @return boolean If the character is printable
+     * @hide
+     */
+    static boolean isPrintableCharacter(char c) {
+        int cc = VALID_NON_PRINTABLE_CHARS.length;
+        for (int i = 0; i < cc; i++) {
+            if (c == VALID_NON_PRINTABLE_CHARS[i]) {
+                return true;
+            }
+        }
+        return TextUtils.isGraphic(c);
     }
 
 }

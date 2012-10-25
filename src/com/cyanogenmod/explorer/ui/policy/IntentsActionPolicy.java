@@ -52,6 +52,12 @@ public final class IntentsActionPolicy extends ActionsPolicy {
     private static boolean DEBUG = false;
 
     /**
+     * Extra field for the internal action
+     */
+    public static final String EXTRA_INTERNAL_ACTION =
+            "com.cyanogenmod.explorer.extra.INTERNAL_ACTION"; //$NON-NLS-1$
+
+    /**
      * Category for all the internal CMExplorer viewers
      */
     public static final String CATEGORY_INTERNAL_VIEWER =
@@ -176,14 +182,16 @@ public final class IntentsActionPolicy extends ActionsPolicy {
         if (internals != null) {
             int cc = internals.size();
             for (int i = 0; i < cc; i++) {
+                Intent ii = internals.get(i);
                 List<ResolveInfo> ris =
                         packageManager.
-                            queryIntentActivities(internals.get(i), 0);
+                            queryIntentActivities(ii, 0);
                 if (ris.size() > 0) {
                     ResolveInfo ri = ris.get(0);
                     // Mark as internal
                     if (ri.activityInfo.metaData == null) {
                         ri.activityInfo.metaData = new Bundle();
+                        ri.activityInfo.metaData.putString(EXTRA_INTERNAL_ACTION, ii.getAction());
                         ri.activityInfo.metaData.putBoolean(CATEGORY_INTERNAL_VIEWER, true);
                     }
 

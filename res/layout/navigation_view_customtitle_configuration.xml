@@ -57,8 +57,8 @@
     android:layout_width="@dimen/default_buttom_width"
     android:layout_height="match_parent"
     android:layout_alignParentRight="true"
-    android:contentDescription="@string/actionbar_button_nav_close_cd"
+    android:contentDescription="@null"
     android:onClick="onActionBarItemClick"
-    android:src="@drawable/ic_holo_light_close" />
+    android:src="@drawable/ic_holo_light_next" />
 
 </RelativeLayout>

@@ -24,9 +24,9 @@
     android:layout_width="wrap_content"
     android:layout_height="match_parent"
     android:layout_alignParentRight="true"
-    android:contentDescription="@string/actionbar_button_configuration_cd"
+    android:contentDescription="@null"
     android:onClick="onActionBarItemClick"
-    android:src="@drawable/ic_holo_light_config" />
+    android:src="@drawable/ic_holo_light_previous" />
 
   <com.cyanogenmod.explorer.ui.widgets.BreadcrumbView
     android:id="@+id/breadcrumb_view"

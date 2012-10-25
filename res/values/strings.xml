@@ -155,16 +155,12 @@
 
   <!-- ActionBar Buttons * FileSystem -->
   <string name="actionbar_button_filesystem_cd">File system info</string>
-  <!-- ActionBar Buttons * Navigation View Configuration -->
-  <string name="actionbar_button_configuration_cd">Configuration</string>
   <!-- ActionBar Buttons * Sort Mode -->
   <string name="actionbar_button_sort_mode_cd">Sort mode</string>
   <!-- ActionBar Buttons * Layout Mode -->
   <string name="actionbar_button_layout_mode_cd">Layout mode</string>
   <!-- ActionBar Buttons * Other View Options -->
   <string name="actionbar_button_other_view_options_cd">Other view options</string>
-  <!-- ActionBar Buttons * Close -->
-  <string name="actionbar_button_nav_close_cd">Close</string>
   <!-- ActionBar Buttons * Done -->
   <string name="actionbar_button_selection_done_cd">Done</string>
   <!-- ActionBar Buttons * Actions -->

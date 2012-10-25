@@ -390,9 +390,10 @@ public class NavigationView extends RelativeLayout implements
 
         // Pick mode doesn't implements the onlongclick
         if (this.mNavigationMode.compareTo(NAVIGATION_MODE.BROWSABLE) == 0) {
-            // Register the long-click listener only if needed
-            if (this.mDefaultLongClickAction.compareTo(
-                    DefaultLongClickAction.NONE) != 0) {
+            // Register the long-click listener only if needed. Icon layout mode always use
+            // actions menu on long-click
+            if (this.mDefaultLongClickAction.compareTo(DefaultLongClickAction.NONE) != 0 ||
+                this.mCurrentMode.compareTo(NavigationLayoutMode.ICONS) == 0) {
                 this.mAdapterView.setOnItemLongClickListener(this);
             } else {
                 this.mAdapterView.setOnItemLongClickListener(null);
@@ -556,19 +557,13 @@ public class NavigationView extends RelativeLayout implements
             newView.setAdapter(this.mAdapter);
             newView.setOnItemClickListener(NavigationView.this);
 
-            // Pick mode doesn't implements the onlongclick
-            if (this.mNavigationMode.compareTo(NAVIGATION_MODE.BROWSABLE) == 0) {
-                // Register the long-click listener only if needed
-                if (this.mDefaultLongClickAction.compareTo(
-                        DefaultLongClickAction.NONE) != 0) {
-                    newView.setOnItemLongClickListener(this);
-                }
-            }
-
             //Add the new layout
             this.mAdapterView = newView;
             addView(newView, 0);
             this.mCurrentMode = newMode;
+
+            // Pick mode doesn't implements the onlongclick
+            setDefaultLongClickAction(this.mDefaultLongClickAction);
 
             //Save the preference (only in navigation browse mode)
             if (this.mNavigationMode.compareTo(NAVIGATION_MODE.BROWSABLE) == 0) {
@@ -876,6 +871,17 @@ public class NavigationView extends RelativeLayout implements
         FileSystemObjectAdapter adapter = ((FileSystemObjectAdapter)parent.getAdapter());
         FileSystemObject fso = adapter.getItem(position);
 
+        // Parent directory hasn't actions
+        if (fso instanceof ParentDirectory) {
+            return false;
+        }
+
+        // In icons layout mode, always long-click is associated to show actions menu
+        if (this.mCurrentMode.compareTo(NavigationLayoutMode.ICONS) == 0) {
+            onRequestMenu(fso);
+            return true;
+        }
+
         // Select/deselect
         if (this.mDefaultLongClickAction.compareTo(
                 DefaultLongClickAction.SELECT_DESELECT) == 0) {
@@ -891,9 +897,12 @@ public class NavigationView extends RelativeLayout implements
         }
 
         // Open with
-        else if (this.mDefaultLongClickAction.compareTo(
-                DefaultLongClickAction.OPEN_WITH) == 0) {
-            IntentsActionPolicy.openFileSystemObject(getContext(), fso, true, null, null);
+        else if (this.mDefaultLongClickAction.compareTo(DefaultLongClickAction.OPEN_WITH) == 0) {
+            if (!FileHelper.isDirectory(fso)) {
+                IntentsActionPolicy.openFileSystemObject(getContext(), fso, true, null, null);
+            } else {
+                return false;
+            }
         }
 
         // Show properties

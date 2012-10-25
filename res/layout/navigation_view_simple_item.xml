@@ -43,7 +43,7 @@
     android:layout_height="match_parent"
     android:layout_alignParentRight="true"
     android:contentDescription="@null"
-    android:src="@drawable/ic_holo_light_arrow" />
+    android:src="@drawable/ic_holo_light_contextual_action" />
 
   <RelativeLayout
     android:layout_width="match_parent"

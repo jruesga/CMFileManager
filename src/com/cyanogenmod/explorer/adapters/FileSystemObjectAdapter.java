@@ -283,12 +283,16 @@ public class FileSystemObjectAdapter
                 viewHolder.mBtCheck = (ImageButton)v.findViewById(RESOURCE_ITEM_CHECK);
                 viewHolder.mBtCheck.setOnClickListener(this);
                 viewHolder.mBtMenu = (ImageButton)v.findViewById(RESOURCE_ITEM_MENU);
-                viewHolder.mBtMenu.setOnClickListener(this);
+                if (viewHolder.mBtMenu != null) {
+                    viewHolder.mBtMenu.setOnClickListener(this);
+                }
             } else {
                 viewHolder.mBtCheck = (ImageButton)v.findViewById(RESOURCE_ITEM_CHECK);
                 viewHolder.mBtCheck.setVisibility(View.GONE);
                 viewHolder.mBtMenu = (ImageButton)v.findViewById(RESOURCE_ITEM_MENU);
-                viewHolder.mBtMenu.setVisibility(View.GONE);
+                if (viewHolder.mBtMenu != null) {
+                    viewHolder.mBtMenu.setVisibility(View.GONE);
+                }
             }
             v.setTag(viewHolder);
         }
@@ -318,8 +322,10 @@ public class FileSystemObjectAdapter
                     dataHolder.mSelected
                         ? R.drawable.holo_list_selector_selected
                         : R.drawable.holo_list_selector_deseleted);
-            viewHolder.mBtMenu.setVisibility(dataHolder.mHasMenu ? View.VISIBLE : View.GONE);
-            viewHolder.mBtMenu.setTag(Integer.valueOf(position));
+            if (viewHolder.mBtMenu != null) {
+                viewHolder.mBtMenu.setVisibility(dataHolder.mHasMenu ? View.VISIBLE : View.GONE);
+                viewHolder.mBtMenu.setTag(Integer.valueOf(position));
+            }
         }
 
         //Return the view

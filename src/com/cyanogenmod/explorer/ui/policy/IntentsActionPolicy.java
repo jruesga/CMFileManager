@@ -23,19 +23,23 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.net.Uri;
+import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
 
 import com.cyanogenmod.explorer.R;
 import com.cyanogenmod.explorer.activities.ShortcutActivity;
 import com.cyanogenmod.explorer.model.FileSystemObject;
+import com.cyanogenmod.explorer.model.RegularFile;
 import com.cyanogenmod.explorer.ui.dialogs.AssociationsDialog;
 import com.cyanogenmod.explorer.util.DialogHelper;
 import com.cyanogenmod.explorer.util.ExceptionUtil;
 import com.cyanogenmod.explorer.util.FileHelper;
 import com.cyanogenmod.explorer.util.MimeTypeHelper;
+import com.cyanogenmod.explorer.util.MimeTypeHelper.MimeTypeCategory;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -46,6 +50,18 @@ public final class IntentsActionPolicy extends ActionsPolicy {
     private static final String TAG = "IntentsActionPolicy"; //$NON-NLS-1$
 
     private static boolean DEBUG = false;
+
+    /**
+     * Category for all the internal CMExplorer viewers
+     */
+    public static final String CATEGORY_INTERNAL_VIEWER =
+            "com.cyanogenmod.explorer.category.INTERNAL_VIEWER"; //$NON-NLS-1$
+
+    /**
+     * Category for all the CMExplorer editor
+     */
+    public static final String CATEGORY_EDITOR =
+            "com.cyanogenmod.explorer.category.EDITOR"; //$NON-NLS-1$
 
     /**
      * Method that opens a {@link FileSystemObject} with the default registered application
@@ -79,6 +95,7 @@ public final class IntentsActionPolicy extends ActionsPolicy {
                     ctx,
                     intent,
                     choose,
+                    createInternalIntents(ctx,  fso),
                     R.drawable.ic_holo_light_open,
                     R.string.associations_dialog_openwith_title,
                     R.string.associations_dialog_openwith_action,
@@ -115,6 +132,7 @@ public final class IntentsActionPolicy extends ActionsPolicy {
                     ctx,
                     intent,
                     false,
+                    null,
                     R.drawable.ic_holo_light_send,
                     R.string.associations_dialog_sendwith_title,
                     R.string.associations_dialog_sendwith_action,
@@ -132,6 +150,7 @@ public final class IntentsActionPolicy extends ActionsPolicy {
      * @param intent The intent to resolve
      * @param choose If allow the user to select the application to select the registered
      * application. If no preferred app or more than one exists the dialog is shown.
+     * @param internals The list of internals intents that can handle the action
      * @param icon The icon of the dialog
      * @param title The title of the dialog
      * @param action The button title of the dialog
@@ -140,7 +159,7 @@ public final class IntentsActionPolicy extends ActionsPolicy {
      * @param onDismissListener The dismiss listener
      */
     private static void resolveIntent(
-            Context ctx, Intent intent, boolean choose,
+            Context ctx, Intent intent, boolean choose, List<Intent> internals,
             int icon, int title, int action, boolean allowPreferred,
             OnCancelListener onCancelListener, OnDismissListener onDismissListener) {
         //Retrieve the activities that can handle the file
@@ -151,6 +170,29 @@ public final class IntentsActionPolicy extends ActionsPolicy {
         List<ResolveInfo> info =
                 packageManager.
                     queryIntentActivities(intent, PackageManager.MATCH_DEFAULT_ONLY);
+
+        // Add the internal editors
+        int count = 0;
+        if (internals != null) {
+            int cc = internals.size();
+            for (int i = 0; i < cc; i++) {
+                List<ResolveInfo> ris =
+                        packageManager.
+                            queryIntentActivities(internals.get(i), 0);
+                if (ris.size() > 0) {
+                    ResolveInfo ri = ris.get(0);
+                    // Mark as internal
+                    if (ri.activityInfo.metaData == null) {
+                        ri.activityInfo.metaData = new Bundle();
+                        ri.activityInfo.metaData.putBoolean(CATEGORY_INTERNAL_VIEWER, true);
+                    }
+
+                    // Only one result must be matched
+                    info.add(count, ri);
+                    count++;
+                }
+            }
+        }
 
         // Retrieve the preferred activity that can handle the file
         final ResolveInfo mPreferredInfo = packageManager.resolveActivity(intent, 0);
@@ -164,8 +206,13 @@ public final class IntentsActionPolicy extends ActionsPolicy {
         // Is a simple open and we have an application that can handle the file?
         if (!choose &&
                 ((mPreferredInfo  != null && mPreferredInfo.match != 0) || info.size() == 1)) {
-            ctx.startActivity(intent);
-            return;
+            // But not if the only match is the an internal editor
+            ResolveInfo ri = info.get(0);
+            if (ri.activityInfo.metaData == null ||
+                    !ri.activityInfo.metaData.getBoolean(CATEGORY_INTERNAL_VIEWER, false)) {
+                ctx.startActivity(intent);
+                return;
+            }
         }
 
         // Otherwise, we have to show the open with dialog
@@ -224,5 +271,42 @@ public final class IntentsActionPolicy extends ActionsPolicy {
             DialogHelper.showToast(
                     ctx, R.string.shortcut_creation_failed_msg, Toast.LENGTH_SHORT);
         }
+    }
+
+    /**
+     * This method creates a list of internal activities that could handle the fso.
+     *
+     * @param ctx The current context
+     * @param fso The file system object to open
+     */
+    private static List<Intent> createInternalIntents(Context ctx, FileSystemObject fso) {
+        List<Intent> intents = new ArrayList<Intent>();
+        intents.addAll(createEditorIntent(ctx, fso));
+        return intents;
+    }
+
+    /**
+     * This method creates a list of internal activities for editing files
+     *
+     * @param ctx The current context
+     * @param fso FileSystemObject
+     */
+    private static List<Intent> createEditorIntent(Context ctx, FileSystemObject fso) {
+        List<Intent> intents = new ArrayList<Intent>();
+        MimeTypeCategory category = MimeTypeHelper.getCategory(ctx, fso);
+
+        //- Internal Editor. This editor can handle TEXT and NONE mime categories but
+        //  not system files, directories, ..., only regular files (no symlinks)
+        if (fso instanceof RegularFile &&
+            (category.compareTo(MimeTypeCategory.NONE) == 0 ||
+             category.compareTo(MimeTypeCategory.TEXT) == 0)) {
+            Intent editorIntent = new Intent();
+            editorIntent.setAction(Intent.ACTION_EDIT);
+            editorIntent.addCategory(CATEGORY_INTERNAL_VIEWER);
+            editorIntent.addCategory(CATEGORY_EDITOR);
+            intents.add(editorIntent);
+        }
+
+        return intents;
     }
 }

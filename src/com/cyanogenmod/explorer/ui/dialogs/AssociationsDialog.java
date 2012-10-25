@@ -43,6 +43,7 @@ import android.widget.Toast;
 import com.cyanogenmod.explorer.ExplorerApplication;
 import com.cyanogenmod.explorer.R;
 import com.cyanogenmod.explorer.adapters.AssociationsAdapter;
+import com.cyanogenmod.explorer.ui.policy.IntentsActionPolicy;
 import com.cyanogenmod.explorer.util.DialogHelper;
 import com.cyanogenmod.explorer.util.ExceptionUtil;
 
@@ -403,7 +404,7 @@ public class AssociationsDialog implements OnItemClickListener {
             boolean isPlatformSigned =
                     ExplorerApplication.isAppPlatformSignature(this.mContext);
             if (isPlatformSigned && this.mAllowPreferred) {
-                if (filter != null && !isPreferredSelected()) {
+                if (filter != null && !isPreferredSelected() && !isInternalEditor(ri)) {
                     try {
                         AssociationsAdapter adapter = (AssociationsAdapter)this.mGrid.getAdapter();
                         final int cc = adapter.getCount();
@@ -446,5 +447,18 @@ public class AssociationsDialog implements OnItemClickListener {
         if (intent != null) {
             this.mContext.startActivity(intent);
         }
+    }
+
+    /**
+     * Method that returns if the selected resolve info is about an internal viewer
+     *
+     * @param ri The resolve info
+     * @return boolean  If the selected resolve info is about an internal viewer
+     */
+    @SuppressWarnings("static-method")
+    private boolean isInternalEditor(ResolveInfo ri) {
+        return ri.activityInfo.metaData != null &&
+                ri.activityInfo.metaData.getBoolean(
+                        IntentsActionPolicy.CATEGORY_INTERNAL_VIEWER, false);
     }
 }

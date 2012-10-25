@@ -16,9 +16,8 @@
 -->
 
 <!--
-  This file contains values that could be overlayed. This allow
-  configure special values for each device. Use overlay building folder on device tree
-  for overlay this values
+  This file contains values that could be overlayed. This allow configure special values
+  for each device. Use overlay building folder on device tree for overlay this values
 -->
 <resources xmlns:android="http://schemas.android.com/apk/res/android">
 
@@ -45,5 +44,8 @@
 
   <!-- The number of characters per line to show in the console dialog -->
   <integer name="console_max_chars_per_line">150</integer>
+
+  <!-- The max limit of file size that the internal editor can open. Default: 4Mb -->
+  <integer name="editor_max_file_size">4194304</integer>
 
 </resources>

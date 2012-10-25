@@ -76,7 +76,7 @@
     is to switch to non-privileged mode.\n\nApply this change?</string>
 
   <!-- A console couldn't be created. Without a console, the application won't work -->
-  <string name="msgs_cant_create_console">The application is unable to create a console and 
+  <string name="msgs_cant_create_console">The application is unable to create a console and
        will not work without a console.</string>
   <!-- The message shown when a allocation of a privileged console fails, and a non
        privileged is allocated -->
@@ -179,6 +179,8 @@
   <string name="actionbar_button_overflow_cd">More options</string>
   <!-- ActionBar Buttons * Storage volumes -->
   <string name="actionbar_button_storage_cd">Storage volumes</string>
+  <!-- ActionBar Buttons * Save -->
+  <string name="actionbar_button_save_cd">Save</string>
 
   <!-- Navigation View * Sort * Sort by name (ascending) -->
   <string name="sort_by_name_asc">By name &#x25B2;</string>
@@ -350,6 +352,19 @@
   <string name="picker">@string/app_name</string>
   <!-- Picker Activity * Dialog title -->
   <string name="picker_title">Pick a file</string>
+
+  <!-- Editor * Editor activity title -->
+  <string name="editor">Editor</string>
+  <!-- Editor * Invalid file message -->
+  <string name="editor_invalid_file_msg">Invalid file.</string>
+  <!-- Editor * File not found message -->
+  <string name="editor_file_not_found_msg">File not found.</string>
+  <!-- Editor * File size exceed the limit -->
+  <string name="editor_file_exceed_size_msg">The file is too big to be open inside this device.</string>
+  <!-- Editor * Editor is dirty, ask the user -->
+  <string name="editor_dirty_ask">There are unsaved changes.\n\nExit without saving?</string>
+  <!-- Editor * Save operation success -->
+  <string name="editor_successfully_saved">The file was successfully saved.</string>
 
   <!-- Bookmarks * Bookmarks activity title -->
   <string name="bookmarks">Bookmarks</string>

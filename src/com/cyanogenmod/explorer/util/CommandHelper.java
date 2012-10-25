@@ -1669,7 +1669,7 @@ public final class CommandHelper {
             }
         }
 
-        // If the needed unmount was executed 
+        // If the needed unmount was executed
         return mountExecuted && leaveDeviceMounted;
     }
 

@@ -98,4 +98,7 @@
   <!-- The console height -->
   <dimen name="console_height">250dp</dimen>
 
+  <!-- The progress height -->
+  <dimen name="default_progress_height">32dp</dimen>
+
 </resources>

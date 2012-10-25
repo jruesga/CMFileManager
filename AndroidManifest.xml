@@ -131,6 +131,18 @@
       </intent-filter>
     </activity>
 
+    <activity
+      android:name=".activities.EditorActivity"
+      android:label="@string/editor"
+      android:icon="@drawable/ic_launcher_editor"
+      android:exported="false">
+      <intent-filter>
+        <action android:name="android.intent.action.EDIT" />
+        <category android:name="com.cyanogenmod.explorer.category.INTERNAL_VIEWER" />
+        <category android:name="com.cyanogenmod.explorer.category.EDITOR" />
+      </intent-filter>
+    </activity>
+
   </application>
 
 </manifest>

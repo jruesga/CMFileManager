@@ -618,6 +618,7 @@ public abstract class ShellConsole extends Console implements Program.ProgramLis
             @Override
             public void run() {
                 int read = 0;
+
                 try {
                     while (ShellConsole.this.mActive) {
                         //Read only one byte with active wait
@@ -625,6 +626,12 @@ public abstract class ShellConsole extends Console implements Program.ProgramLis
                         if (r == -1) {
                             break;
                         }
+
+                        // Type of command
+                        boolean async =
+                                ShellConsole.this.mActiveCommand != null &&
+                                ShellConsole.this.mActiveCommand instanceof AsyncResultProgram;
+
                         StringBuffer sb = new StringBuffer();
                         if (!ShellConsole.this.mCancelled) {
                             ShellConsole.this.mSbIn.append((char)r);
@@ -633,8 +640,7 @@ public abstract class ShellConsole extends Console implements Program.ProgramLis
                                         isCommandStarted(ShellConsole.this.mSbIn);
                                 if (ShellConsole.this.mStarted) {
                                     sb = new StringBuffer(ShellConsole.this.mSbIn.toString());
-                                    if (ShellConsole.this.mActiveCommand
-                                                instanceof AsyncResultProgram) {
+                                    if (async) {
                                         synchronized (ShellConsole.this.mPartialSync) {
                                             ((AsyncResultProgram)ShellConsole.
                                                     this.mActiveCommand).
@@ -649,16 +655,20 @@ public abstract class ShellConsole extends Console implements Program.ProgramLis
                             }
 
                             //Notify asynchronous partial data
-                            if (ShellConsole.this.mStarted &&
-                                ShellConsole.this.mActiveCommand != null &&
-                                ShellConsole.this.mActiveCommand instanceof AsyncResultProgram) {
+                            if (ShellConsole.this.mStarted && async) {
                                 AsyncResultProgram program =
                                         ((AsyncResultProgram)ShellConsole.this.mActiveCommand);
-                                program.onRequestParsePartialResult(sb.toString());
+                                String partial = sb.toString();
+                                program.onRequestParsePartialResult(partial);
+                                ShellConsole.this.toStdIn(partial);
 
                                 // Reset the temp buffer
                                 sb = new StringBuffer();
                             }
+                        }
+
+                        if (!async) {
+                            ShellConsole.this.toStdIn(sb.toString());
                         }
 
                         //Has more data? Read with available as more as exists
@@ -671,6 +681,11 @@ public abstract class ShellConsole extends Console implements Program.ProgramLis
                             byte[] data = new byte[available];
                             read = in.read(data);
 
+                            // Type of command
+                            async =
+                                    ShellConsole.this.mActiveCommand != null &&
+                                    ShellConsole.this.mActiveCommand instanceof AsyncResultProgram;
+
                             // Exit if active command is cancelled
                             if (ShellConsole.this.mCancelled) continue;
 
@@ -681,8 +696,7 @@ public abstract class ShellConsole extends Console implements Program.ProgramLis
                                         isCommandStarted(ShellConsole.this.mSbIn);
                                 if (ShellConsole.this.mStarted) {
                                     sb = new StringBuffer(ShellConsole.this.mSbIn.toString());
-                                    if (ShellConsole.this.mActiveCommand
-                                                instanceof AsyncResultProgram) {
+                                    if (async) {
                                         synchronized (ShellConsole.this.mPartialSync) {
                                             ((AsyncResultProgram)ShellConsole.
                                                     this.mActiveCommand).
@@ -700,21 +714,29 @@ public abstract class ShellConsole extends Console implements Program.ProgramLis
                             boolean finished = isCommandFinished(ShellConsole.this.mSbIn, sb);
 
                             //Notify asynchronous partial data
-                            if (ShellConsole.this.mActiveCommand != null &&
-                                ShellConsole.this.mActiveCommand
-                                        instanceof AsyncResultProgram) {
+                            if (async) {
                                 AsyncResultProgram program =
                                         ((AsyncResultProgram)ShellConsole.this.mActiveCommand);
-                                program.onRequestParsePartialResult(sb.toString());
+                                String partial = sb.toString();
+                                program.onRequestParsePartialResult(partial);
+                                ShellConsole.this.toStdIn(partial);
 
                                 // Reset the temp buffer
                                 sb = new StringBuffer();
                             }
 
                             if (finished) {
+                                if (!async) {
+                                    ShellConsole.this.toStdIn(sb.toString());
+                                }
+
                                 //Notify the end
                                 notifyProcessFinished();
                                 break;
+                            }
+
+                            if (!async) {
+                                ShellConsole.this.toStdIn(sb.toString());
                             }
 
                             //Wait for buffer to be filled
@@ -725,16 +747,9 @@ public abstract class ShellConsole extends Console implements Program.ProgramLis
                             }
                         }
 
-                        //Audit (if not cancelled)
-                        if (!ShellConsole.this.mCancelled && isTrace()) {
-                            Log.v(TAG,
-                                    String.format("stdin: %s", sb.toString())); //$NON-NLS-1$
-                        }
-
                         //Asynchronous programs can cause a lot of output, control buffers
                         //for a low memory footprint
-                        if (ShellConsole.this.mActiveCommand != null &&
-                                ShellConsole.this.mActiveCommand instanceof AsyncResultProgram) {
+                        if (async) {
                             trimBuffer(ShellConsole.this.mSbIn);
                             trimBuffer(ShellConsole.this.mSbErr);
                         }
@@ -753,6 +768,21 @@ public abstract class ShellConsole extends Console implements Program.ProgramLis
     }
 
     /**
+     * Method that echoes the stdin
+     *
+     * @param stdin The buffer of the stdin
+     * @hide
+     */
+    void toStdIn(String stdin) {
+        //Audit (if not cancelled)
+        if (!this.mCancelled && isTrace() && stdin.length() > 0) {
+            Log.v(TAG,
+                    String.format(
+                            "stdin: %s", stdin)); //$NON-NLS-1$
+        }
+    }
+
+    /**
      * Method that creates the standard error thread for read program response.
      *
      * @param err The standard error buffer
@@ -763,6 +793,7 @@ public abstract class ShellConsole extends Console implements Program.ProgramLis
             @Override
             public void run() {
                 int read = 0;
+
                 try {
                     while (ShellConsole.this.mActive) {
                         //Read only one byte with active wait
@@ -770,19 +801,25 @@ public abstract class ShellConsole extends Console implements Program.ProgramLis
                         if (r == -1) {
                             break;
                         }
+
+                        // Type of command
+                        boolean async =
+                                ShellConsole.this.mActiveCommand != null &&
+                                ShellConsole.this.mActiveCommand instanceof AsyncResultProgram;
+
                         StringBuffer sb = new StringBuffer();
                         if (!ShellConsole.this.mCancelled) {
                             ShellConsole.this.mSbErr.append((char)r);
                             sb.append((char)r);
 
                             //Notify asynchronous partial data
-                            if (ShellConsole.this.mStarted &&
-                                ShellConsole.this.mActiveCommand != null &&
-                                ShellConsole.this.mActiveCommand instanceof AsyncResultProgram) {
+                            if (ShellConsole.this.mStarted && async) {
                                 AsyncResultProgram program =
                                         ((AsyncResultProgram)ShellConsole.this.mActiveCommand);
                                 program.parsePartialErrResult(new String(new char[]{(char)r}));
                             }
+
+                            toStdErr(sb.toString());
                         }
 
                         //Has more data? Read with available as more as exists
@@ -795,6 +832,11 @@ public abstract class ShellConsole extends Console implements Program.ProgramLis
                             byte[] data = new byte[available];
                             read = err.read(data);
 
+                            // Type of command
+                            async =
+                                ShellConsole.this.mActiveCommand != null &&
+                                ShellConsole.this.mActiveCommand instanceof AsyncResultProgram;
+
                             // Exit if active command is cancelled
                             if (ShellConsole.this.mCancelled) continue;
 
@@ -803,12 +845,12 @@ public abstract class ShellConsole extends Console implements Program.ProgramLis
                             sb.append(s);
 
                             //Notify asynchronous partial data
-                            if (ShellConsole.this.mActiveCommand != null &&
-                                ShellConsole.this.mActiveCommand  instanceof AsyncResultProgram) {
+                            if (async) {
                                 AsyncResultProgram program =
                                         ((AsyncResultProgram)ShellConsole.this.mActiveCommand);
                                 program.parsePartialErrResult(s);
                             }
+                            toStdErr(sb.toString());
 
                             //Wait for buffer to be filled
                             try {
@@ -816,12 +858,6 @@ public abstract class ShellConsole extends Console implements Program.ProgramLis
                             } catch (Throwable ex) {
                                 /**NON BLOCK**/
                             }
-                        }
-
-                        //Audit (if not cancelled)
-                        if (!ShellConsole.this.mCancelled && isTrace()) {
-                            Log.v(TAG,
-                                    String.format("stderr: %s", sb.toString())); //$NON-NLS-1$
                         }
 
                         //Asynchronous programs can cause a lot of output, control buffers
@@ -840,6 +876,21 @@ public abstract class ShellConsole extends Console implements Program.ProgramLis
         t.setName(String.format("%s", "stderr")); //$NON-NLS-1$//$NON-NLS-2$
         t.start();
         return t;
+    }
+
+    /**
+     * Method that echoes the stderr
+     *
+     * @param stdin The buffer of the stderr
+     * @hide
+     */
+    void toStdErr(String stderr) {
+        //Audit (if not cancelled)
+        if (!this.mCancelled && isTrace()) {
+            Log.v(TAG,
+                    String.format(
+                            "stderr: %s", stderr)); //$NON-NLS-1$
+        }
     }
 
     /**

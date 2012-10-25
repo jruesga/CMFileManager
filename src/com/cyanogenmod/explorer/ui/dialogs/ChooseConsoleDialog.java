@@ -18,6 +18,7 @@ package com.cyanogenmod.explorer.ui.dialogs;
 
 import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup.LayoutParams;
@@ -103,7 +104,11 @@ public class ChooseConsoleDialog implements OnItemClickListener {
                                         R.drawable.ic_holo_light_console,
                                         R.string.choose_console_dialog_title,
                                         listView);
-    }
+        this.mDialog.setButton(
+                DialogInterface.BUTTON_NEGATIVE,
+                this.mContext.getString(android.R.string.cancel),
+                (DialogInterface.OnClickListener)null);
+}
 
     /**
      * Method that shows the dialog.

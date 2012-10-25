@@ -142,6 +142,10 @@ public class ActionsDialog implements OnItemClickListener, OnItemLongClickListen
                                         R.drawable.ic_holo_light_actions,
                                         R.string.actions_dialog_title,
                                         this.mListView);
+        this.mDialog.setButton(
+                DialogInterface.BUTTON_NEGATIVE,
+                this.mContext.getString(android.R.string.cancel),
+                (DialogInterface.OnClickListener)null);
     }
 
     /**

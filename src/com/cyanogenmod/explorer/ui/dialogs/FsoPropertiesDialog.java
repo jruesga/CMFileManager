@@ -165,6 +165,10 @@ public class FsoPropertiesDialog
                                         R.drawable.ic_holo_light_properties,
                                         R.string.fso_properties_dialog_title,
                                         this.mContentView);
+        this.mDialog.setButton(
+                DialogInterface.BUTTON_NEGATIVE,
+                this.mContext.getString(android.R.string.cancel),
+                (DialogInterface.OnClickListener)null);
         this.mDialog.setOnCancelListener(this);
         this.mDialog.setOnDismissListener(this);
 

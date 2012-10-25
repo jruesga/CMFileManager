@@ -18,6 +18,7 @@ package com.cyanogenmod.explorer.ui.dialogs;
 
 import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -115,6 +116,11 @@ public class FilesystemInfoDialog implements OnClickListener {
                                         R.drawable.ic_holo_light_sdcard,
                                         R.string.filesystem_info_dialog_title,
                                         contentView);
+        this.mDialog.setButton(
+                DialogInterface.BUTTON_NEGATIVE,
+                this.mContext.getString(android.R.string.cancel),
+                (DialogInterface.OnClickListener)null);
+
         //Fill the dialog
         fillData(contentView);
     }

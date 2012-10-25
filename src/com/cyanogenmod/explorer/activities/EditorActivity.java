@@ -383,7 +383,7 @@ public class EditorActivity extends Activity implements TextWatcher {
                     this, R.string.editor_invalid_file_msg, Toast.LENGTH_SHORT);
             return;
         }
-        this.mReadOnly  = (action.compareTo(Intent.ACTION_EDIT) == 0);
+        this.mReadOnly  = (action.compareTo(Intent.ACTION_VIEW) == 0);
 
         // Read the intent and check that is has a valid request
         String path = getIntent().getData().getPath();
@@ -499,7 +499,7 @@ public class EditorActivity extends Activity implements TextWatcher {
                             this.mReader.mBuffer, BufferType.EDITABLE);
                     this.mReader.mBuffer = null; //Cleanup
                     setDirty(false);
-                    EditorActivity.this.mScroll.setEnabled(EditorActivity.this.mReadOnly);
+                    EditorActivity.this.mScroll.setEnabled(!EditorActivity.this.mReadOnly);
                 }
             }
 

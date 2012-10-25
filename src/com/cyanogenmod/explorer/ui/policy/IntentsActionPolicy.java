@@ -307,6 +307,7 @@ public final class IntentsActionPolicy extends ActionsPolicy {
         //  not system files, directories, ..., only regular files (no symlinks)
         if (fso instanceof RegularFile &&
             (category.compareTo(MimeTypeCategory.NONE) == 0 ||
+             category.compareTo(MimeTypeCategory.EXEC) == 0 ||
              category.compareTo(MimeTypeCategory.TEXT) == 0)) {
             Intent editorIntent = new Intent();
             editorIntent.setAction(Intent.ACTION_EDIT);

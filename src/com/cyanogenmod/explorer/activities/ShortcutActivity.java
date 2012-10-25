@@ -73,7 +73,7 @@ public class ShortcutActivity extends Activity implements OnCancelListener, OnDi
     @Override
     protected void onCreate(Bundle state) {
         if (DEBUG) {
-            Log.d(TAG, "PickerActivity.onCreate"); //$NON-NLS-1$
+            Log.d(TAG, "ShortcutActivity.onCreate"); //$NON-NLS-1$
         }
 
         //Save state

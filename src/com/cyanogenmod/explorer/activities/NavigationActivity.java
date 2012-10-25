@@ -954,28 +954,18 @@ public class NavigationActivity extends Activity
         SimpleMenuListAdapter adapter =
                 new HighlightedSimpleMenuListAdapter(this, R.menu.navigation);
         Menu menu = adapter.getMenu();
-        boolean hasActionBarMenus = false;
-        int removed = 0;
         int cc = this.mActionBar.getChildCount();
         for (int i = 0, j = this.mActionBar.getChildCount() - 1; i < cc; i++, j--) {
             View child = this.mActionBar.getChildAt(i);
             boolean visible = child.getVisibility() == View.VISIBLE;
             if (visible) {
                 menu.removeItem(menu.getItem(j).getItemId());
-                removed++;
-            } else {
-                hasActionBarMenus = true;
             }
         }
 
         // Check if console selection is allowed
         if (this.mChRooted) {
             menu.removeItem(R.id.mnu_console);
-        }
-
-        //Hide separator
-        if (!hasActionBarMenus) {
-            menu.removeItem(menu.getItem(this.mActionBar.getChildCount() - removed).getItemId());
         }
 
         final ListPopupWindow popup = DialogHelper.createListPopupWindow(this, adapter, anchor);

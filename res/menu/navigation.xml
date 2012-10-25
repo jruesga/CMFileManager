@@ -30,12 +30,6 @@
     android:showAsAction="ifRoom"
     android:title="@string/menu_search"/>
 
-  <!-- Actions separator -->
-  <item
-    android:id="@+id/mnu_nav_separator_001"
-    android:showAsAction="ifRoom"
-    android:title="@null"/>
-
   <!-- Overflow actions -->
   <item
     android:id="@+id/mnu_console"
@@ -45,12 +39,6 @@
     android:id="@+id/mnu_settings"
     android:showAsAction="never"
     android:title="@string/menu_settings"/>
-
-  <!-- Overflow actions separator -->
-  <item
-    android:id="@+id/mnu_nav_separator_002"
-    android:showAsAction="never"
-    android:title="@null"/>
 
   <!-- Exit -->
   <item

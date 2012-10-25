@@ -72,23 +72,22 @@
 
   <!-- A console couldn't be created. Ask the user to change to advanced console mode -->
   <string name="msgs_change_to_advanced_console_mode">
-    The application is not capable of create a console. The only way to run the application
-    is to change to advanced console mode and move to a non-privileged console.\n\n
-    Apply this changes?</string>
+    The application is unable to create a console. The only way to run the app
+    is to switch to non-privileged mode.\n\nApply this change?</string>
 
   <!-- A console couldn't be created. Without a console, the application won't work -->
-  <string name="msgs_cant_create_console">The application is not capable of create a console. The
-    application won\'t work without a console.</string>
+  <string name="msgs_cant_create_console">The application is unable to create a console and 
+       will not work without a console.</string>
   <!-- The message shown when a allocation of a privileged console fails, and a non
        privileged is allocated -->
   <string name="msgs_privileged_console_alloc_failed">A privileged console could not be allocated.
-    \nChanging to a non-privileged console.</string>
+    \nChanging to non-privileged mode.</string>
   <!-- Changing to other type of console failed -->
-  <string name="msgs_console_change_failed">The change to new type of console failed.</string>
+  <string name="msgs_console_change_failed">Changing to the new type of console failed.</string>
   <!-- The selected setting was not applied or stored -->
-  <string name="msgs_settings_save_failure">The setting couldn\'t be applied or stored.</string>
+  <string name="msgs_settings_save_failure">The setting could not be applied or stored.</string>
   <!-- The initial directory has an invalid or inaccessible reference -->
-  <string name="msgs_settings_invalid_initial_directory">Initial folder
+  <string name="msgs_settings_invalid_initial_directory">The initial folder
     "<xliff:g id="initial_dir">%1$s</xliff:g>" is invalid. Changing to root folder.</string>
 
   <!-- Success -->
@@ -98,7 +97,7 @@
   <!-- When an operation requires elevated privileged (normally caused for the use of a
        non-privileged console) -->
   <string name="msgs_insufficient_permissions">The operation requires elevated permissions. Try
-    changing to a privileged console.</string>
+    changing to privileged mode.</string>
   <!-- The file or directory was not found -->
   <string name="msgs_file_not_found">The file or folder was not found.</string>
   <!-- The command reference couldn't be created (not found or invalid definition)
@@ -108,11 +107,11 @@
   <!-- I/O exception -->
   <string name="msgs_io_failed">Read/write failure.</string>
   <!-- Operation timeout detected -->
-  <string name="msgs_operation_timeout">Operation timeout!</string>
+  <string name="msgs_operation_timeout">The operation timed out.</string>
   <!-- The operation returns an invalid exit code -->
   <string name="msgs_operation_failure">The operation failed.</string>
   <!-- A console couldn\'t be allocated -->
-  <string name="msgs_console_alloc_failure">A console couldn\'t be allocated.</string>
+  <string name="msgs_console_alloc_failure">A console could not be allocated.</string>
   <!-- An operation can't be cancelled -->
   <string name="msgs_operation_can_not_be_cancelled">The operation cannot be cancelled.</string>
   <!-- The operation requieres mount the file system prior to execute the command -->
@@ -122,29 +121,29 @@
   <string name="msgs_illegal_argument">Illegal argument. Invocation failed.</string>
   <!-- The operation will cause inconsistencies -->
   <string name="msgs_unresolved_inconsistencies">
-    Operation not permitted because it would create inconsistencies.</string>
+    The operation is not permitted because it would create inconsistencies.</string>
   <!-- Operation not permitted in current directory -->
   <string name="msgs_operation_not_allowed_in_current_directory">
-    Operation not permitted in current folder.</string>
+    The operation is not permitted in current folder.</string>
 
   <!-- The advice message prior to exit the application -->
   <string name="msgs_push_again_to_exit">Press again to exit.</string>
 
   <!-- There is no registered application that can handle the mime-type -->
-  <string name="msgs_not_registered_app">There is no app registered to handle
+  <string name="msgs_not_registered_app">There is no application registered to handle
     the type of file selected.</string>
 
   <!-- Overwrite files? -->
   <string name="msgs_overwrite_files">
-    Some of the files exist in the destination folder.\n\nOverwrite?</string>
+    Some of the files already exist in the destination folder.\n\nOverwrite?</string>
 
   <!-- The association of an action to the application failed -->
-  <string name="msgs_action_association_failed">The association of the action to the
+  <string name="msgs_action_association_failed">Associating the action to the
     application failed.</string>
 
   <!-- An operation requires elevated privileged. Ask the user. -->
   <string name="advise_insufficient_permissions">The operation requires elevated privileges.\n\n
-    Do you want to change to a privileged console?</string>
+    Do you want to change to privileged mode?</string>
 
 
   <!-- The parent directory of the current directory in navigation view -->
@@ -213,10 +212,10 @@
     The file system cannot be mounted/unmounted.</string>
   <!-- Filesystem Info * Not allowed message -->
   <string name="filesystem_info_mount_not_allowed_msg">File system mounting operations are not allowed
-    within a non-privileged console. Tap to change to a privileged console.</string>
+    in non-privileged mode. Tap to change to privileged mode.</string>
   <!-- Filesystem Info * Mount failed -->
   <string name="filesystem_info_mount_failed_msg">File system mounting operation failed.
-    Some file systems, like sdcards, cannot be mounted/unmounted because
+    Some file systems, like SD cards, cannot be mounted/unmounted because
     they are built-in as read-only file systems.</string>
   <!-- Filesystem Info Dialog * Title -->
   <string name="filesystem_info_dialog_title">File system information</string>
@@ -246,16 +245,16 @@
 
   <!-- Fso Properties * Not allowed message -->
   <string name="fso_properties_permissions_not_allowed_msg">Permissions operations are not allowed
-    within a non-privileged console. Tap to change to a privileged console.</string>
+    in non-privileged mode. Tap to change to a privileged mode.</string>
   <!-- Fso Properties * Failed to change owner to fso -->
   <string name="fso_properties_failed_to_change_owner_msg">The change of owner operation failed.\n\n
-    For security reasons, some file systems, like sdcards, do not allow changing the owner.</string>
+    For security reasons, some file systems, like SD cards, do not allow the changing of ownership.</string>
   <!-- Fso Properties * Failed to change group to fso -->
   <string name="fso_properties_failed_to_change_group_msg">The change of group operation failed.\n\n
-    For security reasons, some file systems, like sdcards, not allow changing the group.</string>
+    For security reasons, some file systems, like SD cards, do not allow the changing of groups.</string>
   <!-- Fso Properties * Failed to change group to fso -->
   <string name="fso_properties_failed_to_change_permission_msg">The change of permissions
-    operation failed.\n\nFor security reasons, some file systems, like sdcards, not allow changing the permissions.</string>
+    operation failed.\n\nFor security reasons, some file systems, like SD cards, do not allow the changing of permissions.</string>
   <!-- Fso Properties Dialog * Title -->
   <string name="fso_properties_dialog_title">Properties</string>
   <!-- Fso Properties Dialog * Tab * Info -->
@@ -588,30 +587,28 @@
   <string name="compression_mode_bzip" translatable="false">Bzip (bz2)</string>
 
   <!-- Shortcut. Failed to handle the shortcut -->
-  <string name="shortcut_failed_msg">Failed to handle the shortcut</string>
+  <string name="shortcut_failed_msg">Failed to handle the shortcut.</string>
   <!-- Shortcut. The shortcut was created -->
-  <string name="shortcut_creation_success_msg">Shortcut created successfully</string>
+  <string name="shortcut_creation_success_msg">Shortcut created successfully.</string>
   <!-- Shortcut. The shortcut wasn't created -->
-  <string name="shortcut_creation_failed_msg">Shortcut creation failed</string>
+  <string name="shortcut_creation_failed_msg">Shortcut creation failed.</string>
 
   <!-- Preferences title -->
   <string name="pref">Settings</string>
   <!-- Preferences * General title -->
   <string name="pref_general">General settings</string>
   <!-- Preferences * Search title -->
-  <string name="pref_search">Search engine options</string>
-  <!-- Preferences * Debug title -->
-  <string name="pref_debug">Debugging options</string>
+  <string name="pref_search">Searching options</string>
   <!-- Preferences * About title -->
   <string name="pref_about">About</string>
   <!-- Preferences * About summary -->
-  <string name="pref_about_summary">CM Explorer. v<xliff:g id="version">%1$s</xliff:g>.
-    \nCopyright \u00A9 2012 CyanogenMod</string>
+  <string name="pref_about_summary">CM Explorer v<xliff:g id="version">%1$s</xliff:g>
+    \nCopyright \u00A9 2012 The CyanogenMod Project</string>
 
   <!-- Preferences * General * Behaviour category -->
   <string name="pref_general_behaviour_category">General</string>
   <!-- Preferences * General * Case sensitive sort title -->
-  <string name="pref_case_sensitive_sort">Use case sensitive sorting</string>
+  <string name="pref_case_sensitive_sort">Use case-sensitive sorting</string>
   <!-- Preferences * General * Default long-click action title -->
   <string name="pref_default_longclick_action">Default long-click action</string>
   <!-- Preferences * General * Default long-click action * No action -->
@@ -640,7 +637,7 @@
   <string name="pref_compute_folder_statistics_on">Warning! The computation of folder statistics is costly in time and
     system resources</string>
     <!-- Preferences * General * Advanced settings category -->
-  <string name="pref_general_advanced_settings_category">Advanced settings</string>
+  <string name="pref_general_advanced_settings_category">Advanced</string>
   <!-- Preferences * General * Advanced mode -->
   <string name="pref_advanced_mode">Privileged mode</string>
   <!-- Preferences * General * Advanced mode summary on -->

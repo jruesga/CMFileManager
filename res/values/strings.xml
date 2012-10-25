@@ -598,7 +598,7 @@
   <!-- Preferences * General title -->
   <string name="pref_general">General settings</string>
   <!-- Preferences * Search title -->
-  <string name="pref_search">Searching options</string>
+  <string name="pref_search">Search options</string>
   <!-- Preferences * About title -->
   <string name="pref_about">About</string>
   <!-- Preferences * About summary -->
@@ -648,7 +648,7 @@
   <!-- Preferences * Search * Show relevance widget -->
   <string name="pref_show_relevance_widget">Show relevance widget</string>
   <!-- Preferences * Search * Highlight search terms -->
-  <string name="pref_highlight_terms">Highlight matching search terms</string>
+  <string name="pref_highlight_terms">Highlight search terms</string>
   <!-- Preferences * Search * Sort results mode -->
   <string name="pref_sort_search_results_mode">Sort results mode</string>
   <!-- Preferences * Search * Sort results mode. None -->
@@ -667,7 +667,7 @@
   <!-- Preferences * Search * Save search terms summary off -->
   <string name="pref_save_search_terms_off">Search terms will not be saved</string>
   <!-- Preferences * Search * Remove saved search terms -->
-  <string name="pref_remove_saved_search_terms">Remove saved search terms</string>
+  <string name="pref_remove_saved_search_terms">Remove any saved search terms</string>
   <!-- Preferences * Search * Remove saved search terms summary -->
   <string name="pref_remove_saved_search_terms_summary">Tap to remove the saved search terms</string>
   <!-- Preferences * Search * Suggestions were truncated -->

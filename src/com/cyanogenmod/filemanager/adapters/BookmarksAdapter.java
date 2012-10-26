@@ -147,7 +147,8 @@ public class BookmarksAdapter extends ArrayAdapter<Bookmark> {
             this.mData[i].mActionCd = null;
             if (bookmark.mType.compareTo(BOOKMARK_TYPE.HOME) == 0) {
                 this.mData[i].mDwAction =
-                        this.mIconHolder.getDrawable(getContext(), R.drawable.ic_holo_light_config);
+                        this.mIconHolder.getDrawable(
+                                getContext(), R.drawable.ic_holo_light_config);
                 this.mData[i].mActionCd =
                         getContext().getString(R.string.bookmarks_button_config_cd);
             } else if (bookmark.mType.compareTo(BOOKMARK_TYPE.USER_DEFINED) == 0) {

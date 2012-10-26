@@ -29,15 +29,6 @@
         android:persistent="true"
         android:defaultValue="false" />
 
-      <!-- Default longclick action -->
-      <ListPreference
-        android:key="cm_filemanager_default_longclick_action"
-        android:title="@string/pref_default_longclick_action"
-        android:entries="@array/default_longclick_action_labels"
-        android:entryValues="@array/default_longclick_action_values"
-        android:defaultValue="0"
-        android:persistent="true" />
-
       <!-- Disk usage warning level -->
       <ListPreference
         android:key="cm_filemanager_disk_usage_warning_level"

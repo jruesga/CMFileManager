@@ -78,13 +78,6 @@ public enum FileManagerSettings {
      */
     SETTINGS_CASE_SENSITIVE_SORT("cm_filemanager_case_sensitive_sort", Boolean.FALSE), //$NON-NLS-1$
     /**
-     * Default action when long-click over a FileSystemObject item
-     * @hide
-     */
-    SETTINGS_DEFAULT_LONG_CLICK_ACTION(
-            "cm_filemanager_default_longclick_action", //$NON-NLS-1$
-            DefaultLongClickAction.NONE),
-    /**
      * When display a warning in free disk widget
      * @hide
      */

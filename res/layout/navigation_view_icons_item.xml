@@ -36,14 +36,6 @@
     android:gravity="center|center_vertical"
     android:src="@null" />
 
-<!--   <com.cyanogenmod.filemanager.ui.widgets.NonFocusableButtonItem -->
-<!--     android:id="@+id/navigation_view_item_menu" -->
-<!--     android:layout_width="@dimen/navigation_grid_item_width" -->
-<!--     android:layout_height="@dimen/navigation_grid_item_height" -->
-<!--     android:layout_toRightOf="@id/navigation_view_item_icon" -->
-<!--     android:contentDescription="@null" -->
-<!--     android:src="@drawable/ic_holo_light_contextual_action" /> -->
-
   <TextView
     android:id="@+id/navigation_view_item_name"
     android:layout_width="match_parent"

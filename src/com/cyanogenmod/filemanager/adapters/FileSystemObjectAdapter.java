@@ -58,20 +58,6 @@ public class FileSystemObjectAdapter
     }
 
     /**
-     * An interface to communicate a request for show the menu associated
-     * with an item.
-     */
-    public interface OnRequestMenuListener {
-        /**
-         * Method invoked when a request to show the menu associated
-         * with an item is started.
-         *
-         * @param item The item for which the request was started
-         */
-        void onRequestMenu(FileSystemObject item);
-    }
-
-    /**
      * A class that conforms with the ViewHolder pattern to performance
      * the list view rendering.
      */
@@ -87,7 +73,6 @@ public class FileSystemObjectAdapter
         TextView mTvName;
         TextView mTvSummary;
         TextView mTvSize;
-        ImageButton mBtMenu;
     }
 
     /**
@@ -106,7 +91,6 @@ public class FileSystemObjectAdapter
         String mName;
         String mSummary;
         String mSize;
-        boolean mHasMenu;
     }
 
 
@@ -117,7 +101,6 @@ public class FileSystemObjectAdapter
     private final boolean mPickable;
 
     private OnSelectionChangedListener mOnSelectionChangedListener;
-    private OnRequestMenuListener mOnRequestMenuListener;
 
     //The resource of the item check
     private static final int RESOURCE_ITEM_CHECK = R.id.navigation_view_item_check;
@@ -129,8 +112,6 @@ public class FileSystemObjectAdapter
     private static final int RESOURCE_ITEM_SUMMARY = R.id.navigation_view_item_summary;
     //The resource of the item size information
     private static final int RESOURCE_ITEM_SIZE = R.id.navigation_view_item_size;
-    //The resource of the item check
-    private static final int RESOURCE_ITEM_MENU = R.id.navigation_view_item_menu;
 
     /**
      * Constructor of <code>FileSystemObjectAdapter</code>.
@@ -163,15 +144,6 @@ public class FileSystemObjectAdapter
     public void setOnSelectionChangedListener(
             OnSelectionChangedListener onSelectionChangedListener) {
         this.mOnSelectionChangedListener = onSelectionChangedListener;
-    }
-
-    /**
-     * Method that sets the listener for menu item requests.
-     *
-     * @param onRequestMenuListener The listener reference
-     */
-    public void setOnRequestMenuListener(OnRequestMenuListener onRequestMenuListener) {
-        this.mOnRequestMenuListener = onRequestMenuListener;
     }
 
     /**
@@ -257,7 +229,6 @@ public class FileSystemObjectAdapter
             this.mData[i].mName = fso.getName();
             this.mData[i].mSummary = sbSummary.toString();
             this.mData[i].mSize = FileHelper.getHumanReadableSize(fso);
-            this.mData[i].mHasMenu = !(fso instanceof ParentDirectory);
 
         }
     }
@@ -282,17 +253,9 @@ public class FileSystemObjectAdapter
             if (!this.mPickable) {
                 viewHolder.mBtCheck = (ImageButton)v.findViewById(RESOURCE_ITEM_CHECK);
                 viewHolder.mBtCheck.setOnClickListener(this);
-                viewHolder.mBtMenu = (ImageButton)v.findViewById(RESOURCE_ITEM_MENU);
-                if (viewHolder.mBtMenu != null) {
-                    viewHolder.mBtMenu.setOnClickListener(this);
-                }
             } else {
                 viewHolder.mBtCheck = (ImageButton)v.findViewById(RESOURCE_ITEM_CHECK);
                 viewHolder.mBtCheck.setVisibility(View.GONE);
-                viewHolder.mBtMenu = (ImageButton)v.findViewById(RESOURCE_ITEM_MENU);
-                if (viewHolder.mBtMenu != null) {
-                    viewHolder.mBtMenu.setVisibility(View.GONE);
-                }
             }
             v.setTag(viewHolder);
         }
@@ -322,10 +285,6 @@ public class FileSystemObjectAdapter
                     dataHolder.mSelected
                         ? R.drawable.holo_list_selector_selected
                         : R.drawable.holo_list_selector_deseleted);
-            if (viewHolder.mBtMenu != null) {
-                viewHolder.mBtMenu.setVisibility(dataHolder.mHasMenu ? View.VISIBLE : View.GONE);
-                viewHolder.mBtMenu.setTag(Integer.valueOf(position));
-            }
         }
 
         //Return the view
@@ -481,22 +440,6 @@ public class FileSystemObjectAdapter
     }
 
     /**
-     * Method that verify if the item can be selected.
-     *
-     * @param item The item view to check
-     * @return boolean If the item is selectable
-     */
-    @SuppressWarnings("static-method")
-    public boolean isSelectable(View item) {
-        View v = item;
-        if (item.getId() == RESOURCE_ITEM_MENU) {
-            v = (View)v.getParent().getParent();
-        }
-        ImageButton view = (ImageButton)v.findViewById(RESOURCE_ITEM_CHECK);
-        return view.getVisibility() == View.VISIBLE;
-    }
-
-    /**
      * Method that returns the selected items.
      *
      * @return List<FileSystemObject> The selected items
@@ -524,7 +467,6 @@ public class FileSystemObjectAdapter
         int pos = ((Integer)v.getTag()).intValue();
 
         //Retrieve data holder
-        final DataHolder dataHolder = this.mData[pos];
         final FileSystemObject fso = getItem(pos);
 
         //What button was pressed?
@@ -532,13 +474,6 @@ public class FileSystemObjectAdapter
             case RESOURCE_ITEM_CHECK:
                 //Get the row item view
                 toggleSelection(v, fso);
-                break;
-
-            case RESOURCE_ITEM_MENU:
-                //Notify menu request
-                if (dataHolder.mHasMenu && fso != null) {
-                    this.mOnRequestMenuListener.onRequestMenu(fso);
-                }
                 break;
             default:
                 break;

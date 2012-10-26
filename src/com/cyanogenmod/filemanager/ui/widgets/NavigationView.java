@@ -33,7 +33,6 @@ import android.widget.Toast;
 import com.cyanogenmod.filemanager.FileManagerApplication;
 import com.cyanogenmod.filemanager.R;
 import com.cyanogenmod.filemanager.adapters.FileSystemObjectAdapter;
-import com.cyanogenmod.filemanager.adapters.FileSystemObjectAdapter.OnRequestMenuListener;
 import com.cyanogenmod.filemanager.adapters.FileSystemObjectAdapter.OnSelectionChangedListener;
 import com.cyanogenmod.filemanager.console.ConsoleAllocException;
 import com.cyanogenmod.filemanager.listeners.OnHistoryListener;
@@ -45,13 +44,10 @@ import com.cyanogenmod.filemanager.model.ParentDirectory;
 import com.cyanogenmod.filemanager.model.Symlink;
 import com.cyanogenmod.filemanager.parcelables.NavigationViewInfoParcelable;
 import com.cyanogenmod.filemanager.parcelables.SearchInfoParcelable;
-import com.cyanogenmod.filemanager.preferences.DefaultLongClickAction;
 import com.cyanogenmod.filemanager.preferences.FileManagerSettings;
 import com.cyanogenmod.filemanager.preferences.NavigationLayoutMode;
 import com.cyanogenmod.filemanager.preferences.ObjectIdentifier;
-import com.cyanogenmod.filemanager.preferences.ObjectStringIdentifier;
 import com.cyanogenmod.filemanager.preferences.Preferences;
-import com.cyanogenmod.filemanager.ui.policy.InfoActionPolicy;
 import com.cyanogenmod.filemanager.ui.policy.IntentsActionPolicy;
 import com.cyanogenmod.filemanager.util.CommandHelper;
 import com.cyanogenmod.filemanager.util.DialogHelper;
@@ -70,8 +66,7 @@ import java.util.List;
  */
 public class NavigationView extends RelativeLayout implements
     AdapterView.OnItemClickListener, AdapterView.OnItemLongClickListener,
-    BreadcrumbListener, OnSelectionChangedListener, OnRequestMenuListener,
-    OnSelectionListener, OnRequestRefreshListener {
+    BreadcrumbListener, OnSelectionChangedListener, OnSelectionListener, OnRequestRefreshListener {
 
     /**
      * An interface to communicate selection changes events.
@@ -138,7 +133,6 @@ public class NavigationView extends RelativeLayout implements
      */
     List<FileSystemObject> mFiles;
     private FileSystemObjectAdapter mAdapter;
-    private DefaultLongClickAction mDefaultLongClickAction;
 
     private final Object mSync = new Object();
 
@@ -276,15 +270,6 @@ public class NavigationView extends RelativeLayout implements
             this.mChRooted = !FileManagerApplication.isAdvancedMode();
         }
 
-        // Default long-click action
-        String defaultValue = ((ObjectStringIdentifier)FileManagerSettings.
-                SETTINGS_DEFAULT_LONG_CLICK_ACTION.getDefaultValue()).getId();
-        String value = Preferences.getSharedPreferences().getString(
-                            FileManagerSettings.SETTINGS_DEFAULT_LONG_CLICK_ACTION.getId(),
-                            defaultValue);
-        DefaultLongClickAction lcMode = DefaultLongClickAction.fromId(value);
-        this.mDefaultLongClickAction = lcMode;
-
         //Retrieve the default configuration
         if (this.mNavigationMode.compareTo(NAVIGATION_MODE.BROWSABLE) == 0) {
             SharedPreferences preferences = Preferences.getSharedPreferences();
@@ -378,29 +363,6 @@ public class NavigationView extends RelativeLayout implements
     public void setBreadcrumb(Breadcrumb breadcrumb) {
         this.mBreadcrumb = breadcrumb;
         this.mBreadcrumb.addBreadcrumbListener(this);
-    }
-
-    /**
-     * Method that sets the default long-click action
-     *
-     * @param mDefaultLongClickAction The default long-click action
-     */
-    public void setDefaultLongClickAction(DefaultLongClickAction mDefaultLongClickAction) {
-        this.mDefaultLongClickAction = mDefaultLongClickAction;
-
-        // Pick mode doesn't implements the onlongclick
-        if (this.mNavigationMode.compareTo(NAVIGATION_MODE.BROWSABLE) == 0) {
-            // Register the long-click listener only if needed. Icon layout mode always use
-            // actions menu on long-click
-            if (this.mDefaultLongClickAction.compareTo(DefaultLongClickAction.NONE) != 0 ||
-                this.mCurrentMode.compareTo(NavigationLayoutMode.ICONS) == 0) {
-                this.mAdapterView.setOnItemLongClickListener(this);
-            } else {
-                this.mAdapterView.setOnItemLongClickListener(null);
-            }
-        } else {
-            this.mAdapterView.setOnItemLongClickListener(null);
-        }
     }
 
     /**
@@ -535,7 +497,6 @@ public class NavigationView extends RelativeLayout implements
                             itemResourceId,
                             this.mNavigationMode.compareTo(NAVIGATION_MODE.PICKABLE) == 0);
             adapter.setOnSelectionChangedListener(this);
-            adapter.setOnRequestMenuListener(this);
 
             //Remove current layout
             if (current != null) {
@@ -563,7 +524,11 @@ public class NavigationView extends RelativeLayout implements
             this.mCurrentMode = newMode;
 
             // Pick mode doesn't implements the onlongclick
-            setDefaultLongClickAction(this.mDefaultLongClickAction);
+            if (this.mNavigationMode.compareTo(NAVIGATION_MODE.BROWSABLE) == 0) {
+                this.mAdapterView.setOnItemLongClickListener(this);
+            } else {
+                this.mAdapterView.setOnItemLongClickListener(null);
+            }
 
             //Save the preference (only in navigation browse mode)
             if (this.mNavigationMode.compareTo(NAVIGATION_MODE.BROWSABLE) == 0) {
@@ -875,48 +840,13 @@ public class NavigationView extends RelativeLayout implements
         if (fso instanceof ParentDirectory) {
             return false;
         }
-
-        // In icons layout mode, always long-click is associated to show actions menu
-        if (this.mCurrentMode.compareTo(NavigationLayoutMode.ICONS) == 0) {
-            onRequestMenu(fso);
-            return true;
+        
+        // Pick mode doesn't implements the onlongclick
+        if (this.mNavigationMode.compareTo(NAVIGATION_MODE.PICKABLE) == 0) {
+            return false;
         }
 
-        // Select/deselect
-        if (this.mDefaultLongClickAction.compareTo(
-                DefaultLongClickAction.SELECT_DESELECT) == 0) {
-            if (adapter.isSelectable(view)) {
-                adapter.toggleSelection(view);
-            }
-        }
-
-        // Show content description
-        else if (this.mDefaultLongClickAction.compareTo(
-                DefaultLongClickAction.SHOW_CONTENT_DESCRIPTION) == 0) {
-            InfoActionPolicy.showContentDescription(getContext(), fso);
-        }
-
-        // Open with
-        else if (this.mDefaultLongClickAction.compareTo(DefaultLongClickAction.OPEN_WITH) == 0) {
-            if (!FileHelper.isDirectory(fso)) {
-                IntentsActionPolicy.openFileSystemObject(getContext(), fso, true, null, null);
-            } else {
-                return false;
-            }
-        }
-
-        // Show properties
-        else if (this.mDefaultLongClickAction.compareTo(
-                DefaultLongClickAction.SHOW_PROPERTIES) == 0) {
-            InfoActionPolicy.showPropertiesDialog(getContext(), fso, this);
-        }
-
-        // Show actions
-        else if (this.mDefaultLongClickAction.compareTo(
-                DefaultLongClickAction.SHOW_ACTIONS) == 0) {
-            onRequestMenu(fso);
-        }
-
+        onRequestMenu(fso);
         return true; //Always consume the event
     }
 
@@ -1027,9 +957,11 @@ public class NavigationView extends RelativeLayout implements
     }
 
     /**
-     * {@inheritDoc}
+     * Method invoked when a request to show the menu associated
+     * with an item is started.
+     *
+     * @param item The item for which the request was started
      */
-    @Override
     public void onRequestMenu(final FileSystemObject item) {
         if (this.mOnNavigationRequestMenuListener != null) {
             this.mOnNavigationRequestMenuListener.onRequestMenu(this, item);

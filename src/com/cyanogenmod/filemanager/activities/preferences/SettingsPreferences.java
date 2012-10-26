@@ -118,7 +118,6 @@ public class SettingsPreferences extends PreferenceActivity {
     public static class GeneralPreferenceFragment extends PreferenceFragment {
 
         private CheckBoxPreference mCaseSensitiveSort;
-        private ListPreference mDefaultLongClickAction;
         private ListPreference mFreeDiskSpaceWarningLevel;
         private CheckBoxPreference mComputeFolderStatistics;
         private CheckBoxPreference mAdvancedSettings;
@@ -138,15 +137,6 @@ public class SettingsPreferences extends PreferenceActivity {
                         String.format("New value for %s: %s",  //$NON-NLS-1$
                                 key,
                                 String.valueOf(newValue)));
-
-                // Default long-click action
-                if (FileManagerSettings.SETTINGS_DEFAULT_LONG_CLICK_ACTION.
-                        getId().compareTo(key) == 0) {
-                    int value = Integer.valueOf((String)newValue).intValue();
-                    String[] summary = getResources().getStringArray(
-                            R.array.default_longclick_action_labels);
-                    preference.setSummary(summary[value]);
-                }
 
                 // Disk usage warning level
                 else if (FileManagerSettings.SETTINGS_DISK_USAGE_WARNING_LEVEL.
@@ -190,26 +180,14 @@ public class SettingsPreferences extends PreferenceActivity {
                             FileManagerSettings.SETTINGS_CASE_SENSITIVE_SORT.getId());
             this.mCaseSensitiveSort.setOnPreferenceChangeListener(this.mOnChangeListener);
 
-            // Default long-click action
-            this.mDefaultLongClickAction =
-                    (ListPreference)findPreference(
-                            FileManagerSettings.SETTINGS_DEFAULT_LONG_CLICK_ACTION.getId());
-            this.mDefaultLongClickAction.setOnPreferenceChangeListener(this.mOnChangeListener);
-            String defaultValue = ((ObjectStringIdentifier)FileManagerSettings.
-                                    SETTINGS_DEFAULT_LONG_CLICK_ACTION.getDefaultValue()).getId();
-            String value = Preferences.getSharedPreferences().getString(
-                                    FileManagerSettings.SETTINGS_DEFAULT_LONG_CLICK_ACTION.getId(),
-                                    defaultValue);
-            this.mOnChangeListener.onPreferenceChange(this.mDefaultLongClickAction, value);
-
             //Disk usage warning level
             this.mFreeDiskSpaceWarningLevel =
                     (ListPreference)findPreference(
                             FileManagerSettings.SETTINGS_DISK_USAGE_WARNING_LEVEL.getId());
             this.mFreeDiskSpaceWarningLevel.setOnPreferenceChangeListener(this.mOnChangeListener);
-            defaultValue = ((String)FileManagerSettings.
+            String defaultValue = ((String)FileManagerSettings.
                                 SETTINGS_DISK_USAGE_WARNING_LEVEL.getDefaultValue());
-            value = Preferences.getSharedPreferences().getString(
+            String value = Preferences.getSharedPreferences().getString(
                                 FileManagerSettings.SETTINGS_DISK_USAGE_WARNING_LEVEL.getId(),
                                 defaultValue);
             this.mOnChangeListener.onPreferenceChange(this.mFreeDiskSpaceWarningLevel, value);

@@ -61,11 +61,9 @@ import com.cyanogenmod.filemanager.model.MountPoint;
 import com.cyanogenmod.filemanager.parcelables.HistoryNavigable;
 import com.cyanogenmod.filemanager.parcelables.NavigationViewInfoParcelable;
 import com.cyanogenmod.filemanager.parcelables.SearchInfoParcelable;
-import com.cyanogenmod.filemanager.preferences.DefaultLongClickAction;
 import com.cyanogenmod.filemanager.preferences.FileManagerSettings;
 import com.cyanogenmod.filemanager.preferences.NavigationLayoutMode;
 import com.cyanogenmod.filemanager.preferences.ObjectIdentifier;
-import com.cyanogenmod.filemanager.preferences.ObjectStringIdentifier;
 import com.cyanogenmod.filemanager.preferences.Preferences;
 import com.cyanogenmod.filemanager.ui.dialogs.ActionsDialog;
 import com.cyanogenmod.filemanager.ui.dialogs.ChooseConsoleDialog;
@@ -186,20 +184,6 @@ public class NavigationActivity extends Activity
                                         SETTINGS_DISK_USAGE_WARNING_LEVEL.getDefaultValue());
                             breadcrumb.setFreeDiskSpaceWarningLevel(Integer.parseInt(fds));
                             breadcrumb.updateMountPointInfo();
-                            return;
-                        }
-    
-                        // Default long-click action
-                        if (key.compareTo(FileManagerSettings.
-                                SETTINGS_DEFAULT_LONG_CLICK_ACTION.getId()) == 0) {
-                            String defaultValue = ((ObjectStringIdentifier)FileManagerSettings.
-                                    SETTINGS_DEFAULT_LONG_CLICK_ACTION.getDefaultValue()).getId();
-                            String id = FileManagerSettings.
-                                    SETTINGS_DEFAULT_LONG_CLICK_ACTION.getId();
-                            String value =
-                                    Preferences.getSharedPreferences().getString(id, defaultValue);
-                            DefaultLongClickAction mode = DefaultLongClickAction.fromId(value);
-                            getCurrentNavigationView().setDefaultLongClickAction(mode);
                             return;
                         }
     
@@ -1118,7 +1102,7 @@ public class NavigationActivity extends Activity
         bundle.putString(
                 SearchActivity.EXTRA_SEARCH_DIRECTORY,
                 getCurrentNavigationView().getCurrentDir());
-        // TODO VoiceSearch icon is now shown. This must be a bug of CM. Verify with a test app.
+        // TODO VoiceSearch icon is not shown. This must be a bug of CM. Verify with a test app.
         startSearch(Preferences.getLastSearch(), true, bundle, false);
         return true;
     }

@@ -24,7 +24,6 @@ import android.widget.ProgressBar;
 import com.cyanogenmod.filemanager.FileManagerApplication;
 import com.cyanogenmod.filemanager.R;
 import com.cyanogenmod.filemanager.adapters.SearchResultAdapter;
-import com.cyanogenmod.filemanager.adapters.SearchResultAdapter.OnRequestMenuListener;
 import com.cyanogenmod.filemanager.model.FileSystemObject;
 import com.cyanogenmod.filemanager.model.Query;
 import com.cyanogenmod.filemanager.model.SearchResult;
@@ -61,28 +60,21 @@ public class SearchResultDrawingAsyncTask extends AsyncTask<Object, Integer, Boo
      */
     final Query mQueries;
     private boolean mRunning;
-    /**
-     * @hide
-     */
-    final OnRequestMenuListener mOnRequestMenuListener;
 
     /**
      * Constructor of <code>SearchResultDrawingAsyncTask</code>.
      *
      * @param searchListView The {@link ListView} reference
      * @param searchWaiting A {@link ProgressBar} reference
-     * @param onRequestMenuListener The listener for display the actions menu
      * @param files The files to draw
      * @param queries The terms of the search
      */
     public SearchResultDrawingAsyncTask(
             ListView searchListView, ProgressBar searchWaiting,
-            OnRequestMenuListener onRequestMenuListener,
             List<FileSystemObject> files, Query queries) {
         super();
         this.mSearchListView = searchListView;
         this.mSearchWaiting = searchWaiting;
-        this.mOnRequestMenuListener = onRequestMenuListener;
         this.mFiles = files;
         this.mQueries = queries;
         this.mRunning = false;
@@ -151,8 +143,6 @@ public class SearchResultDrawingAsyncTask extends AsyncTask<Object, Integer, Boo
                             result,
                             R.layout.search_item,
                             SearchResultDrawingAsyncTask.this.mQueries);
-                    adapter.setOnRequestMenuListener(
-                            SearchResultDrawingAsyncTask.this.mOnRequestMenuListener);
 
                     // Configure the listview
                     SearchResultDrawingAsyncTask.this.mSearchListView.setAdapter(adapter);

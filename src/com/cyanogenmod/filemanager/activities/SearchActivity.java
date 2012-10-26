@@ -50,7 +50,6 @@ import com.cyanogenmod.filemanager.R;
 import com.cyanogenmod.filemanager.activities.preferences.SettingsPreferences;
 import com.cyanogenmod.filemanager.activities.preferences.SettingsPreferences.SearchPreferenceFragment;
 import com.cyanogenmod.filemanager.adapters.SearchResultAdapter;
-import com.cyanogenmod.filemanager.adapters.SearchResultAdapter.OnRequestMenuListener;
 import com.cyanogenmod.filemanager.commands.AsyncResultExecutable;
 import com.cyanogenmod.filemanager.commands.AsyncResultListener;
 import com.cyanogenmod.filemanager.console.NoSuchFileOrDirectory;
@@ -61,15 +60,12 @@ import com.cyanogenmod.filemanager.model.Query;
 import com.cyanogenmod.filemanager.model.SearchResult;
 import com.cyanogenmod.filemanager.model.Symlink;
 import com.cyanogenmod.filemanager.parcelables.SearchInfoParcelable;
-import com.cyanogenmod.filemanager.preferences.DefaultLongClickAction;
 import com.cyanogenmod.filemanager.preferences.FileManagerSettings;
-import com.cyanogenmod.filemanager.preferences.ObjectStringIdentifier;
 import com.cyanogenmod.filemanager.preferences.Preferences;
 import com.cyanogenmod.filemanager.providers.RecentSearchesContentProvider;
 import com.cyanogenmod.filemanager.tasks.SearchResultDrawingAsyncTask;
 import com.cyanogenmod.filemanager.ui.dialogs.ActionsDialog;
 import com.cyanogenmod.filemanager.ui.dialogs.MessageProgressDialog;
-import com.cyanogenmod.filemanager.ui.policy.InfoActionPolicy;
 import com.cyanogenmod.filemanager.ui.policy.IntentsActionPolicy;
 import com.cyanogenmod.filemanager.ui.widgets.ButtonItem;
 import com.cyanogenmod.filemanager.util.CommandHelper;
@@ -87,7 +83,7 @@ import java.util.List;
  */
 public class SearchActivity extends Activity
     implements AsyncResultListener, OnItemClickListener,
-               OnItemLongClickListener, OnRequestMenuListener, OnRequestRefreshListener {
+               OnItemLongClickListener, OnRequestRefreshListener {
 
     private static final String TAG = "SearchActivity"; //$NON-NLS-1$
 
@@ -136,28 +132,6 @@ public class SearchActivity extends Activity
                         SearchActivity.this.mSearchListView.setSelection(pos);
                         return;
                     }
-
-                    // Default long-click action
-                    if (key.compareTo(FileManagerSettings.
-                            SETTINGS_DEFAULT_LONG_CLICK_ACTION.getId()) == 0) {
-                        String defaultValue = ((ObjectStringIdentifier)FileManagerSettings.
-                                SETTINGS_DEFAULT_LONG_CLICK_ACTION.getDefaultValue()).getId();
-                        String id = FileManagerSettings.SETTINGS_DEFAULT_LONG_CLICK_ACTION.getId();
-                        String value =
-                                Preferences.getSharedPreferences().getString(id, defaultValue);
-                        SearchActivity.this.mDefaultLongClickAction =
-                                DefaultLongClickAction.fromId(value);
-
-                        // Register the long-click listener only if needed
-                        if (SearchActivity.this.mDefaultLongClickAction.compareTo(
-                                DefaultLongClickAction.NONE) != 0) {
-                            SearchActivity.this.
-                                mSearchListView.setOnItemLongClickListener(SearchActivity.this);
-                        } else {
-                            SearchActivity.this.mSearchListView.setOnItemLongClickListener(null);
-                        }
-                        return;
-                    }
                 }
             }
         }
@@ -189,10 +163,6 @@ public class SearchActivity extends Activity
      */
     TextView mSearchTerms;
     private View mEmptyListMsg;
-    /**
-     * @hide
-     */
-    DefaultLongClickAction mDefaultLongClickAction;
 
     private String mSearchDirectory;
     /**
@@ -228,15 +198,6 @@ public class SearchActivity extends Activity
 
         // Check if app is running in chrooted mode
         this.mChRooted = !FileManagerApplication.isAdvancedMode();
-
-        // Default long-click action
-        String defaultValue = ((ObjectStringIdentifier)FileManagerSettings.
-                SETTINGS_DEFAULT_LONG_CLICK_ACTION.getDefaultValue()).getId();
-        String value = Preferences.getSharedPreferences().getString(
-                            FileManagerSettings.SETTINGS_DEFAULT_LONG_CLICK_ACTION.getId(),
-                            defaultValue);
-        DefaultLongClickAction mode = DefaultLongClickAction.fromId(value);
-        this.mDefaultLongClickAction = mode;
 
         // Register the broadcast receiver
         IntentFilter filter = new IntentFilter();
@@ -381,12 +342,7 @@ public class SearchActivity extends Activity
         //The list view
         this.mSearchListView = (ListView)findViewById(R.id.search_listview);
         this.mSearchListView.setOnItemClickListener(this);
-
-        // Register the long-click listener only if needed
-        if (this.mDefaultLongClickAction.compareTo(
-                DefaultLongClickAction.NONE) != 0) {
-            this.mSearchListView.setOnItemLongClickListener(this);
-        }
+        this.mSearchListView.setOnItemLongClickListener(this);
 
         //Other components
         this.mSearchWaiting = (ProgressBar)findViewById(R.id.search_waiting);
@@ -551,7 +507,6 @@ public class SearchActivity extends Activity
         SearchResultAdapter adapter =
                 new SearchResultAdapter(this,
                         new ArrayList<SearchResult>(), R.layout.search_item, this.mQuery);
-        adapter.setOnRequestMenuListener(this);
         this.mSearchListView.setAdapter(adapter);
 
         //Set terms
@@ -676,7 +631,6 @@ public class SearchActivity extends Activity
                                                 list,
                                                 R.layout.search_item,
                                                 query);
-                    adapter.setOnRequestMenuListener(SearchActivity.this);
                     SearchActivity.this.mSearchListView.setAdapter(adapter);
                     SearchActivity.this.mSearchListView.setSelection(0);
 
@@ -836,38 +790,17 @@ public class SearchActivity extends Activity
         SearchResult searchResult = adapter.getItem(position);
         FileSystemObject fso = searchResult.getFso();
 
-        // Select/deselect. Not apply here
-
-        // Show content description
-        if (this.mDefaultLongClickAction.compareTo(
-                DefaultLongClickAction.SHOW_CONTENT_DESCRIPTION) == 0) {
-            InfoActionPolicy.showContentDescription(this, fso);
-        }
-
-        // Open with
-        else if (this.mDefaultLongClickAction.compareTo(
-                DefaultLongClickAction.OPEN_WITH) == 0) {
-            IntentsActionPolicy.openFileSystemObject(this, fso, true, null, null);
-        }
-
-        // Show properties
-        else if (this.mDefaultLongClickAction.compareTo(
-                DefaultLongClickAction.SHOW_PROPERTIES) == 0) {
-            InfoActionPolicy.showPropertiesDialog(this, fso, this);
-        }
-
-        // Show actions
-        else if (this.mDefaultLongClickAction.compareTo(
-                DefaultLongClickAction.SHOW_ACTIONS) == 0) {
-            onRequestMenu(fso);
-        }
+        // Open the actions menu
+        onRequestMenu(fso);
         return true; //Always consume the event
     }
 
     /**
-     * {@inheritDoc}
+     * Method invoked when a request to show the menu associated
+     * with an item is started.
+     *
+     * @param item The item for which the request was started
      */
-    @Override
     public void onRequestMenu(FileSystemObject item) {
         // Prior to show the dialog, refresh the item reference
         FileSystemObject fso = null;
@@ -1121,7 +1054,6 @@ public class SearchActivity extends Activity
                                 new SearchResultDrawingAsyncTask(
                                         this.mSearchListView,
                                         this.mSearchWaiting,
-                                        this,
                                         this.mResultList,
                                         this.mQuery);
         this.mDrawingSearchResultTask.execute();

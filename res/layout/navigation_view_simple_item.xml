@@ -37,21 +37,12 @@
     android:contentDescription="@null"
     android:src="@null" />
 
-  <com.cyanogenmod.filemanager.ui.widgets.NonFocusableButtonItem
-    android:id="@+id/navigation_view_item_menu"
-    android:layout_width="@dimen/item_menu_row_button_width"
-    android:layout_height="match_parent"
-    android:layout_alignParentRight="true"
-    android:contentDescription="@null"
-    android:src="@drawable/ic_holo_light_contextual_action" />
-
   <RelativeLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_toLeftOf="@id/navigation_view_item_menu"
+    android:layout_alignParentRight="true"
     android:layout_toRightOf="@id/navigation_view_item_icon"
-
-    android:layout_alignWithParentIfMissing="true" >
+    android:layout_marginRight="@dimen/extra_margin" >
 
     <TextView
       android:id="@+id/navigation_view_item_name"

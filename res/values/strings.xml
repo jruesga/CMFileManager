@@ -66,20 +66,20 @@
   <!-- Error message -->
   <string name="error_message">Error.</string>
 
-  <!-- A console couldn't be created. Ask the user to change to advanced console mode -->
-  <string name="msgs_change_to_advanced_console_mode">
-    The application is unable to create a console. The only way to run the app
+  <!--  A console couldn't be created. Ask the user to change the access mode -->
+  <string name="msgs_change_to_prompt_access_mode">
+    The application is unable to gain privileges. The only way to run the app
     is to switch to non-privileged mode.\n\nApply this change?</string>
 
-  <!-- A console couldn't be created. Without a console, the application won't work -->
-  <string name="msgs_cant_create_console">The application is unable to create a console and
-       will not work without a console.</string>
-  <!-- The message shown when a allocation of a privileged console fails, and a non
+  <!-- A console couldn't be created. Without privileges, the application won't work -->
+  <string name="msgs_cant_create_console">The application is unable to gain privileges and
+       will not work without under this conditions.</string>
+  <!-- The message shown when an allocation of a privileged console fails, and a non
        privileged is allocated -->
-  <string name="msgs_privileged_console_alloc_failed">A privileged console could not be allocated.
+  <string name="msgs_privileged_console_alloc_failed">The application is unable to gain privileges.
     \nChanging to non-privileged mode.</string>
   <!-- Changing to other type of console failed -->
-  <string name="msgs_console_change_failed">Changing to the new type of console failed.</string>
+  <string name="msgs_console_change_failed">Changing to the new type of access mode failed.</string>
   <!-- The selected setting was not applied or stored -->
   <string name="msgs_settings_save_failure">The setting could not be applied or stored.</string>
   <!-- The initial directory has an invalid or inaccessible reference -->
@@ -106,8 +106,8 @@
   <string name="msgs_operation_timeout">The operation timed out.</string>
   <!-- The operation returns an invalid exit code -->
   <string name="msgs_operation_failure">The operation failed.</string>
-  <!-- A console couldn\'t be allocated -->
-  <string name="msgs_console_alloc_failure">A console could not be allocated.</string>
+  <!-- A console couldn't be allocated -->
+  <string name="msgs_console_alloc_failure">An internal error occurred.</string>
   <!-- An operation can't be cancelled -->
   <string name="msgs_operation_can_not_be_cancelled">The operation cannot be cancelled.</string>
   <!-- The operation requieres mount the file system prior to execute the command -->
@@ -300,9 +300,6 @@
     <item quantity="one">1 files</item>
     <item quantity="other"><xliff:g id="files">%1$d</xliff:g> files</item>
   </plurals>
-
-  <!-- Consoles * Choose console dialog title -->
-  <string name="choose_console_dialog_title">Choose console</string>
 
   <!-- History * History activity title -->
   <string name="history">History</string>

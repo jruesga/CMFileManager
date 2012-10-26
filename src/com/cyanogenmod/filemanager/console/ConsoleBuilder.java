@@ -213,8 +213,8 @@ public final class ConsoleBuilder {
      * console is allocated or if the settings preferences has changed.
      *
      * @param context The current context
-     * @param superuserMode If create with a superuser mode console
-     * @param advancedMode If create with a advanced mode console
+     * @param superuserMode If create with a superuser mode console (root access mode)
+     * @param advancedMode If create with a advanced mode console (prompt or root access mode)
      * @return Console An allocated console
      * @throws FileNotFoundException If the initial directory not exists
      * @throws IOException If initial directory couldn't be checked

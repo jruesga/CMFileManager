@@ -195,7 +195,7 @@ public class NavigationActivity extends Activity
                             return;
                         }
 
-                        // Advanced mode
+                        // Access mode
                         if (key.compareTo(FileManagerSettings.
                                 SETTINGS_ACCESS_MODE.getId()) == 0) {
                             // Is it necessary to create or exit of the ChRooted?
@@ -515,7 +515,7 @@ public class NavigationActivity extends Activity
                     }
 
                     // We are in a trouble (something is not allowing creating the console)
-                    // Ask the user to return to advanced console mode with a
+                    // Ask the user to return to prompt or root access mode mode with a
                     // non-privileged console, prior to make crash the application
                     askOrExit();
                     return;
@@ -1315,14 +1315,14 @@ public class NavigationActivity extends Activity
     }
 
     /**
-     * Method that ask the user to change to to advanced console
+     * Method that ask the user to change the access mode prior to crash.
      * @hide
      */
     void askOrExit() {
         //Show a dialog asking the user
         AlertDialog dialog =
             DialogHelper.createYesNoDialog(
-                this, R.string.msgs_change_to_advanced_console_mode,
+                this, R.string.msgs_change_to_prompt_access_mode,
                 new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface alertDialog, int which) {

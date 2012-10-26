@@ -22,6 +22,7 @@ import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.content.res.XmlResourceParser;
 import android.database.Cursor;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.storage.StorageVolume;
 import android.util.Log;
@@ -70,7 +71,10 @@ public class BookmarksActivity extends Activity implements OnItemClickListener, 
     private static final String TAG_BOOKMARKS = "Bookmarks"; //$NON-NLS-1$
     private static final String TAG_BOOKMARK = "bookmark"; //$NON-NLS-1$
 
-    private ListView mBookmarksListView;
+    /**
+     * @hide
+     */
+    ListView mBookmarksListView;
 
     private boolean mChRooted;
 
@@ -135,20 +139,65 @@ public class BookmarksActivity extends Activity implements OnItemClickListener, 
      */
     private void initBookmarks() {
         this.mBookmarksListView = (ListView)findViewById(R.id.bookmarks_listview);
-        BookmarksAdapter adapter = new BookmarksAdapter(this, loadBookmarks(), this);
+        List<Bookmark> bookmarks = new ArrayList<Bookmark>();
+        BookmarksAdapter adapter = new BookmarksAdapter(this, bookmarks, this);
         this.mBookmarksListView.setAdapter(adapter);
         this.mBookmarksListView.setOnItemClickListener(this);
+        refresh();
     }
 
     /**
      * Method that makes the refresh of the data.
      */
     void refresh() {
-        BookmarksAdapter adapter = (BookmarksAdapter)this.mBookmarksListView.getAdapter();
-        adapter.clear();
-        adapter.addAll(loadBookmarks());
-        adapter.notifyDataSetChanged();
-        this.mBookmarksListView.setSelection(0);
+        // Retrieve the loading view
+        final View waiting = findViewById(R.id.bookmarks_waiting);
+        final BookmarksAdapter adapter = (BookmarksAdapter)this.mBookmarksListView.getAdapter();
+
+        // Load the history in background
+        AsyncTask<Void, Void, Boolean> task = new AsyncTask<Void, Void, Boolean>() {
+            Exception mCause;
+            List<Bookmark> mBookmarks;
+
+            @Override
+            protected Boolean doInBackground(Void... params) {
+                try {
+                    this.mBookmarks = loadBookmarks();
+                    return Boolean.TRUE;
+
+                } catch (Exception e) {
+                    this.mCause = e;
+                    return Boolean.FALSE;
+                }
+            }
+
+            @Override
+            protected void onPreExecute() {
+                waiting.setVisibility(View.VISIBLE);
+                adapter.clear();
+            }
+
+            @Override
+            protected void onPostExecute(Boolean result) {
+                waiting.setVisibility(View.GONE);
+                if (result.booleanValue()) {
+                    adapter.addAll(this.mBookmarks);
+                    adapter.notifyDataSetChanged();
+                    BookmarksActivity.this.mBookmarksListView.setSelection(0);
+
+                } else {
+                    if (this.mCause != null) {
+                        ExceptionUtil.translateException(BookmarksActivity.this, this.mCause);
+                    }
+                }
+            }
+
+            @Override
+            protected void onCancelled() {
+                waiting.setVisibility(View.GONE);
+            }
+        };
+        task.execute();
     }
 
     /**
@@ -272,8 +321,9 @@ public class BookmarksActivity extends Activity implements OnItemClickListener, 
      * an array to be used in the listview adapter.
      *
      * @return List<Bookmark>
+     * @hide
      */
-    private List<Bookmark> loadBookmarks() {
+    List<Bookmark> loadBookmarks() {
         // Bookmarks = HOME + FILESYSTEM + SD STORAGES + USER DEFINED
         // In ChRooted mode = SD STORAGES + USER DEFINED (from SD STORAGES)
         List<Bookmark> bookmarks = new ArrayList<Bookmark>();

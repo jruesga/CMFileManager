@@ -23,4 +23,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent" />
 
+  <ProgressBar
+    android:id="@+id/bookmarks_waiting"
+    android:layout_width="@dimen/default_row_height"
+    android:layout_height="@dimen/default_row_height"
+    android:layout_centerInParent="true"
+    android:indeterminate="true"
+    android:indeterminateOnly="true"
+    android:visibility="gone" />
+
 </RelativeLayout>

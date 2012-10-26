@@ -38,6 +38,7 @@ import com.cyanogenmod.filemanager.console.NoSuchFileOrDirectory;
 import com.cyanogenmod.filemanager.console.OperationTimeoutException;
 import com.cyanogenmod.filemanager.console.ReadOnlyFilesystemException;
 import com.cyanogenmod.filemanager.console.RelaunchableException;
+import com.cyanogenmod.filemanager.preferences.AccessMode;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -253,7 +254,8 @@ public final class ExceptionUtil {
         // If console is privileged there is not need to change
         // If we are in a ChRooted environment, resolve the error without do anymore
         if (relaunchable instanceof InsufficientPermissionsException &&
-                (isPrivileged || !FileManagerApplication.isAdvancedMode())) {
+                (isPrivileged ||
+                 FileManagerApplication.getAccessMode().compareTo(AccessMode.SAFE) == 0)) {
             translateException(
                     context, relaunchable, quiet, false, null);
 

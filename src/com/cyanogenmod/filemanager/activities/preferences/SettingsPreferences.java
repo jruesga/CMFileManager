@@ -17,6 +17,7 @@
 package com.cyanogenmod.filemanager.activities.preferences;
 
 import android.app.ActionBar;
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.preference.CheckBoxPreference;
@@ -35,6 +36,8 @@ import android.widget.Toast;
 
 import com.cyanogenmod.filemanager.FileManagerApplication;
 import com.cyanogenmod.filemanager.R;
+import com.cyanogenmod.filemanager.console.ConsoleBuilder;
+import com.cyanogenmod.filemanager.preferences.AccessMode;
 import com.cyanogenmod.filemanager.preferences.FileManagerSettings;
 import com.cyanogenmod.filemanager.preferences.ObjectStringIdentifier;
 import com.cyanogenmod.filemanager.preferences.Preferences;
@@ -120,7 +123,7 @@ public class SettingsPreferences extends PreferenceActivity {
         private CheckBoxPreference mCaseSensitiveSort;
         private ListPreference mFreeDiskSpaceWarningLevel;
         private CheckBoxPreference mComputeFolderStatistics;
-        private CheckBoxPreference mAdvancedSettings;
+        private ListPreference mAccessMode;
         private CheckBoxPreference mDebugTraces;
 
         /**
@@ -131,15 +134,19 @@ public class SettingsPreferences extends PreferenceActivity {
         private final OnPreferenceChangeListener mOnChangeListener =
                 new OnPreferenceChangeListener() {
             @Override
-            public boolean onPreferenceChange(Preference preference, Object newValue) {
+            public boolean onPreferenceChange(final Preference preference, Object newValue) {
+                boolean ret = true;
+
                 String key = preference.getKey();
-                if (DEBUG) Log.d(LOG_TAG,
+                if (DEBUG) {
+                    Log.d(LOG_TAG,
                         String.format("New value for %s: %s",  //$NON-NLS-1$
                                 key,
                                 String.valueOf(newValue)));
+                }
 
                 // Disk usage warning level
-                else if (FileManagerSettings.SETTINGS_DISK_USAGE_WARNING_LEVEL.
+                if (FileManagerSettings.SETTINGS_DISK_USAGE_WARNING_LEVEL.
                         getId().compareTo(key) == 0) {
                     String value = (String)newValue;
                     preference.setSummary(
@@ -147,16 +154,46 @@ public class SettingsPreferences extends PreferenceActivity {
                                     R.string.pref_disk_usage_warning_level_summary, value));
                 }
 
+                // Access mode
+                else if (FileManagerSettings.SETTINGS_ACCESS_MODE.getId().compareTo(key) == 0) {
+                    Activity activity = GeneralPreferenceFragment.this.getActivity();
+
+                    String value = (String)newValue;
+                    AccessMode oldMode = FileManagerApplication.getAccessMode();
+                    AccessMode newMode = AccessMode.fromId(value);
+                    if (oldMode.compareTo(newMode) != 0) {
+                        // The mode was changes. Change the console
+                        if (newMode.compareTo(AccessMode.ROOT) == 0) {
+                            if (!ConsoleBuilder.changeToPrivilegedConsole(
+                                    activity.getApplicationContext())) {
+                                value = String.valueOf(oldMode.ordinal());
+                                ret = false;
+                            }
+                        } else {
+                            if (!ConsoleBuilder.changeToNonPrivilegedConsole(
+                                    activity.getApplicationContext())) {
+                                value = String.valueOf(oldMode.ordinal());
+                                ret = false;
+                            }
+                        }
+                    }
+
+                    int valueId = Integer.valueOf(value).intValue();
+                    String[] summary = getResources().getStringArray(
+                            R.array.access_mode_summaries);
+                                        preference.setSummary(summary[valueId]);
+                }
+
                 // Notify the change (only if fragment is loaded. Default values are loaded
                 // while not in loaded mode)
-                if (GeneralPreferenceFragment.this.mLoaded) {
+                if (GeneralPreferenceFragment.this.mLoaded && ret) {
                     Intent intent = new Intent(FileManagerSettings.INTENT_SETTING_CHANGED);
                     intent.putExtra(
                             FileManagerSettings.EXTRA_SETTING_CHANGED_KEY, preference.getKey());
                     getActivity().sendBroadcast(intent);
                 }
 
-                return true;
+                return ret;
             }
         };
 
@@ -198,16 +235,17 @@ public class SettingsPreferences extends PreferenceActivity {
                             FileManagerSettings.SETTINGS_COMPUTE_FOLDER_STATISTICS.getId());
             this.mComputeFolderStatistics.setOnPreferenceChangeListener(this.mOnChangeListener);
 
-            // Advanced settings
-            this.mAdvancedSettings =
-                    (CheckBoxPreference)findPreference(
-                            FileManagerSettings.SETTINGS_ADVANCE_MODE.getId());
-            if (FileManagerApplication.isDeviceRooted()) {
-                this.mAdvancedSettings.setOnPreferenceChangeListener(this.mOnChangeListener);
-            } else {
-                // Disable the advanced mode
-                this.mAdvancedSettings.setEnabled(false);
-            }
+            // Access mode
+            this.mAccessMode =
+                    (ListPreference)findPreference(
+                            FileManagerSettings.SETTINGS_ACCESS_MODE.getId());
+            this.mAccessMode.setOnPreferenceChangeListener(this.mOnChangeListener);
+            defaultValue = ((ObjectStringIdentifier)FileManagerSettings.
+                                SETTINGS_ACCESS_MODE.getDefaultValue()).getId();
+            value = Preferences.getSharedPreferences().getString(
+                                FileManagerSettings.SETTINGS_ACCESS_MODE.getId(),
+                                defaultValue);
+            this.mOnChangeListener.onPreferenceChange(this.mAccessMode, value);
 
             // Capture Debug traces
             this.mDebugTraces =
@@ -245,10 +283,12 @@ public class SettingsPreferences extends PreferenceActivity {
             @Override
             public boolean onPreferenceChange(Preference preference, Object newValue) {
                 String key = preference.getKey();
-                if (DEBUG) Log.d(LOG_TAG,
+                if (DEBUG) {
+                    Log.d(LOG_TAG,
                         String.format("New value for %s: %s",  //$NON-NLS-1$
                                 key,
                                 String.valueOf(newValue)));
+                }
 
                 // Saved search terms
                 if (preference.getKey().compareTo(

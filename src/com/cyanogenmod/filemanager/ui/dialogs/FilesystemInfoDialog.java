@@ -31,6 +31,7 @@ import com.cyanogenmod.filemanager.R;
 import com.cyanogenmod.filemanager.console.ConsoleBuilder;
 import com.cyanogenmod.filemanager.model.DiskUsage;
 import com.cyanogenmod.filemanager.model.MountPoint;
+import com.cyanogenmod.filemanager.preferences.AccessMode;
 import com.cyanogenmod.filemanager.preferences.FileManagerSettings;
 import com.cyanogenmod.filemanager.preferences.Preferences;
 import com.cyanogenmod.filemanager.ui.widgets.DiskUsageGraph;
@@ -103,7 +104,8 @@ public class FilesystemInfoDialog implements OnClickListener {
         this.mMountPoint = mountPoint;
         this.mDiskUsage = diskUsage;
         this.mIsMountAllowed = false;
-        this.mIsAdvancedMode = FileManagerApplication.isAdvancedMode();
+        this.mIsAdvancedMode =
+                FileManagerApplication.getAccessMode().compareTo(AccessMode.SAFE) != 0;
 
         //Inflate the content
         LayoutInflater li =

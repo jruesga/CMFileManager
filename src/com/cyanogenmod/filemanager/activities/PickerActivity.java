@@ -169,7 +169,7 @@ public class PickerActivity extends Activity
         this.mDialog.show();
 
         // Set content description of storage volume button
-        ButtonItem fs = (ButtonItem)findViewById(R.id.ab_filesystem_info);
+        ButtonItem fs = (ButtonItem)rootView.findViewById(R.id.ab_filesystem_info);
         fs.setContentDescription(getString(R.string.actionbar_button_storage_cd));
 
         this.mHandler = new Handler();

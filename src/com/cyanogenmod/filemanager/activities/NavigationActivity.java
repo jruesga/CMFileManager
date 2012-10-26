@@ -61,6 +61,7 @@ import com.cyanogenmod.filemanager.model.MountPoint;
 import com.cyanogenmod.filemanager.parcelables.HistoryNavigable;
 import com.cyanogenmod.filemanager.parcelables.NavigationViewInfoParcelable;
 import com.cyanogenmod.filemanager.parcelables.SearchInfoParcelable;
+import com.cyanogenmod.filemanager.preferences.AccessMode;
 import com.cyanogenmod.filemanager.preferences.FileManagerSettings;
 import com.cyanogenmod.filemanager.preferences.NavigationLayoutMode;
 import com.cyanogenmod.filemanager.preferences.ObjectIdentifier;
@@ -196,9 +197,11 @@ public class NavigationActivity extends Activity
 
                         // Advanced mode
                         if (key.compareTo(FileManagerSettings.
-                                SETTINGS_ADVANCE_MODE.getId()) == 0) {
+                                SETTINGS_ACCESS_MODE.getId()) == 0) {
                             // Is it necessary to create or exit of the ChRooted?
-                            boolean chRooted = !FileManagerApplication.isAdvancedMode();
+                            boolean chRooted =
+                                    FileManagerApplication.
+                                        getAccessMode().compareTo(AccessMode.SAFE) == 0;
                             if (chRooted != NavigationActivity.this.mChRooted) {
                                 if (chRooted) {
                                     createChRooted();
@@ -364,7 +367,7 @@ public class NavigationActivity extends Activity
      */
     private void init() {
         this.mHistory = new ArrayList<History>();
-        this.mChRooted = !FileManagerApplication.isAdvancedMode();
+        this.mChRooted = FileManagerApplication.getAccessMode().compareTo(AccessMode.SAFE) == 0;
     }
 
     /**
@@ -524,7 +527,8 @@ public class NavigationActivity extends Activity
                     String initialDir =
                             Preferences.getSharedPreferences().getString(
                                 FileManagerSettings.SETTINGS_INITIAL_DIR.getId(),
-                                (String)FileManagerSettings.SETTINGS_INITIAL_DIR.getDefaultValue());
+                                (String)FileManagerSettings.
+                                    SETTINGS_INITIAL_DIR.getDefaultValue());
                     if (NavigationActivity.this.mChRooted) {
                         // Initial directory is the first external sdcard (sdcard, emmc, usb, ...)
                         StorageVolume[] volumes =
@@ -678,12 +682,15 @@ public class NavigationActivity extends Activity
             //######################
             case R.id.ab_sort_mode:
                 showSettingsPopUp(view,
-                        Arrays.asList(new FileManagerSettings[]{FileManagerSettings.SETTINGS_SORT_MODE}));
+                        Arrays.asList(
+                                new FileManagerSettings[]{
+                                        FileManagerSettings.SETTINGS_SORT_MODE}));
                 break;
             case R.id.ab_layout_mode:
                 showSettingsPopUp(view,
                         Arrays.asList(
-                                new FileManagerSettings[]{FileManagerSettings.SETTINGS_LAYOUT_MODE}));
+                                new FileManagerSettings[]{
+                                        FileManagerSettings.SETTINGS_LAYOUT_MODE}));
                 break;
             case R.id.ab_view_options:
                 // If we are in ChRooted mode, then don't show non-secure items
@@ -1329,7 +1336,7 @@ public class NavigationActivity extends Activity
                             return;
                         }
 
-                        // Ok. Now try to change to advanced selection console. Any crash
+                        // Ok. Now try to change to prompt mode. Any crash
                         // here is a fatal error. We won't have any console to operate.
                         try {
                             // Change console
@@ -1337,14 +1344,11 @@ public class NavigationActivity extends Activity
 
                             // Save preferences
                             Preferences.savePreference(
-                                    FileManagerSettings.SETTINGS_ADVANCE_MODE,
-                                    Boolean.TRUE, true);
-                            Preferences.savePreference(
-                                    FileManagerSettings.SETTINGS_SUPERUSER_MODE,
-                                    Boolean.FALSE, true);
+                                    FileManagerSettings.SETTINGS_ACCESS_MODE,
+                                    AccessMode.PROMPT, true);
 
                         } catch (Exception e) {
-                            //Show exception and exists
+                            // Displays an exception and exit
                             Log.e(TAG, getString(R.string.msgs_cant_create_console), e);
                             DialogHelper.showToast(
                                     NavigationActivity.this,

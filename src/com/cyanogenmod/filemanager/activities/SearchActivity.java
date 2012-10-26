@@ -60,6 +60,7 @@ import com.cyanogenmod.filemanager.model.Query;
 import com.cyanogenmod.filemanager.model.SearchResult;
 import com.cyanogenmod.filemanager.model.Symlink;
 import com.cyanogenmod.filemanager.parcelables.SearchInfoParcelable;
+import com.cyanogenmod.filemanager.preferences.AccessMode;
 import com.cyanogenmod.filemanager.preferences.FileManagerSettings;
 import com.cyanogenmod.filemanager.preferences.Preferences;
 import com.cyanogenmod.filemanager.providers.RecentSearchesContentProvider;
@@ -197,7 +198,7 @@ public class SearchActivity extends Activity
         }
 
         // Check if app is running in chrooted mode
-        this.mChRooted = !FileManagerApplication.isAdvancedMode();
+        this.mChRooted = FileManagerApplication.getAccessMode().compareTo(AccessMode.SAFE) == 0;
 
         // Register the broadcast receiver
         IntentFilter filter = new IntentFilter();

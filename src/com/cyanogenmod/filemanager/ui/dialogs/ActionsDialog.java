@@ -39,6 +39,7 @@ import com.cyanogenmod.filemanager.listeners.OnRequestRefreshListener;
 import com.cyanogenmod.filemanager.listeners.OnSelectionListener;
 import com.cyanogenmod.filemanager.model.FileSystemObject;
 import com.cyanogenmod.filemanager.model.SystemFile;
+import com.cyanogenmod.filemanager.preferences.AccessMode;
 import com.cyanogenmod.filemanager.ui.policy.BookmarksActionPolicy;
 import com.cyanogenmod.filemanager.ui.policy.CompressActionPolicy;
 import com.cyanogenmod.filemanager.ui.policy.CopyMoveActionPolicy;
@@ -109,7 +110,7 @@ public class ActionsDialog implements OnItemClickListener, OnItemLongClickListen
         this.mContext = context;
         this.mGlobal = global;
         this.mSearch = search;
-        this.mChRooted = !FileManagerApplication.isAdvancedMode();
+        this.mChRooted = FileManagerApplication.getAccessMode().compareTo(AccessMode.SAFE) == 0;
 
         //Initialize dialog
         init(context, global ? R.id.mnu_actions_global : R.id.mnu_actions_fso);

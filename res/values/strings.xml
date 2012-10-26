@@ -629,11 +629,25 @@
     system resources</string>
     <!-- Preferences * General * Advanced settings category -->
   <string name="pref_general_advanced_settings_category">Advanced</string>
-  <!-- Preferences * General * Advanced mode -->
-  <string name="pref_advanced_mode">Privileged mode</string>
-  <!-- Preferences * General * Advanced mode summary on -->
-  <string name="pref_advanced_mode_on">Warning! Privileged mode allows operations that could break
-    your device. It\'s your responsibility to ensure that an operation is safe</string>
+  <!-- Preferences * General * Access mode -->
+  <string name="pref_access_mode">Access mode</string>
+  <!-- Preferences * General * Safe mode -->
+  <string name="pref_access_mode_safe">Safe mode</string>
+  <!-- Preferences * General * Safe mode summary -->
+  <string name="pref_access_mode_safe_summary">Safe mode. The app is running without
+    privileges and the only accessible file systems are the storage volumes (sdcards and USB).</string>
+  <!-- Preferences * General * Prompt user mode -->
+  <string name="pref_access_mode_prompt">Prompt user mode</string>
+  <!-- Preferences * General * Prompt user mode summary -->
+  <string name="pref_access_mode_prompt_summary">Prompt user mode. The app is running
+    without privileges, with full access to the file system, but the user is asked prior to execute
+    any privileged action.</string>
+  <!-- Preferences * General * Root access mode -->
+  <string name="pref_access_mode_root">Root mode</string>
+  <!-- Preferences * General * Root access mode summary -->
+  <string name="pref_access_mode_root_summary">Root mode. The app is running will all
+    the privileges.\n\nWarning! Privileged mode allows operations that could break
+    your device. It\'s your responsibility to ensure that an operation is safe.</string>
   <!-- Preferences * Search * Results category -->
   <string name="pref_search_results_category">Results</string>
   <!-- Preferences * Search * Show relevance widget -->

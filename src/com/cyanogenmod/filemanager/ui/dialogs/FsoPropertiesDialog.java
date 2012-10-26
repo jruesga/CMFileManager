@@ -52,6 +52,7 @@ import com.cyanogenmod.filemanager.model.Permissions;
 import com.cyanogenmod.filemanager.model.Symlink;
 import com.cyanogenmod.filemanager.model.User;
 import com.cyanogenmod.filemanager.model.UserPermission;
+import com.cyanogenmod.filemanager.preferences.AccessMode;
 import com.cyanogenmod.filemanager.preferences.FileManagerSettings;
 import com.cyanogenmod.filemanager.preferences.Preferences;
 import com.cyanogenmod.filemanager.util.AIDHelper;
@@ -152,7 +153,8 @@ public class FsoPropertiesDialog
         this.mHasChanged = false;
         this.mIgnoreCheckEvents = true;
         this.mHasPrivileged = false;
-        this.mIsAdvancedMode = FileManagerApplication.isAdvancedMode();
+        this.mIsAdvancedMode =
+                FileManagerApplication.getAccessMode().compareTo(AccessMode.SAFE) != 0;
 
         //Inflate the content
         LayoutInflater li =

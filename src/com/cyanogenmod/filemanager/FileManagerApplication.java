@@ -30,7 +30,9 @@ import com.cyanogenmod.filemanager.console.ConsoleAllocException;
 import com.cyanogenmod.filemanager.console.ConsoleBuilder;
 import com.cyanogenmod.filemanager.console.ConsoleHolder;
 import com.cyanogenmod.filemanager.console.shell.PrivilegedConsole;
+import com.cyanogenmod.filemanager.preferences.AccessMode;
 import com.cyanogenmod.filemanager.preferences.FileManagerSettings;
+import com.cyanogenmod.filemanager.preferences.ObjectStringIdentifier;
 import com.cyanogenmod.filemanager.preferences.Preferences;
 import com.cyanogenmod.filemanager.util.ExceptionUtil;
 import com.cyanogenmod.filemanager.util.FileHelper;
@@ -90,33 +92,6 @@ public final class FileManagerApplication extends Application {
                             c.reloadTrace();
                         }
                     } catch (Throwable _throw) {/**NON BLOCK**/}
-                } else if (key != null && key.compareTo(
-                        FileManagerSettings.SETTINGS_ADVANCE_MODE.getId()) == 0) {
-                    // Force to change to a privileged console.
-                    boolean advancedMode = isAdvancedMode();
-                    if (!advancedMode) {
-                        // First change to non-privileged console
-                        if (!ConsoleBuilder.changeToNonPrivilegedConsole(context)) {
-                            // Try with a privileged console
-                            ConsoleBuilder.changeToPrivilegedConsole(context);
-                            try {
-                                Preferences.savePreference(
-                                        FileManagerSettings.SETTINGS_SUPERUSER_MODE,
-                                        Boolean.TRUE, true);
-                            } catch (Throwable ex) {
-                                Log.w(TAG, "can't save console preference", ex); //$NON-NLS-1$
-                            }
-                        } else {
-                            try {
-                                Preferences.savePreference(
-                                        FileManagerSettings.SETTINGS_SUPERUSER_MODE,
-                                        Boolean.FALSE, true);
-                            } catch (Throwable ex) {
-                                Log.w(TAG, "can't save console preference", ex); //$NON-NLS-1$
-                            }
-                        }
-
-                    }
                 }
             }
         }
@@ -333,8 +308,6 @@ public final class FileManagerApplication extends Application {
         }
     }
 
-
-
     /**
      * Method that check if the app is signed with the platform signature
      *
@@ -357,34 +330,18 @@ public final class FileManagerApplication extends Application {
     }
 
     /**
-     * Method that returns if the application is running in superuser mode
+     * Method that returns the access mode of the application
      *
-     * @return boolean If the application is running in superuser mode
+     * @return boolean If the access mode of the application
      */
-    public static boolean isSuperuserMode() {
-        boolean defaultValue =
-                ((Boolean)FileManagerSettings.
-                        SETTINGS_SUPERUSER_MODE.
-                            getDefaultValue()).booleanValue();
-       String id = FileManagerSettings.SETTINGS_SUPERUSER_MODE.getId();
-       return Preferences.getSharedPreferences().getBoolean(id, defaultValue);
-    }
-
-    /**
-     * Method that returns if the application is running in advanced mode
-     *
-     * @return boolean If the application is running in advanced mode
-     */
-    public static boolean isAdvancedMode() {
-        // If device is not rooted, don't allow advanced mode
-        if (!isDeviceRooted()) return false;
-
-        boolean defaultValue =
-                ((Boolean)FileManagerSettings.
-                        SETTINGS_ADVANCE_MODE.
-                            getDefaultValue()).booleanValue();
-        String id = FileManagerSettings.SETTINGS_ADVANCE_MODE.getId();
-        return Preferences.getSharedPreferences().getBoolean(id, defaultValue);
+    public static AccessMode getAccessMode() {
+        String defaultValue =
+                ((ObjectStringIdentifier)FileManagerSettings.
+                            SETTINGS_ACCESS_MODE.getDefaultValue()).getId();
+        String id = FileManagerSettings.SETTINGS_ACCESS_MODE.getId();
+        AccessMode mode =
+                AccessMode.fromId(Preferences.getSharedPreferences().getString(id, defaultValue));
+        return mode;
     }
 
     /**

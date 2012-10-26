@@ -46,6 +46,23 @@
     <item>100</item>
   </string-array>
 
+  <!-- General. Access modes -->
+  <string-array name="access_mode_labels">
+    <item>@string/pref_access_mode_safe</item>
+    <item>@string/pref_access_mode_prompt</item>
+    <item>@string/pref_access_mode_root</item>
+  </string-array>
+  <string-array name="access_mode_summaries">
+    <item>@string/pref_access_mode_safe_summary</item>
+    <item>@string/pref_access_mode_prompt_summary</item>
+    <item>@string/pref_access_mode_root_summary</item>
+  </string-array>
+  <string-array name="access_mode_values" translable="false">
+    <item>0</item>
+    <item>1</item>
+    <item>2</item>
+  </string-array>
+
   <!-- Search. Sort search results mode -->
   <string-array name="sort_search_results_mode_labels" translable="false">
     <item>@string/pref_sort_search_results_mode_none</item>
@@ -59,7 +76,7 @@
   </string-array>
 
   <!-- Compression modes -->
-  <!-- Note: Archive modes must be before that compression modes -->
+  <!-- Note: Archive modes must be set prior to compression modes -->
   <string-array name="compression_modes_labels" translable="false">
     <item>@string/compression_mode_tar</item>
     <item>@string/compression_mode_tar_gzip</item>

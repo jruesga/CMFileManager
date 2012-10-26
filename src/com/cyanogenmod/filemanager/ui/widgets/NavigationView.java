@@ -44,6 +44,7 @@ import com.cyanogenmod.filemanager.model.ParentDirectory;
 import com.cyanogenmod.filemanager.model.Symlink;
 import com.cyanogenmod.filemanager.parcelables.NavigationViewInfoParcelable;
 import com.cyanogenmod.filemanager.parcelables.SearchInfoParcelable;
+import com.cyanogenmod.filemanager.preferences.AccessMode;
 import com.cyanogenmod.filemanager.preferences.FileManagerSettings;
 import com.cyanogenmod.filemanager.preferences.NavigationLayoutMode;
 import com.cyanogenmod.filemanager.preferences.ObjectIdentifier;
@@ -267,7 +268,8 @@ public class NavigationView extends RelativeLayout implements
             // Pick mode is always ChRooted
             this.mChRooted = true;
         } else {
-            this.mChRooted = !FileManagerApplication.isAdvancedMode();
+            this.mChRooted =
+                    FileManagerApplication.getAccessMode().compareTo(AccessMode.SAFE) == 0;
         }
 
         //Retrieve the default configuration

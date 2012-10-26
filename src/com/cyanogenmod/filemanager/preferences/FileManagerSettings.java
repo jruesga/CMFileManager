@@ -30,10 +30,11 @@ public enum FileManagerSettings {
     SETTINGS_FIRST_USE("cm_filemanager_first_use", Boolean.TRUE),  //$NON-NLS-1$
 
     /**
-     * Whether use SUPERUSER mode.
+     * The access mode to use
      * @hide
      */
-    SETTINGS_SUPERUSER_MODE("cm_filemanager_superuser_mode", Boolean.FALSE),  //$NON-NLS-1$
+    SETTINGS_ACCESS_MODE("cm_filemanager_access_mode", AccessMode.SAFE), //$NON-NLS-1$
+
     /**
      * The initial directory to be used.
      * @hide
@@ -90,12 +91,6 @@ public enum FileManagerSettings {
      */
     SETTINGS_COMPUTE_FOLDER_STATISTICS(
             "cm_filemanager_compute_folder_statistics", Boolean.FALSE), //$NON-NLS-1$
-    /**
-     * When to run in advanced mode
-     * @hide
-     */
-    SETTINGS_ADVANCE_MODE(
-            "cm_filemanager_advanced_mode", Boolean.FALSE), //$NON-NLS-1$
 
     /**
      * When to highlight the terms of the search in the search results

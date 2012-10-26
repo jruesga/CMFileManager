@@ -27,6 +27,7 @@ import com.cyanogenmod.filemanager.adapters.SearchResultAdapter;
 import com.cyanogenmod.filemanager.model.FileSystemObject;
 import com.cyanogenmod.filemanager.model.Query;
 import com.cyanogenmod.filemanager.model.SearchResult;
+import com.cyanogenmod.filemanager.preferences.AccessMode;
 import com.cyanogenmod.filemanager.preferences.FileManagerSettings;
 import com.cyanogenmod.filemanager.preferences.NavigationSortMode;
 import com.cyanogenmod.filemanager.preferences.ObjectStringIdentifier;
@@ -108,7 +109,8 @@ public class SearchResultDrawingAsyncTask extends AsyncTask<Object, Integer, Boo
             SearchSortResultMode mode = SearchSortResultMode.fromId(value);
 
             // Are we in ChRooted environment?
-            boolean chRooted = !FileManagerApplication.isAdvancedMode();
+            boolean chRooted =
+                    FileManagerApplication.getAccessMode().compareTo(AccessMode.SAFE) == 0;
 
             //Process all the data
             final List<SearchResult> result =

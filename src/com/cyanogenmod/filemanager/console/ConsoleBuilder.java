@@ -26,6 +26,7 @@ import com.cyanogenmod.filemanager.commands.shell.InvalidCommandDefinitionExcept
 import com.cyanogenmod.filemanager.console.java.JavaConsole;
 import com.cyanogenmod.filemanager.console.shell.NonPriviledgeConsole;
 import com.cyanogenmod.filemanager.console.shell.PrivilegedConsole;
+import com.cyanogenmod.filemanager.preferences.AccessMode;
 import com.cyanogenmod.filemanager.preferences.FileManagerSettings;
 import com.cyanogenmod.filemanager.preferences.Preferences;
 import com.cyanogenmod.filemanager.util.DialogHelper;
@@ -94,6 +95,13 @@ public final class ConsoleBuilder {
                 return null;
             }
             createDefaultConsole(context);
+        } else {
+            // Need to change the console? Is the appropriate console for the current mode?
+            if (FileManagerApplication.getAccessMode().
+                    compareTo(AccessMode.ROOT) == 0 && !isPrivileged()) {
+                // Force to change the console
+                createDefaultConsole(context);
+            }
         }
         return sHolder.getConsole();
     }
@@ -184,12 +192,14 @@ public final class ConsoleBuilder {
             throws FileNotFoundException, IOException, InvalidCommandDefinitionException,
             ConsoleAllocException, InsufficientPermissionsException {
         //Gets superuser mode settings
-        boolean superuserMode = FileManagerApplication.isSuperuserMode();
-        boolean advancedMode = FileManagerApplication.isAdvancedMode();
+        boolean superuserMode =
+                FileManagerApplication.getAccessMode().compareTo(AccessMode.ROOT) == 0;
+        boolean advancedMode =
+                FileManagerApplication.getAccessMode().compareTo(AccessMode.SAFE) != 0;
         if (superuserMode && !advancedMode) {
             try {
                 Preferences.savePreference(
-                        FileManagerSettings.SETTINGS_SUPERUSER_MODE, Boolean.FALSE, true);
+                        FileManagerSettings.SETTINGS_ACCESS_MODE, AccessMode.PROMPT, true);
             } catch (Throwable ex) {
                 Log.w(TAG, "can't save console preference", ex); //$NON-NLS-1$
             }
@@ -390,16 +400,17 @@ public final class ConsoleBuilder {
                 }
             }
 
-            boolean advancedMode = FileManagerApplication.isAdvancedMode();
+            boolean advancedMode =
+                    FileManagerApplication.getAccessMode().compareTo(AccessMode.SAFE) != 0;
             if (advancedMode) {
                 //Save settings
                 try {
                     Preferences.savePreference(
-                            FileManagerSettings.SETTINGS_SUPERUSER_MODE, Boolean.FALSE, true);
+                            FileManagerSettings.SETTINGS_ACCESS_MODE, AccessMode.PROMPT, true);
                 } catch (Exception ex) {
                     Log.e(TAG,
                             String.format("Failed to save %s property",  //$NON-NLS-1$
-                            FileManagerSettings.SETTINGS_SUPERUSER_MODE.getId()), ex);
+                            FileManagerSettings.SETTINGS_ACCESS_MODE.getId()), ex);
                 }
 
                 //Create the non-privileged console

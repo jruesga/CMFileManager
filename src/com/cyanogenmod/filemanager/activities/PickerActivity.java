@@ -45,6 +45,7 @@ import com.cyanogenmod.filemanager.model.FileSystemObject;
 import com.cyanogenmod.filemanager.preferences.FileManagerSettings;
 import com.cyanogenmod.filemanager.preferences.Preferences;
 import com.cyanogenmod.filemanager.ui.widgets.Breadcrumb;
+import com.cyanogenmod.filemanager.ui.widgets.ButtonItem;
 import com.cyanogenmod.filemanager.ui.widgets.NavigationView;
 import com.cyanogenmod.filemanager.ui.widgets.NavigationView.OnFilePickedListener;
 import com.cyanogenmod.filemanager.util.DialogHelper;
@@ -166,6 +167,10 @@ public class PickerActivity extends Activity
         this.mDialog.setOnCancelListener(this);
         this.mDialog.setOnDismissListener(this);
         this.mDialog.show();
+
+        // Set content description of storage volume button
+        ButtonItem fs = (ButtonItem)findViewById(R.id.ab_filesystem_info);
+        fs.setContentDescription(getString(R.string.actionbar_button_storage_cd));
 
         this.mHandler = new Handler();
         this.mHandler.post(new Runnable() {

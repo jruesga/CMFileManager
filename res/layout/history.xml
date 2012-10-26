@@ -36,4 +36,11 @@
     android:layout_height="match_parent"
     android:layout_alignParentTop="true" />
 
+  <View
+    android:id="@+id/history_status"
+    android:layout_width="match_parent"
+    android:layout_height="1dp"
+    android:layout_alignParentBottom="true"
+    android:visibility="invisible"/>
+
 </RelativeLayout>

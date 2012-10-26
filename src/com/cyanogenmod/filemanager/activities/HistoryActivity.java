@@ -37,6 +37,7 @@ import com.cyanogenmod.filemanager.adapters.HistoryAdapter;
 import com.cyanogenmod.filemanager.adapters.SimpleMenuListAdapter;
 import com.cyanogenmod.filemanager.model.History;
 import com.cyanogenmod.filemanager.ui.widgets.ButtonItem;
+import com.cyanogenmod.filemanager.util.AndroidHelper;
 import com.cyanogenmod.filemanager.util.DialogHelper;
 
 import java.util.ArrayList;
@@ -56,6 +57,8 @@ public class HistoryActivity extends Activity implements OnItemClickListener {
     private HistoryAdapter mAdapter;
     private boolean mIsEmpty;
     private boolean mIsClearHistory;
+
+    private View mOptionsAnchorView;
 
     /**
      * Intent extra parameter for the history data.
@@ -117,7 +120,11 @@ public class HistoryActivity extends Activity implements OnItemClickListener {
         ButtonItem configuration = (ButtonItem)customTitle.findViewById(R.id.ab_button1);
         configuration.setImageResource(R.drawable.ic_holo_light_overflow);
         configuration.setContentDescription(getString(R.string.actionbar_button_overflow_cd));
-        configuration.setVisibility(View.VISIBLE);
+
+        View status = findViewById(R.id.history_status);
+        boolean showOptionsMenu = AndroidHelper.showOptionsMenu(getApplicationContext());
+        configuration.setVisibility(showOptionsMenu ? View.VISIBLE : View.GONE);
+        this.mOptionsAnchorView = showOptionsMenu ? configuration : status;
 
         getActionBar().setCustomView(customTitle);
     }
@@ -170,7 +177,7 @@ public class HistoryActivity extends Activity implements OnItemClickListener {
         switch (keyCode) {
             case KeyEvent.KEYCODE_MENU:
                 if (!this.mIsEmpty) {
-                    showOverflowPopUp(findViewById(R.id.ab_button1));
+                    showOverflowPopUp(this.mOptionsAnchorView);
                 }
                 return true;
             case KeyEvent.KEYCODE_BACK:

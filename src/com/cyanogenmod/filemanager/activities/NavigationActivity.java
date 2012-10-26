@@ -75,6 +75,7 @@ import com.cyanogenmod.filemanager.ui.widgets.NavigationView;
 import com.cyanogenmod.filemanager.ui.widgets.NavigationView.OnNavigationRequestMenuListener;
 import com.cyanogenmod.filemanager.ui.widgets.NavigationView.OnNavigationSelectionChangedListener;
 import com.cyanogenmod.filemanager.ui.widgets.SelectionView;
+import com.cyanogenmod.filemanager.util.AndroidHelper;
 import com.cyanogenmod.filemanager.util.CommandHelper;
 import com.cyanogenmod.filemanager.util.DialogHelper;
 import com.cyanogenmod.filemanager.util.ExceptionUtil;
@@ -240,6 +241,8 @@ public class NavigationActivity extends Activity
 
     private boolean mExitFlag = false;
     private long mExitBackTimeout = -1;
+
+    private View mOptionsAnchorView;
 
     /**
      * @hide
@@ -451,6 +454,12 @@ public class NavigationActivity extends Activity
                 }
             }
         });
+
+        // Have overflow menu?
+        View overflow = findViewById(R.id.ab_overflow);
+        boolean showOptionsMenu = AndroidHelper.showOptionsMenu(getApplicationContext());
+        overflow.setVisibility(showOptionsMenu ? View.VISIBLE : View.GONE);
+        this.mOptionsAnchorView = showOptionsMenu ? overflow : this.mActionBar;
     }
 
     /**
@@ -606,7 +615,7 @@ public class NavigationActivity extends Activity
     @Override
     public boolean onKeyUp(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_MENU) {
-            showOverflowPopUp(findViewById(R.id.ab_overflow));
+            showOverflowPopUp(this.mOptionsAnchorView);
             return true;
         }
         if (keyCode == KeyEvent.KEYCODE_BACK) {

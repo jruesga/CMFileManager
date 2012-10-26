@@ -45,10 +45,6 @@
   <string name="all">All</string>
   <string name="overwrite">Overwrite</string>
 
-  <!-- Consoles -->
-  <string name="non_privileged_console">Non-privileged console</string>
-  <string name="privileged_console">Privileged console</string>
-
   <!-- The root directory name -->
   <string name="root_directory_name"><![CDATA[<Root folder>]]></string>
   <!-- The search result name -->
@@ -396,8 +392,6 @@
   <string name="menu_search">Search</string>
   <!-- Menu * Navigation * Settings -->
   <string name="menu_settings">Settings</string>
-  <!-- Menu * Navigation * Console -->
-  <string name="menu_console">Select console</string>
   <!-- Menu * History * Clear history -->
   <string name="menu_clear_history">Clear history</string>
 
@@ -620,20 +614,6 @@
   <string name="pref_general_behaviour_category">General</string>
   <!-- Preferences * General * Case sensitive sort title -->
   <string name="pref_case_sensitive_sort">Use case-sensitive sorting</string>
-  <!-- Preferences * General * Default long-click action title -->
-  <string name="pref_default_longclick_action">Default long-click action</string>
-  <!-- Preferences * General * Default long-click action * No action -->
-  <string name="pref_default_longclick_action_none">None</string>
-  <!-- Preferences * General * Default long-click action * Show content description -->
-  <string name="pref_default_longclick_action_show_cd">Show description</string>
-  <!-- Preferences * General * Default long-click action * Select/deselect -->
-  <string name="pref_default_longclick_action_select_deselect">Select/deselect</string>
-  <!-- Preferences * General * Default long-click action * Open with -->
-  <string name="pref_default_longclick_action_open_with">Open with</string>
-  <!-- Preferences * General * Default long-click action * Show properties -->
-  <string name="pref_default_longclick_action_show_properties">Show properties</string>
-  <!-- Preferences * General * Default long-click action * Show actions -->
-  <string name="pref_default_longclick_action_show_actions">Show actions</string>
   <!-- Preferences * General *Disk usage warning level title -->
   <string name="pref_disk_usage_warning_level">Disk usage warning</string>
   <!-- Preferences * General * Disk usage warning level summary -->

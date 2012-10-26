@@ -840,7 +840,7 @@ public class NavigationView extends RelativeLayout implements
         if (fso instanceof ParentDirectory) {
             return false;
         }
-        
+
         // Pick mode doesn't implements the onlongclick
         if (this.mNavigationMode.compareTo(NAVIGATION_MODE.PICKABLE) == 0) {
             return false;

@@ -250,7 +250,7 @@ public class ExecutionDialog implements DialogInterface.OnClickListener {
                 // Enable the Ok button
                 ExecutionDialog.this.mDialog.setCancelable(true);
                 Button button =
-                        ExecutionDialog.this.mDialog.getButton(DialogInterface.BUTTON_NEUTRAL); 
+                        ExecutionDialog.this.mDialog.getButton(DialogInterface.BUTTON_NEUTRAL);
                 button.setText(R.string.ok);
                 button.setEnabled(true);
             }

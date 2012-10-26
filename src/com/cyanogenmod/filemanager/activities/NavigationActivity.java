@@ -66,7 +66,6 @@ import com.cyanogenmod.filemanager.preferences.NavigationLayoutMode;
 import com.cyanogenmod.filemanager.preferences.ObjectIdentifier;
 import com.cyanogenmod.filemanager.preferences.Preferences;
 import com.cyanogenmod.filemanager.ui.dialogs.ActionsDialog;
-import com.cyanogenmod.filemanager.ui.dialogs.ChooseConsoleDialog;
 import com.cyanogenmod.filemanager.ui.dialogs.FilesystemInfoDialog;
 import com.cyanogenmod.filemanager.ui.dialogs.FilesystemInfoDialog.OnMountListener;
 import com.cyanogenmod.filemanager.ui.widgets.Breadcrumb;
@@ -176,7 +175,7 @@ public class NavigationActivity extends Activity
                         // Disk usage warning level
                         if (key.compareTo(FileManagerSettings.
                                 SETTINGS_DISK_USAGE_WARNING_LEVEL.getId()) == 0) {
-    
+
                             // Set the free disk space warning level of the breadcrumb widget
                             Breadcrumb breadcrumb = getCurrentNavigationView().getBreadcrumb();
                             String fds = Preferences.getSharedPreferences().getString(
@@ -187,14 +186,14 @@ public class NavigationActivity extends Activity
                             breadcrumb.updateMountPointInfo();
                             return;
                         }
-    
+
                         // Case sensitive sort
                         if (key.compareTo(FileManagerSettings.
                                 SETTINGS_CASE_SENSITIVE_SORT.getId()) == 0) {
                             getCurrentNavigationView().refresh();
                             return;
                         }
-    
+
                         // Advanced mode
                         if (key.compareTo(FileManagerSettings.
                                 SETTINGS_ADVANCE_MODE.getId()) == 0) {
@@ -972,11 +971,6 @@ public class NavigationActivity extends Activity
             }
         }
 
-        // Check if console selection is allowed
-        if (this.mChRooted) {
-            menu.removeItem(R.id.mnu_console);
-        }
-
         final ListPopupWindow popup = DialogHelper.createListPopupWindow(this, adapter, anchor);
         popup.setOnItemClickListener(new OnItemClickListener() {
             @Override
@@ -994,13 +988,6 @@ public class NavigationActivity extends Activity
                                 Intent settings = new Intent(
                                         NavigationActivity.this, SettingsPreferences.class);
                                 startActivity(settings);
-                                break;
-
-                            case R.id.mnu_console:
-                                //Console
-                                ChooseConsoleDialog dialog =
-                                    new ChooseConsoleDialog(NavigationActivity.this);
-                                dialog.show();
                                 break;
 
                             case R.id.mnu_history:

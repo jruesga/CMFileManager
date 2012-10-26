@@ -667,7 +667,7 @@ public class EditorActivity extends Activity implements TextWatcher {
 
     /**
      * Method that check if a character is valid printable character
-     * 
+     *
      * @param c The character to check
      * @return boolean If the character is printable
      * @hide

@@ -19,7 +19,7 @@
   android:imeOptions="actionSearch"
   android:includeInGlobalSearch="false"
   android:label="@string/search"
-  android:searchSuggestAuthority="com.cyanogenmod.explorer.providers.recentsearches"
+  android:searchSuggestAuthority="com.cyanogenmod.filemanager.providers.recentsearches"
   android:searchSuggestSelection=" ?"
   android:searchSuggestThreshold="3"
   android:voiceMaxResults="5"

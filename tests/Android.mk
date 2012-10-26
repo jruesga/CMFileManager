@@ -25,13 +25,13 @@ LOCAL_JAVA_LIBRARIES := android.test.runner
 # Include all test java files.
 LOCAL_SRC_FILES := $(call all-java-files-under, src)
 
-# Notice that we don't have to include the src files of CMExplorer because, by
-# running the tests using an instrumentation targeting CMExplorer, we
+# Notice that we don't have to include the src files of CMFileManager because, by
+# running the tests using an instrumentation targeting CMFileManager, we
 # automatically get all of its classes loaded into our environment.
 
-LOCAL_PACKAGE_NAME := CMExplorerTests
+LOCAL_PACKAGE_NAME := CMFileManagerTests
 
-LOCAL_INSTRUMENTATION_FOR := CMExplorer
+LOCAL_INSTRUMENTATION_FOR := CMFileManager
 
 LOCAL_PROGUARD_FLAG_FILES := proguard.flags
 

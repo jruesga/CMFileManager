@@ -24,14 +24,14 @@
 
       <!-- Case sensitive order -->
       <CheckBoxPreference
-        android:key="cm_explorer_case_sensitive_sort"
+        android:key="cm_filemanager_case_sensitive_sort"
         android:title="@string/pref_case_sensitive_sort"
         android:persistent="true"
         android:defaultValue="false" />
 
       <!-- Default longclick action -->
       <ListPreference
-        android:key="cm_explorer_default_longclick_action"
+        android:key="cm_filemanager_default_longclick_action"
         android:title="@string/pref_default_longclick_action"
         android:entries="@array/default_longclick_action_labels"
         android:entryValues="@array/default_longclick_action_values"
@@ -40,7 +40,7 @@
 
       <!-- Disk usage warning level -->
       <ListPreference
-        android:key="cm_explorer_disk_usage_warning_level"
+        android:key="cm_filemanager_disk_usage_warning_level"
         android:title="@string/pref_disk_usage_warning_level"
         android:entries="@array/disk_usage_warning_level_labels"
         android:entryValues="@array/disk_usage_warning_level_values"
@@ -49,7 +49,7 @@
 
       <!-- Compute folder statistics -->
       <CheckBoxPreference
-        android:key="cm_explorer_compute_folder_statistics"
+        android:key="cm_filemanager_compute_folder_statistics"
         android:title="@string/pref_compute_folder_statistics"
         android:summaryOn="@string/pref_compute_folder_statistics_on"
         android:persistent="true"
@@ -64,7 +64,7 @@
 
       <!-- Advanced mode -->
       <CheckBoxPreference
-        android:key="cm_explorer_advanced_mode"
+        android:key="cm_filemanager_advanced_mode"
         android:title="@string/pref_advanced_mode"
         android:summaryOn="@string/pref_advanced_mode_on"
         android:persistent="true"
@@ -72,7 +72,7 @@
 
       <!-- Capture debug traces -->
       <CheckBoxPreference
-        android:key="cm_explorer_show_debug_traces"
+        android:key="cm_filemanager_show_debug_traces"
         android:title="@string/pref_debug_traces"
         android:persistent="true"
         android:defaultValue="false" />

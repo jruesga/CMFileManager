@@ -45,6 +45,6 @@
 }
 
 #don't note test classes
--dontnote com.cyanogenmod.explorer.commands.**Test**
--dontnote com.cyanogenmod.explorer.console.**Test**
+-dontnote com.cyanogenmod.filemanager.commands.**Test**
+-dontnote com.cyanogenmod.filemanager.console.**Test**
 

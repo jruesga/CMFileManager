@@ -17,9 +17,9 @@
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
 
   <!-- The name of the application -->
-  <string name="app_name">CMExplorer</string>
+  <string name="app_name">File Manager</string>
   <!-- The description of the application -->
-  <string name="app_description">CyanogenMod file manager.</string>
+  <string name="app_description">A CyanogenMod file manager.</string>
 
   <!-- Human readable sizes -->
   <string name="size_bytes" translatable="false">B </string>
@@ -195,13 +195,13 @@
   <string name="layout_details">Details</string>
 
   <!-- Navigation View * View * Show folders first -->
-  <string name="cm_explorer_show_dirs_first">Show folders first</string>
+  <string name="cm_filemanager_show_dirs_first">Show folders first</string>
   <!-- Navigation View * View * Show hidden files option -->
-  <string name="cm_explorer_show_hidden">Show hidden files</string>
+  <string name="cm_filemanager_show_hidden">Show hidden files</string>
   <!-- Navigation View * View * Show system files option -->
-  <string name="cm_explorer_show_system">Show system files</string>
+  <string name="cm_filemanager_show_system">Show system files</string>
   <!-- Navigation View * View * Show symlinks option -->
-  <string name="cm_explorer_show_symlinks">Show symlinks</string>
+  <string name="cm_filemanager_show_symlinks">Show symlinks</string>
 
   <!-- Filesystem Info (no data) -->
   <string name="filesystem_info_warning_msg">There is no information available for the file system.</string>
@@ -615,7 +615,7 @@
   <!-- Preferences * About title -->
   <string name="pref_about">About</string>
   <!-- Preferences * About summary -->
-  <string name="pref_about_summary">CM Explorer v<xliff:g id="version">%1$s</xliff:g>
+  <string name="pref_about_summary">File Manager v<xliff:g id="version">%1$s</xliff:g>
     \nCopyright \u00A9 2012 The CyanogenMod Project</string>
 
   <!-- Preferences * General * Behaviour category -->

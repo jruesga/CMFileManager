@@ -19,7 +19,7 @@
   android:layout_height="@dimen/default_row_height"
   android:background="@drawable/bg_holo_statusbar" >
 
-  <com.cyanogenmod.explorer.ui.widgets.ButtonItem
+  <com.cyanogenmod.filemanager.ui.widgets.ButtonItem
       android:id="@+id/ab_overflow"
       android:layout_width="@dimen/default_buttom_width"
       android:layout_height="match_parent"
@@ -28,7 +28,7 @@
       android:onClick="onActionBarItemClick"
       android:src="@drawable/ic_holo_light_overflow" />
 
-  <com.cyanogenmod.explorer.ui.widgets.ButtonItem
+  <com.cyanogenmod.filemanager.ui.widgets.ButtonItem
     android:id="@+id/ab_actions"
     android:layout_width="@dimen/default_buttom_width"
     android:layout_height="match_parent"
@@ -43,7 +43,7 @@
     android:layout_toLeftOf="@id/ab_overflow"
     android:layout_toRightOf="@id/ab_actions">
 
-    <com.cyanogenmod.explorer.ui.widgets.ButtonItem
+    <com.cyanogenmod.filemanager.ui.widgets.ButtonItem
       android:id="@+id/ab_search"
       android:layout_width="@dimen/default_buttom_width"
       android:layout_height="match_parent"
@@ -53,7 +53,7 @@
       android:src="@drawable/ic_holo_light_search"
       android:visibility="invisible" />
 
-    <com.cyanogenmod.explorer.ui.widgets.ButtonItem
+    <com.cyanogenmod.filemanager.ui.widgets.ButtonItem
       android:id="@+id/ab_bookmarks"
       android:layout_width="@dimen/default_buttom_width"
       android:layout_height="match_parent"
@@ -63,7 +63,7 @@
       android:src="@drawable/ic_holo_light_bookmarks"
       android:visibility="invisible" />
 
-    <com.cyanogenmod.explorer.ui.widgets.ButtonItem
+    <com.cyanogenmod.filemanager.ui.widgets.ButtonItem
       android:id="@+id/ab_history"
       android:layout_width="@dimen/default_buttom_width"
       android:layout_height="match_parent"

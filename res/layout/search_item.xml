@@ -27,7 +27,7 @@
     android:contentDescription="@null"
     android:src="@null" />
 
-  <com.cyanogenmod.explorer.ui.widgets.NonFocusableButtonItem
+  <com.cyanogenmod.filemanager.ui.widgets.NonFocusableButtonItem
     android:id="@+id/search_item_menu"
     android:layout_width="@dimen/item_menu_row_button_width"
     android:layout_height="match_parent"
@@ -61,7 +61,7 @@
       android:layout_marginLeft="@dimen/default_margin"
       android:orientation="horizontal" >
 
-      <com.cyanogenmod.explorer.ui.widgets.RelevanceView
+      <com.cyanogenmod.filemanager.ui.widgets.RelevanceView
         android:id="@+id/search_item_relevance"
         android:layout_width="@dimen/relevance_item_width"
         android:layout_height="@dimen/relevance_item_height"

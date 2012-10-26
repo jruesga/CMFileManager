@@ -20,7 +20,7 @@
   android:background="@drawable/bg_holo_selectionbar"
   android:orientation="horizontal" >
 
-  <com.cyanogenmod.explorer.ui.widgets.ButtonItem
+  <com.cyanogenmod.filemanager.ui.widgets.ButtonItem
     android:id="@+id/ab_selection_done"
     android:layout_width="@dimen/small_buttom_width"
     android:layout_height="@dimen/small_buttom_width"

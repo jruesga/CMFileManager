@@ -54,7 +54,7 @@
     <requestFocus />
   </EditText>
 
-  <com.cyanogenmod.explorer.ui.widgets.ButtonItem
+  <com.cyanogenmod.filemanager.ui.widgets.ButtonItem
     android:id="@+id/inline_autocomplete_button_tab"
     android:layout_width="@dimen/small_buttom_width"
     android:layout_height="@dimen/small_buttom_width"

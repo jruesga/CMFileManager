@@ -16,7 +16,7 @@
 <resources xmlns:android="http://schemas.android.com/apk/res/android">
 
   <!-- The strings of the menu for navigation sort mode enumeration -->
-  <string-array name="cm_explorer_sort_mode" translable="false">
+  <string-array name="cm_filemanager_sort_mode" translable="false">
     <item>@string/sort_by_name_asc</item>
     <item>@string/sort_by_name_desc</item>
     <item>@string/sort_by_date_asc</item>
@@ -24,7 +24,7 @@
   </string-array>
 
   <!-- The strings of the menu for navigation layout mode enumeration -->
-  <string-array name="cm_explorer_layout_mode" translable="false">
+  <string-array name="cm_filemanager_layout_mode" translable="false">
     <item>@string/layout_icons</item>
     <item>@string/layout_simple</item>
     <item>@string/layout_details</item>

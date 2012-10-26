@@ -28,7 +28,7 @@
     android:paddingLeft="@dimen/extra_margin"
     android:src="@null" />
 
-  <com.cyanogenmod.explorer.ui.widgets.NonFocusableButtonItem
+  <com.cyanogenmod.filemanager.ui.widgets.NonFocusableButtonItem
     android:id="@+id/bookmarks_item_action"
     android:layout_width="@dimen/default_buttom_width"
     android:layout_height="match_parent"

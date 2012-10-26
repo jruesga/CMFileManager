@@ -27,7 +27,7 @@
     android:gravity="center_horizontal"
     android:orientation="horizontal" >
 
-    <com.cyanogenmod.explorer.ui.widgets.ButtonItem
+    <com.cyanogenmod.filemanager.ui.widgets.ButtonItem
       android:id="@+id/ab_sort_mode"
       android:layout_width="@dimen/default_buttom_width"
       android:layout_height="match_parent"
@@ -35,7 +35,7 @@
       android:onClick="onActionBarItemClick"
       android:src="@drawable/ic_holo_light_sort_alphabetically" />
 
-    <com.cyanogenmod.explorer.ui.widgets.ButtonItem
+    <com.cyanogenmod.filemanager.ui.widgets.ButtonItem
       android:id="@+id/ab_layout_mode"
       android:layout_width="@dimen/default_buttom_width"
       android:layout_height="match_parent"
@@ -43,7 +43,7 @@
       android:onClick="onActionBarItemClick"
       android:src="@drawable/ic_holo_light_layout" />
 
-    <com.cyanogenmod.explorer.ui.widgets.ButtonItem
+    <com.cyanogenmod.filemanager.ui.widgets.ButtonItem
       android:id="@+id/ab_view_options"
       android:layout_width="@dimen/default_buttom_width"
       android:layout_height="match_parent"
@@ -52,7 +52,7 @@
       android:src="@drawable/ic_holo_light_view" />
   </LinearLayout>
 
-  <com.cyanogenmod.explorer.ui.widgets.ButtonItem
+  <com.cyanogenmod.filemanager.ui.widgets.ButtonItem
     android:id="@+id/ab_close"
     android:layout_width="@dimen/default_buttom_width"
     android:layout_height="match_parent"

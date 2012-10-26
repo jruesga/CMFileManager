@@ -18,7 +18,7 @@
   android:layout_width="match_parent"
   android:layout_height="match_parent" >
 
-  <com.cyanogenmod.explorer.ui.widgets.ButtonItem
+  <com.cyanogenmod.filemanager.ui.widgets.ButtonItem
     android:id="@+id/ab_configuration"
     style="@style/breadcrumb_actionbar_buttom"
     android:layout_width="wrap_content"
@@ -28,7 +28,7 @@
     android:onClick="onActionBarItemClick"
     android:src="@drawable/ic_holo_light_previous" />
 
-  <com.cyanogenmod.explorer.ui.widgets.BreadcrumbView
+  <com.cyanogenmod.filemanager.ui.widgets.BreadcrumbView
     android:id="@+id/breadcrumb_view"
     android:layout_width="match_parent"
     android:layout_height="match_parent"

@@ -17,12 +17,12 @@
 <resources xmlns:android="http://schemas.android.com/apk/res/android">
 
   <!-- The default theme -->
-  <style name="Explorer.Theme.Holo.Light" parent="@android:style/Theme.Holo.Light">
+  <style name="FileManager.Theme.Holo.Light" parent="@android:style/Theme.Holo.Light">
     <item name="android:windowBackground">@color/default_background</item>
   </style>
 
   <!-- A theme with overlay -->
-  <style name="Explorer.Theme.Holo.Light.Overlay" parent="@android:style/Theme.Holo.Light">
+  <style name="FileManager.Theme.Holo.Light.Overlay" parent="@android:style/Theme.Holo.Light">
     <item name="android:windowIsTranslucent">true</item>
     <item name="android:windowBackground">@color/black_transparent</item>
     <item name="android:windowContentOverlay">@null</item>

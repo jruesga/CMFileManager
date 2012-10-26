@@ -30,7 +30,7 @@
   configure special values for each device. Use overlay building folder on device tree
   for overlay this values
 -->
-<CommandList xmlns="http://schemas.android.com/apk/res/com.cyanogenmod.explorer">
+<CommandList xmlns="http://schemas.android.com/apk/res/com.cyanogenmod.filemanager">
   <!-- Start code (append to commands; for retrieve the exit code) -->
   <startcode commandId="startcode" commandPath="/system/xbin/echo %1$s0%2$s ; " />
   <!-- Exit code (append to commands; for retrieve the exit code) -->

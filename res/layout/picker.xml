@@ -15,14 +15,14 @@
  ** limitations under the License.-->
 <LinearLayout
   xmlns:android="http://schemas.android.com/apk/res/android"
-  xmlns:cmexplorer="http://schemas.android.com/apk/res/com.cyanogenmod.explorer"
+  xmlns:filemanager="http://schemas.android.com/apk/res/com.cyanogenmod.filemanager"
   android:layout_width="match_parent"
   android:layout_height="match_parent"
   android:background="@color/default_background"
   android:orientation="vertical">
 
   <!-- Breadcrumb -->
-  <com.cyanogenmod.explorer.ui.widgets.BreadcrumbView
+  <com.cyanogenmod.filemanager.ui.widgets.BreadcrumbView
     android:id="@+id/breadcrumb_view"
     android:layout_width="match_parent"
     android:layout_height="@dimen/default_row_height"
@@ -32,13 +32,13 @@
   <include layout="@layout/vertical_divider" />
 
   <!-- Picker Navigation View -->
-  <com.cyanogenmod.explorer.ui.widgets.NavigationView
+  <com.cyanogenmod.filemanager.ui.widgets.NavigationView
     android:id="@+id/navigation_view"
     android:layout_width="match_parent"
     android:layout_height="0dp"
     android:layout_weight="1"
     android:layout_marginLeft="@dimen/extra_margin"
     android:layout_marginRight="@dimen/extra_margin"
-    cmexplorer:navigation="pickable" />
+    filemanager:navigation="pickable" />
 
 </LinearLayout>

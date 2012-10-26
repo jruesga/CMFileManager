@@ -24,21 +24,21 @@
 
       <!-- Highlight search terms -->
       <CheckBoxPreference
-        android:key="cm_explorer_highlight_terms"
+        android:key="cm_filemanager_highlight_terms"
         android:title="@string/pref_highlight_terms"
         android:persistent="true"
         android:defaultValue="true" />
 
       <!-- Relevance widget -->
       <CheckBoxPreference
-        android:key="cm_explorer_show_relevance_widget"
+        android:key="cm_filemanager_show_relevance_widget"
         android:title="@string/pref_show_relevance_widget"
         android:persistent="true"
         android:defaultValue="true" />
 
       <!-- Sort results mode -->
       <ListPreference
-        android:key="cm_explorer_sort_search_results_mode"
+        android:key="cm_filemanager_sort_search_results_mode"
         android:title="@string/pref_sort_search_results_mode"
         android:entries="@array/sort_search_results_mode_labels"
         android:entryValues="@array/sort_search_results_mode_values"
@@ -54,7 +54,7 @@
 
       <!-- Save search terms -->
       <CheckBoxPreference
-        android:key="cm_explorer_save_search_terms"
+        android:key="cm_filemanager_save_search_terms"
         android:title="@string/pref_save_search_terms"
         android:summaryOn="@string/pref_save_search_terms_on"
         android:summaryOff="@string/pref_save_search_terms_off"
@@ -63,10 +63,10 @@
 
       <!-- Remove saved search terms -->
       <Preference
-        android:key="cm_explorer_remove_saved_search_terms"
+        android:key="cm_filemanager_remove_saved_search_terms"
         android:title="@string/pref_remove_saved_search_terms"
         android:summary="@string/pref_remove_saved_search_terms_summary"
-        android:dependency="cm_explorer_save_search_terms" />
+        android:dependency="cm_filemanager_save_search_terms" />
     </PreferenceCategory>
 
 </PreferenceScreen>  

@@ -13,7 +13,7 @@
  ** WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  ** See the License for the specific language governing permissions and
  ** limitations under the License.-->
-<com.cyanogenmod.explorer.ui.widgets.NavigationCustomTitleView xmlns:android="http://schemas.android.com/apk/res/android"
+<com.cyanogenmod.filemanager.ui.widgets.NavigationCustomTitleView xmlns:android="http://schemas.android.com/apk/res/android"
   android:id="@+id/navigation_title_flipper"
   android:layout_width="match_parent"
   android:layout_height="@dimen/default_row_height"
@@ -25,4 +25,4 @@
   <!-- The configuration layout (sort, layout, other options, ...) -->
   <include layout="@layout/navigation_view_customtitle_configuration" />
 
-</com.cyanogenmod.explorer.ui.widgets.NavigationCustomTitleView>
+</com.cyanogenmod.filemanager.ui.widgets.NavigationCustomTitleView>

@@ -15,21 +15,21 @@
  ** limitations under the License.-->
 <LinearLayout
   xmlns:android="http://schemas.android.com/apk/res/android"
-  xmlns:cmexplorer="http://schemas.android.com/apk/res/com.cyanogenmod.explorer"
+  xmlns:filemanager="http://schemas.android.com/apk/res/com.cyanogenmod.filemanager"
   android:layout_width="match_parent"
   android:layout_height="match_parent"
   android:orientation="vertical">
 
   <!-- Navigation View -->
-  <com.cyanogenmod.explorer.ui.widgets.NavigationView
+  <com.cyanogenmod.filemanager.ui.widgets.NavigationView
     android:id="@+id/navigation_view"
     android:layout_width="match_parent"
     android:layout_height="0dp"
     android:layout_weight="1"
-    cmexplorer:navigation="browsable" />
+    filemanager:navigation="browsable" />
 
   <!-- SelectionBar -->
-  <com.cyanogenmod.explorer.ui.widgets.SelectionView
+  <com.cyanogenmod.filemanager.ui.widgets.SelectionView
     android:id="@+id/navigation_selectionbar"
     android:layout_width="match_parent"
     android:layout_height="@dimen/small_row_height"

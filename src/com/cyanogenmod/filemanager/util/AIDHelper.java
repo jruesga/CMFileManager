@@ -1,0 +1,110 @@
+/*
+ * Copyright (C) 2012 The CyanogenMod Project
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package com.cyanogenmod.filemanager.util;
+
+import android.content.Context;
+import android.content.pm.ApplicationInfo;
+import android.content.pm.PackageManager;
+import android.util.Log;
+import android.util.SparseArray;
+
+import com.cyanogenmod.filemanager.R;
+import com.cyanogenmod.filemanager.model.AID;
+
+import java.util.Iterator;
+import java.util.List;
+import java.util.Properties;
+
+/**
+ * A helper class with useful methods for deal with AID (Android IDs).
+ */
+public final class AIDHelper {
+
+    private static final String TAG = "AIDHelper"; //$NON-NLS-1$
+
+    /**
+     * Constructor of <code>AIDHelper</code>.
+     */
+    private AIDHelper() {
+        super();
+    }
+
+    /**
+     * Method that returns the Android IDs (system + application AID)
+     *
+     * @param context The current context
+     * @return SparseArray<AID> The array of {@link AID}
+     */
+    public static SparseArray<AID> getAIDs(Context context) {
+        Properties systemAIDs = null;
+        try {
+            // Load the default known system identifiers
+            systemAIDs = new Properties();
+            systemAIDs.load(context.getResources().openRawResource(R.raw.aid));
+        } catch (Exception e) {
+            Log.e(TAG, "Fail to load AID raw file.", e); //$NON-NLS-1$
+            return null;
+        }
+
+        // Add the default known system identifiers
+        SparseArray<AID> aids = new SparseArray<AID>();
+        Iterator<Object> it = systemAIDs.keySet().iterator();
+        while (it.hasNext()) {
+            String key = (String)it.next();
+            String value = systemAIDs.getProperty(key);
+            int uid = Integer.parseInt(key);
+            aids.put(uid, new AID(uid, value));
+        }
+
+        // Now, retrieve all AID of installed applications
+        final PackageManager pm = context.getPackageManager();
+        List<ApplicationInfo> packages =
+                pm.getInstalledApplications(PackageManager.GET_META_DATA);
+        int cc = packages.size();
+        for (int i = 0; i < cc; i++) {
+            ApplicationInfo info = packages.get(i);
+            int uid = info.uid;
+            if (aids.indexOfKey(uid) < 0) {
+                String name = pm.getNameForUid(uid);
+                aids.put(uid, new AID(uid, name));
+            }
+        }
+
+        // Return the list of AIDs found
+        return aids;
+    }
+
+    /**
+     * Method that return AID from his user identifier
+     *
+     * @param ctx The current context
+     * @param name The user identifier
+     * @return AID The AID
+     */
+    public static AID getAIDFromName(Context ctx, String name) {
+        SparseArray<AID> aids = getAIDs(ctx);
+        int len = aids.size();
+        for (int i = 0; i < len; i++) {
+            AID aid = aids.valueAt(i);
+            if (aid.getName().compareTo(name) == 0) {
+                return aid;
+            }
+        }
+        return null;
+    }
+
+}

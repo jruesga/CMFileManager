@@ -29,7 +29,7 @@
     android:textAppearance="@style/primary_text_appearance"
     android:textStyle="normal" />
 
-  <com.cyanogenmod.explorer.ui.widgets.DirectoryInlineAutocompleteTextView
+  <com.cyanogenmod.filemanager.ui.widgets.DirectoryInlineAutocompleteTextView
     android:id="@+id/initial_directory_edittext"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"

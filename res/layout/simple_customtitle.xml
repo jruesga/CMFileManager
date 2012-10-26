@@ -17,7 +17,7 @@
   android:layout_width="match_parent"
   android:layout_height="match_parent" >
 
-  <com.cyanogenmod.explorer.ui.widgets.ButtonItem
+  <com.cyanogenmod.filemanager.ui.widgets.ButtonItem
     android:id="@+id/ab_button1"
     style="@style/breadcrumb_actionbar_buttom"
     android:layout_width="wrap_content"

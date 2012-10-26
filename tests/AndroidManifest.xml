@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-  package="com.cyanogenmod.explorer.test">
+  package="com.cyanogenmod.filemanager.test">
 
-  <original-package android:name="com.cyanogenmod.explorer.test" />
+  <original-package android:name="com.cyanogenmod.filemanager.test" />
 
   <uses-sdk android:minSdkVersion="16" android:targetSdkVersion="16" />
 
@@ -11,7 +11,7 @@
 
   <instrumentation
     android:name="android.test.InstrumentationTestRunner"
-    android:targetPackage="com.cyanogenmod.explorer" />
+    android:targetPackage="com.cyanogenmod.filemanager" />
 
   <application
     android:icon="@drawable/ic_launcher"

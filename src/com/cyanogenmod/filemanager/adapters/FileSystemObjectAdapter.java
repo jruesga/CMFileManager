@@ -212,7 +212,7 @@ public class FileSystemObjectAdapter
             } else {
                 sbSummary.append(df.format(fso.getLastModifiedTime()));
                 sbSummary.append("   "); //$NON-NLS-1$
-                sbSummary.append(fso.getPermissions().toRawString());
+                sbSummary.append(fso.toRawString());
             }
 
             //Build the data holder

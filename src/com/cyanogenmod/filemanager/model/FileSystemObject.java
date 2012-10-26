@@ -33,7 +33,7 @@ import java.util.Date;
  */
 public abstract class FileSystemObject implements Serializable, Comparable<FileSystemObject> {
 
-    private static final long serialVersionUID = -2723654847084506444L;
+    private static final long serialVersionUID = -8527561430880927320L;
 
     //Resource identifier for default icon
     private static final int RESOURCE_ICON_DEFAULT = R.drawable.ic_fso_default;
@@ -346,6 +346,18 @@ public abstract class FileSystemObject implements Serializable, Comparable<FileS
             return false;
         }
         return true;
+    }
+
+    /**
+     * Method that returns the unix string representation of the type and permissions of the
+     * file system object.
+     * 
+     * @return String The string representation
+     */
+    public String toRawString() {
+        return String.format("%s%s", //$NON-NLS-1$
+                String.valueOf(getUnixIdentifier()),
+                getPermissions().toRawString());
     }
 
     /**

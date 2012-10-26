@@ -980,11 +980,6 @@ public class NavigationActivity extends Activity
                     public void run() {
                         popup.dismiss();
                         switch (itemId) {
-                            case R.id.mnu_exit:
-                                //Exit
-                                exit();
-                                break;
-
                             case R.id.mnu_settings:
                                 //Settings
                                 Intent settings = new Intent(

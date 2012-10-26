@@ -398,8 +398,6 @@
   <string name="menu_settings">Settings</string>
   <!-- Menu * Navigation * Console -->
   <string name="menu_console">Select console</string>
-  <!-- Menu * Navigation * Exit -->
-  <string name="menu_exit">Exit</string>
   <!-- Menu * History * Clear history -->
   <string name="menu_clear_history">Clear history</string>
 

@@ -625,6 +625,9 @@ public class NavigationActivity extends Activity
             if (checkBackAction()) {
                 return true;
             }
+
+            // An exit event has occurred, force the destroy the consoles
+            exit();
         }
         return super.onKeyUp(keyCode, event);
     }

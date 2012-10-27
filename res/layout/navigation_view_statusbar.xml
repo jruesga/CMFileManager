@@ -34,7 +34,7 @@
     android:layout_height="match_parent"
     android:contentDescription="@string/actionbar_button_actions_cd"
     android:onClick="onActionBarItemClick"
-    android:src="@drawable/ic_holo_light_actions" />
+    android:src="@drawable/ic_holo_light_contextual_action" />
 
   <RelativeLayout
     android:id="@+id/navigation_actionbar"

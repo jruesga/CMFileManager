@@ -46,7 +46,6 @@
       android:cursorVisible="true"
       android:background="@null"
       android:inputType="textMultiLine|textImeMultiLine"
-      
       android:text="@null"
       android:textAppearance="@style/secondary_text_appearance" />
 

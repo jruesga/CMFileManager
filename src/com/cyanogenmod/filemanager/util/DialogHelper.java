@@ -20,6 +20,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
+import android.text.InputFilter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup.LayoutParams;
@@ -71,52 +72,58 @@ public final class DialogHelper {
      * Method that creates a new warning {@link AlertDialog}.
      *
      * @param context The current context
+     * @param title The resource identifier of the title of the alert dialog
      * @param message The resource identifier of the message of the alert dialog
      * @return AlertDialog The alert dialog reference
      */
-    public static AlertDialog createWarningDialog(Context context, int message) {
-        return createWarningDialog(context, context.getString(message));
+    public static AlertDialog createWarningDialog(Context context, int title, int message) {
+        return createWarningDialog(context, title, context.getString(message));
     }
 
     /**
      * Method that creates a new warning {@link AlertDialog}.
      *
      * @param context The current context
+     * @param title The resource identifier of the title of the alert dialog
      * @param message The message of the alert dialog
      * @return AlertDialog The alert dialog reference
      */
-    public static AlertDialog createWarningDialog(Context context, String message) {
+    public static AlertDialog createWarningDialog(Context context, int title, String message) {
         return createAlertDialog(
                 context,
-                R.drawable.ic_holo_light_warning,
-                R.string.title_warning,
-                message);
+                0,
+                title,
+                message,
+                false);
     }
 
     /**
      * Method that creates a new error {@link AlertDialog}.
      *
      * @param context The current context
+     * @param title The resource identifier of the title of the alert dialog
      * @param message The resource identifier of the message of the alert dialog
      * @return AlertDialog The alert dialog reference
      */
-    public static AlertDialog createErrorDialog(Context context, int message) {
-        return createErrorDialog(context, context.getString(message));
+    public static AlertDialog createErrorDialog(Context context, int title, int message) {
+        return createErrorDialog(context, title, context.getString(message));
     }
 
     /**
      * Method that creates a new error {@link AlertDialog}.
      *
      * @param context The current context
+     * @param title The resource identifier of the title of the alert dialog
      * @param message The message of the alert dialog
      * @return AlertDialog The alert dialog reference
      */
-    public static AlertDialog createErrorDialog(Context context, String message) {
+    public static AlertDialog createErrorDialog(Context context, int title, String message) {
         return createAlertDialog(
                 context,
-                R.drawable.ic_holo_light_error,
-                R.string.title_error,
-                message);
+                0,
+                title,
+                message,
+                false);
     }
 
     /**
@@ -126,11 +133,12 @@ public final class DialogHelper {
      * @param icon The icon resource
      * @param title The resource identifier of the title of the alert dialog
      * @param message The resource identifier of the message of the alert dialog
+     * @param allCaps If the title must have his text in caps or not
      * @return AlertDialog The alert dialog reference
      */
     public static AlertDialog createAlertDialog(
-            Context context, int icon, int title, int message) {
-        return createAlertDialog(context, icon, title, context.getString(message));
+            Context context, int icon, int title, int message, boolean allCaps) {
+        return createAlertDialog(context, icon, title, context.getString(message), allCaps);
     }
 
     /**
@@ -140,13 +148,14 @@ public final class DialogHelper {
      * @param icon The icon resource
      * @param title The resource identifier of the title of the alert dialog
      * @param message The message of the alert dialog
+     * @param allCaps If the title must have his text in caps or not
      * @return AlertDialog The alert dialog reference
      */
     public static AlertDialog createAlertDialog(
-            Context context, int icon, int title, String message) {
+            Context context, int icon, int title, String message, boolean allCaps) {
         //Create the alert dialog
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
-        builder.setCustomTitle(createTitle(context, icon, context.getString(title)));
+        builder.setCustomTitle(createTitle(context, icon, context.getString(title), allCaps));
         builder.setView(createMessage(context, message));
         builder.setPositiveButton(context.getString(R.string.ok), null);
         return builder.create();
@@ -156,7 +165,6 @@ public final class DialogHelper {
      * Method that creates a new {@link AlertDialog} for choice between single options.
      *
      * @param context The current context
-     * @param icon The icon resource
      * @param title The resource identifier of the title of the alert dialog
      * @param options An array with the options
      * @param defOption The default option
@@ -164,13 +172,13 @@ public final class DialogHelper {
      * @return AlertDialog The alert dialog reference
      */
     public static AlertDialog createSingleChoiceDialog(
-            Context context, int icon, int title,
+            Context context, int title,
             String[] options, int defOption,
             final OnSelectChoiceListener onSelectChoiceListener) {
         //Create the alert dialog
         final StringBuffer item = new StringBuffer().append(defOption);
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
-        builder.setCustomTitle(createTitle(context, icon, context.getString(title)));
+        builder.setCustomTitle(createTitle(context, 0, context.getString(title), false));
 
         // Create the adapter
         List<CheckableListAdapter.CheckableItem> items =
@@ -222,32 +230,35 @@ public final class DialogHelper {
      * Method that creates a new YES/NO {@link AlertDialog}.
      *
      * @param context The current context
+     * @param title The resource identifier of the title of the alert dialog
      * @param message The resource identifier of the message of the alert dialog
      * @param onClickListener The listener where returns the button pressed
      * @return AlertDialog The alert dialog reference
      */
     public static AlertDialog createYesNoDialog(
-            Context context, int message, OnClickListener onClickListener) {
-        return createYesNoDialog(context, context.getString(message), onClickListener);
+            Context context, int title, int message, OnClickListener onClickListener) {
+        return createYesNoDialog(context, title, context.getString(message), onClickListener);
     }
 
     /**
      * Method that creates a new YES/NO {@link AlertDialog}.
      *
      * @param context The current context
+     * @param title The resource identifier of the title of the alert dialog
      * @param message The message of the alert dialog
      * @param onClickListener The listener where returns the button pressed
      * @return AlertDialog The alert dialog reference
      */
     public static AlertDialog createYesNoDialog(
-            Context context, String message, OnClickListener onClickListener) {
+            Context context, int title, String message, OnClickListener onClickListener) {
         //Create the alert dialog
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         builder.setCustomTitle(
                 createTitle(
                         context,
-                        R.drawable.ic_holo_light_question,
-                        context.getString(R.string.title_question)));
+                        0,
+                        context.getString(title),
+                        false));
         builder.setView(createMessage(context, message));
         AlertDialog dialog = builder.create();
         dialog.setButton(
@@ -261,32 +272,35 @@ public final class DialogHelper {
      * Method that creates a new YES/ALL/NO {@link AlertDialog}.
      *
      * @param context The current context
+     * @param title The resource identifier of the title of the alert dialog
      * @param message The resource identifier of the message of the alert dialog
      * @param onClickListener The listener where returns the button pressed
      * @return AlertDialog The alert dialog reference
      */
     public static AlertDialog createYesNoAllDialog(
-            Context context, int message, OnClickListener onClickListener) {
-        return createYesNoAllDialog(context, context.getString(message), onClickListener);
+            Context context, int title, int message, OnClickListener onClickListener) {
+        return createYesNoAllDialog(context, title, context.getString(message), onClickListener);
     }
 
     /**
      * Method that creates a new YES/ALL/NO {@link AlertDialog}.
      *
      * @param context The current context
+     * @param title The resource identifier of the title of the alert dialog
      * @param message The message of the alert dialog
      * @param onClickListener The listener where returns the button pressed
      * @return AlertDialog The alert dialog reference
      */
     public static AlertDialog createYesNoAllDialog(
-            Context context, String message, OnClickListener onClickListener) {
+            Context context, int title, String message, OnClickListener onClickListener) {
         //Create the alert dialog
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         builder.setCustomTitle(
                 createTitle(
                         context,
-                        R.drawable.ic_holo_light_question,
-                        context.getString(R.string.title_question)));
+                        0,
+                        context.getString(title),
+                        false));
         builder.setView(createMessage(context, message));
         AlertDialog dialog = builder.create();
         dialog.setButton(
@@ -304,20 +318,22 @@ public final class DialogHelper {
      * @param context The current context
      * @param button1 The resource identifier of the text of the button 1 (POSITIVE)
      * @param button2 The resource identifier of the text of the button 2 (NEGATIVE)
+     * @param title The resource id of the title of the alert dialog
      * @param message The message of the alert dialog
      * @param onClickListener The listener where returns the button pressed
      * @return AlertDialog The alert dialog reference
      */
     public static AlertDialog createTwoButtonsQuestionDialog(
             Context context, int button1, int button2,
-            String message, OnClickListener onClickListener) {
+            int title, String message, OnClickListener onClickListener) {
         //Create the alert dialog
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         builder.setCustomTitle(
                 createTitle(
                         context,
-                        R.drawable.ic_holo_light_question,
-                        context.getString(R.string.title_question)));
+                        0,
+                        context.getString(title),
+                        false));
         builder.setView(createMessage(context, message));
         AlertDialog dialog = builder.create();
         dialog.setButton(
@@ -334,20 +350,22 @@ public final class DialogHelper {
      * @param button1 The resource identifier of the text of the button 1 (POSITIVE)
      * @param button2 The resource identifier of the text of the button 2 (NEUTRAL)
      * @param button3 The resource identifier of the text of the button 3 (NEGATIVE)
+     * @param title The resource id of the title of the alert dialog
      * @param message The message of the alert dialog
      * @param onClickListener The listener where returns the button pressed
      * @return AlertDialog The alert dialog reference
      */
     public static AlertDialog createThreeButtonsQuestionDialog(
             Context context, int button1, int button2, int button3,
-            String message, OnClickListener onClickListener) {
+            int title, String message, OnClickListener onClickListener) {
         //Create the alert dialog
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         builder.setCustomTitle(
                 createTitle(
                         context,
-                        R.drawable.ic_holo_light_question,
-                        context.getString(R.string.title_question)));
+                        0,
+                        context.getString(title),
+                        false));
         builder.setView(createMessage(context, message));
         AlertDialog dialog = builder.create();
         dialog.setButton(
@@ -369,11 +387,7 @@ public final class DialogHelper {
      * @return AlertDialog The alert dialog reference
      */
     public static AlertDialog createDialog(Context context, int icon, int title, View content) {
-        //Create the alert dialog
-        AlertDialog.Builder builder = new AlertDialog.Builder(context);
-        builder.setCustomTitle(createTitle(context, icon, context.getString(title)));
-        builder.setView(content);
-        return builder.create();
+        return createDialog(context, icon, context.getString(title), content);
     }
 
     /**
@@ -388,7 +402,7 @@ public final class DialogHelper {
     public static AlertDialog createDialog(Context context, int icon, String title, View content) {
         //Create the alert dialog
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
-        builder.setCustomTitle(createTitle(context, icon, title));
+        builder.setCustomTitle(createTitle(context, icon, title, false));
         builder.setView(content);
         return builder.create();
     }
@@ -399,9 +413,10 @@ public final class DialogHelper {
      * @param context The current context
      * @param icon The icon resource
      * @param title The resource identifier of the title of the alert dialog
+     * @param allCaps If the title must have his text in caps or not
      * @return The title view
      */
-    private static View createTitle(Context context, int icon, String title) {
+    private static View createTitle(Context context, int icon, String title, boolean allCaps) {
         //Inflate the dialog layouts
         LayoutInflater li =
                 (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -413,6 +428,9 @@ public final class DialogHelper {
             vIcon.setVisibility(View.GONE);
         }
         TextView vText = (TextView)lyTitle.findViewById(R.id.dialog_title_text);
+        if (allCaps) {
+            vText.setFilters(new InputFilter[]{new InputFilter.AllCaps()});
+        }
         vText.setText(title);
         return lyTitle;
     }

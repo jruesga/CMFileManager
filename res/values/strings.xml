@@ -50,11 +50,6 @@
   <!-- The search result name -->
   <string name="search_result_name">Search: <xliff:g id="terms">%1$s</xliff:g></string>
 
-  <!-- Messages for titles -->
-  <string name="title_warning">Warning</string>
-  <string name="title_error">Error</string>
-  <string name="title_question">Question</string>
-
   <!-- Loading waiting message -->
   <string name="loading_message">Loading &#8230;</string>
   <!-- Computing message -->
@@ -66,8 +61,17 @@
   <!-- Error message -->
   <string name="error_message">Error.</string>
 
-  <!--  A console couldn't be created. Ask the user to change the access mode -->
-  <string name="msgs_change_to_prompt_access_mode">
+  <!-- Warning dialog title -->
+  <string name="warning_title">Warning</string>
+  <!-- Error dialog title -->
+  <string name="error_title">Error detected</string>
+  <!-- Confirm operation dialog title -->
+  <string name="confirm_operation">Confirm operation</string>
+
+  <!--  A console couldn't be created. Ask the user to change the access mode. Dialog Title -->
+  <string name="msgs_change_to_prompt_access_mode_title">Confirm switch</string>
+  <!--  A console couldn't be created. Ask the user to change the access mode. Dialog Messge -->
+  <string name="msgs_change_to_prompt_access_mode_msg">
     The application is unable to gain privileges. The only way to run the app
     is to switch to non-privileged mode.\n\nApply this change?</string>
 
@@ -78,8 +82,6 @@
        privileged is allocated -->
   <string name="msgs_privileged_console_alloc_failed">The application is unable to gain privileges.
     \nChanging to non-privileged mode.</string>
-  <!-- Changing to other type of console failed -->
-  <string name="msgs_console_change_failed">Changing to the new type of access mode failed.</string>
   <!-- The selected setting was not applied or stored -->
   <string name="msgs_settings_save_failure">The setting could not be applied or stored.</string>
   <!-- The initial directory has an invalid or inaccessible reference -->
@@ -199,7 +201,9 @@
   <!-- Navigation View * View * Show symlinks option -->
   <string name="cm_filemanager_show_symlinks">Show symlinks</string>
 
-  <!-- Filesystem Info (no data) -->
+  <!-- Filesystem Info (no data). Dialog title -->
+  <string name="filesystem_info_warning_title">No information</string>
+  <!-- Filesystem Info (no data). Dialog message -->
   <string name="filesystem_info_warning_msg">There is no information available for the file system.</string>
   <!-- Filesystem Info * Filesystem couldn't be mounted -->
   <string name="filesystem_info_cant_be_mounted_msg">
@@ -329,6 +333,8 @@
     <xliff:g id="path">%2$s</xliff:g></string>
   <!-- Search * Search query terms -->
   <string name="search_terms"><![CDATA[<b>Terms:</b>]]> <xliff:g id="terms">%1$s</xliff:g></string>
+  <!-- Search * Confirm search -->
+  <string name="search_few_characters_title">Confirm search</string>
   <!-- Search * Some terms of the search are too small. The operation could be very costly -->
   <string name="search_few_characters_msg">Some of the search terms has a small number characters. The
       operation could be very costly in time and system resources.\n\nDo you want to continue?</string>
@@ -350,8 +356,10 @@
   <string name="editor_file_not_found_msg">File not found.</string>
   <!-- Editor * File size exceed the limit -->
   <string name="editor_file_exceed_size_msg">The file is too big to be open inside this device.</string>
-  <!-- Editor * Editor is dirty, ask the user -->
-  <string name="editor_dirty_ask">There are unsaved changes.\n\nExit without saving?</string>
+  <!-- Editor * Editor is dirty, ask the user * Dialog title -->
+  <string name="editor_dirty_ask_title">Confirm exit</string>
+  <!-- Editor * Editor is dirty, ask the user * Dialog message -->
+  <string name="editor_dirty_ask_msg">There are unsaved changes.\n\nExit without saving?</string>
   <!-- Editor * Save operation success -->
   <string name="editor_successfully_saved">The file was successfully saved.</string>
   <!-- Editor * Read-only file mode -->
@@ -495,8 +503,8 @@
   <!-- Actions Dialog * Menu * Open parent folder -->
   <string name="actions_menu_open_parent_folder">Open parent</string>
 
-  <!-- Actions * Ask user prior to do an undone operation -->
-  <string name="actions_ask_undone_operation">
+  <!-- Actions * Ask user prior to do an undone operation. Dialog message -->
+  <string name="actions_ask_undone_operation_msg">
     This action cannot be undone. Do you want to continue?</string>
 
   <!-- Enter Name Dialog * Label -->
@@ -518,11 +526,11 @@
   <string name="associations_dialog_remember">Remember selection</string>
   <!-- Associations Dialog * Open with Title -->
   <string name="associations_dialog_openwith_title">Open with</string>
-    <!-- Associations Dialog * Open action -->
+    <!-- Associations Dialog * Open action (button title) -->
   <string name="associations_dialog_openwith_action">Open</string>
   <!-- Associations Dialog * Send with Title -->
   <string name="associations_dialog_sendwith_title">Send with</string>
-    <!-- Associations Dialog * Send action -->
+    <!-- Associations Dialog * Send action (button title) -->
   <string name="associations_dialog_sendwith_action">Send</string>
 
   <!-- Inline Autocomplete Widget * Tab message nothing to complete -->

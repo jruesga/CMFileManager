@@ -456,7 +456,9 @@ public class SearchActivity extends Activity
         //Show a dialog asking the user
         AlertDialog dialog =
                 DialogHelper.createYesNoDialog(
-                        this, R.string.search_few_characters_msg,
+                        this,
+                        R.string.search_few_characters_title,
+                        R.string.search_few_characters_msg,
                         new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface alertDialog, int which) {
@@ -527,7 +529,7 @@ public class SearchActivity extends Activity
                     SearchActivity.this.mDialog =
                             new MessageProgressDialog(
                                     SearchActivity.this,
-                                    R.drawable.ic_holo_light_search,
+                                    0,
                                     R.string.searching, label, true);
                     // Initialize the
                     setProgressMsg(0);

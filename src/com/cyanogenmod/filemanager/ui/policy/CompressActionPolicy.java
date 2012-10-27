@@ -110,7 +110,7 @@ public final class CompressActionPolicy extends ActionsPolicy {
         if (selection != null && selection.size() > 0) {
             // Show a dialog to allow the user make the compression mode choice
             AlertDialog dialog = DialogHelper.createSingleChoiceDialog(
-                    ctx, R.drawable.ic_holo_light_compress, R.string.compression_mode_title,
+                    ctx, R.string.compression_mode_title,
                     getSupportedCompressionModesLabels(ctx, selection),
                     CompressionMode.AC_GZIP.ordinal(),
                     new DialogHelper.OnSelectChoiceListener() {
@@ -152,7 +152,7 @@ public final class CompressActionPolicy extends ActionsPolicy {
 
         // Show a dialog to allow the user make the compression mode choice
         AlertDialog dialog = DialogHelper.createSingleChoiceDialog(
-                ctx, R.drawable.ic_holo_light_compress, R.string.compression_mode_title,
+                ctx, R.string.compression_mode_title,
                 getSupportedCompressionModesLabels(ctx, items),
                 CompressionMode.AC_GZIP.ordinal(),
                 new DialogHelper.OnSelectChoiceListener() {
@@ -212,7 +212,7 @@ public final class CompressActionPolicy extends ActionsPolicy {
             }
             @Override
             public int getDialogIcon() {
-                return R.drawable.ic_holo_light_operation;
+                return 0;
             }
             @Override
             public boolean isDialogCancellable() {
@@ -460,6 +460,7 @@ public final class CompressActionPolicy extends ActionsPolicy {
                             ctx,
                             android.R.string.cancel,
                             R.string.overwrite,
+                            R.string.confirm_operation,
                             ctx.getString(R.string.msgs_overwrite_files),
                             new DialogInterface.OnClickListener() {
                                 @Override
@@ -512,7 +513,7 @@ public final class CompressActionPolicy extends ActionsPolicy {
             }
             @Override
             public int getDialogIcon() {
-                return R.drawable.ic_holo_light_operation;
+                return 0;
             }
             @Override
             public boolean isDialogCancellable() {
@@ -707,6 +708,7 @@ public final class CompressActionPolicy extends ActionsPolicy {
                             ctx,
                             android.R.string.cancel,
                             R.string.overwrite,
+                            R.string.confirm_operation,
                             ctx.getString(R.string.msgs_overwrite_files),
                             new DialogInterface.OnClickListener() {
                                 @Override
@@ -743,7 +745,9 @@ public final class CompressActionPolicy extends ActionsPolicy {
         String ext = FileHelper.getExtension(fso);
         if (ConsoleBuilder.isPrivileged() && ext.compareTo("zip") == 0) { //$NON-NLS-1$
             AlertDialog dialog = DialogHelper.createYesNoDialog(
-                ctx, R.string.security_warning_extract,
+                ctx,
+                R.string.confirm_operation,
+                R.string.security_warning_extract,
                 new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface alertDialog, int which) {

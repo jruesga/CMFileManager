@@ -60,6 +60,12 @@
     <item name="android:textColor">@color/console_fg</item>
     <item name="android:textStyle">normal</item>
   </style>
+  <!-- The text appearance for dialog titles -->
+  <style name="dialog_title_text_appearance">
+    <item name="android:textSize">@dimen/dialog_title_text_size</item>
+    <item name="android:textColor">@android:color/holo_blue_dark</item>
+    <item name="android:textStyle">bold</item>
+  </style>
 
   <!-- Breadcrumb Element -->
   <style name="breadcrumb_elemement">

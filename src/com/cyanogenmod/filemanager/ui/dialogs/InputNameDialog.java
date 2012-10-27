@@ -122,7 +122,7 @@ public class InputNameDialog
         //Create the dialog
         this.mDialog = DialogHelper.createDialog(
                                         context,
-                                        R.drawable.ic_holo_light_edit,
+                                        0,
                                         dialogTitle,
                                         v);
         this.mDialog.setButton(

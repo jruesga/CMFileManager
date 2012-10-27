@@ -156,7 +156,7 @@ public class ExecutionDialog implements DialogInterface.OnClickListener {
         String title = context.getString(R.string.execution_console_title);
         this.mDialog = DialogHelper.createDialog(
                                         context,
-                                        R.drawable.ic_holo_light_console,
+                                        0,
                                         title,
                                         layout);
         this.mDialog.setButton(

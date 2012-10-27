@@ -78,7 +78,9 @@ public final class DeleteActionPolicy extends ActionsPolicy {
 
         // Ask the user before remove
         AlertDialog dialog = DialogHelper.createYesNoDialog(
-            ctx, R.string.actions_ask_undone_operation,
+            ctx,
+            R.string.confirm_operation,
+            R.string.actions_ask_undone_operation_msg,
             new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface alertDialog, int which) {
@@ -143,7 +145,7 @@ public final class DeleteActionPolicy extends ActionsPolicy {
             }
             @Override
             public int getDialogIcon() {
-                return R.drawable.ic_holo_light_operation;
+                return 0;
             }
             @Override
             public boolean isDialogCancellable() {
@@ -309,8 +311,10 @@ public final class DeleteActionPolicy extends ActionsPolicy {
             if (currentDirectory.startsWith(fso.getFullPath())) {
                 // Operation not allowed
                 AlertDialog dialog =
-                        DialogHelper.createErrorDialog(
-                                ctx, R.string.msgs_unresolved_inconsistencies);
+                        DialogHelper.createWarningDialog(
+                                ctx,
+                                R.string.warning_title,
+                                R.string.msgs_unresolved_inconsistencies);
                 dialog.show();
                 return false;
             }

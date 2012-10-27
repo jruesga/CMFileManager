@@ -219,7 +219,8 @@ public final class ExceptionUtil {
                         if (fToast) {
                             DialogHelper.showToast(context, fMsgResId, Toast.LENGTH_SHORT);
                         } else {
-                            DialogHelper.createErrorDialog(context, fMsgResId).show();
+                            DialogHelper.createErrorDialog(
+                                    context, R.string.error_title, fMsgResId).show();
                         }
                     } catch (Exception e) {
                         Log.e(context.getClass().getSimpleName(), "ExceptionUtil. Failed to show dialog", ex); //$NON-NLS-1$
@@ -269,6 +270,7 @@ public final class ExceptionUtil {
         //Create a yes/no dialog and ask the user
         AlertDialog alert = DialogHelper.createYesNoDialog(
                     context,
+                    R.string.confirm_operation,
                     relaunchable.getQuestionResourceId(),
                     new DialogInterface.OnClickListener() {
                         @Override

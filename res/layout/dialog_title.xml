@@ -23,7 +23,6 @@
     android:layout_height="@dimen/smallest_row_height"
     android:layout_gravity="center_vertical"
     android:layout_marginLeft="@dimen/extra_margin"
-    android:layout_marginRight="@dimen/default_margin"
     android:contentDescription="@null"
     android:height="@dimen/smallest_row_height"
     android:width="@dimen/smallest_row_height"
@@ -33,10 +32,9 @@
     android:id="@+id/dialog_title_text"
     android:layout_width="match_parent"
     android:layout_height="@dimen/default_row_height"
-    android:layout_marginLeft="@dimen/default_margin"
+    android:layout_marginLeft="@dimen/extra_margin"
     android:layout_marginRight="@dimen/extra_margin"
     android:gravity="left|center_vertical"
-    android:textAllCaps="true"
-    android:textAppearance="@style/primary_text_appearance" />
+    android:textAppearance="@style/dialog_title_text_appearance" />
 
 </LinearLayout>

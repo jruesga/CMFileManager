@@ -115,7 +115,7 @@ public class FilesystemInfoDialog implements OnClickListener {
         //Create the dialog
         this.mDialog = DialogHelper.createDialog(
                                         context,
-                                        R.drawable.ic_holo_light_sdcard,
+                                        0,
                                         R.string.filesystem_info_dialog_title,
                                         contentView);
         this.mDialog.setButton(

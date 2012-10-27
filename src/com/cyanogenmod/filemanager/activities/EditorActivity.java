@@ -648,7 +648,10 @@ public class EditorActivity extends Activity implements TextWatcher {
     public void checkDirtyState() {
         if (this.mDirty) {
             AlertDialog dlg = DialogHelper.createYesNoDialog(
-                    this, R.string.editor_dirty_ask, new OnClickListener() {
+                    this,
+                    R.string.editor_dirty_ask_title,
+                    R.string.editor_dirty_ask_msg,
+                    new OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             if (which == DialogInterface.BUTTON_POSITIVE) {

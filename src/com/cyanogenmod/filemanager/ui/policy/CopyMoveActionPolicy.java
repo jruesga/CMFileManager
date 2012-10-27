@@ -217,7 +217,9 @@ public final class CopyMoveActionPolicy extends ActionsPolicy {
         // 1.- Listener couldn't be null
         if (onSelectionListener == null) {
             AlertDialog dialog =
-                    DialogHelper.createErrorDialog(ctx, R.string.msgs_illegal_argument);
+                    DialogHelper.createErrorDialog(ctx,
+                            R.string.error_title,
+                            R.string.msgs_illegal_argument);
             dialog.show();
             return;
         }
@@ -229,14 +231,18 @@ public final class CopyMoveActionPolicy extends ActionsPolicy {
             LinkedResource linkedRes = files.get(i);
             if (linkedRes.mSrc == null || linkedRes.mDst == null) {
                 AlertDialog dialog =
-                        DialogHelper.createErrorDialog(ctx, R.string.msgs_illegal_argument);
+                        DialogHelper.createErrorDialog(ctx,
+                                R.string.error_title,
+                                R.string.msgs_illegal_argument);
                 dialog.show();
                 return;
             }
             if (linkedRes.mDst.getParent() == null ||
                 linkedRes.mDst.getParent().compareTo(currentDirectory) != 0) {
                 AlertDialog dialog =
-                        DialogHelper.createErrorDialog(ctx, R.string.msgs_illegal_argument);
+                        DialogHelper.createErrorDialog(ctx,
+                                R.string.error_title,
+                                R.string.msgs_illegal_argument);
                 dialog.show();
                 return;
             }
@@ -269,7 +275,7 @@ public final class CopyMoveActionPolicy extends ActionsPolicy {
             }
             @Override
             public int getDialogIcon() {
-                return R.drawable.ic_holo_light_operation;
+                return 0;
             }
             @Override
             public boolean isDialogCancellable() {
@@ -426,6 +432,7 @@ public final class CopyMoveActionPolicy extends ActionsPolicy {
                                 ctx,
                                 android.R.string.cancel,
                                 R.string.overwrite,
+                                R.string.confirm_operation,
                                 ctx.getString(R.string.msgs_overwrite_files),
                                 new DialogInterface.OnClickListener() {
                                     @Override
@@ -505,7 +512,9 @@ public final class CopyMoveActionPolicy extends ActionsPolicy {
                 // Operation not allowed
                 AlertDialog dialog =
                         DialogHelper.createErrorDialog(
-                                ctx, R.string.msgs_unresolved_inconsistencies);
+                                ctx,
+                                R.string.error_title,
+                                R.string.msgs_unresolved_inconsistencies);
                 dialog.show();
                 return false;
             }
@@ -515,7 +524,9 @@ public final class CopyMoveActionPolicy extends ActionsPolicy {
                 // Operation not allowed
                 AlertDialog dialog =
                         DialogHelper.createErrorDialog(
-                                ctx, R.string.msgs_operation_not_allowed_in_current_directory);
+                                ctx,
+                                R.string.error_title,
+                                R.string.msgs_operation_not_allowed_in_current_directory);
                 dialog.show();
                 return false;
             }

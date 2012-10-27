@@ -140,7 +140,7 @@ public class ActionsDialog implements OnItemClickListener, OnItemLongClickListen
         //Create the dialog
         this.mDialog = DialogHelper.createDialog(
                                         context,
-                                        R.drawable.ic_holo_light_actions,
+                                        0,
                                         R.string.actions_dialog_title,
                                         this.mListView);
         this.mDialog.setButton(

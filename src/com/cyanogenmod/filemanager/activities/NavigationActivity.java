@@ -382,7 +382,7 @@ public class NavigationActivity extends Activity
         //Display the welcome message?
         if (firstUse) {
             AlertDialog dialog = DialogHelper.createAlertDialog(
-                this, R.drawable.ic_launcher, R.string.welcome_title, R.string.welcome_msg);
+                this, R.drawable.ic_launcher, R.string.welcome_title, R.string.welcome_msg, false);
             dialog.show();
 
             // Don't display again this dialog
@@ -1035,7 +1035,10 @@ public class NavigationActivity extends Activity
         if (mp == null) {
             //There is no information
             AlertDialog alert =
-                    DialogHelper.createWarningDialog(this, R.string.filesystem_info_warning_msg);
+                    DialogHelper.createWarningDialog(
+                            this,
+                            R.string.filesystem_info_warning_title,
+                            R.string.filesystem_info_warning_msg);
             alert.show();
             return;
         }
@@ -1322,7 +1325,9 @@ public class NavigationActivity extends Activity
         //Show a dialog asking the user
         AlertDialog dialog =
             DialogHelper.createYesNoDialog(
-                this, R.string.msgs_change_to_prompt_access_mode,
+                this,
+                R.string.msgs_change_to_prompt_access_mode_title,
+                R.string.msgs_change_to_prompt_access_mode_msg,
                 new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface alertDialog, int which) {

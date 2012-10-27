@@ -102,7 +102,7 @@ public final class IntentsActionPolicy extends ActionsPolicy {
                     intent,
                     choose,
                     createInternalIntents(ctx,  fso),
-                    R.drawable.ic_holo_light_open,
+                    0,
                     R.string.associations_dialog_openwith_title,
                     R.string.associations_dialog_openwith_action,
                     true, onCancelListener, onDismissListener);
@@ -139,7 +139,7 @@ public final class IntentsActionPolicy extends ActionsPolicy {
                     intent,
                     false,
                     null,
-                    R.drawable.ic_holo_light_send,
+                    0,
                     R.string.associations_dialog_sendwith_title,
                     R.string.associations_dialog_sendwith_action,
                     false, onCancelListener, onDismissListener);

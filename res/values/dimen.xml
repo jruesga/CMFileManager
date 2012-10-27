@@ -21,6 +21,8 @@
   <dimen name="primary_text_size">14sp</dimen>
   <!-- The secondary text size -->
   <dimen name="secondary_text_size">12sp</dimen>
+  <!-- The dialog_title text size -->
+  <dimen name="dialog_title_text_size">16sp</dimen>
   <!-- The note text size -->
   <dimen name="note_text_size">9sp</dimen>
   <!-- The console text size -->

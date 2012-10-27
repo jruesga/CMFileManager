@@ -164,7 +164,7 @@ public class FsoPropertiesDialog
         //Create the dialog
         this.mDialog = DialogHelper.createDialog(
                                         context,
-                                        R.drawable.ic_holo_light_properties,
+                                        0,
                                         R.string.fso_properties_dialog_title,
                                         this.mContentView);
         this.mDialog.setButton(

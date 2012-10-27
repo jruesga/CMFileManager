@@ -527,6 +527,7 @@ public class EditorActivity extends Activity implements TextWatcher {
                 if (!result.booleanValue()) {
                     if (this.mCause != null) {
                         ExceptionUtil.translateException(EditorActivity.this, this.mCause);
+                        EditorActivity.this.mEditor.setEnabled(false);
                     }
                 } else {
                     // Now we have the buffer, set the text of the editor
@@ -665,11 +666,15 @@ public class EditorActivity extends Activity implements TextWatcher {
                                             ExceptionUtil.translateException(
                                                                         EditorActivity.this,
                                                                         cause);
+                                            EditorActivity.this.mEditor.setEnabled(false);
                                             return;
                                         }
 
                                         //Read the file again
                                         asyncRead();
+                                    } else {
+                                        // Finish the application
+                                        EditorActivity.this.finish();
                                     }
                                 }
                             });

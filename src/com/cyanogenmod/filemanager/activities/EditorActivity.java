@@ -42,6 +42,8 @@ import com.cyanogenmod.filemanager.R;
 import com.cyanogenmod.filemanager.commands.AsyncResultListener;
 import com.cyanogenmod.filemanager.commands.WriteExecutable;
 import com.cyanogenmod.filemanager.console.ConsoleBuilder;
+import com.cyanogenmod.filemanager.console.InsufficientPermissionsException;
+import com.cyanogenmod.filemanager.console.RelaunchableException;
 import com.cyanogenmod.filemanager.model.FileSystemObject;
 import com.cyanogenmod.filemanager.preferences.FileManagerSettings;
 import com.cyanogenmod.filemanager.ui.widgets.ButtonItem;
@@ -428,8 +430,17 @@ public class EditorActivity extends Activity implements TextWatcher {
             return;
         }
 
-        // Do the load of the
-        AsyncTask<FileSystemObject, Integer, Boolean> mOpenTask =
+        // Read the file in background
+        asyncRead();
+    }
+
+    /**
+     * Method that does the read of the file in background
+     * @hide
+     */
+    void asyncRead() {
+        // Do the load of the file
+        AsyncTask<FileSystemObject, Integer, Boolean> mReadTask =
                             new AsyncTask<FileSystemObject, Integer, Boolean>() {
 
             private Exception mCause;
@@ -449,33 +460,48 @@ public class EditorActivity extends Activity implements TextWatcher {
 
                 // Read the file in an async listener
                 try {
-                    // Configure the reader
-                    this.mReader = new AsyncReader();
-                    this.mReader.mFso = fso;
-                    this.mReader.mListener = new OnProgressListener() {
-                        @Override
-                        @SuppressWarnings("synthetic-access")
-                        public void onProgress(int progress) {
-                            publishProgress(Integer.valueOf(progress));
+                    while (true) {
+                        // Configure the reader
+                        this.mReader = new AsyncReader();
+                        this.mReader.mFso = fso;
+                        this.mReader.mListener = new OnProgressListener() {
+                            @Override
+                            @SuppressWarnings("synthetic-access")
+                            public void onProgress(int progress) {
+                                publishProgress(Integer.valueOf(progress));
+                            }
+                        };
+
+                        // Execute the command (read the file)
+                        CommandHelper.read(
+                                EditorActivity.this, fso.getFullPath(), this.mReader, null);
+
+                        // Wait for
+                        synchronized (this.mReader.mSync) {
+                            this.mReader.mSync.wait();
                         }
-                    };
 
-                    // Execute the command (read the file)
-                    CommandHelper.read(
-                            EditorActivity.this, fso.getFullPath(), this.mReader, null);
+                        // 100%
+                        doProgress(true, 100);
 
-                    // Wait for
-                    synchronized (this.mReader.mSync) {
-                        this.mReader.mSync.wait();
-                    }
+                        // Check if the read was successfully
+                        if (this.mReader.mCause != null) {
+                            // Check if we can't read the file because we don't the require
+                            // permissions
+                            if (this.mReader.mCause instanceof InsufficientPermissionsException) {
+                                if (!ConsoleBuilder.isPrivileged()) {
+                                    // We don't have a privileged console, we can't ask the user
+                                    // to gain privileges and relauch the command again
+                                    askGainAccessAndRead(
+                                            (RelaunchableException)this.mReader.mCause);
+                                    return Boolean.TRUE;
+                                }
+                            }
 
-                    // 100%
-                    doProgress(true, 100);
-
-                    // Check if the read was successfully
-                    if (this.mReader.mCause != null) {
-                        this.mCause = this.mReader.mCause;
-                        return Boolean.FALSE;
+                            this.mCause = this.mReader.mCause;
+                            return Boolean.FALSE;
+                        }
+                        break;
                     }
 
                 } catch (Exception e) {
@@ -539,7 +565,7 @@ public class EditorActivity extends Activity implements TextWatcher {
                             visible ? View.VISIBLE : View.GONE);
             }
         };
-        mOpenTask.execute(this.mFso);
+        mReadTask.execute(this.mFso);
     }
 
     /**
@@ -607,6 +633,49 @@ public class EditorActivity extends Activity implements TextWatcher {
                     this, R.string.msgs_operation_failure, Toast.LENGTH_SHORT);
             return;
         }
+    }
+
+    /**
+     * Method that asks the user for gain access and reexecute the read command
+     *
+     * @param cause The cause of the reexecution
+     * @hide
+     */
+    void askGainAccessAndRead(final RelaunchableException cause) {
+        // We cannot use the ExceptionUtil class because the read command is asynchronous
+        // and doesn't have the common mechanism of capture exception. we do our self one.
+
+        //Create a yes/no dialog and ask the user
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                AlertDialog alert = DialogHelper.createYesNoDialog(
+                            EditorActivity.this,
+                            R.string.confirm_operation,
+                            cause.getQuestionResourceId(),
+                            new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    if (which == DialogInterface.BUTTON_POSITIVE) {
+                                        // Change to privileged console
+                                        if (!ConsoleBuilder.
+                                                changeToPrivilegedConsole(EditorActivity.this)) {
+
+                                            // Capture the exception
+                                            ExceptionUtil.translateException(
+                                                                        EditorActivity.this,
+                                                                        cause);
+                                            return;
+                                        }
+
+                                        //Read the file again
+                                        asyncRead();
+                                    }
+                                }
+                            });
+                alert.show();
+            }
+        });
     }
 
     /**

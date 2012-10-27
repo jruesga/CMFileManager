@@ -223,7 +223,8 @@ public final class ExceptionUtil {
                                     context, R.string.error_title, fMsgResId).show();
                         }
                     } catch (Exception e) {
-                        Log.e(context.getClass().getSimpleName(), "ExceptionUtil. Failed to show dialog", ex); //$NON-NLS-1$
+                        Log.e(context.getClass().getSimpleName(),
+                                "ExceptionUtil. Failed to show dialog", ex); //$NON-NLS-1$
                     }
                 }
             });

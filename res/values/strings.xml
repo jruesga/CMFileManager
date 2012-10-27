@@ -70,18 +70,16 @@
 
   <!--  A console couldn't be created. Ask the user to change the access mode. Dialog Title -->
   <string name="msgs_change_to_prompt_access_mode_title">Confirm switch</string>
-  <!--  A console couldn't be created. Ask the user to change the access mode. Dialog Messge -->
+  <!--  A console couldn't be created. Ask the user to change the access mode. Dialog Message -->
   <string name="msgs_change_to_prompt_access_mode_msg">
-    The application is unable to gain privileges. The only way to run the app
-    is to switch to non-privileged mode.\n\nApply this change?</string>
+    Unable to run in Root Access mode. Changing to Safe mode.\n\nApply this change?</string>
 
   <!-- A console couldn't be created. Without privileges, the application won't work -->
-  <string name="msgs_cant_create_console">The application is unable to gain privileges and
-       will not work without under this conditions.</string>
+  <string name="msgs_cant_create_console">Unable to gain the required privileges to function.</string>
   <!-- The message shown when an allocation of a privileged console fails, and a non
        privileged is allocated -->
-  <string name="msgs_privileged_console_alloc_failed">The application is unable to gain privileges.
-    \nChanging to non-privileged mode.</string>
+  <string name="msgs_privileged_console_alloc_failed">Unable to run in Root Access mode.
+    Changing to Safe mode.</string>
   <!-- The selected setting was not applied or stored -->
   <string name="msgs_settings_save_failure">The setting could not be applied or stored.</string>
   <!-- The initial directory has an invalid or inaccessible reference -->
@@ -94,8 +92,8 @@
   <string name="msgs_unknown">An error was detected. The operation was unsuccessful.</string>
   <!-- When an operation requires elevated privileged (normally caused for the use of a
        non-privileged console) -->
-  <string name="msgs_insufficient_permissions">The operation requires elevated permissions. Try
-    changing to privileged mode.</string>
+  <string name="msgs_insufficient_permissions">This operation requires elevated permissions. Try
+    changing to Root Access mode.</string>
   <!-- The file or directory was not found -->
   <string name="msgs_file_not_found">The file or folder was not found.</string>
   <!-- The command reference couldn't be created (not found or invalid definition)
@@ -141,7 +139,7 @@
 
   <!-- An operation requires elevated privileged. Ask the user. -->
   <string name="advise_insufficient_permissions">The operation requires elevated privileges.\n\n
-    Do you want to change to privileged mode?</string>
+    Do you want to change to Root Access mode?</string>
 
 
   <!-- The parent directory of the current directory in navigation view -->
@@ -210,7 +208,7 @@
     The file system cannot be mounted/unmounted.</string>
   <!-- Filesystem Info * Not allowed message -->
   <string name="filesystem_info_mount_not_allowed_msg">File system mounting operations are not allowed
-    in non-privileged mode. Tap to change to privileged mode.</string>
+    in Safe mode. Tap to change to Root Access mode.</string>
   <!-- Filesystem Info * Mount failed -->
   <string name="filesystem_info_mount_failed_msg">File system mounting operation failed.
     Some file systems, like SD cards, cannot be mounted/unmounted because
@@ -243,7 +241,7 @@
 
   <!-- Fso Properties * Not allowed message -->
   <string name="fso_properties_permissions_not_allowed_msg">Permissions operations are not allowed
-    in non-privileged mode. Tap to change to a privileged mode.</string>
+    in Safe mode. Tap to change to Root Access mode.</string>
   <!-- Fso Properties * Failed to change owner to fso -->
   <string name="fso_properties_failed_to_change_owner_msg">The change of owner operation failed.\n\n
     For security reasons, some file systems, like SD cards, do not allow the changing of ownership.</string>
@@ -639,20 +637,19 @@
   <!-- Preferences * General * Safe mode -->
   <string name="pref_access_mode_safe">Safe mode</string>
   <!-- Preferences * General * Safe mode summary -->
-  <string name="pref_access_mode_safe_summary">Safe mode. The app is running without
-    privileges and the only accessible file systems are the storage volumes (sdcards and USB).</string>
+  <string name="pref_access_mode_safe_summary">Safe mode\n\nThe app is running without
+    privileges and the only accessible file systems are the storage volumes (SD cards and USB)</string>
   <!-- Preferences * General * Prompt user mode -->
-  <string name="pref_access_mode_prompt">Prompt user mode</string>
+  <string name="pref_access_mode_prompt">Prompt User mode</string>
   <!-- Preferences * General * Prompt user mode summary -->
-  <string name="pref_access_mode_prompt_summary">Prompt user mode. The app is running
-    without privileges, with full access to the file system, but the user is asked prior to execute
-    any privileged action.</string>
+  <string name="pref_access_mode_prompt_summary">Prompt User mode\n\nThe app is running
+    with full access to the file system but will prompt for permission prior to executing
+    any privileged actions</string>
   <!-- Preferences * General * Root access mode -->
-  <string name="pref_access_mode_root">Root mode</string>
+  <string name="pref_access_mode_root">Root Access mode</string>
   <!-- Preferences * General * Root access mode summary -->
-  <string name="pref_access_mode_root_summary">Root mode. The app is running will all
-    the privileges.\n\nWarning! Privileged mode allows operations that could break
-    your device. It\'s your responsibility to ensure that an operation is safe.</string>
+  <string name="pref_access_mode_root_summary">Root Access mode\n\nWarning! This mode allows operations that could break
+    your device. It\'s your responsibility to ensure that an operation is safe</string>
   <!-- Preferences * Search * Results category -->
   <string name="pref_search_results_category">Results</string>
   <!-- Preferences * Search * Show relevance widget -->
@@ -677,9 +674,9 @@
   <!-- Preferences * Search * Save search terms summary off -->
   <string name="pref_save_search_terms_off">Search terms will not be saved</string>
   <!-- Preferences * Search * Remove saved search terms -->
-  <string name="pref_remove_saved_search_terms">Remove any saved search terms</string>
+  <string name="pref_remove_saved_search_terms">Remove saved search terms</string>
   <!-- Preferences * Search * Remove saved search terms summary -->
-  <string name="pref_remove_saved_search_terms_summary">Tap to remove the saved search terms</string>
+  <string name="pref_remove_saved_search_terms_summary">Tap to remove all the saved search terms</string>
   <!-- Preferences * Search * Suggestions were truncated -->
   <string name="pref_remove_saved_search_terms_msg">All saved search terms were removed.</string>
 

@@ -120,7 +120,7 @@ public class InitialDirectoryDialog implements DialogInterface.OnClickListener {
         //Create the dialog
         this.mDialog = DialogHelper.createDialog(
                                         context,
-                                        R.drawable.ic_holo_light_home,
+                                        0,
                                         R.string.initial_directory_dialog_title,
                                         layout);
         this.mDialog.setButton(

@@ -563,10 +563,16 @@ public class ActionsDialog implements OnItemClickListener, OnItemLongClickListen
                                 this.mOnSelectionListener.onRequestSelectedFiles(),
                                 this.mFso);
                 menu.removeItem(selected ? R.id.mnu_actions_select : R.id.mnu_actions_deselect);
+
             } else {
                 // Remove both menus
                 menu.removeItem(R.id.mnu_actions_select);
                 menu.removeItem(R.id.mnu_actions_deselect);
+
+                // Not allowed because we need a list of the current files (only from navigation
+                // activity)
+                menu.removeItem(R.id.mnu_actions_rename);
+                menu.removeItem(R.id.mnu_actions_create_copy);
             }
 
             //- Open/Open with -> Only when the fso is not a folder and is not a system file

@@ -91,6 +91,11 @@ public enum FileManagerSettings {
      */
     SETTINGS_COMPUTE_FOLDER_STATISTICS(
             "cm_filemanager_compute_folder_statistics", Boolean.FALSE), //$NON-NLS-1$
+    /**
+     * Whether use flinger to remove items
+     * @hide
+     */
+    SETTINGS_USE_FLINGER("cm_filemanager_use_flinger", Boolean.TRUE),  //$NON-NLS-1$
 
     /**
      * When to highlight the terms of the search in the search results

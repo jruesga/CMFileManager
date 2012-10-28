@@ -630,7 +630,11 @@
   <!-- Preferences * General * Compute folder statistics summary on -->
   <string name="pref_compute_folder_statistics_on">Warning! The computation of folder statistics is costly in time and
     system resources</string>
-    <!-- Preferences * General * Advanced settings category -->
+  <!-- Preferences * General * Use flinger detection -->
+  <string name="pref_use_flinger">Use swipe gestures</string>
+  <!-- Preferences * General * Use flinger detection summary -->
+  <string name="pref_use_flinger_summary">Use swipe left to right gesture detection to delete files or folders.</string>
+  <!-- Preferences * General * Advanced settings category -->
   <string name="pref_general_advanced_settings_category">Advanced</string>
   <!-- Preferences * General * Access mode -->
   <string name="pref_access_mode">Access mode</string>

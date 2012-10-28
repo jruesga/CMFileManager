@@ -234,7 +234,8 @@ public class ActionsDialog implements OnItemClickListener, OnItemLongClickListen
                         this.mContext,
                         this.mFso,
                         this.mOnSelectionListener,
-                        this.mOnRequestRefreshListener);
+                        this.mOnRequestRefreshListener,
+                        null);
                 break;
 
             //- Refresh
@@ -318,7 +319,8 @@ public class ActionsDialog implements OnItemClickListener, OnItemLongClickListen
                             this.mContext,
                             selection,
                             this.mOnSelectionListener,
-                            this.mOnRequestRefreshListener);
+                            this.mOnRequestRefreshListener,
+                            null);
                 }
                 break;
 

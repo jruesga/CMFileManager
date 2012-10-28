@@ -49,6 +49,9 @@ import com.cyanogenmod.filemanager.preferences.Bookmarks;
 import com.cyanogenmod.filemanager.preferences.FileManagerSettings;
 import com.cyanogenmod.filemanager.preferences.Preferences;
 import com.cyanogenmod.filemanager.ui.dialogs.InitialDirectoryDialog;
+import com.cyanogenmod.filemanager.ui.widgets.FlingerListView;
+import com.cyanogenmod.filemanager.ui.widgets.FlingerListView.OnItemFlingerListener;
+import com.cyanogenmod.filemanager.ui.widgets.FlingerListView.OnItemFlingerResponder;
 import com.cyanogenmod.filemanager.util.CommandHelper;
 import com.cyanogenmod.filemanager.util.DialogHelper;
 import com.cyanogenmod.filemanager.util.ExceptionUtil;
@@ -66,6 +69,62 @@ public class BookmarksActivity extends Activity implements OnItemClickListener, 
     private static final String TAG = "BookmarksActivity"; //$NON-NLS-1$
 
     private static boolean DEBUG = false;
+
+    /**
+     * A listener for flinging events from {@link FlingerListView}
+     */
+    private final OnItemFlingerListener mOnItemFlingerListener = new OnItemFlingerListener() {
+
+        @Override
+        public boolean onItemFlingerStart(
+                AdapterView<?> parent, View view, int position, long id) {
+            try {
+                // Response if the item can be removed
+                BookmarksAdapter adapter = (BookmarksAdapter)parent.getAdapter();
+                Bookmark bookmark = adapter.getItem(position);
+                if (bookmark != null &&
+                    bookmark.mType.compareTo(BOOKMARK_TYPE.USER_DEFINED) == 0) {
+                    return true;
+                }
+            } catch (Exception e) {
+                ExceptionUtil.translateException(BookmarksActivity.this, e, true, false);
+            }
+            return false;
+        }
+
+        @Override
+        public void onItemFlingerEnd(OnItemFlingerResponder responder,
+                AdapterView<?> parent, View view, int position, long id) {
+
+            try {
+                // Response if the item can be removed
+                BookmarksAdapter adapter = (BookmarksAdapter)parent.getAdapter();
+                Bookmark bookmark = adapter.getItem(position);
+                if (bookmark != null &&
+                        bookmark.mType.compareTo(BOOKMARK_TYPE.USER_DEFINED) == 0) {
+                    boolean result = Bookmarks.removeBookmark(BookmarksActivity.this, bookmark);
+                    if (!result) {
+                        //Show warning
+                        DialogHelper.showToast(BookmarksActivity.this,
+                                R.string.msgs_operation_failure, Toast.LENGTH_SHORT);
+                        responder.cancel();
+                        return;
+                    }
+                    responder.accept();
+                    adapter.remove(bookmark);
+                    adapter.notifyDataSetChanged();
+                    return;
+                }
+
+                // Cancels the flinger operation
+                responder.cancel();
+
+            } catch (Exception e) {
+                ExceptionUtil.translateException(BookmarksActivity.this, e, true, false);
+                responder.cancel();
+            }
+        }
+    };
 
     // Bookmark list XML tags
     private static final String TAG_BOOKMARKS = "Bookmarks"; //$NON-NLS-1$
@@ -143,6 +202,20 @@ public class BookmarksActivity extends Activity implements OnItemClickListener, 
         BookmarksAdapter adapter = new BookmarksAdapter(this, bookmarks, this);
         this.mBookmarksListView.setAdapter(adapter);
         this.mBookmarksListView.setOnItemClickListener(this);
+
+        // If we should set the listview to response to flinger gesture detection
+        boolean useFlinger =
+                Preferences.getSharedPreferences().getBoolean(
+                        FileManagerSettings.SETTINGS_USE_FLINGER.getId(),
+                            ((Boolean)FileManagerSettings.
+                                    SETTINGS_USE_FLINGER.
+                                        getDefaultValue()).booleanValue());
+        if (useFlinger) {
+            ((FlingerListView)this.mBookmarksListView).
+                setOnItemFlingerListener(this.mOnItemFlingerListener);
+        }
+
+        // Reload the data
         refresh();
     }
 
@@ -243,9 +316,9 @@ public class BookmarksActivity extends Activity implements OnItemClickListener, 
     @Override
     public void onClick(View v) {
       //Retrieve the position
-      int position = ((Integer)v.getTag()).intValue();
-      BookmarksAdapter adapter = (BookmarksAdapter)this.mBookmarksListView.getAdapter();
-      Bookmark bookmark = adapter.getItem(position);
+      final int position = ((Integer)v.getTag()).intValue();
+      final BookmarksAdapter adapter = (BookmarksAdapter)this.mBookmarksListView.getAdapter();
+      final Bookmark bookmark = adapter.getItem(position);
 
       //Configure home
       if (bookmark.mType.compareTo(BOOKMARK_TYPE.HOME) == 0) {
@@ -254,7 +327,8 @@ public class BookmarksActivity extends Activity implements OnItemClickListener, 
           dialog.setOnValueChangedListener(new InitialDirectoryDialog.OnValueChangedListener() {
               @Override
               public void onValueChanged(String newInitialDir) {
-                  refresh();
+                  adapter.getItem(position).mPath = newInitialDir;
+                  adapter.notifyDataSetChanged();
               }
           });
           dialog.show();
@@ -269,7 +343,8 @@ public class BookmarksActivity extends Activity implements OnItemClickListener, 
               DialogHelper.showToast(this, R.string.msgs_operation_failure, Toast.LENGTH_SHORT);
               return;
           }
-          refresh();
+          adapter.remove(bookmark);
+          adapter.notifyDataSetChanged();
           return;
       }
     }

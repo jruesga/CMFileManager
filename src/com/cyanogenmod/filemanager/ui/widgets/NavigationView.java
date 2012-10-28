@@ -49,7 +49,10 @@ import com.cyanogenmod.filemanager.preferences.FileManagerSettings;
 import com.cyanogenmod.filemanager.preferences.NavigationLayoutMode;
 import com.cyanogenmod.filemanager.preferences.ObjectIdentifier;
 import com.cyanogenmod.filemanager.preferences.Preferences;
+import com.cyanogenmod.filemanager.ui.policy.DeleteActionPolicy;
 import com.cyanogenmod.filemanager.ui.policy.IntentsActionPolicy;
+import com.cyanogenmod.filemanager.ui.widgets.FlingerListView.OnItemFlingerListener;
+import com.cyanogenmod.filemanager.ui.widgets.FlingerListView.OnItemFlingerResponder;
 import com.cyanogenmod.filemanager.util.CommandHelper;
 import com.cyanogenmod.filemanager.util.DialogHelper;
 import com.cyanogenmod.filemanager.util.ExceptionUtil;
@@ -68,6 +71,8 @@ import java.util.List;
 public class NavigationView extends RelativeLayout implements
     AdapterView.OnItemClickListener, AdapterView.OnItemLongClickListener,
     BreadcrumbListener, OnSelectionChangedListener, OnSelectionListener, OnRequestRefreshListener {
+
+    private static final String TAG = "NavigationView"; //$NON-NLS-1$
 
     /**
      * An interface to communicate selection changes events.
@@ -124,7 +129,57 @@ public class NavigationView extends RelativeLayout implements
         PICKABLE,
     }
 
-    private static final String TAG = "NavigationView"; //$NON-NLS-1$
+    /**
+     * A listener for flinging events from {@link FlingerListView}
+     */
+    private final OnItemFlingerListener mOnItemFlingerListener = new OnItemFlingerListener() {
+
+        @Override
+        public boolean onItemFlingerStart(
+                AdapterView<?> parent, View view, int position, long id) {
+            try {
+                // Response if the item can be removed
+                FileSystemObjectAdapter adapter = (FileSystemObjectAdapter)parent.getAdapter();
+                FileSystemObject fso = adapter.getItem(position);
+                if (fso != null) {
+                    if (fso instanceof ParentDirectory) {
+                        return false;
+                    }
+                    return true;
+                }
+            } catch (Exception e) {
+                ExceptionUtil.translateException(getContext(), e, true, false);
+            }
+            return false;
+        }
+
+        @Override
+        public void onItemFlingerEnd(OnItemFlingerResponder responder,
+                AdapterView<?> parent, View view, int position, long id) {
+
+            try {
+                // Response if the item can be removed
+                FileSystemObjectAdapter adapter = (FileSystemObjectAdapter)parent.getAdapter();
+                FileSystemObject fso = adapter.getItem(position);
+                if (fso != null) {
+                    DeleteActionPolicy.removeFileSystemObject(
+                            getContext(),
+                            fso,
+                            NavigationView.this,
+                            NavigationView.this,
+                            responder);
+                    return;
+                }
+
+                // Cancels the flinger operation
+                responder.cancel();
+
+            } catch (Exception e) {
+                ExceptionUtil.translateException(getContext(), e, true, false);
+                responder.cancel();
+            }
+        }
+    };
 
     private int mId;
     private String mCurrentDir;
@@ -413,6 +468,29 @@ public class NavigationView extends RelativeLayout implements
     }
 
     /**
+     * Method that sets if the view should use flinger gesture detection.
+     *
+     * @param useFlinger If the view should use flinger gesture detection
+     */
+    public void setUseFlinger(boolean useFlinger) {
+        if (this.mCurrentMode.compareTo(NavigationLayoutMode.ICONS) == 0) {
+            // Not supported
+            return;
+        }
+        // Set the flinger listener (only when navigate)
+        if (this.mNavigationMode.compareTo(NAVIGATION_MODE.BROWSABLE) == 0) {
+            if (this.mAdapterView instanceof FlingerListView) {
+                if (useFlinger) {
+                    ((FlingerListView)this.mAdapterView).
+                        setOnItemFlingerListener(this.mOnItemFlingerListener);
+                } else {
+                    ((FlingerListView)this.mAdapterView).setOnItemFlingerListener(null);
+                }
+            }
+        }
+    }
+
+    /**
      * Method that forces the view to scroll to the file system object passed.
      *
      * @param fso The file system object
@@ -425,6 +503,8 @@ public class NavigationView extends RelativeLayout implements
             } catch (Exception e) {
                 this.mAdapterView.setSelection(0);
             }
+        } else {
+            this.mAdapterView.setSelection(0);
         }
     }
 
@@ -471,6 +551,14 @@ public class NavigationView extends RelativeLayout implements
                 return;
             }
 
+            // If we should set the listview to response to flinger gesture detection
+            boolean useFlinger =
+                    Preferences.getSharedPreferences().getBoolean(
+                            FileManagerSettings.SETTINGS_USE_FLINGER.getId(),
+                                ((Boolean)FileManagerSettings.
+                                        SETTINGS_USE_FLINGER.
+                                            getDefaultValue()).booleanValue());
+
             //Creates the new layout
             AdapterView<ListAdapter> newView = null;
             int itemResourceId = -1;
@@ -478,14 +566,32 @@ public class NavigationView extends RelativeLayout implements
                 newView = (AdapterView<ListAdapter>)inflate(
                         getContext(), RESOURCE_MODE_ICONS_LAYOUT, null);
                 itemResourceId = RESOURCE_MODE_ICONS_ITEM;
+
             } else if (newMode.compareTo(NavigationLayoutMode.SIMPLE) == 0) {
                 newView =  (AdapterView<ListAdapter>)inflate(
                         getContext(), RESOURCE_MODE_SIMPLE_LAYOUT, null);
                 itemResourceId = RESOURCE_MODE_SIMPLE_ITEM;
+
+                // Set the flinger listener (only when navigate)
+                if (this.mNavigationMode.compareTo(NAVIGATION_MODE.BROWSABLE) == 0) {
+                    if (useFlinger && newView instanceof FlingerListView) {
+                        ((FlingerListView)newView).
+                            setOnItemFlingerListener(this.mOnItemFlingerListener);
+                    }
+                }
+
             } else if (newMode.compareTo(NavigationLayoutMode.DETAILS) == 0) {
                 newView =  (AdapterView<ListAdapter>)inflate(
                         getContext(), RESOURCE_MODE_DETAILS_LAYOUT, null);
                 itemResourceId = RESOURCE_MODE_DETAILS_ITEM;
+
+                // Set the flinger listener (only when navigate)
+                if (this.mNavigationMode.compareTo(NAVIGATION_MODE.BROWSABLE) == 0) {
+                    if (useFlinger && newView instanceof FlingerListView) {
+                        ((FlingerListView)newView).
+                            setOnItemFlingerListener(this.mOnItemFlingerListener);
+                    }
+                }
             }
 
             //Get the current adapter and its adapter list
@@ -917,6 +1023,8 @@ public class NavigationView extends RelativeLayout implements
     public void onRequestRefresh(Object o) {
         if (o instanceof FileSystemObject) {
             refresh((FileSystemObject)o);
+        } else if (o == null) {
+            refresh();
         }
         onDeselectAll();
     }
@@ -926,8 +1034,10 @@ public class NavigationView extends RelativeLayout implements
      */
     @Override
     public void onRequestRemove(Object o) {
-        if (o instanceof FileSystemObject) {
+        if (o != null && o instanceof FileSystemObject) {
             removeItem((FileSystemObject)o);
+        } else {
+            onRequestRefresh(null);
         }
         onDeselectAll();
     }

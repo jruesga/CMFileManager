@@ -56,6 +56,7 @@ import com.cyanogenmod.filemanager.console.NoSuchFileOrDirectory;
 import com.cyanogenmod.filemanager.listeners.OnRequestRefreshListener;
 import com.cyanogenmod.filemanager.model.Directory;
 import com.cyanogenmod.filemanager.model.FileSystemObject;
+import com.cyanogenmod.filemanager.model.ParentDirectory;
 import com.cyanogenmod.filemanager.model.Query;
 import com.cyanogenmod.filemanager.model.SearchResult;
 import com.cyanogenmod.filemanager.model.Symlink;
@@ -67,8 +68,12 @@ import com.cyanogenmod.filemanager.providers.RecentSearchesContentProvider;
 import com.cyanogenmod.filemanager.tasks.SearchResultDrawingAsyncTask;
 import com.cyanogenmod.filemanager.ui.dialogs.ActionsDialog;
 import com.cyanogenmod.filemanager.ui.dialogs.MessageProgressDialog;
+import com.cyanogenmod.filemanager.ui.policy.DeleteActionPolicy;
 import com.cyanogenmod.filemanager.ui.policy.IntentsActionPolicy;
 import com.cyanogenmod.filemanager.ui.widgets.ButtonItem;
+import com.cyanogenmod.filemanager.ui.widgets.FlingerListView;
+import com.cyanogenmod.filemanager.ui.widgets.FlingerListView.OnItemFlingerListener;
+import com.cyanogenmod.filemanager.ui.widgets.FlingerListView.OnItemFlingerResponder;
 import com.cyanogenmod.filemanager.util.CommandHelper;
 import com.cyanogenmod.filemanager.util.DialogHelper;
 import com.cyanogenmod.filemanager.util.ExceptionUtil;
@@ -134,6 +139,59 @@ public class SearchActivity extends Activity
                         return;
                     }
                 }
+            }
+        }
+    };
+
+    /**
+     * A listener for flinging events from {@link FlingerListView}
+     */
+    private final OnItemFlingerListener mOnItemFlingerListener = new OnItemFlingerListener() {
+
+        @Override
+        public boolean onItemFlingerStart(
+                AdapterView<?> parent, View view, int position, long id) {
+            try {
+                // Response if the item can be removed
+                SearchResultAdapter adapter = (SearchResultAdapter)parent.getAdapter();
+                SearchResult result = adapter.getItem(position);
+                if (result != null && result.getFso() != null) {
+                    if (result.getFso() instanceof ParentDirectory) {
+                        // This is not possible ...
+                        return false;
+                    }
+                    return true;
+                }
+            } catch (Exception e) {
+                ExceptionUtil.translateException(SearchActivity.this, e, true, false);
+            }
+            return false;
+        }
+
+        @Override
+        public void onItemFlingerEnd(OnItemFlingerResponder responder,
+                AdapterView<?> parent, View view, int position, long id) {
+
+            try {
+                // Response if the item can be removed
+                SearchResultAdapter adapter = (SearchResultAdapter)parent.getAdapter();
+                SearchResult result = adapter.getItem(position);
+                if (result != null && result.getFso() != null) {
+                    DeleteActionPolicy.removeFileSystemObject(
+                            SearchActivity.this,
+                            result.getFso(),
+                            null,
+                            SearchActivity.this,
+                            responder);
+                    return;
+                }
+
+                // Cancels the flinger operation
+                responder.cancel();
+
+            } catch (Exception e) {
+                ExceptionUtil.translateException(SearchActivity.this, e, true, false);
+                responder.cancel();
             }
         }
     };
@@ -344,6 +402,18 @@ public class SearchActivity extends Activity
         this.mSearchListView = (ListView)findViewById(R.id.search_listview);
         this.mSearchListView.setOnItemClickListener(this);
         this.mSearchListView.setOnItemLongClickListener(this);
+
+        // If we should set the listview to response to flinger gesture detection
+        boolean useFlinger =
+                Preferences.getSharedPreferences().getBoolean(
+                        FileManagerSettings.SETTINGS_USE_FLINGER.getId(),
+                            ((Boolean)FileManagerSettings.
+                                    SETTINGS_USE_FLINGER.
+                                        getDefaultValue()).booleanValue());
+        if (useFlinger) {
+            ((FlingerListView)this.mSearchListView).
+                    setOnItemFlingerListener(this.mOnItemFlingerListener);
+        }
 
         //Other components
         this.mSearchWaiting = (ProgressBar)findViewById(R.id.search_waiting);

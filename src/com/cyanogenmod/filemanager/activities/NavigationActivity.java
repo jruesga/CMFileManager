@@ -195,6 +195,19 @@ public class NavigationActivity extends Activity
                             return;
                         }
 
+                        // Use flinger
+                        if (key.compareTo(FileManagerSettings.
+                                SETTINGS_USE_FLINGER.getId()) == 0) {
+                            boolean useFlinger =
+                                    Preferences.getSharedPreferences().getBoolean(
+                                            FileManagerSettings.SETTINGS_USE_FLINGER.getId(),
+                                                ((Boolean)FileManagerSettings.
+                                                        SETTINGS_USE_FLINGER.
+                                                            getDefaultValue()).booleanValue());
+                            getCurrentNavigationView().setUseFlinger(useFlinger);
+                            return;
+                        }
+
                         // Access mode
                         if (key.compareTo(FileManagerSettings.
                                 SETTINGS_ACCESS_MODE.getId()) == 0) {
@@ -862,6 +875,8 @@ public class NavigationActivity extends Activity
 
             //Remove from history
             removeFromHistory((FileSystemObject)o);
+        } else {
+            onRequestRefresh(null);
         }
         this.getCurrentNavigationView().onDeselectAll();
     }

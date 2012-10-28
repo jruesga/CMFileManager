@@ -123,6 +123,7 @@ public class SettingsPreferences extends PreferenceActivity {
         private CheckBoxPreference mCaseSensitiveSort;
         private ListPreference mFreeDiskSpaceWarningLevel;
         private CheckBoxPreference mComputeFolderStatistics;
+        private CheckBoxPreference mUseFlinger;
         private ListPreference mAccessMode;
         private CheckBoxPreference mDebugTraces;
 
@@ -234,6 +235,12 @@ public class SettingsPreferences extends PreferenceActivity {
                     (CheckBoxPreference)findPreference(
                             FileManagerSettings.SETTINGS_COMPUTE_FOLDER_STATISTICS.getId());
             this.mComputeFolderStatistics.setOnPreferenceChangeListener(this.mOnChangeListener);
+
+            // Use flinger
+            this.mUseFlinger =
+                    (CheckBoxPreference)findPreference(
+                            FileManagerSettings.SETTINGS_USE_FLINGER.getId());
+            this.mUseFlinger.setOnPreferenceChangeListener(this.mOnChangeListener);
 
             // Access mode
             this.mAccessMode =

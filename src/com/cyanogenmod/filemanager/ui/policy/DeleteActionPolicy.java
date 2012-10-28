@@ -28,6 +28,7 @@ import com.cyanogenmod.filemanager.console.RelaunchableException;
 import com.cyanogenmod.filemanager.listeners.OnRequestRefreshListener;
 import com.cyanogenmod.filemanager.listeners.OnSelectionListener;
 import com.cyanogenmod.filemanager.model.FileSystemObject;
+import com.cyanogenmod.filemanager.ui.widgets.FlingerListView.OnItemFlingerResponder;
 import com.cyanogenmod.filemanager.util.CommandHelper;
 import com.cyanogenmod.filemanager.util.DialogHelper;
 import com.cyanogenmod.filemanager.util.ExceptionUtil;
@@ -52,15 +53,20 @@ public final class DeleteActionPolicy extends ActionsPolicy {
      * @param fso The file system object to remove
      * @param onSelectionListener The listener for obtain selection information (required)
      * @param onRequestRefreshListener The listener for request a refresh (optional)
+     * @param onItemFlingerResponder The flinger responder, only if the action was initialized
+     * by a flinger gesture (optional)
      */
     public static void removeFileSystemObject(
             final Context ctx, final FileSystemObject fso,
             final OnSelectionListener onSelectionListener,
-            final OnRequestRefreshListener onRequestRefreshListener) {
+            final OnRequestRefreshListener onRequestRefreshListener,
+            final OnItemFlingerResponder onItemFlingerResponder) {
         // Generate an array and invoke internal method
         List<FileSystemObject> files = new ArrayList<FileSystemObject>(1);
         files.add(fso);
-        removeFileSystemObjects(ctx, files, onSelectionListener, onRequestRefreshListener);
+        removeFileSystemObjects(
+                ctx, files, onSelectionListener,
+                onRequestRefreshListener, onItemFlingerResponder);
     }
 
     /**
@@ -70,11 +76,14 @@ public final class DeleteActionPolicy extends ActionsPolicy {
      * @param files The list of files to remove
      * @param onSelectionListener The listener for obtain selection information (required)
      * @param onRequestRefreshListener The listener for request a refresh (optional)
+     * @param onItemFlingerResponder The flinger responder, only if the action was initialized
+     * by a flinger gesture (optional)
      */
     public static void removeFileSystemObjects(
             final Context ctx, final List<FileSystemObject> files,
             final OnSelectionListener onSelectionListener,
-            final OnRequestRefreshListener onRequestRefreshListener) {
+            final OnRequestRefreshListener onRequestRefreshListener,
+            final OnItemFlingerResponder onItemFlingerResponder) {
 
         // Ask the user before remove
         AlertDialog dialog = DialogHelper.createYesNoDialog(
@@ -90,7 +99,13 @@ public final class DeleteActionPolicy extends ActionsPolicy {
                                 ctx,
                                 files,
                                 onSelectionListener,
-                                onRequestRefreshListener);
+                                onRequestRefreshListener,
+                                onItemFlingerResponder);
+                    } else {
+                        // Flinger operation should be cancelled
+                        if (onItemFlingerResponder != null) {
+                            onItemFlingerResponder.cancel();
+                        }
                     }
                 }
            });
@@ -104,12 +119,15 @@ public final class DeleteActionPolicy extends ActionsPolicy {
      * @param files The list of files to remove
      * @param onSelectionListener The listener for obtain selection information (optional)
      * @param onRequestRefreshListener The listener for request a refresh (optional)
+     * @param onItemFlingerResponder The flinger responder, only if the action was initialized
+     * by a flinger gesture (optional)
      * @hide
      */
     static void removeFileSystemObjectsInBackground(
             final Context ctx, final List<FileSystemObject> files,
             final OnSelectionListener onSelectionListener,
-            final OnRequestRefreshListener onRequestRefreshListener) {
+            final OnRequestRefreshListener onRequestRefreshListener,
+            final OnItemFlingerResponder onItemFlingerResponder) {
 
         // Some previous checks prior to execute
         // 1.- Check the operation consistency (only if it is viable)
@@ -167,10 +185,21 @@ public final class DeleteActionPolicy extends ActionsPolicy {
 
             @Override
             public void onSuccess() {
-                //Operation complete. Refresh
+                //Operation complete.
+
+                // Confirms flinger operation
+                if (onItemFlingerResponder != null) {
+                    onItemFlingerResponder.accept();
+                }
+
+                // Refresh
                 if (this.mOnRequestRefreshListener != null) {
-                  // The reference is not the same, so refresh the complete navigation view
-                  this.mOnRequestRefreshListener.onRequestRefresh(null);
+                    // The reference is not the same, so refresh the complete navigation view
+                    if (files != null && files.size() == 1) {
+                        this.mOnRequestRefreshListener.onRequestRemove(files.get(0));
+                    } else {
+                        this.mOnRequestRefreshListener.onRequestRemove(null);
+                    }
                 }
                 ActionsPolicy.showOperationSuccessMsg(ctx);
             }
@@ -250,11 +279,21 @@ public final class DeleteActionPolicy extends ActionsPolicy {
 
                         // Persist the exception?
                         if (this.mCause != null) {
+                            // Cancels the flinger
+                            if (onItemFlingerResponder != null) {
+                                onItemFlingerResponder.cancel();
+                            }
+
                             // The exception must be elevated
                             throw this.mCause;
                         }
 
                     } else {
+                        // Cancels the flinger
+                        if (onItemFlingerResponder != null) {
+                            onItemFlingerResponder.cancel();
+                        }
+
                         // The exception must be elevated
                         throw e;
                     }
@@ -275,6 +314,11 @@ public final class DeleteActionPolicy extends ActionsPolicy {
                     // Operation complete successfully
                 }
                 if (failed) {
+                    // Cancels the flinger
+                    if (onItemFlingerResponder != null) {
+                        onItemFlingerResponder.cancel();
+                    }
+
                     throw new ExecutionException(
                             String.format(
                                     "Failed to delete file: %s", fso.getFullPath())); //$NON-NLS-1$

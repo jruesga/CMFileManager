@@ -113,7 +113,7 @@ public abstract class Shell extends Command {
             }
             throw new InsufficientPermissionsException();
         }
-        if (err.indexOf("Operation not permitted") != -1) { //$NON-NLS-1$
+        if (exitCode != 0 && err.indexOf("Operation not permitted") != -1) { //$NON-NLS-1$
             if (program instanceof SyncResultExecutable) {
                 throw new InsufficientPermissionsException((SyncResultExecutable)program);
             }

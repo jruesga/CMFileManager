@@ -657,6 +657,17 @@ public class NavigationView extends RelativeLayout implements
      */
     public void removeItem(FileSystemObject fso) {
         this.mAdapter.remove(fso);
+        // Delete also from internal list
+        if (fso != null) {
+            int cc = this.mFiles.size()-1;
+            for (int i = cc; i >= 0; i--) {
+                FileSystemObject f = this.mFiles.get(i);
+                if (f != null && f.compareTo(fso) == 0) {
+                    this.mFiles.remove(i);
+                    break;
+                }
+            }
+        }
         this.mAdapter.notifyDataSetChanged();
     }
 
@@ -874,22 +885,22 @@ public class NavigationView extends RelativeLayout implements
 
             //Load the data
             loadData(sortedFiles);
-            NavigationView.this.mFiles = sortedFiles;
+            this.mFiles = sortedFiles;
             if (searchInfo != null) {
                 searchInfo.setSuccessNavigation(true);
             }
 
             //Add to history?
             if (addToHistory && hasChanged && isNewHistory) {
-                if (NavigationView.this.mOnHistoryListener != null) {
+                if (this.mOnHistoryListener != null) {
                     //Communicate the need of a history change
-                    NavigationView.this.mOnHistoryListener.onNewHistory(onSaveState());
+                    this.mOnHistoryListener.onNewHistory(onSaveState());
                 }
             }
 
             //Change the breadcrumb
-            if (NavigationView.this.mBreadcrumb != null) {
-                NavigationView.this.mBreadcrumb.changeBreadcrumbPath(newDir, this.mChRooted);
+            if (this.mBreadcrumb != null) {
+                this.mBreadcrumb.changeBreadcrumbPath(newDir, this.mChRooted);
             }
 
             //Scroll to object?
@@ -898,12 +909,12 @@ public class NavigationView extends RelativeLayout implements
             }
 
             //The current directory is now the "newDir"
-            NavigationView.this.mCurrentDir = newDir;
+            this.mCurrentDir = newDir;
 
         } finally {
             //If calling activity is search, then save the search history
             if (searchInfo != null) {
-                NavigationView.this.mOnHistoryListener.onNewHistory(searchInfo);
+                this.mOnHistoryListener.onNewHistory(searchInfo);
             }
 
             //End of loading data

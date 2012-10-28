@@ -19,6 +19,7 @@ package com.cyanogenmod.filemanager.ui.widgets;
 import android.content.Context;
 import android.graphics.Rect;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.HapticFeedbackConstants;
 import android.view.MotionEvent;
 import android.view.View;
@@ -229,6 +230,11 @@ public class FlingerListView extends ListView {
 
     @Override
     public boolean onTouchEvent(MotionEvent ev) {
+        // If no flinger support is request, don't change the default behaviour
+        if (this.mOnItemFlingerListener == null) {
+            return super.onTouchEvent(ev);
+        }
+
         // Get information about the x and y
         int x = (int) ev.getX();
         int y = (int) ev.getY();
@@ -318,7 +324,7 @@ public class FlingerListView extends ListView {
                     Math.abs(this.mCurrentY - this.mStartY) > this.mFlingingViewHeight;
 
             // With flinging support
-            if (this.mFlingingView != null && this.mOnItemFlingerListener != null) {
+            if (this.mFlingingView != null) {
                 // Only if event has changed (and only to the right and if not scrolling)
                 if (!this.mScrolling) {
                     if (ev.getX() >= this.mStartX && (ev.getX() - this.mCurrentX != 0)) {
@@ -393,8 +399,7 @@ public class FlingerListView extends ListView {
             }
 
             // What is the motion
-            if (!this.mScrolling && this.mFlingingView != null &&
-                 this.mOnItemFlingerListener != null) {
+            if (!this.mScrolling && this.mFlingingView != null) {
                 if (!this.mMoveStarted) {
                     if (!this.mLongPress) {
                         this.mFlingingView.removeCallbacks(this.mLongPressDetection);

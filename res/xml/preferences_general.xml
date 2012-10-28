@@ -47,12 +47,14 @@
         android:defaultValue="false" />
 
       <!-- Use flinger -->
+      <!--
       <CheckBoxPreference
         android:key="cm_filemanager_use_flinger"
         android:title="@string/pref_use_flinger"
         android:summary="@string/pref_use_flinger_summary"
         android:persistent="true"
         android:defaultValue="true" />
+       -->
 
     </PreferenceCategory>
 

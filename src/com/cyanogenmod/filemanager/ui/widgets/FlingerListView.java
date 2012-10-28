@@ -312,14 +312,13 @@ public class FlingerListView extends ListView {
                 FlingerListView.this.mFlingingView.setPressed(false);
             }
 
+            // Detect scrolling
+            this.mCurrentY = (int)ev.getY();
+            this.mScrolling =
+                    Math.abs(this.mCurrentY - this.mStartY) > this.mFlingingViewHeight;
+
             // With flinging support
             if (this.mFlingingView != null && this.mOnItemFlingerListener != null) {
-                // Detect scrolling
-                this.mCurrentY = (int)ev.getY();
-                this.mScrolling =
-                        Math.abs(this.mCurrentY - this.mStartY) > this.mFlingingViewHeight;
-
-
                 // Only if event has changed (and only to the right and if not scrolling)
                 if (!this.mScrolling) {
                     if (ev.getX() >= this.mStartX && (ev.getX() - this.mCurrentX != 0)) {

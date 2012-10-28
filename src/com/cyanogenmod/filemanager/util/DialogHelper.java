@@ -153,10 +153,27 @@ public final class DialogHelper {
      */
     public static AlertDialog createAlertDialog(
             Context context, int icon, int title, String message, boolean allCaps) {
+        return createAlertDialog(context, icon, title, message, allCaps, false);
+    }
+
+    /**
+     * Method that creates a new {@link AlertDialog}.
+     *
+     * @param context The current context
+     * @param icon The icon resource
+     * @param title The resource identifier of the title of the alert dialog
+     * @param message The message of the alert dialog
+     * @param allCaps If the title must have his text in caps or not
+     * @param scrolled If message need to be scrolled
+     * @return AlertDialog The alert dialog reference
+     */
+    public static AlertDialog createAlertDialog(
+            Context context, int icon, int title, String message,
+            boolean allCaps, boolean scrolled) {
         //Create the alert dialog
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         builder.setCustomTitle(createTitle(context, icon, context.getString(title), allCaps));
-        builder.setView(createMessage(context, message));
+        builder.setView(createMessage(context, message, scrolled));
         builder.setPositiveButton(context.getString(R.string.ok), null);
         return builder.create();
     }
@@ -259,7 +276,7 @@ public final class DialogHelper {
                         0,
                         context.getString(title),
                         false));
-        builder.setView(createMessage(context, message));
+        builder.setView(createMessage(context, message, false));
         AlertDialog dialog = builder.create();
         dialog.setButton(
                 DialogInterface.BUTTON_POSITIVE, context.getString(R.string.yes), onClickListener);
@@ -301,7 +318,7 @@ public final class DialogHelper {
                         0,
                         context.getString(title),
                         false));
-        builder.setView(createMessage(context, message));
+        builder.setView(createMessage(context, message, false));
         AlertDialog dialog = builder.create();
         dialog.setButton(
                 DialogInterface.BUTTON_POSITIVE, context.getString(R.string.yes), onClickListener);
@@ -334,7 +351,7 @@ public final class DialogHelper {
                         0,
                         context.getString(title),
                         false));
-        builder.setView(createMessage(context, message));
+        builder.setView(createMessage(context, message, false));
         AlertDialog dialog = builder.create();
         dialog.setButton(
                 DialogInterface.BUTTON_POSITIVE, context.getString(button1), onClickListener);
@@ -366,7 +383,7 @@ public final class DialogHelper {
                         0,
                         context.getString(title),
                         false));
-        builder.setView(createMessage(context, message));
+        builder.setView(createMessage(context, message, false));
         AlertDialog dialog = builder.create();
         dialog.setButton(
                 DialogInterface.BUTTON_POSITIVE, context.getString(button1), onClickListener);
@@ -442,11 +459,13 @@ public final class DialogHelper {
      * @param message The the message of the alert dialog
      * @return The title view
      */
-    private static View createMessage(Context context, String message) {
+    private static View createMessage(Context context, String message, boolean scrolled) {
         //Inflate the dialog layouts
         LayoutInflater li =
                 (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View lyMessage = li.inflate(R.layout.dialog_message, null);
+        View lyMessage = li.inflate(
+                            scrolled ? R.layout.dialog_scrolled_message : R.layout.dialog_message,
+                            null);
         TextView vMsg = (TextView)lyMessage.findViewById(R.id.dialog_message);
         vMsg.setText(message);
         return lyMessage;

@@ -395,7 +395,8 @@ public class NavigationActivity extends Activity
         //Display the welcome message?
         if (firstUse) {
             AlertDialog dialog = DialogHelper.createAlertDialog(
-                this, R.drawable.ic_launcher, R.string.welcome_title, R.string.welcome_msg, false);
+                this, R.drawable.ic_launcher,
+                R.string.welcome_title, getString(R.string.welcome_msg), false, true);
             dialog.show();
 
             // Don't display again this dialog

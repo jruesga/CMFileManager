@@ -36,6 +36,7 @@ import android.widget.Toast;
 
 import com.cyanogenmod.filemanager.FileManagerApplication;
 import com.cyanogenmod.filemanager.R;
+import com.cyanogenmod.filemanager.activities.ChangeLogActivity;
 import com.cyanogenmod.filemanager.console.ConsoleBuilder;
 import com.cyanogenmod.filemanager.preferences.AccessMode;
 import com.cyanogenmod.filemanager.preferences.FileManagerSettings;
@@ -99,6 +100,7 @@ public class SettingsPreferences extends PreferenceActivity {
         } catch (Exception e) {
             aboutHeader.summary = getString(R.string.pref_about_summary, ""); //$NON-NLS-1$
         }
+        aboutHeader.intent = new Intent(getApplicationContext(), ChangeLogActivity.class);
     }
 
     /**

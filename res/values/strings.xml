@@ -697,6 +697,9 @@
       by overwriting system files.\n\n
       Do you want to continue?</string>
 
+  <!-- ChangeLog * Dialog title -->
+  <string name="changelog_title">Changelog</string>
+
   <!-- Welcome Dialog * Title -->
   <string name="welcome_title">Welcome</string>
   <!-- Welcome Dialog * Message -->

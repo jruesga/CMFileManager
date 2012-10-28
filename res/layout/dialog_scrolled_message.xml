@@ -34,7 +34,7 @@
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
       android:singleLine="false"
-      android:gravity="left|center_vertical"
+      android:gravity="left|top"
       android:textAppearance="@style/primary_text_appearance"
       android:textStyle="normal" />
 

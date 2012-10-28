@@ -51,8 +51,8 @@ public final class AndroidHelper {
     }
 
     /**
-     * This method converts dp unit to equivalent device specific value in pixels. 
-     * 
+     * This method converts dp unit to equivalent device specific value in pixels.
+     *
      * @param ctx The current context
      * @param dp A value in dp (Device independent pixels) unit
      * @return float A float value to represent Pixels equivalent to dp according to device
@@ -65,7 +65,7 @@ public final class AndroidHelper {
 
     /**
      * This method converts device specific pixels to device independent pixels.
-     * 
+     *
      * @param ctx The current context
      * @param px A value in px (pixels) unit
      * @return A float value to represent dp equivalent to px value

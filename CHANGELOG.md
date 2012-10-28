@@ -29,4 +29,3 @@ Features:
 * Open and Open With
 * Send to
 * Internal editor
-* Swipe support

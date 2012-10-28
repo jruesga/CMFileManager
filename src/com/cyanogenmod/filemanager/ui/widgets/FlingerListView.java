@@ -128,7 +128,7 @@ public class FlingerListView extends ListView {
      * The default percentage for flinging remove event.
      */
     private static final float DEFAULT_FLING_REMOVE_PERCENTAJE = 0.60f;
-    
+
     /**
      * The minimum flinger threshold to start the flinger motion (in dp)
      */
@@ -461,7 +461,7 @@ public class FlingerListView extends ListView {
 
         return super.onTouchEvent(ev);
     }
-    
+
     /**
      * Method that clean the internal variables
      * @hide

@@ -88,7 +88,7 @@ public final class DeleteActionPolicy extends ActionsPolicy {
         // Ask the user before remove
         AlertDialog dialog = DialogHelper.createYesNoDialog(
             ctx,
-            R.string.confirm_operation,
+            R.string.confirm_deletion,
             R.string.actions_ask_undone_operation_msg,
             new DialogInterface.OnClickListener() {
                 @Override

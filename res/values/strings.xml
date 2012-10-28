@@ -67,6 +67,10 @@
   <string name="error_title">Error detected</string>
   <!-- Confirm operation dialog title -->
   <string name="confirm_operation">Confirm operation</string>
+  <!-- Confirm overwrite dialog title -->
+  <string name="confirm_overwrite">Confirm overwrite</string>
+  <!-- Confirm deletion dialog title -->
+  <string name="confirm_deletion">Confirm deletion</string>
 
   <!--  A console couldn't be created. Ask the user to change the access mode. Dialog Title -->
   <string name="msgs_change_to_prompt_access_mode_title">Confirm switch</string>

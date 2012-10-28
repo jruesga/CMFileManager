@@ -460,7 +460,7 @@ public final class CompressActionPolicy extends ActionsPolicy {
                             ctx,
                             android.R.string.cancel,
                             R.string.overwrite,
-                            R.string.confirm_operation,
+                            R.string.confirm_overwrite,
                             ctx.getString(R.string.msgs_overwrite_files),
                             new DialogInterface.OnClickListener() {
                                 @Override
@@ -708,7 +708,7 @@ public final class CompressActionPolicy extends ActionsPolicy {
                             ctx,
                             android.R.string.cancel,
                             R.string.overwrite,
-                            R.string.confirm_operation,
+                            R.string.confirm_overwrite,
                             ctx.getString(R.string.msgs_overwrite_files),
                             new DialogInterface.OnClickListener() {
                                 @Override
@@ -746,7 +746,7 @@ public final class CompressActionPolicy extends ActionsPolicy {
         if (ConsoleBuilder.isPrivileged() && ext.compareTo("zip") == 0) { //$NON-NLS-1$
             AlertDialog dialog = DialogHelper.createYesNoDialog(
                 ctx,
-                R.string.confirm_operation,
+                R.string.confirm_overwrite,
                 R.string.security_warning_extract,
                 new DialogInterface.OnClickListener() {
                     @Override

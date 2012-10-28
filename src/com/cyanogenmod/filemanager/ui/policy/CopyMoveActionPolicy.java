@@ -432,7 +432,7 @@ public final class CopyMoveActionPolicy extends ActionsPolicy {
                                 ctx,
                                 android.R.string.cancel,
                                 R.string.overwrite,
-                                R.string.confirm_operation,
+                                R.string.confirm_overwrite,
                                 ctx.getString(R.string.msgs_overwrite_files),
                                 new DialogInterface.OnClickListener() {
                                     @Override

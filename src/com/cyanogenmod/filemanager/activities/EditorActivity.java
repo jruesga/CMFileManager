@@ -131,6 +131,7 @@ public class EditorActivity extends Activity implements TextWatcher {
                 if (!EditorActivity.this.mReadOnly && partial != null) {
                     for (int i = 0; i < partial.length-1; i++) {
                         if (!isPrintableCharacter((char)partial[i])) {
+                            EditorActivity.this.mBinary = true;
                             EditorActivity.this.mReadOnly = true;
                             break;
                         }
@@ -207,7 +208,10 @@ public class EditorActivity extends Activity implements TextWatcher {
         }
     }
 
-    private FileSystemObject mFso;
+    /**
+     * @hide
+     */
+    FileSystemObject mFso;
 
     private int mBufferSize;
     private int mMaxFileSize;
@@ -220,6 +224,10 @@ public class EditorActivity extends Activity implements TextWatcher {
      * @hide
      */
     boolean mReadOnly;
+    /**
+     * @hide
+     */
+    boolean mBinary;
 
     /**
      * @hide
@@ -384,6 +392,7 @@ public class EditorActivity extends Activity implements TextWatcher {
     private void readFile() {
         // For now editor is not dirty and editable.
         setDirty(false);
+        this.mBinary = false;
 
         // Check for a valid action
         String action = getIntent().getAction();
@@ -531,8 +540,13 @@ public class EditorActivity extends Activity implements TextWatcher {
                     }
                 } else {
                     // Now we have the buffer, set the text of the editor
-                    EditorActivity.this.mEditor.setText(
-                            this.mReader.mBuffer, BufferType.EDITABLE);
+                    if (!EditorActivity.this.mBinary && EditorActivity.this.mFso.getSize() == 0) {
+                        // Clean the document
+                        EditorActivity.this.mEditor.setText(""); //$NON-NLS-1$
+                    } else {
+                        EditorActivity.this.mEditor.setText(
+                                this.mReader.mBuffer, BufferType.EDITABLE);
+                    }
                     this.mReader.mBuffer = null; //Cleanup
                     setDirty(false);
                     EditorActivity.this.mEditor.setEnabled(!EditorActivity.this.mReadOnly);

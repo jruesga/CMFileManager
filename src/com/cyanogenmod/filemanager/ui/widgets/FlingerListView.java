@@ -26,6 +26,8 @@ import android.view.ViewConfiguration;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
+import com.cyanogenmod.filemanager.util.AndroidHelper;
+
 /**
  * A {@link ListView} implementation for remove items using flinging gesture.
  */
@@ -126,6 +128,11 @@ public class FlingerListView extends ListView {
      * The default percentage for flinging remove event.
      */
     private static final float DEFAULT_FLING_REMOVE_PERCENTAJE = 0.60f;
+    
+    /**
+     * The minimum flinger threshold to start the flinger motion (in dp)
+     */
+    private static final int MIN_FLINGER_THRESHOLD = 16;
 
     // Flinging data
     private int mTranslationX = 0;
@@ -146,6 +153,7 @@ public class FlingerListView extends ListView {
     private Runnable mLongPressDetection;
 
     private float mFlingRemovePercentaje;
+    private float mFlingThreshold;
     private OnItemFlingerListener mOnItemFlingerListener;
 
     /**
@@ -190,6 +198,7 @@ public class FlingerListView extends ListView {
     private void init() {
         //Initialize variables
         this.mFlingRemovePercentaje = DEFAULT_FLING_REMOVE_PERCENTAJE;
+        this.mFlingThreshold = AndroidHelper.convertDpToPixel(getContext(), MIN_FLINGER_THRESHOLD);
     }
 
     /**
@@ -234,12 +243,17 @@ public class FlingerListView extends ListView {
             return super.onTouchEvent(ev);
         }
 
+        // This events are trap inside this method
+        setLongClickable(false);
+        setClickable(false);
+
         // Get information about the x and y
         int x = (int) ev.getX();
         int y = (int) ev.getY();
 
         // Detect the motion
-        switch (ev.getAction()) {
+        int action = ev.getAction();
+        switch (action & MotionEvent.ACTION_MASK) {
         case MotionEvent.ACTION_DOWN:
             // Clean variables
             this.mScrolling = false;
@@ -301,10 +315,15 @@ public class FlingerListView extends ListView {
                     public void run() {
                         if (FlingerListView.this.mFlingingViewPressed) {
                             FlingerListView.this.mFlingingView.setPressed(true);
+                            return;
                         }
+                        FlingerListView.this.mFlingingView.setPressed(false);
                     }
                 }, PRESSED_DELAY_TIME);
 
+                // Enable this, cause some strange effects. By the other side, the scrolling
+                // is not as much smooth as it should be
+                //super.onTouchEvent(ev);
                 return true;
             }
             break;
@@ -314,21 +333,30 @@ public class FlingerListView extends ListView {
             if (this.mFlingingView != null) {
                 this.mFlingingView.removeCallbacks(this.mLongPressDetection);
                 this.mFlingingViewPressed = false;
-                FlingerListView.this.mFlingingView.setPressed(false);
+                this.mFlingingView.setPressed(false);
             }
 
             // Detect scrolling
             this.mCurrentY = (int)ev.getY();
             this.mScrolling =
                     Math.abs(this.mCurrentY - this.mStartY) > this.mFlingingViewHeight;
+            if (this.mFlingingStarted) {
+                // Don't allow scrolling
+                this.mScrolling = false;
+            }
 
             // With flinging support
             if (this.mFlingingView != null) {
                 // Only if event has changed (and only to the right and if not scrolling)
                 if (!this.mScrolling) {
                     if (ev.getX() >= this.mStartX && (ev.getX() - this.mCurrentX != 0)) {
+                        this.mCurrentX = (int)ev.getX();
+                        this.mTranslationX = this.mCurrentX - this.mStartX;
+                        this.mFlingingView.setTranslationX(this.mTranslationX);
+                        this.mFlingingView.setPressed(false);
+
                         // Started
-                        if (!this.mFlingingStarted) {
+                        if (!this.mFlingingStarted && this.mTranslationX > this.mFlingThreshold) {
                             // Flinging starting
                             if (!this.mOnItemFlingerListener.onItemFlingerStart(
                                     this,
@@ -339,12 +367,6 @@ public class FlingerListView extends ListView {
                             }
                             this.mFlingingStarted = true;
                         }
-
-
-                        this.mCurrentX = (int)ev.getX();
-                        this.mTranslationX = this.mCurrentX - this.mStartX;
-                        this.mFlingingView.setTranslationX(this.mTranslationX);
-                        this.mFlingingView.setPressed(false);
 
                         // Detect if flinging occurs
                         float flingLimit =
@@ -375,6 +397,9 @@ public class FlingerListView extends ListView {
                     }
                 }
             }
+            if (this.mFlingingStarted) {
+                return true;
+            }
             break;
 
         case MotionEvent.ACTION_UP:
@@ -401,8 +426,10 @@ public class FlingerListView extends ListView {
             if (!this.mScrolling && this.mFlingingView != null) {
                 if (!this.mMoveStarted) {
                     if (!this.mLongPress) {
+                        this.mFlingingViewPressed = false;
                         this.mFlingingView.removeCallbacks(this.mLongPressDetection);
                         this.mFlingingView.setPressed(true);
+
                         this.mFlingingView.postDelayed(new Runnable() {
                             @Override
                             @SuppressWarnings("synthetic-access")
@@ -418,6 +445,7 @@ public class FlingerListView extends ListView {
                 }
 
                 // Handled
+                this.mFlingingView.setPressed(false);
                 return true;
             }
 
@@ -433,7 +461,7 @@ public class FlingerListView extends ListView {
 
         return super.onTouchEvent(ev);
     }
-
+    
     /**
      * Method that clean the internal variables
      * @hide

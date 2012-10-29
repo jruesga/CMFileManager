@@ -15,9 +15,11 @@
  ** limitations under the License.
 -->
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  android:id="@+id/navigation_statusbar"
   android:layout_width="match_parent"
   android:layout_height="@dimen/default_row_height"
-  android:background="@drawable/bg_holo_statusbar" >
+  android:background="@drawable/bg_holo_statusbar"
+  android:visibility="invisible" >
 
   <com.cyanogenmod.filemanager.ui.widgets.ButtonItem
       android:id="@+id/ab_overflow"

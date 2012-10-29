@@ -36,8 +36,6 @@
     android:visibility="invisible" />
 
   <!-- StatusBar -->
-  <include
-    android:id="@+id/navigation_statusbar"
-    layout="@layout/navigation_view_statusbar" />
+  <include layout="@layout/navigation_view_statusbar" />
 
 </LinearLayout>

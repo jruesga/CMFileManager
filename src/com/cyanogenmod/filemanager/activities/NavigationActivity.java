@@ -372,6 +372,7 @@ public class NavigationActivity extends Activity
      * @return NavigationView The current navigation view
      */
     public NavigationView getNavigationView(int viewId) {
+        if (this.mNavigationViews == null) return null;
         return this.mNavigationViews[viewId];
     }
 
@@ -476,6 +477,10 @@ public class NavigationActivity extends Activity
         boolean showOptionsMenu = AndroidHelper.showOptionsMenu(getApplicationContext());
         overflow.setVisibility(showOptionsMenu ? View.VISIBLE : View.GONE);
         this.mOptionsAnchorView = showOptionsMenu ? overflow : this.mActionBar;
+
+        // Show the status bar
+        View statusBar = findViewById(R.id.navigation_statusbar);
+        statusBar.setVisibility(View.VISIBLE);
     }
 
     /**
@@ -1084,6 +1089,9 @@ public class NavigationActivity extends Activity
      * @return boolean Indicates if the action must be intercepted
      */
     private boolean checkBackAction() {
+        // We need a basic structure to check this 
+        if (getCurrentNavigationView() == null) return false;
+
         //Check if the configuration view is showing. In this case back
         //action must be "close configuration"
         if (getCurrentNavigationView().getCustomTitle().isConfigurationViewShowing()) {

@@ -285,9 +285,6 @@ public class NavigationActivity extends Activity
         filter.addAction(FileManagerSettings.INTENT_FILE_CHANGED);
         registerReceiver(this.mOnSettingChangeReceiver, filter);
 
-        //Request features
-        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-
         //Set the main layout of the activity
         setContentView(R.layout.navigation);
 

@@ -52,6 +52,7 @@ import com.cyanogenmod.filemanager.ui.dialogs.InitialDirectoryDialog;
 import com.cyanogenmod.filemanager.ui.widgets.FlingerListView;
 import com.cyanogenmod.filemanager.ui.widgets.FlingerListView.OnItemFlingerListener;
 import com.cyanogenmod.filemanager.ui.widgets.FlingerListView.OnItemFlingerResponder;
+import com.cyanogenmod.filemanager.util.AndroidHelper;
 import com.cyanogenmod.filemanager.util.CommandHelper;
 import com.cyanogenmod.filemanager.util.DialogHelper;
 import com.cyanogenmod.filemanager.util.ExceptionUtil;
@@ -150,7 +151,12 @@ public class BookmarksActivity extends Activity implements OnItemClickListener, 
         this.mChRooted = FileManagerApplication.getAccessMode().compareTo(AccessMode.SAFE) == 0;
 
         //Request features
-        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+        if (!AndroidHelper.isTablet(this)) {
+            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+        } else {
+            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+        }
+
         //Set in transition
         overridePendingTransition(R.anim.translate_to_right_in, R.anim.hold_out);
 
@@ -551,4 +557,3 @@ public class BookmarksActivity extends Activity implements OnItemClickListener, 
         return bookmarks;
     }
 }
-

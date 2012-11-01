@@ -129,8 +129,6 @@ public class ShortcutActivity extends Activity implements OnCancelListener, OnDi
                 return;
             }
 
-
-
             // Check what type of shortcut is registered and apply the best action
             if (type.compareTo(SHORTCUT_TYPE_NAVIGATE) == 0) {
                 // We have to finish here; this activity is only a wrapper
@@ -142,8 +140,6 @@ public class ShortcutActivity extends Activity implements OnCancelListener, OnDi
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
-
-
 
             } else {
                 // Open the file. Delegate in action policy

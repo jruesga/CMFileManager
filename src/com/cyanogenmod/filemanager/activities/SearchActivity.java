@@ -74,6 +74,7 @@ import com.cyanogenmod.filemanager.ui.widgets.ButtonItem;
 import com.cyanogenmod.filemanager.ui.widgets.FlingerListView;
 import com.cyanogenmod.filemanager.ui.widgets.FlingerListView.OnItemFlingerListener;
 import com.cyanogenmod.filemanager.ui.widgets.FlingerListView.OnItemFlingerResponder;
+import com.cyanogenmod.filemanager.util.AndroidHelper;
 import com.cyanogenmod.filemanager.util.CommandHelper;
 import com.cyanogenmod.filemanager.util.DialogHelper;
 import com.cyanogenmod.filemanager.util.ExceptionUtil;
@@ -264,7 +265,12 @@ public class SearchActivity extends Activity
         registerReceiver(this.mOnSettingChangeReceiver, filter);
 
         //Request features
-        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+        if (!AndroidHelper.isTablet(this)) {
+            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+        } else {
+            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+        }
+
         //Set in transition
         overridePendingTransition(R.anim.translate_to_right_in, R.anim.hold_out);
 
@@ -586,7 +592,6 @@ public class SearchActivity extends Activity
         this.mSearchTerms.setText(
                 Html.fromHtml(getString(R.string.search_terms, query.getTerms())));
 
-
         //Now, do the search in background
         this.mSearchListView.post(new Runnable() {
             @Override
@@ -720,7 +725,6 @@ public class SearchActivity extends Activity
             }
         });
     }
-
 
     /**
      * Method that filter the user queries for valid queries only.<br/>

@@ -111,5 +111,4 @@ public class ChangeLogActivity extends Activity implements OnCancelListener, OnD
         finish();
     }
 
-
 }

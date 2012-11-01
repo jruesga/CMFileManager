@@ -89,7 +89,12 @@ public class HistoryActivity extends Activity implements OnItemClickListener {
         this.mIsClearHistory = false;
 
         //Request features
-        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+        if (!AndroidHelper.isTablet(this)) {
+            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+        } else {
+            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+        }
+
         //Set in transition
         overridePendingTransition(R.anim.translate_to_right_in, R.anim.hold_out);
 
@@ -335,4 +340,3 @@ public class HistoryActivity extends Activity implements OnItemClickListener {
         popup.show();
     }
 }
-

@@ -288,6 +288,13 @@ public class NavigationActivity extends Activity
         //Set the main layout of the activity
         setContentView(R.layout.navigation);
 
+        //Request features
+        if (!AndroidHelper.isTablet(this)) {
+            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+        } else {
+            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+        }
+
         // Show welcome message
         showWelcomeMsg();
 
@@ -626,7 +633,6 @@ public class NavigationActivity extends Activity
             getCurrentNavigationView().changeCurrentDir(navigateTo);
         }
     }
-
 
     /**
      * {@inheritDoc}

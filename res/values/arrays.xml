@@ -1,22 +1,22 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!-- Copyright (C) 2012 The CyanogenMod Project
-
-     Licensed under the Apache License, Version 2.0 (the "License");
-     you may not use this file except in compliance with the License.
-     You may obtain a copy of the License at
-
-          http://www.apache.org/licenses/LICENSE-2.0
-
-     Unless required by applicable law or agreed to in writing, software
-     distributed under the License is distributed on an "AS IS" BASIS,
-     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-     See the License for the specific language governing permissions and
-     limitations under the License.
- -->
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ ** Copyright (C) 2012 The CyanogenMod Project
+ **
+ ** Licensed under the Apache License, Version 2.0 (the "License");
+ ** you may not use this file except in compliance with the License.
+ ** You may obtain a copy of the License at
+ **
+ **      http://www.apache.org/licenses/LICENSE-2.0
+ **
+ ** Unless required by applicable law or agreed to in writing, software
+ ** distributed under the License is distributed on an "AS IS" BASIS,
+ ** WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ ** See the License for the specific language governing permissions and
+ ** limitations under the License.-->
 <resources xmlns:android="http://schemas.android.com/apk/res/android">
 
   <!-- The strings of the menu for navigation sort mode enumeration -->
-  <string-array name="cm_filemanager_sort_mode" translatable="false">
+  <string-array name="cm_filemanager_sort_mode" translable="false">
     <item>@string/sort_by_name_asc</item>
     <item>@string/sort_by_name_desc</item>
     <item>@string/sort_by_date_asc</item>
@@ -24,21 +24,21 @@
   </string-array>
 
   <!-- The strings of the menu for navigation layout mode enumeration -->
-  <string-array name="cm_filemanager_layout_mode" translatable="false">
+  <string-array name="cm_filemanager_layout_mode" translable="false">
     <item>@string/layout_icons</item>
     <item>@string/layout_simple</item>
     <item>@string/layout_details</item>
   </string-array>
 
   <!-- General. Disk usage warning level -->
-  <string-array name="disk_usage_warning_level_labels" translatable="false">
+  <string-array name="disk_usage_warning_level_labels" translable="false">
     <item>75%</item>
     <item>90%</item>
     <item>95%</item>
     <item>98%</item>
     <item>100%</item>
   </string-array>
-  <string-array name="disk_usage_warning_level_values" translatable="false">
+  <string-array name="disk_usage_warning_level_values" translable="false">
     <item>75</item>
     <item>90</item>
     <item>95</item>
@@ -47,29 +47,29 @@
   </string-array>
 
   <!-- General. Access modes -->
-  <string-array name="access_mode_labels" translatable="false">
+  <string-array name="access_mode_labels">
     <item>@string/pref_access_mode_safe</item>
     <item>@string/pref_access_mode_prompt</item>
     <item>@string/pref_access_mode_root</item>
   </string-array>
-  <string-array name="access_mode_summaries" translatable="false">
+  <string-array name="access_mode_summaries">
     <item>@string/pref_access_mode_safe_summary</item>
     <item>@string/pref_access_mode_prompt_summary</item>
     <item>@string/pref_access_mode_root_summary</item>
   </string-array>
-  <string-array name="access_mode_values" translatable="false">
+  <string-array name="access_mode_values" translable="false">
     <item>0</item>
     <item>1</item>
     <item>2</item>
   </string-array>
 
   <!-- Search. Sort search results mode -->
-  <string-array name="sort_search_results_mode_labels" translatable="false">
+  <string-array name="sort_search_results_mode_labels" translable="false">
     <item>@string/pref_sort_search_results_mode_none</item>
     <item>@string/pref_sort_search_results_mode_name</item>
     <item>@string/pref_sort_search_results_mode_relevance</item>
   </string-array>
-  <string-array name="sort_search_results_mode_values" translatable="false">
+  <string-array name="sort_search_results_mode_values" translable="false">
     <item>0</item>
     <item>1</item>
     <item>2</item>
@@ -77,7 +77,7 @@
 
   <!-- Compression modes -->
   <!-- Note: Archive modes must be set prior to compression modes -->
-  <string-array name="compression_modes_labels" translatable="false">
+  <string-array name="compression_modes_labels" translable="false">
     <item>@string/compression_mode_tar</item>
     <item>@string/compression_mode_tar_gzip</item>
     <item>@string/compression_mode_tar_gzip2</item>

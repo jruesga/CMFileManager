@@ -337,7 +337,7 @@
   <!-- Search * Confirm search -->
   <string name="search_few_characters_title">Confirm search</string>
   <!-- Search * Some terms of the search are too small. The operation could be very costly -->
-  <string name="search_few_characters_msg">Some of the search terms has a small number characters. The
+  <string name="search_few_characters_msg">Some of the search terms has a small number of characters. The
       operation could be very costly in time and system resources.\n\nDo you want to continue?</string>
   <!-- Search * Searching dialog title -->
   <string name="searching">Please wait\u2026</string>
@@ -439,7 +439,7 @@
     <![CDATA[<b>File</b>]]> <xliff:g id="file">%1$s</xliff:g></string>
   <!-- Waiting dialog * Initializing the dialog -->
   <string name="waiting_dialog_analizing_msg">
-    <![CDATA[<b>Analizing\u2026</b>]]></string>
+    <![CDATA[<b>Analyzing\u2026</b>]]></string>
   <!-- Extracting * Success message -->
   <string name="msgs_extracting_success">
     The extracting operation was completed successfully. The data was extracted to

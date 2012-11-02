@@ -22,10 +22,10 @@
   <string name="app_description">A CyanogenMod file manager.</string>
 
   <!-- Human readable sizes -->
-  <string name="size_bytes" translatable="false">B</string>
-  <string name="size_kilobytes" translatable="false">kB</string>
-  <string name="size_megabytes" translatable="false">MB</string>
-  <string name="size_gigabytes" translatable="false">GB</string>
+  <string name="size_bytes" translatable="false">B </string>
+  <string name="size_kilobytes" translatable="false">Kb</string>
+  <string name="size_megabytes" translatable="false">Mb</string>
+  <string name="size_gigabytes" translatable="false">Gb</string>
 
   <!-- Devices types -->
   <string name="device_blockdevice">Block device</string>

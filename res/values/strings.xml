@@ -1,19 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--
- ** Copyright (C) 2012 The CyanogenMod Project
- **
- ** Licensed under the Apache License, Version 2.0 (the "License");
- ** you may not use this file except in compliance with the License.
- ** You may obtain a copy of the License at
- **
- **      http://www.apache.org/licenses/LICENSE-2.0
- **
- ** Unless required by applicable law or agreed to in writing, software
- ** distributed under the License is distributed on an "AS IS" BASIS,
- ** WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- ** See the License for the specific language governing permissions and
- ** limitations under the License.
--->
+<!-- Copyright (C) 2012 The CyanogenMod Project
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+ -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
 
   <!-- The name of the application -->
@@ -22,10 +21,10 @@
   <string name="app_description">A CyanogenMod file manager.</string>
 
   <!-- Human readable sizes -->
-  <string name="size_bytes" translatable="false">B </string>
-  <string name="size_kilobytes" translatable="false">Kb</string>
-  <string name="size_megabytes" translatable="false">Mb</string>
-  <string name="size_gigabytes" translatable="false">Gb</string>
+  <string name="size_bytes" translatable="false">B</string>
+  <string name="size_kilobytes" translatable="false">kB</string>
+  <string name="size_megabytes" translatable="false">MB</string>
+  <string name="size_gigabytes" translatable="false">GB</string>
 
   <!-- Devices types -->
   <string name="device_blockdevice">Block device</string>
@@ -38,8 +37,8 @@
   <string name="mount_point_readwrite">RW</string>
 
   <!-- Default buttons -->
-  <string name="ok">@android:string/ok</string>
-  <string name="cancel">@android:string/cancel</string>
+  <string name="ok" translatable="false">@android:string/ok</string>
+  <string name="cancel" translatable="false">@android:string/cancel</string>
   <string name="yes">Yes</string>
   <string name="no">No</string>
   <string name="all">All</string>
@@ -51,11 +50,11 @@
   <string name="search_result_name">Search: <xliff:g id="terms">%1$s</xliff:g></string>
 
   <!-- Loading waiting message -->
-  <string name="loading_message">Loading &#8230;</string>
+  <string name="loading_message">Loading\u2026</string>
   <!-- Computing message -->
-  <string name="computing_message"><xliff:g id="data">%1$s</xliff:g></string>
+  <string name="computing_message" translatable="false"><xliff:g id="data">%1$s</xliff:g></string>
   <!-- Computing new line message -->
-  <string name="computing_message_ln"><xliff:g id="data">%1$s</xliff:g></string>
+  <string name="computing_message_ln" translatable="false"><xliff:g id="data">%1$s</xliff:g></string>
   <!-- Cancelled message -->
   <string name="cancelled_message">Cancelled.</string>
   <!-- Error message -->
@@ -292,7 +291,7 @@
   <!-- Fso Properties Dialog * Execute Label -->
   <string name="fso_properties_dialog_execute" translatable="false">X</string>
   <!-- Fso Properties Dialog * Execute Label -->
-  <string name="fso_properties_dialog_folder_items">
+  <string name="fso_properties_dialog_folder_items" translatable="false">
     <xliff:g id="folders">%1$s</xliff:g> / <xliff:g id="files">%2$s</xliff:g></string>
   <!-- Fso Properties Dialog * Folders -->
   <plurals name="fso_properties_dialog_folders">
@@ -341,12 +340,12 @@
   <string name="search_few_characters_msg">Some of the search terms has a small number characters. The
       operation could be very costly in time and system resources.\n\nDo you want to continue?</string>
   <!-- Search * Searching dialog title -->
-  <string name="searching">Please wait &#8230;</string>
+  <string name="searching">Please wait\u2026</string>
   <!-- Search * Searching label -->
   <string name="searching_action_label">Searching in progress</string>
 
   <!-- Picker Activity -->
-  <string name="picker">@string/app_name</string>
+  <string name="picker" translatable="false">@string/app_name</string>
   <!-- Picker Activity * Dialog title -->
   <string name="picker_title">Pick a file</string>
 
@@ -410,37 +409,37 @@
     <xliff:g id="name">%1$s</xliff:g> - new<xliff:g id="extension">%2$s</xliff:g></string>
 
   <!-- Waiting dialog * Performing operation message -->
-  <string name="waiting_dialog_msg">Performing operation &#8230;</string>
+  <string name="waiting_dialog_msg">Performing operation\u2026</string>
   <!-- Waiting dialog * Copying title -->
-  <string name="waiting_dialog_copying_title">Copying &#8230;</string>
+  <string name="waiting_dialog_copying_title">Copying\u2026</string>
   <!-- Waiting dialog * Copying message -->
   <string name="waiting_dialog_copying_msg">
     <![CDATA[<b>From</b>]]> <xliff:g id="from">%1$s</xliff:g><![CDATA[<br/>]]>
     <![CDATA[<b>To</b>]]> <xliff:g id="to">%2$s</xliff:g></string>
   <!-- Waiting dialog * Moving title -->
-  <string name="waiting_dialog_moving_title">Moving &#8230;</string>
+  <string name="waiting_dialog_moving_title">Moving\u2026</string>
   <!-- Waiting dialog * Moving message -->
   <string name="waiting_dialog_moving_msg">
     <![CDATA[<b>From</b>]]> <xliff:g id="from">%1$s</xliff:g><![CDATA[<br/>]]>
     <![CDATA[<b>To</b>]]> <xliff:g id="to">%2$s</xliff:g></string>
   <!-- Waiting dialog * Deleting title -->
-  <string name="waiting_dialog_deleting_title">Deleting &#8230;</string>
+  <string name="waiting_dialog_deleting_title">Deleting\u2026</string>
   <!-- Waiting dialog * Deleting message -->
   <string name="waiting_dialog_deleting_msg">
     <![CDATA[<b>File</b>]]> <xliff:g id="file">%1$s</xliff:g></string>
   <!-- Waiting dialog * Extracting title -->
-  <string name="waiting_dialog_extracting_title">Extracting &#8230;</string>
+  <string name="waiting_dialog_extracting_title">Extracting\u2026</string>
   <!-- Waiting dialog * Extracting message -->
   <string name="waiting_dialog_extracting_msg">
     <![CDATA[<b>File</b>]]> <xliff:g id="file">%1$s</xliff:g></string>
   <!-- Waiting dialog * Extracting title -->
-  <string name="waiting_dialog_compressing_title">Compressing &#8230;</string>
+  <string name="waiting_dialog_compressing_title">Compressing\u2026</string>
   <!-- Waiting dialog * Extracting message -->
   <string name="waiting_dialog_compressing_msg">
     <![CDATA[<b>File</b>]]> <xliff:g id="file">%1$s</xliff:g></string>
   <!-- Waiting dialog * Initializing the dialog -->
   <string name="waiting_dialog_analizing_msg">
-    <![CDATA[<b>Analizing &#8230;</b>]]></string>
+    <![CDATA[<b>Analizing\u2026</b>]]></string>
   <!-- Extracting * Success message -->
   <string name="msgs_extracting_success">
     The extracting operation was completed successfully. The data was extracted to
@@ -592,9 +591,9 @@
   <string name="compression_mode_title">Compression mode</string>
   <!-- Compression * Supported archive and compression modes -->
   <string name="compression_mode_tar" translatable="false">Tar (tar)</string>
-  <string name="compression_mode_tar_gzip" translatable="false">Tar/Gzip (tar.gz)</string>
-  <string name="compression_mode_tar_gzip2" translatable="false">Tar/Gzip (tgz)</string>
-  <string name="compression_mode_tar_bzip" translatable="false">Tar/Bzip (tar.bz2)</string>
+  <string name="compression_mode_tar_gzip" translatable="false">Tar/gzip (tar.gz)</string>
+  <string name="compression_mode_tar_gzip2" translatable="false">Tar/gzip (tgz)</string>
+  <string name="compression_mode_tar_bzip" translatable="false">Tar/bzip (tar.bz2)</string>
   <string name="compression_mode_gzip" translatable="false">Gzip (gz)</string>
   <string name="compression_mode_bzip" translatable="false">Bzip (bz2)</string>
 

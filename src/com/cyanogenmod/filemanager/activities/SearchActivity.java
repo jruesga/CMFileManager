@@ -538,7 +538,7 @@ public class SearchActivity extends Activity
                         new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface alertDialog, int which) {
-                                if (which == DialogInterface.BUTTON_NEGATIVE) {
+                                if (which == DialogInterface.BUTTON_POSITIVE) {
                                     doSearch(voiceQuery, query, searchDirectory);
                                     return;
                                 }

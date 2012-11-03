@@ -119,6 +119,59 @@ public final class MimeTypeHelper {
         public MimeTypeCategory mCategory;
         public String mMimeType;
         public String mDrawable;
+
+        /**
+         * {@inheritDoc}
+         */
+        @Override
+        public int hashCode() {
+            final int prime = 31;
+            int result = 1;
+            result = prime * result
+                    + ((this.mCategory == null) ? 0 : this.mCategory.hashCode());
+            result = prime * result
+                    + ((this.mDrawable == null) ? 0 : this.mDrawable.hashCode());
+            result = prime * result
+                    + ((this.mMimeType == null) ? 0 : this.mMimeType.hashCode());
+            return result;
+        }
+
+        /**
+         * {@inheritDoc}
+         */
+        @Override
+        public boolean equals(Object obj) {
+            if (this == obj)
+                return true;
+            if (obj == null)
+                return false;
+            if (getClass() != obj.getClass())
+                return false;
+            MimeTypeInfo other = (MimeTypeInfo) obj;
+            if (this.mCategory != other.mCategory)
+                return false;
+            if (this.mDrawable == null) {
+                if (other.mDrawable != null)
+                    return false;
+            } else if (!this.mDrawable.equals(other.mDrawable))
+                return false;
+            if (this.mMimeType == null) {
+                if (other.mMimeType != null)
+                    return false;
+            } else if (!this.mMimeType.equals(other.mMimeType))
+                return false;
+            return true;
+        }
+
+        /**
+         * {@inheritDoc}
+         */
+        @Override
+        public String toString() {
+            return "MimeTypeInfo [mCategory=" + this.mCategory + //$NON-NLS-1$
+                    ", mMimeType="+ this.mMimeType + //$NON-NLS-1$
+                    ", mDrawable=" + this.mDrawable + "]"; //$NON-NLS-1$ //$NON-NLS-2$
+        }
     }
 
     private static final String TAG = "MimeTypeHelper"; //$NON-NLS-1$
@@ -165,14 +218,29 @@ public final class MimeTypeHelper {
                 //Search the identifier in the cache
                 int drawableId = 0;
                 if (sCachedIndentifiers.containsKey(ext)) {
+                    // Try from cached resources
                     drawableId = sCachedIndentifiers.get(ext).intValue();
-                } else {
-                    drawableId = ResourcesHelper.getIdentifier(
-                          context.getResources(), "drawable", //$NON-NLS-1$
-                          mimeTypeInfo.mDrawable);
-                    sCachedIndentifiers.put(ext, Integer.valueOf(drawableId));
+                    return drawableId;
                 }
-                return drawableId;
+
+                // Create a new drawable
+                drawableId = ResourcesHelper.getIdentifier(
+                      context.getResources(), "drawable", //$NON-NLS-1$
+                      mimeTypeInfo.mDrawable);
+                if (drawableId != 0) {
+                    sCachedIndentifiers.put(ext, Integer.valueOf(drawableId));
+                    return drawableId;
+                }
+
+                // Something was wrong here. The resource should exist, but it's not present.
+                // Audit the wrong mime/type resource and return the best fso drawable (probably
+                // default)
+                Log.w(TAG, String.format(
+                        "Something was wrong with the drawable of the fso:" + //$NON-NLS-1$
+                        "%s, mime: %s", //$NON-NLS-1$
+                        fso.toString(),
+                        mimeTypeInfo.toString()
+                        ));
             }
         }
 

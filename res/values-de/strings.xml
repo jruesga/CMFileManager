@@ -194,7 +194,7 @@
   <!-- Filesystem Info Dialog * Tab * Info -->
   <string name="filesystem_info_dialog_tab_info">Info</string>
   <!-- Filesystem Info Dialog * Tab * Disk Usage -->
-  <string name="filesystem_info_dialog_tab_disk_usage">Speicherplatznutzung</string>
+  <string name="filesystem_info_dialog_tab_disk_usage">Speichernutzung</string>
   <!-- Filesystem Info Dialog * Status Label -->
   <string name="filesystem_info_dialog_status">Status:</string>
   <!-- Filesystem Info Dialog * Mount Point Label -->
@@ -206,7 +206,7 @@
   <!-- Filesystem Info Dialog * Options Label -->
   <string name="filesystem_info_dialog_options">Optionen:</string>
   <!-- Filesystem Info Dialog * Dump/Pass Label -->
-  <string name="filesystem_info_dialog_dump_pass">Speicherinhalt anzeigen/ausgeben:</string>
+  <string name="filesystem_info_dialog_dump_pass">Sichern / Prüfen:</string>
   <!-- Filesystem Info Dialog * Total Disk Usage -->
   <string name="filesystem_info_dialog_total_disk_usage">Gesamt:</string>
   <!-- Filesystem Info Dialog * Used Disk Usage -->
@@ -539,7 +539,7 @@
   <!-- Preferences * General title -->
   <string name="pref_general">Allgemeine Einstellungen</string>
   <!-- Preferences * Search title -->
-  <string name="pref_search">Such-Einstellungen</string>
+  <string name="pref_search">Sucheinstellungen</string>
   <!-- Preferences * About title -->
   <string name="pref_about">Über</string>
   <!-- Preferences * About summary -->

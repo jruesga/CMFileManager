@@ -22,7 +22,7 @@ import android.content.DialogInterface;
 import android.content.DialogInterface.OnCancelListener;
 import android.content.DialogInterface.OnDismissListener;
 import android.content.Intent;
-import android.content.pm.ActivityInfo;
+import android.content.res.Configuration;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
@@ -48,7 +48,6 @@ import com.cyanogenmod.filemanager.ui.widgets.Breadcrumb;
 import com.cyanogenmod.filemanager.ui.widgets.ButtonItem;
 import com.cyanogenmod.filemanager.ui.widgets.NavigationView;
 import com.cyanogenmod.filemanager.ui.widgets.NavigationView.OnFilePickedListener;
-import com.cyanogenmod.filemanager.util.AndroidHelper;
 import com.cyanogenmod.filemanager.util.DialogHelper;
 import com.cyanogenmod.filemanager.util.ExceptionUtil;
 import com.cyanogenmod.filemanager.util.FileHelper;
@@ -77,6 +76,7 @@ public class PickerActivity extends Activity
      * @hide
      */
     NavigationView mNavigationView;
+    private View mRootView;
 
     /**
      * {@inheritDoc}
@@ -87,18 +87,20 @@ public class PickerActivity extends Activity
             Log.d(TAG, "PickerActivity.onCreate"); //$NON-NLS-1$
         }
 
-        //Request features
-        if (!AndroidHelper.isTablet(this)) {
-            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-        } else {
-            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
-        }
-
         // Initialize the activity
         init();
 
         //Save state
         super.onCreate(state);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        measureHeight();
     }
 
     /**
@@ -124,25 +126,17 @@ public class PickerActivity extends Activity
             return;
         }
 
-        // Calculate the dialog size based on the window height
-        DisplayMetrics displaymetrics = new DisplayMetrics();
-        getWindowManager().getDefaultDisplay().getMetrics(displaymetrics);
-        final int height = displaymetrics.heightPixels;
-
         // Create the root file
-        final View rootView = getLayoutInflater().inflate(R.layout.picker, null, false);
-        rootView.post(new Runnable() {
+        this.mRootView = getLayoutInflater().inflate(R.layout.picker, null, false);
+        this.mRootView.post(new Runnable() {
             @Override
             public void run() {
-                FrameLayout.LayoutParams params =
-                        new FrameLayout.LayoutParams(
-                                LayoutParams.WRAP_CONTENT, (height * 70) / 100);
-                rootView.setLayoutParams(params);
+                measureHeight();
             }
         });
 
         // Breadcrumb
-        Breadcrumb breadcrumb = (Breadcrumb)rootView.findViewById(R.id.breadcrumb_view);
+        Breadcrumb breadcrumb = (Breadcrumb)this.mRootView.findViewById(R.id.breadcrumb_view);
         // Set the free disk space warning level of the breadcrumb widget
         String fds = Preferences.getSharedPreferences().getString(
                 FileManagerSettings.SETTINGS_DISK_USAGE_WARNING_LEVEL.getId(),
@@ -151,14 +145,14 @@ public class PickerActivity extends Activity
 
         // Navigation view
         this.mNavigationView =
-                (NavigationView)rootView.findViewById(R.id.navigation_view);
+                (NavigationView)this.mRootView.findViewById(R.id.navigation_view);
         this.mNavigationView.setMimeType(this.mMimeType);
         this.mNavigationView.setOnFilePickedListener(this);
         this.mNavigationView.setBreadcrumb(breadcrumb);
 
         // Create the dialog
         this.mDialog = DialogHelper.createDialog(
-            this, R.drawable.ic_launcher, R.string.picker_title, rootView);
+            this, R.drawable.ic_launcher, R.string.picker_title, this.mRootView);
         this.mDialog.setButton(
                 DialogInterface.BUTTON_NEUTRAL,
                 getString(R.string.cancel),
@@ -174,7 +168,7 @@ public class PickerActivity extends Activity
         this.mDialog.show();
 
         // Set content description of storage volume button
-        ButtonItem fs = (ButtonItem)rootView.findViewById(R.id.ab_filesystem_info);
+        ButtonItem fs = (ButtonItem)this.mRootView.findViewById(R.id.ab_filesystem_info);
         fs.setContentDescription(getString(R.string.actionbar_button_storage_cd));
 
         this.mHandler = new Handler();
@@ -186,6 +180,26 @@ public class PickerActivity extends Activity
             }
         });
 
+    }
+
+    /**
+     * Method that measure the height needed to avoid resizing when
+     * change to a new directory. This method fixed the height of the window
+     * @hide
+     */
+    void measureHeight() {
+        // Calculate the dialog size based on the window height
+        DisplayMetrics displaymetrics = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(displaymetrics);
+        final int height = displaymetrics.heightPixels;
+
+        Configuration config = getResources().getConfiguration();
+        int percent = config.orientation == Configuration.ORIENTATION_LANDSCAPE ? 55 : 70;
+
+        FrameLayout.LayoutParams params =
+                new FrameLayout.LayoutParams(
+                        LayoutParams.WRAP_CONTENT, (height * percent) / 100);
+        this.mRootView.setLayoutParams(params);
     }
 
     /**

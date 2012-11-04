@@ -20,6 +20,7 @@ import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
+import android.content.res.Configuration;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -88,13 +89,6 @@ public class HistoryActivity extends Activity implements OnItemClickListener {
         this.mIsEmpty = false;
         this.mIsClearHistory = false;
 
-        //Request features
-        if (!AndroidHelper.isTablet(this)) {
-            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-        } else {
-            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
-        }
-
         //Set in transition
         overridePendingTransition(R.anim.translate_to_right_in, R.anim.hold_out);
 
@@ -107,6 +101,14 @@ public class HistoryActivity extends Activity implements OnItemClickListener {
 
         //Save state
         super.onCreate(state);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
     }
 
     /**

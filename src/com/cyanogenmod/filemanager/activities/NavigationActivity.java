@@ -25,7 +25,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.content.pm.ActivityInfo;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Parcelable;
@@ -38,6 +38,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.LinearLayout;
 import android.widget.ListPopupWindow;
 import android.widget.PopupWindow;
 import android.widget.Toast;
@@ -70,6 +71,7 @@ import com.cyanogenmod.filemanager.ui.dialogs.ActionsDialog;
 import com.cyanogenmod.filemanager.ui.dialogs.FilesystemInfoDialog;
 import com.cyanogenmod.filemanager.ui.dialogs.FilesystemInfoDialog.OnMountListener;
 import com.cyanogenmod.filemanager.ui.widgets.Breadcrumb;
+import com.cyanogenmod.filemanager.ui.widgets.ButtonItem;
 import com.cyanogenmod.filemanager.ui.widgets.NavigationCustomTitleView;
 import com.cyanogenmod.filemanager.ui.widgets.NavigationView;
 import com.cyanogenmod.filemanager.ui.widgets.NavigationView.OnNavigationRequestMenuListener;
@@ -259,6 +261,8 @@ public class NavigationActivity extends Activity
 
     private View mOptionsAnchorView;
 
+    private int mOrientation;
+
     /**
      * @hide
      */
@@ -288,13 +292,6 @@ public class NavigationActivity extends Activity
         //Set the main layout of the activity
         setContentView(R.layout.navigation);
 
-        //Request features
-        if (!AndroidHelper.isTablet(this)) {
-            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-        } else {
-            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
-        }
-
         // Show welcome message
         showWelcomeMsg();
 
@@ -308,6 +305,13 @@ public class NavigationActivity extends Activity
         initTitleActionBar();
         initStatusActionBar();
         initSelectionBar();
+
+        // Adjust layout (only when start on landscape mode)
+        int orientation = getResources().getConfiguration().orientation;
+        if (orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            onLayoutChanged();
+        }
+        this.mOrientation = orientation;
 
         this.mHandler = new Handler();
         this.mHandler.post(new Runnable() {
@@ -338,6 +342,15 @@ public class NavigationActivity extends Activity
 
         //Check the intent action
         checkIntent(intent);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        onLayoutChanged();
     }
 
     /**
@@ -401,7 +414,7 @@ public class NavigationActivity extends Activity
         if (firstUse) {
             AlertDialog dialog = DialogHelper.createAlertDialog(
                 this, R.drawable.ic_launcher,
-                R.string.welcome_title, getString(R.string.welcome_msg), false, true);
+                R.string.welcome_title, getString(R.string.welcome_msg), false);
             dialog.show();
 
             // Don't display again this dialog
@@ -417,9 +430,10 @@ public class NavigationActivity extends Activity
      */
     private void initTitleActionBar() {
         //Inflate the view and associate breadcrumb
+        View titleLayout = getLayoutInflater().inflate(
+                R.layout.navigation_view_customtitle, null, false);
         NavigationCustomTitleView title =
-                (NavigationCustomTitleView)getLayoutInflater().inflate(
-                        R.layout.navigation_view_customtitle, null, false);
+                (NavigationCustomTitleView)titleLayout.findViewById(R.id.navigation_title_flipper);
         title.setOnHistoryListener(this);
         Breadcrumb breadcrumb = (Breadcrumb)title.findViewById(R.id.breadcrumb_view);
         int cc = this.mNavigationViews.length;
@@ -442,7 +456,7 @@ public class NavigationActivity extends Activity
                 getResources().getDrawable(R.drawable.bg_holo_titlebar));
         getActionBar().setDisplayOptions(
                 ActionBar.DISPLAY_SHOW_CUSTOM | ActionBar.DISPLAY_SHOW_HOME);
-        getActionBar().setCustomView(title);
+        getActionBar().setCustomView(titleLayout);
     }
 
     /**
@@ -483,7 +497,7 @@ public class NavigationActivity extends Activity
         this.mOptionsAnchorView = showOptionsMenu ? overflow : this.mActionBar;
 
         // Show the status bar
-        View statusBar = findViewById(R.id.navigation_statusbar);
+        View statusBar = findViewById(R.id.navigation_statusbar_portrait_holder);
         statusBar.setVisibility(View.VISIBLE);
     }
 
@@ -1092,7 +1106,7 @@ public class NavigationActivity extends Activity
      * @return boolean Indicates if the action must be intercepted
      */
     private boolean checkBackAction() {
-        // We need a basic structure to check this 
+        // We need a basic structure to check this
         if (getCurrentNavigationView() == null) return false;
 
         //Check if the configuration view is showing. In this case back
@@ -1451,6 +1465,75 @@ public class NavigationActivity extends Activity
             /**NON BLOCK**/
         }
         finish();
+    }
+
+    /**
+     * Method that reconfigures the layout for better fit in portrait and landscape modes
+     */
+    private void onLayoutChanged() {
+        // Apply only when the orientation was changed
+        int orientation = getResources().getConfiguration().orientation;
+        if (this.mOrientation == orientation) return;
+        this.mOrientation = orientation;
+
+        if (this.mOrientation == Configuration.ORIENTATION_LANDSCAPE) {
+            // Landscape mode
+            ViewGroup statusBar = (ViewGroup)findViewById(R.id.navigation_statusbar);
+            if (statusBar.getParent() != null) {
+                ViewGroup parent = (ViewGroup) statusBar.getParent();
+                parent.removeView(statusBar);
+            }
+
+            // Calculate the action button size (all the buttons must fit in the title bar)
+            int bw = (int)getResources().getDimension(R.dimen.default_buttom_width);
+            int abw = this.mActionBar.getChildCount() * bw;
+            int rbw = 0;
+            int cc = statusBar.getChildCount();
+            for (int i = 0; i < cc; i++) {
+                View child = statusBar.getChildAt(i);
+                if (child instanceof ButtonItem) {
+                    rbw += bw;
+                }
+            }
+            int w = abw + rbw;
+            boolean showOptionsMenu = AndroidHelper.showOptionsMenu(getApplicationContext());
+            if (!showOptionsMenu) {
+                w -= bw;
+            }
+
+            // Add to the new location
+            ViewGroup newParent = (ViewGroup)findViewById(R.id.navigation_title_landscape_holder);
+            LinearLayout.LayoutParams params =
+                    new LinearLayout.LayoutParams(
+                            w,
+                            ViewGroup.LayoutParams.MATCH_PARENT);
+            statusBar.setLayoutParams(params);
+            newParent.addView(statusBar);
+
+            // Hide holder
+            View holder = findViewById(R.id.navigation_statusbar_portrait_holder);
+            holder.setVisibility(View.GONE);
+
+        } else {
+            // Portrait mode
+            ViewGroup statusBar = (ViewGroup)findViewById(R.id.navigation_statusbar);
+            if (statusBar.getParent() != null) {
+                ViewGroup parent = (ViewGroup) statusBar.getParent();
+                parent.removeView(statusBar);
+            }
+
+            // Add to the new location
+            ViewGroup newParent = (ViewGroup)findViewById(R.id.navigation_statusbar_portrait_holder);
+            LinearLayout.LayoutParams params =
+                    new LinearLayout.LayoutParams(
+                            ViewGroup.LayoutParams.MATCH_PARENT,
+                            ViewGroup.LayoutParams.MATCH_PARENT);
+            statusBar.setLayoutParams(params);
+            newParent.addView(statusBar);
+
+            // Show holder
+            newParent.setVisibility(View.VISIBLE);
+        }
     }
 
 }

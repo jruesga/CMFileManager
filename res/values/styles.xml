@@ -22,9 +22,19 @@
   </style>
 
   <!-- A theme with overlay -->
-  <style name="FileManager.Theme.Holo.Light.Overlay" parent="@style/FileManager.Widget.ActionBar.White">
+  <style name="FileManager.Theme.Holo.Light.Overlay" parent="@style/FileManager.Theme.Holo.Light">
     <item name="android:windowIsTranslucent">true</item>
     <item name="android:windowBackground">@color/black_transparent</item>
+    <item name="android:windowContentOverlay">@null</item>
+    <item name="android:windowNoTitle">true</item>
+    <item name="android:windowIsFloating">true</item>
+    <item name="android:backgroundDimEnabled">false</item>
+  </style>
+
+  <!-- A theme with overlay -->
+  <style name="FileManager.Theme.Holo.Light.Transparent" parent="@style/FileManager.Theme.Holo.Light">
+    <item name="android:windowIsTranslucent">true</item>
+    <item name="android:windowBackground">@android:color/transparent</item>
     <item name="android:windowContentOverlay">@null</item>
     <item name="android:windowNoTitle">true</item>
     <item name="android:windowIsFloating">true</item>

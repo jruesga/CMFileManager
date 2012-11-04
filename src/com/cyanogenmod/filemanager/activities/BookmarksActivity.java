@@ -20,6 +20,7 @@ import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
+import android.content.res.Configuration;
 import android.content.res.XmlResourceParser;
 import android.database.Cursor;
 import android.os.AsyncTask;
@@ -150,13 +151,6 @@ public class BookmarksActivity extends Activity implements OnItemClickListener, 
         // Is ChRooted?
         this.mChRooted = FileManagerApplication.getAccessMode().compareTo(AccessMode.SAFE) == 0;
 
-        //Request features
-        if (!AndroidHelper.isTablet(this)) {
-            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-        } else {
-            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
-        }
-
         //Set in transition
         overridePendingTransition(R.anim.translate_to_right_in, R.anim.hold_out);
 
@@ -179,6 +173,14 @@ public class BookmarksActivity extends Activity implements OnItemClickListener, 
         //Set out transition
         overridePendingTransition(R.anim.hold_in, R.anim.translate_to_left_out);
         super.onPause();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
     }
 
     /**

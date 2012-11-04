@@ -77,7 +77,7 @@ public class ChangeLogActivity extends Activity implements OnCancelListener, OnD
             // Show a dialog
             AlertDialog dialog = DialogHelper.createAlertDialog(
                 this, R.drawable.ic_launcher,
-                R.string.changelog_title, sb.toString(), false, true);
+                R.string.changelog_title, sb.toString(), false);
             dialog.setOnCancelListener(this);
             dialog.setOnDismissListener(this);
             dialog.show();

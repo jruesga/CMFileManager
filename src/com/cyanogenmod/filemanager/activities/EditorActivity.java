@@ -23,6 +23,7 @@ import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
+import android.content.res.Configuration;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.Editable;
@@ -265,13 +266,6 @@ public class EditorActivity extends Activity implements TextWatcher {
             Log.d(TAG, "EditorActivity.onCreate"); //$NON-NLS-1$
         }
 
-        //Request features
-        if (!AndroidHelper.isTablet(this)) {
-            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-        } else {
-            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
-        }
-
         //Set the main layout of the activity
         setContentView(R.layout.editor);
 
@@ -289,6 +283,14 @@ public class EditorActivity extends Activity implements TextWatcher {
 
         //Save state
         super.onCreate(state);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
     }
 
     /**

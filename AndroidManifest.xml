@@ -56,6 +56,7 @@
       android:launchMode="singleTop"
       android:uiOptions="none"
       android:windowSoftInputMode="adjustNothing"
+      android:configChanges="orientation|keyboardHidden|screenSize"
       android:exported="true">
       <intent-filter>
         <action android:name="android.intent.action.MAIN" />
@@ -76,6 +77,7 @@
       android:label="@string/bookmarks"
       android:uiOptions="none"
       android:windowSoftInputMode="adjustNothing"
+      android:configChanges="orientation|keyboardHidden|screenSize"
       android:exported="false">
     </activity>
 
@@ -83,6 +85,7 @@
       android:name=".activities.HistoryActivity"
       android:label="@string/history"
       android:uiOptions="none"
+      android:configChanges="orientation|keyboardHidden|screenSize"
       android:windowSoftInputMode="adjustNothing"
       android:exported="false">
     </activity>
@@ -92,6 +95,7 @@
       android:label="@string/search"
       android:launchMode="singleTop"
       android:uiOptions="none"
+      android:configChanges="orientation|keyboardHidden|screenSize"
       android:windowSoftInputMode="adjustNothing"
       android:exported="false">
     </activity>
@@ -100,6 +104,7 @@
       android:name=".activities.PickerActivity"
       android:label="@string/picker"
       android:uiOptions="none"
+      android:configChanges="orientation|keyboardHidden|screenSize"
       android:theme="@style/FileManager.Theme.Holo.Light.Overlay"
       android:exported="true">
       <intent-filter>
@@ -145,6 +150,7 @@
     <activity
       android:name=".activities.EditorActivity"
       android:label="@string/editor"
+      android:configChanges="orientation|keyboardHidden|screenSize"
       android:icon="@drawable/ic_launcher_editor"
       android:exported="false">
       <intent-filter>

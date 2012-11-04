@@ -26,6 +26,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.ActivityInfo;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.preference.PreferenceActivity;
@@ -264,13 +265,6 @@ public class SearchActivity extends Activity
         filter.addAction(FileManagerSettings.INTENT_SETTING_CHANGED);
         registerReceiver(this.mOnSettingChangeReceiver, filter);
 
-        //Request features
-        if (!AndroidHelper.isTablet(this)) {
-            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-        } else {
-            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
-        }
-
         //Set in transition
         overridePendingTransition(R.anim.translate_to_right_in, R.anim.hold_out);
 
@@ -300,6 +294,14 @@ public class SearchActivity extends Activity
 
         //Save state
         super.onCreate(state);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
     }
 
     /**

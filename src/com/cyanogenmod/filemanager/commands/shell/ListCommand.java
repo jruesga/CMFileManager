@@ -368,8 +368,9 @@ public class ListCommand extends SyncResultProgram implements ListExecutable {
     @Override
     public void checkExitCode(int exitCode)
             throws InsufficientPermissionsException, CommandNotFoundException, ExecutionException {
-        if (exitCode != 0 && exitCode != 1) {
-            throw new ExecutionException("exitcode != 0 && != 1"); //$NON-NLS-1$
+        // 123: stat failed ... Function not implemented (for broken symlinks)
+        if (exitCode != 0 && exitCode != 1 && exitCode != 123) {
+            throw new ExecutionException("exitcode != 0 && != 1 && != 123"); //$NON-NLS-1$
         }
     }
 }

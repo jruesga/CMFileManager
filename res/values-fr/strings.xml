@@ -582,7 +582,7 @@
   <!-- Preferences * General * Root access mode -->
   <string name="pref_access_mode_root">Mode Root</string>
   <!-- Preferences * General * Root access mode summary -->
-  <string name="pref_access_mode_root_summary">Mode Root\n\nAttention! Ce mode permet des opérations qui pourraient endommager votre appareil. Il est de votre responsabilité de veiller à ce que les opérations effectué soit sures</string>
+  <string name="pref_access_mode_root_summary">Mode Root\n\nAttention! Ce mode permet des opérations qui pourraient endommager votre appareil. Il est de votre responsabilité de veiller à ce que les opérations effectuées soient sures</string>
   <!-- Preferences * Search * Results category -->
   <string name="pref_search_results_category">Résultats</string>
   <!-- Preferences * Search * Show relevance widget -->
@@ -613,7 +613,7 @@
   <string name="pref_remove_saved_search_terms_msg">Tout les termes de recherche ont été supprimé.</string>
 
   <!-- Preferences * Debug * Capture debug traces -->
-  <string name="pref_debug_traces">Information de déboguage</string>
+  <string name="pref_debug_traces">Information de débogage</string>
 
   <!-- Security * Extract relative or absolute files -->
   <string name="security_warning_extract">Attention!\n\n Extraire une archive vers un chemin absolu ou relatif peut causer des dommages sur votre appareil en écrasant des fichiers système.\n\nVoulez-vous continuer?</string>

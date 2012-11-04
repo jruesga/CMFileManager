@@ -77,10 +77,10 @@
   <!-- Success -->
   <string name="msgs_success">De bewerking is succesvol voltooid.</string>
   <!-- Unknown error -->
-  <string name="msgs_unknown">Een fout gedetecteerd. De bewerking is niet met succes afgerond.</string>
+  <string name="msgs_unknown">Er is een fout opgetreden. De bewerking is niet succesvol voltooid.</string>
   <!-- When an operation requires elevated privileged (normally caused for the use of a
        non-privileged console) -->
-  <string name="msgs_insufficient_permissions">Deze bewerking heeft verhoogde machtigingen nodig. Probeer naar root-toegangsmodus te om te schakelen.</string>
+  <string name="msgs_insufficient_permissions">Deze bewerking heeft verhoogde machtigingen nodig. Probeer naar root-toegangsmodus om te schakelen.</string>
   <!-- The file or directory was not found -->
   <string name="msgs_file_not_found">Het bestand of de map is niet gevonden.</string>
   <!-- The command reference couldn't be created (not found or invalid definition)
@@ -93,7 +93,7 @@
   <!-- The operation returns an invalid exit code -->
   <string name="msgs_operation_failure">De bewerking is mislukt.</string>
   <!-- A console couldn't be allocated -->
-  <string name="msgs_console_alloc_failure">Een interne fout is opgetreden.</string>
+  <string name="msgs_console_alloc_failure">Er is een interne fout opgetreden.</string>
   <!-- An operation can't be cancelled -->
   <string name="msgs_operation_can_not_be_cancelled">De bewerking kan niet worden geannuleerd.</string>
   <!-- The operation requieres mount the file system prior to execute the command -->
@@ -101,7 +101,7 @@
   <!-- Illegal argument (normally caused by a development error when calling internal api) -->
   <string name="msgs_illegal_argument">Ongeldig argument. Activering mislukt.</string>
   <!-- The operation will cause inconsistencies -->
-  <string name="msgs_unresolved_inconsistencies">Deze bewerking is niet toegestaan omdat het inconsistenties zou veroorzaken.</string>
+  <string name="msgs_unresolved_inconsistencies">Deze bewerking is niet toegestaan omdat het inconsistenties zal veroorzaken.</string>
   <!-- Operation not permitted in current directory -->
   <string name="msgs_operation_not_allowed_in_current_directory">Deze bewerking is niet toegestaan in de huidige map.</string>
 
@@ -227,7 +227,7 @@
   <!-- Fso Properties Dialog * Tab * Info -->
   <string name="fso_properties_dialog_tab_info">Info</string>
   <!-- Fso Properties Dialog * Tab * Permissions -->
-  <string name="fso_properties_dialog_tab_permissions">Rechtend</string>
+  <string name="fso_properties_dialog_tab_permissions">Rechten</string>
   <!-- Fso Properties Dialog * Name Label -->
   <string name="fso_properties_dialog_name">Naam:</string>
   <!-- Fso Properties Dialog * Parent Folder Label -->
@@ -243,7 +243,7 @@
   <!-- Fso Properties Dialog * Contains Label -->
   <string name="fso_properties_dialog_contains">Inhoud:</string>
   <!-- Fso Properties Dialog * Date Label -->
-  <string name="fso_properties_dialog_date">Recentste toegang:</string>
+  <string name="fso_properties_dialog_date">Recente toegang:</string>
   <!-- Fso Properties Dialog * Owner Label -->
   <string name="fso_properties_dialog_owner">Eigenaar:</string>
   <!-- Fso Properties Dialog * Group Label -->
@@ -273,7 +273,7 @@
   <!-- Search * Search activity title -->
   <string name="search">Zoekresultaten</string>
   <!-- Search * Search hint message -->
-  <string name="search_hint">Type zoekopdracht</string>
+  <string name="search_hint">Typ zoekopdracht</string>
   <!-- Search * Voice search hint message -->
   <string name="search_voice_hint">Spreek zoekopdracht</string>
   <!-- Search * Search error message -->
@@ -293,7 +293,7 @@
   <!-- Search * Confirm search -->
   <string name="search_few_characters_title">Zoeken bevestigen</string>
   <!-- Search * Some terms of the search are too small. The operation could be very costly -->
-  <string name="search_few_characters_msg">Sommige zoektermen hebben een klein aantal karakters. De bewerking zou te veel tijd of systeembronnen kunnen kosten.\n\nWil je doorgaan?</string>
+  <string name="search_few_characters_msg">Sommige zoektermen hebben een klein aantal karakters. De bewerking zou te veel tijd of systeembronnen in beslag kunnen nemen.\n\nWil je doorgaan?</string>
   <!-- Search * Searching dialog title -->
   <string name="searching">Een ogenblik a.u.b.\u2026</string>
   <!-- Search * Searching label -->
@@ -386,7 +386,7 @@
   <!-- Extracting * Success message -->
   <string name="msgs_extracting_success">Het uitpakken is succesvol afgerond. De gegevens zijn uitgepakt naar <xliff:g id="destination">%1$s</xliff:g>.</string>
   <!-- Compressing * Success message -->
-  <string name="msgs_compressing_success">Het comprimeren is succesvol afgerond. De gegevens zijn gecomprineerd naar <xliff:g id="destination">%1$s</xliff:g>.</string>
+  <string name="msgs_compressing_success">Het comprimeren is succesvol afgerond. De gegevens zijn gecomprimeerd naar <xliff:g id="destination">%1$s</xliff:g>.</string>
 
   <!-- Actions Dialog * Title -->
   <string name="actions_dialog_title">Acties</string>
@@ -431,7 +431,7 @@
   <!-- Actions Dialog * Menu * Delete -->
   <string name="actions_menu_delete">Verwijderen</string>
   <!-- Actions Dialog * Menu * Rename -->
-  <string name="actions_menu_rename">Naam wijzigingen</string>
+  <string name="actions_menu_rename">Naam wijzigen</string>
   <!-- Actions Dialog * Menu * Create copy -->
   <string name="actions_menu_create_copy">Kopie maken</string>
   <!-- Actions Dialog * Menu * Properties -->
@@ -569,7 +569,7 @@
   <!-- Preferences * General * Prompt user mode -->
   <string name="pref_access_mode_prompt">Naar toegangsmodus vragen</string>
   <!-- Preferences * General * Prompt user mode summary -->
-  <string name="pref_access_mode_prompt_summary">Naar toegangsmodus vragen\n\nDe app heeft volledige toegang tot het bestandssysteem maar zal vragen om toestemming voorafgaand aan acties waarvoor machtigingen nodig zijn</string>
+  <string name="pref_access_mode_prompt_summary">Naar toegangsmodus vragen\n\nDe app heeft volledige toegang tot het bestandssysteem, maar zal vragen om toestemming voorafgaand aan acties waarvoor machtigingen nodig zijn</string>
   <!-- Preferences * General * Root access mode -->
   <string name="pref_access_mode_root">Root-toegangsmodus</string>
   <!-- Preferences * General * Root access mode summary -->
@@ -597,7 +597,7 @@
   <!-- Preferences * Search * Save search terms summary off -->
   <string name="pref_save_search_terms_off">Zoektermen zullen niet worden opgeslagen</string>
   <!-- Preferences * Search * Remove saved search terms -->
-  <string name="pref_remove_saved_search_terms">Ppgeslagen zoektermen verwijderen</string>
+  <string name="pref_remove_saved_search_terms">Opgeslagen zoektermen verwijderen</string>
   <!-- Preferences * Search * Remove saved search terms summary -->
   <string name="pref_remove_saved_search_terms_summary">Tik om alle opgeslagen zoektermen te verwijderen</string>
   <!-- Preferences * Search * Suggestions were truncated -->
@@ -615,6 +615,6 @@
   <!-- Welcome Dialog * Title -->
   <string name="welcome_title">Welkom</string>
   <!-- Welcome Dialog * Message -->
-  <string name="welcome_msg">Welkom bij de bestandsbeheerder van CyanogenMod\n\nHiermee kunt u het bestandssystem bekijken en bewerkingen uit voeren die schadelijk kunnen zijn voor uw apparaat. Om dit te voorkomen opent de app in een veilige modus zonder machtigingen.\n\nU kunt naar de geavanceerde modus met volledige machtigingen gaan via Instellingen. De bewerkingen die u uitvoert gebeuren op eigen verantwoordelijkheid.\n\nDe ontwikkelaars van CyanogenMod.</string>
+  <string name="welcome_msg">Welkom bij de bestandsbeheerder van CyanogenMod\n\nHiermee kunt u het bestandssystem bekijken en bewerkingen uitvoeren die schadelijk kunnen zijn voor uw apparaat. Om dit te voorkomen opent de app in een veilige modus zonder machtigingen.\n\nU kunt naar de geavanceerde modus met volledige machtigingen gaan via Instellingen. De bewerkingen die u uitvoert gebeuren op eigen verantwoordelijkheid.\n\nDe ontwikkelaars van CyanogenMod.</string>
 
 </resources>

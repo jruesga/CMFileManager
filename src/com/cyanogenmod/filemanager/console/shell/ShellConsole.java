@@ -727,16 +727,15 @@ public abstract class ShellConsole extends Console implements Program.ProgramLis
 
                             if (finished) {
                                 if (!async) {
-                                    ShellConsole.this.toStdIn(sb.toString());
+                                    ShellConsole.this.toStdIn(s);
                                 }
 
                                 //Notify the end
                                 notifyProcessFinished();
                                 break;
                             }
-
-                            if (!async) {
-                                ShellConsole.this.toStdIn(sb.toString());
+                            if (!async && !finished) {
+                                ShellConsole.this.toStdIn(s);
                             }
 
                             //Wait for buffer to be filled
@@ -850,7 +849,7 @@ public abstract class ShellConsole extends Console implements Program.ProgramLis
                                         ((AsyncResultProgram)ShellConsole.this.mActiveCommand);
                                 program.parsePartialErrResult(s);
                             }
-                            toStdErr(sb.toString());
+                            toStdErr(s);
 
                             //Wait for buffer to be filled
                             try {

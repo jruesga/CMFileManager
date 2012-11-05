@@ -268,12 +268,14 @@
   <plurals name="fso_properties_dialog_folders">
     <item quantity="zero">0 složek</item>
     <item quantity="one">1 složka</item>
+    <item quantity="few"><xliff:g id="folders">%1$d</xliff:g> složky</item>
     <item quantity="other"><xliff:g id="folders">%1$d</xliff:g> složek</item>
   </plurals>
   <!-- Fso Properties Dialog * Files -->
   <plurals name="fso_properties_dialog_files">
     <item quantity="zero">0 souborů</item>
     <item quantity="one">1 soubor</item>
+    <item quantity="few"><xliff:g id="files">%1$d</xliff:g> soubory</item>
     <item quantity="other"><xliff:g id="files">%1$d</xliff:g> souborů</item>
   </plurals>
 
@@ -298,6 +300,7 @@
   <plurals name="search_found_items">
     <item quantity="zero">Nic nenalezeno</item>
     <item quantity="one">Nalezena 1 položka</item>
+    <item quantity="few"><xliff:g id="count">%d</xliff:g> položky nalezeny</item>
     <item quantity="other"><xliff:g id="count">%d</xliff:g> položek nalezeno</item>
   </plurals>
   <!-- Search * Number of items found in directory -->

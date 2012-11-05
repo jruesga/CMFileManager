@@ -257,7 +257,7 @@
   <string name="associations_dialog_remember">Запомнить выбор</string>
   <string name="associations_dialog_openwith_title">Открыть в...</string>
   <string name="associations_dialog_openwith_action">Открыть</string>
-  <string name="associations_dialog_sendwith_title">Отправить в...</string>
+  <string name="associations_dialog_sendwith_title">Отправить используя...</string>
   <string name="associations_dialog_sendwith_action">Отправить</string>
 
   <string name="inline_autocomplete_tab_nothing_to_complete_msg">Нечего выполнять</string>
@@ -318,9 +318,9 @@
   <string name="pref_general_advanced_settings_category">Расширенные настройки</string>
   <string name="pref_access_mode">Режим доступа</string>
   <string name="pref_access_mode_safe">Безопасный режим</string>
-  <string name="pref_access_mode_safe_summary">Безопасный режим\n\nПриложение работает без Root-привелегий и имеет доступ только к файловой системе накопителей (SD-карты или USB)</string>
+  <string name="pref_access_mode_safe_summary">Безопасный режим\n\nПриложение работает без Root-привилегий и имеет доступ только к файловой системе накопителей (SD-карты или USB)</string>
   <string name="pref_access_mode_prompt">Режим запроса</string>
-  <string name="pref_access_mode_prompt_summary">Режим запроса\n\nПриложение работает с Root-привилениями, но будет выводить запрос на разрешение выполнения операций с системой</string>
+  <string name="pref_access_mode_prompt_summary">Режим запроса\n\nПриложение работает с Root-привилегиями, но будет выводить запрос на разрешение выполнения операций с системой</string>
   <string name="pref_access_mode_root">Режим Root</string>
   <string name="pref_access_mode_root_summary">Режим Root\n\nВнимание! Этот режим может вывести ваше устройство из строя. Все действия в этом режиме выполняются на ваш страх и риск</string>
   <string name="pref_search_results_category">Результаты</string>

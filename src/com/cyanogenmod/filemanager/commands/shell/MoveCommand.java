@@ -35,6 +35,7 @@ public class MoveCommand extends SyncResultProgram implements MoveExecutable {
 
     private static final String ID = "mv";  //$NON-NLS-1$
     private Boolean mRet;
+    private final String mSrc;
     private final String mDst;
 
     /**
@@ -46,6 +47,7 @@ public class MoveCommand extends SyncResultProgram implements MoveExecutable {
      */
     public MoveCommand(String src, String dst) throws InvalidCommandDefinitionException {
         super(ID, src, dst);
+        this.mSrc = src;
         this.mDst = dst;
     }
 
@@ -81,7 +83,15 @@ public class MoveCommand extends SyncResultProgram implements MoveExecutable {
      * {@inheritDoc}
      */
     @Override
-    public MountPoint getWritableMountPoint() {
+    public MountPoint getSrcWritableMountPoint() {
+        return MountPointHelper.getMountPointFromDirectory(this.mSrc);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public MountPoint getDstWritableMountPoint() {
         return MountPointHelper.getMountPointFromDirectory(this.mDst);
     }
 }

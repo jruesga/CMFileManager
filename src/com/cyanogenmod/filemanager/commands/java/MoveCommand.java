@@ -95,7 +95,15 @@ public class MoveCommand extends Program implements MoveExecutable {
      * {@inheritDoc}
      */
     @Override
-    public MountPoint getWritableMountPoint() {
+    public MountPoint getSrcWritableMountPoint() {
+        return MountPointHelper.getMountPointFromDirectory(this.mSrc);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public MountPoint getDstWritableMountPoint() {
         return MountPointHelper.getMountPointFromDirectory(this.mDst);
     }
 

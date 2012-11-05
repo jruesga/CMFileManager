@@ -564,6 +564,12 @@ public abstract class ShellConsole extends Console implements Program.ProgramLis
 
             //Check if invocation was successfully or not
             if (!program.isIgnoreShellStdErrCheck()) {
+                //Wait for stderr buffer to be filled
+                if (exitCode != 0) {
+                    try {
+                        Thread.sleep(100L);
+                    } catch (Throwable ex) {/**NON BLOCK**/}
+                }
                 this.mShell.checkStdErr(this.mActiveCommand, exitCode, this.mSbErr.toString());
             }
             this.mShell.checkExitCode(exitCode);
@@ -836,9 +842,7 @@ public abstract class ShellConsole extends Console implements Program.ProgramLis
                                 ShellConsole.this.mActiveCommand != null &&
                                 ShellConsole.this.mActiveCommand instanceof AsyncResultProgram;
 
-                            // Exit if active command is cancelled
-                            if (ShellConsole.this.mCancelled) continue;
-
+                            // Add to stderr
                             String s = new String(data, 0, read);
                             ShellConsole.this.mSbErr.append(s);
                             sb.append(s);

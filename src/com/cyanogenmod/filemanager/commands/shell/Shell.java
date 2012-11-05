@@ -121,8 +121,9 @@ public abstract class Shell extends Command {
         }
         if (err.indexOf("Read-only file system") != -1) { //$NON-NLS-1$
             if (program instanceof WritableExecutable) {
+                // This error could be caused by dst or src. No matter which. Use dst.
                 throw new ReadOnlyFilesystemException(
-                        ((WritableExecutable)program).getWritableMountPoint());
+                        ((WritableExecutable)program).getDstWritableMountPoint());
             }
             throw new ExecutionException("Read-only file system");  //$NON-NLS-1$
         }

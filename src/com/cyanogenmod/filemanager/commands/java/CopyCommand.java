@@ -100,7 +100,15 @@ public class CopyCommand extends Program implements CopyExecutable {
      * {@inheritDoc}
      */
     @Override
-    public MountPoint getWritableMountPoint() {
+    public MountPoint getSrcWritableMountPoint() {
+        return null;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public MountPoint getDstWritableMountPoint() {
         return MountPointHelper.getMountPointFromDirectory(this.mDst);
     }
 

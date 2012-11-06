@@ -105,7 +105,15 @@ public class CreateFileCommand extends Program implements CreateFileExecutable {
      * {@inheritDoc}
      */
     @Override
-    public MountPoint getWritableMountPoint() {
+    public MountPoint getSrcWritableMountPoint() {
+        return null;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public MountPoint getDstWritableMountPoint() {
         return MountPointHelper.getMountPointFromDirectory(this.mPath);
     }
 }

@@ -25,9 +25,16 @@ import com.cyanogenmod.filemanager.model.MountPoint;
 public interface WritableExecutable extends SyncResultExecutable {
 
     /**
-     * Method that return the mount point that the program use to write.
+     * Method that return the source mount point that the program use to write.
      *
-     * @return MountPoint The mount point reference.
+     * @return MountPoint The source mount point reference.
      */
-    MountPoint getWritableMountPoint();
+    MountPoint getSrcWritableMountPoint();
+
+    /**
+     * Method that return the destination mount point that the program use to write.
+     *
+     * @return MountPoint The destination mount point reference.
+     */
+    MountPoint getDstWritableMountPoint();
 }

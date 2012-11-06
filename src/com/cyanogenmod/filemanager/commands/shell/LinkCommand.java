@@ -82,7 +82,15 @@ public class LinkCommand extends SyncResultProgram implements LinkExecutable {
      * {@inheritDoc}
      */
     @Override
-    public MountPoint getWritableMountPoint() {
+    public MountPoint getSrcWritableMountPoint() {
+        return null;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public MountPoint getDstWritableMountPoint() {
         return MountPointHelper.getMountPointFromDirectory(this.mLink);
     }
 }

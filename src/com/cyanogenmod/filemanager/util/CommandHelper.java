@@ -1280,7 +1280,7 @@ public final class CommandHelper {
         if (executable1.getResult().booleanValue()) {
             // Configure the rest of attributes of the wrapper listener
             wrapperListener.mUnmount = unmount;
-            wrapperListener.mMountPoint = executable1.getWritableMountPoint();
+            wrapperListener.mMountPoint = executable1.getDstWritableMountPoint();
 
             //- Write
             WriteExecutable executable2 =
@@ -1346,7 +1346,7 @@ public final class CommandHelper {
         if (executable2.getResult().booleanValue()) {
             // Configure the rest of attributes of the wrapper listener
             wrapperListener.mUnmount = unmount;
-            wrapperListener.mMountPoint = executable2.getWritableMountPoint();
+            wrapperListener.mMountPoint = executable2.getDstWritableMountPoint();
 
             //- Compress
             execute(context, executable1, c);
@@ -1409,7 +1409,7 @@ public final class CommandHelper {
         if (executable2.getResult().booleanValue()) {
             // Configure the rest of attributes of the wrapper listener
             wrapperListener.mUnmount = unmount;
-            wrapperListener.mMountPoint = executable2.getWritableMountPoint();
+            wrapperListener.mMountPoint = executable2.getDstWritableMountPoint();
 
             //- Compress
             execute(context, executable1, c);
@@ -1483,7 +1483,7 @@ public final class CommandHelper {
         if (((Boolean)executable2.getResult()).booleanValue()) {
             // Configure the rest of attributes of the wrapper listener
             wrapperListener.mUnmount = unmount;
-            wrapperListener.mMountPoint = executable2.getWritableMountPoint();
+            wrapperListener.mMountPoint = executable2.getDstWritableMountPoint();
 
             //- Compress
             execute(context, executable1, c);
@@ -1602,12 +1602,33 @@ public final class CommandHelper {
             CommandNotFoundException, ReadOnlyFilesystemException {
 
         //Retrieve the mount point information to check if a remount operation is required
-        boolean needMount = false;
-        MountPoint mp = executable.getWritableMountPoint();
-        if (mp != null) {
-            if (MountPointHelper.isMountAllowed(mp)) {
-                if (!MountPointHelper.isReadWrite(mp)) {
-                    needMount = true;
+        //There are 2 mount points: destination and source. Check both
+        // - Destination
+        boolean needMountDst = false;
+        MountPoint mpDst = executable.getDstWritableMountPoint();
+        if (mpDst != null) {
+            if (MountPointHelper.isMountAllowed(mpDst)) {
+                if (!MountPointHelper.isReadWrite(mpDst)) {
+                    needMountDst = true;
+                } else {
+                    //Mount point is already read-write
+                }
+            } else {
+                //For security or physical reasons the mount point can't be
+                //mounted as read-write. Execute the command
+                //and notify to the user
+            }
+        } else {
+            //Don't have information about the mount point. Execute the command
+            //and notify to the user
+        }
+        // - Source
+        boolean needMountSrc = false;
+        MountPoint mpSrc = executable.getSrcWritableMountPoint();
+        if (mpSrc != null) {
+            if (MountPointHelper.isMountAllowed(mpSrc)) {
+                if (!MountPointHelper.isReadWrite(mpSrc)) {
+                    needMountSrc = true;
                 } else {
                     //Mount point is already read-write
                 }
@@ -1622,24 +1643,40 @@ public final class CommandHelper {
         }
 
         //Create the mount/unmount executables
-        MountExecutable mountExecutable = null;
-        MountExecutable unmountExecutable = null;
-        if (needMount) {
-            mountExecutable =
+        MountExecutable mountDstExecutable = null;
+        MountExecutable unmountDstExecutable = null;
+        if (needMountDst) {
+            mountDstExecutable =
                     console.getExecutableFactory().newCreator().
-                        createMountExecutable(mp, true);
-            unmountExecutable =
+                        createMountExecutable(mpDst, true);
+            unmountDstExecutable =
                     console.getExecutableFactory().newCreator().
-                        createMountExecutable(mp, false);
+                        createMountExecutable(mpDst, false);
+        }
+        MountExecutable mountSrcExecutable = null;
+        MountExecutable unmountSrcExecutable = null;
+        if (needMountSrc) {
+            mountSrcExecutable =
+                    console.getExecutableFactory().newCreator().
+                        createMountExecutable(mpSrc, true);
+            unmountSrcExecutable =
+                    console.getExecutableFactory().newCreator().
+                        createMountExecutable(mpSrc, false);
         }
 
         //Execute the commands
-        boolean mountExecuted = false;
+        boolean mountExecutedDst = false;
+        boolean mountExecutedSrc = false;
         try {
-            if (needMount) {
+            if (needMountDst) {
                 //Execute the mount command
-                console.execute(mountExecutable);
-                mountExecuted = true;
+                console.execute(mountDstExecutable);
+                mountExecutedDst = true;
+            }
+            if (needMountSrc) {
+                //Execute the mount command
+                console.execute(mountSrcExecutable);
+                mountExecutedSrc = true;
             }
 
             //Execute the command
@@ -1647,14 +1684,22 @@ public final class CommandHelper {
 
         } catch (InsufficientPermissionsException ipEx) {
             //Configure the commands to execute
-            if (needMount && !mountExecuted) {
+            if (needMountDst && !mountExecutedDst) {
+                //The failed operation was the mount rw operation
+                //This operations is already in the exception in the fifo queue
+                ipEx.addExecutable(executable);
+            } else if (needMountSrc && !mountExecutedSrc) {
                 //The failed operation was the mount rw operation
                 //This operations is already in the exception in the fifo queue
                 ipEx.addExecutable(executable);
             }
-            if (needMount) {
+            if (needMountDst) {
                 //A mount operation was executed or will be executed
-                ipEx.addExecutable(unmountExecutable);
+                ipEx.addExecutable(unmountDstExecutable);
+            }
+            if (needMountSrc) {
+                //A mount operation was executed or will be executed
+                ipEx.addExecutable(unmountSrcExecutable);
             }
 
             //Rethrow the exception
@@ -1663,14 +1708,18 @@ public final class CommandHelper {
         } finally {
             //If previously was a mount successful execution, then execute
             //and unmount operation
-            if (mountExecuted && !leaveDeviceMounted) {
+            if (mountExecutedDst && !leaveDeviceMounted) {
                 //Execute the unmount command
-                console.execute(unmountExecutable);
+                console.execute(unmountDstExecutable);
+            }
+            if (mountExecutedSrc && !leaveDeviceMounted) {
+                //Execute the unmount command
+                console.execute(unmountSrcExecutable);
             }
         }
 
         // If the needed unmount was executed
-        return mountExecuted && leaveDeviceMounted;
+        return (mountExecutedDst || mountExecutedSrc) && leaveDeviceMounted;
     }
 
     /**

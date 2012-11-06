@@ -224,7 +224,10 @@ public final class FileManagerApplication extends Application {
      * @return Console The background console
      */
     public static Console getBackgroundConsole() {
-        if (!sBackgroundConsole.getConsole().isActive()) {
+        if (sBackgroundConsole == null ||
+            sBackgroundConsole.getConsole() == null ||
+            !sBackgroundConsole.getConsole().isActive()) {
+
             allocBackgroundConsole(getInstance().getApplicationContext());
         }
         return sBackgroundConsole.getConsole();

@@ -341,7 +341,7 @@ public class AssociationsDialog implements OnItemClickListener {
      */
     @SuppressWarnings({"deprecation"})
     void onIntentSelected(ResolveInfo ri, Intent intent, boolean remember) {
-        if (remember) {
+        if (remember && !isInternalEditor(ri) && ri.filter != null) {
             // Build a reasonable intent filter, based on what matched.
             IntentFilter filter = new IntentFilter();
 
@@ -414,7 +414,7 @@ public class AssociationsDialog implements OnItemClickListener {
             boolean isPlatformSigned =
                     FileManagerApplication.isAppPlatformSignature(this.mContext);
             if (isPlatformSigned && this.mAllowPreferred) {
-                if (filter != null && !isPreferredSelected() && !isInternalEditor(ri)) {
+                if (filter != null && !isPreferredSelected()) {
                     try {
                         AssociationsAdapter adapter = (AssociationsAdapter)this.mGrid.getAdapter();
                         final int cc = adapter.getCount();

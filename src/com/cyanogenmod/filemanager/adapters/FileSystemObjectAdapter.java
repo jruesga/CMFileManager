@@ -349,7 +349,6 @@ public class FileSystemObjectAdapter
                                         ? R.drawable.holo_list_selector_selected
                                         : R.drawable.holo_list_selector_deseleted);
                     }
-                    notifyDataSetInvalidated();
 
                     //Add or remove from the global selected items
                     if (data.mSelected) {
@@ -426,8 +425,6 @@ public class FileSystemObjectAdapter
                     }
                 }
             }
-            //Invalidate data for repainting
-            notifyDataSetInvalidated();
 
             //Communicate event
             if (this.mOnSelectionChangedListener != null) {

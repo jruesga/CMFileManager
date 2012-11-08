@@ -186,7 +186,7 @@
   <string name="editor_successfully_saved">Файл успешно сохранён</string>
   <string name="editor_read_only_mode">Файл открыт только для чтения</string>
 
-  <string name="bookmarks">Заклдаки</string>
+  <string name="bookmarks">Закладки</string>
   <string name="bookmarks_home">Домой</string>
   <string name="bookmarks_root_folder">Корневая папка</string>
   <string name="bookmarks_system_folder">Системная папка</string>

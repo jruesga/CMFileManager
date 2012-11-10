@@ -31,6 +31,8 @@ import com.cyanogenmod.filemanager.R;
 import com.cyanogenmod.filemanager.model.Bookmark;
 import com.cyanogenmod.filemanager.model.Bookmark.BOOKMARK_TYPE;
 import com.cyanogenmod.filemanager.ui.IconHolder;
+import com.cyanogenmod.filemanager.ui.ThemeManager;
+import com.cyanogenmod.filemanager.ui.ThemeManager.Theme;
 import com.cyanogenmod.filemanager.util.BookmarksHelper;
 
 import java.util.List;
@@ -148,12 +150,13 @@ public class BookmarksAdapter extends ArrayAdapter<Bookmark> {
             if (bookmark.mType.compareTo(BOOKMARK_TYPE.HOME) == 0) {
                 this.mData[i].mDwAction =
                         this.mIconHolder.getDrawable(
-                                getContext(), R.drawable.ic_holo_light_config);
+                                getContext(), "ic_config_drawable"); //$NON-NLS-1$
                 this.mData[i].mActionCd =
                         getContext().getString(R.string.bookmarks_button_config_cd);
             } else if (bookmark.mType.compareTo(BOOKMARK_TYPE.USER_DEFINED) == 0) {
                 this.mData[i].mDwAction =
-                        this.mIconHolder.getDrawable(getContext(), R.drawable.ic_holo_light_close);
+                        this.mIconHolder.getDrawable(getContext(),
+                                    "ic_close_drawable"); //$NON-NLS-1$
                 this.mData[i].mActionCd =
                         getContext().getString(R.string.bookmarks_button_remove_bookmark_cd);
             }
@@ -180,6 +183,15 @@ public class BookmarksAdapter extends ArrayAdapter<Bookmark> {
             viewHolder.mBtAction = (ImageButton)v.findViewById(RESOURCE_ITEM_ACTION);
             viewHolder.mBtAction.setTag(Integer.valueOf(position));
             v.setTag(viewHolder);
+
+            // Apply the current theme
+            Theme theme = ThemeManager.getCurrentTheme(getContext());
+            theme.setBackgroundDrawable(
+                    getContext(), v, "background_drawable"); //$NON-NLS-1$
+            theme.setTextColor(
+                    getContext(), viewHolder.mTvName, "text_color"); //$NON-NLS-1$
+            theme.setTextColor(
+                    getContext(), viewHolder.mTvPath, "text_color"); //$NON-NLS-1$
         }
 
         //Retrieve data holder
@@ -202,4 +214,11 @@ public class BookmarksAdapter extends ArrayAdapter<Bookmark> {
         return v;
     }
 
+    /**
+     * Method that should be invoked when the theme of the app was changed
+     */
+    public void notifyThemeChanged() {
+        // Empty icon holder
+        this.mIconHolder = new IconHolder();
+    }
 }

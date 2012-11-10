@@ -16,7 +16,6 @@
 
 package com.cyanogenmod.filemanager.util;
 
-import android.graphics.Color;
 import android.graphics.Typeface;
 import android.text.Spannable;
 import android.text.SpannableString;
@@ -118,9 +117,11 @@ public final class SearchHelper {
      *
      * @param result The result to highlight
      * @param queries The list of queries that parameterized the search
+     * @param highlightedColor The highlight color
      * @return CharSequence The name string highlighted
      */
-    public static CharSequence getHighlightedName(SearchResult result, List<String> queries) {
+    public static CharSequence getHighlightedName(
+            SearchResult result, List<String> queries, int highlightedColor) {
         String name = result.getFso().getName();
         int cc = queries.size();
         for (int i = 0; i < cc; i++) {
@@ -135,7 +136,8 @@ public final class SearchHelper {
             if (matcher.find()) {
                 //Highlight the match
                 span.setSpan(
-                        new BackgroundColorSpan(Color.YELLOW), matcher.start(), matcher.end(), 0);
+                        new BackgroundColorSpan(highlightedColor),
+                        matcher.start(), matcher.end(), 0);
                 span.setSpan(
                         new StyleSpan(Typeface.BOLD), matcher.start(), matcher.end(), 0);
                 return span;

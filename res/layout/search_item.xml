@@ -18,7 +18,7 @@
   android:id="@+id/search_item"
   android:layout_width="match_parent"
   android:layout_height="@dimen/default_row_height"
-  android:background="@drawable/holo_list_selector_deseleted" >
+  android:background="@drawable/holo_list_selector_deselected" >
 
   <ImageView
     android:id="@+id/search_item_icon"

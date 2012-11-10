@@ -13,6 +13,7 @@
      See the License for the specific language governing permissions and
      limitations under the License.
  -->
+
 <resources xmlns:android="http://schemas.android.com/apk/res/android">
 
   <!-- The strings of the menu for navigation sort mode enumeration -->
@@ -84,6 +85,17 @@
     <item>@string/compression_mode_tar_bzip</item>
     <item>@string/compression_mode_gzip</item>
     <item>@string/compression_mode_bzip</item>
+  </string-array>
+
+  <!-- The default theme definition -->
+  <string-array name="themes_ids" translatable="false">
+    <item>light</item>
+  </string-array>
+  <string-array name="themes_names" translatable="false">
+    <item>@string/theme_default_name</item>
+  </string-array>
+  <string-array name="themes_descriptions" translatable="false">
+    <item>@string/theme_default_description</item>
   </string-array>
 
 </resources>

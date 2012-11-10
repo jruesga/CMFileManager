@@ -18,8 +18,10 @@ package com.cyanogenmod.filemanager.activities;
 
 import android.app.ActionBar;
 import android.app.Activity;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
-import android.content.pm.ActivityInfo;
+import android.content.IntentFilter;
 import android.content.res.Configuration;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -29,6 +31,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.ImageView;
 import android.widget.ListPopupWindow;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -38,6 +41,9 @@ import com.cyanogenmod.filemanager.adapters.HighlightedSimpleMenuListAdapter;
 import com.cyanogenmod.filemanager.adapters.HistoryAdapter;
 import com.cyanogenmod.filemanager.adapters.SimpleMenuListAdapter;
 import com.cyanogenmod.filemanager.model.History;
+import com.cyanogenmod.filemanager.preferences.FileManagerSettings;
+import com.cyanogenmod.filemanager.ui.ThemeManager;
+import com.cyanogenmod.filemanager.ui.ThemeManager.Theme;
 import com.cyanogenmod.filemanager.ui.widgets.ButtonItem;
 import com.cyanogenmod.filemanager.util.AndroidHelper;
 import com.cyanogenmod.filemanager.util.DialogHelper;
@@ -55,6 +61,17 @@ public class HistoryActivity extends Activity implements OnItemClickListener {
     private static final String TAG = "HistoryActivity"; //$NON-NLS-1$
 
     private static boolean DEBUG = false;
+
+    private final BroadcastReceiver mNotificationReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            if (intent != null) {
+                if (intent.getAction().compareTo(FileManagerSettings.INTENT_THEME_CHANGED) == 0) {
+                    applyTheme();
+                }
+            }
+        }
+    };
 
     /**
      * @hide
@@ -83,8 +100,13 @@ public class HistoryActivity extends Activity implements OnItemClickListener {
     @Override
     protected void onCreate(Bundle state) {
         if (DEBUG) {
-            Log.d(TAG, "NavigationActivity.onCreate"); //$NON-NLS-1$
+            Log.d(TAG, "HistoryActivity.onCreate"); //$NON-NLS-1$
         }
+
+        // Register the broadcast receiver
+        IntentFilter filter = new IntentFilter();
+        filter.addAction(FileManagerSettings.INTENT_THEME_CHANGED);
+        registerReceiver(this.mNotificationReceiver, filter);
 
         this.mIsEmpty = false;
         this.mIsClearHistory = false;
@@ -99,8 +121,31 @@ public class HistoryActivity extends Activity implements OnItemClickListener {
         initTitleActionBar();
         initHistory();
 
+        // Apply the theme
+        applyTheme();
+
         //Save state
         super.onCreate(state);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    protected void onDestroy() {
+        if (DEBUG) {
+            Log.d(TAG, "HistoryActivity.onDestroy"); //$NON-NLS-1$
+        }
+
+        // Unregister the receiver
+        try {
+            unregisterReceiver(this.mNotificationReceiver);
+        } catch (Throwable ex) {
+            /**NON BLOCK**/
+        }
+
+        //All destroy. Continue
+        super.onDestroy();
     }
 
     /**
@@ -172,6 +217,8 @@ public class HistoryActivity extends Activity implements OnItemClickListener {
         // Retrieve the loading view
         final View waiting = findViewById(R.id.history_waiting);
 
+        this.mListView = (ListView)findViewById(R.id.history_listview);
+
         // Load the history in background
         AsyncTask<Void, Void, Boolean> task = new AsyncTask<Void, Void, Boolean>() {
             Exception mCause;
@@ -192,9 +239,6 @@ public class HistoryActivity extends Activity implements OnItemClickListener {
                     //Show inverted history
                     final List<History> adapterList = new ArrayList<History>(this.mHistory);
                     Collections.reverse(adapterList);
-
-                    HistoryActivity.this.mListView =
-                            (ListView)findViewById(R.id.history_listview);
                     HistoryActivity.this.mAdapter =
                             new HistoryAdapter(HistoryActivity.this, adapterList);
 
@@ -340,5 +384,30 @@ public class HistoryActivity extends Activity implements OnItemClickListener {
             }
         });
         popup.show();
+    }
+
+    /**
+     * Method that applies the current theme to the activity
+     * @hide
+     */
+    void applyTheme() {
+        Theme theme = ThemeManager.getCurrentTheme(this);
+        theme.setBaseTheme(this, false);
+
+        //- ActionBar
+        theme.setTitlebarDrawable(this, getActionBar(), "titlebar_drawable"); //$NON-NLS-1$
+        View v = getActionBar().getCustomView().findViewById(R.id.customtitle_title);
+        theme.setTextColor(this, (TextView)v, "text_color"); //$NON-NLS-1$
+        v = findViewById(R.id.ab_button1);
+        theme.setImageDrawable(this, (ImageView)v, "ab_overflow_drawable"); //$NON-NLS-1$
+        // -View
+        theme.setBackgroundDrawable(this, this.mListView, "background_drawable"); //$NON-NLS-1$
+        if (this.mAdapter != null) {
+            this.mAdapter.notifyThemeChanged();
+            this.mAdapter.notifyDataSetChanged();
+        }
+        this.mListView.setDivider(
+                theme.getDrawable(this, "horizontal_divider_drawable")); //$NON-NLS-1$
+        this.mListView.invalidate();
     }
 }

@@ -704,9 +704,12 @@ public abstract class ShellConsole extends Console implements Program.ProgramLis
                                     sb = new StringBuffer(ShellConsole.this.mSbIn.toString());
                                     if (async) {
                                         synchronized (ShellConsole.this.mPartialSync) {
-                                            ((AsyncResultProgram)ShellConsole.
-                                                    this.mActiveCommand).
-                                                        onRequestStartParsePartialResult();
+                                            AsyncResultProgram p =
+                                                    ((AsyncResultProgram)ShellConsole.
+                                                                        this.mActiveCommand);
+                                            if (p != null) {
+                                                p.onRequestStartParsePartialResult();
+                                            }
                                         }
                                     }
                                 } else {
@@ -724,7 +727,9 @@ public abstract class ShellConsole extends Console implements Program.ProgramLis
                                 AsyncResultProgram program =
                                         ((AsyncResultProgram)ShellConsole.this.mActiveCommand);
                                 String partial = sb.toString();
-                                program.onRequestParsePartialResult(partial);
+                                if (program != null) {
+                                    program.onRequestParsePartialResult(partial);
+                                }
                                 ShellConsole.this.toStdIn(partial);
 
                                 // Reset the temp buffer
@@ -821,7 +826,9 @@ public abstract class ShellConsole extends Console implements Program.ProgramLis
                             if (ShellConsole.this.mStarted && async) {
                                 AsyncResultProgram program =
                                         ((AsyncResultProgram)ShellConsole.this.mActiveCommand);
-                                program.parsePartialErrResult(new String(new char[]{(char)r}));
+                                if (program != null) {
+                                    program.parsePartialErrResult(new String(new char[]{(char)r}));
+                                }
                             }
 
                             toStdErr(sb.toString());
@@ -851,7 +858,9 @@ public abstract class ShellConsole extends Console implements Program.ProgramLis
                             if (async) {
                                 AsyncResultProgram program =
                                         ((AsyncResultProgram)ShellConsole.this.mActiveCommand);
-                                program.parsePartialErrResult(s);
+                                if (program != null) {
+                                    program.parsePartialErrResult(s);
+                                }
                             }
                             toStdErr(s);
 

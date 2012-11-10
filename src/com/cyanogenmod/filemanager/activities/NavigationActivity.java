@@ -27,8 +27,6 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.res.Configuration;
 import android.net.Uri;
-import android.nfc.NdefMessage;
-import android.nfc.NdefRecord;
 import android.nfc.NfcAdapter;
 import android.nfc.NfcEvent;
 import android.os.Bundle;
@@ -43,9 +41,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListPopupWindow;
 import android.widget.PopupWindow;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.cyanogenmod.filemanager.FileManagerApplication;
@@ -72,6 +72,8 @@ import com.cyanogenmod.filemanager.preferences.FileManagerSettings;
 import com.cyanogenmod.filemanager.preferences.NavigationLayoutMode;
 import com.cyanogenmod.filemanager.preferences.ObjectIdentifier;
 import com.cyanogenmod.filemanager.preferences.Preferences;
+import com.cyanogenmod.filemanager.ui.ThemeManager;
+import com.cyanogenmod.filemanager.ui.ThemeManager.Theme;
 import com.cyanogenmod.filemanager.ui.dialogs.ActionsDialog;
 import com.cyanogenmod.filemanager.ui.dialogs.FilesystemInfoDialog;
 import com.cyanogenmod.filemanager.ui.dialogs.FilesystemInfoDialog.OnMountListener;
@@ -173,7 +175,7 @@ public class NavigationActivity extends Activity
     // exit, and the toast is shown again after the first tap.
     private static final int RELEASE_EXIT_CHECK_TIMEOUT = 3500;
 
-    private final BroadcastReceiver mOnSettingChangeReceiver = new BroadcastReceiver() {
+    private final BroadcastReceiver mNotificationReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
             if (intent != null) {
@@ -246,6 +248,9 @@ public class NavigationActivity extends Activity
                     } catch (Exception e) {
                         ExceptionUtil.translateException(context, e, true, false);
                     }
+                } else if (intent.getAction().compareTo(
+                        FileManagerSettings.INTENT_THEME_CHANGED) == 0) {
+                    applyTheme();
                 }
             }
         }
@@ -293,7 +298,8 @@ public class NavigationActivity extends Activity
         IntentFilter filter = new IntentFilter();
         filter.addAction(FileManagerSettings.INTENT_SETTING_CHANGED);
         filter.addAction(FileManagerSettings.INTENT_FILE_CHANGED);
-        registerReceiver(this.mOnSettingChangeReceiver, filter);
+        filter.addAction(FileManagerSettings.INTENT_THEME_CHANGED);
+        registerReceiver(this.mNotificationReceiver, filter);
 
         //Set the main layout of the activity
         setContentView(R.layout.navigation);
@@ -304,8 +310,8 @@ public class NavigationActivity extends Activity
             mNfcAdapter.setBeamPushUrisCallback(new NfcAdapter.CreateBeamUrisCallback() {
                 @Override
                 public Uri[] createBeamUris(NfcEvent event) {
-                    List<FileSystemObject> selectedFiles = getNavigationView(NavigationActivity.
-                            this.mCurrentNavigationView).getSelectedFiles();
+                    List<FileSystemObject> selectedFiles =
+                            getCurrentNavigationView().getSelectedFiles();
                     if (selectedFiles.size() > 0) {
                         List<Uri> fileUri = new ArrayList<Uri>();
                         for (FileSystemObject f : selectedFiles) {
@@ -322,9 +328,6 @@ public class NavigationActivity extends Activity
                 }
             }, this);
         }
-
-        // Show welcome message
-        showWelcomeMsg();
 
         //Initialize activity
         init();
@@ -343,6 +346,12 @@ public class NavigationActivity extends Activity
             onLayoutChanged();
         }
         this.mOrientation = orientation;
+
+        // Apply the theme
+        applyTheme();
+
+        // Show welcome message
+        showWelcomeMsg();
 
         this.mHandler = new Handler();
         this.mHandler.post(new Runnable() {
@@ -395,7 +404,7 @@ public class NavigationActivity extends Activity
 
         // Unregister the receiver
         try {
-            unregisterReceiver(this.mOnSettingChangeReceiver);
+            unregisterReceiver(this.mNotificationReceiver);
         } catch (Throwable ex) {
             /**NON BLOCK**/
         }
@@ -446,7 +455,7 @@ public class NavigationActivity extends Activity
             AlertDialog dialog = DialogHelper.createAlertDialog(
                 this, R.drawable.ic_launcher,
                 R.string.welcome_title, getString(R.string.welcome_msg), false);
-            dialog.show();
+            DialogHelper.delegateDialogShow(this, dialog);
 
             // Don't display again this dialog
             try {
@@ -867,9 +876,9 @@ public class NavigationActivity extends Activity
                             //Navigate to previous history
                             back();
                         } else {
-                            // I don't know is the search view was changed, so do a refresh
+                            // I don't know is the search view was changed, so try to do a refresh
                             // of the navigation view
-                            getCurrentNavigationView().refresh();
+                            getCurrentNavigationView().refresh(true);
                         }
                     }
                     break;
@@ -1111,7 +1120,7 @@ public class NavigationActivity extends Activity
                             this,
                             R.string.filesystem_info_warning_title,
                             R.string.filesystem_info_warning_msg);
-            alert.show();
+            DialogHelper.delegateDialogShow(this, alert);
             return;
         }
 
@@ -1437,7 +1446,7 @@ public class NavigationActivity extends Activity
                         }
                     }
                });
-        dialog.show();
+        DialogHelper.delegateDialogShow(this, dialog);
     }
 
     /**
@@ -1502,6 +1511,8 @@ public class NavigationActivity extends Activity
      * Method that reconfigures the layout for better fit in portrait and landscape modes
      */
     private void onLayoutChanged() {
+        Theme theme = ThemeManager.getCurrentTheme(this);
+
         // Apply only when the orientation was changed
         int orientation = getResources().getConfiguration().orientation;
         if (this.mOrientation == orientation) return;
@@ -1541,6 +1552,9 @@ public class NavigationActivity extends Activity
             statusBar.setLayoutParams(params);
             newParent.addView(statusBar);
 
+            // Apply theme
+            theme.setBackgroundDrawable(this, statusBar, "titlebar_drawable"); //$NON-NLS-1$
+
             // Hide holder
             View holder = findViewById(R.id.navigation_statusbar_portrait_holder);
             holder.setVisibility(View.GONE);
@@ -1554,7 +1568,8 @@ public class NavigationActivity extends Activity
             }
 
             // Add to the new location
-            ViewGroup newParent = (ViewGroup)findViewById(R.id.navigation_statusbar_portrait_holder);
+            ViewGroup newParent = (ViewGroup)findViewById(
+                    R.id.navigation_statusbar_portrait_holder);
             LinearLayout.LayoutParams params =
                     new LinearLayout.LayoutParams(
                             ViewGroup.LayoutParams.MATCH_PARENT,
@@ -1562,8 +1577,64 @@ public class NavigationActivity extends Activity
             statusBar.setLayoutParams(params);
             newParent.addView(statusBar);
 
+            // Apply theme
+            theme.setBackgroundDrawable(this, statusBar, "statusbar_drawable"); //$NON-NLS-1$
+
             // Show holder
             newParent.setVisibility(View.VISIBLE);
+        }
+    }
+
+    /**
+     * Method that applies the current theme to the activity
+     * @hide
+     */
+    void applyTheme() {
+        int orientation = getResources().getConfiguration().orientation;
+        Theme theme = ThemeManager.getCurrentTheme(this);
+        theme.setBaseTheme(this, false);
+
+        //- ActionBar
+        theme.setTitlebarDrawable(this, getActionBar(), "titlebar_drawable"); //$NON-NLS-1$
+        //- StatusBar
+        View v = findViewById(R.id.navigation_statusbar);
+        if (orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            theme.setBackgroundDrawable(this, v, "titlebar_drawable"); //$NON-NLS-1$
+        } else {
+            theme.setBackgroundDrawable(this, v, "statusbar_drawable"); //$NON-NLS-1$
+        }
+        v = findViewById(R.id.ab_overflow);
+        theme.setImageDrawable(this, (ImageView)v, "ab_overflow_drawable"); //$NON-NLS-1$
+        v = findViewById(R.id.ab_actions);
+        theme.setImageDrawable(this, (ImageView)v, "ab_actions_drawable"); //$NON-NLS-1$
+        v = findViewById(R.id.ab_search);
+        theme.setImageDrawable(this, (ImageView)v, "ab_search_drawable"); //$NON-NLS-1$
+        v = findViewById(R.id.ab_bookmarks);
+        theme.setImageDrawable(this, (ImageView)v, "ab_bookmarks_drawable"); //$NON-NLS-1$
+        v = findViewById(R.id.ab_history);
+        theme.setImageDrawable(this, (ImageView)v, "ab_history_drawable"); //$NON-NLS-1$
+        //- Expanders
+        v = findViewById(R.id.ab_configuration);
+        theme.setImageDrawable(this, (ImageView)v, "expander_open_drawable"); //$NON-NLS-1$
+        v = findViewById(R.id.ab_close);
+        theme.setImageDrawable(this, (ImageView)v, "expander_close_drawable"); //$NON-NLS-1$
+        v = findViewById(R.id.ab_sort_mode);
+        theme.setImageDrawable(this, (ImageView)v, "ab_sort_mode_drawable"); //$NON-NLS-1$
+        v = findViewById(R.id.ab_layout_mode);
+        theme.setImageDrawable(this, (ImageView)v, "ab_layout_mode_drawable"); //$NON-NLS-1$
+        v = findViewById(R.id.ab_view_options);
+        theme.setImageDrawable(this, (ImageView)v, "ab_view_options_drawable"); //$NON-NLS-1$
+        //- SelectionBar
+        v = findViewById(R.id.navigation_selectionbar);
+        theme.setBackgroundDrawable(this, v, "selectionbar_drawable"); //$NON-NLS-1$
+        v = findViewById(R.id.ab_selection_done);
+        theme.setImageDrawable(this, (ImageView)v, "ab_selection_done_drawable"); //$NON-NLS-1$
+        v = findViewById(R.id.navigation_status_selection_label);
+        theme.setTextColor(this, (TextView)v, "text_color"); //$NON-NLS-1$
+        //- NavigationView
+        int cc = this.mNavigationViews.length;
+        for (int i = 0; i < cc; i++) {
+            getNavigationView(i).applyTheme();
         }
     }
 

@@ -22,6 +22,8 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.cyanogenmod.filemanager.R;
+import com.cyanogenmod.filemanager.ui.ThemeManager;
+import com.cyanogenmod.filemanager.ui.ThemeManager.Theme;
 
 /**
  * An implementation of {@link SimpleMenuListAdapter} with highlighted text
@@ -62,9 +64,11 @@ public class HighlightedSimpleMenuListAdapter extends SimpleMenuListAdapter {
         // Highlight the text
         View v = super.getView(position, convertView, parent);
         if (v != null) {
+            Theme theme = ThemeManager.getCurrentTheme(this.mContext);
             TextView tvText = (TextView)v.findViewById(R.id.menu_item_text);
             if (tvText != null) {
                 tvText.setTextAppearance(this.mContext, R.style.primary_text_appearance);
+                theme.setTextColor(this.mContext, tvText, "text_color"); //$NON-NLS-1$
             }
         }
         //Return the view

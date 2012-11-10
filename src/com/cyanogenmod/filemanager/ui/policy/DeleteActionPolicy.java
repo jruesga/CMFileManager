@@ -109,7 +109,7 @@ public final class DeleteActionPolicy extends ActionsPolicy {
                     }
                 }
            });
-        dialog.show();
+        DialogHelper.delegateDialogShow(ctx, dialog);
     }
 
     /**
@@ -359,7 +359,7 @@ public final class DeleteActionPolicy extends ActionsPolicy {
                                 ctx,
                                 R.string.warning_title,
                                 R.string.msgs_unresolved_inconsistencies);
-                dialog.show();
+                DialogHelper.delegateDialogShow(ctx, dialog);
                 return false;
             }
         }

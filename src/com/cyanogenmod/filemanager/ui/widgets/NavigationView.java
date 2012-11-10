@@ -27,6 +27,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListAdapter;
+import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
@@ -49,6 +50,8 @@ import com.cyanogenmod.filemanager.preferences.FileManagerSettings;
 import com.cyanogenmod.filemanager.preferences.NavigationLayoutMode;
 import com.cyanogenmod.filemanager.preferences.ObjectIdentifier;
 import com.cyanogenmod.filemanager.preferences.Preferences;
+import com.cyanogenmod.filemanager.ui.ThemeManager;
+import com.cyanogenmod.filemanager.ui.ThemeManager.Theme;
 import com.cyanogenmod.filemanager.ui.policy.DeleteActionPolicy;
 import com.cyanogenmod.filemanager.ui.policy.IntentsActionPolicy;
 import com.cyanogenmod.filemanager.ui.widgets.FlingerListView.OnItemFlingerListener;
@@ -512,14 +515,25 @@ public class NavigationView extends RelativeLayout implements
      * Method that refresh the view data.
      */
     public void refresh() {
+        refresh(false);
+    }
+
+    /**
+     * Method that refresh the view data.
+     *
+     * @param restore Restore previous position
+     */
+    public void refresh(boolean restore) {
         FileSystemObject fso = null;
         // Try to restore the previous scroll position
-        try {
-            if (this.mAdapterView != null && this.mAdapter != null) {
-                int position = this.mAdapterView.getFirstVisiblePosition();
-                fso = this.mAdapter.getItem(position);
-            }
-        } catch (Throwable _throw) {/**NON BLOCK**/}
+        if (restore) {
+            try {
+                if (this.mAdapterView != null && this.mAdapter != null) {
+                    int position = this.mAdapterView.getFirstVisiblePosition();
+                    fso = this.mAdapter.getItem(position);
+                }
+            } catch (Throwable _throw) {/**NON BLOCK**/}
+        }
         refresh(fso);
     }
 
@@ -1204,6 +1218,28 @@ public class NavigationView extends RelativeLayout implements
             }
         }
         return newDir;
+    }
+
+    /**
+     * Method that applies the current theme to the activity
+     */
+    public void applyTheme() {
+        //- Breadcrumb
+        if (getBreadcrumb() != null) {
+            getBreadcrumb().applyTheme();
+        }
+
+        //- Redraw the adapter view
+        Theme theme = ThemeManager.getCurrentTheme(getContext());
+        theme.setBackgroundDrawable(getContext(), this, "background_drawable"); //$NON-NLS-1$
+        if (this.mAdapter != null) {
+            this.mAdapter.notifyThemeChanged();
+        }
+        if (this.mAdapterView instanceof ListView) {
+            ((ListView)this.mAdapterView).setDivider(
+                    theme.getDrawable(getContext(), "horizontal_divider_drawable")); //$NON-NLS-1$
+        }
+        refresh();
     }
 
 }

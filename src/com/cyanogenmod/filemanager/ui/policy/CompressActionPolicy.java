@@ -128,7 +128,7 @@ public final class CompressActionPolicy extends ActionsPolicy {
                         @Override
                         public void onNoSelectChoice() {/**NON BLOCK**/}
                     });
-            dialog.show();
+            DialogHelper.delegateDialogShow(ctx, dialog);
         }
     }
 
@@ -170,7 +170,7 @@ public final class CompressActionPolicy extends ActionsPolicy {
                     @Override
                     public void onNoSelectChoice() {/**NON BLOCK**/}
                 });
-        dialog.show();
+        DialogHelper.delegateDialogShow(ctx, dialog);
     }
 
 
@@ -472,7 +472,7 @@ public final class CompressActionPolicy extends ActionsPolicy {
                                     }
                                 }
                            });
-            dialog.show();
+            DialogHelper.delegateDialogShow(ctx, dialog);
         } else {
             // Execute background task
             task.execute(task);
@@ -721,7 +721,7 @@ public final class CompressActionPolicy extends ActionsPolicy {
                                     }
                                 }
                            });
-            dialog.show();
+            DialogHelper.delegateDialogShow(ctx, dialog);
         } else {
             // Execute background task
             task.execute(task);

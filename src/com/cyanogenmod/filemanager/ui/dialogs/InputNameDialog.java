@@ -29,6 +29,8 @@ import android.widget.TextView;
 
 import com.cyanogenmod.filemanager.R;
 import com.cyanogenmod.filemanager.model.FileSystemObject;
+import com.cyanogenmod.filemanager.ui.ThemeManager;
+import com.cyanogenmod.filemanager.ui.ThemeManager.Theme;
 import com.cyanogenmod.filemanager.util.DialogHelper;
 import com.cyanogenmod.filemanager.util.FileHelper;
 
@@ -119,6 +121,15 @@ public class InputNameDialog
         this.mEditText.addTextChangedListener(this);
         this.mMsg = (TextView)v.findViewById(R.id.input_name_dialog_message);
 
+        // Apply the current theme
+        Theme theme = ThemeManager.getCurrentTheme(context);
+        theme.setBackgroundDrawable(context, v, "background_drawable"); //$NON-NLS-1$
+        theme.setTextColor(context, title, "text_color"); //$NON-NLS-1$
+        theme.setTextColor(context, this.mMsg, "text_color"); //$NON-NLS-1$
+        this.mMsg.setCompoundDrawablesWithIntrinsicBounds(
+                theme.getDrawable(this.mContext, "filesystem_warning_drawable"), //$NON-NLS-1$
+                null, null, null);
+
         //Create the dialog
         this.mDialog = DialogHelper.createDialog(
                                         context,
@@ -194,7 +205,7 @@ public class InputNameDialog
      * Method that shows the dialog.
      */
     public void show() {
-        this.mDialog.show();
+        DialogHelper.delegateDialogShow(this.mContext, this.mDialog);
     }
 
     /**

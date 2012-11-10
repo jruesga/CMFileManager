@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (C) 2012 The CyanogenMod Project
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+ -->
+
+<!--
+    The default light theme for CMFileManager. This is the default theme
+    of the app, only has the definitions and comments of every customizable
+    part of the app. Developers MUST take this theme as the base for building
+    new themes for CMFileManager.
+    Developers MUST replace the "light" prefix of every resource for the identifier
+    of the theme.
+ -->
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+
+  <!-- The base theme used to customize some (non-themeables) widgets like dialogs
+       2 possibles values:
+         * holo: @android:style/Theme.Holo
+         * holo_light: @android:style/Theme.Holo.Light
+  -->
+  <string name="base_theme">holo_light</string>
+
+  <!-- The image preview -->
+  <drawable name="theme_preview_drawable">@drawable/theme_preview</drawable>
+  <drawable name="theme_no_preview_drawable">@drawable/theme_no_preview</drawable>
+
+  <!-- The drawable for the title bar -->
+  <drawable name="titlebar_drawable">@drawable/bg_holo_titlebar</drawable>
+
+  <!-- The background drawable -->
+  <drawable name="background_drawable">@drawable/bg_holo_background</drawable>
+
+  <!-- The drawable for the status bar -->
+  <drawable name="statusbar_drawable">@drawable/bg_holo_statusbar</drawable>
+
+  <!-- The drawable for the selection bar -->
+  <drawable name="selectionbar_drawable">@drawable/bg_holo_selectionbar</drawable>
+
+  <!-- The drawable for the overflow action bar button -->
+  <drawable name="ab_overflow_drawable">@drawable/ic_holo_light_overflow</drawable>
+  <!-- The drawable for the actions action bar button -->
+  <drawable name="ab_actions_drawable">@drawable/ic_holo_light_contextual_action</drawable>
+  <!-- The drawable for the search action bar button -->
+  <drawable name="ab_search_drawable">@drawable/ic_holo_light_search</drawable>
+  <!-- The drawable for the bookmarks action bar button -->
+  <drawable name="ab_bookmarks_drawable">@drawable/ic_holo_light_bookmarks</drawable>
+  <!-- The drawable for the history action bar button -->
+  <drawable name="ab_history_drawable">@drawable/ic_holo_light_history</drawable>
+  <!-- The drawable for the sort mode of expander bar -->
+  <drawable name="ab_sort_mode_drawable">@drawable/ic_holo_light_sort_alphabetically</drawable>
+  <!-- The drawable for the layout mode of expander bar -->
+  <drawable name="ab_layout_mode_drawable">@drawable/ic_holo_light_layout</drawable>
+  <!-- The drawable for the view options of expander bar -->
+  <drawable name="ab_view_options_drawable">@drawable/ic_holo_light_view</drawable>
+  <!-- The drawable for the selection done button -->
+  <drawable name="ab_selection_done_drawable">@drawable/ic_holo_light_accept</drawable>
+  <!-- The drawable for the save action bar button -->
+  <drawable name="ab_save_drawable">@drawable/ic_holo_light_save</drawable>
+  <!-- The drawable for the tab action bar button -->
+  <drawable name="ab_tab_drawable">@drawable/ic_holo_light_tab</drawable>
+
+  <!-- The close action drawable from the expander bar -->
+  <drawable name="expander_close_drawable">@drawable/ic_holo_light_expander_close</drawable>
+  <!-- The open action drawable from the expander bar -->
+  <drawable name="expander_open_drawable">@drawable/ic_holo_light_expander_open</drawable>
+
+  <!-- The text color of TextView controls -->
+  <color name="text_color">@color/black_transparent</color>
+  <!-- The text color of Dialog -->
+  <color name="dialog_text_color">@android:color/holo_blue_dark</color>
+
+  <!-- The highlight color for terms found in the search result -->
+  <color name="search_highlight_color">@color/search_highlight</color>
+
+  <!-- The breadcrumb divider drawable -->
+  <drawable name="breadcrumb_divider_drawable">@drawable/ic_holo_light_breadcrumb_divider</drawable>
+
+  <!-- FileSystem locked drawable -->
+  <drawable name="filesystem_locked_drawable">@drawable/ic_holo_light_fs_locked</drawable>
+  <!-- FileSystem unlocked drawable -->
+  <drawable name="filesystem_unlocked_drawable">@drawable/ic_holo_light_fs_unlocked</drawable>
+  <!-- FileSystem warning drawable -->
+  <drawable name="filesystem_warning_drawable">@drawable/ic_holo_light_fs_warning</drawable>
+
+  <!-- The popup menu checkable selector drawable -->
+  <drawable name="popup_checkable_selector_drawable">@drawable/checkable_selector</drawable>
+  <!-- The menu checkable selector drawable -->
+  <drawable name="menu_checkable_selector_drawable">@drawable/holo_popup_selector</drawable>
+  <!-- The checkable item selector drawable -->
+  <drawable name="selection_drawable">@drawable/holo_selection</drawable>
+
+  <!-- Selectors -->
+  <drawable name="selectors_deselected_drawable">@drawable/holo_list_selector_deselected</drawable>
+  <drawable name="selectors_selected_drawable">@drawable/holo_list_selector_selected</drawable>
+  <drawable name="selectors_button_drawable">@drawable/holo_button_selector</drawable>
+
+  <!-- Checkboxes -->
+  <drawable name="checkbox_deselected_drawable">@drawable/btn_holo_light_check_off_normal</drawable>
+  <drawable name="checkbox_selected_drawable">@drawable/btn_holo_light_check_on_normal</drawable>
+
+  <!-- Dividers -->
+  <drawable name="horizontal_divider_drawable">@drawable/divider_horizontal_bright_opaque</drawable>
+  <drawable name="vertical_divider_drawable">@drawable/divider_vertical_bright_opaque</drawable>
+  <color name="horizontal_divider_color">@color/divider_color_light</color>
+  <color name="vertical_divider_color">@color/divider_color</color>
+
+  <!-- Icons -->
+  <drawable name="ic_close_drawable">@drawable/ic_holo_light_close</drawable>
+  <drawable name="ic_config_drawable">@drawable/ic_holo_light_config</drawable>
+  <drawable name="ic_home_drawable">@drawable/ic_holo_light_home</drawable>
+  <drawable name="ic_filesystem_drawable">@drawable/ic_holo_light_filesystem</drawable>
+  <drawable name="ic_sdcard_drawable">@drawable/ic_holo_light_sdcard</drawable>
+  <drawable name="ic_usb_drawable">@drawable/ic_holo_light_usb</drawable>
+  <drawable name="ic_user_defined_bookmark_drawable">@drawable/ic_holo_light_user_defined_bookmark</drawable>
+  <drawable name="ic_history_search_drawable">@drawable/ic_holo_light_history_search</drawable>
+
+  <!-- Disk usage graph -->
+  <color name="disk_usage_total_color">@color/disk_usage_total</color>
+  <color name="disk_usage_used_color">@color/disk_usage_used</color>
+  <color name="disk_usage_used_warning_color">@color/disk_usage_used_warning</color>
+
+  <!-- Disk usage filters -->
+  <color name="disk_usage_filter_normal_color">@color/disk_usage_color_filter_normal</color>
+  <color name="disk_usage_filter_warning_color">@color/disk_usage_color_filter_warning</color>
+
+  <!-- ProgressBar -->
+  <drawable name="horizontal_progress_bar">@drawable/progress_horizontal_holo_light</drawable>
+
+  <!-- Autocomplete -->
+  <color name="autocomplete_fg_color">@color/black_transparent</color>
+  <color name="autocomplete_bg_color">@android:color/darker_gray</color>
+
+  <!-- Console -->
+  <color name="console_bg_color">@color/console_bg</color>
+  <color name="console_fg_color">@color/console_fg</color>
+
+  <!-- Fso Icons -->
+  <drawable name="ic_fso_folder_drawable">@drawable/ic_fso_folder</drawable>
+  <drawable name="ic_fso_default_drawable">@drawable/ic_fso_default</drawable>
+  <drawable name="fso_type_app_drawable">@drawable/fso_type_app</drawable>
+  <drawable name="fso_type_audio_drawable">@drawable/fso_type_audio</drawable>
+  <drawable name="fso_type_binary_drawable">@drawable/fso_type_binary</drawable>
+  <drawable name="fso_type_calendar_drawable">@drawable/fso_type_calendar</drawable>
+  <drawable name="fso_type_cdimage_drawable">@drawable/fso_type_cdimage</drawable>
+  <drawable name="fso_type_compress_drawable">@drawable/fso_type_compress</drawable>
+  <drawable name="fso_type_contact_drawable">@drawable/fso_type_contact</drawable>
+  <drawable name="fso_type_database_drawable">@drawable/fso_type_database</drawable>
+  <drawable name="fso_type_document_drawable">@drawable/fso_type_document</drawable>
+  <drawable name="fso_type_ebook_drawable">@drawable/fso_type_ebook</drawable>
+  <drawable name="fso_type_email_drawable">@drawable/fso_type_email</drawable>
+  <drawable name="fso_type_executable_drawable">@drawable/fso_type_executable</drawable>
+  <drawable name="fso_type_feed_drawable">@drawable/fso_type_feed</drawable>
+  <drawable name="fso_type_font_drawable">@drawable/fso_type_font</drawable>
+  <drawable name="fso_type_image_drawable">@drawable/fso_type_image</drawable>
+  <drawable name="fso_type_markup_document_drawable">@drawable/fso_type_markup_document</drawable>
+  <drawable name="fso_type_pdf_drawable">@drawable/fso_type_pdf</drawable>
+  <drawable name="fso_type_presentation_drawable">@drawable/fso_type_presentation</drawable>
+  <drawable name="fso_type_security_drawable">@drawable/fso_type_security</drawable>
+  <drawable name="fso_type_shell_drawable">@drawable/fso_type_shell</drawable>
+  <drawable name="fso_type_source_drawable">@drawable/fso_type_source</drawable>
+  <drawable name="fso_type_spreadsheet_drawable">@drawable/fso_type_spreadsheet</drawable>
+  <drawable name="fso_type_system_drawable">@drawable/fso_type_system</drawable>
+  <drawable name="fso_type_text_drawable">@drawable/fso_type_text</drawable>
+  <drawable name="fso_type_video_drawable">@drawable/fso_type_video</drawable>
+
+</resources>

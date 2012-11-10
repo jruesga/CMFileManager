@@ -53,4 +53,7 @@
 -keep public class * extends android.preference.PreferenceFragment {
   public <init>(...);
 }
+-keep public class * extends android.preference.Preference {
+  public <init>(...);
+}
 

@@ -36,6 +36,8 @@ import android.widget.Toast;
 
 import com.cyanogenmod.filemanager.R;
 import com.cyanogenmod.filemanager.adapters.CheckableListAdapter;
+import com.cyanogenmod.filemanager.ui.ThemeManager;
+import com.cyanogenmod.filemanager.ui.ThemeManager.Theme;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -208,6 +210,12 @@ public final class DialogHelper {
         adapter.setSelectedItem(defOption);
         listView.setChoiceMode(AbsListView.CHOICE_MODE_SINGLE);
         builder.setView(listView);
+
+        // Apply the current theme
+        Theme theme = ThemeManager.getCurrentTheme(context);
+        theme.setBackgroundDrawable(context, listView, "background_drawable"); //$NON-NLS-1$
+        listView.setDivider(
+                theme.getDrawable(context, "horizontal_divider_drawable")); //$NON-NLS-1$
 
         builder.setNegativeButton(context.getString(R.string.cancel), new OnClickListener() {
             @Override
@@ -401,7 +409,7 @@ public final class DialogHelper {
      */
     public static AlertDialog createDialog(Context context, int icon, String title, View content) {
         //Create the alert dialog
-        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        final AlertDialog.Builder builder = new AlertDialog.Builder(context);
         builder.setCustomTitle(createTitle(context, icon, title, false));
         builder.setView(content);
         return builder.create();
@@ -432,6 +440,12 @@ public final class DialogHelper {
             vText.setFilters(new InputFilter[]{new InputFilter.AllCaps()});
         }
         vText.setText(title);
+
+        // Apply the current theme
+        Theme theme = ThemeManager.getCurrentTheme(context);
+        theme.setBackgroundDrawable(context, lyTitle, "background_drawable"); //$NON-NLS-1$
+        theme.setTextColor(context, vText, "dialog_text_color"); //$NON-NLS-1$
+
         return lyTitle;
     }
 
@@ -451,6 +465,12 @@ public final class DialogHelper {
                             null);
         TextView vMsg = (TextView)lyMessage.findViewById(R.id.dialog_message);
         vMsg.setText(message);
+
+        // Apply the current theme
+        Theme theme = ThemeManager.getCurrentTheme(context);
+        theme.setBackgroundDrawable(context, lyMessage, "background_drawable"); //$NON-NLS-1$
+        theme.setTextColor(context, vMsg, "text_color"); //$NON-NLS-1$
+
         return lyMessage;
     }
 
@@ -470,6 +490,22 @@ public final class DialogHelper {
         popup.setAnchorView(anchor);
         popup.setModal(true);
         return popup;
+    }
+
+    /**
+     * Method that delegates the display of a dialog. This method applies the style to the
+     * dialog, so all dialogs of the application MUST used this method to display the dialog.
+     *
+     * @param context The current context
+     * @param dialog The dialog to show
+     */
+    public static void delegateDialogShow(Context context, AlertDialog dialog) {
+        // Show the dialog
+        dialog.show();
+
+        // Apply theme
+        Theme theme = ThemeManager.getCurrentTheme(context);
+        theme.setDialogStyle(context, dialog);
     }
 
     /**

@@ -219,8 +219,10 @@ public final class ExceptionUtil {
                         if (fToast) {
                             DialogHelper.showToast(context, fMsgResId, Toast.LENGTH_SHORT);
                         } else {
-                            DialogHelper.createErrorDialog(
-                                    context, R.string.error_title, fMsgResId).show();
+                            AlertDialog dialog =
+                                    DialogHelper.createErrorDialog(
+                                            context, R.string.error_title, fMsgResId);
+                            DialogHelper.delegateDialogShow(context, dialog);
                         }
                     } catch (Exception e) {
                         Log.e(context.getClass().getSimpleName(),
@@ -322,7 +324,7 @@ public final class ExceptionUtil {
                             }
                         }
                     });
-        alert.show();
+        DialogHelper.delegateDialogShow(context, alert);
     }
 
     /**

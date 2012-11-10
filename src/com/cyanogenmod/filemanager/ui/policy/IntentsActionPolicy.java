@@ -37,6 +37,7 @@ import com.cyanogenmod.filemanager.util.ExceptionUtil;
 import com.cyanogenmod.filemanager.util.FileHelper;
 import com.cyanogenmod.filemanager.util.MimeTypeHelper;
 import com.cyanogenmod.filemanager.util.MimeTypeHelper.MimeTypeCategory;
+import com.cyanogenmod.filemanager.util.ResourcesHelper;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -260,13 +261,18 @@ public final class IntentsActionPolicy extends ActionsPolicy {
             }
             shortcutIntent.putExtra(ShortcutActivity.EXTRA_FSO, fso.getFullPath());
 
+            // Obtain the icon drawable (don't use here the themeable drawable)
+            String resid = MimeTypeHelper.getIcon(ctx, fso);
+            int dwid =
+                    ResourcesHelper.getIdentifier(
+                            ctx.getResources(), "string", resid); //$NON-NLS-1$
+
             // The intent to send to broadcast for register the shortcut intent
             Intent intent = new Intent();
             intent.putExtra(Intent.EXTRA_SHORTCUT_INTENT, shortcutIntent);
             intent.putExtra(Intent.EXTRA_SHORTCUT_NAME, fso.getName());
             intent.putExtra(Intent.EXTRA_SHORTCUT_ICON_RESOURCE,
-                    Intent.ShortcutIconResource.fromContext(
-                            ctx, MimeTypeHelper.getIcon(ctx, fso)));
+                    Intent.ShortcutIconResource.fromContext(ctx, dwid));
             intent.setAction("com.android.launcher.action.INSTALL_SHORTCUT"); //$NON-NLS-1$
             ctx.sendBroadcast(intent);
 

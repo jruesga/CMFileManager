@@ -40,10 +40,12 @@ import android.widget.GridView;
 import android.widget.ListAdapter;
 import android.widget.Toast;
 
-import com.cyanogenmod.filemanager.FileManagerApplication;
 import com.cyanogenmod.filemanager.R;
 import com.cyanogenmod.filemanager.adapters.AssociationsAdapter;
+import com.cyanogenmod.filemanager.ui.ThemeManager;
+import com.cyanogenmod.filemanager.ui.ThemeManager.Theme;
 import com.cyanogenmod.filemanager.ui.policy.IntentsActionPolicy;
+import com.cyanogenmod.filemanager.util.AndroidHelper;
 import com.cyanogenmod.filemanager.util.DialogHelper;
 import com.cyanogenmod.filemanager.util.ExceptionUtil;
 
@@ -126,7 +128,7 @@ public class AssociationsDialog implements OnItemClickListener {
     private void init(int icon, String title, String action,
             OnCancelListener onCancelListener, OnDismissListener onDismissListener) {
         boolean isPlatformSigned =
-                FileManagerApplication.isAppPlatformSignature(this.mContext);
+                AndroidHelper.isAppPlatformSignature(this.mContext);
 
         //Create the layout, and retrieve the views
         LayoutInflater li =
@@ -143,6 +145,11 @@ public class AssociationsDialog implements OnItemClickListener {
         if (dialogTitle == null) {
             dialogTitle = this.mContext.getString(R.string.associations_dialog_title);
         }
+
+        // Apply the current theme
+        Theme theme = ThemeManager.getCurrentTheme(this.mContext);
+        theme.setBackgroundDrawable(this.mContext, v, "background_drawable"); //$NON-NLS-1$
+        theme.setTextColor(this.mContext, this.mRemember, "text_color"); //$NON-NLS-1$
 
         //Create the dialog
         this.mDialog = DialogHelper.createDialog(
@@ -198,7 +205,7 @@ public class AssociationsDialog implements OnItemClickListener {
      * Method that shows the dialog.
      */
     public void show() {
-        this.mDialog.show();
+        DialogHelper.delegateDialogShow(this.mContext, this.mDialog);
 
         // Set user preferences
         this.mDialog.getButton(DialogInterface.BUTTON_POSITIVE).setEnabled(false);
@@ -412,7 +419,7 @@ public class AssociationsDialog implements OnItemClickListener {
             // Ignore it if the preferred can be saved. Only notify the user and open the
             // intent
             boolean isPlatformSigned =
-                    FileManagerApplication.isAppPlatformSignature(this.mContext);
+                    AndroidHelper.isAppPlatformSignature(this.mContext);
             if (isPlatformSigned && this.mAllowPreferred) {
                 if (filter != null && !isPreferredSelected()) {
                     try {

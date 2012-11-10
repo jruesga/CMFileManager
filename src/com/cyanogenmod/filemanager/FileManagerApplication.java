@@ -22,7 +22,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.ApplicationInfo;
-import android.content.pm.PackageManager;
 import android.util.Log;
 
 import com.cyanogenmod.filemanager.console.Console;
@@ -34,7 +33,8 @@ import com.cyanogenmod.filemanager.preferences.AccessMode;
 import com.cyanogenmod.filemanager.preferences.FileManagerSettings;
 import com.cyanogenmod.filemanager.preferences.ObjectStringIdentifier;
 import com.cyanogenmod.filemanager.preferences.Preferences;
-import com.cyanogenmod.filemanager.util.ExceptionUtil;
+import com.cyanogenmod.filemanager.ui.ThemeManager;
+import com.cyanogenmod.filemanager.ui.ThemeManager.Theme;
 import com.cyanogenmod.filemanager.util.FileHelper;
 import com.cyanogenmod.filemanager.util.MimeTypeHelper;
 
@@ -67,31 +67,78 @@ public final class FileManagerApplication extends Application {
     private static boolean sIsDebuggable = false;
     private static boolean sIsDeviceRooted = false;
 
-    private final BroadcastReceiver mOnSettingChangeReceiver = new BroadcastReceiver() {
+    private final BroadcastReceiver mNotificationReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
-            if (intent != null &&
-                intent.getAction().compareTo(FileManagerSettings.INTENT_SETTING_CHANGED) == 0) {
+            if (intent != null) {
+                if (intent.getAction().compareTo(
+                        FileManagerSettings.INTENT_SETTING_CHANGED) == 0) {
 
-                // The settings has changed
-                String key = intent.getStringExtra(FileManagerSettings.EXTRA_SETTING_CHANGED_KEY);
-                if (key != null &&
-                    key.compareTo(FileManagerSettings.SETTINGS_SHOW_TRACES.getId()) == 0) {
+                    // The settings has changed
+                    String key =
+                            intent.getStringExtra(FileManagerSettings.EXTRA_SETTING_CHANGED_KEY);
+                    if (key != null &&
+                        key.compareTo(FileManagerSettings.SETTINGS_SHOW_TRACES.getId()) == 0) {
 
-                    // The debug traces setting has changed. Notify to consoles
-                    Console c = null;
-                    try {
-                        c = getBackgroundConsole();
-                    } catch (Exception e) {/**NON BLOCK**/}
-                    if (c != null) {
-                        c.reloadTrace();
-                    }
-                    try {
-                        c = ConsoleBuilder.getConsole(context, false);
+                        // The debug traces setting has changed. Notify to consoles
+                        Console c = null;
+                        try {
+                            c = getBackgroundConsole();
+                        } catch (Exception e) {/**NON BLOCK**/}
                         if (c != null) {
                             c.reloadTrace();
                         }
-                    } catch (Throwable _throw) {/**NON BLOCK**/}
+                        try {
+                            c = ConsoleBuilder.getConsole(context, false);
+                            if (c != null) {
+                                c.reloadTrace();
+                            }
+                        } catch (Throwable _throw) {/**NON BLOCK**/}
+                    }
+                }
+            }
+        }
+    };
+
+    // A broadcast receiver for detect the uninstall of apk with themes
+    private final BroadcastReceiver mUninstallReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            if (intent != null) {
+                if (intent.getAction().compareTo(Intent.ACTION_PACKAGE_REMOVED) == 0 ||
+                    intent.getAction().compareTo(Intent.ACTION_PACKAGE_FULLY_REMOVED) == 0) {
+                    // Check that the remove package is not the current theme
+                    if (intent.getData() != null) {
+                        // Get the package name and remove the schema
+                        String apkPackage = intent.getData().toString();
+                        apkPackage = apkPackage.substring("package:".length()); //$NON-NLS-1$
+
+                        Theme currentTheme = ThemeManager.getCurrentTheme(context);
+                        if (currentTheme.getPackage().compareTo(apkPackage) == 0) {
+                            // The apk that contains the current theme was remove, change
+                            // to default theme
+                            String composedId =
+                                    (String)FileManagerSettings.SETTINGS_THEME.getDefaultValue();
+                            ThemeManager.setCurrentTheme(getApplicationContext(), composedId);
+                            try {
+                                Preferences.savePreference(
+                                        FileManagerSettings.SETTINGS_THEME, composedId, true);
+                            } catch (Throwable ex) {
+                                Log.w(TAG, "can't save theme preference", ex); //$NON-NLS-1$
+                            }
+
+                            // Notify the changes to activities
+                            try {
+                                Intent broadcastIntent =
+                                        new Intent(FileManagerSettings.INTENT_THEME_CHANGED);
+                                broadcastIntent.putExtra(
+                                        FileManagerSettings.EXTRA_THEME_ID, composedId);
+                                sendBroadcast(broadcastIntent);
+                            } catch (Throwable ex) {
+                                Log.w(TAG, "notify of theme change failed", ex); //$NON-NLS-1$
+                            }
+                        }
+                    }
                 }
             }
         }
@@ -119,7 +166,12 @@ public final class FileManagerApplication extends Application {
             Log.d(TAG, "onTerminate"); //$NON-NLS-1$
         }
         try {
-            unregisterReceiver(this.mOnSettingChangeReceiver);
+            unregisterReceiver(this.mNotificationReceiver);
+        } catch (Throwable ex) {
+            /**NON BLOCK**/
+        }
+        try {
+            unregisterReceiver(this.mUninstallReceiver);
         } catch (Throwable ex) {
             /**NON BLOCK**/
         }
@@ -155,10 +207,17 @@ public final class FileManagerApplication extends Application {
                 new File(getString(R.string.su_binary)).exists() &&
                 getSystemProperty("ro.cm.version") != null; //$NON-NLS-1$
 
-        // Register the broadcast receiver
+        // Register the notify broadcast receiver
         IntentFilter filter = new IntentFilter();
         filter.addAction(FileManagerSettings.INTENT_SETTING_CHANGED);
-        registerReceiver(this.mOnSettingChangeReceiver, filter);
+        registerReceiver(this.mNotificationReceiver, filter);
+
+        // Register the uninstall broadcast receiver
+        IntentFilter unfilter = new IntentFilter();
+        unfilter.addAction(Intent.ACTION_PACKAGE_REMOVED);
+        unfilter.addAction(Intent.ACTION_PACKAGE_FULLY_REMOVED);
+        unfilter.addDataScheme("package"); //$NON-NLS-1$
+        registerReceiver(this.mUninstallReceiver, unfilter);
     }
 
     /**
@@ -168,6 +227,24 @@ public final class FileManagerApplication extends Application {
         //Sets the default preferences if no value is set yet
         FileHelper.ROOT_DIRECTORY = getString(R.string.root_dir);
         Preferences.loadDefaults();
+
+        // Allocate the default and current themes
+        String defaultValue = ((String)FileManagerSettings.
+                SETTINGS_THEME.getDefaultValue());
+        String value = Preferences.getSharedPreferences().getString(
+                FileManagerSettings.SETTINGS_THEME.getId(),
+                defaultValue);
+        ThemeManager.getDefaultTheme(getApplicationContext());
+        if (!ThemeManager.setCurrentTheme(getApplicationContext(), value)) {
+            //The current theme was not found. Mark the default setting as default theme
+            ThemeManager.setCurrentTheme(getApplicationContext(), defaultValue);
+            try {
+                Preferences.savePreference(
+                        FileManagerSettings.SETTINGS_THEME, defaultValue, true);
+            } catch (Throwable ex) {
+                Log.w(TAG, "can't save theme preference", ex); //$NON-NLS-1$
+            }
+        }
 
         //Create a console for background tasks
         allocBackgroundConsole(getApplicationContext());
@@ -309,27 +386,6 @@ public final class FileManagerApplication extends Application {
                         "Failed to alloc background console", e); //$NON-NLS-1$
             }
         }
-    }
-
-    /**
-     * Method that check if the app is signed with the platform signature
-     *
-     * @param ctx The current context
-     * @return boolean If the app is signed with the platform signature
-     */
-    public static boolean isAppPlatformSignature(Context ctx) {
-        // TODO This need to be improved, checking if the app is really with the platform signature
-        try {
-            // For now only check that the app is installed in system directory
-            PackageManager pm = ctx.getPackageManager();
-            String appDir = pm.getApplicationInfo(ctx.getPackageName(), 0).sourceDir;
-            String systemDir = ctx.getString(R.string.system_dir);
-            return appDir.startsWith(systemDir);
-
-        } catch (Exception e) {
-            ExceptionUtil.translateException(ctx, e, true, false);
-        }
-        return false;
     }
 
     /**

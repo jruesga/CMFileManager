@@ -127,15 +127,26 @@ public enum FileManagerSettings {
      * When to show debug traces
      * @hide
      */
-    SETTINGS_SHOW_TRACES("cm_filemanager_show_debug_traces", Boolean.FALSE); //$NON-NLS-1$
+    SETTINGS_SHOW_TRACES("cm_filemanager_show_debug_traces", Boolean.FALSE), //$NON-NLS-1$
 
-
+    /**
+     * The current theme to use in the app
+     * @hide
+     */
+    SETTINGS_THEME("cm_filemanager_theme", //$NON-NLS-1$
+                        "com.cyanogenmod.filemanager:light"); //$NON-NLS-1$
 
     /**
      * A broadcast intent that is sent when a setting was changed
      */
     public final static String INTENT_SETTING_CHANGED =
                         "com.cyanogenmod.filemanager.INTENT_SETTING_CHANGED"; //$NON-NLS-1$
+
+    /**
+     * A broadcast intent that is sent when a theme was changed
+     */
+    public final static String INTENT_THEME_CHANGED =
+                        "com.cyanogenmod.filemanager.INTENT_THEME_CHANGED"; //$NON-NLS-1$
 
     /**
      * A broadcast intent that is sent when a file was changed
@@ -152,6 +163,16 @@ public enum FileManagerSettings {
      * The extra key with the file key that was changed
      */
     public final static String EXTRA_FILE_CHANGED_KEY = "file"; //$NON-NLS-1$
+
+    /**
+     * The extra key with the file key that was changed
+     */
+    public final static String EXTRA_THEME_PACKAGE = "package"; //$NON-NLS-1$
+
+    /**
+     * The extra key with the identifier of theme that was changed
+     */
+    public final static String EXTRA_THEME_ID = "id"; //$NON-NLS-1$
 
 
 

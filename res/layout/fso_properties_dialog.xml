@@ -25,6 +25,7 @@
     android:layout_height="wrap_content" >
 
     <LinearLayout
+      android:id="@+id/fso_properties_dialog_tabhost"
       android:layout_width="match_parent"
       android:layout_height="@dimen/default_row_height" >
 
@@ -40,7 +41,9 @@
         android:textAllCaps="true"
         android:textAppearance="@style/primary_text_appearance" />
 
-      <include layout="@layout/horizontal_divider" />
+      <include
+        android:id="@+id/fso_properties_dialog_tab_divider1"
+        layout="@layout/horizontal_divider" />
 
       <TextView
         android:id="@+id/fso_properties_dialog_tab_permissions"
@@ -59,7 +62,9 @@
       android:layout_width="match_parent"
       android:layout_height="wrap_content" >
 
-      <include layout="@layout/vertical_divider" />
+      <include
+        android:id="@+id/fso_properties_dialog_tab_divider2"
+        layout="@layout/vertical_divider" />
     </LinearLayout>
   </TableLayout>
 
@@ -84,6 +89,7 @@
         android:layout_marginRight="@dimen/extra_large_margin" >
 
         <TextView
+          android:id="@+id/fso_properties_name_label"
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
           android:layout_margin="@dimen/default_margin"
@@ -107,6 +113,7 @@
         android:layout_marginRight="@dimen/extra_large_margin" >
 
         <TextView
+          android:id="@+id/fso_properties_parent_label"
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
           android:layout_margin="@dimen/default_margin"
@@ -131,6 +138,7 @@
         android:layout_marginRight="@dimen/extra_large_margin" >
 
         <TextView
+          android:id="@+id/fso_properties_type_label"
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
           android:layout_margin="@dimen/default_margin"
@@ -155,6 +163,7 @@
         android:layout_marginRight="@dimen/extra_large_margin" >
 
         <TextView
+          android:id="@+id/fso_properties_category_label"
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
           android:layout_margin="@dimen/default_margin"
@@ -180,6 +189,7 @@
         android:visibility="gone" >
 
         <TextView
+          android:id="@+id/fso_properties_link_label"
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
           android:layout_margin="@dimen/default_margin"
@@ -203,6 +213,7 @@
         android:layout_marginRight="@dimen/extra_large_margin" >
 
         <TextView
+          android:id="@+id/fso_properties_size_label"
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
           android:layout_margin="@dimen/default_margin"
@@ -228,6 +239,7 @@
         android:visibility="gone" >
 
         <TextView
+          android:id="@+id/fso_properties_contains_label"
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
           android:layout_margin="@dimen/default_margin"
@@ -251,6 +263,7 @@
         android:layout_marginRight="@dimen/extra_large_margin" >
 
         <TextView
+          android:id="@+id/fso_properties_date_label"
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
           android:layout_margin="@dimen/default_margin"
@@ -267,24 +280,6 @@
           android:singleLine="false"
           android:textAppearance="@style/secondary_text_appearance" />
       </TableRow>
-
-      <!-- Info message -->
-      <TextView
-        android:id="@+id/fso_properties_msg"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical"
-        android:layout_marginLeft="@dimen/extra_large_margin"
-        android:layout_marginRight="@dimen/extra_large_margin"
-        android:contentDescription="@null"
-        android:drawableLeft="@drawable/ic_holo_light_fs_warning"
-        android:drawablePadding="@dimen/default_margin"
-        android:gravity="left|center_vertical"
-        android:singleLine="false"
-        android:text="@null"
-        android:textAppearance="@style/secondary_text_appearance"
-        android:textSize="@dimen/note_text_size"
-        android:visibility="gone" />
     </TableLayout>
   </ScrollView>
 
@@ -314,6 +309,7 @@
           android:layout_marginRight="@dimen/extra_large_margin" >
 
           <TextView
+            android:id="@+id/fso_properties_owner_label"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/default_margin"
@@ -337,6 +333,7 @@
           android:layout_marginRight="@dimen/extra_large_margin" >
 
           <TextView
+            android:id="@+id/fso_properties_group_label"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/default_margin"
@@ -361,7 +358,9 @@
           android:layout_height="wrap_content"
           android:layout_marginTop="5dp"
           android:layout_marginBottom="5dp" >
-        <include layout="@layout/vertical_divider" />
+        <include
+            android:id="@+id/fso_properties_dialog_tab_divider3"
+            layout="@layout/vertical_divider" />
       </LinearLayout>
 
       <!-- Permissions -->
@@ -384,6 +383,7 @@
             android:textAppearance="@style/primary_text_appearance" />
 
           <TextView
+            android:id="@+id/fso_properties_permissions_special_label"
             android:layout_width="0dip"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -393,6 +393,7 @@
             android:textAppearance="@style/primary_text_appearance" />
 
           <TextView
+            android:id="@+id/fso_properties_permissions_read_label"
             android:layout_width="0dip"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -402,6 +403,7 @@
             android:textAppearance="@style/primary_text_appearance" />
 
           <TextView
+            android:id="@+id/fso_properties_permissions_write_label"
             android:layout_width="0dip"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -411,6 +413,7 @@
             android:textAppearance="@style/primary_text_appearance" />
 
           <TextView
+            android:id="@+id/fso_properties_permissions_execute_label"
             android:layout_width="0dip"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -426,6 +429,7 @@
           android:layout_marginRight="@dimen/extra_large_margin" >
 
           <TextView
+            android:id="@+id/fso_properties_permissions_owner_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -469,6 +473,7 @@
           android:layout_marginRight="@dimen/extra_large_margin" >
 
           <TextView
+            android:id="@+id/fso_properties_permissions_group_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -512,6 +517,7 @@
           android:layout_marginRight="@dimen/extra_large_margin" >
 
           <TextView
+            android:id="@+id/fso_properties_permissions_others_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"

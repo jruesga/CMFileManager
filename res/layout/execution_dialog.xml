@@ -26,6 +26,7 @@
     android:layout_height="wrap_content"
     android:orientation="horizontal">
     <TextView
+      android:id="@+id/execution_script_name_label"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:layout_margin="@dimen/default_margin"
@@ -51,6 +52,7 @@
     android:layout_height="wrap_content"
     android:orientation="horizontal">
     <TextView
+      android:id="@+id/execution_time_label"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:layout_margin="@dimen/default_margin"
@@ -70,6 +72,7 @@
       android:textAppearance="@style/secondary_text_appearance" />
 
     <TextView
+      android:id="@+id/execution_exitcode_label"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:layout_margin="@dimen/default_margin"

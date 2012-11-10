@@ -25,7 +25,6 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.os.Parcelable;
@@ -40,6 +39,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.AdapterView.OnItemLongClickListener;
+import android.widget.ImageView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.ProgressBar;
@@ -67,6 +67,8 @@ import com.cyanogenmod.filemanager.preferences.FileManagerSettings;
 import com.cyanogenmod.filemanager.preferences.Preferences;
 import com.cyanogenmod.filemanager.providers.RecentSearchesContentProvider;
 import com.cyanogenmod.filemanager.tasks.SearchResultDrawingAsyncTask;
+import com.cyanogenmod.filemanager.ui.ThemeManager;
+import com.cyanogenmod.filemanager.ui.ThemeManager.Theme;
 import com.cyanogenmod.filemanager.ui.dialogs.ActionsDialog;
 import com.cyanogenmod.filemanager.ui.dialogs.MessageProgressDialog;
 import com.cyanogenmod.filemanager.ui.policy.DeleteActionPolicy;
@@ -75,7 +77,6 @@ import com.cyanogenmod.filemanager.ui.widgets.ButtonItem;
 import com.cyanogenmod.filemanager.ui.widgets.FlingerListView;
 import com.cyanogenmod.filemanager.ui.widgets.FlingerListView.OnItemFlingerListener;
 import com.cyanogenmod.filemanager.ui.widgets.FlingerListView.OnItemFlingerResponder;
-import com.cyanogenmod.filemanager.util.AndroidHelper;
 import com.cyanogenmod.filemanager.util.CommandHelper;
 import com.cyanogenmod.filemanager.util.DialogHelper;
 import com.cyanogenmod.filemanager.util.ExceptionUtil;
@@ -117,29 +118,39 @@ public class SearchActivity extends Activity
     //Minimum characters to allow query
     private static final int MIN_CHARS_SEARCH = 3;
 
-    private final BroadcastReceiver mOnSettingChangeReceiver = new BroadcastReceiver() {
+    private final BroadcastReceiver mNotificationReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
-            if (intent != null &&
-                intent.getAction().compareTo(FileManagerSettings.INTENT_SETTING_CHANGED) == 0) {
+            if (intent != null) {
+                if (intent.getAction().compareTo(
+                        FileManagerSettings.INTENT_SETTING_CHANGED) == 0) {
 
-                // The settings has changed
-                String key = intent.getStringExtra(FileManagerSettings.EXTRA_SETTING_CHANGED_KEY);
-                if (key != null) {
-                    if (SearchActivity.this.mSearchListView.getAdapter() != null &&
-                       (key.compareTo(
-                               FileManagerSettings.SETTINGS_HIGHLIGHT_TERMS.getId()) == 0 ||
-                        key.compareTo(
-                                FileManagerSettings.SETTINGS_SHOW_RELEVANCE_WIDGET.getId()) == 0 ||
-                        key.compareTo(
-                                FileManagerSettings.SETTINGS_SORT_SEARCH_RESULTS_MODE.getId()) == 0)) {
+                    // The settings has changed
+                    String key = intent.getStringExtra(
+                            FileManagerSettings.EXTRA_SETTING_CHANGED_KEY);
+                    if (key != null) {
+                        if (SearchActivity.this.mSearchListView.getAdapter() != null &&
+                           (key.compareTo(
+                                   FileManagerSettings.
+                                       SETTINGS_HIGHLIGHT_TERMS.getId()) == 0 ||
+                            key.compareTo(
+                                    FileManagerSettings.
+                                        SETTINGS_SHOW_RELEVANCE_WIDGET.getId()) == 0 ||
+                            key.compareTo(
+                                    FileManagerSettings.
+                                        SETTINGS_SORT_SEARCH_RESULTS_MODE.getId()) == 0)) {
 
-                        // Recreate the adapter
-                        int pos = SearchActivity.this.mSearchListView.getFirstVisiblePosition();
-                        drawResults();
-                        SearchActivity.this.mSearchListView.setSelection(pos);
-                        return;
+                            // Recreate the adapter
+                            int pos = SearchActivity.
+                                        this.mSearchListView.getFirstVisiblePosition();
+                            drawResults();
+                            SearchActivity.this.mSearchListView.setSelection(pos);
+                            return;
+                        }
                     }
+                } else if (intent.getAction().compareTo(
+                        FileManagerSettings.INTENT_THEME_CHANGED) == 0) {
+                    applyTheme();
                 }
             }
         }
@@ -254,7 +265,7 @@ public class SearchActivity extends Activity
     @Override
     protected void onCreate(Bundle state) {
         if (DEBUG) {
-            Log.d(TAG, "NavigationActivity.onCreate"); //$NON-NLS-1$
+            Log.d(TAG, "SearchActivity.onCreate"); //$NON-NLS-1$
         }
 
         // Check if app is running in chrooted mode
@@ -263,7 +274,8 @@ public class SearchActivity extends Activity
         // Register the broadcast receiver
         IntentFilter filter = new IntentFilter();
         filter.addAction(FileManagerSettings.INTENT_SETTING_CHANGED);
-        registerReceiver(this.mOnSettingChangeReceiver, filter);
+        filter.addAction(FileManagerSettings.INTENT_THEME_CHANGED);
+        registerReceiver(this.mNotificationReceiver, filter);
 
         //Set in transition
         overridePendingTransition(R.anim.translate_to_right_in, R.anim.hold_out);
@@ -279,6 +291,10 @@ public class SearchActivity extends Activity
         //Initialize action bars and search
         initTitleActionBar();
         initComponents();
+
+        // Apply current theme
+        applyTheme();
+
         if (this.mRestoreState != null) {
             //Restore activity from cached data
             loadFromCacheData();
@@ -294,6 +310,26 @@ public class SearchActivity extends Activity
 
         //Save state
         super.onCreate(state);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    protected void onDestroy() {
+        if (DEBUG) {
+            Log.d(TAG, "SearchActivity.onDestroy"); //$NON-NLS-1$
+        }
+
+        // Unregister the receiver
+        try {
+            unregisterReceiver(this.mNotificationReceiver);
+        } catch (Throwable ex) {
+            /**NON BLOCK**/
+        }
+
+        //All destroy. Continue
+        super.onDestroy();
     }
 
     /**
@@ -323,17 +359,6 @@ public class SearchActivity extends Activity
         //Set out transition
         overridePendingTransition(R.anim.hold_in, R.anim.translate_to_left_out);
         super.onPause();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        try {
-            unregisterReceiver(this.mOnSettingChangeReceiver);
-        } catch (Throwable ex) {/**NON BLOCK**/}
     }
 
     /**
@@ -549,7 +574,7 @@ public class SearchActivity extends Activity
                                 back(true, null, false);
                             }
                        });
-        dialog.show();
+        DialogHelper.delegateDialogShow(this, dialog);
     }
 
     /**
@@ -1166,6 +1191,39 @@ public class SearchActivity extends Activity
                         progress,
                         Integer.valueOf(progress));
         SearchActivity.this.mDialog.setProgress(Html.fromHtml(msg));
+    }
+
+    /**
+     * Method that applies the current theme to the activity
+     * @hide
+     */
+    void applyTheme() {
+        Theme theme = ThemeManager.getCurrentTheme(this);
+        theme.setBaseTheme(this, false);
+
+        //- ActionBar
+        theme.setTitlebarDrawable(this, getActionBar(), "titlebar_drawable"); //$NON-NLS-1$
+        View v = getActionBar().getCustomView().findViewById(R.id.customtitle_title);
+        theme.setTextColor(this, (TextView)v, "text_color"); //$NON-NLS-1$
+        v = findViewById(R.id.ab_button1);
+        theme.setImageDrawable(this, (ImageView)v, "ic_config_drawable"); //$NON-NLS-1$
+        // ContentView
+        theme.setBackgroundDrawable(
+                this, getWindow().getDecorView(), "background_drawable"); //$NON-NLS-1$
+        //- StatusBar
+        v = findViewById(R.id.search_status);
+        theme.setBackgroundDrawable(this, v, "statusbar_drawable"); //$NON-NLS-1$
+        v = findViewById(R.id.search_status_found_items);
+        theme.setTextColor(this, (TextView)v, "text_color"); //$NON-NLS-1$
+        v = findViewById(R.id.search_status_query_terms);
+        theme.setTextColor(this, (TextView)v, "text_color"); //$NON-NLS-1$
+        //ListView
+        if (this.mSearchListView.getAdapter() != null) {
+            ((SearchResultAdapter)this.mSearchListView.getAdapter()).notifyDataSetChanged();
+        }
+        this.mSearchListView.setDivider(
+                theme.getDrawable(this, "horizontal_divider_drawable")); //$NON-NLS-1$
+        this.mSearchListView.invalidate();
     }
 }
 

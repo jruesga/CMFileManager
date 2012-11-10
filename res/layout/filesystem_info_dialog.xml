@@ -26,6 +26,7 @@
     android:orientation="vertical" >
 
     <LinearLayout
+      android:id="@+id/filesystem_info_dialog_tabhost"
       android:layout_width="match_parent"
       android:layout_height="@dimen/default_row_height"
       android:orientation="horizontal" >
@@ -42,7 +43,9 @@
         android:textAllCaps="true"
         android:textAppearance="@style/primary_text_appearance" />
 
-      <include layout="@layout/horizontal_divider" />
+      <include
+        android:id="@+id/filesystem_info_dialog_tab_divider1"
+        layout="@layout/horizontal_divider" />
 
       <TextView
         android:id="@+id/filesystem_info_dialog_tab_disk_usage"
@@ -61,7 +64,9 @@
       android:layout_width="match_parent"
       android:layout_height="wrap_content" >
 
-      <include layout="@layout/vertical_divider" />
+      <include
+        android:id="@+id/filesystem_info_dialog_tab_divider2"
+        layout="@layout/vertical_divider" />
     </LinearLayout>
   </LinearLayout>
 
@@ -86,6 +91,7 @@
         android:layout_marginRight="@dimen/extra_large_margin" >
 
         <TextView
+          android:id="@+id/filesystem_info_status_label"
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
           android:layout_margin="@dimen/default_margin"
@@ -109,6 +115,7 @@
         android:layout_marginRight="@dimen/extra_large_margin" >
 
         <TextView
+          android:id="@+id/filesystem_info_mount_point_label"
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
           android:layout_margin="@dimen/default_margin"
@@ -132,6 +139,7 @@
         android:layout_marginRight="@dimen/extra_large_margin" >
 
         <TextView
+          android:id="@+id/filesystem_info_device_label"
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
           android:layout_margin="@dimen/default_margin"
@@ -155,6 +163,7 @@
         android:layout_marginRight="@dimen/extra_large_margin" >
 
         <TextView
+          android:id="@+id/filesystem_info_type_label"
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
           android:layout_margin="@dimen/default_margin"
@@ -178,6 +187,7 @@
         android:layout_marginRight="@dimen/extra_large_margin" >
 
         <TextView
+          android:id="@+id/filesystem_info_options_label"
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
           android:layout_margin="@dimen/default_margin"
@@ -202,6 +212,7 @@
         android:layout_marginRight="@dimen/extra_large_margin" >
 
         <TextView
+          android:id="@+id/filesystem_info_dump_pass_label"
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
           android:layout_margin="@dimen/default_margin"
@@ -270,6 +281,7 @@
         android:layout_marginRight="@dimen/extra_large_margin" >
 
         <TextView
+          android:id="@+id/filesystem_info_total_disk_usage_label"
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
           android:layout_margin="@dimen/default_margin"
@@ -292,6 +304,7 @@
         android:layout_marginRight="@dimen/extra_large_margin" >
 
         <TextView
+          android:id="@+id/filesystem_info_used_disk_usage_label"
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
           android:layout_margin="@dimen/default_margin"
@@ -314,6 +327,7 @@
         android:layout_marginRight="@dimen/extra_large_margin" >
 
         <TextView
+          android:id="@+id/filesystem_info_free_disk_usage_label"
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
           android:layout_margin="@dimen/default_margin"

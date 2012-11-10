@@ -18,10 +18,13 @@ package com.cyanogenmod.filemanager.activities;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnCancelListener;
 import android.content.DialogInterface.OnDismissListener;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.res.Configuration;
 import android.net.Uri;
 import android.os.Bundle;
@@ -44,6 +47,8 @@ import com.cyanogenmod.filemanager.console.ConsoleBuilder;
 import com.cyanogenmod.filemanager.model.FileSystemObject;
 import com.cyanogenmod.filemanager.preferences.FileManagerSettings;
 import com.cyanogenmod.filemanager.preferences.Preferences;
+import com.cyanogenmod.filemanager.ui.ThemeManager;
+import com.cyanogenmod.filemanager.ui.ThemeManager.Theme;
 import com.cyanogenmod.filemanager.ui.widgets.Breadcrumb;
 import com.cyanogenmod.filemanager.ui.widgets.ButtonItem;
 import com.cyanogenmod.filemanager.ui.widgets.NavigationView;
@@ -68,6 +73,17 @@ public class PickerActivity extends Activity
 
     private static boolean DEBUG = false;
 
+    private final BroadcastReceiver mNotificationReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            if (intent != null) {
+                if (intent.getAction().compareTo(FileManagerSettings.INTENT_THEME_CHANGED) == 0) {
+                    applyTheme();
+                }
+            }
+        }
+    };
+
     private String mMimeType;
     private FileSystemObject mFso;  // The picked item
     private AlertDialog mDialog;
@@ -87,11 +103,36 @@ public class PickerActivity extends Activity
             Log.d(TAG, "PickerActivity.onCreate"); //$NON-NLS-1$
         }
 
+        // Register the broadcast receiver
+        IntentFilter filter = new IntentFilter();
+        filter.addAction(FileManagerSettings.INTENT_THEME_CHANGED);
+        registerReceiver(this.mNotificationReceiver, filter);
+
         // Initialize the activity
         init();
 
         //Save state
         super.onCreate(state);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    protected void onDestroy() {
+        if (DEBUG) {
+            Log.d(TAG, "PickerActivity.onDestroy"); //$NON-NLS-1$
+        }
+
+        // Unregister the receiver
+        try {
+            unregisterReceiver(this.mNotificationReceiver);
+        } catch (Throwable ex) {
+            /**NON BLOCK**/
+        }
+
+        //All destroy. Continue
+        super.onDestroy();
     }
 
     /**
@@ -150,6 +191,9 @@ public class PickerActivity extends Activity
         this.mNavigationView.setOnFilePickedListener(this);
         this.mNavigationView.setBreadcrumb(breadcrumb);
 
+        // Apply the current theme
+        applyTheme();
+
         // Create the dialog
         this.mDialog = DialogHelper.createDialog(
             this, R.drawable.ic_launcher, R.string.picker_title, this.mRootView);
@@ -165,7 +209,7 @@ public class PickerActivity extends Activity
         this.mDialog.setCancelable(true);
         this.mDialog.setOnCancelListener(this);
         this.mDialog.setOnDismissListener(this);
-        this.mDialog.show();
+        DialogHelper.delegateDialogShow(this, this.mDialog);
 
         // Set content description of storage volume button
         ButtonItem fs = (ButtonItem)this.mRootView.findViewById(R.id.ab_filesystem_info);
@@ -219,19 +263,6 @@ public class PickerActivity extends Activity
             ExceptionUtil.translateException(this, _throw, true, false);
         }
         return false;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    protected void onDestroy() {
-        if (DEBUG) {
-            Log.d(TAG, "PickerActivity.onDestroy"); //$NON-NLS-1$
-        }
-
-        //All destroy. Continue
-        super.onDestroy();
     }
 
     /**
@@ -321,12 +352,24 @@ public class PickerActivity extends Activity
             public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
                 popup.dismiss();
                 if (volumes != null) {
-
                     PickerActivity.this.
                         mNavigationView.changeCurrentDir(volumes[position].getPath());
                 }
             }
         });
         popup.show();
+    }
+
+    /**
+     * Method that applies the current theme to the activity
+     * @hide
+     */
+    void applyTheme() {
+        Theme theme = ThemeManager.getCurrentTheme(this);
+        theme.setBaseTheme(this, false);
+
+        // View
+        theme.setBackgroundDrawable(this, this.mRootView, "background_drawable"); //$NON-NLS-1$
+        this.mNavigationView.applyTheme();
     }
 }

@@ -13,6 +13,7 @@
      See the License for the specific language governing permissions and
      limitations under the License.
  -->
+
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
 
   <!-- The name of the application -->
@@ -610,6 +611,8 @@
   <string name="pref_general">General settings</string>
   <!-- Preferences * Search title -->
   <string name="pref_search">Search options</string>
+  <!-- Preferences * Themes title -->
+  <string name="pref_themes">Themes</string>
   <!-- Preferences * About title -->
   <string name="pref_about">About</string>
   <!-- Preferences * About summary -->
@@ -686,9 +689,26 @@
   <string name="pref_remove_saved_search_terms_summary">Tap to remove all the saved search terms</string>
   <!-- Preferences * Search * Suggestions were truncated -->
   <string name="pref_remove_saved_search_terms_msg">All saved search terms were removed.</string>
+  <!-- Preferences * Themes * Themes selection category -->
+  <string name="pref_themes_selection_category">Themes</string>
+  <!-- Preferences * Themes * Set theme button -->
+  <string name="pref_themes_set_theme">Set theme</string>
+  <!-- Preferences * Themes * No preview -->
+  <string name="pref_themes_no_preview">No preview\navailable</string>
+  <!-- Preferences * Themes * Confirmation message -->
+  <string name="pref_themes_confirmation">Theme was applied successfully.</string>
+  <!-- Preferences * Themes * Theme not found message -->
+  <string name="pref_themes_not_found">Theme not found.</string>
 
   <!-- Preferences * Debug * Capture debug traces -->
   <string name="pref_debug_traces">Log debugging information</string>
+
+  <!-- Themes * Default theme name -->
+  <string name="theme_default_name">Light Theme</string>
+  <!-- Themes * Default theme description -->
+  <string name="theme_default_description">A light theme for CyanogenMod File Manager.</string>
+  <!-- Themes * Default theme author -->
+  <string name="themes_author">CyanogenMod</string>
 
   <!-- Security * Extract relative or absolute files -->
   <string name="security_warning_extract">Warning!\n\n

@@ -32,6 +32,8 @@ import com.cyanogenmod.filemanager.R;
 import com.cyanogenmod.filemanager.model.FileSystemObject;
 import com.cyanogenmod.filemanager.model.ParentDirectory;
 import com.cyanogenmod.filemanager.ui.IconHolder;
+import com.cyanogenmod.filemanager.ui.ThemeManager;
+import com.cyanogenmod.filemanager.ui.ThemeManager.Theme;
 import com.cyanogenmod.filemanager.util.FileHelper;
 import com.cyanogenmod.filemanager.util.MimeTypeHelper;
 
@@ -150,10 +152,8 @@ public class FileSystemObjectAdapter
      * Method that loads the default icons (known icons and more common icons).
      */
     private void loadDefaultIcons() {
-        this.mIconHolder.getDrawable(getContext(), R.drawable.btn_holo_light_check_on_normal);
-        this.mIconHolder.getDrawable(getContext(), R.drawable.btn_holo_light_check_off_normal);
-        this.mIconHolder.getDrawable(getContext(), R.drawable.ic_fso_default);
-        this.mIconHolder.getDrawable(getContext(), R.drawable.ic_fso_folder);
+        this.mIconHolder.getDrawable(getContext(), "ic_fso_folder_drawable"); //$NON-NLS-1$
+        this.mIconHolder.getDrawable(getContext(), "ic_fso_default_drawable"); //$NON-NLS-1$
     }
 
     /**
@@ -197,6 +197,7 @@ public class FileSystemObjectAdapter
      * Method that process the data before use {@link #getView} method.
      */
     private void processData() {
+        Theme theme = ThemeManager.getCurrentTheme(getContext());
         Resources res = getContext().getResources();
         DateFormat df = DateFormat.getDateTimeInstance(DateFormat.SHORT, DateFormat.SHORT);
         this.mData = new DataHolder[getCount()];
@@ -218,11 +219,15 @@ public class FileSystemObjectAdapter
             //Build the data holder
             this.mData[i] = new FileSystemObjectAdapter.DataHolder();
             this.mData[i].mSelected = this.mSelectedItems.contains(fso);
-            this.mData[i].mDwCheck = (this.mData[i].mSelected)
-                    ? this.mIconHolder.getDrawable(
-                            getContext(), R.drawable.btn_holo_light_check_on_normal)
-                    : this.mIconHolder.getDrawable(
-                            getContext(), R.drawable.btn_holo_light_check_off_normal);
+            if (this.mData[i].mSelected) {
+                this.mData[i].mDwCheck =
+                        theme.getDrawable(
+                                getContext(), "checkbox_selected_drawable"); //$NON-NLS-1$
+            } else {
+                this.mData[i].mDwCheck =
+                        theme.getDrawable(
+                                getContext(), "checkbox_deselected_drawable"); //$NON-NLS-1$
+            }
             this.mData[i].mDwIcon = this.mIconHolder.getDrawable(
                     getContext(),
                     MimeTypeHelper.getIcon(getContext(), fso));
@@ -266,6 +271,21 @@ public class FileSystemObjectAdapter
         //Retrieve the view holder
         ViewHolder viewHolder = (ViewHolder)v.getTag();
 
+        // Apply the current theme
+        Theme theme = ThemeManager.getCurrentTheme(getContext());
+        theme.setBackgroundDrawable(
+                getContext(), v, "background_drawable"); //$NON-NLS-1$
+        theme.setTextColor(
+                getContext(), viewHolder.mTvName, "text_color"); //$NON-NLS-1$
+        if (viewHolder.mTvSummary != null) {
+            theme.setTextColor(
+                    getContext(), viewHolder.mTvSummary, "text_color"); //$NON-NLS-1$
+        }
+        if (viewHolder.mTvSize != null) {
+            theme.setTextColor(
+                    getContext(), viewHolder.mTvSize, "text_color"); //$NON-NLS-1$
+        }
+
         //Set the data
         viewHolder.mIvIcon.setImageDrawable(dataHolder.mDwIcon);
         viewHolder.mTvName.setText(dataHolder.mName);
@@ -281,10 +301,15 @@ public class FileSystemObjectAdapter
                             FileHelper.PARENT_DIRECTORY) == 0 ? View.INVISIBLE : View.VISIBLE);
             viewHolder.mBtCheck.setImageDrawable(dataHolder.mDwCheck);
             viewHolder.mBtCheck.setTag(Integer.valueOf(position));
-            v.setBackgroundResource(
-                    dataHolder.mSelected
-                        ? R.drawable.holo_list_selector_selected
-                        : R.drawable.holo_list_selector_deseleted);
+
+            // Apply theme
+            if (dataHolder.mSelected) {
+                theme.setBackgroundDrawable(
+                        getContext(), v, "selectors_selected_drawable"); //$NON-NLS-1$
+            } else {
+                theme.setBackgroundDrawable(
+                        getContext(), v, "selectors_deselected_drawable"); //$NON-NLS-1$
+            }
         }
 
         //Return the view
@@ -328,6 +353,7 @@ public class FileSystemObjectAdapter
      */
     private void toggleSelection(View v, FileSystemObject fso) {
         if (this.mData != null) {
+            Theme theme = ThemeManager.getCurrentTheme(getContext());
             int cc = this.mData.length;
             for (int i = 0; i < cc; i++) {
                 DataHolder data = this.mData[i];
@@ -337,17 +363,29 @@ public class FileSystemObjectAdapter
                     if (v != null) {
                         ((View)v.getParent()).setSelected(data.mSelected);
                     }
-                    data.mDwCheck = data.mSelected
-                            ? this.mIconHolder.getDrawable(
-                                    getContext(), R.drawable.btn_holo_light_check_on_normal)
-                            : this.mIconHolder.getDrawable(
-                                    getContext(), R.drawable.btn_holo_light_check_off_normal);
+                    if (data.mSelected) {
+                        data.mDwCheck =
+                                theme.getDrawable(
+                                        getContext(), "checkbox_selected_drawable"); //$NON-NLS-1$
+                    } else {
+                        data.mDwCheck =
+                                theme.getDrawable(
+                                        getContext(),
+                                            "checkbox_deselected_drawable"); //$NON-NLS-1$
+                    }
                     if (v != null) {
                         ((ImageView)v).setImageDrawable(data.mDwCheck);
-                        ((View)v.getParent()).setBackgroundResource(
-                                data.mSelected
-                                        ? R.drawable.holo_list_selector_selected
-                                        : R.drawable.holo_list_selector_deseleted);
+                        if (data.mSelected) {
+                            theme.setBackgroundDrawable(
+                                    getContext(),
+                                    (View)v.getParent(),
+                                    "selectors_selected_drawable"); //$NON-NLS-1$
+                        } else {
+                            theme.setBackgroundDrawable(
+                                    getContext(),
+                                    (View)v.getParent(),
+                                    "selectors_deselected_drawable"); //$NON-NLS-1$
+                        }
                     }
 
                     //Add or remove from the global selected items
@@ -401,6 +439,7 @@ public class FileSystemObjectAdapter
      */
     private void doSelectDeselectAllVisibleItems(boolean select) {
         if (this.mData != null && this.mData.length > 0) {
+            Theme theme = ThemeManager.getCurrentTheme(getContext());
             int cc = this.mData.length;
             for (int i = 0; i < cc; i++) {
                 DataHolder data = this.mData[i];
@@ -409,11 +448,15 @@ public class FileSystemObjectAdapter
                     continue;
                 }
                 data.mSelected = select;
-                data.mDwCheck = data.mSelected
-                        ? this.mIconHolder.getDrawable(
-                                getContext(), R.drawable.btn_holo_light_check_on_normal)
-                        : this.mIconHolder.getDrawable(
-                                getContext(), R.drawable.btn_holo_light_check_off_normal);
+                if (data.mSelected) {
+                    data.mDwCheck =
+                            theme.getDrawable(
+                                    getContext(), "checkbox_selected_drawable"); //$NON-NLS-1$
+                } else {
+                    data.mDwCheck =
+                            theme.getDrawable(
+                                    getContext(), "checkbox_deselected_drawable"); //$NON-NLS-1$
+                }
 
                 //Add or remove from the global selected items
                 FileSystemObject fso = getItem(i);
@@ -477,5 +520,12 @@ public class FileSystemObjectAdapter
         }
     }
 
+    /**
+     * Method that should be invoked when the theme of the app was changed
+     */
+    public void notifyThemeChanged() {
+        // Empty icon holder
+        this.mIconHolder = new IconHolder();
+    }
 
 }

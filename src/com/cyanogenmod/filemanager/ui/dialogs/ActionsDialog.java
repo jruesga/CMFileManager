@@ -40,6 +40,8 @@ import com.cyanogenmod.filemanager.listeners.OnSelectionListener;
 import com.cyanogenmod.filemanager.model.FileSystemObject;
 import com.cyanogenmod.filemanager.model.SystemFile;
 import com.cyanogenmod.filemanager.preferences.AccessMode;
+import com.cyanogenmod.filemanager.ui.ThemeManager;
+import com.cyanogenmod.filemanager.ui.ThemeManager.Theme;
 import com.cyanogenmod.filemanager.ui.policy.BookmarksActionPolicy;
 import com.cyanogenmod.filemanager.ui.policy.CompressActionPolicy;
 import com.cyanogenmod.filemanager.ui.policy.CopyMoveActionPolicy;
@@ -137,6 +139,12 @@ public class ActionsDialog implements OnItemClickListener, OnItemLongClickListen
         this.mListView.setLayoutParams(params);
         this.mListView.setAdapter(adapter);
 
+        // Apply the current theme
+        Theme theme = ThemeManager.getCurrentTheme(context);
+        theme.setBackgroundDrawable(context, this.mListView, "background_drawable"); //$NON-NLS-1$
+        this.mListView.setDivider(
+                theme.getDrawable(context, "horizontal_divider_drawable")); //$NON-NLS-1$
+
         //Create the dialog
         this.mDialog = DialogHelper.createDialog(
                                         context,
@@ -174,7 +182,7 @@ public class ActionsDialog implements OnItemClickListener, OnItemLongClickListen
         TwoColumnsMenuListAdapter adapter =
                 (TwoColumnsMenuListAdapter)this.mListView.getAdapter();
         configureMenu(adapter.getMenu());
-        this.mDialog.show();
+        DialogHelper.delegateDialogShow(this.mContext, this.mDialog);
     }
 
     /**
@@ -414,7 +422,8 @@ public class ActionsDialog implements OnItemClickListener, OnItemLongClickListen
             @Override
             public void onCancel(DialogInterface dialog) {
                 //Show the menu again
-                ActionsDialog.this.mDialog.show();
+                DialogHelper.delegateDialogShow(
+                        ActionsDialog.this.mContext, ActionsDialog.this.mDialog);
             }
         });
         inputNameDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
@@ -457,7 +466,8 @@ public class ActionsDialog implements OnItemClickListener, OnItemLongClickListen
             @Override
             public void onCancel(DialogInterface dialog) {
                 //Show the menu again
-                ActionsDialog.this.mDialog.show();
+                DialogHelper.delegateDialogShow(
+                        ActionsDialog.this.mContext, ActionsDialog.this.mDialog);
             }
         });
         inputNameDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {

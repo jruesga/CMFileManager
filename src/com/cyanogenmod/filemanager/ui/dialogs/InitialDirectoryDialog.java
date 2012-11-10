@@ -23,11 +23,14 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.cyanogenmod.filemanager.R;
 import com.cyanogenmod.filemanager.preferences.FileManagerSettings;
 import com.cyanogenmod.filemanager.preferences.Preferences;
+import com.cyanogenmod.filemanager.ui.ThemeManager;
+import com.cyanogenmod.filemanager.ui.ThemeManager.Theme;
 import com.cyanogenmod.filemanager.ui.widgets.DirectoryInlineAutocompleteTextView;
 import com.cyanogenmod.filemanager.util.DialogHelper;
 
@@ -82,6 +85,7 @@ public class InitialDirectoryDialog implements DialogInterface.OnClickListener {
                 (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         LinearLayout layout = (LinearLayout)li.inflate(R.layout.initial_directory, null);
         final View msgView = layout.findViewById(R.id.initial_directory_info_msg);
+        final TextView labelView = (TextView)layout.findViewById(R.id.initial_directory_label);
         this.mAutocomplete =
                 (DirectoryInlineAutocompleteTextView)layout.findViewById(
                         R.id.initial_directory_edittext);
@@ -117,6 +121,16 @@ public class InitialDirectoryDialog implements DialogInterface.OnClickListener {
         });
         this.mAutocomplete.setText(value);
 
+        // Apply the current theme
+        Theme theme = ThemeManager.getCurrentTheme(context);
+        theme.setBackgroundDrawable(context, layout, "background_drawable"); //$NON-NLS-1$
+        theme.setTextColor(context, labelView, "text_color"); //$NON-NLS-1$
+        theme.setTextColor(context, (TextView)msgView, "text_color"); //$NON-NLS-1$
+        ((TextView)msgView).setCompoundDrawablesWithIntrinsicBounds(
+                theme.getDrawable(this.mContext, "filesystem_warning_drawable"), //$NON-NLS-1$
+                null, null, null);
+        this.mAutocomplete.applyTheme();
+
         //Create the dialog
         this.mDialog = DialogHelper.createDialog(
                                         context,
@@ -142,7 +156,7 @@ public class InitialDirectoryDialog implements DialogInterface.OnClickListener {
      * Method that shows the dialog.
      */
     public void show() {
-        this.mDialog.show();
+        DialogHelper.delegateDialogShow(this.mContext, this.mDialog);
     }
 
     /**

@@ -18,13 +18,20 @@ package com.cyanogenmod.filemanager.activities;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnCancelListener;
 import android.content.DialogInterface.OnDismissListener;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.util.Log;
 
 import com.cyanogenmod.filemanager.R;
+import com.cyanogenmod.filemanager.preferences.FileManagerSettings;
+import com.cyanogenmod.filemanager.ui.ThemeManager;
+import com.cyanogenmod.filemanager.ui.ThemeManager.Theme;
 import com.cyanogenmod.filemanager.util.DialogHelper;
 
 import java.io.InputStream;
@@ -38,6 +45,17 @@ public class ChangeLogActivity extends Activity implements OnCancelListener, OnD
 
     private static boolean DEBUG = false;
 
+    private final BroadcastReceiver mNotificationReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            if (intent != null) {
+                if (intent.getAction().compareTo(FileManagerSettings.INTENT_THEME_CHANGED) == 0) {
+                    applyTheme();
+                }
+            }
+        }
+    };
+
     /**
      * {@inheritDoc}
      */
@@ -47,10 +65,35 @@ public class ChangeLogActivity extends Activity implements OnCancelListener, OnD
             Log.d(TAG, "ChangeLogActivity.onCreate"); //$NON-NLS-1$
         }
 
+        // Register the broadcast receiver
+        IntentFilter filter = new IntentFilter();
+        filter.addAction(FileManagerSettings.INTENT_THEME_CHANGED);
+        registerReceiver(this.mNotificationReceiver, filter);
+
         //Save state
         super.onCreate(state);
 
         init();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    protected void onDestroy() {
+        if (DEBUG) {
+            Log.d(TAG, "ChangeLogActivity.onDestroy"); //$NON-NLS-1$
+        }
+
+        // Unregister the receiver
+        try {
+            unregisterReceiver(this.mNotificationReceiver);
+        } catch (Throwable ex) {
+            /**NON BLOCK**/
+        }
+
+        //All destroy. Continue
+        super.onDestroy();
     }
 
     /**
@@ -80,7 +123,7 @@ public class ChangeLogActivity extends Activity implements OnCancelListener, OnD
                 R.string.changelog_title, sb.toString(), false);
             dialog.setOnCancelListener(this);
             dialog.setOnDismissListener(this);
-            dialog.show();
+            DialogHelper.delegateDialogShow(this, dialog);
 
         } catch (Exception e) {
             Log.e(TAG, "Failed to read changelog file", e); //$NON-NLS-1$
@@ -109,6 +152,15 @@ public class ChangeLogActivity extends Activity implements OnCancelListener, OnD
     public void onCancel(DialogInterface dialog) {
         // We have to finish here; this activity is only a wrapper
         finish();
+    }
+
+    /**
+     * Method that applies the current theme to the activity
+     * @hide
+     */
+    void applyTheme() {
+        Theme theme = ThemeManager.getCurrentTheme(this);
+        theme.setBaseTheme(this, false);
     }
 
 }

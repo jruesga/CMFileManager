@@ -236,6 +236,9 @@ public class FlingerListView extends ListView {
         this.mOnItemFlingerListener = mOnItemFlingerListener;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean onTouchEvent(MotionEvent ev) {
         // If no flinger support is request, don't change the default behaviour

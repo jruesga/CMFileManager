@@ -55,6 +55,8 @@ import com.cyanogenmod.filemanager.model.UserPermission;
 import com.cyanogenmod.filemanager.preferences.AccessMode;
 import com.cyanogenmod.filemanager.preferences.FileManagerSettings;
 import com.cyanogenmod.filemanager.preferences.Preferences;
+import com.cyanogenmod.filemanager.ui.ThemeManager;
+import com.cyanogenmod.filemanager.ui.ThemeManager.Theme;
 import com.cyanogenmod.filemanager.util.AIDHelper;
 import com.cyanogenmod.filemanager.util.CommandHelper;
 import com.cyanogenmod.filemanager.util.DialogHelper;
@@ -161,6 +163,9 @@ public class FsoPropertiesDialog
                 (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         this.mContentView = li.inflate(R.layout.fso_properties_dialog, null);
 
+        // Apply current theme
+        applyTheme();
+
         //Create the dialog
         this.mDialog = DialogHelper.createDialog(
                                         context,
@@ -199,7 +204,7 @@ public class FsoPropertiesDialog
      * Method that shows the dialog.
      */
     public void show() {
-        this.mDialog.show();
+        DialogHelper.delegateDialogShow(this.mContext, this.mDialog);
     }
 
     /**
@@ -452,6 +457,9 @@ public class FsoPropertiesDialog
                             this.mContext, R.style.secondary_text_appearance);
                     this.mInfoView.setVisibility(View.VISIBLE);
                     this.mPermissionsView.setVisibility(View.GONE);
+
+                    // Apply the them
+                    applyTabTheme();
                 }
                 break;
 
@@ -465,6 +473,9 @@ public class FsoPropertiesDialog
                             this.mContext, R.style.primary_text_appearance);
                     this.mInfoView.setVisibility(View.GONE);
                     this.mPermissionsView.setVisibility(View.VISIBLE);
+
+                    // Apply the them
+                    applyTabTheme();
 
                     // Adjust the size of the spinners
                     adjustSpinnerSize(this.mSpnOwner);
@@ -599,6 +610,11 @@ public class FsoPropertiesDialog
         String msg = null;
 
         try {
+            // Apply theme
+            Theme theme = ThemeManager.getCurrentTheme(this.mContext);
+            theme.setTextColor(
+                    this.mContext, ((TextView) parent.getChildAt(0)), "text_color"); //$NON-NLS-1$
+
             String row = parent.getItemAtPosition(position).toString();
             int uid = Integer.parseInt(row.substring(0, row.indexOf(AID_SEPARATOR)));
             String name = row.substring(row.indexOf(AID_SEPARATOR) + 3);
@@ -1084,6 +1100,91 @@ public class FsoPropertiesDialog
                 spinner.getLayoutParams().width = (cbPos[0] - cbSpn[0]) + cbW;
             }
         });
+    }
+
+    /**
+     * Method that applies the current theme to the activity
+     */
+    private void applyTheme() {
+        Theme theme = ThemeManager.getCurrentTheme(this.mContext);
+        theme.setBackgroundDrawable(
+                this.mContext, this.mContentView, "background_drawable"); //$NON-NLS-1$
+        applyTabTheme();
+        View v = this.mContentView.findViewById(R.id.fso_properties_dialog_tab_divider1);
+        theme.setBackgroundColor(this.mContext, v, "horizontal_divider_color"); //$NON-NLS-1$
+        v = this.mContentView.findViewById(R.id.fso_properties_dialog_tab_divider2);
+        theme.setBackgroundColor(this.mContext, v, "vertical_divider_color"); //$NON-NLS-1$
+        v = this.mContentView.findViewById(R.id.fso_properties_dialog_tab_divider3);
+        theme.setBackgroundColor(this.mContext, v, "vertical_divider_color"); //$NON-NLS-1$
+
+        v = this.mContentView.findViewById(R.id.fso_properties_name_label);
+        theme.setTextColor(this.mContext, (TextView)v, "text_color"); //$NON-NLS-1$
+        v = this.mContentView.findViewById(R.id.fso_properties_name);
+        theme.setTextColor(this.mContext, (TextView)v, "text_color"); //$NON-NLS-1$
+        v = this.mContentView.findViewById(R.id.fso_properties_parent_label);
+        theme.setTextColor(this.mContext, (TextView)v, "text_color"); //$NON-NLS-1$
+        v = this.mContentView.findViewById(R.id.fso_properties_parent);
+        theme.setTextColor(this.mContext, (TextView)v, "text_color"); //$NON-NLS-1$
+        v = this.mContentView.findViewById(R.id.fso_properties_type_label);
+        theme.setTextColor(this.mContext, (TextView)v, "text_color"); //$NON-NLS-1$
+        v = this.mContentView.findViewById(R.id.fso_properties_type);
+        theme.setTextColor(this.mContext, (TextView)v, "text_color"); //$NON-NLS-1$
+        v = this.mContentView.findViewById(R.id.fso_properties_category_label);
+        theme.setTextColor(this.mContext, (TextView)v, "text_color"); //$NON-NLS-1$
+        v = this.mContentView.findViewById(R.id.fso_properties_category);
+        theme.setTextColor(this.mContext, (TextView)v, "text_color"); //$NON-NLS-1$
+        v = this.mContentView.findViewById(R.id.fso_properties_link_label);
+        theme.setTextColor(this.mContext, (TextView)v, "text_color"); //$NON-NLS-1$
+        v = this.mContentView.findViewById(R.id.fso_properties_link);
+        theme.setTextColor(this.mContext, (TextView)v, "text_color"); //$NON-NLS-1$
+        v = this.mContentView.findViewById(R.id.fso_properties_size_label);
+        theme.setTextColor(this.mContext, (TextView)v, "text_color"); //$NON-NLS-1$
+        v = this.mContentView.findViewById(R.id.fso_properties_size);
+        theme.setTextColor(this.mContext, (TextView)v, "text_color"); //$NON-NLS-1$
+        v = this.mContentView.findViewById(R.id.fso_properties_contains_label);
+        theme.setTextColor(this.mContext, (TextView)v, "text_color"); //$NON-NLS-1$
+        v = this.mContentView.findViewById(R.id.fso_properties_contains);
+        theme.setTextColor(this.mContext, (TextView)v, "text_color"); //$NON-NLS-1$
+        v = this.mContentView.findViewById(R.id.fso_properties_date_label);
+        theme.setTextColor(this.mContext, (TextView)v, "text_color"); //$NON-NLS-1$
+        v = this.mContentView.findViewById(R.id.fso_properties_date);
+        theme.setTextColor(this.mContext, (TextView)v, "text_color"); //$NON-NLS-1$
+
+        v = this.mContentView.findViewById(R.id.fso_properties_owner_label);
+        theme.setTextColor(this.mContext, (TextView)v, "text_color"); //$NON-NLS-1$
+        v = this.mContentView.findViewById(R.id.fso_properties_group_label);
+        theme.setTextColor(this.mContext, (TextView)v, "text_color"); //$NON-NLS-1$
+        v = this.mContentView.findViewById(R.id.fso_properties_permissions_special_label);
+        theme.setTextColor(this.mContext, (TextView)v, "text_color"); //$NON-NLS-1$
+        v = this.mContentView.findViewById(R.id.fso_properties_permissions_read_label);
+        theme.setTextColor(this.mContext, (TextView)v, "text_color"); //$NON-NLS-1$
+        v = this.mContentView.findViewById(R.id.fso_properties_permissions_write_label);
+        theme.setTextColor(this.mContext, (TextView)v, "text_color"); //$NON-NLS-1$
+        v = this.mContentView.findViewById(R.id.fso_properties_permissions_execute_label);
+        theme.setTextColor(this.mContext, (TextView)v, "text_color"); //$NON-NLS-1$
+        v = this.mContentView.findViewById(R.id.fso_properties_permissions_owner_label);
+        theme.setTextColor(this.mContext, (TextView)v, "text_color"); //$NON-NLS-1$
+        v = this.mContentView.findViewById(R.id.fso_properties_permissions_group_label);
+        theme.setTextColor(this.mContext, (TextView)v, "text_color"); //$NON-NLS-1$
+        v = this.mContentView.findViewById(R.id.fso_properties_permissions_others_label);
+        theme.setTextColor(this.mContext, (TextView)v, "text_color"); //$NON-NLS-1$
+        v = this.mContentView.findViewById(R.id.fso_info_msg);
+        theme.setTextColor(this.mContext, (TextView)v, "text_color"); //$NON-NLS-1$
+        ((TextView)v).setCompoundDrawablesWithIntrinsicBounds(
+                theme.getDrawable(this.mContext, "filesystem_warning_drawable"), //$NON-NLS-1$
+                null, null, null);
+    }
+
+    /**
+     * Method that applies the current theme to the tab host
+     */
+    private void applyTabTheme() {
+        // Apply the theme
+        Theme theme = ThemeManager.getCurrentTheme(this.mContext);
+        View v = this.mContentView.findViewById(R.id.fso_properties_dialog_tab_info);
+        theme.setTextColor(this.mContext, (TextView)v, "text_color"); //$NON-NLS-1$
+        v = this.mContentView.findViewById(R.id.fso_properties_dialog_tab_permissions);
+        theme.setTextColor(this.mContext, (TextView)v, "text_color"); //$NON-NLS-1$
     }
 
 }

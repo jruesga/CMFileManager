@@ -25,6 +25,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.cyanogenmod.filemanager.R;
+import com.cyanogenmod.filemanager.ui.ThemeManager;
+import com.cyanogenmod.filemanager.ui.ThemeManager.Theme;
 
 import java.util.List;
 
@@ -114,12 +116,23 @@ public class CheckableListAdapter extends ArrayAdapter<CheckableListAdapter.Chec
         if (v == null) {
             //Create the view holder
             LayoutInflater li =
-                    (LayoutInflater)getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                (LayoutInflater)getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             v = li.inflate(R.layout.option_list_item, parent, false);
             ViewHolder viewHolder = new CheckableListAdapter.ViewHolder();
             viewHolder.mTvTitle = (TextView)v.findViewById(RESOURCE_ITEM_NAME);
             viewHolder.mDwCheck = (ImageView)v.findViewById(RESOURCE_ITEM_CHECK);
             v.setTag(viewHolder);
+
+            // Apply theme
+            Theme theme = ThemeManager.getCurrentTheme(getContext());
+            theme.setBackgroundDrawable(
+                    getContext(), v,
+                    "menu_checkable_selector_drawable"); //$NON-NLS-1$
+            theme.setTextColor(
+                    getContext(), viewHolder.mTvTitle, "text_color"); //$NON-NLS-1$
+            theme.setImageDrawable(
+                    getContext(), viewHolder.mDwCheck,
+                    "popup_checkable_selector_drawable"); //$NON-NLS-1$
         }
 
         //Retrieve the item

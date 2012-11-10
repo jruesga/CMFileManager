@@ -34,6 +34,7 @@
     android:id="@+id/navigation_selectionbar"
     android:layout_width="match_parent"
     android:layout_height="@dimen/small_row_height"
+    android:background="@drawable/bg_holo_selectionbar"
     android:visibility="invisible" />
 
   <!-- StatusBar -->

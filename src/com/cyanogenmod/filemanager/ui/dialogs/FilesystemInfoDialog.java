@@ -34,6 +34,8 @@ import com.cyanogenmod.filemanager.model.MountPoint;
 import com.cyanogenmod.filemanager.preferences.AccessMode;
 import com.cyanogenmod.filemanager.preferences.FileManagerSettings;
 import com.cyanogenmod.filemanager.preferences.Preferences;
+import com.cyanogenmod.filemanager.ui.ThemeManager;
+import com.cyanogenmod.filemanager.ui.ThemeManager.Theme;
 import com.cyanogenmod.filemanager.ui.widgets.DiskUsageGraph;
 import com.cyanogenmod.filemanager.util.CommandHelper;
 import com.cyanogenmod.filemanager.util.DialogHelper;
@@ -71,6 +73,7 @@ public class FilesystemInfoDialog implements OnClickListener {
 
     private final Context mContext;
     private final AlertDialog mDialog;
+    private final View mContentView;
     private View mInfoViewTab;
     private View mDiskUsageViewTab;
     private View mInfoView;
@@ -110,28 +113,31 @@ public class FilesystemInfoDialog implements OnClickListener {
         //Inflate the content
         LayoutInflater li =
                 (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View contentView = li.inflate(R.layout.filesystem_info_dialog, null);
+        this.mContentView = li.inflate(R.layout.filesystem_info_dialog, null);
+
+        // Apply the current theme
+        applyTheme();
 
         //Create the dialog
         this.mDialog = DialogHelper.createDialog(
                                         context,
                                         0,
                                         R.string.filesystem_info_dialog_title,
-                                        contentView);
+                                        this.mContentView);
         this.mDialog.setButton(
                 DialogInterface.BUTTON_NEGATIVE,
                 this.mContext.getString(android.R.string.cancel),
                 (DialogInterface.OnClickListener)null);
 
         //Fill the dialog
-        fillData(contentView);
+        fillData(this.mContentView);
     }
 
     /**
      * Method that shows the dialog.
      */
     public void show() {
-        this.mDialog.show();
+        DialogHelper.delegateDialogShow(this.mContext, this.mDialog);
     }
 
     /**
@@ -252,6 +258,9 @@ public class FilesystemInfoDialog implements OnClickListener {
                             this.mContext, R.style.secondary_text_appearance);
                     this.mInfoView.setVisibility(View.VISIBLE);
                     this.mDiskUsageView.setVisibility(View.GONE);
+
+                    // Apply theme
+                    applyTabTheme();
                 }
                 this.mInfoMsgView.setVisibility(
                         this.mIsMountAllowed || !this.mIsAdvancedMode ? View.GONE : View.VISIBLE);
@@ -267,6 +276,9 @@ public class FilesystemInfoDialog implements OnClickListener {
                             this.mContext, R.style.primary_text_appearance);
                     this.mInfoView.setVisibility(View.GONE);
                     this.mDiskUsageView.setVisibility(View.VISIBLE);
+
+                    // Apply theme
+                    applyTabTheme();
                 }
                 this.mDiskUsageGraph.post(new Runnable() {
                     @Override
@@ -335,6 +347,75 @@ public class FilesystemInfoDialog implements OnClickListener {
             default:
                 break;
         }
+    }
+
+    /**
+     * Method that applies the current theme to the activity
+     */
+    private void applyTheme() {
+        Theme theme = ThemeManager.getCurrentTheme(this.mContext);
+        theme.setBackgroundDrawable(
+                this.mContext, this.mContentView, "background_drawable"); //$NON-NLS-1$
+        applyTabTheme();
+        View v = this.mContentView.findViewById(R.id.filesystem_info_dialog_tab_divider1);
+        theme.setBackgroundColor(this.mContext, v, "horizontal_divider_color"); //$NON-NLS-1$
+        v = this.mContentView.findViewById(R.id.filesystem_info_dialog_tab_divider2);
+        theme.setBackgroundColor(this.mContext, v, "vertical_divider_color"); //$NON-NLS-1$
+
+        v = this.mContentView.findViewById(R.id.filesystem_info_status_label);
+        theme.setTextColor(this.mContext, (TextView)v, "text_color"); //$NON-NLS-1$
+        v = this.mContentView.findViewById(R.id.filesystem_info_status);
+        theme.setTextColor(this.mContext, (TextView)v, "text_color"); //$NON-NLS-1$
+        v = this.mContentView.findViewById(R.id.filesystem_info_mount_point_label);
+        theme.setTextColor(this.mContext, (TextView)v, "text_color"); //$NON-NLS-1$
+        v = this.mContentView.findViewById(R.id.filesystem_info_mount_point);
+        theme.setTextColor(this.mContext, (TextView)v, "text_color"); //$NON-NLS-1$
+        v = this.mContentView.findViewById(R.id.filesystem_info_device_label);
+        theme.setTextColor(this.mContext, (TextView)v, "text_color"); //$NON-NLS-1$
+        v = this.mContentView.findViewById(R.id.filesystem_info_device);
+        theme.setTextColor(this.mContext, (TextView)v, "text_color"); //$NON-NLS-1$
+        v = this.mContentView.findViewById(R.id.filesystem_info_type_label);
+        theme.setTextColor(this.mContext, (TextView)v, "text_color"); //$NON-NLS-1$
+        v = this.mContentView.findViewById(R.id.filesystem_info_type);
+        theme.setTextColor(this.mContext, (TextView)v, "text_color"); //$NON-NLS-1$
+        v = this.mContentView.findViewById(R.id.filesystem_info_options_label);
+        theme.setTextColor(this.mContext, (TextView)v, "text_color"); //$NON-NLS-1$
+        v = this.mContentView.findViewById(R.id.filesystem_info_options);
+        theme.setTextColor(this.mContext, (TextView)v, "text_color"); //$NON-NLS-1$
+        v = this.mContentView.findViewById(R.id.filesystem_info_dump_pass_label);
+        theme.setTextColor(this.mContext, (TextView)v, "text_color"); //$NON-NLS-1$
+        v = this.mContentView.findViewById(R.id.filesystem_info_dump_pass);
+        theme.setTextColor(this.mContext, (TextView)v, "text_color"); //$NON-NLS-1$
+        v = this.mContentView.findViewById(R.id.filesystem_info_msg);
+        theme.setTextColor(this.mContext, (TextView)v, "text_color"); //$NON-NLS-1$
+        ((TextView)v).setCompoundDrawablesWithIntrinsicBounds(
+                theme.getDrawable(this.mContext, "filesystem_warning_drawable"), //$NON-NLS-1$
+                null, null, null);
+
+        v = this.mContentView.findViewById(R.id.filesystem_info_total_disk_usage_label);
+        theme.setTextColor(this.mContext, (TextView)v, "text_color"); //$NON-NLS-1$
+        v = this.mContentView.findViewById(R.id.filesystem_info_total_disk_usage);
+        theme.setTextColor(this.mContext, (TextView)v, "text_color"); //$NON-NLS-1$
+        v = this.mContentView.findViewById(R.id.filesystem_info_used_disk_usage_label);
+        theme.setTextColor(this.mContext, (TextView)v, "text_color"); //$NON-NLS-1$
+        v = this.mContentView.findViewById(R.id.filesystem_info_used_disk_usage);
+        theme.setTextColor(this.mContext, (TextView)v, "text_color"); //$NON-NLS-1$
+        v = this.mContentView.findViewById(R.id.filesystem_info_free_disk_usage_label);
+        theme.setTextColor(this.mContext, (TextView)v, "text_color"); //$NON-NLS-1$
+        v = this.mContentView.findViewById(R.id.filesystem_info_free_disk_usage);
+        theme.setTextColor(this.mContext, (TextView)v, "text_color"); //$NON-NLS-1$
+    }
+
+    /**
+     * Method that applies the current theme to the tab host
+     */
+    private void applyTabTheme() {
+        // Apply the theme
+        Theme theme = ThemeManager.getCurrentTheme(this.mContext);
+        View v = this.mContentView.findViewById(R.id.filesystem_info_dialog_tab_info);
+        theme.setTextColor(this.mContext, (TextView)v, "text_color"); //$NON-NLS-1$
+        v = this.mContentView.findViewById(R.id.filesystem_info_dialog_tab_disk_usage);
+        theme.setTextColor(this.mContext, (TextView)v, "text_color"); //$NON-NLS-1$
     }
 
 }

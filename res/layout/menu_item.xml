@@ -14,10 +14,13 @@
      limitations under the License.
  -->
 
+<!-- The layout_height must hardcode here from @dimen/default_row_height, because
+     it is not resolved in themed context, because theme context and app context are
+     not the same -->
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
   android:layout_width="wrap_content"
-  android:layout_height="@dimen/default_row_height"
-  android:background="@drawable/holo_list_selector_deseleted" >
+  android:layout_height="48dp"
+  android:background="@drawable/holo_list_selector_deselected" >
 
   <TextView
     android:id="@+id/menu_item_text"

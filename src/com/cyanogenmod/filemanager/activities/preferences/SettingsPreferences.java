@@ -18,7 +18,10 @@ package com.cyanogenmod.filemanager.activities.preferences;
 
 import android.app.ActionBar;
 import android.app.Activity;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.preference.CheckBoxPreference;
 import android.preference.ListPreference;
@@ -43,6 +46,9 @@ import com.cyanogenmod.filemanager.preferences.FileManagerSettings;
 import com.cyanogenmod.filemanager.preferences.ObjectStringIdentifier;
 import com.cyanogenmod.filemanager.preferences.Preferences;
 import com.cyanogenmod.filemanager.providers.RecentSearchesContentProvider;
+import com.cyanogenmod.filemanager.ui.ThemeManager;
+import com.cyanogenmod.filemanager.ui.ThemeManager.Theme;
+import com.cyanogenmod.filemanager.ui.preferences.ThemeSelectorPreference;
 import com.cyanogenmod.filemanager.util.DialogHelper;
 
 import java.util.List;
@@ -52,19 +58,62 @@ import java.util.List;
  */
 public class SettingsPreferences extends PreferenceActivity {
 
+    private static final String TAG = "SettingsPreferences"; //$NON-NLS-1$
+
     private static final boolean DEBUG = false;
 
-    private static final String LOG_TAG = "SettingsPreferences"; //$NON-NLS-1$
+    private final BroadcastReceiver mNotificationReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            if (intent != null) {
+                if (intent.getAction().compareTo(FileManagerSettings.INTENT_THEME_CHANGED) == 0) {
+                    finish();
+                }
+            }
+        }
+    };
 
     /**
      * {@inheritDoc}
      */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+        if (DEBUG) {
+            Log.d(TAG, "SettingsPreferences.onCreate"); //$NON-NLS-1$
+        }
+
+        // Register the broadcast receiver
+        IntentFilter filter = new IntentFilter();
+        filter.addAction(FileManagerSettings.INTENT_THEME_CHANGED);
+        registerReceiver(this.mNotificationReceiver, filter);
 
         //Initialize action bars
         initTitleActionBar();
+
+        // Apply the theme
+        applyTheme();
+
+        super.onCreate(savedInstanceState);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    protected void onDestroy() {
+        if (DEBUG) {
+            Log.d(TAG, "SettingsPreferences.onDestroy"); //$NON-NLS-1$
+        }
+
+        // Unregister the receiver
+        try {
+            unregisterReceiver(this.mNotificationReceiver);
+        } catch (Throwable ex) {
+            /**NON BLOCK**/
+        }
+
+        //All destroy. Continue
+        super.onDestroy();
     }
 
     /**
@@ -142,7 +191,7 @@ public class SettingsPreferences extends PreferenceActivity {
 
                 String key = preference.getKey();
                 if (DEBUG) {
-                    Log.d(LOG_TAG,
+                    Log.d(TAG,
                         String.format("New value for %s: %s",  //$NON-NLS-1$
                                 key,
                                 String.valueOf(newValue)));
@@ -293,7 +342,7 @@ public class SettingsPreferences extends PreferenceActivity {
             public boolean onPreferenceChange(Preference preference, Object newValue) {
                 String key = preference.getKey();
                 if (DEBUG) {
-                    Log.d(LOG_TAG,
+                    Log.d(TAG,
                         String.format("New value for %s: %s",  //$NON-NLS-1$
                                 key,
                                 String.valueOf(newValue)));
@@ -413,6 +462,80 @@ public class SettingsPreferences extends PreferenceActivity {
             suggestions.clearHistory();
             Preferences.setLastSearch(null);
         }
+    }
+
+    /**
+     * A class that manages the theme selection
+     */
+    public static class ThemesPreferenceFragment extends PreferenceFragment {
+
+        private ThemeSelectorPreference mThemeSelector;
+
+        private final OnPreferenceChangeListener mOnChangeListener =
+                new OnPreferenceChangeListener() {
+            @Override
+            public boolean onPreferenceChange(Preference preference, Object newValue) {
+                String key = preference.getKey();
+                if (DEBUG) {
+                    Log.d(TAG,
+                        String.format("New value for %s: %s",  //$NON-NLS-1$
+                                key,
+                                String.valueOf(newValue)));
+                }
+
+                // Notify to all activities that the theme has changed
+                Intent intent = new Intent(FileManagerSettings.INTENT_THEME_CHANGED);
+                intent.putExtra(FileManagerSettings.EXTRA_THEME_ID, (String)newValue);
+                getActivity().sendBroadcast(intent);
+
+                //Wait for allow activities to apply the theme, prior to finish settings
+                try {
+                    Thread.sleep(250L);
+                } catch (Throwable e) {/**NON BLOCK**/}
+                getActivity().finish();
+                return true;
+            }
+        };
+
+        /**
+         * {@inheritDoc}
+         */
+        @Override
+        public void onCreate(Bundle savedInstanceState) {
+            super.onCreate(savedInstanceState);
+
+            // Change the preference manager
+            getPreferenceManager().setSharedPreferencesName(Preferences.SETTINGS_FILENAME);
+            getPreferenceManager().setSharedPreferencesMode(MODE_PRIVATE);
+
+            // Add the preferences
+            addPreferencesFromResource(R.xml.preferences_themes);
+
+            // Theme selector
+            this.mThemeSelector =
+                    (ThemeSelectorPreference)findPreference(
+                            FileManagerSettings.SETTINGS_THEME.getId());
+            this.mThemeSelector.setOnPreferenceChangeListener(this.mOnChangeListener);
+        }
+    }
+
+    /**
+     * Method that applies the current theme to the activity
+     * @hide
+     */
+    void applyTheme() {
+        Theme theme = ThemeManager.getCurrentTheme(this);
+        theme.setBaseTheme(this, false);
+
+        //- ActionBar
+        theme.setTitlebarDrawable(this, getActionBar(), "titlebar_drawable"); //$NON-NLS-1$
+        View v = getActionBar().getCustomView().findViewById(R.id.customtitle_title);
+        theme.setTextColor(this, (TextView)v, "text_color"); //$NON-NLS-1$
+        // -View
+        theme.setBackgroundDrawable(
+                this,
+                this.getWindow().getDecorView(),
+                "background_drawable"); //$NON-NLS-1$
     }
 
 }

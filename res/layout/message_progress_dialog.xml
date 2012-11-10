@@ -57,6 +57,6 @@
     android:text="@null"
     android:textAppearance="@style/secondary_text_appearance"
     android:textStyle="normal"
-    android:layout_marginBottom="@dimen/extra_margin" />
+    android:paddingBottom="@dimen/extra_margin" />
 
 </RelativeLayout>

@@ -17,10 +17,13 @@
 package com.cyanogenmod.filemanager.util;
 
 import android.content.Context;
+import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.util.DisplayMetrics;
 import android.view.ViewConfiguration;
+
+import com.cyanogenmod.filemanager.R;
 
 /**
  * A helper class with useful methods for deal with android.
@@ -57,7 +60,7 @@ public final class AndroidHelper {
      * @param dp A value in dp (Device independent pixels) unit
      * @return float A float value to represent Pixels equivalent to dp according to device
      */
-    public static float convertDpToPixel(Context ctx, float dp){
+    public static float convertDpToPixel(Context ctx, float dp) {
         Resources resources = ctx.getResources();
         DisplayMetrics metrics = resources.getDisplayMetrics();
         return dp * (metrics.densityDpi / 160f);
@@ -75,6 +78,27 @@ public final class AndroidHelper {
         DisplayMetrics metrics = resources.getDisplayMetrics();
         return px / (metrics.densityDpi / 160f);
 
+    }
+
+    /**
+     * Method that check if the app is signed with the platform signature
+     *
+     * @param ctx The current context
+     * @return boolean If the app is signed with the platform signature
+     */
+    public static boolean isAppPlatformSignature(Context ctx) {
+        // TODO This need to be improved, checking if the app is really with the platform signature
+        try {
+            // For now only check that the app is installed in system directory
+            PackageManager pm = ctx.getPackageManager();
+            String appDir = pm.getApplicationInfo(ctx.getPackageName(), 0).sourceDir;
+            String systemDir = ctx.getString(R.string.system_dir);
+            return appDir.startsWith(systemDir);
+
+        } catch (Exception e) {
+            ExceptionUtil.translateException(ctx, e, true, false);
+        }
+        return false;
     }
 
 }

@@ -26,6 +26,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.cyanogenmod.filemanager.R;
+import com.cyanogenmod.filemanager.ui.ThemeManager;
+import com.cyanogenmod.filemanager.ui.ThemeManager.Theme;
 import com.cyanogenmod.filemanager.util.DialogHelper;
 
 /**
@@ -103,6 +105,12 @@ public class MessageProgressDialog implements DialogInterface.OnClickListener {
         labelView.setText(labelMsg);
         this.mProgress = (TextView)layout.findViewById(R.id.message_progress_dialog_progress);
 
+        // Apply the current theme
+        Theme theme = ThemeManager.getCurrentTheme(context);
+        theme.setBackgroundDrawable(context, layout, "background_drawable"); //$NON-NLS-1$
+        theme.setTextColor(context, labelView, "text_color"); //$NON-NLS-1$
+        theme.setTextColor(context, this.mProgress, "text_color"); //$NON-NLS-1$
+
         //Create the dialog
         this.mDialog = DialogHelper.createDialog(
                                         context,
@@ -168,7 +176,7 @@ public class MessageProgressDialog implements DialogInterface.OnClickListener {
      * Method that shows the dialog.
      */
     public void show() {
-        this.mDialog.show();
+        DialogHelper.delegateDialogShow(this.mContext, this.mDialog);
     }
 
     /**

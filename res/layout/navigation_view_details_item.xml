@@ -18,7 +18,7 @@
   android:id="@+id/navigation_view_details_item"
   android:layout_width="match_parent"
   android:layout_height="@dimen/default_row_height"
-  android:background="@drawable/holo_list_selector_deseleted" >
+  android:background="@drawable/holo_list_selector_deselected" >
 
   <com.cyanogenmod.filemanager.ui.widgets.TransparentNonFocusableButtonItem
     android:id="@+id/navigation_view_item_check"

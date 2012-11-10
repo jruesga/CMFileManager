@@ -1,19 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--
- ** Copyright (C) 2012 The CyanogenMod Project
- **
- ** Licensed under the Apache License, Version 2.0 (the "License");
- ** you may not use this file except in compliance with the License.
- ** You may obtain a copy of the License at
- **
- **      http://www.apache.org/licenses/LICENSE-2.0
- **
- ** Unless required by applicable law or agreed to in writing, software
- ** distributed under the License is distributed on an "AS IS" BASIS,
- ** WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- ** See the License for the specific language governing permissions and
- ** limitations under the License.
--->
+<!-- Copyright (C) 2012 The CyanogenMod Project
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+ -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
 
   <string name="app_name">File Manager</string>
@@ -173,7 +172,7 @@
   <string name="search_few_characters_title">Подтвердите поиск</string>
   <string name="search_few_characters_msg">Некоторые условия поиска имеют очень мало символов. Операция может быть очень затратна по времени и системным ресурсам.\n\nВы действительно хотите продолжить?</string>
   <string name="searching">Пожалуйста подождите\u2026</string>
-  <string name="searching_action_label">Продолжается поиск...</string>
+  <string name="searching_action_label">Продолжается поиск\u2026</string>
 
   <string name="picker_title">Выбрать файл</string>
 
@@ -232,7 +231,7 @@
   <string name="actions_menu_compress_selection">Сжать выбранное</string>
   <string name="actions_menu_create_link">Создать ссылку</string>
   <string name="actions_menu_open">Открыть</string>
-  <string name="actions_menu_open_with">Открыть в...</string>
+  <string name="actions_menu_open_with">Открыть в\u2026</string>
   <string name="actions_menu_execute">Выполнить</string>
   <string name="actions_menu_send">Отправить</string>
   <string name="actions_menu_compress">Сжать</string>
@@ -255,9 +254,9 @@
 
   <string name="associations_dialog_title">Ассоциации</string>
   <string name="associations_dialog_remember">Запомнить выбор</string>
-  <string name="associations_dialog_openwith_title">Открыть в...</string>
+  <string name="associations_dialog_openwith_title">Открыть в\u2026</string>
   <string name="associations_dialog_openwith_action">Открыть</string>
-  <string name="associations_dialog_sendwith_title">Отправить используя...</string>
+  <string name="associations_dialog_sendwith_title">Отправить используя\u2026</string>
   <string name="associations_dialog_sendwith_action">Отправить</string>
 
   <string name="inline_autocomplete_tab_nothing_to_complete_msg">Нечего выполнять</string>

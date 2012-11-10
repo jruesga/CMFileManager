@@ -21,7 +21,7 @@
   <string name="all">Toate</string>
   <string name="overwrite">Suprascriere</string>
   <string name="search_result_name">Căutare: <xliff:g id="terms">%1$s</xliff:g></string>
-  <string name="loading_message">Încărcare...</string>
+  <string name="loading_message">Încărcare\u2026</string>
   <string name="cancelled_message">Anulat.</string>
   <string name="error_message">Eroare.</string>
   <string name="warning_title">Avertizare</string>
@@ -140,7 +140,7 @@
   <string name="search_found_items_in_directory"><xliff:g id="items">%1$s</xliff:g> în<xliff:g id="path">%2$s</xliff:g></string>
   <string name="search_few_characters_title">Confirmaţi căutarea</string>
   <string name="search_few_characters_msg">Unii termeni de căutare au un număr mic de caractere. Operațiunea ar putea fi foarte costisitoare în timp şi resurse de sistem.\n\nDoriţi să continuaţi?</string>
-  <string name="searching">Aşteptaţi...</string>
+  <string name="searching">Aşteptaţi\u2026</string>
   <string name="searching_action_label">Căutare în curs</string>
   <string name="picker_title">Alegeţi un fişier</string>
   <string name="editor">Editor</string>
@@ -169,12 +169,12 @@
   <string name="menu_clear_history">Ştergeţi istoricul</string>
   <string name="create_copy_regexp"><xliff:g id="name">%1$s</xliff:g> - copie<xliff:g id="extension">%2$s</xliff:g></string>
   <string name="create_new_compress_file_regexp"><xliff:g id="name">%1$s</xliff:g> - nou<xliff:g id="extension">%2$s</xliff:g></string>
-  <string name="waiting_dialog_msg">Efectuare operaţiune...</string>
-  <string name="waiting_dialog_copying_title">Copiere...</string>
-  <string name="waiting_dialog_moving_title">Mutare...</string>
-  <string name="waiting_dialog_deleting_title">Ştergere...</string>
-  <string name="waiting_dialog_extracting_title">Extragere...</string>
-  <string name="waiting_dialog_compressing_title">Comprimare...</string>
+  <string name="waiting_dialog_msg">Efectuare operaţiune\u2026</string>
+  <string name="waiting_dialog_copying_title">Copiere\u2026</string>
+  <string name="waiting_dialog_moving_title">Mutare\u2026</string>
+  <string name="waiting_dialog_deleting_title">Ştergere\u2026</string>
+  <string name="waiting_dialog_extracting_title">Extragere\u2026</string>
+  <string name="waiting_dialog_compressing_title">Comprimare\u2026</string>
   <string name="msgs_extracting_success">Operaţiunea de extragere a fost finalizată cu succes. Datele au fost extrase în<xliff:g id="destination">%1$s</xliff:g>.</string>
   <string name="msgs_compressing_success">Operaţiunea de comprimare a fost finalizată cu succes. Datele au fost comprimate în<xliff:g id="destination">%1$s</xliff:g>.</string>
   <string name="actions_dialog_title">Acţiuni</string>

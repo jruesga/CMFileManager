@@ -615,6 +615,6 @@
   <!-- Welcome Dialog * Title -->
   <string name="welcome_title">Welkom</string>
   <!-- Welcome Dialog * Message -->
-  <string name="welcome_msg">Welkom bij de bestandsbeheerder van CyanogenMod\n\nHiermee kunt u het bestandssystem bekijken en bewerkingen uitvoeren die schadelijk kunnen zijn voor uw apparaat. Om dit te voorkomen opent de app in een veilige modus zonder machtigingen.\n\nU kunt naar de geavanceerde modus met volledige machtigingen gaan via Instellingen. De bewerkingen die u uitvoert gebeuren op eigen verantwoordelijkheid.\n\nDe ontwikkelaars van CyanogenMod.</string>
+  <string name="welcome_msg">Welkom bij de bestandsbeheerder van CyanogenMod\n\nHiermee kunt u het bestandssystem bekijken en bewerkingen uitvoeren die schadelijk kunnen zijn voor uw apparaat. Om dit te voorkomen opent de app in een veilige modus zonder machtigingen.\n\nU kunt naar de geavanceerde modus met volledige machtigingen gaan via Instellingen. De bewerkingen die u uitvoert gebeuren op eigen verantwoordelijkheid.\n\nDe ontwikkelaars van CyanogenMod.\n</string>
 
 </resources>

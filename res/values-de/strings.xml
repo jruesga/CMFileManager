@@ -13,6 +13,7 @@
      See the License for the specific language governing permissions and
      limitations under the License.
  -->
+
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
 
   <!-- The name of the application -->
@@ -540,6 +541,8 @@
   <string name="pref_general">Allgemeine Einstellungen</string>
   <!-- Preferences * Search title -->
   <string name="pref_search">Sucheinstellungen</string>
+  <!-- Preferences * Themes title -->
+  <string name="pref_themes">Designs</string>
   <!-- Preferences * About title -->
   <string name="pref_about">Über</string>
   <!-- Preferences * About summary -->
@@ -607,9 +610,26 @@
   <string name="pref_remove_saved_search_terms_summary">Tippe um alle gespeicherten Suchergebnisse zu löschen</string>
   <!-- Preferences * Search * Suggestions were truncated -->
   <string name="pref_remove_saved_search_terms_msg">Alle gespeicherten Suchergebnisse wurden entfernt.</string>
+  <!-- Preferences * Themes * Themes selection category -->
+  <string name="pref_themes_selection_category">Designs</string>
+  <!-- Preferences * Themes * Set theme button -->
+  <string name="pref_themes_set_theme">Design auswählen</string>
+  <!-- Preferences * Themes * No preview -->
+  <string name="pref_themes_no_preview">Keine Vorschau\nverfügbar</string>
+  <!-- Preferences * Themes * Confirmation message -->
+  <string name="pref_themes_confirmation">Design erfolgreich angewendet.</string>
+  <!-- Preferences * Themes * Theme not found message -->
+  <string name="pref_themes_not_found">Design nicht gefunden.</string>
 
   <!-- Preferences * Debug * Capture debug traces -->
   <string name="pref_debug_traces">Fehlerprotokollierung</string>
+
+  <!-- Themes * Default theme name -->
+  <string name="theme_default_name">Hell (Standard)</string>
+  <!-- Themes * Default theme description -->
+  <string name="theme_default_description">Helles Design für den CM-Dateimanager.</string>
+  <!-- Themes * Default theme author -->
+  <string name="themes_author">CyanogenMod</string>
 
   <!-- Security * Extract relative or absolute files -->
   <string name="security_warning_extract">Warnung!\n\n Ein Archiv mit relativen oder absoluten Pfaden zu entpacken, kann dein Gerät beschädigen, indem Systemdateien überschrieben werden.\n\n Trotzdem fortfahren?</string>

@@ -574,6 +574,8 @@
   <string name="pref_general">Obecné nastavení</string>
   <!-- Preferences * Search title -->
   <string name="pref_search">Nastavení hledání</string>
+  <!-- Preferences * Themes title -->
+  <string name="pref_themes">Témata</string>
   <!-- Preferences * About title -->
   <string name="pref_about">O programu</string>
   <!-- Preferences * About summary -->
@@ -649,9 +651,26 @@
   <string name="pref_remove_saved_search_terms_summary">Dotykem vymažete všechny výrazy hledání</string>
   <!-- Preferences * Search * Suggestions were truncated -->
   <string name="pref_remove_saved_search_terms_msg">Všechny výrazy hledání byly odstraněny.</string>
+  <!-- Preferences * Themes * Themes selection category -->
+  <string name="pref_themes_selection_category">Témata</string>
+  <!-- Preferences * Themes * Set theme button -->
+  <string name="pref_themes_set_theme">Nastavit téma</string>
+  <!-- Preferences * Themes * No preview -->
+  <string name="pref_themes_no_preview">Náhled není\ndostupný</string>
+  <!-- Preferences * Themes * Confirmation message -->
+  <string name="pref_themes_confirmation">Téma bylo úspěšně nastaveno.</string>
+  <!-- Preferences * Themes * Theme not found message -->
+  <string name="pref_themes_not_found">Téma nebylo nalezeno.</string>
 
   <!-- Preferences * Debug * Capture debug traces -->
   <string name="pref_debug_traces">Zaznamenávat ladící informace</string>
+
+  <!-- Themes * Default theme name -->
+  <string name="theme_default_name">Světlé téma</string>
+  <!-- Themes * Default theme description -->
+  <string name="theme_default_description">Světlé téma pro Správce souborů CyanogenMod.</string>
+  <!-- Themes * Default theme author -->
+  <string name="themes_author">CyanogenMod</string>
 
   <!-- Security * Extract relative or absolute files -->
   <string name="security_warning_extract">Varování!\n\n

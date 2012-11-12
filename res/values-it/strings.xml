@@ -13,6 +13,7 @@
      See the License for the specific language governing permissions and
      limitations under the License.
  -->
+
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
   <string name="app_name">File Manager</string>
   <string name="app_description">File manager di CyanogenMod.</string>
@@ -286,6 +287,7 @@
   <string name="pref">Impostazioni</string>
   <string name="pref_general">Impostazioni generali</string>
   <string name="pref_search">Opzioni di ricerca</string>
+  <string name="pref_themes">Temi</string>
   <string name="pref_about">About</string>
   <string name="pref_about_summary">File Manager v<xliff:g id="version">%1$s</xliff:g>
     \nCopyright \u00A9 2012 The CyanogenMod Project</string>
@@ -319,7 +321,14 @@
   <string name="pref_remove_saved_search_terms">Rimuovi i termini di ricerca salvati</string>
   <string name="pref_remove_saved_search_terms_summary">Tocca per rimuovere tutti i termini di ricerca salvati</string>
   <string name="pref_remove_saved_search_terms_msg">Tutti i termini di ricerca salvati sono stati cancellati.</string>
+  <string name="pref_themes_selection_category">Temi</string>
+  <string name="pref_themes_set_theme">Imposta tema</string>
+  <string name="pref_themes_no_preview">Anteprima\nnon disponibile</string>
+  <string name="pref_themes_confirmation">Il tema è stato applicato con successo.</string>
+  <string name="pref_themes_not_found">Tema non trovato.</string>
   <string name="pref_debug_traces">Registra informazioni per il debug</string>
+  <string name="theme_default_name">Tema chiaro</string>
+  <string name="theme_default_description">Un tema chiaro per il file manager di CyanogenMod.</string>
   <string name="security_warning_extract">Attenzione!\n\nEstrarre un archivio con percorsi relativi o assoluti può danneggiare il dispositivo in quanto possono venire sovrascritti file di sistema.\n\nContinuare?</string>
   <string name="changelog_title">Changelog</string>
   <string name="welcome_title">Benvenuti</string>

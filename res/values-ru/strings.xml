@@ -304,6 +304,7 @@
   <string name="pref">Настройки</string>
   <string name="pref_general">Основные настройки</string>
   <string name="pref_search">Настройки поиска</string>
+  <string name="pref_themes">Темы</string>
   <string name="pref_about">О приложении</string>
 
   <string name="pref_general_behaviour_category">Основные</string>
@@ -337,7 +338,16 @@
   <string name="pref_remove_saved_search_terms_summary">Нажмите для удаления всех сохранённых условий поиска</string>
   <string name="pref_remove_saved_search_terms_msg">Все сохранённые условия поиска были удалены</string>
 
+  <string name="pref_themes_selection_category">Темы</string>
+  <string name="pref_themes_set_theme">Применить</string>
+  <string name="pref_themes_no_preview">Превью недоступно</string>
+  <string name="pref_themes_confirmation">Тема успешно применена</string>
+  <string name="pref_themes_not_found">Тема не найдена</string>
+
   <string name="pref_debug_traces">Логирование отладки</string>
+
+  <string name="theme_default_name">Светлая тема</string>
+  <string name="theme_default_description">Светлая тема для файлового менеджера CyanogenMod</string>
 
   <string name="security_warning_extract">Внимание!\n\n Извлечение архива с относительными или абсолютными путями может привести к повреждению устройства путём перезаписи системных файлов.\n\nВы действительно хотите продолжить?</string>
 

@@ -276,6 +276,7 @@
   <string name="pref">Ajustes</string>
   <string name="pref_general">Ajustes generales</string>
   <string name="pref_search">Opciones de búsqueda</string>
+  <string name="pref_themes">Temas</string>
   <string name="pref_about">Acerca de</string>
   <string name="pref_about_summary">File Manager v<xliff:g id="version">%1$s</xliff:g>
     \nCopyright \u00A9 2012 The CyanogenMod Project</string>
@@ -309,7 +310,14 @@
   <string name="pref_remove_saved_search_terms">Borrar términos de búsqueda</string>
   <string name="pref_remove_saved_search_terms_summary">Tocar aquí para borrar todos los términos de búsqueda guardados</string>
   <string name="pref_remove_saved_search_terms_msg">Todos los términos de búsqueda han sido borrados.</string>
+  <string name="pref_themes_selection_category">Temas</string>
+  <string name="pref_themes_set_theme">Aplicar tema</string>
+  <string name="pref_themes_no_preview">Vista previa\nno disponible</string>
+  <string name="pref_themes_confirmation">Tema aplicado satisfactoriamente.</string>
+  <string name="pref_themes_not_found">Tema no encontrado.</string>
   <string name="pref_debug_traces">Habilitar registro de depuración</string>
+  <string name="theme_default_name">Tema claro</string>
+  <string name="theme_default_description">Un tema en colores claros para File Manager.</string>
   <string name="security_warning_extract">¡Aviso!\n\nExtraer archivos comprimidos que contienen rutas absolutas o relativas puede causar daños en su dispositivo por la posible sobrescritura de archivos de sistema.\n\n¿Continuar?</string>
   <string name="changelog_title">Registro de cambios</string>
   <string name="welcome_title">Bienvenido</string>

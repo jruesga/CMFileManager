@@ -285,6 +285,13 @@
   <string name="pref_remove_saved_search_terms">Eliminaţi termenii de căutare salvaţi</string>
   <string name="pref_remove_saved_search_terms_summary">Apăsaţi pentru eliminarea tuturor termenilor de căutare salvaţi</string>
   <string name="pref_remove_saved_search_terms_msg">Toţi termenii de căutare salvaţi au fost eliminaţi.</string>
+  <string name="pref_themes_selection_category">Teme</string>
+  <string name="pref_themes_set_theme">Aplicaţi tema</string>
+  <string name="pref_themes_no_preview">Nici o previzualizare\ndisponibilă</string>
+  <string name="pref_themes_confirmation">Tema a fost aplicată cu succes.</string>
+  <string name="pref_themes_not_found">Tema nu a fost găsită.</string>
+  <string name="theme_default_name">Temă \"deschisă\"</string>
+  <string name="theme_default_description">Temă \"deschisă\" pentru Managerul de Fişiere CyanogenMod.</string>
   <string name="security_warning_extract">Avertizare!\n\nExtragerea unui fişier arhivă cu căi relative sau absolute poate cauza defecţiuni dispozitivului Dvs. prin suprascrierea fişierelor de sistem.\n\nDoriţi să continuaţi?</string>
   </resources>
 

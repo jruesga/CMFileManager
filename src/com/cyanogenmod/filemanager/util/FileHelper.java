@@ -24,6 +24,7 @@ import android.util.Log;
 import com.cyanogenmod.filemanager.FileManagerApplication;
 import com.cyanogenmod.filemanager.R;
 import com.cyanogenmod.filemanager.commands.shell.ResolveLinkCommand;
+import com.cyanogenmod.filemanager.console.ExecutionException;
 import com.cyanogenmod.filemanager.model.AID;
 import com.cyanogenmod.filemanager.model.BlockDevice;
 import com.cyanogenmod.filemanager.model.CharacterDevice;
@@ -43,7 +44,11 @@ import com.cyanogenmod.filemanager.preferences.NavigationSortMode;
 import com.cyanogenmod.filemanager.preferences.ObjectIdentifier;
 import com.cyanogenmod.filemanager.preferences.Preferences;
 
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Collections;
 import java.util.Comparator;
@@ -835,5 +840,109 @@ public final class FileHelper {
             Log.e(TAG, "Exception retrieving the fso", e); //$NON-NLS-1$
         }
         return null;
+    }
+
+    /**
+     * Method that copies recursively to the destination
+     *
+     * @param src The source file or folder
+     * @param dst The destination file or folder
+     * @param bufferSize The buffer size for the operation
+     * @return boolean If the operation complete successfully
+     * @throws ExecutionException If a problem was detected in the operation
+     */
+    public static boolean copyRecursive(
+            final File src, final File dst, int bufferSize) throws ExecutionException {
+        if (src.isDirectory()) {
+            // Create the directory
+            if (dst.exists() && !dst.isDirectory()) {
+                Log.e(TAG,
+                        String.format("Failed to check destionation dir: %s", dst)); //$NON-NLS-1$
+                throw new ExecutionException("the path exists but is not a folder"); //$NON-NLS-1$
+            }
+            if (!dst.exists()) {
+                if (!dst.mkdir()) {
+                    Log.e(TAG, String.format("Failed to create directory: %s", dst)); //$NON-NLS-1$
+                    return false;
+                }
+            }
+            File[] files = src.listFiles();
+            if (files != null) {
+                for (int i = 0; i < files.length; i++) {
+                    if (!copyRecursive(files[i], new File(dst, files[i].getName()), bufferSize)) {
+                        return false;
+                    }
+                }
+            }
+        } else {
+            // Copy the directory
+            if (!bufferedCopy(src, dst,bufferSize)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    /**
+     * Method that copies a file
+     *
+     * @param src The source file
+     * @param dst The destination file
+     * @param bufferSize The buffer size for the operation
+     * @return boolean If the operation complete successfully
+     */
+    public static boolean bufferedCopy(final File src, final File dst, int bufferSize) {
+        BufferedInputStream bis = null;
+        BufferedOutputStream bos = null;
+        try {
+            bis = new BufferedInputStream(new FileInputStream(src), bufferSize);
+            bos = new BufferedOutputStream(new FileOutputStream(dst), bufferSize);
+            int read = 0;
+            byte[] data = new byte[bufferSize];
+            while ((read = bis.read(data, 0, bufferSize)) != -1) {
+                bos.write(data, 0, read);
+            }
+            return true;
+
+        } catch (Throwable e) {
+            Log.e(TAG,
+                    String.format(TAG, "Failed to copy from %s to %d", src, dst), e); //$NON-NLS-1$
+            return false;
+        } finally {
+            try {
+                if (bis != null) {
+                    bis.close();
+                }
+            } catch (Throwable e) {/**NON BLOCK**/}
+            try {
+                if (bos != null) {
+                    bos.close();
+                }
+            } catch (Throwable e) {/**NON BLOCK**/}
+        }
+    }
+
+    /**
+     * Method that deletes a folder recursively
+     *
+     * @param folder The folder to delete
+     * @return boolean If the folder was deleted
+     */
+    public static boolean deleteFolder(File folder) {
+        File[] files = folder.listFiles();
+        if (files != null) {
+            for (int i = 0; i < files.length; i++) {
+                if (files[i].isDirectory()) {
+                    if (!deleteFolder(files[i])) {
+                        return false;
+                    }
+                } else {
+                    if (!files[i].delete()) {
+                        return false;
+                    }
+                }
+            }
+        }
+        return folder.delete();
     }
 }

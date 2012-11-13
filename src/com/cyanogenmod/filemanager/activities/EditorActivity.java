@@ -42,6 +42,7 @@ import android.widget.TextView;
 import android.widget.TextView.BufferType;
 import android.widget.Toast;
 
+import com.cyanogenmod.filemanager.FileManagerApplication;
 import com.cyanogenmod.filemanager.R;
 import com.cyanogenmod.filemanager.commands.AsyncResultListener;
 import com.cyanogenmod.filemanager.commands.WriteExecutable;
@@ -49,6 +50,7 @@ import com.cyanogenmod.filemanager.console.ConsoleBuilder;
 import com.cyanogenmod.filemanager.console.InsufficientPermissionsException;
 import com.cyanogenmod.filemanager.console.RelaunchableException;
 import com.cyanogenmod.filemanager.model.FileSystemObject;
+import com.cyanogenmod.filemanager.preferences.AccessMode;
 import com.cyanogenmod.filemanager.preferences.FileManagerSettings;
 import com.cyanogenmod.filemanager.ui.ThemeManager;
 import com.cyanogenmod.filemanager.ui.ThemeManager.Theme;
@@ -550,9 +552,12 @@ public class EditorActivity extends Activity implements TextWatcher {
                         // Check if the read was successfully
                         if (this.mReader.mCause != null) {
                             // Check if we can't read the file because we don't the require
-                            // permissions
+                            // permissions. If we are in a ChRooted environment, resolve the
+                            // error without doing anymore
                             if (this.mReader.mCause instanceof InsufficientPermissionsException) {
-                                if (!ConsoleBuilder.isPrivileged()) {
+                                if (!ConsoleBuilder.isPrivileged() &&
+                                    FileManagerApplication.getAccessMode().
+                                                compareTo(AccessMode.SAFE) != 0) {
                                     // We don't have a privileged console, we can't ask the user
                                     // to gain privileges and relauch the command again
                                     askGainAccessAndRead(

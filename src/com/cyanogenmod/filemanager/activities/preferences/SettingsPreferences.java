@@ -304,6 +304,8 @@ public class SettingsPreferences extends PreferenceActivity {
                                 FileManagerSettings.SETTINGS_ACCESS_MODE.getId(),
                                 defaultValue);
             this.mOnChangeListener.onPreferenceChange(this.mAccessMode, value);
+            // If device is not rooted, this setting cannot be changed
+            this.mAccessMode.setEnabled(FileManagerApplication.isDeviceRooted());
 
             // Capture Debug traces
             this.mDebugTraces =

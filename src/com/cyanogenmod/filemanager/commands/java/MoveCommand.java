@@ -23,6 +23,7 @@ import com.cyanogenmod.filemanager.console.ExecutionException;
 import com.cyanogenmod.filemanager.console.InsufficientPermissionsException;
 import com.cyanogenmod.filemanager.console.NoSuchFileOrDirectory;
 import com.cyanogenmod.filemanager.model.MountPoint;
+import com.cyanogenmod.filemanager.util.FileHelper;
 import com.cyanogenmod.filemanager.util.MountPointHelper;
 
 import java.io.File;
@@ -78,12 +79,34 @@ public class MoveCommand extends Program implements MoveExecutable {
             throw new NoSuchFileOrDirectory(this.mSrc);
         }
 
-        //Copy recursively
-        if (!s.renameTo(d)) {
-            if (isTrace()) {
-                Log.v(TAG, "Result: FAIL. InsufficientPermissionsException"); //$NON-NLS-1$
+        //Move or copy recursively
+        if (d.exists()) {
+            if (!FileHelper.copyRecursive(s, d, getBufferSize())) {
+                if (isTrace()) {
+                    Log.v(TAG, "Result: FAIL. InsufficientPermissionsException"); //$NON-NLS-1$
+                }
+                throw new InsufficientPermissionsException();
             }
-            throw new InsufficientPermissionsException();
+            if (!FileHelper.deleteFolder(s)) {
+                if (isTrace()) {
+                    Log.v(TAG, "Result: OK. WARNING. Source not deleted."); //$NON-NLS-1$
+                }
+            }
+        } else {
+            // Move between filesystem is not allow. If rename fails then use copy operation
+            if (!s.renameTo(d)) {
+                if (!FileHelper.copyRecursive(s, d, getBufferSize())) {
+                    if (isTrace()) {
+                        Log.v(TAG, "Result: FAIL. InsufficientPermissionsException"); //$NON-NLS-1$
+                    }
+                    throw new InsufficientPermissionsException();
+                }
+                if (!FileHelper.deleteFolder(s)) {
+                    if (isTrace()) {
+                        Log.v(TAG, "Result: OK. WARNING. Source not deleted."); //$NON-NLS-1$
+                    }
+                }
+            }
         }
 
         if (isTrace()) {

@@ -347,7 +347,7 @@ public class FsoPropertiesDialog
                         new AsyncTask<Void, Void, SparseArray<AID>>() {
             @Override
             protected SparseArray<AID> doInBackground(Void...params) {
-                return AIDHelper.getAIDs(FsoPropertiesDialog.this.mContext);
+                return AIDHelper.getAIDs(FsoPropertiesDialog.this.mContext, true);
             }
 
             @Override

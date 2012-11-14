@@ -71,7 +71,7 @@
     <!-- The selected setting was not applied or stored -->
     <string name="msgs_settings_save_failure">A beállítást nem lehet alkalmazni, vagy elmenteni.</string>
     <!-- The initial directory has an invalid or inaccessible reference -->
-    <string name="msgs_settings_invalid_initial_directory">A kezdő könyvtár "<xliff:g id="initial_dir">%1$s</xliff:g>" helytelen. Váltás a gyökérkönyvtárra.</string>
+    <string name="msgs_settings_invalid_initial_directory">A kezdő könyvtár "<xliff:g id="initial_dir">%1$s</xliff:g>" érvénytelen. Váltás a gyökérkönyvtárra.</string>
 
     <!-- Success -->
     <string name="msgs_success">A művelet sikeresen befejeződött.</string>
@@ -82,7 +82,7 @@
     <!-- The file or directory was not found -->
     <string name="msgs_file_not_found">A fájl vagy a könyvtár nem található.</string>
     <!-- The command reference couldn't be created (not found or invalid definition) (normally caused by a development error) -->
-    <string name="msgs_command_not_found">A műveleti parancs nem található, vagy érvénytelen definíció.</string>
+    <string name="msgs_command_not_found">A műveleti parancs nem található, vagy érvénytelen.</string>
     <!-- I/O exception -->
     <string name="msgs_io_failed">Olvasási / írási hiba.</string>
     <!-- Operation timeout detected -->
@@ -106,13 +106,13 @@
     <string name="msgs_push_again_to_exit">Nyomja meg mégegyszer a kilépéshez.</string>
 
     <!-- There is no registered application that can handle the mime-type -->
-    <string name="msgs_not_registered_app">Nincs társítva alkalmazás a kijelölt fájltípus kezelésére.</string>
+    <string name="msgs_not_registered_app">A kijelölt fájltípushoz nincs alkalmazás társítva.</string>
 
     <!-- Overwrite files? -->
-    <string name="msgs_overwrite_files">Néhány fájl létezik a cél könyvtárban.\n\nFelülírja?</string>
+    <string name="msgs_overwrite_files">Néhány fájl már létezik a célkönyvtárban.\n\nFelülírja?</string>
 
     <!-- The association of an action to the application failed -->
-    <string name="msgs_action_association_failed">Sikertelen a művelet társítása az alkalmazáshoz.</string>
+    <string name="msgs_action_association_failed">A műveletet nem sikerült társítani az alkalmazáshoz.</string>
 
     <!-- An operation requires elevated privileged. Ask the user. -->
     <string name="advise_insufficient_permissions">A művelet elvégzéséhez nincs megfelelő jogosultsága.\n\nÁtvált rendszergazda módra?</string>
@@ -179,17 +179,17 @@
     <!-- Filesystem Info (no data). Dialog message -->
     <string name="filesystem_info_warning_msg">Nincs elérhető információ a fájlrendszerről.</string>
     <!-- Filesystem Info * Filesystem couldn't be mounted -->
-    <string name="filesystem_info_cant_be_mounted_msg">A fájlrendszer nem csatolható/lecsatolható.</string>
+    <string name="filesystem_info_cant_be_mounted_msg">A fájlrendszer nem csatolható.</string>
     <!-- Filesystem Info * Not allowed message -->
-    <string name="filesystem_info_mount_not_allowed_msg">Fájlrendszer csatolási műveletek nincsenek engedélyezve a biztonságos módban. Érintse meg a rendszergazda módba való váltáshoz.</string>
+    <string name="filesystem_info_mount_not_allowed_msg">Fájlrendszer-csatolási műveletek nincsenek engedélyezve a biztonságos módban. Érintse meg a rendszergazda módba való váltáshoz.</string>
     <!-- Filesystem Info * Mount failed -->
-    <string name="filesystem_info_mount_failed_msg">Fájlrendszer csatolási művelet sikertelen. Néhány fájlrendszer, mint bizonyos SD-kártyák fizikailag nem írhatóak.</string>
+    <string name="filesystem_info_mount_failed_msg">Fájlrendszer-csatolási művelet sikertelen. Néhány fájlrendszer, mint bizonyos SD-kártyák fizikailag nem írhatóak.</string>
     <!-- Filesystem Info Dialog * Title -->
-    <string name="filesystem_info_dialog_title">Fájlrendszer információ</string>
+    <string name="filesystem_info_dialog_title">Fájlrendszer-információ</string>
     <!-- Filesystem Info Dialog * Tab * Info -->
     <string name="filesystem_info_dialog_tab_info">Információ</string>
     <!-- Filesystem Info Dialog * Tab * Disk Usage -->
-    <string name="filesystem_info_dialog_tab_disk_usage">Tárhely használat</string>
+    <string name="filesystem_info_dialog_tab_disk_usage">Tárhelyhasználat</string>
     <!-- Filesystem Info Dialog * Status Label -->
     <string name="filesystem_info_dialog_status">Státusz:</string>
     <!-- Filesystem Info Dialog * Mount Point Label -->
@@ -212,11 +212,11 @@
     <!-- Fso Properties * Not allowed message -->
     <string name="fso_properties_permissions_not_allowed_msg">A jogosultság állítása nem engedélyezett biztonságos módban. Érintse meg a rendszergazda módba való váltáshoz.</string>
     <!-- Fso Properties * Failed to change owner to fso -->
-    <string name="fso_properties_failed_to_change_owner_msg">A tulajdonos váltása sikertelen.\n\nBiztonsági okoból, néhány fájlrendszer, mint az SD-kártyák, nem engedélyezik a tulajdonos megváltoztatását.</string>
+    <string name="fso_properties_failed_to_change_owner_msg">A tulajdonos váltása sikertelen.\n\nBiztonsági okoból néhány fájlrendszer, mint az SD-kártyák, nem engedélyezik a tulajdonos megváltoztatását.</string>
     <!-- Fso Properties * Failed to change group to fso -->
-    <string name="fso_properties_failed_to_change_group_msg">A csoport váltása sikertelen.\n\nBiztonsági okoból, néhány fájlrendszer, mint az SD-kártyák, nem engedélyezik a csoport megváltoztatását.</string>
+    <string name="fso_properties_failed_to_change_group_msg">A csoport váltása sikertelen.\n\nBiztonsági okoból néhány fájlrendszer, mint az SD-kártyák, nem engedélyezik a csoport megváltoztatását.</string>
     <!-- Fso Properties * Failed to change group to fso -->
-    <string name="fso_properties_failed_to_change_permission_msg">A jogosultság megváltoztatása sikertelen.\n\nBiztonsági okoból, néhány fájlrendszer, mint az SD-kártyák, nem engedélyezik a jogosultságok megváltoztatását.</string>
+    <string name="fso_properties_failed_to_change_permission_msg">A jogosultság megváltoztatása sikertelen.\n\nBiztonsági okoból néhány fájlrendszer, mint az SD-kártyák, nem engedélyezik a jogosultságok megváltoztatását.</string>
     <!-- Fso Properties Dialog * Title -->
     <string name="fso_properties_dialog_title">Tulajdonságok</string>
     <!-- Fso Properties Dialog * Tab * Info -->
@@ -248,14 +248,14 @@
 
     <!-- Fso Properties Dialog * Folders -->
     <plurals name="fso_properties_dialog_folders">
-      <item quantity="zero">0 könyvtár</item>
-      <item quantity="one">1 könyvtár</item>
+      <!--<item quantity="zero">0 könyvtár</item>
+      <item quantity="one">1 könyvtár</item>-->
       <item quantity="other"><xliff:g id="folders">%1$d</xliff:g> könyvtár</item>
     </plurals>
     <!-- Fso Properties Dialog * Files -->
     <plurals name="fso_properties_dialog_files">
-      <item quantity="zero">0 fájl</item>
-      <item quantity="one">1 fájl</item>
+      <!--<item quantity="zero">0 fájl</item>
+      <item quantity="one">1 fájl</item>-->
       <item quantity="other"><xliff:g id="files">%1$d</xliff:g> fájl</item>
     </plurals>
 
@@ -273,13 +273,13 @@
     <!-- Search * Voice search hint message -->
     <string name="search_voice_hint">Mondja ki a keresést</string>
     <!-- Search * Search error message -->
-    <string name="search_error_msg">A keresés közben hiba történt. Nincs találat.</string>
+    <string name="search_error_msg">Hiba történt keresés közben. Nincs találat.</string>
     <!-- Search * Search no results message -->
     <string name="search_no_results_msg">Nincs találat.</string>
     <!-- Search * Search found items -->
     <plurals name="search_found_items">
       <item quantity="zero">Nem található elem</item>
-      <item quantity="one">1 találat</item>
+      <!--<item quantity="one">1 találat</item>-->
       <item quantity="other"><xliff:g id="count">%d</xliff:g> találat</item>
     </plurals>
     <!-- Search * Number of items found in directory -->
@@ -289,7 +289,7 @@
     <!-- Search * Confirm search -->
     <string name="search_few_characters_title">Keresés megerősítése</string>
     <!-- Search * Some terms of the search are too small. The operation could be very costly -->
-    <string name="search_few_characters_msg">Néhány keresési kifejezés kevés számú karaktert tartalmaz. A művelet sokáig eltarthat és megterhelheti a rendszert.\n\nBiztosan folytatja?</string>
+    <string name="search_few_characters_msg">Néhány keresési kifejezés túl rövid. A művelet sokáig eltarthat és megterhelheti a rendszert.\n\nBiztosan folytatja?</string>
     <!-- Search * Searching dialog title -->
     <string name="searching">Kérem várjon\u2026</string>
     <!-- Search * Searching label -->
@@ -303,17 +303,17 @@
     <!-- Editor * Invalid file message -->
     <string name="editor_invalid_file_msg">Érvénytelen fájl.</string>
     <!-- Editor * File not found message -->
-    <string name="editor_file_not_found_msg">Fájl nem található.</string>
+    <string name="editor_file_not_found_msg">A fájl nem található.</string>
     <!-- Editor * File size exceed the limit -->
-    <string name="editor_file_exceed_size_msg">A fájl túl nagy ahhoz, hogy ezen az eszközön megnyithassa.</string>
+    <string name="editor_file_exceed_size_msg">A fájl túl nagy, ezen az eszközön nem megnyitható.</string>
     <!-- Editor * Editor is dirty, ask the user * Dialog title -->
     <string name="editor_dirty_ask_title">Kilépés megerősítése</string>
     <!-- Editor * Editor is dirty, ask the user * Dialog message -->
-    <string name="editor_dirty_ask_msg">El nem mentett módosítások.\n\nKilép mentés nélkül?</string>
+    <string name="editor_dirty_ask_msg">Nem mentette el a módosításokat.\n\nMindenképpen kilép?</string>
     <!-- Editor * Save operation success -->
     <string name="editor_successfully_saved">A fájl sikeresen elmentve.</string>
     <!-- Editor * Read-only file mode -->
-    <string name="editor_read_only_mode">A fájl csak olvashatóként van megnyitva.</string>
+    <string name="editor_read_only_mode">A fájl csak olvasható.</string>
 
     <!-- Bookmarks * Bookmarks activity title -->
     <string name="bookmarks">Könyvjelzők</string>
@@ -335,7 +335,7 @@
     <!-- Initial directory label -->
     <string name="initial_directory_label">Válasszon kezdőkonyvtárat:</string>
     <!-- Initial directory is relative -->
-    <string name="initial_directory_relative_msg">A relatív útvonal nem engedélyezett.</string>
+    <string name="initial_directory_relative_msg">Relatív útvonalak nem használhatóak.</string>
     <!-- Initial directory error message -->
     <string name="initial_directory_error_msg">Hiba történt a kezdőkönyvtár mentésekor.</string>
 
@@ -380,9 +380,9 @@
     <!-- Waiting dialog * Initializing the dialog -->
     <string name="waiting_dialog_analizing_msg"><![CDATA[<b>Elemzés\u2026</b>]]></string>
     <!-- Extracting * Success message -->
-    <string name="msgs_extracting_success">A kitömörítés sikeresen befejeződött. Az adatokat a következő helyen találja <xliff:g id="destination">%1$s</xliff:g>.</string>
+    <string name="msgs_extracting_success">A kitömörítés sikeresen befejeződött. Az adatokat a következő helyen találja: <xliff:g id="destination">%1$s</xliff:g>.</string>
     <!-- Compressing * Success message -->
-    <string name="msgs_compressing_success">A tömörítés sikeresen befejeződött. Az adatokat a következő helyen találja <xliff:g id="destination">%1$s</xliff:g>.</string>
+    <string name="msgs_compressing_success">A tömörítés sikeresen befejeződött. Az adatokat a következő helyen találja: <xliff:g id="destination">%1$s</xliff:g>.</string>
 
     <!-- Actions Dialog * Title -->
     <string name="actions_dialog_title">Műveletek</string>
@@ -447,9 +447,9 @@
     <!-- Enter Name Dialog * Message * Empty name -->
     <string name="input_name_dialog_message_empty_name">A név mező nem lehet üres.</string>
     <!-- Enter Name Dialog * Message * Invalid name -->
-    <string name="input_name_dialog_message_invalid_path_name">Helytelen név. A \'<xliff:g id="invalid_characters">%1$s</xliff:g>\' karakterek nincsenek engedélyezve.</string>
+    <string name="input_name_dialog_message_invalid_path_name">Helytelen név. A \'<xliff:g id="invalid_characters">%1$s</xliff:g>\' karakterek nem megengedettek.</string>
     <!-- Enter Name Dialog * Message * Invalid name -->
-    <string name="input_name_dialog_message_invalid_name">Helytelen név. A \'.\' és a \'..\' nincs enegélyezve.</string>
+    <string name="input_name_dialog_message_invalid_name">Helytelen név. A \'.\' és a \'..\' nem megengedett.</string>
     <!-- Enter Name Dialog * Message * Name exists -->
     <string name="input_name_dialog_message_name_exists">A név már létezik.</string>
 
@@ -536,18 +536,18 @@
     <!-- Preferences * About title -->
     <string name="pref_about">Névjegy</string>
     <!-- Preferences * About summary -->
-    <string name="pref_about_summary">Fájl kezelő v<xliff:g id="version">%1$s</xliff:g> \nCopyright \u00A9 2012 The CyanogenMod Project</string>
+    <string name="pref_about_summary">Fájlkezelő v<xliff:g id="version">%1$s</xliff:g> \nCopyright \u00A9 2012 The CyanogenMod Project</string>
 
     <!-- Preferences * General * Behaviour category -->
     <string name="pref_general_behaviour_category">Általános</string>
     <!-- Preferences * General * Case sensitive sort title -->
     <string name="pref_case_sensitive_sort">Kis-/nagybetű helyes rendezés</string>
     <!-- Preferences * General *Disk usage warning level title -->
-    <string name="pref_disk_usage_warning_level">Tárterület telítettség figyelmeztetés</string>
+    <string name="pref_disk_usage_warning_level">Figyelmeztetés kevés tárterületnél</string>
     <!-- Preferences * General * Disk usage warning level summary -->
     <!-- FIXME Use "percent" instead of "%" symbol, because it make crash the app on getSummary
        of ListPreference. This should be fixed in frameworks base prior to be added here. -->
-    <string name="pref_disk_usage_warning_level_summary" formatted="false">Tárterület használat megjelenítése más színnel, amikor a szabad hely eléri a <xliff:g id="level">%1$s</xliff:g> százalékot.</string>
+    <string name="pref_disk_usage_warning_level_summary" formatted="false">Tárterület-használat megjelenítése más színnel, amikor az eléri a <xliff:g id="level">%1$s</xliff:g> százalékot.</string>
     <!-- Preferences * General * Compute folder statistics title -->
     <string name="pref_compute_folder_statistics">Mappa statisztika számítása</string>
     <!-- Preferences * General * Compute folder statistics summary on -->
@@ -567,11 +567,11 @@
     <!-- Preferences * General * Prompt user mode -->
     <string name="pref_access_mode_prompt">Rákérdezéses mód</string>
     <!-- Preferences * General * Prompt user mode summary -->
-    <string name="pref_access_mode_prompt_summary">Rákérdezés a felhasználótól.\n\nAz alkalmazás teljes jogkörrel hozzáfér a fájlrendszerhez, de a művelet végrehajtása előtt rákérdez a felhasználótól.</string>
+    <string name="pref_access_mode_prompt_summary">Rákérdezéses mód\n\nAz alkalmazás teljes jogkörrel hozzáfér a fájlrendszerhez, de kényes művelet végrehajtása előtt engedélyt kér a felhasználótól.</string>
     <!-- Preferences * General * Root access mode -->
     <string name="pref_access_mode_root">Rendszergazda mód</string>
     <!-- Preferences * General * Root access mode summary -->
-    <string name="pref_access_mode_root_summary">Rendszergazda mód\n\nFigyelmeztetés! Ez a mód lehetővé teszi, hogy károsítsa az eszközt. Az Ön felelőssége annak biztosítása, hogy a művelet biztonságos legyen</string>
+    <string name="pref_access_mode_root_summary">Rendszergazda mód\n\nFigyelem! Ebben a módban semmi nem akadályozza meg, hogy egy helytelen művelet tönkretegye az eszközét. Csak saját felelősségére használja!</string>
     <!-- Preferences * Search * Results category -->
     <string name="pref_search_results_category">Találatok</string>
     <!-- Preferences * Search * Show relevance widget -->
@@ -585,15 +585,15 @@
     <!-- Preferences * Search * Sort results mode. None -->
     <string name="pref_sort_search_results_mode_name">Név szerint</string>
     <!-- Preferences * Search * Sort results mode. Relevance -->
-    <string name="pref_sort_search_results_mode_relevance">Relevancia szerint</string>
+    <string name="pref_sort_search_results_mode_relevance">Találati pontosság szerint</string>
     <!-- Preferences * Search * Privacity category -->
     <string name="pref_search_privacity_category">Titoktartás</string>
     <!-- Preferences * Search * Save search terms -->
     <string name="pref_save_search_terms">Keresési feltételek elmentése</string>
     <!-- Preferences * Search * Save search terms summary on -->
-    <string name="pref_save_search_terms_on">Keresési feltételek el lesznek mentve a használható javaslatok érdekében</string>
+    <string name="pref_save_search_terms_on">A keresési feltételek el lesznek mentve a használható javaslatok érdekében</string>
     <!-- Preferences * Search * Save search terms summary off -->
-    <string name="pref_save_search_terms_off">Keresési feltételek nem lesznek elmentve</string>
+    <string name="pref_save_search_terms_off">A keresési feltételek nem lesznek elmentve</string>
     <!-- Preferences * Search * Remove saved search terms -->
     <string name="pref_remove_saved_search_terms">Keresési feltételek törlése</string>
     <!-- Preferences * Search * Remove saved search terms summary -->
@@ -605,9 +605,9 @@
     <!-- Preferences * Themes * Set theme button -->
     <string name="pref_themes_set_theme">Téma beállítása</string>
     <!-- Preferences * Themes * No preview -->
-    <string name="pref_themes_no_preview">Nincs előnézeti\nkép</string>
+    <string name="pref_themes_no_preview">Nincs előnézeti kép</string>
     <!-- Preferences * Themes * Confirmation message -->
-    <string name="pref_themes_confirmation">Téma sikeresen beállítva.</string>
+    <string name="pref_themes_confirmation">Téma beállítva.</string>
     <!-- Preferences * Themes * Theme not found message -->
     <string name="pref_themes_not_found">Nem található téma.</string>
 
@@ -615,7 +615,7 @@
     <string name="pref_debug_traces">Hibakeresési napló</string>
 
     <!-- Themes * Default theme name -->
-    <string name="theme_default_name">Világos Theme</string>
+    <string name="theme_default_name">Világos téma</string>
     <!-- Themes * Default theme description -->
     <string name="theme_default_description">Világos téma a CyanogenMod Fájlkezelőhöz.</string>
     <!-- Themes * Default theme author -->
@@ -630,6 +630,6 @@
     <!-- Welcome Dialog * Title -->
     <string name="welcome_title">Üdvözöljük</string>
     <!-- Welcome Dialog * Message -->
-    <string name="welcome_msg">Üdvözöli a CyanogenMod fájlkezelő.\n\nEz az alkalmazás lehetővé teszi a fájlrendszer tallózását és olyan műveletek végrehajtását is, mellyel károsodhat az eszköz. A károsodás elkerülése érdekében az alkalmazás védett, alacsony jogosultsággal indul.\n\nLehetősége van a speciális beállításoknál a teljes privilegizált módú futtatásra is. Az Ön felelőssége annak biztosítása, hogy a művelet ne károsítsa a rendszert.\n\nA CyanogenMod csapata.\n</string>
+    <string name="welcome_msg">Üdvözöli a CyanogenMod fájlkezelő.\n\nEz az alkalmazás lehetővé teszi a fájlrendszer böngészését és olyan műveletek végrehajtását is, melyek esetleg károsíthatják az eszköz. A károsodás elkerülése érdekében az alkalmazás védett, alacsony jogosultsággal indul.\n\nLehetősége van a speciális beállításoknál a teljes privilegizált módú futtatásra is. Az Ön felelőssége annak biztosítása, hogy az egyes műveletek ne károsítsák a rendszert.\n\nA CyanogenMod csapata.\n</string>
 
 </resources>

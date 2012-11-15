@@ -238,7 +238,7 @@ public class ShortcutActivity extends Activity implements OnCancelListener, OnDi
      */
     void applyTheme() {
         Theme theme = ThemeManager.getCurrentTheme(this);
-        theme.setBaseTheme(this, false);
+        theme.setBaseTheme(this, true);
     }
 
 }

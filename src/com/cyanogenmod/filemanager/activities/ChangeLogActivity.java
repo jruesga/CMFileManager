@@ -160,7 +160,7 @@ public class ChangeLogActivity extends Activity implements OnCancelListener, OnD
      */
     void applyTheme() {
         Theme theme = ThemeManager.getCurrentTheme(this);
-        theme.setBaseTheme(this, false);
+        theme.setBaseTheme(this, true);
     }
 
 }

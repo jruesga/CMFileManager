@@ -256,7 +256,7 @@ public final class ExceptionUtil {
         }
 
         // If console is privileged there is not need to change
-        // If we are in a ChRooted environment, resolve the error without do anymore
+        // If we are in a ChRooted environment, resolve the error without doing anymore
         if (relaunchable instanceof InsufficientPermissionsException &&
                 (isPrivileged ||
                  FileManagerApplication.getAccessMode().compareTo(AccessMode.SAFE) == 0)) {

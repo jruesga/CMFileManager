@@ -23,6 +23,7 @@ import com.cyanogenmod.filemanager.console.ExecutionException;
 import com.cyanogenmod.filemanager.console.InsufficientPermissionsException;
 import com.cyanogenmod.filemanager.console.NoSuchFileOrDirectory;
 import com.cyanogenmod.filemanager.model.MountPoint;
+import com.cyanogenmod.filemanager.util.FileHelper;
 import com.cyanogenmod.filemanager.util.MountPointHelper;
 
 import java.io.File;
@@ -84,7 +85,7 @@ public class DeleteDirCommand extends Program implements DeleteDirExecutable {
         }
 
         // Delete the file
-        if (!deleteFolder(f)) {
+        if (!FileHelper.deleteFolder(f)) {
             if (isTrace()) {
                 Log.v(TAG, "Result: FAIL. InsufficientPermissionsException"); //$NON-NLS-1$
             }
@@ -110,29 +111,5 @@ public class DeleteDirCommand extends Program implements DeleteDirExecutable {
     @Override
     public MountPoint getDstWritableMountPoint() {
         return MountPointHelper.getMountPointFromDirectory(this.mPath);
-    }
-
-    /**
-     * Method that deletes a folder recursively
-     *
-     * @param folder The folder to delete
-     * @return boolean If the folder was deleted
-     */
-    private boolean deleteFolder(File folder) {
-        File[] files = folder.listFiles();
-        if (files != null) {
-            for (int i = 0; i < files.length; i++) {
-                if (files[i].isDirectory()) {
-                    if (!deleteFolder(files[i])) {
-                        return false;
-                    }
-                } else {
-                    if (!files[i].delete()) {
-                        return false;
-                    }
-                }
-            }
-        }
-        return folder.delete();
     }
 }

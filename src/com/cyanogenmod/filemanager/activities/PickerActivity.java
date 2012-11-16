@@ -366,7 +366,7 @@ public class PickerActivity extends Activity
      */
     void applyTheme() {
         Theme theme = ThemeManager.getCurrentTheme(this);
-        theme.setBaseTheme(this, false);
+        theme.setBaseTheme(this, true);
 
         // View
         theme.setBackgroundDrawable(this, this.mRootView, "background_drawable"); //$NON-NLS-1$

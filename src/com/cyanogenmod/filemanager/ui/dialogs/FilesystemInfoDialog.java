@@ -23,6 +23,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.CompoundButton;
+import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.Switch;
 import android.widget.TextView;
 
@@ -46,7 +48,7 @@ import com.cyanogenmod.filemanager.util.MountPointHelper;
  * A class that wraps a dialog for showing information about a mount point.<br />
  * This class display information like mount point name, device name, size, type, ...
  */
-public class FilesystemInfoDialog implements OnClickListener {
+public class FilesystemInfoDialog implements OnClickListener, OnCheckedChangeListener {
 
     /**
      * An interface to communicate when the user change the mount state
@@ -178,7 +180,7 @@ public class FilesystemInfoDialog implements OnClickListener {
 
         //Gets text views
         this.mSwStatus = (Switch)contentView.findViewById(R.id.filesystem_info_status);
-        this.mSwStatus.setOnClickListener(this);
+        this.mSwStatus.setOnCheckedChangeListener(this);
         TextView tvMountPoint =
                 (TextView)contentView.findViewById(R.id.filesystem_info_mount_point);
         TextView tvDevice = (TextView)contentView.findViewById(R.id.filesystem_info_device);
@@ -290,35 +292,6 @@ public class FilesystemInfoDialog implements OnClickListener {
                 });
                 break;
 
-            case R.id.filesystem_info_status:
-                //Mount the filesystem
-                Switch sw = (Switch)v;
-                boolean ret = false;
-                try {
-                    ret = CommandHelper.remount(
-                            this.mContext,
-                            this.mMountPoint, sw.isChecked(), null);
-                    //Hide warning message
-                    this.mInfoMsgView.setVisibility(View.GONE);
-                    //Communicate the mount change
-                    if (this.mOnMountListener != null) {
-                        this.mOnMountListener.onRemount(this.mMountPoint);
-                    }
-
-                } catch (Throwable e) {
-                    Log.e(TAG,
-                            String.format(
-                                    "Fail to remount %s", //$NON-NLS-1$
-                                    this.mMountPoint.getMountPoint()), e);
-                }
-                if (!ret) {
-                    //Show warning message
-                    this.mInfoMsgView.setText(R.string.filesystem_info_mount_failed_msg);
-                    this.mInfoMsgView.setVisibility(View.VISIBLE);
-                    sw.setChecked(!sw.isChecked());
-                }
-                break;
-
             case R.id.filesystem_info_msg:
                 //Change the console
                 boolean superuser = ConsoleBuilder.changeToPrivilegedConsole(this.mContext);
@@ -341,6 +314,46 @@ public class FilesystemInfoDialog implements OnClickListener {
                                     R.string.filesystem_info_cant_be_mounted_msg));
                     this.mInfoMsgView.setVisibility(View.VISIBLE);
                     this.mIsMountAllowed = false;
+                }
+                break;
+
+            default:
+                break;
+        }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+        switch (buttonView.getId()) {
+            case R.id.filesystem_info_status:
+                //Mount the filesystem
+                Switch sw = (Switch)buttonView;
+                boolean ret = false;
+                try {
+                    ret = CommandHelper.remount(
+                            this.mContext,
+                            this.mMountPoint, isChecked, null);
+                    //Hide warning message
+                    this.mInfoMsgView.setVisibility(View.GONE);
+                    //Communicate the mount change
+                    if (this.mOnMountListener != null) {
+                        this.mOnMountListener.onRemount(this.mMountPoint);
+                    }
+
+                } catch (Throwable e) {
+                    Log.e(TAG,
+                            String.format(
+                                    "Fail to remount %s", //$NON-NLS-1$
+                                    this.mMountPoint.getMountPoint()), e);
+                }
+                if (!ret) {
+                    //Show warning message
+                    this.mInfoMsgView.setText(R.string.filesystem_info_mount_failed_msg);
+                    this.mInfoMsgView.setVisibility(View.VISIBLE);
+                    sw.setChecked(!isChecked);
                 }
                 break;
 

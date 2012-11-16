@@ -265,7 +265,7 @@ public final class IntentsActionPolicy extends ActionsPolicy {
             String resid = MimeTypeHelper.getIcon(ctx, fso);
             int dwid =
                     ResourcesHelper.getIdentifier(
-                            ctx.getResources(), "string", resid); //$NON-NLS-1$
+                            ctx.getResources(), "drawable", resid); //$NON-NLS-1$
 
             // The intent to send to broadcast for register the shortcut intent
             Intent intent = new Intent();

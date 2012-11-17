@@ -46,6 +46,7 @@ import com.cyanogenmod.filemanager.model.Symlink;
 import com.cyanogenmod.filemanager.parcelables.NavigationViewInfoParcelable;
 import com.cyanogenmod.filemanager.parcelables.SearchInfoParcelable;
 import com.cyanogenmod.filemanager.preferences.AccessMode;
+import com.cyanogenmod.filemanager.preferences.DisplayRestrictions;
 import com.cyanogenmod.filemanager.preferences.FileManagerSettings;
 import com.cyanogenmod.filemanager.preferences.NavigationLayoutMode;
 import com.cyanogenmod.filemanager.preferences.ObjectIdentifier;
@@ -60,11 +61,12 @@ import com.cyanogenmod.filemanager.util.CommandHelper;
 import com.cyanogenmod.filemanager.util.DialogHelper;
 import com.cyanogenmod.filemanager.util.ExceptionUtil;
 import com.cyanogenmod.filemanager.util.FileHelper;
-import com.cyanogenmod.filemanager.util.MimeTypeHelper;
 import com.cyanogenmod.filemanager.util.StorageHelper;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * The file manager implementation view (contains the graphical representation and the input
@@ -204,7 +206,8 @@ public class NavigationView extends RelativeLayout implements
 
     private NAVIGATION_MODE mNavigationMode;
 
-    private String mMimeType = MimeTypeHelper.ALL_MIME_TYPES;
+    // Restrictions
+    private Map<DisplayRestrictions, Object> mRestrictions;
 
     /**
      * @hide
@@ -318,6 +321,9 @@ public class NavigationView extends RelativeLayout implements
             this.mNavigationMode = NAVIGATION_MODE.values()[mode];
         }
 
+        // Initialize default restrictions (no restrictions)
+        this.mRestrictions = new HashMap<DisplayRestrictions, Object>();
+
         //Initialize variables
         this.mFiles = new ArrayList<FileSystemObject>();
 
@@ -345,23 +351,21 @@ public class NavigationView extends RelativeLayout implements
     }
 
     /**
-     * Method that returns the mime/type used by this class. Only the files with this mime/type
-     * are shown.
+     * Method that returns the display restrictions to apply to this view.
      *
-     * @return String The mime/type
+     * @return Map<DisplayRestrictions, Object> The restrictions to apply
      */
-    public String getMimeType() {
-        return this.mMimeType;
+    public Map<DisplayRestrictions, Object> getRestrictions() {
+        return this.mRestrictions;
     }
 
     /**
-     * Method that sets the mime/type used by this class. Only the files with this mime/type
-     * are shown.
+     * Method that sets the display restrictions to apply to this view.
      *
-     * @param mimeType String The mime/type
+     * @param mRestrictions The restrictions to apply
      */
-    public void setMimeType(String mimeType) {
-        this.mMimeType = mimeType;
+    public void setRestrictions(Map<DisplayRestrictions, Object> mRestrictions) {
+        this.mRestrictions = mRestrictions;
     }
 
     /**
@@ -888,7 +892,7 @@ public class NavigationView extends RelativeLayout implements
 
             //Apply user preferences
             List<FileSystemObject> sortedFiles =
-                    FileHelper.applyUserPreferences(files, this.mMimeType, this.mChRooted);
+                    FileHelper.applyUserPreferences(files, this.mRestrictions, this.mChRooted);
 
             //Remove parent directory if we are in the root of a chrooted environment
             if (this.mChRooted && StorageHelper.isStorageVolume(newDir)) {

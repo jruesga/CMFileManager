@@ -19,6 +19,7 @@ package com.cyanogenmod.filemanager.activities;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.BroadcastReceiver;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnCancelListener;
@@ -45,6 +46,7 @@ import com.cyanogenmod.filemanager.adapters.CheckableListAdapter;
 import com.cyanogenmod.filemanager.adapters.CheckableListAdapter.CheckableItem;
 import com.cyanogenmod.filemanager.console.ConsoleBuilder;
 import com.cyanogenmod.filemanager.model.FileSystemObject;
+import com.cyanogenmod.filemanager.preferences.DisplayRestrictions;
 import com.cyanogenmod.filemanager.preferences.FileManagerSettings;
 import com.cyanogenmod.filemanager.preferences.Preferences;
 import com.cyanogenmod.filemanager.ui.ThemeManager;
@@ -60,7 +62,9 @@ import com.cyanogenmod.filemanager.util.StorageHelper;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * The activity for allow to use a {@link NavigationView} like, to pick a file from other
@@ -84,7 +88,22 @@ public class PickerActivity extends Activity
         }
     };
 
-    private String mMimeType;
+    // The result code
+    private static final int RESULT_CROP_IMAGE = 1;
+
+    // The component that holds the crop operation. We use Gallery3d because we are confidence
+    // of his input parameters
+    private static final ComponentName CROP_COMPONENT =
+                                    new ComponentName(
+                                            "com.android.gallery3d", //$NON-NLS-1$
+                                            "com.android.gallery3d.app.CropImage"); //$NON-NLS-1$
+
+    // Gallery crop editor action
+    private static final String ACTION_CROP = "com.android.camera.action.CROP"; //$NON-NLS-1$
+
+    // Extra data for Gallery CROP action
+    private static final String EXTRA_CROP = "crop"; //$NON-NLS-1$
+
     private FileSystemObject mFso;  // The picked item
     private AlertDialog mDialog;
     private Handler mHandler;
@@ -151,12 +170,36 @@ public class PickerActivity extends Activity
     private void init() {
         // Check that call has a valid request (GET_CONTENT a and mime type)
         String action = getIntent().getAction();
-        this.mMimeType = getIntent().getType();
-        if (action.compareTo(Intent.ACTION_GET_CONTENT.toString()) != 0 ||
-             this.mMimeType == null) {
+
+        if (action.compareTo(Intent.ACTION_GET_CONTENT.toString()) != 0) {
             setResult(Activity.RESULT_CANCELED);
             finish();
             return;
+        }
+
+        // Display restrictions
+        Map<DisplayRestrictions, Object> restrictions = new HashMap<DisplayRestrictions, Object>();
+        //- Mime/Type restriction
+        String mimeType = getIntent().getType();
+        if (mimeType != null) {
+            restrictions.put(DisplayRestrictions.MIME_TYPE_RESTRICTION, mimeType);
+        }
+        // Other restrictions
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            //-- File size
+            if (extras.containsKey(android.provider.MediaStore.Audio.Media.EXTRA_MAX_BYTES)) {
+                long size =
+                        extras.getLong(android.provider.MediaStore.Audio.Media.EXTRA_MAX_BYTES);
+                restrictions.put(DisplayRestrictions.SIZE_RESTRICTION, Long.valueOf(size));
+            }
+            //-- Local filesystems only
+            if (extras.containsKey(Intent.EXTRA_LOCAL_ONLY)) {
+                boolean localOnly = extras.getBoolean(Intent.EXTRA_LOCAL_ONLY);
+                restrictions.put(
+                        DisplayRestrictions.LOCAL_FILESYSTEM_ONLY_RESTRICTION,
+                        Boolean.valueOf(localOnly));
+            }
         }
 
         // Create or use the console
@@ -187,7 +230,7 @@ public class PickerActivity extends Activity
         // Navigation view
         this.mNavigationView =
                 (NavigationView)this.mRootView.findViewById(R.id.navigation_view);
-        this.mNavigationView.setMimeType(this.mMimeType);
+        this.mNavigationView.setRestrictions(restrictions);
         this.mNavigationView.setOnFilePickedListener(this);
         this.mNavigationView.setBreadcrumb(breadcrumb);
 
@@ -269,12 +312,64 @@ public class PickerActivity extends Activity
      * {@inheritDoc}
      */
     @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        switch (requestCode) {
+            case RESULT_CROP_IMAGE:
+                // Return what the callee activity returns
+                setResult(resultCode, data);
+                finish();
+                return;
+
+            default:
+                break;
+        }
+
+        // The response is not understood
+        Log.w(TAG,
+                String.format(
+                        "Ignore response. requestCode: %s, resultCode: %s, data: %s", //$NON-NLS-1$
+                        Integer.valueOf(requestCode),
+                        Integer.valueOf(resultCode),
+                        data));
+        DialogHelper.showToast(this, R.string.msgs_operation_failure, Toast.LENGTH_SHORT);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public void onDismiss(DialogInterface dialog) {
         if (this.mFso != null) {
+            File src = new File(this.mFso.getFullPath());
+            if (getIntent().getExtras() != null) {
+                // Some AOSP applications use the gallery to edit and crop the selected image
+                // with the Gallery crop editor. In this case pass the picked file to the
+                // CropActivity with the requested parameters
+                // Expected result is on onActivityResult
+                Bundle extras = getIntent().getExtras();
+                String crop = extras.getString(EXTRA_CROP);
+                if (Boolean.parseBoolean(crop)) {
+                    // We want to use the Gallery3d activity because we know about it, and his
+                    // parameters. At least we have a compatible one.
+                    Intent intent = new Intent(ACTION_CROP);
+                    if (getIntent().getType() != null) {
+                        intent.setType(getIntent().getType());
+                    }
+                    intent.setData(Uri.fromFile(src));
+                    intent.putExtras(extras);
+                    intent.setComponent(CROP_COMPONENT);
+                    startActivityForResult(intent, RESULT_CROP_IMAGE);
+                    return;
+                }
+            }
+
+            // Return the picked file, as expected (this activity should fill the intent data
+            // and return RESULT_OK result)
             Intent result = new Intent();
-            result.setData(Uri.fromFile(new File(this.mFso.getFullPath())));
+            result.setData(Uri.fromFile(src));
             setResult(Activity.RESULT_OK, result);
             finish();
+
         } else {
             cancel();
         }

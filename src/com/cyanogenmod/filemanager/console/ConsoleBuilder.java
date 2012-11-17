@@ -115,7 +115,7 @@ public final class ConsoleBuilder {
     public static boolean changeToNonPrivilegedConsole(Context context) {
 
         //Check the current console
-        if (sHolder.getConsole() instanceof NonPriviledgeConsole) {
+        if (sHolder != null && sHolder.getConsole() instanceof NonPriviledgeConsole) {
             //The current console is non-privileged. Not needed
             return true;
         }
@@ -147,7 +147,7 @@ public final class ConsoleBuilder {
     public static boolean changeToPrivilegedConsole(Context context) {
 
         //Destroy and create the new console
-        if (sHolder.getConsole() instanceof PrivilegedConsole) {
+        if (sHolder != null && sHolder.getConsole() instanceof PrivilegedConsole) {
             //The current console is privileged. Not needed
             return true;
         }

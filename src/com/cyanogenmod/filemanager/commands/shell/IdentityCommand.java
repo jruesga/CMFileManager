@@ -89,7 +89,8 @@ public class IdentityCommand extends SyncResultProgram implements IdentityExecut
             //At least uid and gid must be present
             if (!p.containsKey(UID) && !p.containsKey(GID)) {
                 throw new ParseException(
-                        String.format("no %s or %s present", UID, GID), 0); //$NON-NLS-1$
+                        String.format(
+                                "no %s or %s present in %s", UID, GID, szLine), 0); //$NON-NLS-1$
             }
 
             //1.- Extract user

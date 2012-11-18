@@ -16,7 +16,9 @@
 
 package com.cyanogenmod.filemanager.ui.policy;
 
+import android.content.ComponentName;
 import android.content.Context;
+import android.content.IntentFilter;
 import android.content.DialogInterface.OnCancelListener;
 import android.content.DialogInterface.OnDismissListener;
 import android.content.Intent;
@@ -41,6 +43,8 @@ import com.cyanogenmod.filemanager.util.ResourcesHelper;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 /**
@@ -51,6 +55,9 @@ public final class IntentsActionPolicy extends ActionsPolicy {
     private static final String TAG = "IntentsActionPolicy"; //$NON-NLS-1$
 
     private static boolean DEBUG = false;
+
+    // The preferred package when sorting intents
+    private static final String PREFERRED_PACKAGE = "com.cyanogenmod.filemanager"; //$NON-NLS-1$
 
     /**
      * Extra field for the internal action
@@ -84,7 +91,7 @@ public final class IntentsActionPolicy extends ActionsPolicy {
             final Context ctx, final FileSystemObject fso, final boolean choose,
             OnCancelListener onCancelListener, OnDismissListener onDismissListener) {
         try {
-            // Create the intent to
+            // Create the intent to open the file
             Intent intent = new Intent();
             intent.setAction(android.content.Intent.ACTION_VIEW);
 
@@ -177,6 +184,22 @@ public final class IntentsActionPolicy extends ActionsPolicy {
         List<ResolveInfo> info =
                 packageManager.
                     queryIntentActivities(intent, PackageManager.MATCH_DEFAULT_ONLY);
+        Collections.sort(info, new Comparator<ResolveInfo>() {
+            @Override
+            public int compare(ResolveInfo lhs, ResolveInfo rhs) {
+                boolean isLshCMFM =
+                        lhs.activityInfo.packageName.compareTo(PREFERRED_PACKAGE) == 0;
+                boolean isRshCMFM =
+                        rhs.activityInfo.packageName.compareTo(PREFERRED_PACKAGE) == 0;
+                if (isLshCMFM && !isRshCMFM) {
+                    return -1;
+                }
+                if (!isLshCMFM && isRshCMFM) {
+                    return 1;
+                }
+                return lhs.activityInfo.name.compareTo(rhs.activityInfo.name);
+            }
+        });
 
         // Add the internal editors
         int count = 0;
@@ -184,27 +207,42 @@ public final class IntentsActionPolicy extends ActionsPolicy {
             int cc = internals.size();
             for (int i = 0; i < cc; i++) {
                 Intent ii = internals.get(i);
-                List<ResolveInfo> ris =
+                List<ResolveInfo> ie =
                         packageManager.
                             queryIntentActivities(ii, 0);
-                if (ris.size() > 0) {
-                    ResolveInfo ri = ris.get(0);
+                if (ie.size() > 0) {
+                    ResolveInfo rie = ie.get(0);
+
+                    // Only if the internal is not in the query list
+                    boolean exists = false;
+                    int ccc = info.size();
+                    for (int j = 0; j < ccc; j++) {
+                        ResolveInfo ri = info.get(j);
+                        if (ri.activityInfo.packageName.compareTo(
+                                rie.activityInfo.packageName) == 0 &&
+                            ri.activityInfo.name.compareTo(
+                                    rie.activityInfo.name) == 0) {
+                            exists = true;
+                            break;
+                        }
+                    }
+                    if (exists) {
+                        continue;
+                    }
+
                     // Mark as internal
-                    if (ri.activityInfo.metaData == null) {
-                        ri.activityInfo.metaData = new Bundle();
-                        ri.activityInfo.metaData.putString(EXTRA_INTERNAL_ACTION, ii.getAction());
-                        ri.activityInfo.metaData.putBoolean(CATEGORY_INTERNAL_VIEWER, true);
+                    if (rie.activityInfo.metaData == null) {
+                        rie.activityInfo.metaData = new Bundle();
+                        rie.activityInfo.metaData.putString(EXTRA_INTERNAL_ACTION, ii.getAction());
+                        rie.activityInfo.metaData.putBoolean(CATEGORY_INTERNAL_VIEWER, true);
                     }
 
                     // Only one result must be matched
-                    info.add(count, ri);
+                    info.add(count, rie);
                     count++;
                 }
             }
         }
-
-        // Retrieve the preferred activity that can handle the file
-        final ResolveInfo mPreferredInfo = packageManager.resolveActivity(intent, 0);
 
         // No registered application
         if (info.size() == 0) {
@@ -212,19 +250,27 @@ public final class IntentsActionPolicy extends ActionsPolicy {
             return;
         }
 
+        // Retrieve the preferred activity that can handle the file. We only want the
+        // resolved activity if the activity is a preferred activity. Other case, the
+        // resolved activity was never added by addPreferredActivity
+        ResolveInfo mPreferredInfo = findPreferredActivity(ctx, intent, info);
+
         // Is a simple open and we have an application that can handle the file?
-        if (!choose &&
-                ((mPreferredInfo  != null && mPreferredInfo.match != 0) || info.size() == 1)) {
-            // But not if the only match is the an internal editor
+        //---
+        // If we have a preferred application, then use it
+        if (!choose && (mPreferredInfo  != null && mPreferredInfo.match != 0)) {
+            ctx.startActivity(getIntentFromResolveInfo(mPreferredInfo, intent));
+            return;
+        }
+        // If there are only one activity (app or internal editor), then use it
+        if (!choose && info.size() == 1) {
             ResolveInfo ri = info.get(0);
-            if (ri.activityInfo.metaData == null ||
-                    !ri.activityInfo.metaData.getBoolean(CATEGORY_INTERNAL_VIEWER, false)) {
-                ctx.startActivity(intent);
-                return;
-            }
+            ctx.startActivity(getIntentFromResolveInfo(ri, intent));
+            return;
         }
 
-        // Otherwise, we have to show the open with dialog
+        // If we have multiples apps and there is not a preferred application then show
+        // open with dialog
         AssociationsDialog dialog =
                 new AssociationsDialog(
                         ctx,
@@ -316,12 +362,146 @@ public final class IntentsActionPolicy extends ActionsPolicy {
              category.compareTo(MimeTypeCategory.EXEC) == 0 ||
              category.compareTo(MimeTypeCategory.TEXT) == 0)) {
             Intent editorIntent = new Intent();
-            editorIntent.setAction(Intent.ACTION_EDIT);
+            editorIntent.setAction(Intent.ACTION_VIEW);
             editorIntent.addCategory(CATEGORY_INTERNAL_VIEWER);
             editorIntent.addCategory(CATEGORY_EDITOR);
             intents.add(editorIntent);
         }
 
         return intents;
+    }
+
+    /**
+     * Method that returns an {@link Intent} from his {@link ResolveInfo}
+     *
+     * @param ri The ResolveInfo
+     * @param request The requested intent
+     * @return Intent The intent
+     */
+    public static final Intent getIntentFromResolveInfo(ResolveInfo ri, Intent request) {
+        Intent intent =
+                getIntentFromComponentName(
+                    new ComponentName(
+                        ri.activityInfo.applicationInfo.packageName,
+                        ri.activityInfo.name),
+                    request);
+        if (isInternalEditor(ri)) {
+            String a = Intent.ACTION_VIEW;
+            if (ri.activityInfo.metaData != null) {
+                a = ri.activityInfo.metaData.getString(
+                        IntentsActionPolicy.EXTRA_INTERNAL_ACTION,
+                        Intent.ACTION_VIEW);
+            }
+            intent.setAction(a);
+        }
+        return intent;
+    }
+
+    /**
+     * Method that returns an {@link Intent} from his {@link ComponentName}
+     *
+     * @param cn The ComponentName
+     * @param request The requested intent
+     * @return Intent The intent
+     */
+    public static final Intent getIntentFromComponentName(ComponentName cn, Intent request) {
+        Intent intent = new Intent(request);
+        intent.setFlags(
+                intent.getFlags() &~
+                Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS);
+        intent.addFlags(
+                Intent.FLAG_ACTIVITY_FORWARD_RESULT |
+                Intent.FLAG_ACTIVITY_PREVIOUS_IS_TOP);
+        intent.setComponent(
+                new ComponentName(
+                        cn.getPackageName(),
+                        cn.getClassName()));
+        return intent;
+    }
+
+    /**
+     * Method that returns if the selected resolve info is about an internal viewer
+     *
+     * @param ri The resolve info
+     * @return boolean  If the selected resolve info is about an internal viewer
+     * @hide
+     */
+    public static final boolean isInternalEditor(ResolveInfo ri) {
+        return ri.activityInfo.metaData != null &&
+                ri.activityInfo.metaData.getBoolean(
+                        IntentsActionPolicy.CATEGORY_INTERNAL_VIEWER, false);
+    }
+
+    /**
+     * Method that retrieve the finds the preferred activity, if one exists. In case
+     * of multiple preferred activity exists the try to choose the better
+     *
+     * @param ctx The current context
+     * @param intent The query intent
+     * @param info The initial info list
+     * @return ResolveInfo The resolved info
+     */
+    private static final ResolveInfo findPreferredActivity(
+            Context ctx, Intent intent, List<ResolveInfo> info) {
+
+        final PackageManager packageManager = ctx.getPackageManager();
+
+        // Retrieve the preferred activity that can handle the file. We only want the
+        // resolved activity if the activity is a preferred activity. Other case, the
+        // resolved activity was never added by addPreferredActivity
+        List<ResolveInfo> pref = new ArrayList<ResolveInfo>();
+        int cc = info.size();
+        for (int i = 0; i < cc; i++) {
+            ResolveInfo ri = info.get(i);
+            if (isInternalEditor(ri)) continue;
+            if (ri.activityInfo == null || ri.activityInfo.packageName == null) continue;
+            List<ComponentName> prefActList = new ArrayList<ComponentName>();
+            List<IntentFilter> intentList = new ArrayList<IntentFilter>();
+            IntentFilter filter = new IntentFilter();
+            filter.addAction(intent.getAction());
+            try {
+                filter.addDataType(intent.getType());
+            } catch (Exception ex) {/**NON BLOCK**/}
+            intentList.add(filter);
+            packageManager.getPreferredActivities(
+                    intentList, prefActList, ri.activityInfo.packageName);
+            if (prefActList.size() > 0) {
+                pref.add(ri);
+            }
+        }
+
+        // No preferred activity is selected
+        if (pref.size() == 0) {
+            return null;
+        }
+
+        // Sort and return the first activity
+        Collections.sort(pref, new Comparator<ResolveInfo>() {
+            @Override
+            public int compare(ResolveInfo lhs, ResolveInfo rhs) {
+                if (lhs.priority > rhs.priority) {
+                    return -1;
+                } else if (lhs.priority < rhs.priority) {
+                    return 1;
+                }
+                if (lhs.preferredOrder > rhs.preferredOrder) {
+                    return -1;
+                } else if (lhs.preferredOrder < rhs.preferredOrder) {
+                    return 1;
+                }
+                if (lhs.isDefault && !rhs.isDefault) {
+                    return -1;
+                } else if (!lhs.isDefault && rhs.isDefault) {
+                    return 1;
+                }
+                if (lhs.match > rhs.match) {
+                    return -1;
+                } else if (lhs.match > rhs.match) {
+                    return 1;
+                }
+                return 0;
+            }
+        });
+        return pref.get(0);
     }
 }

@@ -459,7 +459,10 @@ public class EditorActivity extends Activity implements TextWatcher {
                     this, R.string.editor_invalid_file_msg, Toast.LENGTH_SHORT);
             return;
         }
-        this.mReadOnly = (action.compareTo(Intent.ACTION_VIEW) == 0);
+        // This var should be set depending on ACTION_VIEW or ACTION_EDIT action, but for
+        // better compatibility, IntentsActionPolicy use always ACTION_VIEW, so we have
+        // to ignore this check here
+        this.mReadOnly = false;
 
         // Read the intent and check that is has a valid request
         String path = getIntent().getData().getPath();

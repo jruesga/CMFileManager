@@ -127,8 +127,7 @@ public class AssociationsDialog implements OnItemClickListener {
      */
     private void init(int icon, String title, String action,
             OnCancelListener onCancelListener, OnDismissListener onDismissListener) {
-        boolean isPlatformSigned =
-                AndroidHelper.isAppPlatformSignature(this.mContext);
+        boolean isPlatformSigned = AndroidHelper.isAppPlatformSignature(this.mContext);
 
         //Create the layout, and retrieve the views
         LayoutInflater li =
@@ -138,7 +137,9 @@ public class AssociationsDialog implements OnItemClickListener {
         this.mRemember.setVisibility(
                 isPlatformSigned && this.mAllowPreferred ? View.VISIBLE : View.GONE);
         this.mGrid = (GridView)v.findViewById(R.id.associations_gridview);
-        this.mGrid.setAdapter(new AssociationsAdapter(this.mContext, this.mIntents, this));
+        AssociationsAdapter adapter =
+                new AssociationsAdapter(this.mContext, this.mIntents, this);
+        this.mGrid.setAdapter(adapter);
 
         // Ensure a default title dialog
         String dialogTitle = title;
@@ -164,27 +165,9 @@ public class AssociationsDialog implements OnItemClickListener {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         ResolveInfo ri = getSelected();
-                        Intent intent = new Intent(AssociationsDialog.this.mRequestIntent);
-                        if (isInternalEditor(ri)) {
-                            // The action for internal editors (for default VIEW)
-                            String a = Intent.ACTION_VIEW;
-                            if (ri.activityInfo.metaData != null) {
-                                a = ri.activityInfo.metaData.getString(
-                                        IntentsActionPolicy.EXTRA_INTERNAL_ACTION,
-                                        Intent.ACTION_VIEW);
-                            }
-                            intent.setAction(a);
-                        }
-                        intent.setFlags(
-                                intent.getFlags() &~
-                                Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS);
-                        intent.addFlags(
-                                Intent.FLAG_ACTIVITY_FORWARD_RESULT |
-                                Intent.FLAG_ACTIVITY_PREVIOUS_IS_TOP);
-                        intent.setComponent(
-                                new ComponentName(
-                                        ri.activityInfo.applicationInfo.packageName,
-                                        ri.activityInfo.name));
+                        Intent intent =
+                                IntentsActionPolicy.getIntentFromResolveInfo(
+                                        ri, AssociationsDialog.this.mRequestIntent);
 
                         // Open the intent (and remember the action is the check is marked)
                         onIntentSelected(
@@ -228,6 +211,16 @@ public class AssociationsDialog implements OnItemClickListener {
         deselectAll();
         ((ViewGroup)view).setSelected(true);
 
+        // Internal editors can be associated
+        boolean isPlatformSigned = AndroidHelper.isAppPlatformSignature(this.mContext);
+        if (isPlatformSigned && this.mAllowPreferred) {
+            ResolveInfo ri = getSelected();
+            this.mRemember.setVisibility(
+                    IntentsActionPolicy.isInternalEditor(ri) ?
+                           View.INVISIBLE :
+                           View.VISIBLE);
+        }
+
         // Enable action button
         this.mDialog.getButton(DialogInterface.BUTTON_POSITIVE).setEnabled(true);
     }
@@ -255,10 +248,7 @@ public class AssociationsDialog implements OnItemClickListener {
                         if (item != null) {
                             if (!item.isSelected()) {
                                 onItemClick(null, item, i, item.getId());
-
-                                // Not allow to revert remember status
                                 this.mRemember.setChecked(true);
-                                this.mRemember.setEnabled(false);
                                 ret = false;
                             } else {
                                 this.mLoaded = true;
@@ -348,82 +338,103 @@ public class AssociationsDialog implements OnItemClickListener {
      */
     @SuppressWarnings({"deprecation"})
     void onIntentSelected(ResolveInfo ri, Intent intent, boolean remember) {
-        if (remember && !isInternalEditor(ri) && ri.filter != null) {
-            // Build a reasonable intent filter, based on what matched.
-            IntentFilter filter = new IntentFilter();
 
-            if (intent.getAction() != null) {
-                filter.addAction(intent.getAction());
+        boolean isPlatformSigned = AndroidHelper.isAppPlatformSignature(this.mContext);
+
+        // Register preferred association is only allowed by platform signature
+        // The app will be signed with this signature, but when is launch from
+        // inside ADT, the app is signed with testkey.
+        if (isPlatformSigned && this.mAllowPreferred) {
+
+            PackageManager pm = this.mContext.getPackageManager();
+
+            // Remove preferred application if user don't want to remember it
+            if (this.mPreferred != null && !remember) {
+                pm.clearPackagePreferredActivities(
+                        this.mPreferred.activityInfo.packageName);
             }
-            Set<String> categories = intent.getCategories();
-            if (categories != null) {
-                for (String cat : categories) {
-                    filter.addCategory(cat);
+
+            // Associate the activity under these circumstances:
+            //  - The user has selected the remember option
+            //  - The selected intent is not an internal editor (internal editors are private and
+            //    can be associated)
+            //  - The selected intent is not the current preferred selection
+            if (remember && !IntentsActionPolicy.isInternalEditor(ri) && !isPreferredSelected()) {
+
+                // Build a reasonable intent filter, based on what matched.
+                IntentFilter filter = new IntentFilter();
+
+                if (intent.getAction() != null) {
+                    filter.addAction(intent.getAction());
                 }
-            }
-            filter.addCategory(Intent.CATEGORY_DEFAULT);
-
-            int cat = ri.match & IntentFilter.MATCH_CATEGORY_MASK;
-            Uri data = intent.getData();
-            if (cat == IntentFilter.MATCH_CATEGORY_TYPE) {
-                String mimeType = intent.resolveType(this.mContext);
-                if (mimeType != null) {
-                    try {
-                        filter.addDataType(mimeType);
-                    } catch (IntentFilter.MalformedMimeTypeException e) {
-                        Log.w(TAG, e);
-                        filter = null;
+                Set<String> categories = intent.getCategories();
+                if (categories != null) {
+                    for (String cat : categories) {
+                        filter.addCategory(cat);
                     }
                 }
-            }
-            if (data != null && data.getScheme() != null && filter != null) {
-                // We need the data specification if there was no type,
-                // OR if the scheme is not one of our magical "file:"
-                // or "content:" schemes (see IntentFilter for the reason).
-                if (cat != IntentFilter.MATCH_CATEGORY_TYPE
-                        || (!"file".equals(data.getScheme()) //$NON-NLS-1$
-                                && !"content".equals(data.getScheme()))) { //$NON-NLS-1$
-                    filter.addDataScheme(data.getScheme());
+                filter.addCategory(Intent.CATEGORY_DEFAULT);
 
-                    // Look through the resolved filter to determine which part
-                    // of it matched the original Intent.
-                    Iterator<IntentFilter.AuthorityEntry> aIt = ri.filter.authoritiesIterator();
-                    if (aIt != null) {
-                        while (aIt.hasNext()) {
-                            IntentFilter.AuthorityEntry a = aIt.next();
-                            if (a.match(data) >= 0) {
-                                int port = a.getPort();
-                                filter.addDataAuthority(a.getHost(),
-                                        port >= 0 ? Integer.toString(port) : null);
-                                break;
-                            }
-                        }
-                    }
-                    Iterator<PatternMatcher> pIt = ri.filter.pathsIterator();
-                    if (pIt != null) {
-                        String path = data.getPath();
-                        while (path != null && pIt.hasNext()) {
-                            PatternMatcher p = pIt.next();
-                            if (p.match(path)) {
-                                filter.addDataPath(p.getPath(), p.getType());
-                                break;
-                            }
+                int cat = ri.match & IntentFilter.MATCH_CATEGORY_MASK;
+                Uri data = intent.getData();
+                if (cat == IntentFilter.MATCH_CATEGORY_TYPE) {
+                    String mimeType = intent.resolveType(this.mContext);
+                    if (mimeType != null) {
+                        try {
+                            filter.addDataType(mimeType);
+                        } catch (IntentFilter.MalformedMimeTypeException e) {
+                            Log.w(TAG, e);
+                            filter = null;
                         }
                     }
                 }
-            }
+                if (data != null && data.getScheme() != null && filter != null) {
+                    // We need the data specification if there was no type,
+                    // OR if the scheme is not one of our magical "file:"
+                    // or "content:" schemes (see IntentFilter for the reason).
+                    if (cat != IntentFilter.MATCH_CATEGORY_TYPE
+                            || (!"file".equals(data.getScheme()) //$NON-NLS-1$
+                                    && !"content".equals(data.getScheme()))) { //$NON-NLS-1$
+                        filter.addDataScheme(data.getScheme());
 
-            // Register preferred association is only allowed by platform signature
-            // The app will be signed with this signature, but when is launch from
-            // inside ADT, the app is signed with testkey.
-            // Ignore it if the preferred can be saved. Only notify the user and open the
-            // intent
-            boolean isPlatformSigned =
-                    AndroidHelper.isAppPlatformSignature(this.mContext);
-            if (isPlatformSigned && this.mAllowPreferred) {
-                if (filter != null && !isPreferredSelected()) {
+                        // Look through the resolved filter to determine which part
+                        // of it matched the original Intent.
+                        // ri.filter should not be null here because the activity matches a filter
+                        // Anyway protect the access
+                        if (ri.filter != null) {
+                            Iterator<IntentFilter.AuthorityEntry> aIt =
+                                                        ri.filter.authoritiesIterator();
+                            if (aIt != null) {
+                                while (aIt.hasNext()) {
+                                    IntentFilter.AuthorityEntry a = aIt.next();
+                                    if (a.match(data) >= 0) {
+                                        int port = a.getPort();
+                                        filter.addDataAuthority(a.getHost(),
+                                                port >= 0 ? Integer.toString(port) : null);
+                                        break;
+                                    }
+                                }
+                            }
+                            Iterator<PatternMatcher> pIt = ri.filter.pathsIterator();
+                            if (pIt != null) {
+                                String path = data.getPath();
+                                while (path != null && pIt.hasNext()) {
+                                    PatternMatcher p = pIt.next();
+                                    if (p.match(path)) {
+                                        filter.addDataPath(p.getPath(), p.getType());
+                                        break;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+
+                // If we don't have a filter then don't try to associate
+                if (filter != null) {
                     try {
-                        AssociationsAdapter adapter = (AssociationsAdapter)this.mGrid.getAdapter();
+                        AssociationsAdapter adapter =
+                                (AssociationsAdapter)this.mGrid.getAdapter();
                         final int cc = adapter.getCount();
                         ComponentName[] set = new ComponentName[cc];
                         int bestMatch = 0;
@@ -437,13 +448,12 @@ public class AssociationsDialog implements OnItemClickListener {
                             }
                         }
 
-                        PackageManager pm = this.mContext.getPackageManager();
-
                         // The only way i found to ensure of the use of the preferred activity
                         // selected is to clear preferred activity associations
-                        // Maybe it's necessary also remove the rest of activities?
-                        pm.clearPackagePreferredActivities(
-                                this.mPreferred.activityInfo.packageName);
+                        if (this.mPreferred != null) {
+                            pm.clearPackagePreferredActivities(
+                                    this.mPreferred.activityInfo.packageName);
+                        }
 
                         // This is allowed for now in AOSP, but probably in the future this will
                         // not work at all
@@ -464,19 +474,5 @@ public class AssociationsDialog implements OnItemClickListener {
         if (intent != null) {
             this.mContext.startActivity(intent);
         }
-    }
-
-    /**
-     * Method that returns if the selected resolve info is about an internal viewer
-     *
-     * @param ri The resolve info
-     * @return boolean  If the selected resolve info is about an internal viewer
-     * @hide
-     */
-    @SuppressWarnings("static-method")
-    boolean isInternalEditor(ResolveInfo ri) {
-        return ri.activityInfo.metaData != null &&
-                ri.activityInfo.metaData.getBoolean(
-                        IntentsActionPolicy.CATEGORY_INTERNAL_VIEWER, false);
     }
 }

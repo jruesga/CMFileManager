@@ -153,10 +153,26 @@
       android:name=".activities.EditorActivity"
       android:label="@string/editor"
       android:configChanges="orientation|keyboardHidden|screenSize"
-      android:icon="@drawable/ic_launcher_editor"
-      android:exported="false">
+      android:icon="@drawable/ic_launcher_editor">
       <intent-filter>
+        <action android:name="android.intent.action.VIEW" />
         <action android:name="android.intent.action.EDIT" />
+        <category android:name="android.intent.category.DEFAULT" />
+
+        <data android:scheme="file" />
+        <data android:mimeType="text/*" />
+        <data android:mimeType="application/javascript" />
+        <data android:mimeType="application/json" />
+        <data android:mimeType="application/xhtml+xml" />
+        <data android:mimeType="application/xml" />
+        <data android:mimeType="application/x-msdownload" />
+        <data android:mimeType="application/x-csh" />
+        <data android:mimeType="application/x-sh" />
+      </intent-filter>
+      <intent-filter>
+        <action android:name="android.intent.action.VIEW" />
+        <action android:name="android.intent.action.EDIT" />
+        <category android:name="android.intent.category.DEFAULT" />
         <category android:name="com.cyanogenmod.filemanager.category.INTERNAL_VIEWER" />
         <category android:name="com.cyanogenmod.filemanager.category.EDITOR" />
       </intent-filter>

@@ -22,7 +22,7 @@
   <string name="app_description">Thèmes pour l\'Explorateur de fichier CyanogenMod</string>
 
   <!-- The author of the themes -->
-  <string name="themes_author" translatable="false">CyanogenMod</string>
+  <string name="themes_author">CyanogenMod</string>
 
   <!-- The dark theme name -->
   <string name="dark_theme_name">Thème Sombre</string>

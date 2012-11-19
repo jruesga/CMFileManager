@@ -403,13 +403,13 @@
     <!-- Actions Dialog * Menu * Deselect -->
     <string name="actions_menu_deselect">Elvet</string>
     <!-- Actions Dialog * Menu * Paste selection -->
-    <string name="actions_menu_paste_selection">Kijelölés beillesztése</string>
+    <string name="actions_menu_paste_selection">Kijelöltek beillesztése</string>
     <!-- Actions Dialog * Menu * Move selection -->
-    <string name="actions_menu_move_selection">Kijelölés mozgatása</string>
+    <string name="actions_menu_move_selection">Kijelöltek mozgatása</string>
     <!-- Actions Dialog * Menu * Delete selection -->
-    <string name="actions_menu_delete_selection">Kijelölés törlése</string>
+    <string name="actions_menu_delete_selection">Kijelöltek törlése</string>
     <!-- Actions Dialog * Menu * Compress selection -->
-    <string name="actions_menu_compress_selection">Kijelölés tömörítése</string>
+    <string name="actions_menu_compress_selection">Kijelöltek tömörítése</string>
     <!-- Actions Dialog * Menu * Create link -->
     <string name="actions_menu_create_link">Link létrehozása</string>
     <!-- Actions Dialog * Menu * Open -->
@@ -555,7 +555,7 @@
     <!-- Preferences * General * Use flinger detection -->
     <string name="pref_use_flinger">Kézmozdulatok használata</string>
     <!-- Preferences * General * Use flinger detection summary -->
-    <string name="pref_use_flinger_summary">A balról jobbra elhúzott mozdulat használata a fájl vagy mappa törléshez.</string>
+    <string name="pref_use_flinger_summary">Fájlok és mappák törlése jobbra történő elhúzással.</string>
     <!-- Preferences * General * Advanced settings category -->
     <string name="pref_general_advanced_settings_category">Speciális</string>
     <!-- Preferences * General * Access mode -->
@@ -575,7 +575,7 @@
     <!-- Preferences * Search * Results category -->
     <string name="pref_search_results_category">Találatok</string>
     <!-- Preferences * Search * Show relevance widget -->
-    <string name="pref_show_relevance_widget">Vonatkozási modul megjelenítése</string>
+    <string name="pref_show_relevance_widget">Relevancia modul megjelenítése</string>
     <!-- Preferences * Search * Highlight search terms -->
     <string name="pref_highlight_terms">Keresési feltételek kiemelése</string>
     <!-- Preferences * Search * Sort results mode -->

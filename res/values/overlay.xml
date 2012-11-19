@@ -25,8 +25,49 @@
   <!-- The system directory -->
   <string name="system_dir" translatable="false">/system</string>
 
-  <!-- The su binary -->
-  <string name="su_binary" translatable="false">/system/xbin/su</string>
+  <!-- The shell commands used by this application. All of this commands should
+       exist to allow the use of a shell console (and access to root). If any
+       of this commands are not present in the system, then app will start in
+       non-rooted mode and with a java console.
+   -->
+  <string name="shell_required_commands" translatable="false">
+    /system/bin/cat,
+    /system/bin/chmod,
+    /system/bin/chown,
+    /system/bin/dd,
+    /system/bin/df,
+    /system/bin/gzip,
+    /system/bin/id,
+    /system/bin/kill,
+    /system/bin/ln,
+    /system/bin/ls,
+    /system/bin/mkdir,
+    /system/bin/mount,
+    /system/bin/mv,
+    /system/bin/ps,
+    /system/bin/rm,
+    /system/bin/sh,
+    /system/xbin/awk,
+    /system/xbin/bunzip2,
+    /system/xbin/bzip2,
+    /system/xbin/cp,
+    /system/xbin/cut,
+    /system/xbin/dirname,
+    /system/xbin/echo,
+    /system/xbin/find,
+    /system/xbin/grep,
+    /system/xbin/groups,
+    /system/xbin/gunzip,
+    /system/xbin/pwd,
+    /system/xbin/readlink,
+    /system/xbin/su,
+    /system/xbin/tar,
+    /system/xbin/uncompress,
+    /system/xbin/unlzma,
+    /system/xbin/unxz,
+    /system/xbin/unzip,
+    /system/xbin/xargs
+  </string>
 
   <!-- The mounts file -->
   <string name="mounts_file" translatable="false">/proc/mounts</string>

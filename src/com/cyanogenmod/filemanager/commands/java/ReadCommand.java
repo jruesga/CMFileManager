@@ -24,9 +24,9 @@ import com.cyanogenmod.filemanager.console.ExecutionException;
 import com.cyanogenmod.filemanager.console.InsufficientPermissionsException;
 import com.cyanogenmod.filemanager.console.NoSuchFileOrDirectory;
 
-import java.io.BufferedReader;
+import java.io.BufferedInputStream;
 import java.io.File;
-import java.io.FileReader;
+import java.io.FileInputStream;
 
 /**
  * A class for read a file.
@@ -121,12 +121,12 @@ public class ReadCommand extends Program implements ReadExecutable {
      */
     private void read(File file) {
         // Read the file
-        BufferedReader br = null;
+        BufferedInputStream bis = null;
         try {
-            br = new BufferedReader(new FileReader(file), getBufferSize());
+            bis = new BufferedInputStream(new FileInputStream(file), getBufferSize());
             int read = 0;
-            char[] data = new char[getBufferSize()];
-            while ((read = br.read(data, 0, getBufferSize())) != -1) {
+            byte[] data = new byte[getBufferSize()];
+            while ((read = bis.read(data, 0, getBufferSize())) != -1) {
                 if (this.mAsyncResultListener != null) {
                     byte[] readData = new byte[read];
                     System.arraycopy(data, 0, readData, 0, read);
@@ -154,8 +154,8 @@ public class ReadCommand extends Program implements ReadExecutable {
 
         } finally {
             try {
-                if (br != null) {
-                    br.close();
+                if (bis != null) {
+                    bis.close();
                 }
             } catch (Throwable _throw) {/**NON BLOCK**/}
         }

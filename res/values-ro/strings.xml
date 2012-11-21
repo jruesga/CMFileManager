@@ -285,6 +285,7 @@
   <string name="pref_remove_saved_search_terms">Eliminaţi termenii de căutare salvaţi</string>
   <string name="pref_remove_saved_search_terms_summary">Apăsaţi pentru eliminarea tuturor termenilor de căutare salvaţi</string>
   <string name="pref_remove_saved_search_terms_msg">Toţi termenii de căutare salvaţi au fost eliminaţi.</string>
+  <string name="pref_themes">Teme</string>
   <string name="pref_themes_selection_category">Teme</string>
   <string name="pref_themes_set_theme">Aplicaţi tema</string>
   <string name="pref_themes_no_preview">Nici o previzualizare\ndisponibilă</string>

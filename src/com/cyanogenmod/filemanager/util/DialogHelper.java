@@ -190,7 +190,7 @@ public final class DialogHelper {
             boolean checked = (i == defOption);
             items.add(new CheckableListAdapter.CheckableItem(options[i], true, checked));
         }
-        final CheckableListAdapter adapter = new CheckableListAdapter(context, items);
+        final CheckableListAdapter adapter = new CheckableListAdapter(context, items, true);
 
         // Create the list view and set as view
         final ListView listView = new ListView(context);

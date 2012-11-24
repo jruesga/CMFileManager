@@ -72,6 +72,8 @@ public class CheckableListAdapter extends ArrayAdapter<CheckableListAdapter.Chec
         TextView mTvTitle;
     }
 
+    private final boolean mIsDialog;
+
     //The resource of the item check
     private static final int RESOURCE_ITEM_CHECK = R.id.option_list_item_check;
     //The resource of the item name
@@ -85,7 +87,21 @@ public class CheckableListAdapter extends ArrayAdapter<CheckableListAdapter.Chec
      */
     public CheckableListAdapter(
             Context context, List<CheckableListAdapter.CheckableItem> items) {
+        this(context, items, false);
+    }
+
+    /**
+     * Constructor of <code>CheckableListAdapter</code>.
+     *
+     * @param context The current context
+     * @param items An array of items to add to the current list
+     * @param isDialog Indicates if the owner is a dialog (not a popup). In this case,
+     * use the background of the dialog.
+     */
+    public CheckableListAdapter(
+            Context context, List<CheckableListAdapter.CheckableItem> items, boolean isDialog) {
         super(context, RESOURCE_ITEM_NAME, items);
+        this.mIsDialog = isDialog;
     }
 
     /**
@@ -127,7 +143,9 @@ public class CheckableListAdapter extends ArrayAdapter<CheckableListAdapter.Chec
             Theme theme = ThemeManager.getCurrentTheme(getContext());
             theme.setBackgroundDrawable(
                     getContext(), v,
-                    "menu_checkable_selector_drawable"); //$NON-NLS-1$
+                    (this.mIsDialog) ?
+                            "selectors_deselected_drawable" : //$NON-NLS-1$
+                            "menu_checkable_selector_drawable"); //$NON-NLS-1$
             theme.setTextColor(
                     getContext(), viewHolder.mTvTitle, "text_color"); //$NON-NLS-1$
             theme.setImageDrawable(

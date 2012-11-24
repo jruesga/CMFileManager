@@ -171,6 +171,7 @@ public class PickerActivity extends Activity
         // Check that call has a valid request (GET_CONTENT a and mime type)
         String action = getIntent().getAction();
 
+        Log.d(TAG, "PickerActivity. action: " + String.valueOf(action)); //$NON-NLS-1$
         if (action.compareTo(Intent.ACTION_GET_CONTENT.toString()) != 0) {
             setResult(Activity.RESULT_CANCELED);
             finish();
@@ -181,11 +182,13 @@ public class PickerActivity extends Activity
         Map<DisplayRestrictions, Object> restrictions = new HashMap<DisplayRestrictions, Object>();
         //- Mime/Type restriction
         String mimeType = getIntent().getType();
+        Log.d(TAG, "PickerActivity. type: " + String.valueOf(mimeType)); //$NON-NLS-1$
         if (mimeType != null) {
             restrictions.put(DisplayRestrictions.MIME_TYPE_RESTRICTION, mimeType);
         }
         // Other restrictions
         Bundle extras = getIntent().getExtras();
+        Log.d(TAG, "PickerActivity. extras: " + String.valueOf(extras)); //$NON-NLS-1$
         if (extras != null) {
             //-- File size
             if (extras.containsKey(android.provider.MediaStore.Audio.Media.EXTRA_MAX_BYTES)) {

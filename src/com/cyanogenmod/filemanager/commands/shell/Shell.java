@@ -16,6 +16,8 @@
 
 package com.cyanogenmod.filemanager.commands.shell;
 
+import android.util.Log;
+
 import com.cyanogenmod.filemanager.commands.SyncResultExecutable;
 import com.cyanogenmod.filemanager.commands.WritableExecutable;
 import com.cyanogenmod.filemanager.console.CommandNotFoundException;
@@ -23,8 +25,6 @@ import com.cyanogenmod.filemanager.console.ExecutionException;
 import com.cyanogenmod.filemanager.console.InsufficientPermissionsException;
 import com.cyanogenmod.filemanager.console.NoSuchFileOrDirectory;
 import com.cyanogenmod.filemanager.console.ReadOnlyFilesystemException;
-
-import android.util.Log;
 
 /**
  * An abstract class that represents a command to wrap others commands,
@@ -34,7 +34,7 @@ public abstract class Shell extends Command {
 
     private int mPid;
 
-    private final String TAG = "Shell";
+    private final static String TAG = "Shell"; //$NON-NLS-1$
 
     /**
      * @Constructor of <code>Shell</code>
@@ -75,7 +75,10 @@ public abstract class Shell extends Command {
             throws InsufficientPermissionsException, CommandNotFoundException, ExecutionException {
         //Command not found
         if (exitCode == 127) {
-            Log.w(TAG, getCommand() + " " + getArguments() + ": error");
+            Log.w(TAG, String.format(
+                        "CommandNotFound: %s %s", //$NON-NLS-1$
+                        getCommand(),
+                        getArguments()));
             throw new CommandNotFoundException(getId());
         }
         //No exit code

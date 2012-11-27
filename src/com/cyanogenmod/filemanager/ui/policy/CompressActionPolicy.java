@@ -743,7 +743,7 @@ public final class CompressActionPolicy extends ActionsPolicy {
         // the system and is need a security alert that the user can confirm prior to
         // make the extraction
         String ext = FileHelper.getExtension(fso);
-        if (ConsoleBuilder.isPrivileged() && ext.compareTo("zip") == 0) { //$NON-NLS-1$
+        if (ConsoleBuilder.isPrivileged() && ext.compareToIgnoreCase("zip") == 0) { //$NON-NLS-1$
             AlertDialog dialog = DialogHelper.createYesNoDialog(
                 ctx,
                 R.string.confirm_overwrite,

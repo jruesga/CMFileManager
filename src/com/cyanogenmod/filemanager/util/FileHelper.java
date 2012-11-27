@@ -827,7 +827,7 @@ public final class FileHelper {
         if (ext != null) {
             int cc = VALID.length;
             for (int i = 0; i < cc; i++) {
-                if (VALID[i].compareTo(ext) == 0) {
+                if (VALID[i].compareToIgnoreCase(ext) == 0) {
                     return true;
                 }
             }

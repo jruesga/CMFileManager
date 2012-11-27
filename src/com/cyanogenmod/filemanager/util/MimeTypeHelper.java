@@ -213,7 +213,7 @@ public final class MimeTypeHelper {
         //Get the extension and delivery
         String ext = FileHelper.getExtension(fso);
         if (ext != null) {
-            MimeTypeInfo mimeTypeInfo = sMimeTypes.get(ext);
+            MimeTypeInfo mimeTypeInfo = sMimeTypes.get(ext.toLowerCase());
             if (mimeTypeInfo != null) {
                 // Create a new drawable
                 if (!TextUtils.isEmpty(mimeTypeInfo.mDrawable)) {
@@ -263,7 +263,7 @@ public final class MimeTypeHelper {
         String ext = FileHelper.getExtension(fso);
         if (ext != null) {
             //Load from the database of mime types
-            MimeTypeInfo mimeTypeInfo = sMimeTypes.get(ext);
+            MimeTypeInfo mimeTypeInfo = sMimeTypes.get(ext.toLowerCase());
             if (mimeTypeInfo != null) {
                 return mimeTypeInfo.mMimeType;
             }
@@ -312,7 +312,7 @@ public final class MimeTypeHelper {
         String ext = FileHelper.getExtension(fso);
         if (ext != null) {
             //Load from the database of mime types
-            MimeTypeInfo mimeTypeInfo = sMimeTypes.get(ext);
+            MimeTypeInfo mimeTypeInfo = sMimeTypes.get(ext.toLowerCase());
             if (mimeTypeInfo != null) {
                 return mimeTypeInfo.mMimeType;
             }
@@ -347,7 +347,7 @@ public final class MimeTypeHelper {
         String ext = FileHelper.getExtension(file.getName());
         if (ext != null) {
             //Load from the database of mime types
-            MimeTypeInfo mimeTypeInfo = sMimeTypes.get(ext);
+            MimeTypeInfo mimeTypeInfo = sMimeTypes.get(ext.toLowerCase());
             if (mimeTypeInfo != null) {
                 return mimeTypeInfo.mCategory;
             }
@@ -387,7 +387,7 @@ public final class MimeTypeHelper {
         String ext = FileHelper.getExtension(fso);
         if (ext != null) {
             //Load from the database of mime types
-            MimeTypeInfo mimeTypeInfo = sMimeTypes.get(ext);
+            MimeTypeInfo mimeTypeInfo = sMimeTypes.get(ext.toLowerCase());
             if (mimeTypeInfo != null) {
                 return mimeTypeInfo.mCategory;
             }

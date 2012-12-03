@@ -219,10 +219,10 @@
   <string name="actions_menu_deselect_all">Deseleziona tutti</string>
   <string name="actions_menu_select">Seleziona</string>
   <string name="actions_menu_deselect">Deseleziona</string>
-  <string name="actions_menu_paste_selection">Incolla selezione</string>
-  <string name="actions_menu_move_selection">Sposta selezione</string>
-  <string name="actions_menu_delete_selection">Cancella selezione</string>
-  <string name="actions_menu_compress_selection">Comprimi selezione</string>
+  <string name="actions_menu_paste_selection">Incolla</string>
+  <string name="actions_menu_move_selection">Sposta</string>
+  <string name="actions_menu_delete_selection">Elimina</string>
+  <string name="actions_menu_compress_selection">Comprimi</string>
   <string name="actions_menu_create_link">Crea collegamento</string>
   <string name="actions_menu_open">Apri</string>
   <string name="actions_menu_open_with">Apri con</string>
@@ -230,7 +230,7 @@
   <string name="actions_menu_send">Invia</string>
   <string name="actions_menu_compress">Comprimi</string>
   <string name="actions_menu_extract">Estrai</string>
-  <string name="actions_menu_delete">Cancella</string>
+  <string name="actions_menu_delete">Elimina</string>
   <string name="actions_menu_rename">Rinomina</string>
   <string name="actions_menu_create_copy">Crea copia</string>
   <string name="actions_menu_properties">Proprietà</string>
@@ -298,7 +298,7 @@
   <string name="pref_compute_folder_statistics">Calcola statistiche sulla cartella</string>
   <string name="pref_compute_folder_statistics_on">Attenzione! Il calcolo delle statistiche è costoso in termini di tempo e risorse</string>
   <string name="pref_use_flinger">Usa gesti di scorrimento</string>
-  <string name="pref_use_flinger_summary">Usa gesto di scorrimento da sinistra a destra per cancellare file o cartelle.</string>
+  <string name="pref_use_flinger_summary">Usa gesto di scorrimento da sinistra a destra per eliminare file o cartelle.</string>
   <string name="pref_general_advanced_settings_category">Avanzate</string>
   <string name="pref_access_mode">Modalità accesso</string>
   <string name="pref_access_mode_safe">Modalità Safe</string>

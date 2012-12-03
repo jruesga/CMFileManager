@@ -128,7 +128,7 @@ public class FilesystemInfoDialog implements OnClickListener, OnCheckedChangeLis
                                         this.mContentView);
         this.mDialog.setButton(
                 DialogInterface.BUTTON_NEGATIVE,
-                this.mContext.getString(android.R.string.cancel),
+                this.mContext.getString(android.R.string.ok),
                 (DialogInterface.OnClickListener)null);
 
         //Fill the dialog

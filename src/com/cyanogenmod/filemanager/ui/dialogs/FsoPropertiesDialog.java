@@ -174,7 +174,7 @@ public class FsoPropertiesDialog
                                         this.mContentView);
         this.mDialog.setButton(
                 DialogInterface.BUTTON_NEGATIVE,
-                this.mContext.getString(android.R.string.cancel),
+                this.mContext.getString(android.R.string.ok),
                 (DialogInterface.OnClickListener)null);
         this.mDialog.setOnCancelListener(this);
         this.mDialog.setOnDismissListener(this);

@@ -206,7 +206,7 @@ public final class ExceptionUtil {
         }
 
         //Audit the exception
-        Log.e(context.getClass().getSimpleName(), "Error dectected", ex); //$NON-NLS-1$
+        Log.e(context.getClass().getSimpleName(), "Error detected", ex); //$NON-NLS-1$
 
         //Build the alert
         final int fMsgResId = msgResId;

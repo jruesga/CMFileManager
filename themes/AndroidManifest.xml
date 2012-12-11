@@ -21,7 +21,7 @@
 
   <original-package android:name="com.cyanogenmod.filemanager.themes" />
 
-  <uses-sdk android:minSdkVersion="16" android:targetSdkVersion="16" />
+  <uses-sdk android:minSdkVersion="17" android:targetSdkVersion="17" />
 
   <application
     android:name=".ThemeActivity"

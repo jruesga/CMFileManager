@@ -299,12 +299,20 @@ public abstract class ShellConsole extends Console implements Program.ProgramLis
                     getExecutableFactory().newCreator().createIdentityExecutable();
             execute(identityCmd);
             this.mIdentity = identityCmd.getResult();
-            if (this.mIdentity.getGroups().size() == 0) {
-                //Try with groups
-                GroupsExecutable groupsCmd =
-                        getExecutableFactory().newCreator().createGroupsExecutable();
-                execute(groupsCmd);
-                this.mIdentity.setGroups(groupsCmd.getResult());
+            // Identity command is required for root console detection,
+            // but Groups command is not used for now. Also, this command is causing
+            // problems on some implementations (maybe toolbox?) which don't
+            // recognize the root AID and returns an error. Safely ignore on error.
+            try {
+                if (this.mIdentity.getGroups().size() == 0) {
+                    //Try with groups
+                    GroupsExecutable groupsCmd =
+                            getExecutableFactory().newCreator().createGroupsExecutable();
+                    execute(groupsCmd);
+                    this.mIdentity.setGroups(groupsCmd.getResult());
+                }
+            } catch (Exception ex) {
+                Log.w(TAG, "Groups command failed. Ignored.", ex);
             }
 
         } catch (Exception ex) {

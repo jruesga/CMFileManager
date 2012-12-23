@@ -18,8 +18,11 @@ package com.cyanogenmod.filemanager.activities;
 
 import android.app.ActionBar;
 import android.app.Activity;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
-import android.content.pm.ActivityInfo;
+import android.content.IntentFilter;
+import android.content.res.Configuration;
 import android.content.res.XmlResourceParser;
 import android.database.Cursor;
 import android.os.AsyncTask;
@@ -48,11 +51,12 @@ import com.cyanogenmod.filemanager.preferences.AccessMode;
 import com.cyanogenmod.filemanager.preferences.Bookmarks;
 import com.cyanogenmod.filemanager.preferences.FileManagerSettings;
 import com.cyanogenmod.filemanager.preferences.Preferences;
+import com.cyanogenmod.filemanager.ui.ThemeManager;
+import com.cyanogenmod.filemanager.ui.ThemeManager.Theme;
 import com.cyanogenmod.filemanager.ui.dialogs.InitialDirectoryDialog;
 import com.cyanogenmod.filemanager.ui.widgets.FlingerListView;
 import com.cyanogenmod.filemanager.ui.widgets.FlingerListView.OnItemFlingerListener;
 import com.cyanogenmod.filemanager.ui.widgets.FlingerListView.OnItemFlingerResponder;
-import com.cyanogenmod.filemanager.util.AndroidHelper;
 import com.cyanogenmod.filemanager.util.CommandHelper;
 import com.cyanogenmod.filemanager.util.DialogHelper;
 import com.cyanogenmod.filemanager.util.ExceptionUtil;
@@ -127,6 +131,17 @@ public class BookmarksActivity extends Activity implements OnItemClickListener, 
         }
     };
 
+    private final BroadcastReceiver mNotificationReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            if (intent != null) {
+                if (intent.getAction().compareTo(FileManagerSettings.INTENT_THEME_CHANGED) == 0) {
+                    applyTheme();
+                }
+            }
+        }
+    };
+
     // Bookmark list XML tags
     private static final String TAG_BOOKMARKS = "Bookmarks"; //$NON-NLS-1$
     private static final String TAG_BOOKMARK = "bookmark"; //$NON-NLS-1$
@@ -144,18 +159,16 @@ public class BookmarksActivity extends Activity implements OnItemClickListener, 
     @Override
     protected void onCreate(Bundle state) {
         if (DEBUG) {
-            Log.d(TAG, "NavigationActivity.onCreate"); //$NON-NLS-1$
+            Log.d(TAG, "BookmarksActivity.onCreate"); //$NON-NLS-1$
         }
+
+        // Register the broadcast receiver
+        IntentFilter filter = new IntentFilter();
+        filter.addAction(FileManagerSettings.INTENT_THEME_CHANGED);
+        registerReceiver(this.mNotificationReceiver, filter);
 
         // Is ChRooted?
         this.mChRooted = FileManagerApplication.getAccessMode().compareTo(AccessMode.SAFE) == 0;
-
-        //Request features
-        if (!AndroidHelper.isTablet(this)) {
-            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-        } else {
-            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
-        }
 
         //Set in transition
         overridePendingTransition(R.anim.translate_to_right_in, R.anim.hold_out);
@@ -167,8 +180,31 @@ public class BookmarksActivity extends Activity implements OnItemClickListener, 
         initTitleActionBar();
         initBookmarks();
 
+        // Apply the theme
+        applyTheme();
+
         //Save state
         super.onCreate(state);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    protected void onDestroy() {
+        if (DEBUG) {
+            Log.d(TAG, "BookmarksActivity.onDestroy"); //$NON-NLS-1$
+        }
+
+        // Unregister the receiver
+        try {
+            unregisterReceiver(this.mNotificationReceiver);
+        } catch (Throwable ex) {
+            /**NON BLOCK**/
+        }
+
+        //All destroy. Continue
+        super.onDestroy();
     }
 
     /**
@@ -179,6 +215,14 @@ public class BookmarksActivity extends Activity implements OnItemClickListener, 
         //Set out transition
         overridePendingTransition(R.anim.hold_in, R.anim.translate_to_left_out);
         super.onPause();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
     }
 
     /**
@@ -196,7 +240,6 @@ public class BookmarksActivity extends Activity implements OnItemClickListener, 
         title.setText(R.string.bookmarks);
         title.setContentDescription(getString(R.string.bookmarks));
         getActionBar().setCustomView(customTitle);
-
     }
 
     /**
@@ -555,5 +598,29 @@ public class BookmarksActivity extends Activity implements OnItemClickListener, 
             cursor.close();
         }
         return bookmarks;
+    }
+
+    /**
+     * Method that applies the current theme to the activity
+     * @hide
+     */
+    void applyTheme() {
+        Theme theme = ThemeManager.getCurrentTheme(this);
+        theme.setBaseTheme(this, false);
+
+        //- ActionBar
+        theme.setTitlebarDrawable(this, getActionBar(), "titlebar_drawable"); //$NON-NLS-1$
+        View v = getActionBar().getCustomView().findViewById(R.id.customtitle_title);
+        theme.setTextColor(this, (TextView)v, "text_color"); //$NON-NLS-1$
+        // -View
+        theme.setBackgroundDrawable(
+                this, this.mBookmarksListView, "background_drawable"); //$NON-NLS-1$
+        if (((BookmarksAdapter)this.mBookmarksListView.getAdapter()) != null) {
+            ((BookmarksAdapter)this.mBookmarksListView.getAdapter()).notifyThemeChanged();
+            ((BookmarksAdapter)this.mBookmarksListView.getAdapter()).notifyDataSetChanged();
+        }
+        this.mBookmarksListView.setDivider(
+                theme.getDrawable(this, "horizontal_divider_drawable")); //$NON-NLS-1$
+        this.mBookmarksListView.invalidate();
     }
 }

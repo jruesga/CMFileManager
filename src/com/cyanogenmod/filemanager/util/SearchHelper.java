@@ -16,10 +16,9 @@
 
 package com.cyanogenmod.filemanager.util;
 
-import android.graphics.Color;
 import android.graphics.Typeface;
-import android.text.Html;
 import android.text.Spannable;
+import android.text.SpannableString;
 import android.text.style.BackgroundColorSpan;
 import android.text.style.StyleSpan;
 
@@ -118,9 +117,11 @@ public final class SearchHelper {
      *
      * @param result The result to highlight
      * @param queries The list of queries that parameterized the search
+     * @param highlightedColor The highlight color
      * @return CharSequence The name string highlighted
      */
-    public static CharSequence getHighlightedName(SearchResult result, List<String> queries) {
+    public static CharSequence getHighlightedName(
+            SearchResult result, List<String> queries, int highlightedColor) {
         String name = result.getFso().getName();
         int cc = queries.size();
         for (int i = 0; i < cc; i++) {
@@ -131,11 +132,12 @@ public final class SearchHelper {
                         .replace("*", ".*"); //$NON-NLS-1$//$NON-NLS-2$
             Pattern pattern = Pattern.compile(query, Pattern.CASE_INSENSITIVE);
             Matcher matcher = pattern.matcher(name);
-            Spannable span = (Spannable)Html.fromHtml(name);
+            Spannable span =  new SpannableString(name);
             if (matcher.find()) {
                 //Highlight the match
                 span.setSpan(
-                        new BackgroundColorSpan(Color.YELLOW), matcher.start(), matcher.end(), 0);
+                        new BackgroundColorSpan(highlightedColor),
+                        matcher.start(), matcher.end(), 0);
                 span.setSpan(
                         new StyleSpan(Typeface.BOLD), matcher.start(), matcher.end(), 0);
                 return span;
@@ -155,7 +157,7 @@ public final class SearchHelper {
      */
     public static CharSequence getNonHighlightedName(SearchResult result) {
         String name = result.getFso().getName();
-        Spannable span = (Spannable)Html.fromHtml(name);
+        Spannable span = new SpannableString(name);
         span.setSpan(new StyleSpan(Typeface.BOLD), 0, name.length(), 0);
         return span;
     }

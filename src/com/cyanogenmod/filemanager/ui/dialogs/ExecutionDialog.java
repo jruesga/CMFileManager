@@ -23,6 +23,7 @@ import android.os.AsyncTask;
 import android.text.Layout;
 import android.text.method.ScrollingMovementMethod;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
@@ -31,6 +32,8 @@ import com.cyanogenmod.filemanager.R;
 import com.cyanogenmod.filemanager.commands.AsyncResultExecutable;
 import com.cyanogenmod.filemanager.commands.ExecExecutable;
 import com.cyanogenmod.filemanager.model.FileSystemObject;
+import com.cyanogenmod.filemanager.ui.ThemeManager;
+import com.cyanogenmod.filemanager.ui.ThemeManager.Theme;
 import com.cyanogenmod.filemanager.util.DialogHelper;
 import com.cyanogenmod.filemanager.util.FixedQueue;
 import com.cyanogenmod.filemanager.util.FixedQueue.EmptyQueueException;
@@ -143,14 +146,29 @@ public class ExecutionDialog implements DialogInterface.OnClickListener {
         LayoutInflater li =
                 (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         ViewGroup layout = (ViewGroup)li.inflate(R.layout.execution_dialog, null);
+        View tvScriptNameLabel = layout.findViewById(R.id.execution_script_name_label);
         TextView tvScriptName = (TextView)layout.findViewById(R.id.execution_script_name);
         tvScriptName.setText(fso.getFullPath());
+        View tvTimeLabel = layout.findViewById(R.id.execution_time_label);
         this.mTvTime = (TextView)layout.findViewById(R.id.execution_time);
         this.mTvTime.setText("-"); //$NON-NLS-1$
+        View tvExitCodeLabel = layout.findViewById(R.id.execution_exitcode_label);
         this.mTvExitCode = (TextView)layout.findViewById(R.id.execution_exitcode);
         this.mTvExitCode.setText("-"); //$NON-NLS-1$
         this.mTvOutput = (TextView)layout.findViewById(R.id.execution_output);
         this.mTvOutput.setMovementMethod(new ScrollingMovementMethod());
+
+        // Apply the current theme
+        Theme theme = ThemeManager.getCurrentTheme(context);
+        theme.setBackgroundDrawable(context, layout, "background_drawable"); //$NON-NLS-1$
+        theme.setTextColor(context, (TextView)tvScriptNameLabel, "text_color"); //$NON-NLS-1$
+        theme.setTextColor(context, tvScriptName, "text_color"); //$NON-NLS-1$
+        theme.setTextColor(context, (TextView)tvTimeLabel, "text_color"); //$NON-NLS-1$
+        theme.setTextColor(context, this.mTvTime, "text_color"); //$NON-NLS-1$
+        theme.setTextColor(context, (TextView)tvExitCodeLabel, "text_color"); //$NON-NLS-1$
+        theme.setTextColor(context, this.mTvExitCode, "text_color"); //$NON-NLS-1$
+        theme.setBackgroundColor(context, this.mTvOutput, "console_bg_color"); //$NON-NLS-1$
+        theme.setTextColor(context, this.mTvOutput, "console_fg_color"); //$NON-NLS-1$
 
         //Create the dialog
         String title = context.getString(R.string.execution_console_title);
@@ -161,16 +179,6 @@ public class ExecutionDialog implements DialogInterface.OnClickListener {
                                         layout);
         this.mDialog.setButton(
                 DialogInterface.BUTTON_NEUTRAL, context.getString(android.R.string.cancel), this);
-
-        // Is cancellable
-        this.mDialog.setCancelable(false);
-        this.mTvOutput.post(new Runnable() {
-            @Override
-            public void run() {
-                ExecutionDialog.this.mDialog.getButton(
-                        DialogInterface.BUTTON_NEUTRAL).setEnabled(false);
-            }
-        });
 
         // Start the drawing task
         this.mConsoleDrawTask.execute();
@@ -198,7 +206,9 @@ public class ExecutionDialog implements DialogInterface.OnClickListener {
      * Method that shows the dialog.
      */
     public void show() {
-        this.mDialog.show();
+        DialogHelper.delegateDialogShow(this.mContext, this.mDialog);
+        this.mDialog.setCancelable(false);
+        this.mDialog.getButton(DialogInterface.BUTTON_NEUTRAL).setEnabled(false);
     }
 
     /**

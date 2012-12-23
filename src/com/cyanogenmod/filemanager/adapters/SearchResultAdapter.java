@@ -32,6 +32,8 @@ import com.cyanogenmod.filemanager.model.SearchResult;
 import com.cyanogenmod.filemanager.preferences.FileManagerSettings;
 import com.cyanogenmod.filemanager.preferences.Preferences;
 import com.cyanogenmod.filemanager.ui.IconHolder;
+import com.cyanogenmod.filemanager.ui.ThemeManager;
+import com.cyanogenmod.filemanager.ui.ThemeManager.Theme;
 import com.cyanogenmod.filemanager.ui.widgets.RelevanceView;
 import com.cyanogenmod.filemanager.util.MimeTypeHelper;
 import com.cyanogenmod.filemanager.util.SearchHelper;
@@ -132,8 +134,8 @@ public class SearchResultAdapter extends ArrayAdapter<SearchResult> {
      * Method that loads the default icons (known icons and more common icons).
      */
     private void loadDefaultIcons() {
-        this.mIconHolder.getDrawable(getContext(), R.drawable.ic_fso_default);
-        this.mIconHolder.getDrawable(getContext(), R.drawable.ic_fso_folder);
+        this.mIconHolder.getDrawable(getContext(), "ic_fso_folder_drawable"); //$NON-NLS-1$
+        this.mIconHolder.getDrawable(getContext(), "ic_fso_default_drawable"); //$NON-NLS-1$
     }
 
     /**
@@ -158,6 +160,10 @@ public class SearchResultAdapter extends ArrayAdapter<SearchResult> {
      * Method that process the data before use {@link #getView} method.
      */
     private void processData() {
+        Theme theme = ThemeManager.getCurrentTheme(getContext());
+        int highlightedColor =
+                theme.getColor(getContext(), "search_highlight_color"); //$NON-NLS-1$
+
         this.mData = new DataHolder[getCount()];
         int cc = getCount();
         for (int i = 0; i < cc; i++) {
@@ -170,7 +176,8 @@ public class SearchResultAdapter extends ArrayAdapter<SearchResult> {
                     this.mIconHolder.getDrawable(
                             getContext(), MimeTypeHelper.getIcon(getContext(), result.getFso()));
             if (this.mHighlightTerms) {
-                this.mData[i].mName = SearchHelper.getHighlightedName(result, this.mQueries);
+                this.mData[i].mName =
+                        SearchHelper.getHighlightedName(result, this.mQueries, highlightedColor);
             } else {
                 this.mData[i].mName = SearchHelper.getNonHighlightedName(result);
             }
@@ -235,6 +242,17 @@ public class SearchResultAdapter extends ArrayAdapter<SearchResult> {
             viewHolder.mTvParentDir = (TextView)v.findViewById(RESOURCE_ITEM_PARENT_DIR);
             viewHolder.mWgRelevance = (RelevanceView)v.findViewById(RESOURCE_ITEM_RELEVANCE);
             v.setTag(viewHolder);
+
+            // Apply the current theme
+            Theme theme = ThemeManager.getCurrentTheme(getContext());
+            theme.setBackgroundDrawable(
+                    getContext(), v, "selectors_deselected_drawable"); //$NON-NLS-1$
+            theme.setTextColor(
+                    getContext(), viewHolder.mTvName, "text_color"); //$NON-NLS-1$
+            if (viewHolder.mTvParentDir != null) {
+                theme.setTextColor(
+                        getContext(), viewHolder.mTvParentDir, "text_color"); //$NON-NLS-1$
+            }
         }
 
         //Retrieve data holder

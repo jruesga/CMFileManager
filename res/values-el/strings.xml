@@ -1,0 +1,690 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (C) 2012 The CyanogenMod Project
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+ -->
+
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+
+  <!-- The name of the application -->
+  <string name="app_name">Διαχείριση αρχείων</string>
+  <!-- The description of the application -->
+  <string name="app_description">Διαχείριση αρχείων του CyanogenMod</string>
+
+  <!-- Default buttons -->
+  <string name="yes">Ναι</string>
+  <string name="no">Όχι</string>
+  <string name="all">Όλα</string>
+  <string name="overwrite">Αντικατάσταση</string>
+
+  <!-- The root directory name -->
+  <string name="root_directory_name"><![CDATA[<Ριζικός φάκελος>]]></string>
+  <!-- The search result name -->
+  <string name="search_result_name">Αναζήτηση: <xliff:g id="terms">%1$s</xliff:g></string>
+
+  <!-- Loading waiting message -->
+  <string name="loading_message">Φόρτωση\u2026</string>
+  <!-- Cancelled message -->
+  <string name="cancelled_message">Ακυρώθηκε.</string>
+  <!-- Error message -->
+  <string name="error_message">Σφάλμα.</string>
+
+  <!-- Warning dialog title -->
+  <string name="warning_title">Προσοχή</string>
+  <!-- Error dialog title -->
+  <string name="error_title">Εντοπίστηκε σφάλμα</string>
+  <!-- Confirm operation dialog title -->
+  <string name="confirm_operation">Επιβεβαίωση δραστηριότητας</string>
+  <!-- Confirm overwrite dialog title -->
+  <string name="confirm_overwrite">Επιβεβαίωση αντικατάστασης</string>
+  <!-- Confirm deletion dialog title -->
+  <string name="confirm_deletion">Επιβεβαίωση διαγραφής</string>
+
+  <!--  A console couldn't be created. Ask the user to change the access mode. Dialog Title -->
+  <string name="msgs_change_to_prompt_access_mode_title">Επιβεβαίωση αλλαγής</string>
+  <!--  A console couldn't be created. Ask the user to change the access mode. Dialog Message -->
+  <string name="msgs_change_to_prompt_access_mode_msg">
+    Δεν είναι δυνατή η πρόσβαση Root. Αλλαγή σε κατάσταση Ασφαλούς Λειτουργίας. \n\nΕφαρμoγή αλλαγής;</string>
+
+  <!-- A console couldn't be created. Without privileges, the application won't work -->
+  <string name="msgs_cant_create_console">Δεν είναι δυνατή η απόκτήση των απαιτούμενων δικαιωμάτων για να λειτουργήσει η εφαρμογή.</string>
+  <!-- The message shown when an allocation of a privileged console fails, and a non
+       privileged is allocated -->
+  <string name="msgs_privileged_console_alloc_failed">Δεν είναι δυνατή η πρόσβαση Root.
+    Αλλαγή σε κατάσταση Ασφαλούς Λειτουργίας.</string>
+  <!-- The selected setting was not applied or stored -->
+  <string name="msgs_settings_save_failure">Η ρύθμιση δεν μπορεί να εφαρμοστεί ή να αποθηκευθεί.</string>
+  <!-- The initial directory has an invalid or inaccessible reference -->
+  <string name="msgs_settings_invalid_initial_directory">Ο αρχικός φάκελος
+    "<xliff:g id="initial_dir">%1$s</xliff:g>" δεν είναι έγκυρος. Αλλαγή στο ριζικό φάκελο.</string>
+
+  <!-- Success -->
+  <string name="msgs_success">Η λειτουργία ολοκληρώθηκε με επιτυχία.</string>
+  <!-- Unknown error -->
+  <string name="msgs_unknown">Ένα σφάλμα εντοπίστηκε. Η λειτουργία ήταν ανεπιτυχής.</string>
+  <!-- When an operation requires elevated privileged (normally caused for the use of a
+       non-privileged console) -->
+  <string name="msgs_insufficient_permissions">Αυτή η λειτουργία απαιτεί αυξημένα δικαιώματα. Προσπαθήστε
+    να αλλάξετε σε λειτουργία πρόσβασης Root.</string>
+  <!-- The file or directory was not found -->
+  <string name="msgs_file_not_found">Το αρχείο ή ο φάκελος δεν βρέθηκε.</string>
+  <!-- The command reference couldn't be created (not found or invalid definition)
+       (normally caused by a development error) -->
+  <string name="msgs_command_not_found">Η εντολή δεν βρέθηκε ή δεν έχει οριστεί σωστά.</string>
+  <!-- I/O exception -->
+  <string name="msgs_io_failed">Αποτυχία ανάγνωσης/εγγραφής.</string>
+  <!-- Operation timeout detected -->
+  <string name="msgs_operation_timeout">Λήξη χρονικού ορίου λειτουργίας.</string>
+  <!-- The operation returns an invalid exit code -->
+  <string name="msgs_operation_failure">Αποτυχία λειτουργίας.</string>
+  <!-- A console couldn't be allocated -->
+  <string name="msgs_console_alloc_failure">Παρουσιάστηκε ένα εσωτερικό σφάλμα.</string>
+  <!-- An operation can't be cancelled -->
+  <string name="msgs_operation_can_not_be_cancelled">Η λειτουργία δεν μπορεί να ακυρωθεί.</string>
+  <!-- The operation requieres mount the file system prior to execute the command -->
+  <string name="msgs_read_only_filesystem">Το σύστημα αρχείων είναι μόνο για ανάγνωση. Προσπαθήστε να προσαρτήσετε το
+    σύστημα αρχείων για ανάγνωση/εγγραφή πριν εκτελέσετε τη λειτουργία.</string>
+  <!-- Illegal argument (normally caused by a development error when calling internal api) -->
+  <string name="msgs_illegal_argument">Μη έγκυρο επιχείρημα. Αποτυχία επίκλησης λειτουργίας.</string>
+  <!-- The operation will cause inconsistencies -->
+  <string name="msgs_unresolved_inconsistencies">
+    Η λειτουργία δεν επιτρέπεται, διότι θα δημιουργούσε προβλήματα ασυνέπειας.</string>
+  <!-- Operation not permitted in current directory -->
+  <string name="msgs_operation_not_allowed_in_current_directory">
+    Η λειτουργία δεν επιτρέπεται στον τρέχοντα φάκελο.</string>
+
+  <!-- The advice message prior to exit the application -->
+  <string name="msgs_push_again_to_exit">Πιέστε ξανά για έξοδο.</string>
+
+  <!-- There is no registered application that can handle the mime-type -->
+  <string name="msgs_not_registered_app">Δεν υπάρχει καμία εφαρμογή για να χειριστεί
+    τον τύπο του αρχείου που έχετε επιλέξει.</string>
+
+  <!-- Overwrite files? -->
+  <string name="msgs_overwrite_files">
+    Μερικά από τα αρχεία υπάρχουν ήδη στο φάκελο προορισμού.\n\nΑντικατάσταση;</string>
+
+  <!-- The association of an action to the application failed -->
+  <string name="msgs_action_association_failed">Η συσχέτιση της ενέργειας με την
+    εφαρμογή απέτυχε.</string>
+
+  <!-- An operation requires elevated privileged. Ask the user. -->
+  <string name="advise_insufficient_permissions">Αυτή η λειτουργία απαιτεί αυξημένα δικαιώματα.\n\n
+    Αλλαγή σε λειτουργία πρόσβασης Root;</string>
+
+
+  <!-- The parent directory of the current directory in navigation view -->
+  <string name="parent_dir">Γονικός φάκελος</string>
+  <!-- External storage descripton -->
+  <string name="external_storage">Εξωτερικός αποθ. χώρος</string>
+  <!-- Usb storage descripton -->
+  <string name="usb_storage">Αποθ. χώρος USB</string>
+
+  <!-- ActionBar Buttons * FileSystem -->
+  <string name="actionbar_button_filesystem_cd">Πληροφορίες συστήματος αρχείων</string>
+  <!-- ActionBar Buttons * Sort Mode -->
+  <string name="actionbar_button_sort_mode_cd">Επιλογές ταξινόμησης</string>
+  <!-- ActionBar Buttons * Layout Mode -->
+  <string name="actionbar_button_layout_mode_cd">Επιλογές διάταξης</string>
+  <!-- ActionBar Buttons * Other View Options -->
+  <string name="actionbar_button_other_view_options_cd">Άλλες επιλογές εμφάνισης</string>
+  <!-- ActionBar Buttons * Done -->
+  <string name="actionbar_button_selection_done_cd">Έγινε</string>
+  <!-- ActionBar Buttons * Actions -->
+  <string name="actionbar_button_actions_cd">Ενέργειες</string>
+  <!-- ActionBar Buttons * History -->
+  <string name="actionbar_button_history_cd">Ιστορικό</string>
+  <!-- ActionBar Buttons * Bookmarks -->
+  <string name="actionbar_button_bookmarks_cd">Σελιδοδείκτες</string>
+  <!-- ActionBar Buttons * Search -->
+  <string name="actionbar_button_search_cd">Αναζήτηση</string>
+  <!-- ActionBar Buttons * Overflow -->
+  <string name="actionbar_button_overflow_cd">Περισσότερες επιλογές</string>
+  <!-- ActionBar Buttons * Storage volumes -->
+  <string name="actionbar_button_storage_cd">Μονάδες αποθήκευσης</string>
+  <!-- ActionBar Buttons * Save -->
+  <string name="actionbar_button_save_cd">Αποθήκευση</string>
+
+  <!-- Navigation View * Sort * Sort by name (ascending) -->
+  <string name="sort_by_name_asc">Κατά όνομα &#x25B2;</string>
+  <!-- Navigation View * Sort * Sort by name (descending) -->
+  <string name="sort_by_name_desc">Κατά όνομα &#x25BC;</string>
+  <!-- Navigation View * Sort * Sort by date (ascending) -->
+  <string name="sort_by_date_asc">Κατά ημερομηνία &#x25B2;</string>
+  <!-- Navigation View * Sort * Sort by date (descending) -->
+  <string name="sort_by_date_desc">Κατά ημερομηνία &#x25BC;</string>
+
+  <!-- Navigation View * Layout * Icons -->
+  <string name="layout_icons">Εικονίδια</string>
+  <!-- Navigation View * Layout * Simple -->
+  <string name="layout_simple">Απλή</string>
+  <!-- Navigation View * Layout * Details -->
+  <string name="layout_details">Λεπτομέρειες</string>
+
+  <!-- Navigation View * View * Show folders first -->
+  <string name="cm_filemanager_show_dirs_first">Εμφάνιση φακέλων πρώτα</string>
+  <!-- Navigation View * View * Show hidden files option -->
+  <string name="cm_filemanager_show_hidden">Εμφάνιση κρυφών αρχείων</string>
+  <!-- Navigation View * View * Show system files option -->
+  <string name="cm_filemanager_show_system">Εμφάνιση αρχείων συστήματος</string>
+  <!-- Navigation View * View * Show symlinks option -->
+  <string name="cm_filemanager_show_symlinks">Εμφάνιση symlink</string>
+
+  <!-- Filesystem Info (no data). Dialog title -->
+  <string name="filesystem_info_warning_title">Καμία πληροφορία</string>
+  <!-- Filesystem Info (no data). Dialog message -->
+  <string name="filesystem_info_warning_msg">Δεν υπάρχουν διαθέσιμες πληροφορίες για το σύστημα αρχείων.</string>
+  <!-- Filesystem Info * Filesystem couldn't be mounted -->
+  <string name="filesystem_info_cant_be_mounted_msg">
+    Το σύστημα αρχείων δεν μπορεί να προσαρτηθεί/αποπροσαρτηθεί.</string>
+  <!-- Filesystem Info * Not allowed message -->
+  <string name="filesystem_info_mount_not_allowed_msg">Η προσάρτηση του συστήματος αρχείων δεν επιτρέπεται
+    στην Ασφαλή Λειτουργία. Πιέστε για αλλαγή σε λειτουργία πρόσβασης Root.</string>
+  <!-- Filesystem Info * Mount failed -->
+  <string name="filesystem_info_mount_failed_msg">Η προσάρτηση του συστήματος αρχείων απέτυχε.
+    Μερικά συστήματα αρχείων, όπως οι κάρτες SD, δεν μπορούν να προσαρτηθούν/αποπροσαρτηθούν επειδή
+    έχουν ενσωματωθεί ως συστήματα αρχείων μόνο για ανάγνωση.</string>
+  <!-- Filesystem Info Dialog * Title -->
+  <string name="filesystem_info_dialog_title">Πληροφορίες συστήματος αρχείων</string>
+  <!-- Filesystem Info Dialog * Tab * Info -->
+  <string name="filesystem_info_dialog_tab_info">Πληροφορίες</string>
+  <!-- Filesystem Info Dialog * Tab * Disk Usage -->
+  <string name="filesystem_info_dialog_tab_disk_usage">Χρήση δίσκου</string>
+  <!-- Filesystem Info Dialog * Status Label -->
+  <string name="filesystem_info_dialog_status">Κατάσταση:</string>
+  <!-- Filesystem Info Dialog * Mount Point Label -->
+  <string name="filesystem_info_dialog_mount_point">Σημ. προσάρτησης:</string>
+  <!-- Filesystem Info Dialog * Device Label -->
+  <string name="filesystem_info_dialog_device">Συσκευή:</string>
+  <!-- Filesystem Info Dialog * Type Label -->
+  <string name="filesystem_info_dialog_type">Τύπος:</string>
+  <!-- Filesystem Info Dialog * Options Label -->
+  <string name="filesystem_info_dialog_options">Επιλογές:</string>
+  <!-- Filesystem Info Dialog * Dump/Pass Label -->
+  <string name="filesystem_info_dialog_dump_pass">Dump / Pass:</string>
+  <!-- Filesystem Info Dialog * Total Disk Usage -->
+  <string name="filesystem_info_dialog_total_disk_usage">Συνολικά:</string>
+  <!-- Filesystem Info Dialog * Used Disk Usage -->
+  <string name="filesystem_info_dialog_used_disk_usage">Σε χρήση:</string>
+  <!-- Filesystem Info Dialog * Free Disk Usage -->
+  <string name="filesystem_info_dialog_free_disk_usage">Ελεύθερα:</string>
+
+
+  <!-- Fso Properties * Not allowed message -->
+  <string name="fso_properties_permissions_not_allowed_msg">Η αλλαγή δικαιωμάτων δεν επιτρέπεται
+    στην Ασφαλή Λειτουργία. Πιέστε για αλλαγή σε λειτουργία πρόσβασης Root.</string>
+  <!-- Fso Properties * Failed to change owner to fso -->
+  <string name="fso_properties_failed_to_change_owner_msg">Η αλλαγή ιδιοκτήτη απέτυχε.\n\n
+    Για λόγους ασφαλείας, μερικά συστήματα αρχείων, όπως οι κάρτες SD, δεν επιτρέπουν την αλλαγή ιδιοκτήτη.</string>
+  <!-- Fso Properties * Failed to change group to fso -->
+  <string name="fso_properties_failed_to_change_group_msg">Η αλλαγή γκρουπ απέτυχε.\n\n
+    Για λόγους ασφαλείας, μερικά συστήματα αρχείων, όπως οι κάρτες SD, δεν επιτρέπουν την αλλαγή γκρουπ.</string>
+  <!-- Fso Properties * Failed to change group to fso -->
+  <string name="fso_properties_failed_to_change_permission_msg">Η αλλαγή δικαιωμάτων απέτυχε.\n\n
+    Για λόγους ασφαλείας, μερικά συστήματα αρχείων, όπως οι κάρτες SD, δεν επιτρέπουν την αλλαγή δικαιωμάτων.</string>
+  <!-- Fso Properties Dialog * Title -->
+  <string name="fso_properties_dialog_title">Ιδιότητες</string>
+  <!-- Fso Properties Dialog * Tab * Info -->
+  <string name="fso_properties_dialog_tab_info">Πληροφορίες</string>
+  <!-- Fso Properties Dialog * Tab * Permissions -->
+  <string name="fso_properties_dialog_tab_permissions">Δικαιώματα</string>
+  <!-- Fso Properties Dialog * Name Label -->
+  <string name="fso_properties_dialog_name">Όνομα:</string>
+  <!-- Fso Properties Dialog * Parent Folder Label -->
+  <string name="fso_properties_dialog_parent">Γονικός:</string>
+  <!-- Fso Properties Dialog * Type Label -->
+  <string name="fso_properties_dialog_type">Τύπος:</string>
+  <!-- Fso Properties Dialog * Category Label -->
+  <string name="fso_properties_dialog_category">Κατηγορία:</string>
+  <!-- Fso Properties Dialog * Link Label -->
+  <string name="fso_properties_dialog_link">Link:</string>
+  <!-- Fso Properties Dialog * Size Label -->
+  <string name="fso_properties_dialog_size">Μέγεθος:</string>
+  <!-- Fso Properties Dialog * Contains Label -->
+  <string name="fso_properties_dialog_contains">Περιέχει:</string>
+  <!-- Fso Properties Dialog * Date Label -->
+  <string name="fso_properties_dialog_date">Τελ. προσπέλαση:</string>
+  <!-- Fso Properties Dialog * Owner Label -->
+  <string name="fso_properties_dialog_owner">Ιδιοκτήτης:</string>
+  <!-- Fso Properties Dialog * Group Label -->
+  <string name="fso_properties_dialog_group">Γκρουπ:</string>
+  <!-- Fso Properties Dialog * Others Label -->
+  <string name="fso_properties_dialog_others">Άλλοι:</string>
+  <!-- Fso Properties Dialog * Folders -->
+  <plurals name="fso_properties_dialog_folders">
+    <item quantity="zero">0 φάκελοι</item>
+    <item quantity="one">1 φάκελος</item>
+    <item quantity="other"><xliff:g id="folders">%1$d</xliff:g> φάκελοι</item>
+  </plurals>
+  <!-- Fso Properties Dialog * Files -->
+  <plurals name="fso_properties_dialog_files">
+    <item quantity="zero">0 αρχεία</item>
+    <item quantity="one">1 αρχείο</item>
+    <item quantity="other"><xliff:g id="files">%1$d</xliff:g> αρχεία</item>
+  </plurals>
+
+  <!-- History * History activity title -->
+  <string name="history">Ιστορικό</string>
+  <!-- History * The history is empty -->
+  <string name="msgs_history_empty">Το ιστορικό είναι άδειο.</string>
+  <!-- History * The history reference is not in the actual history list -->
+  <string name="msgs_history_unknown">Άγνωστο στοιχείο ιστορικού.</string>
+
+  <!-- Search * Search activity title -->
+  <string name="search">Αποτελέσματα αναζήτησης</string>
+  <!-- Search * Search hint message -->
+  <string name="search_hint">Πληκτρολογήστε για αναζήτηση</string>
+  <!-- Search * Voice search hint message -->
+  <string name="search_voice_hint">Μιλήστε για αναζήτηση</string>
+  <!-- Search * Search error message -->
+  <string name="search_error_msg">Ένα σφάλμα προέκυψε κατά την αναζήτηση. Δεν βρέθηκαν αποτέλεσματα.</string>
+  <!-- Search * Search no results message -->
+  <string name="search_no_results_msg">Δέν βρέθηκαν αποτελέσματα.</string>
+  <!-- Search * Search found items -->
+  <plurals name="search_found_items">
+    <item quantity="zero">Δέν βρέθηκαν αντικείμενα</item>
+    <item quantity="one">Βρέθηκε 1 αντικείμενο</item>
+    <item quantity="other">Βρέθηκαν <xliff:g id="count">%d</xliff:g> αντικείμενα</item>
+  </plurals>
+  <!-- Search * Number of items found in directory -->
+  <string name="search_found_items_in_directory"><xliff:g id="items">%1$s</xliff:g> in
+    <xliff:g id="path">%2$s</xliff:g></string>
+  <!-- Search * Search query terms -->
+  <string name="search_terms"><![CDATA[<b>Όροι:</b>]]> <xliff:g id="terms">%1$s</xliff:g></string>
+  <!-- Search * Confirm search -->
+  <string name="search_few_characters_title">Επιβεβαίωση αναζήτησης</string>
+  <!-- Search * Some terms of the search are too small. The operation could be very costly -->
+  <string name="search_few_characters_msg">Μερικοί από τους όρους αναζήτησης έχουν μικρό αριθμό χαρακτήρων. Η
+      λειτουργία μπορεί να είναι πολύ δαπανηρή σε χρόνο και σε πόρους του συστήματος. \n\nΘέλετε να συνεχίσετε;</string>
+  <!-- Search * Searching dialog title -->
+  <string name="searching">Παρακαλώ περιμένετε...</string>
+  <!-- Search * Searching label -->
+  <string name="searching_action_label">Αναζήτηση σε εξέλιξη</string>
+
+  <!-- Picker Activity * Dialog title -->
+  <string name="picker_title">Επιλέξτε ένα αρχείο</string>
+
+  <!-- Editor * Editor activity title -->
+  <string name="editor">Επεξεργασία</string>
+  <!-- Editor * Invalid file message -->
+  <string name="editor_invalid_file_msg">Μη έγκυρο αρχείο.</string>
+  <!-- Editor * File not found message -->
+  <string name="editor_file_not_found_msg">Το αρχείο δεν βρέθηκε.</string>
+  <!-- Editor * File size exceed the limit -->
+  <string name="editor_file_exceed_size_msg">Το αρχείο είναι πολύ μεγάλο για να ανοιχθεί.</string>
+  <!-- Editor * Editor is dirty, ask the user * Dialog title -->
+  <string name="editor_dirty_ask_title">Επιβεβαίωση εξόδου</string>
+  <!-- Editor * Editor is dirty, ask the user * Dialog message -->
+  <string name="editor_dirty_ask_msg">Υπάρχουν μη αποθηκευμένες αλλαγές.\n\nΈξοδος χωρίς αποθήκευση;</string>
+  <!-- Editor * Save operation success -->
+  <string name="editor_successfully_saved">Το αρχείο αποθηκεύτηκε επιτυχώς.</string>
+  <!-- Editor * Read-only file mode -->
+  <string name="editor_read_only_mode">Το αρχείο ανοίχθηκε σε λειτουργία μόνο για ανάγνωση.</string>
+
+  <!-- Bookmarks * Bookmarks activity title -->
+  <string name="bookmarks">Σελιδοδείκτες</string>
+  <!-- Bookmarks * Bookmark name * Home -->
+  <string name="bookmarks_home">Αρχική</string>
+  <!-- Bookmarks * Bookmark name * Root folder -->
+  <string name="bookmarks_root_folder">Ριζικός φάκελος</string>
+  <!-- Bookmarks * Bookmark name * System folder -->
+  <string name="bookmarks_system_folder">Φάκελος συστήματος</string>
+  <!-- Bookmarks * Bookmark name * Button * Initial directory content description -->
+  <string name="bookmarks_button_config_cd">Ρυθμίστε το αρχικό φάκελο.</string>
+  <!-- Bookmarks * Bookmark name * Button * Remove bookmark content description -->
+  <string name="bookmarks_button_remove_bookmark_cd">Αφαίρεση σελιδοδείκτη.</string>
+  <!-- Bookmarks * Bookmarks * Actions * Bookmark successfully added -->
+  <string name="bookmarks_msgs_add_success">Ο σελιδοδείκτης προστέθηκε με επιτυχία.</string>
+
+  <!-- Initial directory dialog title -->
+  <string name="initial_directory_dialog_title">Αρχικός φάκελος</string>
+  <!-- Initial directory label -->
+  <string name="initial_directory_label">Επιλέξτε τον αρχικό φάκελο:</string>
+  <!-- Initial directory is relative -->
+  <string name="initial_directory_relative_msg">Δεν επιτρέπονται σχετικές διαδρομές.</string>
+  <!-- Initial directory error message -->
+  <string name="initial_directory_error_msg">Προέκυψε σφάλμα κατά την αποθήκευση του αρχικού φακέλου.</string>
+
+  <!-- Menu * Navigation * History -->
+  <string name="menu_history">Ιστορικό</string>
+  <!-- Menu * Navigation * Bookmarks -->
+  <string name="menu_bookmarks">Σελιδοδείκτες</string>
+  <!-- Menu * Navigation * Search -->
+  <string name="menu_search">Αναζήτηση</string>
+  <!-- Menu * Navigation * Settings -->
+  <string name="menu_settings">Ρυθμίσεις</string>
+  <!-- Menu * History * Clear history -->
+  <string name="menu_clear_history">Καθαρισμός ιστορικού</string>
+
+  <!-- Regular expression for create copy action -->
+  <string name="create_copy_regexp">
+    <xliff:g id="name">%1$s</xliff:g> - copy<xliff:g id="extension">%2$s</xliff:g></string>
+  <!-- Regular expression for new compressed file -->
+  <string name="create_new_compress_file_regexp">
+    <xliff:g id="name">%1$s</xliff:g> - new<xliff:g id="extension">%2$s</xliff:g></string>
+
+  <!-- Waiting dialog * Performing operation message -->
+  <string name="waiting_dialog_msg">Εκτέλεση λειτουργίας\u2026</string>
+  <!-- Waiting dialog * Copying title -->
+  <string name="waiting_dialog_copying_title">Αντιγραφή\u2026</string>
+  <!-- Waiting dialog * Copying message -->
+  <string name="waiting_dialog_copying_msg">
+    <![CDATA[<b>Από</b>]]> <xliff:g id="from">%1$s</xliff:g><![CDATA[<br/>]]>
+    <![CDATA[<b>Σε</b>]]> <xliff:g id="to">%2$s</xliff:g></string>
+  <!-- Waiting dialog * Moving title -->
+  <string name="waiting_dialog_moving_title">Μετακίνηση\u2026</string>
+  <!-- Waiting dialog * Moving message -->
+  <string name="waiting_dialog_moving_msg">
+    <![CDATA[<b>Από</b>]]> <xliff:g id="from">%1$s</xliff:g><![CDATA[<br/>]]>
+    <![CDATA[<b>Σε</b>]]> <xliff:g id="to">%2$s</xliff:g></string>
+  <!-- Waiting dialog * Deleting title -->
+  <string name="waiting_dialog_deleting_title">Διαγραφή\u2026</string>
+  <!-- Waiting dialog * Deleting message -->
+  <string name="waiting_dialog_deleting_msg">
+    <![CDATA[<b>Αρχείο</b>]]> <xliff:g id="file">%1$s</xliff:g></string>
+  <!-- Waiting dialog * Extracting title -->
+  <string name="waiting_dialog_extracting_title">Αποσυμπίεση\u2026</string>
+  <!-- Waiting dialog * Extracting message -->
+  <string name="waiting_dialog_extracting_msg">
+    <![CDATA[<b>Αρχείο</b>]]> <xliff:g id="file">%1$s</xliff:g></string>
+  <!-- Waiting dialog * Extracting title -->
+  <string name="waiting_dialog_compressing_title">Συμπίεση\u2026</string>
+  <!-- Waiting dialog * Extracting message -->
+  <string name="waiting_dialog_compressing_msg">
+    <![CDATA[<b>Αρχείο</b>]]> <xliff:g id="file">%1$s</xliff:g></string>
+  <!-- Waiting dialog * Initializing the dialog -->
+  <string name="waiting_dialog_analizing_msg">
+    <![CDATA[<b>Ανάλυση\u2026</b>]]></string>
+  <!-- Extracting * Success message -->
+  <string name="msgs_extracting_success">
+    Η αποσυμπίεση ολοκληρώθκε με επιτυχία. Τα αποσυμπιεσμένα αρχεία βρίσκονται στο
+    <xliff:g id="destination">%1$s</xliff:g>.</string>
+  <!-- Compressing * Success message -->
+  <string name="msgs_compressing_success">
+    Η συμπίεση ολοκληρώθηκε με επιτυχία. Τα αρχεία συμπιέστηκαν στο
+    <xliff:g id="destination">%1$s</xliff:g>.</string>
+
+  <!-- Actions Dialog * Title -->
+  <string name="actions_dialog_title">Ενέργειες</string>
+  <!-- Actions Dialog * Menu * Properties of current folder -->
+  <string name="actions_menu_properties_current_folder">Ιδιότητες</string>
+  <!-- Actions Dialog * Menu * Refresh -->
+  <string name="actions_menu_refresh">Ανανέωση</string>
+  <!-- Actions Dialog * Menu * New directory -->
+  <string name="actions_menu_new_directory">Νέος φάκελος</string>
+  <!-- Actions Dialog * Menu * New file -->
+  <string name="actions_menu_new_file">Νέο αρχείο</string>
+  <!-- Actions Dialog * Menu * Select all -->
+  <string name="actions_menu_select_all">Επιλογή όλων</string>
+  <!-- Actions Dialog * Menu * Deselect all -->
+  <string name="actions_menu_deselect_all">Αποεπιλογή όλων</string>
+  <!-- Actions Dialog * Menu * Select -->
+  <string name="actions_menu_select">Επιλογή</string>
+  <!-- Actions Dialog * Menu * Deselect -->
+  <string name="actions_menu_deselect">Αποεπιλογή</string>
+  <!-- Actions Dialog * Menu * Paste selection -->
+  <string name="actions_menu_paste_selection">Επικόλληση επιλογής</string>
+  <!-- Actions Dialog * Menu * Move selection -->
+  <string name="actions_menu_move_selection">Μετακίνηση επιλογής</string>
+  <!-- Actions Dialog * Menu * Delete selection -->
+  <string name="actions_menu_delete_selection">Διαγραφή επιλογής</string>
+  <!-- Actions Dialog * Menu * Compress selection -->
+  <string name="actions_menu_compress_selection">Συμπίεση επιλογής</string>
+  <!-- Actions Dialog * Menu * Create link -->
+  <string name="actions_menu_create_link">Δημιουργία συνδέσμου</string>
+  <!-- Actions Dialog * Menu * Open -->
+  <string name="actions_menu_open">Άνοιγμα</string>
+  <!-- Actions Dialog * Menu * Open with -->
+  <string name="actions_menu_open_with">Άνοιγμα με</string>
+  <!-- Actions Dialog * Menu * Execute -->
+  <string name="actions_menu_execute">Εκτέλεση</string>
+  <!-- Actions Dialog * Menu * Send -->
+  <string name="actions_menu_send">Αποστολή</string>
+  <!-- Actions Dialog * Menu * Compress -->
+  <string name="actions_menu_compress">Συμπίεση</string>
+  <!-- Actions Dialog * Menu * Extract -->
+  <string name="actions_menu_extract">Αποσυμπίεση</string>
+  <!-- Actions Dialog * Menu * Delete -->
+  <string name="actions_menu_delete">Διαγραφή</string>
+  <!-- Actions Dialog * Menu * Rename -->
+  <string name="actions_menu_rename">Μετονομασία</string>
+  <!-- Actions Dialog * Menu * Create copy -->
+  <string name="actions_menu_create_copy">Δημ. αντίγραφου</string>
+  <!-- Actions Dialog * Menu * Properties -->
+  <string name="actions_menu_properties">Ιδιότητες</string>
+  <!-- Actions Dialog * Menu * Add to bookmarks -->
+  <string name="actions_menu_add_to_bookmarks">Προσθ. στους σελιδοδείκτες</string>
+  <!-- Actions Dialog * Menu * Add shortcut -->
+  <string name="actions_menu_add_shortcut">Προσθήκη συντόμευσης</string>
+  <!-- Actions Dialog * Menu * Open parent folder -->
+  <string name="actions_menu_open_parent_folder">Άνοιγμα γονικού</string>
+
+  <!-- Actions * Ask user prior to do an undone operation. Dialog message -->
+  <string name="actions_ask_undone_operation_msg">
+    Αυτή η ενέργεια δεν μπορεί να αναιρεθεί. Θέλετε να συνεχίσετε;</string>
+
+  <!-- Enter Name Dialog * Label -->
+  <string name="input_name_dialog_label">Όνομα:</string>
+  <!-- Enter Name Dialog * Message * Empty name -->
+  <string name="input_name_dialog_message_empty_name">Το όνομα δεν μπορεί να είναι κενό.</string>
+  <!-- Enter Name Dialog * Message * Invalid name -->
+  <string name="input_name_dialog_message_invalid_path_name">Μη έγκυρο όνομα. Οι χαρακτήρες
+    \'<xliff:g id="invalid_characters">%1$s</xliff:g>\' δεν επιτρέπονται.</string>
+  <!-- Enter Name Dialog * Message * Invalid name -->
+  <string name="input_name_dialog_message_invalid_name">Μη έγκυρο όνομα. Τα ονόματα \'.\' και
+    \'..\' δεν επιτρέπονται.</string>
+  <!-- Enter Name Dialog * Message * Name exists -->
+  <string name="input_name_dialog_message_name_exists">Το όνομα υπάρχει ήδη.</string>
+
+  <!-- Associations Dialog * Title -->
+  <string name="associations_dialog_title">Συσχετισμοί</string>
+  <!-- Associations Dialog * Remember the user action -->
+  <string name="associations_dialog_remember">Αποθήκευση επιλογής</string>
+  <!-- Associations Dialog * Open with Title -->
+  <string name="associations_dialog_openwith_title">Άνοιγμα με</string>
+    <!-- Associations Dialog * Open action (button title) -->
+  <string name="associations_dialog_openwith_action">Άνοιγμα</string>
+  <!-- Associations Dialog * Send with Title -->
+  <string name="associations_dialog_sendwith_title">Αποστολή με</string>
+    <!-- Associations Dialog * Send action (button title) -->
+  <string name="associations_dialog_sendwith_action">Αποστολή</string>
+
+  <!-- Inline Autocomplete Widget * Tab message nothing to complete -->
+  <string name="inline_autocomplete_tab_nothing_to_complete_msg">Τίποτα για συμπλήρωση.</string>
+
+  <!-- Execution console * Title -->
+  <string name="execution_console_title">Κονσόλα</string>
+  <!-- Execution console * The script name label -->
+  <string name="execution_console_script_name_label">Script:</string>
+  <!-- Execution console * The script execution time label -->
+  <string name="execution_console_script_execution_time_label">Ώρα:</string>
+  <!-- Execution console * The script exit code label -->
+  <string name="execution_console_script_exitcode_label">Exit code:</string>
+  <!-- Execution console * The script execution time seconds string -->
+  <string name="execution_console_script_execution_time_text">
+    <xliff:g id="seconds">%1$s</xliff:g> δευτ.</string>
+
+  <!-- Mime/Types * Folder -->
+  <string name="mime_folder">Φάκελος</string>
+  <!-- Mime/Types * Symlink -->
+  <string name="mime_symlink">Symlink</string>
+  <!-- Mime/Types * Unknown -->
+  <string name="mime_unknown">Άγνωστο</string>
+
+  <!-- Selection. All possibilities. [1 folder; >1 folders; 1 file; >1 files;
+     >1 folders and 1 file; 1 folder and >1 files; >1 folders and >1 files]
+     Avoid using plural item because is more complex to achieved all strings -->
+  <string name="selection_one_folder">Επιλέχθηκε <xliff:g id="folders">%1$s</xliff:g> φάκελος.</string>
+  <string name="selection_other_folders">Επιλέχθηκαν <xliff:g id="folders">%1$s</xliff:g> φάκελοι.</string>
+  <string name="selection_one_file">Επιλέχθηκε <xliff:g id="files">%1$s</xliff:g> αρχείο.</string>
+  <string name="selection_other_files">Επιλέχθηκαν <xliff:g id="files">%1$s</xliff:g> αρχεία.</string>
+  <string name="selection_other_folders_one_file">Επιλέχθηκαν <xliff:g id="folders">%1$s</xliff:g> φάκελοι και
+    <xliff:g id="files">%2$s</xliff:g> αρχείο.</string>
+  <string name="selection_one_folder_other_files">Επιλέχθηκαν <xliff:g id="folder2">%1$s</xliff:g> φάκελος και
+    <xliff:g id="file2">%2$s</xliff:g> αρχεία.</string>
+  <string name="selection_other_folders_other_files">Επιλέχθηκαν <xliff:g id="folder2">%1$s</xliff:g> φάκελοι
+    και <xliff:g id="files">%2$s</xliff:g> αρχεία.</string>
+
+  <!-- Category descriptions -->
+  <string name="category_system">SYSTEM</string>
+  <string name="category_app">APP</string>
+  <string name="category_binary">BINARY</string>
+  <string name="category_text">TEXT</string>
+  <string name="category_document">DOCUMENT</string>
+  <string name="category_ebook">EBOOK</string>
+  <string name="category_mail">MAIL</string>
+  <string name="category_compress">COMPRESS</string>
+  <string name="category_exec">EXECUTABLE</string>
+  <string name="category_database">DATABASE</string>
+  <string name="category_font">FONT</string>
+  <string name="category_image">IMAGE</string>
+  <string name="category_audio">AUDIO</string>
+  <string name="category_video">VIDEO</string>
+  <string name="category_security">SECURITY</string>
+
+  <!-- Compression * Compression modes dialog title -->
+  <string name="compression_mode_title">Λειτουργία συμπίεσης</string>
+
+  <!-- Shortcut. Failed to handle the shortcut -->
+  <string name="shortcut_failed_msg">Αποτυχία χειρισμού της συντόμευσης.</string>
+  <!-- Shortcut. The shortcut was created -->
+  <string name="shortcut_creation_success_msg">Επιτυχής δημιουργία συντόμευσης.</string>
+  <!-- Shortcut. The shortcut wasn't created -->
+  <string name="shortcut_creation_failed_msg">Αποτυχία δημιουργίας συντόμευσης.</string>
+
+  <!-- Preferences title -->
+  <string name="pref">Ρυθμίσεις</string>
+  <!-- Preferences * General title -->
+  <string name="pref_general">Γενικές ρυθμίσεις</string>
+  <!-- Preferences * Search title -->
+  <string name="pref_search">Επιλογές αναζήτησης</string>
+  <!-- Preferences * Themes title -->
+  <string name="pref_themes">Θέματα</string>
+  <!-- Preferences * About title -->
+  <string name="pref_about">Σχετικά</string>
+  <!-- Preferences * About summary -->
+  <string name="pref_about_summary">Διαχείριση αρχείων v<xliff:g id="version">%1$s</xliff:g>
+    \nCopyright \u00A9 2012 The CyanogenMod Project</string>
+
+  <!-- Preferences * General * Behaviour category -->
+  <string name="pref_general_behaviour_category">Γενικά</string>
+  <!-- Preferences * General * Case sensitive sort title -->
+  <string name="pref_case_sensitive_sort">Χρήση ταξινόμησης πεζών-κεφαλαίων</string>
+  <!-- Preferences * General *Disk usage warning level title -->
+  <string name="pref_disk_usage_warning_level">Προειδοποίηση χρήσης δίσκου</string>
+  <!-- Preferences * General * Disk usage warning level summary -->
+  <!-- FIXME Use "percent" instead of "%" symbol, because it make crash the app on getSummary
+       of ListPreference. This should be fixed in frameworks base prior to be added here. -->
+  <string name="pref_disk_usage_warning_level_summary" formatted="false">Εμφάνιση διαφορετικού
+    χρώματος στα widget χρήσης δίσκου όταν καταληφθεί το <xliff:g id="level">%1$s</xliff:g> τοις εκατό
+    του ελεύθερου χώρου</string>
+  <!-- Preferences * General * Compute folder statistics title -->
+  <string name="pref_compute_folder_statistics">Υπολογισμός στατιστικών φακέλου</string>
+  <!-- Preferences * General * Compute folder statistics summary on -->
+  <string name="pref_compute_folder_statistics_on">Προσοχή! Ο υπολογισμός των στατιστικών φακέλου είναι δαπανηρός σε χρόνο και
+    πόρους του συστήματος</string>
+  <!-- Preferences * General * Use flinger detection -->
+  <string name="pref_use_flinger">Χρήση χειρονομιών swipe</string>
+  <!-- Preferences * General * Use flinger detection summary -->
+  <string name="pref_use_flinger_summary">Κάντε swipe από αριστερά προς δεξιά για διαγραφή αρχείων ή φακέλων.</string>
+  <!-- Preferences * General * Advanced settings category -->
+  <string name="pref_general_advanced_settings_category">Για προχωρημένους</string>
+  <!-- Preferences * General * Access mode -->
+  <string name="pref_access_mode">Λειτουργία πρόσβασης</string>
+  <!-- Preferences * General * Safe mode -->
+  <string name="pref_access_mode_safe">Ασφαλής Λειτουργία</string>
+  <!-- Preferences * General * Safe mode summary -->
+  <string name="pref_access_mode_safe_summary">Ασφαλής Λειτουργία\n\nΗ εφαρμογή τρέχει χωρίς
+    δικαιώματα και τα μόνα προσπελάσιμα συστήματα αρχείων είναι οι κάρτες SD και οι αποθηκευτικοί χώροι USB</string>
+  <!-- Preferences * General * Prompt user mode -->
+  <string name="pref_access_mode_prompt">Λειτουργία ερώτησης χρήστη</string>
+  <!-- Preferences * General * Prompt user mode summary -->
+  <string name="pref_access_mode_prompt_summary">Λειτουργία ερώτησης χρήστη\n\nΗ εφαρμογή τρέχει
+    με πλήρη πρόσβαση στο σύστημα αρχείων, αλλά θα ζητήσει άδεια πριν από την εκτέλεση
+    οποιασδήποτε ενέργειας που απαιτεί δικαιώματα</string>
+  <!-- Preferences * General * Root access mode -->
+  <string name="pref_access_mode_root">Λειτουργία πρόσβασης Root</string>
+  <!-- Preferences * General * Root access mode summary -->
+  <string name="pref_access_mode_root_summary">Λειτουργία πρόσβασης Root\n\nΠροσοχή! Αυτή η λειτουργία επιτρέπει ενέργειες που θα μπορούσαν να χαλάσουν
+    τη συσκευή σας. Είναι δική σας ευθύνη να διασφαλίσετε ότι μία ενέργεια είναι ασφαλής</string>
+  <!-- Preferences * Search * Results category -->
+  <string name="pref_search_results_category">Αποτελέσματα</string>
+  <!-- Preferences * Search * Show relevance widget -->
+  <string name="pref_show_relevance_widget">Εμφάνιση widget συνάφειας</string>
+  <!-- Preferences * Search * Highlight search terms -->
+  <string name="pref_highlight_terms">Επισήμανση όρων αναζήτησης</string>
+  <!-- Preferences * Search * Sort results mode -->
+  <string name="pref_sort_search_results_mode">Ταξινόμηση αποτελεσμάτων</string>
+  <!-- Preferences * Search * Sort results mode. None -->
+  <string name="pref_sort_search_results_mode_none">Χωρίς ταξινόμηση</string>
+  <!-- Preferences * Search * Sort results mode. None -->
+  <string name="pref_sort_search_results_mode_name">Κατά όνομα</string>
+  <!-- Preferences * Search * Sort results mode. Relevance -->
+  <string name="pref_sort_search_results_mode_relevance">Κατά συνάφεια</string>
+  <!-- Preferences * Search * Privacity category -->
+  <string name="pref_search_privacity_category">Απόρρητο</string>
+  <!-- Preferences * Search * Save search terms -->
+  <string name="pref_save_search_terms">Αποθήκευση όρων αναζήτησης</string>
+  <!-- Preferences * Search * Save search terms summary on -->
+  <string name="pref_save_search_terms_on">Οι όροι θα αποθηκεύνται και θα χρησιμοποιούνται ως προτάσεις
+      σε μελλοντικές αναζητήσεις</string>
+  <!-- Preferences * Search * Save search terms summary off -->
+  <string name="pref_save_search_terms_off">Οι όροι δεν θα αποθηκεύονται</string>
+  <!-- Preferences * Search * Remove saved search terms -->
+  <string name="pref_remove_saved_search_terms">Διαγραφή αποθηκευμένων όρων</string>
+  <!-- Preferences * Search * Remove saved search terms summary -->
+  <string name="pref_remove_saved_search_terms_summary">Πιέστε για διαγραφή όλων των αποθηκευμένων όρων αναζήτησης</string>
+  <!-- Preferences * Search * Suggestions were truncated -->
+  <string name="pref_remove_saved_search_terms_msg">Όλοι οι αποθηκευμένοι όροι αναζήτησης έχουν διαγραφεί.</string>
+  <!-- Preferences * Themes * Themes selection category -->
+  <string name="pref_themes_selection_category">Θέματα</string>
+  <!-- Preferences * Themes * Set theme button -->
+  <string name="pref_themes_set_theme">Ορισμός θέματος</string>
+  <!-- Preferences * Themes * No preview -->
+  <string name="pref_themes_no_preview">Δεν υπάρχει\nδιαθέσιμη προεπισκόπηση</string>
+  <!-- Preferences * Themes * Confirmation message -->
+  <string name="pref_themes_confirmation">Το θέμα εφαρμόστηκε με επιτυχία.</string>
+  <!-- Preferences * Themes * Theme not found message -->
+  <string name="pref_themes_not_found">Το θέμα δεν βρέθηκε.</string>
+
+  <!-- Preferences * Debug * Capture debug traces -->
+  <string name="pref_debug_traces">Καταγραφή πληροφοριών αποσφαλμάτωσης</string>
+
+  <!-- Themes * Default theme name -->
+  <string name="theme_default_name">Ανοιχτόχρωμο θέμα</string>
+  <!-- Themes * Default theme description -->
+  <string name="theme_default_description">Ένα ανοιχτόχρωμο θέμα για την Διαχείριση αρχείων του CyanogenMod.</string>
+  <!-- Themes * Default theme author -->
+  <string name="themes_author">CyanogenMod</string>
+
+  <!-- Security * Extract relative or absolute files -->
+  <string name="security_warning_extract">Προσοχή!\n\n
+      Η εξαγωγή ενός αρχείου με σχετικά ή απόλυτα μονοπάτια μπορεί να προκαλέσει
+      βλάβη στη συσκευή σας αντικαταστώντας αρχεία συστήματος.\n\n
+      Θέλετε να συνεχίσετε;</string>
+
+  <!-- ChangeLog * Dialog title -->
+  <string name="changelog_title">Changelog</string>
+
+  <!-- Welcome Dialog * Title -->
+  <string name="welcome_title">Καλώς ήλθατε</string>
+  <!-- Welcome Dialog * Message -->
+  <string name="welcome_msg">
+    Καλώς ήλθατε στη Διαχείριση αρχείων του CyanogenMod.
+    \n\nΗ εφαρμογή αυτή σας επιτρέπει να εξερευνήσετε το σύστημα αρχείων και να εκτελέσετε ενέργειες που
+    ενδέχεται να χαλάσουν τη συσκευή σας. Για την αποφυγή πρόκλησης βλάβης, η εφαρμογή θα ξεκινήσει σε
+    Ασφαλή Λειτουργία.\n\nΜπορείτε να αποκτήσετε πρόσβαση στην προηγμένη λειτουργία πρόσβασης Root μέσω
+    των ρυθμίσεων. Είναι δική σας ευθύνη να διασφαλίσετε ότι μία ενέργεια είναι ασφαλής για την συσκευή σας.
+    \n\nCyanogenMod Team.\n</string>
+
+</resources>

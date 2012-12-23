@@ -13,6 +13,7 @@
      See the License for the specific language governing permissions and
      limitations under the License.
  -->
+
 <resources xmlns:android="http://schemas.android.com/apk/res/android">
 
   <!-- The default background color -->
@@ -44,6 +45,9 @@
   <color name="relevance_percentil_75">#be45bc6c</color>
   <!-- Relevance * 75% ~ 100% -->
   <color name="relevance_percentil_100">#be207da4</color>
+
+  <!-- A color for highlight text -->
+  <color name="search_highlight">#ffffff00</color>
 
   <!--  Divider. Normal -->
   <color name="divider_color">#90909090</color>

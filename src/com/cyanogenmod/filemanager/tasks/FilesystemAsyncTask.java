@@ -17,7 +17,6 @@
 package com.cyanogenmod.filemanager.tasks;
 
 import android.content.Context;
-import android.content.res.Resources;
 import android.graphics.PorterDuff.Mode;
 import android.graphics.PorterDuffColorFilter;
 import android.os.AsyncTask;
@@ -25,9 +24,10 @@ import android.util.Log;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 
-import com.cyanogenmod.filemanager.R;
 import com.cyanogenmod.filemanager.model.DiskUsage;
 import com.cyanogenmod.filemanager.model.MountPoint;
+import com.cyanogenmod.filemanager.ui.ThemeManager;
+import com.cyanogenmod.filemanager.ui.ThemeManager.Theme;
 import com.cyanogenmod.filemanager.util.MountPointHelper;
 
 /**
@@ -37,6 +37,10 @@ public class FilesystemAsyncTask extends AsyncTask<String, Integer, Boolean> {
 
     private static final String TAG = "FilesystemAsyncTask"; //$NON-NLS-1$
 
+    /**
+     * @hide
+     */
+    final Context mContext;
     /**
      * @hide
      */
@@ -55,10 +59,6 @@ public class FilesystemAsyncTask extends AsyncTask<String, Integer, Boolean> {
      * @hide
      */
     static int sColorFilterNormal;
-    /**
-     * @hide
-     */
-    static int sColorFilterWarning;
 
     /**
      * Constructor of <code>FilesystemAsyncTask</code>.
@@ -72,17 +72,11 @@ public class FilesystemAsyncTask extends AsyncTask<String, Integer, Boolean> {
             Context context, ImageView mountPointInfo,
             ProgressBar diskUsageInfo, int freeDiskSpaceWarningLevel) {
         super();
+        this.mContext = context;
         this.mMountPointInfo = mountPointInfo;
         this.mDiskUsageInfo = diskUsageInfo;
         this.mFreeDiskSpaceWarningLevel = freeDiskSpaceWarningLevel;
         this.mRunning = false;
-
-        if (sColorFilterNormal == 0 || sColorFilterWarning == 0) {
-            Resources res = context.getResources();
-            sColorFilterNormal = res.getColor(R.color.disk_usage_color_filter_normal);
-            sColorFilterWarning = res.getColor(R.color.disk_usage_color_filter_warning);
-        }
-
     }
 
     /**
@@ -118,8 +112,11 @@ public class FilesystemAsyncTask extends AsyncTask<String, Integer, Boolean> {
             this.mMountPointInfo.post(new Runnable() {
                 @Override
                 public void run() {
-                    FilesystemAsyncTask.this.mMountPointInfo.setImageResource(
-                            R.drawable.ic_holo_light_fs_warning);
+                    Theme theme = ThemeManager.getCurrentTheme(FilesystemAsyncTask.this.mContext);
+                    theme.setImageDrawable(
+                            FilesystemAsyncTask.this.mContext,
+                            FilesystemAsyncTask.this.mMountPointInfo,
+                            "filesystem_warning_drawable"); //$NON-NLS-1$
                     FilesystemAsyncTask.this.mMountPointInfo.setTag(null);
                 }
             });
@@ -131,10 +128,15 @@ public class FilesystemAsyncTask extends AsyncTask<String, Integer, Boolean> {
             this.mMountPointInfo.post(new Runnable() {
                 @Override
                 public void run() {
-                    FilesystemAsyncTask.this.mMountPointInfo.setImageResource(
+                   String resource =
                             MountPointHelper.isReadOnly(mp)
-                            ? R.drawable.ic_holo_light_fs_locked
-                            : R.drawable.ic_holo_light_fs_unlocked);
+                            ? "filesystem_locked_drawable" //$NON-NLS-1$
+                            : "filesystem_unlocked_drawable"; //$NON-NLS-1$
+                    Theme theme = ThemeManager.getCurrentTheme(FilesystemAsyncTask.this.mContext);
+                    theme.setImageDrawable(
+                            FilesystemAsyncTask.this.mContext,
+                            FilesystemAsyncTask.this.mMountPointInfo,
+                            resource);
                     FilesystemAsyncTask.this.mMountPointInfo.setTag(mp);
                 }
             });
@@ -166,10 +168,15 @@ public class FilesystemAsyncTask extends AsyncTask<String, Integer, Boolean> {
                     }
 
                     // Advise about diskusage (>=mFreeDiskSpaceWarningLevel) with other color
+                    Theme theme = ThemeManager.getCurrentTheme(FilesystemAsyncTask.this.mContext);
                     int filter =
                             usage >= FilesystemAsyncTask.this.mFreeDiskSpaceWarningLevel ?
-                            sColorFilterWarning :
-                            sColorFilterNormal;
+                               theme.getColor(
+                                       FilesystemAsyncTask.this.mContext,
+                                       "disk_usage_filter_warning_color") : //$NON-NLS-1$
+                               theme.getColor(
+                                       FilesystemAsyncTask.this.mContext,
+                                       "disk_usage_filter_normal_color"); //$NON-NLS-1$
                     FilesystemAsyncTask.this.mDiskUsageInfo.
                                 getProgressDrawable().setColorFilter(
                                         new PorterDuffColorFilter(filter, Mode.MULTIPLY));

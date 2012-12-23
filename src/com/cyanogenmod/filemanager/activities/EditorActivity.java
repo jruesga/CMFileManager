@@ -19,10 +19,13 @@ package com.cyanogenmod.filemanager.activities;
 import android.app.ActionBar;
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
-import android.content.pm.ActivityInfo;
+import android.content.IntentFilter;
+import android.content.res.Configuration;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.Editable;
@@ -33,11 +36,13 @@ import android.view.KeyEvent;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.TextView.BufferType;
 import android.widget.Toast;
 
+import com.cyanogenmod.filemanager.FileManagerApplication;
 import com.cyanogenmod.filemanager.R;
 import com.cyanogenmod.filemanager.commands.AsyncResultListener;
 import com.cyanogenmod.filemanager.commands.WriteExecutable;
@@ -45,9 +50,11 @@ import com.cyanogenmod.filemanager.console.ConsoleBuilder;
 import com.cyanogenmod.filemanager.console.InsufficientPermissionsException;
 import com.cyanogenmod.filemanager.console.RelaunchableException;
 import com.cyanogenmod.filemanager.model.FileSystemObject;
+import com.cyanogenmod.filemanager.preferences.AccessMode;
 import com.cyanogenmod.filemanager.preferences.FileManagerSettings;
+import com.cyanogenmod.filemanager.ui.ThemeManager;
+import com.cyanogenmod.filemanager.ui.ThemeManager.Theme;
 import com.cyanogenmod.filemanager.ui.widgets.ButtonItem;
-import com.cyanogenmod.filemanager.util.AndroidHelper;
 import com.cyanogenmod.filemanager.util.CommandHelper;
 import com.cyanogenmod.filemanager.util.DialogHelper;
 import com.cyanogenmod.filemanager.util.ExceptionUtil;
@@ -64,6 +71,17 @@ public class EditorActivity extends Activity implements TextWatcher {
     private static final String TAG = "EditorActivity"; //$NON-NLS-1$
 
     private static boolean DEBUG = false;
+
+    private final BroadcastReceiver mNotificationReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            if (intent != null) {
+                if (intent.getAction().compareTo(FileManagerSettings.INTENT_THEME_CHANGED) == 0) {
+                    applyTheme();
+                }
+            }
+        }
+    };
 
     private static final char[] VALID_NON_PRINTABLE_CHARS = {' ', '\t', '\r', '\n'};
 
@@ -265,12 +283,10 @@ public class EditorActivity extends Activity implements TextWatcher {
             Log.d(TAG, "EditorActivity.onCreate"); //$NON-NLS-1$
         }
 
-        //Request features
-        if (!AndroidHelper.isTablet(this)) {
-            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-        } else {
-            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
-        }
+        // Register the broadcast receiver
+        IntentFilter filter = new IntentFilter();
+        filter.addAction(FileManagerSettings.INTENT_THEME_CHANGED);
+        registerReceiver(this.mNotificationReceiver, filter);
 
         //Set the main layout of the activity
         setContentView(R.layout.editor);
@@ -284,11 +300,46 @@ public class EditorActivity extends Activity implements TextWatcher {
         //Initialize
         initTitleActionBar();
         initLayout();
+
+        // Apply the theme
+        applyTheme();
+
+        // Initialize the console
         initializeConsole();
+
+        // Read the file
         readFile();
 
         //Save state
         super.onCreate(state);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    protected void onDestroy() {
+        if (DEBUG) {
+            Log.d(TAG, "EditorActivity.onDestroy"); //$NON-NLS-1$
+        }
+
+        // Unregister the receiver
+        try {
+            unregisterReceiver(this.mNotificationReceiver);
+        } catch (Throwable ex) {
+            /**NON BLOCK**/
+        }
+
+        //All destroy. Continue
+        super.onDestroy();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
     }
 
     /**
@@ -408,7 +459,10 @@ public class EditorActivity extends Activity implements TextWatcher {
                     this, R.string.editor_invalid_file_msg, Toast.LENGTH_SHORT);
             return;
         }
-        this.mReadOnly = (action.compareTo(Intent.ACTION_VIEW) == 0);
+        // This var should be set depending on ACTION_VIEW or ACTION_EDIT action, but for
+        // better compatibility, IntentsActionPolicy use always ACTION_VIEW, so we have
+        // to ignore this check here
+        this.mReadOnly = false;
 
         // Read the intent and check that is has a valid request
         String path = getIntent().getData().getPath();
@@ -501,9 +555,12 @@ public class EditorActivity extends Activity implements TextWatcher {
                         // Check if the read was successfully
                         if (this.mReader.mCause != null) {
                             // Check if we can't read the file because we don't the require
-                            // permissions
+                            // permissions. If we are in a ChRooted environment, resolve the
+                            // error without doing anymore
                             if (this.mReader.mCause instanceof InsufficientPermissionsException) {
-                                if (!ConsoleBuilder.isPrivileged()) {
+                                if (!ConsoleBuilder.isPrivileged() &&
+                                    FileManagerApplication.getAccessMode().
+                                                compareTo(AccessMode.SAFE) != 0) {
                                     // We don't have a privileged console, we can't ask the user
                                     // to gain privileges and relauch the command again
                                     askGainAccessAndRead(
@@ -697,7 +754,7 @@ public class EditorActivity extends Activity implements TextWatcher {
                                     }
                                 }
                             });
-                alert.show();
+                DialogHelper.delegateDialogShow(EditorActivity.this, alert);
             }
         });
     }
@@ -754,7 +811,7 @@ public class EditorActivity extends Activity implements TextWatcher {
                             }
                         }
                     });
-            dlg.show();
+            DialogHelper.delegateDialogShow(this, dlg);
             return;
         }
         setResult(Activity.RESULT_OK);
@@ -776,6 +833,27 @@ public class EditorActivity extends Activity implements TextWatcher {
             }
         }
         return TextUtils.isGraphic(c);
+    }
+
+    /**
+     * Method that applies the current theme to the activity
+     * @hide
+     */
+    void applyTheme() {
+        Theme theme = ThemeManager.getCurrentTheme(this);
+        theme.setBaseTheme(this, false);
+
+        //- ActionBar
+        theme.setTitlebarDrawable(this, getActionBar(), "titlebar_drawable"); //$NON-NLS-1$
+        View v = getActionBar().getCustomView().findViewById(R.id.customtitle_title);
+        theme.setTextColor(this, (TextView)v, "text_color"); //$NON-NLS-1$
+        v = findViewById(R.id.ab_button1);
+        theme.setImageDrawable(this, (ImageView)v, "ab_save_drawable"); //$NON-NLS-1$
+        // -View
+        v = findViewById(R.id.editor_layout);
+        theme.setBackgroundDrawable(this, v, "background_drawable"); //$NON-NLS-1$
+        v = findViewById(R.id.editor);
+        theme.setTextColor(this, (TextView)v, "text_color"); //$NON-NLS-1$
     }
 
 }

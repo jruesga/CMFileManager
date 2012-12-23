@@ -1,6 +1,11 @@
 CyanogenMod File Manager
 ========================
 
+Version 1.0.1
+-------------
+* NFC support
+* Themes support
+
 Version 1.0.0
 -------------
 Initial release.
@@ -29,3 +34,4 @@ Features:
 * Open and Open With
 * Send to
 * Internal editor
+

@@ -1,0 +1,316 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (C) 2012 The CyanogenMod Project
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+ -->
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="app_name">Gerenciador de Arquivos</string>
+    <string name="app_description">Um gerenciador de arquivos por CyanogenMod</string>
+    <string name="device_blockdevice">Bloquear dispositivo</string>
+    <string name="device_characterdevice">Dispositivo de caracter</string>
+    <string name="device_namedpipe">Pipe nomeado</string>
+    <string name="device_domainsocket">Domínio do socket</string>
+    <string name="yes">Sim</string>
+    <string name="no">Não</string>
+    <string name="all">Todos</string>
+    <string name="overwrite">Sobrescrever</string>
+    <string name="root_directory_name"><![CDATA[<Pasta raiz>]]></string>
+    <string name="search_result_name">Buscar: <xliff:g id="terms" xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">%1$s</xliff:g></string>
+    <string name="loading_message">Carregando\u2026</string>
+    <string name="cancelled_message">Cancelado</string>
+    <string name="error_message">Erro</string>
+    <string name="warning_title">Aviso</string>
+    <string name="error_title">Erro detectado</string>
+    <string name="confirm_operation">Confirmar operação</string>
+    <string name="confirm_overwrite">Confirmar sobrescrita</string>
+    <string name="confirm_deletion">Confirmar remoção</string>
+    <string name="msgs_change_to_prompt_access_mode_title">Confirmar troca</string>
+    <string name="msgs_change_to_prompt_access_mode_msg">Não foi possível rodar em modo de Acesso Root. Alterando para o modo Seguro.\n\nAplicar esta mudança?</string>
+    <string name="msgs_cant_create_console">Não foi possível ganhar os privilégios necessarios para funcionar</string>
+    <string name="msgs_privileged_console_alloc_failed">Não foi possível rodar em modo de Acesso Root. Alterando para o modo Seguro.</string>
+    <string name="msgs_settings_save_failure">A configuração não pode ser aplicada ou gravada</string>
+    <string name="msgs_settings_invalid_initial_directory">A pasta inicial "<xliff:g id="initial_dir" xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">%1$s</xliff:g>" é inválida. Alterando para a pasta raiz.</string>
+    <string name="msgs_success">A operação foi completada com sucesso</string>
+    <string name="msgs_unknown">Um erro foi detectado. A operação não foi bem sucedida</string>
+    <string name="msgs_insufficient_permissions">A operação requer permissões de superusuário. Tente trocar para modo de Acesso Root</string>
+    <string name="msgs_file_not_found">O arquivo ou pasta não foi encontrado</string>
+    <string name="msgs_command_not_found">O comando da operação não foi encontrado ou tem uma definição inválida</string>
+    <string name="msgs_io_failed">Falha na leitura/escrita</string>
+    <string name="msgs_operation_timeout">Esgotou o tempo limite da operação</string>
+    <string name="msgs_operation_failure">A operação falhou</string>
+    <string name="msgs_console_alloc_failure">Ocorreu um erro interno</string>
+    <string name="msgs_operation_can_not_be_cancelled">A operação não pode ser cancelada</string>
+    <string name="msgs_read_only_filesystem">O sistema de arquivos é leitura somente. Tente montar o sistema de arquivos como leitura-escrita antes de tentar a operação</string>
+    <string name="msgs_illegal_argument">Argumento ilegal. Falha na chamada</string>
+    <string name="msgs_unresolved_inconsistencies">A operação não é permitida pois ela pode criar inconsistências</string>
+    <string name="msgs_operation_not_allowed_in_current_directory">A operação não é permitida na pasta atual</string>
+    <string name="msgs_push_again_to_exit">Pressione novamente para sair</string>
+    <string name="msgs_not_registered_app">Não há aplicação registrada para abrir o tipo de arquivo selecionado</string>
+    <string name="msgs_overwrite_files">Alguns dos arquivos já existem na pasta de destino.\n\nSobrescrever?</string>
+    <string name="msgs_action_association_failed">Falha ao associar a ação à aplicação</string>
+    <string name="advise_insufficient_permissions">A operação requer privilégios elevados.\n\nVocê deseja trocar para o modo de Acesso Root?</string>
+    <string name="parent_dir">Pasta superior</string>
+    <string name="external_storage">Armazenamento externo</string>
+    <string name="usb_storage">Armazenamento USB</string>
+    <string name="actionbar_button_filesystem_cd">Informação do sistema de arquivo</string>
+    <string name="actionbar_button_sort_mode_cd">Modo de ordenação</string>
+    <string name="actionbar_button_layout_mode_cd">Modo de visualização</string>
+    <string name="actionbar_button_other_view_options_cd">Outras opções de visualização</string>
+    <string name="actionbar_button_selection_done_cd">Concluído</string>
+    <string name="actionbar_button_actions_cd">Ações</string>
+    <string name="actionbar_button_history_cd">Histórico</string>
+    <string name="actionbar_button_bookmarks_cd">Favoritos</string>
+    <string name="actionbar_button_search_cd">Busca</string>
+    <string name="actionbar_button_overflow_cd">Mais opções</string>
+    <string name="actionbar_button_storage_cd">Volumes de armazenamento</string>
+    <string name="actionbar_button_save_cd">Salvar</string>
+    <string name="sort_by_name_asc">Por nome &#x25B2;</string>
+    <string name="sort_by_name_desc">Por nome &#x25BC;</string>
+    <string name="sort_by_date_asc">Por data &#x25B2;</string>
+    <string name="sort_by_date_desc">Por data &#x25BC;</string>
+    <string name="layout_icons">Ícones</string>
+    <string name="layout_simple">Simples</string>
+    <string name="layout_details">Detalhes</string>
+    <string name="cm_filemanager_show_dirs_first">Mostrar pastas primeiro</string>
+    <string name="cm_filemanager_show_hidden">Mostrar arquivos ocultos</string>
+    <string name="cm_filemanager_show_system">Mostrar arquivos de sistema</string>
+    <string name="cm_filemanager_show_symlinks">Mostrar atalhos</string>
+    <string name="filesystem_info_warning_title">Sem informação</string>
+    <string name="filesystem_info_warning_msg">Não há informação disponível para o sistema de arquivo</string>
+    <string name="filesystem_info_cant_be_mounted_msg">O sistema de arquivo não pode ser montado/desmontado</string>
+    <string name="filesystem_info_mount_not_allowed_msg">Operações de montagem do sistema de arquivo não é permitida no modo Seguro. Pressione para trocar para o modo de Acesso Root</string>
+    <string name="filesystem_info_mount_failed_msg">Falha ao montar o sistema de arquivo. Alguns sistemas de arquivos, como cartões SD, não podem ser montados/desmontados porque eles estão como sistemas de arquivo de somente leitura</string>
+    <string name="filesystem_info_dialog_title">Informação do sistema de arquivo</string>
+    <string name="filesystem_info_dialog_tab_info">Informação</string>
+    <string name="filesystem_info_dialog_tab_disk_usage">Uso de disco</string>
+    <string name="filesystem_info_dialog_status">Estado:</string>
+    <string name="filesystem_info_dialog_mount_point">Ponto de montagem:</string>
+    <string name="filesystem_info_dialog_device">Dispositivo:</string>
+    <string name="filesystem_info_dialog_type">Tipo:</string>
+    <string name="filesystem_info_dialog_options">Opções:</string>
+    <string name="filesystem_info_dialog_dump_pass">Repositório / Senha:</string>
+    <string name="filesystem_info_dialog_total_disk_usage">Total:</string>
+    <string name="filesystem_info_dialog_used_disk_usage">Usado:</string>
+    <string name="filesystem_info_dialog_free_disk_usage">Disponível:</string>
+    <string name="fso_properties_permissions_not_allowed_msg">Operações de permissões não são permitidas em modo Seguro. Pressione para trocar para modo de Acesso Root</string>
+    <string name="fso_properties_failed_to_change_owner_msg">Falha ao trocar o proprietário.\n\nPor razões de segurança, alguns sistemas de arquivos, como cartões SD, não permitem a troca de proprietário</string>
+    <string name="fso_properties_failed_to_change_group_msg">Falha ao trocar o grupo.\n\n Por razões de segurança, alguns sistemas de arquivos, como cartões SD, não permitem a troca de grupo</string>
+    <string name="fso_properties_failed_to_change_permission_msg">A operação de troca de permissões falhou.\n\nPor razões de segurança, alguns sistemas de arquivos, como cartões SD, não permitem a troca de permissões</string>
+    <string name="fso_properties_dialog_title">Propriedades</string>
+    <string name="fso_properties_dialog_tab_info">Informação</string>
+    <string name="fso_properties_dialog_tab_permissions">Permissões</string>
+    <string name="fso_properties_dialog_name">Nome:</string>
+    <string name="fso_properties_dialog_parent">Pasta superior:</string>
+    <string name="fso_properties_dialog_type">Tipo:</string>
+    <string name="fso_properties_dialog_category">Categoria:</string>
+    <string name="fso_properties_dialog_link">Vínculo:</string>
+    <string name="fso_properties_dialog_size">Tamanho:</string>
+    <string name="fso_properties_dialog_contains">Contém:</string>
+    <string name="fso_properties_dialog_date">Último acesso:</string>
+    <string name="fso_properties_dialog_owner">Proprietário:</string>
+    <string name="fso_properties_dialog_group">Grupo:</string>
+    <string name="fso_properties_dialog_others">Outros:</string>
+    <plurals name="fso_properties_dialog_folders">
+        <item quantity="zero">0 pastas</item>
+        <item quantity="one">1 pasta</item>
+        <item quantity="other"><xliff:g id="folders" xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">%1$d</xliff:g> pastas</item>
+    </plurals>
+    <plurals name="fso_properties_dialog_files">
+        <item quantity="zero">0 arquivos</item>
+        <item quantity="one">1 arquivos</item>
+        <item quantity="other"><xliff:g id="files" xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">%1$d</xliff:g> arquivos</item>
+    </plurals>
+    <string name="history">Histórico</string>
+    <string name="msgs_history_empty">Histórico está vazio</string>
+    <string name="msgs_history_unknown">Histórico desconhecido</string>
+    <string name="search">Resultados de busca</string>
+    <string name="search_hint">Digite para busca</string>
+    <string name="search_voice_hint">Fale para buscar</string>
+    <string name="search_error_msg">Um erro ocorreu enquanto buscando. Nenhum resultado encontrado</string>
+    <string name="search_no_results_msg">Nenhum resultado encontrado</string>
+    <plurals name="search_found_items">
+        <item quantity="zero">Nenhum ítem encontrado</item>
+        <item quantity="one">1 ítem encontrado</item>
+        <item quantity="other"><xliff:g id="count" xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">%d</xliff:g> ítems encontrados</item>
+    </plurals>
+    <string name="search_found_items_in_directory"><xliff:g id="items" xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">%1$s</xliff:g> em <xliff:g id="path" xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">%2$s</xliff:g></string>
+    <string name="search_terms"><![CDATA[<b>Termos:</b>]]> <xliff:g id="terms" xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">%1$s</xliff:g></string>
+    <string name="search_few_characters_title">Confirmar busca</string>
+    <string name="search_few_characters_msg">Alguns termos de busca tem um número pequeno de caracteres. A operação pode demorar muito tempo e custar recursos de sistema.\n\nVocê deseja proceguir?</string>
+    <string name="searching">Favor aguarde\u2036</string>
+    <string name="searching_action_label">Busca em andamento</string>
+    <string name="picker_title">Escolha um arquivo</string>
+    <string name="editor">Editor</string>
+    <string name="editor_invalid_file_msg">Arquivo inválido</string>
+    <string name="editor_file_not_found_msg">Arquivo não encontrado</string>
+    <string name="editor_file_exceed_size_msg">O arquivo é muito grande para ser aberto neste dispositivo.</string>
+    <string name="editor_dirty_ask_title">Confirmar saída</string>
+    <string name="editor_dirty_ask_msg">Existem mudanças não salvas.\n\nSair sem salvar?</string>
+    <string name="editor_successfully_saved">O arquivo foi salvo com sucesso</string>
+    <string name="editor_read_only_mode">O arquivo foi aberto em modo somente leitura</string>
+    <string name="bookmarks">Favoritos</string>
+    <string name="bookmarks_home">Pasta pessoal</string>
+    <string name="bookmarks_root_folder">Pasta raiz</string>
+    <string name="bookmarks_system_folder">Pasta do sistema</string>
+    <string name="bookmarks_button_config_cd">Definir a pasta inicial</string>
+    <string name="bookmarks_button_remove_bookmark_cd">Remover o favorito</string>
+    <string name="bookmarks_msgs_add_success">O favorito foi adicionado com sucesso</string>
+    <string name="initial_directory_dialog_title">Pasta inicial</string>
+    <string name="initial_directory_label">Escolha a pasta inicial:</string>
+    <string name="initial_directory_relative_msg">Caminhos relativo não são permtidos</string>
+    <string name="initial_directory_error_msg">Um erro ocorreu ao salvar a pasta inicial</string>
+    <string name="menu_history">Histórico</string>
+    <string name="menu_bookmarks">Favoritos</string>
+    <string name="menu_search">Buscar</string>
+    <string name="menu_settings">Configurações</string>
+    <string name="menu_clear_history">Limpar histórico</string>
+    <string name="create_copy_regexp"><xliff:g id="name" xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">%1$s</xliff:g> - cópia<xliff:g id="extension" xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">%2$s</xliff:g></string>
+    <string name="create_new_compress_file_regexp"><xliff:g id="name" xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">%1$s</xliff:g> - novo<xliff:g id="extension" xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">%2$s</xliff:g></string>
+    <string name="waiting_dialog_msg">Executando a operação\u2026</string>
+    <string name="waiting_dialog_copying_title">Copiando\u2026</string>
+    <string name="waiting_dialog_copying_msg"><![CDATA[<b>De</b>]]><xliff:g id="from" xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">%1$s</xliff:g><![CDATA[<br/>]]><![CDATA[<b>Para</b>]]><xliff:g id="to" xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">%2$s</xliff:g></string>
+    <string name="waiting_dialog_moving_title">Movendo\u2026</string>
+    <string name="waiting_dialog_moving_msg"><![CDATA[<b>De</b>]]><xliff:g id="from" xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">%1$s</xliff:g><![CDATA[<br/>]]><![CDATA[<b>Para</b>]]><xliff:g id="to" xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">%2$s</xliff:g></string>
+    <string name="waiting_dialog_deleting_title">Excluindo\u2026</string>
+    <string name="waiting_dialog_deleting_msg"><![CDATA[<b>Arquivo</b>]]><xliff:g id="file" xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">%1$s</xliff:g></string>
+    <string name="waiting_dialog_extracting_title">Extraindo\u2026</string>
+    <string name="waiting_dialog_extracting_msg"><![CDATA[<b>Arquivo</b>]]><xliff:g id="file" xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">%1$s</xliff:g></string>
+    <string name="waiting_dialog_compressing_title">Comprimindo\u2026</string>
+    <string name="waiting_dialog_compressing_msg"><![CDATA[<b>Arquivo</b>]]><xliff:g id="file" xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">%1$s</xliff:g></string>
+    <string name="waiting_dialog_analizing_msg"><![CDATA[<b>Analizando\u2026</b>]]></string>
+    <string name="msgs_extracting_success">O processo de extração foi completado com sucesso. Os dados foram extraídos para <xliff:g id="destination" xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">%1$s</xliff:g></string>
+    <string name="msgs_compressing_success">O processo de compressão foi completado com sucesso. Os dados foram comprimidos para <xliff:g id="destination" xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">%1$s</xliff:g></string>
+    <string name="actions_dialog_title">Ações</string>
+    <string name="actions_menu_properties_current_folder">Propriedades</string>
+    <string name="actions_menu_refresh">Atualizar</string>
+    <string name="actions_menu_new_directory">Nova pasta</string>
+    <string name="actions_menu_new_file">Novo arquivo</string>
+    <string name="actions_menu_select_all">Selecionar tudo</string>
+    <string name="actions_menu_deselect_all">Desselecionar tudo</string>
+    <string name="actions_menu_select">Selecionar</string>
+    <string name="actions_menu_deselect">Desselecionar</string>
+    <string name="actions_menu_paste_selection">Colar seleção</string>
+    <string name="actions_menu_move_selection">Mover seleção</string>
+    <string name="actions_menu_delete_selection">Excluir seleção</string>
+    <string name="actions_menu_compress_selection">Comprimir seleção</string>
+    <string name="actions_menu_create_link">Criar atalho</string>
+    <string name="actions_menu_open">Abrir</string>
+    <string name="actions_menu_open_with">Abrir com</string>
+    <string name="actions_menu_execute">Executar</string>
+    <string name="actions_menu_send">Enviar</string>
+    <string name="actions_menu_compress">Comprimir</string>
+    <string name="actions_menu_extract">Extrair</string>
+    <string name="actions_menu_delete">Excluir</string>
+    <string name="actions_menu_rename">Renomear</string>
+    <string name="actions_menu_create_copy">Criar cópia</string>
+    <string name="actions_menu_properties">Propriedades</string>
+    <string name="actions_menu_add_to_bookmarks">Adicionar aos favoritos</string>
+    <string name="actions_menu_add_shortcut">Adicionar atalho</string>
+    <string name="actions_menu_open_parent_folder">Abrir pasta superior</string>
+    <string name="actions_ask_undone_operation_msg">Esta ação não pode ser desfeita. Você deseja continuar?</string>
+    <string name="input_name_dialog_label">Nome:</string>
+    <string name="input_name_dialog_message_empty_name">O nome não pode estar vazio</string>
+    <string name="input_name_dialog_message_invalid_path_name">Nome inválido. Os caracteres \'<xliff:g id="invalid_characters">%1$s</xliff:g>\' não são permitidos.</string>
+    <string name="input_name_dialog_message_invalid_name">Nome inválido. Os nomes \'.\' e \'..\' não são permitidos.</string>
+    <string name="input_name_dialog_message_name_exists">O nome já existe</string>
+    <string name="associations_dialog_title">Associações</string>
+    <string name="associations_dialog_remember">Lembrar seleção</string>
+    <string name="associations_dialog_openwith_title">Abrir com</string>
+    <string name="associations_dialog_openwith_action">Abrir</string>
+    <string name="associations_dialog_sendwith_title">Enviar com</string>
+    <string name="associations_dialog_sendwith_action">Enviar</string>
+    <string name="inline_autocomplete_tab_nothing_to_complete_msg">Nada para completar</string>
+    <string name="execution_console_title">Console</string>
+    <string name="execution_console_script_name_label">Script:</string>
+    <string name="execution_console_script_execution_time_label">Tempo:</string>
+    <string name="execution_console_script_exitcode_label">Código de saída:</string>
+    <string name="execution_console_script_execution_time_text"><xliff:g id="seconds" xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">%1$s</xliff:g> segundos</string>
+    <string name="mime_folder">Pasta</string>
+    <string name="mime_symlink">Link simbólico</string>
+    <string name="mime_unknown">Desconhecido</string>
+    <string name="selection_one_folder"><xliff:g id="folders" xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">%1$s</xliff:g> pasta selecionada</string>
+    <string name="selection_other_folders"><xliff:g id="folders" xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">%1$s</xliff:g> pastas selecionadas</string>
+    <string name="selection_one_file"><xliff:g id="files" xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">%1$s</xliff:g> arquivo selecionado</string>
+    <string name="selection_other_files"><xliff:g id="files" xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">%1$s</xliff:g> arquivos selecionados</string>
+    <string name="selection_other_folders_one_file"><xliff:g id="folders" xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">%1$s</xliff:g> pastas e <xliff:g id="files" xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">%2$s</xliff:g> arquivo selecionados</string>
+    <string name="selection_one_folder_other_files"><xliff:g id="folder2" xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">%1$s</xliff:g> pasta e <xliff:g id="file2" xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">%2$s</xliff:g> arquivos selecionados</string>
+    <string name="selection_other_folders_other_files"><xliff:g id="folder2" xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">%1$s</xliff:g> pastas e <xliff:g id="files" xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">%2$s</xliff:g> arquivos selecionados</string>
+    <string name="category_system">SISTEMA</string>
+    <string name="category_app">APLICATIVO</string>
+    <string name="category_binary">BINÁRIO</string>
+    <string name="category_text">TEXTO</string>
+    <string name="category_document">DOCUMENTO</string>
+    <string name="category_ebook">EBOOK</string>
+    <string name="category_mail">CORREIO</string>
+    <string name="category_compress">COMPRESSÃO</string>
+    <string name="category_exec">EXECUTÁVEL</string>
+    <string name="category_database">BANCO DE DADOS</string>
+    <string name="category_font">FONTE</string>
+    <string name="category_image">IMAGEM</string>
+    <string name="category_audio">ÁUDIO</string>
+    <string name="category_video">VÍDEOS</string>
+    <string name="category_security">SEGURANÇA</string>
+    <string name="compression_mode_title">Modo de compressão</string>
+    <string name="shortcut_failed_msg">Falha ao lidar com o atalho</string>
+    <string name="shortcut_creation_success_msg">Atalho criado com sucesso</string>
+    <string name="shortcut_creation_failed_msg">Falha ao criar o atalho</string>
+    <string name="pref">Configurações</string>
+    <string name="pref_general">Configurações gerais</string>
+    <string name="pref_search">Opções de busca</string>
+    <string name="pref_about">Sobre</string>
+    <string name="pref_about_summary">Gerenciador de Arquivos v<xliff:g id="version" xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">%1$s</xliff:g>\nCopyright \u00A9 2012 The CyanogenMod Project</string>
+    <string name="pref_general_behaviour_category">Geral</string>
+    <string name="pref_case_sensitive_sort">Usar ordenação sensível a maiúsculas/minúsculas</string>
+    <string name="pref_disk_usage_warning_level">Aviso sobre o uso do disco</string>
+    <string name="pref_disk_usage_warning_level_summary" formatted="false">Exibir uma cor diferente nos widgets de uso de disco quando chegar a <xliff:g id="level" xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">%1$s</xliff:g> porcentos de espaço disponível</string>
+    <string name="pref_compute_folder_statistics">Computar estatísticas da pasta</string>
+    <string name="pref_compute_folder_statistics_on">Aviso! A computação das estatísticas da pasta gasta tempo e recursos do sistema</string>
+    <string name="pref_use_flinger">Usar gestos</string>
+    <string name="pref_use_flinger_summary">Usar detecção de gestos de delizar para esquerda e direita para excluir arquivos e pastas</string>
+    <string name="pref_general_advanced_settings_category">Avançado</string>
+    <string name="pref_access_mode">Modo de acesso</string>
+    <string name="pref_access_mode_safe">Modo de seguro</string>
+    <string name="pref_access_mode_safe_summary">Modo seguro\n\nO aplicativo está rodando sem privilégios e somente os sistemas de arquivos que são acessíveis são os volumes (Cartões SD e USB)</string>
+    <string name="pref_access_mode_prompt">Modo de usuário</string>
+    <string name="pref_access_mode_prompt_summary">Modo de usuário\n\nO aplicativo está rodando com total acesso ao sistema de arquivo mas irá perguntar por permissão antes de executar algum ação que requer previlégios</string>
+    <string name="pref_access_mode_root">Modo de acesso root</string>
+    <string name="pref_access_mode_root_summary">Modo de Acesso Root\n\nAviso! Este modo permite operações que pode danificar seu dispositivo. É de sua responsabilidade garantir que uma operação é segura</string>
+    <string name="pref_search_results_category">Resultados</string>
+    <string name="pref_show_relevance_widget">Exibir widget de relevância</string>
+    <string name="pref_highlight_terms">Realçar termos de busca</string>
+    <string name="pref_sort_search_results_mode">Modo de resultados de ordenação</string>
+    <string name="pref_sort_search_results_mode_none">Sem ordenação</string>
+    <string name="pref_sort_search_results_mode_name">Por nome</string>
+    <string name="pref_sort_search_results_mode_relevance">Por relevância</string>
+    <string name="pref_search_privacity_category">Privacidade</string>
+    <string name="pref_save_search_terms">Salvar termos de busca</string>
+    <string name="pref_save_search_terms_on">Os termos de busca serão salvos e usados como sugestões em buscas futuras</string>
+    <string name="pref_save_search_terms_off">Termos de busca não serão salvos</string>
+    <string name="pref_remove_saved_search_terms">Remover termos de busca salvos</string>
+    <string name="pref_remove_saved_search_terms_summary">Pressione para remover todos os termos de busca salvos</string>
+    <string name="pref_remove_saved_search_terms_msg">Todos os termos de busca foram removidos</string>
+    <string name="pref_debug_traces">Logar informações de depuração</string>
+    <string name="security_warning_extract">Aviso!\n\nO dispositivo pode ser danificado se, ao extrair arquivos com caminhos relativos ou absolutos, arquivos de sistema forem sobrescritos.\n\nVocê deseja continuar?</string>
+    <string name="changelog_title">Registro de mudanças</string>
+    <string name="welcome_title">Bem vindo</string>
+    <string name="welcome_msg">Bem vindo ao gerenciador de arquivos CyanogenMod.\n\nEste aplicativo permite você a explorar o sistema de arquivos e fazer operações que podem danificar seu dispositivo. Para previnir danos, o aplicativo irá iniciar em modo seguro e com poucos privilégios.\n\nVocê pode acessar o modo avançado, com todos os privilégios através das Configurações. É sua responsabilidade de garantir que uma operação não danifica seu sistema.\n\nThe CyanogenMod Team.\n</string>
+    <string name="themes_author">CyanogenMod</string>
+    <string name="pref_themes">Temas</string>
+    <string name="pref_themes_selection_category">Temas</string>
+    <string name="pref_themes_set_theme">Definir tema</string>
+    <string name="pref_themes_no_preview">Sem previsualização</string>
+    <string name="pref_themes_confirmation">O tema foi aplicado com sucesso</string>
+    <string name="pref_themes_not_found">Tema não foi encontrado</string>
+    <string name="theme_default_name">Tema claro</string>
+    <string name="theme_default_description">Um tema claro para o Gerenciador de Arquivos CyanogenMod</string>
+</resources>

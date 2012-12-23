@@ -36,6 +36,8 @@ import android.widget.Toast;
 
 import com.cyanogenmod.filemanager.R;
 import com.cyanogenmod.filemanager.adapters.CheckableListAdapter;
+import com.cyanogenmod.filemanager.ui.ThemeManager;
+import com.cyanogenmod.filemanager.ui.ThemeManager.Theme;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -153,27 +155,10 @@ public final class DialogHelper {
      */
     public static AlertDialog createAlertDialog(
             Context context, int icon, int title, String message, boolean allCaps) {
-        return createAlertDialog(context, icon, title, message, allCaps, false);
-    }
-
-    /**
-     * Method that creates a new {@link AlertDialog}.
-     *
-     * @param context The current context
-     * @param icon The icon resource
-     * @param title The resource identifier of the title of the alert dialog
-     * @param message The message of the alert dialog
-     * @param allCaps If the title must have his text in caps or not
-     * @param scrolled If message need to be scrolled
-     * @return AlertDialog The alert dialog reference
-     */
-    public static AlertDialog createAlertDialog(
-            Context context, int icon, int title, String message,
-            boolean allCaps, boolean scrolled) {
         //Create the alert dialog
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         builder.setCustomTitle(createTitle(context, icon, context.getString(title), allCaps));
-        builder.setView(createMessage(context, message, scrolled));
+        builder.setView(createMessage(context, message));
         builder.setPositiveButton(context.getString(R.string.ok), null);
         return builder.create();
     }
@@ -205,7 +190,7 @@ public final class DialogHelper {
             boolean checked = (i == defOption);
             items.add(new CheckableListAdapter.CheckableItem(options[i], true, checked));
         }
-        final CheckableListAdapter adapter = new CheckableListAdapter(context, items);
+        final CheckableListAdapter adapter = new CheckableListAdapter(context, items, true);
 
         // Create the list view and set as view
         final ListView listView = new ListView(context);
@@ -225,6 +210,12 @@ public final class DialogHelper {
         adapter.setSelectedItem(defOption);
         listView.setChoiceMode(AbsListView.CHOICE_MODE_SINGLE);
         builder.setView(listView);
+
+        // Apply the current theme
+        Theme theme = ThemeManager.getCurrentTheme(context);
+        theme.setBackgroundDrawable(context, listView, "background_drawable"); //$NON-NLS-1$
+        listView.setDivider(
+                theme.getDrawable(context, "horizontal_divider_drawable")); //$NON-NLS-1$
 
         builder.setNegativeButton(context.getString(R.string.cancel), new OnClickListener() {
             @Override
@@ -276,7 +267,7 @@ public final class DialogHelper {
                         0,
                         context.getString(title),
                         false));
-        builder.setView(createMessage(context, message, false));
+        builder.setView(createMessage(context, message));
         AlertDialog dialog = builder.create();
         dialog.setButton(
                 DialogInterface.BUTTON_POSITIVE, context.getString(R.string.yes), onClickListener);
@@ -318,7 +309,7 @@ public final class DialogHelper {
                         0,
                         context.getString(title),
                         false));
-        builder.setView(createMessage(context, message, false));
+        builder.setView(createMessage(context, message));
         AlertDialog dialog = builder.create();
         dialog.setButton(
                 DialogInterface.BUTTON_POSITIVE, context.getString(R.string.yes), onClickListener);
@@ -351,7 +342,7 @@ public final class DialogHelper {
                         0,
                         context.getString(title),
                         false));
-        builder.setView(createMessage(context, message, false));
+        builder.setView(createMessage(context, message));
         AlertDialog dialog = builder.create();
         dialog.setButton(
                 DialogInterface.BUTTON_POSITIVE, context.getString(button1), onClickListener);
@@ -383,7 +374,7 @@ public final class DialogHelper {
                         0,
                         context.getString(title),
                         false));
-        builder.setView(createMessage(context, message, false));
+        builder.setView(createMessage(context, message));
         AlertDialog dialog = builder.create();
         dialog.setButton(
                 DialogInterface.BUTTON_POSITIVE, context.getString(button1), onClickListener);
@@ -418,7 +409,7 @@ public final class DialogHelper {
      */
     public static AlertDialog createDialog(Context context, int icon, String title, View content) {
         //Create the alert dialog
-        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        final AlertDialog.Builder builder = new AlertDialog.Builder(context);
         builder.setCustomTitle(createTitle(context, icon, title, false));
         builder.setView(content);
         return builder.create();
@@ -449,6 +440,12 @@ public final class DialogHelper {
             vText.setFilters(new InputFilter[]{new InputFilter.AllCaps()});
         }
         vText.setText(title);
+
+        // Apply the current theme
+        Theme theme = ThemeManager.getCurrentTheme(context);
+        theme.setBackgroundDrawable(context, lyTitle, "background_drawable"); //$NON-NLS-1$
+        theme.setTextColor(context, vText, "dialog_text_color"); //$NON-NLS-1$
+
         return lyTitle;
     }
 
@@ -459,15 +456,21 @@ public final class DialogHelper {
      * @param message The the message of the alert dialog
      * @return The title view
      */
-    private static View createMessage(Context context, String message, boolean scrolled) {
+    private static View createMessage(Context context, String message) {
         //Inflate the dialog layouts
         LayoutInflater li =
                 (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View lyMessage = li.inflate(
-                            scrolled ? R.layout.dialog_scrolled_message : R.layout.dialog_message,
+                            R.layout.dialog_message,
                             null);
         TextView vMsg = (TextView)lyMessage.findViewById(R.id.dialog_message);
         vMsg.setText(message);
+
+        // Apply the current theme
+        Theme theme = ThemeManager.getCurrentTheme(context);
+        theme.setBackgroundDrawable(context, lyMessage, "background_drawable"); //$NON-NLS-1$
+        theme.setTextColor(context, vMsg, "text_color"); //$NON-NLS-1$
+
         return lyMessage;
     }
 
@@ -487,6 +490,22 @@ public final class DialogHelper {
         popup.setAnchorView(anchor);
         popup.setModal(true);
         return popup;
+    }
+
+    /**
+     * Method that delegates the display of a dialog. This method applies the style to the
+     * dialog, so all dialogs of the application MUST used this method to display the dialog.
+     *
+     * @param context The current context
+     * @param dialog The dialog to show
+     */
+    public static void delegateDialogShow(Context context, AlertDialog dialog) {
+        // Show the dialog
+        dialog.show();
+
+        // Apply theme
+        Theme theme = ThemeManager.getCurrentTheme(context);
+        theme.setDialogStyle(context, dialog);
     }
 
     /**

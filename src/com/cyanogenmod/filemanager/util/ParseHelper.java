@@ -152,7 +152,8 @@ public final class ParseHelper {
         Pattern pattern = Pattern.compile(DATE_PATTERN);
         Matcher matcher = pattern.matcher(raw);
         if (!matcher.find()) {
-            throw new ParseException("last modification date not found", 0); //$NON-NLS-1$
+            throw new ParseException(
+                    "last modification date not found in " + raw, 0); //$NON-NLS-1$
         }
         Date dLastModified = null;
         try {

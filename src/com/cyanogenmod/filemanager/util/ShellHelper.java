@@ -42,7 +42,9 @@ public final class ShellHelper {
         if (arg == null) {
             return null;
         }
-        return arg.replace("\"", "\\\""); //$NON-NLS-1$//$NON-NLS-2$
+        String preparedArgs = arg.replace("\"", "\\\""); //$NON-NLS-1$//$NON-NLS-2$
+        preparedArgs = preparedArgs.replace("$", "\\$"); //$NON-NLS-1$//$NON-NLS-2$
+        return preparedArgs;
     }
 
     /**

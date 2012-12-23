@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (C) 2012 The CyanogenMod Project
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+ -->
+
+<!--
+    A dark theme for CMFileManager.
+ -->
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+
+  <!-- The base theme used to customize some (non-themeables) widgets like dialogs
+       2 possibles values:
+         * holo: @android:style/Theme.Holo
+         * holo_light: @android:style/Theme.Holo.Light
+  -->
+  <string name="dark_base_theme">holo</string>
+
+  <!-- The image preview -->
+  <drawable name="dark_theme_preview_drawable">@drawable/dark_theme_preview</drawable>
+
+  <!-- The drawable for the title bar -->
+  <drawable name="dark_titlebar_drawable">@drawable/dark_titlebar</drawable>
+
+  <!-- The background drawable -->
+  <drawable name="dark_background_drawable">@drawable/dark_background</drawable>
+
+  <!-- The drawable for the status bar -->
+  <drawable name="dark_statusbar_drawable">@drawable/dark_statusbar</drawable>
+
+  <!-- The drawable for the selection bar -->
+  <drawable name="dark_selectionbar_drawable">@drawable/dark_selectionbar</drawable>
+
+  <!-- The drawable for the overflow action bar button -->
+  <drawable name="dark_ab_overflow_drawable">@drawable/ic_holo_dark_overflow</drawable>
+  <!-- The drawable for the actions action bar button -->
+  <drawable name="dark_ab_actions_drawable">@drawable/ic_holo_dark_contextual_action</drawable>
+  <!-- The drawable for the search action bar button -->
+  <drawable name="dark_ab_search_drawable">@drawable/ic_holo_dark_search</drawable>
+  <!-- The drawable for the bookmarks action bar button -->
+  <drawable name="dark_ab_bookmarks_drawable">@drawable/ic_holo_dark_bookmarks</drawable>
+  <!-- The drawable for the history action bar button -->
+  <drawable name="dark_ab_history_drawable">@drawable/ic_holo_dark_history</drawable>
+  <!-- The drawable for the sort mode of expander bar -->
+  <drawable name="dark_ab_sort_mode_drawable">@drawable/ic_holo_dark_sort_alphabetically</drawable>
+  <!-- The drawable for the layout mode of expander bar -->
+  <drawable name="dark_ab_layout_mode_drawable">@drawable/ic_holo_dark_layout</drawable>
+  <!-- The drawable for the view options of expander bar -->
+  <drawable name="dark_ab_view_options_drawable">@drawable/ic_holo_dark_view</drawable>
+  <!-- The drawable for the selection done button -->
+  <drawable name="dark_ab_selection_done_drawable">@drawable/ic_holo_dark_accept</drawable>
+  <!-- The drawable for the save action bar button -->
+  <drawable name="dark_ab_save_drawable">@drawable/ic_holo_dark_save</drawable>
+  <!-- The drawable for the tab action bar button -->
+  <drawable name="dark_ab_tab_drawable">@drawable/ic_holo_dark_tab</drawable>
+
+  <!-- The close action drawable from the expander bar -->
+  <drawable name="dark_expander_close_drawable">@drawable/ic_holo_dark_expander_close</drawable>
+  <!-- The open action drawable from the expander bar -->
+  <drawable name="dark_expander_open_drawable">@drawable/ic_holo_dark_expander_open</drawable>
+
+  <!-- The text color of TextView controls -->
+  <color name="dark_text_color">#99ffffff</color>
+  <!-- The text color of Dialog
+  <color name="dialog_text_color">@null</color> -->
+
+  <!-- The highlight color for terms found in the search result -->
+  <color name="dark_search_highlight_color">#9933b5e5</color>
+
+  <!-- Breadcrumb divider drawable
+  <drawable name="dark_breadcrumb_divider_drawable">@null</drawable> -->
+
+  <!-- FileSystem locked drawable -->
+  <drawable name="dark_filesystem_locked_drawable">@drawable/ic_holo_dark_fs_locked</drawable>
+  <!-- FileSystem unlocked drawable -->
+  <drawable name="dark_filesystem_unlocked_drawable">@drawable/ic_holo_dark_fs_unlocked</drawable>
+  <!-- FileSystem warning drawable -->
+  <drawable name="dark_filesystem_warning_drawable">@drawable/ic_holo_dark_fs_warning</drawable>
+
+  <!-- The popup menu checkable selector drawable -->
+  <drawable name="dark_popup_checkable_selector_drawable">@drawable/dark_checkable_selector</drawable>
+  <!-- The menu checkable selector drawable -->
+  <drawable name="dark_menu_checkable_selector_drawable">@drawable/dark_holo_popup_selector</drawable>
+  <!-- The checkable item selector drawable -->
+  <drawable name="dark_selection_drawable">@drawable/dark_holo_selection</drawable>
+
+  <!-- Selectors -->
+  <drawable name="dark_selectors_deselected_drawable">@drawable/dark_holo_list_selector_deselected</drawable>
+  <drawable name="dark_selectors_selected_drawable">@drawable/dark_holo_list_selector_selected</drawable>
+  <drawable name="dark_selectors_button_drawable">@drawable/dark_holo_button_selector</drawable>
+
+  <!-- Checkboxes -->
+  <drawable name="dark_checkbox_deselected_drawable">@drawable/btn_holo_dark_check_off_normal</drawable>
+  <drawable name="dark_checkbox_selected_drawable">@drawable/btn_holo_dark_check_on_normal</drawable>
+
+  <!-- Dividers -->
+  <drawable name="dark_horizontal_divider_drawable">@drawable/divider_horizontal_dark_opaque</drawable>
+  <drawable name="dark_vertical_divider_drawable">@drawable/divider_vertical_dark_opaque</drawable>
+  <color name="dark_horizontal_divider_color">#99505050</color>
+  <color name="dark_vertical_divider_color">#99505050</color>
+
+  <!-- Icons -->
+  <drawable name="dark_ic_close_drawable">@drawable/ic_holo_dark_close</drawable>
+  <drawable name="dark_ic_config_drawable">@drawable/ic_holo_dark_config</drawable>
+  <drawable name="dark_ic_home_drawable">@drawable/ic_holo_dark_home</drawable>
+  <drawable name="dark_ic_filesystem_drawable">@drawable/ic_holo_dark_filesystem</drawable>
+  <drawable name="dark_ic_sdcard_drawable">@drawable/ic_holo_dark_sdcard</drawable>
+  <drawable name="dark_ic_usb_drawable">@drawable/ic_holo_dark_usb</drawable>
+  <drawable name="dark_ic_user_defined_bookmark_drawable">@drawable/ic_holo_dark_user_defined_bookmark</drawable>
+  <!--<drawable name="dark_ic_history_search_drawable">@null</drawable> -->
+
+  <!-- Disk usage graph -->
+  <color name="dark_disk_usage_total_color">#7ecccccc</color>
+  <color name="dark_disk_usage_used_color">#cc0099cc</color>
+  <color name="dark_disk_usage_used_warning_color">#99ff4444</color>
+
+  <!-- Disk usage filters
+  <color name="dark_disk_usage_filter_normal_color">@null</color>
+  <color name="dark_disk_usage_filter_warning_color">@null</color> -->
+
+  <!-- ProgressBar -->
+  <drawable name="dark_horizontal_progress_bar">@drawable/dark_progress_horizontal_holo</drawable>
+
+  <!-- Autocomplete -->
+  <color name="dark_autocomplete_fg_color">#99ffffff</color>
+  <color name="dark_autocomplete_bg_color">#aaa</color>
+
+  <!-- Console
+  <color name="dark_console_bg_color">@null</color>
+  <color name="dark_console_fg_color">@null</color> -->
+
+  <!-- Fso Icons
+  <drawable name="dark_ic_fso_folder_drawable">@null</drawable>
+  <drawable name="dark_ic_fso_default_drawable">@null</drawable>
+  <drawable name="dark_fso_type_app_drawable">@null</drawable>
+  <drawable name="dark_fso_type_audio_drawable">@null</drawable>
+  <drawable name="dark_fso_type_binary_drawable">@null</drawable>
+  <drawable name="dark_fso_type_calendar_drawable">@null</drawable>
+  <drawable name="dark_fso_type_cdimage_drawable">@null</drawable>
+  <drawable name="dark_fso_type_compress_drawable">@null</drawable>
+  <drawable name="dark_fso_type_contact_drawable">@null</drawable>
+  <drawable name="dark_fso_type_database_drawable">@null</drawable>
+  <drawable name="dark_fso_type_document_drawable">@null</drawable>
+  <drawable name="dark_fso_type_ebook_drawable">@null</drawable>
+  <drawable name="dark_fso_type_email_drawable">@null</drawable>
+  <drawable name="dark_fso_type_executable_drawable">@null</drawable>
+  <drawable name="dark_fso_type_feed_drawable">@null</drawable>
+  <drawable name="dark_fso_type_font_drawable">@null</drawable>
+  <drawable name="dark_fso_type_image_drawable">@null</drawable>
+  <drawable name="dark_fso_type_markup_document_drawable">@null</drawable>
+  <drawable name="dark_fso_type_pdf_drawable">@null</drawable>
+  <drawable name="dark_fso_type_presentation_drawable">@null</drawable>
+  <drawable name="dark_fso_type_security_drawable">@null</drawable>
+  <drawable name="dark_fso_type_shell_drawable">@null</drawable>
+  <drawable name="dark_fso_type_source_drawable">@null</drawable>
+  <drawable name="dark_fso_type_spreadsheet_drawable">@null</drawable>
+  <drawable name="dark_fso_type_system_drawable">@null</drawable>
+  <drawable name="dark_fso_type_text_drawable">@null</drawable>
+  <drawable name="dark_fso_type_video_drawable">@null</drawable> -->
+
+</resources>

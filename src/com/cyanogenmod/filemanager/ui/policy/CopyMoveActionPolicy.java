@@ -220,7 +220,7 @@ public final class CopyMoveActionPolicy extends ActionsPolicy {
                     DialogHelper.createErrorDialog(ctx,
                             R.string.error_title,
                             R.string.msgs_illegal_argument);
-            dialog.show();
+            DialogHelper.delegateDialogShow(ctx, dialog);
             return;
         }
         // 2.- All the destination files must have the same parent and it must be currentDirectory,
@@ -234,7 +234,7 @@ public final class CopyMoveActionPolicy extends ActionsPolicy {
                         DialogHelper.createErrorDialog(ctx,
                                 R.string.error_title,
                                 R.string.msgs_illegal_argument);
-                dialog.show();
+                DialogHelper.delegateDialogShow(ctx, dialog);
                 return;
             }
             if (linkedRes.mDst.getParent() == null ||
@@ -243,7 +243,7 @@ public final class CopyMoveActionPolicy extends ActionsPolicy {
                         DialogHelper.createErrorDialog(ctx,
                                 R.string.error_title,
                                 R.string.msgs_illegal_argument);
-                dialog.show();
+                DialogHelper.delegateDialogShow(ctx, dialog);
                 return;
             }
         }
@@ -444,7 +444,7 @@ public final class CopyMoveActionPolicy extends ActionsPolicy {
                                         }
                                     }
                                });
-                dialog.show();
+                DialogHelper.delegateDialogShow(ctx, dialog);
                 return;
             }
         }
@@ -515,7 +515,7 @@ public final class CopyMoveActionPolicy extends ActionsPolicy {
                                 ctx,
                                 R.string.error_title,
                                 R.string.msgs_unresolved_inconsistencies);
-                dialog.show();
+                DialogHelper.delegateDialogShow(ctx, dialog);
                 return false;
             }
 
@@ -527,7 +527,7 @@ public final class CopyMoveActionPolicy extends ActionsPolicy {
                                 ctx,
                                 R.string.error_title,
                                 R.string.msgs_operation_not_allowed_in_current_directory);
-                dialog.show();
+                DialogHelper.delegateDialogShow(ctx, dialog);
                 return false;
             }
         }

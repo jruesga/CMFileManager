@@ -28,11 +28,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.cyanogenmod.filemanager.R;
+import com.cyanogenmod.filemanager.ui.ThemeManager;
+import com.cyanogenmod.filemanager.ui.ThemeManager.Theme;
 import com.cyanogenmod.filemanager.util.DialogHelper;
 
 import java.util.ArrayList;
@@ -139,6 +142,9 @@ public class InlineAutocompleteTextView extends RelativeLayout
         View button = findViewById(R.id.inline_autocomplete_button_tab);
         button.setOnClickListener(this);
         button.setOnLongClickListener(this);
+
+        // Apply the theme
+        applyTheme();
 
         //Initialize text views
         setText(""); //$NON-NLS-1$
@@ -507,6 +513,20 @@ public class InlineAutocompleteTextView extends RelativeLayout
             }
             return text;
         }
+    }
+
+    /**
+     * Method that applies the current theme to the widget components
+     */
+    public void applyTheme() {
+        Theme theme = ThemeManager.getCurrentTheme(getContext());
+        View v = findViewById(R.id.inline_autocomplete_bg_text);
+        theme.setTextColor(getContext(), (TextView)v, "text_color"); //$NON-NLS-1$
+        v = findViewById(R.id.inline_autocomplete_fg_text);
+        theme.setTextColor(getContext(), (TextView)v, "text_color"); //$NON-NLS-1$
+        v = findViewById(R.id.inline_autocomplete_button_tab);
+        theme.setImageDrawable(
+                getContext(), (ImageView)v, "ab_tab_drawable"); //$NON-NLS-1$
     }
 
 }

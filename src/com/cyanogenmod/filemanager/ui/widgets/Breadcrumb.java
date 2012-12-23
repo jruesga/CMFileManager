@@ -83,4 +83,8 @@ public interface Breadcrumb {
      */
     DiskUsage getDiskUsageInfo();
 
+    /**
+     * Method that applies the current theme to the breadcrumb
+     */
+    void applyTheme();
 }

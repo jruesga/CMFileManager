@@ -25,6 +25,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.cyanogenmod.filemanager.R;
+import com.cyanogenmod.filemanager.ui.ThemeManager;
+import com.cyanogenmod.filemanager.ui.ThemeManager.Theme;
 
 import java.util.List;
 
@@ -70,6 +72,8 @@ public class CheckableListAdapter extends ArrayAdapter<CheckableListAdapter.Chec
         TextView mTvTitle;
     }
 
+    private final boolean mIsDialog;
+
     //The resource of the item check
     private static final int RESOURCE_ITEM_CHECK = R.id.option_list_item_check;
     //The resource of the item name
@@ -83,7 +87,21 @@ public class CheckableListAdapter extends ArrayAdapter<CheckableListAdapter.Chec
      */
     public CheckableListAdapter(
             Context context, List<CheckableListAdapter.CheckableItem> items) {
+        this(context, items, false);
+    }
+
+    /**
+     * Constructor of <code>CheckableListAdapter</code>.
+     *
+     * @param context The current context
+     * @param items An array of items to add to the current list
+     * @param isDialog Indicates if the owner is a dialog (not a popup). In this case,
+     * use the background of the dialog.
+     */
+    public CheckableListAdapter(
+            Context context, List<CheckableListAdapter.CheckableItem> items, boolean isDialog) {
         super(context, RESOURCE_ITEM_NAME, items);
+        this.mIsDialog = isDialog;
     }
 
     /**
@@ -114,12 +132,25 @@ public class CheckableListAdapter extends ArrayAdapter<CheckableListAdapter.Chec
         if (v == null) {
             //Create the view holder
             LayoutInflater li =
-                    (LayoutInflater)getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                (LayoutInflater)getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             v = li.inflate(R.layout.option_list_item, parent, false);
             ViewHolder viewHolder = new CheckableListAdapter.ViewHolder();
             viewHolder.mTvTitle = (TextView)v.findViewById(RESOURCE_ITEM_NAME);
             viewHolder.mDwCheck = (ImageView)v.findViewById(RESOURCE_ITEM_CHECK);
             v.setTag(viewHolder);
+
+            // Apply theme
+            Theme theme = ThemeManager.getCurrentTheme(getContext());
+            theme.setBackgroundDrawable(
+                    getContext(), v,
+                    (this.mIsDialog) ?
+                            "selectors_deselected_drawable" : //$NON-NLS-1$
+                            "menu_checkable_selector_drawable"); //$NON-NLS-1$
+            theme.setTextColor(
+                    getContext(), viewHolder.mTvTitle, "text_color"); //$NON-NLS-1$
+            theme.setImageDrawable(
+                    getContext(), viewHolder.mDwCheck,
+                    "popup_checkable_selector_drawable"); //$NON-NLS-1$
         }
 
         //Retrieve the item

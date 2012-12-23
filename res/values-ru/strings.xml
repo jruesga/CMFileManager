@@ -1,0 +1,359 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (C) 2012 The CyanogenMod Project
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+ -->
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+
+  <string name="app_name">File Manager</string>
+  <string name="app_description">Файловый менеджер CyanogenMod</string>
+
+  <string name="device_blockdevice">Блочное устройство</string>
+  <string name="device_characterdevice">Символьное устройство</string>
+  <string name="device_namedpipe">Именованный конвейер</string>
+  <string name="device_domainsocket">Доменный сокет</string>
+
+  <string name="mount_point_readonly">R/O</string>
+  <string name="mount_point_readwrite">R/W</string>
+
+  <string name="yes">Да</string>
+  <string name="no">Нет</string>
+  <string name="all">Все</string>
+  <string name="overwrite">Заменить</string>
+
+  <string name="search_result_name">Поиск: <xliff:g id="terms">%1$s</xliff:g></string>
+
+  <string name="loading_message">Загрузка\u2026</string>
+  <string name="cancelled_message">Отменено</string>
+  <string name="error_message">Ошибка</string>
+
+  <string name="warning_title">Внимание</string>
+  <string name="error_title">Обнаружена ошибка</string>
+  <string name="confirm_operation">Подтвердите операцию</string>
+  <string name="confirm_overwrite">Подтвердите замену</string>
+  <string name="confirm_deletion">Подтвердите удаление</string>
+
+  <string name="msgs_change_to_prompt_access_mode_title">Подтвердить переключение</string>
+  <string name="msgs_change_to_prompt_access_mode_msg">Невозможно запустить в Root-режиме. Переключение в безопасный режим.\n\nПрименить?</string>
+
+  <string name="msgs_cant_create_console">Не удаётся получить необходимые привилегии</string>
+  <string name="msgs_privileged_console_alloc_failed">Невозможно запустить в Root-режиме. Переключение в безопасный режим</string>
+  <string name="msgs_settings_save_failure">Настройка не может быть применена или сохранена</string>
+  <string name="msgs_settings_invalid_initial_directory">Начальная папка "<xliff:g id="initial_dir">%1$s</xliff:g>" недоступна. Переход в корневую папку</string>
+
+  <string name="msgs_success">Операция прошла успешно</string>
+  <string name="msgs_unknown">Были обнаружены ошибки. Операция завершилась неудачно</string>
+  <string name="msgs_insufficient_permissions">Эта операция требует повышенных привилегий. Попробуйте изменить Root-режим</string>
+  <string name="msgs_file_not_found">Файл или папка не найдены</string>
+  <string name="msgs_command_not_found">Операции команды не были найдены или имеют неверное значение</string>
+  <string name="msgs_io_failed">Ошибка чтения/записи</string>
+  <string name="msgs_operation_timeout">Время выполнения операции истекло</string>
+  <string name="msgs_operation_failure">Операция не удалась</string>
+  <string name="msgs_console_alloc_failure">Произошла внутренняя ошибка</string>
+  <string name="msgs_operation_can_not_be_cancelled">Операция не может быть отменена</string>
+  <string name="msgs_read_only_filesystem">Файловая система доступна только для чтения. Попробуйте смонтировать файловую систему для чтения/записи</string>
+  <string name="msgs_illegal_argument">Недопустимый аргумент. Вызов не удался</string>
+  <string name="msgs_unresolved_inconsistencies">Операция не допускается, поскольку это создаст несоответствия</string>
+  <string name="msgs_operation_not_allowed_in_current_directory">Операция не допускается в текущей папке</string>
+
+  <string name="msgs_push_again_to_exit">Нажмите ещё раз для выхода</string>
+
+  <string name="msgs_not_registered_app">Не найдено приложений для открытия файлов данного типа</string>
+
+  <string name="msgs_overwrite_files">Некоторые файлы уже существуют в папке назначения.\n\nЗаменить?</string>
+
+  <string name="msgs_action_association_failed">Привязка приложения к действию не удалась</string>
+
+  <string name="advise_insufficient_permissions">Операция требует повышенных привилегий.\n\nВы хотите изменить режим Root-доступа?</string>
+
+  <string name="parent_dir">Домашняя папка</string>
+  <string name="external_storage">Внешний накопитель</string>
+  <string name="usb_storage">USB накопитель</string>
+
+  <string name="actionbar_button_filesystem_cd">Инф. о системе</string>
+  <string name="actionbar_button_sort_mode_cd">Режим сортировки</string>
+  <string name="actionbar_button_layout_mode_cd">Режим отображения</string>
+  <string name="actionbar_button_other_view_options_cd">Другие настройки отображения</string>
+  <string name="actionbar_button_selection_done_cd">Готово</string>
+  <string name="actionbar_button_actions_cd">Действия</string>
+  <string name="actionbar_button_history_cd">История</string>
+  <string name="actionbar_button_bookmarks_cd">Закладки</string>
+  <string name="actionbar_button_search_cd">Поиск</string>
+  <string name="actionbar_button_overflow_cd">Доп. настройки</string>
+  <string name="actionbar_button_storage_cd">Накопительные устройства</string>
+  <string name="actionbar_button_save_cd">Сохранить</string>
+
+  <string name="sort_by_name_asc">По имени &#x25B2;</string>
+  <string name="sort_by_name_desc">По имени &#x25BC;</string>
+  <string name="sort_by_date_asc">По дате &#x25B2;</string>
+  <string name="sort_by_date_desc">По дате &#x25BC;</string>
+
+  <string name="layout_icons">Значки</string>
+  <string name="layout_simple">Список</string>
+  <string name="layout_details">Детально</string>
+
+  <string name="cm_filemanager_show_dirs_first">Отображать папки первыми</string>
+  <string name="cm_filemanager_show_hidden">Отображать скрытые файлы</string>
+  <string name="cm_filemanager_show_system">Отображать системные файлы</string>
+  <string name="cm_filemanager_show_symlinks">Отображать симлинки</string>
+
+  <string name="filesystem_info_warning_title">Нет информации</string>
+  <string name="filesystem_info_warning_msg">Нет доступной информации о файловой системе</string>
+  <string name="filesystem_info_cant_be_mounted_msg">Файловая система не может быть смонтирована/отмонтирована</string>
+  <string name="filesystem_info_mount_not_allowed_msg">Монтирование файловой системы невозможно в Безопасном режиме. Нажмите для изменения режима Root-доступа</string>
+  <string name="filesystem_info_mount_failed_msg">Не удалось смонтировать файловую систему. Некоторые файловые системы, такие как SD-карты, не могут быть смонтированы/отмонтированы, потому что они имеют встроенную файловую систему только для чтения</string>
+  <string name="filesystem_info_dialog_title">Информация о файловой системе</string>
+  <string name="filesystem_info_dialog_tab_info">Информация</string>
+  <string name="filesystem_info_dialog_tab_disk_usage">Диск</string>
+  <string name="filesystem_info_dialog_status">Статус:</string>
+  <string name="filesystem_info_dialog_mount_point">Точка монтирования:</string>
+  <string name="filesystem_info_dialog_device">Устройство:</string>
+  <string name="filesystem_info_dialog_type">Тип:</string>
+  <string name="filesystem_info_dialog_options">Опции:</string>
+  <string name="filesystem_info_dialog_dump_pass">Dump / Pass:</string>
+  <string name="filesystem_info_dialog_total_disk_usage">Всего:</string>
+  <string name="filesystem_info_dialog_used_disk_usage">Исп.:</string>
+  <string name="filesystem_info_dialog_free_disk_usage">Своб.:</string>
+
+  <string name="fso_properties_permissions_not_allowed_msg">Изменение разрешений невозможно в Безопасном режиме. Нажмите для изменения режима Root-доступа</string>
+  <string name="fso_properties_failed_to_change_owner_msg">Изменение владельца не удалось.\n\nПо соображениям безопасности, некоторые файловые системы, такие как SD-карты, не позволяют изменять владельца</string>
+  <string name="fso_properties_failed_to_change_group_msg">Изменение группы не удалось.\n\nПо соображения безопасности, некоторые файловые системы, такие как SD-карты, не позволяют изменять группы</string>
+  <string name="fso_properties_failed_to_change_permission_msg">Изменение разрешение не удалось.\n\nПо соображения безопасности, некоторые файловые системы, такие как SD-карты, не позволяют изменять разрешения</string>
+  <string name="fso_properties_dialog_title">Свойства</string>
+  <string name="fso_properties_dialog_tab_info">Инфо</string>
+  <string name="fso_properties_dialog_tab_permissions">Разрешения</string>
+  <string name="fso_properties_dialog_name">Имя:</string>
+  <string name="fso_properties_dialog_parent">Родитель:</string>
+  <string name="fso_properties_dialog_type">Тип:</string>
+  <string name="fso_properties_dialog_category">Категория:</string>
+  <string name="fso_properties_dialog_link">Ссылка:</string>
+  <string name="fso_properties_dialog_size">Размер:</string>
+  <string name="fso_properties_dialog_contains">Содержит:</string>
+  <string name="fso_properties_dialog_date">Посл. доступ:</string>
+  <string name="fso_properties_dialog_owner">Владелец:</string>
+  <string name="fso_properties_dialog_group">Группа:</string>
+  <string name="fso_properties_dialog_others">Другое:</string>
+  <plurals name="fso_properties_dialog_folders">
+    <item quantity="zero">0 папок</item>
+    <item quantity="one">1 папка</item>
+    <item quantity="other"><xliff:g id="folders">%1$d</xliff:g> папки(-ок,-а)</item>
+  </plurals>
+  <plurals name="fso_properties_dialog_files">
+    <item quantity="zero">0 файлов</item>
+    <item quantity="one">1 файл</item>
+    <item quantity="other"><xliff:g id="files">%1$d</xliff:g> файл(-ов,-а)</item>
+  </plurals>
+
+  <string name="history">История</string>
+  <string name="msgs_history_empty">История пуста</string>
+  <string name="msgs_history_unknown">Неизвестный пункт истории</string>
+
+  <string name="search">Результат поиска</string>
+  <string name="search_hint">Введите условие поиска</string>
+  <string name="search_voice_hint">Произнесите условие поиска</string>
+  <string name="search_error_msg">При поиске произошла ошибка. Ничего не найдено</string>
+  <string name="search_no_results_msg">Ничего не найдено</string>
+  <plurals name="search_found_items">
+    <item quantity="zero">Ничего не найдено</item>
+    <item quantity="one">Найдено 1 значение</item>
+    <item quantity="other">Найдено <xliff:g id="count">%d</xliff:g> значения(-й)</item>
+  </plurals>
+  <string name="search_found_items_in_directory"><xliff:g id="items">%1$s</xliff:g> в <xliff:g id="path">%2$s</xliff:g></string>
+  <string name="search_few_characters_title">Подтвердите поиск</string>
+  <string name="search_few_characters_msg">Некоторые условия поиска имеют очень мало символов. Операция может быть очень затратна по времени и системным ресурсам.\n\nВы действительно хотите продолжить?</string>
+  <string name="searching">Пожалуйста подождите\u2026</string>
+  <string name="searching_action_label">Продолжается поиск\u2026</string>
+
+  <string name="picker_title">Выбрать файл</string>
+
+  <string name="editor">Редактор</string>
+  <string name="editor_invalid_file_msg">Недопустимый файл</string>
+  <string name="editor_file_not_found_msg">Файл не найден</string>
+  <string name="editor_file_exceed_size_msg">Файл слишком большой для открытия на этом устройстве</string>
+  <string name="editor_dirty_ask_title">Подтвердите выход</string>
+  <string name="editor_dirty_ask_msg">Имеются не сохранённые изменения.\n\nВыйти без сохранения?</string>
+  <string name="editor_successfully_saved">Файл успешно сохранён</string>
+  <string name="editor_read_only_mode">Файл открыт только для чтения</string>
+
+  <string name="bookmarks">Закладки</string>
+  <string name="bookmarks_home">Домой</string>
+  <string name="bookmarks_root_folder">Корневая папка</string>
+  <string name="bookmarks_system_folder">Системная папка</string>
+  <string name="bookmarks_button_config_cd">Установить начальной папкой</string>
+  <string name="bookmarks_button_remove_bookmark_cd">Удалить из закладок</string>
+  <string name="bookmarks_msgs_add_success">Закладка успешно создана</string>
+
+  <string name="initial_directory_dialog_title">Начальная папка</string>
+  <string name="initial_directory_label">Выбор начальной папки:</string>
+  <string name="initial_directory_relative_msg">Относительные пути не допускаются</string>
+  <string name="initial_directory_error_msg">При установке начальной папки произошла ошибка</string>
+
+  <string name="menu_history">История</string>
+  <string name="menu_bookmarks">Закладки</string>
+  <string name="menu_search">Поиск</string>
+  <string name="menu_settings">Настройки</string>
+  <string name="menu_clear_history">Очистить историю</string>
+
+  <string name="create_copy_regexp"><xliff:g id="name">%1$s</xliff:g> - копия <xliff:g id="extension">%2$s</xliff:g></string>
+  <string name="create_new_compress_file_regexp"><xliff:g id="name">%1$s</xliff:g> - новый <xliff:g id="extension">%2$s</xliff:g></string>
+
+  <string name="waiting_dialog_msg">Выполнение операции\u2026</string>
+  <string name="waiting_dialog_copying_title">Копирование\u2026</string>
+  <string name="waiting_dialog_moving_title">Перемещение\u2026</string>
+  <string name="waiting_dialog_deleting_title">Удаление\u2026</string>
+  <string name="waiting_dialog_extracting_title">Извлечение\u2026</string>
+  <string name="waiting_dialog_compressing_title">Сжатие\u2026</string>
+  <string name="msgs_extracting_success">Извлечение успешно завершено. Данные извлечены в <xliff:g id="destination">%1$s</xliff:g></string>
+  <string name="msgs_compressing_success">Сжатие успешно завершено. Данные сжаты в <xliff:g id="destination">%1$s</xliff:g></string>
+
+  <string name="actions_dialog_title">Действия</string>
+  <string name="actions_menu_properties_current_folder">Свойства</string>
+  <string name="actions_menu_refresh">Обновить</string>
+  <string name="actions_menu_new_directory">Новая папка</string>
+  <string name="actions_menu_new_file">Новый файл</string>
+  <string name="actions_menu_select_all">Выбрать всё</string>
+  <string name="actions_menu_deselect_all">Снять выбор</string>
+  <string name="actions_menu_select">Выбор</string>
+  <string name="actions_menu_deselect">Снять выбор</string>
+  <string name="actions_menu_paste_selection">Вставить выбранное</string>
+  <string name="actions_menu_move_selection">Переместить выбранное</string>
+  <string name="actions_menu_delete_selection">Удалить выбранное</string>
+  <string name="actions_menu_compress_selection">Сжать выбранное</string>
+  <string name="actions_menu_create_link">Создать ссылку</string>
+  <string name="actions_menu_open">Открыть</string>
+  <string name="actions_menu_open_with">Открыть в\u2026</string>
+  <string name="actions_menu_execute">Выполнить</string>
+  <string name="actions_menu_send">Отправить</string>
+  <string name="actions_menu_compress">Сжать</string>
+  <string name="actions_menu_extract">Извлечь</string>
+  <string name="actions_menu_delete">Удалить</string>
+  <string name="actions_menu_rename">Переименовать</string>
+  <string name="actions_menu_create_copy">Копировать</string>
+  <string name="actions_menu_properties">Свойства</string>
+  <string name="actions_menu_add_to_bookmarks">Добавить в закладки</string>
+  <string name="actions_menu_add_shortcut">Добавить ярлык</string>
+  <string name="actions_menu_open_parent_folder">Открыть родителя</string>
+
+  <string name="actions_ask_undone_operation_msg">Это действие не обратимо. Вы хотите продолжить?</string>
+
+  <string name="input_name_dialog_label">Имя:</string>
+  <string name="input_name_dialog_message_empty_name">Имя не может быть пустым</string>
+  <string name="input_name_dialog_message_invalid_path_name">Недопустимое имя. Нельзя использовать символы: \'<xliff:g id="invalid_characters">%1$s</xliff:g>\'</string>
+  <string name="input_name_dialog_message_invalid_name">Недопустимое имя. Имена \'.\' и \'..\' не разрешены</string>
+  <string name="input_name_dialog_message_name_exists">Такое имя уже существует</string>
+
+  <string name="associations_dialog_title">Ассоциации</string>
+  <string name="associations_dialog_remember">Запомнить выбор</string>
+  <string name="associations_dialog_openwith_title">Открыть в\u2026</string>
+  <string name="associations_dialog_openwith_action">Открыть</string>
+  <string name="associations_dialog_sendwith_title">Отправить используя\u2026</string>
+  <string name="associations_dialog_sendwith_action">Отправить</string>
+
+  <string name="inline_autocomplete_tab_nothing_to_complete_msg">Нечего выполнять</string>
+
+  <string name="execution_console_title">Консоль</string>
+  <string name="execution_console_script_name_label">Скрипт:</string>
+  <string name="execution_console_script_execution_time_label">Время:</string>
+  <string name="execution_console_script_exitcode_label">Код завершения:</string>
+  <string name="execution_console_script_execution_time_text"><xliff:g id="seconds">%1$s</xliff:g> сек.</string>
+
+  <string name="mime_folder">Папка</string>
+  <string name="mime_symlink">Симлинк</string>
+  <string name="mime_unknown">Неизвестно</string>
+
+  <string name="selection_one_folder"><xliff:g id="folders">%1$s</xliff:g> папка выделена</string>
+  <string name="selection_other_folders"><xliff:g id="folders">%1$s</xliff:g> папки(-ок) выделено</string>
+  <string name="selection_one_file"><xliff:g id="files">%1$s</xliff:g> файл выделен</string>
+  <string name="selection_other_files"><xliff:g id="files">%1$s</xliff:g> файлов(-а) выделено</string>
+  <string name="selection_other_folders_one_file"><xliff:g id="folders">%1$s</xliff:g> папки(-ок,-а) и <xliff:g id="files">%2$s</xliff:g> файл выделен</string>
+  <string name="selection_one_folder_other_files"><xliff:g id="folder2">%1$s</xliff:g> папка и <xliff:g id="file2">%2$s</xliff:g> файлов(-а) выделено</string>
+  <string name="selection_other_folders_other_files"><xliff:g id="folder2">%1$s</xliff:g> папки(-ок,-а) и <xliff:g id="files">%2$s</xliff:g> файлов(-а) выделено</string>
+
+  <string name="category_system">СИСТЕМА</string>
+  <string name="category_app">ПРИЛОЖЕНИЕ</string>
+  <string name="category_binary">ДВОИЧНЫЙ</string>
+  <string name="category_text">ТЕКСТ</string>
+  <string name="category_document">ДОКУМЕНТ</string>
+  <string name="category_ebook">ЭЛ. КНИГА</string>
+  <string name="category_mail">ПОЧТА</string>
+  <string name="category_compress">СЖАТЫЙ</string>
+  <string name="category_exec">ИСПОЛН. ФАЙЛ</string>
+  <string name="category_database">БАЗА ДАННЫХ</string>
+  <string name="category_font">ШРИФТ</string>
+  <string name="category_image">ИЗОБРАЖЕНИЕ</string>
+  <string name="category_audio">АУДИО</string>
+  <string name="category_video">ВИДЕО</string>
+  <string name="category_security">ЗАЩИТА</string>
+
+  <string name="compression_mode_title">Режим сжатия</string>
+
+  <string name="shortcut_failed_msg">Не удалось обработать ярлык</string>
+  <string name="shortcut_creation_success_msg">Ярлык создан успешно</string>
+  <string name="shortcut_creation_failed_msg">Ошибка создания ярлыка</string>
+
+  <string name="pref">Настройки</string>
+  <string name="pref_general">Основные настройки</string>
+  <string name="pref_search">Настройки поиска</string>
+  <string name="pref_themes">Темы</string>
+  <string name="pref_about">О приложении</string>
+
+  <string name="pref_general_behaviour_category">Основные</string>
+  <string name="pref_case_sensitive_sort">Учитывать регистр при сортировке</string>
+  <string name="pref_disk_usage_warning_level">Предупреждения исп. памяти</string>
+  <string name="pref_disk_usage_warning_level_summary" formatted="false">Показывать разноцветные индикации дискового пространства, когда они достигают <xliff:g id="level">%1$s</xliff:g> процентов свободного места</string>
+  <string name="pref_compute_folder_statistics">Расчёт статистики по папкам</string>
+  <string name="pref_compute_folder_statistics_on">Внимание! Расчёт статистики по папкам займёт длительное время и потребуется значительное количество системных ресурсов</string>
+  <string name="pref_use_flinger">Использовать жесты</string>
+  <string name="pref_use_flinger_summary">Используйте жест справа налево для удаления файлов или папок</string>
+  <string name="pref_general_advanced_settings_category">Расширенные настройки</string>
+  <string name="pref_access_mode">Режим доступа</string>
+  <string name="pref_access_mode_safe">Безопасный режим</string>
+  <string name="pref_access_mode_safe_summary">Безопасный режим\n\nПриложение работает без Root-привилегий и имеет доступ только к файловой системе накопителей (SD-карты или USB)</string>
+  <string name="pref_access_mode_prompt">Режим запроса</string>
+  <string name="pref_access_mode_prompt_summary">Режим запроса\n\nПриложение работает с Root-привилегиями, но будет выводить запрос на разрешение выполнения операций с системой</string>
+  <string name="pref_access_mode_root">Режим Root</string>
+  <string name="pref_access_mode_root_summary">Режим Root\n\nВнимание! Этот режим может вывести ваше устройство из строя. Все действия в этом режиме выполняются на ваш страх и риск</string>
+  <string name="pref_search_results_category">Результаты</string>
+  <string name="pref_show_relevance_widget">Показывать виджет актуальности</string>
+  <string name="pref_highlight_terms">Выделять условия поиска</string>
+  <string name="pref_sort_search_results_mode">Режим сортировки</string>
+  <string name="pref_sort_search_results_mode_none">Не сортировать</string>
+  <string name="pref_sort_search_results_mode_name">По имени</string>
+  <string name="pref_sort_search_results_mode_relevance">По актуальности</string>
+  <string name="pref_search_privacity_category">Конфиденциальности</string>
+  <string name="pref_save_search_terms">Сохранить условия поиска</string>
+  <string name="pref_save_search_terms_on">Условия поиска будут сохранены для дальнейшего использования в качестве подсказок</string>
+  <string name="pref_save_search_terms_off">Условия поиска не будут сохраняться</string>
+  <string name="pref_remove_saved_search_terms">Удалить сохранённые условия поиска</string>
+  <string name="pref_remove_saved_search_terms_summary">Нажмите для удаления всех сохранённых условий поиска</string>
+  <string name="pref_remove_saved_search_terms_msg">Все сохранённые условия поиска были удалены</string>
+
+  <string name="pref_themes_selection_category">Темы</string>
+  <string name="pref_themes_set_theme">Применить</string>
+  <string name="pref_themes_no_preview">Превью недоступно</string>
+  <string name="pref_themes_confirmation">Тема успешно применена</string>
+  <string name="pref_themes_not_found">Тема не найдена</string>
+
+  <string name="pref_debug_traces">Логирование отладки</string>
+
+  <string name="theme_default_name">Светлая тема</string>
+  <string name="theme_default_description">Светлая тема для файлового менеджера CyanogenMod</string>
+
+  <string name="security_warning_extract">Внимание!\n\n Извлечение архива с относительными или абсолютными путями может привести к повреждению устройства путём перезаписи системных файлов.\n\nВы действительно хотите продолжить?</string>
+
+  <string name="changelog_title">Список изменений</string>
+
+  <string name="welcome_title">Добро пожаловать!</string>
+  <string name="welcome_msg">
+    Добро пожаловать в файловый менеджер CyanogenMod.\n\nЭто приложение поможет вам получить доступ к файловой системе и выполнять операции, которые могут вывести из строя ваше устройство. Для предотвращения этого, оно запустится в безопасном режиме с минимальными привилегиями. \n\nВы можете получить доступ к расширенным, полнопривилегированным функциям в Настройках. Это ваша ответственность. Убедитесь, чтобы ваши действия не нарушили файловую систему. \n\nКоманда CyanogenMod\n</string>
+</resources>

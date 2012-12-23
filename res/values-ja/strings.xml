@@ -1,0 +1,681 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (C) 2012 The CyanogenMod Project
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+ -->
+
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+
+  <!-- The name of the application -->
+  <string name="app_name">ファイルマネージャ</string>
+  <!-- The description of the application -->
+  <string name="app_description">CyanogenMod ファイルマネージャ</string>
+
+  <!-- Devices types -->
+  <string name="device_blockdevice">ブロックデバイス</string>
+  <string name="device_characterdevice">キャラクタデバイス</string>
+  <string name="device_namedpipe">名前付きパイプ</string>
+  <string name="device_domainsocket">ドメインソケット</string>
+
+  <!-- Mount Point States -->
+  <string name="mount_point_readonly">RO</string>
+  <string name="mount_point_readwrite">RW</string>
+
+  <!-- Default buttons -->
+  <string name="yes">はい</string>
+  <string name="no">いいえ</string>
+  <string name="all">すべて</string>
+  <string name="overwrite">上書き</string>
+
+  <!-- The root directory name -->
+  <string name="root_directory_name"><![CDATA[<Root folder>]]></string>
+  <!-- The search result name -->
+  <string name="search_result_name">検索: <xliff:g id="terms">%1$s</xliff:g></string>
+
+  <!-- Loading waiting message -->
+  <string name="loading_message">ロード中\u2026</string>
+  <string name="cancelled_message">キャンセルしました</string>
+  <!-- Error message -->
+  <string name="error_message">エラー</string>
+
+  <!-- Warning dialog title -->
+  <string name="warning_title">警告</string>
+  <!-- Error dialog title -->
+  <string name="error_title">エラーを検出</string>
+  <!-- Confirm operation dialog title -->
+  <string name="confirm_operation">操作の確認</string>
+  <!-- Confirm overwrite dialog title -->
+  <string name="confirm_overwrite">上書きの確認</string>
+  <!-- Confirm deletion dialog title -->
+  <string name="confirm_deletion">削除の確認</string>
+
+  <!--  A console couldn't be created. Ask the user to change the access mode. Dialog Title -->
+  <string name="msgs_change_to_prompt_access_mode_title">切り替えの確認</string>
+  <!--  A console couldn't be created. Ask the user to change the access mode. Dialog Message -->
+  <string name="msgs_change_to_prompt_access_mode_msg">
+    ルートアクセスモードで実行できません。セーフモードに変更します。\n\nこの変更を適用しますか?</string>
+
+  <!-- A console couldn't be created. Without privileges, the application won't work -->
+  <string name="msgs_cant_create_console">この機能に必要な権限を取得できません。</string>
+  <!-- The message shown when an allocation of a privileged console fails, and a non
+       privileged is allocated -->
+  <string name="msgs_privileged_console_alloc_failed">ルートアクセスモードで実行できません。
+    セーフモードに変更します。</string>
+  <!-- The selected setting was not applied or stored -->
+  <string name="msgs_settings_save_failure">この設定は適用または保存できませんでした。</string>
+  <!-- The initial directory has an invalid or inaccessible reference -->
+  <string name="msgs_settings_invalid_initial_directory">初期フォルダ
+    "<xliff:g id="initial_dir">%1$s</xliff:g>" は不正です。ルートフォルダに変更します。</string>
+
+  <!-- Success -->
+  <string name="msgs_success">操作は成功しました。</string>
+  <!-- Unknown error -->
+  <string name="msgs_unknown">エラーを検出しました。操作は失敗しました。</string>
+  <!-- When an operation requires elevated privileged (normally caused for the use of a
+       non-privileged console) -->
+  <string name="msgs_insufficient_permissions">この操作には管理者特権が必要です。ルートアクセスモードに変更してみますか?</string>
+  <!-- The file or directory was not found -->
+  <string name="msgs_file_not_found">ファイルまたはフォルダは見つかりませんでした。</string>
+  <!-- The command reference couldn't be created (not found or invalid definition)
+       (normally caused by a development error) -->
+  <string name="msgs_command_not_found">この操作のコマンドが見つからないか、もしくは定義が不正です。</string>
+  <!-- I/O exception -->
+  <string name="msgs_io_failed">読み取り/書き込み失敗しました。</string>
+  <!-- Operation timeout detected -->
+  <string name="msgs_operation_timeout">操作はタイムアウトしました。</string>
+  <!-- The operation returns an invalid exit code -->
+  <string name="msgs_operation_failure">操作は失敗しました。</string>
+  <!-- A console couldn't be allocated -->
+  <string name="msgs_console_alloc_failure">内部エラーが発生しました。</string>
+  <!-- An operation can't be cancelled -->
+  <string name="msgs_operation_can_not_be_cancelled">この操作はキャンセルできません。</string>
+  <!-- The operation requieres mount the file system prior to execute the command -->
+  <string name="msgs_read_only_filesystem">ファイルシステムは読み取り専用です。この操作をする前に書き込み可能でマウントしなおす必要があります。</string>
+  <!-- Illegal argument (normally caused by a development error when calling internal api) -->
+  <string name="msgs_illegal_argument">不正な引数です。呼び出しは失敗しました。</string>
+  <!-- The operation will cause inconsistencies -->
+  <string name="msgs_unresolved_inconsistencies">
+    矛盾が生じるため、その操作は許可されません。</string>
+  <!-- Operation not permitted in current directory -->
+  <string name="msgs_operation_not_allowed_in_current_directory">
+    現在のフォルダではその操作は許可されません。</string>
+
+  <!-- The advice message prior to exit the application -->
+  <string name="msgs_push_again_to_exit">もう一度押して終了</string>
+
+  <!-- There is no registered application that can handle the mime-type -->
+  <string name="msgs_not_registered_app">選択されたファイルタイプにはアプリが関連付けられていません。</string>
+
+  <!-- Overwrite files? -->
+  <string name="msgs_overwrite_files">
+    いくつかのファイルは宛先のフォルダにすでにあります。\n\n上書きしますか?</string>
+
+  <!-- The association of an action to the application failed -->
+  <string name="msgs_action_association_failed">アクションのアプリへの関連付けは失敗しました。</string>
+
+  <!-- An operation requires elevated privileged. Ask the user. -->
+  <string name="advise_insufficient_permissions">この操作には管理者特権が必要です。\n\n
+    ルートアクセスモードに変更しますか?</string>
+
+
+  <!-- The parent directory of the current directory in navigation view -->
+  <string name="parent_dir">親フォルダ</string>
+  <!-- External storage descripton -->
+  <string name="external_storage">外部ストレージ</string>
+  <!-- Usb storage descripton -->
+  <string name="usb_storage">USBストレージ</string>
+
+  <!-- ActionBar Buttons * FileSystem -->
+  <string name="actionbar_button_filesystem_cd">ファイルシステム情報</string>
+  <!-- ActionBar Buttons * Sort Mode -->
+  <string name="actionbar_button_sort_mode_cd">ソートモード</string>
+  <!-- ActionBar Buttons * Layout Mode -->
+  <string name="actionbar_button_layout_mode_cd">レイアウトモード</string>
+  <!-- ActionBar Buttons * Other View Options -->
+  <string name="actionbar_button_other_view_options_cd">その他の表示オプション</string>
+  <!-- ActionBar Buttons * Done -->
+  <string name="actionbar_button_selection_done_cd">完了</string>
+  <!-- ActionBar Buttons * Actions -->
+  <string name="actionbar_button_actions_cd">アクション</string>
+  <!-- ActionBar Buttons * History -->
+  <string name="actionbar_button_history_cd">履歴</string>
+  <!-- ActionBar Buttons * Bookmarks -->
+  <string name="actionbar_button_bookmarks_cd">ブックマーク</string>
+  <!-- ActionBar Buttons * Search -->
+  <string name="actionbar_button_search_cd">検索</string>
+  <!-- ActionBar Buttons * Overflow -->
+  <string name="actionbar_button_overflow_cd">その他のオプション</string>
+  <!-- ActionBar Buttons * Storage volumes -->
+  <string name="actionbar_button_storage_cd">ストレージボリューム</string>
+  <!-- ActionBar Buttons * Save -->
+  <string name="actionbar_button_save_cd">保存</string>
+
+  <!-- Navigation View * Sort * Sort by name (ascending) -->
+  <string name="sort_by_name_asc">名前順 &#x25B2;</string>
+  <!-- Navigation View * Sort * Sort by name (descending) -->
+  <string name="sort_by_name_desc">名前順 &#x25BC;</string>
+  <!-- Navigation View * Sort * Sort by date (ascending) -->
+  <string name="sort_by_date_asc">日付順 &#x25B2;</string>
+  <!-- Navigation View * Sort * Sort by date (descending) -->
+  <string name="sort_by_date_desc">日付順 &#x25BC;</string>
+
+  <!-- Navigation View * Layout * Icons -->
+  <string name="layout_icons">アイコン</string>
+  <!-- Navigation View * Layout * Simple -->
+  <string name="layout_simple">シンプル</string>
+  <!-- Navigation View * Layout * Details -->
+  <string name="layout_details">詳細</string>
+
+  <!-- Navigation View * View * Show folders first -->
+  <string name="cm_filemanager_show_dirs_first">フォルダを先に表示</string>
+  <!-- Navigation View * View * Show hidden files option -->
+  <string name="cm_filemanager_show_hidden">隠しファイルを表示</string>
+  <!-- Navigation View * View * Show system files option -->
+  <string name="cm_filemanager_show_system">システムファイルを表示</string>
+  <!-- Navigation View * View * Show symlinks option -->
+  <string name="cm_filemanager_show_symlinks">シンボリックリンクを表示</string>
+
+  <!-- Filesystem Info (no data). Dialog title -->
+  <string name="filesystem_info_warning_title">情報なし</string>
+  <!-- Filesystem Info (no data). Dialog message -->
+  <string name="filesystem_info_warning_msg">このファイルシステムには利用できる情報がありません。</string>
+  <!-- Filesystem Info * Filesystem couldn't be mounted -->
+  <string name="filesystem_info_cant_be_mounted_msg">
+    このファイルシステムはマウント/マウント解除できません。</string>
+  <!-- Filesystem Info * Not allowed message -->
+  <string name="filesystem_info_mount_not_allowed_msg">セーフモードではファイルシステムのマウント操作は許可されません。
+  タップしてルートアクセスモードに変更してください。</string>
+  <!-- Filesystem Info * Mount failed -->
+  <string name="filesystem_info_mount_failed_msg">ファイルシステムのマウント操作に失敗しました。
+    SDカードのようないくつかのファイルシステムは読み取り専用としてビルトインされているのでマウント/マウント解除できません。</string>
+  <!-- Filesystem Info Dialog * Title -->
+  <string name="filesystem_info_dialog_title">ファイルシステム情報</string>
+  <!-- Filesystem Info Dialog * Tab * Info -->
+  <string name="filesystem_info_dialog_tab_info">情報</string>
+  <!-- Filesystem Info Dialog * Tab * Disk Usage -->
+  <string name="filesystem_info_dialog_tab_disk_usage">ディスク使用量</string>
+  <!-- Filesystem Info Dialog * Status Label -->
+  <string name="filesystem_info_dialog_status">ステータス:</string>
+  <!-- Filesystem Info Dialog * Mount Point Label -->
+  <string name="filesystem_info_dialog_mount_point">マウントポイント:</string>
+  <!-- Filesystem Info Dialog * Device Label -->
+  <string name="filesystem_info_dialog_device">デバイス:</string>
+  <!-- Filesystem Info Dialog * Type Label -->
+  <string name="filesystem_info_dialog_type">タイプ:</string>
+  <!-- Filesystem Info Dialog * Options Label -->
+  <string name="filesystem_info_dialog_options">オプション:</string>
+  <!-- Filesystem Info Dialog * Dump/Pass Label -->
+  <string name="filesystem_info_dialog_dump_pass">ダンプ / パス:</string>
+  <!-- Filesystem Info Dialog * Total Disk Usage -->
+  <string name="filesystem_info_dialog_total_disk_usage">トータル:</string>
+  <!-- Filesystem Info Dialog * Used Disk Usage -->
+  <string name="filesystem_info_dialog_used_disk_usage">使用中:</string>
+  <!-- Filesystem Info Dialog * Free Disk Usage -->
+  <string name="filesystem_info_dialog_free_disk_usage">空き:</string>
+
+
+  <!-- Fso Properties * Not allowed message -->
+  <string name="fso_properties_permissions_not_allowed_msg">セーフモードではパーミッション操作は許可されません。
+    タップしてルートアクセスモードに変更してください。</string>
+  <!-- Fso Properties * Failed to change owner to fso -->
+  <string name="fso_properties_failed_to_change_owner_msg">オーナーの変更に失敗しました。\n\n
+    セキュリティの理由により、SDカードのようないくつかのファイルシステムではオーナーの変更はできません。</string>
+  <!-- Fso Properties * Failed to change group to fso -->
+  <string name="fso_properties_failed_to_change_group_msg">グループの変更に失敗しました。\n\n
+    セキュリティの理由により、SDカードのようないくつかのファイルシステムではグループの変更はできません。</string>
+  <!-- Fso Properties * Failed to change group to fso -->
+  <string name="fso_properties_failed_to_change_permission_msg">パーミッションの変更に失敗しました。\n\nセキュリティの理由により、SDカードのようないくつかのファイルシステムではパーミッションの変更はできません。</string>
+  <!-- Fso Properties Dialog * Title -->
+  <string name="fso_properties_dialog_title">プロパティ</string>
+  <!-- Fso Properties Dialog * Tab * Info -->
+  <string name="fso_properties_dialog_tab_info">情報</string>
+  <!-- Fso Properties Dialog * Tab * Permissions -->
+  <string name="fso_properties_dialog_tab_permissions">パーミッション</string>
+  <!-- Fso Properties Dialog * Name Label -->
+  <string name="fso_properties_dialog_name">名前:</string>
+  <!-- Fso Properties Dialog * Parent Folder Label -->
+  <string name="fso_properties_dialog_parent">親フォルダ:</string>
+  <!-- Fso Properties Dialog * Type Label -->
+  <string name="fso_properties_dialog_type">タイプ:</string>
+  <!-- Fso Properties Dialog * Category Label -->
+  <string name="fso_properties_dialog_category">カテゴリ:</string>
+  <!-- Fso Properties Dialog * Link Label -->
+  <string name="fso_properties_dialog_link">リンク:</string>
+  <!-- Fso Properties Dialog * Size Label -->
+  <string name="fso_properties_dialog_size">サイズ:</string>
+  <!-- Fso Properties Dialog * Contains Label -->
+  <string name="fso_properties_dialog_contains">内包数:</string>
+  <!-- Fso Properties Dialog * Date Label -->
+  <string name="fso_properties_dialog_date">最終アクセス:</string>
+  <!-- Fso Properties Dialog * Owner Label -->
+  <string name="fso_properties_dialog_owner">オーナー:</string>
+  <!-- Fso Properties Dialog * Group Label -->
+  <string name="fso_properties_dialog_group">グループ:</string>
+  <!-- Fso Properties Dialog * Others Label -->
+  <string name="fso_properties_dialog_others">その他:</string>
+  <!-- Fso Properties Dialog * Folders -->
+  <plurals name="fso_properties_dialog_folders">
+    <item quantity="zero">0 フォルダ</item>
+    <item quantity="one">1 フォルダ</item>
+    <item quantity="other"><xliff:g id="folders">%1$d</xliff:g> フォルダ</item>
+  </plurals>
+  <!-- Fso Properties Dialog * Files -->
+  <plurals name="fso_properties_dialog_files">
+    <item quantity="zero">0 ファイル</item>
+    <item quantity="one">1 ファイル</item>
+    <item quantity="other"><xliff:g id="files">%1$d</xliff:g> ファイル</item>
+  </plurals>
+
+  <!-- History * History activity title -->
+  <string name="history">履歴</string>
+  <!-- History * The history is empty -->
+  <string name="msgs_history_empty">履歴は空です。</string>
+  <!-- History * The history reference is not in the actual history list -->
+  <string name="msgs_history_unknown">不明な履歴項目。</string>
+
+  <!-- Search * Search activity title -->
+  <string name="search">検索結果</string>
+  <!-- Search * Search hint message -->
+  <string name="search_hint">検索タイプ</string>
+  <!-- Search * Voice search hint message -->
+  <string name="search_voice_hint">検索語を発声してください</string>
+  <!-- Search * Search error message -->
+  <string name="search_error_msg">検索中にエラーが発声しました。結果はありません。</string>
+  <!-- Search * Search no results message -->
+  <string name="search_no_results_msg">結果はありません。</string>
+  <!-- Search * Search found items -->
+  <plurals name="search_found_items">
+    <item quantity="zero">該当項目はありません</item>
+    <item quantity="one">1 項目見つかりました</item>
+    <item quantity="other"><xliff:g id="count">%d</xliff:g> 項目見つかりました</item>
+  </plurals>
+  <!-- Search * Number of items found in directory -->
+  <string name="search_found_items_in_directory"><xliff:g id="path">%2$s</xliff:g> に <xliff:g id="items">%1$s</xliff:g> つ</string>
+  <!-- Search * Search query terms -->
+  <string name="search_terms"><![CDATA[<b>検索語:</b>]]> <xliff:g id="terms">%1$s</xliff:g></string>
+  <!-- Search * Confirm search -->
+  <string name="search_few_characters_title">検索の確認</string>
+  <!-- Search * Some terms of the search are too small. The operation could be very costly -->
+  <string name="search_few_characters_msg">いくつかの検索語の文字数が小さいようです。 操作は時間やシステムリソースを大量に使用する可能性があります。\n\n続けますか?</string>
+  <!-- Search * Searching dialog title -->
+  <string name="searching">お待ち下さい\u2026</string>
+  <!-- Search * Searching label -->
+  <string name="searching_action_label">検索実行中</string>
+
+  <!-- Picker Activity * Dialog title -->
+  <string name="picker_title">ファイルを選択</string>
+
+  <!-- Editor * Editor activity title -->
+  <string name="editor">エディタ</string>
+  <!-- Editor * Invalid file message -->
+  <string name="editor_invalid_file_msg">不正なファイル</string>
+  <!-- Editor * File not found message -->
+  <string name="editor_file_not_found_msg">ファイルは見つかりませんでした。</string>
+  <!-- Editor * File size exceed the limit -->
+  <string name="editor_file_exceed_size_msg">このファイルはこのデバイスで開くには大き過ぎます。</string>
+  <!-- Editor * Editor is dirty, ask the user * Dialog title -->
+  <string name="editor_dirty_ask_title">終了の確認</string>
+  <!-- Editor * Editor is dirty, ask the user * Dialog message -->
+  <string name="editor_dirty_ask_msg">保存していない変更があります。\n\n保存しないで終了しますか?</string>
+  <!-- Editor * Save operation success -->
+  <string name="editor_successfully_saved">ファイルの保存に成功しました。</string>
+  <!-- Editor * Read-only file mode -->
+  <string name="editor_read_only_mode">ファイルは読み取り専用で開かれています。</string>
+
+  <!-- Bookmarks * Bookmarks activity title -->
+  <string name="bookmarks">ブックマーク</string>
+  <!-- Bookmarks * Bookmark name * Home -->
+  <string name="bookmarks_home">ホーム</string>
+  <!-- Bookmarks * Bookmark name * Root folder -->
+  <string name="bookmarks_root_folder">ルートフォルダ</string>
+  <!-- Bookmarks * Bookmark name * System folder -->
+  <string name="bookmarks_system_folder">システムフォルダ</string>
+  <!-- Bookmarks * Bookmark name * Button * Initial directory content description -->
+  <string name="bookmarks_button_config_cd">初期フォルダに設定</string>
+  <!-- Bookmarks * Bookmark name * Button * Remove bookmark content description -->
+  <string name="bookmarks_button_remove_bookmark_cd">ブックマークを削除</string>
+  <!-- Bookmarks * Bookmarks * Actions * Bookmark successfully added -->
+  <string name="bookmarks_msgs_add_success">ブックマークの追加に成功しました。</string>
+
+  <!-- Initial directory dialog title -->
+  <string name="initial_directory_dialog_title">初期フォルダ</string>
+  <!-- Initial directory label -->
+  <string name="initial_directory_label">初期フォルダを選択:</string>
+  <!-- Initial directory is relative -->
+  <string name="initial_directory_relative_msg">相対パスは選択できません。</string>
+  <!-- Initial directory error message -->
+  <string name="initial_directory_error_msg">初期フォルダの設定にエラーが発生しました。</string>
+
+  <!-- Menu * Navigation * History -->
+  <string name="menu_history">履歴</string>
+  <!-- Menu * Navigation * Bookmarks -->
+  <string name="menu_bookmarks">ブックマーク</string>
+  <!-- Menu * Navigation * Search -->
+  <string name="menu_search">検索</string>
+  <!-- Menu * Navigation * Settings -->
+  <string name="menu_settings">設定</string>
+  <!-- Menu * History * Clear history -->
+  <string name="menu_clear_history">履歴をクリア</string>
+
+  <!-- Regular expression for create copy action -->
+  <string name="create_copy_regexp">
+    <xliff:g id="name">%1$s</xliff:g> - コピー<xliff:g id="extension">%2$s</xliff:g></string>
+  <!-- Regular expression for new compressed file -->
+  <string name="create_new_compress_file_regexp">
+    <xliff:g id="name">%1$s</xliff:g> - 新規<xliff:g id="extension">%2$s</xliff:g></string>
+
+  <!-- Waiting dialog * Performing operation message -->
+  <string name="waiting_dialog_msg">操作を実行中\u2026</string>
+  <!-- Waiting dialog * Copying title -->
+  <string name="waiting_dialog_copying_title">コピー中\u2026</string>
+  <!-- Waiting dialog * Copying message -->
+  <string name="waiting_dialog_copying_msg">
+    <xliff:g id="from">%1$s</xliff:g> <![CDATA[<b>から</b>]]><![CDATA[<br/>]]>
+    <xliff:g id="to">%2$s</xliff:g> <![CDATA[<b>へ</b>]]></string>
+  <!-- Waiting dialog * Moving title -->
+  <string name="waiting_dialog_moving_title">Moving\u2026</string>
+  <!-- Waiting dialog * Moving message -->
+  <string name="waiting_dialog_moving_msg">
+    <xliff:g id="from">%1$s</xliff:g> <![CDATA[<b>から</b>]]><![CDATA[<br/>]]>
+    <xliff:g id="to">%2$s</xliff:g> <![CDATA[<b>へ</b>]]></string>
+  <!-- Waiting dialog * Deleting title -->
+  <string name="waiting_dialog_deleting_title">削除中\u2026</string>
+  <!-- Waiting dialog * Deleting message -->
+  <string name="waiting_dialog_deleting_msg">
+    <![CDATA[<b>ファイル</b>]]> <xliff:g id="file">%1$s</xliff:g></string>
+  <!-- Waiting dialog * Extracting title -->
+  <string name="waiting_dialog_extracting_title">解凍中\u2026</string>
+  <!-- Waiting dialog * Extracting message -->
+  <string name="waiting_dialog_extracting_msg">
+    <![CDATA[<b>ファイル</b>]]> <xliff:g id="file">%1$s</xliff:g></string>
+  <!-- Waiting dialog * Extracting title -->
+  <string name="waiting_dialog_compressing_title">圧縮中\u2026</string>
+  <!-- Waiting dialog * Extracting message -->
+  <string name="waiting_dialog_compressing_msg">
+    <![CDATA[<b>ファイル</b>]]> <xliff:g id="file">%1$s</xliff:g></string>
+  <!-- Waiting dialog * Initializing the dialog -->
+  <string name="waiting_dialog_analizing_msg">
+    <![CDATA[<b>解析中\u2026</b>]]></string>
+  <!-- Extracting * Success message -->
+  <string name="msgs_extracting_success">
+    解凍操作が完了しました。 データは
+    <xliff:g id="destination">%1$s</xliff:g> に解凍されました。</string>
+  <!-- Compressing * Success message -->
+  <string name="msgs_compressing_success">
+    圧縮操作が完了しました。 データは
+    <xliff:g id="destination">%1$s</xliff:g> に圧縮されました。</string>
+
+  <!-- Actions Dialog * Title -->
+  <string name="actions_dialog_title">アクション</string>
+  <!-- Actions Dialog * Menu * Properties of current folder -->
+  <string name="actions_menu_properties_current_folder">プロパティ</string>
+  <!-- Actions Dialog * Menu * Refresh -->
+  <string name="actions_menu_refresh">更新</string>
+  <!-- Actions Dialog * Menu * New directory -->
+  <string name="actions_menu_new_directory">新規フォルダ</string>
+  <!-- Actions Dialog * Menu * New file -->
+  <string name="actions_menu_new_file">新規ファイル</string>
+  <!-- Actions Dialog * Menu * Select all -->
+  <string name="actions_menu_select_all">すべて選択</string>
+  <!-- Actions Dialog * Menu * Deselect all -->
+  <string name="actions_menu_deselect_all">すべて選択解除</string>
+  <!-- Actions Dialog * Menu * Select -->
+  <string name="actions_menu_select">選択</string>
+  <!-- Actions Dialog * Menu * Deselect -->
+  <string name="actions_menu_deselect">選択解除</string>
+  <!-- Actions Dialog * Menu * Paste selection -->
+  <string name="actions_menu_paste_selection">選択を貼り付け</string>
+  <!-- Actions Dialog * Menu * Move selection -->
+  <string name="actions_menu_move_selection">選択を移動</string>
+  <!-- Actions Dialog * Menu * Delete selection -->
+  <string name="actions_menu_delete_selection">選択を削除</string>
+  <!-- Actions Dialog * Menu * Compress selection -->
+  <string name="actions_menu_compress_selection">選択を圧縮</string>
+  <!-- Actions Dialog * Menu * Create link -->
+  <string name="actions_menu_create_link">リンクを作成</string>
+  <!-- Actions Dialog * Menu * Open -->
+  <string name="actions_menu_open">開く</string>
+  <!-- Actions Dialog * Menu * Open with -->
+  <string name="actions_menu_open_with">別のアプリで開く</string>
+  <!-- Actions Dialog * Menu * Execute -->
+  <string name="actions_menu_execute">実行</string>
+  <!-- Actions Dialog * Menu * Send -->
+  <string name="actions_menu_send">送信</string>
+  <!-- Actions Dialog * Menu * Compress -->
+  <string name="actions_menu_compress">圧縮</string>
+  <!-- Actions Dialog * Menu * Extract -->
+  <string name="actions_menu_extract">解凍</string>
+  <!-- Actions Dialog * Menu * Delete -->
+  <string name="actions_menu_delete">削除</string>
+  <!-- Actions Dialog * Menu * Rename -->
+  <string name="actions_menu_rename">リネーム</string>
+  <!-- Actions Dialog * Menu * Create copy -->
+  <string name="actions_menu_create_copy">コピーを作成</string>
+  <!-- Actions Dialog * Menu * Properties -->
+  <string name="actions_menu_properties">プロパティ</string>
+  <!-- Actions Dialog * Menu * Add to bookmarks -->
+  <string name="actions_menu_add_to_bookmarks">ブックマークに追加</string>
+  <!-- Actions Dialog * Menu * Add shortcut -->
+  <string name="actions_menu_add_shortcut">ショートカットを追加</string>
+  <!-- Actions Dialog * Menu * Open parent folder -->
+  <string name="actions_menu_open_parent_folder">親フォルダを開く</string>
+
+  <!-- Actions * Ask user prior to do an undone operation. Dialog message -->
+  <string name="actions_ask_undone_operation_msg">
+    この操作はやり直せません。続けますか?</string>
+
+  <!-- Enter Name Dialog * Label -->
+  <string name="input_name_dialog_label">名前:</string>
+  <!-- Enter Name Dialog * Message * Empty name -->
+  <string name="input_name_dialog_message_empty_name">名前は空にできません。</string>
+  <!-- Enter Name Dialog * Message * Invalid name -->
+  <string name="input_name_dialog_message_invalid_path_name">不正な名前です。文字
+    \'<xliff:g id="invalid_characters">%1$s</xliff:g>\' は使用できません。</string>
+  <!-- Enter Name Dialog * Message * Invalid name -->
+  <string name="input_name_dialog_message_invalid_name">不正な名前です。名前に \'.\' と
+    \'..\' は使用できません。</string>
+  <!-- Enter Name Dialog * Message * Name exists -->
+  <string name="input_name_dialog_message_name_exists">この名前はすでに存在しています。</string>
+
+  <!-- Associations Dialog * Title -->
+  <string name="associations_dialog_title">連携</string>
+  <!-- Associations Dialog * Remember the user action -->
+  <string name="associations_dialog_remember">選択を記憶</string>
+  <!-- Associations Dialog * Open with Title -->
+  <string name="associations_dialog_openwith_title">別のアプリで開く</string>
+    <!-- Associations Dialog * Open action (button title) -->
+  <string name="associations_dialog_openwith_action">開く</string>
+  <!-- Associations Dialog * Send with Title -->
+  <string name="associations_dialog_sendwith_title">別のアプリで送信</string>
+    <!-- Associations Dialog * Send action (button title) -->
+  <string name="associations_dialog_sendwith_action">送信</string>
+
+  <!-- Inline Autocomplete Widget * Tab message nothing to complete -->
+  <string name="inline_autocomplete_tab_nothing_to_complete_msg">候補はありません。</string>
+
+  <!-- Execution console * Title -->
+  <string name="execution_console_title">コンソール</string>
+  <!-- Execution console * The script name label -->
+  <string name="execution_console_script_name_label">スクリプト:</string>
+  <!-- Execution console * The script execution time label -->
+  <string name="execution_console_script_execution_time_label">時間:</string>
+  <!-- Execution console * The script exit code label -->
+  <string name="execution_console_script_exitcode_label">終了コード:</string>
+  <!-- Execution console * The script execution time seconds string -->
+  <string name="execution_console_script_execution_time_text">
+    <xliff:g id="seconds">%1$s</xliff:g> 秒.</string>
+
+  <!-- Mime/Types * Folder -->
+  <string name="mime_folder">フォルダ</string>
+  <!-- Mime/Types * Symlink -->
+  <string name="mime_symlink">シンボリックリンク</string>
+  <!-- Mime/Types * Unknown -->
+  <string name="mime_unknown">不明</string>
+
+  <!-- Selection. All possibilities. [1 folder; >1 folders; 1 file; >1 files;
+     >1 folders and 1 file; 1 folder and >1 files; >1 folders and >1 files]
+     Avoid using plural item because is more complex to achieved all strings -->
+  <string name="selection_one_folder"><xliff:g id="folders">%1$s</xliff:g> つのフォルダを選択中</string>
+  <string name="selection_other_folders"><xliff:g id="folders">%1$s</xliff:g> つのフォルダを選択中</string>
+  <string name="selection_one_file"><xliff:g id="files">%1$s</xliff:g> つのファイルを選択中</string>
+  <string name="selection_other_files"><xliff:g id="files">%1$s</xliff:g> つのファイルを選択中</string>
+  <string name="selection_other_folders_one_file"><xliff:g id="folders">%1$s</xliff:g> つのフォルダと
+    <xliff:g id="files">%2$s</xliff:g> つのファイルを選択中</string>
+  <string name="selection_one_folder_other_files"><xliff:g id="folder2">%1$s</xliff:g> つのフォルダと
+    <xliff:g id="file2">%2$s</xliff:g> つのファイルを選択中</string>
+  <string name="selection_other_folders_other_files"><xliff:g id="folder2">%1$s</xliff:g> つのフォルダと
+    and <xliff:g id="files">%2$s</xliff:g> つのファイルを選択中</string>
+
+  <!-- Category descriptions -->
+  <string name="category_system">システム</string>
+  <string name="category_app">アプリ</string>
+  <string name="category_binary">バイナリ</string>
+  <string name="category_text">テキスト</string>
+  <string name="category_document">文書</string>
+  <string name="category_ebook">本</string>
+  <string name="category_mail">メール</string>
+  <string name="category_compress">書庫</string>
+  <string name="category_exec">実行可能</string>
+  <string name="category_database">データベース</string>
+  <string name="category_font">フォント</string>
+  <string name="category_image">画像</string>
+  <string name="category_audio">音声</string>
+  <string name="category_video">動画</string>
+  <string name="category_security">セキュリティ</string>
+
+  <!-- Compression * Compression modes dialog title -->
+  <string name="compression_mode_title">圧縮モード</string>
+
+  <!-- Shortcut. Failed to handle the shortcut -->
+  <string name="shortcut_failed_msg">ショートカットの操作に失敗。</string>
+  <!-- Shortcut. The shortcut was created -->
+  <string name="shortcut_creation_success_msg">ショートカットの作成に成功。</string>
+  <!-- Shortcut. The shortcut wasn't created -->
+  <string name="shortcut_creation_failed_msg">ショートカットの作成に失敗。</string>
+
+  <!-- Preferences title -->
+  <string name="pref">設定</string>
+  <!-- Preferences * General title -->
+  <string name="pref_general">一般設定</string>
+  <!-- Preferences * Search title -->
+  <string name="pref_search">検索オプション</string>
+  <!-- Preferences * Themes title -->
+  <string name="pref_themes">テーマ</string>
+  <!-- Preferences * About title -->
+  <string name="pref_about">情報</string>
+  <!-- Preferences * About summary -->
+  <string name="pref_about_summary">ファイルマネージャ v<xliff:g id="version">%1$s</xliff:g>
+    \nCopyright \u00A9 2012 The CyanogenMod Project</string>
+
+  <!-- Preferences * General * Behaviour category -->
+  <string name="pref_general_behaviour_category">一般</string>
+  <!-- Preferences * General * Case sensitive sort title -->
+  <string name="pref_case_sensitive_sort">大文字小文字を区別してソート</string>
+  <!-- Preferences * General *Disk usage warning level title -->
+  <string name="pref_disk_usage_warning_level">ディスク使用量の警告</string>
+  <!-- Preferences * General * Disk usage warning level summary -->
+  <!-- FIXME Use "percent" instead of "%" symbol, because it make crash the app on getSummary
+       of ListPreference. This should be fixed in frameworks base prior to be added here. -->
+  <string name="pref_disk_usage_warning_level_summary" formatted="false">ディスク使用量が <xliff:g id="level">%1$s</xliff:g> パーセントに達している場合、異なる色でフォルダアイテムを表示する。</string>
+  <!-- Preferences * General * Compute folder statistics title -->
+  <string name="pref_compute_folder_statistics">フォルダの統計情報を計算</string>
+  <!-- Preferences * General * Compute folder statistics summary on -->
+  <string name="pref_compute_folder_statistics_on">警告! 統計情報の計算は時間とシステムリソースを多く要します。</string>
+  <!-- Preferences * General * Use flinger detection -->
+  <string name="pref_use_flinger">スワイプジェスチャを使用</string>
+  <!-- Preferences * General * Use flinger detection summary -->
+  <string name="pref_use_flinger_summary">ファイルやフォルダの削除に左から右へのジェスチャを使用する。</string>
+  <!-- Preferences * General * Advanced settings category -->
+  <string name="pref_general_advanced_settings_category">高度</string>
+  <!-- Preferences * General * Access mode -->
+  <string name="pref_access_mode">アクセスモード</string>
+  <!-- Preferences * General * Safe mode -->
+  <string name="pref_access_mode_safe">セーフモード</string>
+  <!-- Preferences * General * Safe mode summary -->
+  <string name="pref_access_mode_safe_summary">セーフモード\n\nアプリは特権を持たず、ストレージボリューム(USBやSDカード)のファイルシステムのみにアクセスが可能。</string>
+  <!-- Preferences * General * Prompt user mode -->
+  <string name="pref_access_mode_prompt">プロンプトモード</string>
+  <!-- Preferences * General * Prompt user mode summary -->
+  <string name="pref_access_mode_prompt_summary">プロンプトモード\n\nアプリはファイルシステムにフルアクセス可能だが、管理権限が必要な操作を実行する際にユーザーに問い合わせる。</string>
+  <!-- Preferences * General * Root access mode -->
+  <string name="pref_access_mode_root">ルートアクセスモード</string>
+  <!-- Preferences * General * Root access mode summary -->
+  <string name="pref_access_mode_root_summary">ルートアクセスモード\n\n警告! このモードはデバイスを破滅させることも可能。安全に保つにはあなたの注意深い操作が必要。</string>
+  <!-- Preferences * Search * Results category -->
+  <string name="pref_search_results_category">検索結果</string>
+  <!-- Preferences * Search * Show relevance widget -->
+  <string name="pref_show_relevance_widget">関連性を表示</string>
+  <!-- Preferences * Search * Highlight search terms -->
+  <string name="pref_highlight_terms">検索語をハイライト</string>
+  <!-- Preferences * Search * Sort results mode -->
+  <string name="pref_sort_search_results_mode">検索結果のソート</string>
+  <!-- Preferences * Search * Sort results mode. None -->
+  <string name="pref_sort_search_results_mode_none">ソートなし</string>
+  <!-- Preferences * Search * Sort results mode. None -->
+  <string name="pref_sort_search_results_mode_name">名前順</string>
+  <!-- Preferences * Search * Sort results mode. Relevance -->
+  <string name="pref_sort_search_results_mode_relevance">関連性順</string>
+  <!-- Preferences * Search * Privacity category -->
+  <string name="pref_search_privacity_category">プライバシー</string>
+  <!-- Preferences * Search * Save search terms -->
+  <string name="pref_save_search_terms">検索語を保存</string>
+  <!-- Preferences * Search * Save search terms summary on -->
+  <string name="pref_save_search_terms_on">検索語は保存され、将来のサジェストに活用します。</string>
+  <!-- Preferences * Search * Save search terms summary off -->
+  <string name="pref_save_search_terms_off">検索語は保存されません</string>
+  <!-- Preferences * Search * Remove saved search terms -->
+  <string name="pref_remove_saved_search_terms">保存された検索語を削除する</string>
+  <!-- Preferences * Search * Remove saved search terms summary -->
+  <string name="pref_remove_saved_search_terms_summary">タップしてすべての保存された検索語を削除する</string>
+  <!-- Preferences * Search * Suggestions were truncated -->
+  <string name="pref_remove_saved_search_terms_msg">すべての保存された検索語は削除されました。</string>
+  <!-- Preferences * Themes * Themes selection category -->
+  <string name="pref_themes_selection_category">テーマ</string>
+  <!-- Preferences * Themes * Set theme button -->
+  <string name="pref_themes_set_theme">テーマを設定</string>
+  <!-- Preferences * Themes * No preview -->
+  <string name="pref_themes_no_preview">利用できる\nプレビュー無し</string>
+  <!-- Preferences * Themes * Confirmation message -->
+  <string name="pref_themes_confirmation">テーマの適用は成功しました。</string>
+  <!-- Preferences * Themes * Theme not found message -->
+  <string name="pref_themes_not_found">テーマはみつかりませんでした。</string>
+
+  <!-- Preferences * Debug * Capture debug traces -->
+  <string name="pref_debug_traces">デバッグ情報をログに記録</string>
+
+  <!-- Themes * Default theme name -->
+  <string name="theme_default_name">明るいテーマ</string>
+  <!-- Themes * Default theme description -->
+  <string name="theme_default_description">CyanogenModファイルマネージャの明るいテーマ</string>
+  <!-- Themes * Default theme author -->
+  <string name="themes_author">CyanogenMod</string>
+
+  <!-- Security * Extract relative or absolute files -->
+  <string name="security_warning_extract">警告!\n\n
+      相対パスあるいは絶対パスへの書庫の解凍はシステムファイルを上書きし、デバイスを破滅させる恐れがあります。
+      \n\n
+      続けますか?</string>
+
+  <!-- ChangeLog * Dialog title -->
+  <string name="changelog_title">更新履歴</string>
+
+  <!-- Welcome Dialog * Title -->
+  <string name="welcome_title">ようこそ</string>
+  <!-- Welcome Dialog * Message -->
+  <string name="welcome_msg">
+    ようこそ CyanogenMod ファイルマネージャへ。
+    \n\nこのアプリはファイルシステムを探索し、様々なオペレーションによりデバイスを壊してしまうこともできます。
+    そのため、意図せず壊してしまわないように権限の低いセーフモードで起動します。
+    \n\n設定により、フルアクセス可能な上級モードで利用することもできますが、システムを壊さないように注意深く操作して下さい。
+    \n\nCyanogenModチームより。\n</string>
+</resources>

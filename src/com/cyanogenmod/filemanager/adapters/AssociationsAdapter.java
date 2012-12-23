@@ -28,6 +28,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.cyanogenmod.filemanager.R;
+import com.cyanogenmod.filemanager.ui.ThemeManager;
+import com.cyanogenmod.filemanager.ui.ThemeManager.Theme;
 
 import java.util.List;
 
@@ -149,6 +151,11 @@ public class AssociationsAdapter
             viewHolder.mIvIcon = (ImageView)v.findViewById(RESOURCE_ITEM_ICON);
             viewHolder.mTvName = (TextView)v.findViewById(RESOURCE_ITEM_NAME);
             v.setTag(viewHolder);
+
+            // Apply theme
+            Theme theme = ThemeManager.getCurrentTheme(getContext());
+            theme.setBackgroundDrawable(getContext(), v, "selection_drawable"); //$NON-NLS-1$
+            theme.setTextColor(getContext(), viewHolder.mTvName, "text_color"); //$NON-NLS-1$
         }
 
         //Retrieve data holder

@@ -18,6 +18,7 @@ package com.cyanogenmod.filemanager.util;
 
 import android.content.Context;
 import android.content.res.Resources;
+import android.text.TextUtils;
 import android.util.Log;
 
 import com.cyanogenmod.filemanager.R;
@@ -119,6 +120,59 @@ public final class MimeTypeHelper {
         public MimeTypeCategory mCategory;
         public String mMimeType;
         public String mDrawable;
+
+        /**
+         * {@inheritDoc}
+         */
+        @Override
+        public int hashCode() {
+            final int prime = 31;
+            int result = 1;
+            result = prime * result
+                    + ((this.mCategory == null) ? 0 : this.mCategory.hashCode());
+            result = prime * result
+                    + ((this.mDrawable == null) ? 0 : this.mDrawable.hashCode());
+            result = prime * result
+                    + ((this.mMimeType == null) ? 0 : this.mMimeType.hashCode());
+            return result;
+        }
+
+        /**
+         * {@inheritDoc}
+         */
+        @Override
+        public boolean equals(Object obj) {
+            if (this == obj)
+                return true;
+            if (obj == null)
+                return false;
+            if (getClass() != obj.getClass())
+                return false;
+            MimeTypeInfo other = (MimeTypeInfo) obj;
+            if (this.mCategory != other.mCategory)
+                return false;
+            if (this.mDrawable == null) {
+                if (other.mDrawable != null)
+                    return false;
+            } else if (!this.mDrawable.equals(other.mDrawable))
+                return false;
+            if (this.mMimeType == null) {
+                if (other.mMimeType != null)
+                    return false;
+            } else if (!this.mMimeType.equals(other.mMimeType))
+                return false;
+            return true;
+        }
+
+        /**
+         * {@inheritDoc}
+         */
+        @Override
+        public String toString() {
+            return "MimeTypeInfo [mCategory=" + this.mCategory + //$NON-NLS-1$
+                    ", mMimeType="+ this.mMimeType + //$NON-NLS-1$
+                    ", mDrawable=" + this.mDrawable + "]"; //$NON-NLS-1$ //$NON-NLS-2$
+        }
     }
 
     private static final String TAG = "MimeTypeHelper"; //$NON-NLS-1$
@@ -128,7 +182,6 @@ public final class MimeTypeHelper {
      */
     public static final String ALL_MIME_TYPES = "*/*"; //$NON-NLS-1$
 
-    private static Map<String, Integer> sCachedIndentifiers;
     private static Map<String, MimeTypeInfo> sMimeTypes;
 
     /**
@@ -144,9 +197,9 @@ public final class MimeTypeHelper {
      *
      * @param context The current context
      * @param fso The file system object
-     * @return int The associated mime/type icon resource identifier
+     * @return String The associated mime/type icon resource identifier
      */
-    public static final int getIcon(Context context, FileSystemObject fso) {
+    public static final String getIcon(Context context, FileSystemObject fso) {
         //Ensure that mime types are loaded
         if (sMimeTypes == null) {
             loadMimeTypes(context);
@@ -154,41 +207,43 @@ public final class MimeTypeHelper {
 
         //Check if the argument is a folder
         if (fso instanceof Directory || FileHelper.isSymlinkRefDirectory(fso)) {
-            return R.drawable.ic_fso_folder;
+            return "ic_fso_folder_drawable"; //$NON-NLS-1$
         }
 
         //Get the extension and delivery
         String ext = FileHelper.getExtension(fso);
         if (ext != null) {
-            MimeTypeInfo mimeTypeInfo = sMimeTypes.get(ext);
+            MimeTypeInfo mimeTypeInfo = sMimeTypes.get(ext.toLowerCase());
             if (mimeTypeInfo != null) {
-                //Search the identifier in the cache
-                int drawableId = 0;
-                if (sCachedIndentifiers.containsKey(ext)) {
-                    drawableId = sCachedIndentifiers.get(ext).intValue();
-                } else {
-                    drawableId = ResourcesHelper.getIdentifier(
-                          context.getResources(), "drawable", //$NON-NLS-1$
-                          mimeTypeInfo.mDrawable);
-                    sCachedIndentifiers.put(ext, Integer.valueOf(drawableId));
+                // Create a new drawable
+                if (!TextUtils.isEmpty(mimeTypeInfo.mDrawable)) {
+                    return mimeTypeInfo.mDrawable;
                 }
-                return drawableId;
+
+                // Something was wrong here. The resource should exist, but it's not present.
+                // Audit the wrong mime/type resource and return the best fso drawable (probably
+                // default)
+                Log.w(TAG, String.format(
+                        "Something was wrong with the drawable of the fso:" + //$NON-NLS-1$
+                        "%s, mime: %s", //$NON-NLS-1$
+                        fso.toString(),
+                        mimeTypeInfo.toString()));
             }
         }
 
         // Check  system file
         if (FileHelper.isSystemFile(fso)) {
-            return R.drawable.fso_type_system;
+            return "fso_type_system_drawable"; //$NON-NLS-1$
         }
         // Check if the fso is executable (but not a symlink)
         if (!(fso instanceof Symlink)) {
             if (fso.getPermissions().getUser().isExecute() ||
                 fso.getPermissions().getGroup().isExecute() ||
                 fso.getPermissions().getOthers().isExecute()) {
-                return R.drawable.fso_type_executable;
+                return "fso_type_executable_drawable"; //$NON-NLS-1$
             }
         }
-        return R.drawable.ic_fso_default;
+        return "ic_fso_default_drawable"; //$NON-NLS-1$
     }
 
     /**
@@ -208,7 +263,7 @@ public final class MimeTypeHelper {
         String ext = FileHelper.getExtension(fso);
         if (ext != null) {
             //Load from the database of mime types
-            MimeTypeInfo mimeTypeInfo = sMimeTypes.get(ext);
+            MimeTypeInfo mimeTypeInfo = sMimeTypes.get(ext.toLowerCase());
             if (mimeTypeInfo != null) {
                 return mimeTypeInfo.mMimeType;
             }
@@ -257,7 +312,7 @@ public final class MimeTypeHelper {
         String ext = FileHelper.getExtension(fso);
         if (ext != null) {
             //Load from the database of mime types
-            MimeTypeInfo mimeTypeInfo = sMimeTypes.get(ext);
+            MimeTypeInfo mimeTypeInfo = sMimeTypes.get(ext.toLowerCase());
             if (mimeTypeInfo != null) {
                 return mimeTypeInfo.mMimeType;
             }
@@ -292,7 +347,7 @@ public final class MimeTypeHelper {
         String ext = FileHelper.getExtension(file.getName());
         if (ext != null) {
             //Load from the database of mime types
-            MimeTypeInfo mimeTypeInfo = sMimeTypes.get(ext);
+            MimeTypeInfo mimeTypeInfo = sMimeTypes.get(ext.toLowerCase());
             if (mimeTypeInfo != null) {
                 return mimeTypeInfo.mCategory;
             }
@@ -332,7 +387,7 @@ public final class MimeTypeHelper {
         String ext = FileHelper.getExtension(fso);
         if (ext != null) {
             //Load from the database of mime types
-            MimeTypeInfo mimeTypeInfo = sMimeTypes.get(ext);
+            MimeTypeInfo mimeTypeInfo = sMimeTypes.get(ext.toLowerCase());
             if (mimeTypeInfo != null) {
                 return mimeTypeInfo.mCategory;
             }
@@ -391,9 +446,7 @@ public final class MimeTypeHelper {
     public static synchronized void loadMimeTypes(Context context) {
         if (sMimeTypes == null) {
             try {
-                // Create a new icon holder
-                sCachedIndentifiers = new HashMap<String, Integer>();
-
+                // Load the mime/type database
                 Properties mimeTypes = new Properties();
                 mimeTypes.load(context.getResources().openRawResource(R.raw.mime_types));
 

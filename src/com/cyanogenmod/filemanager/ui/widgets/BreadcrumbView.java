@@ -17,6 +17,7 @@
 package com.cyanogenmod.filemanager.ui.widgets;
 
 import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -31,6 +32,8 @@ import com.cyanogenmod.filemanager.R;
 import com.cyanogenmod.filemanager.model.DiskUsage;
 import com.cyanogenmod.filemanager.model.MountPoint;
 import com.cyanogenmod.filemanager.tasks.FilesystemAsyncTask;
+import com.cyanogenmod.filemanager.ui.ThemeManager;
+import com.cyanogenmod.filemanager.ui.ThemeManager.Theme;
 import com.cyanogenmod.filemanager.util.FileHelper;
 import com.cyanogenmod.filemanager.util.StorageHelper;
 
@@ -123,6 +126,12 @@ public class BreadcrumbView extends RelativeLayout implements Breadcrumb, OnClic
         this.mFilesystemInfo = (ImageView)findViewById(R.id.ab_filesystem_info);
         this.mDiskUsageInfo = (ProgressBar)findViewById(R.id.breadcrumb_diskusage);
         this.mLoading = findViewById(R.id.breadcrumb_loading);
+
+        // Change the image of filesystem (this is not called after a changeBreadcrumbPath call,
+        // so if need to be theme previously to protect from errors)
+        Theme theme = ThemeManager.getCurrentTheme(getContext());
+        theme.setImageDrawable(
+                getContext(), this.mFilesystemInfo, "filesystem_warning_drawable"); //$NON-NLS-1$
     }
 
     /**
@@ -221,6 +230,9 @@ public class BreadcrumbView extends RelativeLayout implements Breadcrumb, OnClic
                 this.mBreadcrumbBar.addView(createBreadcrumbItem(createFile(dirs, i)));
             }
         }
+
+        // Now apply the theme to the breadcrumb
+        applyTheme();
 
         //Set scrollbar at the end
         this.mScrollView.post(new Runnable() {
@@ -329,4 +341,34 @@ public class BreadcrumbView extends RelativeLayout implements Breadcrumb, OnClic
         return null;
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void applyTheme() {
+        Theme theme = ThemeManager.getCurrentTheme(getContext());
+
+        //- Breadcrumb
+        if (this.mBreadcrumbBar != null) {
+            int cc = this.mBreadcrumbBar.getChildCount();
+            for (int i = 0; i < cc; i++) {
+                // There are 2 types: Breadcrumb items and separators
+                View v = this.mBreadcrumbBar.getChildAt(i);
+                if (v instanceof BreadcrumbItem) {
+                    // Breadcrumb item
+                    theme.setTextColor(
+                            getContext(), (BreadcrumbItem)v, "text_color"); //$NON-NLS-1$
+                } else if (v instanceof ImageView) {
+                    // Divider drawable
+                    theme.setImageDrawable(
+                            getContext(),
+                            (ImageView)v, "breadcrumb_divider_drawable"); //$NON-NLS-1$
+                }
+            }
+        }
+        if (this.mDiskUsageInfo != null) {
+            Drawable dw = theme.getDrawable(getContext(), "horizontal_progress_bar"); //$NON-NLS-1$
+            this.mDiskUsageInfo.setProgressDrawable(dw);
+        }
+    }
 }

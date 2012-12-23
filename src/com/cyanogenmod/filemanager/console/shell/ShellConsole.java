@@ -299,12 +299,20 @@ public abstract class ShellConsole extends Console implements Program.ProgramLis
                     getExecutableFactory().newCreator().createIdentityExecutable();
             execute(identityCmd);
             this.mIdentity = identityCmd.getResult();
-            if (this.mIdentity.getGroups().size() == 0) {
-                //Try with groups
-                GroupsExecutable groupsCmd =
-                        getExecutableFactory().newCreator().createGroupsExecutable();
-                execute(groupsCmd);
-                this.mIdentity.setGroups(groupsCmd.getResult());
+            // Identity command is required for root console detection,
+            // but Groups command is not used for now. Also, this command is causing
+            // problems on some implementations (maybe toolbox?) which don't
+            // recognize the root AID and returns an error. Safely ignore on error.
+            try {
+                if (this.mIdentity.getGroups().size() == 0) {
+                    //Try with groups
+                    GroupsExecutable groupsCmd =
+                            getExecutableFactory().newCreator().createGroupsExecutable();
+                    execute(groupsCmd);
+                    this.mIdentity.setGroups(groupsCmd.getResult());
+                }
+            } catch (Exception ex) {
+                Log.w(TAG, "Groups command failed. Ignored.", ex);
             }
 
         } catch (Exception ex) {
@@ -564,6 +572,12 @@ public abstract class ShellConsole extends Console implements Program.ProgramLis
 
             //Check if invocation was successfully or not
             if (!program.isIgnoreShellStdErrCheck()) {
+                //Wait for stderr buffer to be filled
+                if (exitCode != 0) {
+                    try {
+                        Thread.sleep(100L);
+                    } catch (Throwable ex) {/**NON BLOCK**/}
+                }
                 this.mShell.checkStdErr(this.mActiveCommand, exitCode, this.mSbErr.toString());
             }
             this.mShell.checkExitCode(exitCode);
@@ -698,9 +712,12 @@ public abstract class ShellConsole extends Console implements Program.ProgramLis
                                     sb = new StringBuffer(ShellConsole.this.mSbIn.toString());
                                     if (async) {
                                         synchronized (ShellConsole.this.mPartialSync) {
-                                            ((AsyncResultProgram)ShellConsole.
-                                                    this.mActiveCommand).
-                                                        onRequestStartParsePartialResult();
+                                            AsyncResultProgram p =
+                                                    ((AsyncResultProgram)ShellConsole.
+                                                                        this.mActiveCommand);
+                                            if (p != null) {
+                                                p.onRequestStartParsePartialResult();
+                                            }
                                         }
                                     }
                                 } else {
@@ -718,7 +735,9 @@ public abstract class ShellConsole extends Console implements Program.ProgramLis
                                 AsyncResultProgram program =
                                         ((AsyncResultProgram)ShellConsole.this.mActiveCommand);
                                 String partial = sb.toString();
-                                program.onRequestParsePartialResult(partial);
+                                if (program != null) {
+                                    program.onRequestParsePartialResult(partial);
+                                }
                                 ShellConsole.this.toStdIn(partial);
 
                                 // Reset the temp buffer
@@ -727,16 +746,15 @@ public abstract class ShellConsole extends Console implements Program.ProgramLis
 
                             if (finished) {
                                 if (!async) {
-                                    ShellConsole.this.toStdIn(sb.toString());
+                                    ShellConsole.this.toStdIn(s);
                                 }
 
                                 //Notify the end
                                 notifyProcessFinished();
                                 break;
                             }
-
-                            if (!async) {
-                                ShellConsole.this.toStdIn(sb.toString());
+                            if (!async && !finished) {
+                                ShellConsole.this.toStdIn(s);
                             }
 
                             //Wait for buffer to be filled
@@ -816,7 +834,9 @@ public abstract class ShellConsole extends Console implements Program.ProgramLis
                             if (ShellConsole.this.mStarted && async) {
                                 AsyncResultProgram program =
                                         ((AsyncResultProgram)ShellConsole.this.mActiveCommand);
-                                program.parsePartialErrResult(new String(new char[]{(char)r}));
+                                if (program != null) {
+                                    program.parsePartialErrResult(new String(new char[]{(char)r}));
+                                }
                             }
 
                             toStdErr(sb.toString());
@@ -837,9 +857,7 @@ public abstract class ShellConsole extends Console implements Program.ProgramLis
                                 ShellConsole.this.mActiveCommand != null &&
                                 ShellConsole.this.mActiveCommand instanceof AsyncResultProgram;
 
-                            // Exit if active command is cancelled
-                            if (ShellConsole.this.mCancelled) continue;
-
+                            // Add to stderr
                             String s = new String(data, 0, read);
                             ShellConsole.this.mSbErr.append(s);
                             sb.append(s);
@@ -848,9 +866,11 @@ public abstract class ShellConsole extends Console implements Program.ProgramLis
                             if (async) {
                                 AsyncResultProgram program =
                                         ((AsyncResultProgram)ShellConsole.this.mActiveCommand);
-                                program.parsePartialErrResult(s);
+                                if (program != null) {
+                                    program.parsePartialErrResult(s);
+                                }
                             }
-                            toStdErr(sb.toString());
+                            toStdErr(s);
 
                             //Wait for buffer to be filled
                             try {

@@ -1,0 +1,298 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (C) 2012 The CyanogenMod Project
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+ -->
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+  <string name="app_name">Manager Fişiere</string>
+  <string name="app_description">Manager de fişiere CyanogenMod.</string>
+  <string name="yes">Da</string>
+  <string name="no">Nu</string>
+  <string name="all">Toate</string>
+  <string name="overwrite">Suprascriere</string>
+  <string name="search_result_name">Căutare: <xliff:g id="terms">%1$s</xliff:g></string>
+  <string name="loading_message">Încărcare\u2026</string>
+  <string name="cancelled_message">Anulat.</string>
+  <string name="error_message">Eroare.</string>
+  <string name="warning_title">Avertizare</string>
+  <string name="error_title">Eroare detectată</string>
+  <string name="confirm_operation">Confirmaţi operaţiunea</string>
+  <string name="confirm_overwrite">Confirmaţi suprascrierea</string>
+  <string name="confirm_deletion">Confirmaţi ştergerea</string>
+  <string name="msgs_change_to_prompt_access_mode_title">Confirmaţi comutarea</string>
+  <string name="msgs_change_to_prompt_access_mode_msg">Imposibil de executat în modul Acces Root. Schimbare la modul Sigur.\n\nAplicaţi acestă modificare?</string>
+  <string name="msgs_cant_create_console">Imposibil de obţinut privilegiile necesare pentru funcţionare.</string>
+  <string name="msgs_privileged_console_alloc_failed">Imposibil de executat în modul Acces Root. Schimbare la modul Sigur.</string>
+  <string name="msgs_settings_save_failure">Setarea nu poate fi aplicată sau stocată.</string>
+  <string name="msgs_settings_invalid_initial_directory">Dosarul iniţial "<xliff:g id="initial_dir">%1$s</xliff:g>" nu este valid. Schimbare la dosarul rădăcină.</string>
+  <string name="msgs_success">Operaţiunea a fost finalizată cu succes.</string>
+  <string name="msgs_unknown">A fost detectată o eroare. Operațiunea nu a reușit.</string>
+  <string name="msgs_insufficient_permissions">Această operațiune necesită permisiuni ridicate. Încercaţi să schimbaţi la modul de Acces Root.</string>
+  <string name="msgs_file_not_found">Fişierul sau dosarul nu a fost găsit.</string>
+  <string name="msgs_command_not_found">Comanda operațiunii nu a fost găsită sau are o definiție nevalidă.</string>
+  <string name="msgs_io_failed">Eşec citire/scriere.</string>
+  <string name="msgs_operation_timeout">Operațiunea a expirat.</string>
+  <string name="msgs_operation_failure">Operaţiunea a eşuat.</string>
+  <string name="msgs_console_alloc_failure">Eroare internă.</string>
+  <string name="msgs_operation_can_not_be_cancelled">Operaţiunea nu poate fi anulată.</string>
+  <string name="msgs_read_only_filesystem">Sistemul de fişiere este doar în citire. Încercaţi montarea sistemului de fişiere ca citire-scriere înainte de a încerca operaţiunea.</string>
+  <string name="msgs_illegal_argument">Argument ilegal. Invocarea nu a reușit.</string>
+  <string name="msgs_unresolved_inconsistencies">Operațiunea nu este permisă pentru că ar crea incoerenţe.</string>
+  <string name="msgs_operation_not_allowed_in_current_directory">Operațiunea nu este permisă în dosarul curent.</string>
+  <string name="msgs_push_again_to_exit">Apăsaţi din nou pentru a ieşi.</string>
+  <string name="msgs_not_registered_app">Nu există nicio aplicație înregistrată care ar deschide tipul de fişier selectat.</string>
+  <string name="msgs_overwrite_files">Unele dintre fişiere există deja în dosarul destinaţie.\n\nSuprascrieţi?</string>
+  <string name="msgs_action_association_failed">Asocierea acţiunii la aplicație a eşuat.</string>
+  <string name="advise_insufficient_permissions">Această operațiune necesită permisiuni ridicate.\n\nDoriţi să schimbaţi la modul de Acces Root?</string>
+  <string name="parent_dir">Dosarul sursă</string>
+  <string name="external_storage">Stocare externă</string>
+  <string name="usb_storage">Stocare USB</string>
+  <string name="actionbar_button_filesystem_cd">Info sistem de fişiere</string>
+  <string name="actionbar_button_sort_mode_cd">Mod sortare</string>
+  <string name="actionbar_button_layout_mode_cd">Mod aspect</string>
+  <string name="actionbar_button_other_view_options_cd">Alte opţiuni de vizualizare</string>
+  <string name="actionbar_button_selection_done_cd">Terminat</string>
+  <string name="actionbar_button_actions_cd">Acţiuni</string>
+  <string name="actionbar_button_history_cd">Istoric</string>
+  <string name="actionbar_button_bookmarks_cd">Marcaje</string>
+  <string name="actionbar_button_search_cd">Căutare</string>
+  <string name="actionbar_button_overflow_cd">Mai multe opțiuni</string>
+  <string name="actionbar_button_storage_cd">Volume stocare</string>
+  <string name="actionbar_button_save_cd">Salvare</string>
+  <string name="sort_by_name_asc">După nume &#x25B2;</string>
+  <string name="sort_by_name_desc">După nume &#x25BC;</string>
+  <string name="sort_by_date_asc">După dată &#x25B2;</string>
+  <string name="sort_by_date_desc">După dată &#x25BC;</string>
+  <string name="layout_icons">Pictograme</string>
+  <string name="layout_simple">Simplu</string>
+  <string name="layout_details">Detaliat</string>
+  <string name="cm_filemanager_show_dirs_first">Afişare dosare întâi</string>
+  <string name="cm_filemanager_show_hidden">Afişare fişiere ascunse</string>
+  <string name="cm_filemanager_show_system">Afişare fişiere de sistem</string>
+  <string name="cm_filemanager_show_symlinks">Afişare legături simbolice</string>
+  <string name="filesystem_info_warning_title">Nu există informaţii</string>
+  <string name="filesystem_info_warning_msg">Nu există informaţii disponibile pentru fişierele de sistem.</string>
+  <string name="filesystem_info_cant_be_mounted_msg">Fişierele de sistem nu pot fi montate/demontate.</string>
+  <string name="filesystem_info_mount_not_allowed_msg">Operațiunile de montare a fişierelor de sistem nu sunt permise modul Sigur. Atingeţi pentru a schimba modul de acces Root.</string>
+  <string name="filesystem_info_mount_failed_msg">Operațiunea de montare a fişierelor de sistemul nu a reușit. Unele sisteme de fişier, ca de ex. cardurile SD, nu pot fi montate/demontate deoarece ele sunt încorporate ca sisteme de fişiere doar în citire.</string>
+  <string name="filesystem_info_dialog_title">Informaţie despre sistemul de fişiere</string>
+  <string name="filesystem_info_dialog_tab_info">Info</string>
+  <string name="filesystem_info_dialog_tab_disk_usage">Utilizare disc</string>
+  <string name="filesystem_info_dialog_status">Stare:</string>
+  <string name="filesystem_info_dialog_mount_point">Punct de montare:</string>
+  <string name="filesystem_info_dialog_device">Dispozitiv:</string>
+  <string name="filesystem_info_dialog_type">Tip:</string>
+  <string name="filesystem_info_dialog_options">Opţiuni:</string>
+  <string name="filesystem_info_dialog_total_disk_usage">Total:</string>
+  <string name="filesystem_info_dialog_used_disk_usage">Utilizat:</string>
+  <string name="filesystem_info_dialog_free_disk_usage">Disponibil:</string>
+  <string name="fso_properties_permissions_not_allowed_msg">Operațiunile de permisiuni nu sunt admise în modul Sigur. Atingeţi pentru a schimba modul de acces Root.</string>
+  <string name="fso_properties_failed_to_change_owner_msg">Operațiunea de schimbare a proprietarului nu a reușit.\n\nDin motive de securitate, unele sistem de fişiere, ca de ex. cardurile SD, nu admit schimbarea proprietarului.</string>
+  <string name="fso_properties_failed_to_change_group_msg">Operaţiunea de schimbarea a grupului nu a reușit.\n\nDin motive de securitate, unele sistem de fişiere, ca de ex. cardurile SD, nu admit schimbarea grupurilor.</string>
+  <string name="fso_properties_failed_to_change_permission_msg">Operaţiunea de schimbare a permisiunilor nu a reuşit.\n\nDin motive de securitate, unele sistem de fişiere, ca de ex. cardurile SD, nu admit schimbarea permisiunilor.</string>
+  <string name="fso_properties_dialog_title">Proprietăţi</string>
+  <string name="fso_properties_dialog_tab_info">Info</string>
+  <string name="fso_properties_dialog_tab_permissions">Permisiuni</string>
+  <string name="fso_properties_dialog_name">Nume:</string>
+  <string name="fso_properties_dialog_parent">Sursă:</string>
+  <string name="fso_properties_dialog_type">Tip:</string>
+  <string name="fso_properties_dialog_category">Categorie:</string>
+  <string name="fso_properties_dialog_link">Link:</string>
+  <string name="fso_properties_dialog_size">Dimensiune:</string>
+  <string name="fso_properties_dialog_contains">Conţin:</string>
+  <string name="fso_properties_dialog_date">Ultima accesare:</string>
+  <string name="fso_properties_dialog_owner">Proprietar:</string>
+  <string name="fso_properties_dialog_group">Grup:</string>
+  <string name="fso_properties_dialog_others">Altele:</string>
+  <plurals name="fso_properties_dialog_folders">
+    <item quantity="zero">0 dosare</item>
+    <item quantity="one">1 dosar</item>
+    <item quantity="other"><xliff:g id="folders">%1$d</xliff:g> dosare</item>
+  </plurals>
+  <plurals name="fso_properties_dialog_files">
+    <item quantity="zero">0 fişiere</item>
+    <item quantity="one">1 fişiere</item>
+    <item quantity="other"><xliff:g id="files">%1$d</xliff:g> fişiere</item>
+  </plurals>
+  <string name="history">Istoric</string>
+  <string name="msgs_history_empty">Istoric gol.</string>
+  <string name="msgs_history_unknown">Element istoric necunoscut.</string>
+  <string name="search">Rezultatele căutării</string>
+  <string name="search_hint">Introduceţi căutarea</string>
+  <string name="search_voice_hint">Rostiţi căutarea</string>
+  <string name="search_error_msg">O eroare a avut loc în timpul cautării. Niciun rezultat găsit.</string>
+  <string name="search_no_results_msg">Niciun rezultat găsit.</string>
+  <plurals name="search_found_items">
+    <item quantity="zero">Niciun element găsit</item>
+    <item quantity="one">1 element găsit</item>
+    <item quantity="other"><xliff:g id="count">%d</xliff:g> elemente găsite</item>
+  </plurals>
+  <string name="search_found_items_in_directory"><xliff:g id="items">%1$s</xliff:g> în<xliff:g id="path">%2$s</xliff:g></string>
+  <string name="search_few_characters_title">Confirmaţi căutarea</string>
+  <string name="search_few_characters_msg">Unii termeni de căutare au un număr mic de caractere. Operațiunea ar putea fi foarte costisitoare în timp şi resurse de sistem.\n\nDoriţi să continuaţi?</string>
+  <string name="searching">Aşteptaţi\u2026</string>
+  <string name="searching_action_label">Căutare în curs</string>
+  <string name="picker_title">Alegeţi un fişier</string>
+  <string name="editor">Editor</string>
+  <string name="editor_invalid_file_msg">Fişier nevalid.</string>
+  <string name="editor_file_not_found_msg">Fișierul nu a fost găsit.</string>
+  <string name="editor_file_exceed_size_msg">Fişierul este prea mare pentru a fi deschis în interiorul acestui dispozitiv.</string>
+  <string name="editor_dirty_ask_title">Confirmaţi ieşirea</string>
+  <string name="editor_dirty_ask_msg">Există modificări nesalvate.\n\nIeșiți fără salvare?</string>
+  <string name="editor_successfully_saved">Fişierul a fost salvat cu succes.</string>
+  <string name="editor_read_only_mode">Fişierul este deschis în modul doar-în-citire.</string>
+  <string name="bookmarks">Marcaje</string>
+  <string name="bookmarks_home">Acasă</string>
+  <string name="bookmarks_root_folder">Dosarul rădăcină</string>
+  <string name="bookmarks_system_folder">Dosarul sistem</string>
+  <string name="bookmarks_button_config_cd">Setaţi folderul iniţial.</string>
+  <string name="bookmarks_button_remove_bookmark_cd">Eliminați marcajul.</string>
+  <string name="bookmarks_msgs_add_success">Marcajul a fost adăugat cu succes.</string>
+  <string name="initial_directory_dialog_title">Dosarul iniţial</string>
+  <string name="initial_directory_label">Alegeţi folderul iniţial:</string>
+  <string name="initial_directory_relative_msg">Căile relative nu sunt permise.</string>
+  <string name="initial_directory_error_msg">Eroare la salvarea folderului iniţial.</string>
+  <string name="menu_history">Istoric</string>
+  <string name="menu_bookmarks">Marcaje</string>
+  <string name="menu_search">Căutare</string>
+  <string name="menu_settings">Setări</string>
+  <string name="menu_clear_history">Ştergeţi istoricul</string>
+  <string name="create_copy_regexp"><xliff:g id="name">%1$s</xliff:g> - copie<xliff:g id="extension">%2$s</xliff:g></string>
+  <string name="create_new_compress_file_regexp"><xliff:g id="name">%1$s</xliff:g> - nou<xliff:g id="extension">%2$s</xliff:g></string>
+  <string name="waiting_dialog_msg">Efectuare operaţiune\u2026</string>
+  <string name="waiting_dialog_copying_title">Copiere\u2026</string>
+  <string name="waiting_dialog_moving_title">Mutare\u2026</string>
+  <string name="waiting_dialog_deleting_title">Ştergere\u2026</string>
+  <string name="waiting_dialog_extracting_title">Extragere\u2026</string>
+  <string name="waiting_dialog_compressing_title">Comprimare\u2026</string>
+  <string name="msgs_extracting_success">Operaţiunea de extragere a fost finalizată cu succes. Datele au fost extrase în<xliff:g id="destination">%1$s</xliff:g>.</string>
+  <string name="msgs_compressing_success">Operaţiunea de comprimare a fost finalizată cu succes. Datele au fost comprimate în<xliff:g id="destination">%1$s</xliff:g>.</string>
+  <string name="actions_dialog_title">Acţiuni</string>
+  <string name="actions_menu_properties_current_folder">Proprietăţi</string>
+  <string name="actions_menu_refresh">Reîmprospătare</string>
+  <string name="actions_menu_new_directory">Dosar nou</string>
+  <string name="actions_menu_new_file">Fişier nou</string>
+  <string name="actions_menu_select_all">Selectare totală</string>
+  <string name="actions_menu_deselect_all">Anulare selectare totală</string>
+  <string name="actions_menu_select">Selectare</string>
+  <string name="actions_menu_deselect">Deselectare</string>
+  <string name="actions_menu_paste_selection">Lipire</string>
+  <string name="actions_menu_move_selection">Mutare</string>
+  <string name="actions_menu_delete_selection">Ştergere</string>
+  <string name="actions_menu_compress_selection">Comprimare</string>
+  <string name="actions_menu_create_link">Creare legătură</string>
+  <string name="actions_menu_open">Deschidere</string>
+  <string name="actions_menu_open_with">Deschidere cu</string>
+  <string name="actions_menu_execute">Executare</string>
+  <string name="actions_menu_send">Trimitere</string>
+  <string name="actions_menu_compress">Comprimare</string>
+  <string name="actions_menu_extract">Extragere</string>
+  <string name="actions_menu_delete">Ştergere</string>
+  <string name="actions_menu_rename">Redenumire</string>
+  <string name="actions_menu_create_copy">Creare copie</string>
+  <string name="actions_menu_properties">Proprietăţi</string>
+  <string name="actions_menu_add_to_bookmarks">Adăugare la marcaje</string>
+  <string name="actions_menu_add_shortcut">Adăugare comandă rapidă</string>
+  <string name="actions_menu_open_parent_folder">Deschidere sursă</string>
+  <string name="actions_ask_undone_operation_msg">Această acţiune nu poate fi anulată. Doriţi să continuaţi?</string>
+  <string name="input_name_dialog_label">Nume:</string>
+  <string name="input_name_dialog_message_empty_name">Numele nu poate fi gol.</string>
+  <string name="input_name_dialog_message_invalid_path_name">Nume nevalid. Caracterele \"<xliff:g id="invalid_characters">%1$s</xliff:g>\" nu sunt admise.</string>
+  <string name="input_name_dialog_message_invalid_name">Nume nevalid. Numele \".\" and \"..\" nu sunt admise.</string>
+  <string name="input_name_dialog_message_name_exists">Numele există deja.</string>
+  <string name="associations_dialog_title">Asociaţii</string>
+  <string name="associations_dialog_remember">Reţineţi selecţia</string>
+  <string name="associations_dialog_openwith_title">Deschideţi cu</string>
+  <string name="associations_dialog_openwith_action">Deschideţi</string>
+  <string name="associations_dialog_sendwith_title">Trimiteţi cu</string>
+  <string name="associations_dialog_sendwith_action">Trimiteţi</string>
+  <string name="inline_autocomplete_tab_nothing_to_complete_msg">Nimic de finalizat.</string>
+  <string name="execution_console_title">Consolă</string>
+  <string name="execution_console_script_name_label">Script:</string>
+  <string name="execution_console_script_execution_time_label">Timp:</string>
+  <string name="execution_console_script_exitcode_label">Cod ieşire:</string>
+  <string name="execution_console_script_execution_time_text"><xliff:g id="seconds">%1$s</xliff:g> s.</string>
+  <string name="mime_folder">Dosar</string>
+  <string name="mime_symlink">Legătură simbolică</string>
+  <string name="mime_unknown">Necunoscut</string>
+  <string name="selection_one_folder"><xliff:g id="folders">%1$s</xliff:g> dosare selectate.</string>
+  <string name="selection_other_folders"><xliff:g id="folders">%1$s</xliff:g> dosare selectate.</string>
+  <string name="selection_one_file"><xliff:g id="files">%1$s</xliff:g> fişiere selectate.</string>
+  <string name="selection_other_files"><xliff:g id="files">%1$s</xliff:g> fişiere selectate.</string>
+  <string name="selection_other_folders_one_file"><xliff:g id="folders">%1$s</xliff:g> dosare şi<xliff:g id="files">%2$s</xliff:g> fişiere selectate.</string>
+  <string name="selection_one_folder_other_files"><xliff:g id="folder2">%1$s</xliff:g> dosare şi<xliff:g id="file2">%2$s</xliff:g> fişiere selectate.</string>
+  <string name="selection_other_folders_other_files"><xliff:g id="folder2">%1$s</xliff:g> dosare şi<xliff:g id="files">%2$s</xliff:g> fişiere selectate.</string>
+  <string name="category_system">SISTEM</string>
+  <string name="category_app">APLICAŢIE</string>
+  <string name="category_binary">BINAR</string>
+  <string name="category_text">TEXT</string>
+  <string name="category_document">DOCUMENT</string>
+  <string name="category_ebook">EBOOK</string>
+  <string name="category_mail">MAIL</string>
+  <string name="category_compress">COMPRIMAT</string>
+  <string name="category_exec">EXECUTABIL</string>
+  <string name="category_database">BAZĂ DE DATE</string>
+  <string name="category_font">FONT</string>
+  <string name="category_image">IMAGINE</string>
+  <string name="category_audio">AUDIO</string>
+  <string name="category_video">VIDEO</string>
+  <string name="category_security">SECURITATE</string>
+  <string name="compression_mode_title">Mod comrimare</string>
+  <string name="shortcut_failed_msg">Eşuat.</string>
+  <string name="shortcut_creation_success_msg">Comandă rapidă creată cu succes.</string>
+  <string name="shortcut_creation_failed_msg">Crearea comandă rapidă eşuată.</string>
+  <string name="pref">Setări</string>
+  <string name="pref_general">Setări generale</string>
+  <string name="pref_search">Opţiuni căutare</string>
+  <string name="pref_about">Despre</string>
+  <string name="pref_general_behaviour_category">General</string>
+  <string name="pref_case_sensitive_sort">Utilizare sortare litere mari apoi mici</string>
+  <string name="pref_disk_usage_warning_level">Avertizare utilizare disc</string>
+  <string name="pref_disk_usage_warning_level_summary" formatted="false">Afişaţi o altă culoare în widget-urile utilizare disc, atunci când se ajunge la <xliff:g id="level">%1$s</xliff:g> procente din spaţiul disponibil pe disc</string>
+  <string name="pref_compute_folder_statistics">Calcul statistică dosare</string>
+  <string name="pref_compute_folder_statistics_on">Avertizare! Calculul statisticii dosarelor este costisitor în timp şi resurse de sistem</string>
+  <string name="pref_use_flinger">Utilizare gesturi</string>
+  <string name="pref_use_flinger_summary">Utilizaţi detectarea gestului stânga-spre-dreapta pentru ştergerea fişierelor sau dosarelor.</string>
+  <string name="pref_general_advanced_settings_category">Avansat</string>
+  <string name="pref_access_mode">Mod acces</string>
+  <string name="pref_access_mode_safe">Mod sigur</string>
+  <string name="pref_access_mode_safe_summary">Mod Sigur\n\nAplicaţia se execută, fără privilegii şi are acces numai la volumele de stocare (SD carduri şi USB)</string>
+  <string name="pref_access_mode_prompt">Mod interogare</string>
+  <string name="pref_access_mode_prompt_summary">Mod interogare\n\nAplicaţia se execută cu acces total la fişierele de sistem, dar va solicita permisiuni pentru a efectua operaţiuni privelegiate</string>
+  <string name="pref_access_mode_root">Mod acces Root</string>
+  <string name="pref_access_mode_root_summary">Mod cccess Root\n\nAvertizare! Acest mod permite operaţiuni ce pot duce la defectarea dispozitivului Dvs. Este responsabilitatea Dvs. să vă asigurați ce operațiune este sigură</string>
+  <string name="pref_search_results_category">Rezultate</string>
+  <string name="pref_show_relevance_widget">Afişare widget relevanţă</string>
+  <string name="pref_highlight_terms">Evidenţiere termeni de căutare</string>
+  <string name="pref_sort_search_results_mode">Mod sortare rezultate</string>
+  <string name="pref_sort_search_results_mode_none">Fără sortare</string>
+  <string name="pref_sort_search_results_mode_name">După nume</string>
+  <string name="pref_sort_search_results_mode_relevance">După relevanţă</string>
+  <string name="pref_search_privacity_category">Privat</string>
+  <string name="pref_save_search_terms">Salvaţi termenii de căutare</string>
+  <string name="pref_save_search_terms_on">Termenii de căutare vor fi salvaţi şi folosiţi ca sugestii pentru căutări în viitor</string>
+  <string name="pref_save_search_terms_off">Termenii de căutare nu vor fi salvaţi</string>
+  <string name="pref_remove_saved_search_terms">Eliminaţi termenii de căutare salvaţi</string>
+  <string name="pref_remove_saved_search_terms_summary">Apăsaţi pentru eliminarea tuturor termenilor de căutare salvaţi</string>
+  <string name="pref_remove_saved_search_terms_msg">Toţi termenii de căutare salvaţi au fost eliminaţi.</string>
+  <string name="pref_themes">Teme</string>
+  <string name="pref_themes_selection_category">Teme</string>
+  <string name="pref_themes_set_theme">Aplicaţi tema</string>
+  <string name="pref_themes_no_preview">Nici o previzualizare\ndisponibilă</string>
+  <string name="pref_themes_confirmation">Tema a fost aplicată cu succes.</string>
+  <string name="pref_themes_not_found">Tema nu a fost găsită.</string>
+  <string name="theme_default_name">Temă \"deschisă\"</string>
+  <string name="theme_default_description">Temă \"deschisă\" pentru Managerul de Fişiere CyanogenMod.</string>
+  <string name="security_warning_extract">Avertizare!\n\nExtragerea unui fişier arhivă cu căi relative sau absolute poate cauza defecţiuni dispozitivului Dvs. prin suprascrierea fişierelor de sistem.\n\nDoriţi să continuaţi?</string>
+  </resources>
+

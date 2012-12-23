@@ -16,6 +16,7 @@
 
 package com.cyanogenmod.filemanager.util;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
@@ -24,6 +25,7 @@ import android.util.Log;
 import com.cyanogenmod.filemanager.FileManagerApplication;
 import com.cyanogenmod.filemanager.R;
 import com.cyanogenmod.filemanager.commands.shell.ResolveLinkCommand;
+import com.cyanogenmod.filemanager.console.ExecutionException;
 import com.cyanogenmod.filemanager.model.AID;
 import com.cyanogenmod.filemanager.model.BlockDevice;
 import com.cyanogenmod.filemanager.model.CharacterDevice;
@@ -38,17 +40,25 @@ import com.cyanogenmod.filemanager.model.RegularFile;
 import com.cyanogenmod.filemanager.model.Symlink;
 import com.cyanogenmod.filemanager.model.SystemFile;
 import com.cyanogenmod.filemanager.model.User;
+import com.cyanogenmod.filemanager.preferences.DisplayRestrictions;
 import com.cyanogenmod.filemanager.preferences.FileManagerSettings;
 import com.cyanogenmod.filemanager.preferences.NavigationSortMode;
 import com.cyanogenmod.filemanager.preferences.ObjectIdentifier;
 import com.cyanogenmod.filemanager.preferences.Preferences;
+import com.cyanogenmod.filemanager.util.MimeTypeHelper.MimeTypeCategory;
 
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 /**
  * A helper class with useful methods for deal with files.
@@ -151,6 +161,7 @@ public final class FileHelper {
      * @param size The size in bytes
      * @return String The human readable size
      */
+    @SuppressLint("DefaultLocale")
     public static String getHumanReadableSize(long size) {
         Resources res = FileManagerApplication.getInstance().getResources();
         final String format = "%d %s"; //$NON-NLS-1$
@@ -453,13 +464,14 @@ public final class FileHelper {
      * (sort mode, hidden files, ...).
      *
      * @param files The listed files
-     * @param mimeType The mime-type to apply. if null returns all.
+     * @param restrictions The restrictions to apply when displaying files
      * @param chRooted If app run with no privileges
      * @return List<FileSystemObject> The applied mode listed files
      */
     public static List<FileSystemObject> applyUserPreferences(
-                    List<FileSystemObject> files, String mimeType, boolean chRooted) {
-        return applyUserPreferences(files, mimeType, false, chRooted);
+                    List<FileSystemObject> files, Map<DisplayRestrictions,
+                    Object> restrictions, boolean chRooted) {
+        return applyUserPreferences(files, restrictions, false, chRooted);
     }
 
     /**
@@ -467,13 +479,14 @@ public final class FileHelper {
      * (sort mode, hidden files, ...).
      *
      * @param files The listed files
-     * @param mimeType The mime-type to apply. if null returns all.
+     * @param restrictions The restrictions to apply when displaying files
      * @param noSort If sort must be applied
      * @param chRooted If app run with no privileges
      * @return List<FileSystemObject> The applied mode listed files
      */
     public static List<FileSystemObject> applyUserPreferences(
-            List<FileSystemObject> files, String mimeType, boolean noSort, boolean chRooted) {
+            List<FileSystemObject> files, Map<DisplayRestrictions, Object> restrictions,
+            boolean noSort, boolean chRooted) {
         //Retrieve user preferences
         SharedPreferences prefs = Preferences.getSharedPreferences();
         FileManagerSettings sortModePref = FileManagerSettings.SETTINGS_SORT_MODE;
@@ -517,12 +530,10 @@ public final class FileHelper {
                 }
             }
 
-            //Mime/Type
-            if (chRooted && !isDirectory(file)) {
-                if (mimeType != null && mimeType.compareTo(MimeTypeHelper.ALL_MIME_TYPES) != 0) {
-                    // NOTE: We don't need the context here, because mime-type database should
-                    // be loaded prior to this call
-                    if (!MimeTypeHelper.matchesMimeType(null, file, mimeType)) {
+            // Restrictions (only apply to files)
+            if (restrictions != null) {
+                if (!isDirectory(file)) {
+                    if (!isDisplayAllowed(file, restrictions)) {
                         files.remove(i);
                         continue;
                     }
@@ -575,6 +586,73 @@ public final class FileHelper {
 
         //Return the files
         return files;
+    }
+
+    /**
+     * Method that check if a file should be displayed according to the restrictions
+     *
+     * @param fso The file system object to check
+     * @param restrictions The restrictions map
+     * @return boolean If the file should be displayed
+     */
+    private static boolean isDisplayAllowed(
+            FileSystemObject fso, Map<DisplayRestrictions, Object> restrictions) {
+        Iterator<DisplayRestrictions> it = restrictions.keySet().iterator();
+        while (it.hasNext()) {
+            DisplayRestrictions restriction = it.next();
+            Object value = restrictions.get(restriction);
+            if (value == null) {
+                continue;
+            }
+            switch (restriction) {
+                case CATEGORY_TYPE_RESTRICTION:
+                    if (value instanceof MimeTypeCategory) {
+                        MimeTypeCategory cat1 = (MimeTypeCategory)value;
+                        // NOTE: We don't need the context here, because mime-type
+                        // database should be loaded prior to this call
+                        MimeTypeCategory cat2 = MimeTypeHelper.getCategory(null, fso);
+                        if (cat1.compareTo(cat2) != 0) {
+                            return false;
+                        }
+                    }
+                    break;
+
+                case MIME_TYPE_RESTRICTION:
+                    if (value instanceof String) {
+                        String mimeType = (String)value;
+                        if (mimeType.compareTo(MimeTypeHelper.ALL_MIME_TYPES) != 0) {
+                            // NOTE: We don't need the context here, because mime-type
+                            // database should be loaded prior to this call
+                            if (!MimeTypeHelper.matchesMimeType(null, fso, mimeType)) {
+                                return false;
+                            }
+                        }
+                    }
+                    break;
+
+                case SIZE_RESTRICTION:
+                    if (value instanceof Long) {
+                        Long maxSize = (Long)value;
+                        if (fso.getSize() > maxSize.longValue()) {
+                            return false;
+                        }
+                    }
+                    break;
+
+                case LOCAL_FILESYSTEM_ONLY_RESTRICTION:
+                    if (value instanceof Boolean) {
+                        Boolean localOnly = (Boolean)value;
+                        if (localOnly.booleanValue()) {
+                            /** TODO Needed when CMFM gets networking **/
+                        }
+                    }
+                    break;
+
+                default:
+                    break;
+            }
+        }
+        return true;
     }
 
     /**
@@ -749,7 +827,7 @@ public final class FileHelper {
         if (ext != null) {
             int cc = VALID.length;
             for (int i = 0; i < cc; i++) {
-                if (VALID[i].compareTo(ext) == 0) {
+                if (VALID[i].compareToIgnoreCase(ext) == 0) {
                     return true;
                 }
             }
@@ -835,5 +913,109 @@ public final class FileHelper {
             Log.e(TAG, "Exception retrieving the fso", e); //$NON-NLS-1$
         }
         return null;
+    }
+
+    /**
+     * Method that copies recursively to the destination
+     *
+     * @param src The source file or folder
+     * @param dst The destination file or folder
+     * @param bufferSize The buffer size for the operation
+     * @return boolean If the operation complete successfully
+     * @throws ExecutionException If a problem was detected in the operation
+     */
+    public static boolean copyRecursive(
+            final File src, final File dst, int bufferSize) throws ExecutionException {
+        if (src.isDirectory()) {
+            // Create the directory
+            if (dst.exists() && !dst.isDirectory()) {
+                Log.e(TAG,
+                        String.format("Failed to check destionation dir: %s", dst)); //$NON-NLS-1$
+                throw new ExecutionException("the path exists but is not a folder"); //$NON-NLS-1$
+            }
+            if (!dst.exists()) {
+                if (!dst.mkdir()) {
+                    Log.e(TAG, String.format("Failed to create directory: %s", dst)); //$NON-NLS-1$
+                    return false;
+                }
+            }
+            File[] files = src.listFiles();
+            if (files != null) {
+                for (int i = 0; i < files.length; i++) {
+                    if (!copyRecursive(files[i], new File(dst, files[i].getName()), bufferSize)) {
+                        return false;
+                    }
+                }
+            }
+        } else {
+            // Copy the directory
+            if (!bufferedCopy(src, dst,bufferSize)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    /**
+     * Method that copies a file
+     *
+     * @param src The source file
+     * @param dst The destination file
+     * @param bufferSize The buffer size for the operation
+     * @return boolean If the operation complete successfully
+     */
+    public static boolean bufferedCopy(final File src, final File dst, int bufferSize) {
+        BufferedInputStream bis = null;
+        BufferedOutputStream bos = null;
+        try {
+            bis = new BufferedInputStream(new FileInputStream(src), bufferSize);
+            bos = new BufferedOutputStream(new FileOutputStream(dst), bufferSize);
+            int read = 0;
+            byte[] data = new byte[bufferSize];
+            while ((read = bis.read(data, 0, bufferSize)) != -1) {
+                bos.write(data, 0, read);
+            }
+            return true;
+
+        } catch (Throwable e) {
+            Log.e(TAG,
+                    String.format(TAG, "Failed to copy from %s to %d", src, dst), e); //$NON-NLS-1$
+            return false;
+        } finally {
+            try {
+                if (bis != null) {
+                    bis.close();
+                }
+            } catch (Throwable e) {/**NON BLOCK**/}
+            try {
+                if (bos != null) {
+                    bos.close();
+                }
+            } catch (Throwable e) {/**NON BLOCK**/}
+        }
+    }
+
+    /**
+     * Method that deletes a folder recursively
+     *
+     * @param folder The folder to delete
+     * @return boolean If the folder was deleted
+     */
+    public static boolean deleteFolder(File folder) {
+        File[] files = folder.listFiles();
+        if (files != null) {
+            for (int i = 0; i < files.length; i++) {
+                if (files[i].isDirectory()) {
+                    if (!deleteFolder(files[i])) {
+                        return false;
+                    }
+                } else {
+                    if (!files[i].delete()) {
+                        return false;
+                    }
+                }
+            }
+        }
+        return folder.delete();
     }
 }

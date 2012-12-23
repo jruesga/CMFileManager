@@ -115,7 +115,7 @@ public final class ConsoleBuilder {
     public static boolean changeToNonPrivilegedConsole(Context context) {
 
         //Check the current console
-        if (sHolder.getConsole() instanceof NonPriviledgeConsole) {
+        if (sHolder != null && sHolder.getConsole() instanceof NonPriviledgeConsole) {
             //The current console is non-privileged. Not needed
             return true;
         }
@@ -147,7 +147,7 @@ public final class ConsoleBuilder {
     public static boolean changeToPrivilegedConsole(Context context) {
 
         //Destroy and create the new console
-        if (sHolder.getConsole() instanceof PrivilegedConsole) {
+        if (sHolder != null && sHolder.getConsole() instanceof PrivilegedConsole) {
             //The current console is privileged. Not needed
             return true;
         }
@@ -375,19 +375,9 @@ public final class ConsoleBuilder {
             throws FileNotFoundException, IOException, InvalidCommandDefinitionException,
             ConsoleAllocException, InsufficientPermissionsException {
         try {
-            PrivilegedConsole console = new PrivilegedConsole(initialDirectory);
-            console.setBufferSize(context.getResources().getInteger(R.integer.buffer_size));
-            console.alloc();
-            if (console.getIdentity().getUser().getId() != ROOT_UID) {
-                //The console is not a privileged console
-                try {
-                    console.dealloc();
-                } catch (Throwable ex) {
-                    /**NON BLOCK**/
-                }
-                throw new InsufficientPermissionsException(null);
-            }
-            return console;
+            // Create the privileged console
+            return createPrivilegedConsole(context, initialDirectory);
+
         } catch (ConsoleAllocException caEx) {
             //Show a message with the problem?
             Log.w(TAG, context.getString(R.string.msgs_privileged_console_alloc_failed), caEx);

@@ -17,23 +17,26 @@
 package com.cyanogenmod.filemanager.ui;
 
 import android.content.Context;
-import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
-import android.util.SparseArray;
+
+import com.cyanogenmod.filemanager.ui.ThemeManager.Theme;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * A class that holds icons for a more efficient access.
  */
 public class IconHolder {
 
-    private final SparseArray<Drawable> mIcons;
+    private final Map<String, Drawable> mIcons;
 
     /**
      * Constructor of <code>IconHolder</code>.
      */
     public IconHolder() {
         super();
-        this.mIcons = new SparseArray<Drawable>();
+        this.mIcons = new HashMap<String, Drawable>();
     }
 
     /**
@@ -44,15 +47,15 @@ public class IconHolder {
      * @param resid The resource identifier
      * @return Drawable The drawable icon reference
      */
-    public Drawable getDrawable(Context context, final int resid) {
+    public Drawable getDrawable(Context context, final String resid) {
         //Check if the icon exists in the cache
-        if (this.mIcons.indexOfKey(resid) > 0) {
+        if (this.mIcons.containsKey(resid)) {
             return this.mIcons.get(resid);
         }
 
         //Load the drawable, cache and returns reference
-        Resources res = context.getResources();
-        Drawable dw = res.getDrawable(resid);
+        Theme theme = ThemeManager.getCurrentTheme(context);
+        Drawable dw = theme.getDrawable(context, resid);
         this.mIcons.put(resid, dw);
         return dw;
     }

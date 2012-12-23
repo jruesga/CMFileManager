@@ -25,7 +25,10 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.content.pm.ActivityInfo;
+import android.content.res.Configuration;
+import android.net.Uri;
+import android.nfc.NfcAdapter;
+import android.nfc.NfcEvent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Parcelable;
@@ -38,8 +41,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListPopupWindow;
 import android.widget.PopupWindow;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.cyanogenmod.filemanager.FileManagerApplication;
@@ -66,10 +72,13 @@ import com.cyanogenmod.filemanager.preferences.FileManagerSettings;
 import com.cyanogenmod.filemanager.preferences.NavigationLayoutMode;
 import com.cyanogenmod.filemanager.preferences.ObjectIdentifier;
 import com.cyanogenmod.filemanager.preferences.Preferences;
+import com.cyanogenmod.filemanager.ui.ThemeManager;
+import com.cyanogenmod.filemanager.ui.ThemeManager.Theme;
 import com.cyanogenmod.filemanager.ui.dialogs.ActionsDialog;
 import com.cyanogenmod.filemanager.ui.dialogs.FilesystemInfoDialog;
 import com.cyanogenmod.filemanager.ui.dialogs.FilesystemInfoDialog.OnMountListener;
 import com.cyanogenmod.filemanager.ui.widgets.Breadcrumb;
+import com.cyanogenmod.filemanager.ui.widgets.ButtonItem;
 import com.cyanogenmod.filemanager.ui.widgets.NavigationCustomTitleView;
 import com.cyanogenmod.filemanager.ui.widgets.NavigationView;
 import com.cyanogenmod.filemanager.ui.widgets.NavigationView.OnNavigationRequestMenuListener;
@@ -82,6 +91,7 @@ import com.cyanogenmod.filemanager.util.ExceptionUtil;
 import com.cyanogenmod.filemanager.util.FileHelper;
 import com.cyanogenmod.filemanager.util.StorageHelper;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -165,7 +175,7 @@ public class NavigationActivity extends Activity
     // exit, and the toast is shown again after the first tap.
     private static final int RELEASE_EXIT_CHECK_TIMEOUT = 3500;
 
-    private final BroadcastReceiver mOnSettingChangeReceiver = new BroadcastReceiver() {
+    private final BroadcastReceiver mNotificationReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
             if (intent != null) {
@@ -238,6 +248,9 @@ public class NavigationActivity extends Activity
                     } catch (Exception e) {
                         ExceptionUtil.translateException(context, e, true, false);
                     }
+                } else if (intent.getAction().compareTo(
+                        FileManagerSettings.INTENT_THEME_CHANGED) == 0) {
+                    applyTheme();
                 }
             }
         }
@@ -258,6 +271,8 @@ public class NavigationActivity extends Activity
     private long mExitBackTimeout = -1;
 
     private View mOptionsAnchorView;
+
+    private int mOrientation;
 
     /**
      * @hide
@@ -283,20 +298,36 @@ public class NavigationActivity extends Activity
         IntentFilter filter = new IntentFilter();
         filter.addAction(FileManagerSettings.INTENT_SETTING_CHANGED);
         filter.addAction(FileManagerSettings.INTENT_FILE_CHANGED);
-        registerReceiver(this.mOnSettingChangeReceiver, filter);
+        filter.addAction(FileManagerSettings.INTENT_THEME_CHANGED);
+        registerReceiver(this.mNotificationReceiver, filter);
 
         //Set the main layout of the activity
         setContentView(R.layout.navigation);
 
-        //Request features
-        if (!AndroidHelper.isTablet(this)) {
-            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-        } else {
-            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+        //Initialize nfc adapter
+        NfcAdapter mNfcAdapter = NfcAdapter.getDefaultAdapter(this);
+        if (mNfcAdapter != null) {
+            mNfcAdapter.setBeamPushUrisCallback(new NfcAdapter.CreateBeamUrisCallback() {
+                @Override
+                public Uri[] createBeamUris(NfcEvent event) {
+                    List<FileSystemObject> selectedFiles =
+                            getCurrentNavigationView().getSelectedFiles();
+                    if (selectedFiles.size() > 0) {
+                        List<Uri> fileUri = new ArrayList<Uri>();
+                        for (FileSystemObject f : selectedFiles) {
+                            //Beam ignores folders and system files
+                            if (!FileHelper.isDirectory(f) && !FileHelper.isSystemFile(f)) {
+                                fileUri.add(Uri.fromFile(new File(f.getFullPath())));
+                            }
+                        }
+                        if (fileUri.size() > 0) {
+                            return fileUri.toArray(new Uri[fileUri.size()]);
+                        }
+                    }
+                    return null;
+                }
+            }, this);
         }
-
-        // Show welcome message
-        showWelcomeMsg();
 
         //Initialize activity
         init();
@@ -308,6 +339,19 @@ public class NavigationActivity extends Activity
         initTitleActionBar();
         initStatusActionBar();
         initSelectionBar();
+
+        // Adjust layout (only when start on landscape mode)
+        int orientation = getResources().getConfiguration().orientation;
+        if (orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            onLayoutChanged();
+        }
+        this.mOrientation = orientation;
+
+        // Apply the theme
+        applyTheme();
+
+        // Show welcome message
+        showWelcomeMsg();
 
         this.mHandler = new Handler();
         this.mHandler.post(new Runnable() {
@@ -344,6 +388,15 @@ public class NavigationActivity extends Activity
      * {@inheritDoc}
      */
     @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        onLayoutChanged();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     protected void onDestroy() {
         if (DEBUG) {
             Log.d(TAG, "NavigationActivity.onDestroy"); //$NON-NLS-1$
@@ -351,7 +404,7 @@ public class NavigationActivity extends Activity
 
         // Unregister the receiver
         try {
-            unregisterReceiver(this.mOnSettingChangeReceiver);
+            unregisterReceiver(this.mNotificationReceiver);
         } catch (Throwable ex) {
             /**NON BLOCK**/
         }
@@ -401,8 +454,8 @@ public class NavigationActivity extends Activity
         if (firstUse) {
             AlertDialog dialog = DialogHelper.createAlertDialog(
                 this, R.drawable.ic_launcher,
-                R.string.welcome_title, getString(R.string.welcome_msg), false, true);
-            dialog.show();
+                R.string.welcome_title, getString(R.string.welcome_msg), false);
+            DialogHelper.delegateDialogShow(this, dialog);
 
             // Don't display again this dialog
             try {
@@ -417,9 +470,10 @@ public class NavigationActivity extends Activity
      */
     private void initTitleActionBar() {
         //Inflate the view and associate breadcrumb
+        View titleLayout = getLayoutInflater().inflate(
+                R.layout.navigation_view_customtitle, null, false);
         NavigationCustomTitleView title =
-                (NavigationCustomTitleView)getLayoutInflater().inflate(
-                        R.layout.navigation_view_customtitle, null, false);
+                (NavigationCustomTitleView)titleLayout.findViewById(R.id.navigation_title_flipper);
         title.setOnHistoryListener(this);
         Breadcrumb breadcrumb = (Breadcrumb)title.findViewById(R.id.breadcrumb_view);
         int cc = this.mNavigationViews.length;
@@ -442,7 +496,7 @@ public class NavigationActivity extends Activity
                 getResources().getDrawable(R.drawable.bg_holo_titlebar));
         getActionBar().setDisplayOptions(
                 ActionBar.DISPLAY_SHOW_CUSTOM | ActionBar.DISPLAY_SHOW_HOME);
-        getActionBar().setCustomView(title);
+        getActionBar().setCustomView(titleLayout);
     }
 
     /**
@@ -483,7 +537,7 @@ public class NavigationActivity extends Activity
         this.mOptionsAnchorView = showOptionsMenu ? overflow : this.mActionBar;
 
         // Show the status bar
-        View statusBar = findViewById(R.id.navigation_statusbar);
+        View statusBar = findViewById(R.id.navigation_statusbar_portrait_holder);
         statusBar.setVisibility(View.VISIBLE);
     }
 
@@ -822,9 +876,9 @@ public class NavigationActivity extends Activity
                             //Navigate to previous history
                             back();
                         } else {
-                            // I don't know is the search view was changed, so do a refresh
+                            // I don't know is the search view was changed, so try to do a refresh
                             // of the navigation view
-                            getCurrentNavigationView().refresh();
+                            getCurrentNavigationView().refresh(true);
                         }
                     }
                     break;
@@ -1066,7 +1120,7 @@ public class NavigationActivity extends Activity
                             this,
                             R.string.filesystem_info_warning_title,
                             R.string.filesystem_info_warning_msg);
-            alert.show();
+            DialogHelper.delegateDialogShow(this, alert);
             return;
         }
 
@@ -1092,7 +1146,7 @@ public class NavigationActivity extends Activity
      * @return boolean Indicates if the action must be intercepted
      */
     private boolean checkBackAction() {
-        // We need a basic structure to check this 
+        // We need a basic structure to check this
         if (getCurrentNavigationView() == null) return false;
 
         //Check if the configuration view is showing. In this case back
@@ -1164,6 +1218,8 @@ public class NavigationActivity extends Activity
                         (NavigationViewInfoParcelable)realHistory.getItem();
                 int viewId = info.getId();
                 NavigationView view = getNavigationView(viewId);
+                // Selected items must not be restored from on history navigation
+                info.setSelectedFiles(view.getSelectedFiles());
                 view.onRestoreState(info);
 
             } else if (realHistory.getItem() instanceof SearchInfoParcelable) {
@@ -1392,7 +1448,7 @@ public class NavigationActivity extends Activity
                         }
                     }
                });
-        dialog.show();
+        DialogHelper.delegateDialogShow(this, dialog);
     }
 
     /**
@@ -1451,6 +1507,137 @@ public class NavigationActivity extends Activity
             /**NON BLOCK**/
         }
         finish();
+    }
+
+    /**
+     * Method that reconfigures the layout for better fit in portrait and landscape modes
+     */
+    private void onLayoutChanged() {
+        Theme theme = ThemeManager.getCurrentTheme(this);
+
+        // Apply only when the orientation was changed
+        int orientation = getResources().getConfiguration().orientation;
+        if (this.mOrientation == orientation) return;
+        this.mOrientation = orientation;
+
+        if (this.mOrientation == Configuration.ORIENTATION_LANDSCAPE) {
+            // Landscape mode
+            ViewGroup statusBar = (ViewGroup)findViewById(R.id.navigation_statusbar);
+            if (statusBar.getParent() != null) {
+                ViewGroup parent = (ViewGroup) statusBar.getParent();
+                parent.removeView(statusBar);
+            }
+
+            // Calculate the action button size (all the buttons must fit in the title bar)
+            int bw = (int)getResources().getDimension(R.dimen.default_buttom_width);
+            int abw = this.mActionBar.getChildCount() * bw;
+            int rbw = 0;
+            int cc = statusBar.getChildCount();
+            for (int i = 0; i < cc; i++) {
+                View child = statusBar.getChildAt(i);
+                if (child instanceof ButtonItem) {
+                    rbw += bw;
+                }
+            }
+            int w = abw + rbw;
+            boolean showOptionsMenu = AndroidHelper.showOptionsMenu(getApplicationContext());
+            if (!showOptionsMenu) {
+                w -= bw;
+            }
+
+            // Add to the new location
+            ViewGroup newParent = (ViewGroup)findViewById(R.id.navigation_title_landscape_holder);
+            LinearLayout.LayoutParams params =
+                    new LinearLayout.LayoutParams(
+                            w,
+                            ViewGroup.LayoutParams.MATCH_PARENT);
+            statusBar.setLayoutParams(params);
+            newParent.addView(statusBar);
+
+            // Apply theme
+            theme.setBackgroundDrawable(this, statusBar, "titlebar_drawable"); //$NON-NLS-1$
+
+            // Hide holder
+            View holder = findViewById(R.id.navigation_statusbar_portrait_holder);
+            holder.setVisibility(View.GONE);
+
+        } else {
+            // Portrait mode
+            ViewGroup statusBar = (ViewGroup)findViewById(R.id.navigation_statusbar);
+            if (statusBar.getParent() != null) {
+                ViewGroup parent = (ViewGroup) statusBar.getParent();
+                parent.removeView(statusBar);
+            }
+
+            // Add to the new location
+            ViewGroup newParent = (ViewGroup)findViewById(
+                    R.id.navigation_statusbar_portrait_holder);
+            LinearLayout.LayoutParams params =
+                    new LinearLayout.LayoutParams(
+                            ViewGroup.LayoutParams.MATCH_PARENT,
+                            ViewGroup.LayoutParams.MATCH_PARENT);
+            statusBar.setLayoutParams(params);
+            newParent.addView(statusBar);
+
+            // Apply theme
+            theme.setBackgroundDrawable(this, statusBar, "statusbar_drawable"); //$NON-NLS-1$
+
+            // Show holder
+            newParent.setVisibility(View.VISIBLE);
+        }
+    }
+
+    /**
+     * Method that applies the current theme to the activity
+     * @hide
+     */
+    void applyTheme() {
+        int orientation = getResources().getConfiguration().orientation;
+        Theme theme = ThemeManager.getCurrentTheme(this);
+        theme.setBaseTheme(this, false);
+
+        //- ActionBar
+        theme.setTitlebarDrawable(this, getActionBar(), "titlebar_drawable"); //$NON-NLS-1$
+        //- StatusBar
+        View v = findViewById(R.id.navigation_statusbar);
+        if (orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            theme.setBackgroundDrawable(this, v, "titlebar_drawable"); //$NON-NLS-1$
+        } else {
+            theme.setBackgroundDrawable(this, v, "statusbar_drawable"); //$NON-NLS-1$
+        }
+        v = findViewById(R.id.ab_overflow);
+        theme.setImageDrawable(this, (ImageView)v, "ab_overflow_drawable"); //$NON-NLS-1$
+        v = findViewById(R.id.ab_actions);
+        theme.setImageDrawable(this, (ImageView)v, "ab_actions_drawable"); //$NON-NLS-1$
+        v = findViewById(R.id.ab_search);
+        theme.setImageDrawable(this, (ImageView)v, "ab_search_drawable"); //$NON-NLS-1$
+        v = findViewById(R.id.ab_bookmarks);
+        theme.setImageDrawable(this, (ImageView)v, "ab_bookmarks_drawable"); //$NON-NLS-1$
+        v = findViewById(R.id.ab_history);
+        theme.setImageDrawable(this, (ImageView)v, "ab_history_drawable"); //$NON-NLS-1$
+        //- Expanders
+        v = findViewById(R.id.ab_configuration);
+        theme.setImageDrawable(this, (ImageView)v, "expander_open_drawable"); //$NON-NLS-1$
+        v = findViewById(R.id.ab_close);
+        theme.setImageDrawable(this, (ImageView)v, "expander_close_drawable"); //$NON-NLS-1$
+        v = findViewById(R.id.ab_sort_mode);
+        theme.setImageDrawable(this, (ImageView)v, "ab_sort_mode_drawable"); //$NON-NLS-1$
+        v = findViewById(R.id.ab_layout_mode);
+        theme.setImageDrawable(this, (ImageView)v, "ab_layout_mode_drawable"); //$NON-NLS-1$
+        v = findViewById(R.id.ab_view_options);
+        theme.setImageDrawable(this, (ImageView)v, "ab_view_options_drawable"); //$NON-NLS-1$
+        //- SelectionBar
+        v = findViewById(R.id.navigation_selectionbar);
+        theme.setBackgroundDrawable(this, v, "selectionbar_drawable"); //$NON-NLS-1$
+        v = findViewById(R.id.ab_selection_done);
+        theme.setImageDrawable(this, (ImageView)v, "ab_selection_done_drawable"); //$NON-NLS-1$
+        v = findViewById(R.id.navigation_status_selection_label);
+        theme.setTextColor(this, (TextView)v, "text_color"); //$NON-NLS-1$
+        //- NavigationView
+        int cc = this.mNavigationViews.length;
+        for (int i = 0; i < cc; i++) {
+            getNavigationView(i).applyTheme();
+        }
     }
 
 }

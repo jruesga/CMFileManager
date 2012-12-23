@@ -17,7 +17,6 @@
 package com.cyanogenmod.filemanager.ui.widgets;
 
 import android.content.Context;
-import android.content.res.Resources;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Rect;
@@ -25,8 +24,9 @@ import android.graphics.RectF;
 import android.util.AttributeSet;
 import android.view.View;
 
-import com.cyanogenmod.filemanager.R;
 import com.cyanogenmod.filemanager.model.DiskUsage;
+import com.cyanogenmod.filemanager.ui.ThemeManager;
+import com.cyanogenmod.filemanager.ui.ThemeManager.Theme;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -36,9 +36,6 @@ import java.util.List;
  * A class that display graphically the usage of a mount point.
  */
 public class DiskUsageGraph extends View {
-
-    private static int sColorFilterNormal;
-    private static int sColorFilterWarning;
 
     /**
      * @hide
@@ -59,7 +56,6 @@ public class DiskUsageGraph extends View {
      */
     public DiskUsageGraph(Context context) {
         super(context);
-        init();
     }
 
     /**
@@ -70,7 +66,6 @@ public class DiskUsageGraph extends View {
      */
     public DiskUsageGraph(Context context, AttributeSet attrs) {
         super(context, attrs);
-        init();
     }
 
     /**
@@ -85,18 +80,6 @@ public class DiskUsageGraph extends View {
      */
     public DiskUsageGraph(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
-        init();
-    }
-
-    /**
-     * Method that initializes the widget
-     */
-    private void init() {
-        if (sColorFilterNormal == 0 || sColorFilterWarning == 0) {
-            Resources res = getContext().getResources();
-            sColorFilterNormal = res.getColor(R.color.disk_usage_color_filter_normal);
-            sColorFilterWarning = res.getColor(R.color.disk_usage_color_filter_warning);
-        }
     }
 
     /**
@@ -216,20 +199,25 @@ public class DiskUsageGraph extends View {
                     if (this.mIndex == 0 && dwo == null) {
                         //Initialize the total arc circle
                         DiskUsageGraph.this.mDrawingObjects.add(
-                                createDrawingObject(rect, R.color.disk_usage_total, stroke));
+                                createDrawingObject(
+                                        rect, "disk_usage_total_color", stroke)); //$NON-NLS-1$
                         continue;
                     }
                     if (this.mIndex == 1 && dwo == null) {
                       //Initialize the used arc circle
                         DiskUsageGraph.this.mDrawingObjects.add(
-                                createDrawingObject(rect, R.color.disk_usage_used, stroke));
+                                createDrawingObject(
+                                        rect, "disk_usage_used_color", stroke)); //$NON-NLS-1$
                         continue;
                     }
 
                     if (this.mIndex == 1 && !disk_warning &&
                             dwo.mSweepAngle >= DiskUsageGraph.this.mDiskWarningAngle) {
-                        dwo.mPaint.setColor(getContext().
-                                getResources().getColor(R.color.disk_usage_used_warning));
+                        Theme theme = ThemeManager.getCurrentTheme(getContext());
+                        dwo.mPaint.setColor(
+                                theme.getColor(
+                                        getContext(),
+                                        "disk_usage_used_warning_color")); //$NON-NLS-1$
                         disk_warning = true;
                     }
 
@@ -293,14 +281,16 @@ public class DiskUsageGraph extends View {
          * Method that creates the drawing object.
          *
          * @param rect The area of drawing
-         * @param colorResourceId The resource identifier of the color
+         * @param colorResourceThemeId The theme resource identifier of the color
          * @param stroke The stroke width
          * @return DrawingObject The drawing object
          */
-        private DrawingObject createDrawingObject(Rect rect, int colorResourceId, int stroke) {
+        private DrawingObject createDrawingObject(
+                Rect rect, String colorResourceThemeId, int stroke) {
             DrawingObject out = new DrawingObject();
             out.mSweepAngle = 0;
-            out.mPaint.setColor(getContext().getResources().getColor(colorResourceId));
+            Theme theme = ThemeManager.getCurrentTheme(getContext());
+            out.mPaint.setColor(theme.getColor(getContext(), colorResourceThemeId));
             out.mPaint.setStrokeWidth(stroke);
             out.mPaint.setAntiAlias(true);
             out.mPaint.setStrokeCap(Paint.Cap.BUTT);

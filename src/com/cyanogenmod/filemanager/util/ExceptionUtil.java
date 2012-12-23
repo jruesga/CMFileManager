@@ -206,7 +206,7 @@ public final class ExceptionUtil {
         }
 
         //Audit the exception
-        Log.e(context.getClass().getSimpleName(), "Error dectected", ex); //$NON-NLS-1$
+        Log.e(context.getClass().getSimpleName(), "Error detected", ex); //$NON-NLS-1$
 
         //Build the alert
         final int fMsgResId = msgResId;
@@ -219,8 +219,10 @@ public final class ExceptionUtil {
                         if (fToast) {
                             DialogHelper.showToast(context, fMsgResId, Toast.LENGTH_SHORT);
                         } else {
-                            DialogHelper.createErrorDialog(
-                                    context, R.string.error_title, fMsgResId).show();
+                            AlertDialog dialog =
+                                    DialogHelper.createErrorDialog(
+                                            context, R.string.error_title, fMsgResId);
+                            DialogHelper.delegateDialogShow(context, dialog);
                         }
                     } catch (Exception e) {
                         Log.e(context.getClass().getSimpleName(),
@@ -254,7 +256,7 @@ public final class ExceptionUtil {
         }
 
         // If console is privileged there is not need to change
-        // If we are in a ChRooted environment, resolve the error without do anymore
+        // If we are in a ChRooted environment, resolve the error without doing anymore
         if (relaunchable instanceof InsufficientPermissionsException &&
                 (isPrivileged ||
                  FileManagerApplication.getAccessMode().compareTo(AccessMode.SAFE) == 0)) {
@@ -322,7 +324,7 @@ public final class ExceptionUtil {
                             }
                         }
                     });
-        alert.show();
+        DialogHelper.delegateDialogShow(context, alert);
     }
 
     /**

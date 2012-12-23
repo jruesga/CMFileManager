@@ -342,7 +342,7 @@ public class UncompressCommand extends AsyncResultProgram implements UncompressE
         int cc = modes.length;
         for (int i = 0; i < cc; i++) {
             Mode mode = modes[i];
-            if (mode.mMode.mExtension.compareTo(extension) == 0) {
+            if (mode.mMode.mExtension.compareToIgnoreCase(extension) == 0) {
                 return mode;
             }
         }

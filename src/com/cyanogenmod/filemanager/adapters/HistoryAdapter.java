@@ -30,6 +30,8 @@ import com.cyanogenmod.filemanager.model.History;
 import com.cyanogenmod.filemanager.parcelables.NavigationViewInfoParcelable;
 import com.cyanogenmod.filemanager.parcelables.SearchInfoParcelable;
 import com.cyanogenmod.filemanager.ui.IconHolder;
+import com.cyanogenmod.filemanager.ui.ThemeManager;
+import com.cyanogenmod.filemanager.ui.ThemeManager.Theme;
 
 import java.util.List;
 
@@ -134,11 +136,12 @@ public class HistoryAdapter extends ArrayAdapter<History> {
             this.mData[i] = new HistoryAdapter.DataHolder();
             if (history.getItem() instanceof NavigationViewInfoParcelable) {
                 this.mData[i].mDwIcon =
-                        this.mIconHolder.getDrawable(getContext(), R.drawable.ic_fso_folder);
+                        this.mIconHolder.getDrawable(
+                                getContext(), "ic_fso_folder_drawable"); //$NON-NLS-1$
             } else if (history.getItem() instanceof SearchInfoParcelable) {
                 this.mData[i].mDwIcon =
                         this.mIconHolder.getDrawable(
-                                getContext(), R.drawable.ic_holo_light_history_search);
+                                getContext(), "ic_history_search_drawable"); //$NON-NLS-1$
             }
             this.mData[i].mName = history.getItem().getTitle();
             if (this.mData[i].mName == null || this.mData[i].mName.trim().length() == 0) {
@@ -169,6 +172,17 @@ public class HistoryAdapter extends ArrayAdapter<History> {
             viewHolder.mTvDirectory = (TextView)v.findViewById(RESOURCE_ITEM_DIRECTORY);
             viewHolder.mTvPosition = (TextView)v.findViewById(RESOURCE_ITEM_POSITION);
             v.setTag(viewHolder);
+
+            // Apply the current theme
+            Theme theme = ThemeManager.getCurrentTheme(getContext());
+            theme.setBackgroundDrawable(
+                    getContext(), v, "background_drawable"); //$NON-NLS-1$
+            theme.setTextColor(
+                    getContext(), viewHolder.mTvName, "text_color"); //$NON-NLS-1$
+            theme.setTextColor(
+                    getContext(), viewHolder.mTvDirectory, "text_color"); //$NON-NLS-1$
+            theme.setTextColor(
+                    getContext(), viewHolder.mTvPosition, "text_color"); //$NON-NLS-1$
         }
 
         //Retrieve data holder
@@ -185,6 +199,14 @@ public class HistoryAdapter extends ArrayAdapter<History> {
 
         //Return the view
         return v;
+    }
+
+    /**
+     * Method that should be invoked when the theme of the app was changed
+     */
+    public void notifyThemeChanged() {
+        // Empty icon holder
+        this.mIconHolder = new IconHolder();
     }
 
 }

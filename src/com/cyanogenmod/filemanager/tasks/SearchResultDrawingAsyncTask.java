@@ -28,6 +28,7 @@ import com.cyanogenmod.filemanager.model.FileSystemObject;
 import com.cyanogenmod.filemanager.model.Query;
 import com.cyanogenmod.filemanager.model.SearchResult;
 import com.cyanogenmod.filemanager.preferences.AccessMode;
+import com.cyanogenmod.filemanager.preferences.DisplayRestrictions;
 import com.cyanogenmod.filemanager.preferences.FileManagerSettings;
 import com.cyanogenmod.filemanager.preferences.NavigationSortMode;
 import com.cyanogenmod.filemanager.preferences.ObjectStringIdentifier;
@@ -40,7 +41,9 @@ import com.cyanogenmod.filemanager.util.SearchHelper;
 
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * A class for paint the resulting file system object of a search.
@@ -112,11 +115,17 @@ public class SearchResultDrawingAsyncTask extends AsyncTask<Object, Integer, Boo
             boolean chRooted =
                     FileManagerApplication.getAccessMode().compareTo(AccessMode.SAFE) == 0;
 
+            // Create display restrictions
+            Map<DisplayRestrictions, Object> restrictions =
+                    new HashMap<DisplayRestrictions, Object>();
+            restrictions.put(
+                    DisplayRestrictions.MIME_TYPE_RESTRICTION, MimeTypeHelper.ALL_MIME_TYPES);
+
             //Process all the data
             final List<SearchResult> result =
                     SearchHelper.convertToResults(
                             FileHelper.applyUserPreferences(
-                                    this.mFiles, MimeTypeHelper.ALL_MIME_TYPES, true, chRooted),
+                                    this.mFiles, restrictions, true, chRooted),
                             this.mQueries);
             if (mode.compareTo(SearchSortResultMode.NAME) == 0) {
                 Collections.sort(result, new Comparator<SearchResult>() {

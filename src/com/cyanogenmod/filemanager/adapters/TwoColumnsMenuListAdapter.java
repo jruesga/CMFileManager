@@ -29,6 +29,8 @@ import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.TextView;
 
 import com.cyanogenmod.filemanager.R;
+import com.cyanogenmod.filemanager.ui.ThemeManager;
+import com.cyanogenmod.filemanager.ui.ThemeManager.Theme;
 
 /**
  * An implementation of {@link SimpleMenuListAdapter} for showing
@@ -40,6 +42,8 @@ public class TwoColumnsMenuListAdapter extends SimpleMenuListAdapter
     private OnItemClickListener mOnItemClickListener;
     private OnItemLongClickListener mOnItemLongClickListener;
 
+    private final Context mContext;
+
     /**
      * Constructor of <code>TwoColumnsMenuListAdapter</code>.
      *
@@ -48,6 +52,7 @@ public class TwoColumnsMenuListAdapter extends SimpleMenuListAdapter
      */
     public TwoColumnsMenuListAdapter(Context context, int menuResourceId) {
         super(context, menuResourceId);
+        this.mContext = context;
 
         //Separators are not support in this kind of adapter
         removeSeparators();
@@ -62,8 +67,10 @@ public class TwoColumnsMenuListAdapter extends SimpleMenuListAdapter
      * @param menuResourceId The resource identifier
      * @param menuGroupResourceId The menu group resource identifier
      */
-    public TwoColumnsMenuListAdapter(Context context, int menuResourceId, int menuGroupResourceId) {
+    public TwoColumnsMenuListAdapter(
+            Context context, int menuResourceId, int menuGroupResourceId) {
         super(context, menuResourceId, menuGroupResourceId);
+        this.mContext = context;
 
         //Separators are not support in this kind of adapter
         removeSeparators();
@@ -205,6 +212,16 @@ public class TwoColumnsMenuListAdapter extends SimpleMenuListAdapter
             tvText2.setOnClickListener(null);
             tvText2.setOnLongClickListener(null);
         }
+
+        // Divider
+        TextView divider = (TextView)((ViewGroup)v).getChildAt(1);
+
+        // Apply the current theme
+        Theme theme = ThemeManager.getCurrentTheme(this.mContext);
+        theme.setBackgroundDrawable(this.mContext, v, "background_drawable"); //$NON-NLS-1$
+        theme.setTextColor(this.mContext, tvText1, "text_color"); //$NON-NLS-1$
+        theme.setTextColor(this.mContext, tvText2, "text_color"); //$NON-NLS-1$
+        theme.setBackgroundDrawable(this.mContext, divider, "vertical_divider_drawable"); //$NON-NLS-1$
 
         //Return the view
         return v;

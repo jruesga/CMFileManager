@@ -457,7 +457,6 @@ public class FileSystemObjectAdapter
                             theme.getDrawable(
                                     getContext(), "checkbox_deselected_drawable"); //$NON-NLS-1$
                 }
-                notifyDataSetChanged();
 
                 //Add or remove from the global selected items
                 FileSystemObject fso = getItem(i);
@@ -477,6 +476,9 @@ public class FileSystemObjectAdapter
                                 FileSystemObjectAdapter.this.mSelectedItems);
                 this.mOnSelectionChangedListener.onSelectionChanged(selection);
             }
+
+            // The internal structure was update, only super adapter need to be notified 
+            super.notifyDataSetChanged();
         }
     }
 

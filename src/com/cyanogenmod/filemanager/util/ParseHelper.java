@@ -396,20 +396,20 @@ public final class ParseHelper {
      * @return long The size in bytes
      */
     private static long toBytes(String size) {
-        long bytes = Long.parseLong(size.substring(0, size.length() - 1));
+        double bytes = Double.parseDouble(size.substring(0, size.length() - 1));
         String unit = size.substring(size.length() - 1);
         if (unit.compareToIgnoreCase("G") == 0) { //$NON-NLS-1$
-            return bytes * 1024 * 1024 * 1024;
+            return (long)(bytes * 1024 * 1024 * 1024);
         }
         if (unit.compareToIgnoreCase("M") == 0) { //$NON-NLS-1$
-            return bytes * 1024 * 1024;
+            return (long)(bytes * 1024 * 1024);
         }
         if (unit.compareToIgnoreCase("K") == 0) { //$NON-NLS-1$
-            return bytes * 1024;
+            return (long)(bytes * 1024);
         }
 
         //Don't touch
-        return bytes;
+        return (long)bytes;
     }
 
 }

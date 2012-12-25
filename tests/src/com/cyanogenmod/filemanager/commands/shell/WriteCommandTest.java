@@ -16,9 +16,6 @@
 
 package com.cyanogenmod.filemanager.commands.shell;
 
-import java.io.OutputStream;
-import java.util.Random;
-
 import android.os.Environment;
 import android.test.suitebuilder.annotation.LargeTest;
 import android.test.suitebuilder.annotation.SmallTest;
@@ -26,6 +23,9 @@ import android.test.suitebuilder.annotation.SmallTest;
 import com.cyanogenmod.filemanager.commands.AsyncResultListener;
 import com.cyanogenmod.filemanager.commands.WriteExecutable;
 import com.cyanogenmod.filemanager.util.CommandHelper;
+
+import java.io.OutputStream;
+import java.util.Random;
 
 /**
  * A class for testing write command.
@@ -61,12 +61,17 @@ public class WriteCommandTest extends AbstractConsoleTest {
             WriteExecutable cmd =
                     CommandHelper.write(getContext(),
                     WRITE_FILE_SMALL, new AsyncResultListener() {
+                            @Override
                             public void onAsyncStart() {/**NON BLOCK**/}
+                            @Override
                             public void onAsyncEnd(boolean cancelled) {/**NON BLOCK**/}
+                            @Override
                             public void onAsyncExitCode(int exitCode) {/**NON BLOCK**/}
+                            @Override
                             public void onException(Exception cause) {
                                 fail(String.valueOf(cause));
                             }
+                            @Override
                             public void onPartialResult(Object results) {/**NON BLOCK**/}
                        }, getConsole());
             OutputStream os = cmd.createOutputStream();
@@ -93,12 +98,17 @@ public class WriteCommandTest extends AbstractConsoleTest {
             WriteExecutable cmd =
                     CommandHelper.write(getContext(),
                     WRITE_FILE_LARGE, new AsyncResultListener() {
+                            @Override
                             public void onAsyncStart() {/**NON BLOCK**/}
+                            @Override
                             public void onAsyncEnd(boolean cancelled) {/**NON BLOCK**/}
+                            @Override
                             public void onAsyncExitCode(int exitCode) {/**NON BLOCK**/}
+                            @Override
                             public void onException(Exception cause) {
                                 fail(String.valueOf(cause));
                             }
+                            @Override
                             public void onPartialResult(Object results) {/**NON BLOCK**/}
                        }, getConsole());
             OutputStream os = cmd.createOutputStream();

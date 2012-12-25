@@ -184,21 +184,26 @@ public class UncompressCommandTest extends AbstractConsoleTest {
             cmd =
                 CommandHelper.uncompress(
                     getContext(), src, null, new AsyncResultListener() {
+                        @Override
                         public void onAsyncStart() {
                             /**NON BLOCK**/
                         }
+                        @Override
                         public void onAsyncEnd(boolean cancelled) {
                             synchronized (UncompressCommandTest.this.mSync) {
                                 UncompressCommandTest.this.mNormalEnd = true;
                                 UncompressCommandTest.this.mSync.notify();
                             }
                         }
+                        @Override
                         public void onAsyncExitCode(int exitCode) {
                             /**NON BLOCK**/
                         }
+                        @Override
                         public void onException(Exception cause) {
                             fail(String.valueOf(cause));
                         }
+                        @Override
                         public void onPartialResult(Object result) {
                             UncompressCommandTest.this.mNewPartialData = true;
                             Log.d(TAG, (String)result);

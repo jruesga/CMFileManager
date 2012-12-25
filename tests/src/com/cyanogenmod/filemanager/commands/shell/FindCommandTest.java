@@ -16,9 +16,6 @@
 
 package com.cyanogenmod.filemanager.commands.shell;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import android.os.Environment;
 import android.test.suitebuilder.annotation.LargeTest;
 
@@ -27,6 +24,9 @@ import com.cyanogenmod.filemanager.commands.AsyncResultListener;
 import com.cyanogenmod.filemanager.model.FileSystemObject;
 import com.cyanogenmod.filemanager.model.Query;
 import com.cyanogenmod.filemanager.util.CommandHelper;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A class for testing find command.
@@ -73,21 +73,26 @@ public class FindCommandTest extends AbstractConsoleTest {
         final List<FileSystemObject> files = new ArrayList<FileSystemObject>();
         AsyncResultExecutable cmd =
                 CommandHelper.findFiles(getContext(), FIND_PATH, query, new AsyncResultListener() {
+                        @Override
                         public void onAsyncStart() {
                             /**NON BLOCK**/
                         }
+                        @Override
                         public void onAsyncEnd(boolean cancelled) {
                             synchronized (FindCommandTest.this.mSync) {
                                 FindCommandTest.this.mNormalEnd = true;
                                 FindCommandTest.this.mSync.notify();
                             }
                         }
+                        @Override
                         public void onAsyncExitCode(int exitCode) {
                             /**NON BLOCK**/
                         }
+                        @Override
                         public void onException(Exception cause) {
                             fail(String.valueOf(cause));
                         }
+                        @Override
                         @SuppressWarnings("unchecked")
                         public void onPartialResult(Object results) {
                             FindCommandTest.this.mNewPartialData = true;

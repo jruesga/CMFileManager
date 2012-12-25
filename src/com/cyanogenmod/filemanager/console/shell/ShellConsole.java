@@ -312,7 +312,7 @@ public abstract class ShellConsole extends Console implements Program.ProgramLis
                     this.mIdentity.setGroups(groupsCmd.getResult());
                 }
             } catch (Exception ex) {
-                Log.w(TAG, "Groups command failed. Ignored.", ex);
+                Log.w(TAG, "Groups command failed. Ignored.", ex); //$NON-NLS-1$
             }
 
         } catch (Exception ex) {

@@ -16,7 +16,6 @@
 
 package com.cyanogenmod.filemanager.util;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
@@ -161,7 +160,6 @@ public final class FileHelper {
      * @param size The size in bytes
      * @return String The human readable size
      */
-    @SuppressLint("DefaultLocale")
     public static String getHumanReadableSize(long size) {
         Resources res = FileManagerApplication.getInstance().getResources();
         final String format = "%d %s"; //$NON-NLS-1$

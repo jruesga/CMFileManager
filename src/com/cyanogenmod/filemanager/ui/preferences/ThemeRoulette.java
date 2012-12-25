@@ -16,13 +16,10 @@
 
 package com.cyanogenmod.filemanager.ui.preferences;
 
-import android.app.Activity;
 import android.content.Context;
 import android.graphics.Paint;
-import android.graphics.Point;
 import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
-import android.view.Display;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -279,11 +276,9 @@ public class ThemeRoulette extends HorizontalScrollView {
      * @hide
      */
     int getVisibleThemeViewPosition() {
-        Display display = ((Activity)getContext()).getWindowManager().getDefaultDisplay();
-        Point size = new Point();
-        display.getSize(size);
-
-        int x = size.x / 2;
+        int[] rouletteSize = new int[2];
+        this.getLocationOnScreen(rouletteSize);
+        int x = rouletteSize[0] + (this.getWidth() / 2);
         int width = 0;
 
         int[] location = new int[2];

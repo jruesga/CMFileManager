@@ -106,7 +106,8 @@
   <!-- Theme button min width -->
   <dimen name="themes_min_width_button">300dp</dimen>
 
-  <!-- Theme width -->
+  <!-- Theme width/height -->
   <dimen name="theme_max_width">300dip</dimen>
+  <dimen name="theme_max_height">600dip</dimen>
 
 </resources>

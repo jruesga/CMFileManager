@@ -25,15 +25,17 @@ public interface OnRequestRefreshListener {
      * Invoked when a new refresh is needed.
      *
      * @param o The object that should be refreshed
+     * @param clearSelection If the refresh should clear the selection
      */
-    void onRequestRefresh(Object o);
+    void onRequestRefresh(Object o, boolean clearSelection);
 
     /**
      * Invoked when the object was removed.
      *
      * @param o The object that was removed
+     * @param clearSelection If the refresh should clear the selection
      */
-    void onRequestRemove(Object o);
+    void onRequestRemove(Object o, boolean clearSelection);
 
     /**
      * Invoked when the object need to navigate to.

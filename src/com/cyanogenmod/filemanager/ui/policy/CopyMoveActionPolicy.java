@@ -305,7 +305,7 @@ public final class CopyMoveActionPolicy extends ActionsPolicy {
                 //Operation complete. Refresh
                 if (this.mOnRequestRefreshListener != null) {
                   // The reference is not the same, so refresh the complete navigation view
-                  this.mOnRequestRefreshListener.onRequestRefresh(null);
+                  this.mOnRequestRefreshListener.onRequestRefresh(null, true);
                 }
                 ActionsPolicy.showOperationSuccessMsg(ctx);
             }

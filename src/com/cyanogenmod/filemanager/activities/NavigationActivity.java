@@ -916,7 +916,7 @@ public class NavigationActivity extends Activity
      * {@inheritDoc}
      */
     @Override
-    public void onRequestRefresh(Object o) {
+    public void onRequestRefresh(Object o, boolean clearSelection) {
         if (o instanceof FileSystemObject) {
             // Refresh only the item
             this.getCurrentNavigationView().refresh((FileSystemObject)o);
@@ -924,14 +924,16 @@ public class NavigationActivity extends Activity
             // Refresh all
             getCurrentNavigationView().refresh();
         }
-        this.getCurrentNavigationView().onDeselectAll();
+        if (clearSelection) {
+            this.getCurrentNavigationView().onDeselectAll();
+        }
     }
 
     /**
      * {@inheritDoc}
      */
     @Override
-    public void onRequestRemove(Object o) {
+    public void onRequestRemove(Object o, boolean clearSelection) {
         if (o instanceof FileSystemObject) {
             // Remove from view
             this.getCurrentNavigationView().removeItem((FileSystemObject)o);
@@ -939,9 +941,11 @@ public class NavigationActivity extends Activity
             //Remove from history
             removeFromHistory((FileSystemObject)o);
         } else {
-            onRequestRefresh(null);
+            onRequestRefresh(null, clearSelection);
         }
-        this.getCurrentNavigationView().onDeselectAll();
+        if (clearSelection) {
+            this.getCurrentNavigationView().onDeselectAll();
+        }
     }
 
     /**

@@ -955,7 +955,7 @@ public class SearchActivity extends Activity
      * {@inheritDoc}
      */
     @Override
-    public void onRequestRefresh(Object o) {
+    public void onRequestRefresh(Object o, boolean clearSelection) {
         // Refresh only the item
         SearchResultAdapter adapter =
                 (SearchResultAdapter)this.mSearchListView.getAdapter();
@@ -985,7 +985,7 @@ public class SearchActivity extends Activity
      * {@inheritDoc}
      */
     @Override
-    public void onRequestRemove(Object o) {
+    public void onRequestRemove(Object o, boolean clearSelection) {
         if (o instanceof FileSystemObject) {
             removeItem((FileSystemObject)o);
         }

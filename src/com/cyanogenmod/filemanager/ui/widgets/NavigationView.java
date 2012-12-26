@@ -1049,26 +1049,30 @@ public class NavigationView extends RelativeLayout implements
      * {@inheritDoc}
      */
     @Override
-    public void onRequestRefresh(Object o) {
+    public void onRequestRefresh(Object o, boolean clearSelection) {
         if (o instanceof FileSystemObject) {
             refresh((FileSystemObject)o);
         } else if (o == null) {
             refresh();
         }
-        onDeselectAll();
+        if (clearSelection) {
+            onDeselectAll();
+        }
     }
 
     /**
      * {@inheritDoc}
      */
     @Override
-    public void onRequestRemove(Object o) {
+    public void onRequestRemove(Object o, boolean clearSelection) {
         if (o != null && o instanceof FileSystemObject) {
             removeItem((FileSystemObject)o);
         } else {
-            onRequestRefresh(null);
+            onRequestRefresh(null, clearSelection);
         }
-        onDeselectAll();
+        if (clearSelection) {
+            onDeselectAll();
+        }
     }
 
     /**

@@ -279,27 +279,32 @@ public final class ParseHelper {
             Group group, Permissions permissions, Date lastModifiedTime, long size)
             throws ParseException {
 
+        String parent = parentDir;
+        if (parent == null) {
+            parent = FileHelper.ROOT_DIRECTORY;
+        }
+
         if (type == RegularFile.UNIX_ID) {
             return new RegularFile(
-                    name, parentDir, user, group, permissions, lastModifiedTime, size);
+                    name, parent, user, group, permissions, lastModifiedTime, size);
         }
         if (type == Directory.UNIX_ID) {
-            return new Directory(name, parentDir, user, group, permissions, lastModifiedTime);
+            return new Directory(name, parent, user, group, permissions, lastModifiedTime);
         }
         if (type == Symlink.UNIX_ID) {
-            return new Symlink(name, link, parentDir, user, group, permissions, lastModifiedTime);
+            return new Symlink(name, link, parent, user, group, permissions, lastModifiedTime);
         }
         if (type == BlockDevice.UNIX_ID) {
-            return new BlockDevice(name, parentDir, user, group, permissions, lastModifiedTime);
+            return new BlockDevice(name, parent, user, group, permissions, lastModifiedTime);
         }
         if (type == CharacterDevice.UNIX_ID) {
-            return new CharacterDevice(name, parentDir, user, group, permissions, lastModifiedTime);
+            return new CharacterDevice(name, parent, user, group, permissions, lastModifiedTime);
         }
         if (type == NamedPipe.UNIX_ID) {
-            return new NamedPipe(name, parentDir, user, group, permissions, lastModifiedTime);
+            return new NamedPipe(name, parent, user, group, permissions, lastModifiedTime);
         }
         if (type == DomainSocket.UNIX_ID) {
-            return new DomainSocket(name, parentDir, user, group, permissions, lastModifiedTime);
+            return new DomainSocket(name, parent, user, group, permissions, lastModifiedTime);
         }
         throw new ParseException("no file system object", 0); //$NON-NLS-1$
     }

@@ -464,7 +464,9 @@ public final class DialogHelper {
                             R.layout.dialog_message,
                             null);
         TextView vMsg = (TextView)lyMessage.findViewById(R.id.dialog_message);
-        vMsg.setText(message);
+        // Dialog need to be filled with at least two lines to fill the background dialog,
+        // so we add a new additional line to the message
+        vMsg.setText(message + "\n"); //$NON-NLS-1$
 
         // Apply the current theme
         Theme theme = ThemeManager.getCurrentTheme(context);

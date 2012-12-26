@@ -293,24 +293,7 @@ public abstract class FileSystemObject implements Serializable, Comparable<FileS
         if (obj == null) {
             return false;
         }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
         FileSystemObject other = (FileSystemObject) obj;
-        if (this.mGroup == null) {
-            if (other.mGroup != null) {
-                return false;
-            }
-        } else if (!this.mGroup.equals(other.mGroup)) {
-            return false;
-        }
-        if (this.mLastModifiedTime == null) {
-            if (other.mLastModifiedTime != null) {
-                return false;
-            }
-        } else if (!this.mLastModifiedTime.equals(other.mLastModifiedTime)) {
-            return false;
-        }
         if (this.mName == null) {
             if (other.mName != null) {
                 return false;
@@ -323,26 +306,6 @@ public abstract class FileSystemObject implements Serializable, Comparable<FileS
                 return false;
             }
         } else if (!this.mParent.equals(other.mParent)) {
-            return false;
-        }
-        if (this.mPermissions == null) {
-            if (other.mPermissions != null) {
-                return false;
-            }
-        } else if (!this.mPermissions.equals(other.mPermissions)) {
-            return false;
-        }
-        if (this.mResourceIconId != other.mResourceIconId) {
-            return false;
-        }
-        if (this.mSize != other.mSize) {
-            return false;
-        }
-        if (this.mUser == null) {
-            if (other.mUser != null) {
-                return false;
-            }
-        } else if (!this.mUser.equals(other.mUser)) {
             return false;
         }
         return true;

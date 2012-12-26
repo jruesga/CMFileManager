@@ -108,7 +108,7 @@ public class BookmarksAdapter extends ArrayAdapter<Bookmark> {
         this.mOnActionClickListener = onActionClickListener;
 
         //Do cache of the data for better performance
-        processData();
+        processData(bookmarks);
     }
 
     /**
@@ -116,7 +116,7 @@ public class BookmarksAdapter extends ArrayAdapter<Bookmark> {
      */
     @Override
     public void notifyDataSetChanged() {
-        processData();
+        processData(null);
         super.notifyDataSetChanged();
     }
 
@@ -131,13 +131,15 @@ public class BookmarksAdapter extends ArrayAdapter<Bookmark> {
 
     /**
      * Method that process the data before use {@link #getView} method.
+     * 
+     * @param bookmarks The list of bookmarks (to better performance) or null.
      */
-    private void processData() {
+    private void processData(List<Bookmark> bookmarks) {
         this.mData = new DataHolder[getCount()];
-        int cc = getCount();
+        int cc = (bookmarks == null) ? getCount() : bookmarks.size();
         for (int i = 0; i < cc; i++) {
             //Bookmark info
-            Bookmark bookmark = getItem(i);
+            Bookmark bookmark = (bookmarks == null) ? getItem(i) : bookmarks.get(i);
 
             //Build the data holder
             this.mData[i] = new BookmarksAdapter.DataHolder();

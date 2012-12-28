@@ -617,4 +617,12 @@
   <!-- Welcome Dialog * Message -->
   <string name="welcome_msg">Welkom bij de bestandsbeheerder van CyanogenMod\n\nHiermee kunt u het bestandssystem bekijken en bewerkingen uitvoeren die schadelijk kunnen zijn voor uw apparaat. Om dit te voorkomen opent de app in een veilige modus zonder machtigingen.\n\nU kunt naar de geavanceerde modus met volledige machtigingen gaan via Instellingen. De bewerkingen die u uitvoert gebeuren op eigen verantwoordelijkheid.\n\nDe ontwikkelaars van CyanogenMod.\n</string>
 
+  <string name="pref_themes_selection_category">Thema\'s</string>
+  <string name="pref_themes_set_theme">Thema instellen</string>
+  <string name="pref_themes_no_preview">Geen voorbeeld\nbeschikbaar</string>
+  <string name="pref_themes_confirmation">Thema succesvol toegepast</string>
+  <string name="pref_themes_not_found">Kan thema niet vinden</string>
+  <string name="theme_default_name">Licht thema</string>
+  <string name="theme_default_description">Lichte kleuren voor de bestandsbeheerder</string>
+  <string name="themes_author">CyanogenMod</string>
 </resources>

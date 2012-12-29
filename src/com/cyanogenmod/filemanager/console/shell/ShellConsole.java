@@ -72,7 +72,7 @@ public abstract class ShellConsole extends Console implements Program.ProgramLis
 
     // A timeout of 5 seconds should be enough for no-debugging environments
     private static final long DEFAULT_TIMEOUT =
-            FileManagerApplication.isDebuggable() ? 20000L : 5000L;
+            FileManagerApplication.isDebuggable() ? 20000L : 3000L;
 
     private static final int DEFAULT_BUFFER = 512;
 
@@ -529,7 +529,10 @@ public abstract class ShellConsole extends Console implements Program.ProgramLis
                           .append(endCmd);
                }
                sb.append(FileHelper.NEWLINE);
-                this.mOut.write(sb.toString().getBytes());
+               synchronized (this.mSync) {
+                   this.mFinished = false;
+                   this.mOut.write(sb.toString().getBytes());
+               }
             } catch (InvalidCommandDefinitionException icdEx) {
                 throw new CommandNotFoundException(
                         "ExitCodeCommandInfo not found", icdEx); //$NON-NLS-1$
@@ -537,12 +540,14 @@ public abstract class ShellConsole extends Console implements Program.ProgramLis
 
             //Now, wait for buffers to be filled
             synchronized (this.mSync) {
-                if (program instanceof AsyncResultProgram) {
-                    this.mSync.wait();
-                } else {
-                    this.mSync.wait(DEFAULT_TIMEOUT);
-                    if (!this.mFinished) {
-                        throw new OperationTimeoutException(DEFAULT_TIMEOUT, cmd);
+                if (!this.mFinished) {
+                    if (program instanceof AsyncResultProgram) {
+                        this.mSync.wait();
+                    } else {
+                        this.mSync.wait(DEFAULT_TIMEOUT);
+                        if (!this.mFinished) {
+                            throw new OperationTimeoutException(DEFAULT_TIMEOUT, cmd);
+                        }
                     }
                 }
             }
@@ -690,8 +695,8 @@ public abstract class ShellConsole extends Console implements Program.ProgramLis
                         int count = 0;
                         while (in.available() > 0 && count < 10) {
                             count++;
-                            int available = Math.min(in.available(),
-                                                        ShellConsole.this.mBufferSize);
+                            int available =
+                                    Math.min(in.available(), ShellConsole.this.mBufferSize);
                             byte[] data = new byte[available];
                             read = in.read(data);
 
@@ -759,10 +764,8 @@ public abstract class ShellConsole extends Console implements Program.ProgramLis
 
                             //Wait for buffer to be filled
                             try {
-                                Thread.sleep(50L);
-                            } catch (Throwable ex) {
-                                /**NON BLOCK**/
-                            }
+                                Thread.sleep(1L);
+                            } catch (Throwable ex) {/**NON BLOCK**/}
                         }
 
                         //Asynchronous programs can cause a lot of output, control buffers

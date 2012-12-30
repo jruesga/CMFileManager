@@ -206,6 +206,7 @@ public abstract class AsyncResultProgram
     public final void parsePartialErrResult(String partialErr) {
         synchronized (this.mSync) {
             String data = partialErr;
+            String rest = ""; //$NON-NLS-1$
             if (parseOnlyCompleteLines()) {
                 int pos = partialErr.lastIndexOf(FileHelper.NEWLINE);
                 if (pos == -1) {
@@ -216,11 +217,12 @@ public abstract class AsyncResultProgram
 
                 //Retrieve the data
                 data = this.mTempBuffer.append(partialErr.substring(0, pos + 1)).toString();
+                rest = partialErr.substring(pos + 1);
             }
 
             this.mPartialDataType.add(STDERR);
             this.mPartialData.add(data);
-            this.mTempBuffer = new StringBuffer();
+            this.mTempBuffer = new StringBuffer(rest);
             this.mSync.notify();
         }
     }

@@ -14,7 +14,7 @@
      limitations under the License.
  -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <string name="app_name">Gerenciador de Arquivos</string>
+    <string name="app_name">G. de Arquivos</string>
     <string name="app_description">Um gerenciador de arquivos por CyanogenMod</string>
     <string name="device_blockdevice">Bloquear dispositivo</string>
     <string name="device_characterdevice">Dispositivo de caracter</string>
@@ -53,7 +53,7 @@
     <string name="msgs_read_only_filesystem">O sistema de arquivos é leitura somente. Tente montar o sistema de arquivos como leitura-escrita antes de tentar a operação</string>
     <string name="msgs_illegal_argument">Argumento ilegal. Falha na chamada</string>
     <string name="msgs_unresolved_inconsistencies">A operação não é permitida pois ela pode criar inconsistências</string>
-    <string name="msgs_operation_not_allowed_in_current_directory">A operação não é permitida na pasta atual</string>
+    <string name="msgs_operation_not_allowed_in_current_directory">A operação não é permitida na pasta atual.\n\nPasta de destino não pode ser subpasta da origem ou ser igual à origem.</string>
     <string name="msgs_push_again_to_exit">Pressione novamente para sair</string>
     <string name="msgs_not_registered_app">Não há aplicação registrada para abrir o tipo de arquivo selecionado</string>
     <string name="msgs_overwrite_files">Alguns dos arquivos já existem na pasta de destino.\n\nSobrescrever?</string>
@@ -199,8 +199,8 @@
     <string name="actions_menu_deselect_all">Desselecionar tudo</string>
     <string name="actions_menu_select">Selecionar</string>
     <string name="actions_menu_deselect">Desselecionar</string>
-    <string name="actions_menu_paste_selection">Colar seleção</string>
-    <string name="actions_menu_move_selection">Mover seleção</string>
+    <string name="actions_menu_paste_selection">Colar seleção aqui</string>
+    <string name="actions_menu_move_selection">Mover seleção aqui</string>
     <string name="actions_menu_delete_selection">Excluir seleção</string>
     <string name="actions_menu_compress_selection">Comprimir seleção</string>
     <string name="actions_menu_create_link">Criar atalho</string>
@@ -273,14 +273,14 @@
     <string name="pref_case_sensitive_sort">Usar ordenação sensível a maiúsculas/minúsculas</string>
     <string name="pref_disk_usage_warning_level">Aviso sobre o uso do disco</string>
     <string name="pref_disk_usage_warning_level_summary" formatted="false">Exibir uma cor diferente nos widgets de uso de disco quando chegar a <xliff:g id="level" xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">%1$s</xliff:g> porcentos de espaço disponível</string>
-    <string name="pref_compute_folder_statistics">Computar estatísticas da pasta</string>
+    <string name="pref_compute_folder_statistics">Gerar estatísticas da pasta</string>
     <string name="pref_compute_folder_statistics_on">Aviso! A computação das estatísticas da pasta gasta tempo e recursos do sistema</string>
     <string name="pref_use_flinger">Usar gestos</string>
     <string name="pref_use_flinger_summary">Usar detecção de gestos de delizar para esquerda e direita para excluir arquivos e pastas</string>
     <string name="pref_general_advanced_settings_category">Avançado</string>
     <string name="pref_access_mode">Modo de acesso</string>
     <string name="pref_access_mode_safe">Modo de seguro</string>
-    <string name="pref_access_mode_safe_summary">Modo seguro\n\nO aplicativo está rodando sem privilégios e somente os sistemas de arquivos que são acessíveis são os volumes (Cartões SD e USB)</string>
+    <string name="pref_access_mode_safe_summary">Modo seguro\n\nO aplicativo está rodando sem privilégios, e somente os sistemas de arquivos que são acessíveis são os volumes: Cartões SD e USB</string>
     <string name="pref_access_mode_prompt">Modo de usuário</string>
     <string name="pref_access_mode_prompt_summary">Modo de usuário\n\nO aplicativo está rodando com total acesso ao sistema de arquivo mas irá perguntar por permissão antes de executar algum ação que requer previlégios</string>
     <string name="pref_access_mode_root">Modo de acesso root</string>
@@ -299,7 +299,7 @@
     <string name="pref_remove_saved_search_terms">Remover termos de busca salvos</string>
     <string name="pref_remove_saved_search_terms_summary">Pressione para remover todos os termos de busca salvos</string>
     <string name="pref_remove_saved_search_terms_msg">Todos os termos de busca foram removidos</string>
-    <string name="pref_debug_traces">Logar informações de depuração</string>
+    <string name="pref_debug_traces">Registrar informações de depuração</string>
     <string name="security_warning_extract">Aviso!\n\nO dispositivo pode ser danificado se, ao extrair arquivos com caminhos relativos ou absolutos, arquivos de sistema forem sobrescritos.\n\nVocê deseja continuar?</string>
     <string name="changelog_title">Registro de mudanças</string>
     <string name="welcome_title">Bem vindo</string>

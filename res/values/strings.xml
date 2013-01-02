@@ -124,7 +124,8 @@
     The operation is not permitted because it would create inconsistencies.</string>
   <!-- Operation not permitted in current directory -->
   <string name="msgs_operation_not_allowed_in_current_directory">
-    The operation is not permitted in current folder.</string>
+    The operation is not permitted in current folder.\n\nDestination folder cannot be subfolder
+    of source or be same as source.</string>
 
   <!-- The advice message prior to exit the application -->
   <string name="msgs_push_again_to_exit">Press again to exit.</string>
@@ -469,9 +470,9 @@
   <!-- Actions Dialog * Menu * Deselect -->
   <string name="actions_menu_deselect">Deselect</string>
   <!-- Actions Dialog * Menu * Paste selection -->
-  <string name="actions_menu_paste_selection">Paste selection</string>
+  <string name="actions_menu_paste_selection">Paste selection here</string>
   <!-- Actions Dialog * Menu * Move selection -->
-  <string name="actions_menu_move_selection">Move selection</string>
+  <string name="actions_menu_move_selection">Move selection here</string>
   <!-- Actions Dialog * Menu * Delete selection -->
   <string name="actions_menu_delete_selection">Delete selection</string>
   <!-- Actions Dialog * Menu * Compress selection -->

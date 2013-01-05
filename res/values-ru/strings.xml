@@ -64,7 +64,7 @@
   <string name="msgs_read_only_filesystem">Файловая система доступна только для чтения. Попробуйте смонтировать файловую систему для чтения/записи</string>
   <string name="msgs_illegal_argument">Недопустимый аргумент. Вызов не удался</string>
   <string name="msgs_unresolved_inconsistencies">Операция не допускается, поскольку это создаст несоответствия</string>
-  <string name="msgs_operation_not_allowed_in_current_directory">Операция не допускается в текущей папке</string>
+  <string name="msgs_operation_not_allowed_in_current_directory">Операция не допускается в текущей папке. \n\nПапка назначения не может быть вложенной папкой источника или самим источником.</string>
 
   <string name="msgs_push_again_to_exit">Нажмите ещё раз для выхода</string>
 
@@ -225,8 +225,8 @@
   <string name="actions_menu_deselect_all">Снять выбор</string>
   <string name="actions_menu_select">Выбор</string>
   <string name="actions_menu_deselect">Снять выбор</string>
-  <string name="actions_menu_paste_selection">Вставить выбранное</string>
-  <string name="actions_menu_move_selection">Переместить выбранное</string>
+  <string name="actions_menu_paste_selection">Вставить выбранное сюда</string>
+  <string name="actions_menu_move_selection">Переместить выбранное сюда</string>
   <string name="actions_menu_delete_selection">Удалить выбранное</string>
   <string name="actions_menu_compress_selection">Сжать выбранное</string>
   <string name="actions_menu_create_link">Создать ссылку</string>

@@ -58,6 +58,7 @@ import com.cyanogenmod.filemanager.ui.widgets.NavigationView.OnFilePickedListene
 import com.cyanogenmod.filemanager.util.DialogHelper;
 import com.cyanogenmod.filemanager.util.ExceptionUtil;
 import com.cyanogenmod.filemanager.util.FileHelper;
+import com.cyanogenmod.filemanager.util.MimeTypeHelper;
 import com.cyanogenmod.filemanager.util.StorageHelper;
 
 import java.io.File;
@@ -184,6 +185,10 @@ public class PickerActivity extends Activity
         String mimeType = getIntent().getType();
         Log.d(TAG, "PickerActivity. type: " + String.valueOf(mimeType)); //$NON-NLS-1$
         if (mimeType != null) {
+            if (!MimeTypeHelper.isMimeTypeKnown(this, mimeType)) {
+                Log.i(TAG, "Mime type " + mimeType + " unknown, falling back to wildcard.");
+                mimeType = MimeTypeHelper.ALL_MIME_TYPES;
+            }
             restrictions.put(DisplayRestrictions.MIME_TYPE_RESTRICTION, mimeType);
         }
         // Other restrictions

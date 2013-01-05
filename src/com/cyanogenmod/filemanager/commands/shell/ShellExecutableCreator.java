@@ -311,8 +311,7 @@ public class ShellExecutableCreator implements ExecutableCreator {
      * {@inheritDoc}
      */
     @Override
-    public ListExecutable createListExecutable(String src)
-            throws CommandNotFoundException {
+    public ListExecutable createListExecutable(String src) throws CommandNotFoundException {
         try {
             return new ListCommand(src, this.mConsole);
         } catch (Throwable throwEx) {

@@ -60,6 +60,7 @@
     /system/xbin/gunzip,
     /system/xbin/pwd,
     /system/xbin/readlink,
+    /system/xbin/stat,
     /system/xbin/su,
     /system/xbin/tar,
     /system/xbin/uncompress,

@@ -195,7 +195,7 @@ public class FileSystemObjectAdapter
 
     /**
      * Method that process the data before use {@link #getView} method.
-     * 
+     *
      * @param files The list of files (to better performance) or null.
      */
     private void processData(List<FileSystemObject> files) {
@@ -215,7 +215,7 @@ public class FileSystemObjectAdapter
             } else {
                 sbSummary.append(df.format(fso.getLastModifiedTime()));
                 sbSummary.append("   "); //$NON-NLS-1$
-                sbSummary.append(fso.toRawString());
+                sbSummary.append(fso.toRawPermissionString());
             }
 
             //Build the data holder
@@ -479,7 +479,7 @@ public class FileSystemObjectAdapter
                 this.mOnSelectionChangedListener.onSelectionChanged(selection);
             }
 
-            // The internal structure was update, only super adapter need to be notified 
+            // The internal structure was update, only super adapter need to be notified
             super.notifyDataSetChanged();
         }
     }

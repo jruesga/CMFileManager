@@ -33,7 +33,7 @@ import java.util.Date;
  */
 public abstract class FileSystemObject implements Serializable, Comparable<FileSystemObject> {
 
-    private static final long serialVersionUID = -8527561430880927320L;
+    private static final long serialVersionUID = 5877049750925761305L;
 
     //Resource identifier for default icon
     private static final int RESOURCE_ICON_DEFAULT = R.drawable.ic_fso_default;
@@ -44,8 +44,11 @@ public abstract class FileSystemObject implements Serializable, Comparable<FileS
     private User mUser;
     private Group mGroup;
     private Permissions mPermissions;
-    private Date mLastModifiedTime;
     private long mSize;
+    private Date mLastAccessedTime;
+    private Date mLastModifiedTime;
+    private Date mLastChangedTime;
+
 
     /**
      * Constructor of <code>FileSystemObject</code>.
@@ -55,19 +58,24 @@ public abstract class FileSystemObject implements Serializable, Comparable<FileS
      * @param user The user proprietary of the object
      * @param group The group proprietary of the object
      * @param permissions The permissions of the object
-     * @param lastModifiedTime The last time that the object was modified
      * @param size The size in bytes of the object
+     * @param lastAccessedTime The last time that the object was accessed
+     * @param lastModifiedTime The last time that the object was modified
+     * @param lastChangedTime The last time that the object was changed
      */
     public FileSystemObject(String name, String parent, User user, Group group,
-            Permissions permissions, Date lastModifiedTime, long size) {
+            Permissions permissions, long size,
+            Date lastAccessedTime, Date lastModifiedTime, Date lastChangedTime) {
         super();
         this.mName = name;
         this.mParent = parent;
         this.mUser = user;
         this.mGroup = group;
         this.mPermissions = permissions;
-        this.mLastModifiedTime = lastModifiedTime;
         this.mSize = size;
+        this.mLastAccessedTime = lastAccessedTime;
+        this.mLastModifiedTime = lastModifiedTime;
+        this.mLastChangedTime = lastChangedTime;
         this.mResourceIconId = RESOURCE_ICON_DEFAULT;
     }
 
@@ -169,6 +177,42 @@ public abstract class FileSystemObject implements Serializable, Comparable<FileS
     }
 
     /**
+     * Method that returns the size in bytes of the object.
+     *
+     * @return long The size in bytes of the object
+     */
+    public long getSize() {
+        return this.mSize;
+    }
+
+    /**
+     * Method that sets the size in bytes of the object.
+     *
+     * @param size The size in bytes of the object
+     */
+    public void setSize(long size) {
+        this.mSize = size;
+    }
+
+    /**
+     * Method that returns the last time that the object was accessed.
+     *
+     * @return Date The last time that the object was accessed
+     */
+    public Date getLastAccessedTime() {
+        return this.mLastAccessedTime;
+    }
+
+    /**
+     * Method that sets the last time that the object was accessed.
+     *
+     * @param lastAccessedTime The last time that the object was accessed
+     */
+    public void setLastAccessedTime(Date lastAccessedTime) {
+        this.mLastAccessedTime = lastAccessedTime;
+    }
+
+    /**
      * Method that returns the last time that the object was modified.
      *
      * @return Date The last time that the object was modified
@@ -187,21 +231,21 @@ public abstract class FileSystemObject implements Serializable, Comparable<FileS
     }
 
     /**
-     * Method that returns the size in bytes of the object.
+     * Method that returns the last time that the object was changed.
      *
-     * @return long The size in bytes of the object
+     * @return Date The last time that the object was changed
      */
-    public long getSize() {
-        return this.mSize;
+    public Date getLastChangedTime() {
+        return this.mLastChangedTime;
     }
 
     /**
-     * Method that sets the size in bytes of the object.
+     * Method that sets the last time that the object was changed.
      *
-     * @param size The size in bytes of the object
+     * @param lastChangedTime The last time that the object was changed
      */
-    public void setSize(long size) {
-        this.mSize = size;
+    public void setLastChangedTime(Date lastChangedTime) {
+        this.mLastChangedTime = lastChangedTime;
     }
 
     /**
@@ -262,52 +306,38 @@ public abstract class FileSystemObject implements Serializable, Comparable<FileS
         return o1.compareTo(o2);
     }
 
-    /**
-     * {@inheritDoc}
+    /* (non-Javadoc)
+     * @see java.lang.Object#hashCode()
      */
     @Override
     public int hashCode() {
         final int prime = 31;
         int result = 1;
-        result = prime * result + ((this.mGroup == null) ? 0 : this.mGroup.hashCode());
-        result = prime * result + ((this.mLastModifiedTime == null)
-                ? 0
-                : this.mLastModifiedTime.hashCode());
         result = prime * result + ((this.mName == null) ? 0 : this.mName.hashCode());
         result = prime * result + ((this.mParent == null) ? 0 : this.mParent.hashCode());
-        result = prime * result + ((this.mPermissions == null) ? 0 : this.mPermissions.hashCode());
-        result = prime * result + this.mResourceIconId;
-        result = prime * result + (int) (this.mSize ^ (this.mSize >>> 32));
-        result = prime * result + ((this.mUser == null) ? 0 : this.mUser.hashCode());
         return result;
     }
 
-    /**
-     * {@inheritDoc}
+    /* (non-Javadoc)
+     * @see java.lang.Object#equals(java.lang.Object)
      */
     @Override
     public boolean equals(Object obj) {
-        if (this == obj) {
+        if (this == obj)
             return true;
-        }
-        if (obj == null) {
+        if (obj == null)
             return false;
-        }
         FileSystemObject other = (FileSystemObject) obj;
         if (this.mName == null) {
-            if (other.mName != null) {
+            if (other.mName != null)
                 return false;
-            }
-        } else if (!this.mName.equals(other.mName)) {
+        } else if (!this.mName.equals(other.mName))
             return false;
-        }
         if (this.mParent == null) {
-            if (other.mParent != null) {
+            if (other.mParent != null)
                 return false;
-            }
-        } else if (!this.mParent.equals(other.mParent)) {
+        } else if (!this.mParent.equals(other.mParent))
             return false;
-        }
         return true;
     }
 
@@ -317,23 +347,26 @@ public abstract class FileSystemObject implements Serializable, Comparable<FileS
      *
      * @return String The string representation
      */
-    public String toRawString() {
+    public String toRawPermissionString() {
         return String.format("%s%s", //$NON-NLS-1$
                 String.valueOf(getUnixIdentifier()),
                 getPermissions().toRawString());
     }
 
-    /**
-     * {@inheritDoc}
+    /* (non-Javadoc)
+     * @see java.lang.Object#toString()
      */
     @Override
     public String toString() {
-        return "FileSystemObject [resourceIconId=" + this.mResourceIconId //$NON-NLS-1$
-                + ", name=" + this.mName //$NON-NLS-1$
-                + ", parent=" + this.mParent + ", user=" + this.mUser //$NON-NLS-1$ //$NON-NLS-2$
-                + ", group=" + this.mGroup  + ", permissions=" //$NON-NLS-1$ //$NON-NLS-2$
-                + this.mPermissions + ", lastModifiedTime=" + this.mLastModifiedTime //$NON-NLS-1$
-                + ", size=" + this.mSize + "]"; //$NON-NLS-1$//$NON-NLS-2$
+        return "FileSystemObject [mResourceIconId=" + this.mResourceIconId //$NON-NLS-1$
+                + ", mName=" + this.mName + ", mParent=" + this.mParent //$NON-NLS-1$ //$NON-NLS-2$
+                + ", mUser=" + this.mUser + ", mGroup=" + this.mGroup //$NON-NLS-1$ //$NON-NLS-2$
+                + ", mPermissions=" + this.mPermissions //$NON-NLS-1$
+                + ", mSize=" + this.mSize //$NON-NLS-1$
+                + ", mLastAccessedTime=" + this.mLastAccessedTime //$NON-NLS-1$
+                + ", mLastModifiedTime=" + this.mLastModifiedTime //$NON-NLS-1$
+                + ", mLastChangedTime=" + this.mLastChangedTime //$NON-NLS-1$
+                + "]"; //$NON-NLS-1$
     }
 
 }

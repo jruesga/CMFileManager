@@ -25,6 +25,7 @@ import com.cyanogenmod.filemanager.model.FileSystemObject;
 import com.cyanogenmod.filemanager.model.Query;
 import com.cyanogenmod.filemanager.util.CommandHelper;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -36,8 +37,12 @@ import java.util.List;
 public class FindCommandTest extends AbstractConsoleTest {
 
     private static final String FIND_PATH =
-            Environment.getDataDirectory().getAbsolutePath();
-    private static final String FIND_TERM_PARTIAL = "shared"; //$NON-NLS-1$
+                Environment.getRootDirectory().getAbsolutePath();
+    private static final String FIND_TERM_PARTIAL = "build"; //$NON-NLS-1$
+
+    private static final File TEST_FILE =
+            new File (Environment.getRootDirectory(),
+                    "build.prop"); //$NON-NLS-1$
 
     /**
      * @hide
@@ -110,6 +115,16 @@ public class FindCommandTest extends AbstractConsoleTest {
         assertTrue("no new partial data", this.mNewPartialData); //$NON-NLS-1$
         assertNotNull("files==null", files); //$NON-NLS-1$
         assertTrue("no objects returned", files.size() > 0); //$NON-NLS-1$
+        boolean found = false;
+        int cc = files.size();
+        for (int i = 0; i < cc; i++) {
+            FileSystemObject fso = files.get(i);
+            if (fso.getParent().compareTo(TEST_FILE.getParent()) == 0 &&
+                fso.getName().compareTo(TEST_FILE.getName()) == 0) {
+                found = true;
+            }
+        }
+        assertTrue(String.format("test file %s not found", TEST_FILE), found); //$NON-NLS-1$
     }
 
 }

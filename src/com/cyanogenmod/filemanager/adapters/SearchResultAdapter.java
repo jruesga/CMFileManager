@@ -158,7 +158,7 @@ public class SearchResultAdapter extends ArrayAdapter<SearchResult> {
 
     /**
      * Method that process the data before use {@link #getView} method.
-     * 
+     *
      * @param files The list of files (to better performance) or null.
      */
     private void processData(List<SearchResult> files) {

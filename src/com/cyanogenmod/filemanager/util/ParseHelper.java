@@ -16,8 +16,6 @@
 
 package com.cyanogenmod.filemanager.util;
 
-import android.os.Process;
-
 import com.cyanogenmod.filemanager.model.BlockDevice;
 import com.cyanogenmod.filemanager.model.CharacterDevice;
 import com.cyanogenmod.filemanager.model.Directory;
@@ -36,21 +34,68 @@ import com.cyanogenmod.filemanager.model.Symlink;
 import com.cyanogenmod.filemanager.model.User;
 import com.cyanogenmod.filemanager.model.UserPermission;
 
+import java.io.File;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 /**
  * A helper class with useful methods for deal with parse of results.
  */
 public final class ParseHelper {
 
-    private static final String DATE_PATTERN =
-            "\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}"; //$NON-NLS-1$
-    private static final SimpleDateFormat DATE_FORMAT =
-            new SimpleDateFormat("yyyy-MM-dd HH:mm"); //$NON-NLS-1$
+    // The structure of a terse stat output
+    // http://mailman.lug.org.uk/pipermail/nottingham/2007-January/009303.html
+    private static enum TERSE_STAT_STRUCT {
+        FILENAME,
+        SIZE,
+        BLOCKS,
+        RAW_MODE,
+        UID,
+        GID,
+        DEVICE,
+        INODE,
+        HARD_LINKS,
+        MAJOR_DEVICE_TYPE,
+        MINOR_DEVICE_TYPE,
+        ACCESS,
+        MODIFY,
+        CHANGE,
+        IOBLOCK
+    }
+    private static int TERSE_STAT_STRUCT_LENGTH = TERSE_STAT_STRUCT.values().length;
+
+    // The structure of raw mode in hex format (defined with octal values)
+    // http://unix.stackexchange.com/questions/39716/what-is-raw-mode-in-hex-from-stat-output
+    private static enum RMIHF {
+        S_IFMT   (0170000),   //bit mask for the file type bit fields
+        S_IFSOCK (0140000),   //socket
+        S_IFLNK  (0120000),   //symbolic link
+        S_IFREG  (0100000),   //regular file
+        S_IFBLK  (0060000),   //block device
+        S_IFDIR  (0040000),   //directory
+        S_IFCHR  (0020000),   //character device
+        S_IFIFO  (0010000),   //FIFO
+        S_ISUID  (0004000),   //set UID bit
+        S_ISGID  (0002000),   //set-group-ID bit (see below)
+        S_ISVTX  (0001000),   //sticky bit (see below)
+        S_IRWXU  (0000700),   //mask for file owner permissions
+        S_IRUSR  (0000400),   //owner has read permission
+        S_IWUSR  (0000200),   //owner has write permission
+        S_IXUSR  (0000100),   //owner has execute permission
+        S_IRWXG  (0000070),   //mask for group permissions
+        S_IRGRP  (0000040),   //group has read permission
+        S_IWGRP  (0000020),   //group has write permission
+        S_IXGRP  (0000010),   //group has execute permission
+        S_IRWXO  (0000007),   //mask for permissions for others (not in group)
+        S_IROTH  (0000004),   //others have read permission
+        S_IWOTH  (0000002),   //others have write permission
+        S_IXOTH  (0000001);   //others have execute permission
+
+        final int mValue;
+        RMIHF(int value) {
+            this.mValue = value;
+        }
+    }
 
     /**
      * Constructor of <code>ParseHelper</code>.
@@ -60,166 +105,105 @@ public final class ParseHelper {
     }
 
     /**
-     * Method that parses and creates a {@link FileSystemObject} references from
-     * a unix string style line.
+     * Method that parses the output of a terse stat command.<br/>
+     * <br/>
+     * The stat terse format is described as:<br/>
+     * <br/>
+     * <code/>
+     *  terse format = "%n %s %b %f %u %g %D %i %h %t %T %X %Y %Z %o":
+     *      filename
+     *      size(bytes)
+     *      blocks
+     *      Raw_mode(HEX)
+     *      Uid
+     *      Gid
+     *      Device(HEX)
+     *      Inode
+     *      hard_links
+     *      major_device_type(HEX)
+     *      minor_device_type(HEX)
+     *      Access(Epoch seconds)
+     *      Modify(Epoch seconds)
+     *      Change(Epoch seconds)
+     *      IOblock
+     * </code>
      *
-     * @param parent The parent of the object
-     * @param src The unix string style line
+     * @param output Line with the output of a line of a stat command
      * @return FileSystemObject The file system object reference
-     * @throws ParseException If the line can't be parsed
-     * @see #toFileSystemObject(String, String, boolean)
+     * @throws ParseException If the permissions can't be parsed
+     * @{link "http://www.gnu.org/software/coreutils/manual/html_node/stat-invocation.html"}
      */
-    public static FileSystemObject toFileSystemObject(
-            final String parent, final String src) throws ParseException {
-        return toFileSystemObject(parent, src, false);
-    }
+    public static FileSystemObject parseStatOutput(final String output) throws ParseException {
 
-    /**
-     * Method that parses and creates a {@link FileSystemObject} references from
-     * a unix string style line.
-     *
-     * @param parent The parent of the object
-     * @param src The unix string style line
-     * @param quick Do not resolve data (User and Group doesn't have a valid reference)
-     * @return FileSystemObject The file system object reference
-     * @throws ParseException If the line can't be parsed
-     */
-    //
-    //<permission> <user> <group> <size> <last modified>  <name>
-    //-rw-r--r--   root   root       229 2012-05-04 01:51 boot.txt
-    //drwxr-xr-x   root   root           2012-05-04 01:51 acct
-    //lrwxrwxrwx   root   root           2012-05-04 01:51 etc -> /system/etc
-    //crw-rw-rw-   system system 10, 243 2012-05-04 01:51 HPD
-    //brw-------   root   root    7,   0 2012-05-04 01:51 loop0
-    //srw-------   root   root         0 2012-05-04 01:51 socket
-    //prw-------   root   root         0 2012-05-04 01:51 pipe
-    //
-    //
-    //<permissions>: http://en.wikipedia.org/wiki/File_system_permissions
-    //-rw-r--r--
-    //
-    //(char 1)
-    //  - denotes a regular file
-    //  d denotes a directory
-    //  b denotes a block special file
-    //  c denotes a character special file
-    //  l denotes a symbolic link
-    //  p denotes a named pipe
-    //  s denotes a domain socket
-    //(char 2-10)
-    //  r if the read bit is set, - if it is not.
-    //  w if the write bit is set, - if it is not.
-    //  x if the execute bit is set, - if it is not.
-    //(char 4)
-    //  s if the setuid bit and executable bit are set
-    //  S if the setuid bit is set, but not executable bit
-    //(char 7)
-    //  s if the setgid bit and executable bit are set
-    //  S if the setgid bit is set, but not executable bit
-    //(char 10)
-    //  t if the sticky bit and executable bit are set
-    //  T if the sticky bit is set, but not executable bit
-    //
-    //<user>: User proprietary of the file
-    //<group>: Group proprietary of the file
-    //<last modified>:
-    //<size>:
-    //  - if object is a type regular file, size of the file in bytes
-    //  - if object is a block or a character device, mayor and minor device number (7, 0)
-    //  - if object is a pipe or a socket, always is 0
-    //  - if object is a directory or symlink, no value is present
-    //
-    //<last modification>: Last file modification (in Android always yyyy-MM-dd HH:mm.
-    //  Can ensure this?)
-    //<name>:
-    //  - if object is a symlink, the value must be "link name -> real name"
-    //  - If the name is void, then assume that it is the root directory (/)
-    //
-    public static FileSystemObject toFileSystemObject(
-            final String parent, final String src, final boolean quick) throws ParseException {
-
-        String raw = src;
-
-        //0.- Object Type
-        char type = raw.charAt(0);
-
-        //1.- Extract permissions
-        String szPermissions = raw.substring(0, 10);
-        Permissions oPermissions = parsePermission(szPermissions);
-        raw = raw.substring(11);
-
-        //2.- Extract the last modification date
-        Pattern pattern = Pattern.compile(DATE_PATTERN);
-        Matcher matcher = pattern.matcher(raw);
-        if (!matcher.find()) {
-            throw new ParseException(
-                    "last modification date not found in " + raw, 0); //$NON-NLS-1$
-        }
-        Date dLastModified = null;
         try {
-            dLastModified = DATE_FORMAT.parse(matcher.group());
-        } catch (ParseException pEx) {
-            throw new ParseException(pEx.getMessage(), 0);
-        }
-        String szStartLine = raw.substring(0, matcher.start()).trim();
-        String szEndLine = raw.substring(matcher.end()).trim();
-
-        //3.- Extract user (user name has no spaces.
-        int pos = szStartLine.indexOf(" "); //$NON-NLS-1$
-        String szUser = szStartLine.substring(0, pos).trim();
-        szStartLine = szStartLine.substring(pos).trim();
-        User oUser = null;
-        if (!quick) {
-            oUser = new User(Process.getUidForName(szUser), szUser);
-        } else {
-            oUser = new User(-1, szUser);
-        }
-
-        //4.- Extract group (group name has no spaces.
-        pos = szStartLine.indexOf(" "); //$NON-NLS-1$
-        String szGroup = szStartLine.substring(0, (pos == -1) ? szStartLine.length() : pos).trim();
-        szStartLine = szStartLine.substring((pos == -1) ? szStartLine.length() : pos).trim();
-        Group oGroup = null;
-        if (!quick) {
-            oGroup = new Group(Process.getGidForName(szGroup), szGroup);
-        } else {
-            oGroup = new Group(-1, szGroup);
-        }
-
-        //5.- Extract size
-        long lSize = 0;
-        if (szStartLine.length() != 0) {
-            //At this moment only size of files is interesting. Mayor/minor block
-            //devices are no required
-            if (type == RegularFile.UNIX_ID) {
-                try {
-                    lSize = Long.parseLong(szStartLine);
-                } catch (NumberFormatException nfEx) {
-                    throw new ParseException(nfEx.getMessage(), 0);
-                }
-
+            // Split the terse line
+            String[] data = output.split(" "); //$NON-NLS-1$
+            boolean valid = true;
+            try {
+                getTerseStatInt(data, TERSE_STAT_STRUCT.IOBLOCK);
+            } catch (Exception e) {
+                valid = false;
             }
-        }
+            if (valid && output.startsWith("stat:")) { //$NON-NLS-1$
+                throw new ParseException(
+                        String.format("Stat failed: %s", output), 0); //$NON-NLS-1$
+            }
+            if (valid && data.length < TERSE_STAT_STRUCT.values().length) {
+                throw new ParseException(
+                        String.format("Not enought data: %s", output), 0); //$NON-NLS-1$
+            }
 
-        //6.- Extract object name
-        String szName = szEndLine;
-        if (szName.trim().length() == 0) {
-            // Assume that the object name is the root folder
-            szName = FileHelper.ROOT_DIRECTORY;
-        }
-        String szLink = null;
-        if (type == Symlink.UNIX_ID) {
-            //"link name -> real name"
-            String[] names = szEndLine.split(" -> "); //$NON-NLS-1$
-            szName = names[0].trim();
-            szLink = names[1].trim();
-        }
+            // Parse the line
+            String raw = getTerseRawPermissions(data);
+            char type = raw.charAt(0);
+            Permissions permissions = parsePermission(raw);
+            Date lastAccessedTime = getTerseStatDate(data, TERSE_STAT_STRUCT.ACCESS);
+            Date lastModifiedTime = getTerseStatDate(data, TERSE_STAT_STRUCT.MODIFY);
+            Date lastChangedTime = getTerseStatDate(data, TERSE_STAT_STRUCT.CHANGE);
+            int uid = getTerseStatInt(data, TERSE_STAT_STRUCT.UID);
+            User user = new User(uid, AIDHelper.getNullSafeName(uid));
+            int gid = getTerseStatInt(data, TERSE_STAT_STRUCT.GID);
+            Group group = new Group(gid, AIDHelper.getNullSafeName(gid));
+            long size = getTerseStatLong(data, TERSE_STAT_STRUCT.SIZE);
+            File file = new File(getTerseStatName(data));
+            String name = file.getName();
+            String parentDir = FileHelper.getParentDir(file);
 
-        // All the line is parsed now. Create the object
-        FileSystemObject fso = createObject(
-                            parent, type, szName, szLink, oUser, oGroup,
-                            oPermissions, dLastModified, lSize);
-        return fso;
+            // Create the file system object
+            FileSystemObject fso =
+                    createObject(
+                        parentDir, type, name, null, user, group, permissions,
+                        size, lastAccessedTime, lastModifiedTime, lastChangedTime);
+
+            // Check if its a symlink
+            if (type == Symlink.UNIX_ID) {
+                // Extract the ref info
+                Symlink symlink = (Symlink)fso;
+                File refFile = file.getCanonicalFile();
+                char refType = refFile.isDirectory() ? Directory.UNIX_ID : RegularFile.UNIX_ID;
+                String refName = refFile.getName();
+                String refParentDir = FileHelper.getParentDir(refFile);
+                Date refLastModifiedTime = new Date(refFile.lastModified());
+                long refSize = refFile.length();
+
+                // Create the ref file system object
+                FileSystemObject refFso =
+                        createObject(
+                            refParentDir, refType, refName, null, null, null, null,
+                            refSize, null, refLastModifiedTime, null);
+
+                // Update the symlink ref
+                symlink.setLink(refParentDir);
+                symlink.setLinkRef(refFso);
+            }
+
+            // Parsed
+            return fso;
+
+        } catch (Exception ex) {
+            // Notify the exception when parsing the data
+            throw new ParseException(ex.getMessage(), 0);
+        }
     }
 
     /**
@@ -259,68 +243,18 @@ public final class ParseHelper {
     }
 
     /**
-     * Method that creates the appropriate file system object.
-     *
-     * @param parentDir The parent directory
-     * @param type The raw char type of the file system object
-     * @param name The name of the object
-     * @param link The real file that this symlink is point to
-     * @param user The user proprietary of the object
-     * @param group The group proprietary of the object
-     * @param permissions The permissions of the object
-     * @param lastModifiedTime The last time that the object was modified
-     * @param size The size in bytes of the object
-     * @return FileSystemObject The file system object reference
-     * @throws ParseException If type couldn't be translate into a reference
-     * file system object
-     */
-    private static FileSystemObject createObject(
-            String parentDir, char type, String name, String link, User user,
-            Group group, Permissions permissions, Date lastModifiedTime, long size)
-            throws ParseException {
-
-        String parent = parentDir;
-        if (parent == null) {
-            parent = FileHelper.ROOT_DIRECTORY;
-        }
-
-        if (type == RegularFile.UNIX_ID) {
-            return new RegularFile(
-                    name, parent, user, group, permissions, lastModifiedTime, size);
-        }
-        if (type == Directory.UNIX_ID) {
-            return new Directory(name, parent, user, group, permissions, lastModifiedTime);
-        }
-        if (type == Symlink.UNIX_ID) {
-            return new Symlink(name, link, parent, user, group, permissions, lastModifiedTime);
-        }
-        if (type == BlockDevice.UNIX_ID) {
-            return new BlockDevice(name, parent, user, group, permissions, lastModifiedTime);
-        }
-        if (type == CharacterDevice.UNIX_ID) {
-            return new CharacterDevice(name, parent, user, group, permissions, lastModifiedTime);
-        }
-        if (type == NamedPipe.UNIX_ID) {
-            return new NamedPipe(name, parent, user, group, permissions, lastModifiedTime);
-        }
-        if (type == DomainSocket.UNIX_ID) {
-            return new DomainSocket(name, parent, user, group, permissions, lastModifiedTime);
-        }
-        throw new ParseException("no file system object", 0); //$NON-NLS-1$
-    }
-
-    /**
      * Method that parse a disk usage line.
      *
      * @param src The disk usage line
      * @return DiskUsage The disk usage information
      * @throws ParseException If the line can't be parsed
      */
-    // Filesystem             Size   Used   Free   Blksize
-    // /dev                   414M    48K   414M   4096
-    // /mnt/asec              414M     0K   414M   4096
-    // /mnt/secure/asec: Permission denied
     public static DiskUsage toDiskUsage(final String src) throws ParseException {
+
+        // Filesystem             Size   Used   Free   Blksize
+        // /dev                   414M    48K   414M   4096
+        // /mnt/asec              414M     0K   414M   4096
+        // /mnt/secure/asec: Permission denied
 
         try {
             final int fields = 5;
@@ -356,13 +290,12 @@ public final class ParseHelper {
      * @return MountPoint The mount point information
      * @throws ParseException If the line can't be parsed
      */
-    // rootfs / rootfs ro,relatime 0 0
-    // tmpfs /dev tmpfs rw,nosuid,relatime,mode=755 0 0
-    // devpts /dev/pts devpts rw,relatime,mode=600 0 0
-    // /dev/block/vold/179:25 /mnt/emmc vfat rw,dirsync,nosuid,nodev,noexec,relatime,uid=1000, \
-    // gid=1015,fmask=0702,dmask=0702,allow_utime=0020,codepage=cp437,iocharset=iso8859-1, \
-    // shortname=mixed,utf8,errors=remount-ro 0 0
     public static MountPoint toMountPoint(final String src) throws ParseException {
+
+        // rootfs / rootfs ro,relatime 0 0
+        // tmpfs /dev tmpfs rw,nosuid,relatime,mode=755 0 0
+        // devpts /dev/pts devpts rw,relatime,mode=600 0 0
+        // /dev/block/vold/179:25 /mnt/emmc vfat rw,dirsync,nosuid,nodev,noexec,relatime,uid=1000, gid=1015,fmask=0702,dmask=0702,allow_utime=0020,codepage=cp437,iocharset=iso8859-1, shortname=mixed,utf8,errors=remount-ro 0 0
 
         try {
 
@@ -394,6 +327,64 @@ public final class ParseHelper {
     }
 
     /**
+     * Method that creates the appropriate file system object.
+     *
+     * @param parentDir The parent directory
+     * @param type The raw char type of the file system object
+     * @param name The name of the object
+     * @param link The real file that this symlink is point to
+     * @param user The user proprietary of the object
+     * @param group The group proprietary of the object
+     * @param permissions The permissions of the object
+     * @param size The size in bytes of the object
+     * @param lastAccessedTime The last time that the object was accessed
+     * @param lastModifiedTime The last time that the object was modified
+     * @param lastChangedTime The last time that the object was changed
+     * @return FileSystemObject The file system object reference
+     * @throws ParseException If type couldn't be translate into a reference
+     * file system object
+     */
+    private static FileSystemObject createObject(
+            String parentDir, char type, String name, String link, User user,
+            Group group, Permissions permissions, long size,
+            Date lastAccessedTime, Date lastModifiedTime, Date lastChangedTime)
+            throws ParseException {
+
+        String parent = (parentDir == null) ? FileHelper.ROOT_DIRECTORY : parentDir;
+
+        if (type == RegularFile.UNIX_ID) {
+            return new RegularFile(
+                    name, parent, user, group, permissions, size,
+                    lastAccessedTime, lastModifiedTime, lastChangedTime);
+        }
+        if (type == Directory.UNIX_ID) {
+            return new Directory(name, parent, user, group, permissions,
+                    lastAccessedTime, lastModifiedTime, lastChangedTime);
+        }
+        if (type == Symlink.UNIX_ID) {
+            return new Symlink(name, link, parent, user, group, permissions,
+                    lastAccessedTime, lastModifiedTime, lastChangedTime);
+        }
+        if (type == BlockDevice.UNIX_ID) {
+            return new BlockDevice(name, parent, user, group, permissions,
+                    lastAccessedTime, lastModifiedTime, lastChangedTime);
+        }
+        if (type == CharacterDevice.UNIX_ID) {
+            return new CharacterDevice(name, parent, user, group, permissions,
+                    lastAccessedTime, lastModifiedTime, lastChangedTime);
+        }
+        if (type == NamedPipe.UNIX_ID) {
+            return new NamedPipe(name, parent, user, group, permissions,
+                    lastAccessedTime, lastModifiedTime, lastChangedTime);
+        }
+        if (type == DomainSocket.UNIX_ID) {
+            return new DomainSocket(name, parent, user, group, permissions,
+                    lastAccessedTime, lastModifiedTime, lastChangedTime);
+        }
+        throw new ParseException("no file system object", 0); //$NON-NLS-1$
+    }
+
+    /**
      * Method that converts to bytes the string representation
      * of a size (10M, 1G, 0K, ...).
      *
@@ -415,6 +406,126 @@ public final class ParseHelper {
 
         //Don't touch
         return (long)bytes;
+    }
+
+    /**
+     * Method that extract a date from a terse stat ouput.
+     *
+     * @param stat The terse stat data
+     * @param e The position of the date
+     * @return Date The date
+     */
+    private static Date getTerseStatDate(String[] stat, TERSE_STAT_STRUCT e) {
+        int cc = stat.length;
+        return new Date(
+                Long.parseLong(stat[cc - (TERSE_STAT_STRUCT_LENGTH - e.ordinal())]) * 1000L);
+    }
+
+    /**
+     * Method that extract a integer value from a terse stat ouput.
+     *
+     * @param stat The terse stat data
+     * @param e The position of the date
+     * @return int The integer value
+     */
+    private static int getTerseStatInt(String[] stat, TERSE_STAT_STRUCT e) {
+        int cc = stat.length;
+        return Integer.parseInt(stat[cc - (TERSE_STAT_STRUCT_LENGTH - e.ordinal())]);
+    }
+
+    /**
+     * Method that extract a long value from a terse stat ouput.
+     *
+     * @param stat The terse stat data
+     * @param e The position of the date
+     * @return long The long value
+     */
+    private static long getTerseStatLong(String[] stat, TERSE_STAT_STRUCT e) {
+        int cc = stat.length;
+        return Long.parseLong(stat[cc - (TERSE_STAT_STRUCT_LENGTH - e.ordinal())]);
+    }
+
+    /**
+     * Method that returns the name of file
+     *
+     * @param stat The terse stat data
+     * @return String The name of file
+     */
+    private static String getTerseStatName(String[] stat) {
+        int cc = stat.length;
+        int to = cc - (TERSE_STAT_STRUCT_LENGTH - TERSE_STAT_STRUCT.SIZE.ordinal());
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < to; i++) {
+            sb.append(stat[i]);
+            if (i < to-1) {
+                sb.append(" "); //$NON-NLS-1$
+            }
+        }
+        return sb.toString();
+    }
+
+    /**
+     * Method that retrieve the raw string with the permissions.
+     *
+     * @param stat The terse stat data
+     * @return String The raw string
+     */
+    private static String getTerseRawPermissions(String[] stat) {
+        int cc = stat.length;
+        int rawInt = Integer.parseInt(
+                stat[cc - (TERSE_STAT_STRUCT_LENGTH - TERSE_STAT_STRUCT.RAW_MODE.ordinal())],16);
+
+        // Extract the type
+        char t = RegularFile.UNIX_ID;
+        if (RMIHF.S_IFSOCK.mValue == (rawInt & RMIHF.S_IFSOCK.mValue)) {
+            t = DomainSocket.UNIX_ID;
+        } else if (RMIHF.S_IFLNK.mValue == (rawInt & RMIHF.S_IFLNK.mValue)) {
+            t = Symlink.UNIX_ID;
+        } else if (RMIHF.S_IFREG.mValue == (rawInt & RMIHF.S_IFREG.mValue)) {
+            t = RegularFile.UNIX_ID;
+        } else if (RMIHF.S_IFBLK.mValue == (rawInt & RMIHF.S_IFBLK.mValue)) {
+            t = BlockDevice.UNIX_ID;
+        } else if (RMIHF.S_IFDIR.mValue == (rawInt & RMIHF.S_IFDIR.mValue)) {
+            t = Directory.UNIX_ID;
+        } else if (RMIHF.S_IFCHR.mValue == (rawInt & RMIHF.S_IFCHR.mValue)) {
+            t = CharacterDevice.UNIX_ID;
+        } else if (RMIHF.S_IFIFO.mValue == (rawInt & RMIHF.S_IFIFO.mValue)) {
+            t = NamedPipe.UNIX_ID;
+        }
+
+        // Extract User/Group/Others
+        boolean us = RMIHF.S_ISUID.mValue == (rawInt & RMIHF.S_ISUID.mValue);
+        boolean ur = RMIHF.S_IRUSR.mValue == (rawInt & RMIHF.S_IRUSR.mValue);
+        boolean uw = RMIHF.S_IWUSR.mValue == (rawInt & RMIHF.S_IWUSR.mValue);
+        boolean ux = RMIHF.S_IXUSR.mValue == (rawInt & RMIHF.S_IXUSR.mValue);
+        boolean gs = RMIHF.S_ISGID.mValue == (rawInt & RMIHF.S_ISGID.mValue);
+        boolean gr = RMIHF.S_IRGRP.mValue == (rawInt & RMIHF.S_IRGRP.mValue);
+        boolean gw = RMIHF.S_IWGRP.mValue == (rawInt & RMIHF.S_IWGRP.mValue);
+        boolean gx = RMIHF.S_IXGRP.mValue == (rawInt & RMIHF.S_IXGRP.mValue);
+        boolean os = RMIHF.S_ISVTX.mValue == (rawInt & RMIHF.S_ISVTX.mValue);
+        boolean or = RMIHF.S_IROTH.mValue == (rawInt & RMIHF.S_IROTH.mValue);
+        boolean ow = RMIHF.S_IWOTH.mValue == (rawInt & RMIHF.S_IWOTH.mValue);
+        boolean ox = RMIHF.S_IXOTH.mValue == (rawInt & RMIHF.S_IXOTH.mValue);
+
+        // Build the raw string
+        StringBuilder sb = new StringBuilder();
+        sb.append(t);
+        sb.append(ur ? Permission.READ : Permission.UNASIGNED);
+        sb.append(uw ? Permission.WRITE : Permission.UNASIGNED);
+        sb.append(us ? (ux ?
+                           UserPermission.SETUID_E : UserPermission.SETUID)
+                           : (ux ? Permission.EXECUTE : Permission.UNASIGNED));
+        sb.append(gr ? Permission.READ : Permission.UNASIGNED);
+        sb.append(gw ? Permission.WRITE : Permission.UNASIGNED);
+        sb.append(gs ? (gx ?
+                            GroupPermission.SETGID_E : GroupPermission.SETGID)
+                            : (gx ? Permission.EXECUTE : Permission.UNASIGNED));
+        sb.append(or ? Permission.READ : Permission.UNASIGNED);
+        sb.append(ow ? Permission.WRITE : Permission.UNASIGNED);
+        sb.append(os ? (ox ?
+                            OthersPermission.STICKY_E : OthersPermission.STICKY)
+                            : (ox ? Permission.EXECUTE : Permission.UNASIGNED));
+        return sb.toString();
     }
 
 }

@@ -96,6 +96,14 @@ public class ReadCommand extends AsyncResultProgram implements ReadExecutable {
      * {@inheritDoc}
      */
     @Override
+    public boolean parseOnlyCompleteLines() {
+        return false;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public void checkExitCode(int exitCode)
             throws InsufficientPermissionsException, CommandNotFoundException, ExecutionException {
         // We have not privileges to read the file

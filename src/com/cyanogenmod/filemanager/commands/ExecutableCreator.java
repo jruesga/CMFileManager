@@ -18,6 +18,8 @@ package com.cyanogenmod.filemanager.commands;
 
 import com.cyanogenmod.filemanager.commands.ListExecutable.LIST_MODE;
 import com.cyanogenmod.filemanager.console.CommandNotFoundException;
+import com.cyanogenmod.filemanager.console.InsufficientPermissionsException;
+import com.cyanogenmod.filemanager.console.NoSuchFileOrDirectory;
 import com.cyanogenmod.filemanager.model.Group;
 import com.cyanogenmod.filemanager.model.MountPoint;
 import com.cyanogenmod.filemanager.model.Permissions;
@@ -37,9 +39,12 @@ public interface ExecutableCreator {
      * @return ChangeCurrentDirExecutable A {@link ChangeCurrentDirExecutable} executable
      * implementation reference
      * @throws CommandNotFoundException If the executable can't be created
+     * @throws NoSuchFileOrDirectory If the file or directory was not found
+     * @throws InsufficientPermissionsException If an operation requires elevated permissions
      */
     ChangeCurrentDirExecutable createChangeCurrentDirExecutable(
-            String dir) throws CommandNotFoundException;
+            String dir) throws CommandNotFoundException,
+            NoSuchFileOrDirectory, InsufficientPermissionsException;
 
     /**
      * Method that creates an executable for change the owner of a file system object.
@@ -50,9 +55,12 @@ public interface ExecutableCreator {
      * @return ChangeOwnerExecutable A {@link ChangeOwnerExecutable} executable
      * implementation reference
      * @throws CommandNotFoundException If the executable can't be created
+     * @throws NoSuchFileOrDirectory If the file or directory was not found
+     * @throws InsufficientPermissionsException If an operation requires elevated permissions
      */
     ChangeOwnerExecutable createChangeOwnerExecutable(
-            String fso, User newUser, Group newGroup) throws CommandNotFoundException;
+            String fso, User newUser, Group newGroup) throws CommandNotFoundException,
+            NoSuchFileOrDirectory, InsufficientPermissionsException;
 
     /**
      * Method that creates an executable for change the permissions of a file system object.
@@ -62,9 +70,12 @@ public interface ExecutableCreator {
      * @return ChangePermissionsExecutable A {@link ChangePermissionsExecutable} executable
      * implementation reference
      * @throws CommandNotFoundException If the executable can't be created
+     * @throws NoSuchFileOrDirectory If the file or directory was not found
+     * @throws InsufficientPermissionsException If an operation requires elevated permissions
      */
     ChangePermissionsExecutable createChangePermissionsExecutable(
-            String fso, Permissions newPermissions) throws CommandNotFoundException;
+            String fso, Permissions newPermissions) throws CommandNotFoundException,
+            NoSuchFileOrDirectory, InsufficientPermissionsException;
 
     /**
      * Method that creates an executable for copy a file system object to
@@ -74,8 +85,11 @@ public interface ExecutableCreator {
      * @param dst The absolute path to the destination file system object
      * @return CopyExecutable A {@link CopyExecutable} executable implementation reference
      * @throws CommandNotFoundException If the executable can't be created
+     * @throws NoSuchFileOrDirectory If the file or directory was not found
+     * @throws InsufficientPermissionsException If an operation requires elevated permissions
      */
-    CopyExecutable createCopyExecutable(String src, String dst) throws CommandNotFoundException;
+    CopyExecutable createCopyExecutable(String src, String dst) throws CommandNotFoundException,
+    NoSuchFileOrDirectory, InsufficientPermissionsException;
 
     /**
      * Method that creates an executable for create a new directory.
@@ -84,9 +98,12 @@ public interface ExecutableCreator {
      * @return CreateDirExecutable A {@link CreateDirExecutable} executable implementation
      * reference
      * @throws CommandNotFoundException If the executable can't be created
+     * @throws NoSuchFileOrDirectory If the file or directory was not found
+     * @throws InsufficientPermissionsException If an operation requires elevated permissions
      */
     CreateDirExecutable createCreateDirectoryExecutable(String dir)
-            throws CommandNotFoundException;
+            throws CommandNotFoundException,
+            NoSuchFileOrDirectory, InsufficientPermissionsException;
 
     /**
      * Method that creates an executable for create a new file.
@@ -95,8 +112,11 @@ public interface ExecutableCreator {
      * @return CreateFileExecutable A {@link CreateFileExecutable} executable
      * implementation reference
      * @throws CommandNotFoundException If the executable can't be created
+     * @throws NoSuchFileOrDirectory If the file or directory was not found
+     * @throws InsufficientPermissionsException If an operation requires elevated permissions
      */
-    CreateFileExecutable createCreateFileExecutable(String file) throws CommandNotFoundException;
+    CreateFileExecutable createCreateFileExecutable(String file) throws CommandNotFoundException,
+            NoSuchFileOrDirectory, InsufficientPermissionsException;
 
     /**
      * Method that creates an executable for retrieve the current directory.
@@ -104,8 +124,11 @@ public interface ExecutableCreator {
      * @return CurrentDirExecutable A {@link CurrentDirExecutable} executable
      * implementation reference
      * @throws CommandNotFoundException If the executable can't be created
+     * @throws NoSuchFileOrDirectory If the file or directory was not found
+     * @throws InsufficientPermissionsException If an operation requires elevated permissions
      */
-    CurrentDirExecutable createCurrentDirExecutable() throws CommandNotFoundException;
+    CurrentDirExecutable createCurrentDirExecutable() throws CommandNotFoundException,
+            NoSuchFileOrDirectory, InsufficientPermissionsException;
 
     /**
      * Method that creates an executable for delete a directory.
@@ -114,8 +137,11 @@ public interface ExecutableCreator {
      * @return DeleteDirExecutable A {@link DeleteDirExecutable} executable implementation
      * reference
      * @throws CommandNotFoundException If the executable can't be created
+     * @throws NoSuchFileOrDirectory If the file or directory was not found
+     * @throws InsufficientPermissionsException If an operation requires elevated permissions
      */
-    DeleteDirExecutable createDeleteDirExecutable(String dir) throws CommandNotFoundException;
+    DeleteDirExecutable createDeleteDirExecutable(String dir) throws CommandNotFoundException,
+            NoSuchFileOrDirectory, InsufficientPermissionsException;
 
     /**
      * Method that creates an executable for delete a file.
@@ -124,8 +150,11 @@ public interface ExecutableCreator {
      * @return DeleteFileExecutable A {@link DeleteFileExecutable} executable
      * implementation reference
      * @throws CommandNotFoundException If the executable can't be created
+     * @throws NoSuchFileOrDirectory If the file or directory was not found
+     * @throws InsufficientPermissionsException If an operation requires elevated permissions
      */
-    DeleteFileExecutable createDeleteFileExecutable(String file) throws CommandNotFoundException;
+    DeleteFileExecutable createDeleteFileExecutable(String file) throws CommandNotFoundException,
+            NoSuchFileOrDirectory, InsufficientPermissionsException;
 
     /**
      * Method that creates an executable for retrieve the disk usage.
@@ -134,8 +163,11 @@ public interface ExecutableCreator {
      * @return DiskUsageExecutable A {@link DiskUsageExecutable} executable implementation
      * reference
      * @throws CommandNotFoundException If the executable can't be created
+     * @throws NoSuchFileOrDirectory If the file or directory was not found
+     * @throws InsufficientPermissionsException If an operation requires elevated permissions
      */
-    DiskUsageExecutable createDiskUsageExecutable() throws CommandNotFoundException;
+    DiskUsageExecutable createDiskUsageExecutable() throws CommandNotFoundException,
+            NoSuchFileOrDirectory, InsufficientPermissionsException;
 
     /**
      * Method that creates an executable for retrieve the disk usage.
@@ -145,8 +177,11 @@ public interface ExecutableCreator {
      * @return DiskUsageExecutable A {@link DiskUsageExecutable} executable implementation
      * reference
      * @throws CommandNotFoundException If the executable can't be created
+     * @throws NoSuchFileOrDirectory If the file or directory was not found
+     * @throws InsufficientPermissionsException If an operation requires elevated permissions
      */
-    DiskUsageExecutable createDiskUsageExecutable(String dir) throws CommandNotFoundException;
+    DiskUsageExecutable createDiskUsageExecutable(String dir) throws CommandNotFoundException,
+            NoSuchFileOrDirectory, InsufficientPermissionsException;
 
     /**
      * Method that creates an executable for expanding environment variables.
@@ -155,8 +190,11 @@ public interface ExecutableCreator {
      * @param msg The message to expand
      * @return EchoExecutable A {@link EchoExecutable} executable implementation reference
      * @throws CommandNotFoundException If the executable can't be created
+     * @throws NoSuchFileOrDirectory If the file or directory was not found
+     * @throws InsufficientPermissionsException If an operation requires elevated permissions
      */
-    EchoExecutable createEchoExecutable(String msg) throws CommandNotFoundException;
+    EchoExecutable createEchoExecutable(String msg) throws CommandNotFoundException,
+            NoSuchFileOrDirectory, InsufficientPermissionsException;
 
     /**
      * Method that execute a command
@@ -165,9 +203,12 @@ public interface ExecutableCreator {
      * @param asyncResultListener The listener where to return partial results
      * @return ExecExecutable A {@link ExecExecutable} executable implementation reference
      * @throws CommandNotFoundException If the executable can't be created
+     * @throws NoSuchFileOrDirectory If the file or directory was not found
+     * @throws InsufficientPermissionsException If an operation requires elevated permissions
      */
     ExecExecutable createExecExecutable(
-            String cmd, AsyncResultListener asyncResultListener) throws CommandNotFoundException;
+            String cmd, AsyncResultListener asyncResultListener) throws CommandNotFoundException,
+            NoSuchFileOrDirectory, InsufficientPermissionsException;
 
     /**
      * Method that creates an executable for make searches over the filesystem.
@@ -177,10 +218,13 @@ public interface ExecutableCreator {
      * @param asyncResultListener The listener where to return partial results
      * @return FindExecutable A {@link FindExecutable} executable implementation reference
      * @throws CommandNotFoundException If the executable can't be created
+     * @throws NoSuchFileOrDirectory If the file or directory was not found
+     * @throws InsufficientPermissionsException If an operation requires elevated permissions
      */
     FindExecutable createFindExecutable(
             String directory, Query query, AsyncResultListener asyncResultListener)
-            throws CommandNotFoundException;
+            throws CommandNotFoundException,
+            NoSuchFileOrDirectory, InsufficientPermissionsException;
 
     /**
      * Method that creates an executable for compute the disk usage of a folder.
@@ -190,27 +234,36 @@ public interface ExecutableCreator {
      * @return FolderUsageExecutable A {@link FolderUsageExecutable} executable
      * implementation reference
      * @throws CommandNotFoundException If the executable can't be created
+     * @throws NoSuchFileOrDirectory If the file or directory was not found
+     * @throws InsufficientPermissionsException If an operation requires elevated permissions
      */
     FolderUsageExecutable createFolderUsageExecutable(
             String directory, AsyncResultListener asyncResultListener)
-            throws CommandNotFoundException;
+            throws CommandNotFoundException,
+            NoSuchFileOrDirectory, InsufficientPermissionsException;
 
     /**
      * Method that creates an executable for retrieve the groups of the current user.
      *
      * @return GroupsExecutable A {@link GroupsExecutable} executable implementation reference
      * @throws CommandNotFoundException If the executable can't be created
+     * @throws NoSuchFileOrDirectory If the file or directory was not found
+     * @throws InsufficientPermissionsException If an operation requires elevated permissions
      */
     GroupsExecutable createGroupsExecutable()
-            throws com.cyanogenmod.filemanager.console.CommandNotFoundException;
+            throws com.cyanogenmod.filemanager.console.CommandNotFoundException,
+            NoSuchFileOrDirectory, InsufficientPermissionsException;
 
     /**
      * Method that creates an executable for retrieve identity information of the current user.
      *
      * @return IdentityExecutable A {@link IdentityExecutable} executable implementation reference
      * @throws CommandNotFoundException If the executable can't be created
+     * @throws NoSuchFileOrDirectory If the file or directory was not found
+     * @throws InsufficientPermissionsException If an operation requires elevated permissions
      */
-    IdentityExecutable createIdentityExecutable() throws CommandNotFoundException;
+    IdentityExecutable createIdentityExecutable() throws CommandNotFoundException,
+            NoSuchFileOrDirectory, InsufficientPermissionsException;
 
     /**
      * Method that creates a symlink of an other file system object.
@@ -219,9 +272,12 @@ public interface ExecutableCreator {
      * @param link The absolute path to the link fso
      * @return LinkExecutable A {@link LinkExecutable} executable implementation reference
      * @throws CommandNotFoundException If the executable can't be created
+     * @throws NoSuchFileOrDirectory If the file or directory was not found
+     * @throws InsufficientPermissionsException If an operation requires elevated permissions
      */
     LinkExecutable createLinkExecutable(
-            String src, String link) throws CommandNotFoundException;
+            String src, String link) throws CommandNotFoundException,
+            NoSuchFileOrDirectory, InsufficientPermissionsException;
 
     /**
      * Method that creates an executable for list files of a directory.
@@ -229,10 +285,13 @@ public interface ExecutableCreator {
      * @param src The directory where to do the listing
      * @return ListExecutable A {@link ListExecutable} executable implementation reference
      * @throws CommandNotFoundException If the executable can't be created
-     * @see LIST_MODE
+     * @throws NoSuchFileOrDirectory If the file or directory was not found
+     * @throws InsufficientPermissionsException If an operation requires elevated permissions
+     * @see LIST_MODE#DIRECTORY
      */
     ListExecutable createListExecutable(String src)
-            throws CommandNotFoundException;
+            throws CommandNotFoundException,
+            NoSuchFileOrDirectory, InsufficientPermissionsException;
 
     /**
      * Method that creates an executable for retrieve information of a file
@@ -241,10 +300,13 @@ public interface ExecutableCreator {
      * @param followSymlinks If follow the symlink
      * @return ListExecutable A {@link ListExecutable} executable implementation reference
      * @throws CommandNotFoundException If the executable can't be created
-     * @see LIST_MODE
+     * @throws NoSuchFileOrDirectory If the file or directory was not found
+     * @throws InsufficientPermissionsException If an operation requires elevated permissions
+     * @see LIST_MODE#FILEINFO
      */
     ListExecutable createFileInfoExecutable(String src, boolean followSymlinks)
-            throws CommandNotFoundException;
+            throws CommandNotFoundException,
+            NoSuchFileOrDirectory, InsufficientPermissionsException;
 
     /**
      * Method that creates an executable for retrieve identity information of the current user.
@@ -253,9 +315,12 @@ public interface ExecutableCreator {
      * @param rw Indicates if the operation mount the device as read-write
      * @return MountExecutable A {@link MountExecutable} executable implementation reference
      * @throws CommandNotFoundException If the executable can't be created
+     * @throws NoSuchFileOrDirectory If the file or directory was not found
+     * @throws InsufficientPermissionsException If an operation requires elevated permissions
      */
     MountExecutable createMountExecutable(
-            MountPoint mp, boolean rw) throws CommandNotFoundException;
+            MountPoint mp, boolean rw) throws CommandNotFoundException,
+            NoSuchFileOrDirectory, InsufficientPermissionsException;
 
     /**
      * Method that creates an executable for retrieve identity information of the current user.
@@ -263,8 +328,11 @@ public interface ExecutableCreator {
      * @return MountPointInfoExecutable A {@link MountPointInfoExecutable} executable
      * implementation reference
      * @throws CommandNotFoundException If the executable can't be created
+     * @throws NoSuchFileOrDirectory If the file or directory was not found
+     * @throws InsufficientPermissionsException If an operation requires elevated permissions
      */
-    MountPointInfoExecutable createMountPointInfoExecutable() throws CommandNotFoundException;
+    MountPointInfoExecutable createMountPointInfoExecutable() throws CommandNotFoundException,
+            NoSuchFileOrDirectory, InsufficientPermissionsException;
 
     /**
      * Method that creates an executable for move a file system object to
@@ -274,8 +342,11 @@ public interface ExecutableCreator {
      * @param dst The absolute path to the destination file system object
      * @return MoveExecutable A {@link MoveExecutable} executable implementation reference
      * @throws CommandNotFoundException If the executable can't be created
+     * @throws NoSuchFileOrDirectory If the file or directory was not found
+     * @throws InsufficientPermissionsException If an operation requires elevated permissions
      */
-    MoveExecutable createMoveExecutable(String src, String dst) throws CommandNotFoundException;
+    MoveExecutable createMoveExecutable(String src, String dst) throws CommandNotFoundException,
+            NoSuchFileOrDirectory, InsufficientPermissionsException;
 
     /**
      * Method that creates an executable for retrieve the parent directory
@@ -285,8 +356,11 @@ public interface ExecutableCreator {
      * @return ParentDirExecutable A {@link ParentDirExecutable} executable implementation
      * reference
      * @throws CommandNotFoundException If the executable can't be created
+     * @throws NoSuchFileOrDirectory If the file or directory was not found
+     * @throws InsufficientPermissionsException If an operation requires elevated permissions
      */
-    ParentDirExecutable createParentDirExecutable(String fso) throws CommandNotFoundException;
+    ParentDirExecutable createParentDirExecutable(String fso) throws CommandNotFoundException,
+            NoSuchFileOrDirectory, InsufficientPermissionsException;
 
     /**
      * Method that creates an executable for retrieve operating system process identifier of a
@@ -295,8 +369,11 @@ public interface ExecutableCreator {
      * @return ProcessIdExecutable A {@link ProcessIdExecutable} executable implementation
      * reference
      * @throws CommandNotFoundException If the executable can't be created
+     * @throws NoSuchFileOrDirectory If the file or directory was not found
+     * @throws InsufficientPermissionsException If an operation requires elevated permissions
      */
-    ProcessIdExecutable createShellProcessIdExecutable() throws CommandNotFoundException;
+    ProcessIdExecutable createShellProcessIdExecutable() throws CommandNotFoundException,
+            NoSuchFileOrDirectory, InsufficientPermissionsException;
 
     /**
      * Method that creates an executable for retrieve operating system process identifier of a
@@ -307,9 +384,12 @@ public interface ExecutableCreator {
      * @return ProcessIdExecutable A {@link ProcessIdExecutable} executable implementation
      * reference
      * @throws CommandNotFoundException If the executable can't be created
+     * @throws NoSuchFileOrDirectory If the file or directory was not found
+     * @throws InsufficientPermissionsException If an operation requires elevated permissions
      */
     ProcessIdExecutable createProcessIdExecutable(
-            int pid, String processName) throws CommandNotFoundException;
+            int pid, String processName) throws CommandNotFoundException,
+            NoSuchFileOrDirectory, InsufficientPermissionsException;
 
     /**
      * Method that creates an executable for quickly retrieve the name of directories
@@ -319,9 +399,12 @@ public interface ExecutableCreator {
      * @return ProcessIdExecutable A {@link ProcessIdExecutable} executable implementation
      * reference
      * @throws CommandNotFoundException If the executable can't be created
+     * @throws NoSuchFileOrDirectory If the file or directory was not found
+     * @throws InsufficientPermissionsException If an operation requires elevated permissions
      */
     QuickFolderSearchExecutable createQuickFolderSearchExecutable(
-            String regexp) throws CommandNotFoundException;
+            String regexp) throws CommandNotFoundException,
+            NoSuchFileOrDirectory, InsufficientPermissionsException;
 
     /**
      * Method that creates an executable for read data from disk.
@@ -330,10 +413,13 @@ public interface ExecutableCreator {
      * @param asyncResultListener The listener where to return partial results
      * @return ReadExecutable A {@link ReadExecutable} executable implementation reference
      * @throws CommandNotFoundException If the executable can't be created
+     * @throws NoSuchFileOrDirectory If the file or directory was not found
+     * @throws InsufficientPermissionsException If an operation requires elevated permissions
      */
     ReadExecutable createReadExecutable(
             String file, AsyncResultListener asyncResultListener)
-            throws CommandNotFoundException;
+            throws CommandNotFoundException,
+            NoSuchFileOrDirectory, InsufficientPermissionsException;
 
     /**
      * Method that creates an executable for resolves the real
@@ -343,8 +429,11 @@ public interface ExecutableCreator {
      * @return ResolveLinkExecutable A {@link ResolveLinkExecutable} executable
      * implementation reference
      * @throws CommandNotFoundException If the executable can't be created
+     * @throws NoSuchFileOrDirectory If the file or directory was not found
+     * @throws InsufficientPermissionsException If an operation requires elevated permissions
      */
-    ResolveLinkExecutable createResolveLinkExecutable(String fso) throws CommandNotFoundException;
+    ResolveLinkExecutable createResolveLinkExecutable(String fso) throws CommandNotFoundException,
+            NoSuchFileOrDirectory, InsufficientPermissionsException;
 
     /**
      * Method that creates an executable for send a signal to the current process.
@@ -353,9 +442,12 @@ public interface ExecutableCreator {
      * @param signal The signal to send
      * @return SendSignalExecutable A {@link SendSignalExecutable} executable implementation reference
      * @throws CommandNotFoundException If the executable can't be created
+     * @throws NoSuchFileOrDirectory If the file or directory was not found
+     * @throws InsufficientPermissionsException If an operation requires elevated permissions
      */
     SendSignalExecutable createSendSignalExecutable(
-            int process, SIGNAL signal) throws CommandNotFoundException;
+            int process, SIGNAL signal) throws CommandNotFoundException,
+            NoSuchFileOrDirectory, InsufficientPermissionsException;
 
     /**
      * Method that creates an executable for send a kill signal to the current process.
@@ -364,9 +456,12 @@ public interface ExecutableCreator {
      * @param signal The signal to send
      * @return SendSignalExecutable A {@link SendSignalExecutable} executable implementation reference
      * @throws CommandNotFoundException If the executable can't be created
+     * @throws NoSuchFileOrDirectory If the file or directory was not found
+     * @throws InsufficientPermissionsException If an operation requires elevated permissions
      */
     SendSignalExecutable createKillExecutable(
-            int process) throws CommandNotFoundException;
+            int process) throws CommandNotFoundException,
+            NoSuchFileOrDirectory, InsufficientPermissionsException;
 
     /**
      * Method that creates an executable for write data to disk.
@@ -375,10 +470,13 @@ public interface ExecutableCreator {
      * @param asyncResultListener The listener where to return partial results
      * @return WriteExecutable A {@link WriteExecutable} executable implementation reference
      * @throws CommandNotFoundException If the executable can't be created
+     * @throws NoSuchFileOrDirectory If the file or directory was not found
+     * @throws InsufficientPermissionsException If an operation requires elevated permissions
      */
     WriteExecutable createWriteExecutable(
             String file, AsyncResultListener asyncResultListener)
-            throws CommandNotFoundException;
+            throws CommandNotFoundException,
+            NoSuchFileOrDirectory, InsufficientPermissionsException;
 
     /**
      * Method that creates an executable for archive-compress file system objects.
@@ -389,11 +487,14 @@ public interface ExecutableCreator {
      * @param asyncResultListener The listener where to return partial results
      * @return CompressExecutable A {@link CompressExecutable} executable implementation reference
      * @throws CommandNotFoundException If the executable can't be created
+     * @throws NoSuchFileOrDirectory If the file or directory was not found
+     * @throws InsufficientPermissionsException If an operation requires elevated permissions
      */
     CompressExecutable createCompressExecutable(
             CompressionMode mode, String dst, String[] src,
             AsyncResultListener asyncResultListener)
-            throws CommandNotFoundException;
+            throws CommandNotFoundException,
+            NoSuchFileOrDirectory, InsufficientPermissionsException;
 
     /**
      * Method that creates an executable for compress a file system object.
@@ -403,10 +504,13 @@ public interface ExecutableCreator {
      * @param asyncResultListener The listener where to return partial results
      * @return CompressExecutable A {@link CompressExecutable} executable implementation reference
      * @throws CommandNotFoundException If the executable can't be created
+     * @throws NoSuchFileOrDirectory If the file or directory was not found
+     * @throws InsufficientPermissionsException If an operation requires elevated permissions
      */
     CompressExecutable createCompressExecutable(
             CompressionMode mode, String src, AsyncResultListener asyncResultListener)
-            throws CommandNotFoundException;
+            throws CommandNotFoundException,
+            NoSuchFileOrDirectory, InsufficientPermissionsException;
 
     /**
      * Method that creates an executable for uncompress file system objects.
@@ -417,9 +521,12 @@ public interface ExecutableCreator {
      * @param asyncResultListener The listener where to return partial results
      * @return UncompressExecutable A {@link UncompressExecutable} executable implementation reference
      * @throws CommandNotFoundException If the executable can't be created
+     * @throws NoSuchFileOrDirectory If the file or directory was not found
+     * @throws InsufficientPermissionsException If an operation requires elevated permissions
      */
     UncompressExecutable createUncompressExecutable(
             String src, String dst, AsyncResultListener asyncResultListener)
-            throws CommandNotFoundException;
+            throws CommandNotFoundException,
+            NoSuchFileOrDirectory, InsufficientPermissionsException;
 
 }

@@ -78,13 +78,6 @@ public class DiskUsageCommand extends Program implements DiskUsageExecutable {
     public void execute()
             throws InsufficientPermissionsException, NoSuchFileOrDirectory, ExecutionException {
 
-        //Retrieve the mount points
-        MountPointInfoCommand cmd = new MountPointInfoCommand(this.mMountsFile);
-        cmd.setBufferSize(getBufferSize());
-        cmd.setTrace(isTrace());
-        cmd.execute();
-        List<MountPoint> mp = cmd.getResult();
-
         if (isTrace()) {
             Log.v(TAG,
                     String.format("Getting usage for: %s", //$NON-NLS-1$
@@ -92,19 +85,20 @@ public class DiskUsageCommand extends Program implements DiskUsageExecutable {
         }
 
         if (this.mSrc == null) {
+            // Retrieve the mount points
+            MountPointInfoCommand cmd = new MountPointInfoCommand(this.mMountsFile);
+            cmd.setBufferSize(getBufferSize());
+            cmd.setTrace(isTrace());
+            cmd.execute();
+            List<MountPoint> mp = cmd.getResult();
+
+            // Get every disk usage
             for (int i = 0; i < mp.size(); i++) {
                 File root = new File(mp.get(i).getMountPoint());
                 this.mDisksUsage.add(createDiskUsuage(root));
             }
         } else {
-            // Search the root of file
-            for (int i = 0; i < mp.size(); i++) {
-                File root = new File(mp.get(i).getMountPoint());
-                if (this.mSrc.startsWith(root.getAbsolutePath())) {
-                    this.mDisksUsage.add(createDiskUsuage(root));
-                    break;
-                }
-            }
+            this.mDisksUsage.add(createDiskUsuage(new File(this.mSrc)));
         }
 
         if (isTrace()) {
@@ -118,12 +112,12 @@ public class DiskUsageCommand extends Program implements DiskUsageExecutable {
      * @param root The root file
      * @return DiskUsage The disk usage
      */
-    private DiskUsage createDiskUsuage(File root) {
+    private DiskUsage createDiskUsuage(File file) {
         DiskUsage du = new DiskUsage(
-                                root.getAbsolutePath(),
-                                root.getTotalSpace(),
-                                root.getTotalSpace() - root.getFreeSpace(),
-                                root.getFreeSpace());
+                                file.getAbsolutePath(),
+                                file.getTotalSpace(),
+                                file.getTotalSpace() - file.getFreeSpace(),
+                                file.getFreeSpace());
         if (isTrace()) {
             Log.v(TAG, du.toString());
         }

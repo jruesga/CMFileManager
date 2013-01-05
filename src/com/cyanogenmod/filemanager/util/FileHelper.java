@@ -218,6 +218,28 @@ public final class FileHelper {
     }
 
     /**
+     * Method that returns if the folder if the root directory.
+     *
+     * @param folder The folder
+     * @return boolean if the folder if the root directory
+     */
+    public static boolean isRootDirectory(String folder) {
+        if (folder == null) return true;
+        return isRootDirectory(new File(folder));
+    }
+
+    /**
+     * Method that returns if the folder if the root directory.
+     *
+     * @param folder The folder
+     * @return boolean if the folder if the root directory
+     */
+    public static boolean isRootDirectory(File folder) {
+        if (folder.getPath() == null) return true;
+        return folder.getPath().compareTo(FileHelper.ROOT_DIRECTORY) == 0;
+    }
+
+    /**
      * Method that returns if the parent file system object if the root directory.
      *
      * @param fso The parent file system object to check
@@ -285,6 +307,30 @@ public final class FileHelper {
 
         // General extraction method
         return name.substring(pos + 1);
+    }
+
+    /**
+     * Method that returns the parent directory of a file/folder
+     *
+     * @param path The file/folder
+     * @return String The parent directory
+     */
+    public static String getParentDir(String path) {
+        return getParentDir(new File(path));
+    }
+
+    /**
+     * Method that returns the parent directory of a file/folder
+     *
+     * @param path The file/folder
+     * @return String The parent directory
+     */
+    public static String getParentDir(File path) {
+        String parent = path.getParent();
+        if (parent == null) {
+            parent = FileHelper.ROOT_DIRECTORY;
+        }
+        return parent;
     }
 
     /**
@@ -733,6 +779,7 @@ public final class FileHelper {
      * @return String The path with the trailing slash
      */
     public static String addTrailingSlash(String path) {
+        if (path == null) return null;
         return path.endsWith(File.separator) ? path : path + File.separator;
     }
 
@@ -743,6 +790,7 @@ public final class FileHelper {
      * @return String The path without the trailing slash
      */
     public static String removeTrailingSlash(String path) {
+        if (path == null) return null;
         if (path.trim().compareTo(ROOT_DIRECTORY) == 0) return path;
         if (path.endsWith(File.separator)) {
             return path.substring(0, path.length()-1);
@@ -868,11 +916,10 @@ public final class FileHelper {
     /**
      * Method that creates a {@link FileSystemObject} from a {@link File}
      *
-     * @param ctx The current context
      * @param file The file or folder reference
      * @return FileSystemObject The file system object reference
      */
-    public static FileSystemObject createFileSystemObject(Context ctx, File file) {
+    public static FileSystemObject createFileSystemObject(File file) {
         try {
             // The user and group name of the files. In ChRoot, aosp give restrict access to
             // this user and group.
@@ -883,20 +930,21 @@ public final class FileHelper {
             // The user and group name of the files. In ChRoot, aosp give restrict access to
             // this user and group. This applies for permission also. This has no really much
             // interest if we not allow to change the permissions
-            AID userAID = AIDHelper.getAIDFromName(ctx, USER);
-            AID groupAID = AIDHelper.getAIDFromName(ctx, GROUP);
+            AID userAID = AIDHelper.getAIDFromName(USER);
+            AID groupAID = AIDHelper.getAIDFromName(GROUP);
             User user = new User(userAID.getId(), userAID.getName());
             Group group = new Group(groupAID.getId(), groupAID.getName());
             Permissions perm = Permissions.fromRawString(PERMISSIONS);
 
             // Build a directory?
+            Date lastModified = new Date(file.lastModified());
             if (file.isDirectory()) {
                 return
                     new Directory(
                             file.getName(),
                             file.getParent(),
                             user, group, perm,
-                            new Date(file.lastModified()));
+                            lastModified, lastModified, lastModified); // The only date we have
             }
 
             // Build a regular file
@@ -905,8 +953,8 @@ public final class FileHelper {
                         file.getName(),
                         file.getParent(),
                         user, group, perm,
-                        new Date(file.lastModified()),
-                        file.length());
+                        file.length(),
+                        lastModified, lastModified, lastModified); // The only date we have
         } catch (Exception e) {
             Log.e(TAG, "Exception retrieving the fso", e); //$NON-NLS-1$
         }

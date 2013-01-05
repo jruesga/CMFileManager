@@ -24,7 +24,7 @@ import com.cyanogenmod.filemanager.util.FileHelper;
  */
 public class ParentDirectory extends Directory {
 
-    private static final long serialVersionUID = 4022696602271512681L;
+    private static final long serialVersionUID = -3818276335217197479L;
 
     /**
      * Constructor of <code>ParentDirectory</code>.
@@ -32,7 +32,7 @@ public class ParentDirectory extends Directory {
      * @param parent The parent folder of the object
      */
     public ParentDirectory(String parent) {
-        super(FileHelper.PARENT_DIRECTORY, parent, null, null, null, null);
+        super(FileHelper.PARENT_DIRECTORY, parent, null, null, null, null, null, null);
     }
 
     /**

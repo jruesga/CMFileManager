@@ -200,7 +200,7 @@ public class JavaExecutableCreator implements ExecutableCreator {
     public FindExecutable createFindExecutable(
             String directory, Query query, AsyncResultListener asyncResultListener)
             throws CommandNotFoundException {
-        return new FindCommand(this.mConsole.getCtx(), directory, query, asyncResultListener);
+        return new FindCommand(directory, query, asyncResultListener);
     }
 
     /**
@@ -245,7 +245,7 @@ public class JavaExecutableCreator implements ExecutableCreator {
     @Override
     public ListExecutable createListExecutable(String src)
             throws CommandNotFoundException {
-        return new ListCommand(this.mConsole.getCtx(), src, LIST_MODE.DIRECTORY);
+        return new ListCommand(src, LIST_MODE.DIRECTORY);
     }
 
     /**
@@ -254,7 +254,7 @@ public class JavaExecutableCreator implements ExecutableCreator {
     @Override
     public ListExecutable createFileInfoExecutable(String src, boolean followSymlinks)
             throws CommandNotFoundException {
-        return new ListCommand(this.mConsole.getCtx(), src, LIST_MODE.FILEINFO);
+        return new ListCommand(src, LIST_MODE.FILEINFO);
     }
 
     /**
@@ -336,7 +336,7 @@ public class JavaExecutableCreator implements ExecutableCreator {
     @Override
     public ResolveLinkExecutable createResolveLinkExecutable(String fso)
             throws CommandNotFoundException {
-        return new ResolveLinkCommand(this.mConsole.getCtx(), fso);
+        return new ResolveLinkCommand(fso);
     }
 
     /**

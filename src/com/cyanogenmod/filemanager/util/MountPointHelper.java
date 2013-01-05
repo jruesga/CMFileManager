@@ -36,13 +36,13 @@ public final class MountPointHelper {
 
     private static final String TAG = "MountPointHelper"; //$NON-NLS-1$
 
-    private static final List<String> ALLOWED_FS_TYPE = Arrays.asList(new String[]{
-                                                "rootfs", //$NON-NLS-1$
-                                                "tmpfs",  //$NON-NLS-1$
-                                                "vfat",   //$NON-NLS-1$
-                                                "ext2",   //$NON-NLS-1$
-                                                "ext3",   //$NON-NLS-1$
-                                                "ext4"    //$NON-NLS-1$
+    private static final List<String> RESTRICTED_FS_TYPE = Arrays.asList(new String[]{
+                                                "devpts", //$NON-NLS-1$
+                                                "proc", //$NON-NLS-1$
+                                                "sysfs", //$NON-NLS-1$
+                                                "debugfs", //$NON-NLS-1$
+                                                "cgroup", //$NON-NLS-1$
+                                                "tmpfs" //$NON-NLS-1$
                                                     });
 
     private static final long MAX_CACHED_TIME = 60000L * 5;
@@ -106,7 +106,7 @@ public final class MountPointHelper {
             }
 
             //Sort mount points in reverse order, needed for avoid
-            //found an incorrect that matches the name
+            //found an incorrect mount point that matches the name
             Collections.sort(sMountPoints, new Comparator<MountPoint>() {
                 @Override
                 public int compare(MountPoint lhs, MountPoint rhs) {
@@ -198,12 +198,12 @@ public final class MountPointHelper {
     }
 
     /**
-     * Method that returns if the filesystem can be mounted.
+     * Method that returns if a filesystem is allowed to be mounted/unmounted (rw/ro).
      *
      * @param mp The mount point to check
-     * @return boolean If the mount point can be mounted
+     * @return boolean If the mount point can be mounted/unmount (rw/ro)
      */
     public static boolean isMountAllowed(MountPoint mp) {
-        return ALLOWED_FS_TYPE.contains(mp.getType());
+        return !RESTRICTED_FS_TYPE.contains(mp.getType());
     }
 }

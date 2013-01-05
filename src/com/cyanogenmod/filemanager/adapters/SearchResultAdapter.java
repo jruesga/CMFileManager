@@ -127,7 +127,7 @@ public class SearchResultAdapter extends ArrayAdapter<SearchResult> {
 
         //Do cache of the data for better performance
         loadDefaultIcons();
-        processData();
+        processData(files);
     }
 
     /**
@@ -143,7 +143,7 @@ public class SearchResultAdapter extends ArrayAdapter<SearchResult> {
      */
     @Override
     public void notifyDataSetChanged() {
-        processData();
+        processData(null);
         super.notifyDataSetChanged();
     }
 
@@ -158,17 +158,19 @@ public class SearchResultAdapter extends ArrayAdapter<SearchResult> {
 
     /**
      * Method that process the data before use {@link #getView} method.
+     *
+     * @param files The list of files (to better performance) or null.
      */
-    private void processData() {
+    private void processData(List<SearchResult> files) {
         Theme theme = ThemeManager.getCurrentTheme(getContext());
         int highlightedColor =
                 theme.getColor(getContext(), "search_highlight_color"); //$NON-NLS-1$
 
         this.mData = new DataHolder[getCount()];
-        int cc = getCount();
+        int cc = (files == null) ? getCount() : files.size();
         for (int i = 0; i < cc; i++) {
             //File system object info
-            SearchResult result = getItem(i);
+            SearchResult result = (files == null) ? getItem(i) : files.get(i);
 
             //Build the data holder
             this.mData[i] = new SearchResultAdapter.DataHolder();

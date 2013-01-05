@@ -16,8 +16,6 @@
 
 package com.cyanogenmod.filemanager.commands.shell;
 
-import java.io.OutputStream;
-
 import android.os.Environment;
 import android.test.suitebuilder.annotation.MediumTest;
 
@@ -25,6 +23,8 @@ import com.cyanogenmod.filemanager.commands.AsyncResultListener;
 import com.cyanogenmod.filemanager.commands.WriteExecutable;
 import com.cyanogenmod.filemanager.model.Permissions;
 import com.cyanogenmod.filemanager.util.CommandHelper;
+
+import java.io.OutputStream;
 
 /**
  * A class for testing exec command.
@@ -81,20 +81,25 @@ public class ExecCommandTest extends AbstractConsoleTest {
             // Execute the test program
             this.mNewPartialData = false;
             CommandHelper.exec(getContext(), EXEC_CMD, new AsyncResultListener() {
+                @Override
                 public void onAsyncStart() {
                     /**NON BLOCK**/
                 }
+                @Override
                 public void onAsyncEnd(boolean cancelled) {
                     synchronized (ExecCommandTest.this.mSync) {
                         ExecCommandTest.this.mSync.notify();
                     }
                 }
+                @Override
                 public void onAsyncExitCode(int exitCode) {
                     /**NON BLOCK**/
                 }
+                @Override
                 public void onException(Exception cause) {
                     fail(String.valueOf(cause));
                 }
+                @Override
                 public void onPartialResult(Object results) {
                     ExecCommandTest.this.mNewPartialData = true;
                 }

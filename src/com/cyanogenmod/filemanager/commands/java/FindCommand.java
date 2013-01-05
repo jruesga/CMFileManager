@@ -16,7 +16,6 @@
 
 package com.cyanogenmod.filemanager.commands.java;
 
-import android.content.Context;
 import android.util.Log;
 
 import com.cyanogenmod.filemanager.commands.AsyncResultListener;
@@ -39,7 +38,6 @@ public class FindCommand extends Program implements FindExecutable {
 
     private static final String TAG = "FindCommand"; //$NON-NLS-1$
 
-    private final Context mCtx;
     private final String mDirectory;
     private final String[] mQueryRegExp;
     private final AsyncResultListener mAsyncResultListener;
@@ -51,15 +49,12 @@ public class FindCommand extends Program implements FindExecutable {
     /**
      * Constructor of <code>FindCommand</code>.
      *
-     * @param ctx The current context
      * @param directory The absolute directory where start the search
      * @param query The terms to be searched
      * @param asyncResultListener The partial result listener
      */
-    public FindCommand(
-            Context ctx, String directory, Query query, AsyncResultListener asyncResultListener) {
+    public FindCommand(String directory, Query query, AsyncResultListener asyncResultListener) {
         super();
-        this.mCtx = ctx;
         this.mDirectory = directory;
         this.mQueryRegExp = createRegexp(directory, query);
         this.mAsyncResultListener = asyncResultListener;
@@ -145,7 +140,7 @@ public class FindCommand extends Program implements FindExecutable {
                     for (int j = 0; j < ccc; j++) {
                         if (files[i].getName().matches(this.mQueryRegExp[j])) {
                             FileSystemObject fso =
-                                    FileHelper.createFileSystemObject(this.mCtx, files[i]);
+                                    FileHelper.createFileSystemObject(files[i]);
                             if (fso != null) {
                                 if (isTrace()) {
                                     Log.v(TAG, String.valueOf(fso));

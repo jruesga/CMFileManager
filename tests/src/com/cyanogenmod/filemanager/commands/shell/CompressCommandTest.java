@@ -138,21 +138,26 @@ public class CompressCommandTest extends AbstractConsoleTest {
             CompressExecutable cmd =
                     CommandHelper.compress(
                         getContext(), mode, dst, ARCHIVE_DATA, new AsyncResultListener() {
+                            @Override
                             public void onAsyncStart() {
                                 /**NON BLOCK**/
                             }
+                            @Override
                             public void onAsyncEnd(boolean cancelled) {
                                 synchronized (CompressCommandTest.this.mSync) {
                                     CompressCommandTest.this.mNormalEnd = true;
                                     CompressCommandTest.this.mSync.notify();
                                 }
                             }
+                            @Override
                             public void onAsyncExitCode(int exitCode) {
                                 /**NON BLOCK**/
                             }
+                            @Override
                             public void onException(Exception cause) {
                                 fail(String.valueOf(cause));
                             }
+                            @Override
                             public void onPartialResult(Object result) {
                                 CompressCommandTest.this.mNewPartialData = true;
                                 Log.d(TAG, (String)result);
@@ -199,21 +204,26 @@ public class CompressCommandTest extends AbstractConsoleTest {
             cmd =
                     CommandHelper.compress(
                         getContext(), mode, COMPRESS_DATA_DST, new AsyncResultListener() {
+                            @Override
                             public void onAsyncStart() {
                                 /**NON BLOCK**/
                             }
+                            @Override
                             public void onAsyncEnd(boolean cancelled) {
                                 synchronized (CompressCommandTest.this.mSync) {
                                     CompressCommandTest.this.mNormalEnd = true;
                                     CompressCommandTest.this.mSync.notify();
                                 }
                             }
+                            @Override
                             public void onAsyncExitCode(int exitCode) {
                                 /**NON BLOCK**/
                             }
+                            @Override
                             public void onException(Exception cause) {
                                 fail(String.valueOf(cause));
                             }
+                            @Override
                             public void onPartialResult(Object result) {
                                 CompressCommandTest.this.mNewPartialData = true;
                                 Log.d(TAG, (String)result);

@@ -176,8 +176,8 @@ public class CheckableListAdapter extends ArrayAdapter<CheckableListAdapter.Chec
         int cc = getCount();
         for (int i = 0; i < cc; i++) {
             getItem(i).mChecked = (i == position);
-            notifyDataSetChanged();
         }
+        notifyDataSetChanged();
     }
 
 }

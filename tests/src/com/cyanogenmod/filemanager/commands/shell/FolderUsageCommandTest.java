@@ -75,21 +75,26 @@ public class FolderUsageCommandTest extends AbstractConsoleTest {
         this.mUsage = null;
         AsyncResultExecutable cmd =
                 CommandHelper.getFolderUsage(getContext(), PATH, new AsyncResultListener() {
+                        @Override
                         public void onAsyncStart() {
                             /**NON BLOCK**/
                         }
+                        @Override
                         public void onAsyncEnd(boolean cancelled) {
                             synchronized (FolderUsageCommandTest.this.mSync) {
                                 FolderUsageCommandTest.this.mNormalEnd = true;
                                 FolderUsageCommandTest.this.mSync.notify();
                             }
                         }
+                        @Override
                         public void onAsyncExitCode(int exitCode) {
                             /**NON BLOCK**/
                         }
+                        @Override
                         public void onException(Exception cause) {
                             fail(String.valueOf(cause));
                         }
+                        @Override
                         public void onPartialResult(Object result) {
                             FolderUsageCommandTest.this.mNewPartialData = true;
                             try {

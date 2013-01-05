@@ -110,7 +110,7 @@ public final class NewActionPolicy extends ActionsPolicy {
                 try {
                     fso = CommandHelper.getFileInfo(ctx, newName, false, null);
                 } catch (Throwable ex2) {/**NON BLOCK**/}
-                onRequestRefreshListener.onRequestRefresh(fso);
+                onRequestRefreshListener.onRequestRefresh(fso, false);
             }
             showOperationSuccessMsg(ctx);
 
@@ -129,7 +129,7 @@ public final class NewActionPolicy extends ActionsPolicy {
                             try {
                                 fso = CommandHelper.getFileInfo(ctx, newName, false, null);
                             } catch (Throwable ex2) {/**NON BLOCK**/}
-                            onRequestRefreshListener.onRequestRefresh(fso);
+                            onRequestRefreshListener.onRequestRefresh(fso, false);
                         }
                         return Boolean.TRUE;
                     }
@@ -185,7 +185,7 @@ public final class NewActionPolicy extends ActionsPolicy {
                 } catch (Throwable ex2) {
                     /**NON BLOCK**/
                 }
-                onRequestRefreshListener.onRequestRefresh(fso);
+                onRequestRefreshListener.onRequestRefresh(fso, false);
             }
             showOperationSuccessMsg(ctx);
 
@@ -204,7 +204,7 @@ public final class NewActionPolicy extends ActionsPolicy {
                             try {
                                 fso = CommandHelper.getFileInfo(ctx, link, false, null);
                             } catch (Throwable ex2) {/**NON BLOCK**/}
-                            onRequestRefreshListener.onRequestRefresh(fso);
+                            onRequestRefreshListener.onRequestRefresh(fso, false);
                         }
                         return Boolean.TRUE;
                     }

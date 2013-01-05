@@ -24,14 +24,16 @@ import com.cyanogenmod.filemanager.commands.SIGNAL;
 import com.cyanogenmod.filemanager.console.CommandNotFoundException;
 import com.cyanogenmod.filemanager.console.ExecutionException;
 import com.cyanogenmod.filemanager.console.InsufficientPermissionsException;
+import com.cyanogenmod.filemanager.model.BlockDevice;
+import com.cyanogenmod.filemanager.model.CharacterDevice;
 import com.cyanogenmod.filemanager.model.Directory;
-import com.cyanogenmod.filemanager.model.FileSystemObject;
+import com.cyanogenmod.filemanager.model.DomainSocket;
 import com.cyanogenmod.filemanager.model.FolderUsage;
+import com.cyanogenmod.filemanager.model.NamedPipe;
 import com.cyanogenmod.filemanager.model.Symlink;
 import com.cyanogenmod.filemanager.util.FileHelper;
 import com.cyanogenmod.filemanager.util.MimeTypeHelper;
 import com.cyanogenmod.filemanager.util.MimeTypeHelper.MimeTypeCategory;
-import com.cyanogenmod.filemanager.util.ParseHelper;
 
 import java.io.BufferedReader;
 import java.io.StringReader;
@@ -51,7 +53,6 @@ public class FolderUsageCommand extends AsyncResultProgram implements FolderUsag
 
     private final String mDirectory;
     private FolderUsage mFolderUsage;
-    private String mPartial;
 
     /**
      * Constructor of <code>FolderUsageCommand</code>.
@@ -65,7 +66,6 @@ public class FolderUsageCommand extends AsyncResultProgram implements FolderUsag
             throws InvalidCommandDefinitionException {
         super(ID, asyncResultListener, new String[]{directory});
         this.mFolderUsage = new FolderUsage(directory);
-        this.mPartial = ""; //$NON-NLS-1$
         this.mDirectory = directory;
     }
 
@@ -75,7 +75,6 @@ public class FolderUsageCommand extends AsyncResultProgram implements FolderUsag
     @Override
     public void onStartParsePartialResult() {
         this.mFolderUsage = new FolderUsage(this.mDirectory);
-        this.mPartial = ""; //$NON-NLS-1$
     }
 
     /**
@@ -83,7 +82,7 @@ public class FolderUsageCommand extends AsyncResultProgram implements FolderUsag
      */
     @Override
     public void onEndParsePartialResult(boolean cancelled) {
-        this.mPartial = ""; //$NON-NLS-1$
+        //$NON-NLS-1$
     }
 
     /**
@@ -95,76 +94,100 @@ public class FolderUsageCommand extends AsyncResultProgram implements FolderUsag
         // Check the in buffer to extract information
         BufferedReader br = null;
         try {
-            //Read the partial + previous partial and clean partial
-            br = new BufferedReader(new StringReader(this.mPartial + partialIn));
-            this.mPartial = ""; //$NON-NLS-1$
+            // Parse the line. We expect a ls -l output line
+            // -rw-r--r-- root     root            7 2012-12-30 00:49 test.txt
+            //
+            // (1) permissions
+            // (2) owner
+            // (3) group
+            // (4) size
+            // (5) date
+            // (6) name
+
+            //Partial contains full lines
+            br = new BufferedReader(new StringReader(partialIn));
 
             //Add all lines to an array
             List<String> lines = new ArrayList<String>();
             String line = null;
             while ((line = br.readLine()) != null) {
-                if (line.trim().length() == 0) {
+                // Discard empty, paths, and folder links
+                if (line.length() == 0 ||
+                    line.startsWith(FileHelper.ROOT_DIRECTORY) ||
+                    line.startsWith(FileHelper.CURRENT_DIRECTORY) ||
+                    line.startsWith(FileHelper.PARENT_DIRECTORY)) {
                     continue;
                 }
                 lines.add(line);
             }
 
-            //2 lines per file system object translation
-            boolean newData = false;
             int c = 0;
-            while (lines.size() > 0) {
-                try {
+            try {
+                while (lines.size() > 0) {
                     // Retrieve the info
-                    String szLine = lines.get(0).trim();
+                    String szLine = lines.remove(0).trim();
+                    try {
+                        // Clean the line (we don't care about names, only need the extension)
+                        // so remove spaces is safe here
+                        while (szLine.indexOf("  ") != -1) { //$NON-NLS-1$
+                            szLine = szLine.replaceAll("  ", " "); //$NON-NLS-1$ //$NON-NLS-2$
+                        }
 
-                    // Parent folder is not necessary here. Only the information relative to
-                    // type and size
-                    FileSystemObject fso =
-                            ParseHelper.toFileSystemObject(
-                                    FileHelper.ROOT_DIRECTORY, szLine, true);
+                        char type = szLine.charAt(0);
+                        if (type == Symlink.UNIX_ID ||
+                                type == BlockDevice.UNIX_ID ||
+                                type == CharacterDevice.UNIX_ID ||
+                                type == DomainSocket.UNIX_ID ||
+                                type == NamedPipe.UNIX_ID) {
+                            // File + Category
+                            this.mFolderUsage.addFile();
+                            if (type == Symlink.UNIX_ID) {
+                                this.mFolderUsage.addFileToCategory(MimeTypeCategory.NONE);
+                            } else {
+                                this.mFolderUsage.addFileToCategory(MimeTypeCategory.SYSTEM);
+                            }
 
-                    // Only regular files or directories. No compute Symlinks
-                    if (fso instanceof Symlink) {
+                        } else if (type == Directory.UNIX_ID) {
+                            // Folder
+                            this.mFolderUsage.addFolder();
 
-                    // Directory
-                    } else if (fso instanceof Directory) {
-                        // Folder
-                        this.mFolderUsage.addFolder();
-                        newData = true;
+                        } else {
+                            // File + Category + Size
+                            try {
+                                // we need a valid line
+                                String[] fields = szLine.split(" "); //$NON-NLS-1$
+                                if (fields.length < 7) {
+                                    continue;
+                                }
 
-                    // Regular File, Block device, ...
-                    } else {
-                        this.mFolderUsage.addFile();
-                        // Compute statistics and size
-                        MimeTypeCategory category =
-                                MimeTypeHelper.getCategory(null, fso);
-                        this.mFolderUsage.addFileToCategory(category);
-                        this.mFolderUsage.addSize(fso.getSize());
-                        newData = true;
+                                long size = Long.parseLong(fields[3]);
+                                String name = fields[fields.length-1];// We only need the extension
+                                String ext = FileHelper.getExtension(name);
+                                MimeTypeCategory category =
+                                        MimeTypeHelper.getCategoryFromExt(null, ext);
+                                this.mFolderUsage.addFile();
+                                this.mFolderUsage.addFileToCategory(category);
+                                this.mFolderUsage.addSize(size);
+                            } catch (Exception e) {/**NON BLOCK**/}
+                        }
+                        c++;
+
+                    } catch (Exception e) {
+                        // Ignore.
                     }
 
                     // Partial notification
                     if (c % 5 == 0) {
                         //If a listener is defined, then send the partial result
-                        if (getAsyncResultListener() != null && newData) {
+                        if (getAsyncResultListener() != null) {
                             getAsyncResultListener().onPartialResult(this.mFolderUsage);
                         }
                     }
-
-                } catch (Exception ex) { /**NON BLOCK **/ }
-
-                //Remove the the line
-                lines.remove(0);
-            }
-
-            //Saves the lines for the next partial read (At this point only one line
-            //can exists in the buffer. The rest was processed or discarded)
-            if (lines.size() > 0) {
-                this.mPartial = lines.get(0).concat(FileHelper.NEWLINE);
-            }
+                }
+            } catch (Exception ex) { /**NON BLOCK **/ }
 
             //If a listener is defined, then send the partial result
-            if (getAsyncResultListener() != null && newData) {
+            if (getAsyncResultListener() != null) {
                 getAsyncResultListener().onPartialResult(this.mFolderUsage);
             }
 

@@ -16,7 +16,6 @@
 
 package com.cyanogenmod.filemanager.commands.java;
 
-import android.content.Context;
 import android.util.Log;
 
 import com.cyanogenmod.filemanager.commands.ListExecutable;
@@ -39,7 +38,6 @@ public class ListCommand extends Program implements ListExecutable {
 
     private static final String TAG = "ListCommand"; //$NON-NLS-1$
 
-    private final Context mCtx;
     private final String mSrc;
     private final LIST_MODE mMode;
     private final List<FileSystemObject> mFiles;
@@ -47,13 +45,11 @@ public class ListCommand extends Program implements ListExecutable {
     /**
      * Constructor of <code>ListCommand</code>. List mode.
      *
-     * @param ctx The current context
      * @param src The file system object to be listed
      * @param mode The mode of listing
      */
-    public ListCommand(Context ctx, String src, LIST_MODE mode) {
+    public ListCommand(String src, LIST_MODE mode) {
         super();
-        this.mCtx = ctx;
         this.mSrc = src;
         this.mMode = mode;
         this.mFiles = new ArrayList<FileSystemObject>();
@@ -100,7 +96,7 @@ public class ListCommand extends Program implements ListExecutable {
             File[] files = f.listFiles();
             if (files != null) {
                 for (int i = 0; i < files.length; i++) {
-                    FileSystemObject fso = FileHelper.createFileSystemObject(this.mCtx, files[i]);
+                    FileSystemObject fso = FileHelper.createFileSystemObject(files[i]);
                     if (fso != null) {
                         if (isTrace()) {
                             Log.v(TAG, String.valueOf(fso));
@@ -119,7 +115,7 @@ public class ListCommand extends Program implements ListExecutable {
 
         } else {
             // Build the parent information
-            FileSystemObject fso = FileHelper.createFileSystemObject(this.mCtx, f);
+            FileSystemObject fso = FileHelper.createFileSystemObject(f);
             if (fso != null) {
                 if (isTrace()) {
                     Log.v(TAG, String.valueOf(fso));

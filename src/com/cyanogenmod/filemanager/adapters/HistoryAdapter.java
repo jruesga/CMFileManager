@@ -101,7 +101,7 @@ public class HistoryAdapter extends ArrayAdapter<History> {
         this.mIconHolder = new IconHolder();
 
         //Do cache of the data for better performance
-        processData();
+        processData(history);
     }
 
     /**
@@ -109,7 +109,7 @@ public class HistoryAdapter extends ArrayAdapter<History> {
      */
     @Override
     public void notifyDataSetChanged() {
-        processData();
+        processData(null);
         super.notifyDataSetChanged();
     }
 
@@ -123,14 +123,16 @@ public class HistoryAdapter extends ArrayAdapter<History> {
     }
 
     /**
-     * Method that process the data before use {@link #getView} method .
+     * Method that process the data before use {@link #getView} method.
+     *
+     * @param historyData The list of histories (to better performance) or null.
      */
-    private void processData() {
+    private void processData(List<History> historyData) {
         this.mData = new DataHolder[getCount()];
-        int cc = getCount();
+        int cc = (historyData == null) ? getCount() : historyData.size();
         for (int i = 0; i < cc; i++) {
             //History info
-            History history = getItem(i);
+            History history = (historyData == null) ? getItem(i) : historyData.get(i);
 
             //Build the data holder
             this.mData[i] = new HistoryAdapter.DataHolder();
@@ -176,7 +178,7 @@ public class HistoryAdapter extends ArrayAdapter<History> {
             // Apply the current theme
             Theme theme = ThemeManager.getCurrentTheme(getContext());
             theme.setBackgroundDrawable(
-                    getContext(), v, "background_drawable"); //$NON-NLS-1$
+                    getContext(), v, "selectors_deselected_drawable"); //$NON-NLS-1$
             theme.setTextColor(
                     getContext(), viewHolder.mTvName, "text_color"); //$NON-NLS-1$
             theme.setTextColor(

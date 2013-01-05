@@ -35,6 +35,7 @@ import com.cyanogenmod.filemanager.preferences.ObjectStringIdentifier;
 import com.cyanogenmod.filemanager.preferences.Preferences;
 import com.cyanogenmod.filemanager.ui.ThemeManager;
 import com.cyanogenmod.filemanager.ui.ThemeManager.Theme;
+import com.cyanogenmod.filemanager.util.AIDHelper;
 import com.cyanogenmod.filemanager.util.FileHelper;
 import com.cyanogenmod.filemanager.util.MimeTypeHelper;
 
@@ -100,7 +101,7 @@ public final class FileManagerApplication extends Application {
         }
     };
 
-    // A broadcast receiver for detect the uninstall of apk with themes
+    // A broadcast receiver for detect the install/uninstall of apps (for themes, AIDs, ...)
     private final BroadcastReceiver mUninstallReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
@@ -109,34 +110,46 @@ public final class FileManagerApplication extends Application {
                     intent.getAction().compareTo(Intent.ACTION_PACKAGE_FULLY_REMOVED) == 0) {
                     // Check that the remove package is not the current theme
                     if (intent.getData() != null) {
-                        // Get the package name and remove the schema
-                        String apkPackage = intent.getData().toString();
-                        apkPackage = apkPackage.substring("package:".length()); //$NON-NLS-1$
+                        // --- AIDs
+                        try {
+                            AIDHelper.getAIDs(getApplicationContext(), true);
+                        } catch (Exception e) {
+                            Log.w(TAG, "Failed to reload AIDs", e); //$NON-NLS-1$
+                        }
 
-                        Theme currentTheme = ThemeManager.getCurrentTheme(context);
-                        if (currentTheme.getPackage().compareTo(apkPackage) == 0) {
-                            // The apk that contains the current theme was remove, change
-                            // to default theme
-                            String composedId =
+                        // --- Themes
+                        try {
+                            // Get the package name and remove the schema
+                            String apkPackage = intent.getData().toString();
+                            apkPackage = apkPackage.substring("package:".length()); //$NON-NLS-1$
+
+                            Theme currentTheme = ThemeManager.getCurrentTheme(context);
+                            if (currentTheme.getPackage().compareTo(apkPackage) == 0) {
+                                // The apk that contains the current theme was remove, change
+                                // to default theme
+                                String composedId =
                                     (String)FileManagerSettings.SETTINGS_THEME.getDefaultValue();
-                            ThemeManager.setCurrentTheme(getApplicationContext(), composedId);
-                            try {
-                                Preferences.savePreference(
-                                        FileManagerSettings.SETTINGS_THEME, composedId, true);
-                            } catch (Throwable ex) {
-                                Log.w(TAG, "can't save theme preference", ex); //$NON-NLS-1$
-                            }
+                                ThemeManager.setCurrentTheme(getApplicationContext(), composedId);
+                                try {
+                                    Preferences.savePreference(
+                                            FileManagerSettings.SETTINGS_THEME, composedId, true);
+                                } catch (Throwable ex) {
+                                    Log.w(TAG, "can't save theme preference", ex); //$NON-NLS-1$
+                                }
 
-                            // Notify the changes to activities
-                            try {
-                                Intent broadcastIntent =
-                                        new Intent(FileManagerSettings.INTENT_THEME_CHANGED);
-                                broadcastIntent.putExtra(
-                                        FileManagerSettings.EXTRA_THEME_ID, composedId);
-                                sendBroadcast(broadcastIntent);
-                            } catch (Throwable ex) {
-                                Log.w(TAG, "notify of theme change failed", ex); //$NON-NLS-1$
+                                // Notify the changes to activities
+                                try {
+                                    Intent broadcastIntent =
+                                            new Intent(FileManagerSettings.INTENT_THEME_CHANGED);
+                                    broadcastIntent.putExtra(
+                                            FileManagerSettings.EXTRA_THEME_ID, composedId);
+                                    sendBroadcast(broadcastIntent);
+                                } catch (Throwable ex) {
+                                    Log.w(TAG, "notify of theme change failed", ex); //$NON-NLS-1$
+                                }
                             }
+                        } catch (Exception e) {
+                            Log.w(TAG, "Failed to reload themes", e); //$NON-NLS-1$
                         }
                     }
                 }
@@ -153,8 +166,8 @@ public final class FileManagerApplication extends Application {
         if (DEBUG) {
             Log.d(TAG, "FileManagerApplication.onCreate"); //$NON-NLS-1$
         }
-        register();
         init();
+        register();
     }
 
     /**
@@ -192,19 +205,6 @@ public final class FileManagerApplication extends Application {
      * Method that register the application context.
      */
     private void register() {
-        //Save the static application reference
-        sApp = this;
-
-        // Read the system properties
-        sSystemProperties = new Properties();
-        readSystemProperties();
-
-        // Check if the application is debuggable
-        sIsDebuggable = (0 != (getApplicationInfo().flags &= ApplicationInfo.FLAG_DEBUGGABLE));
-
-        // Check if the device is rooted
-        sIsDeviceRooted = areShellCommandsPresent();
-
         // Register the notify broadcast receiver
         IntentFilter filter = new IntentFilter();
         filter.addAction(FileManagerSettings.INTENT_SETTING_CHANGED);
@@ -222,9 +222,25 @@ public final class FileManagerApplication extends Application {
      * Method that initializes the application.
      */
     private void init() {
+        //Save the static application reference
+        sApp = this;
+
+        // Read the system properties
+        sSystemProperties = new Properties();
+        readSystemProperties();
+
+        // Check if the application is debuggable
+        sIsDebuggable = (0 != (getApplicationInfo().flags &= ApplicationInfo.FLAG_DEBUGGABLE));
+
+        // Check if the device is rooted
+        sIsDeviceRooted = areShellCommandsPresent();
+
         //Sets the default preferences if no value is set yet
         FileHelper.ROOT_DIRECTORY = getString(R.string.root_dir);
         Preferences.loadDefaults();
+
+        // Read AIDs
+        AIDHelper.getAIDs(getApplicationContext(), true);
 
         // Allocate the default and current themes
         String defaultValue = ((String)FileManagerSettings.
@@ -243,6 +259,9 @@ public final class FileManagerApplication extends Application {
                 Log.w(TAG, "can't save theme preference", ex); //$NON-NLS-1$
             }
         }
+        // Set the base theme
+        Theme theme = ThemeManager.getCurrentTheme(getApplicationContext());
+        theme.setBaseTheme(getApplicationContext(), false);
 
         //Create a console for background tasks
         allocBackgroundConsole(getApplicationContext());

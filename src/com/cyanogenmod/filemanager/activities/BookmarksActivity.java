@@ -587,15 +587,22 @@ public class BookmarksActivity extends Activity implements OnItemClickListener, 
     private List<Bookmark> loadUserBookmarks() {
         List<Bookmark> bookmarks = new ArrayList<Bookmark>();
         Cursor cursor = Bookmarks.getAllBookmarks(this.getContentResolver());
-        if (cursor != null && cursor.moveToFirst()) {
-            do {
-                Bookmark bm = new Bookmark(cursor);
-                if (this.mChRooted && !StorageHelper.isPathInStorageVolume(bm.mPath)) {
-                    continue;
+        try {
+            if (cursor != null && cursor.moveToFirst()) {
+                do {
+                    Bookmark bm = new Bookmark(cursor);
+                    if (this.mChRooted && !StorageHelper.isPathInStorageVolume(bm.mPath)) {
+                        continue;
+                    }
+                    bookmarks.add(bm);
+                } while (cursor.moveToNext());
+            }
+        } finally {
+            try {
+                if (cursor != null) {
+                    cursor.close();
                 }
-                bookmarks.add(bm);
-            } while (cursor.moveToNext());
-            cursor.close();
+            } catch (Exception e) {/**NON BLOCK**/}
         }
         return bookmarks;
     }

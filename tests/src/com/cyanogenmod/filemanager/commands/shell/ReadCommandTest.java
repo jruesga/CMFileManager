@@ -68,21 +68,26 @@ public class ReadCommandTest extends AbstractConsoleTest {
         final StringBuffer sb = new StringBuffer();
         AsyncResultExecutable cmd =
                 CommandHelper.read(getContext(), READ_FILE, new AsyncResultListener() {
+                        @Override
                         public void onAsyncStart() {
                             /**NON BLOCK**/
                         }
+                        @Override
                         public void onAsyncEnd(boolean cancelled) {
                             synchronized (ReadCommandTest.this.mSync) {
                                 ReadCommandTest.this.mNormalEnd = true;
                                 ReadCommandTest.this.mSync.notify();
                             }
                         }
+                        @Override
                         public void onAsyncExitCode(int exitCode) {
                             /**NON BLOCK**/
                         }
+                        @Override
                         public void onException(Exception cause) {
                             fail(String.valueOf(cause));
                         }
+                        @Override
                         public void onPartialResult(Object results) {
                             ReadCommandTest.this.mNewPartialData = true;
                             sb.append(new String((byte[])results));

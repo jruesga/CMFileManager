@@ -16,19 +16,15 @@
 
 package com.cyanogenmod.filemanager.commands.shell;
 
-import com.cyanogenmod.filemanager.FileManagerApplication;
+import android.util.Log;
+
 import com.cyanogenmod.filemanager.commands.ListExecutable;
 import com.cyanogenmod.filemanager.console.CommandNotFoundException;
-import com.cyanogenmod.filemanager.console.ConsoleAllocException;
 import com.cyanogenmod.filemanager.console.ExecutionException;
 import com.cyanogenmod.filemanager.console.InsufficientPermissionsException;
-import com.cyanogenmod.filemanager.console.NoSuchFileOrDirectory;
-import com.cyanogenmod.filemanager.console.OperationTimeoutException;
 import com.cyanogenmod.filemanager.console.shell.ShellConsole;
 import com.cyanogenmod.filemanager.model.FileSystemObject;
 import com.cyanogenmod.filemanager.model.ParentDirectory;
-import com.cyanogenmod.filemanager.model.Symlink;
-import com.cyanogenmod.filemanager.util.CommandHelper;
 import com.cyanogenmod.filemanager.util.FileHelper;
 import com.cyanogenmod.filemanager.util.ParseHelper;
 
@@ -45,17 +41,15 @@ import java.util.List;
 /**
  * A class for list information about files and directories.
  *
- * {@link "http://unixhelp.ed.ac.uk/CGI/man-cgi?ls"}
+ * {@link "http://unixhelp.ed.ac.uk/CGI/man-cgi?stat"}
  */
 public class ListCommand extends SyncResultProgram implements ListExecutable {
 
-    private static final String ID_LS_DIRECTORY = "ls";  //$NON-NLS-1$
-    private static final String ID_LS_INFO = "fileinfo";  //$NON-NLS-1$
+    private static final String TAG = "ListCommand"; //$NON-NLS-1$
 
-    private static final String SYMLINK_REF = ">SIMLINKS>";  //$NON-NLS-1$
-    private static final String SYMLINK_DATA_REF = ">SIMLINKS_DATA>";  //$NON-NLS-1$
+    private static final String ID_LS = "ls";  //$NON-NLS-1$
+    private static final String ID_FILEINFO = "fileinfo";  //$NON-NLS-1$
 
-    private final String mSrc;
     private final LIST_MODE mMode;
     private final List<FileSystemObject> mFiles;
     private String mParentDir;
@@ -67,37 +61,22 @@ public class ListCommand extends SyncResultProgram implements ListExecutable {
      * @param console The console in which retrieve the parent directory information.
      * <code>null</code> to attach to the default console
      * @throws InvalidCommandDefinitionException If the command has an invalid definition
-     * @throws FileNotFoundException If the initial directory not exists
-     * @throws NoSuchFileOrDirectory If the file or directory was not found
-     * @throws IOException If initial directory couldn't be checked
-     * @throws ConsoleAllocException If the console can't be allocated
-     * @throws InsufficientPermissionsException If an operation requires elevated permissions
-     * @throws CommandNotFoundException If the command was not found
-     * @throws OperationTimeoutException If the operation exceeded the maximum time of wait
-     * @throws ExecutionException If the operation returns a invalid exit code
      */
     public ListCommand(String src, ShellConsole console)
-            throws InvalidCommandDefinitionException, FileNotFoundException,
-            NoSuchFileOrDirectory, IOException, ConsoleAllocException,
-            InsufficientPermissionsException, CommandNotFoundException,
-            OperationTimeoutException, ExecutionException {
-        //If the mode is listing directory, for avoid problems with symlink,
-        //always append a / to the end of the path (if not exists)
-        super(ID_LS_DIRECTORY, new String[]{ FileHelper.addTrailingSlash(src) });
+            throws InvalidCommandDefinitionException {
+        // Always add backslash for list the files of the directory, instead of
+        // the directory.
+        super(ID_LS, new String[]{ FileHelper.addTrailingSlash(src) });
 
         //Initialize files to something distinct of null
         this.mFiles = new ArrayList<FileSystemObject>();
         this.mMode = LIST_MODE.DIRECTORY;
-        this.mSrc = src;
 
         //Retrieve parent directory information
         if (src.compareTo(FileHelper.ROOT_DIRECTORY) == 0) {
             this.mParentDir = null;
         } else {
-            this.mParentDir =
-                CommandHelper.getAbsolutePath(
-                        FileManagerApplication.
-                            getInstance().getApplicationContext(), src, console);
+            this.mParentDir = new File(src).getAbsolutePath();
         }
     }
 
@@ -110,22 +89,13 @@ public class ListCommand extends SyncResultProgram implements ListExecutable {
      * <code>null</code> to attach to the default console
      * @throws InvalidCommandDefinitionException If the command has an invalid definition
      * @throws FileNotFoundException If the initial directory not exists
-     * @throws NoSuchFileOrDirectory If the file or directory was not found
      * @throws IOException If initial directory couldn't be checked
-     * @throws ConsoleAllocException If the console can't be allocated
-     * @throws InsufficientPermissionsException If an operation requires elevated permissions
-     * @throws CommandNotFoundException If the command was not found
-     * @throws OperationTimeoutException If the operation exceeded the maximum time of wait
-     * @throws ExecutionException If the operation returns a invalid exit code
      */
     public ListCommand(String src, boolean followSymlinks, ShellConsole console)
-            throws InvalidCommandDefinitionException, FileNotFoundException,
-            NoSuchFileOrDirectory, IOException, ConsoleAllocException,
-            InsufficientPermissionsException, CommandNotFoundException,
-            OperationTimeoutException, ExecutionException {
-        //If the mode is listing directory, for avoid problems with symlink,
-        //always append a / to the end of the path (if not exists)
-        super(ID_LS_INFO,
+            throws InvalidCommandDefinitionException, FileNotFoundException, IOException {
+        // Always remove backslash for avoid listing the files of the directory, instead of
+        // the directory.
+        super(ID_FILEINFO,
                 new String[]{
                     FileHelper.removeTrailingSlash(
                             followSymlinks ?
@@ -135,31 +105,16 @@ public class ListCommand extends SyncResultProgram implements ListExecutable {
         //Initialize files to something distinct of null
         this.mFiles = new ArrayList<FileSystemObject>();
         this.mMode = LIST_MODE.FILEINFO;
-        this.mSrc = src;
 
         //Get the absolute path
-        try {
-            if (followSymlinks) {
-                this.mParentDir =
-                        FileHelper.removeTrailingSlash(
-                                new File(src).getCanonicalFile().getParent());
-            } else {
-                this.mParentDir =
-                        FileHelper.removeTrailingSlash(
-                                new File(src).getAbsoluteFile().getParent());
-            }
-
-        } catch (Exception e) {
-            // Try to resolve from a console
-            String abspath =
-                CommandHelper.getAbsolutePath(
-                        FileManagerApplication.getInstance().
-                            getApplicationContext(), src, console);
-            //Resolve the parent directory
+        if (followSymlinks) {
             this.mParentDir =
-                CommandHelper.getParentDir(
-                        FileManagerApplication.getInstance().getApplicationContext(),
-                        abspath, console);
+                    FileHelper.removeTrailingSlash(
+                            new File(src).getCanonicalFile().getParent());
+        } else {
+            this.mParentDir =
+                    FileHelper.removeTrailingSlash(
+                            new File(src).getAbsoluteFile().getParent());
         }
     }
 
@@ -171,150 +126,29 @@ public class ListCommand extends SyncResultProgram implements ListExecutable {
         //Release the array
         this.mFiles.clear();
 
-        // Check the in buffer to extract information
+        // Read every line and parse it
         BufferedReader br = null;
-        int line = 0;
         try {
             br = new BufferedReader(new StringReader(in));
-            String szLine = null;
-            boolean symlinks = false;
-            int symlinksCount = 0;
-            while ((szLine = br.readLine()) != null) {
+            String line = null;
+            while ((line = br.readLine()) != null) {
                 //Checks that there is some text in the line. Otherwise ignore it
-                if (szLine.trim().length() == 0) {
+                if (line.trim().length() == 0) {
                     break;
                 }
 
-                //For a fast recovery, command return non symlink first and
-                //symlinks files, the resolution and the his info
-                //Is now symlinks?
-                if (szLine.startsWith(SYMLINK_REF)) {
-                    //Ignore the control line
-                    szLine = br.readLine();
-                    line++;
-                    symlinks = true;
-                }
-
-                //Parse the line into a FileSystemObject reference
-                if (!symlinks) {
-                    try {
-                        FileSystemObject fso =
-                                ParseHelper.toFileSystemObject(this.mParentDir, szLine);
-                        if (this.mMode.compareTo(LIST_MODE.FILEINFO) == 0 &&
-                            fso instanceof Symlink) {
-                            // In some situations, xe when the name has a -> the name is
-                            // incorrect resolved, but src name should by fine in this case
-                            fso.setName(new File(this.mSrc).getName());
-                            // The symlink is not resolved here
-                        }
-                        this.mFiles.add(fso);
-                    } catch (ParseException pEx) {
-                        throw new ParseException(pEx.getMessage(), line);
-                    }
-                } else {
-                    //Is ending symlink reference
-                    if (szLine.startsWith(SYMLINK_DATA_REF)) {
-                        if (symlinksCount == 0) {
-                            //No more data
-                            break;
-                        }
-                        //Ignore the control line
-                        szLine = br.readLine();
-                        line++;
-
-                        //The next information is known:  symlinksCount * 3
-                        String[] name = new String[symlinksCount];
-                        String[] absPath = new String[symlinksCount];
-                        String[] refPath = new String[symlinksCount];
-                        for (int i = 0; i < symlinksCount; i++) {
-                            if (szLine == null || szLine.trim().length() == 0) {
-                                name[i] = null;
-                                szLine = br.readLine();
-                                line++;
-                                continue;
-                            }
-                            name[i] = szLine;
-                            szLine = br.readLine();
-                            line++;
-                        }
-                        for (int i = 0; i < symlinksCount; i++) {
-                            if (szLine == null || szLine.trim().length() == 0) {
-                                absPath[i] = null;
-                                szLine = br.readLine();
-                                line++;
-                                continue;
-                            }
-                            absPath[i] = szLine;
-                            szLine = br.readLine();
-                            line++;
-                        }
-                        for (int i = 0; i < symlinksCount; i++) {
-                            if (szLine == null || szLine.trim().length() == 0) {
-                                refPath[i] = null;
-                                szLine = br.readLine();
-                                line++;
-                                continue;
-                            }
-                            refPath[i] = szLine;
-                            szLine = br.readLine();
-                            line++;
-                        }
-
-                        //Fill the parent if is null
-                        for (int i = 0; i < symlinksCount; i++) {
-                            Symlink symLink =
-                                    ((Symlink)this.mFiles.get(
-                                            this.mFiles.size() - symlinksCount + i));
-                            if (symLink.getParent() == null) {
-                                symLink.setParent(FileHelper.ROOT_DIRECTORY);
-                            }
-                        }
-
-                        // Symlink can cause incoherences in the name because "->" string
-                        // Now, we have the real name of the symlink
-                        for (int i = 0; i < symlinksCount; i++) {
-                            if (name[i] != null) {
-                                Symlink symLink =
-                                        ((Symlink)this.mFiles.get(
-                                                this.mFiles.size() - symlinksCount + i));
-                                symLink.setName(name[i]);
-                            }
-                        }
-
-                        //Fill the data
-                        for (int i = 0; i < symlinksCount; i++) {
-                            try {
-                                if (absPath[i] != null && absPath[i].length() > 0) {
-                                    Symlink symLink =
-                                            ((Symlink)this.mFiles.get(
-                                                    this.mFiles.size() - symlinksCount + i));
-                                    String parentLink = new File(absPath[i]).getParent();
-                                    if (parentLink == null) {
-                                        parentLink = FileHelper.ROOT_DIRECTORY;
-                                    }
-                                    String info = refPath[i];
-                                    FileSystemObject fsoRef =
-                                            ParseHelper.toFileSystemObject(parentLink, info);
-                                    symLink.setLinkRef(fsoRef);
-                                }
-                            } catch (Throwable ex) {
-                                //If parsing the file failed, ignore it and threat as a regular
-                                //file (the destination file not exists or can't be resolved)
-                            }
-                        }
-                        break;
-                    }
-
-                    //Add the symlink
-                    try {
-                        this.mFiles.add(ParseHelper.toFileSystemObject(this.mParentDir, szLine));
-                        symlinksCount++;
-                    } catch (ParseException pEx) {
-                        throw new ParseException(pEx.getMessage(), line);
+                // Parse and add to result files
+                try {
+                    this.mFiles.add(ParseHelper.parseStatOutput(line));
+                } catch (Exception e) {
+                    // Log the parsing error
+                    if (isTrace()) {
+                        Log.w(TAG,
+                            String.format(
+                                    "Failed to parse output: %s", //$NON-NLS-1$
+                                    String.valueOf(line)));
                     }
                 }
-
-                line++;
             }
 
             // Add the parent directory
@@ -325,13 +159,10 @@ public class ListCommand extends SyncResultProgram implements ListExecutable {
             }
 
         } catch (IOException ioEx) {
-            throw new ParseException(ioEx.getMessage(), line);
-
-        } catch (ParseException pEx) {
-            throw pEx;
+            throw new ParseException(ioEx.getMessage(), 0);
 
         } catch (Exception ex) {
-            throw new ParseException(ex.getMessage(), line);
+            throw new ParseException(ex.getMessage(), 0);
 
         } finally {
             try {

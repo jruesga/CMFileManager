@@ -60,7 +60,7 @@ public final class InfoActionPolicy extends ActionsPolicy {
                 // Any change?
                 if (dialog.isHasChanged()) {
                     if (onRequestRefreshListener != null) {
-                        onRequestRefreshListener.onRequestRefresh(dialog.getFso());
+                        onRequestRefreshListener.onRequestRefresh(dialog.getFso(), false);
                     }
                 }
             }

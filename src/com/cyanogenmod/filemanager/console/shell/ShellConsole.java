@@ -72,7 +72,7 @@ public abstract class ShellConsole extends Console implements Program.ProgramLis
 
     // A timeout of 5 seconds should be enough for no-debugging environments
     private static final long DEFAULT_TIMEOUT =
-            FileManagerApplication.isDebuggable() ? 20000L : 5000L;
+            FileManagerApplication.isDebuggable() ? 20000L : 3000L;
 
     private static final int DEFAULT_BUFFER = 512;
 
@@ -312,7 +312,7 @@ public abstract class ShellConsole extends Console implements Program.ProgramLis
                     this.mIdentity.setGroups(groupsCmd.getResult());
                 }
             } catch (Exception ex) {
-                Log.w(TAG, "Groups command failed. Ignored.", ex);
+                Log.w(TAG, "Groups command failed. Ignored.", ex); //$NON-NLS-1$
             }
 
         } catch (Exception ex) {
@@ -504,7 +504,7 @@ public abstract class ShellConsole extends Console implements Program.ProgramLis
                                            (program instanceof AsyncResultProgram &&
                                             ((AsyncResultProgram)program).isExpectEnd()));
 
-                this.mStartControlPattern = startId1 + "\\d{1,3}" + startId2 + "\\n"; //$NON-NLS-1$ //$NON-NLS-2$
+                this.mStartControlPattern = startId1 + "\\d{1,3}" + startId2; //$NON-NLS-1$
                 this.mEndControlPattern = endId1 + "\\d{1,3}" + endId2; //$NON-NLS-1$
                 String startCmd =
                         Command.getStartCodeCommandInfo(
@@ -529,7 +529,10 @@ public abstract class ShellConsole extends Console implements Program.ProgramLis
                           .append(endCmd);
                }
                sb.append(FileHelper.NEWLINE);
-                this.mOut.write(sb.toString().getBytes());
+               synchronized (this.mSync) {
+                   this.mFinished = false;
+                   this.mOut.write(sb.toString().getBytes());
+               }
             } catch (InvalidCommandDefinitionException icdEx) {
                 throw new CommandNotFoundException(
                         "ExitCodeCommandInfo not found", icdEx); //$NON-NLS-1$
@@ -537,12 +540,14 @@ public abstract class ShellConsole extends Console implements Program.ProgramLis
 
             //Now, wait for buffers to be filled
             synchronized (this.mSync) {
-                if (program instanceof AsyncResultProgram) {
-                    this.mSync.wait();
-                } else {
-                    this.mSync.wait(DEFAULT_TIMEOUT);
-                    if (!this.mFinished) {
-                        throw new OperationTimeoutException(DEFAULT_TIMEOUT, cmd);
+                if (!this.mFinished) {
+                    if (program instanceof AsyncResultProgram) {
+                        this.mSync.wait();
+                    } else {
+                        this.mSync.wait(DEFAULT_TIMEOUT);
+                        if (!this.mFinished) {
+                            throw new OperationTimeoutException(DEFAULT_TIMEOUT, cmd);
+                        }
                     }
                 }
             }
@@ -629,10 +634,11 @@ public abstract class ShellConsole extends Console implements Program.ProgramLis
      */
     private Thread createStdInThread(final InputStream in) {
         Thread t = new Thread(new Runnable() {
+            @SuppressWarnings("synthetic-access")
             @Override
             public void run() {
                 int read = 0;
-
+                StringBuffer sb = null;
                 try {
                     while (ShellConsole.this.mActive) {
                         //Read only one byte with active wait
@@ -645,14 +651,17 @@ public abstract class ShellConsole extends Console implements Program.ProgramLis
                         boolean async =
                                 ShellConsole.this.mActiveCommand != null &&
                                 ShellConsole.this.mActiveCommand instanceof AsyncResultProgram;
+                        if (!async || sb == null) {
+                            sb = new StringBuffer();
+                        }
 
-                        StringBuffer sb = new StringBuffer();
                         if (!ShellConsole.this.mCancelled) {
                             ShellConsole.this.mSbIn.append((char)r);
                             if (!ShellConsole.this.mStarted) {
                                 ShellConsole.this.mStarted =
                                         isCommandStarted(ShellConsole.this.mSbIn);
                                 if (ShellConsole.this.mStarted) {
+
                                     sb = new StringBuffer(ShellConsole.this.mSbIn.toString());
                                     if (async) {
                                         synchronized (ShellConsole.this.mPartialSync) {
@@ -668,21 +677,44 @@ public abstract class ShellConsole extends Console implements Program.ProgramLis
                                 sb.append((char)r);
                             }
 
+                            //Check if the command has finished (and extract the control)
+                            boolean finished = isCommandFinished(ShellConsole.this.mSbIn, sb);
+
                             //Notify asynchronous partial data
                             if (ShellConsole.this.mStarted && async) {
                                 AsyncResultProgram program =
                                         ((AsyncResultProgram)ShellConsole.this.mActiveCommand);
                                 String partial = sb.toString();
-                                program.onRequestParsePartialResult(partial);
-                                ShellConsole.this.toStdIn(partial);
+                                int cc = ShellConsole.this.mEndControlPattern.length();
+                                if (partial.length() >= cc) {
+                                    program.onRequestParsePartialResult(partial);
+                                    ShellConsole.this.toStdIn(partial);
 
-                                // Reset the temp buffer
-                                sb = new StringBuffer();
+                                    // Reset the temp buffer
+                                    sb = new StringBuffer();
+                                }
                             }
-                        }
 
-                        if (!async) {
-                            ShellConsole.this.toStdIn(sb.toString());
+                            if (finished) {
+                                if (!async) {
+                                    ShellConsole.this.toStdIn(String.valueOf((char)r));
+                                } else {
+                                    AsyncResultProgram program =
+                                            ((AsyncResultProgram)ShellConsole.this.mActiveCommand);
+                                    String partial = sb.toString();
+                                    if (program != null) {
+                                        program.onRequestParsePartialResult(partial);
+                                    }
+                                    ShellConsole.this.toStdIn(partial);
+                                }
+
+                                //Notify the end
+                                notifyProcessFinished();
+                                break;
+                            }
+                            if (!async && !finished) {
+                                ShellConsole.this.toStdIn(String.valueOf((char)r));
+                            }
                         }
 
                         //Has more data? Read with available as more as exists
@@ -690,8 +722,8 @@ public abstract class ShellConsole extends Console implements Program.ProgramLis
                         int count = 0;
                         while (in.available() > 0 && count < 10) {
                             count++;
-                            int available = Math.min(in.available(),
-                                                        ShellConsole.this.mBufferSize);
+                            int available =
+                                    Math.min(in.available(), ShellConsole.this.mBufferSize);
                             byte[] data = new byte[available];
                             read = in.read(data);
 
@@ -735,18 +767,29 @@ public abstract class ShellConsole extends Console implements Program.ProgramLis
                                 AsyncResultProgram program =
                                         ((AsyncResultProgram)ShellConsole.this.mActiveCommand);
                                 String partial = sb.toString();
-                                if (program != null) {
-                                    program.onRequestParsePartialResult(partial);
-                                }
-                                ShellConsole.this.toStdIn(partial);
+                                int cc = ShellConsole.this.mEndControlPattern.length();
+                                if (partial.length() >= cc) {
+                                    if (program != null) {
+                                        program.onRequestParsePartialResult(partial);
+                                    }
+                                    ShellConsole.this.toStdIn(partial);
 
-                                // Reset the temp buffer
-                                sb = new StringBuffer();
+                                    // Reset the temp buffer
+                                    sb = new StringBuffer();
+                                }
                             }
 
                             if (finished) {
                                 if (!async) {
                                     ShellConsole.this.toStdIn(s);
+                                } else {
+                                    AsyncResultProgram program =
+                                            ((AsyncResultProgram)ShellConsole.this.mActiveCommand);
+                                    String partial = sb.toString();
+                                    if (program != null) {
+                                        program.onRequestParsePartialResult(partial);
+                                    }
+                                    ShellConsole.this.toStdIn(partial);
                                 }
 
                                 //Notify the end
@@ -759,10 +802,8 @@ public abstract class ShellConsole extends Console implements Program.ProgramLis
 
                             //Wait for buffer to be filled
                             try {
-                                Thread.sleep(50L);
-                            } catch (Throwable ex) {
-                                /**NON BLOCK**/
-                            }
+                                Thread.sleep(1L);
+                            } catch (Throwable ex) {/**NON BLOCK**/}
                         }
 
                         //Asynchronous programs can cause a lot of output, control buffers

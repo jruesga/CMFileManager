@@ -249,7 +249,7 @@ public class ActionsDialog implements OnItemClickListener, OnItemLongClickListen
             //- Refresh
             case R.id.mnu_actions_refresh:
                 if (this.mOnRequestRefreshListener != null) {
-                    this.mOnRequestRefreshListener.onRequestRefresh(null); //Refresh all
+                    this.mOnRequestRefreshListener.onRequestRefresh(null, false); //Refresh all
                 }
                 break;
 

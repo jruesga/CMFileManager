@@ -95,7 +95,7 @@ public class AssociationsAdapter
         this.mOnItemClickListener = onItemClickListener;
 
         //Do cache of the data for better performance
-        processData();
+        processData(intents);
     }
 
     /**
@@ -103,7 +103,7 @@ public class AssociationsAdapter
      */
     @Override
     public void notifyDataSetChanged() {
-        processData();
+        processData(null);
         super.notifyDataSetChanged();
     }
 
@@ -117,13 +117,15 @@ public class AssociationsAdapter
 
     /**
      * Method that process the data before use {@link #getView} method.
+     *
+     * @param intents The list of intents (to better performance) or null.
      */
-    private void processData() {
+    private void processData(List<ResolveInfo> intents) {
         this.mData = new DataHolder[getCount()];
-        int cc = getCount();
+        int cc = (intents == null) ? getCount() : intents.size();
         for (int i = 0; i < cc; i++) {
             //Intent info
-            ResolveInfo intentInfo = getItem(i);
+            ResolveInfo intentInfo = (intents == null) ? getItem(i) : intents.get(i);
 
             //Build the data holder
             this.mData[i] = new AssociationsAdapter.DataHolder();

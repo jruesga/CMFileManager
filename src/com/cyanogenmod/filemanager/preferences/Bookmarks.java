@@ -90,12 +90,20 @@ public class Bookmarks {
                 Bookmark.Columns.BOOKMARK_QUERY_COLUMNS,
                 null, null, null);
         Bookmark bookmark = null;
-        if (cursor != null) {
-            if (cursor.moveToFirst()) {
-                bookmark = new Bookmark(cursor);
+        try {
+            if (cursor != null) {
+                if (cursor.moveToFirst()) {
+                    bookmark = new Bookmark(cursor);
+                }
             }
-            cursor.close();
+        } finally {
+            try {
+                if (cursor != null) {
+                    cursor.close();
+                }
+            } catch (Exception e) {/**NON BLOCK**/}
         }
+
         return bookmark;
     }
 
@@ -126,11 +134,19 @@ public class Bookmarks {
                 Bookmark.Columns.BOOKMARK_QUERY_COLUMNS,
                 where, new String[]{path}, null);
         Bookmark bookmark = null;
-        if (cursor != null) {
-            if (cursor.moveToFirst()) {
-                bookmark = new Bookmark(cursor);
+        try {
+            if (cursor != null) {
+                if (cursor.moveToFirst()) {
+                    bookmark = new Bookmark(cursor);
+                }
+                cursor.close();
             }
-            cursor.close();
+        } finally {
+            try {
+                if (cursor != null) {
+                    cursor.close();
+                }
+            } catch (Exception e) {/**NON BLOCK**/}
         }
         return bookmark;
     }

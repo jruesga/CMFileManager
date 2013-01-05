@@ -135,7 +135,7 @@ public class FileSystemObjectAdapter
 
         //Do cache of the data for better performance
         loadDefaultIcons();
-        processData();
+        processData(files);
     }
 
     /**
@@ -161,7 +161,7 @@ public class FileSystemObjectAdapter
      */
     @Override
     public void notifyDataSetChanged() {
-        processData();
+        processData(null);
         super.notifyDataSetChanged();
     }
 
@@ -195,16 +195,18 @@ public class FileSystemObjectAdapter
 
     /**
      * Method that process the data before use {@link #getView} method.
+     *
+     * @param files The list of files (to better performance) or null.
      */
-    private void processData() {
+    private void processData(List<FileSystemObject> files) {
         Theme theme = ThemeManager.getCurrentTheme(getContext());
         Resources res = getContext().getResources();
         DateFormat df = DateFormat.getDateTimeInstance(DateFormat.SHORT, DateFormat.SHORT);
         this.mData = new DataHolder[getCount()];
-        int cc = getCount();
+        int cc = (files == null) ? getCount() : files.size();
         for (int i = 0; i < cc; i++) {
             //File system object info
-            FileSystemObject fso = getItem(i);
+            FileSystemObject fso = (files == null) ? getItem(i) : files.get(i);
 
             //Parse the last modification time and permissions
             StringBuilder sbSummary = new StringBuilder();
@@ -213,7 +215,7 @@ public class FileSystemObjectAdapter
             } else {
                 sbSummary.append(df.format(fso.getLastModifiedTime()));
                 sbSummary.append("   "); //$NON-NLS-1$
-                sbSummary.append(fso.toRawString());
+                sbSummary.append(fso.toRawPermissionString());
             }
 
             //Build the data holder
@@ -457,7 +459,6 @@ public class FileSystemObjectAdapter
                             theme.getDrawable(
                                     getContext(), "checkbox_deselected_drawable"); //$NON-NLS-1$
                 }
-                notifyDataSetChanged();
 
                 //Add or remove from the global selected items
                 FileSystemObject fso = getItem(i);
@@ -477,6 +478,9 @@ public class FileSystemObjectAdapter
                                 FileSystemObjectAdapter.this.mSelectedItems);
                 this.mOnSelectionChangedListener.onSelectionChanged(selection);
             }
+
+            // The internal structure was update, only super adapter need to be notified
+            super.notifyDataSetChanged();
         }
     }
 

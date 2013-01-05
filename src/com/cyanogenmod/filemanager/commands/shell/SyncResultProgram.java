@@ -16,6 +16,7 @@
 
 package com.cyanogenmod.filemanager.commands.shell;
 
+
 /**
  * An abstract class that allow the consumption of the data when it's totally recovery.
  */

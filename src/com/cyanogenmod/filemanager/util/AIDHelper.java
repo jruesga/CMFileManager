@@ -97,24 +97,44 @@ public final class AIDHelper {
     }
 
     /**
-     * Method that return AID from his user identifier
+     * Method that returns the AID from its identifier.
      *
-     * @param ctx The current context
+     * @param id The id
+     * @return AID The AID, or null if not found
+     */
+    public static AID getAID(int id) {
+        return sAids.get(id);
+    }
+
+    /**
+     * Method that return AID from its user name.
+     *
      * @param name The user identifier
      * @return AID The AID
      */
-    public static AID getAIDFromName(Context ctx, String name) {
-        // This method is only used by java console under chrooted mode, so
-        // is safe to caching aids, because sdcards only allow known aids
-        SparseArray<AID> aids = getAIDs(ctx, false);
-        int len = aids.size();
+    public static AID getAIDFromName(String name) {
+        int len = sAids.size();
         for (int i = 0; i < len; i++) {
-            AID aid = aids.valueAt(i);
+            AID aid = sAids.valueAt(i);
             if (aid.getName().compareTo(name) == 0) {
                 return aid;
             }
         }
         return new AID(-1, ""); //$NON-NLS-1$
+    }
+
+    /**
+     * Method that returns the name in safe way
+     *
+     * @param id The id
+     * @return String The name of the AID of null if not found
+     */
+    public static String getNullSafeName(int id) {
+        AID aid = getAID(id);
+        if (aid != null) {
+            return aid.getName();
+        }
+        return null;
     }
 
 }

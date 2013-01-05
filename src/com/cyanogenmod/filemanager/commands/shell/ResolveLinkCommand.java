@@ -63,9 +63,10 @@ public class ResolveLinkCommand extends SyncResultProgram implements ResolveLink
         BufferedReader br = null;
         try {
             br = new BufferedReader(new StringReader(in));
-            String szParentDir = br.readLine();
-            String szFileInfo = br.readLine();
-            this.mFso = ParseHelper.toFileSystemObject(szParentDir, szFileInfo);
+
+            // Extract and parse the stat output
+            String line = br.readLine();
+            this.mFso = ParseHelper.parseStatOutput(line);
 
         } catch (Exception ex) {
             throw new ParseException(ex.getMessage(), 0);
@@ -95,6 +96,6 @@ public class ResolveLinkCommand extends SyncResultProgram implements ResolveLink
     @Override
     public void checkExitCode(int exitCode)
             throws InsufficientPermissionsException, CommandNotFoundException, ExecutionException {
-        //Safely ignore
+        /**NON BLOCK**/
     }
 }

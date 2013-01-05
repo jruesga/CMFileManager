@@ -31,9 +31,9 @@
 -->
 <CommandList xmlns="http://schemas.android.com/apk/res/com.cyanogenmod.filemanager">
   <!-- Start code (append to commands; for retrieve the exit code) -->
-  <startcode commandId="startcode" commandPath="/system/xbin/echo %1$s0%2$s ; " />
+  <startcode commandId="startcode" commandPath="/system/xbin/echo -n %1$s0%2$s ; " />
   <!-- Exit code (append to commands; for retrieve the exit code) -->
-  <exitcode commandId="exitcode" commandPath=" ; /system/xbin/echo %1$s$?%2$s" />
+  <exitcode commandId="exitcode" commandPath=" ; /system/xbin/echo -n %1$s$?%2$s" />
 
   <!-- Shell commands -->
   <command commandId="bash" commandPath="/system/bin/sh" commandArgs="" />
@@ -49,14 +49,14 @@
 
   <!-- FileSystem -->
   <command commandId="mount" commandPath="/system/bin/mount" commandArgs="-o %1$s,remount -t auto %2$s %3$s" />
-  <command commandId="mountpointinfo" commandPath="/system/bin/cat" commandArgs="/proc/mounts" />
+  <command commandId="mountpointinfo" commandPath="/system/bin/mount" commandArgs="" />
 
   <!-- List/Find/Info -->
-  <command commandId="ls" commandPath="cd" commandArgs="%1$s &amp;&amp; /system/bin/ls -al %1$s | { /system/xbin/grep -v -e '^l' || true; } &amp;&amp; /system/xbin/echo '>SIMLINKS>' &amp;&amp; /system/bin/ls -al %1$s | { /system/xbin/grep -e '^l' || true; } &amp;&amp; /system/xbin/echo '>SIMLINKS_DATA>' &amp;&amp; /system/bin/ls -aF %1$s | /system/xbin/grep -e '^l' | /system/xbin/cut -d ' ' -f2- &amp;&amp; /system/bin/ls -aF %1$s | /system/xbin/grep -e '^l' | /system/xbin/cut -d ' ' -f2- | /system/xbin/awk '{print &quot;\\&quot;&quot;$0&quot;\\&quot;&quot;}' | /system/xbin/xargs -r -n1 /system/xbin/readlink -f &amp;&amp; /system/bin/ls -F %1$s | /system/xbin/grep -e '^l' | /system/xbin/cut -d ' ' -f2- | /system/xbin/awk '{print &quot;\\&quot;&quot;$0&quot;\\&quot;&quot;}' | /system/xbin/xargs -r -n1 /system/xbin/readlink -f | /system/xbin/awk '{print &quot;\\&quot;&quot;$0&quot;\\&quot;&quot;}' | { /system/xbin/xargs -r /system/bin/ls -ald || /system/xbin/echo; }" />
-  <command commandId="fileinfo" commandPath="/system/bin/ls" commandArgs="-ald %1$s" />
-  <command commandId="find" commandPath="/system/xbin/find" commandArgs="%1$s \\( -name %2$s -o -name %3$s -o -name %4$s -o -name %5$s -o -name %6$s \\) -exec /system/xbin/echo {} \\; -exec /system/bin/ls -ald {} \\;" />
+  <command commandId="ls" commandPath="/system/bin/ls" commandArgs="%1$s 1&gt; /dev/null &amp;&amp; /system/xbin/stat -t %1$s* 2&gt;&amp;1" />
+  <command commandId="fileinfo" commandPath="/system/xbin/stat" commandArgs="-t %1$s 2&gt;&amp;1" />
+  <command commandId="find" commandPath="/system/xbin/find" commandArgs="%1$s \\( -name %2$s -o -name %3$s -o -name %4$s -o -name %5$s -o -name %6$s \\) -exec /system/xbin/stat -t {} 2&gt;&amp;1 \\;" />
   <command commandId="quickfoldersearch" commandPath="/system/bin/ls" commandArgs="-aFd %1$s.* %1$s* 2&gt; /dev/null | /system/xbin/grep -e '^d' -e '^ld' | /system/xbin/cut -d&quot; &quot; -f2-" />
-  <command commandId="readlink" commandPath="cd" commandArgs="%2$s &amp;&amp; /system/xbin/readlink -f %1$s | /system/xbin/awk -F// '{print &quot;\\&quot;&quot;$1&quot;\\&quot;&quot;}' | /system/xbin/xargs -n1 /system/xbin/dirname &amp;&amp; /system/xbin/readlink -f %1$s | /system/xbin/awk -F// '{print &quot;\\&quot;&quot;$1&quot;\\&quot;&quot;}' | /system/xbin/xargs -n1 /system/bin/ls -ald" />
+  <command commandId="readlink" commandPath="/system/bin/ls" commandArgs="%1$s 1&gt; /dev/null &amp;&amp; /system/xbin/stat -tL %1$s 2&gt;&amp;1" />
 
   <!-- Operational -->
   <command commandId="chmod" commandPath="/system/bin/chmod" commandArgs="%1$s %2$s" />
@@ -71,7 +71,7 @@
   <!-- Usage -->
   <command commandId="diskusage" commandPath="/system/bin/df" commandArgs="%1$s" />
   <command commandId="diskusageall" commandPath="/system/bin/df" commandArgs="" />
-  <command commandId="folderusage" commandPath="/system/bin/ls" commandArgs="-alR %1$s" />
+  <command commandId="folderusage" commandPath="/system/bin/ls" commandArgs="-alR %1$s 2&gt; /dev/null" />
 
   <!-- I/O -->
   <command commandId="read" commandPath="/system/bin/cat" commandArgs="%1$s" />

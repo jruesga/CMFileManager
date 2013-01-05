@@ -251,7 +251,7 @@ public final class CompressActionPolicy extends ActionsPolicy {
                 //Operation complete. Refresh
                 if (this.mOnRequestRefreshListener != null) {
                   // The reference is not the same, so refresh the complete navigation view
-                  this.mOnRequestRefreshListener.onRequestRefresh(null);
+                  this.mOnRequestRefreshListener.onRequestRefresh(null, true);
                 }
                 if (this.cmd != null) {
                     showOperationSuccessMsg(
@@ -552,7 +552,7 @@ public final class CompressActionPolicy extends ActionsPolicy {
                 //Operation complete. Refresh
                 if (this.mOnRequestRefreshListener != null) {
                   // The reference is not the same, so refresh the complete navigation view
-                  this.mOnRequestRefreshListener.onRequestRefresh(null);
+                  this.mOnRequestRefreshListener.onRequestRefresh(null, true);
                 }
                 if (this.cmd != null) {
                     showOperationSuccessMsg(

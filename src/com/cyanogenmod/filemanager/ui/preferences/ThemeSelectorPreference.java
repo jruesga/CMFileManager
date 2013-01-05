@@ -38,6 +38,7 @@ import com.cyanogenmod.filemanager.R;
 import com.cyanogenmod.filemanager.ui.ThemeManager;
 import com.cyanogenmod.filemanager.ui.ThemeManager.Theme;
 import com.cyanogenmod.filemanager.ui.preferences.ThemeRoulette.OnThemeScrollSelectionListener;
+import com.cyanogenmod.filemanager.util.AndroidHelper;
 import com.cyanogenmod.filemanager.util.DialogHelper;
 
 import java.util.ArrayList;
@@ -190,10 +191,15 @@ public class ThemeSelectorPreference extends Preference implements OnClickListen
                 display.getSize(size);
 
                 // Set the preference height
-                int rowHeight = (int)res.getDimension(R.dimen.extra_margin);
+                int mh = (int)res.getDimension(R.dimen.theme_max_height);
+                int rowHeight = 0;
+                if (!AndroidHelper.isTablet(getContext())) {
+                    rowHeight = (int)res.getDimension(R.dimen.extra_margin);
+                }
                 int[] window = new int[2];
                 view.getLocationInWindow(window);
-                view.getLayoutParams().height = size.y - window[1] - rowHeight;
+                view.getLayoutParams().height =
+                        Math.min(mh, size.y - window[1] - rowHeight);
 
                 // The button width
                 int minWidth = (int)res.getDimension(R.dimen.themes_min_width_button);

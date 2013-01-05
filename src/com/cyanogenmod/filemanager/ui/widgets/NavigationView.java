@@ -25,6 +25,9 @@ import android.os.storage.StorageVolume;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
+import android.view.animation.AccelerateInterpolator;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
 import android.widget.AdapterView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
@@ -835,15 +838,18 @@ public class NavigationView extends RelativeLayout implements
                                             final List<FileSystemObject> files =
                                                     (List<FileSystemObject>)taskParams[0];
                                             NavigationView.this.mAdapterView.post(
-                                                    new Runnable() {
-                                                        @Override
-                                                        public void run() {
-                                                            onPostExecuteTask(
-                                                                    files, addToHistory,
-                                                                    isNewHistory, hasChanged,
-                                                                    searchInfo, fNewDir, scrollTo);
-                                                        }
-                                                    });
+                                                new Runnable() {
+                                                    @Override
+                                                    public void run() {
+                                                        onPostExecuteTask(
+                                                                files, addToHistory,
+                                                                isNewHistory, hasChanged,
+                                                                searchInfo, fNewDir, scrollTo);
+
+                                                        // Do animation
+                                                        fadeEfect(false);
+                                                    }
+                                                });
                                             return Boolean.TRUE;
                                         }
 
@@ -857,10 +863,41 @@ public class NavigationView extends RelativeLayout implements
                          * {@inheritDoc}
                          */
                         @Override
+                        protected void onPreExecute() {
+                            // Do animation
+                            fadeEfect(true);
+                        }
+
+
+
+                        /**
+                         * {@inheritDoc}
+                         */
+                        @Override
                         protected void onPostExecute(List<FileSystemObject> files) {
-                            onPostExecuteTask(
-                                    files, addToHistory, isNewHistory,
-                                    hasChanged, searchInfo, fNewDir, scrollTo);
+                            if (files != null) {
+                                onPostExecuteTask(
+                                        files, addToHistory, isNewHistory,
+                                        hasChanged, searchInfo, fNewDir, scrollTo);
+
+                                // Do animation
+                                fadeEfect(false);
+                            }
+                        }
+
+                        /**
+                         * Method that performs a fade animation.
+                         *
+                         * @param out Fade out (true); Fade in (false)
+                         */
+                        void fadeEfect(boolean out) {
+                            Animation fadeAnim = out ?
+                                                     new AlphaAnimation(1, 0) :
+                                                     new AlphaAnimation(0, 1);
+                            fadeAnim.setDuration(50L);
+                            fadeAnim.setFillAfter(true);
+                            fadeAnim.setInterpolator(new AccelerateInterpolator());
+                            NavigationView.this.startAnimation(fadeAnim);
                         }
                    };
             task.execute(fNewDir);
@@ -1021,23 +1058,30 @@ public class NavigationView extends RelativeLayout implements
             FileSystemObject fso = ((FileSystemObjectAdapter)parent.getAdapter()).getItem(position);
             if (fso instanceof ParentDirectory) {
                 changeCurrentDir(fso.getParent(), true, false, false, null, null);
+                return;
             } else if (fso instanceof Directory) {
                 changeCurrentDir(fso.getFullPath(), true, false, false, null, null);
+                return;
             } else if (fso instanceof Symlink) {
                 Symlink symlink = (Symlink)fso;
                 if (symlink.getLinkRef() != null && symlink.getLinkRef() instanceof Directory) {
                     changeCurrentDir(
                             symlink.getLinkRef().getFullPath(), true, false, false, null, null);
+                    return;
                 }
+
+                // Open the link ref
+                fso = symlink.getLinkRef();
+            }
+
+            // Open the file (edit or pick)
+            if (this.mNavigationMode.compareTo(NAVIGATION_MODE.BROWSABLE) == 0) {
+                // Open the file with the preferred registered app
+                IntentsActionPolicy.openFileSystemObject(getContext(), fso, false, null, null);
             } else {
-                if (this.mNavigationMode.compareTo(NAVIGATION_MODE.BROWSABLE) == 0) {
-                    // Open the file with the preferred registered app
-                    IntentsActionPolicy.openFileSystemObject(getContext(), fso, false, null, null);
-                } else {
-                    // Request a file pick selection
-                    if (this.mOnFilePickedListener != null) {
-                        this.mOnFilePickedListener.onFilePicked(fso);
-                    }
+                // Request a file pick selection
+                if (this.mOnFilePickedListener != null) {
+                    this.mOnFilePickedListener.onFilePicked(fso);
                 }
             }
         } catch (Throwable ex) {
@@ -1049,26 +1093,30 @@ public class NavigationView extends RelativeLayout implements
      * {@inheritDoc}
      */
     @Override
-    public void onRequestRefresh(Object o) {
+    public void onRequestRefresh(Object o, boolean clearSelection) {
         if (o instanceof FileSystemObject) {
             refresh((FileSystemObject)o);
         } else if (o == null) {
             refresh();
         }
-        onDeselectAll();
+        if (clearSelection) {
+            onDeselectAll();
+        }
     }
 
     /**
      * {@inheritDoc}
      */
     @Override
-    public void onRequestRemove(Object o) {
+    public void onRequestRemove(Object o, boolean clearSelection) {
         if (o != null && o instanceof FileSystemObject) {
             removeItem((FileSystemObject)o);
         } else {
-            onRequestRefresh(null);
+            onRequestRefresh(null, clearSelection);
         }
-        onDeselectAll();
+        if (clearSelection) {
+            onDeselectAll();
+        }
     }
 
     /**

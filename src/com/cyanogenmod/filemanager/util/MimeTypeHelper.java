@@ -233,8 +233,13 @@ public final class MimeTypeHelper {
             loadMimeTypes(context);
         }
 
+        // Return the symlink ref mime/type icon
+        if (fso instanceof Symlink && ((Symlink) fso).getLinkRef() != null) {
+            return getIcon(context, ((Symlink) fso).getLinkRef());
+        }
+
         //Check if the argument is a folder
-        if (fso instanceof Directory || FileHelper.isSymlinkRefDirectory(fso)) {
+        if (fso instanceof Directory) {
             return "ic_fso_folder_drawable"; //$NON-NLS-1$
         }
 
@@ -264,7 +269,7 @@ public final class MimeTypeHelper {
             return "fso_type_system_drawable"; //$NON-NLS-1$
         }
         // Check if the fso is executable (but not a symlink)
-        if (!(fso instanceof Symlink)) {
+        if (fso.getPermissions() != null && !(fso instanceof Symlink)) {
             if (fso.getPermissions().getUser().isExecute() ||
                 fso.getPermissions().getGroup().isExecute() ||
                 fso.getPermissions().getOthers().isExecute()) {
@@ -346,6 +351,35 @@ public final class MimeTypeHelper {
             }
         }
         return res.getString(R.string.mime_unknown);
+    }
+
+    /**
+     * Method that returns the mime/type category of the file.
+     *
+     * @param context The current context
+     * @param ext The extension of the file
+     * @return MimeTypeCategory The mime/type category
+     */
+    public static final MimeTypeCategory getCategoryFromExt(Context context, String ext) {
+        // Ensure that have a context
+        if (context == null && sMimeTypes == null) {
+            // No category
+            return MimeTypeCategory.NONE;
+        }
+        //Ensure that mime types are loaded
+        if (sMimeTypes == null) {
+            loadMimeTypes(context);
+        }
+        if (ext != null) {
+            //Load from the database of mime types
+            MimeTypeInfo mimeTypeInfo = sMimeTypes.get(ext.toLowerCase());
+            if (mimeTypeInfo != null) {
+                return mimeTypeInfo.mCategory;
+            }
+        }
+
+        // No category
+        return MimeTypeCategory.NONE;
     }
 
     /**

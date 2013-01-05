@@ -180,7 +180,6 @@ public class FilesystemInfoDialog implements OnClickListener, OnCheckedChangeLis
 
         //Gets text views
         this.mSwStatus = (Switch)contentView.findViewById(R.id.filesystem_info_status);
-        this.mSwStatus.setOnCheckedChangeListener(this);
         TextView tvMountPoint =
                 (TextView)contentView.findViewById(R.id.filesystem_info_mount_point);
         TextView tvDevice = (TextView)contentView.findViewById(R.id.filesystem_info_device);
@@ -239,6 +238,9 @@ public class FilesystemInfoDialog implements OnClickListener, OnCheckedChangeLis
         this.mIsMountAllowed = hasPrivileged && mountAllowed && this.mIsAdvancedMode;
         this.mSwStatus.setEnabled(this.mIsMountAllowed);
         this.mSwStatus.setChecked(MountPointHelper.isReadWrite(this.mMountPoint));
+
+        // Add the listener after set the value to avoid raising triggers
+        this.mSwStatus.setOnCheckedChangeListener(this);
 
         //Change the tab
         onClick(this.mInfoViewTab);

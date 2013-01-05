@@ -54,6 +54,7 @@ import com.cyanogenmod.filemanager.adapters.SearchResultAdapter;
 import com.cyanogenmod.filemanager.commands.AsyncResultExecutable;
 import com.cyanogenmod.filemanager.commands.AsyncResultListener;
 import com.cyanogenmod.filemanager.console.NoSuchFileOrDirectory;
+import com.cyanogenmod.filemanager.console.RelaunchableException;
 import com.cyanogenmod.filemanager.listeners.OnRequestRefreshListener;
 import com.cyanogenmod.filemanager.model.Directory;
 import com.cyanogenmod.filemanager.model.FileSystemObject;
@@ -80,6 +81,7 @@ import com.cyanogenmod.filemanager.ui.widgets.FlingerListView.OnItemFlingerRespo
 import com.cyanogenmod.filemanager.util.CommandHelper;
 import com.cyanogenmod.filemanager.util.DialogHelper;
 import com.cyanogenmod.filemanager.util.ExceptionUtil;
+import com.cyanogenmod.filemanager.util.ExceptionUtil.OnRelaunchCommandResult;
 import com.cyanogenmod.filemanager.util.FileHelper;
 import com.cyanogenmod.filemanager.util.StorageHelper;
 
@@ -868,15 +870,19 @@ public class SearchActivity extends Activity
             FileSystemObject fso = result.getFso();
             if (fso instanceof Directory) {
                 back(false, fso, false);
+                return;
             } else if (fso instanceof Symlink) {
                 Symlink symlink = (Symlink)fso;
                 if (symlink.getLinkRef() != null && symlink.getLinkRef() instanceof Directory) {
                     back(false, symlink.getLinkRef(), false);
+                    return;
                 }
-            } else {
-                // Open the file with the preferred registered app
-                back(false, fso, false);
+                fso = symlink.getLinkRef();
             }
+
+            // Open the file with the preferred registered app
+            back(false, fso, false);
+
         } catch (Throwable ex) {
             ExceptionUtil.translateException(this.mSearchListView.getContext(), ex);
         }
@@ -955,7 +961,7 @@ public class SearchActivity extends Activity
      * {@inheritDoc}
      */
     @Override
-    public void onRequestRefresh(Object o) {
+    public void onRequestRefresh(Object o, boolean clearSelection) {
         // Refresh only the item
         SearchResultAdapter adapter =
                 (SearchResultAdapter)this.mSearchListView.getAdapter();
@@ -985,7 +991,7 @@ public class SearchActivity extends Activity
      * {@inheritDoc}
      */
     @Override
-    public void onRequestRemove(Object o) {
+    public void onRequestRemove(Object o, boolean clearSelection) {
         if (o instanceof FileSystemObject) {
             removeItem((FileSystemObject)o);
         }
@@ -1006,10 +1012,14 @@ public class SearchActivity extends Activity
      *
      * @param cancelled Indicates if the activity was cancelled
      * @param item The fso
+     * @param isChecked If the fso was fully retrieve previously to this call. Otherwise, a
+     * getFileInfo call is done to complete the fso information
      * @hide
      */
     void back(final boolean cancelled, FileSystemObject item, boolean isChecked) {
-        Intent intent =  new Intent();
+        final Context ctx = SearchActivity.this;
+        final Intent intent =  new Intent();
+        boolean finish = true;
         if (cancelled) {
             if (SearchActivity.this.mDrawingSearchResultTask != null
                     && SearchActivity.this.mDrawingSearchResultTask.isRunning()) {
@@ -1023,44 +1033,77 @@ public class SearchActivity extends Activity
             setResult(RESULT_CANCELED, intent);
         } else {
             // Check that the bookmark exists
+            FileSystemObject fso = item;
             try {
-                FileSystemObject fso = item;
                 if (!isChecked) {
-                    fso = CommandHelper.getFileInfo(this, item.getFullPath(), null);
+                    fso = CommandHelper.getFileInfo(ctx, item.getFullPath(), null);
                 }
-                if (fso != null) {
-                    if (FileHelper.isDirectory(fso)) {
-                        intent.putExtra(NavigationActivity.EXTRA_SEARCH_ENTRY_SELECTION, fso);
-                        intent.putExtra(
-                                NavigationActivity.EXTRA_SEARCH_LAST_SEARCH_DATA,
-                                (Parcelable)createSearchInfo());
-                        setResult(RESULT_OK, intent);
-                    } else {
-                        // Open the file here, so when focus back to the app, the search activity
-                        // its in top of the stack
-                        IntentsActionPolicy.openFileSystemObject(this, fso, false, null, null);
-                        return;
-                    }
-                } else {
-                    // The fso not exists, delete the fso from the search
-                    try {
-                        removeItem(item);
-                    } catch (Exception ex) {/**NON BLOCK**/}
-                }
+                finish = navigateTo(fso, intent);
 
             } catch (Exception e) {
                 // Capture the exception
-                ExceptionUtil.translateException(this, e);
-                if (e instanceof NoSuchFileOrDirectory || e instanceof FileNotFoundException) {
-                    // The fso not exists, delete the fso from the search
-                    try {
-                        removeItem(item);
-                    } catch (Exception ex) {/**NON BLOCK**/}
+                final FileSystemObject fFso = fso;
+                final OnRelaunchCommandResult relaunchListener = new OnRelaunchCommandResult() {
+                    @Override
+                    public void onSuccess() {
+                        if (navigateTo(fFso, intent)) {
+                            finish();
+                        }
+                    }
+                    @Override
+                    public void onFailed(Throwable cause) {
+                        ExceptionUtil.translateException(ctx, cause, false, false);
+                    }
+                    @Override
+                    public void onCancelled() { /** NON BLOCK**/}
+                };
+                ExceptionUtil.translateException(ctx, e, false, true, relaunchListener);
+                if (!(e instanceof RelaunchableException)) {
+                    if (e instanceof NoSuchFileOrDirectory || e instanceof FileNotFoundException) {
+                        // The fso not exists, delete the fso from the search
+                        try {
+                            removeItem(fso);
+                        } catch (Exception ex) {/**NON BLOCK**/}
+                    }
                 }
                 return;
             }
         }
-        finish();
+
+        // End this activity
+        if (finish) {
+            finish();
+        }
+    }
+
+    /**
+     * Method that navigate to the file system used the intent (NavigationActivity)
+     *
+     * @param fso The file system object to navigate to
+     * @param intent The intent used to navigate to
+     * @return boolean If the action implies finish this activity
+     */
+    boolean navigateTo(FileSystemObject fso, Intent intent) {
+        if (fso != null) {
+            if (FileHelper.isDirectory(fso)) {
+                intent.putExtra(NavigationActivity.EXTRA_SEARCH_ENTRY_SELECTION, fso);
+                intent.putExtra(
+                        NavigationActivity.EXTRA_SEARCH_LAST_SEARCH_DATA,
+                        (Parcelable)createSearchInfo());
+                setResult(RESULT_OK, intent);
+                return true;
+            }
+
+            // Open the file here, so when focus back to the app, the search activity
+            // its in top of the stack
+            IntentsActionPolicy.openFileSystemObject(this, fso, false, null, null);
+        } else {
+            // The fso not exists, delete the fso from the search
+            try {
+                removeItem(fso);
+            } catch (Exception ex) {/**NON BLOCK**/}
+        }
+        return false;
     }
 
     /**

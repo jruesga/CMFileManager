@@ -196,9 +196,9 @@ public final class DeleteActionPolicy extends ActionsPolicy {
                 if (this.mOnRequestRefreshListener != null) {
                     // The reference is not the same, so refresh the complete navigation view
                     if (files != null && files.size() == 1) {
-                        this.mOnRequestRefreshListener.onRequestRemove(files.get(0));
+                        this.mOnRequestRefreshListener.onRequestRemove(files.get(0), true);
                     } else {
-                        this.mOnRequestRefreshListener.onRequestRemove(null);
+                        this.mOnRequestRefreshListener.onRequestRemove(null, true);
                     }
                 }
                 ActionsPolicy.showOperationSuccessMsg(ctx);

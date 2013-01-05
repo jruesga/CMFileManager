@@ -602,9 +602,9 @@ public class EditorActivity extends Activity implements TextWatcher {
                     }
                 } else {
                     // Now we have the buffer, set the text of the editor
-                    if (!EditorActivity.this.mBinary && EditorActivity.this.mFso.getSize() == 0) {
-                        // Clean the document
-                        EditorActivity.this.mEditor.setText(""); //$NON-NLS-1$
+                    if (EditorActivity.this.mBinary) {
+                        EditorActivity.this.mEditor.setText(
+                                this.mReader.mBuffer, BufferType.NORMAL);
                     } else {
                         EditorActivity.this.mEditor.setText(
                                 this.mReader.mBuffer, BufferType.EDITABLE);

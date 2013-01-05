@@ -40,7 +40,7 @@
     android:layout_marginLeft="@dimen/extra_large_margin"
     android:layout_marginRight="@dimen/extra_large_margin"
     android:ems="@integer/default_edit_text_ems"
-    android:imeOptions="actionDone"
+    android:imeOptions="actionDone|flagNoFullscreen"
     android:scrollHorizontally="true"
     android:selectAllOnFocus="true"
     android:inputType="textNoSuggestions">

@@ -141,28 +141,25 @@ public class DirectoryInlineAutocompleteTextView
         }
 
         //Ensure data
-        if (!value.startsWith(FileHelper.ROOT_DIRECTORY)) {
+        if (!value.startsWith(File.separator)) {
             currentFilterData.clear();
             this.mLastParent = ""; //$NON-NLS-1$
             return;
         }
 
         //Get the new parent
-        String newParent = new File(value).getParent();
-        if (newParent == null) {
-            newParent = FileHelper.ROOT_DIRECTORY;
+        String newParent = FileHelper.getParentDir(new File(value));
+        if (!newParent.endsWith(File.separator)) {
+            newParent += File.separator;
         }
-        if (!newParent.endsWith(FileHelper.ROOT_DIRECTORY)) {
-            newParent += FileHelper.ROOT_DIRECTORY;
-        }
-        if (value.compareTo(FileHelper.ROOT_DIRECTORY) == 0) {
-            newParent = FileHelper.ROOT_DIRECTORY;
+        if (value.compareTo(File.separator) == 0) {
+            newParent = File.separator;
             currentFilterData.clear();
-        } else if (value.endsWith(FileHelper.ROOT_DIRECTORY)) {
+        } else if (value.endsWith(File.separator)) {
             //Force the change of parent
             newParent = new File(value, "a").getParent(); //$NON-NLS-1$
-            if (!newParent.endsWith(FileHelper.ROOT_DIRECTORY)) {
-                newParent += FileHelper.ROOT_DIRECTORY;
+            if (!newParent.endsWith(File.separator)) {
+                newParent += File.separator;
             }
             currentFilterData.clear();
         } else {

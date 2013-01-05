@@ -131,7 +131,7 @@ public class BookmarksAdapter extends ArrayAdapter<Bookmark> {
 
     /**
      * Method that process the data before use {@link #getView} method.
-     * 
+     *
      * @param bookmarks The list of bookmarks (to better performance) or null.
      */
     private void processData(List<Bookmark> bookmarks) {
@@ -189,7 +189,7 @@ public class BookmarksAdapter extends ArrayAdapter<Bookmark> {
             // Apply the current theme
             Theme theme = ThemeManager.getCurrentTheme(getContext());
             theme.setBackgroundDrawable(
-                    getContext(), v, "background_drawable"); //$NON-NLS-1$
+                    getContext(), v, "selectors_deselected_drawable"); //$NON-NLS-1$
             theme.setTextColor(
                     getContext(), viewHolder.mTvName, "text_color"); //$NON-NLS-1$
             theme.setTextColor(

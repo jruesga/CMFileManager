@@ -124,7 +124,7 @@ public class HistoryAdapter extends ArrayAdapter<History> {
 
     /**
      * Method that process the data before use {@link #getView} method.
-     * 
+     *
      * @param historyData The list of histories (to better performance) or null.
      */
     private void processData(List<History> historyData) {
@@ -178,7 +178,7 @@ public class HistoryAdapter extends ArrayAdapter<History> {
             // Apply the current theme
             Theme theme = ThemeManager.getCurrentTheme(getContext());
             theme.setBackgroundDrawable(
-                    getContext(), v, "background_drawable"); //$NON-NLS-1$
+                    getContext(), v, "selectors_deselected_drawable"); //$NON-NLS-1$
             theme.setTextColor(
                     getContext(), viewHolder.mTvName, "text_color"); //$NON-NLS-1$
             theme.setTextColor(

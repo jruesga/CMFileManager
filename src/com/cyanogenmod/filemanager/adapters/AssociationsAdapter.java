@@ -117,7 +117,7 @@ public class AssociationsAdapter
 
     /**
      * Method that process the data before use {@link #getView} method.
-     * 
+     *
      * @param intents The list of intents (to better performance) or null.
      */
     private void processData(List<ResolveInfo> intents) {

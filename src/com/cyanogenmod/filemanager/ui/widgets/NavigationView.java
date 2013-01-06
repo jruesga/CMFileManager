@@ -63,6 +63,7 @@ import com.cyanogenmod.filemanager.ui.widgets.FlingerListView.OnItemFlingerRespo
 import com.cyanogenmod.filemanager.util.CommandHelper;
 import com.cyanogenmod.filemanager.util.DialogHelper;
 import com.cyanogenmod.filemanager.util.ExceptionUtil;
+import com.cyanogenmod.filemanager.util.ExceptionUtil.OnRelaunchCommandResult;
 import com.cyanogenmod.filemanager.util.FileHelper;
 import com.cyanogenmod.filemanager.util.StorageHelper;
 
@@ -828,7 +829,7 @@ public class NavigationView extends RelativeLayout implements
                                     }
                                 }
 
-                                //Capture exception
+                                //Capture exception (attach task, and use listener to do the anim)
                                 ExceptionUtil.attachAsyncTask(
                                     ex,
                                     new AsyncTask<Object, Integer, Boolean>() {
@@ -845,16 +846,31 @@ public class NavigationView extends RelativeLayout implements
                                                                 files, addToHistory,
                                                                 isNewHistory, hasChanged,
                                                                 searchInfo, fNewDir, scrollTo);
-
-                                                        // Do animation
-                                                        fadeEfect(false);
                                                     }
                                                 });
                                             return Boolean.TRUE;
                                         }
-
                                     });
-                                ExceptionUtil.translateException(getContext(), ex);
+                                final OnRelaunchCommandResult exListener =
+                                        new OnRelaunchCommandResult() {
+                                    @Override
+                                    public void onSuccess() {
+                                        // Do animation
+                                        fadeEfect(false);
+                                    }
+                                    @Override
+                                    public void onFailed(Throwable cause) {
+                                        // Do animation
+                                        fadeEfect(false);
+                                    }
+                                    @Override
+                                    public void onCancelled() {
+                                        // Do animation
+                                        fadeEfect(false);
+                                    }
+                                };
+                                ExceptionUtil.translateException(
+                                        getContext(), ex, false, true, exListener);
                             }
                             return null;
                         }

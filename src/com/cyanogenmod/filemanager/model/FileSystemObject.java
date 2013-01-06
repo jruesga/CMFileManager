@@ -306,8 +306,8 @@ public abstract class FileSystemObject implements Serializable, Comparable<FileS
         return o1.compareTo(o2);
     }
 
-    /* (non-Javadoc)
-     * @see java.lang.Object#hashCode()
+    /**
+     * {@inheritDoc}
      */
     @Override
     public int hashCode() {
@@ -318,8 +318,8 @@ public abstract class FileSystemObject implements Serializable, Comparable<FileS
         return result;
     }
 
-    /* (non-Javadoc)
-     * @see java.lang.Object#equals(java.lang.Object)
+    /**
+     * {@inheritDoc}
      */
     @Override
     public boolean equals(Object obj) {
@@ -353,8 +353,8 @@ public abstract class FileSystemObject implements Serializable, Comparable<FileS
                 getPermissions().toRawString());
     }
 
-    /* (non-Javadoc)
-     * @see java.lang.Object#toString()
+    /**
+     * {@inheritDoc}
      */
     @Override
     public String toString() {

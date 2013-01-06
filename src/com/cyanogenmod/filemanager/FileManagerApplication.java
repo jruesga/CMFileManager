@@ -236,7 +236,6 @@ public final class FileManagerApplication extends Application {
         sIsDeviceRooted = areShellCommandsPresent();
 
         //Sets the default preferences if no value is set yet
-        FileHelper.ROOT_DIRECTORY = getString(R.string.root_dir);
         Preferences.loadDefaults();
 
         // Read AIDs

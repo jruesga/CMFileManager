@@ -102,6 +102,7 @@
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
           android:layout_margin="@dimen/default_margin"
+          android:paddingRight="@dimen/double_margin"
           android:gravity="left|center_vertical"
           android:singleLine="false"
           android:textAppearance="@style/secondary_text_appearance" />
@@ -126,6 +127,7 @@
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
           android:layout_margin="@dimen/default_margin"
+          android:paddingRight="@dimen/double_margin"
           android:gravity="left|center_vertical"
           android:singleLine="false"
           android:maxLines="5"
@@ -151,6 +153,7 @@
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
           android:layout_margin="@dimen/default_margin"
+          android:paddingRight="@dimen/double_margin"
           android:gravity="left|center_vertical"
           android:singleLine="false"
           android:textAppearance="@style/secondary_text_appearance" />
@@ -176,6 +179,7 @@
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
           android:layout_margin="@dimen/default_margin"
+          android:paddingRight="@dimen/double_margin"
           android:gravity="left|center_vertical"
           android:singleLine="false"
           android:textAppearance="@style/secondary_text_appearance" />
@@ -202,6 +206,7 @@
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
           android:layout_margin="@dimen/default_margin"
+          android:paddingRight="@dimen/double_margin"
           android:gravity="left|center_vertical"
           android:singleLine="false"
           android:textAppearance="@style/secondary_text_appearance" />
@@ -226,6 +231,7 @@
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
           android:layout_margin="@dimen/default_margin"
+          android:paddingRight="@dimen/double_margin"
           android:gravity="left|center_vertical"
           android:singleLine="false"
           android:textAppearance="@style/secondary_text_appearance" />
@@ -252,6 +258,7 @@
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
           android:layout_margin="@dimen/default_margin"
+          android:paddingRight="@dimen/double_margin"
           android:gravity="left|center_vertical"
           android:singleLine="false"
           android:textAppearance="@style/secondary_text_appearance" />
@@ -276,6 +283,7 @@
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
           android:layout_margin="@dimen/default_margin"
+          android:paddingRight="@dimen/double_margin"
           android:gravity="left|center_vertical"
           android:singleLine="false"
           android:textAppearance="@style/secondary_text_appearance" />
@@ -283,7 +291,7 @@
     </TableLayout>
   </ScrollView>
 
-  <!-- Permissions -->
+  <!-- Owner/Permissions -->
   <ScrollView
     android:id="@+id/fso_tab_permissions"
     android:layout_width="match_parent"
@@ -367,194 +375,199 @@
       <TableLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content" >
-
-        <!-- Title -->
         <TableRow
           android:layout_marginLeft="@dimen/extra_large_margin"
           android:layout_marginRight="@dimen/extra_large_margin" >
 
-          <TextView
+          <!-- Labels -->
+          <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:layout_margin="@dimen/default_margin"
-            android:gravity="left|center_vertical"
-            android:text="@null"
-            android:textAppearance="@style/primary_text_appearance" />
+            android:orientation="vertical">
+            <TextView
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_margin="@dimen/default_margin"
+              android:gravity="left|center_vertical"
+              android:text="@null"
+              android:textAppearance="@style/primary_text_appearance" />
+            <LinearLayout
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content">
+              <CheckBox
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/default_margin"
+                android:layout_marginBottom="@dimen/default_margin"
+                android:visibility="invisible" />
+              <TextView
+                android:id="@+id/fso_properties_permissions_owner_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/default_margin"
+                android:gravity="left|center_vertical"
+                android:text="@string/fso_properties_dialog_owner"
+                android:textAppearance="@style/primary_text_appearance" />
+            </LinearLayout>
+            <LinearLayout
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content">
+              <CheckBox
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/default_margin"
+                android:layout_marginBottom="@dimen/default_margin"
+                android:visibility="invisible" />
+              <TextView
+                android:id="@+id/fso_properties_permissions_group_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/default_margin"
+                android:gravity="left|center_vertical"
+                android:text="@string/fso_properties_dialog_group"
+                android:textAppearance="@style/primary_text_appearance" />
+            </LinearLayout>
+            <LinearLayout
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content">
+              <CheckBox
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/default_margin"
+                android:layout_marginBottom="@dimen/default_margin"
+                android:visibility="invisible" />
+              <TextView
+                android:id="@+id/fso_properties_permissions_others_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/default_margin"
+                android:gravity="left|center_vertical"
+                android:text="@string/fso_properties_dialog_others"
+                android:textAppearance="@style/primary_text_appearance" />
+            </LinearLayout>
+          </LinearLayout>
 
-          <TextView
-            android:id="@+id/fso_properties_permissions_special_label"
-            android:layout_width="0dip"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:layout_margin="@dimen/default_margin"
-            android:gravity="center"
-            android:text="@string/fso_properties_dialog_special"
-            android:textAppearance="@style/primary_text_appearance" />
-
-          <TextView
-            android:id="@+id/fso_properties_permissions_read_label"
-            android:layout_width="0dip"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:layout_margin="@dimen/default_margin"
-            android:gravity="center"
-            android:text="@string/fso_properties_dialog_read"
-            android:textAppearance="@style/primary_text_appearance" />
-
-          <TextView
-            android:id="@+id/fso_properties_permissions_write_label"
-            android:layout_width="0dip"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:layout_margin="@dimen/default_margin"
-            android:gravity="center"
-            android:text="@string/fso_properties_dialog_write"
-            android:textAppearance="@style/primary_text_appearance" />
-
-          <TextView
-            android:id="@+id/fso_properties_permissions_execute_label"
-            android:layout_width="0dip"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:layout_margin="@dimen/default_margin"
-            android:gravity="center"
-            android:text="@string/fso_properties_dialog_execute"
-            android:textAppearance="@style/primary_text_appearance" />
-        </TableRow>
-
-        <!-- Owner -->
-        <TableRow
-          android:layout_marginLeft="@dimen/extra_large_margin"
-          android:layout_marginRight="@dimen/extra_large_margin" >
-
-          <TextView
-            android:id="@+id/fso_properties_permissions_owner_label"
+          <!-- Special -->
+          <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:layout_margin="@dimen/default_margin"
-            android:gravity="left|center_vertical"
-            android:text="@string/fso_properties_dialog_owner"
-            android:textAppearance="@style/primary_text_appearance" />
+            android:orientation="vertical">
+            <TextView
+              android:id="@+id/fso_properties_permissions_special_label"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_margin="@dimen/default_margin"
+              android:layout_gravity="center"
+              android:text="@string/fso_properties_dialog_special"
+              android:textAppearance="@style/primary_text_appearance" />
+            <CheckBox
+              android:id="@+id/fso_permissions_owner_special"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_margin="@dimen/default_margin" />
+            <CheckBox
+              android:id="@+id/fso_permissions_group_special"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_margin="@dimen/default_margin" />
+            <CheckBox
+              android:id="@+id/fso_permissions_others_special"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_margin="@dimen/default_margin" />
+          </LinearLayout>
 
-          <CheckBox
-            android:id="@+id/fso_permissions_owner_read"
-            android:layout_width="0dip"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:layout_margin="@dimen/default_margin" />
-
-          <CheckBox
-            android:id="@+id/fso_permissions_owner_write"
-            android:layout_width="0dip"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:layout_margin="@dimen/default_margin" />
-
-          <CheckBox
-            android:id="@+id/fso_permissions_owner_execute"
-            android:layout_width="0dip"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:layout_margin="@dimen/default_margin" />
-
-          <CheckBox
-            android:id="@+id/fso_permissions_owner_special"
-            android:layout_width="0dip"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:layout_margin="@dimen/default_margin" />
-        </TableRow>
-
-        <!-- Group -->
-        <TableRow
-          android:layout_marginLeft="@dimen/extra_large_margin"
-          android:layout_marginRight="@dimen/extra_large_margin" >
-
-          <TextView
-            android:id="@+id/fso_properties_permissions_group_label"
+          <!-- Read -->
+          <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:layout_margin="@dimen/default_margin"
-            android:gravity="left|center_vertical"
-            android:text="@string/fso_properties_dialog_group"
-            android:textAppearance="@style/primary_text_appearance" />
+            android:orientation="vertical">
+            <TextView
+              android:id="@+id/fso_properties_permissions_read_label"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_margin="@dimen/default_margin"
+              android:layout_gravity="center"
+              android:text="@string/fso_properties_dialog_read"
+              android:textAppearance="@style/primary_text_appearance" />
+            <CheckBox
+              android:id="@+id/fso_permissions_owner_read"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_margin="@dimen/default_margin" />
+            <CheckBox
+              android:id="@+id/fso_permissions_group_read"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_margin="@dimen/default_margin" />
+            <CheckBox
+              android:id="@+id/fso_permissions_others_read"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_margin="@dimen/default_margin" />
+          </LinearLayout>
 
-          <CheckBox
-            android:id="@+id/fso_permissions_group_read"
-            android:layout_width="0dip"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:layout_margin="@dimen/default_margin" />
-
-          <CheckBox
-            android:id="@+id/fso_permissions_group_write"
-            android:layout_width="0dip"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:layout_margin="@dimen/default_margin" />
-
-          <CheckBox
-            android:id="@+id/fso_permissions_group_execute"
-            android:layout_width="0dip"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:layout_margin="@dimen/default_margin" />
-
-          <CheckBox
-            android:id="@+id/fso_permissions_group_special"
-            android:layout_width="0dip"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:layout_margin="@dimen/default_margin" />
-        </TableRow>
-
-        <!-- Others -->
-        <TableRow
-          android:layout_marginLeft="@dimen/extra_large_margin"
-          android:layout_marginRight="@dimen/extra_large_margin" >
-
-          <TextView
-            android:id="@+id/fso_properties_permissions_others_label"
+          <!-- Write -->
+          <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:layout_margin="@dimen/default_margin"
-            android:gravity="left|center_vertical"
-            android:text="@string/fso_properties_dialog_others"
-            android:textAppearance="@style/primary_text_appearance" />
+            android:orientation="vertical">
+            <TextView
+              android:id="@+id/fso_properties_permissions_write_label"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_margin="@dimen/default_margin"
+              android:layout_gravity="center"
+              android:text="@string/fso_properties_dialog_write"
+              android:textAppearance="@style/primary_text_appearance" />
+            <CheckBox
+              android:id="@+id/fso_permissions_owner_write"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_margin="@dimen/default_margin" />
+            <CheckBox
+              android:id="@+id/fso_permissions_group_write"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_margin="@dimen/default_margin" />
+            <CheckBox
+              android:id="@+id/fso_permissions_others_write"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_margin="@dimen/default_margin" />
+          </LinearLayout>
 
-          <CheckBox
-            android:id="@+id/fso_permissions_others_read"
-            android:layout_width="0dip"
+          <!-- Execute -->
+          <LinearLayout
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:layout_margin="@dimen/default_margin" />
+            android:orientation="vertical">
+            <TextView
+              android:id="@+id/fso_properties_permissions_execute_label"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_margin="@dimen/default_margin"
+              android:layout_gravity="center"
+              android:text="@string/fso_properties_dialog_execute"
+              android:textAppearance="@style/primary_text_appearance" />
+            <CheckBox
+              android:id="@+id/fso_permissions_owner_execute"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_margin="@dimen/default_margin" />
+            <CheckBox
+              android:id="@+id/fso_permissions_group_execute"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_margin="@dimen/default_margin" />
+            <CheckBox
+              android:id="@+id/fso_permissions_others_execute"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_margin="@dimen/default_margin" />
+          </LinearLayout>
 
-          <CheckBox
-            android:id="@+id/fso_permissions_others_write"
-            android:layout_width="0dip"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:layout_margin="@dimen/default_margin" />
-
-          <CheckBox
-            android:id="@+id/fso_permissions_others_execute"
-            android:layout_width="0dip"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:layout_margin="@dimen/default_margin" />
-
-          <CheckBox
-            android:id="@+id/fso_permissions_others_special"
-            android:layout_width="0dip"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:layout_margin="@dimen/default_margin" />
         </TableRow>
-
       </TableLayout>
 
       <!-- Info message -->

@@ -48,7 +48,7 @@
   <command commandId="id" commandPath="/system/bin/id" commandArgs="-Gn" />
 
   <!-- FileSystem -->
-  <command commandId="mount" commandPath="/system/bin/mount" commandArgs="-o %1$s,remount -t auto %2$s %3$s" />
+  <command commandId="mount" commandPath="/system/bin/mount" commandArgs="-o %1$s,remount -t %2$s %3$s" />
   <command commandId="mountpointinfo" commandPath="/system/bin/mount" commandArgs="" />
 
   <!-- List/Find/Info -->

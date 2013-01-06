@@ -80,14 +80,14 @@
   <string name="msgs_unknown">Er is een fout opgetreden. De bewerking is niet succesvol voltooid.</string>
   <!-- When an operation requires elevated privileged (normally caused for the use of a
        non-privileged console) -->
-  <string name="msgs_insufficient_permissions">Deze bewerking heeft verhoogde machtigingen nodig. Probeer naar root-toegangsmodus om te schakelen.</string>
+  <string name="msgs_insufficient_permissions">Deze bewerking heeft verhoogde machtigingen nodig. Probeer naar root-toegangsmodus te schakelen.</string>
   <!-- The file or directory was not found -->
   <string name="msgs_file_not_found">Het bestand of de map is niet gevonden.</string>
   <!-- The command reference couldn't be created (not found or invalid definition)
        (normally caused by a development error) -->
   <string name="msgs_command_not_found">Het bewerkingscommando is niet gevonden of is ongeldig.</string>
   <!-- I/O exception -->
-  <string name="msgs_io_failed">Lees/schrijffout.</string>
+  <string name="msgs_io_failed">Lees-/schrijffout.</string>
   <!-- Operation timeout detected -->
   <string name="msgs_operation_timeout">Bewerkingstime-out.</string>
   <!-- The operation returns an invalid exit code -->
@@ -97,7 +97,7 @@
   <!-- An operation can't be cancelled -->
   <string name="msgs_operation_can_not_be_cancelled">De bewerking kan niet worden geannuleerd.</string>
   <!-- The operation requieres mount the file system prior to execute the command -->
-  <string name="msgs_read_only_filesystem">Het bestandssysteem is gekoppeld als alleen-schrijven. Probeer het bestandssysteem als beschrijfbaar te koppelen voorafgaand aan het uitvoeren van de bewerking.</string>
+  <string name="msgs_read_only_filesystem">Het bestandssysteem is gekoppeld als alleen-lezen. Probeer het bestandssysteem als beschrijfbaar te koppelen alvorens de bewerking uit te voeren.</string>
   <!-- Illegal argument (normally caused by a development error when calling internal api) -->
   <string name="msgs_illegal_argument">Ongeldig argument. Activering mislukt.</string>
   <!-- The operation will cause inconsistencies -->
@@ -109,7 +109,7 @@
   <string name="msgs_push_again_to_exit">Tik nogmaals om af te sluiten.</string>
 
   <!-- There is no registered application that can handle the mime-type -->
-  <string name="msgs_not_registered_app">Er is geen app geïnstalleerd om het geselecteerde type bestand te hanteren.</string>
+  <string name="msgs_not_registered_app">Er is geen app geïnstalleerd om het geselecteerde bestandstype te openen.</string>
 
   <!-- Overwrite files? -->
   <string name="msgs_overwrite_files">Een aantal bestanden bestaat al in de doelmap.\n\nOverschrijven?</string>
@@ -217,17 +217,17 @@
   <!-- Fso Properties * Not allowed message -->
   <string name="fso_properties_permissions_not_allowed_msg">Machtigingsbewerking is niet toegestaan in veilige modus. Tik om naar root-toegangsmodus te schakelen.</string>
   <!-- Fso Properties * Failed to change owner to fso -->
-  <string name="fso_properties_failed_to_change_owner_msg">De wijziging van eigenaar is mislukt.\n\nOm veiligheidsredenen staan sommige bestandssystemen, zoals op SD-kaarten, een eigenaarswijziging niet toe.</string>
+  <string name="fso_properties_failed_to_change_owner_msg">Het wijzigen van eigenaar is mislukt.\n\nOm veiligheidsredenen staan sommige bestandssystemen, zoals op SD-kaarten, een eigenaarswijziging niet toe.</string>
   <!-- Fso Properties * Failed to change group to fso -->
-  <string name="fso_properties_failed_to_change_group_msg">De wijziging van groep is mislukt.\n\nOm veiligheidsredenen staan sommige bestandssystemen, zoals op SD-kaarten, een groepswijziging niet toe.</string>
+  <string name="fso_properties_failed_to_change_group_msg">Het wijzigen van groep is mislukt.\n\nOm veiligheidsredenen staan sommige bestandssystemen, zoals op SD-kaarten, een groepswijziging niet toe.</string>
   <!-- Fso Properties * Failed to change group to fso -->
-  <string name="fso_properties_failed_to_change_permission_msg">De wijziging van machtigingen is mislukt.\n\nOm veiligheidsredenen staan sommige bestandssystemen, zoals op SD-kaarten, een wijziging van rechten niet toe.</string>
+  <string name="fso_properties_failed_to_change_permission_msg">Het wijzigen van machtigingen is mislukt.\n\nOm veiligheidsredenen staan sommige bestandssystemen, zoals op SD-kaarten, een wijziging van rechten niet toe.</string>
   <!-- Fso Properties Dialog * Title -->
   <string name="fso_properties_dialog_title">Eigenschappen</string>
   <!-- Fso Properties Dialog * Tab * Info -->
   <string name="fso_properties_dialog_tab_info">Info</string>
   <!-- Fso Properties Dialog * Tab * Permissions -->
-  <string name="fso_properties_dialog_tab_permissions">Rechten</string>
+  <string name="fso_properties_dialog_tab_permissions">Machtigingen</string>
   <!-- Fso Properties Dialog * Name Label -->
   <string name="fso_properties_dialog_name">Naam:</string>
   <!-- Fso Properties Dialog * Parent Folder Label -->
@@ -293,9 +293,9 @@
   <!-- Search * Confirm search -->
   <string name="search_few_characters_title">Zoeken bevestigen</string>
   <!-- Search * Some terms of the search are too small. The operation could be very costly -->
-  <string name="search_few_characters_msg">Sommige zoektermen hebben een klein aantal karakters. De bewerking zou te veel tijd of systeembronnen in beslag kunnen nemen.\n\nWil je doorgaan?</string>
+  <string name="search_few_characters_msg">Sommige zoektermen hebben een klein aantal karakters. De bewerking zou te veel tijd of systeembronnen in beslag kunnen nemen.\n\nWeet u zeker dat u door wilt gaan?</string>
   <!-- Search * Searching dialog title -->
-  <string name="searching">Een ogenblik a.u.b.\u2026</string>
+  <string name="searching">Een ogenblik a.u.b.</string>
   <!-- Search * Searching label -->
   <string name="searching_action_label">Bezig met zoeken</string>
 
@@ -313,7 +313,7 @@
   <!-- Editor * Editor is dirty, ask the user * Dialog title -->
   <string name="editor_dirty_ask_title">Afsluiten bevestigen</string>
   <!-- Editor * Editor is dirty, ask the user * Dialog message -->
-  <string name="editor_dirty_ask_msg">Er zijn onopgeslagen wijzigingen.\n\nAfsluiten zonder opslaan?</string>
+  <string name="editor_dirty_ask_msg">Het bestand is gewijzigd.\n\nAfsluiten zonder opslaan?</string>
   <!-- Editor * Save operation success -->
   <string name="editor_successfully_saved">Het bestand is succesvol opgeslagen.</string>
   <!-- Editor * Read-only file mode -->
@@ -384,9 +384,9 @@
   <!-- Waiting dialog * Initializing the dialog -->
   <string name="waiting_dialog_analizing_msg"><![CDATA[<b>Analyseren\u2026</b>]]></string>
   <!-- Extracting * Success message -->
-  <string name="msgs_extracting_success">Het uitpakken is succesvol afgerond. De gegevens zijn uitgepakt naar <xliff:g id="destination">%1$s</xliff:g>.</string>
+  <string name="msgs_extracting_success">Het uitpakken is succesvol voltooid. De gegevens zijn uitgepakt naar <xliff:g id="destination">%1$s</xliff:g>.</string>
   <!-- Compressing * Success message -->
-  <string name="msgs_compressing_success">Het comprimeren is succesvol afgerond. De gegevens zijn gecomprimeerd naar <xliff:g id="destination">%1$s</xliff:g>.</string>
+  <string name="msgs_compressing_success">Het comprimeren is succesvol voltooid. De gegevens zijn gecomprimeerd naar <xliff:g id="destination">%1$s</xliff:g>.</string>
 
   <!-- Actions Dialog * Title -->
   <string name="actions_dialog_title">Acties</string>
@@ -415,7 +415,7 @@
   <!-- Actions Dialog * Menu * Compress selection -->
   <string name="actions_menu_compress_selection">Selectie comprimeren</string>
   <!-- Actions Dialog * Menu * Create link -->
-  <string name="actions_menu_create_link">Verwijzing maken</string>
+  <string name="actions_menu_create_link">Symlink maken</string>
   <!-- Actions Dialog * Menu * Open -->
   <string name="actions_menu_open">Openen</string>
   <!-- Actions Dialog * Menu * Open with -->
@@ -444,7 +444,7 @@
   <string name="actions_menu_open_parent_folder">Bovenliggende map openen</string>
 
   <!-- Actions * Ask user prior to do an undone operation. Dialog message -->
-  <string name="actions_ask_undone_operation_msg">Deze actie kan niet ongedaan gemaakt worden. Weet u zeker dat u door wilt gaan?</string>
+  <string name="actions_ask_undone_operation_msg">Deze actie kan niet ongedaan worden gemaakt. Weet u zeker dat u door wilt gaan?</string>
 
   <!-- Enter Name Dialog * Label -->
   <string name="input_name_dialog_label">Naam:</string>
@@ -455,7 +455,7 @@
   <!-- Enter Name Dialog * Message * Invalid name -->
   <string name="input_name_dialog_message_invalid_name">Ongeldige naam. De namen \'.\' en \'..\' zijn niet toegestaan.</string>
   <!-- Enter Name Dialog * Message * Name exists -->
-  <string name="input_name_dialog_message_name_exists">De naam bestaat al.</string>
+  <string name="input_name_dialog_message_name_exists">Deze naam bestaat al.</string>
 
   <!-- Associations Dialog * Title -->
   <string name="associations_dialog_title">Gekoppelde apps</string>
@@ -543,7 +543,7 @@
   <!-- Preferences * General * Behaviour category -->
   <string name="pref_general_behaviour_category">Algemeen</string>
   <!-- Preferences * General * Case sensitive sort title -->
-  <string name="pref_case_sensitive_sort">Hoofdletter en kleine letter gebruiken bij sorteren</string>
+  <string name="pref_case_sensitive_sort">Hoofdlettergevoelig sorteren</string>
   <!-- Preferences * General *Disk usage warning level title -->
   <string name="pref_disk_usage_warning_level">Schijfgebruikswaarschuwing</string>
   <!-- Preferences * General * Disk usage warning level summary -->
@@ -553,7 +553,7 @@
   <!-- Preferences * General * Compute folder statistics title -->
   <string name="pref_compute_folder_statistics">Mapstatistieken berekenen</string>
   <!-- Preferences * General * Compute folder statistics summary on -->
-  <string name="pref_compute_folder_statistics_on">Let op! Het berekenen van mapstatistieken kost tijd en systeembronnen</string>
+  <string name="pref_compute_folder_statistics_on">Let op: het berekenen van mapstatistieken kost tijd en systeembronnen</string>
   <!-- Preferences * General * Use flinger detection -->
   <string name="pref_use_flinger">Veegbewegingen gebruiken</string>
   <!-- Preferences * General * Use flinger detection summary -->
@@ -567,23 +567,23 @@
   <!-- Preferences * General * Safe mode summary -->
   <string name="pref_access_mode_safe_summary">Veilige modus\n\nDe app werkt zonder machtigingen en alleen opslagvolumes (SD-kaart en USB) zijn toegankelijk</string>
   <!-- Preferences * General * Prompt user mode -->
-  <string name="pref_access_mode_prompt">Naar toegangsmodus vragen</string>
+  <string name="pref_access_mode_prompt">Vragen naar toegangsmodus</string>
   <!-- Preferences * General * Prompt user mode summary -->
-  <string name="pref_access_mode_prompt_summary">Naar toegangsmodus vragen\n\nDe app heeft volledige toegang tot het bestandssysteem, maar zal vragen om toestemming voorafgaand aan acties waarvoor machtigingen nodig zijn</string>
+  <string name="pref_access_mode_prompt_summary">Vragen naar toegangsmodus\n\nDe app heeft volledige toegang tot het bestandssysteem, maar zal toestemming vragen voor bewerking waarvoor machtigingen nodig zijn</string>
   <!-- Preferences * General * Root access mode -->
   <string name="pref_access_mode_root">Root-toegangsmodus</string>
   <!-- Preferences * General * Root access mode summary -->
-  <string name="pref_access_mode_root_summary">Root-toegangsmodus\n\nLet op! Deze modus staat bewerkingen toe die het apparaat kunnen beschadingen. Het is je eigen verantwoordelijk om te zorgen dat een bewerking veilig is</string>
+  <string name="pref_access_mode_root_summary">Root-toegangsmodus\n\nLet op! Deze modus staat bewerkingen toe die het apparaat kunnen beschadingen. Het is uw eigen verantwoordelijk om te zorgen dat een bewerking veilig is</string>
   <!-- Preferences * Search * Results category -->
   <string name="pref_search_results_category">Resultaten</string>
   <!-- Preferences * Search * Show relevance widget -->
-  <string name="pref_show_relevance_widget">Relevantie widget tonen</string>
+  <string name="pref_show_relevance_widget">Relevantiepictogram tonen</string>
   <!-- Preferences * Search * Highlight search terms -->
   <string name="pref_highlight_terms">Zoektermen markeren</string>
   <!-- Preferences * Search * Sort results mode -->
-  <string name="pref_sort_search_results_mode">Resultatenmodus sorteren</string>
+  <string name="pref_sort_search_results_mode">Resultaten sorteren</string>
   <!-- Preferences * Search * Sort results mode. None -->
-  <string name="pref_sort_search_results_mode_none">Geen sortering</string>
+  <string name="pref_sort_search_results_mode_none">Niet sorteren</string>
   <!-- Preferences * Search * Sort results mode. None -->
   <string name="pref_sort_search_results_mode_name">Op naam</string>
   <!-- Preferences * Search * Sort results mode. Relevance -->
@@ -593,9 +593,9 @@
   <!-- Preferences * Search * Save search terms -->
   <string name="pref_save_search_terms">Zoektermen opslaan</string>
   <!-- Preferences * Search * Save search terms summary on -->
-  <string name="pref_save_search_terms_on">Zoektermen zullen worden opgeslagen en gebruikt als suggesties voor toekomstige zoekopdrachten</string>
+  <string name="pref_save_search_terms_on">Zoektermen worden opgeslagen en gebruikt als suggesties voor toekomstige zoekopdrachten</string>
   <!-- Preferences * Search * Save search terms summary off -->
-  <string name="pref_save_search_terms_off">Zoektermen zullen niet worden opgeslagen</string>
+  <string name="pref_save_search_terms_off">Zoektermen worden niet opgeslagen</string>
   <!-- Preferences * Search * Remove saved search terms -->
   <string name="pref_remove_saved_search_terms">Opgeslagen zoektermen verwijderen</string>
   <!-- Preferences * Search * Remove saved search terms summary -->

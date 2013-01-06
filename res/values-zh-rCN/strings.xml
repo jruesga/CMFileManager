@@ -252,8 +252,6 @@
   <string name="fso_properties_dialog_size">大小:</string>
   <!-- Fso Properties Dialog * Contains Label -->
   <string name="fso_properties_dialog_contains">包含:</string>
-  <!-- Fso Properties Dialog * Date Label -->
-  <string name="fso_properties_dialog_date">最后一次访问:</string>
   <!-- Fso Properties Dialog * Owner Label -->
   <string name="fso_properties_dialog_owner">拥有者:</string>
   <!-- Fso Properties Dialog * Group Label -->

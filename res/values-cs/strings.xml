@@ -255,8 +255,6 @@
   <string name="fso_properties_dialog_size">Velikost:</string>
   <!-- Fso Properties Dialog * Contains Label -->
   <string name="fso_properties_dialog_contains">Obsah:</string>
-  <!-- Fso Properties Dialog * Date Label -->
-  <string name="fso_properties_dialog_date">Poslední přístup:</string>
   <!-- Fso Properties Dialog * Owner Label -->
   <string name="fso_properties_dialog_owner">Vlastník:</string>
   <!-- Fso Properties Dialog * Group Label -->

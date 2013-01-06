@@ -244,8 +244,6 @@
   <string name="fso_properties_dialog_size">Größe:</string>
   <!-- Fso Properties Dialog * Contains Label -->
   <string name="fso_properties_dialog_contains">Beinhaltet:</string>
-  <!-- Fso Properties Dialog * Date Label -->
-  <string name="fso_properties_dialog_date">Letzter Zugriff:</string>
   <!-- Fso Properties Dialog * Owner Label -->
   <string name="fso_properties_dialog_owner">Besitzer:</string>
   <!-- Fso Properties Dialog * Group Label -->

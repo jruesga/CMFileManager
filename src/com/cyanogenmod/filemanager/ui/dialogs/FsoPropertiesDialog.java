@@ -253,7 +253,12 @@ public class FsoPropertiesDialog
         this.mTvSize = (TextView)contentView.findViewById(R.id.fso_properties_size);
         View vContatinsRow = contentView.findViewById(R.id.fso_properties_contains_row);
         this.mTvContains = (TextView)contentView.findViewById(R.id.fso_properties_contains);
-        TextView tvDate = (TextView)contentView.findViewById(R.id.fso_properties_date);
+        TextView tvLastAccessedTime =
+                (TextView)contentView.findViewById(R.id.fso_properties_last_accessed);
+        TextView tvLastModifiedTime =
+                (TextView)contentView.findViewById(R.id.fso_properties_last_modified);
+        TextView tvLastChangedTime =
+                (TextView)contentView.findViewById(R.id.fso_properties_last_changed);
         this.mSpnOwner = (Spinner)contentView.findViewById(R.id.fso_properties_owner);
         this.mSpnGroup = (Spinner)contentView.findViewById(R.id.fso_properties_group);
         this.mInfoMsgView = (TextView)contentView.findViewById(R.id.fso_info_msg);
@@ -291,7 +296,21 @@ public class FsoPropertiesDialog
         this.mTvSize.setText(size);
         this.mTvContains.setText("-");  //$NON-NLS-1$
         DateFormat df = DateFormat.getDateTimeInstance(DateFormat.SHORT, DateFormat.SHORT);
-        tvDate.setText(df.format(this.mFso.getLastModifiedTime()));
+        try {
+            tvLastAccessedTime.setText(df.format(this.mFso.getLastAccessedTime()));
+        } catch (Exception e) {
+            tvLastAccessedTime.setText("-");  //$NON-NLS-1$
+        }
+        try {
+            tvLastModifiedTime.setText(df.format(this.mFso.getLastModifiedTime()));
+        } catch (Exception e) {
+            tvLastModifiedTime.setText("-");  //$NON-NLS-1$
+        }
+        try {
+            tvLastChangedTime.setText(df.format(this.mFso.getLastChangedTime()));
+        } catch (Exception e) {
+            tvLastChangedTime.setText("-");  //$NON-NLS-1$
+        }
 
         //- Permissions
         String loadingMsg = this.mContext.getString(R.string.loading_message);
@@ -1156,9 +1175,17 @@ public class FsoPropertiesDialog
         theme.setTextColor(this.mContext, (TextView)v, "text_color"); //$NON-NLS-1$
         v = this.mContentView.findViewById(R.id.fso_properties_contains);
         theme.setTextColor(this.mContext, (TextView)v, "text_color"); //$NON-NLS-1$
-        v = this.mContentView.findViewById(R.id.fso_properties_date_label);
+        v = this.mContentView.findViewById(R.id.fso_properties_last_accessed_label);
         theme.setTextColor(this.mContext, (TextView)v, "text_color"); //$NON-NLS-1$
-        v = this.mContentView.findViewById(R.id.fso_properties_date);
+        v = this.mContentView.findViewById(R.id.fso_properties_last_accessed);
+        theme.setTextColor(this.mContext, (TextView)v, "text_color"); //$NON-NLS-1$
+        v = this.mContentView.findViewById(R.id.fso_properties_last_modified_label);
+        theme.setTextColor(this.mContext, (TextView)v, "text_color"); //$NON-NLS-1$
+        v = this.mContentView.findViewById(R.id.fso_properties_last_modified);
+        theme.setTextColor(this.mContext, (TextView)v, "text_color"); //$NON-NLS-1$
+        v = this.mContentView.findViewById(R.id.fso_properties_last_changed_label);
+        theme.setTextColor(this.mContext, (TextView)v, "text_color"); //$NON-NLS-1$
+        v = this.mContentView.findViewById(R.id.fso_properties_last_changed);
         theme.setTextColor(this.mContext, (TextView)v, "text_color"); //$NON-NLS-1$
 
         v = this.mContentView.findViewById(R.id.fso_properties_owner_label);

@@ -114,7 +114,6 @@
   <string name="fso_properties_dialog_link">Enlace:</string>
   <string name="fso_properties_dialog_size">Tamaño:</string>
   <string name="fso_properties_dialog_contains">Contenido:</string>
-  <string name="fso_properties_dialog_date">Último acceso:</string>
   <string name="fso_properties_dialog_owner">Propietario:</string>
   <string name="fso_properties_dialog_group">Grupo:</string>
   <string name="fso_properties_dialog_others">Otros:</string>

@@ -240,8 +240,6 @@
   <string name="fso_properties_dialog_size">Størrelse:</string>
   <!-- Fso Properties Dialog * Contains Label -->
   <string name="fso_properties_dialog_contains">Indeholder:</string>
-  <!-- Fso Properties Dialog * Date Label -->
-  <string name="fso_properties_dialog_date">Sidst tilgået:</string>
   <!-- Fso Properties Dialog * Owner Label -->
   <string name="fso_properties_dialog_owner">Ejer:</string>
   <!-- Fso Properties Dialog * Group Label -->

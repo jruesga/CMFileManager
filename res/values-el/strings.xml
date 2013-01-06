@@ -252,8 +252,6 @@
   <string name="fso_properties_dialog_size">Μέγεθος:</string>
   <!-- Fso Properties Dialog * Contains Label -->
   <string name="fso_properties_dialog_contains">Περιέχει:</string>
-  <!-- Fso Properties Dialog * Date Label -->
-  <string name="fso_properties_dialog_date">Τελ. προσπέλαση:</string>
   <!-- Fso Properties Dialog * Owner Label -->
   <string name="fso_properties_dialog_owner">Ιδιοκτήτης:</string>
   <!-- Fso Properties Dialog * Group Label -->

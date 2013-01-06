@@ -139,7 +139,6 @@
   <string name="fso_properties_dialog_link">Ссылка:</string>
   <string name="fso_properties_dialog_size">Размер:</string>
   <string name="fso_properties_dialog_contains">Содержит:</string>
-  <string name="fso_properties_dialog_date">Посл. доступ:</string>
   <string name="fso_properties_dialog_owner">Владелец:</string>
   <string name="fso_properties_dialog_group">Группа:</string>
   <string name="fso_properties_dialog_others">Другое:</string>

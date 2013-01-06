@@ -264,22 +264,72 @@
           android:textAppearance="@style/secondary_text_appearance" />
       </TableRow>
 
-      <!-- Date -->
+      <!-- Last Accessed Time -->
       <TableRow
         android:layout_marginLeft="@dimen/extra_large_margin"
         android:layout_marginRight="@dimen/extra_large_margin" >
 
         <TextView
-          android:id="@+id/fso_properties_date_label"
+          android:id="@+id/fso_properties_last_accessed_label"
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
           android:layout_margin="@dimen/default_margin"
           android:gravity="left|center_vertical"
-          android:text="@string/fso_properties_dialog_date"
+          android:text="@string/fso_properties_dialog_last_accessed_date"
           android:textAppearance="@style/primary_text_appearance" />
 
         <TextView
-          android:id="@+id/fso_properties_date"
+          android:id="@+id/fso_properties_last_accessed"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_margin="@dimen/default_margin"
+          android:paddingRight="@dimen/double_margin"
+          android:gravity="left|center_vertical"
+          android:singleLine="false"
+          android:textAppearance="@style/secondary_text_appearance" />
+      </TableRow>
+
+      <!-- Last Modified Time -->
+      <TableRow
+        android:layout_marginLeft="@dimen/extra_large_margin"
+        android:layout_marginRight="@dimen/extra_large_margin" >
+
+        <TextView
+          android:id="@+id/fso_properties_last_modified_label"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_margin="@dimen/default_margin"
+          android:gravity="left|center_vertical"
+          android:text="@string/fso_properties_dialog_last_modified_date"
+          android:textAppearance="@style/primary_text_appearance" />
+
+        <TextView
+          android:id="@+id/fso_properties_last_modified"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_margin="@dimen/default_margin"
+          android:paddingRight="@dimen/double_margin"
+          android:gravity="left|center_vertical"
+          android:singleLine="false"
+          android:textAppearance="@style/secondary_text_appearance" />
+      </TableRow>
+
+      <!-- Last Changed Time -->
+      <TableRow
+        android:layout_marginLeft="@dimen/extra_large_margin"
+        android:layout_marginRight="@dimen/extra_large_margin" >
+
+        <TextView
+          android:id="@+id/fso_properties_last_changed_label"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_margin="@dimen/default_margin"
+          android:gravity="left|center_vertical"
+          android:text="@string/fso_properties_dialog_last_changed_date"
+          android:textAppearance="@style/primary_text_appearance" />
+
+        <TextView
+          android:id="@+id/fso_properties_last_changed"
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
           android:layout_margin="@dimen/default_margin"

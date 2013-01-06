@@ -167,6 +167,9 @@ public final class ParseHelper {
             long size = getTerseStatLong(data, TERSE_STAT_STRUCT.SIZE);
             File file = new File(getTerseStatName(data));
             String name = file.getName();
+            if (name.trim().length() == 0) {
+                name = FileHelper.ROOT_DIRECTORY;
+            }
             String parentDir = FileHelper.getParentDir(file);
 
             // Create the file system object
@@ -350,7 +353,10 @@ public final class ParseHelper {
             Date lastAccessedTime, Date lastModifiedTime, Date lastChangedTime)
             throws ParseException {
 
-        String parent = (parentDir == null) ? FileHelper.ROOT_DIRECTORY : parentDir;
+        String parent =
+                (parentDir == null && name.compareTo(FileHelper.ROOT_DIRECTORY) != 0) ?
+                            FileHelper.ROOT_DIRECTORY :
+                            parentDir;
 
         if (type == RegularFile.UNIX_ID) {
             return new RegularFile(

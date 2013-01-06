@@ -78,7 +78,7 @@ public final class FileHelper {
      * The root directory.
      * @hide
      */
-    public static String ROOT_DIRECTORY = "/";  //$NON-NLS-1$
+    public static final String ROOT_DIRECTORY = "/";  //$NON-NLS-1$
 
     /**
      * The parent directory string.
@@ -327,7 +327,7 @@ public final class FileHelper {
      */
     public static String getParentDir(File path) {
         String parent = path.getParent();
-        if (parent == null) {
+        if (parent == null && path.getAbsolutePath().compareTo(FileHelper.ROOT_DIRECTORY) != 0) {
             parent = FileHelper.ROOT_DIRECTORY;
         }
         return parent;

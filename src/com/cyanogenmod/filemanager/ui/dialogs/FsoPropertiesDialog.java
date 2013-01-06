@@ -111,7 +111,7 @@ public class FsoPropertiesDialog
     /**
      * @hide
      */
-    CheckBox[] mChkUserPermission;
+    private CheckBox[] mChkUserPermission;
     private CheckBox[] mChkGroupPermission;
     private CheckBox[] mChkOthersPermission;
     private TextView mInfoMsgView;
@@ -889,19 +889,19 @@ public class FsoPropertiesDialog
         chkPermissions[0] = (CheckBox)rootView.findViewById(
                 ResourcesHelper.getIdentifier(
                         res, "id",  //$NON-NLS-1$
-                        String.format("fso_permissions_%s_read", type))); //$NON-NLS-1$
+                        String.format("fso_permissions_%s_special", type))); //$NON-NLS-1$
         chkPermissions[1] = (CheckBox)rootView.findViewById(
                 ResourcesHelper.getIdentifier(
                         res, "id",  //$NON-NLS-1$
-                        String.format("fso_permissions_%s_write", type))); //$NON-NLS-1$
+                        String.format("fso_permissions_%s_read", type))); //$NON-NLS-1$
         chkPermissions[2] = (CheckBox)rootView.findViewById(
                 ResourcesHelper.getIdentifier(
                         res, "id",  //$NON-NLS-1$
-                        String.format("fso_permissions_%s_execute", type))); //$NON-NLS-1$
+                        String.format("fso_permissions_%s_write", type))); //$NON-NLS-1$
         chkPermissions[3] = (CheckBox)rootView.findViewById(
                 ResourcesHelper.getIdentifier(
                         res, "id",  //$NON-NLS-1$
-                        String.format("fso_permissions_%s_special", type))); //$NON-NLS-1$
+                        String.format("fso_permissions_%s_execute", type))); //$NON-NLS-1$
         return chkPermissions;
     }
 
@@ -1098,19 +1098,17 @@ public class FsoPropertiesDialog
      * @param spinner The spinner
      */
     private void adjustSpinnerSize(final Spinner spinner) {
+        final View v = this.mContentView.findViewById(R.id.fso_properties_dialog_tabhost);
         spinner.post(new Runnable() {
             @Override
             public void run() {
                 // Align with the last checkbox of the column
-                CheckBox cb = FsoPropertiesDialog.this.mChkUserPermission[3];
-                int cbW = cb.getMeasuredWidth();
-                int[] cbPos = new int[2];
-                cb.getLocationInWindow(cbPos);
+                int vW = v.getMeasuredWidth();
                 int[] cbSpn = new int[2];
                 spinner.getLocationInWindow(cbSpn);
 
                 // Set the width
-                spinner.getLayoutParams().width = (cbPos[0] - cbSpn[0]) + cbW;
+                spinner.getLayoutParams().width = vW - cbSpn[0];
             }
         });
     }

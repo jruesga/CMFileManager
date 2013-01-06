@@ -128,6 +128,7 @@
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
           android:layout_margin="@dimen/default_margin"
+          android:paddingRight="@dimen/double_margin"
           android:gravity="left|center_vertical"
           android:singleLine="false"
           android:textAppearance="@style/secondary_text_appearance" />
@@ -152,6 +153,7 @@
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
           android:layout_margin="@dimen/default_margin"
+          android:paddingRight="@dimen/double_margin"
           android:gravity="left|center_vertical"
           android:singleLine="false"
           android:textAppearance="@style/secondary_text_appearance" />
@@ -176,6 +178,7 @@
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
           android:layout_margin="@dimen/default_margin"
+          android:paddingRight="@dimen/double_margin"
           android:gravity="left|center_vertical"
           android:singleLine="false"
           android:textAppearance="@style/secondary_text_appearance" />
@@ -200,6 +203,7 @@
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
           android:layout_margin="@dimen/default_margin"
+          android:paddingRight="@dimen/double_margin"
           android:gravity="left|center_vertical"
           android:singleLine="false"
           android:maxLines="5"
@@ -225,6 +229,7 @@
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
           android:layout_margin="@dimen/default_margin"
+          android:paddingRight="@dimen/double_margin"
           android:gravity="left|center_vertical"
           android:singleLine="false"
           android:textAppearance="@style/secondary_text_appearance" />

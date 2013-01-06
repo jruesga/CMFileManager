@@ -40,6 +40,8 @@
   <dimen name="extra_margin">8dp</dimen>
   <!-- An extra margin -->
   <dimen name="extra_large_margin">16dp</dimen>
+  <!-- Double margin -->
+  <dimen name="double_margin">24dp</dimen>
   <!-- A small margin -->
   <dimen name="small_margin">2dp</dimen>
   <!-- The minimal margin -->

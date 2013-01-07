@@ -1064,4 +1064,35 @@ public final class FileHelper {
         }
         return folder.delete();
     }
+
+    /**
+     * Method that returns the canonical/absolute path of the path.<br/>
+     * This method performs path resolution
+     *
+     * @param path The path to convert
+     * @return String The canonical/absolute path
+     */
+    public static String getAbsPath(String path) {
+        try {
+            return new File(path).getCanonicalPath();
+        } catch (Exception e) {
+            return new File(path).getAbsolutePath();
+        }
+    }
+
+    /**
+     * Method that returns the .nomedia file
+     *
+     * @param fso The folder that contains the .nomedia file
+     * @return File The .nomedia file
+     */
+    public static File getNoMediaFile(FileSystemObject fso) {
+        File file = null;
+        try {
+            file = new File(fso.getFullPath()).getCanonicalFile();
+        } catch (Exception e) {
+            file = new File(fso.getFullPath()).getAbsoluteFile();
+        }
+        return new File(file, ".nomedia").getAbsoluteFile(); //$NON-NLS-1$
+    }
 }

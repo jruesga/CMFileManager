@@ -338,6 +338,31 @@
           android:singleLine="false"
           android:textAppearance="@style/secondary_text_appearance" />
       </TableRow>
+
+      <!-- .nomedia Toggle -->
+      <TableRow
+        android:id="@+id/fso_skip_media_scan_view"
+        android:layout_marginLeft="@dimen/extra_large_margin"
+        android:layout_marginRight="@dimen/extra_large_margin">
+
+        <TextView
+          android:id="@+id/fso_include_in_media_scan_label"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_margin="@dimen/default_margin"
+          android:gravity="left|center_vertical"
+          android:text="@string/fso_properties_dialog_include_in_media_scan"
+          android:textAppearance="@style/primary_text_appearance" />
+
+        <CheckBox
+          android:id="@+id/fso_include_in_media_scan"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_margin="@dimen/default_margin"
+          android:paddingRight="@dimen/double_margin"
+          android:gravity="left|center_vertical" />
+      </TableRow>
+
     </TableLayout>
   </ScrollView>
 

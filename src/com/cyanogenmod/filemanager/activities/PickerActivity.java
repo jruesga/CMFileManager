@@ -186,7 +186,10 @@ public class PickerActivity extends Activity
         Log.d(TAG, "PickerActivity. type: " + String.valueOf(mimeType)); //$NON-NLS-1$
         if (mimeType != null) {
             if (!MimeTypeHelper.isMimeTypeKnown(this, mimeType)) {
-                Log.i(TAG, "Mime type " + mimeType + " unknown, falling back to wildcard.");
+                Log.i(TAG,
+                        String.format(
+                                "Mime type %s unknown, falling back to wildcard.", //$NON-NLS-1$
+                                mimeType));
                 mimeType = MimeTypeHelper.ALL_MIME_TYPES;
             }
             restrictions.put(DisplayRestrictions.MIME_TYPE_RESTRICTION, mimeType);

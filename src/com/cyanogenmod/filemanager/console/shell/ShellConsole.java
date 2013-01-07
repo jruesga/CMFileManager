@@ -1135,28 +1135,32 @@ public abstract class ShellConsole extends Console implements Program.ProgramLis
             if (program.getCommand() != null) {
                 try {
                     if (program.isCancellable()) {
-                        //Get the PID in background
-                        Integer pid =
-                                CommandHelper.getProcessId(
+                        try {
+                            //Get the PID in background
+                            Integer pid =
+                                    CommandHelper.getProcessId(
+                                            null,
+                                            this.mShell.getPid(),
+                                            program.getCommand(),
+                                            FileManagerApplication.getBackgroundConsole());
+                            if (pid != null) {
+                                CommandHelper.sendSignal(
                                         null,
-                                        this.mShell.getPid(),
-                                        program.getCommand(),
+                                        pid.intValue(),
                                         FileManagerApplication.getBackgroundConsole());
-                        if (pid != null) {
-                            CommandHelper.sendSignal(
-                                    null,
-                                    pid.intValue(),
-                                    FileManagerApplication.getBackgroundConsole());
-                            try {
-                                //Wait for process kill
-                                Thread.sleep(100L);
-                            } catch (Throwable ex) {
-                                /**NON BLOCK**/
+                                try {
+                                    //Wait for process kill
+                                    Thread.sleep(100L);
+                                } catch (Throwable ex) {
+                                    /**NON BLOCK**/
+                                }
+                                return true;
                             }
+                        } finally {
+                            // It's finished
                             this.mCancelled = true;
                             notifyProcessFinished();
                             this.mSync.notify();
-                            return this.mCancelled;
                         }
                     }
                 } catch (Throwable ex) {

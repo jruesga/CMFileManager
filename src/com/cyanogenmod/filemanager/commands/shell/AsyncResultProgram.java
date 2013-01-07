@@ -131,17 +131,12 @@ public abstract class AsyncResultProgram
             this.mSync.notify();
         }
         synchronized (this.mTerminateSync) {
-            try {
-                this.mTerminateSync.wait();
-            } catch (Exception e) {
-                /**NON BLOCK**/
-            }
-            try {
-                if (this.mWorkerThread.isAlive()) {
-                    this.mWorkerThread.interrupt();
+            if (this.mWorkerThread.isAlive()) {
+                try {
+                    this.mTerminateSync.wait();
+                } catch (Exception e) {
+                    /**NON BLOCK**/
                 }
-            } catch (Exception e) {
-                /**NON BLOCK**/
             }
         }
 

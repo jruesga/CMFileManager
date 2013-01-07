@@ -52,7 +52,7 @@
   <command commandId="mountpointinfo" commandPath="/system/bin/mount" commandArgs="" />
 
   <!-- List/Find/Info -->
-  <command commandId="ls" commandPath="/system/bin/ls" commandArgs="%1$s 1&gt; /dev/null &amp;&amp; /system/xbin/stat -t %1$s* 2&gt;&amp;1" />
+  <command commandId="ls" commandPath="/system/bin/ls" commandArgs="%1$s 1&gt; /dev/null &amp;&amp; /system/xbin/stat -t %1$s.* %1$s* 2&gt;&amp;1" />
   <command commandId="fileinfo" commandPath="/system/xbin/stat" commandArgs="-t %1$s 2&gt;&amp;1" />
   <command commandId="find" commandPath="/system/xbin/find" commandArgs="%1$s \\( -name %2$s -o -name %3$s -o -name %4$s -o -name %5$s -o -name %6$s \\) -exec /system/xbin/stat -t {} 2&gt;&amp;1 \\;" />
   <command commandId="quickfoldersearch" commandPath="/system/bin/ls" commandArgs="-aFd %1$s.* %1$s* 2&gt; /dev/null | /system/xbin/grep -e '^d' -e '^ld' | /system/xbin/cut -d&quot; &quot; -f2-" />

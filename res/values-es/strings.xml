@@ -51,7 +51,7 @@
   <string name="msgs_read_only_filesystem">El sistema de archivos es de solo-lectura. Intente montarlo como lectura-escritura antes de repetir la operación.</string>
   <string name="msgs_illegal_argument">Argumento ilegal. Invocación fallida.</string>
   <string name="msgs_unresolved_inconsistencies">La operación no está permitida porque podría crear inconsistencias.</string>
-  <string name="msgs_operation_not_allowed_in_current_directory">La operación no está permitida en la carpeta actual.</string>
+  <string name="msgs_operation_not_allowed_in_current_directory">La operación no está permitida en la carpeta actual.\n\nLa carpeta de destino no puede ser una subcarpeta de la actual o ser la misma que la actual.</string>
   <string name="msgs_push_again_to_exit">Pulse de nuevo para salir.</string>
   <string name="msgs_not_registered_app">No hay ninguna aplicación registrada para abrir el tipo de archivo seleccionado.</string>
   <string name="msgs_overwrite_files">Alguno de los archivos existe en la carpeta de destino. \n\n¿Sobrescribir?</string>
@@ -114,6 +114,9 @@
   <string name="fso_properties_dialog_link">Enlace:</string>
   <string name="fso_properties_dialog_size">Tamaño:</string>
   <string name="fso_properties_dialog_contains">Contenido:</string>
+  <string name="fso_properties_dialog_last_accessed_date">Accedido:</string>
+  <string name="fso_properties_dialog_last_modified_date">Modificado:</string>
+  <string name="fso_properties_dialog_last_changed_date">Cambiado:</string>
   <string name="fso_properties_dialog_owner">Propietario:</string>
   <string name="fso_properties_dialog_group">Grupo:</string>
   <string name="fso_properties_dialog_others">Otros:</string>
@@ -207,8 +210,8 @@
   <string name="actions_menu_deselect_all">Desmarcar todo</string>
   <string name="actions_menu_select">Marcar</string>
   <string name="actions_menu_deselect">Desmarcar</string>
-  <string name="actions_menu_paste_selection">Pegar selección</string>
-  <string name="actions_menu_move_selection">Mover selección</string>
+  <string name="actions_menu_paste_selection">Pegar aquí</string>
+  <string name="actions_menu_move_selection">Mover aquí</string>
   <string name="actions_menu_delete_selection">Borrar selección</string>
   <string name="actions_menu_compress_selection">Comprimir selección</string>
   <string name="actions_menu_create_link">Crear enlace</string>

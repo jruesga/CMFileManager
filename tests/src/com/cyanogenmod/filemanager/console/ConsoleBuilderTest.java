@@ -16,7 +16,6 @@
 
 package com.cyanogenmod.filemanager.console;
 
-import android.os.Environment;
 import android.test.suitebuilder.annotation.SmallTest;
 
 
@@ -26,9 +25,6 @@ import android.test.suitebuilder.annotation.SmallTest;
  * @see ConsoleBuilder
  */
 public class ConsoleBuilderTest extends android.test.AndroidTestCase {
-
-    private static final String PATH =
-            Environment.getExternalStorageDirectory().getAbsolutePath();
 
     /**
      * {@inheritDoc}
@@ -50,11 +46,11 @@ public class ConsoleBuilderTest extends android.test.AndroidTestCase {
      * Method that performs a test over creating a privileged console.
      *
      * @throws Exception If test failed
-     * @{link {@link ConsoleBuilder#createPrivilegedConsole(android.content.Context, String)}
+     * @{link {@link ConsoleBuilder#createPrivilegedConsole(android.content.Context)}
      */
     @SmallTest
     public void testCreatePrivilegedConsole() throws Exception {
-        Console console = ConsoleBuilder.createPrivilegedConsole(getContext(), PATH);
+        Console console = ConsoleBuilder.createPrivilegedConsole(getContext());
         try {
             assertNotNull("console==null", console); //$NON-NLS-1$
         } finally {
@@ -70,11 +66,11 @@ public class ConsoleBuilderTest extends android.test.AndroidTestCase {
      * Method that performs a test over creating a non privileged console.
      *
      * @throws Exception If test failed
-     * @{link {@link ConsoleBuilder#createNonPrivilegedConsole(android.content.Context, String)}
+     * @{link {@link ConsoleBuilder#createNonPrivilegedConsole(android.content.Context)}
      */
     @SmallTest
     public void testCreateNonPrivilegedConsole() throws Exception {
-        Console console = ConsoleBuilder.createNonPrivilegedConsole(getContext(), PATH);
+        Console console = ConsoleBuilder.createNonPrivilegedConsole(getContext());
         try {
             assertNotNull("console==null", console); //$NON-NLS-1$
         } finally {

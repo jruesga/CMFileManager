@@ -39,10 +39,6 @@
   <command commandId="bash" commandPath="/system/bin/sh" commandArgs="" />
   <command commandId="su" commandPath="/system/xbin/su" commandArgs="" />
 
-  <!-- Directory -->
-  <command commandId="cd" commandPath="cd" commandArgs="%1$s" />
-  <command commandId="pwd" commandPath="/system/xbin/pwd" commandArgs="-P" />
-
   <!-- Console info -->
   <command commandId="groups" commandPath="/system/xbin/groups" commandArgs="" />
   <command commandId="id" commandPath="/system/bin/id" commandArgs="-Gn" />

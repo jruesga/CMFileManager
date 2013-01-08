@@ -19,14 +19,12 @@ package com.cyanogenmod.filemanager.util;
 import android.content.Context;
 
 import com.cyanogenmod.filemanager.commands.AsyncResultListener;
-import com.cyanogenmod.filemanager.commands.ChangeCurrentDirExecutable;
 import com.cyanogenmod.filemanager.commands.ChangeOwnerExecutable;
 import com.cyanogenmod.filemanager.commands.ChangePermissionsExecutable;
 import com.cyanogenmod.filemanager.commands.CompressExecutable;
 import com.cyanogenmod.filemanager.commands.CopyExecutable;
 import com.cyanogenmod.filemanager.commands.CreateDirExecutable;
 import com.cyanogenmod.filemanager.commands.CreateFileExecutable;
-import com.cyanogenmod.filemanager.commands.CurrentDirExecutable;
 import com.cyanogenmod.filemanager.commands.DeleteDirExecutable;
 import com.cyanogenmod.filemanager.commands.DeleteFileExecutable;
 import com.cyanogenmod.filemanager.commands.DiskUsageExecutable;
@@ -187,37 +185,6 @@ public final class CommandHelper {
      */
     private CommandHelper() {
         super();
-    }
-
-    /**
-     * Method that changes the current directory of the shell.
-     *
-     * @param context The current context (needed if console == null)
-     * @param dst The new directory
-     * @return boolean The operation result
-     * @param console The console in which execute the program. <code>null</code>
-     * to attach to the default console
-     * @throws FileNotFoundException If the initial directory not exists
-     * @throws IOException If initial directory couldn't be checked
-     * @throws InvalidCommandDefinitionException If the command has an invalid definition
-     * @throws NoSuchFileOrDirectory If the file or directory was not found
-     * @throws ConsoleAllocException If the console can't be allocated
-     * @throws InsufficientPermissionsException If an operation requires elevated permissions
-     * @throws CommandNotFoundException If the command was not found
-     * @throws OperationTimeoutException If the operation exceeded the maximum time of wait
-     * @throws ExecutionException If the operation returns a invalid exit code
-     * @see ChangeCurrentDirExecutable
-     */
-    public static boolean changeCurrentDir(Context context, String dst, Console console)
-            throws FileNotFoundException, IOException, ConsoleAllocException,
-            NoSuchFileOrDirectory, InsufficientPermissionsException,
-            CommandNotFoundException, OperationTimeoutException,
-            ExecutionException, InvalidCommandDefinitionException {
-        Console c = ensureConsole(context, console);
-        ChangeCurrentDirExecutable executable =
-                c.getExecutableFactory().newCreator().createChangeCurrentDirExecutable(dst);
-        execute(context, executable, c);
-        return executable.getResult().booleanValue();
     }
 
     /**
@@ -446,36 +413,6 @@ public final class CommandHelper {
         Console c = ensureConsole(context, console);
         ResolveLinkExecutable executable =
                 c.getExecutableFactory().newCreator().createResolveLinkExecutable(symlink);
-        execute(context, executable, c);
-        return executable.getResult();
-    }
-
-    /**
-     * Method that retrieves the current directory of the shell.
-     *
-     * @param context The current context (needed if console == null)
-     * @param console The console in which execute the program. <code>null</code>
-     * to attach to the default console
-     * @return String The current directory
-     * @throws FileNotFoundException If the initial directory not exists
-     * @throws IOException If initial directory couldn't be checked
-     * @throws InvalidCommandDefinitionException If the command has an invalid definition
-     * @throws NoSuchFileOrDirectory If the file or directory was not found
-     * @throws ConsoleAllocException If the console can't be allocated
-     * @throws InsufficientPermissionsException If an operation requires elevated permissions
-     * @throws CommandNotFoundException If the command was not found
-     * @throws OperationTimeoutException If the operation exceeded the maximum time of wait
-     * @throws ExecutionException If the operation returns a invalid exit code
-     * @see CurrentDirExecutable
-     */
-    public static String getCurrentDir(Context context, Console console)
-            throws FileNotFoundException, IOException, ConsoleAllocException,
-            NoSuchFileOrDirectory, InsufficientPermissionsException,
-            CommandNotFoundException, OperationTimeoutException,
-            ExecutionException, InvalidCommandDefinitionException {
-        Console c = ensureConsole(context, console);
-        CurrentDirExecutable executable =
-                c.getExecutableFactory().newCreator().createCurrentDirExecutable();
         execute(context, executable, c);
         return executable.getResult();
     }

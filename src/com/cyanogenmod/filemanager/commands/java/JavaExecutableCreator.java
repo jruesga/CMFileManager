@@ -18,14 +18,12 @@ package com.cyanogenmod.filemanager.commands.java;
 
 import com.cyanogenmod.filemanager.R;
 import com.cyanogenmod.filemanager.commands.AsyncResultListener;
-import com.cyanogenmod.filemanager.commands.ChangeCurrentDirExecutable;
 import com.cyanogenmod.filemanager.commands.ChangeOwnerExecutable;
 import com.cyanogenmod.filemanager.commands.ChangePermissionsExecutable;
 import com.cyanogenmod.filemanager.commands.CompressExecutable;
 import com.cyanogenmod.filemanager.commands.CopyExecutable;
 import com.cyanogenmod.filemanager.commands.CreateDirExecutable;
 import com.cyanogenmod.filemanager.commands.CreateFileExecutable;
-import com.cyanogenmod.filemanager.commands.CurrentDirExecutable;
 import com.cyanogenmod.filemanager.commands.DeleteDirExecutable;
 import com.cyanogenmod.filemanager.commands.DeleteFileExecutable;
 import com.cyanogenmod.filemanager.commands.DiskUsageExecutable;
@@ -81,15 +79,6 @@ public class JavaExecutableCreator implements ExecutableCreator {
      * {@inheritDoc}
      */
     @Override
-    public ChangeCurrentDirExecutable createChangeCurrentDirExecutable(String dir)
-            throws CommandNotFoundException {
-        return new ChangeCurrentDirCommand(this.mConsole, dir);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
     public ChangeOwnerExecutable createChangeOwnerExecutable(
             String fso, User newUser, Group newGroup) throws CommandNotFoundException {
         throw new CommandNotFoundException("Not implemented"); //$NON-NLS-1$
@@ -129,14 +118,6 @@ public class JavaExecutableCreator implements ExecutableCreator {
     public CreateFileExecutable createCreateFileExecutable(String file)
             throws CommandNotFoundException {
         return new CreateFileCommand(file);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public CurrentDirExecutable createCurrentDirExecutable() throws CommandNotFoundException {
-        return new CurrentDirCommand(this.mConsole);
     }
 
     /**

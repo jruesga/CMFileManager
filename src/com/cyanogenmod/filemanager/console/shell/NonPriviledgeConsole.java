@@ -33,19 +33,6 @@ public class NonPriviledgeConsole extends ShellConsole {
     /**
      * Constructor of <code>NonPriviledgeConsole</code>.
      *
-     * @param initialDirectory The initial directory of the shell
-     * @throws FileNotFoundException If the initial directory not exists
-     * @throws IOException If initial directory couldn't be checked
-     * @throws InvalidCommandDefinitionException If the command has an invalid definition
-     */
-    public NonPriviledgeConsole(String initialDirectory)
-            throws FileNotFoundException, IOException, InvalidCommandDefinitionException {
-        super(new BashShell(), initialDirectory);
-    }
-
-    /**
-     * Constructor of <code>NonPriviledgeConsole</code>.
-     *
      * @throws FileNotFoundException If the default initial directory not exists
      * @throws IOException If initial directory couldn't be checked
      * @throws InvalidCommandDefinitionException If the command has an invalid definition

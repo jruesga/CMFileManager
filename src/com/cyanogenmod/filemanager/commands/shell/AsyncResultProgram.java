@@ -367,9 +367,6 @@ public abstract class AsyncResultProgram
                    synchronized (AsyncResultProgram.this.mSync) {
                        AsyncResultProgram.this.mSync.wait();
                        while (AsyncResultProgram.this.mPartialData.size() > 0) {
-                           if (!this.mAlive) {
-                               return;
-                           }
                            Byte type = AsyncResultProgram.this.mPartialDataType.remove(0);
                            String data = AsyncResultProgram.this.mPartialData.remove(0);
                            try {

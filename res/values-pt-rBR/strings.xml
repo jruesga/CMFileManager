@@ -312,4 +312,14 @@
     <string name="pref_themes_not_found">Tema não foi encontrado</string>
     <string name="theme_default_name">Tema claro</string>
     <string name="theme_default_description">Um tema claro para o Gerenciador de Arquivos CyanogenMod</string>
+    <string name="fso_properties_dialog_last_accessed_date">Acessado:</string>
+    <string name="fso_properties_dialog_last_modified_date">Modificado:</string>
+    <string name="fso_properties_dialog_last_changed_date">Alterado:</string>
+    <string name="fso_properties_dialog_include_in_media_scan">Pular varredura de mídia:</string>
+    <string name="fso_failed_to_allow_media_scan">Falha ao permitir varredura de mídia</string>
+    <string name="fso_failed_to_prevent_media_scan">Falha ao previnir varredura de mídia</string>
+    <string name="fso_delete_nomedia_dir_title">Remover diretório .nomedia</string>
+    <string name="fso_delete_nomedia_dir_body">Este diretório contém um diretório .nomedia.\n\nVocê deseja removê-lo e todo seu conteúdo?</string>
+    <string name="fso_delete_nomedia_non_empty_title">Remover arquivo .nomedia</string>
+    <string name="fso_delete_nomedia_non_empty_body">Este diretório contém um arquivo .nomedia não vazio.\n\nVocê deseja removê-lo?</string>
 </resources>

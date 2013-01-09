@@ -36,7 +36,6 @@ import com.cyanogenmod.filemanager.preferences.Preferences;
 import com.cyanogenmod.filemanager.ui.ThemeManager;
 import com.cyanogenmod.filemanager.ui.ThemeManager.Theme;
 import com.cyanogenmod.filemanager.util.AIDHelper;
-import com.cyanogenmod.filemanager.util.FileHelper;
 import com.cyanogenmod.filemanager.util.MimeTypeHelper;
 
 import java.io.File;
@@ -354,13 +353,11 @@ public final class FileManagerApplication extends Application {
             if (ConsoleBuilder.isPrivileged()) {
                 sBackgroundConsole =
                         new ConsoleHolder(
-                                ConsoleBuilder.createPrivilegedConsole(
-                                        ctx, FileHelper.ROOT_DIRECTORY));
+                                ConsoleBuilder.createPrivilegedConsole(ctx));
             } else {
                 sBackgroundConsole =
                         new ConsoleHolder(
-                                ConsoleBuilder.createNonPrivilegedConsole(
-                                        ctx, FileHelper.ROOT_DIRECTORY));
+                                ConsoleBuilder.createNonPrivilegedConsole(ctx));
             }
         } catch (Exception e) {
             Log.e(TAG,
@@ -389,8 +386,7 @@ public final class FileManagerApplication extends Application {
                 sBackgroundConsole =
                         new ConsoleHolder(
                                 ConsoleBuilder.createPrivilegedConsole(
-                                        getInstance().getApplicationContext(),
-                                        FileHelper.ROOT_DIRECTORY));
+                                        getInstance().getApplicationContext()));
             } catch (Exception e) {
                 try {
                     if (sBackgroundConsole != null) {
@@ -410,6 +406,9 @@ public final class FileManagerApplication extends Application {
      * @return boolean If the access mode of the application
      */
     public static AccessMode getAccessMode() {
+        if (!sIsDeviceRooted) {
+            return AccessMode.SAFE;
+        }
         String defaultValue =
                 ((ObjectStringIdentifier)FileManagerSettings.
                             SETTINGS_ACCESS_MODE.getDefaultValue()).getId();

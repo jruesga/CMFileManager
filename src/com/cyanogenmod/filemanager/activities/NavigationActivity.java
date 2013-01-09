@@ -612,6 +612,13 @@ public class NavigationActivity extends Activity
                                 StorageHelper.getStorageVolumes(NavigationActivity.this);
                         if (volumes != null && volumes.length > 0) {
                             initialDir = volumes[0].getPath();
+                        } else {
+                            // Show exception and exists
+                            DialogHelper.showToast(
+                                    NavigationActivity.this,
+                                    R.string.msgs_cant_create_console, Toast.LENGTH_LONG);
+                            exit();
+                            return;
                         }
                     }
 

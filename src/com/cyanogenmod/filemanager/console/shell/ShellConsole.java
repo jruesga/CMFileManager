@@ -42,8 +42,6 @@ import com.cyanogenmod.filemanager.console.NoSuchFileOrDirectory;
 import com.cyanogenmod.filemanager.console.OperationTimeoutException;
 import com.cyanogenmod.filemanager.console.ReadOnlyFilesystemException;
 import com.cyanogenmod.filemanager.model.Identity;
-import com.cyanogenmod.filemanager.preferences.FileManagerSettings;
-import com.cyanogenmod.filemanager.preferences.Preferences;
 import com.cyanogenmod.filemanager.util.CommandHelper;
 import com.cyanogenmod.filemanager.util.FileHelper;
 
@@ -78,7 +76,6 @@ public abstract class ShellConsole extends Console implements Program.ProgramLis
 
     //Shell References
     private final Shell mShell;
-    private final String mInitialDirectory;
     private Identity mIdentity;
 
     //Process References
@@ -134,40 +131,16 @@ public abstract class ShellConsole extends Console implements Program.ProgramLis
      * Constructor of <code>ShellConsole</code>.
      *
      * @param shell The shell used to execute commands
-     * @throws FileNotFoundException If the default initial directory not exists
-     * @throws IOException If initial directory couldn't be resolved
-     */
-    public ShellConsole(Shell shell) throws FileNotFoundException, IOException {
-        this(shell, Preferences.getSharedPreferences().getString(
-                            FileManagerSettings.SETTINGS_INITIAL_DIR.getId(),
-                            (String)FileManagerSettings.SETTINGS_INITIAL_DIR.getDefaultValue()));
-    }
-
-    /**
-     * Constructor of <code>ShellConsole</code>.
-     *
-     * @param shell The shell used to execute commands
-     * @param initialDirectory The initial directory of the shell
      * @throws FileNotFoundException If the initial directory not exists
      * @throws IOException If initial directory couldn't be resolved
      */
-    public ShellConsole(Shell shell, String initialDirectory)
+    public ShellConsole(Shell shell)
             throws FileNotFoundException, IOException {
         super();
         this.mShell = shell;
         this.mExecutableFactory = new ShellExecutableFactory(this);
 
         this.mBufferSize = DEFAULT_BUFFER;
-
-        //Resolve and checks the initial directory
-        File f = new File(initialDirectory);
-        while (FileHelper.isSymlink(f)) {
-            f = FileHelper.resolveSymlink(f);
-        }
-        if (!f.exists() || !f.isDirectory()) {
-            throw new FileNotFoundException(f.toString());
-        }
-        this.mInitialDirectory = initialDirectory;
 
         //Restart the buffers
         this.mSbIn = new StringBuffer();
@@ -242,7 +215,7 @@ public abstract class ShellConsole extends Console implements Program.ProgramLis
                     rt.exec(
                             cmd.toArray(new String[cmd.size()]),
                             null,
-                            new File(this.mInitialDirectory));
+                            new File(FileHelper.ROOT_DIRECTORY).getCanonicalFile());
             synchronized (this.mSync) {
                 this.mActive = true;
             }

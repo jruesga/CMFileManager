@@ -30,7 +30,6 @@ import com.cyanogenmod.filemanager.preferences.AccessMode;
 import com.cyanogenmod.filemanager.preferences.FileManagerSettings;
 import com.cyanogenmod.filemanager.preferences.Preferences;
 import com.cyanogenmod.filemanager.util.DialogHelper;
-import com.cyanogenmod.filemanager.util.FileHelper;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -125,7 +124,7 @@ public final class ConsoleBuilder {
         try {
             //Create the console, destroy the current console, and marks as current
             holder = new ConsoleHolder(
-                    createNonPrivilegedConsole(context, FileHelper.ROOT_DIRECTORY));
+                    createNonPrivilegedConsole(context));
             destroyConsole();
             sHolder = holder;
             return true;
@@ -157,7 +156,7 @@ public final class ConsoleBuilder {
         try {
             //Create the console, destroy the current console, and marks as current
             holder = new ConsoleHolder(
-                    createAndCheckPrivilegedConsole(context, FileHelper.ROOT_DIRECTORY));
+                    createAndCheckPrivilegedConsole(context));
             destroyConsole();
             sHolder = holder;
 
@@ -243,11 +242,8 @@ public final class ConsoleBuilder {
             //Is there a console allocated
             if (sHolder == null) {
                 sHolder = (superuserMode)
-                        ? new ConsoleHolder(
-                                createAndCheckPrivilegedConsole(
-                                        context, FileHelper.ROOT_DIRECTORY))
-                        : new ConsoleHolder(
-                                createNonPrivilegedConsole(context, FileHelper.ROOT_DIRECTORY));
+                        ? new ConsoleHolder(createAndCheckPrivilegedConsole(context))
+                        : new ConsoleHolder(createNonPrivilegedConsole(context));
                 if (superuserMode) {
                     // Change also the background console to privileged
                     FileManagerApplication.changeBackgroundConsoleToPriviligedConsole();
@@ -275,7 +271,6 @@ public final class ConsoleBuilder {
      * Method that creates a new non privileged console.
      *
      * @param context The current context
-     * @param initialDirectory The initial directory of the console
      * @return Console The non privileged console
      * @throws FileNotFoundException If the initial directory not exists
      * @throws IOException If initial directory couldn't be checked
@@ -283,7 +278,7 @@ public final class ConsoleBuilder {
      * @throws ConsoleAllocException If the console can't be allocated
      * @see NonPriviledgeConsole
      */
-    public static Console createNonPrivilegedConsole(Context context, String initialDirectory)
+    public static Console createNonPrivilegedConsole(Context context)
             throws FileNotFoundException, IOException,
             InvalidCommandDefinitionException, ConsoleAllocException {
 
@@ -291,14 +286,14 @@ public final class ConsoleBuilder {
 
         // Is rooted? Then create a shell console
         if (FileManagerApplication.isDeviceRooted()) {
-            NonPriviledgeConsole console = new NonPriviledgeConsole(initialDirectory);
+            NonPriviledgeConsole console = new NonPriviledgeConsole();
             console.setBufferSize(bufferSize);
             console.alloc();
             return console;
         }
 
         // No rooted. Then create a java console
-        JavaConsole console = new JavaConsole(context, initialDirectory, bufferSize);
+        JavaConsole console = new JavaConsole(context, bufferSize);
         console.alloc();
         return console;
     }
@@ -308,7 +303,6 @@ public final class ConsoleBuilder {
      * privileged console fails, the a non privileged console
      *
      * @param context The current context
-     * @param initialDirectory The initial directory of the console
      * @return Console The privileged console
      * @throws FileNotFoundException If the initial directory not exists
      * @throws IOException If initial directory couldn't be checked
@@ -317,10 +311,10 @@ public final class ConsoleBuilder {
      * @throws InsufficientPermissionsException If the console created is not a privileged console
      * @see PrivilegedConsole
      */
-    public static Console createPrivilegedConsole(Context context, String initialDirectory)
+    public static Console createPrivilegedConsole(Context context)
             throws FileNotFoundException, IOException, InvalidCommandDefinitionException,
             ConsoleAllocException, InsufficientPermissionsException {
-        PrivilegedConsole console = new PrivilegedConsole(initialDirectory);
+        PrivilegedConsole console = new PrivilegedConsole();
         console.setBufferSize(context.getResources().getInteger(R.integer.buffer_size));
         console.alloc();
         if (console.getIdentity().getUser().getId() != ROOT_UID) {
@@ -340,7 +334,6 @@ public final class ConsoleBuilder {
      * privileged console fails, the a non privileged console
      *
      * @param context The current context
-     * @param initialDirectory The initial directory of the console
      * @return Console The privileged console
      * @throws FileNotFoundException If the initial directory not exists
      * @throws IOException If initial directory couldn't be checked
@@ -349,10 +342,10 @@ public final class ConsoleBuilder {
      * @throws InsufficientPermissionsException If the console created is not a privileged console
      * @see PrivilegedConsole
      */
-    public static Console createAndCheckPrivilegedConsole(Context context, String initialDirectory)
+    public static Console createAndCheckPrivilegedConsole(Context context)
             throws FileNotFoundException, IOException, InvalidCommandDefinitionException,
             ConsoleAllocException, InsufficientPermissionsException {
-        return createAndCheckPrivilegedConsole(context, initialDirectory, true);
+        return createAndCheckPrivilegedConsole(context, true);
     }
 
     /**
@@ -360,7 +353,6 @@ public final class ConsoleBuilder {
      * privileged console fails, the a non privileged console
      *
      * @param context The current context
-     * @param initialDirectory The initial directory of the console
      * @param silent Indicates that no message have to be displayed
      * @return Console The privileged console
      * @throws FileNotFoundException If the initial directory not exists
@@ -371,12 +363,12 @@ public final class ConsoleBuilder {
      * @see PrivilegedConsole
      */
     public static Console createAndCheckPrivilegedConsole(
-            Context context, String initialDirectory, boolean silent)
+            Context context, boolean silent)
             throws FileNotFoundException, IOException, InvalidCommandDefinitionException,
             ConsoleAllocException, InsufficientPermissionsException {
         try {
             // Create the privileged console
-            return createPrivilegedConsole(context, initialDirectory);
+            return createPrivilegedConsole(context);
 
         } catch (ConsoleAllocException caEx) {
             //Show a message with the problem?
@@ -404,7 +396,7 @@ public final class ConsoleBuilder {
                 }
 
                 //Create the non-privileged console
-                return createNonPrivilegedConsole(context, initialDirectory);
+                return createNonPrivilegedConsole(context);
             }
 
             // Rethrow the exception

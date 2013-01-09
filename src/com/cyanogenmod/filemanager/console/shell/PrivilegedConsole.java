@@ -34,19 +34,6 @@ public class PrivilegedConsole extends ShellConsole {
     /**
      * Constructor of <code>PrivilegedConsole</code>.
      *
-     * @param initialDirectory The initial directory of the shell
-     * @throws FileNotFoundException If the initial directory not exists
-     * @throws IOException If initial directory couldn't be checked
-     * @throws InvalidCommandDefinitionException If the command has an invalid definition
-     */
-    public PrivilegedConsole(String initialDirectory)
-            throws FileNotFoundException, IOException, InvalidCommandDefinitionException {
-        super(new SuperuserShell(), initialDirectory);
-    }
-
-    /**
-     * Constructor of <code>PrivilegedConsole</code>.
-     *
      * @throws FileNotFoundException If the default initial directory not exists
      * @throws IOException If initial directory couldn't be checked
      * @throws InvalidCommandDefinitionException If the command has an invalid definition

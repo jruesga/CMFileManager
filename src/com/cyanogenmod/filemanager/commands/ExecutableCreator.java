@@ -33,20 +33,6 @@ import com.cyanogenmod.filemanager.preferences.CompressionMode;
 public interface ExecutableCreator {
 
     /**
-     * Method that creates an executable for change the current directory.
-     *
-     * @param dir The absolute path of the new directory to establish as current directory
-     * @return ChangeCurrentDirExecutable A {@link ChangeCurrentDirExecutable} executable
-     * implementation reference
-     * @throws CommandNotFoundException If the executable can't be created
-     * @throws NoSuchFileOrDirectory If the file or directory was not found
-     * @throws InsufficientPermissionsException If an operation requires elevated permissions
-     */
-    ChangeCurrentDirExecutable createChangeCurrentDirExecutable(
-            String dir) throws CommandNotFoundException,
-            NoSuchFileOrDirectory, InsufficientPermissionsException;
-
-    /**
      * Method that creates an executable for change the owner of a file system object.
      *
      * @param fso The absolute path to the source file system object
@@ -116,18 +102,6 @@ public interface ExecutableCreator {
      * @throws InsufficientPermissionsException If an operation requires elevated permissions
      */
     CreateFileExecutable createCreateFileExecutable(String file) throws CommandNotFoundException,
-            NoSuchFileOrDirectory, InsufficientPermissionsException;
-
-    /**
-     * Method that creates an executable for retrieve the current directory.
-     *
-     * @return CurrentDirExecutable A {@link CurrentDirExecutable} executable
-     * implementation reference
-     * @throws CommandNotFoundException If the executable can't be created
-     * @throws NoSuchFileOrDirectory If the file or directory was not found
-     * @throws InsufficientPermissionsException If an operation requires elevated permissions
-     */
-    CurrentDirExecutable createCurrentDirExecutable() throws CommandNotFoundException,
             NoSuchFileOrDirectory, InsufficientPermissionsException;
 
     /**

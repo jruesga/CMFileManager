@@ -580,10 +580,10 @@ public class NavigationActivity extends Activity
                     }
                 } catch (Throwable ex) {
                     if (!NavigationActivity.this.mChRooted) {
-                        //Show exception and exists
+                        //Show exception and exit
                         Log.e(TAG, getString(R.string.msgs_cant_create_console), ex);
                         // We don't have any console
-                        // Show exception and exists
+                        // Show exception and exit
                         DialogHelper.showToast(
                                 NavigationActivity.this,
                                 R.string.msgs_cant_create_console, Toast.LENGTH_LONG);
@@ -613,7 +613,7 @@ public class NavigationActivity extends Activity
                         if (volumes != null && volumes.length > 0) {
                             initialDir = volumes[0].getPath();
                         } else {
-                            // Show exception and exists
+                            // Show exception and exit
                             DialogHelper.showToast(
                                     NavigationActivity.this,
                                     R.string.msgs_cant_create_console, Toast.LENGTH_LONG);
@@ -1427,7 +1427,7 @@ public class NavigationActivity extends Activity
                     public void onClick(DialogInterface alertDialog, int which) {
                         if (which == DialogInterface.BUTTON_NEGATIVE) {
                             // We don't have any console
-                            // Show exception and exists
+                            // Show exception and exit
                             DialogHelper.showToast(
                                     NavigationActivity.this,
                                     R.string.msgs_cant_create_console, Toast.LENGTH_LONG);

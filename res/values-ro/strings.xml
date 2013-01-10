@@ -269,7 +269,7 @@
   <string name="pref_access_mode_prompt">Mod interogare</string>
   <string name="pref_access_mode_prompt_summary">Mod interogare\n\nAplicaţia se execută cu acces total la fişierele de sistem, dar va solicita permisiuni pentru a efectua operaţiuni privelegiate</string>
   <string name="pref_access_mode_root">Mod acces Root</string>
-  <string name="pref_access_mode_root_summary">Mod cccess Root\n\nAvertizare! Acest mod permite operaţiuni ce pot duce la defectarea dispozitivului Dvs. Este responsabilitatea Dvs. să vă asigurați ce operațiune este sigură</string>
+  <string name="pref_access_mode_root_summary">Mod acces Root\n\nAvertizare! Acest mod permite operaţiuni ce pot duce la defectarea dispozitivului Dvs. Este responsabilitatea Dvs. să vă asigurați ce operațiune este sigură</string>
   <string name="pref_search_results_category">Rezultate</string>
   <string name="pref_show_relevance_widget">Afişare widget relevanţă</string>
   <string name="pref_highlight_terms">Evidenţiere termeni de căutare</string>

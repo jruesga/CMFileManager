@@ -100,7 +100,7 @@
     <!-- The operation will cause inconsistencies -->
     <string name="msgs_unresolved_inconsistencies">A művelet nem engedélyezett, mert következetlenséget okozna.</string>
     <!-- Operation not permitted in current directory -->
-    <string name="msgs_operation_not_allowed_in_current_directory">A művelet nem engedélyezett a jelenlegi mappában.</string>
+    <string name="msgs_operation_not_allowed_in_current_directory">A művelet nem engedélyezett a jelenlegi mappában.\n\nA célmappa nem lehet azonos a forrásmappával, és nem lehet annak almappája.</string>
 
     <!-- The advice message prior to exit the application -->
     <string name="msgs_push_again_to_exit">Nyomja meg mégegyszer a kilépéshez.</string>
@@ -237,6 +237,12 @@
     <string name="fso_properties_dialog_size">Méret:</string>
     <!-- Fso Properties Dialog * Contains Label -->
     <string name="fso_properties_dialog_contains">Tartalmaz:</string>
+    <!-- Fso Properties Dialog * Last Accessed Time Label -->
+    <string name="fso_properties_dialog_last_accessed_date">Elérés ideje:</string>
+    <!-- Fso Properties Dialog * Last Modified Time Label -->
+    <string name="fso_properties_dialog_last_modified_date">Módosítás ideje:</string>
+    <!-- Fso Properties Dialog * Last Changed Time -->
+    <string name="fso_properties_dialog_last_changed_date">Adatváltozás ideje:</string>
     <!-- Fso Properties Dialog * Owner Label -->
     <string name="fso_properties_dialog_owner">Tulajdonos:</string>
     <!-- Fso Properties Dialog * Group Label -->
@@ -331,7 +337,7 @@
     <!-- Initial directory dialog title -->
     <string name="initial_directory_dialog_title">Kezdőkönyvtár</string>
     <!-- Initial directory label -->
-    <string name="initial_directory_label">Válasszon kezdőkonyvtárat:</string>
+    <string name="initial_directory_label">Válasszon kezdőkönyvtárat:</string>
     <!-- Initial directory is relative -->
     <string name="initial_directory_relative_msg">Relatív útvonalak nem használhatóak.</string>
     <!-- Initial directory error message -->
@@ -401,9 +407,9 @@
     <!-- Actions Dialog * Menu * Deselect -->
     <string name="actions_menu_deselect">Elvet</string>
     <!-- Actions Dialog * Menu * Paste selection -->
-    <string name="actions_menu_paste_selection">Kijelöltek beillesztése</string>
+    <string name="actions_menu_paste_selection">Kijelöltek beillesztése ide</string>
     <!-- Actions Dialog * Menu * Move selection -->
-    <string name="actions_menu_move_selection">Kijelöltek mozgatása</string>
+    <string name="actions_menu_move_selection">Kijelöltek mozgatása ide</string>
     <!-- Actions Dialog * Menu * Delete selection -->
     <string name="actions_menu_delete_selection">Kijelöltek törlése</string>
     <!-- Actions Dialog * Menu * Compress selection -->

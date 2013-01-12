@@ -235,6 +235,12 @@
   <string name="fso_properties_dialog_size">Taille\u00A0:</string>
   <!-- Fso Properties Dialog * Contains Label -->
   <string name="fso_properties_dialog_contains">Contenu\u00A0:</string>
+  <!-- Fso Properties Dialog * Last Accessed Time Label -->
+  <string name="fso_properties_dialog_last_accessed_date">Dernier accès\u00A0:</string>
+  <!-- Fso Properties Dialog * Last Modified Time Label -->
+  <string name="fso_properties_dialog_last_modified_date">Modifié le\u00A0:</string>
+  <!-- Fso Properties Dialog * Last Changed Time -->
+  <string name="fso_properties_dialog_last_changed_date">Changé le\u00A0:</string>
   <!-- Fso Properties Dialog * Owner Label -->
   <string name="fso_properties_dialog_owner">Propriétaire\u00A0:</string>
   <!-- Fso Properties Dialog * Group Label -->
@@ -254,6 +260,14 @@
     <item quantity="one">1 fichier</item>
     <item quantity="other"><xliff:g id="files">%1$d</xliff:g> fichiers</item>
   </plurals>
+  <!-- Fso Properties Dialog * Skip media scan -->
+  <string name="fso_properties_dialog_include_in_media_scan">Passer la recherche de média\u00A0:</string>
+  <string name="fso_failed_to_allow_media_scan">Échec de la recherche de média</string>
+  <string name="fso_failed_to_prevent_media_scan">Impossible d\'empêcher la recherche de média</string>
+  <string name="fso_delete_nomedia_dir_title">Supprimer le dossier .nomedia</string>
+  <string name="fso_delete_nomedia_dir_body">Ce dossier contient un dossier .nomedia.\n\nVoulez-vous le supprimer ainsi que tout ce qu\'il contient\u00A0?</string>
+  <string name="fso_delete_nomedia_non_empty_title">Supprimer les fichiers .nomedia</string>
+  <string name="fso_delete_nomedia_non_empty_body">Ce dossier contient un fichier .nomedia non vide.\n\nVoulez-vous le supprimer\u00A0?</string>
 
   <!-- History * History activity title -->
   <string name="history">Historique</string>
@@ -603,7 +617,7 @@
   <!-- Preferences * Search * Save search terms summary on -->
   <string name="pref_save_search_terms_on">Les termes de recherche seront sauvegardés et seront suggérés dans les recherches futures</string>
   <!-- Preferences * Search * Save search terms summary off -->
-  <string name="pref_save_search_terms_off">Les termes de recherche n\'ont pas été sauvegardés</string>
+  <string name="pref_save_search_terms_off">Les termes de recherche ne seront pas sauvegardés</string>
   <!-- Preferences * Search * Remove saved search terms -->
   <string name="pref_remove_saved_search_terms">Effacer l\'historique de recherche</string>
   <!-- Preferences * Search * Remove saved search terms summary -->

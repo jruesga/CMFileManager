@@ -130,6 +130,13 @@
     <item quantity="one">1 archivo</item>
     <item quantity="other"><xliff:g id="files">%1$d</xliff:g> archivos</item>
   </plurals>
+  <string name="fso_properties_dialog_include_in_media_scan">Omitir escan.\nmedios:</string>
+  <string name="fso_failed_to_allow_media_scan">Fallo al permitir el escaneado de medios</string>
+  <string name="fso_failed_to_prevent_media_scan">Fallo al impedir el escaneado de medios</string>
+  <string name="fso_delete_nomedia_dir_title">Borrar carpeta \'.nomedia\'</string>
+  <string name="fso_delete_nomedia_dir_body">Esta carpeta contiene una carpeta \'.nomedia\'.\n\n¿Borrar la carpeta y todo su contenido?</string>
+  <string name="fso_delete_nomedia_non_empty_title">Borrar archivo \'.nomedia\'</string>
+  <string name="fso_delete_nomedia_non_empty_body">Esta carpeta contiene un archivo \'.nomedia\' que no está vacío.\n\n¿Continuar?</string>
   <string name="history">Historial</string>
   <string name="msgs_history_empty">El historial está vacío.</string>
   <string name="msgs_history_unknown">Elemento desconocido en el historial.</string>

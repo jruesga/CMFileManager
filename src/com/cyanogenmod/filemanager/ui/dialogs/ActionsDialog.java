@@ -292,7 +292,19 @@ public class ActionsDialog implements OnItemClickListener, OnItemLongClickListen
                 IntentsActionPolicy.sendFileSystemObject(
                         this.mContext, this.mFso, null, null);
                 break;
-
+            case R.id.mnu_actions_send_selection:
+                if (this.mOnSelectionListener != null) {
+                    List<FileSystemObject> selection =
+                            this.mOnSelectionListener.onRequestSelectedFiles();
+                    if (selection.size() == 1) {
+                        IntentsActionPolicy.sendFileSystemObject(
+                                this.mContext, selection.get(0), null, null);
+                    } else {
+                        IntentsActionPolicy.sendMultipleFileSystemObject(
+                                this.mContext, selection, null, null);
+                    }
+                }
+                break;
 
             // Paste selection
             case R.id.mnu_actions_paste_selection:
@@ -653,6 +665,26 @@ public class ActionsDialog implements OnItemClickListener, OnItemLongClickListen
             //Uncompress (Only supported files)
             if (!this.mGlobal && !FileHelper.isSupportedUncompressedFile(this.mFso)) {
                 menu.removeItem(R.id.mnu_actions_extract);
+            }
+
+            // Send multiple (only regular files)
+            if (this.mGlobal) {
+                if (selection == null || selection.size() == 0) {
+                    menu.removeItem(R.id.mnu_actions_send_selection);
+                } else {
+                    boolean areAllFiles = true;
+                    int cc = selection.size();
+                    for (int i = 0; i < cc; i++) {
+                        FileSystemObject fso = selection.get(i);
+                        if (FileHelper.isDirectory(fso)) {
+                            areAllFiles = false;
+                            break;
+                        }
+                    }
+                    if (!areAllFiles) {
+                        menu.removeItem(R.id.mnu_actions_send_selection);
+                    }
+                }
             }
         }
 

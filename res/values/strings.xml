@@ -499,6 +499,8 @@
   <string name="actions_menu_execute">Execute</string>
   <!-- Actions Dialog * Menu * Send -->
   <string name="actions_menu_send">Send</string>
+  <!-- Actions Dialog * Menu * Send selection -->
+  <string name="actions_menu_send_selection">Send selection</string>
   <!-- Actions Dialog * Menu * Compress -->
   <string name="actions_menu_compress">Compress</string>
   <!-- Actions Dialog * Menu * Extract -->

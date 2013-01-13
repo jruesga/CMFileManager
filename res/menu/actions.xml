@@ -63,6 +63,10 @@
       android:showAsAction="ifRoom"
       android:title="@string/actions_menu_create_link"/>
     <item
+      android:id="@+id/mnu_actions_send_selection"
+      android:showAsAction="ifRoom"
+      android:title="@string/actions_menu_send_selection"/>
+    <item
       android:id="@+id/mnu_actions_add_to_bookmarks_current_folder"
       android:showAsAction="ifRoom"
       android:title="@string/actions_menu_add_to_bookmarks"/>

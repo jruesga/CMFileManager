@@ -833,22 +833,26 @@ public class NavigationView extends RelativeLayout implements
                                 ExceptionUtil.attachAsyncTask(
                                     ex,
                                     new AsyncTask<Object, Integer, Boolean>() {
+                                        private List<FileSystemObject> mTaskFiles = null;
                                         @Override
-                                        @SuppressWarnings("unchecked")
+                                        @SuppressWarnings({
+                                                "unchecked", "unqualified-field-access"
+                                        })
                                         protected Boolean doInBackground(Object... taskParams) {
-                                            final List<FileSystemObject> files =
-                                                    (List<FileSystemObject>)taskParams[0];
-                                            NavigationView.this.mAdapterView.post(
-                                                new Runnable() {
-                                                    @Override
-                                                    public void run() {
-                                                        onPostExecuteTask(
-                                                                files, addToHistory,
-                                                                isNewHistory, hasChanged,
-                                                                searchInfo, fNewDir, scrollTo);
-                                                    }
-                                                });
+                                            mTaskFiles = (List<FileSystemObject>)taskParams[0];
                                             return Boolean.TRUE;
+                                        }
+
+                                        @Override
+                                        @SuppressWarnings("unqualified-field-access")
+                                        protected void onPostExecute(Boolean result) {
+                                            if (!result.booleanValue()){
+                                                return;
+                                            }
+                                            onPostExecuteTask(
+                                                    mTaskFiles, addToHistory,
+                                                    isNewHistory, hasChanged,
+                                                    searchInfo, fNewDir, scrollTo);
                                         }
                                     });
                                 final OnRelaunchCommandResult exListener =

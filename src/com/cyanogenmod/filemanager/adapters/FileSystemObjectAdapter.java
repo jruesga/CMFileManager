@@ -331,16 +331,6 @@ public class FileSystemObjectAdapter
     /**
      * Method that selects in the {@link ArrayAdapter} the passed item.
      *
-     * @param item The view to select
-     */
-    public void toggleSelection(View item) {
-        ImageButton view = (ImageButton)item.findViewById(RESOURCE_ITEM_CHECK);
-        onClick(view);
-    }
-
-    /**
-     * Method that selects in the {@link ArrayAdapter} the passed item.
-     *
      * @param fso The file system object to select
      */
     public void toggleSelection(FileSystemObject fso) {
@@ -404,6 +394,9 @@ public class FileSystemObjectAdapter
                                         FileSystemObjectAdapter.this.mSelectedItems);
                         this.mOnSelectionChangedListener.onSelectionChanged(selection);
                     }
+
+                    // The internal structure was update, only super adapter need to be notified
+                    super.notifyDataSetChanged();
 
                     //Found
                     return;

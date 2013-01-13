@@ -263,6 +263,15 @@
       <item quantity="other"><xliff:g id="files">%1$d</xliff:g> fájl</item>
     </plurals>
 
+    <!-- Fso Properties Dialog * Skip media scan -->
+    <string name="fso_properties_dialog_include_in_media_scan">Médiakeresés kihagyása:</string>
+    <string name="fso_failed_to_allow_media_scan">Sikertelen a médiakeresés engedélyezése</string>
+    <string name="fso_failed_to_prevent_media_scan">Sikertelen a médiakeresés letiltása</string>
+    <string name="fso_delete_nomedia_dir_title">.nomedia könyvtár törlése</string>
+    <string name="fso_delete_nomedia_dir_body">Ez a könyvtár tartalmaz .nomedia könyvtárat.\n\nBiztosan törli a tartalmával együtt?</string>
+    <string name="fso_delete_nomedia_non_empty_title">.nomedia fájl törlése</string>
+    <string name="fso_delete_nomedia_non_empty_body">Ez a könyvtár egy nem üres .nomedia fájlt tartalmaz.\n\nBiztosan törli?</string>
+
     <!-- History * History activity title -->
     <string name="history">Előzmények</string>
     <!-- History * The history is empty -->

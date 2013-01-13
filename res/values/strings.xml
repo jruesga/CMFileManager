@@ -88,7 +88,7 @@
   <string name="msgs_settings_save_failure">The setting could not be applied or stored.</string>
   <!-- The initial directory has an invalid or inaccessible reference -->
   <string name="msgs_settings_invalid_initial_directory">The initial folder
-    "<xliff:g id="initial_dir">%1$s</xliff:g>" is invalid. Changing to root folder.</string>
+    \"<xliff:g id="initial_dir">%1$s</xliff:g>\" is invalid. Changing to root folder.</string>
 
   <!-- Success -->
   <string name="msgs_success">The operation was completed successfully.</string>

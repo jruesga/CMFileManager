@@ -293,7 +293,6 @@ public final class ExceptionUtil {
                                         Object result = CommandHelper.reexecute(
                                                 context, executable, null);
                                         if (relaunchable.getTask() != null) {
-                                            relaunchable.getTask().cancel(true);
                                             relaunchable.getTask().execute(result);
                                         }
                                     }

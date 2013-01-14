@@ -620,6 +620,8 @@ public class NavigationActivity extends Activity
                                 StorageHelper.getStorageVolumes(NavigationActivity.this);
                         if (volumes != null && volumes.length > 0) {
                             initialDir = volumes[0].getPath();
+                            //Ensure that initial directory is an absolute directory
+                            initialDir = FileHelper.getAbsPath(initialDir);
                         } else {
                             // Show exception and exit
                             DialogHelper.showToast(
@@ -628,10 +630,21 @@ public class NavigationActivity extends Activity
                             exit();
                             return;
                         }
+                    } else {
+                        //Ensure that initial directory is an absolute directory
+                        initialDir = FileHelper.getAbsPath(initialDir);
+                        File f = new File(initialDir);
+                        if (!f.exists()) {
+                            // Change to root directory
+                            DialogHelper.showToast(
+                                    NavigationActivity.this,
+                                    getString(
+                                            R.string.msgs_settings_invalid_initial_directory,
+                                            initialDir),
+                                    Toast.LENGTH_SHORT);
+                            initialDir = FileHelper.ROOT_DIRECTORY;
+                        }
                     }
-
-                    //Ensure that initial directory is an absolute directory
-                    initialDir = FileHelper.getAbsPath(initialDir);
 
                     // Change the current directory to the preference initial directory
                     navigationView.changeCurrentDir(initialDir);

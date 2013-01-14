@@ -57,6 +57,10 @@ public abstract class Program extends Command implements Executable {
     // The listener for the program
     private ProgramListener mProgramListener;
 
+    // Indicate if the program expect some output to stderr. If something is received
+    // in the stderr the program should be killed
+    private boolean mExitOnStdErrOutput;
+
     /**
      * @Constructor of <code>Program</code>
      *
@@ -67,6 +71,7 @@ public abstract class Program extends Command implements Executable {
      */
     public Program(String id, String... args) throws InvalidCommandDefinitionException {
         super(id, args);
+        this.mExitOnStdErrOutput = false;
     }
 
     /**
@@ -81,6 +86,7 @@ public abstract class Program extends Command implements Executable {
     public Program(String id, boolean prepare, String... args)
             throws InvalidCommandDefinitionException {
         super(id, prepare, args);
+        this.mExitOnStdErrOutput = false;
     }
 
     /**
@@ -99,6 +105,26 @@ public abstract class Program extends Command implements Executable {
      */
     public void setProgramListener(ProgramListener programListener) {
         this.mProgramListener = programListener;
+    }
+
+    /**
+     * Method that returns if the program should be killed if some output is received in
+     * the standard error buffer.
+     *
+     * @return boolean If the program should be killed
+     */
+    public boolean isExitOnStdErrOutput() {
+        return this.mExitOnStdErrOutput;
+    }
+
+    /**
+     * Method that sets if the program should be killed if some output is received in
+     * the standard error buffer.
+     *
+     * @param exitOnStdErrOutput If the program should be killed
+     */
+    public void setExitOnStdErrOutput(boolean exitOnStdErrOutput) {
+        this.mExitOnStdErrOutput = exitOnStdErrOutput;
     }
 
     /**

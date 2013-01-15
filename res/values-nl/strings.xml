@@ -65,17 +65,17 @@
   <string name="msgs_change_to_prompt_access_mode_msg">Kan geen root-toegang verkrijgen. Schakelen naar veilige modus.\n\nDeze wijziging toepassen?</string>
 
   <!-- A console couldn't be created. Without privileges, the application won't work -->
-  <string name="msgs_cant_create_console">Kan de benodigde machtigingen om te functioneren niet verkrijgen.</string>
+  <string name="msgs_cant_create_console">Kan de vereiste machtigingen niet verkrijgen.</string>
   <!-- The message shown when an allocation of a privileged console fails, and a non
        privileged is allocated -->
   <string name="msgs_privileged_console_alloc_failed">Kan geen root-toegang verkrijgen. Schakelen naar veilige modus.</string>
   <!-- The selected setting was not applied or stored -->
   <string name="msgs_settings_save_failure">Kan de instellingen niet toepassen/opslaan.</string>
   <!-- The initial directory has an invalid or inaccessible reference -->
-  <string name="msgs_settings_invalid_initial_directory">De eerste map "<xliff:g id="initial_dir">%1$s</xliff:g>" is ongeldig. Veranderen naar hoofdmap.</string>
+  <string name="msgs_settings_invalid_initial_directory">De eerste map \'<xliff:g id="initial_dir">%1$s</xliff:g>\' is ongeldig. Veranderen naar hoofdmap.</string>
 
   <!-- Success -->
-  <string name="msgs_success">De bewerking is succesvol voltooid.</string>
+  <string name="msgs_success">Bewerking succesvol voltooid</string>
   <!-- Unknown error -->
   <string name="msgs_unknown">Er is een fout opgetreden. De bewerking is niet succesvol voltooid.</string>
   <!-- When an operation requires elevated privileged (normally caused for the use of a
@@ -103,7 +103,7 @@
   <!-- The operation will cause inconsistencies -->
   <string name="msgs_unresolved_inconsistencies">Deze bewerking is niet toegestaan omdat het inconsistenties zal veroorzaken.</string>
   <!-- Operation not permitted in current directory -->
-  <string name="msgs_operation_not_allowed_in_current_directory">Deze bewerking is niet toegestaan in de huidige map.</string>
+  <string name="msgs_operation_not_allowed_in_current_directory">Deze bewerking is niet toegestaan in de huidige map.\n\nDe doelmap kan niet hetzelfde zijn als of een submap zijn van de bron.</string>
 
   <!-- The advice message prior to exit the application -->
   <string name="msgs_push_again_to_exit">Tik nogmaals om af te sluiten.</string>
@@ -131,9 +131,9 @@
   <!-- ActionBar Buttons * FileSystem -->
   <string name="actionbar_button_filesystem_cd">Bestandssysteeminfo</string>
   <!-- ActionBar Buttons * Sort Mode -->
-  <string name="actionbar_button_sort_mode_cd">Sorteermodus</string>
+  <string name="actionbar_button_sort_mode_cd">Sortering</string>
   <!-- ActionBar Buttons * Layout Mode -->
-  <string name="actionbar_button_layout_mode_cd">Indelingsmodus</string>
+  <string name="actionbar_button_layout_mode_cd">Indeling</string>
   <!-- ActionBar Buttons * Other View Options -->
   <string name="actionbar_button_other_view_options_cd">Andere beeldopties</string>
   <!-- ActionBar Buttons * Done -->
@@ -147,7 +147,7 @@
   <!-- ActionBar Buttons * Search -->
   <string name="actionbar_button_search_cd">Zoeken</string>
   <!-- ActionBar Buttons * Overflow -->
-  <string name="actionbar_button_overflow_cd">Meer opties</string>
+  <string name="actionbar_button_overflow_cd">Meer\u2026</string>
   <!-- ActionBar Buttons * Storage volumes -->
   <string name="actionbar_button_storage_cd">Opslagvolumes</string>
   <!-- ActionBar Buttons * Save -->
@@ -266,6 +266,14 @@
     <item quantity="one">1 bestand</item>
     <item quantity="other"><xliff:g id="files">%1$d</xliff:g> bestanden</item>
   </plurals>
+  <!-- Fso Properties Dialog * Skip media scan -->
+  <string name="fso_properties_dialog_include_in_media_scan">Mediascan overslaan:</string>
+  <string name="fso_failed_to_allow_media_scan">Kan mediascan niet toestaan</string>
+  <string name="fso_failed_to_prevent_media_scan">Kan mediascan niet blokkeren</string>
+  <string name="fso_delete_nomedia_dir_title">.nomedia-map verwijderen</string>
+  <string name="fso_delete_nomedia_dir_body">Deze map bevat een .nomedia-map.\n\nWeet u zeker dat u deze, en de inhoud ervan, wilt verwijderen?</string>
+  <string name="fso_delete_nomedia_non_empty_title">.nomedia-bestand verwijderen</string>
+  <string name="fso_delete_nomedia_non_empty_body">Deze map bevat een .nomedia-bestand dat niet leeg is.\n\nWeet u zeker dat u het wilt verwijderen?</string>
 
   <!-- History * History activity title -->
   <string name="history">Geschiedenis</string>
@@ -411,9 +419,9 @@
   <!-- Actions Dialog * Menu * Deselect -->
   <string name="actions_menu_deselect">Deselecteren</string>
   <!-- Actions Dialog * Menu * Paste selection -->
-  <string name="actions_menu_paste_selection">Selectie plakken</string>
+  <string name="actions_menu_paste_selection">Selectie hier plakken</string>
   <!-- Actions Dialog * Menu * Move selection -->
-  <string name="actions_menu_move_selection">Selectie verplaatsen</string>
+  <string name="actions_menu_move_selection">Selectie hier verplaatsen</string>
   <!-- Actions Dialog * Menu * Delete selection -->
   <string name="actions_menu_delete_selection">Selectie verwijderen</string>
   <!-- Actions Dialog * Menu * Compress selection -->
@@ -428,6 +436,8 @@
   <string name="actions_menu_execute">Uitvoeren</string>
   <!-- Actions Dialog * Menu * Send -->
   <string name="actions_menu_send">Verzenden</string>
+  <!-- Actions Dialog * Menu * Send selection -->
+  <string name="actions_menu_send_selection">Selectie verzenden</string>
   <!-- Actions Dialog * Menu * Compress -->
   <string name="actions_menu_compress">Comprimeren</string>
   <!-- Actions Dialog * Menu * Extract -->
@@ -536,13 +546,15 @@
   <!-- Preferences title -->
   <string name="pref">Instellingen</string>
   <!-- Preferences * General title -->
-  <string name="pref_general">Algemene instellingen</string>
+  <string name="pref_general">Algemeen</string>
   <!-- Preferences * Search title -->
-  <string name="pref_search">Zoekinstellingen</string>
+  <string name="pref_search">Zoeken</string>
+  <!-- Preferences * Themes title -->
+  <string name="pref_themes">Thema\'s</string>
   <!-- Preferences * About title -->
   <string name="pref_about">Over</string>
   <!-- Preferences * About summary -->
-  <string name="pref_about_summary">Bestandsbeheerder v<xliff:g id="version">%1$s</xliff:g>\nCopyright \u00A9 2012 Het CyanogenMod-project</string>
+  <string name="pref_about_summary">Bestandsbeheerder v<xliff:g id="version">%1$s</xliff:g>\nCopyright \u00A9 2012-2013 Het CyanogenMod-project</string>
 
   <!-- Preferences * General * Behaviour category -->
   <string name="pref_general_behaviour_category">Algemeen</string>
@@ -606,9 +618,26 @@
   <string name="pref_remove_saved_search_terms_summary">Tik om alle opgeslagen zoektermen te verwijderen</string>
   <!-- Preferences * Search * Suggestions were truncated -->
   <string name="pref_remove_saved_search_terms_msg">Alle opgeslagen zoektermen zijn verwijderd.</string>
+  <!-- Preferences * Themes * Themes selection category -->
+  <string name="pref_themes_selection_category">Thema\'s</string>
+  <!-- Preferences * Themes * Set theme button -->
+  <string name="pref_themes_set_theme">Thema instellen</string>
+  <!-- Preferences * Themes * No preview -->
+  <string name="pref_themes_no_preview">Geen voorbeeld\nbeschikbaar</string>
+  <!-- Preferences * Themes * Confirmation message -->
+  <string name="pref_themes_confirmation">Thema succesvol toegepast</string>
+  <!-- Preferences * Themes * Theme not found message -->
+  <string name="pref_themes_not_found">Kan thema niet vinden</string>
 
   <!-- Preferences * Debug * Capture debug traces -->
   <string name="pref_debug_traces">Foutopsporingsinformatie opslaan</string>
+
+  <!-- Themes * Default theme name -->
+  <string name="theme_default_name">Licht thema</string>
+  <!-- Themes * Default theme description -->
+  <string name="theme_default_description">Lichte kleuren voor de bestandsbeheerder</string>
+  <!-- Themes * Default theme author -->
+  <string name="themes_author">CyanogenMod</string>
 
   <!-- Security * Extract relative or absolute files -->
   <string name="security_warning_extract">Let op!\n\nHet uitpakken van een gecomprimeerd bestand met relatieve/absolute paden kan systeembestanden overschrijven en daardoor schadelijk zijn voor uw apparaat.\n\nWeet u zeker dat u wilt doorgaan?</string>
@@ -619,14 +648,6 @@
   <!-- Welcome Dialog * Title -->
   <string name="welcome_title">Welkom</string>
   <!-- Welcome Dialog * Message -->
-  <string name="welcome_msg">Welkom bij de bestandsbeheerder van CyanogenMod\n\nHiermee kunt u het bestandssystem bekijken en bewerkingen uitvoeren die schadelijk kunnen zijn voor uw apparaat. Om dit te voorkomen opent de app in een veilige modus zonder machtigingen.\n\nU kunt naar de geavanceerde modus met volledige machtigingen gaan via Instellingen. De bewerkingen die u uitvoert gebeuren op eigen verantwoordelijkheid.\n\nDe ontwikkelaars van CyanogenMod.\n</string>
+  <string name="welcome_msg">Welkom bij de bestandsbeheerder van CyanogenMod\n\nHiermee kunt u uw bestandssysteem bekijken en bewerkingen uitvoeren die schadelijk kunnen zijn voor uw apparaat. Om dit te voorkomen opent de app in een veilige modus zonder machtigingen.\n\nU kunt naar de geavanceerde modus met volledige machtigingen gaan via Instellingen. De bewerkingen die u uitvoert gebeuren op eigen verantwoordelijkheid.\n\nHet CyanogenMod-project\n</string>
 
-  <string name="pref_themes_selection_category">Thema\'s</string>
-  <string name="pref_themes_set_theme">Thema instellen</string>
-  <string name="pref_themes_no_preview">Geen voorbeeld\nbeschikbaar</string>
-  <string name="pref_themes_confirmation">Thema succesvol toegepast</string>
-  <string name="pref_themes_not_found">Kan thema niet vinden</string>
-  <string name="theme_default_name">Licht thema</string>
-  <string name="theme_default_description">Lichte kleuren voor de bestandsbeheerder</string>
-  <string name="themes_author">CyanogenMod</string>
 </resources>

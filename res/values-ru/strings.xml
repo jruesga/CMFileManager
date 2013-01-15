@@ -139,6 +139,9 @@
   <string name="fso_properties_dialog_link">Ссылка:</string>
   <string name="fso_properties_dialog_size">Размер:</string>
   <string name="fso_properties_dialog_contains">Содержит:</string>
+  <string name="fso_properties_dialog_last_accessed_date">Доступ:</string>
+  <string name="fso_properties_dialog_last_modified_date">Модифиц.:</string>
+  <string name="fso_properties_dialog_last_changed_date">Изменено:</string>
   <string name="fso_properties_dialog_owner">Владелец:</string>
   <string name="fso_properties_dialog_group">Группа:</string>
   <string name="fso_properties_dialog_others">Другое:</string>
@@ -152,6 +155,14 @@
     <item quantity="one">1 файл</item>
     <item quantity="other"><xliff:g id="files">%1$d</xliff:g> файл(-ов,-а)</item>
   </plurals>
+
+  <string name="fso_properties_dialog_include_in_media_scan">Исключить поиск медиа:</string>
+  <string name="fso_failed_to_allow_media_scan">Не удалось произвести поиск медиа файлов</string>
+  <string name="fso_failed_to_prevent_media_scan">Не удалось отменить поиск медиа файлов</string>
+  <string name="fso_delete_nomedia_dir_title">Удалить каталог .nomedia</string>
+  <string name="fso_delete_nomedia_dir_body">Этот каталог содержит .nomedia.\n\nВы действительно хотите удалить его со всем содержимым?</string>
+  <string name="fso_delete_nomedia_non_empty_title">Удалить файл .nomedia</string>
+  <string name="fso_delete_nomedia_non_empty_body">Этот каталог содержит файл .nomedia.\n\nВы действительно хотите удалить его?</string>
 
   <string name="history">История</string>
   <string name="msgs_history_empty">История пуста</string>

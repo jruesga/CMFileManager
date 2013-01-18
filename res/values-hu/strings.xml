@@ -433,6 +433,8 @@
     <string name="actions_menu_execute">Futtatás</string>
     <!-- Actions Dialog * Menu * Send -->
     <string name="actions_menu_send">Küldés</string>
+    <!-- Actions Dialog * Menu * Send selection -->
+    <string name="actions_menu_send_selection">Kijelöltek küldése</string>
     <!-- Actions Dialog * Menu * Compress -->
     <string name="actions_menu_compress">Tömörítés</string>
     <!-- Actions Dialog * Menu * Extract -->

@@ -271,7 +271,7 @@
     <string name="pref_general_behaviour_category">Geral</string>
     <string name="pref_case_sensitive_sort">Usar ordenação sensível a maiúsculas/minúsculas</string>
     <string name="pref_disk_usage_warning_level">Aviso sobre o uso do disco</string>
-    <string name="pref_disk_usage_warning_level_summary" formatted="false">Exibir uma cor diferente nos widgets de uso de disco quando chegar a <xliff:g id="level" xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">%1$s</xliff:g> porcentos de espaço disponível</string>
+    <string name="pref_disk_usage_warning_level_summary" formatted="false">Exibir uma cor diferente nos widgets de uso de disco quando chegar a <xliff:g id="level" xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">%1$s</xliff:g> porcento de espaço disponível</string>
     <string name="pref_compute_folder_statistics">Gerar estatísticas da pasta</string>
     <string name="pref_compute_folder_statistics_on">Aviso! A computação das estatísticas da pasta gasta tempo e recursos do sistema</string>
     <string name="pref_use_flinger">Usar gestos</string>
@@ -322,4 +322,5 @@
     <string name="fso_delete_nomedia_dir_body">Este diretório contém um diretório .nomedia.\n\nVocê deseja removê-lo e todo seu conteúdo?</string>
     <string name="fso_delete_nomedia_non_empty_title">Remover arquivo .nomedia</string>
     <string name="fso_delete_nomedia_non_empty_body">Este diretório contém um arquivo .nomedia não vazio.\n\nVocê deseja removê-lo?</string>
+    <string name="actions_menu_send_selection">Enviar seleção</string>
 </resources>

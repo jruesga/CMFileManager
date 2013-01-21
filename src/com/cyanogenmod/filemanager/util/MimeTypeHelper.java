@@ -292,6 +292,11 @@ public final class MimeTypeHelper {
             loadMimeTypes(context);
         }
 
+        //Directories don't have a mime type
+        if (FileHelper.isDirectory(fso)) {
+            return null;
+        }
+
         //Get the extension and delivery
         String ext = FileHelper.getExtension(fso);
         if (ext != null) {

@@ -683,6 +683,15 @@ public final class FileHelper {
                     }
                     break;
 
+                case DIRECTORY_ONLY_RESTRICTION:
+                    if (value instanceof Boolean) {
+                        Boolean directoryOnly = (Boolean) value;
+                        if (directoryOnly.booleanValue() && !FileHelper.isDirectory(fso)) {
+                            return false;
+                        }
+                    }
+                    break;
+
                 case LOCAL_FILESYSTEM_ONLY_RESTRICTION:
                     if (value instanceof Boolean) {
                         Boolean localOnly = (Boolean)value;

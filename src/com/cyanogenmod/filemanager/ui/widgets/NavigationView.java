@@ -67,6 +67,7 @@ import com.cyanogenmod.filemanager.util.ExceptionUtil.OnRelaunchCommandResult;
 import com.cyanogenmod.filemanager.util.FileHelper;
 import com.cyanogenmod.filemanager.util.StorageHelper;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -121,6 +122,18 @@ public class NavigationView extends RelativeLayout implements
          * @param item The item choose
          */
         void onFilePicked(FileSystemObject item);
+    }
+
+    /**
+     * An interface to communicate a change of the current directory
+     */
+    public interface OnDirectoryChangedListener {
+        /**
+         * Method invoked when the current directory changes
+         *
+         * @param item The newly active directory
+         */
+        void onDirectoryChanged(FileSystemObject item);
     }
 
     /**
@@ -205,6 +218,7 @@ public class NavigationView extends RelativeLayout implements
     private OnNavigationSelectionChangedListener mOnNavigationSelectionChangedListener;
     private OnNavigationRequestMenuListener mOnNavigationRequestMenuListener;
     private OnFilePickedListener mOnFilePickedListener;
+    private OnDirectoryChangedListener mOnDirectoryChangedListener;
 
     private boolean mChRooted;
 
@@ -476,6 +490,16 @@ public class NavigationView extends RelativeLayout implements
      */
     public void setOnFilePickedListener(OnFilePickedListener onFilePickedListener) {
         this.mOnFilePickedListener = onFilePickedListener;
+    }
+
+    /**
+     * Method that sets the listener for directory changes
+     *
+     * @param onDirectoryChangedListener The listener reference
+     */
+    public void setOnDirectoryChangedListener(
+            OnDirectoryChangedListener onDirectoryChangedListener) {
+        this.mOnDirectoryChangedListener = onDirectoryChangedListener;
     }
 
     /**
@@ -991,7 +1015,10 @@ public class NavigationView extends RelativeLayout implements
 
             //The current directory is now the "newDir"
             this.mCurrentDir = newDir;
-
+            if (this.mOnDirectoryChangedListener != null) {
+                FileSystemObject dir = FileHelper.createFileSystemObject(new File(newDir));
+                this.mOnDirectoryChangedListener.onDirectoryChanged(dir);
+            }
         } finally {
             //If calling activity is search, then save the search history
             if (searchInfo != null) {

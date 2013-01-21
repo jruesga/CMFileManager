@@ -44,6 +44,7 @@
   <string name="no">No</string>
   <string name="all">All</string>
   <string name="overwrite">Overwrite</string>
+  <string name="select">Select</string>
 
   <!-- The root directory name -->
   <string name="root_directory_name"><![CDATA[<Root folder>]]></string>
@@ -362,6 +363,7 @@
   <string name="picker" translatable="false">@string/app_name</string>
   <!-- Picker Activity * Dialog title -->
   <string name="picker_title">Pick a file</string>
+  <string name="directory_picker_title">Pick a directory</string>
 
   <!-- Editor * Editor activity title -->
   <string name="editor">Editor</string>

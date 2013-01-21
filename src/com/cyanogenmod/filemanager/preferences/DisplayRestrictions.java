@@ -33,6 +33,10 @@ public enum DisplayRestrictions {
      */
     SIZE_RESTRICTION,
     /**
+     * Restriction for display only directories
+     */
+    DIRECTORY_ONLY_RESTRICTION,
+    /**
      * Restriction for display only files from the local file system. Avoid remote files.
      */
     LOCAL_FILESYSTEM_ONLY_RESTRICTION

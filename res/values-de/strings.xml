@@ -36,6 +36,7 @@
     <string name="no">Nein</string>
     <string name="all">Alle</string>
     <string name="overwrite">Überschreiben</string>
+    <string name="select">Auswählen</string>
 
     <!-- Root directory name -->
     <string name="root_directory_name"><![CDATA[<Wurzelverzeichnis>]]></string>
@@ -209,6 +210,7 @@
 
     <!-- Picker activity -->
     <string name="picker_title">Datei wählen</string>
+    <string name="directory_picker_title">Verzeichnis wählen</string>
 
     <!-- Editor -->
     <string name="editor">Editor</string>

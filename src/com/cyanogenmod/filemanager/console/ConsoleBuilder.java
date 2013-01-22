@@ -94,13 +94,6 @@ public final class ConsoleBuilder {
                 return null;
             }
             createDefaultConsole(context);
-        } else {
-            // Need to change the console? Is the appropriate console for the current mode?
-            if (FileManagerApplication.getAccessMode().
-                    compareTo(AccessMode.ROOT) == 0 && !isPrivileged()) {
-                // Force to change the console
-                createDefaultConsole(context);
-            }
         }
         return sHolder.getConsole();
     }
@@ -402,18 +395,6 @@ public final class ConsoleBuilder {
             // Rethrow the exception
             throw caEx;
         }
-    }
-
-    /**
-     * Method that returns if the current console is a privileged console
-     *
-     * @return boolean If the current console is a privileged console
-     */
-    public static boolean isAlloc() {
-        if (sHolder != null && sHolder.getConsole() != null) {
-            return true;
-        }
-        return false;
     }
 
     /**

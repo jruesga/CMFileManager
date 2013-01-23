@@ -428,11 +428,7 @@ public class EditorActivity extends Activity implements TextWatcher {
      */
     private boolean initializeConsole() {
         try {
-            // Is there a console allocate
-            if (!ConsoleBuilder.isAlloc()) {
-                // Create a console
-                ConsoleBuilder.getConsole(this);
-            }
+            ConsoleBuilder.createDefaultConsole(this);
             // There is a console allocated. Use it.
             return true;
         } catch (Throwable _throw) {

@@ -305,11 +305,8 @@ public class PickerActivity extends Activity
      */
     private boolean initializeConsole() {
         try {
-            // Is there a console allocate
-            if (!ConsoleBuilder.isAlloc()) {
-                // Create a ChRooted console
-                ConsoleBuilder.createDefaultConsole(this, false, false);
-            }
+            // Create a ChRooted console
+            ConsoleBuilder.createDefaultConsole(this, false, false);
             // There is a console allocated. Use it.
             return true;
         } catch (Throwable _throw) {

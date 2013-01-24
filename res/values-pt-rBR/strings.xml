@@ -323,4 +323,6 @@
     <string name="fso_delete_nomedia_non_empty_title">Remover arquivo .nomedia</string>
     <string name="fso_delete_nomedia_non_empty_body">Este diretório contém um arquivo .nomedia não vazio.\n\nVocê deseja removê-lo?</string>
     <string name="actions_menu_send_selection">Enviar seleção</string>
+    <string name="select">Selecionar</string>
+    <string name="directory_picker_title">Escolha um diretório</string>
 </resources>

@@ -23,6 +23,7 @@
   <string name="no">No</string>
   <string name="all">Todo</string>
   <string name="overwrite">Sobrescribir</string>
+  <string name="select">Seleccionar</string>
   <string name="search_result_name">Buscar: <xliff:g id="terms">%1$s</xliff:g></string>
   <string name="loading_message">Cargando\u2026</string>
   <string name="cancelled_message">Cancelado</string>
@@ -158,6 +159,7 @@
   <string name="searching">Por favor, espere\u2026</string>
   <string name="searching_action_label">Búsqueda en progreso</string>
   <string name="picker_title">Seleccionar archivo</string>
+  <string name="directory_picker_title">Seleccionar carpeta</string>
   <string name="editor">Editor</string>
   <string name="editor_invalid_file_msg">Archivo inválido.</string>
   <string name="editor_file_not_found_msg">Archivo no encontrado.</string>

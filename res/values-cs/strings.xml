@@ -35,6 +35,7 @@
   <string name="no">Ne</string>
   <string name="all">Všechny</string>
   <string name="overwrite">Přepsat</string>
+  <string name="select">Vybrat</string>
 
   <!-- The root directory name -->
   <string name="root_directory_name"><![CDATA[<Kořenová složka>]]></string>
@@ -255,6 +256,11 @@
   <string name="fso_properties_dialog_size">Velikost:</string>
   <!-- Fso Properties Dialog * Contains Label -->
   <string name="fso_properties_dialog_contains">Obsah:</string>
+  <string name="fso_properties_dialog_last_accessed_date">Otevřeno:</string>
+  <!-- Fso Properties Dialog * Last Modified Time Label -->
+  <string name="fso_properties_dialog_last_modified_date">Upraveno:</string>
+  <!-- Fso Properties Dialog * Last Changed Time -->
+  <string name="fso_properties_dialog_last_changed_date">Změněno:</string>
   <!-- Fso Properties Dialog * Owner Label -->
   <string name="fso_properties_dialog_owner">Vlastník:</string>
   <!-- Fso Properties Dialog * Group Label -->
@@ -276,6 +282,13 @@
     <item quantity="few"><xliff:g id="files">%1$d</xliff:g> soubory</item>
     <item quantity="other"><xliff:g id="files">%1$d</xliff:g> souborů</item>
   </plurals>
+  <string name="fso_properties_dialog_include_in_media_scan">Přeskočit skenování médií:</string>
+  <string name="fso_failed_to_allow_media_scan">Povolování skenování médií selhalo</string>
+  <string name="fso_failed_to_prevent_media_scan">Zakazování skenování médií selhalo</string>
+  <string name="fso_delete_nomedia_dir_title">Smazat složku .nomedia</string>
+  <string name="fso_delete_nomedia_dir_body">Tato složka obsahuje složku .nomedia.\n\nChcete ji smazat včetně jejího obsahu?</string>
+  <string name="fso_delete_nomedia_non_empty_title">Smazat soubor .nomedia</string>
+  <string name="fso_delete_nomedia_non_empty_body">Tato složka obsahuje neprázdný soubor .nomedia.\n\nChcete ji smazat?</string>
 
   <!-- History * History activity title -->
   <string name="history">Historie</string>
@@ -318,6 +331,7 @@
 
   <!-- Picker Activity * Dialog title -->
   <string name="picker_title">Vyberte soubor</string>
+  <string name="directory_picker_title">Vyberte složku</string>
 
   <!-- Editor * Editor activity title -->
   <string name="editor">Editor</string>
@@ -455,6 +469,8 @@
   <string name="actions_menu_execute">Spustit</string>
   <!-- Actions Dialog * Menu * Send -->
   <string name="actions_menu_send">Odeslat</string>
+  <!-- Actions Dialog * Menu * Send selection -->
+  <string name="actions_menu_send_selection">Odeslat výběr</string>
   <!-- Actions Dialog * Menu * Compress -->
   <string name="actions_menu_compress">Komprimovat</string>
   <!-- Actions Dialog * Menu * Extract -->

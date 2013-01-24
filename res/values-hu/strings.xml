@@ -35,6 +35,7 @@
     <string name="no">Nem</string>
     <string name="all">Mind</string>
     <string name="overwrite">Felülír</string>
+    <string name="select">Kijelöl</string>
 
     <!-- The root directory name -->
     <string name="root_directory_name"><![CDATA[<Root folder>]]></string>
@@ -310,6 +311,7 @@
 
     <!-- Picker Activity * Dialog title -->
     <string name="picker_title">Válasszon fájlt</string>
+    <string name="directory_picker_title">Válasszon könyvtárat</string>
 
     <!-- Editor * Editor activity title -->
     <string name="editor">Szerkesztő</string>

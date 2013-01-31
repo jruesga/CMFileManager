@@ -31,7 +31,8 @@
   <string name="yes">Oui</string>
   <string name="no">Non</string>
   <string name="all">Tous</string>
-  <string name="overwrite">Ecraser</string>
+  <string name="overwrite">Écraser</string>
+  <string name="select">Sélectionner</string>
 
    <!-- The search result name -->
   <string name="search_result_name">Rechercher\u00A0: <xliff:g id="terms">%1$s</xliff:g></string>
@@ -307,9 +308,10 @@
 
     <!-- Picker Activity * Dialog title -->
   <string name="picker_title">Choisissez un fichier</string>
+  <string name="directory_picker_title">Choisissez un dossier</string>
 
   <!-- Editor * Editor activity title -->
-  <string name="editor">Editeur</string>
+  <string name="editor">Éditeur</string>
   <!-- Editor * Invalid file message -->
   <string name="editor_invalid_file_msg">Fichier non valide</string>
   <!-- Editor * File not found message -->
@@ -440,6 +442,8 @@
   <string name="actions_menu_execute">Exécuter</string>
   <!-- Actions Dialog * Menu * Send -->
   <string name="actions_menu_send">Envoyer</string>
+  <!-- Actions Dialog * Menu * Send selection -->
+  <string name="actions_menu_send_selection">Envoyer la sélection</string>
   <!-- Actions Dialog * Menu * Compress -->
   <string name="actions_menu_compress">Compresser</string>
   <!-- Actions Dialog * Menu * Extract -->

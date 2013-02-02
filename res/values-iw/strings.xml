@@ -36,6 +36,7 @@
   <string name="no">לא</string>
   <string name="all">הכל</string>
   <string name="overwrite">החלף</string>
+  <string name="select">בחר</string>
 
   <!-- The root directory name -->
   <string name="root_directory_name"><![CDATA[<תיקיית השורש>]]></string>
@@ -259,7 +260,7 @@
   <!-- Fso Properties Dialog * Folders -->
   <plurals name="fso_properties_dialog_folders">
     <item quantity="zero">אין תיקיות</item>
-    <item quantity="one">תיקיה אחת</item>
+    <item quantity="one">תיקייה אחת</item>
     <item quantity="other"><xliff:g id="folders">%1$d</xliff:g> תיקיות</item>
   </plurals>
   <!-- Fso Properties Dialog * Files -->
@@ -315,6 +316,7 @@
 
   <!-- Picker Activity * Dialog title -->
   <string name="picker_title">בחר קובץ</string>
+  <string name="directory_picker_title">בחר תיקייה</string>
 
   <!-- Editor * Editor activity title -->
   <string name="editor">עורך</string>
@@ -437,9 +439,9 @@
   <!-- Actions Dialog * Menu * Move selection -->
   <string name="actions_menu_move_selection">העבר את הבחירה לכאן</string>
   <!-- Actions Dialog * Menu * Delete selection -->
-  <string name="actions_menu_delete_selection">מחק את הבחירה</string>
+  <string name="actions_menu_delete_selection">מחק בחירה</string>
   <!-- Actions Dialog * Menu * Compress selection -->
-  <string name="actions_menu_compress_selection">דחוס את הבחירה</string>
+  <string name="actions_menu_compress_selection">דחוס בחירה</string>
   <!-- Actions Dialog * Menu * Create link -->
   <string name="actions_menu_create_link">צור קישור</string>
   <!-- Actions Dialog * Menu * Open -->
@@ -450,6 +452,8 @@
   <string name="actions_menu_execute">הרץ</string>
   <!-- Actions Dialog * Menu * Send -->
   <string name="actions_menu_send">שלח</string>
+  <!-- Actions Dialog * Menu * Send selection -->
+  <string name="actions_menu_send_selection">שלח בחירה</string>
   <!-- Actions Dialog * Menu * Compress -->
   <string name="actions_menu_compress">דחוס</string>
   <!-- Actions Dialog * Menu * Extract -->

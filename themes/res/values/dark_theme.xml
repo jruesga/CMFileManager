@@ -24,7 +24,7 @@
          * holo: @android:style/Theme.Holo
          * holo_light: @android:style/Theme.Holo.Light
   -->
-  <string name="dark_base_theme">holo</string>
+  <string name="dark_base_theme" translatable="false">holo</string>
 
   <!-- The image preview -->
   <drawable name="dark_theme_preview_drawable">@drawable/dark_theme_preview</drawable>

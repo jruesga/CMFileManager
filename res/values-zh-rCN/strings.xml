@@ -36,6 +36,7 @@
   <string name="no">否</string>
   <string name="all">全部</string>
   <string name="overwrite">覆盖</string>
+  <string name="select">选择</string>
 
   <!-- The root directory name -->
   <string name="root_directory_name"><![CDATA[<根目录>]]></string>
@@ -75,7 +76,7 @@
   <!-- The selected setting was not applied or stored -->
   <string name="msgs_settings_save_failure">设置无法被应用与保存.</string>
   <!-- The initial directory has an invalid or inaccessible reference -->
-  <string name="msgs_settings_invalid_initial_directory">初始文件夹 "<xliff:g id="initial_dir">%1$s</xliff:g>" 是无效的. 切换至 Root 文件夹.</string>
+  <string name="msgs_settings_invalid_initial_directory">初始文件夹 \"<xliff:g id="initial_dir">%1$s</xliff:g>\" 是无效的. 切换至 Root 文件夹.</string>
 
   <!-- Success -->
   <string name="msgs_success">操作已成功的完成.</string>
@@ -107,7 +108,7 @@
   <string name="msgs_unresolved_inconsistencies">此操作不被允许，因为它会产生不一致性.</string>
   <!-- Operation not permitted in current directory -->
   <string name="msgs_operation_not_allowed_in_current_directory">
-    此操作在当前所在的文件夹是不被允许的.</string>
+    此操作在当前所在的文件夹是不被允许的.\n\n目标文件夹不能为来源文件夹或来源的子文件夹</string>
 
   <!-- The advice message prior to exit the application -->
   <string name="msgs_push_again_to_exit">再次点击即可退出.</string>
@@ -252,6 +253,12 @@
   <string name="fso_properties_dialog_size">大小:</string>
   <!-- Fso Properties Dialog * Contains Label -->
   <string name="fso_properties_dialog_contains">包含:</string>
+  <string name="fso_properties_dialog_last_accessed_date">最后访问:</string>
+  <!-- Fso Properties Dialog * Last Modified Time Label -->
+  <string name="fso_properties_dialog_last_modified_date">最后修改:</string>
+  <!-- Fso Properties Dialog * Last Changed Time -->
+  <string name="fso_properties_dialog_last_changed_date">最后改变:</string>
+  <!-- Fso Properties Dialog * Owner Label -->
   <!-- Fso Properties Dialog * Owner Label -->
   <string name="fso_properties_dialog_owner">拥有者:</string>
   <!-- Fso Properties Dialog * Group Label -->
@@ -270,6 +277,15 @@
     <item quantity="one">1 个文件</item>
     <item quantity="other"><xliff:g id="files">%1$d</xliff:g> 个文件</item>
   </plurals>
+
+  <!-- Fso Properties Dialog * Skip media scan -->
+  <string name="fso_properties_dialog_include_in_media_scan">跳过媒体扫描:</string>
+  <string name="fso_failed_to_allow_media_scan">允许媒体扫描失败</string>
+  <string name="fso_failed_to_prevent_media_scan">防止媒体扫描失败</string>
+  <string name="fso_delete_nomedia_dir_title">删除 .nomedia 目录</string>
+  <string name="fso_delete_nomedia_dir_body">此目录包含这一个 .nomedia 目录.\n\n您确定要删除此 .nomedia 目录与它包含的所有内容吗?</string>
+  <string name="fso_delete_nomedia_non_empty_title">删除 .nomedia 文件</string>
+  <string name="fso_delete_nomedia_non_empty_body">此目录包含这一个非空白的 .nomedia 文件.\n\n您确定要删除此文件吗?</string>
 
   <!-- History * History activity title -->
   <string name="history">历史</string>
@@ -310,6 +326,7 @@
 
   <!-- Picker Activity * Dialog title -->
   <string name="picker_title">选择一个文件</string>
+  <string name="directory_picker_title">选择一个目录</string>
 
   <!-- Editor * Editor activity title -->
   <string name="editor">编辑器</string>
@@ -430,9 +447,9 @@
   <!-- Actions Dialog * Menu * Deselect -->
   <string name="actions_menu_deselect">取消选择</string>
   <!-- Actions Dialog * Menu * Paste selection -->
-  <string name="actions_menu_paste_selection">粘贴选择项</string>
+  <string name="actions_menu_paste_selection">粘贴选择项到这</string>
   <!-- Actions Dialog * Menu * Move selection -->
-  <string name="actions_menu_move_selection">移动选择项</string>
+  <string name="actions_menu_move_selection">移动选择项到这</string>
   <!-- Actions Dialog * Menu * Delete selection -->
   <string name="actions_menu_delete_selection">删除选择项</string>
   <!-- Actions Dialog * Menu * Compress selection -->
@@ -447,6 +464,8 @@
   <string name="actions_menu_execute">执行</string>
   <!-- Actions Dialog * Menu * Send -->
   <string name="actions_menu_send">发送</string>
+  <!-- Actions Dialog * Menu * Send selection -->
+  <string name="actions_menu_send_selection">发送选择项</string>
   <!-- Actions Dialog * Menu * Compress -->
   <string name="actions_menu_compress">压缩</string>
   <!-- Actions Dialog * Menu * Extract -->

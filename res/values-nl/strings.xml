@@ -35,6 +35,7 @@
   <string name="no">Nee</string>
   <string name="all">Alles</string>
   <string name="overwrite">Overschrijven</string>
+  <string name="select">Selecteren</string>
 
   <!-- The root directory name -->
   <string name="root_directory_name"><![CDATA[<Hoofdmap>]]></string>
@@ -44,14 +45,14 @@
   <!-- Loading waiting message -->
   <string name="loading_message">Laden\u2026</string>
   <!-- Cancelled message -->
-  <string name="cancelled_message">Annuleren</string>
+  <string name="cancelled_message">Geannuleerd</string>
   <!-- Error message -->
   <string name="error_message">Fout</string>
 
   <!-- Warning dialog title -->
   <string name="warning_title">Let op</string>
   <!-- Error dialog title -->
-  <string name="error_title">Fout gevonden</string>
+  <string name="error_title">Fout opgetreden</string>
   <!-- Confirm operation dialog title -->
   <string name="confirm_operation">Bewerken bevestigen</string>
   <!-- Confirm overwrite dialog title -->
@@ -77,7 +78,7 @@
   <!-- Success -->
   <string name="msgs_success">Bewerking succesvol voltooid</string>
   <!-- Unknown error -->
-  <string name="msgs_unknown">Er is een fout opgetreden. De bewerking is niet succesvol voltooid.</string>
+  <string name="msgs_unknown">Er is een fout opgetreden. De bewerking is mislukt.</string>
   <!-- When an operation requires elevated privileged (normally caused for the use of a
        non-privileged console) -->
   <string name="msgs_insufficient_permissions">Deze bewerking heeft verhoogde machtigingen nodig. Probeer naar root-toegangsmodus te schakelen.</string>
@@ -137,7 +138,7 @@
   <!-- ActionBar Buttons * Other View Options -->
   <string name="actionbar_button_other_view_options_cd">Andere beeldopties</string>
   <!-- ActionBar Buttons * Done -->
-  <string name="actionbar_button_selection_done_cd">Klaar</string>
+  <string name="actionbar_button_selection_done_cd">Gereed</string>
   <!-- ActionBar Buttons * Actions -->
   <string name="actionbar_button_actions_cd">Acties</string>
   <!-- ActionBar Buttons * History -->
@@ -313,6 +314,7 @@
 
   <!-- Picker Activity * Dialog title -->
   <string name="picker_title">Kies een bestand</string>
+  <string name="directory_picker_title">Kies een map</string>
 
   <!-- Editor * Editor activity title -->
   <string name="editor">Bewerker</string>

@@ -27,6 +27,7 @@
   <string name="no">No</string>
   <string name="all">Tutti</string>
   <string name="overwrite">Sovrascrivi</string>
+  <string name="select">Seleziona</string>
   <string name="root_directory_name"><![CDATA[<Cartella radice>]]></string>
   <string name="search_result_name">Ricerca: <xliff:g id="terms">%1$s</xliff:g></string>
   <string name="loading_message">Caricando\u2026</string>
@@ -38,18 +39,16 @@
   <string name="confirm_overwrite">Conferma sovrascrittura</string>
   <string name="confirm_deletion">Conferma cancellazione</string>
   <string name="msgs_change_to_prompt_access_mode_title">Conferma</string>
-  <string name="msgs_change_to_prompt_access_mode_msg">
-    Impossibile eseguire in modalità Root. Richiesto passaggio a modalità Safe.\n\nConfermare?</string>
-  <string name="msgs_cant_create_console">Impossibile accedere ai privilegi richiesti per eseguire la funzione.</string>
+  <string name="msgs_change_to_prompt_access_mode_msg">Impossibile eseguire in modalità Root. Richiesto passaggio a modalità Safe.\n\nConfermare?</string>
+  <string name="msgs_cant_create_console">Impossibile ottenere i privilegi richiesti per eseguire la funzione.</string>
   <string name="msgs_privileged_console_alloc_failed">Impossibile eseguire in modalità Root. Passaggio a modalità Safe.</string>
   <string name="msgs_settings_save_failure">Impossibile salvare l\'impostazione.</string>
-  <string name="msgs_settings_invalid_initial_directory">La cartella iniziale
-    "<xliff:g id="initial_dir">%1$s</xliff:g>" non è valida ed è stata sostituita con la cartella radice.</string>
+  <string name="msgs_settings_invalid_initial_directory">La cartella iniziale "<xliff:g id="initial_dir">%1$s</xliff:g>" non è valida ed è stata sostituita con la cartella radice.</string>
   <string name="msgs_success">Operazione completata con successo.</string>
   <string name="msgs_unknown">Operazione non completata a causa di un errore.</string>
   <string name="msgs_insufficient_permissions">Questa operazione richiede privilegi più elevati. Riprovare con modalità Root attivata.</string>
   <string name="msgs_file_not_found">Impossibile trovare il file o la cartella.</string>
-  <string name="msgs_command_not_found">Il comando richiesto non esiste o è non valido.</string>
+  <string name="msgs_command_not_found">Il comando richiesto non esiste o non è valido.</string>
   <string name="msgs_io_failed">Errore lettura/scrittura.</string>
   <string name="msgs_operation_timeout">Tempo esaurito per l\'operazione.</string>
   <string name="msgs_operation_failure">Operazione fallita.</string>
@@ -67,7 +66,7 @@
   <string name="parent_dir">Cartella superiore</string>
   <string name="external_storage">Memoria esterna</string>
   <string name="usb_storage">Memoria USB</string>
-  <string name="actionbar_button_filesystem_cd">Informazioni sul file system</string>
+  <string name="actionbar_button_filesystem_cd">Informazioni file system</string>
   <string name="actionbar_button_sort_mode_cd">Ordina per</string>
   <string name="actionbar_button_layout_mode_cd">Layout</string>
   <string name="actionbar_button_other_view_options_cd">Altre opzioni di visualizzazione</string>
@@ -95,7 +94,7 @@
   <string name="filesystem_info_cant_be_mounted_msg">Il file system non può essere montato/smontato.</string>
   <string name="filesystem_info_mount_not_allowed_msg">Le operazioni di montaggio file system non sono permesse in modalità Safe. Passare a modalità Root.</string>
   <string name="filesystem_info_mount_failed_msg">Montaggio del file system fallito. Alcuni file system, come le memorie SD, non possono essere montati/smontati perché sono dispositivi di sistema a sola lettura.</string>
-  <string name="filesystem_info_dialog_title">Informazioni sul file system</string>
+  <string name="filesystem_info_dialog_title">Informazioni file system</string>
   <string name="filesystem_info_dialog_tab_info">Informazioni</string>
   <string name="filesystem_info_dialog_tab_disk_usage">Utilizzo del disco</string>
   <string name="filesystem_info_dialog_status">Stato:</string>
@@ -121,6 +120,9 @@
   <string name="fso_properties_dialog_link">Link:</string>
   <string name="fso_properties_dialog_size">Dimensioni:</string>
   <string name="fso_properties_dialog_contains">Contiene:</string>
+  <string name="fso_properties_dialog_last_accessed_date">Acceduto:</string>
+  <string name="fso_properties_dialog_last_modified_date">Modificato:</string>
+  <string name="fso_properties_dialog_last_changed_date">Cambiato:</string>
   <string name="fso_properties_dialog_owner">Proprietario:</string>
   <string name="fso_properties_dialog_group">Gruppo:</string>
   <string name="fso_properties_dialog_others">Altri:</string>
@@ -134,6 +136,13 @@
     <item quantity="one">1 file</item>
     <item quantity="other"><xliff:g id="files">%1$d</xliff:g> file</item>
   </plurals>
+  <string name="fso_properties_dialog_include_in_media_scan">Salta scansione media:</string>
+  <string name="fso_failed_to_allow_media_scan">Impossibile consentire la scansione</string>
+  <string name="fso_failed_to_prevent_media_scan">Impossibile impedire la scansione</string>
+  <string name="fso_delete_nomedia_dir_title">Elimina cartella .nomedia</string>
+  <string name="fso_delete_nomedia_dir_body">Questa cartella contiene una cartella .nomedia.\n\nEliminarla insieme al contenuto?</string>
+  <string name="fso_delete_nomedia_non_empty_title">Elimina file .nomedia</string>
+  <string name="fso_delete_nomedia_non_empty_body">Questa cartella contiene un file .nomedia non vuoto.\n\nEliminarla?</string>
   <string name="history">Cronologia</string>
   <string name="msgs_history_empty">La cronologia è vuota.</string>
   <string name="msgs_history_unknown">Elemento di cronologia sconosciuto.</string>
@@ -154,12 +163,13 @@
   <string name="search_few_characters_msg">Inserire termini di ricerca troppo brevi può dar corso a una ricerca costosa in termini di tempo e risorse.\n\nContinuare?</string>
   <string name="searching">Prego attendere\u2026</string>
   <string name="searching_action_label">Ricerca in corso</string>
-  <string name="picker_title">Selezionare un file</string>
+  <string name="picker_title">Seleziona un file</string>
+  <string name="directory_picker_title">Seleziona una cartella</string>
   <string name="editor">Editor</string>
   <string name="editor_invalid_file_msg">File non valido.</string>
   <string name="editor_file_not_found_msg">File non trovato.</string>
   <string name="editor_file_exceed_size_msg">Il file è troppo grande per essere aperto in questo dispositivo.</string>
-  <string name="editor_dirty_ask_title">Confermare uscita</string>
+  <string name="editor_dirty_ask_title">Conferma uscita</string>
   <string name="editor_dirty_ask_msg">Ci sono modifiche non salvate.\n\nUscire senza salvare?</string>
   <string name="editor_successfully_saved">File salvato.</string>
   <string name="editor_read_only_mode">Il file è aperto in sola lettura.</string>
@@ -227,6 +237,7 @@
   <string name="actions_menu_open_with">Apri con</string>
   <string name="actions_menu_execute">Esegui</string>
   <string name="actions_menu_send">Invia</string>
+  <string name="actions_menu_send_selection">Invia selezionati</string>
   <string name="actions_menu_compress">Comprimi</string>
   <string name="actions_menu_extract">Estrai</string>
   <string name="actions_menu_delete">Elimina</string>
@@ -291,10 +302,10 @@
   <string name="pref_about_summary">File Manager v<xliff:g id="version">%1$s</xliff:g>
     \nCopyright \u00A9 2012 The CyanogenMod Project</string>
   <string name="pref_general_behaviour_category">Generale</string>
-  <string name="pref_case_sensitive_sort">Usa ordinamento case-sensitive</string>
+  <string name="pref_case_sensitive_sort">Ordinamento case sensitive</string>
   <string name="pref_disk_usage_warning_level">Avviso su utilizzo disco</string>
-  <string name="pref_disk_usage_warning_level_summary" formatted="false">Mostra un colore differente nei widget che mostrano l\'utilizzo del disco quando questo raggiunge <xliff:g id="level">%1$s</xliff:g> percento di spazio libero</string>
-  <string name="pref_compute_folder_statistics">Calcola statistiche sulla cartella</string>
+  <string name="pref_disk_usage_warning_level_summary" formatted="false">Mostra un colore differente nei widget che mostrano l\'utilizzo del disco quando questo raggiunge il <xliff:g id="level">%1$s</xliff:g> percento di spazio libero</string>
+  <string name="pref_compute_folder_statistics">Calcola statistiche cartella</string>
   <string name="pref_compute_folder_statistics_on">Attenzione! Il calcolo delle statistiche è costoso in termini di tempo e risorse</string>
   <string name="pref_use_flinger">Usa gesti di scorrimento</string>
   <string name="pref_use_flinger_summary">Usa gesto di scorrimento da sinistra a destra per eliminare file o cartelle.</string>
@@ -325,7 +336,7 @@
   <string name="pref_themes_no_preview">Anteprima\nnon disponibile</string>
   <string name="pref_themes_confirmation">Il tema è stato applicato con successo.</string>
   <string name="pref_themes_not_found">Tema non trovato.</string>
-  <string name="pref_debug_traces">Registra informazioni per il debug</string>
+  <string name="pref_debug_traces">Registra informazioni debug</string>
   <string name="theme_default_name">Tema chiaro</string>
   <string name="theme_default_description">Un tema chiaro per il file manager di CyanogenMod.</string>
   <string name="security_warning_extract">Attenzione!\n\nEstrarre un archivio con percorsi relativi o assoluti può danneggiare il dispositivo in quanto possono venire sovrascritti file di sistema.\n\nContinuare?</string>

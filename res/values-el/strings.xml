@@ -26,6 +26,7 @@
   <string name="no">Όχι</string>
   <string name="all">Όλα</string>
   <string name="overwrite">Αντικατάσταση</string>
+  <string name="select">Επιλογή</string>
 
   <!-- The root directory name -->
   <string name="root_directory_name"><![CDATA[<Ριζικός φάκελος>]]></string>
@@ -66,7 +67,7 @@
   <string name="msgs_settings_save_failure">Η ρύθμιση δεν μπορεί να εφαρμοστεί ή να αποθηκευθεί.</string>
   <!-- The initial directory has an invalid or inaccessible reference -->
   <string name="msgs_settings_invalid_initial_directory">Ο αρχικός φάκελος
-    "<xliff:g id="initial_dir">%1$s</xliff:g>" δεν είναι έγκυρος. Αλλαγή στο ριζικό φάκελο.</string>
+    \"<xliff:g id="initial_dir">%1$s</xliff:g>\" δεν είναι έγκυρος. Αλλαγή στο ριζικό φάκελο.</string>
 
   <!-- Success -->
   <string name="msgs_success">Η λειτουργία ολοκληρώθηκε με επιτυχία.</string>
@@ -101,7 +102,8 @@
     Η λειτουργία δεν επιτρέπεται, διότι θα δημιουργούσε προβλήματα ασυνέπειας.</string>
   <!-- Operation not permitted in current directory -->
   <string name="msgs_operation_not_allowed_in_current_directory">
-    Η λειτουργία δεν επιτρέπεται στον τρέχοντα φάκελο.</string>
+    Η λειτουργία δεν επιτρέπεται στον τρέχοντα φάκελο.\n\nΟ φάκελος προορισμού δεν μπορεί να είναι
+    υποφάκελος του αρχικού ή ο ίδιος ο αρχικός.</string>
 
   <!-- The advice message prior to exit the application -->
   <string name="msgs_push_again_to_exit">Πιέστε ξανά για έξοδο.</string>
@@ -252,6 +254,12 @@
   <string name="fso_properties_dialog_size">Μέγεθος:</string>
   <!-- Fso Properties Dialog * Contains Label -->
   <string name="fso_properties_dialog_contains">Περιέχει:</string>
+  <!-- Fso Properties Dialog * Last Accessed Time Label -->
+  <string name="fso_properties_dialog_last_accessed_date">Προσπελάστηκε:</string>
+  <!-- Fso Properties Dialog * Last Modified Time Label -->
+  <string name="fso_properties_dialog_last_modified_date">Τροποποιήθηκε:</string>
+  <!-- Fso Properties Dialog * Last Changed Time -->
+  <string name="fso_properties_dialog_last_changed_date">Αλλάχθηκε:</string>
   <!-- Fso Properties Dialog * Owner Label -->
   <string name="fso_properties_dialog_owner">Ιδιοκτήτης:</string>
   <!-- Fso Properties Dialog * Group Label -->
@@ -270,6 +278,14 @@
     <item quantity="one">1 αρχείο</item>
     <item quantity="other"><xliff:g id="files">%1$d</xliff:g> αρχεία</item>
   </plurals>
+  <!-- Fso Properties Dialog * Skip media scan -->
+  <string name="fso_properties_dialog_include_in_media_scan">Παράλειψη σάρωσης μέσων:</string>
+  <string name="fso_failed_to_allow_media_scan">Το πρόγραμμα απέτυχε να επιτρέψει τη σάρωση μέσων</string>
+  <string name="fso_failed_to_prevent_media_scan">Το πρόγραμμα απέτυχε να αποτρέψει τη σάρωση μέσων</string>
+  <string name="fso_delete_nomedia_dir_title">Διαγραφή καταλόγου .nomedia</string>
+  <string name="fso_delete_nomedia_dir_body">Αυτός ο κατάλογος περιέχει έναν κατάλογο .nomedia.\n\nΘέλετε να τον διαγράψετε μαζί με όλα τα περιεχόμενά του;</string>
+  <string name="fso_delete_nomedia_non_empty_title">Διαγραφή αρχείου .nomedia</string>
+  <string name="fso_delete_nomedia_non_empty_body">Αυτός ο κατάλογος περιέχει ένα αρχείο .nomedia που περιέχει δεδομένα.\n\nΘέλετε να το διαγράψετε;</string>
 
   <!-- History * History activity title -->
   <string name="history">Ιστορικό</string>
@@ -311,6 +327,7 @@
 
   <!-- Picker Activity * Dialog title -->
   <string name="picker_title">Επιλέξτε ένα αρχείο</string>
+  <string name="directory_picker_title">Επιλέξτε έναν κατάλογο</string>
 
   <!-- Editor * Editor activity title -->
   <string name="editor">Επεξεργασία</string>
@@ -431,9 +448,9 @@
   <!-- Actions Dialog * Menu * Deselect -->
   <string name="actions_menu_deselect">Αποεπιλογή</string>
   <!-- Actions Dialog * Menu * Paste selection -->
-  <string name="actions_menu_paste_selection">Επικόλληση επιλογής</string>
+  <string name="actions_menu_paste_selection">Επικόλληση επιλογής εδώ</string>
   <!-- Actions Dialog * Menu * Move selection -->
-  <string name="actions_menu_move_selection">Μετακίνηση επιλογής</string>
+  <string name="actions_menu_move_selection">Μετακίνηση επιλογής εδώ</string>
   <!-- Actions Dialog * Menu * Delete selection -->
   <string name="actions_menu_delete_selection">Διαγραφή επιλογής</string>
   <!-- Actions Dialog * Menu * Compress selection -->
@@ -448,6 +465,8 @@
   <string name="actions_menu_execute">Εκτέλεση</string>
   <!-- Actions Dialog * Menu * Send -->
   <string name="actions_menu_send">Αποστολή</string>
+  <!-- Actions Dialog * Menu * Send selection -->
+  <string name="actions_menu_send_selection">Αποστολή επιλογής</string>
   <!-- Actions Dialog * Menu * Compress -->
   <string name="actions_menu_compress">Συμπίεση</string>
   <!-- Actions Dialog * Menu * Extract -->

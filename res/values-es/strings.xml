@@ -228,6 +228,7 @@
   <string name="actions_menu_open_with">Abrir con</string>
   <string name="actions_menu_execute">Ejecutar</string>
   <string name="actions_menu_send">Enviar</string>
+  <string name="actions_menu_send_selection">Enviar selección</string>
   <string name="actions_menu_compress">Comprimir</string>
   <string name="actions_menu_extract">Extraer</string>
   <string name="actions_menu_delete">Borrar</string>

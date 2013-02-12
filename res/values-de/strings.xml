@@ -44,7 +44,7 @@
     <!-- Search result name -->
     <string name="search_result_name">Suche: <xliff:g id="terms">%1$s</xliff:g></string>
 
-    <string name="loading_message">Lade&#8230;</string>
+    <string name="loading_message">Lade\u2026</string>
     <string name="cancelled_message">Abgebrochen</string>
     <string name="error_message">Fehler</string>
 
@@ -103,10 +103,10 @@
     <string name="actionbar_button_save_cd">Speichern</string>
 
     <!-- Navigation view - Sort by -->
-    <string name="sort_by_name_asc">Nach Name &#9650;</string>
-    <string name="sort_by_name_desc">Nach Name &#9660;</string>
-    <string name="sort_by_date_asc">Nach Datum &#9650;</string>
-    <string name="sort_by_date_desc">Nach Datum &#9660;</string>
+    <string name="sort_by_name_asc">Nach Name \u25B2</string>
+    <string name="sort_by_name_desc">Nach Name \u25BC</string>
+    <string name="sort_by_date_asc">Nach Datum \u25B2</string>
+    <string name="sort_by_date_desc">Nach Datum \u25BC</string>
 
     <!-- Navigation view - Layout -->
     <string name="layout_icons">Symbole</string>
@@ -205,7 +205,7 @@
     <string name="search_terms"><![CDATA[<b>Terms:</b>]]> <xliff:g id="terms">%1$s</xliff:g></string>
     <string name="search_few_characters_title">Suche bestätigen</string>
     <string name="search_few_characters_msg">Da der Suchbegriff sehr kurz ist, kann die Suche sehr lange dauern.\n\nTrotzdem fortfahren?</string>
-    <string name="searching">Bitte warten&#8230;</string>
+    <string name="searching">Bitte warten\u2026</string>
     <string name="searching_action_label">Suche läuft</string>
 
     <!-- Picker activity -->
@@ -249,18 +249,18 @@
     <string name="create_new_compress_file_regexp"><xliff:g id="name">%1$s</xliff:g> - neu<xliff:g id="extension">%2$s</xliff:g></string>
 
     <!-- Waiting dialogs -->
-    <string name="waiting_dialog_msg">Führe Aktion aus&#8230;</string>
-    <string name="waiting_dialog_copying_title">Kopiere&#8230;</string>
+    <string name="waiting_dialog_msg">Führe Aktion aus\u2026</string>
+    <string name="waiting_dialog_copying_title">Kopiere\u2026</string>
     <string name="waiting_dialog_copying_msg"><![CDATA[<b>Von</b>]]> <xliff:g id="from">%1$s</xliff:g><![CDATA[<br/>]]><![CDATA[<b>Nach</b>]]> <xliff:g id="to">%2$s</xliff:g></string>
-    <string name="waiting_dialog_moving_title">Verschiebe&#8230;</string>
+    <string name="waiting_dialog_moving_title">Verschiebe\u2026</string>
     <string name="waiting_dialog_moving_msg"><![CDATA[<b>Von</b>]]> <xliff:g id="from">%1$s</xliff:g><![CDATA[<br/>]]><![CDATA[<b>Nach</b>]]> <xliff:g id="to">%2$s</xliff:g></string>
-    <string name="waiting_dialog_deleting_title">Lösche&#8230;</string>
+    <string name="waiting_dialog_deleting_title">Lösche\u2026</string>
     <string name="waiting_dialog_deleting_msg"><![CDATA[<b>File</b>]]> <xliff:g id="file">%1$s</xliff:g></string>
-    <string name="waiting_dialog_extracting_title">Entpacke&#8230;</string>
+    <string name="waiting_dialog_extracting_title">Entpacke\u2026</string>
     <string name="waiting_dialog_extracting_msg"><![CDATA[<b>File</b>]]> <xliff:g id="file">%1$s</xliff:g></string>
-    <string name="waiting_dialog_compressing_title">Komprimiere&#8230;</string>
+    <string name="waiting_dialog_compressing_title">Komprimiere\u2026</string>
     <string name="waiting_dialog_compressing_msg"><![CDATA[<b>File</b>]]> <xliff:g id="file">%1$s</xliff:g></string>
-    <string name="waiting_dialog_analizing_msg"><![CDATA[<b>Analysiere&#8230;</b>]]></string>
+    <string name="waiting_dialog_analizing_msg"><![CDATA[<b>Analysiere\u2026</b>]]></string>
     <string name="msgs_extracting_success">Das Entpacken war erfolgreich. Die Daten wurden in das Verzeichnis <xliff:g id="destination">%1$s</xliff:g>entpackt.</string>
     <string name="msgs_compressing_success">Das Komprimieren war erfolgreich. Die Daten wurden im Verzeichnis <xliff:g id="destination">%1$s</xliff:g>komprimiert.</string>
 
@@ -283,6 +283,7 @@
     <string name="actions_menu_open_with">Öffne mit</string>
     <string name="actions_menu_execute">Ausführen</string>
     <string name="actions_menu_send">Senden</string>
+    <string name="actions_menu_send_selection">Auswahl senden</string>
     <string name="actions_menu_compress">Komprimieren</string>
     <string name="actions_menu_extract">Entpacken</string>
     <string name="actions_menu_delete">Löschen</string>
@@ -364,7 +365,7 @@
     <string name="pref_search">Sucheinstellungen</string>
     <string name="pref_themes">Designs</string>
     <string name="pref_about">Über</string>
-    <string name="pref_about_summary">Dateimanager v<xliff:g id="version">%1$s</xliff:g>\nCopyright &#169; 2012 The CyanogenMod Project</string>
+    <string name="pref_about_summary">Dateimanager v<xliff:g id="version">%1$s</xliff:g>\nCopyright \u00A9 2012-2013 The CyanogenMod Project</string>
 
     <string name="pref_general_behaviour_category">Allgemein</string>
     <string name="pref_case_sensitive_sort">Groß-/Kleinschreibung berücksichtigen</string>

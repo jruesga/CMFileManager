@@ -1,0 +1,714 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (C) 2012 The CyanogenMod Project
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+ -->
+
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+
+  <!-- The name of the application -->
+  <string name="app_name">Lêerbestuurder</string>
+  <!-- The description of the application -->
+  <string name="app_description">\'n CyanogenMod Lêerbestuurder.</string>
+
+  <!-- Devices types -->
+  <string name="device_blockdevice">Block device</string>
+  <string name="device_characterdevice">Character device</string>
+  <string name="device_namedpipe">Named pipe</string>
+  <string name="device_domainsocket">Domain socket</string>
+
+  <!-- Mount Point States -->
+  <string name="mount_point_readonly">LA</string>
+  <string name="mount_point_readwrite">LS</string>
+
+  <!-- Default buttons -->
+  <string name="yes">Ja</string>
+  <string name="no">Nee</string>
+  <string name="all">Als</string>
+  <string name="overwrite">Oorskryf</string>
+
+  <!-- The root directory name -->
+  <string name="root_directory_name"><![CDATA[<Root lêergids>]]></string>
+  <!-- The search result name -->
+  <string name="search_result_name">Soek: <xliff:g id="terms">%1$s</xliff:g></string>
+
+  <!-- Loading waiting message -->
+  <string name="loading_message">Laai\u2026</string>
+  <!-- Cancelled message -->
+  <string name="cancelled_message">Gekanseleer.</string>
+  <!-- Error message -->
+  <string name="error_message">Fout.</string>
+
+  <!-- Warning dialog title -->
+  <string name="warning_title">Pasop</string>
+  <!-- Error dialog title -->
+  <string name="error_title">Fout gevind</string>
+  <!-- Confirm operation dialog title -->
+  <string name="confirm_operation">Bevestig werking</string>
+  <!-- Confirm overwrite dialog title -->
+  <string name="confirm_overwrite">Bevestig oorskryf</string>
+  <!-- Confirm deletion dialog title -->
+  <string name="confirm_deletion">Bevestig verwydering</string>
+
+  <!--  A console couldn't be created. Ask the user to change the access mode. Dialog Title -->
+  <string name="msgs_change_to_prompt_access_mode_title">Bevestig verandering</string>
+  <!--  A console couldn't be created. Ask the user to change the access mode. Dialog Message -->
+  <string name="msgs_change_to_prompt_access_mode_msg">
+    Kry nie Root toegang nie.Verander na die veilige modus.\n\nDien toe hierdie verandering></string>
+
+  <!-- A console couldn't be created. Without privileges, the application won't work -->
+  <string name="msgs_cant_create_console">Kon nie die nodige regte kry om te funksioneer nie.</string>
+  <!-- The message shown when an allocation of a privileged console fails, and a non
+       privileged is allocated -->
+  <string name="msgs_privileged_console_alloc_failed">Kry nie Root toegang nie.
+    Het verander na veilige modus.</string>
+  <!-- The selected setting was not applied or stored -->
+  <string name="msgs_settings_save_failure">Die instelling kan nie toegepas word of gestoor word nie.</string>
+  <!-- The initial directory has an invalid or inaccessible reference -->
+  <string name="msgs_settings_invalid_initial_directory">Die aanvanklike lêergids
+    \"<xliff:g id="initial_dir">%1$s</xliff:g>\" is ongeldig. Verander na root lêergids.</string>
+
+  <!-- Success -->
+  <string name="msgs_success">Die aksie was suksesvol voltooi.</string>
+  <!-- Unknown error -->
+  <string name="msgs_unknown">\'n Fout is bespeur. Die aksie was onsuksesvol.</string>
+  <!-- When an operation requires elevated privileged (normally caused for the use of a
+       non-privileged console) -->
+  <string name="msgs_insufficient_permissions">Hierdie aksie vereis verhoogde regte. Probeer
+    Root toegang.</string>
+  <!-- The file or directory was not found -->
+  <string name="msgs_file_not_found">Die lêer of gids was nie gevind nie.</string>
+  <!-- The command reference couldn't be created (not found or invalid definition)
+       (normally caused by a development error) -->
+  <string name="msgs_command_not_found">Die werking se opdrag is nie gevind nie of het \'n
+    ongeldig definisie.</string>
+  <!-- I/O exception -->
+  <string name="msgs_io_failed">Lees/skryf mislukking.</string>
+  <!-- Operation timeout detected -->
+  <string name="msgs_operation_timeout">Die werking se toelaatbare tyd het verstreke.</string>
+  <!-- The operation returns an invalid exit code -->
+  <string name="msgs_operation_failure">Die werking het misluk.</string>
+  <!-- A console couldn't be allocated -->
+  <string name="msgs_console_alloc_failure">\'n interne fout het voorgekom.</string>
+  <!-- An operation can't be cancelled -->
+  <string name="msgs_operation_can_not_be_cancelled">Die werking kan nie gekanselleer word nie.</string>
+  <!-- The operation requieres mount the file system prior to execute the command -->
+  <string name="msgs_read_only_filesystem">Die lêer stelsel is lees-aleen. Probeer om die lêerstelsel te monteer as lees-en-skryf.</string>
+  <!-- Illegal argument (normally caused by a development error when calling internal api) -->
+  <string name="msgs_illegal_argument">Onwettige argument. Aktivering het misluk.</string>
+  <!-- The operation will cause inconsistencies -->
+  <string name="msgs_unresolved_inconsistencies">
+    Die werking word nie toegelaat nie, want dit skep teenstrydighede.</string>
+  <!-- Operation not permitted in current directory -->
+  <string name="msgs_operation_not_allowed_in_current_directory">
+    Die operasie word nie toegelaat in die huidige lêergids.\n\nBestemming lêergids kan nie sublêergids
+    van bron of dieselfde as bron wees nie.</string>
+
+  <!-- The advice message prior to exit the application -->
+  <string name="msgs_push_again_to_exit">Tik weer om te beeindig.</string>
+
+  <!-- There is no registered application that can handle the mime-type -->
+  <string name="msgs_not_registered_app">Daar is geen program geregistreer om 
+    die tipe lêer oop te maak nie.</string>
+
+  <!-- Overwrite files? -->
+  <string name="msgs_overwrite_files">
+    Sommige van die lêers bestaan reeds in die teiken lêergids.\n\nOorskryf??</string>
+
+  <!-- The association of an action to the application failed -->
+  <string name="msgs_action_association_failed">Die assosieerde aksie na die
+    program het misluk..</string>
+
+  <!-- An operation requires elevated privileged. Ask the user. -->
+  <string name="advise_insufficient_permissions">Die werking vereis verhoogde regte.\n\nWil jy toegang na root verander?</string>
+
+
+  <!-- The parent directory of the current directory in navigation view -->
+  <string name="parent_dir">Ouer lêergids</string>
+  <!-- External storage descripton -->
+  <string name="external_storage">Eksterne skyf</string>
+  <!-- Usb storage descripton -->
+  <string name="usb_storage">USB skyf</string>
+
+  <!-- ActionBar Buttons * FileSystem -->
+  <string name="actionbar_button_filesystem_cd">Lêerstelsel inligting</string>
+  <!-- ActionBar Buttons * Sort Mode -->
+  <string name="actionbar_button_sort_mode_cd">Sorteer metode</string>
+  <!-- ActionBar Buttons * Layout Mode -->
+  <string name="actionbar_button_layout_mode_cd">Uitleg metode</string>
+  <!-- ActionBar Buttons * Other View Options -->
+  <string name="actionbar_button_other_view_options_cd">Ander wys opsies</string>
+  <!-- ActionBar Buttons * Done -->
+  <string name="actionbar_button_selection_done_cd">Gedeon</string>
+  <!-- ActionBar Buttons * Actions -->
+  <string name="actionbar_button_actions_cd">Aksies</string>
+  <!-- ActionBar Buttons * History -->
+  <string name="actionbar_button_history_cd">Geskiedenis</string>
+  <!-- ActionBar Buttons * Bookmarks -->
+  <string name="actionbar_button_bookmarks_cd">Boekmerke</string>
+  <!-- ActionBar Buttons * Search -->
+  <string name="actionbar_button_search_cd">Soek</string>
+  <!-- ActionBar Buttons * Overflow -->
+  <string name="actionbar_button_overflow_cd">Meer opsies</string>
+  <!-- ActionBar Buttons * Storage volumes -->
+  <string name="actionbar_button_storage_cd">Skyf volumes</string>
+  <!-- ActionBar Buttons * Save -->
+  <string name="actionbar_button_save_cd">Stoor</string>
+
+  <!-- Navigation View * Sort * Sort by name (ascending) -->
+  <string name="sort_by_name_asc">Met naam &#x25B2;</string>
+  <!-- Navigation View * Sort * Sort by name (descending) -->
+  <string name="sort_by_name_desc">Met naam &#x25BC;</string>
+  <!-- Navigation View * Sort * Sort by date (ascending) -->
+  <string name="sort_by_date_asc">Met datum &#x25B2;</string>
+  <!-- Navigation View * Sort * Sort by date (descending) -->
+  <string name="sort_by_date_desc">Met datum &#x25BC;</string>
+
+  <!-- Navigation View * Layout * Icons -->
+  <string name="layout_icons">Ikone</string>
+  <!-- Navigation View * Layout * Simple -->
+  <string name="layout_simple">Eenvoudig</string>
+  <!-- Navigation View * Layout * Details -->
+  <string name="layout_details">Besonderhede</string>
+
+  <!-- Navigation View * View * Show folders first -->
+  <string name="cm_filemanager_show_dirs_first">wys lêergidse 1ste</string>
+  <!-- Navigation View * View * Show hidden files option -->
+  <string name="cm_filemanager_show_hidden">Wys verborge lêers</string>
+  <!-- Navigation View * View * Show system files option -->
+  <string name="cm_filemanager_show_system">Wys stelsel lêers</string>
+  <!-- Navigation View * View * Show symlinks option -->
+  <string name="cm_filemanager_show_symlinks">Wys symlinks</string>
+
+  <!-- Filesystem Info (no data). Dialog title -->
+  <string name="filesystem_info_warning_title">Geen inligting</string>
+  <!-- Filesystem Info (no data). Dialog message -->
+  <string name="filesystem_info_warning_msg">Daar is geen inligting beskikbaar vir die lêerstelsel.</string>
+  <!-- Filesystem Info * Filesystem couldn't be mounted -->
+  <string name="filesystem_info_cant_be_mounted_msg">
+    Die lêer stelsel kan nie geheg word / ontheg word nie.</string>
+  <!-- Filesystem Info * Not allowed message -->
+  <string name="filesystem_info_mount_not_allowed_msg">Lêerstelsel montering werkings word nie toegelaat nie
+    in die veilige modus. Tik om toegang na root metode te verander.</string>
+  <!-- Filesystem Info * Mount failed -->
+  <string name="filesystem_info_mount_failed_msg">Lêer stelsel montering werking het misluk.
+    Sommige lêer stelsels, soos SD kaarte, kan nie geheg word/ontheg word nie omdat
+    hulle gebou is as lees-alleen lêer stelsels.</string>
+  <!-- Filesystem Info Dialog * Title -->
+  <string name="filesystem_info_dialog_title">Lêerstelsel inligting</string>
+  <!-- Filesystem Info Dialog * Tab * Info -->
+  <string name="filesystem_info_dialog_tab_info">Info</string>
+  <!-- Filesystem Info Dialog * Tab * Disk Usage -->
+  <string name="filesystem_info_dialog_tab_disk_usage">Skyf gebruik</string>
+  <!-- Filesystem Info Dialog * Status Label -->
+  <string name="filesystem_info_dialog_status">Status:</string>
+  <!-- Filesystem Info Dialog * Mount Point Label -->
+  <string name="filesystem_info_dialog_mount_point">Monterings put:</string>
+  <!-- Filesystem Info Dialog * Device Label -->
+  <string name="filesystem_info_dialog_device">Toestel:</string>
+  <!-- Filesystem Info Dialog * Type Label -->
+  <string name="filesystem_info_dialog_type">Tipe:</string>
+  <!-- Filesystem Info Dialog * Options Label -->
+  <string name="filesystem_info_dialog_options">Opsies:</string>
+  <!-- Filesystem Info Dialog * Dump/Pass Label -->
+  <string name="filesystem_info_dialog_dump_pass">Stort / Slaag:</string>
+  <!-- Filesystem Info Dialog * Total Disk Usage -->
+  <string name="filesystem_info_dialog_total_disk_usage">Totaal:</string>
+  <!-- Filesystem Info Dialog * Used Disk Usage -->
+  <string name="filesystem_info_dialog_used_disk_usage">Gebruik:</string>
+  <!-- Filesystem Info Dialog * Free Disk Usage -->
+  <string name="filesystem_info_dialog_free_disk_usage">Vry:</string>
+
+
+  <!-- Fso Properties * Not allowed message -->
+  <string name="fso_properties_permissions_not_allowed_msg">Regte veranderinge word nie toegelaat
+    in die veilige modus. Tik om toegang na root metode te verander.</string>
+  <!-- Fso Properties * Failed to change owner to fso -->
+  <string name="fso_properties_failed_to_change_owner_msg">Die verandering van die eienaar aksie het misluk.\n\n
+    Vir sekuriteit redes, laat sommige lêer stelsels, soos SD kaarte, dit toe nie.</string>
+  <!-- Fso Properties * Failed to change group to fso -->
+  <string name="fso_properties_failed_to_change_group_msg">Die verandering van die eienaar aksie het misluk.\n\n
+    Vir sekuriteit redes,laat sommige lêer stelsels, soos SD kaarte dit toe nie.</string>
+  <!-- Fso Properties * Failed to change group to fso -->
+  <string name="fso_properties_failed_to_change_permission_msg">Die verandering van regte
+    het misluk.\n\nVir sekuriteits redes, laat sommige lêer stelsels, soos SD kaarte nie die verandering toe nie.</string>
+  <!-- Fso Properties Dialog * Title -->
+  <string name="fso_properties_dialog_title">Eienskappe</string>
+  <!-- Fso Properties Dialog * Tab * Info -->
+  <string name="fso_properties_dialog_tab_info">Info</string>
+  <!-- Fso Properties Dialog * Tab * Permissions -->
+  <string name="fso_properties_dialog_tab_permissions">Toestemmings</string>
+  <!-- Fso Properties Dialog * Name Label -->
+  <string name="fso_properties_dialog_name">Naam:</string>
+  <!-- Fso Properties Dialog * Parent Folder Label -->
+  <string name="fso_properties_dialog_parent">Ouer:</string>
+  <!-- Fso Properties Dialog * Type Label -->
+  <string name="fso_properties_dialog_type">Tipe:</string>
+  <!-- Fso Properties Dialog * Category Label -->
+  <string name="fso_properties_dialog_category">Kategorie:</string>
+  <!-- Fso Properties Dialog * Link Label -->
+  <string name="fso_properties_dialog_link">Skakel:</string>
+  <!-- Fso Properties Dialog * Size Label -->
+  <string name="fso_properties_dialog_size">Grootte:</string>
+  <!-- Fso Properties Dialog * Contains Label -->
+  <string name="fso_properties_dialog_contains">Bevat:</string>
+  <!-- Fso Properties Dialog * Last Accessed Time Label -->
+  <string name="fso_properties_dialog_last_accessed_date">Verkry op:</string>
+  <!-- Fso Properties Dialog * Last Modified Time Label -->
+  <string name="fso_properties_dialog_last_modified_date">Gewysig:</string>
+  <!-- Fso Properties Dialog * Last Changed Time -->
+  <string name="fso_properties_dialog_last_changed_date">Verander het:</string>
+  <!-- Fso Properties Dialog * Owner Label -->
+  <string name="fso_properties_dialog_owner">Eienaar:</string>
+  <!-- Fso Properties Dialog * Group Label -->
+  <string name="fso_properties_dialog_group">Groepe:</string>
+  <!-- Fso Properties Dialog * Others Label -->
+  <string name="fso_properties_dialog_others">Ander:</string>
+  <!-- Fso Properties Dialog * Folders -->
+  <plurals name="fso_properties_dialog_folders">
+    <item quantity="zero">0 lêergidse</item>
+    <item quantity="one">1 lêergids</item>
+    <item quantity="other"><xliff:g id="folders">%1$d</xliff:g> lêergidse</item>
+  </plurals>
+  <!-- Fso Properties Dialog * Files -->
+  <plurals name="fso_properties_dialog_files">
+    <item quantity="zero">0 lêers</item>
+    <item quantity="one">1 lêer</item>
+    <item quantity="other"><xliff:g id="files">%1$d</xliff:g> lêers</item>
+  </plurals>
+  <!-- Fso Properties Dialog * Skip media scan -->
+  <string name="fso_properties_dialog_include_in_media_scan">Slaan oor media skandering:</string>
+  <string name="fso_failed_to_allow_media_scan">Kon nie media skandering toe laat nie</string>
+  <string name="fso_failed_to_prevent_media_scan">Kon nie verhoed dat media skandering begin nie</string>
+  <string name="fso_delete_nomedia_dir_title">Verwyder .nomedia lêergids</string>
+  <string name="fso_delete_nomedia_dir_body">Hierdie lêergids bevat \'n nomedia lêergids.\n\nWil jy dit en al die inhoud daarvan wil verwyder?</string>
+  <string name="fso_delete_nomedia_non_empty_title">Verwyder .nomedia lêer</string>
+  <string name="fso_delete_nomedia_non_empty_body">Hierdie lêergids bevat \'n nie-leë .nomedia lêer\n\nWil jy dit te verwyder?</string>
+
+  <!-- History * History activity title -->
+  <string name="history">Vorige items</string>
+  <!-- History * The history is empty -->
+  <string name="msgs_history_empty">Vorige items is leeg.</string>
+  <!-- History * The history reference is not in the actual history list -->
+  <string name="msgs_history_unknown">Onbekende vorige item.</string>
+
+  <!-- Search * Search activity title -->
+  <string name="search">Soek resultate</string>
+  <!-- Search * Search hint message -->
+  <string name="search_hint">Tik you soektog</string>
+  <!-- Search * Voice search hint message -->
+  <string name="search_voice_hint">Sê jou soektog</string>
+  <!-- Search * Search error message -->
+  <string name="search_error_msg">\'n Fout het gebeur tydens die soektog. Geen resultate is gevind nie.</string>
+  <!-- Search * Search no results message -->
+  <string name="search_no_results_msg">Geen resultate is gevind nie.</string>
+  <!-- Search * Search found items -->
+  <plurals name="search_found_items">
+    <item quantity="zero">Geen items was gevind nie</item>
+    <item quantity="one">1 item gevind</item>
+    <item quantity="other"><xliff:g id="count">%d</xliff:g> items gevind</item>
+  </plurals>
+  <!-- Search * Number of items found in directory -->
+  <string name="search_found_items_in_directory"><xliff:g id="items">%1$s</xliff:g> in
+    <xliff:g id="path">%2$s</xliff:g></string>
+  <!-- Search * Search query terms -->
+  <string name="search_terms"><![CDATA[<b>Terme:</b>]]> <xliff:g id="terms">%1$s</xliff:g></string>
+  <!-- Search * Confirm search -->
+  <string name="search_few_characters_title">Bevestig soektog</string>
+  <!-- Search * Some terms of the search are too small. The operation could be very costly -->
+  <string name="search_few_characters_msg">Sommige van van die soekterme is baie kort. Die
+    operasie kan baie lank duur en intensief wees op stelsel bronne.\n\nWil jy wil voort gaan?</string>
+  <!-- Search * Searching dialog title -->
+  <string name="searching">Wag asseblief\u2026</string>
+  <!-- Search * Searching label -->
+  <string name="searching_action_label">Besig om te soek</string>
+
+  <!-- Picker Activity * Dialog title -->
+  <string name="picker_title">Kies \'n lêer</string>
+
+  <!-- Editor * Editor activity title -->
+  <string name="editor">Notaboek</string>
+  <!-- Editor * Invalid file message -->
+  <string name="editor_invalid_file_msg">Ongeldige lêer.</string>
+  <!-- Editor * File not found message -->
+  <string name="editor_file_not_found_msg">Lêer nie gevind nie.</string>
+  <!-- Editor * File size exceed the limit -->
+  <string name="editor_file_exceed_size_msg">Die lêer is te groot om oop te maak binne die toestel.</string>
+  <!-- Editor * Editor is dirty, ask the user * Dialog title -->
+  <string name="editor_dirty_ask_title">Bevestig terminasie</string>
+  <!-- Editor * Editor is dirty, ask the user * Dialog message -->
+  <string name="editor_dirty_ask_msg">Daar is ongestoorde veranderinge\n\nTermineer sonder om te stoor?</string>
+  <!-- Editor * Save operation success -->
+  <string name="editor_successfully_saved">Die lêer is suksesvol gestoor.</string>
+  <!-- Editor * Read-only file mode -->
+  <string name="editor_read_only_mode">Die lêer was geopen in lees-alleen wyse.</string>
+
+  <!-- Bookmarks * Bookmarks activity title -->
+  <string name="bookmarks">Boekmerke</string>
+  <!-- Bookmarks * Bookmark name * Home -->
+  <string name="bookmarks_home">Tuis</string>
+  <!-- Bookmarks * Bookmark name * Root folder -->
+  <string name="bookmarks_root_folder">Hoof lêergids</string>
+  <!-- Bookmarks * Bookmark name * System folder -->
+  <string name="bookmarks_system_folder">Stelsel lêergids</string>
+  <!-- Bookmarks * Bookmark name * Button * Initial directory content description -->
+  <string name="bookmarks_button_config_cd">Stel die begin lêergids.</string>
+  <!-- Bookmarks * Bookmark name * Button * Remove bookmark content description -->
+  <string name="bookmarks_button_remove_bookmark_cd">Verwyder boekmerk.</string>
+  <!-- Bookmarks * Bookmarks * Actions * Bookmark successfully added -->
+  <string name="bookmarks_msgs_add_success">Die boekmerk was bygevoeg.</string>
+
+  <!-- Initial directory dialog title -->
+  <string name="initial_directory_dialog_title">Begin lêergids</string>
+  <!-- Initial directory label -->
+  <string name="initial_directory_label">Kie die begin lêergids:</string>
+  <!-- Initial directory is relative -->
+  <string name="initial_directory_relative_msg">Relatiewe paaie word nie toegelaat nie.</string>
+  <!-- Initial directory error message -->
+  <string name="initial_directory_error_msg">Fout met die stoor van die begin lêergids.</string>
+
+  <!-- Menu * Navigation * History -->
+  <string name="menu_history">Vorige items</string>
+  <!-- Menu * Navigation * Bookmarks -->
+  <string name="menu_bookmarks">Boekmerke</string>
+  <!-- Menu * Navigation * Search -->
+  <string name="menu_search">Soek na</string>
+  <!-- Menu * Navigation * Settings -->
+  <string name="menu_settings">Instellings</string>
+  <!-- Menu * History * Clear history -->
+  <string name="menu_clear_history">Verwyder alle geskiedenis</string>
+
+  <!-- Regular expression for create copy action -->
+  <string name="create_copy_regexp">
+    <xliff:g id="name">%1$s</xliff:g> - kopieer<xliff:g id="extension">%2$s</xliff:g></string>
+  <!-- Regular expression for new compressed file -->
+  <string name="create_new_compress_file_regexp">
+    <xliff:g id="name">%1$s</xliff:g> - nuut<xliff:g id="extension">%2$s</xliff:g></string>
+
+  <!-- Waiting dialog * Performing operation message -->
+  <string name="waiting_dialog_msg">Besig\u2026</string>
+  <!-- Waiting dialog * Copying title -->
+  <string name="waiting_dialog_copying_title">Kopiëring\u2026</string>
+  <!-- Waiting dialog * Copying message -->
+  <string name="waiting_dialog_copying_msg">
+    <![CDATA[<b>Van</b>]]> <xliff:g id="from">%1$s</xliff:g><![CDATA[<br/>]]>
+    <![CDATA[<b>Na</b>]]> <xliff:g id="to">%2$s</xliff:g></string>
+  <!-- Waiting dialog * Moving title -->
+  <string name="waiting_dialog_moving_title">Skuif\u2026</string>
+  <!-- Waiting dialog * Moving message -->
+  <string name="waiting_dialog_moving_msg">
+    <![CDATA[<b>From</b>]]> <xliff:g id="from">%1$s</xliff:g><![CDATA[<br/>]]>
+    <![CDATA[<b>To</b>]]> <xliff:g id="to">%2$s</xliff:g></string>
+  <!-- Waiting dialog * Deleting title -->
+  <string name="waiting_dialog_deleting_title">Verwyder\u2026</string>
+  <!-- Waiting dialog * Deleting message -->
+  <string name="waiting_dialog_deleting_msg">
+    <![CDATA[<b>Lêer</b>]]> <xliff:g id="file">%1$s</xliff:g></string>
+  <!-- Waiting dialog * Extracting title -->
+  <string name="waiting_dialog_extracting_title">Onttrek\u2026</string>
+  <!-- Waiting dialog * Extracting message -->
+  <string name="waiting_dialog_extracting_msg">
+    <![CDATA[<b>Lêer</b>]]> <xliff:g id="file">%1$s</xliff:g></string>
+  <!-- Waiting dialog * Extracting title -->
+  <string name="waiting_dialog_compressing_title">Verklein\u2026</string>
+  <!-- Waiting dialog * Extracting message -->
+  <string name="waiting_dialog_compressing_msg">
+    <![CDATA[<b>Lêer</b>]]> <xliff:g id="file">%1$s</xliff:g></string>
+  <!-- Waiting dialog * Initializing the dialog -->
+  <string name="waiting_dialog_analizing_msg">
+    <![CDATA[<b>Ontleding van\u2026</b>]]></string>
+  <!-- Extracting * Success message -->
+  <string name="msgs_extracting_success">
+    Die onttrek aksie was suksesvol afgehandel. Die data was onttrek
+    <xliff:g id="destination">%1$s</xliff:g>.</string>
+  <!-- Compressing * Success message -->
+  <string name="msgs_compressing_success">
+    Die verklein aksie was suksesvol afgehandel. Die data is saamgepers tot
+    <xliff:g id="destination">%1$s</xliff:g>.</string>
+
+  <!-- Actions Dialog * Title -->
+  <string name="actions_dialog_title">Aksies</string>
+  <!-- Actions Dialog * Menu * Properties of current folder -->
+  <string name="actions_menu_properties_current_folder">Eienskappe</string>
+  <!-- Actions Dialog * Menu * Refresh -->
+  <string name="actions_menu_refresh">Herlaai</string>
+  <!-- Actions Dialog * Menu * New directory -->
+  <string name="actions_menu_new_directory">Nuwe lêergids</string>
+  <!-- Actions Dialog * Menu * New file -->
+  <string name="actions_menu_new_file">Nuwe lêer</string>
+  <!-- Actions Dialog * Menu * Select all -->
+  <string name="actions_menu_select_all">Kies alles</string>
+  <!-- Actions Dialog * Menu * Deselect all -->
+  <string name="actions_menu_deselect_all">Deselekteer alles</string>
+  <!-- Actions Dialog * Menu * Select -->
+  <string name="actions_menu_select">Kies</string>
+  <!-- Actions Dialog * Menu * Deselect -->
+  <string name="actions_menu_deselect">Deselekteer</string>
+  <!-- Actions Dialog * Menu * Paste selection -->
+  <string name="actions_menu_paste_selection">Plak</string>
+  <!-- Actions Dialog * Menu * Move selection -->
+  <string name="actions_menu_move_selection">Skuif</string>
+  <!-- Actions Dialog * Menu * Delete selection -->
+  <string name="actions_menu_delete_selection">Verwyder</string>
+  <!-- Actions Dialog * Menu * Compress selection -->
+  <string name="actions_menu_compress_selection">Verlklein</string>
+  <!-- Actions Dialog * Menu * Create link -->
+  <string name="actions_menu_create_link">Skep skakel</string>
+  <!-- Actions Dialog * Menu * Open -->
+  <string name="actions_menu_open">Oop</string>
+  <!-- Actions Dialog * Menu * Open with -->
+  <string name="actions_menu_open_with">Maak oop met</string>
+  <!-- Actions Dialog * Menu * Execute -->
+  <string name="actions_menu_execute">Hardloop</string>
+  <!-- Actions Dialog * Menu * Send -->
+  <string name="actions_menu_send">Stuur</string>
+  <!-- Actions Dialog * Menu * Send selection -->
+  <string name="actions_menu_send_selection">Stuur</string>
+  <!-- Actions Dialog * Menu * Compress -->
+  <string name="actions_menu_compress">Verklein</string>
+  <!-- Actions Dialog * Menu * Extract -->
+  <string name="actions_menu_extract">Onttrek</string>
+  <!-- Actions Dialog * Menu * Delete -->
+  <string name="actions_menu_delete">Verwyder</string>
+  <!-- Actions Dialog * Menu * Rename -->
+  <string name="actions_menu_rename">Hernoem</string>
+  <!-- Actions Dialog * Menu * Create copy -->
+  <string name="actions_menu_create_copy">Skep kopie</string>
+  <!-- Actions Dialog * Menu * Properties -->
+  <string name="actions_menu_properties">Eienskappe</string>
+  <!-- Actions Dialog * Menu * Add to bookmarks -->
+  <string name="actions_menu_add_to_bookmarks">Voeg by boekmerke</string>
+  <!-- Actions Dialog * Menu * Add shortcut -->
+  <string name="actions_menu_add_shortcut">Voeg kortpad</string>
+  <!-- Actions Dialog * Menu * Open parent folder -->
+  <string name="actions_menu_open_parent_folder">Maak oop ouer</string>
+
+  <!-- Actions * Ask user prior to do an undone operation. Dialog message -->
+  <string name="actions_ask_undone_operation_msg">
+    Hierdie aksie kan nie ongedaan gemaak word nie. Wil jy graag voort gaan?</string>
+
+  <!-- Enter Name Dialog * Label -->
+  <string name="input_name_dialog_label">Naam:</string>
+  <!-- Enter Name Dialog * Message * Empty name -->
+  <string name="input_name_dialog_message_empty_name">Die naam kan nie leeg wees nie.</string>
+  <!-- Enter Name Dialog * Message * Invalid name -->
+  <string name="input_name_dialog_message_invalid_path_name">Ongeldige naam. Die karakters
+    \'<xliff:g id="invalid_characters">%1$s</xliff:g>\' word nie toegelaat nie.</string>
+  <!-- Enter Name Dialog * Message * Invalid name -->
+  <string name="input_name_dialog_message_invalid_name">Ongeldige naam. Die karakter \'.\' en
+    \'..\' word nie toegelaat nie.</string>
+  <!-- Enter Name Dialog * Message * Name exists -->
+  <string name="input_name_dialog_message_name_exists">Die naam bestaan alreeds.</string>
+
+  <!-- Associations Dialog * Title -->
+  <string name="associations_dialog_title">Aassosiasies</string>
+  <!-- Associations Dialog * Remember the user action -->
+  <string name="associations_dialog_remember">Onthou keuse</string>
+  <!-- Associations Dialog * Open with Title -->
+  <string name="associations_dialog_openwith_title">Maak oop met</string>
+    <!-- Associations Dialog * Open action (button title) -->
+  <string name="associations_dialog_openwith_action">Maak oop</string>
+  <!-- Associations Dialog * Send with Title -->
+  <string name="associations_dialog_sendwith_title">Stuur met</string>
+    <!-- Associations Dialog * Send action (button title) -->
+  <string name="associations_dialog_sendwith_action">Stuur</string>
+
+  <!-- Inline Autocomplete Widget * Tab message nothing to complete -->
+  <string name="inline_autocomplete_tab_nothing_to_complete_msg">Niks om te voltooi.</string>
+
+  <!-- Execution console * Title -->
+  <string name="execution_console_title">Konsole</string>
+  <!-- Execution console * The script name label -->
+  <string name="execution_console_script_name_label">Script:</string>
+  <!-- Execution console * The script execution time label -->
+  <string name="execution_console_script_execution_time_label">Tyd:</string>
+  <!-- Execution console * The script exit code label -->
+  <string name="execution_console_script_exitcode_label">Terminasie kode:</string>
+  <!-- Execution console * The script execution time seconds string -->
+  <string name="execution_console_script_execution_time_text">
+    <xliff:g id="seconds">%1$s</xliff:g> sek.</string>
+
+  <!-- Mime/Types * Folder -->
+  <string name="mime_folder">lêergids</string>
+  <!-- Mime/Types * Symlink -->
+  <string name="mime_symlink">Simboliese skakel</string>
+  <!-- Mime/Types * Unknown -->
+  <string name="mime_unknown">Onbekend</string>
+
+  <!-- Selection. All possibilities. [1 folder; >1 folders; 1 file; >1 files;
+     >1 folders and 1 file; 1 folder and >1 files; >1 folders and >1 files]
+     Avoid using plural item because is more complex to achieved all strings -->
+  <string name="selection_one_folder"><xliff:g id="folders">%1$s</xliff:g> lêergids geselekteer.</string>
+  <string name="selection_other_folders"><xliff:g id="folders">%1$s</xliff:g> lêergidse geselekteer.</string>
+  <string name="selection_one_file"><xliff:g id="files">%1$s</xliff:g> lêer geselekteer.</string>
+  <string name="selection_other_files"><xliff:g id="files">%1$s</xliff:g> lêers geselekteer.</string>
+  <string name="selection_other_folders_one_file"><xliff:g id="folders">%1$s</xliff:g> lêergids en
+    <xliff:g id="files">%2$s</xliff:g> lêer geselekteer.</string>
+  <string name="selection_one_folder_other_files"><xliff:g id="folder2">%1$s</xliff:g> lêergids en
+    <xliff:g id="file2">%2$s</xliff:g> lêers geselekteer.</string>
+  <string name="selection_other_folders_other_files"><xliff:g id="folder2">%1$s</xliff:g> lêergidse
+    en <xliff:g id="files">%2$s</xliff:g> lêers geselekteer.</string>
+
+  <!-- Category descriptions -->
+  <string name="category_system">STELSEL</string>
+  <string name="category_app">APP</string>
+  <string name="category_binary">BINÊRE</string>
+  <string name="category_text">TEKS</string>
+  <string name="category_document">DOKUMENT</string>
+  <string name="category_ebook">EBOEK</string>
+  <string name="category_mail">POS</string>
+  <string name="category_compress">VERKLEIN</string>
+  <string name="category_exec">UITVOERBARE</string>
+  <string name="category_database">DATABASIS</string>
+  <string name="category_font">FONT</string>
+  <string name="category_image">BEELD</string>
+  <string name="category_audio">OUDIO</string>
+  <string name="category_video">VIDEO</string>
+  <string name="category_security">SEKURITEIT</string>
+
+  <!-- Compression * Compression modes dialog title -->
+  <string name="compression_mode_title">Verkleinings metode</string>
+
+  <!-- Shortcut. Failed to handle the shortcut -->
+  <string name="shortcut_failed_msg">Kon nie van die Snelkoppeling gebruik maak nie.</string>
+  <!-- Shortcut. The shortcut was created -->
+  <string name="shortcut_creation_success_msg">Snelkoppeling suksesvol geskep.</string>
+  <!-- Shortcut. The shortcut wasn't created -->
+  <string name="shortcut_creation_failed_msg">Snelkoppeling kon nie geskep word nie.</string>
+
+  <!-- Preferences title -->
+  <string name="pref">Instellings</string>
+  <!-- Preferences * General title -->
+  <string name="pref_general">Algemene instellings</string>
+  <!-- Preferences * Search title -->
+  <string name="pref_search">Soek opsies</string>
+  <!-- Preferences * Themes title -->
+  <string name="pref_themes">Temas</string>
+  <!-- Preferences * About title -->
+  <string name="pref_about">Aangaande</string>
+  <!-- Preferences * About summary -->
+  <string name="pref_about_summary">Lêer bestuurder v<xliff:g id="version">%1$s</xliff:g>
+    \nKopiereg \u00A9 2013 Die CyanogenMod Projek</string>
+
+  <!-- Preferences * General * Behaviour category -->
+  <string name="pref_general_behaviour_category">Algemeen</string>
+  <!-- Preferences * General * Case sensitive sort title -->
+  <string name="pref_case_sensitive_sort">Gebruik letter-sensitiewe sortering</string>
+  <!-- Preferences * General *Disk usage warning level title -->
+  <string name="pref_disk_usage_warning_level">Skyf spasie waarskuwing</string>
+  <!-- Preferences * General * Disk usage warning level summary -->
+  <!-- FIXME Use "percent" instead of "%" symbol, because it make crash the app on getSummary
+       of ListPreference. This should be fixed in frameworks base prior to be added here. -->
+  <string name="pref_disk_usage_warning_level_summary" formatted="false">Vertoon \'n ander
+    kleur op die skyf legkaart wanneer dit <xliff:g id="level">%1$s</xliff:g> persent
+    skyf spasie bereik</string>
+  <!-- Preferences * General * Compute folder statistics title -->
+  <string name="pref_compute_folder_statistics">Bereken lêergids statistieke</string>
+  <!-- Preferences * General * Compute folder statistics summary on -->
+  <string name="pref_compute_folder_statistics_on">Waarskuwing! Die berekening van die lêergids statistieke kan lank in tyds duur wees en
+    stelsel bronne kan uitgeput word</string>
+  <!-- Preferences * General * Use flinger detection -->
+  <string name="pref_use_flinger">Gebruik swipe gebare</string>
+  <!-- Preferences * General * Use flinger detection summary -->
+  <string name="pref_use_flinger_summary">Gebruik swipe links na regs gebaar om lêers of lêersgidse te verwyder.</string>
+  <!-- Preferences * General * Advanced settings category -->
+  <string name="pref_general_advanced_settings_category">Gevorderd</string>
+  <!-- Preferences * General * Access mode -->
+  <string name="pref_access_mode">Toegangs metode</string>
+  <!-- Preferences * General * Safe mode -->
+  <string name="pref_access_mode_safe">Veilige toegang metode</string>
+  <!-- Preferences * General * Safe mode summary -->
+  <string name="pref_access_mode_safe_summary">Veilige modus\n\nDie program is aktief sonder
+    regte en die enigste toeganklike lêer stelsels is skyf volumes (SD kaart en USB)</string>
+  <!-- Preferences * General * Prompt user mode -->
+  <string name="pref_access_mode_prompt">Vra Gebruiker metode</string>
+  <!-- Preferences * General * Prompt user mode summary -->
+  <string name="pref_access_mode_prompt_summary">Vra Gebruiker metode\n\nDie program is aktief
+    met volle toegang tot die lêer stelsel, maar sal jou vra vir toestemming voor die uitvoering van
+    enige gevorderde aksies</string>
+  <!-- Preferences * General * Root access mode -->
+  <string name="pref_access_mode_root">Root toegangs metode</string>
+  <!-- Preferences * General * Root access mode summary -->
+  <string name="pref_access_mode_root_summary">Root toegangs metode\n\nWarning! Hierdie metode kan jou toestel breek.
+    Dit is jou verantwoordelikheid om te verseker dat die operasie veilig is</string>
+  <!-- Preferences * Search * Results category -->
+  <string name="pref_search_results_category">Uitslae</string>
+  <!-- Preferences * Search * Show relevance widget -->
+  <string name="pref_show_relevance_widget">Wys relevante legkaart</string>
+  <!-- Preferences * Search * Highlight search terms -->
+  <string name="pref_highlight_terms">Beklemtoon soekterme</string>
+  <!-- Preferences * Search * Sort results mode -->
+  <string name="pref_sort_search_results_mode">Sorteer resultate</string>
+  <!-- Preferences * Search * Sort results mode. None -->
+  <string name="pref_sort_search_results_mode_none">Geen sorteer</string>
+  <!-- Preferences * Search * Sort results mode. None -->
+  <string name="pref_sort_search_results_mode_name">Volgens naam</string>
+  <!-- Preferences * Search * Sort results mode. Relevance -->
+  <string name="pref_sort_search_results_mode_relevance">Volgense bruikbaarhuid</string>
+  <!-- Preferences * Search * Privacity category -->
+  <string name="pref_search_privacity_category">Privaat</string>
+  <!-- Preferences * Search * Save search terms -->
+  <string name="pref_save_search_terms">Stoor soekterme</string>
+  <!-- Preferences * Search * Save search terms summary on -->
+  <string name="pref_save_search_terms_on">Soekterme sal gestoor word en gebruik word as voorstelle
+    in die toekoms</string>
+  <!-- Preferences * Search * Save search terms summary off -->
+  <string name="pref_save_search_terms_off">Soekterme sal nie gestoor word nie</string>
+  <!-- Preferences * Search * Remove saved search terms -->
+  <string name="pref_remove_saved_search_terms">Verwyder gestoorde soektog terme</string>
+  <!-- Preferences * Search * Remove saved search terms summary -->
+  <string name="pref_remove_saved_search_terms_summary">Raak om al die gestoorde soektermes te verwyder</string>
+  <!-- Preferences * Search * Suggestions were truncated -->
+  <string name="pref_remove_saved_search_terms_msg">Alle gestoorde soektog terme is verwyder.</string>
+  <!-- Preferences * Themes * Themes selection category -->
+  <string name="pref_themes_selection_category">Temas</string>
+  <!-- Preferences * Themes * Set theme button -->
+  <string name="pref_themes_set_theme">Stel tema</string>
+  <!-- Preferences * Themes * No preview -->
+  <string name="pref_themes_no_preview">Geen voorskou\nbeskikbaar nie</string>
+  <!-- Preferences * Themes * Confirmation message -->
+  <string name="pref_themes_confirmation">Tema was suksesvol toegepas.</string>
+  <!-- Preferences * Themes * Theme not found message -->
+  <string name="pref_themes_not_found">Die was tema was nie gevind nie.</string>
+
+  <!-- Preferences * Debug * Capture debug traces -->
+  <string name="pref_debug_traces">Meld ontfoutings inligting aan</string>
+
+  <!-- Themes * Default theme name -->
+  <string name="theme_default_name">Ligte Tema</string>
+  <!-- Themes * Default theme description -->
+  <string name="theme_default_description">\'n ligte tema vir CyanogenMod Lêerbestuurder.</string>
+  <!-- Themes * Default theme author -->
+  <string name="themes_author">CyanogenMod</string>
+
+  <!-- Security * Extract relative or absolute files -->
+  <string name="security_warning_extract">Waarskuwing!\n\n
+    Gebruik van \'n argieflêer met \'n relatiewe of absolute pad kan lei tot skade aan jou toestel
+    deur die oorskryf van stelsel lêers.\n\n
+    Wil jy voortgaan?</string>
+
+  <!-- ChangeLog * Dialog title -->
+  <string name="changelog_title">Veranderinge</string>
+
+  <!-- Welcome Dialog * Title -->
+  <string name="welcome_title">Welkom</string>
+  <!-- Welcome Dialog * Message -->
+  <string name="welcome_msg">
+    Welkom by die CyanogenMod lêerbestuurder.
+    \n\n Met hierdie program kan jy die lêerstelsel verken en jy kan miskien
+    jou toestel "breek". Om Skade te voorkom, sal die program begin in veilige, lae-bevoorregte metode.
+    \n\nJy kan toegang tot die gevorderde, volbevoorregte metode verkry via instellings. Dit is jou
+    verantwoordelikheid om te verseker dat enige aksie wat jy hier doen nie jou stelsel beskadig nie.
+    \n\nDie CyanogenMod span\n.</string>
+
+</resources>

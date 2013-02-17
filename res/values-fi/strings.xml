@@ -1,0 +1,331 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (C) 2012 The CyanogenMod Project
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+ -->
+
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+
+  <string name="app_name">Tiedostonhallinta</string>
+  <string name="app_description">CyanogenModin tiedostonhallinta.</string>
+
+  <string name="device_blockdevice">Block device</string>
+  <string name="device_characterdevice">Character device</string>
+  <string name="device_namedpipe">Named pipe</string>
+  <string name="device_domainsocket">Domain socket</string>
+
+  <string name="mount_point_readonly">RO</string>
+  <string name="mount_point_readwrite">RW</string>
+  <string name="yes">Kyllä</string>
+  <string name="no">Ei</string>
+  <string name="all">Kaikki</string>
+  <string name="overwrite">Ylikirjoita</string>
+  <string name="root_directory_name"><![CDATA[<Juurikansio>]]></string>
+  <string name="search_result_name">Haku: <xliff:g id="terms">%1$s</xliff:g></string>
+  <string name="loading_message">Ladataan\u2026</string>
+  <string name="cancelled_message">Peruutettu.</string>
+  <string name="error_message">Virhe.</string>
+  <string name="warning_title">Varoitus</string>
+  <string name="error_title">Virhe löydetty</string>
+  <string name="confirm_operation">Varmista tehtävä</string>
+  <string name="confirm_overwrite">Varmista ylikirjoitus</string>
+  <string name="confirm_deletion">Varmista poistaminen</string>
+  <string name="msgs_change_to_prompt_access_mode_title">Varmista vaihto</string>
+  <string name="msgs_change_to_prompt_access_mode_msg">Root-tilassa käynnistäminen epäonnistui. Vaihdetaan turvalliseen tilaan.\n\nHyväksytäänkö?</string>
+  <string name="msgs_cant_create_console">Tarvittavien oikeuksien saaminen ei onnistu.</string>
+  <string name="msgs_privileged_console_alloc_failed">Root-tilassa käynnistäminen epäonnistui. Vaihdetaan turvalliseen tilaan.</string>
+  <string name="msgs_settings_save_failure">Asetusta ei voitu ottaa käyttöön tai tallentaa.</string>
+  <string name="msgs_settings_invalid_initial_directory">Alkukansio "<xliff:g id="initial_dir">%1$s</xliff:g>" on virheellinen. Vaihdetaan juurikansioon.</string>
+  <string name="msgs_success">Toiminto suoritettiin onnistuneesti.</string>
+  <string name="msgs_unknown">Virhe havaittu. Toiminto epäonnistui.</string>
+  <string name="msgs_insufficient_permissions">Toiminto tarvitsee lisäoikeuksia. Kokeile vaihtaa Root-tilaan.</string>
+  <string name="msgs_file_not_found">Tiedostoa tai kansiota ei löydy.</string>
+  <string name="msgs_command_not_found">Toiminnon komentoa ei löydy tai määritelmä on virheellinen.</string>
+  <string name="msgs_io_failed">Virhe lukiessa/kirjoittaessa.</string>
+  <string name="msgs_operation_timeout">Toiminnon aikakatkaisu.</string>
+  <string name="msgs_operation_failure">Toiminto epäonnistui.</string>
+  <string name="msgs_console_alloc_failure">Tapahtui sisäinen virhe.</string>
+  <string name="msgs_operation_can_not_be_cancelled">Toimintoa ei voi peruuttaa.</string>
+  <string name="msgs_read_only_filesystem">Tiedostojärjestelmä on "vain luku"-tilassa. Kokeile vaihtaa tiedostojärjestelmä luku/kirjoitustilaan ennen toimintoa.</string>
+  <string name="msgs_illegal_argument">Väite virheellinen. Komento epäonnistui.</string>
+  <string name="msgs_unresolved_inconsistencies">Komentoa ei suoritettu koska se loisi ristiriitoja.</string>
+  <string name="msgs_operation_not_allowed_in_current_directory">Komentoa ei voi suorittaa nykyisessä kansiossa.\n\nKohdekansio ei voi olla lähdekansion alikansio.</string>
+  <string name="msgs_push_again_to_exit">Paina uudestaan poistuaksesi.</string>
+  <string name="msgs_not_registered_app">Mitään sovellusta ei ole rekisteröity avaamaan tätä tiedostotyyppiä.</string>
+  <string name="msgs_overwrite_files">Osa tiedostoista on jo kohdekansiossa.\n\nKorvataanko?</string>
+  <string name="msgs_action_association_failed">Tehtävän yhdistäminen sovellukseen epäonnistui.</string>
+  <string name="advise_insufficient_permissions">Toiminto tarvitsee korkeammat oikeudet.\n\nHaluatko vaihtaa Root-tilaan?</string>
+  <string name="parent_dir">Aloituskansio</string>
+  <string name="external_storage">Ulkoinen tallennustila</string>
+  <string name="usb_storage">USB-tallennustila</string>
+  <string name="actionbar_button_filesystem_cd">Tiedostojärjestelmän tiedot</string>
+  <string name="actionbar_button_sort_mode_cd">Lajittelu</string>
+  <string name="actionbar_button_layout_mode_cd">Ulkoasu</string>
+  <string name="actionbar_button_other_view_options_cd">Muut ulkoasuasetukset</string>
+  <string name="actionbar_button_selection_done_cd">Valmis</string>
+  <string name="actionbar_button_actions_cd">Tehtävät</string>
+  <string name="actionbar_button_history_cd">Historia</string>
+  <string name="actionbar_button_bookmarks_cd">Kirjanmerkit</string>
+  <string name="actionbar_button_search_cd">Haku</string>
+  <string name="actionbar_button_overflow_cd">Lisäasetukset</string>
+  <string name="actionbar_button_storage_cd">Tallennustilan osiot</string>
+  <string name="actionbar_button_save_cd">Tallenna</string>
+  <string name="sort_by_name_asc">Nimen mukaan &#x25B2;</string>
+  <string name="sort_by_name_desc">Nimen mukaan &#x25BC;</string>
+  <string name="sort_by_date_asc">Ajan mukaan &#x25B2;</string>
+  <string name="sort_by_date_desc">Ajan mukaan &#x25BC;</string>
+  <string name="layout_icons">Kuvakkeet</string>
+  <string name="layout_simple">Yksinkertainen</string>
+  <string name="layout_details">Tietoja</string>
+  <string name="cm_filemanager_show_dirs_first">Näytä kansiot ensin</string>
+  <string name="cm_filemanager_show_hidden">Näytä piilotetut tiedostot</string>
+  <string name="cm_filemanager_show_system">Näytä järjestelmätiedostot</string>
+  <string name="cm_filemanager_show_symlinks">Näytä symlinkit</string>
+  <string name="filesystem_info_warning_title">Ei tietoja</string>
+  <string name="filesystem_info_warning_msg">Tietoja tiedostojärjestelmästä ei ole saatavilla.</string>
+  <string name="filesystem_info_cant_be_mounted_msg">Tiedostojärjestelmää ei voida kiinnittää/poistaa kiinnitystä.</string>
+  <string name="filesystem_info_mount_not_allowed_msg">Tiedostojärjestelmän kiinnitystoiminnot ei ole sallittuja turvallisessa tilassa. Vaihta tästä Root-tilaan.</string>
+  <string name="filesystem_info_mount_failed_msg">Tiedostojärjestelmän kiinnitystoiminto epäonnistui. Joitakin tiedostojärjestelmiä, kuten SD-kortteja, ei voi kiinnittää/poistaa kiinnitystä koska ne on suunniteltu vain-luku tiedostojärjestelmiksi.</string>
+  <string name="filesystem_info_dialog_title">Tiedostojärjestelmän tiedost</string>
+  <string name="filesystem_info_dialog_tab_info">Tiedot</string>
+  <string name="filesystem_info_dialog_tab_disk_usage">Levyn käyttö</string>
+  <string name="filesystem_info_dialog_status">Tila:</string>
+  <string name="filesystem_info_dialog_mount_point">Kiinnityspaikka:</string>
+  <string name="filesystem_info_dialog_device">Laite:</string>
+  <string name="filesystem_info_dialog_type">Tyyppi:</string>
+  <string name="filesystem_info_dialog_options">Asetukset:</string>
+  <string name="filesystem_info_dialog_dump_pass">Virhe/Läpäisy:</string>
+  <string name="filesystem_info_dialog_total_disk_usage">Yhteensä:</string>
+  <string name="filesystem_info_dialog_used_disk_usage">Käytetty:</string>
+  <string name="filesystem_info_dialog_free_disk_usage">Vapaana:</string>
+  <string name="fso_properties_permissions_not_allowed_msg">Oikeuksiin tehtävät muutokset ei ole sallittu turvallisessa tilassa. Vaihda tästä Root-tilaan.</string>
+  <string name="fso_properties_failed_to_change_owner_msg">Omistajan vaihto epäonnistui.\n\nTurvallisuussyistä, jotkin tiedostojärjestelmät, kuten SD-kortit, eivät anna vaihtaa omistajaa.</string>
+  <string name="fso_properties_failed_to_change_group_msg">Ryhmän vaihto epäonnistui.\n\nTurvallisuussyistä, jotkin tiedostojärjestelmät, kuten SD-kortit, eivät anna vaihtaa ryhmiä.</string>
+  <string name="fso_properties_failed_to_change_permission_msg">Oikeuksien muuttaminen epäonnistui.\n\nTurvallisuussyistä, jotkin tiedostojärjestelmät, kuten SD-kortit, eivät anna muuttaa oikeuksia.</string>
+  <string name="fso_properties_dialog_title">Ominaisuudet</string>
+  <string name="fso_properties_dialog_tab_info">Tiedot</string>
+  <string name="fso_properties_dialog_tab_permissions">Oikeudet</string>
+  <string name="fso_properties_dialog_name">Nimi:</string>
+  <string name="fso_properties_dialog_parent">Yläkansio:</string>
+  <string name="fso_properties_dialog_type">Tyyppi:</string>
+  <string name="fso_properties_dialog_category">Kategoria:</string>
+  <string name="fso_properties_dialog_link">Linkki:</string>
+  <string name="fso_properties_dialog_size">Koko:</string>
+  <string name="fso_properties_dialog_contains">Sisältää:</string>
+  <string name="fso_properties_dialog_last_accessed_date">Käytetty:</string>
+  <string name="fso_properties_dialog_last_modified_date">Muokattu:</string>
+  <string name="fso_properties_dialog_last_changed_date">Muutettu:</string>
+  <string name="fso_properties_dialog_owner">Omistaja:</string>
+  <string name="fso_properties_dialog_group">Ryhmä:</string>
+  <string name="fso_properties_dialog_others">Muut:</string>
+  <plurals name="fso_properties_dialog_folders">
+    <item quantity="zero">0 kansiota</item>
+    <item quantity="one">1 kansio</item>
+    <item quantity="other"><xliff:g id="folders">%1$d</xliff:g> kansiota</item>
+  </plurals>
+  <plurals name="fso_properties_dialog_files">
+    <item quantity="zero">0 tiedostoa</item>
+    <item quantity="one">1 tiedosto</item>
+    <item quantity="other"><xliff:g id="files">%1$d</xliff:g> tiedostoa</item>
+  </plurals>
+  <string name="fso_properties_dialog_include_in_media_scan">Ohita mediaskannausSkip media scan:</string>
+  <string name="fso_failed_to_allow_media_scan">Mediaskannauksen suorittaminen epäonnistui</string>
+  <string name="fso_failed_to_prevent_media_scan">Mediaskannauksen estäminen epäonnistui</string>
+  <string name="fso_delete_nomedia_dir_title">Poista .nomedia kansio</string>
+  <string name="fso_delete_nomedia_dir_body">Tämä kansio sisältää .nomedia kansion.\n\nHaluatko poistaa sen ja kaiken sen sisällön?</string>
+  <string name="fso_delete_nomedia_non_empty_title">Poista .nomedia tiedostot</string>
+  <string name="fso_delete_nomedia_non_empty_body">Tämä kansio sisältää .nomedia tiedoston.\n\nHaluatko poistaa sen?</string>
+  <string name="history">Historia</string>
+  <string name="msgs_history_empty">Historia on tyhjä.</string>
+  <string name="msgs_history_unknown">Tuntematon historian tapahtuma.</string>
+  <string name="search">Haun tulokset</string>
+  <string name="search_hint">Hae</string>
+  <string name="search_voice_hint">Puhehaku</string>
+  <string name="search_error_msg">Virhe tapahtui suorittaessa hakua. Ei tuloksia.</string>
+  <string name="search_no_results_msg">Ei tuloksia.</string>
+  <plurals name="search_found_items">
+    <item quantity="zero">Ei tuloksia</item>
+    <item quantity="one">1 tulos</item>
+    <item quantity="other"><xliff:g id="count">%d</xliff:g> tulosta</item>
+  </plurals>
+  <string name="search_found_items_in_directory"><xliff:g id="items">%1$s</xliff:g> / <xliff:g id="path">%2$s</xliff:g></string>
+  <string name="search_terms"><![CDATA[<b>Termit:</b>]]> <xliff:g id="terms">%1$s</xliff:g></string>
+  <string name="search_few_characters_title">Vahvista haku</string>
+  <string name="search_few_characters_msg">Jotkin hakutermit sisältävät vain muutaman merkin. Toiminto saattaa kestää erittäin kauan ja käyttää paljon järjestelmän resursseja.\n\nHaluako jatkaa?</string>
+  <string name="searching">Odota\u2026</string>
+  <string name="searching_action_label">Haku käynnissä</string>
+  <string name="picker_title">Valitse tiedosto</string>
+  <string name="editor">Editori</string>
+  <string name="editor_invalid_file_msg">Virheellinen tiedosto.</string>
+  <string name="editor_file_not_found_msg">Tiedostoa ei löytynyt.</string>
+  <string name="editor_file_exceed_size_msg">Tiedosto on liian suuri avattavaksi tässä laitteessa.</string>
+  <string name="editor_dirty_ask_title">Vahvista poistuminen</string>
+  <string name="editor_dirty_ask_msg">Muutoksia ei ole tallennettu.\n\nPoistu tallentamatta?</string>
+  <string name="editor_successfully_saved">Tiedosto tallennettiin onnistuneesti.</string>
+  <string name="editor_read_only_mode">Tiedosto avattiin vain-luku tilassa.</string>
+  <string name="bookmarks">Kirjanmerkit</string>
+  <string name="bookmarks_home">Koti</string>
+  <string name="bookmarks_root_folder">Juurikansio</string>
+  <string name="bookmarks_system_folder">Järjestelmäkansio</string>
+  <string name="bookmarks_button_config_cd">Valitse aloituskansio.</string>
+  <string name="bookmarks_button_remove_bookmark_cd">Poista kirjanmerkki.</string>
+  <string name="bookmarks_msgs_add_success">Kirjanmerkki luotiin onnistuneesti.</string>
+  <string name="initial_directory_dialog_title">Aloituskansio</string>
+  <string name="initial_directory_label">Valitse aloituskansio:</string>
+  <string name="initial_directory_relative_msg">Suhteelliset polut ei ole sallittuja.</string>
+  <string name="initial_directory_error_msg">Virhe tallennettaessa aloituskansiota.</string>
+  <string name="menu_history">Historia</string>
+  <string name="menu_bookmarks">Kirjanmerkit</string>
+  <string name="menu_search">Haku</string>
+  <string name="menu_settings">Asetukset</string>
+  <string name="menu_clear_history">Tyhjennä historia</string>
+  <string name="create_copy_regexp"><xliff:g id="name">%1$s</xliff:g> - kopio<xliff:g id="extension">%2$s</xliff:g></string>
+  <string name="create_new_compress_file_regexp"><xliff:g id="name">%1$s</xliff:g> - uusi<xliff:g id="extension">%2$s</xliff:g></string>
+  <string name="waiting_dialog_msg">Suoritetaan\u2026</string>
+  <string name="waiting_dialog_copying_title">Kopioidaan\u2026</string>
+  <string name="waiting_dialog_copying_msg"><![CDATA[<b> </b>]]> <xliff:g id="from">%1$s</xliff:g><![CDATA[<br/>]]><![CDATA[<b>"->"</b>]]> <xliff:g id="to">%2$s</xliff:g></string>
+  <string name="waiting_dialog_moving_title">Siirretään\u2026</string>
+  <string name="waiting_dialog_moving_msg"><![CDATA[<b> </b>]]> <xliff:g id="from">%1$s</xliff:g><![CDATA[<br/>]]><![CDATA[<b>"->"</b>]]> <xliff:g id="to">%2$s</xliff:g></string>
+  <string name="waiting_dialog_deleting_title">Poistetaan\u2026</string>
+  <string name="waiting_dialog_deleting_msg"><![CDATA[<b>Tiedosto</b>]]> <xliff:g id="file">%1$s</xliff:g></string>
+  <string name="waiting_dialog_extracting_title">Puretaan\u2026</string>
+  <string name="waiting_dialog_extracting_msg"><![CDATA[<bTiedosto</b>]]> <xliff:g id="file">%1$s</xliff:g></string>
+  <string name="waiting_dialog_compressing_title">Pakataan\u2026</string>
+  <string name="waiting_dialog_compressing_msg"><![CDATA[<b>Tiedosto</b>]]> <xliff:g id="file">%1$s</xliff:g></string>
+  <string name="waiting_dialog_analizing_msg"><![CDATA[<b>Tutkitaan\u2026</b>]]></string>
+  <string name="msgs_extracting_success">Purkaminen onnistui. Tiedostot purettiin kansioon <xliff:g id="destination">%1$s</xliff:g>.</string>
+  <string name="msgs_compressing_success">Pakkaaminen onnistui. Tiedostot pakattiin arkistoon <xliff:g id="destination">%1$s</xliff:g>.</string>
+  <string name="actions_dialog_title">Tehtävät</string>
+  <string name="actions_menu_properties_current_folder">Ominaisuudet</string>
+  <string name="actions_menu_refresh">Päivitä</string>
+  <string name="actions_menu_new_directory">Uusi kansio</string>
+  <string name="actions_menu_new_file">Uusi tiedosto</string>
+  <string name="actions_menu_select_all">Valitse kaikki</string>
+  <string name="actions_menu_deselect_all">Poista valinnat</string>
+  <string name="actions_menu_select">Valitse</string>
+  <string name="actions_menu_deselect">Poista valinta</string>
+  <string name="actions_menu_paste_selection">Liitä valinta tähän</string>
+  <string name="actions_menu_move_selection">Siirrä valinta tähän</string>
+  <string name="actions_menu_delete_selection">Poista valittu kohde</string>
+  <string name="actions_menu_compress_selection">Pakkaa valinta</string>
+  <string name="actions_menu_create_link">Luo linkki</string>
+  <string name="actions_menu_open">Avaa</string>
+  <string name="actions_menu_open_with">Avaa sovelluksessa..</string>
+  <string name="actions_menu_execute">Suorita</string>
+  <string name="actions_menu_send">Lähetä</string>
+  <string name="actions_menu_compress">Pakkaa</string>
+  <string name="actions_menu_extract">Pura</string>
+  <string name="actions_menu_delete">Poista</string>
+  <string name="actions_menu_rename">Uudelleennimeä</string>
+  <string name="actions_menu_create_copy">Luo kopio</string>
+  <string name="actions_menu_properties">Ominaisuudet</string>
+  <string name="actions_menu_add_to_bookmarks">Lisää kirjanmerkkeihin</string>
+  <string name="actions_menu_add_shortcut">Luo pikakuvake</string>
+  <string name="actions_menu_open_parent_folder">Avaa yläkansio</string>
+  <string name="actions_ask_undone_operation_msg">Tehtävää ei voi perua. Haluatko jatkaa?</string>
+  <string name="input_name_dialog_label">Nimi:</string>
+  <string name="input_name_dialog_message_empty_name">Nimi ei voi olla tyhjä.</string>
+  <string name="input_name_dialog_message_invalid_path_name">Virheellinen nimi. Seuraavat merkit ei ole sallittuja:
+    \'<xliff:g id="invalid_characters">%1$s</xliff:g>\'</string>
+  <string name="input_name_dialog_message_invalid_name">Virheellinen nimi. Nimet \'.\' ja \'..\' ei ole sallittuja.</string>
+  <string name="input_name_dialog_message_name_exists">Nimi on jo käytössä.</string>
+  <string name="associations_dialog_title">Yhdistykset</string>
+  <string name="associations_dialog_remember">Muista valinta</string>
+  <string name="associations_dialog_openwith_title">Avaa sovelluksessa</string>
+  <string name="associations_dialog_openwith_action">Avaa</string>
+  <string name="associations_dialog_sendwith_title">Lähetä..</string>
+  <string name="associations_dialog_sendwith_action">Lähetä</string>
+  <string name="inline_autocomplete_tab_nothing_to_complete_msg">Ei suoritettavaa.</string>
+  <string name="execution_console_title">Konsoli</string>
+  <string name="execution_console_script_name_label">Skripti:</string>
+  <string name="execution_console_script_execution_time_label">Aika:</string>
+  <string name="execution_console_script_exitcode_label">Poistumiskoodi:</string>
+  <string name="execution_console_script_execution_time_text"><xliff:g id="seconds">%1$s</xliff:g> sek.</string>
+  <string name="mime_folder">Kansio</string>
+  <string name="mime_symlink">Symlinkki</string>
+  <string name="mime_unknown">Tuntematon</string>
+  <string name="selection_one_folder"><xliff:g id="folders">%1$s</xliff:g> kansio valittu.</string>
+  <string name="selection_other_folders"><xliff:g id="folders">%1$s</xliff:g> kansiota valittu.</string>
+  <string name="selection_one_file"><xliff:g id="files">%1$s</xliff:g> tiedosto valittu.</string>
+  <string name="selection_other_files"><xliff:g id="files">%1$s</xliff:g> tiedostoa valittu.</string>
+  <string name="selection_other_folders_one_file"><xliff:g id="folders">%1$s</xliff:g> kansiota ja <xliff:g id="files">%2$s</xliff:g> tiedosto valittu.</string>
+  <string name="selection_one_folder_other_files"><xliff:g id="folder2">%1$s</xliff:g> kansio ja <xliff:g id="file2">%2$s</xliff:g> tiedostoa valittu.</string>
+  <string name="selection_other_folders_other_files"><xliff:g id="folder2">%1$s</xliff:g> kansiota ja <xliff:g id="files">%2$s</xliff:g> tiedostoa valittu.</string>
+  <string name="category_system">JÄRJESTELMÄ</string>
+  <string name="category_app">SOVELLUS</string>
+  <string name="category_binary">BINÄÄRI</string>
+  <string name="category_text">TEKSTI</string>
+  <string name="category_document">DOKUMENTTI</string>
+  <string name="category_ebook">KIRJA</string>
+  <string name="category_mail">POSTI</string>
+  <string name="category_compress">ARKISTO</string>
+  <string name="category_exec">SUORITETTAVA</string>
+  <string name="category_database">TIETOKANTA</string>
+  <string name="category_font">FONTTI</string>
+  <string name="category_image">KUVA</string>
+  <string name="category_audio">ÄÄNI</string>
+  <string name="category_video">VIDEO</string>
+  <string name="category_security">TURVALLISUUS</string>
+  <string name="compression_mode_title">Pakkaustila</string>
+  <string name="shortcut_failed_msg">Pikakuvake ei toimi.</string>
+  <string name="shortcut_creation_success_msg">Pikakuvake luotu onnistuneesti.</string>
+  <string name="shortcut_creation_failed_msg">Pikakuvakken luonti epäonnistui.</string>
+  <string name="pref">Asetukset</string>
+  <string name="pref_general">Yleiset asetukset</string>
+  <string name="pref_search">Haun asetukset</string>
+  <string name="pref_themes">Teemat</string>
+  <string name="pref_about">Tietoja</string>
+  <string name="pref_general_behaviour_category">Yleiset</string>
+  <string name="pref_case_sensitive_sort">Lajittelu kirjainkoon mukaan</string>
+  <string name="pref_disk_usage_warning_level">Levynkäytön varoitus</string>
+  <string name="pref_disk_usage_warning_level_summary" formatted="false">Näyttää eri värin levykäytön widgeteissä kun ne saavuttavat <xliff:g id="level">%1$s</xliff:g> prosenttia vapaasta levytilasta</string>
+  <string name="pref_compute_folder_statistics">Laske kansion tilastot</string>
+  <string name="pref_compute_folder_statistics_on">Varoitus! Kansion tilastojen laskeminen vie paljon aikaa ja järjestelmän resursseja!</string>
+  <string name="pref_use_flinger">Käytä eleitä</string>
+  <string name="pref_use_flinger_summary">Vedä oikealle tai vasemmalle poistaaksesi tiedostoja tai kansioita.</string>
+  <string name="pref_general_advanced_settings_category">Lisäasetukset</string>
+  <string name="pref_access_mode">Oikeudet</string>
+  <string name="pref_access_mode_safe">Turvallinen tila</string>
+  <string name="pref_access_mode_safe_summary">Turvallinen tila\n\nSovellus toimii ilman oikeuksia ja pääsee käsiksi vain SD-kortteihin ja USB-muisteihin</string>
+  <string name="pref_access_mode_prompt">Kysy käyttäjältä</string>
+  <string name="pref_access_mode_prompt_summary">Kysy käyttäjältä\n\nSovellus toimii tiedostojärjestelmän täysillä oikeuksilla mutta kysyy luvan jos oikeuksia tarvitaan</string>
+  <string name="pref_access_mode_root">Root-tila</string>
+  <string name="pref_access_mode_root_summary">Root-tila\n\nVaroitus! Tämä tila sallii muutokset jotka saattavat tuhota laitteesi, käytä tätä tilaa omalla vastuulla!</string>
+  <string name="pref_search_results_category">Tulokset</string>
+  <string name="pref_show_relevance_widget">Näytä merkitys</string>
+  <string name="pref_highlight_terms">Merkkaa hakutermit</string>
+  <string name="pref_sort_search_results_mode">Järjestä tulokset</string>
+  <string name="pref_sort_search_results_mode_none">Ei järjestystä</string>
+  <string name="pref_sort_search_results_mode_name">Nimen mukaan</string>
+  <string name="pref_sort_search_results_mode_relevance">Tärkeyden mukaan</string>
+  <string name="pref_search_privacity_category">Yksityisyys</string>
+  <string name="pref_save_search_terms">Tallenna hakutermit</string>
+  <string name="pref_save_search_terms_on">Hakutermit tallennetaan ja käytetään ehdotuksina tulevissa hauissa</string>
+  <string name="pref_save_search_terms_off">Hakutermejä ei tallenneta</string>
+  <string name="pref_remove_saved_search_terms">Poista tallennetut hakutermit</string>
+  <string name="pref_remove_saved_search_terms_summary">Paina tästä poistaaksesi kaikki hakutermit</string>
+  <string name="pref_remove_saved_search_terms_msg">Kaikki hakutermit poistettu.</string>
+  <string name="pref_themes_selection_category">Teemat</string>
+  <string name="pref_themes_set_theme">Aseta teema</string>
+  <string name="pref_themes_no_preview">Ei esikatselua</string>
+  <string name="pref_themes_confirmation">Teema asetettu onnistuneesti.</string>
+  <string name="pref_themes_not_found">Teemaa ei löytynyt.</string>
+  <string name="pref_debug_traces">Kirjaa debug-tilan tiedot</string>
+  <string name="theme_default_name">Vaalea teema</string>
+  <string name="theme_default_description">Vaalea teena Cyanogenmodin tiedostonhallintaan.</string>
+  <string name="themes_author">CyanogenMod</string>
+  <string name="security_warning_extract">Varoitus!\n\nTiedoston purkaminen väärässä paikassa saattaa aiheuttaa vahinkoa laitteellesi ylikirjoittamalla järjestelmätiedostoja.\n\nHaluatko jatkaa?</string>
+  <string name="changelog_title">Muutosloki</string>
+  <string name="welcome_title">Tervetuloa</string>
+  <string name="welcome_msg">Tervetuloa CyanogenModin tiedostonhallintaan.\n\nTällä sovelluksella voit selata tiedostojärjestelmää ja tehdä muutoksia jotka voivat rikkoa laitteesi. Ehkäistäksemme rikkoutumisia, sovellus käynnistyy turvallisessa tilassa jossa ei ole kaikkia oikeuksia.\n\nSaat täydet oikeudet käyttöön asetuksista. Teet kaikki muutokset omalla vastuullasi.\n\nCyanogenMod-tiimi.\n</string>
+</resources>

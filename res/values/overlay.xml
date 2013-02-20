@@ -49,6 +49,7 @@
     /system/bin/sh,
     /system/xbin/awk,
     /system/xbin/bunzip2,
+    /system/xbin/busybox,
     /system/xbin/bzip2,
     /system/xbin/cp,
     /system/xbin/cut,

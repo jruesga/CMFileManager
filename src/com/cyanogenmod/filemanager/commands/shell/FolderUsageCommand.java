@@ -98,11 +98,12 @@ public class FolderUsageCommand extends AsyncResultProgram implements FolderUsag
             // -rw-r--r-- root     root            7 2012-12-30 00:49 test.txt
             //
             // (1) permissions
-            // (2) owner
-            // (3) group
-            // (4) size
-            // (5) date
-            // (6) name
+            // (2) number of links and directories
+            // (3) owner
+            // (4) group
+            // (5) size
+            // (6) date
+            // (7) name
 
             //Partial contains full lines
             br = new BufferedReader(new StringReader(partialIn));
@@ -133,6 +134,16 @@ public class FolderUsageCommand extends AsyncResultProgram implements FolderUsag
                             szLine = szLine.replaceAll("  ", " "); //$NON-NLS-1$ //$NON-NLS-2$
                         }
 
+                        // Don't compute . and ..
+                        // This is not secure, but we don't need a exact precission on this
+                        // method
+                        if (szLine.length() == 0 ||
+                            szLine.endsWith(" " + FileHelper.CURRENT_DIRECTORY) || //$NON-NLS-1$
+                            szLine.endsWith(" " + FileHelper.PARENT_DIRECTORY)) { //$NON-NLS-1$
+                            c++;
+                            continue;
+                        }
+
                         char type = szLine.charAt(0);
                         if (type == Symlink.UNIX_ID ||
                                 type == BlockDevice.UNIX_ID ||
@@ -156,11 +167,11 @@ public class FolderUsageCommand extends AsyncResultProgram implements FolderUsag
                             try {
                                 // we need a valid line
                                 String[] fields = szLine.split(" "); //$NON-NLS-1$
-                                if (fields.length < 7) {
+                                if (fields.length < 8) {
                                     continue;
                                 }
 
-                                long size = Long.parseLong(fields[3]);
+                                long size = Long.parseLong(fields[4]);
                                 String name = fields[fields.length-1];// We only need the extension
                                 String ext = FileHelper.getExtension(name);
                                 MimeTypeCategory category =

@@ -15,15 +15,14 @@
  -->
 
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-
   <!-- The name of the application -->
   <string name="app_name">Lêerbestuurder</string>
   <!-- The description of the application -->
   <string name="app_description">\'n CyanogenMod Lêerbestuurder.</string>
 
   <!-- Devices types -->
-  <string name="device_blockdevice">Block device</string>
-  <string name="device_characterdevice">Character device</string>
+  <string name="device_blockdevice">Blok toestel</string>
+  <string name="device_characterdevice">Karakter toestel</string>
   <string name="device_namedpipe">Named pipe</string>
   <string name="device_domainsocket">Domain socket</string>
 
@@ -34,11 +33,11 @@
   <!-- Default buttons -->
   <string name="yes">Ja</string>
   <string name="no">Nee</string>
-  <string name="all">Als</string>
+  <string name="all">Alles</string>
   <string name="overwrite">Oorskryf</string>
 
   <!-- The root directory name -->
-  <string name="root_directory_name"><![CDATA[<Root lêergids>]]></string>
+  <string name="root_directory_name"><![CDATA[<Root-vouergids>]]></string>
   <!-- The search result name -->
   <string name="search_result_name">Soek: <xliff:g id="terms">%1$s</xliff:g></string>
 
@@ -63,20 +62,17 @@
   <!--  A console couldn't be created. Ask the user to change the access mode. Dialog Title -->
   <string name="msgs_change_to_prompt_access_mode_title">Bevestig verandering</string>
   <!--  A console couldn't be created. Ask the user to change the access mode. Dialog Message -->
-  <string name="msgs_change_to_prompt_access_mode_msg">
-    Kry nie Root toegang nie.Verander na die veilige modus.\n\nDien toe hierdie verandering></string>
+  <string name="msgs_change_to_prompt_access_mode_msg">Kry nie root-toegang nie. Verander na die veilige-modus.\n\nDien hierdie verandering toe.</string>
 
   <!-- A console couldn't be created. Without privileges, the application won't work -->
   <string name="msgs_cant_create_console">Kon nie die nodige regte kry om te funksioneer nie.</string>
   <!-- The message shown when an allocation of a privileged console fails, and a non
        privileged is allocated -->
-  <string name="msgs_privileged_console_alloc_failed">Kry nie Root toegang nie.
-    Het verander na veilige modus.</string>
+  <string name="msgs_privileged_console_alloc_failed">Kry nie root-toegang nie. Het verander na veilige-modus.</string>
   <!-- The selected setting was not applied or stored -->
-  <string name="msgs_settings_save_failure">Die instelling kan nie toegepas word of gestoor word nie.</string>
+  <string name="msgs_settings_save_failure">Die instelling kan nie toegepas of gestoor word nie.</string>
   <!-- The initial directory has an invalid or inaccessible reference -->
-  <string name="msgs_settings_invalid_initial_directory">Die aanvanklike lêergids
-    \"<xliff:g id="initial_dir">%1$s</xliff:g>\" is ongeldig. Verander na root lêergids.</string>
+  <string name="msgs_settings_invalid_initial_directory">Die aanvanklike vouergids\"<xliff:g id="initial_dir">%1$s</xliff:g>\" is ongeldig. Verander na root-vouergids.</string>
 
   <!-- Success -->
   <string name="msgs_success">Die aksie was suksesvol voltooi.</string>
@@ -84,57 +80,50 @@
   <string name="msgs_unknown">\'n Fout is bespeur. Die aksie was onsuksesvol.</string>
   <!-- When an operation requires elevated privileged (normally caused for the use of a
        non-privileged console) -->
-  <string name="msgs_insufficient_permissions">Hierdie aksie vereis verhoogde regte. Probeer
-    Root toegang.</string>
+  <string name="msgs_insufficient_permissions">Hierdie aksie vereis verhoogde regte. Probeer root-toegang.</string>
   <!-- The file or directory was not found -->
-  <string name="msgs_file_not_found">Die lêer of gids was nie gevind nie.</string>
+  <string name="msgs_file_not_found">Die lêer of vouergids was nie gevind nie.</string>
   <!-- The command reference couldn't be created (not found or invalid definition)
        (normally caused by a development error) -->
-  <string name="msgs_command_not_found">Die werking se opdrag is nie gevind nie of het \'n
-    ongeldig definisie.</string>
+  <string name="msgs_command_not_found">Die werking se opdrag is nie gevind nie of het \'n ongeldige definisie.</string>
   <!-- I/O exception -->
   <string name="msgs_io_failed">Lees/skryf mislukking.</string>
   <!-- Operation timeout detected -->
-  <string name="msgs_operation_timeout">Die werking se toelaatbare tyd het verstreke.</string>
+  <string name="msgs_operation_timeout">Die werking se toelaatbare tyd het verstreek.</string>
   <!-- The operation returns an invalid exit code -->
   <string name="msgs_operation_failure">Die werking het misluk.</string>
   <!-- A console couldn't be allocated -->
-  <string name="msgs_console_alloc_failure">\'n interne fout het voorgekom.</string>
+  <string name="msgs_console_alloc_failure">\'n interne fout het gebeur.</string>
   <!-- An operation can't be cancelled -->
   <string name="msgs_operation_can_not_be_cancelled">Die werking kan nie gekanselleer word nie.</string>
   <!-- The operation requieres mount the file system prior to execute the command -->
-  <string name="msgs_read_only_filesystem">Die lêer stelsel is lees-aleen. Probeer om die lêerstelsel te monteer as lees-en-skryf.</string>
+  <string name="msgs_read_only_filesystem">Die lêerstelsel is slegs leesbaar. Probeer om die lêerstelsel as lees-en-skryf aan te heg.</string>
   <!-- Illegal argument (normally caused by a development error when calling internal api) -->
   <string name="msgs_illegal_argument">Onwettige argument. Aktivering het misluk.</string>
   <!-- The operation will cause inconsistencies -->
-  <string name="msgs_unresolved_inconsistencies">
-    Die werking word nie toegelaat nie, want dit skep teenstrydighede.</string>
+  <string name="msgs_unresolved_inconsistencies">Die werking word nie toegelaat nie want dit skep teenstrydighede.</string>
   <!-- Operation not permitted in current directory -->
   <string name="msgs_operation_not_allowed_in_current_directory">
-    Die operasie word nie toegelaat in die huidige lêergids.\n\nBestemming lêergids kan nie sublêergids
-    van bron of dieselfde as bron wees nie.</string>
+    Die operasie word nie toegelaat in die huidige vouergids nie.\n\nBestemmings vouergids kan nie \'n sub-vouergids van bron of dieselfde as die bron wees nie.</string>
 
   <!-- The advice message prior to exit the application -->
   <string name="msgs_push_again_to_exit">Tik weer om te beeindig.</string>
 
   <!-- There is no registered application that can handle the mime-type -->
-  <string name="msgs_not_registered_app">Daar is geen program geregistreer om 
-    die tipe lêer oop te maak nie.</string>
+  <string name="msgs_not_registered_app">Daar is geen program geregistreer om die tipe lêer oop te maak nie.</string>
 
   <!-- Overwrite files? -->
-  <string name="msgs_overwrite_files">
-    Sommige van die lêers bestaan reeds in die teiken lêergids.\n\nOorskryf??</string>
+  <string name="msgs_overwrite_files">Sommige van die lêers bestaan reeds in die teiken vouergids.\n\nOorskryf??</string>
 
   <!-- The association of an action to the application failed -->
-  <string name="msgs_action_association_failed">Die assosieerde aksie na die
-    program het misluk..</string>
+  <string name="msgs_action_association_failed">Die geassosieerde program aksie het misluk.</string>
 
   <!-- An operation requires elevated privileged. Ask the user. -->
-  <string name="advise_insufficient_permissions">Die werking vereis verhoogde regte.\n\nWil jy toegang na root verander?</string>
+  <string name="advise_insufficient_permissions">Die werking vereis verhoogde regte.\n\nVerander na root-toegang?</string>
 
 
   <!-- The parent directory of the current directory in navigation view -->
-  <string name="parent_dir">Ouer lêergids</string>
+  <string name="parent_dir">Ouer vouergids</string>
   <!-- External storage descripton -->
   <string name="external_storage">Eksterne skyf</string>
   <!-- Usb storage descripton -->
@@ -149,7 +138,7 @@
   <!-- ActionBar Buttons * Other View Options -->
   <string name="actionbar_button_other_view_options_cd">Ander wys opsies</string>
   <!-- ActionBar Buttons * Done -->
-  <string name="actionbar_button_selection_done_cd">Gedeon</string>
+  <string name="actionbar_button_selection_done_cd">Klaar</string>
   <!-- ActionBar Buttons * Actions -->
   <string name="actionbar_button_actions_cd">Aksies</string>
   <!-- ActionBar Buttons * History -->
@@ -182,38 +171,34 @@
   <string name="layout_details">Besonderhede</string>
 
   <!-- Navigation View * View * Show folders first -->
-  <string name="cm_filemanager_show_dirs_first">wys lêergidse 1ste</string>
+  <string name="cm_filemanager_show_dirs_first">wys vouergidse 1ste</string>
   <!-- Navigation View * View * Show hidden files option -->
-  <string name="cm_filemanager_show_hidden">Wys verborge lêers</string>
+  <string name="cm_filemanager_show_hidden">Wys versteekte vouers</string>
   <!-- Navigation View * View * Show system files option -->
-  <string name="cm_filemanager_show_system">Wys stelsel lêers</string>
+  <string name="cm_filemanager_show_system">Wys stelsel vouers</string>
   <!-- Navigation View * View * Show symlinks option -->
   <string name="cm_filemanager_show_symlinks">Wys symlinks</string>
 
   <!-- Filesystem Info (no data). Dialog title -->
   <string name="filesystem_info_warning_title">Geen inligting</string>
   <!-- Filesystem Info (no data). Dialog message -->
-  <string name="filesystem_info_warning_msg">Daar is geen inligting beskikbaar vir die lêerstelsel.</string>
+  <string name="filesystem_info_warning_msg">Daar is geen inligting beskikbaar vir die lêerstelsel nie.</string>
   <!-- Filesystem Info * Filesystem couldn't be mounted -->
-  <string name="filesystem_info_cant_be_mounted_msg">
-    Die lêer stelsel kan nie geheg word / ontheg word nie.</string>
+  <string name="filesystem_info_cant_be_mounted_msg">Die lêerstelsel kan nie geheg/ontheg word nie.</string>
   <!-- Filesystem Info * Not allowed message -->
-  <string name="filesystem_info_mount_not_allowed_msg">Lêerstelsel montering werkings word nie toegelaat nie
-    in die veilige modus. Tik om toegang na root metode te verander.</string>
+  <string name="filesystem_info_mount_not_allowed_msg">Lêerstelsel aanhegging werkings word nie toegelaat in die veilige-modus nie. Tik om toegang na root-modus te verander.</string>
   <!-- Filesystem Info * Mount failed -->
-  <string name="filesystem_info_mount_failed_msg">Lêer stelsel montering werking het misluk.
-    Sommige lêer stelsels, soos SD kaarte, kan nie geheg word/ontheg word nie omdat
-    hulle gebou is as lees-alleen lêer stelsels.</string>
+  <string name="filesystem_info_mount_failed_msg">Lêer stelsel aanheggings-werking het misluk. Sommige lêerstelsels, soos SD kaarte, kan nie geheg/ontheg word nie aangesien hulle slegs leesbare lêerstelsels is.</string>
   <!-- Filesystem Info Dialog * Title -->
   <string name="filesystem_info_dialog_title">Lêerstelsel inligting</string>
   <!-- Filesystem Info Dialog * Tab * Info -->
-  <string name="filesystem_info_dialog_tab_info">Info</string>
+  <string name="filesystem_info_dialog_tab_info">Inligting</string>
   <!-- Filesystem Info Dialog * Tab * Disk Usage -->
   <string name="filesystem_info_dialog_tab_disk_usage">Skyf gebruik</string>
   <!-- Filesystem Info Dialog * Status Label -->
   <string name="filesystem_info_dialog_status">Status:</string>
   <!-- Filesystem Info Dialog * Mount Point Label -->
-  <string name="filesystem_info_dialog_mount_point">Monterings put:</string>
+  <string name="filesystem_info_dialog_mount_point">Aanheggingspunt:</string>
   <!-- Filesystem Info Dialog * Device Label -->
   <string name="filesystem_info_dialog_device">Toestel:</string>
   <!-- Filesystem Info Dialog * Type Label -->
@@ -221,7 +206,7 @@
   <!-- Filesystem Info Dialog * Options Label -->
   <string name="filesystem_info_dialog_options">Opsies:</string>
   <!-- Filesystem Info Dialog * Dump/Pass Label -->
-  <string name="filesystem_info_dialog_dump_pass">Stort / Slaag:</string>
+  <string name="filesystem_info_dialog_dump_pass">Stort/Slaag:</string>
   <!-- Filesystem Info Dialog * Total Disk Usage -->
   <string name="filesystem_info_dialog_total_disk_usage">Totaal:</string>
   <!-- Filesystem Info Dialog * Used Disk Usage -->
@@ -231,21 +216,20 @@
 
 
   <!-- Fso Properties * Not allowed message -->
-  <string name="fso_properties_permissions_not_allowed_msg">Regte veranderinge word nie toegelaat
-    in die veilige modus. Tik om toegang na root metode te verander.</string>
+  <string name="fso_properties_permissions_not_allowed_msg">Regte veranderinge word nie toegelaat in die veilige-modus nie. Tik om toegang na root-modus te verander.</string>
   <!-- Fso Properties * Failed to change owner to fso -->
   <string name="fso_properties_failed_to_change_owner_msg">Die verandering van die eienaar aksie het misluk.\n\n
-    Vir sekuriteit redes, laat sommige lêer stelsels, soos SD kaarte, dit toe nie.</string>
+    Vir sekuriteit redes laat sommige lêerstelsels, soos SD kaarte, dit toe nie.</string>
   <!-- Fso Properties * Failed to change group to fso -->
   <string name="fso_properties_failed_to_change_group_msg">Die verandering van die eienaar aksie het misluk.\n\n
-    Vir sekuriteit redes,laat sommige lêer stelsels, soos SD kaarte dit toe nie.</string>
+    Vir sekuriteit redes laat sommige lêerstelsels, soos SD kaarte, dit toe nie.</string>
   <!-- Fso Properties * Failed to change group to fso -->
-  <string name="fso_properties_failed_to_change_permission_msg">Die verandering van regte
-    het misluk.\n\nVir sekuriteits redes, laat sommige lêer stelsels, soos SD kaarte nie die verandering toe nie.</string>
+  <string name="fso_properties_failed_to_change_permission_msg">Die verandering van regte het misluk.\n\n
+    Vir sekuriteits redes laat sommige lêerstelsels, soos SD kaarte, nie die verandering toe nie.</string>
   <!-- Fso Properties Dialog * Title -->
   <string name="fso_properties_dialog_title">Eienskappe</string>
   <!-- Fso Properties Dialog * Tab * Info -->
-  <string name="fso_properties_dialog_tab_info">Info</string>
+  <string name="fso_properties_dialog_tab_info">Inligting</string>
   <!-- Fso Properties Dialog * Tab * Permissions -->
   <string name="fso_properties_dialog_tab_permissions">Toestemmings</string>
   <!-- Fso Properties Dialog * Name Label -->
@@ -267,7 +251,7 @@
   <!-- Fso Properties Dialog * Last Modified Time Label -->
   <string name="fso_properties_dialog_last_modified_date">Gewysig:</string>
   <!-- Fso Properties Dialog * Last Changed Time -->
-  <string name="fso_properties_dialog_last_changed_date">Verander het:</string>
+  <string name="fso_properties_dialog_last_changed_date">Verander:</string>
   <!-- Fso Properties Dialog * Owner Label -->
   <string name="fso_properties_dialog_owner">Eienaar:</string>
   <!-- Fso Properties Dialog * Group Label -->
@@ -276,9 +260,9 @@
   <string name="fso_properties_dialog_others">Ander:</string>
   <!-- Fso Properties Dialog * Folders -->
   <plurals name="fso_properties_dialog_folders">
-    <item quantity="zero">0 lêergidse</item>
-    <item quantity="one">1 lêergids</item>
-    <item quantity="other"><xliff:g id="folders">%1$d</xliff:g> lêergidse</item>
+    <item quantity="zero">0 vouergidse</item>
+    <item quantity="one">1 vouergids</item>
+    <item quantity="other"><xliff:g id="folders">%1$d</xliff:g> vouergidse</item>
   </plurals>
   <!-- Fso Properties Dialog * Files -->
   <plurals name="fso_properties_dialog_files">
@@ -287,13 +271,13 @@
     <item quantity="other"><xliff:g id="files">%1$d</xliff:g> lêers</item>
   </plurals>
   <!-- Fso Properties Dialog * Skip media scan -->
-  <string name="fso_properties_dialog_include_in_media_scan">Slaan oor media skandering:</string>
+  <string name="fso_properties_dialog_include_in_media_scan">Slaan media skandering oor:</string>
   <string name="fso_failed_to_allow_media_scan">Kon nie media skandering toe laat nie</string>
   <string name="fso_failed_to_prevent_media_scan">Kon nie verhoed dat media skandering begin nie</string>
-  <string name="fso_delete_nomedia_dir_title">Verwyder .nomedia lêergids</string>
-  <string name="fso_delete_nomedia_dir_body">Hierdie lêergids bevat \'n nomedia lêergids.\n\nWil jy dit en al die inhoud daarvan wil verwyder?</string>
-  <string name="fso_delete_nomedia_non_empty_title">Verwyder .nomedia lêer</string>
-  <string name="fso_delete_nomedia_non_empty_body">Hierdie lêergids bevat \'n nie-leë .nomedia lêer\n\nWil jy dit te verwyder?</string>
+  <string name="fso_delete_nomedia_dir_title">Verwyder .nomedia vouergids</string>
+  <string name="fso_delete_nomedia_dir_body">Hierdie vouergids bevat \'n nomedia vouer.\n\nWil u dit en al die inhoud daarvan verwyder?</string>
+  <string name="fso_delete_nomedia_non_empty_title">Verwyder .nomedia vouer</string>
+  <string name="fso_delete_nomedia_non_empty_body">Hierdie vouergids bevat \'n nie-leë .nomedia lêer\n\nWil u dit verwyder?</string>
 
   <!-- History * History activity title -->
   <string name="history">Vorige items</string>
@@ -327,7 +311,7 @@
   <string name="search_few_characters_title">Bevestig soektog</string>
   <!-- Search * Some terms of the search are too small. The operation could be very costly -->
   <string name="search_few_characters_msg">Sommige van van die soekterme is baie kort. Die
-    operasie kan baie lank duur en intensief wees op stelsel bronne.\n\nWil jy wil voort gaan?</string>
+    operasie kan baie lank duur en intensief wees op stelsel bronne.\n\nWil u voortgaan?</string>
   <!-- Search * Searching dialog title -->
   <string name="searching">Wag asseblief\u2026</string>
   <!-- Search * Searching label -->
@@ -351,31 +335,31 @@
   <!-- Editor * Save operation success -->
   <string name="editor_successfully_saved">Die lêer is suksesvol gestoor.</string>
   <!-- Editor * Read-only file mode -->
-  <string name="editor_read_only_mode">Die lêer was geopen in lees-alleen wyse.</string>
+  <string name="editor_read_only_mode">Die lêer was geopen in slegs-leesbare modus.</string>
 
   <!-- Bookmarks * Bookmarks activity title -->
   <string name="bookmarks">Boekmerke</string>
   <!-- Bookmarks * Bookmark name * Home -->
   <string name="bookmarks_home">Tuis</string>
   <!-- Bookmarks * Bookmark name * Root folder -->
-  <string name="bookmarks_root_folder">Hoof lêergids</string>
+  <string name="bookmarks_root_folder">Root-vouergids</string>
   <!-- Bookmarks * Bookmark name * System folder -->
-  <string name="bookmarks_system_folder">Stelsel lêergids</string>
+  <string name="bookmarks_system_folder">Stelsel-vouergids</string>
   <!-- Bookmarks * Bookmark name * Button * Initial directory content description -->
-  <string name="bookmarks_button_config_cd">Stel die begin lêergids.</string>
+  <string name="bookmarks_button_config_cd">Stel die aanvanklike vouergids.</string>
   <!-- Bookmarks * Bookmark name * Button * Remove bookmark content description -->
-  <string name="bookmarks_button_remove_bookmark_cd">Verwyder boekmerk.</string>
+  <string name="bookmarks_button_remove_bookmark_cd">Verwyder boekmerk</string>
   <!-- Bookmarks * Bookmarks * Actions * Bookmark successfully added -->
   <string name="bookmarks_msgs_add_success">Die boekmerk was bygevoeg.</string>
 
   <!-- Initial directory dialog title -->
-  <string name="initial_directory_dialog_title">Begin lêergids</string>
+  <string name="initial_directory_dialog_title">Aanvanklike vouergids</string>
   <!-- Initial directory label -->
-  <string name="initial_directory_label">Kie die begin lêergids:</string>
+  <string name="initial_directory_label">Kies die aanvanklike vouergids:</string>
   <!-- Initial directory is relative -->
   <string name="initial_directory_relative_msg">Relatiewe paaie word nie toegelaat nie.</string>
   <!-- Initial directory error message -->
-  <string name="initial_directory_error_msg">Fout met die stoor van die begin lêergids.</string>
+  <string name="initial_directory_error_msg">Fout met die stoor van die aanvanklike vouergids.</string>
 
   <!-- Menu * Navigation * History -->
   <string name="menu_history">Vorige items</string>
@@ -443,7 +427,7 @@
   <!-- Actions Dialog * Menu * Refresh -->
   <string name="actions_menu_refresh">Herlaai</string>
   <!-- Actions Dialog * Menu * New directory -->
-  <string name="actions_menu_new_directory">Nuwe lêergids</string>
+  <string name="actions_menu_new_directory">Nuwe vouergids</string>
   <!-- Actions Dialog * Menu * New file -->
   <string name="actions_menu_new_file">Nuwe lêer</string>
   <!-- Actions Dialog * Menu * Select all -->
@@ -455,21 +439,21 @@
   <!-- Actions Dialog * Menu * Deselect -->
   <string name="actions_menu_deselect">Deselekteer</string>
   <!-- Actions Dialog * Menu * Paste selection -->
-  <string name="actions_menu_paste_selection">Plak</string>
+  <string name="actions_menu_paste_selection">Plaas</string>
   <!-- Actions Dialog * Menu * Move selection -->
   <string name="actions_menu_move_selection">Skuif</string>
   <!-- Actions Dialog * Menu * Delete selection -->
   <string name="actions_menu_delete_selection">Verwyder</string>
   <!-- Actions Dialog * Menu * Compress selection -->
-  <string name="actions_menu_compress_selection">Verlklein</string>
+  <string name="actions_menu_compress_selection">Verklein</string>
   <!-- Actions Dialog * Menu * Create link -->
   <string name="actions_menu_create_link">Skep skakel</string>
   <!-- Actions Dialog * Menu * Open -->
-  <string name="actions_menu_open">Oop</string>
+  <string name="actions_menu_open">Maak oop</string>
   <!-- Actions Dialog * Menu * Open with -->
   <string name="actions_menu_open_with">Maak oop met</string>
   <!-- Actions Dialog * Menu * Execute -->
-  <string name="actions_menu_execute">Hardloop</string>
+  <string name="actions_menu_execute">Voer uit</string>
   <!-- Actions Dialog * Menu * Send -->
   <string name="actions_menu_send">Stuur</string>
   <!-- Actions Dialog * Menu * Send selection -->
@@ -483,7 +467,7 @@
   <!-- Actions Dialog * Menu * Rename -->
   <string name="actions_menu_rename">Hernoem</string>
   <!-- Actions Dialog * Menu * Create copy -->
-  <string name="actions_menu_create_copy">Skep kopie</string>
+  <string name="actions_menu_create_copy">Maak \'n kopie</string>
   <!-- Actions Dialog * Menu * Properties -->
   <string name="actions_menu_properties">Eienskappe</string>
   <!-- Actions Dialog * Menu * Add to bookmarks -->
@@ -491,11 +475,10 @@
   <!-- Actions Dialog * Menu * Add shortcut -->
   <string name="actions_menu_add_shortcut">Voeg kortpad</string>
   <!-- Actions Dialog * Menu * Open parent folder -->
-  <string name="actions_menu_open_parent_folder">Maak oop ouer</string>
+  <string name="actions_menu_open_parent_folder">Maak ouer oop</string>
 
   <!-- Actions * Ask user prior to do an undone operation. Dialog message -->
-  <string name="actions_ask_undone_operation_msg">
-    Hierdie aksie kan nie ongedaan gemaak word nie. Wil jy graag voort gaan?</string>
+  <string name="actions_ask_undone_operation_msg">Hierdie aksie kan nie ongedaan gemaak word nie. Wil u voortgaan?</string>
 
   <!-- Enter Name Dialog * Label -->
   <string name="input_name_dialog_label">Naam:</string>
@@ -511,7 +494,7 @@
   <string name="input_name_dialog_message_name_exists">Die naam bestaan alreeds.</string>
 
   <!-- Associations Dialog * Title -->
-  <string name="associations_dialog_title">Aassosiasies</string>
+  <string name="associations_dialog_title">Assosiasies</string>
   <!-- Associations Dialog * Remember the user action -->
   <string name="associations_dialog_remember">Onthou keuse</string>
   <!-- Associations Dialog * Open with Title -->
@@ -524,7 +507,7 @@
   <string name="associations_dialog_sendwith_action">Stuur</string>
 
   <!-- Inline Autocomplete Widget * Tab message nothing to complete -->
-  <string name="inline_autocomplete_tab_nothing_to_complete_msg">Niks om te voltooi.</string>
+  <string name="inline_autocomplete_tab_nothing_to_complete_msg">Niks om te voltooi nie.</string>
 
   <!-- Execution console * Title -->
   <string name="execution_console_title">Konsole</string>
@@ -539,7 +522,7 @@
     <xliff:g id="seconds">%1$s</xliff:g> sek.</string>
 
   <!-- Mime/Types * Folder -->
-  <string name="mime_folder">lêergids</string>
+  <string name="mime_folder">Mime vouergids</string>
   <!-- Mime/Types * Symlink -->
   <string name="mime_symlink">Simboliese skakel</string>
   <!-- Mime/Types * Unknown -->
@@ -548,27 +531,27 @@
   <!-- Selection. All possibilities. [1 folder; >1 folders; 1 file; >1 files;
      >1 folders and 1 file; 1 folder and >1 files; >1 folders and >1 files]
      Avoid using plural item because is more complex to achieved all strings -->
-  <string name="selection_one_folder"><xliff:g id="folders">%1$s</xliff:g> lêergids geselekteer.</string>
-  <string name="selection_other_folders"><xliff:g id="folders">%1$s</xliff:g> lêergidse geselekteer.</string>
+  <string name="selection_one_folder"><xliff:g id="folders">%1$s</xliff:g> vouergids geselekteer.</string>
+  <string name="selection_other_folders"><xliff:g id="folders">%1$s</xliff:g> vouergidse geselekteer.</string>
   <string name="selection_one_file"><xliff:g id="files">%1$s</xliff:g> lêer geselekteer.</string>
   <string name="selection_other_files"><xliff:g id="files">%1$s</xliff:g> lêers geselekteer.</string>
-  <string name="selection_other_folders_one_file"><xliff:g id="folders">%1$s</xliff:g> lêergids en
+  <string name="selection_other_folders_one_file"><xliff:g id="folders">%1$s</xliff:g> vouergids en
     <xliff:g id="files">%2$s</xliff:g> lêer geselekteer.</string>
-  <string name="selection_one_folder_other_files"><xliff:g id="folder2">%1$s</xliff:g> lêergids en
+  <string name="selection_one_folder_other_files"><xliff:g id="folder2">%1$s</xliff:g> vouergids en
     <xliff:g id="file2">%2$s</xliff:g> lêers geselekteer.</string>
-  <string name="selection_other_folders_other_files"><xliff:g id="folder2">%1$s</xliff:g> lêergidse
+  <string name="selection_other_folders_other_files"><xliff:g id="folder2">%1$s</xliff:g> vouergidse
     en <xliff:g id="files">%2$s</xliff:g> lêers geselekteer.</string>
 
   <!-- Category descriptions -->
   <string name="category_system">STELSEL</string>
-  <string name="category_app">APP</string>
+  <string name="category_app">PROGRAM</string>
   <string name="category_binary">BINÊRE</string>
   <string name="category_text">TEKS</string>
   <string name="category_document">DOKUMENT</string>
   <string name="category_ebook">EBOEK</string>
   <string name="category_mail">POS</string>
   <string name="category_compress">VERKLEIN</string>
-  <string name="category_exec">UITVOERBARE</string>
+  <string name="category_exec">UITVOERBAAR</string>
   <string name="category_database">DATABASIS</string>
   <string name="category_font">FONT</string>
   <string name="category_image">BEELD</string>
@@ -580,16 +563,16 @@
   <string name="compression_mode_title">Verkleinings metode</string>
 
   <!-- Shortcut. Failed to handle the shortcut -->
-  <string name="shortcut_failed_msg">Kon nie van die Snelkoppeling gebruik maak nie.</string>
+  <string name="shortcut_failed_msg">Kon nie van die kortpad gebruik maak nie.</string>
   <!-- Shortcut. The shortcut was created -->
-  <string name="shortcut_creation_success_msg">Snelkoppeling suksesvol geskep.</string>
+  <string name="shortcut_creation_success_msg">Kortpad suksesvol geskep.</string>
   <!-- Shortcut. The shortcut wasn't created -->
-  <string name="shortcut_creation_failed_msg">Snelkoppeling kon nie geskep word nie.</string>
+  <string name="shortcut_creation_failed_msg">Kortpad kon nie geskep word nie.</string>
 
   <!-- Preferences title -->
   <string name="pref">Instellings</string>
   <!-- Preferences * General title -->
-  <string name="pref_general">Algemene instellings</string>
+  <string name="pref_general">Algemeen</string>
   <!-- Preferences * Search title -->
   <string name="pref_search">Soek opsies</string>
   <!-- Preferences * Themes title -->
@@ -597,7 +580,7 @@
   <!-- Preferences * About title -->
   <string name="pref_about">Aangaande</string>
   <!-- Preferences * About summary -->
-  <string name="pref_about_summary">Lêer bestuurder v<xliff:g id="version">%1$s</xliff:g>
+  <string name="pref_about_summary">Lêerbestuurder v<xliff:g id="version">%1$s</xliff:g>
     \nKopiereg \u00A9 2013 Die CyanogenMod Projek</string>
 
   <!-- Preferences * General * Behaviour category -->
@@ -605,81 +588,75 @@
   <!-- Preferences * General * Case sensitive sort title -->
   <string name="pref_case_sensitive_sort">Gebruik letter-sensitiewe sortering</string>
   <!-- Preferences * General *Disk usage warning level title -->
-  <string name="pref_disk_usage_warning_level">Skyf spasie waarskuwing</string>
+  <string name="pref_disk_usage_warning_level">Skyfspasie waarskuwing</string>
   <!-- Preferences * General * Disk usage warning level summary -->
   <!-- FIXME Use "percent" instead of "%" symbol, because it make crash the app on getSummary
        of ListPreference. This should be fixed in frameworks base prior to be added here. -->
   <string name="pref_disk_usage_warning_level_summary" formatted="false">Vertoon \'n ander
-    kleur op die skyf legkaart wanneer dit <xliff:g id="level">%1$s</xliff:g> persent
-    skyf spasie bereik</string>
+    kleur op die skyf legstuk wanneer dit <xliff:g id="level">%1$s</xliff:g> persent
+    skyfspasie bereik</string>
   <!-- Preferences * General * Compute folder statistics title -->
-  <string name="pref_compute_folder_statistics">Bereken lêergids statistieke</string>
+  <string name="pref_compute_folder_statistics">Bereken vouergids statistieke</string>
   <!-- Preferences * General * Compute folder statistics summary on -->
-  <string name="pref_compute_folder_statistics_on">Waarskuwing! Die berekening van die lêergids statistieke kan lank in tyds duur wees en
-    stelsel bronne kan uitgeput word</string>
+  <string name="pref_compute_folder_statistics_on">Waarskuwing! Die berekening van vouergids statistieke kan lank vat en stelsel bronne uitput</string>
   <!-- Preferences * General * Use flinger detection -->
   <string name="pref_use_flinger">Gebruik swipe gebare</string>
   <!-- Preferences * General * Use flinger detection summary -->
-  <string name="pref_use_flinger_summary">Gebruik swipe links na regs gebaar om lêers of lêersgidse te verwyder.</string>
+  <string name="pref_use_flinger_summary">Gebruik swipe links-na-regs gebaar om lêers of vouersgidse te verwyder.</string>
   <!-- Preferences * General * Advanced settings category -->
   <string name="pref_general_advanced_settings_category">Gevorderd</string>
   <!-- Preferences * General * Access mode -->
-  <string name="pref_access_mode">Toegangs metode</string>
+  <string name="pref_access_mode">Toegangsmodus</string>
   <!-- Preferences * General * Safe mode -->
-  <string name="pref_access_mode_safe">Veilige toegang metode</string>
+  <string name="pref_access_mode_safe">Veilige modus</string>
   <!-- Preferences * General * Safe mode summary -->
-  <string name="pref_access_mode_safe_summary">Veilige modus\n\nDie program is aktief sonder
-    regte en die enigste toeganklike lêer stelsels is skyf volumes (SD kaart en USB)</string>
+  <string name="pref_access_mode_safe_summary">Veilige modus\n\nDie program is aktief sonder regte en die enigste toeganklike lêerstelsels is skyf volumes (SD kaart en USB)</string>
   <!-- Preferences * General * Prompt user mode -->
-  <string name="pref_access_mode_prompt">Vra Gebruiker metode</string>
+  <string name="pref_access_mode_prompt">Vra Gebruiker modus</string>
   <!-- Preferences * General * Prompt user mode summary -->
-  <string name="pref_access_mode_prompt_summary">Vra Gebruiker metode\n\nDie program is aktief
-    met volle toegang tot die lêer stelsel, maar sal jou vra vir toestemming voor die uitvoering van
-    enige gevorderde aksies</string>
+  <string name="pref_access_mode_prompt_summary">Vra Gebruiker modus\n\nDie program is aktief met volle toegang tot die lêerstelsel, maar sal vra vir toestemming voor die uitvoering van enige gevorderde aksies</string>
   <!-- Preferences * General * Root access mode -->
-  <string name="pref_access_mode_root">Root toegangs metode</string>
+  <string name="pref_access_mode_root">Root-modus</string>
   <!-- Preferences * General * Root access mode summary -->
-  <string name="pref_access_mode_root_summary">Root toegangs metode\n\nWarning! Hierdie metode kan jou toestel breek.
-    Dit is jou verantwoordelikheid om te verseker dat die operasie veilig is</string>
+  <string name="pref_access_mode_root_summary">Root-modus\n\nWaarskuwing! Hierdie modus kan die toestel breek. Dit is u verantwoordelikheid om te verseker dat die operasies veilig is</string>
   <!-- Preferences * Search * Results category -->
   <string name="pref_search_results_category">Uitslae</string>
   <!-- Preferences * Search * Show relevance widget -->
-  <string name="pref_show_relevance_widget">Wys relevante legkaart</string>
+  <string name="pref_show_relevance_widget">Wys relevante legstuk</string>
   <!-- Preferences * Search * Highlight search terms -->
   <string name="pref_highlight_terms">Beklemtoon soekterme</string>
   <!-- Preferences * Search * Sort results mode -->
   <string name="pref_sort_search_results_mode">Sorteer resultate</string>
   <!-- Preferences * Search * Sort results mode. None -->
-  <string name="pref_sort_search_results_mode_none">Geen sorteer</string>
+  <string name="pref_sort_search_results_mode_none">Geen sortering</string>
   <!-- Preferences * Search * Sort results mode. None -->
   <string name="pref_sort_search_results_mode_name">Volgens naam</string>
   <!-- Preferences * Search * Sort results mode. Relevance -->
-  <string name="pref_sort_search_results_mode_relevance">Volgense bruikbaarhuid</string>
+  <string name="pref_sort_search_results_mode_relevance">Volgens bruikbaarheid</string>
   <!-- Preferences * Search * Privacity category -->
   <string name="pref_search_privacity_category">Privaat</string>
   <!-- Preferences * Search * Save search terms -->
   <string name="pref_save_search_terms">Stoor soekterme</string>
   <!-- Preferences * Search * Save search terms summary on -->
-  <string name="pref_save_search_terms_on">Soekterme sal gestoor word en gebruik word as voorstelle
-    in die toekoms</string>
+  <string name="pref_save_search_terms_on">Soekterme sal gestoor en gebruik word as voorstelle in die toekoms</string>
   <!-- Preferences * Search * Save search terms summary off -->
   <string name="pref_save_search_terms_off">Soekterme sal nie gestoor word nie</string>
   <!-- Preferences * Search * Remove saved search terms -->
-  <string name="pref_remove_saved_search_terms">Verwyder gestoorde soektog terme</string>
+  <string name="pref_remove_saved_search_terms">Verwyder gestoorde soekterme</string>
   <!-- Preferences * Search * Remove saved search terms summary -->
-  <string name="pref_remove_saved_search_terms_summary">Raak om al die gestoorde soektermes te verwyder</string>
+  <string name="pref_remove_saved_search_terms_summary">Raak om al die gestoorde soekterme te verwyder</string>
   <!-- Preferences * Search * Suggestions were truncated -->
-  <string name="pref_remove_saved_search_terms_msg">Alle gestoorde soektog terme is verwyder.</string>
+  <string name="pref_remove_saved_search_terms_msg">Alle gestoorde soekterme is verwyder.</string>
   <!-- Preferences * Themes * Themes selection category -->
   <string name="pref_themes_selection_category">Temas</string>
   <!-- Preferences * Themes * Set theme button -->
-  <string name="pref_themes_set_theme">Stel tema</string>
+  <string name="pref_themes_set_theme">Pas tema aan</string>
   <!-- Preferences * Themes * No preview -->
-  <string name="pref_themes_no_preview">Geen voorskou\nbeskikbaar nie</string>
+  <string name="pref_themes_no_preview">Geen voorskou beskikbaar nie.</string>
   <!-- Preferences * Themes * Confirmation message -->
-  <string name="pref_themes_confirmation">Tema was suksesvol toegepas.</string>
+  <string name="pref_themes_confirmation">Tema suksesvol toegepas.</string>
   <!-- Preferences * Themes * Theme not found message -->
-  <string name="pref_themes_not_found">Die was tema was nie gevind nie.</string>
+  <string name="pref_themes_not_found">Die tema kon nie gevind word nie.</string>
 
   <!-- Preferences * Debug * Capture debug traces -->
   <string name="pref_debug_traces">Meld ontfoutings inligting aan</string>
@@ -693,9 +670,8 @@
 
   <!-- Security * Extract relative or absolute files -->
   <string name="security_warning_extract">Waarskuwing!\n\n
-    Gebruik van \'n argieflêer met \'n relatiewe of absolute pad kan lei tot skade aan jou toestel
-    deur die oorskryf van stelsel lêers.\n\n
-    Wil jy voortgaan?</string>
+    Gebruik van \'n argiefvouer met \'n relatiewe of absolute pad kan lei tot skade aan die toestel deur die oorskryf van stelsel vouers.\n\n
+    Wil u voortgaan?</string>
 
   <!-- ChangeLog * Dialog title -->
   <string name="changelog_title">Veranderinge</string>
@@ -704,11 +680,8 @@
   <string name="welcome_title">Welkom</string>
   <!-- Welcome Dialog * Message -->
   <string name="welcome_msg">
-    Welkom by die CyanogenMod lêerbestuurder.
-    \n\n Met hierdie program kan jy die lêerstelsel verken en jy kan miskien
-    jou toestel "breek". Om Skade te voorkom, sal die program begin in veilige, lae-bevoorregte metode.
-    \n\nJy kan toegang tot die gevorderde, volbevoorregte metode verkry via instellings. Dit is jou
-    verantwoordelikheid om te verseker dat enige aksie wat jy hier doen nie jou stelsel beskadig nie.
+    Welkom by die CyanogenMod Lêerbestuurder.
+    \n\nMet hierdie program kan u die lêerstelsel verken en moontlik die toestel beskadig. Om dit te voorkom, sal die program begin in \'n veilige, lae-bevoorregte modus.
+    \n\nU kan toegang tot \'n gevorderde, volbevoorregte modus verkry deur instellings. Dit is u verantwoordelikheid om te verseker dat enige aksie wat gedoen word nie die stelsel beskadig nie.
     \n\nDie CyanogenMod span\n.</string>
-
 </resources>

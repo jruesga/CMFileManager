@@ -365,10 +365,11 @@
     <string name="pref_search">Sucheinstellungen</string>
     <string name="pref_themes">Designs</string>
     <string name="pref_about">Über</string>
-    <string name="pref_about_summary">Dateimanager v<xliff:g id="version">%1$s</xliff:g>\nCopyright \u00A9 2012-2013 The CyanogenMod Project</string>
+    <string name="pref_about_summary">Dateimanager v<xliff:g id="version">%1$s</xliff:g>\nCopyright \u00A9 2013 The CyanogenMod Project</string>
 
     <string name="pref_general_behaviour_category">Allgemein</string>
-    <string name="pref_case_sensitive_sort">Groß-/Kleinschreibung berücksichtigen</string>
+    <string name="pref_case_sensitive_sort">Groß- und Kleinschreibung</string>
+    <string name="pref_case_sensitive_sort_summary">Beim Navigieren und Sortieren Groß- und Kleinschreibung berücksichtigen</string>
     <string name="pref_disk_usage_warning_level">Speichernutzungswarnung</string>
     <string name="pref_disk_usage_warning_level_summary" formatted="false">Eine andere Farbe verwenden, wenn mehr als <xliff:g id="level">%1$s</xliff:g> Prozent des Speichers belegt sind</string>
     <string name="pref_compute_folder_statistics">Verzeichnisstatistiken</string>

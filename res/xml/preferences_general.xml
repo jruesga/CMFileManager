@@ -26,6 +26,7 @@
       <CheckBoxPreference
         android:key="cm_filemanager_case_sensitive_sort"
         android:title="@string/pref_case_sensitive_sort"
+        android:summary="@string/pref_case_sensitive_sort_summary"
         android:persistent="true"
         android:defaultValue="false" />
 

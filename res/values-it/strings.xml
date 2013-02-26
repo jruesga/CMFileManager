@@ -303,6 +303,7 @@
     \nCopyright \u00A9 2012 The CyanogenMod Project</string>
   <string name="pref_general_behaviour_category">Generale</string>
   <string name="pref_case_sensitive_sort">Ordinamento case sensitive</string>
+  <string name="pref_case_sensitive_sort_summary">Ordinamento dei risultati di ricerca o della navigazione sensibile alle maiuscole</string>
   <string name="pref_disk_usage_warning_level">Avviso su utilizzo disco</string>
   <string name="pref_disk_usage_warning_level_summary" formatted="false">Mostra un colore differente nei widget che mostrano l\'utilizzo del disco quando questo raggiunge il <xliff:g id="level">%1$s</xliff:g> percento di spazio libero</string>
   <string name="pref_compute_folder_statistics">Calcola statistiche cartella</string>

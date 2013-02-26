@@ -13,7 +13,7 @@
      See the License for the specific language governing permissions and
      limitations under the License.
  -->
-<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+<resources xmlns:android="http://schemas.android.com/apk/res/android" xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="app_name">G. de Arquivos</string>
     <string name="app_description">Um gerenciador de arquivos por CyanogenMod</string>
     <string name="device_blockdevice">Bloquear dispositivo</string>
@@ -267,9 +267,10 @@
     <string name="pref_general">Configurações gerais</string>
     <string name="pref_search">Opções de busca</string>
     <string name="pref_about">Sobre</string>
-    <string name="pref_about_summary">Gerenciador de Arquivos v<xliff:g id="version" xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">%1$s</xliff:g>\nCopyright \u00A9 2012 The CyanogenMod Project</string>
+    <string name="pref_about_summary">Gerenciador de Arquivos v<xliff:g id="version" xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">%1$s</xliff:g>\nCopyright \u00A9 2013 The CyanogenMod Project</string>
     <string name="pref_general_behaviour_category">Geral</string>
-    <string name="pref_case_sensitive_sort">Usar ordenação sensível a maiúsculas/minúsculas</string>
+    <string name="pref_case_sensitive_sort">Maiúsculas/minúsculas</string>
+    <string name="pref_case_sensitive_sort_summary">Considerar maiúsculas/minúsculas quando navegando ou ordenando resultados de buscas</string>
     <string name="pref_disk_usage_warning_level">Aviso sobre o uso do disco</string>
     <string name="pref_disk_usage_warning_level_summary" formatted="false">Exibir uma cor diferente nos widgets de uso de disco quando chegar a <xliff:g id="level" xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">%1$s</xliff:g> porcento de espaço disponível</string>
     <string name="pref_compute_folder_statistics">Gerar estatísticas da pasta</string>

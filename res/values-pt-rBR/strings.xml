@@ -303,7 +303,7 @@
     <string name="security_warning_extract">Aviso!\n\nO dispositivo pode ser danificado se, ao extrair arquivos com caminhos relativos ou absolutos, arquivos de sistema forem sobrescritos.\n\nVocê deseja continuar?</string>
     <string name="changelog_title">Registro de mudanças</string>
     <string name="welcome_title">Bem vindo</string>
-    <string name="welcome_msg">Bem vindo ao gerenciador de arquivos CyanogenMod.\n\nEste aplicativo permite você a explorar o sistema de arquivos e fazer operações que podem danificar seu dispositivo. Para previnir danos, o aplicativo irá iniciar em modo seguro e com poucos privilégios.\n\nVocê pode acessar o modo avançado, com todos os privilégios através das Configurações. É sua responsabilidade de garantir que uma operação não danifica seu sistema.\n\nThe CyanogenMod Team.\n</string>
+    <string name="welcome_msg">Bem vindo ao gerenciador de arquivos CyanogenMod.\n\nEste aplicativo permite você a explorar o sistema de arquivos e fazer operações que podem danificar seu dispositivo. Para previnir danos, o aplicativo irá iniciar em modo seguro e com poucos privilégios.\n\nVocê pode acessar o modo avançado, com todos os privilégios através das Configurações. É sua responsabilidade de garantir que uma operação não danifique seu sistema.\n\nThe CyanogenMod Team.\n</string>
     <string name="themes_author">CyanogenMod</string>
     <string name="pref_themes">Temas</string>
     <string name="pref_themes_selection_category">Temas</string>

@@ -559,6 +559,8 @@
     <string name="pref_general_behaviour_category">Általános</string>
     <!-- Preferences * General * Case sensitive sort title -->
     <string name="pref_case_sensitive_sort">Kis-/nagybetű helyes rendezés</string>
+    <!-- Preferences * General * Case sensitive sort and navigating summary -->
+    <string name="pref_case_sensitive_sort_summary">Kis-/nagybetű figyelembe vétele navigáláskor, illetve találatok sorba rendezésekor</string>
     <!-- Preferences * General *Disk usage warning level title -->
     <string name="pref_disk_usage_warning_level">Figyelmeztetés kevés tárterületnél</string>
     <!-- Preferences * General * Disk usage warning level summary -->

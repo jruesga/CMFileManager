@@ -320,6 +320,7 @@
 
   <string name="pref_general_behaviour_category">Основные</string>
   <string name="pref_case_sensitive_sort">Учитывать регистр при сортировке</string>
+  <string name="pref_case_sensitive_sort_summary">Сортировка результатов при поиске или навигации</string>
   <string name="pref_disk_usage_warning_level">Предупреждения исп. памяти</string>
   <string name="pref_disk_usage_warning_level_summary" formatted="false">Показывать разноцветные индикации дискового пространства, когда они достигают <xliff:g id="level">%1$s</xliff:g> процентов свободного места</string>
   <string name="pref_compute_folder_statistics">Расчёт статистики по папкам</string>

@@ -21,8 +21,8 @@
   <string name="app_description">\'n CyanogenMod Lêerbestuurder.</string>
 
   <!-- Devices types -->
-  <string name="device_blockdevice">Blok toestel</string>
-  <string name="device_characterdevice">Karakter toestel</string>
+  <string name="device_blockdevice">Bloktoestel</string>
+  <string name="device_characterdevice">Karaktertoestel</string>
   <string name="device_namedpipe">Named pipe</string>
   <string name="device_domainsocket">Domain socket</string>
 
@@ -37,7 +37,7 @@
   <string name="overwrite">Oorskryf</string>
 
   <!-- The root directory name -->
-  <string name="root_directory_name"><![CDATA[<Root-vouergids>]]></string>
+  <string name="root_directory_name"><![CDATA[<\'Root\' vouergids>]]></string>
   <!-- The search result name -->
   <string name="search_result_name">Soek: <xliff:g id="terms">%1$s</xliff:g></string>
 
@@ -55,32 +55,32 @@
   <!-- Confirm operation dialog title -->
   <string name="confirm_operation">Bevestig werking</string>
   <!-- Confirm overwrite dialog title -->
-  <string name="confirm_overwrite">Bevestig oorskryf</string>
+  <string name="confirm_overwrite">Bevestig oorskrywing</string>
   <!-- Confirm deletion dialog title -->
   <string name="confirm_deletion">Bevestig verwydering</string>
 
   <!--  A console couldn't be created. Ask the user to change the access mode. Dialog Title -->
   <string name="msgs_change_to_prompt_access_mode_title">Bevestig verandering</string>
   <!--  A console couldn't be created. Ask the user to change the access mode. Dialog Message -->
-  <string name="msgs_change_to_prompt_access_mode_msg">Kry nie root-toegang nie. Verander na die veilige-modus.\n\nDien hierdie verandering toe.</string>
+  <string name="msgs_change_to_prompt_access_mode_msg">Kry nie \'root\' toegang nie. Verander na die veilige modus.\n\nDien hierdie verandering toe?</string>
 
   <!-- A console couldn't be created. Without privileges, the application won't work -->
   <string name="msgs_cant_create_console">Kon nie die nodige regte kry om te funksioneer nie.</string>
   <!-- The message shown when an allocation of a privileged console fails, and a non
        privileged is allocated -->
-  <string name="msgs_privileged_console_alloc_failed">Kry nie root-toegang nie. Het verander na veilige-modus.</string>
+  <string name="msgs_privileged_console_alloc_failed">Kry nie \'root\' toegang nie. Het verander na veilige modus.</string>
   <!-- The selected setting was not applied or stored -->
   <string name="msgs_settings_save_failure">Die instelling kan nie toegepas of gestoor word nie.</string>
   <!-- The initial directory has an invalid or inaccessible reference -->
-  <string name="msgs_settings_invalid_initial_directory">Die aanvanklike vouergids\"<xliff:g id="initial_dir">%1$s</xliff:g>\" is ongeldig. Verander na root-vouergids.</string>
+  <string name="msgs_settings_invalid_initial_directory">Die aanvanklike vouergids\"<xliff:g id="initial_dir">%1$s</xliff:g>\" is ongeldig. Verander na \'root\' vouergids.</string>
 
   <!-- Success -->
   <string name="msgs_success">Die aksie was suksesvol voltooi.</string>
   <!-- Unknown error -->
-  <string name="msgs_unknown">\'n Fout is bespeur. Die aksie was onsuksesvol.</string>
+  <string name="msgs_unknown">\'n Fout het voorgekom. Die aksie was onsuksesvol.</string>
   <!-- When an operation requires elevated privileged (normally caused for the use of a
        non-privileged console) -->
-  <string name="msgs_insufficient_permissions">Hierdie aksie vereis verhoogde regte. Probeer root-toegang.</string>
+  <string name="msgs_insufficient_permissions">Hierdie aksie vereis verhoogde regte. Probeer \'root\' toegang.</string>
   <!-- The file or directory was not found -->
   <string name="msgs_file_not_found">Die lêer of vouergids was nie gevind nie.</string>
   <!-- The command reference couldn't be created (not found or invalid definition)
@@ -93,7 +93,7 @@
   <!-- The operation returns an invalid exit code -->
   <string name="msgs_operation_failure">Die werking het misluk.</string>
   <!-- A console couldn't be allocated -->
-  <string name="msgs_console_alloc_failure">\'n interne fout het gebeur.</string>
+  <string name="msgs_console_alloc_failure">\'n interne fout het voorgekom.</string>
   <!-- An operation can't be cancelled -->
   <string name="msgs_operation_can_not_be_cancelled">Die werking kan nie gekanselleer word nie.</string>
   <!-- The operation requieres mount the file system prior to execute the command -->
@@ -107,7 +107,7 @@
     Die operasie word nie toegelaat in die huidige vouergids nie.\n\nBestemmings vouergids kan nie \'n sub-vouergids van bron of dieselfde as die bron wees nie.</string>
 
   <!-- The advice message prior to exit the application -->
-  <string name="msgs_push_again_to_exit">Tik weer om te beeindig.</string>
+  <string name="msgs_push_again_to_exit">Raak weer om te beeindig.</string>
 
   <!-- There is no registered application that can handle the mime-type -->
   <string name="msgs_not_registered_app">Daar is geen program geregistreer om die tipe lêer oop te maak nie.</string>
@@ -119,24 +119,24 @@
   <string name="msgs_action_association_failed">Die geassosieerde program aksie het misluk.</string>
 
   <!-- An operation requires elevated privileged. Ask the user. -->
-  <string name="advise_insufficient_permissions">Die werking vereis verhoogde regte.\n\nVerander na root-toegang?</string>
+  <string name="advise_insufficient_permissions">Die werking vereis verhoogde regte.\n\nVerander na \'root\' toegang?</string>
 
 
   <!-- The parent directory of the current directory in navigation view -->
-  <string name="parent_dir">Ouer vouergids</string>
+  <string name="parent_dir">Ouer-vouergids</string>
   <!-- External storage descripton -->
-  <string name="external_storage">Eksterne skyf</string>
+  <string name="external_storage">Eksterne berging</string>
   <!-- Usb storage descripton -->
-  <string name="usb_storage">USB skyf</string>
+  <string name="usb_storage">USB-berging</string>
 
   <!-- ActionBar Buttons * FileSystem -->
   <string name="actionbar_button_filesystem_cd">Lêerstelsel inligting</string>
   <!-- ActionBar Buttons * Sort Mode -->
-  <string name="actionbar_button_sort_mode_cd">Sorteer metode</string>
+  <string name="actionbar_button_sort_mode_cd">Sorteermetode</string>
   <!-- ActionBar Buttons * Layout Mode -->
-  <string name="actionbar_button_layout_mode_cd">Uitleg metode</string>
+  <string name="actionbar_button_layout_mode_cd">Uitlegmetode</string>
   <!-- ActionBar Buttons * Other View Options -->
-  <string name="actionbar_button_other_view_options_cd">Ander wys opsies</string>
+  <string name="actionbar_button_other_view_options_cd">Ander wysopsies</string>
   <!-- ActionBar Buttons * Done -->
   <string name="actionbar_button_selection_done_cd">Klaar</string>
   <!-- ActionBar Buttons * Actions -->
@@ -171,13 +171,13 @@
   <string name="layout_details">Besonderhede</string>
 
   <!-- Navigation View * View * Show folders first -->
-  <string name="cm_filemanager_show_dirs_first">wys vouergidse 1ste</string>
+  <string name="cm_filemanager_show_dirs_first">Wys vouergidse eerste</string>
   <!-- Navigation View * View * Show hidden files option -->
   <string name="cm_filemanager_show_hidden">Wys versteekte vouers</string>
   <!-- Navigation View * View * Show system files option -->
   <string name="cm_filemanager_show_system">Wys stelsel vouers</string>
   <!-- Navigation View * View * Show symlinks option -->
-  <string name="cm_filemanager_show_symlinks">Wys symlinks</string>
+  <string name="cm_filemanager_show_symlinks">Wys simboliese koppelings</string>
 
   <!-- Filesystem Info (no data). Dialog title -->
   <string name="filesystem_info_warning_title">Geen inligting</string>
@@ -186,15 +186,15 @@
   <!-- Filesystem Info * Filesystem couldn't be mounted -->
   <string name="filesystem_info_cant_be_mounted_msg">Die lêerstelsel kan nie geheg/ontheg word nie.</string>
   <!-- Filesystem Info * Not allowed message -->
-  <string name="filesystem_info_mount_not_allowed_msg">Lêerstelsel aanhegging werkings word nie toegelaat in die veilige-modus nie. Tik om toegang na root-modus te verander.</string>
+  <string name="filesystem_info_mount_not_allowed_msg">Lêerstelsel hegging word nie toegelaat in die veilige modus nie. Raak om toegang na \'root\' modus te verander.</string>
   <!-- Filesystem Info * Mount failed -->
-  <string name="filesystem_info_mount_failed_msg">Lêer stelsel aanheggings-werking het misluk. Sommige lêerstelsels, soos SD kaarte, kan nie geheg/ontheg word nie aangesien hulle slegs leesbare lêerstelsels is.</string>
+  <string name="filesystem_info_mount_failed_msg">Die lêerstelsel hegging het misluk. Sommige lêerstelsels, soos SD-kaarte, kan nie geheg/ontheg word nie aangesien hulle leesalleen lêerstelsels is.</string>
   <!-- Filesystem Info Dialog * Title -->
   <string name="filesystem_info_dialog_title">Lêerstelsel inligting</string>
   <!-- Filesystem Info Dialog * Tab * Info -->
   <string name="filesystem_info_dialog_tab_info">Inligting</string>
   <!-- Filesystem Info Dialog * Tab * Disk Usage -->
-  <string name="filesystem_info_dialog_tab_disk_usage">Skyf gebruik</string>
+  <string name="filesystem_info_dialog_tab_disk_usage">Bergingspasie</string>
   <!-- Filesystem Info Dialog * Status Label -->
   <string name="filesystem_info_dialog_status">Status:</string>
   <!-- Filesystem Info Dialog * Mount Point Label -->
@@ -216,16 +216,16 @@
 
 
   <!-- Fso Properties * Not allowed message -->
-  <string name="fso_properties_permissions_not_allowed_msg">Regte veranderinge word nie toegelaat in die veilige-modus nie. Tik om toegang na root-modus te verander.</string>
+  <string name="fso_properties_permissions_not_allowed_msg">Regte veranderinge word nie toegelaat in die veilige modus nie. Raak om toegang na \'root\' modus te verander.</string>
   <!-- Fso Properties * Failed to change owner to fso -->
   <string name="fso_properties_failed_to_change_owner_msg">Die verandering van die eienaar aksie het misluk.\n\n
-    Vir sekuriteit redes laat sommige lêerstelsels, soos SD kaarte, dit toe nie.</string>
+    Vir sekuriteit redes laat sommige lêerstelsels, soos SD-kaarte, dit toe nie.</string>
   <!-- Fso Properties * Failed to change group to fso -->
-  <string name="fso_properties_failed_to_change_group_msg">Die verandering van die eienaar aksie het misluk.\n\n
-    Vir sekuriteit redes laat sommige lêerstelsels, soos SD kaarte, dit toe nie.</string>
+  <string name="fso_properties_failed_to_change_group_msg">Die verandering van die groep aksie het misluk.\n\n
+    Vir sekuriteit redes laat sommige lêerstelsels, soos SD-kaarte, dit toe nie.</string>
   <!-- Fso Properties * Failed to change group to fso -->
   <string name="fso_properties_failed_to_change_permission_msg">Die verandering van regte het misluk.\n\n
-    Vir sekuriteits redes laat sommige lêerstelsels, soos SD kaarte, nie die verandering toe nie.</string>
+    Vir sekuriteits redes laat sommige lêerstelsels, soos SD-kaarte, nie die verandering toe nie.</string>
   <!-- Fso Properties Dialog * Title -->
   <string name="fso_properties_dialog_title">Eienskappe</string>
   <!-- Fso Properties Dialog * Tab * Info -->
@@ -271,20 +271,20 @@
     <item quantity="other"><xliff:g id="files">%1$d</xliff:g> lêers</item>
   </plurals>
   <!-- Fso Properties Dialog * Skip media scan -->
-  <string name="fso_properties_dialog_include_in_media_scan">Slaan media skandering oor:</string>
-  <string name="fso_failed_to_allow_media_scan">Kon nie media skandering toe laat nie</string>
-  <string name="fso_failed_to_prevent_media_scan">Kon nie verhoed dat media skandering begin nie</string>
+  <string name="fso_properties_dialog_include_in_media_scan">Slaan mediaskandering oor:</string>
+  <string name="fso_failed_to_allow_media_scan">Kon nie mediaskandering toe laat nie</string>
+  <string name="fso_failed_to_prevent_media_scan">Kon nie verhoed dat mediaskandering begin nie</string>
   <string name="fso_delete_nomedia_dir_title">Verwyder .nomedia vouergids</string>
-  <string name="fso_delete_nomedia_dir_body">Hierdie vouergids bevat \'n nomedia vouer.\n\nWil u dit en al die inhoud daarvan verwyder?</string>
+  <string name="fso_delete_nomedia_dir_body">Hierdie vouergids bevat \'n nomedia vouer.\n\nWil jy dit en al die inhoud daarvan verwyder?</string>
   <string name="fso_delete_nomedia_non_empty_title">Verwyder .nomedia vouer</string>
-  <string name="fso_delete_nomedia_non_empty_body">Hierdie vouergids bevat \'n nie-leë .nomedia lêer\n\nWil u dit verwyder?</string>
+  <string name="fso_delete_nomedia_non_empty_body">Hierdie vouergids bevat \'n nie-leë .nomedia lêer\n\nWil jy dit verwyder?</string>
 
   <!-- History * History activity title -->
   <string name="history">Vorige items</string>
   <!-- History * The history is empty -->
   <string name="msgs_history_empty">Vorige items is leeg.</string>
   <!-- History * The history reference is not in the actual history list -->
-  <string name="msgs_history_unknown">Onbekende vorige item.</string>
+  <string name="msgs_history_unknown">Die vorige item is onbekend.</string>
 
   <!-- Search * Search activity title -->
   <string name="search">Soek resultate</string>
@@ -293,12 +293,12 @@
   <!-- Search * Voice search hint message -->
   <string name="search_voice_hint">Sê jou soektog</string>
   <!-- Search * Search error message -->
-  <string name="search_error_msg">\'n Fout het gebeur tydens die soektog. Geen resultate is gevind nie.</string>
+  <string name="search_error_msg">\'n Fout het voorgekom tydens die soektog. Geen resultate is gevind nie.</string>
   <!-- Search * Search no results message -->
   <string name="search_no_results_msg">Geen resultate is gevind nie.</string>
   <!-- Search * Search found items -->
   <plurals name="search_found_items">
-    <item quantity="zero">Geen items was gevind nie</item>
+    <item quantity="zero">Geen items is gevind nie</item>
     <item quantity="one">1 item gevind</item>
     <item quantity="other"><xliff:g id="count">%d</xliff:g> items gevind</item>
   </plurals>
@@ -311,7 +311,7 @@
   <string name="search_few_characters_title">Bevestig soektog</string>
   <!-- Search * Some terms of the search are too small. The operation could be very costly -->
   <string name="search_few_characters_msg">Sommige van van die soekterme is baie kort. Die
-    operasie kan baie lank duur en intensief wees op stelsel bronne.\n\nWil u voortgaan?</string>
+    operasie kan baie lank duur en intensief wees op stelsel bronne.\n\nWil jy voortgaan?</string>
   <!-- Search * Searching dialog title -->
   <string name="searching">Wag asseblief\u2026</string>
   <!-- Search * Searching label -->
@@ -327,7 +327,7 @@
   <!-- Editor * File not found message -->
   <string name="editor_file_not_found_msg">Lêer nie gevind nie.</string>
   <!-- Editor * File size exceed the limit -->
-  <string name="editor_file_exceed_size_msg">Die lêer is te groot om oop te maak binne die toestel.</string>
+  <string name="editor_file_exceed_size_msg">Die lêer is te groot om op die toestel oop gemaak te word.</string>
   <!-- Editor * Editor is dirty, ask the user * Dialog title -->
   <string name="editor_dirty_ask_title">Bevestig terminasie</string>
   <!-- Editor * Editor is dirty, ask the user * Dialog message -->
@@ -335,18 +335,18 @@
   <!-- Editor * Save operation success -->
   <string name="editor_successfully_saved">Die lêer is suksesvol gestoor.</string>
   <!-- Editor * Read-only file mode -->
-  <string name="editor_read_only_mode">Die lêer was geopen in slegs-leesbare modus.</string>
+  <string name="editor_read_only_mode">Die lêer was geopen in leesalleen modus.</string>
 
   <!-- Bookmarks * Bookmarks activity title -->
   <string name="bookmarks">Boekmerke</string>
   <!-- Bookmarks * Bookmark name * Home -->
   <string name="bookmarks_home">Tuis</string>
   <!-- Bookmarks * Bookmark name * Root folder -->
-  <string name="bookmarks_root_folder">Root-vouergids</string>
+  <string name="bookmarks_root_folder">\'root\' vouergids</string>
   <!-- Bookmarks * Bookmark name * System folder -->
-  <string name="bookmarks_system_folder">Stelsel-vouergids</string>
+  <string name="bookmarks_system_folder">Stelsel vouergids</string>
   <!-- Bookmarks * Bookmark name * Button * Initial directory content description -->
-  <string name="bookmarks_button_config_cd">Stel die aanvanklike vouergids.</string>
+  <string name="bookmarks_button_config_cd">Stoor die aanvanklike vouergids.</string>
   <!-- Bookmarks * Bookmark name * Button * Remove bookmark content description -->
   <string name="bookmarks_button_remove_bookmark_cd">Verwyder boekmerk</string>
   <!-- Bookmarks * Bookmarks * Actions * Bookmark successfully added -->
@@ -478,7 +478,7 @@
   <string name="actions_menu_open_parent_folder">Maak ouer oop</string>
 
   <!-- Actions * Ask user prior to do an undone operation. Dialog message -->
-  <string name="actions_ask_undone_operation_msg">Hierdie aksie kan nie ongedaan gemaak word nie. Wil u voortgaan?</string>
+  <string name="actions_ask_undone_operation_msg">Hierdie aksie kan nie teruggestel word nie. Wil jy voortgaan?</string>
 
   <!-- Enter Name Dialog * Label -->
   <string name="input_name_dialog_label">Naam:</string>
@@ -563,11 +563,11 @@
   <string name="compression_mode_title">Verkleinings metode</string>
 
   <!-- Shortcut. Failed to handle the shortcut -->
-  <string name="shortcut_failed_msg">Kon nie van die kortpad gebruik maak nie.</string>
+  <string name="shortcut_failed_msg">Kon nie van die loodskortpad gebruik maak nie.</string>
   <!-- Shortcut. The shortcut was created -->
-  <string name="shortcut_creation_success_msg">Kortpad suksesvol geskep.</string>
+  <string name="shortcut_creation_success_msg">Loodskortpad suksesvol geskep.</string>
   <!-- Shortcut. The shortcut wasn't created -->
-  <string name="shortcut_creation_failed_msg">Kortpad kon nie geskep word nie.</string>
+  <string name="shortcut_creation_failed_msg">Loodskortpad kon nie geskep word nie.</string>
 
   <!-- Preferences title -->
   <string name="pref">Instellings</string>
@@ -588,21 +588,21 @@
   <!-- Preferences * General * Case sensitive sort title -->
   <string name="pref_case_sensitive_sort">Gebruik letter-sensitiewe sortering</string>
   <!-- Preferences * General *Disk usage warning level title -->
-  <string name="pref_disk_usage_warning_level">Skyfspasie waarskuwing</string>
+  <string name="pref_disk_usage_warning_level">Bergingspasie waarskuwing</string>
   <!-- Preferences * General * Disk usage warning level summary -->
   <!-- FIXME Use "percent" instead of "%" symbol, because it make crash the app on getSummary
        of ListPreference. This should be fixed in frameworks base prior to be added here. -->
   <string name="pref_disk_usage_warning_level_summary" formatted="false">Vertoon \'n ander
-    kleur op die skyf legstuk wanneer dit <xliff:g id="level">%1$s</xliff:g> persent
-    skyfspasie bereik</string>
+    kleur op die berging legstuk wanneer dit <xliff:g id="level">%1$s</xliff:g> persent
+    bergingspasie bereik</string>
   <!-- Preferences * General * Compute folder statistics title -->
   <string name="pref_compute_folder_statistics">Bereken vouergids statistieke</string>
   <!-- Preferences * General * Compute folder statistics summary on -->
   <string name="pref_compute_folder_statistics_on">Waarskuwing! Die berekening van vouergids statistieke kan lank vat en stelsel bronne uitput</string>
   <!-- Preferences * General * Use flinger detection -->
-  <string name="pref_use_flinger">Gebruik swipe gebare</string>
+  <string name="pref_use_flinger">Gebruik gly-gebare</string>
   <!-- Preferences * General * Use flinger detection summary -->
-  <string name="pref_use_flinger_summary">Gebruik swipe links-na-regs gebaar om lêers of vouersgidse te verwyder.</string>
+  <string name="pref_use_flinger_summary">Gebruik gly links-na-regs gebaar om lêers of vouersgidse te verwyder.</string>
   <!-- Preferences * General * Advanced settings category -->
   <string name="pref_general_advanced_settings_category">Gevorderd</string>
   <!-- Preferences * General * Access mode -->
@@ -610,19 +610,19 @@
   <!-- Preferences * General * Safe mode -->
   <string name="pref_access_mode_safe">Veilige modus</string>
   <!-- Preferences * General * Safe mode summary -->
-  <string name="pref_access_mode_safe_summary">Veilige modus\n\nDie program is aktief sonder regte en die enigste toeganklike lêerstelsels is skyf volumes (SD kaart en USB)</string>
+  <string name="pref_access_mode_safe_summary">Veilige modus\n\nDie program is aktief sonder regte en die enigste toeganklike lêerstelsels is skyf volumes (SD-kaart en USB-berging)</string>
   <!-- Preferences * General * Prompt user mode -->
   <string name="pref_access_mode_prompt">Vra Gebruiker modus</string>
   <!-- Preferences * General * Prompt user mode summary -->
   <string name="pref_access_mode_prompt_summary">Vra Gebruiker modus\n\nDie program is aktief met volle toegang tot die lêerstelsel, maar sal vra vir toestemming voor die uitvoering van enige gevorderde aksies</string>
   <!-- Preferences * General * Root access mode -->
-  <string name="pref_access_mode_root">Root-modus</string>
+  <string name="pref_access_mode_root">\'Root\' modus</string>
   <!-- Preferences * General * Root access mode summary -->
-  <string name="pref_access_mode_root_summary">Root-modus\n\nWaarskuwing! Hierdie modus kan die toestel breek. Dit is u verantwoordelikheid om te verseker dat die operasies veilig is</string>
+  <string name="pref_access_mode_root_summary">\'Root\' modus\n\nWaarskuwing! Hierdie modus kan die toestel breek. Dit is jou verantwoordelikheid om te verseker dat die operasies veilig is</string>
   <!-- Preferences * Search * Results category -->
   <string name="pref_search_results_category">Uitslae</string>
   <!-- Preferences * Search * Show relevance widget -->
-  <string name="pref_show_relevance_widget">Wys relevante legstuk</string>
+  <string name="pref_show_relevance_widget">Wys verwante legstuk</string>
   <!-- Preferences * Search * Highlight search terms -->
   <string name="pref_highlight_terms">Beklemtoon soekterme</string>
   <!-- Preferences * Search * Sort results mode -->
@@ -642,11 +642,11 @@
   <!-- Preferences * Search * Save search terms summary off -->
   <string name="pref_save_search_terms_off">Soekterme sal nie gestoor word nie</string>
   <!-- Preferences * Search * Remove saved search terms -->
-  <string name="pref_remove_saved_search_terms">Verwyder gestoorde soekterme</string>
+  <string name="pref_remove_saved_search_terms">Vee soekterme uit</string>
   <!-- Preferences * Search * Remove saved search terms summary -->
-  <string name="pref_remove_saved_search_terms_summary">Raak om al die gestoorde soekterme te verwyder</string>
+  <string name="pref_remove_saved_search_terms_summary">Raak om al die gestoorde soekterme uit te vee</string>
   <!-- Preferences * Search * Suggestions were truncated -->
-  <string name="pref_remove_saved_search_terms_msg">Alle gestoorde soekterme is verwyder.</string>
+  <string name="pref_remove_saved_search_terms_msg">Alle gestoorde soekterme is uitgevee.</string>
   <!-- Preferences * Themes * Themes selection category -->
   <string name="pref_themes_selection_category">Temas</string>
   <!-- Preferences * Themes * Set theme button -->
@@ -664,14 +664,14 @@
   <!-- Themes * Default theme name -->
   <string name="theme_default_name">Ligte Tema</string>
   <!-- Themes * Default theme description -->
-  <string name="theme_default_description">\'n ligte tema vir CyanogenMod Lêerbestuurder.</string>
+  <string name="theme_default_description">\'n ligte tema vir CyanogenMod Lêerbestuurder</string>
   <!-- Themes * Default theme author -->
   <string name="themes_author">CyanogenMod</string>
 
   <!-- Security * Extract relative or absolute files -->
   <string name="security_warning_extract">Waarskuwing!\n\n
     Gebruik van \'n argiefvouer met \'n relatiewe of absolute pad kan lei tot skade aan die toestel deur die oorskryf van stelsel vouers.\n\n
-    Wil u voortgaan?</string>
+    Wil jy voortgaan?</string>
 
   <!-- ChangeLog * Dialog title -->
   <string name="changelog_title">Veranderinge</string>
@@ -681,7 +681,7 @@
   <!-- Welcome Dialog * Message -->
   <string name="welcome_msg">
     Welkom by die CyanogenMod Lêerbestuurder.
-    \n\nMet hierdie program kan u die lêerstelsel verken en moontlik die toestel beskadig. Om dit te voorkom, sal die program begin in \'n veilige, lae-bevoorregte modus.
-    \n\nU kan toegang tot \'n gevorderde, volbevoorregte modus verkry deur instellings. Dit is u verantwoordelikheid om te verseker dat enige aksie wat gedoen word nie die stelsel beskadig nie.
+    \n\nMet hierdie program kan jy die lêerstelsel verken en moontlik die toestel beskadig. Om dit te voorkom, sal die program begin in \'n veilige, lae-bevoorregte modus.
+    \n\nU kan toegang tot \'n gevorderde, volbevoorregte modus verkry deur instellings. Dit is jou verantwoordelikheid om te verseker dat enige aksie wat gedoen word nie die stelsel beskadig nie.
     \n\nDie CyanogenMod span\n.</string>
 </resources>

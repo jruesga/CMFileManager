@@ -14,7 +14,8 @@
      limitations under the License.
  -->
 
-<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+<resources xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
 
   <!-- The name of the application -->
   <string name="app_name">文件管理器</string>
@@ -588,12 +589,14 @@
   <string name="pref_about">关于</string>
   <!-- Preferences * About summary -->
   <string name="pref_about_summary">文件管理器 v<xliff:g id="version">%1$s</xliff:g>
-    \n版权所有 \u00A9 2012 CyanogenMod</string>
+    \n版权所有 \u00A9 2013 CyanogenMod</string>
 
   <!-- Preferences * General * Behaviour category -->
   <string name="pref_general_behaviour_category">常规</string>
   <!-- Preferences * General * Case sensitive sort title -->
-  <string name="pref_case_sensitive_sort">排列时区分大小写</string>
+  <string name="pref_case_sensitive_sort">区分大小写</string>
+  <!-- Preferences * General * Case sensitive sort and navigating summary -->
+  <string name="pref_case_sensitive_sort_summary">导航或排列搜索结果时区分大小写</string>
   <!-- Preferences * General *Disk usage warning level title -->
   <string name="pref_disk_usage_warning_level">磁盘使用警告</string>
   <!-- Preferences * General * Disk usage warning level summary -->

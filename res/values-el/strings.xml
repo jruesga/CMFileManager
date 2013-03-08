@@ -14,7 +14,8 @@
      limitations under the License.
  -->
 
-<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+<resources xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
 
   <!-- The name of the application -->
   <string name="app_name">Διαχείριση αρχείων</string>
@@ -422,7 +423,7 @@
     <![CDATA[<b>Ανάλυση\u2026</b>]]></string>
   <!-- Extracting * Success message -->
   <string name="msgs_extracting_success">
-    Η αποσυμπίεση ολοκληρώθκε με επιτυχία. Τα αποσυμπιεσμένα αρχεία βρίσκονται στο
+    Η αποσυμπίεση ολοκληρώθηκε με επιτυχία. Τα αποσυμπιεσμένα αρχεία βρίσκονται στο
     <xliff:g id="destination">%1$s</xliff:g>.</string>
   <!-- Compressing * Success message -->
   <string name="msgs_compressing_success">
@@ -570,7 +571,7 @@
   <string name="category_security">SECURITY</string>
 
   <!-- Compression * Compression modes dialog title -->
-  <string name="compression_mode_title">Λειτουργία συμπίεσης</string>
+  <string name="compression_mode_title">Τύπος συμπίεσης</string>
 
   <!-- Shortcut. Failed to handle the shortcut -->
   <string name="shortcut_failed_msg">Αποτυχία χειρισμού της συντόμευσης.</string>
@@ -596,7 +597,9 @@
   <!-- Preferences * General * Behaviour category -->
   <string name="pref_general_behaviour_category">Γενικά</string>
   <!-- Preferences * General * Case sensitive sort title -->
-  <string name="pref_case_sensitive_sort">Χρήση ταξινόμησης πεζών-κεφαλαίων</string>
+  <string name="pref_case_sensitive_sort">Πεζά-κεφαλαία</string>
+  <!-- Preferences * General * Case sensitive sort and navigating summary -->
+  <string name="pref_case_sensitive_sort_summary">Ταξινόμιση με βάση πεζά-κεφαλαία κατά την πλοήγηση ή την εμφάνιση αποτελεσμάτων αναζήτησης</string>
   <!-- Preferences * General *Disk usage warning level title -->
   <string name="pref_disk_usage_warning_level">Προειδοποίηση χρήσης δίσκου</string>
   <!-- Preferences * General * Disk usage warning level summary -->
@@ -691,7 +694,7 @@
       Θέλετε να συνεχίσετε;</string>
 
   <!-- ChangeLog * Dialog title -->
-  <string name="changelog_title">Changelog</string>
+  <string name="changelog_title">Αρχείο αλλαγών</string>
 
   <!-- Welcome Dialog * Title -->
   <string name="welcome_title">Καλώς ήλθατε</string>

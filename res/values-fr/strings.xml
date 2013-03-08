@@ -20,12 +20,15 @@
   <!-- The description of the application -->
   <string name="app_description">Explorateur de fichiers CyanogenMod</string>
 
-<!-- I don't know if I must translate this section -->
-  <!-- Devices types -->
+  <!-- Devices types, technical strings DO NOT TRANSLATE -->
   <string name="device_blockdevice">Block device</string>
   <string name="device_characterdevice">Character device</string>
   <string name="device_namedpipe">Named pipe</string>
   <string name="device_domainsocket">Domain socket</string>
+
+  <!-- Mount Point States -->
+  <string name="mount_point_readonly">RO</string>
+  <string name="mount_point_readwrite">RW</string>
 
   <!-- Default buttons -->
   <string name="yes">Oui</string>
@@ -300,7 +303,7 @@
   <!-- Search * Confirm search -->
   <string name="search_few_characters_title">Confirmer la recherche</string>
   <!-- Search * Some terms of the search are too small. The operation could be very costly -->
-  <string name="search_few_characters_msg">Certains des termes de recherche disposent d\'un petit nombre de caractères. L\'opération pourrait être très coûteuse en temps et en ressources système.\n\nVoulez-vous continuer\u00A0?</string>
+  <string name="search_few_characters_msg">Certains des termes recherchés disposent d\'un petit nombre de caractères. L\'opération pourrait être très coûteuse en temps et en ressources système.\n\nVoulez-vous continuer\u00A0?</string>
   <!-- Search * Searching dialog title -->
   <string name="searching">Veuillez Patienter\u2026</string>
   <!-- Search * Searching label -->
@@ -569,7 +572,9 @@
   <!-- Preferences * General * Behaviour category -->
   <string name="pref_general_behaviour_category">Général</string>
   <!-- Preferences * General * Case sensitive sort title -->
-  <string name="pref_case_sensitive_sort">Tenir compte de la casse</string>
+  <string name="pref_case_sensitive_sort">Sensible à la casse</string>
+  <!-- Preferences * General * Case sensitive sort and navigating summary -->
+  <string name="pref_case_sensitive_sort_summary">Tenir compte de la casse lors de la navigation ou du tri des résultats de recherche</string>
   <!-- Preferences * General *Disk usage warning level title -->
   <string name="pref_disk_usage_warning_level">Avertissement d\'utilisation disque</string>
   <!-- Preferences * General * Disk usage warning level summary -->
@@ -605,7 +610,7 @@
   <!-- Preferences * Search * Show relevance widget -->
   <string name="pref_show_relevance_widget">Afficher le widget des pertinences</string>
   <!-- Preferences * Search * Highlight search terms -->
-  <string name="pref_highlight_terms">Surbrillance des termes de recherche</string>
+  <string name="pref_highlight_terms">Surbrillance des termes recherchés</string>
   <!-- Preferences * Search * Sort results mode -->
   <string name="pref_sort_search_results_mode">Mode de tri des résultats</string>
   <!-- Preferences * Search * Sort results mode. None -->
@@ -617,15 +622,15 @@
   <!-- Preferences * Search * Privacity category -->
   <string name="pref_search_privacity_category">Privé</string>
   <!-- Preferences * Search * Save search terms -->
-  <string name="pref_save_search_terms">Sauvergarder les termes de recherche</string>
+  <string name="pref_save_search_terms">Sauvergarder les termes recherchés</string>
   <!-- Preferences * Search * Save search terms summary on -->
-  <string name="pref_save_search_terms_on">Les termes de recherche seront sauvegardés et seront suggérés dans les recherches futures</string>
+  <string name="pref_save_search_terms_on">Les termes recherchés seront sauvegardés et seront suggérés dans les recherches futures</string>
   <!-- Preferences * Search * Save search terms summary off -->
-  <string name="pref_save_search_terms_off">Les termes de recherche ne seront pas sauvegardés</string>
+  <string name="pref_save_search_terms_off">Les termes recherchés ne seront pas sauvegardés</string>
   <!-- Preferences * Search * Remove saved search terms -->
   <string name="pref_remove_saved_search_terms">Effacer l\'historique de recherche</string>
   <!-- Preferences * Search * Remove saved search terms summary -->
-  <string name="pref_remove_saved_search_terms_summary">Appuyer pour supprimer tous les termes de recherche sauvergardés</string>
+  <string name="pref_remove_saved_search_terms_summary">Appuyer pour supprimer l\'historique des termes recherchés</string>
   <!-- Preferences * Search * Suggestions were truncated -->
   <string name="pref_remove_saved_search_terms_msg">Historique de recherche effacé</string>
   <!-- Preferences * Themes * Themes selection category -->

@@ -478,7 +478,9 @@ public final class CommandHelper {
         List<FileSystemObject> files = executable.getResult();
         if (files != null && files.size() > 0) {
             // Resolve symlinks prior to return the object
-            FileHelper.resolveSymlinks(context, files);
+            if (followSymlinks) {
+                FileHelper.resolveSymlinks(context, files);
+            }
             return files.get(0);
         }
         return null;

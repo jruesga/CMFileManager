@@ -21,6 +21,7 @@ import com.cyanogenmod.filemanager.console.CommandNotFoundException;
 import com.cyanogenmod.filemanager.console.ExecutionException;
 import com.cyanogenmod.filemanager.console.InsufficientPermissionsException;
 import com.cyanogenmod.filemanager.console.NoSuchFileOrDirectory;
+import com.cyanogenmod.filemanager.console.OperationTimeoutException;
 
 import java.io.OutputStream;
 
@@ -125,6 +126,30 @@ public abstract class Program extends Command implements Executable {
      */
     public void setExitOnStdErrOutput(boolean exitOnStdErrOutput) {
         this.mExitOnStdErrOutput = exitOnStdErrOutput;
+    }
+
+    /**
+     * Returns whether the shell should wait indefinitely for the end of the command.
+     *
+     * @return boolean If shell should wait indefinitely for the end of the command
+     * @hide
+     */
+    @SuppressWarnings("static-method")
+    public boolean isIndefinitelyWait() {
+        return false;
+    }
+
+    /**
+     * Returns whether the shell shouldn't raise a {@link OperationTimeoutException} when
+     * the program didn't exited but new data was received.
+     *
+     * @return boolean If shell shouldn't raise a {@link OperationTimeoutException} if new
+     * data was received
+     * @hide
+     */
+    @SuppressWarnings("static-method")
+    public boolean isWaitOnNewDataReceipt() {
+        return false;
     }
 
     /**

@@ -287,6 +287,15 @@ public class JavaExecutableCreator implements ExecutableCreator {
      * {@inheritDoc}
      */
     @Override
+    public ProcessIdExecutable createProcessIdExecutable(int pid)
+            throws CommandNotFoundException {
+        throw new CommandNotFoundException("Not implemented"); //$NON-NLS-1$
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public ProcessIdExecutable createProcessIdExecutable(int pid, String processName)
             throws CommandNotFoundException {
         throw new CommandNotFoundException("Not implemented"); //$NON-NLS-1$

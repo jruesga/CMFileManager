@@ -126,4 +126,12 @@ public class QuickFolderSearchCommand
         return true;
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public boolean isWaitOnNewDataReceipt() {
+        return true;
+    }
+
 }

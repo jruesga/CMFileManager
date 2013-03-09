@@ -326,6 +326,15 @@ public abstract class AsyncResultProgram
      * {@inheritDoc}
      */
     @Override
+    public final boolean isIndefinitelyWait() {
+        // Asynchronous programs should wait indefinitely for its nature
+        return true;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public boolean isCancellable() {
         //By defect an asynchronous command is cancellable
         return true;

@@ -92,4 +92,12 @@ public class CopyCommand extends SyncResultProgram implements CopyExecutable {
     public MountPoint getDstWritableMountPoint() {
         return MountPointHelper.getMountPointFromDirectory(this.mDst);
     }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public boolean isIndefinitelyWait() {
+        return true;
+    }
 }

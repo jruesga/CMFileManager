@@ -91,4 +91,12 @@ public class DeleteDirCommand extends SyncResultProgram implements DeleteDirExec
     public MountPoint getDstWritableMountPoint() {
         return MountPointHelper.getMountPointFromDirectory(this.mFileName);
     }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public boolean isIndefinitelyWait() {
+        return true;
+    }
 }

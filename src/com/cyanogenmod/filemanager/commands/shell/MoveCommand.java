@@ -94,4 +94,12 @@ public class MoveCommand extends SyncResultProgram implements MoveExecutable {
     public MountPoint getDstWritableMountPoint() {
         return MountPointHelper.getMountPointFromDirectory(this.mDst);
     }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public boolean isIndefinitelyWait() {
+        return true;
+    }
 }

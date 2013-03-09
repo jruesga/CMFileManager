@@ -68,9 +68,14 @@ public abstract class ShellConsole extends Console implements Program.ProgramLis
 
     private static final String TAG = "ShellConsole"; //$NON-NLS-1$
 
-    // A timeout of 5 seconds should be enough for no-debugging environments
+    // A timeout of 3 seconds should be enough for no-debugging environments
     private static final long DEFAULT_TIMEOUT =
             FileManagerApplication.isDebuggable() ? 20000L : 3000L;
+
+    // A maximum operation timeout independently of the isWaitOnNewDataReceipt
+    // of the program. A synchronous operation must not be more longer than
+    // MAX_OPERATION_TIMEOUT + DEFAULT_TIMEOUT
+    private static final long MAX_OPERATION_TIMEOUT = 30000L;
 
     private static final int DEFAULT_BUFFER = 512;
 
@@ -89,6 +94,7 @@ public abstract class ShellConsole extends Console implements Program.ProgramLis
      */
     boolean mActive = false;
     private boolean mFinished = true;
+    private boolean mNewData = false;
     private Process mProc = null;
     /**
      * @hide
@@ -263,7 +269,12 @@ public abstract class ShellConsole extends Console implements Program.ProgramLis
             // wait to user response to SuperUser or SuperSu prompt (or whatever it is)
             // The rest of sync operations will run with a timeout.
             execute(processIdCmd, this.isPrivileged());
-            Integer pid = processIdCmd.getResult();
+            Integer pid = null;
+            try {
+                pid = processIdCmd.getResult().get(0);
+            } catch (Exception e) {
+                // Ignore
+            }
             if (pid == null) {
                 throw new ConsoleAllocException(
                         "can't retrieve the PID of the shell."); //$NON-NLS-1$
@@ -532,6 +543,7 @@ public abstract class ShellConsole extends Console implements Program.ProgramLis
                sb.append(FileHelper.NEWLINE);
                synchronized (this.mSync) {
                    this.mFinished = false;
+                   this.mNewData = false;
                    this.mOut.write(sb.toString().getBytes());
                }
             } catch (InvalidCommandDefinitionException icdEx) {
@@ -542,12 +554,25 @@ public abstract class ShellConsole extends Console implements Program.ProgramLis
             //Now, wait for buffers to be filled
             synchronized (this.mSync) {
                 if (!this.mFinished) {
-                    if (waitForSu || program instanceof AsyncResultProgram) {
+                    if (waitForSu || program.isIndefinitelyWait()) {
                         this.mSync.wait();
                     } else {
-                        this.mSync.wait(DEFAULT_TIMEOUT);
-                        if (!this.mFinished) {
-                            throw new OperationTimeoutException(DEFAULT_TIMEOUT, cmd);
+                        final long start = System.currentTimeMillis();
+                        while (true) {
+                            this.mSync.wait(DEFAULT_TIMEOUT);
+                            if (!this.mFinished) {
+                                final long end = System.currentTimeMillis();
+                                if (!program.isWaitOnNewDataReceipt() ||
+                                    !this.mNewData ||
+                                    (end - start >= MAX_OPERATION_TIMEOUT)) {
+                                    throw new OperationTimeoutException(end - start, cmd);
+                                }
+
+                                // Still waiting for program ending
+                                this.mNewData = false;
+                                continue;
+                            }
+                            break;
                         }
                     }
                 }
@@ -603,6 +628,12 @@ public abstract class ShellConsole extends Console implements Program.ProgramLis
 
             //Invocation finished. Now program.getResult() has the result of
             //the operation, if any exists
+
+        } catch (OperationTimeoutException otEx) {
+            try {
+                killCurrentCommand();
+            } catch (Exception e) { /**NON BLOCK **/}
+            throw otEx;
 
         } catch (IOException ioEx) {
             if (reallocate) {
@@ -676,6 +707,9 @@ public abstract class ShellConsole extends Console implements Program.ProgramLis
                             } else {
                                 sb.append((char)r);
                             }
+
+                            // New data received
+                            onNewData();
 
                             //Check if the command has finished (and extract the control)
                             boolean finished = isCommandFinished(shell.mSbIn, sb);
@@ -756,6 +790,9 @@ public abstract class ShellConsole extends Console implements Program.ProgramLis
                             } else {
                                 sb.append(s);
                             }
+
+                            // New data received
+                            onNewData();
 
                             //Check if the command has finished (and extract the control)
                             boolean finished = isCommandFinished(shell.mSbIn, sb);
@@ -887,6 +924,9 @@ public abstract class ShellConsole extends Console implements Program.ProgramLis
                             toStdErr(sb.toString());
                         }
 
+                        // New data received
+                        onNewData();
+
                         //Has more data? Read with available as more as exists
                         //or maximum loop count is rebased
                         int count = 0;
@@ -922,6 +962,9 @@ public abstract class ShellConsole extends Console implements Program.ProgramLis
                                 notifyProcessFinished();
                                 break;
                             }
+
+                            // New data received
+                            onNewData();
 
                             //Wait for buffer to be filled
                             try {
@@ -1080,6 +1123,16 @@ public abstract class ShellConsole extends Console implements Program.ProgramLis
     }
 
     /**
+     * New data was received
+     * @hide
+     */
+    void onNewData() {
+        synchronized (this.mSync) {
+            this.mNewData = true;
+        }
+    }
+
+    /**
      * Method that returns the exit code of the last executed command.
      *
      * @param stdin The standard in buffer
@@ -1129,10 +1182,6 @@ public abstract class ShellConsole extends Console implements Program.ProgramLis
      */
     private boolean killCurrentCommand() {
         synchronized (this.mSync) {
-            //Is synchronous program? Otherwise it can't be cancelled
-            if (!(this.mActiveCommand instanceof AsyncResultProgram)) {
-                return false;
-            }
             // Check background console
             try {
                 FileManagerApplication.getBackgroundConsole();
@@ -1141,31 +1190,38 @@ public abstract class ShellConsole extends Console implements Program.ProgramLis
                 return false;
             }
 
-            final AsyncResultProgram program = (AsyncResultProgram)this.mActiveCommand;
-            if (program.getCommand() != null) {
+            if (this.mActiveCommand.getCommand() != null) {
                 try {
-                    if (program.isCancellable()) {
+                    boolean isCancellable = true;
+                    if (this.mActiveCommand instanceof AsyncResultProgram) {
+                        final AsyncResultProgram asyncCmd =
+                                (AsyncResultProgram)this.mActiveCommand;
+                        isCancellable = asyncCmd.isCancellable();
+                    }
+
+                    if (isCancellable) {
                         try {
-                            //Get the PID in background
-                            Integer pid =
-                                    CommandHelper.getProcessId(
+                            //Get the PIDs in background
+                            List<Integer> pids =
+                                    CommandHelper.getProcessesIds(
                                             null,
                                             this.mShell.getPid(),
-                                            program.getCommand(),
                                             FileManagerApplication.getBackgroundConsole());
-                            if (pid != null) {
-                                CommandHelper.sendSignal(
-                                        null,
-                                        pid.intValue(),
-                                        FileManagerApplication.getBackgroundConsole());
-                                try {
-                                    //Wait for process kill
-                                    Thread.sleep(100L);
-                                } catch (Throwable ex) {
-                                    /**NON BLOCK**/
+                            for (Integer pid: pids) {
+                                if (pid != null) {
+                                    CommandHelper.sendSignal(
+                                            null,
+                                            pid.intValue(),
+                                            FileManagerApplication.getBackgroundConsole());
+                                    try {
+                                        //Wait for process to be killed
+                                        Thread.sleep(100L);
+                                    } catch (Throwable ex) {
+                                        /**NON BLOCK**/
+                                    }
                                 }
-                                return true;
                             }
+                            return true;
                         } finally {
                             // It's finished
                             this.mCancelled = true;
@@ -1176,7 +1232,7 @@ public abstract class ShellConsole extends Console implements Program.ProgramLis
                 } catch (Throwable ex) {
                     Log.w(TAG,
                             String.format("Unable to kill current program: %s", //$NON-NLS-1$
-                                    program.getCommand()), ex);
+                                    this.mActiveCommand.getCommand()), ex);
                 }
             }
         }
@@ -1192,10 +1248,6 @@ public abstract class ShellConsole extends Console implements Program.ProgramLis
      */
     private boolean sendSignalToCurrentCommand(SIGNAL signal) {
         synchronized (this.mSync) {
-            //Is synchronous program? Otherwise it can't be cancelled
-            if (!(this.mActiveCommand instanceof AsyncResultProgram)) {
-                return false;
-            }
             // Check background console
             try {
                 FileManagerApplication.getBackgroundConsole();
@@ -1204,32 +1256,39 @@ public abstract class ShellConsole extends Console implements Program.ProgramLis
                 return false;
             }
 
-            final AsyncResultProgram program = (AsyncResultProgram)this.mActiveCommand;
-            if (program.getCommand() != null) {
+            if (this.mActiveCommand.getCommand() != null) {
                 try {
-                    if (program.isCancellable()) {
+                    boolean isCancellable = true;
+                    if (this.mActiveCommand instanceof AsyncResultProgram) {
+                        final AsyncResultProgram asyncCmd =
+                                (AsyncResultProgram)this.mActiveCommand;
+                        isCancellable = asyncCmd.isCancellable();
+                    }
+
+                    if (isCancellable) {
                         try {
-                            //Get the PID in background
-                            Integer pid =
-                                    CommandHelper.getProcessId(
+                            //Get the PIDs in background
+                            List<Integer> pids =
+                                    CommandHelper.getProcessesIds(
                                             null,
                                             this.mShell.getPid(),
-                                            program.getCommand(),
                                             FileManagerApplication.getBackgroundConsole());
-                            if (pid != null) {
-                                CommandHelper.sendSignal(
-                                        null,
-                                        pid.intValue(),
-                                        signal,
-                                        FileManagerApplication.getBackgroundConsole());
-                                try {
-                                    //Wait for process kill
-                                    Thread.sleep(100L);
-                                } catch (Throwable ex) {
-                                    /**NON BLOCK**/
+                            for (Integer pid: pids) {
+                                if (pid != null) {
+                                    CommandHelper.sendSignal(
+                                            null,
+                                            pid.intValue(),
+                                            signal,
+                                            FileManagerApplication.getBackgroundConsole());
+                                    try {
+                                        //Wait for process to be signaled
+                                        Thread.sleep(100L);
+                                    } catch (Throwable ex) {
+                                        /**NON BLOCK**/
+                                    }
                                 }
-                                return true;
                             }
+                            return true;
                         } finally {
                             // It's finished
                             this.mCancelled = true;
@@ -1240,7 +1299,7 @@ public abstract class ShellConsole extends Console implements Program.ProgramLis
                 } catch (Throwable ex) {
                     Log.w(TAG,
                         String.format("Unable to send signal to current program: %s", //$NON-NLS-1$
-                                program.getCommand()), ex);
+                                this.mActiveCommand.getCommand()), ex);
                 }
             }
         }

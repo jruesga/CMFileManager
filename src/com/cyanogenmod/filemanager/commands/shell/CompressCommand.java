@@ -123,7 +123,9 @@ public class CompressCommand extends AsyncResultProgram implements CompressExecu
             CompressionMode mode, String dst, String[] src, AsyncResultListener asyncResultListener)
             throws InvalidCommandDefinitionException {
         super(TAR_ID, asyncResultListener,
-                new String[]{Mode.fromCompressionMode(mode).mFlag, dst});
+                new String[]{FileHelper.getParentDir(dst),
+                             Mode.fromCompressionMode(mode).mFlag,
+                             dst});
 
         //Convert the arguments from absolute to relative
         addExpandedArguments(

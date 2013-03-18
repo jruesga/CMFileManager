@@ -241,10 +241,10 @@ public class ChecksumCommand extends Program implements ChecksumExecutable {
             checkCancelled();
 
             // Finally digest
-            this.mChecksums[type.ordinal()] = HexDump.toHexString(md.digest());
+            this.mChecksums[type.ordinal()] = HexDump.toHexString(md.digest()).toLowerCase();
             checkCancelled();
             if (this.mAsyncResultListener != null) {
-                this.mAsyncResultListener.onAsyncEnd(this.mCancelled);
+                this.mAsyncResultListener.onPartialResult(this.mChecksums[type.ordinal()]);
             }
 
         } finally {

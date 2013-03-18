@@ -28,6 +28,7 @@ import android.content.IntentFilter;
 import android.content.res.Configuration;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.preference.PreferenceActivity;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
@@ -35,8 +36,12 @@ import android.util.Log;
 import android.view.KeyEvent;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ListPopupWindow;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.TextView.BufferType;
@@ -44,6 +49,10 @@ import android.widget.Toast;
 
 import com.cyanogenmod.filemanager.FileManagerApplication;
 import com.cyanogenmod.filemanager.R;
+import com.cyanogenmod.filemanager.activities.preferences.SettingsPreferences;
+import com.cyanogenmod.filemanager.activities.preferences.SettingsPreferences.EditorPreferenceFragment;
+import com.cyanogenmod.filemanager.adapters.HighlightedSimpleMenuListAdapter;
+import com.cyanogenmod.filemanager.adapters.SimpleMenuListAdapter;
 import com.cyanogenmod.filemanager.commands.AsyncResultListener;
 import com.cyanogenmod.filemanager.commands.WriteExecutable;
 import com.cyanogenmod.filemanager.console.ConsoleBuilder;
@@ -52,9 +61,11 @@ import com.cyanogenmod.filemanager.console.RelaunchableException;
 import com.cyanogenmod.filemanager.model.FileSystemObject;
 import com.cyanogenmod.filemanager.preferences.AccessMode;
 import com.cyanogenmod.filemanager.preferences.FileManagerSettings;
+import com.cyanogenmod.filemanager.preferences.Preferences;
 import com.cyanogenmod.filemanager.ui.ThemeManager;
 import com.cyanogenmod.filemanager.ui.ThemeManager.Theme;
 import com.cyanogenmod.filemanager.ui.widgets.ButtonItem;
+import com.cyanogenmod.filemanager.util.AndroidHelper;
 import com.cyanogenmod.filemanager.util.CommandHelper;
 import com.cyanogenmod.filemanager.util.DialogHelper;
 import com.cyanogenmod.filemanager.util.ExceptionUtil;
@@ -78,6 +89,26 @@ public class EditorActivity extends Activity implements TextWatcher {
             if (intent != null) {
                 if (intent.getAction().compareTo(FileManagerSettings.INTENT_THEME_CHANGED) == 0) {
                     applyTheme();
+                    return;
+                }
+                if (intent.getAction().compareTo(FileManagerSettings.INTENT_SETTING_CHANGED) == 0) {
+                    // The settings has changed
+                    String key = intent.getStringExtra(FileManagerSettings.EXTRA_SETTING_CHANGED_KEY);
+                    if (key != null) {
+                        // Word wrap
+                        if (key.compareTo(FileManagerSettings.
+                                SETTINGS_EDITOR_WORD_WRAP.getId()) == 0) {
+                            // Do we have a different setting?
+                            boolean wordWrapSetting = Preferences.getSharedPreferences().getBoolean(
+                                    FileManagerSettings.SETTINGS_EDITOR_WORD_WRAP.getId(),
+                                    ((Boolean)FileManagerSettings.SETTINGS_EDITOR_WORD_WRAP.
+                                            getDefaultValue()).booleanValue());
+                            if (wordWrapSetting != EditorActivity.this.mWordWrap) {
+                                toggleWordWrap();
+                            }
+                        }
+                    }
+                    return;
                 }
             }
         }
@@ -269,6 +300,16 @@ public class EditorActivity extends Activity implements TextWatcher {
      */
     ButtonItem mSave;
 
+    // Word wrap status
+    private ViewGroup mWordWrapView;
+    private ViewGroup mNoWordWrapView;
+    /**
+     * @hide
+     */
+    boolean mWordWrap;
+
+    private View mOptionsAnchorView;
+
     /**
      * Intent extra parameter for the path of the file to open.
      */
@@ -286,6 +327,7 @@ public class EditorActivity extends Activity implements TextWatcher {
         // Register the broadcast receiver
         IntentFilter filter = new IntentFilter();
         filter.addAction(FileManagerSettings.INTENT_THEME_CHANGED);
+        filter.addAction(FileManagerSettings.INTENT_SETTING_CHANGED);
         registerReceiver(this.mNotificationReceiver, filter);
 
         //Set the main layout of the activity
@@ -359,7 +401,16 @@ public class EditorActivity extends Activity implements TextWatcher {
         this.mSave = (ButtonItem)customTitle.findViewById(R.id.ab_button1);
         this.mSave.setImageResource(R.drawable.ic_holo_light_save);
         this.mSave.setContentDescription(getString(R.string.actionbar_button_save_cd));
-        this.mSave.setVisibility(View.INVISIBLE);
+        this.mSave.setVisibility(View.GONE);
+
+        ButtonItem configuration = (ButtonItem)customTitle.findViewById(R.id.ab_button2);
+        configuration.setImageResource(R.drawable.ic_holo_light_overflow);
+        configuration.setContentDescription(getString(R.string.actionbar_button_overflow_cd));
+
+        View status = findViewById(R.id.history_status);
+        boolean showOptionsMenu = AndroidHelper.showOptionsMenu(getApplicationContext());
+        configuration.setVisibility(showOptionsMenu ? View.VISIBLE : View.GONE);
+        this.mOptionsAnchorView = showOptionsMenu ? configuration : status;
 
         getActionBar().setCustomView(customTitle);
     }
@@ -372,9 +423,44 @@ public class EditorActivity extends Activity implements TextWatcher {
         this.mEditor.setText(null);
         this.mEditor.addTextChangedListener(this);
         this.mEditor.setEnabled(false);
+        this.mWordWrapView = (ViewGroup)findViewById(R.id.editor_word_wrap_view);
+        this.mNoWordWrapView = (ViewGroup)findViewById(R.id.editor_no_word_wrap_view);
+        this.mWordWrap = true;
+        this.mWordWrapView.setVisibility(View.VISIBLE);
+        this.mNoWordWrapView.setVisibility(View.GONE);
+
+        // Load the word wrap setting
+        boolean wordWrapSetting = Preferences.getSharedPreferences().getBoolean(
+                FileManagerSettings.SETTINGS_EDITOR_WORD_WRAP.getId(),
+                ((Boolean)FileManagerSettings.SETTINGS_EDITOR_WORD_WRAP.
+                        getDefaultValue()).booleanValue());
+        if (wordWrapSetting != this.mWordWrap) {
+            toggleWordWrap();
+        }
 
         this.mProgress = findViewById(R.id.editor_progress);
         this.mProgressBar = (ProgressBar)findViewById(R.id.editor_progress_bar);
+    }
+
+    /**
+     * Method that toggle the word wrap property of the editor
+     * @hide
+     */
+    /**package**/ void toggleWordWrap() {
+        ViewGroup vSrc = this.mWordWrap ? this.mWordWrapView : this.mNoWordWrapView;
+        ViewGroup vDst = this.mWordWrap ? this.mNoWordWrapView : this.mWordWrapView;
+        ViewGroup vSrcParent = this.mWordWrap
+                                            ? this.mWordWrapView
+                                            : (ViewGroup)this.mNoWordWrapView.getChildAt(0);
+        ViewGroup vDstParent = this.mWordWrap
+                                            ? (ViewGroup)this.mNoWordWrapView.getChildAt(0)
+                                            : this.mWordWrapView;
+        vSrc.setVisibility(View.GONE);
+        vSrcParent.removeView(this.mEditor);
+        vDstParent.addView(this.mEditor);
+        vDst.setVisibility(View.VISIBLE);
+        vDst.scrollTo(0, 0);
+        this.mWordWrap = !this.mWordWrap;
     }
 
     /**
@@ -382,11 +468,16 @@ public class EditorActivity extends Activity implements TextWatcher {
      */
     @Override
     public boolean onKeyUp(int keyCode, KeyEvent event) {
-        if (keyCode == KeyEvent.KEYCODE_BACK) {
-            checkDirtyState();
-            return false;
+        switch (keyCode) {
+            case KeyEvent.KEYCODE_MENU:
+                showOverflowPopUp(this.mOptionsAnchorView);
+                return true;
+            case KeyEvent.KEYCODE_BACK:
+                checkDirtyState();
+                return true;
+            default:
+                return super.onKeyUp(keyCode, event);
         }
-        return super.onKeyUp(keyCode, event);
     }
 
     /**
@@ -407,6 +498,47 @@ public class EditorActivity extends Activity implements TextWatcher {
     }
 
     /**
+     * Method that shows a popup with the activity main menu.
+     *
+     * @param anchor The anchor of the popup
+     */
+    private void showOverflowPopUp(View anchor) {
+        SimpleMenuListAdapter adapter =
+                new HighlightedSimpleMenuListAdapter(this, R.menu.editor);
+        MenuItem wordWrap = adapter.getMenu().findItem(R.id.mnu_word_wrap);
+        if (wordWrap != null) {
+            wordWrap.setChecked(this.mWordWrap);
+        }
+
+        final ListPopupWindow popup =
+                DialogHelper.createListPopupWindow(this, adapter, anchor);
+        popup.setOnItemClickListener(new OnItemClickListener() {
+            @Override
+            public void onItemClick(
+                    final AdapterView<?> parent, final View v,
+                    final int position, final long id) {
+                final int itemId = (int)id;
+                switch (itemId) {
+                    case R.id.mnu_word_wrap:
+                        popup.dismiss();
+                        toggleWordWrap();
+                        break;
+                    case R.id.mnu_settings:
+                        //Settings
+                        Intent settings = new Intent(EditorActivity.this, SettingsPreferences.class);
+                        settings.putExtra(
+                                PreferenceActivity.EXTRA_SHOW_FRAGMENT,
+                                EditorPreferenceFragment.class.getName());
+                        startActivity(settings);
+                        break;
+                }
+                popup.dismiss();
+            }
+        });
+        popup.show();
+    }
+
+    /**
      * Method invoked when an action item is clicked.
      *
      * @param view The button pushed
@@ -416,6 +548,11 @@ public class EditorActivity extends Activity implements TextWatcher {
             case R.id.ab_button1:
                 // Save the file
                 writeFile();
+                break;
+
+            case R.id.ab_button2:
+                // Show overflow menu
+                showOverflowPopUp(this.mOptionsAnchorView);
                 break;
 
             default:

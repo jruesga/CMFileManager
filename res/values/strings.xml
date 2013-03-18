@@ -421,6 +421,8 @@
   <string name="menu_settings">Settings</string>
   <!-- Menu * History * Clear history -->
   <string name="menu_clear_history">Clear history</string>
+  <!-- Menu * Editor * Word wrap -->
+  <string name="menu_word_wrap">Word wrap</string>
 
   <!-- Regular expression for create copy action -->
   <string name="create_copy_regexp">
@@ -647,6 +649,8 @@
   <string name="pref_general">General settings</string>
   <!-- Preferences * Search title -->
   <string name="pref_search">Search options</string>
+  <!-- Preferences * Editor title -->
+  <string name="pref_editor">Editor options</string>
   <!-- Preferences * Themes title -->
   <string name="pref_themes">Themes</string>
   <!-- Preferences * About title -->
@@ -727,6 +731,10 @@
   <string name="pref_remove_saved_search_terms_summary">Tap to remove all the saved search terms</string>
   <!-- Preferences * Search * Suggestions were truncated -->
   <string name="pref_remove_saved_search_terms_msg">All saved search terms were removed.</string>
+  <!-- Preferences * Editor * Behaviour category -->
+  <string name="pref_editor_behaviour_category">Behaviour</string>
+  <!-- Preferences * Editor * Word wrap -->
+  <string name="pref_word_wrap">Word wrap</string>
   <!-- Preferences * Themes * Themes selection category -->
   <string name="pref_themes_selection_category">Themes</string>
   <!-- Preferences * Themes * Set theme button -->

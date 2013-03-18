@@ -130,6 +130,12 @@ public enum FileManagerSettings {
     SETTINGS_SHOW_TRACES("cm_filemanager_show_debug_traces", Boolean.FALSE), //$NON-NLS-1$
 
     /**
+     * When to editor should use word wrap
+     * @hide
+     */
+    SETTINGS_EDITOR_WORD_WRAP("cm_filemanager_editor_word_wrap", Boolean.TRUE), //$NON-NLS-1$
+
+    /**
      * The current theme to use in the app
      * @hide
      */

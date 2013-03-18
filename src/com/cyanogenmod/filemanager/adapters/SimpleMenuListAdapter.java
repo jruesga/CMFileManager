@@ -24,6 +24,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.android.internal.view.menu.MenuBuilder;
@@ -145,6 +146,14 @@ public class SimpleMenuListAdapter extends BaseAdapter {
             TextView tvText = (TextView)v.findViewById(R.id.menu_item_text);
             tvText.setText(menuItem.getTitle());
             theme.setTextColor(this.mContext, tvText, "text_color"); //$NON-NLS-1$
+
+            ImageView vCheck = (ImageView)v.findViewById(R.id.menu_item_check);
+            vCheck.setVisibility(menuItem.isCheckable() ? View.VISIBLE : View.GONE);
+            theme.setImageDrawable(
+                    this.mContext, vCheck, "popup_checkable_selector_drawable"); //$NON-NLS-1$
+            if (menuItem.isCheckable()) {
+                vCheck.setSelected(menuItem.isChecked());
+            }
         }
         v.setEnabled(menuItem.isEnabled());
         v.setVisibility(menuItem.isVisible() ? View.VISIBLE : View.GONE);

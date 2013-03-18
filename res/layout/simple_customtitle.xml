@@ -18,14 +18,30 @@
   android:layout_width="match_parent"
   android:layout_height="match_parent" >
 
-  <com.cyanogenmod.filemanager.ui.widgets.ButtonItem
-    android:id="@+id/ab_button1"
-    style="@style/breadcrumb_actionbar_buttom"
+  <LinearLayout
+    android:id="@+id/ab_button_cluster"
     android:layout_width="wrap_content"
     android:layout_height="match_parent"
-    android:layout_alignParentRight="true"
-    android:onClick="onActionBarItemClick"
-    android:visibility="gone" />
+    android:layout_alignParentRight="true">
+
+    <com.cyanogenmod.filemanager.ui.widgets.ButtonItem
+      android:id="@+id/ab_button1"
+      style="@style/breadcrumb_actionbar_buttom"
+      android:layout_width="wrap_content"
+      android:layout_height="match_parent"
+      android:onClick="onActionBarItemClick"
+      android:visibility="gone" />
+
+    <com.cyanogenmod.filemanager.ui.widgets.ButtonItem
+      android:id="@+id/ab_button2"
+      style="@style/breadcrumb_actionbar_buttom"
+      android:layout_width="wrap_content"
+      android:layout_height="match_parent"
+      android:onClick="onActionBarItemClick"
+      android:visibility="gone" />
+
+  </LinearLayout>
+
 
   <TextView
     android:id="@+id/customtitle_title"

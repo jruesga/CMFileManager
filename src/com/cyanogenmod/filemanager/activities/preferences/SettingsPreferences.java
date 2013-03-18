@@ -467,6 +467,71 @@ public class SettingsPreferences extends PreferenceActivity {
     }
 
     /**
+     * A class that manages the editor options
+     */
+    public static class EditorPreferenceFragment extends PreferenceFragment {
+
+        private CheckBoxPreference mWordWrap;
+
+        /**
+         * @hide
+         */
+        boolean mLoaded = false;
+
+        private final OnPreferenceChangeListener mOnChangeListener =
+                new OnPreferenceChangeListener() {
+            @Override
+            public boolean onPreferenceChange(final Preference preference, Object newValue) {
+                boolean ret = true;
+
+                String key = preference.getKey();
+                if (DEBUG) {
+                    Log.d(TAG,
+                        String.format("New value for %s: %s",  //$NON-NLS-1$
+                                key,
+                                String.valueOf(newValue)));
+                }
+
+                // Notify the change (only if fragment is loaded. Default values are loaded
+                // while not in loaded mode)
+                if (EditorPreferenceFragment.this.mLoaded && ret) {
+                    Intent intent = new Intent(FileManagerSettings.INTENT_SETTING_CHANGED);
+                    intent.putExtra(
+                            FileManagerSettings.EXTRA_SETTING_CHANGED_KEY, preference.getKey());
+                    getActivity().sendBroadcast(intent);
+                }
+
+                return ret;
+            }
+        };
+
+        /**
+         * {@inheritDoc}
+         */
+        @Override
+        public void onCreate(Bundle savedInstanceState) {
+            super.onCreate(savedInstanceState);
+
+            // Change the preference manager
+            getPreferenceManager().setSharedPreferencesName(Preferences.SETTINGS_FILENAME);
+            getPreferenceManager().setSharedPreferencesMode(MODE_PRIVATE);
+            this.mLoaded = false;
+
+            // Add the preferences
+            addPreferencesFromResource(R.xml.preferences_editor);
+
+            // WordWrap
+            this.mWordWrap =
+                    (CheckBoxPreference)findPreference(
+                            FileManagerSettings.SETTINGS_EDITOR_WORD_WRAP.getId());
+            this.mWordWrap.setOnPreferenceChangeListener(this.mOnChangeListener);
+
+            // Loaded
+            this.mLoaded = true;
+        }
+    }
+
+    /**
      * A class that manages the theme selection
      */
     public static class ThemesPreferenceFragment extends PreferenceFragment {

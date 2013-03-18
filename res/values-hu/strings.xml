@@ -48,6 +48,10 @@
     <string name="cancelled_message">Megszakítva</string>
     <!-- Error message -->
     <string name="error_message">Hiba</string>
+    <!-- Copy text content description -->
+    <string name="copy_text_cd">Érintse meg a szöveg vágólapra másolásához</string>
+    <!-- Copy text content message -->
+    <string name="copy_text_msg">Szöveg vágólapra másolva</string>
 
     <!-- Warning dialog title -->
     <string name="warning_title">Figyelmeztetés</string>
@@ -455,6 +459,8 @@
     <string name="actions_menu_add_shortcut">Parancsikon létrehozása</string>
     <!-- Actions Dialog * Menu * Open parent folder -->
     <string name="actions_menu_open_parent_folder">Szülő könyvtár megnyitása</string>
+    <!-- Actions Dialog * Menu * Compute checksum -->
+    <string name="actions_menu_compute_checksum">Ellenőrzőösszeg számolása</string>
 
     <!-- Actions * Ask user prior to do an undone operation. Dialog message -->
     <string name="actions_ask_undone_operation_msg">A művelet nem visszavonható. Biztosan folytatja?</string>
@@ -496,6 +502,13 @@
     <string name="execution_console_script_exitcode_label">Kilépő kód:</string>
     <!-- Execution console * The script execution time seconds string -->
     <string name="execution_console_script_execution_time_text"><xliff:g id="seconds">%1$s</xliff:g> mp.</string>
+
+    <!-- Compute checksum * Title -->
+    <string name="compute_checksum_title">Ellenőrzőösszeg számolása</string>
+    <!-- Compute checksum * The file name label -->
+    <string name="compute_checksum_filename_label">Fájl:</string>
+    <!-- Compute checksum * The computing checksum message-->
+    <string name="compute_checksum_computing_checksum_msg">Ellenőrzőösszeg kiszámítása\u2026</string>
 
     <!-- Mime/Types * Folder -->
     <string name="mime_folder">Könyvtár</string>

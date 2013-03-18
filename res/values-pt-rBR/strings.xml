@@ -303,7 +303,7 @@
     <string name="security_warning_extract">Aviso!\n\nO dispositivo pode ser danificado se, ao extrair arquivos com caminhos relativos ou absolutos, arquivos de sistema forem sobrescritos.\n\nVocê deseja continuar?</string>
     <string name="changelog_title">Registro de mudanças</string>
     <string name="welcome_title">Bem vindo</string>
-    <string name="welcome_msg">Bem vindo ao gerenciador de arquivos CyanogenMod.\n\nEste aplicativo permite você a explorar o sistema de arquivos e fazer operações que podem danificar seu dispositivo. Para previnir danos, o aplicativo irá iniciar em modo seguro e com poucos privilégios.\n\nVocê pode acessar o modo avançado, com todos os privilégios através das Configurações. É sua responsabilidade de garantir que uma operação não danifique seu sistema.\n\nThe CyanogenMod Team.\n</string>
+    <string name="welcome_msg">Bem vindo ao gerenciador de arquivos CyanogenMod.\n\nEste aplicativo permite você a explorar o sistema de arquivos e fazer operações que podem danificar seu dispositivo. Para prevenir danos, o aplicativo irá iniciar em modo seguro e com poucos privilégios.\n\nVocê pode acessar o modo avançado, com todos os privilégios através das Configurações. É sua responsabilidade de garantir que uma operação não danifique seu sistema.\n\nThe CyanogenMod Team.\n</string>
     <string name="themes_author">CyanogenMod</string>
     <string name="pref_themes">Temas</string>
     <string name="pref_themes_selection_category">Temas</string>
@@ -318,7 +318,7 @@
     <string name="fso_properties_dialog_last_changed_date">Alterado:</string>
     <string name="fso_properties_dialog_include_in_media_scan">Pular varredura de mídia:</string>
     <string name="fso_failed_to_allow_media_scan">Falha ao permitir varredura de mídia</string>
-    <string name="fso_failed_to_prevent_media_scan">Falha ao previnir varredura de mídia</string>
+    <string name="fso_failed_to_prevent_media_scan">Falha ao prevenir varredura de mídia</string>
     <string name="fso_delete_nomedia_dir_title">Remover diretório .nomedia</string>
     <string name="fso_delete_nomedia_dir_body">Este diretório contém um diretório .nomedia.\n\nVocê deseja removê-lo e todo seu conteúdo?</string>
     <string name="fso_delete_nomedia_non_empty_title">Remover arquivo .nomedia</string>
@@ -326,4 +326,10 @@
     <string name="actions_menu_send_selection">Enviar seleção</string>
     <string name="select">Selecionar</string>
     <string name="directory_picker_title">Escolha um diretório</string>
+    <string name="copy_text_cd">Toque para copiar texto para área de transferência</string>
+    <string name="copy_text_msg">Texto copiado para área de transferência</string>
+    <string name="actions_menu_compute_checksum">Calcular checksum</string>
+    <string name="compute_checksum_title">Calcular checksum</string>
+    <string name="compute_checksum_filename_label">Arquivo:</string>
+    <string name="compute_checksum_computing_checksum_msg">Calculando checksum\u2026</string>
 </resources>

@@ -36,6 +36,8 @@
   <string name="loading_message">Загрузка\u2026</string>
   <string name="cancelled_message">Отменено</string>
   <string name="error_message">Ошибка</string>
+  <string name="copy_text_cd">Нажмите, чтобы скопировать текст в буфер обмена</string>
+  <string name="copy_text_msg">Текст скопирован в буфер обмена</string>
 
   <string name="warning_title">Внимание</string>
   <string name="error_title">Обнаружена ошибка</string>
@@ -253,7 +255,8 @@
   <string name="actions_menu_properties">Свойства</string>
   <string name="actions_menu_add_to_bookmarks">Добавить в закладки</string>
   <string name="actions_menu_add_shortcut">Добавить ярлык</string>
-  <string name="actions_menu_open_parent_folder">Открыть родителя</string>
+  <string name="actions_menu_open_parent_folder">Открыть папку с файлом</string>
+  <string name="actions_menu_compute_checksum">Контрольные суммы</string>
 
   <string name="actions_ask_undone_operation_msg">Это действие не обратимо. Вы хотите продолжить?</string>
 
@@ -277,6 +280,10 @@
   <string name="execution_console_script_execution_time_label">Время:</string>
   <string name="execution_console_script_exitcode_label">Код завершения:</string>
   <string name="execution_console_script_execution_time_text"><xliff:g id="seconds">%1$s</xliff:g> сек.</string>
+
+  <string name="compute_checksum_title">Контрольные суммы</string>
+  <string name="compute_checksum_filename_label">Файл:</string>
+  <string name="compute_checksum_computing_checksum_msg">Расчёт контрольных сумм\u2026</string>
 
   <string name="mime_folder">Папка</string>
   <string name="mime_symlink">Симлинк</string>

@@ -368,6 +368,8 @@
     <string name="menu_settings">Beállítások</string>
     <!-- Menu * History * Clear history -->
     <string name="menu_clear_history">Előzmények törlése</string>
+    <!-- Menu * Editor * Word wrap -->
+    <string name="menu_word_wrap">Sortörés</string>
 
     <!-- Regular expression for create copy action -->
     <string name="create_copy_regexp"><xliff:g id="name">%1$s</xliff:g> - másolás<xliff:g id="extension">%2$s</xliff:g></string>
@@ -561,6 +563,8 @@
     <string name="pref_general">Általános beállítások</string>
     <!-- Preferences * Search title -->
     <string name="pref_search">Keresési opciók</string>
+    <!-- Preferences * Editor title -->
+    <string name="pref_editor">Szerkesztő beállítások</string>
     <!-- Preferences * Themes title -->
     <string name="pref_themes">Témák</string>
     <!-- Preferences * About title -->
@@ -632,6 +636,10 @@
     <string name="pref_remove_saved_search_terms_summary">Érintse meg az összes keresési feltételek törléséhez</string>
     <!-- Preferences * Search * Suggestions were truncated -->
     <string name="pref_remove_saved_search_terms_msg">Az összes keresési feltétel törölve.</string>
+    <!-- Preferences * Editor * Behaviour category -->
+    <string name="pref_editor_behaviour_category">Viselkedés</string>
+    <!-- Preferences * Editor * Word wrap -->
+    <string name="pref_word_wrap">Sortörés</string>
     <!-- Preferences * Themes * Themes selection category -->
     <string name="pref_themes_selection_category">Témák</string>
     <!-- Preferences * Themes * Set theme button -->

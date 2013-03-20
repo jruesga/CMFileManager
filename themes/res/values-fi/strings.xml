@@ -15,8 +15,6 @@
  -->
 
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-  <string name="app_name">Tiedostonhallinnan teemat</string>
-  <string name="app_description">CyanogenModin tiedostonhallinnan teemat.</string>
   <string name="dark_theme_name">Tumma teema</string>
   <string name="dark_theme_desc">Tumma teema CyanogenModin tiedostonhallintaan.</string>
 </resources>

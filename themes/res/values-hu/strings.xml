@@ -15,15 +15,6 @@
  -->
 
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-
-  <!-- The name of the application -->
-  <string name="app_name">Fájlkezelő témák</string>
-  <!-- The description of the application -->
-  <string name="app_description">Témák a CyanogenMod Fájlkezelőhöz.</string>
-
-  <!-- The dark theme name -->
   <string name="dark_theme_name">Sötét téma</string>
-  <!-- The dark theme description -->
   <string name="dark_theme_desc">Sötét téma a CyanogenMod Fájlkezelőhöz.</string>
-
 </resources>

@@ -19,6 +19,11 @@
  -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
 
+  <!-- The dark theme name -->
+  <string name="dark_theme_name">Dark Theme</string>
+  <!-- The dark theme description -->
+  <string name="dark_theme_desc">A dark theme for CyanogenMod File Manager.</string>
+
   <!-- The base theme used to customize some (non-themeables) widgets like dialogs
        2 possibles values:
          * holo: @android:style/Theme.Holo

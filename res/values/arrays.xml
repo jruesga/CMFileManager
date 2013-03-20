@@ -88,15 +88,4 @@
     <item>@string/compression_mode_zip</item>
   </string-array>
 
-  <!-- The default theme definition -->
-  <string-array name="themes_ids" translatable="false">
-    <item>light</item>
-  </string-array>
-  <string-array name="themes_names" translatable="false">
-    <item>@string/theme_default_name</item>
-  </string-array>
-  <string-array name="themes_descriptions" translatable="false">
-    <item>@string/theme_default_description</item>
-  </string-array>
-
 </resources>

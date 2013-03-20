@@ -15,11 +15,6 @@
  -->
 
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-
-  <string name="app_name">Teme Manager Fișiere</string>
-  <string name="app_description">Teme pentru Managerul de Fișiere CyanogenMod.</string>
   <string name="dark_theme_name">Temă \"întunecată\"</string>
-  <!-- The dark theme description -->
   <string name="dark_theme_desc">Temă \"întunecată\" pentru Managerul de Fișiere CyanogenMod.</string>
-
 </resources>

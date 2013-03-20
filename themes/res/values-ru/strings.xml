@@ -15,11 +15,6 @@
  -->
 
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-
-  <string name="app_name">Темы файлового менеджера</string>
-  <string name="app_description">Темы для файлового менеджера CyanogenMod</string>
-
   <string name="dark_theme_name">Тёмная тема</string>
   <string name="dark_theme_desc">Тёмная тема для файлового менеджера CyanogenMod</string>
-
 </resources>

@@ -332,4 +332,8 @@
     <string name="compute_checksum_title">Calcular checksum</string>
     <string name="compute_checksum_filename_label">Arquivo:</string>
     <string name="compute_checksum_computing_checksum_msg">Calculando checksum\u2026</string>
+    <string name="menu_word_wrap">Quebra palavra</string>
+    <string name="pref_editor">Opções do editor</string>
+    <string name="pref_editor_behaviour_category">Comportamento</string>
+    <string name="pref_word_wrap">Quebra palavra</string>
 </resources>

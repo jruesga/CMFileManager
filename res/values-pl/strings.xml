@@ -367,6 +367,8 @@
   <string name="menu_settings">Ustawienia</string>
   <!-- Menu * History * Clear history -->
   <string name="menu_clear_history">Wyczyść historię</string>
+  <!-- Menu * Editor * Word wrap -->
+  <string name="menu_word_wrap">Zawijanie wierszy</string>
 
   <!-- Regular expression for create copy action -->
   <string name="create_copy_regexp">
@@ -571,6 +573,8 @@
   <string name="pref_general">Główne ustawienia</string>
   <!-- Preferences * Search title -->
   <string name="pref_search">Opcje wyszukiwania</string>
+  <!-- Preferences * Editor title -->
+  <string name="pref_editor">Opcje edytora</string>
   <!-- Preferences * Themes title -->
   <string name="pref_themes">Motywy</string>
   <!-- Preferences * About title -->
@@ -641,6 +645,10 @@
   <string name="pref_remove_saved_search_terms_summary">Wybierz by usunąć wszystkie zapisane wyszukiwane frazy</string>
   <!-- Preferences * Search * Suggestions were truncated -->
   <string name="pref_remove_saved_search_terms_msg">Wszystkie zapisane wyszukiwane frazy zostały usunięte.</string>
+  <!-- Preferences * Editor * Behaviour category -->
+  <string name="pref_editor_behaviour_category">Zachowanie</string>
+  <!-- Preferences * Editor * Word wrap -->
+  <string name="pref_word_wrap">Zawijanie wierszy</string>
   <!-- Preferences * Themes * Themes selection category -->
   <string name="pref_themes_selection_category">Motywy</string>
   <!-- Preferences * Themes * Set theme button -->

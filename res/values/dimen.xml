@@ -103,7 +103,7 @@
   <dimen name="console_height">250dp</dimen>
 
   <!-- The progress height -->
-  <dimen name="default_progress_height">32dp</dimen>
+  <dimen name="default_progress_height">48dp</dimen>
 
   <!-- Theme button min width -->
   <dimen name="themes_min_width_button">300dp</dimen>

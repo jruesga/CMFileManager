@@ -77,21 +77,23 @@
     android:layout_alignParentBottom="true"
     android:visibility="gone">
 
+    <TextView
+      android:id="@+id/editor_progress_msg"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_alignParentBottom="true"
+      android:textAppearance="@style/primary_text_appearance"
+      android:text="@string/loading_message"
+      android:gravity="center_vertical|center_horizontal"
+      android:contentDescription="@null" />
+
     <ProgressBar
       android:id="@+id/editor_progress_bar"
       android:layout_width="match_parent"
       android:layout_height="match_parent"
       style="@android:style/Widget.ProgressBar.Horizontal"
+      android:layout_above="@id/editor_progress_msg"
       android:indeterminate="false" />
-
-    <TextView
-      android:id="@+id/editor_progress_msg"
-      android:layout_width="match_parent"
-      android:layout_height="match_parent"
-      android:textAppearance="@style/primary_text_appearance"
-      android:text="@string/loading_message"
-      android:gravity="center_vertical|center_horizontal"
-      android:contentDescription="@null" />
 
   </RelativeLayout>
 

@@ -26,6 +26,7 @@ import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.res.Configuration;
+import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.preference.PreferenceActivity;
@@ -976,11 +977,14 @@ public class EditorActivity extends Activity implements TextWatcher {
         theme.setTextColor(this, (TextView)v, "text_color"); //$NON-NLS-1$
         v = findViewById(R.id.ab_button1);
         theme.setImageDrawable(this, (ImageView)v, "ab_save_drawable"); //$NON-NLS-1$
-        // -View
+        //- View
         v = findViewById(R.id.editor_layout);
         theme.setBackgroundDrawable(this, v, "background_drawable"); //$NON-NLS-1$
         v = findViewById(R.id.editor);
         theme.setTextColor(this, (TextView)v, "text_color"); //$NON-NLS-1$
+        //- ProgressBar
+        Drawable dw = theme.getDrawable(this, "horizontal_progress_bar"); //$NON-NLS-1$
+        this.mProgressBar.setProgressDrawable(dw);
     }
 
 }

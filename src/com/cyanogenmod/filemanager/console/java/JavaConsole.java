@@ -17,6 +17,7 @@
 package com.cyanogenmod.filemanager.console.java;
 
 import android.content.Context;
+import android.os.Process;
 import android.util.Log;
 
 import com.cyanogenmod.filemanager.commands.Executable;
@@ -32,7 +33,13 @@ import com.cyanogenmod.filemanager.console.InsufficientPermissionsException;
 import com.cyanogenmod.filemanager.console.NoSuchFileOrDirectory;
 import com.cyanogenmod.filemanager.console.OperationTimeoutException;
 import com.cyanogenmod.filemanager.console.ReadOnlyFilesystemException;
+import com.cyanogenmod.filemanager.model.AID;
+import com.cyanogenmod.filemanager.model.Group;
 import com.cyanogenmod.filemanager.model.Identity;
+import com.cyanogenmod.filemanager.model.User;
+import com.cyanogenmod.filemanager.util.AIDHelper;
+
+import java.util.ArrayList;
 
 /**
  * An implementation of a {@link Console} based on a java implementation.<br/>
@@ -110,7 +117,12 @@ public final class JavaConsole extends Console {
      */
     @Override
     public Identity getIdentity() {
-        return null;
+        AID aid = AIDHelper.getAID(Process.myUid());
+        if (aid == null) return null;
+        return new Identity(
+                new User(aid.getId(), aid.getName()),
+                new Group(aid.getId(), aid.getName()),
+                new ArrayList<Group>());
     }
 
     /**

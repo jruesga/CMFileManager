@@ -16,9 +16,9 @@
 
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
   <!-- The name of the application -->
-  <string name="app_name">Lêerbestuurder</string>
+  <string name="app_name">Lêer-verkenner</string>
   <!-- The description of the application -->
-  <string name="app_description">\'n CyanogenMod Lêerbestuurder.</string>
+  <string name="app_description">\'n CyanogenMod Lêerverkenner.</string>
 
   <!-- Devices types -->
   <string name="device_blockdevice">Bloktoestel</string>
@@ -580,7 +580,7 @@
   <!-- Preferences * About title -->
   <string name="pref_about">Aangaande</string>
   <!-- Preferences * About summary -->
-  <string name="pref_about_summary">Lêerbestuurder v<xliff:g id="version">%1$s</xliff:g>
+  <string name="pref_about_summary">Lêer-verkenner v<xliff:g id="version">%1$s</xliff:g>
     \nKopiereg \u00A9 2013 Die CyanogenMod Projek</string>
 
   <!-- Preferences * General * Behaviour category -->
@@ -664,7 +664,7 @@
   <!-- Themes * Default theme name -->
   <string name="theme_default_name">Ligte Tema</string>
   <!-- Themes * Default theme description -->
-  <string name="theme_default_description">\'n ligte tema vir CyanogenMod Lêerbestuurder</string>
+  <string name="theme_default_description">\'n ligte tema vir CyanogenMod Lêer-verkenner</string>
   <!-- Themes * Default theme author -->
   <string name="themes_author">CyanogenMod</string>
 
@@ -680,7 +680,7 @@
   <string name="welcome_title">Welkom</string>
   <!-- Welcome Dialog * Message -->
   <string name="welcome_msg">
-    Welkom by die CyanogenMod Lêerbestuurder.
+    Welkom by die CyanogenMod Lêer-verkenner.
     \n\nMet hierdie program kan jy die lêerstelsel verken en moontlik die toestel beskadig. Om dit te voorkom, sal die program begin in \'n veilige, lae-bevoorregte modus.
     \n\nU kan toegang tot \'n gevorderde, volbevoorregte modus verkry deur instellings. Dit is jou verantwoordelikheid om te verseker dat enige aksie wat gedoen word nie die stelsel beskadig nie.
     \n\nDie CyanogenMod span\n.</string>

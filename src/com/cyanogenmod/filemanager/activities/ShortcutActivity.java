@@ -200,7 +200,7 @@ public class ShortcutActivity extends Activity implements OnCancelListener, OnDi
      */
     private boolean initializeConsole() {
         try {
-            ConsoleBuilder.createDefaultConsole(this);
+            ConsoleBuilder.getConsole(this);
             // There is a console allocated. Use it.
             return true;
         } catch (Throwable _throw) {

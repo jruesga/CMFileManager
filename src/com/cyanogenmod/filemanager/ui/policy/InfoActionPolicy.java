@@ -20,11 +20,15 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.widget.Toast;
 
+import com.cyanogenmod.filemanager.console.ConsoleBuilder;
 import com.cyanogenmod.filemanager.listeners.OnRequestRefreshListener;
 import com.cyanogenmod.filemanager.model.FileSystemObject;
 import com.cyanogenmod.filemanager.ui.dialogs.ComputeChecksumDialog;
 import com.cyanogenmod.filemanager.ui.dialogs.FsoPropertiesDialog;
 import com.cyanogenmod.filemanager.util.DialogHelper;
+import com.cyanogenmod.filemanager.util.ExceptionUtil;
+import com.cyanogenmod.filemanager.util.ExceptionUtil.OnRelaunchCommandResult;
+import com.cyanogenmod.filemanager.util.FileHelper;
 
 /**
  * A class with the convenience methods for resolve the display of info actions
@@ -78,8 +82,33 @@ public final class InfoActionPolicy extends ActionsPolicy {
      */
     public static void showComputeChecksumDialog(
             final Context ctx, final FileSystemObject fso) {
-        //Show a the filesystem info dialog
-        final ComputeChecksumDialog dialog = new ComputeChecksumDialog(ctx, fso);
-        dialog.show();
+        // Check that we have read access
+        try {
+            FileHelper.ensureReadAccess(
+                    ConsoleBuilder.getConsole(ctx),
+                    fso,
+                    null);
+
+            //Show a the filesystem info dialog
+            final ComputeChecksumDialog dialog = new ComputeChecksumDialog(ctx, fso);
+            dialog.show();
+
+        } catch (Exception ex) {
+            ExceptionUtil.translateException(
+                    ctx, ex, false, true, new OnRelaunchCommandResult() {
+                @Override
+                public void onSuccess() {
+                    //Show a the filesystem info dialog
+                    final ComputeChecksumDialog dialog = new ComputeChecksumDialog(ctx, fso);
+                    dialog.show();
+                }
+
+                @Override
+                public void onFailed(Throwable cause) {/**NON BLOCK**/}
+
+                @Override
+                public void onCancelled() {/**NON BLOCK**/}
+            });
+        }
     }
 }

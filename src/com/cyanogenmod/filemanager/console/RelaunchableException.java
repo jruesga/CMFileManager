@@ -41,7 +41,9 @@ public abstract class RelaunchableException extends Exception {
     public RelaunchableException(SyncResultExecutable executable) {
         super();
         this.mExecutables = new ArrayList<SyncResultExecutable>();
-        addExecutable(executable);
+        if (executable != null) {
+            addExecutable(executable);
+        }
     }
 
     /**
@@ -53,7 +55,9 @@ public abstract class RelaunchableException extends Exception {
     public RelaunchableException(String detailMessage, SyncResultExecutable executable) {
         super(detailMessage);
         this.mExecutables = new ArrayList<SyncResultExecutable>();
-        addExecutable(executable);
+        if (executable != null) {
+            addExecutable(executable);
+        }
     }
 
     /**
@@ -67,7 +71,9 @@ public abstract class RelaunchableException extends Exception {
             String detailMessage, Throwable throwable, SyncResultExecutable executable) {
         super(detailMessage, throwable);
         this.mExecutables = new ArrayList<SyncResultExecutable>();
-        addExecutable(executable);
+        if (executable != null) {
+            addExecutable(executable);
+        }
     }
 
     /**

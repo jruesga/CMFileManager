@@ -15,15 +15,6 @@
  -->
 
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-
-  <!-- The name of the application -->
-  <string name="app_name">Temas do Gestor de Ficheiros</string>
-  <!-- The description of the application -->
-  <string name="app_description">Temas do Gestor de Ficheiros CyanogenMod.</string>
-
-  <!-- The dark theme name -->
   <string name="dark_theme_name">Tema escuro</string>
-  <!-- The dark theme description -->
   <string name="dark_theme_desc">Um tema escuro para o Gestor de Ficheiros CyanogenMod.</string>
-
 </resources>

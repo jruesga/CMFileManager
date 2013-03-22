@@ -15,10 +15,6 @@
  -->
 
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-
-  <string name="app_name">Temas File Manager</string>
-  <string name="app_description">Temas para File Manager.</string>
   <string name="dark_theme_name">Tema oscuro</string>
   <string name="dark_theme_desc">Un tema en colores oscuros para File Manager.</string>
-
 </resources>

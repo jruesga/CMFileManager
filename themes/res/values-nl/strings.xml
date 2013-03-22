@@ -14,8 +14,6 @@
      limitations under the License.
  -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-  <string name="app_name">Bestandsbeheerderthema\'s</string>
-  <string name="app_description">Thema\'s voor de bestandsbeheerder van CyanogenMod</string>
   <string name="dark_theme_name">Donker thema</string>
   <string name="dark_theme_desc">Donkere kleuren voor de bestandsbeheerder</string>
 </resources>

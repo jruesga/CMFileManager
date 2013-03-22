@@ -15,15 +15,6 @@
  -->
 
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-
-  <!-- The name of the application -->
-  <string name="app_name">Lêerbestuurder Temas</string>
-  <!-- The description of the application -->
-  <string name="app_description">Temas vir die CyanogenMod Lêerbestuurder.</string>
-
-  <!-- The dark theme name -->
   <string name="dark_theme_name">Donker Tema</string>
-  <!-- The dark theme description -->
   <string name="dark_theme_desc">\'n Donker tema vir CyanogenMod Lêerbestuurder.</string>
-
 </resources>

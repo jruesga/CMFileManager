@@ -15,15 +15,6 @@
  -->
 
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-
-  <!-- The name of the application -->
-  <string name="app_name">Motywy Menedżera plików</string>
-  <!-- The description of the application -->
-  <string name="app_description">Motywy dla Menedżera plików CyanogenMod.</string>
-
-  <!-- The dark theme name -->
   <string name="dark_theme_name">Ciemny motyw</string>
-  <!-- The dark theme description -->
   <string name="dark_theme_desc">Ciemny motyw dla Menedżera plików CyanogenMod.</string>
-
 </resources>

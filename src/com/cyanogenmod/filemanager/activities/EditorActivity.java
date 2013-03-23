@@ -26,6 +26,7 @@ import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.res.Configuration;
+import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -48,6 +49,7 @@ import android.widget.TextView;
 import android.widget.TextView.BufferType;
 import android.widget.Toast;
 
+import com.android.internal.util.HexDump;
 import com.cyanogenmod.filemanager.R;
 import com.cyanogenmod.filemanager.activities.preferences.SettingsPreferences;
 import com.cyanogenmod.filemanager.activities.preferences.SettingsPreferences.EditorPreferenceFragment;
@@ -70,8 +72,11 @@ import com.cyanogenmod.filemanager.util.ExceptionUtil.OnRelaunchCommandResult;
 import com.cyanogenmod.filemanager.util.FileHelper;
 
 import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.OutputStream;
+import java.util.Arrays;
+import java.util.UUID;
 
 /**
  * An internal activity for view and edit files.
@@ -113,8 +118,6 @@ public class EditorActivity extends Activity implements TextWatcher {
         }
     };
 
-    private static final char[] VALID_NON_PRINTABLE_CHARS = {' ', '\t', '\r', '\n'};
-
     /**
      * Internal interface to notify progress update
      */
@@ -129,7 +132,8 @@ public class EditorActivity extends Activity implements TextWatcher {
     private class AsyncReader implements AsyncResultListener {
 
         final Object mSync = new Object();
-        StringBuilder mBuffer = new StringBuilder();
+        ByteArrayOutputStream mByteBuffer = null;
+        StringBuilder mBuffer = null;
         Exception mCause;
         long mSize;
         FileSystemObject mFso;
@@ -147,7 +151,7 @@ public class EditorActivity extends Activity implements TextWatcher {
          */
         @Override
         public void onAsyncStart() {
-            this.mBuffer = new StringBuilder();
+            this.mByteBuffer = new ByteArrayOutputStream((int)this.mFso.getSize());
             this.mSize = 0;
         }
 
@@ -173,11 +177,12 @@ public class EditorActivity extends Activity implements TextWatcher {
         @Override
         public void onPartialResult(Object result) {
             try {
+                if (result == null) return;
                 byte[] partial = (byte[])result;
 
                 // Check if the file is a binary file. In this case the editor
                 // is read-only
-                if (!EditorActivity.this.mReadOnly && partial != null) {
+                if (!EditorActivity.this.mReadOnly) {
                     for (int i = 0; i < partial.length-1; i++) {
                         if (!isPrintableCharacter((char)partial[i])) {
                             EditorActivity.this.mBinary = true;
@@ -187,8 +192,8 @@ public class EditorActivity extends Activity implements TextWatcher {
                     }
                 }
 
-                this.mBuffer.append(new String(partial));
-                this.mSize += this.mBuffer.length();
+                this.mByteBuffer.write(partial, 0, partial.length);
+                this.mSize += partial.length;
                 if (this.mListener != null && this.mFso != null) {
                     int progress = 0;
                     if (this.mFso.getSize() != 0) {
@@ -297,6 +302,10 @@ public class EditorActivity extends Activity implements TextWatcher {
     /**
      * @hide
      */
+    TextView mProgressBarMsg;
+    /**
+     * @hide
+     */
     ButtonItem mSave;
 
     // Word wrap status
@@ -308,6 +317,13 @@ public class EditorActivity extends Activity implements TextWatcher {
     boolean mWordWrap;
 
     private View mOptionsAnchorView;
+
+    private static final char[] VALID_NON_PRINTABLE_CHARS = {' ', '\t', '\r', '\n'};
+
+    /**
+     * @hide
+     */
+    String mHexLineSeparator;
 
     /**
      * Intent extra parameter for the path of the file to open.
@@ -328,6 +344,9 @@ public class EditorActivity extends Activity implements TextWatcher {
         filter.addAction(FileManagerSettings.INTENT_THEME_CHANGED);
         filter.addAction(FileManagerSettings.INTENT_SETTING_CHANGED);
         registerReceiver(this.mNotificationReceiver, filter);
+
+        // Generate a random separator
+        this.mHexLineSeparator = UUID.randomUUID().toString();
 
         //Set the main layout of the activity
         setContentView(R.layout.editor);
@@ -406,7 +425,7 @@ public class EditorActivity extends Activity implements TextWatcher {
         configuration.setImageResource(R.drawable.ic_holo_light_overflow);
         configuration.setContentDescription(getString(R.string.actionbar_button_overflow_cd));
 
-        View status = findViewById(R.id.history_status);
+        View status = findViewById(R.id.editor_status);
         boolean showOptionsMenu = AndroidHelper.showOptionsMenu(getApplicationContext());
         configuration.setVisibility(showOptionsMenu ? View.VISIBLE : View.GONE);
         this.mOptionsAnchorView = showOptionsMenu ? configuration : status;
@@ -439,6 +458,7 @@ public class EditorActivity extends Activity implements TextWatcher {
 
         this.mProgress = findViewById(R.id.editor_progress);
         this.mProgressBar = (ProgressBar)findViewById(R.id.editor_progress_bar);
+        this.mProgressBarMsg = (TextView)findViewById(R.id.editor_progress_msg);
     }
 
     /**
@@ -506,7 +526,11 @@ public class EditorActivity extends Activity implements TextWatcher {
                 new HighlightedSimpleMenuListAdapter(this, R.menu.editor);
         MenuItem wordWrap = adapter.getMenu().findItem(R.id.mnu_word_wrap);
         if (wordWrap != null) {
-            wordWrap.setChecked(this.mWordWrap);
+            if (this.mBinary) {
+                adapter.getMenu().removeItem(R.id.mnu_word_wrap);
+            } else {
+                wordWrap.setChecked(this.mWordWrap);
+            }
         }
 
         final ListPopupWindow popup =
@@ -673,10 +697,14 @@ public class EditorActivity extends Activity implements TextWatcher {
 
             private Exception mCause;
             private AsyncReader mReader;
+            private boolean changeToBinaryMode;
+            private boolean changeToDisplaying;
 
             @Override
             protected void onPreExecute() {
                 // Show the progress
+                this.changeToBinaryMode = false;
+                this.changeToDisplaying = false;
                 doProgress(true, 0);
             }
 
@@ -710,7 +738,7 @@ public class EditorActivity extends Activity implements TextWatcher {
                         }
 
                         // 100%
-                        doProgress(true, 100);
+                        publishProgress(new Integer(100));
 
                         // Check if the read was successfully
                         if (this.mReader.mCause != null) {
@@ -719,6 +747,28 @@ public class EditorActivity extends Activity implements TextWatcher {
                         }
                         break;
                     }
+
+                    // Now we have the byte array with all the data. is a binary file?
+                    // Then dump them byte array to hex dump string
+                    // Don't use the Hexdump helper class, so we can show the progress of
+                    // the dump process
+                    if (EditorActivity.this.mBinary) {
+                        this.mReader.mBuffer =
+                                new StringBuilder(
+                                        toHexPrintableString(
+                                                toHexDump(
+                                                        this.mReader.mByteBuffer.toByteArray())));
+                    } else {
+                        this.mReader.mBuffer =
+                                new StringBuilder(
+                                        new String(this.mReader.mByteBuffer.toByteArray()));
+                    }
+                    this.mReader.mByteBuffer = null;
+
+                    // 100% - We need two calls here to proper display the message
+                    this.changeToDisplaying = true;
+                    publishProgress(new Integer(0));
+                    publishProgress(new Integer(0));
 
                 } catch (Exception e) {
                     this.mCause = e;
@@ -736,9 +786,6 @@ public class EditorActivity extends Activity implements TextWatcher {
 
             @Override
             protected void onPostExecute(Boolean result) {
-                // Hide the progress
-                doProgress(false, 0);
-
                 // Is error?
                 if (!result.booleanValue()) {
                     if (this.mCause != null) {
@@ -766,6 +813,8 @@ public class EditorActivity extends Activity implements TextWatcher {
                                 Toast.LENGTH_SHORT);
                     }
                 }
+
+                doProgress(false, 0);
             }
 
             @Override
@@ -785,6 +834,89 @@ public class EditorActivity extends Activity implements TextWatcher {
                 EditorActivity.this.mProgressBar.setProgress(progress);
                 EditorActivity.this.mProgress.setVisibility(
                             visible ? View.VISIBLE : View.GONE);
+
+                if (this.changeToBinaryMode) {
+                    // Hexdump always in nowrap mode
+                    if (EditorActivity.this.mWordWrap) {
+                        EditorActivity.this.toggleWordWrap();
+                    }
+
+                    // Show hex dumping text
+                    EditorActivity.this.mProgressBarMsg.setText(R.string.dumping_message);
+                    EditorActivity.this.mEditor.setTextAppearance(
+                            EditorActivity.this, R.style.hexeditor_text_appearance);
+                    EditorActivity.this.mEditor.setTypeface(Typeface.MONOSPACE);
+                    this.changeToBinaryMode = false;
+                }
+                else if (this.changeToDisplaying) {
+                    EditorActivity.this.mProgressBarMsg.setText(R.string.displaying_message);
+                    this.changeToDisplaying = false;
+                }
+            }
+
+            /**
+             * Create a hex dump of the data while show progress to user
+             *
+             * @param data The data to hex dump
+             * @return StringBuilder The hex dump buffer
+             */
+            private String toHexDump(byte[] data) {
+                //Change to binary mode
+                this.changeToBinaryMode = true;
+
+                // Start progress
+                publishProgress(Integer.valueOf(0));
+
+                // Calculate max dir size
+                int length = data.length;
+
+                final int DISPLAY_SIZE = 16;  // Bytes per line
+                ByteArrayInputStream bais = new ByteArrayInputStream(data);
+                byte[] line = new byte[DISPLAY_SIZE];
+                int read = 0;
+                int offset = 0;
+                StringBuilder sb = new StringBuilder();
+                while ((read = bais.read(line, 0, DISPLAY_SIZE)) != -1) {
+                    //offset   dump(16)   data\n
+                    String linedata = new String(line, 0, read);
+                    sb.append(HexDump.toHexString(offset));
+                    sb.append("   "); //$NON-NLS-1$
+                    String hexDump = HexDump.toHexString(line, 0, read);
+                    if (hexDump.length() != (DISPLAY_SIZE * 2)) {
+                        char[] array = new char[(DISPLAY_SIZE * 2) - hexDump.length()];
+                        Arrays.fill(array, ' ');
+                        hexDump += new String(array);
+                    }
+                    sb.append(hexDump);
+                    sb.append("   "); //$NON-NLS-1$
+                    sb.append(linedata);
+                    sb.append(EditorActivity.this.mHexLineSeparator);
+                    offset += DISPLAY_SIZE;
+                    if (offset % 5 == 0) {
+                        publishProgress(Integer.valueOf((offset * 100) / length));
+                    }
+                }
+
+                // End of the dump process
+                publishProgress(Integer.valueOf(100));
+
+                return sb.toString();
+            }
+
+            /**
+             * Method that converts to a visual printable hex string
+             *
+             * @param string The string to check
+             */
+            private String toHexPrintableString(String string) {
+                // Remove characters without visual representation
+                final String REPLACED_SYMBOL = "."; //$NON-NLS-1$
+                final String NEWLINE = System.getProperty("line.separator"); //$NON-NLS-1$
+                String printable = string.replaceAll("\\p{Cntrl}", REPLACED_SYMBOL); //$NON-NLS-1$
+                printable = printable.replaceAll("[^\\p{Print}]", REPLACED_SYMBOL); //$NON-NLS-1$
+                printable = printable.replaceAll("\\p{C}", REPLACED_SYMBOL); //$NON-NLS-1$
+                printable = printable.replaceAll(EditorActivity.this.mHexLineSeparator, NEWLINE);
+                return printable;
             }
         };
         mReadTask.execute(this.mFso);

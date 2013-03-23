@@ -75,6 +75,12 @@
     <item name="android:textColor">@color/black_transparent</item>
     <item name="android:textStyle">normal</item>
   </style>
+  <!-- The text appearance for hexeditor -->
+  <style name="hexeditor_text_appearance">
+    <item name="android:textSize">@dimen/hexeditor_text_size</item>
+    <item name="android:textColor">@color/black_transparent</item>
+    <item name="android:textStyle">normal</item>
+  </style>
   <!-- The text appearance for a console widget -->
   <style name="console_text_appearance">
     <item name="android:textSize">@dimen/console_text_size</item>

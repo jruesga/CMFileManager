@@ -386,6 +386,10 @@
   <string name="editor_successfully_saved">The file was successfully saved.</string>
   <!-- Editor * Read-only file mode -->
   <string name="editor_read_only_mode">The file is opened in read-only mode.</string>
+  <!-- Editor * Dumping message -->
+  <string name="dumping_message">Generating hex dump\u2026</string>
+  <!-- Editor * Displaying -->
+  <string name="displaying_message">Displaying\u2026</string>
 
   <!-- Bookmarks * Bookmarks activity title -->
   <string name="bookmarks">Bookmarks</string>

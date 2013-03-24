@@ -78,9 +78,9 @@
 
   <string name="advise_insufficient_permissions">Операция требует повышенных привилегий.\n\nВы хотите изменить режим Root-доступа?</string>
 
-  <string name="parent_dir">Домашняя папка</string>
+  <string name="parent_dir">Наверх</string>
   <string name="external_storage">Внешний накопитель</string>
-  <string name="usb_storage">USB накопитель</string>
+  <string name="usb_storage">USB-накопитель</string>
 
   <string name="actionbar_button_filesystem_cd">Инф. о системе</string>
   <string name="actionbar_button_sort_mode_cd">Режим сортировки</string>
@@ -196,6 +196,8 @@
   <string name="editor_dirty_ask_msg">Имеются не сохранённые изменения.\n\nВыйти без сохранения?</string>
   <string name="editor_successfully_saved">Файл успешно сохранён</string>
   <string name="editor_read_only_mode">Файл открыт только для чтения</string>
+  <string name="dumping_message">Создание дампа\u2026</string>
+  <string name="displaying_message">Отображение\u2026</string>
 
   <string name="bookmarks">Закладки</string>
   <string name="bookmarks_home">Домой</string>

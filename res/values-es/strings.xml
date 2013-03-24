@@ -170,6 +170,8 @@
     <string name="editor_dirty_ask_msg">Hay cambios no guardados.\n\n¿Salir sin guardar?</string>
     <string name="editor_successfully_saved">El archivo fue guardado.</string>
     <string name="editor_read_only_mode">El archivo está abierto en modo solo-lectura.</string>
+    <string name="dumping_message">Generando volcado hexadecimal\u2026</string>
+    <string name="displaying_message">Mostrando\u2026</string>
     <string name="bookmarks">Marcadores</string>
     <string name="bookmarks_home">Inicio</string>
     <string name="bookmarks_root_folder">Carpeta raíz</string>
@@ -186,6 +188,7 @@
     <string name="menu_search">Búsqueda</string>
     <string name="menu_settings">Ajustes</string>
     <string name="menu_clear_history">Borrar historial</string>
+    <string name="menu_word_wrap">Ajuste de línea</string>
     <string name="create_copy_regexp">
     <xliff:g id="name">%1$s</xliff:g> - copia<xliff:g id="extension">%2$s</xliff:g></string>
     <string name="create_new_compress_file_regexp">
@@ -294,6 +297,7 @@
     <string name="pref">Ajustes</string>
     <string name="pref_general">Ajustes generales</string>
     <string name="pref_search">Opciones de búsqueda</string>
+    <string name="pref_editor">Opciones del editor</string>
     <string name="pref_themes">Temas</string>
     <string name="pref_about">Acerca de</string>
     <string name="pref_about_summary">File Manager v<xliff:g id="version">%1$s</xliff:g>
@@ -329,6 +333,8 @@
     <string name="pref_remove_saved_search_terms">Borrar términos de búsqueda</string>
     <string name="pref_remove_saved_search_terms_summary">Tocar aquí para borrar todos los términos de búsqueda guardados</string>
     <string name="pref_remove_saved_search_terms_msg">Todos los términos de búsqueda han sido borrados.</string>
+    <string name="pref_editor_behaviour_category">Comportamiento</string>
+    <string name="pref_word_wrap">Ajuste de línea</string>
     <string name="pref_themes_selection_category">Temas</string>
     <string name="pref_themes_set_theme">Aplicar tema</string>
     <string name="pref_themes_no_preview">Vista previa\nno disponible</string>

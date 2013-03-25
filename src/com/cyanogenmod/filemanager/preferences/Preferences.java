@@ -30,6 +30,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 /**
  * A helper class for access and manage the preferences of the application.
@@ -168,6 +169,7 @@ public final class Preferences {
      * @throws InvalidClassException If the value of a preference is not of the
      * type of the preference
      */
+    @SuppressWarnings("unchecked")
     private static void savePreferences(
             Map<FileManagerSettings, Object> prefs, boolean noSaveIfExists, boolean applied)
             throws InvalidClassException {
@@ -190,6 +192,8 @@ public final class Preferences {
                 editor.putBoolean(pref.getId(), ((Boolean)value).booleanValue());
             } else if (value instanceof String && pref.getDefaultValue() instanceof String) {
                 editor.putString(pref.getId(), (String)value);
+            } else if (value instanceof Set && pref.getDefaultValue() instanceof Set) {
+                editor.putStringSet(pref.getId(), (Set<String>)value);
             } else if (value instanceof ObjectIdentifier
                     && pref.getDefaultValue() instanceof ObjectIdentifier) {
                 editor.putInt(pref.getId(), ((ObjectIdentifier)value).getId());

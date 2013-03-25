@@ -314,7 +314,7 @@ public final class FileManagerApplication extends Application {
      * @return boolean If the command is present
      */
     public static boolean hasOptionalCommand(String commandId) {
-        if (!sOptionalCommandsMap.containsKey(commandId)){
+        if (!sOptionalCommandsMap.containsKey(commandId)) {
             return false;
         }
         return sOptionalCommandsMap.get(commandId).booleanValue();

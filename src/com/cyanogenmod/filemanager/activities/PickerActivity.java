@@ -425,7 +425,7 @@ public class PickerActivity extends Activity
         }
     }
 
-    private boolean isFilePickIntent(Intent intent) {
+    private static boolean isFilePickIntent(Intent intent) {
         final String action = intent.getAction();
 
         if (Intent.ACTION_GET_CONTENT.equals(action)) {
@@ -441,7 +441,7 @@ public class PickerActivity extends Activity
         return false;
     }
 
-    private boolean isDirectoryPickIntent(Intent intent) {
+    private static boolean isDirectoryPickIntent(Intent intent) {
         if (Intent.ACTION_PICK.equals(intent.getAction()) && intent.getData() != null) {
             String scheme = intent.getData().getScheme();
             if (FOLDER_URI_SCHEME.equals(scheme) || DIRECTORY_URI_SCHEME.equals(scheme)) {
@@ -452,7 +452,7 @@ public class PickerActivity extends Activity
         return false;
     }
 
-    private File getInitialDirectoryFromIntent(Intent intent) {
+    private static File getInitialDirectoryFromIntent(Intent intent) {
         if (!Intent.ACTION_PICK.equals(intent.getAction())) {
             return null;
         }
@@ -478,7 +478,7 @@ public class PickerActivity extends Activity
         return file.getParentFile();
     }
 
-    private Uri getResultUriForFileFromIntent(File src, Intent intent) {
+    private static Uri getResultUriForFileFromIntent(File src, Intent intent) {
         Uri result = Uri.fromFile(src);
 
         if (Intent.ACTION_PICK.equals(intent.getAction()) && intent.getData() != null) {

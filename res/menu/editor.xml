@@ -16,10 +16,20 @@
 -->
 <menu xmlns:android="http://schemas.android.com/apk/res/android" >
   <item
+    android:id="@+id/mnu_no_suggestions"
+    android:showAsAction="never"
+    android:checkable="true"
+    android:title="@string/menu_no_suggestions"/>
+  <item
     android:id="@+id/mnu_word_wrap"
     android:showAsAction="never"
     android:checkable="true"
     android:title="@string/menu_word_wrap"/>
+  <item
+    android:id="@+id/mnu_syntax_highlight"
+    android:showAsAction="never"
+    android:checkable="true"
+    android:title="@string/menu_syntax_highlight"/>
   <item
     android:id="@+id/mnu_settings"
     android:showAsAction="never"

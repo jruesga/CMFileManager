@@ -22,12 +22,51 @@
       android:key="editor_behaviour"
       android:title="@string/pref_editor_behaviour_category">
 
+      <!-- No suggestions -->
+      <CheckBoxPreference
+        android:key="cm_filemanager_editor_no_suggestions"
+        android:title="@string/pref_no_suggestions"
+        android:summary="@string/pref_no_suggestions_desc"
+        android:persistent="true"
+        android:defaultValue="false" />
+
       <!-- Word wrap -->
       <CheckBoxPreference
         android:key="cm_filemanager_editor_word_wrap"
         android:title="@string/pref_word_wrap"
         android:persistent="true"
         android:defaultValue="true" />
+
+      <!-- Hexdump -->
+      <CheckBoxPreference
+        android:key="cm_filemanager_editor_hexdump"
+        android:title="@string/pref_hexdump"
+        android:summary="@string/pref_hexdump_desc"
+        android:persistent="true"
+        android:defaultValue="true" />
+
+    </PreferenceCategory>
+
+    <!-- Editor Syntax Highlight -->
+    <PreferenceCategory
+      android:key="editor_syntax_highlight"
+      android:title="@string/pref_editor_syntax_highlight_category">
+
+      <!-- Syntax highlight -->
+      <CheckBoxPreference
+        android:key="cm_filemanager_editor_syntax_highlight"
+        android:title="@string/pref_syntax_highlight"
+        android:summary="@string/pref_syntax_highlight_desc"
+        android:persistent="true"
+        android:defaultValue="true" />
+
+      <!-- Color scheme -->
+      <PreferenceScreen
+        android:key="cm_filemanager_editor_sh_color_scheme"
+        android:title="@string/pref_syntax_highlight_color_scheme"
+        android:summary="@string/pref_syntax_highlight_color_scheme_desc"
+        android:dependency="cm_filemanager_editor_syntax_highlight"
+        android:fragment="com.cyanogenmod.filemanager.activities.preferences.EditorSHColorSchemePreferenceFragment" />
 
     </PreferenceCategory>
 

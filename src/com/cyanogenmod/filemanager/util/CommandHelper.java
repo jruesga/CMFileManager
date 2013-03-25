@@ -1297,7 +1297,7 @@ public final class CommandHelper {
                                     newCreator().
                                         createDeleteFileExecutable(compressOutFile);
             writableExecute(context, executable3, c, true);
-            if(executable3.getResult().booleanValue()){
+            if (executable3.getResult().booleanValue()) {
                 //- Compress
                 execute(context, executable1, c);
                 return executable1;

@@ -870,7 +870,7 @@ public class NavigationView extends RelativeLayout implements
                                         @Override
                                         @SuppressWarnings("unqualified-field-access")
                                         protected void onPostExecute(Boolean result) {
-                                            if (!result.booleanValue()){
+                                            if (!result.booleanValue()) {
                                                 return;
                                             }
                                             onPostExecuteTask(

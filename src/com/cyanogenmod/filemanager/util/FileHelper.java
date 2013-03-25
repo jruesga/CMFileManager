@@ -1126,22 +1126,22 @@ public final class FileHelper {
                 throw new InsufficientPermissionsException(executable);
             }
             // Check others
-            if (permissions.getOthers().isRead() ){
+            if (permissions.getOthers().isRead()) {
                 return;
             }
             // Check user
-            if (user.getId() == identity.getUser().getId() && permissions.getUser().isRead() ){
+            if (user.getId() == identity.getUser().getId() && permissions.getUser().isRead()) {
                 return;
             }
             // Check group
-            if (group.getId() == identity.getGroup().getId() && permissions.getGroup().isRead() ){
+            if (group.getId() == identity.getGroup().getId() && permissions.getGroup().isRead()) {
                 return;
             }
             // Check groups
             int cc = groups.size();
             for (int i = 0; i < cc; i++) {
                 Group g = groups.get(i);
-                if (group.getId() == g.getId() && permissions.getGroup().isRead() ){
+                if (group.getId() == g.getId() && permissions.getGroup().isRead()) {
                     return;
                 }
             }
@@ -1181,22 +1181,22 @@ public final class FileHelper {
                 throw new InsufficientPermissionsException(executable);
             }
             // Check others
-            if (permissions.getOthers().isWrite() ){
+            if (permissions.getOthers().isWrite()) {
                 return;
             }
             // Check user
-            if (user.getId() == identity.getUser().getId() && permissions.getUser().isWrite() ){
+            if (user.getId() == identity.getUser().getId() && permissions.getUser().isWrite()) {
                 return;
             }
             // Check group
-            if (group.getId() == identity.getGroup().getId() && permissions.getGroup().isWrite() ){
+            if (group.getId() == identity.getGroup().getId() && permissions.getGroup().isWrite()) {
                 return;
             }
             // Check groups
             int cc = groups.size();
             for (int i = 0; i < cc; i++) {
                 Group g = groups.get(i);
-                if (group.getId() == g.getId() && permissions.getGroup().isWrite() ){
+                if (group.getId() == g.getId() && permissions.getGroup().isWrite()) {
                     return;
                 }
             }
@@ -1236,22 +1236,22 @@ public final class FileHelper {
                 throw new InsufficientPermissionsException(executable);
             }
             // Check others
-            if (permissions.getOthers().isExecute() ){
+            if (permissions.getOthers().isExecute()) {
                 return;
             }
             // Check user
-            if (user.getId() == identity.getUser().getId() && permissions.getUser().isExecute() ){
+            if (user.getId() == identity.getUser().getId() && permissions.getUser().isExecute()) {
                 return;
             }
             // Check group
-            if (group.getId() == identity.getGroup().getId() && permissions.getGroup().isExecute() ){
+            if (group.getId() == identity.getGroup().getId() && permissions.getGroup().isExecute()) {
                 return;
             }
             // Check groups
             int cc = groups.size();
             for (int i = 0; i < cc; i++) {
                 Group g = groups.get(i);
-                if (group.getId() == g.getId() && permissions.getGroup().isExecute() ){
+                if (group.getId() == g.getId() && permissions.getGroup().isExecute()) {
                     return;
                 }
             }

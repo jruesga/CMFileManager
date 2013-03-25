@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (C) 2012 The CyanogenMod Project
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+ -->
+
+<PreferenceScreen
+  xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Use default theme color scheme -->
+    <CheckBoxPreference
+      android:key="cm_filemanager_editor_sh_use_theme_default"
+      android:title="@string/pref_syntax_sh_use_theme_default"
+      android:summary="@string/pref_syntax_sh_use_theme_default_desc"
+      android:persistent="true"
+      android:defaultValue="true" />
+
+    <!-- Editor behaviour -->
+    <PreferenceCategory
+      android:key="editor_sh_items_category"
+      android:title="@string/pref_editor_sh_item_category">
+
+        <!-- Reset color scheme to theme defaults -->
+        <Preference
+          android:key="ash_reset_color_scheme"
+          android:summary="@string/ash_reset_color_scheme"
+          android:persistent="false" />
+
+        <!-- Text -->
+        <com.cyanogenmod.filemanager.ui.preferences.ColorPickerPreference
+          android:key="ash_text"
+          android:title="@string/ash_text"
+          android:persistent="false"
+          android:defaultValue="@color/ash_text_color" />
+
+        <!-- Assignment -->
+        <com.cyanogenmod.filemanager.ui.preferences.ColorPickerPreference
+          android:key="ash_assignment"
+          android:title="@string/ash_assignment"
+          android:persistent="false"
+          android:defaultValue="@color/ash_assignment_color" />
+
+        <!-- Single-Line comment -->
+        <com.cyanogenmod.filemanager.ui.preferences.ColorPickerPreference
+          android:key="ash_singleline_comment"
+          android:title="@string/ash_singleline_comment"
+          android:persistent="false"
+          android:defaultValue="@color/ash_singleline_comment_color" />
+
+        <!-- Multi-Line comment -->
+        <com.cyanogenmod.filemanager.ui.preferences.ColorPickerPreference
+          android:key="ash_multiline_comment"
+          android:title="@string/ash_multiline_comment"
+          android:persistent="false"
+          android:defaultValue="@color/ash_multiline_comment_color" />
+
+        <!-- Keyword -->
+        <com.cyanogenmod.filemanager.ui.preferences.ColorPickerPreference
+          android:key="ash_keyword"
+          android:title="@string/ash_keyword"
+          android:persistent="false"
+          android:defaultValue="@color/ash_keyword_color" />
+
+        <!-- Quoted string -->
+        <com.cyanogenmod.filemanager.ui.preferences.ColorPickerPreference
+          android:key="ash_quoted_string"
+          android:title="@string/ash_quoted_string"
+          android:persistent="false"
+          android:defaultValue="@color/ash_quoted_string_color" />
+
+        <!-- Variable -->
+        <com.cyanogenmod.filemanager.ui.preferences.ColorPickerPreference
+          android:key="ash_variable"
+          android:title="@string/ash_variable"
+          android:persistent="false"
+          android:defaultValue="@color/ash_variable_color" />
+
+    </PreferenceCategory>
+
+</PreferenceScreen>

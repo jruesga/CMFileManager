@@ -425,8 +425,12 @@
   <string name="menu_settings">Settings</string>
   <!-- Menu * History * Clear history -->
   <string name="menu_clear_history">Clear history</string>
+  <!-- Menu * Editor * No suggestions -->
+  <string name="menu_no_suggestions">No suggestions</string>
   <!-- Menu * Editor * Word wrap -->
   <string name="menu_word_wrap">Word wrap</string>
+  <!-- Menu * Editor * Sintax highlight -->
+  <string name="menu_syntax_highlight">Syntax highlight</string>
 
   <!-- Regular expression for create copy action -->
   <string name="create_copy_regexp">
@@ -737,8 +741,34 @@
   <string name="pref_remove_saved_search_terms_msg">All saved search terms were removed.</string>
   <!-- Preferences * Editor * Behaviour category -->
   <string name="pref_editor_behaviour_category">Behaviour</string>
+  <!-- Preferences * Editor * No suggestions -->
+  <string name="pref_no_suggestions">No suggestions</string>
+  <!-- Preferences * Editor * No suggestions summary -->
+  <string name="pref_no_suggestions_desc">Do not display dictionary suggestions while editing the file</string>
   <!-- Preferences * Editor * Word wrap -->
   <string name="pref_word_wrap">Word wrap</string>
+  <!-- Preferences * Editor * Hexdump -->
+  <string name="pref_hexdump">Hexdump binary files</string>
+  <!-- Preferences * Editor * Hexdump desc -->
+  <string name="pref_hexdump_desc">When opening a binary file, generate an hexdump of the file
+    and open it in the hex viewer.</string>
+    <!-- Preferences * Editor * Syntax highlight category -->
+  <string name="pref_editor_syntax_highlight_category">Syntax highlight</string>
+  <!-- Preferences * Editor * Syntax highlight -->
+  <string name="pref_syntax_highlight">Syntax highlight</string>
+  <!-- Preferences * Editor * Syntax highlight summary -->
+  <string name="pref_syntax_highlight_desc">Highlight the syntax of the file displayed in
+    the editor (only when a syntax highlight processor is available for the type of file)</string>
+  <!-- Preferences * Editor * Syntax highlight color scheme -->
+  <string name="pref_syntax_highlight_color_scheme">Color scheme</string>
+  <!-- Preferences * Editor * Syntax highlight color scheme summary -->
+  <string name="pref_syntax_highlight_color_scheme_desc">Tap to select the syntax highlight color scheme</string>
+  <!-- Preferences * Editor * Syntax highlight * Color Scheme -->
+  <string name="pref_syntax_sh_use_theme_default">Use theme default</string>
+  <!-- Preferences * Editor * Syntax highlight *Color Scheme summary -->
+  <string name="pref_syntax_sh_use_theme_default_desc">Use the default syntax highlight of the current theme</string>
+  <!-- Preferences * Editor * Syntax highlight * Color Scheme * Items category -->
+  <string name="pref_editor_sh_item_category">Items</string>
   <!-- Preferences * Themes * Themes selection category -->
   <string name="pref_themes_selection_category">Themes</string>
   <!-- Preferences * Themes * Set theme button -->
@@ -759,6 +789,26 @@
   <string name="theme_default_description">A light theme for CyanogenMod File Manager.</string>
   <!-- Themes * Default theme author -->
   <string name="themes_author">CyanogenMod</string>
+
+  <!-- ColorPickerDialog -->
+  <!-- The text of the alpha slider control -->
+  <string name="color_picker_alpha_slider_text">Alpha</string>
+  <!-- The label of the current color panel -->
+  <string name="color_picker_current_text">Current:</string>
+  <!-- The label of the new color panel -->
+  <string name="color_picker_new_text">New:</string>
+  <!-- The label of the color input -->
+  <string name="color_picker_color">Color:</string>
+
+  <!-- Android Syntax Highlight -->
+  <string name="ash_reset_color_scheme">Tap to restore the default theme color scheme</string>
+  <string name="ash_text">Text</string>
+  <string name="ash_assignment">Assignment</string>
+  <string name="ash_singleline_comment">Single-Line comment</string>
+  <string name="ash_multiline_comment">Multi-Line comment</string>
+  <string name="ash_keyword">Keyword</string>
+  <string name="ash_quoted_string">Quoted string</string>
+  <string name="ash_variable">Variable</string>
 
   <!-- Security * Extract relative or absolute files -->
   <string name="security_warning_extract">Warning!\n\n

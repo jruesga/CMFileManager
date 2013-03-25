@@ -175,6 +175,8 @@
   <string name="editor_dirty_ask_msg">Ci sono modifiche non salvate.\n\nUscire senza salvare?</string>
   <string name="editor_successfully_saved">File salvato.</string>
   <string name="editor_read_only_mode">Il file è aperto in sola lettura.</string>
+  <string name="dumping_message">Generando il dump hex\u2026</string>
+  <string name="displaying_message">Visualizzando\u2026</string>
   <string name="bookmarks">Segnalibri</string>
   <string name="bookmarks_home">Home</string>
   <string name="bookmarks_root_folder">Cartella radice</string>

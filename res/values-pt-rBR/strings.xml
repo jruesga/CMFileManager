@@ -336,4 +336,6 @@
     <string name="pref_editor">Opções do editor</string>
     <string name="pref_editor_behaviour_category">Comportamento</string>
     <string name="pref_word_wrap">Quebra palavra</string>
+    <string name="dumping_message">Gerando hexadecimal\u2026</string>
+    <string name="displaying_message">Exibindo\u2026</string>
 </resources>

@@ -47,6 +47,11 @@
   <string name="cancelled_message">Gekanseleer.</string>
   <!-- Error message -->
   <string name="error_message">Fout.</string>
+  <!-- Copy text content description -->
+  <string name="copy_text_cd">Raak om teks te kopieer na knipbord</string>
+  <!-- Copy text content message -->
+  <string name="copy_text_msg">Teks gekopieer na die knipbord</string>
+
 
   <!-- Warning dialog title -->
   <string name="warning_title">Pasop</string>
@@ -371,6 +376,12 @@
   <string name="menu_settings">Instellings</string>
   <!-- Menu * History * Clear history -->
   <string name="menu_clear_history">Verwyder alle geskiedenis</string>
+  <!-- Menu * Editor * No suggestions -->
+  <string name="menu_no_suggestions">Geen voorstelle</string>
+  <!-- Menu * Editor * Word wrap -->
+  <string name="menu_word_wrap">Woord oorvloei</string>
+  <!-- Menu * Editor * Sintax highlight -->
+  <string name="menu_syntax_highlight">Sintaks beklemtoning</string>
 
   <!-- Regular expression for create copy action -->
   <string name="create_copy_regexp">
@@ -475,7 +486,9 @@
   <!-- Actions Dialog * Menu * Add shortcut -->
   <string name="actions_menu_add_shortcut">Voeg kortpad</string>
   <!-- Actions Dialog * Menu * Open parent folder -->
-  <string name="actions_menu_open_parent_folder">Maak ouer oop</string>
+  <string name="actions_menu_open_parent_folder">Maak vouer oop</string>
+  <!-- Actions Dialog * Menu * Compute checksum -->
+  <string name="actions_menu_compute_checksum">Bereken kontrolesom</string>
 
   <!-- Actions * Ask user prior to do an undone operation. Dialog message -->
   <string name="actions_ask_undone_operation_msg">Hierdie aksie kan nie teruggestel word nie. Wil jy voortgaan?</string>
@@ -520,6 +533,14 @@
   <!-- Execution console * The script execution time seconds string -->
   <string name="execution_console_script_execution_time_text">
     <xliff:g id="seconds">%1$s</xliff:g> sek.</string>
+
+  <!-- Compute checksum * Title -->
+  <string name="compute_checksum_title">Bereken kontrolesom</string>
+  <!-- Compute checksum * The file name label -->
+  <string name="compute_checksum_filename_label">Lêer:</string>
+  <!-- Compute checksum * The computing checksum message-->
+  <string name="compute_checksum_computing_checksum_msg">Bewerk kontrolesom\u2026</string>
+
 
   <!-- Mime/Types * Folder -->
   <string name="mime_folder">Mime vouergids</string>
@@ -575,6 +596,8 @@
   <string name="pref_general">Algemeen</string>
   <!-- Preferences * Search title -->
   <string name="pref_search">Soek opsies</string>
+  <!-- Preferences * Editor title -->
+  <string name="pref_editor">Redigeerder opsies</string>
   <!-- Preferences * Themes title -->
   <string name="pref_themes">Temas</string>
   <!-- Preferences * About title -->
@@ -647,6 +670,35 @@
   <string name="pref_remove_saved_search_terms_summary">Raak om al die gestoorde soekterme uit te vee</string>
   <!-- Preferences * Search * Suggestions were truncated -->
   <string name="pref_remove_saved_search_terms_msg">Alle gestoorde soekterme is uitgevee.</string>
+  <!-- Preferences * Editor * Behaviour category -->
+  <string name="pref_editor_behaviour_category">Gedrag</string>
+  <!-- Preferences * Editor * No suggestions -->
+  <string name="pref_no_suggestions">Geen voorstelle</string>
+  <!-- Preferences * Editor * No suggestions summary -->
+  <string name="pref_no_suggestions_desc">Moet nie woordeboek items voorstel tydens verandering van \'n lêer nie</string>
+  <!-- Preferences * Editor * Word wrap -->
+  <string name="pref_word_wrap">Woord oorvloei</string>
+  <!-- Preferences * Editor * Hexdump -->
+  <string name="pref_hexdump">\'Hexdump\' binêre lêers</string>
+  <!-- Preferences * Editor * Hexdump desc -->
+  <string name="pref_hexdump_desc">Met die opening van \'n binêre lêer, genereer \'n \'hexdump\' van die lêer en maak dit oop in die \'hex-viewer\'.</string>
+    <!-- Preferences * Editor * Syntax highlight category -->
+  <string name="pref_editor_syntax_highlight_category">Sintaks beklemtoning</string>
+  <!-- Preferences * Editor * Syntax highlight -->
+  <string name="pref_syntax_highlight">Sintaks beklemtoon</string>
+  <!-- Preferences * Editor * Syntax highlight summary -->
+  <string name="pref_syntax_highlight_desc">Beklemtoon die sintaks van die lêer wat vertoon word in die redigeerder (slegs wanneer \'n sintaks beklemtoning verwerker beskikbaar is vir die tipe lêer)</string>
+  <!-- Preferences * Editor * Syntax highlight color scheme -->
+  <string name="pref_syntax_highlight_color_scheme">Kleur skema</string>
+  <!-- Preferences * Editor * Syntax highlight color scheme summary -->
+  <string name="pref_syntax_highlight_color_scheme_desc">Tik om die sintaks beklemtonings kleur skema te kies</string>
+  <!-- Preferences * Editor * Syntax highlight * Color Scheme -->
+  <string name="pref_syntax_sh_use_theme_default">Gebruik standaard tema</string>
+  <!-- Preferences * Editor * Syntax highlight *Color Scheme summary -->
+  <string name="pref_syntax_sh_use_theme_default_desc">Gebruik die standaard sintaks beklemtoning vir die huidige tema</string>
+  <!-- Preferences * Editor * Syntax highlight * Color Scheme * Items category -->
+  <string name="pref_editor_sh_item_category">Items</string>
+
   <!-- Preferences * Themes * Themes selection category -->
   <string name="pref_themes_selection_category">Temas</string>
   <!-- Preferences * Themes * Set theme button -->
@@ -668,6 +720,26 @@
   <!-- Themes * Default theme author -->
   <string name="themes_author">CyanogenMod</string>
 
+  <!-- ColorPickerDialog -->
+  <!-- The text of the alpha slider control -->
+  <string name="color_picker_alpha_slider_text">Deursigtigheid</string>
+  <!-- The label of the current color panel -->
+  <string name="color_picker_current_text">Huidige:</string>
+  <!-- The label of the new color panel -->
+  <string name="color_picker_new_text">Nuut:</string>
+  <!-- The label of the color input -->
+  <string name="color_picker_color">Kleur:</string>
+
+  <!-- Android Syntax Highlight -->
+  <string name="ash_reset_color_scheme">Tik om die standaard kleur skema te herstel</string>
+  <string name="ash_text">Teks</string>
+  <string name="ash_assignment">Opdrag</string>
+  <string name="ash_singleline_comment">Enkel-lyn kommentaar</string>
+  <string name="ash_multiline_comment">Multi-lyn kommentaar</string>
+  <string name="ash_keyword">Sleutelwoord</string>
+  <string name="ash_quoted_string">Aangehaalde teks</string>
+  <string name="ash_variable">Veranderlike</string>
+
   <!-- Security * Extract relative or absolute files -->
   <string name="security_warning_extract">Waarskuwing!\n\n
     Gebruik van \'n argiefvouer met \'n relatiewe of absolute pad kan lei tot skade aan die toestel deur die oorskryf van stelsel vouers.\n\n
@@ -683,5 +755,5 @@
     Welkom by die CyanogenMod Lêer-verkenner.
     \n\nMet hierdie program kan jy die lêerstelsel verken en moontlik die toestel beskadig. Om dit te voorkom, sal die program begin in \'n veilige, lae-bevoorregte modus.
     \n\nU kan toegang tot \'n gevorderde, volbevoorregte modus verkry deur instellings. Dit is jou verantwoordelikheid om te verseker dat enige aksie wat gedoen word nie die stelsel beskadig nie.
-    \n\nDie CyanogenMod span\n.</string>
+    \n\nDie CyanogenMod span.</string>
 </resources>

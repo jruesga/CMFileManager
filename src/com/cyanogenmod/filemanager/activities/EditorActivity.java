@@ -1160,8 +1160,7 @@ public class EditorActivity extends Activity implements TextWatcher {
 
                     // Show hex dumping text
                     activity.mProgressBarMsg.setText(R.string.dumping_message);
-                    activity.mEditor.setTextAppearance(activity, R.style.hexeditor_text_appearance);
-                    activity.mEditor.setTypeface(Typeface.MONOSPACE);
+                    applyHexViewerTheme();
                     this.changeToBinaryMode = false;
                 }
                 else if (this.changeToDisplaying) {
@@ -1439,11 +1438,25 @@ public class EditorActivity extends Activity implements TextWatcher {
         //- ProgressBar
         Drawable dw = theme.getDrawable(this, "horizontal_progress_bar"); //$NON-NLS-1$
         this.mProgressBar.setProgressDrawable(dw);
+        v = findViewById(R.id.editor_progress_msg);
+        theme.setTextColor(this, (TextView)v, "text_color"); //$NON-NLS-1$
 
         // Need a full process of syntax highlight
         if (!this.mBinary && this.mSyntaxHighlight && this.mSyntaxHighlightProcessor != null) {
             reloadSyntaxHighlight();
         }
+    }
+
+    /**
+     * Method that applies the current theme to the hex viewer editor
+     * @hide
+     */
+    void applyHexViewerTheme() {
+        Theme theme = ThemeManager.getCurrentTheme(this);
+        TextView editor = (TextView)findViewById(R.id.editor);
+        editor.setTextAppearance(this, R.style.hexeditor_text_appearance);
+        editor.setTypeface(Typeface.MONOSPACE);
+        theme.setTextColor(this, editor, "text_color"); //$NON-NLS-1$
     }
 
 }

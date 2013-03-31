@@ -989,7 +989,7 @@ public class ColorPickerView extends View{
                    Method setLayerType =
                            getClass().getMethod(
                                    "setLayerType", int.class, android.graphics.Paint.class);
-                   setLayerType.invoke(this, 1, new Object[]{});
+                   setLayerType.invoke(this, 1, (android.graphics.Paint)null);
                }
            } catch (Exception e) { /** NON BLOCK **/}
        }

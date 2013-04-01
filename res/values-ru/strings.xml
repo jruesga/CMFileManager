@@ -217,6 +217,8 @@
   <string name="menu_search">Поиск</string>
   <string name="menu_settings">Настройки</string>
   <string name="menu_clear_history">Очистить историю</string>
+  <string name="menu_no_suggestions">Не предлагать исправления</string>
+  <string name="menu_syntax_highlight">Подсветка синтаксиса</string>
   <string name="menu_word_wrap">Перенос слов</string>
 
   <string name="create_copy_regexp"><xliff:g id="name">%1$s</xliff:g> - копия <xliff:g id="extension">%2$s</xliff:g></string>
@@ -361,7 +363,19 @@
   <string name="pref_remove_saved_search_terms_summary">Нажмите для удаления всех сохранённых условий поиска</string>
   <string name="pref_remove_saved_search_terms_msg">Все сохранённые условия поиска были удалены</string>
   <string name="pref_editor_behaviour_category">Поведение</string>
+  <string name="pref_no_suggestions">Не предлагать исправления</string>
+  <string name="pref_no_suggestions_desc">Не показывать варианты исправлений при редактировании файла</string>
   <string name="pref_word_wrap">Перенос слов</string>
+  <string name="pref_hexdump">Шестнадцатиричный формат</string>
+  <string name="pref_hexdump_desc">Вывод содержимого бинарных файлов в шестнадцатиричном формате</string>
+  <string name="pref_editor_syntax_highlight_category">Подсветка синтаксиса</string>
+  <string name="pref_syntax_highlight">Подсветка синтаксиса</string>
+  <string name="pref_syntax_highlight_desc">Подсвечивать синтаксис редактируемого файла (только для поддерживаемых редактором типов файлов)</string>
+  <string name="pref_syntax_highlight_color_scheme">Цветовая схема</string>
+  <string name="pref_syntax_highlight_color_scheme_desc">Нажмите для выбора цветовой схемы подсветки синтаксиса</string>
+  <string name="pref_syntax_sh_use_theme_default">Тема по умолчанию</string>
+  <string name="pref_syntax_sh_use_theme_default_desc">Использовать текущую тему в качестве темы по умолчанию</string>
+  <string name="pref_editor_sh_item_category">Элементы</string>
   <string name="pref_themes_selection_category">Темы</string>
   <string name="pref_themes_set_theme">Применить</string>
   <string name="pref_themes_no_preview">Превью недоступно</string>
@@ -372,6 +386,20 @@
 
   <string name="theme_default_name">Светлая тема</string>
   <string name="theme_default_description">Светлая тема для файлового менеджера CyanogenMod</string>
+
+  <string name="color_picker_alpha_slider_text">Прозрачность</string>
+  <string name="color_picker_current_text">Текущий:</string>
+  <string name="color_picker_new_text">Новый:</string>
+  <string name="color_picker_color">Цвет:</string>
+
+  <string name="ash_reset_color_scheme">Нажмите для восстановления цветовой схемы по умолчанию</string>
+  <string name="ash_text">Текст</string>
+  <string name="ash_assignment">Назначение</string>
+  <string name="ash_singleline_comment">Однострочный комментарий</string>
+  <string name="ash_multiline_comment">Многострочный комментарий</string>
+  <string name="ash_keyword">Ключевое слово</string>
+  <string name="ash_quoted_string">Строка в кавычках</string>
+  <string name="ash_variable">Переменная</string>
 
   <string name="security_warning_extract">Внимание!\n\n Извлечение архива с относительными или абсолютными путями может привести к повреждению устройства путём перезаписи системных файлов.\n\nВы действительно хотите продолжить?</string>
 

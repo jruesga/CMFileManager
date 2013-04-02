@@ -19,7 +19,7 @@
 
     <!-- Name of the application -->
     <string name="app_name">Dateimanager</string>
-    <string name="app_description">Der CyanogenMod Dateimanager</string>
+    <string name="app_description">Der CyanogenMod-Dateimanager</string>
 
     <!-- Devices types -->
     <string name="device_blockdevice">Blockorientiertes Gerät</string>
@@ -47,6 +47,8 @@
     <string name="loading_message">Lade\u2026</string>
     <string name="cancelled_message">Abgebrochen</string>
     <string name="error_message">Fehler</string>
+    <string name="copy_text_cd">Drücken, um Text in die Zwischenablage zu kopieren</string>
+    <string name="copy_text_msg">Text wurde in die Zwischenablage kopiert</string>
 
     <!-- Dialog titles -->
     <string name="warning_title">Warnung</string>
@@ -221,6 +223,8 @@
     <string name="editor_dirty_ask_msg">Es gibt ungespeicherte Änderungen.\n\nBeenden ohne zu speichern?</string>
     <string name="editor_successfully_saved">Die Datei wurde erfolgreich gespeichert.</string>
     <string name="editor_read_only_mode">Die Datei ist nur lesbar geöffnet.</string>
+    <string name="dumping_message">Hexdump wird generiert\u2026</string>
+    <string name="displaying_message">Anzeige wird vorbereitet\u2026</string>
 
     <!-- Bookmarks -->
     <string name="bookmarks">Lesezeichen</string>
@@ -243,6 +247,9 @@
     <string name="menu_search">Suche</string>
     <string name="menu_settings">Einstellungen</string>
     <string name="menu_clear_history">Verlauf löschen</string>
+    <string name="menu_no_suggestions">Keine Vorschläge</string>
+    <string name="menu_word_wrap">Zeilenumbruch</string>
+    <string name="menu_syntax_highlight">Syntaxhervorhebung</string>
 
     <!-- Regular expressions -->
     <string name="create_copy_regexp"><xliff:g id="name">%1$s</xliff:g> - kopiere<xliff:g id="extension">%2$s</xliff:g></string>
@@ -293,6 +300,7 @@
     <string name="actions_menu_add_to_bookmarks">Neues Lesezeichen</string>
     <string name="actions_menu_add_shortcut">Neue Verknüpfung</string>
     <string name="actions_menu_open_parent_folder">Übergeordnetes Verzeichnis öffnen</string>
+    <string name="actions_menu_compute_checksum">Prüfsumme generieren</string>
     <string name="actions_ask_undone_operation_msg">Diese Aktion kann nicht rückgängig gemacht werden.\n\nTrotzdem fortfahren?</string>
 
     <!-- Enter name dialogs -->
@@ -319,6 +327,11 @@
     <string name="execution_console_script_execution_time_label">Zeit:</string>
     <string name="execution_console_script_exitcode_label">Skript-Ergebnis:</string>
     <string name="execution_console_script_execution_time_text"><xliff:g id="seconds">%1$s</xliff:g> Sekunden.</string>
+
+    <!-- Compute checksum -->
+    <string name="compute_checksum_title">Prüfsumme generieren</string>
+    <string name="compute_checksum_filename_label">Datei:</string>
+    <string name="compute_checksum_computing_checksum_msg">Prüfsumme wird generiert\u2026</string>
 
     <!-- Mime types -->
     <string name="mime_folder">Ordner</string>
@@ -363,6 +376,7 @@
     <string name="pref">Einstellungen</string>
     <string name="pref_general">Allgemeine Einstellungen</string>
     <string name="pref_search">Sucheinstellungen</string>
+    <string name="pref_editor">Editoreinstellungen</string>
     <string name="pref_themes">Designs</string>
     <string name="pref_about">Über</string>
     <string name="pref_about_summary">Dateimanager v<xliff:g id="version">%1$s</xliff:g>\nCopyright \u00A9 2013 The CyanogenMod Project</string>
@@ -398,6 +412,20 @@
     <string name="pref_remove_saved_search_terms">Gespeicherte Suchergebnisse löschen</string>
     <string name="pref_remove_saved_search_terms_summary">Tippen, um alle gespeicherten Suchergebnisse zu löschen</string>
     <string name="pref_remove_saved_search_terms_msg">Alle gespeicherten Suchergebnisse wurden gelöscht</string>
+    <string name="pref_editor_behaviour_category">Verhalten</string>
+    <string name="pref_no_suggestions">Keine Vorschläge</string>
+    <string name="pref_no_suggestions_desc">Keine Wortvorschläge während des Bearbeitens einer Datei anzeigen</string>
+    <string name="pref_word_wrap">Zeilenumbruch</string>
+    <string name="pref_hexdump">Hexdump anzeigen</string>
+    <string name="pref_hexdump_desc">Beim Öffnen einer Binärdatei den Hexdump der Datei generieren und im Hex-Editor anzeigen</string>
+    <string name="pref_editor_syntax_highlight_category">Syntaxhervorhebung</string>
+    <string name="pref_syntax_highlight">Syntaxhervorhebung</string>
+    <string name="pref_syntax_highlight_desc">Die Syntax einer Datei beim Anzeigen hervorheben (nicht bei allen Dateitypen verfügbar)</string>
+    <string name="pref_syntax_highlight_color_scheme">Farbschema</string>
+    <string name="pref_syntax_highlight_color_scheme_desc">Das Farbschema der Syntaxhervorhebung anpassen</string>
+    <string name="pref_syntax_sh_use_theme_default">Designvorgaben verwenden</string>
+    <string name="pref_syntax_sh_use_theme_default_desc">Das standardmäßige Farbschema des aktuellen Designs verwenden</string>
+    <string name="pref_editor_sh_item_category">Objekte</string>
     <string name="pref_themes_selection_category">Designs</string>
     <string name="pref_themes_set_theme">Design auswählen</string>
     <string name="pref_themes_no_preview">Keine Vorschau verfügbar</string>
@@ -409,6 +437,22 @@
     <string name="theme_default_name">Hell (Standard)</string>
     <string name="theme_default_description">Helles Design für den CM-Dateimanager.</string>
     <string name="themes_author">CyanogenMod</string>
+
+    <!-- ColorPicker dialog -->
+    <string name="color_picker_alpha_slider_text">Deckkraft</string>
+    <string name="color_picker_current_text">Aktuell:</string>
+    <string name="color_picker_new_text">Neu:</string>
+    <string name="color_picker_color">Farbe:</string>
+
+    <!-- Android syntax highlight -->
+    <string name="ash_reset_color_scheme">Designvorgaben wiederherstellen</string>
+    <string name="ash_text">Text</string>
+    <string name="ash_assignment">Funktion</string>
+    <string name="ash_singleline_comment">Einzeiliger Kommentar</string>
+    <string name="ash_multiline_comment">Mehrzeiliger Kommentar</string>
+    <string name="ash_keyword">Schlüsselwort</string>
+    <string name="ash_quoted_string">Text in Anführungszeichen</string>
+    <string name="ash_variable">Variable</string>
 
     <!-- Security -->
     <string name="security_warning_extract">Warnung!\n\n Ein Archiv mit relativen oder absoluten Pfaden zu entpacken, kann das Gerät beschädigen, indem Systemdateien überschrieben werden.\n\nTrotzdem fortfahren?</string>

@@ -14,642 +14,316 @@
      limitations under the License.
  -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-
-  <!-- The name of the application -->
-  <string name="app_name">Bestandsbeheerder</string>
-  <!-- The description of the application -->
-  <string name="app_description">Een bestandsbeheerder van CyanogenMod.</string>
-
-  <!-- Devices types -->
-  <string name="device_blockdevice">Blokapparaat</string>
-  <string name="device_characterdevice">Karakterapparaat</string>
-  <string name="device_namedpipe">Named pipe</string>
-  <string name="device_domainsocket">Domain socket</string>
-
-  <!-- Mount Point States -->
-  <string name="mount_point_readonly">RO</string>
-  <string name="mount_point_readwrite">RW</string>
-
-  <!-- Default buttons -->
-  <string name="yes">Ja</string>
-  <string name="no">Nee</string>
-  <string name="all">Alles</string>
-  <string name="overwrite">Overschrijven</string>
-  <string name="select">Selecteren</string>
-
-  <!-- The root directory name -->
-  <string name="root_directory_name"><![CDATA[<Hoofdmap>]]></string>
-  <!-- The search result name -->
-  <string name="search_result_name">Zoeken: <xliff:g id="terms">%1$s</xliff:g></string>
-
-  <!-- Loading waiting message -->
-  <string name="loading_message">Laden\u2026</string>
-  <!-- Cancelled message -->
-  <string name="cancelled_message">Geannuleerd</string>
-  <!-- Error message -->
-  <string name="error_message">Fout</string>
-
-  <!-- Warning dialog title -->
-  <string name="warning_title">Let op</string>
-  <!-- Error dialog title -->
-  <string name="error_title">Fout opgetreden</string>
-  <!-- Confirm operation dialog title -->
-  <string name="confirm_operation">Bewerken bevestigen</string>
-  <!-- Confirm overwrite dialog title -->
-  <string name="confirm_overwrite">Overschrijven bevestigen</string>
-  <!-- Confirm deletion dialog title -->
-  <string name="confirm_deletion">Verwijderen bevestigen</string>
-
-  <!--  A console couldn't be created. Ask the user to change the access mode. Dialog Title -->
-  <string name="msgs_change_to_prompt_access_mode_title">Schakelen bevestigen</string>
-  <!--  A console couldn't be created. Ask the user to change the access mode. Dialog Message -->
-  <string name="msgs_change_to_prompt_access_mode_msg">Kan geen root-toegang verkrijgen. Schakelen naar veilige modus.\n\nDeze wijziging toepassen?</string>
-
-  <!-- A console couldn't be created. Without privileges, the application won't work -->
-  <string name="msgs_cant_create_console">Kan de vereiste machtigingen niet verkrijgen.</string>
-  <!-- The message shown when an allocation of a privileged console fails, and a non
-       privileged is allocated -->
-  <string name="msgs_privileged_console_alloc_failed">Kan geen root-toegang verkrijgen. Schakelen naar veilige modus.</string>
-  <!-- The selected setting was not applied or stored -->
-  <string name="msgs_settings_save_failure">Kan de instellingen niet toepassen/opslaan.</string>
-  <!-- The initial directory has an invalid or inaccessible reference -->
-  <string name="msgs_settings_invalid_initial_directory">De eerste map \'<xliff:g id="initial_dir">%1$s</xliff:g>\' is ongeldig. Veranderen naar hoofdmap.</string>
-
-  <!-- Success -->
-  <string name="msgs_success">Bewerking succesvol voltooid</string>
-  <!-- Unknown error -->
-  <string name="msgs_unknown">Er is een fout opgetreden. De bewerking is mislukt.</string>
-  <!-- When an operation requires elevated privileged (normally caused for the use of a
-       non-privileged console) -->
-  <string name="msgs_insufficient_permissions">Deze bewerking heeft verhoogde machtigingen nodig. Probeer naar root-toegangsmodus te schakelen.</string>
-  <!-- The file or directory was not found -->
-  <string name="msgs_file_not_found">Het bestand of de map is niet gevonden.</string>
-  <!-- The command reference couldn't be created (not found or invalid definition)
-       (normally caused by a development error) -->
-  <string name="msgs_command_not_found">Het bewerkingscommando is niet gevonden of is ongeldig.</string>
-  <!-- I/O exception -->
-  <string name="msgs_io_failed">Lees-/schrijffout.</string>
-  <!-- Operation timeout detected -->
-  <string name="msgs_operation_timeout">Bewerkingstime-out.</string>
-  <!-- The operation returns an invalid exit code -->
-  <string name="msgs_operation_failure">De bewerking is mislukt.</string>
-  <!-- A console couldn't be allocated -->
-  <string name="msgs_console_alloc_failure">Er is een interne fout opgetreden.</string>
-  <!-- An operation can't be cancelled -->
-  <string name="msgs_operation_can_not_be_cancelled">De bewerking kan niet worden geannuleerd.</string>
-  <!-- The operation requieres mount the file system prior to execute the command -->
-  <string name="msgs_read_only_filesystem">Het bestandssysteem is gekoppeld als alleen-lezen. Probeer het bestandssysteem als beschrijfbaar te koppelen alvorens de bewerking uit te voeren.</string>
-  <!-- Illegal argument (normally caused by a development error when calling internal api) -->
-  <string name="msgs_illegal_argument">Ongeldig argument. Activering mislukt.</string>
-  <!-- The operation will cause inconsistencies -->
-  <string name="msgs_unresolved_inconsistencies">Deze bewerking is niet toegestaan omdat het inconsistenties zal veroorzaken.</string>
-  <!-- Operation not permitted in current directory -->
-  <string name="msgs_operation_not_allowed_in_current_directory">Deze bewerking is niet toegestaan in de huidige map.\n\nDe doelmap kan niet hetzelfde zijn als of een submap zijn van de bron.</string>
-
-  <!-- The advice message prior to exit the application -->
-  <string name="msgs_push_again_to_exit">Tik nogmaals om af te sluiten.</string>
-
-  <!-- There is no registered application that can handle the mime-type -->
-  <string name="msgs_not_registered_app">Er is geen app geïnstalleerd om het geselecteerde bestandstype te openen.</string>
-
-  <!-- Overwrite files? -->
-  <string name="msgs_overwrite_files">Een aantal bestanden bestaat al in de doelmap.\n\nOverschrijven?</string>
-
-  <!-- The association of an action to the application failed -->
-  <string name="msgs_action_association_failed">Koppelen van de actie aan de app is mislukt.</string>
-
-  <!-- An operation requires elevated privileged. Ask the user. -->
-  <string name="advise_insufficient_permissions">De bewerking vereist verhoogde machtigingen.\n\nWilt u naar root-toegangsmodus schakelen?</string>
-
-
-  <!-- The parent directory of the current directory in navigation view -->
-  <string name="parent_dir">Bovenliggende map</string>
-  <!-- External storage descripton -->
-  <string name="external_storage">Externe opslag</string>
-  <!-- Usb storage descripton -->
-  <string name="usb_storage">USB-opslag</string>
-
-  <!-- ActionBar Buttons * FileSystem -->
-  <string name="actionbar_button_filesystem_cd">Bestandssysteeminfo</string>
-  <!-- ActionBar Buttons * Sort Mode -->
-  <string name="actionbar_button_sort_mode_cd">Sortering</string>
-  <!-- ActionBar Buttons * Layout Mode -->
-  <string name="actionbar_button_layout_mode_cd">Indeling</string>
-  <!-- ActionBar Buttons * Other View Options -->
-  <string name="actionbar_button_other_view_options_cd">Andere beeldopties</string>
-  <!-- ActionBar Buttons * Done -->
-  <string name="actionbar_button_selection_done_cd">Gereed</string>
-  <!-- ActionBar Buttons * Actions -->
-  <string name="actionbar_button_actions_cd">Acties</string>
-  <!-- ActionBar Buttons * History -->
-  <string name="actionbar_button_history_cd">Geschiedenis</string>
-  <!-- ActionBar Buttons * Bookmarks -->
-  <string name="actionbar_button_bookmarks_cd">Favorieten</string>
-  <!-- ActionBar Buttons * Search -->
-  <string name="actionbar_button_search_cd">Zoeken</string>
-  <!-- ActionBar Buttons * Overflow -->
-  <string name="actionbar_button_overflow_cd">Meer\u2026</string>
-  <!-- ActionBar Buttons * Storage volumes -->
-  <string name="actionbar_button_storage_cd">Opslagvolumes</string>
-  <!-- ActionBar Buttons * Save -->
-  <string name="actionbar_button_save_cd">Opslaan</string>
-
-  <!-- Navigation View * Sort * Sort by name (ascending) -->
-  <string name="sort_by_name_asc">Op naam &#x25B2;</string>
-  <!-- Navigation View * Sort * Sort by name (descending) -->
-  <string name="sort_by_name_desc">Op naam &#x25BC;</string>
-  <!-- Navigation View * Sort * Sort by date (ascending) -->
-  <string name="sort_by_date_asc">Op datum &#x25B2;</string>
-  <!-- Navigation View * Sort * Sort by date (descending) -->
-  <string name="sort_by_date_desc">Op datum &#x25BC;</string>
-
-  <!-- Navigation View * Layout * Icons -->
-  <string name="layout_icons">Pictogrammen</string>
-  <!-- Navigation View * Layout * Simple -->
-  <string name="layout_simple">Eenvoudig</string>
-  <!-- Navigation View * Layout * Details -->
-  <string name="layout_details">Uitgebreid</string>
-
-  <!-- Navigation View * View * Show folders first -->
-  <string name="cm_filemanager_show_dirs_first">Eerst mappen</string>
-  <!-- Navigation View * View * Show hidden files option -->
-  <string name="cm_filemanager_show_hidden">Verborgen bestanden tonen</string>
-  <!-- Navigation View * View * Show system files option -->
-  <string name="cm_filemanager_show_system">Systeembestanden tonen</string>
-  <!-- Navigation View * View * Show symlinks option -->
-  <string name="cm_filemanager_show_symlinks">Symlinks tonen</string>
-
-  <!-- Filesystem Info (no data). Dialog title -->
-  <string name="filesystem_info_warning_title">Geen informatie</string>
-  <!-- Filesystem Info (no data). Dialog message -->
-  <string name="filesystem_info_warning_msg">Er is geen informatie beschikbaar over het bestandssysteem.</string>
-  <!-- Filesystem Info * Filesystem couldn't be mounted -->
-  <string name="filesystem_info_cant_be_mounted_msg">Het bestandssysteem kan niet worden gekoppeld/ontkoppeld.</string>
-  <!-- Filesystem Info * Not allowed message -->
-  <string name="filesystem_info_mount_not_allowed_msg">Koppelen van bestandssystem is niet toegestaan in veilige modus. Tik om naar root-toegangsmodus te schakelen.</string>
-  <!-- Filesystem Info * Mount failed -->
-  <string name="filesystem_info_mount_failed_msg">Koppelen van het bestandssysteem mislukt. Sommige bestandssystemen, zoals op SD-kaarten, kunnen niet worden gekoppeld/ontkoppeld omdat het alleen-lezenbestandssystemen zijn.</string>
-  <!-- Filesystem Info Dialog * Title -->
-  <string name="filesystem_info_dialog_title">Bestandssysteeminfo</string>
-  <!-- Filesystem Info Dialog * Tab * Info -->
-  <string name="filesystem_info_dialog_tab_info">Informatie</string>
-  <!-- Filesystem Info Dialog * Tab * Disk Usage -->
-  <string name="filesystem_info_dialog_tab_disk_usage">Schijfgebruik</string>
-  <!-- Filesystem Info Dialog * Status Label -->
-  <string name="filesystem_info_dialog_status">Status:</string>
-  <!-- Filesystem Info Dialog * Mount Point Label -->
-  <string name="filesystem_info_dialog_mount_point">Aankoppelingspad:</string>
-  <!-- Filesystem Info Dialog * Device Label -->
-  <string name="filesystem_info_dialog_device">Apparaat:</string>
-  <!-- Filesystem Info Dialog * Type Label -->
-  <string name="filesystem_info_dialog_type">Type:</string>
-  <!-- Filesystem Info Dialog * Options Label -->
-  <string name="filesystem_info_dialog_options">Opties:</string>
-  <!-- Filesystem Info Dialog * Dump/Pass Label -->
-  <string name="filesystem_info_dialog_dump_pass">Dump / Pass:</string>
-  <!-- Filesystem Info Dialog * Total Disk Usage -->
-  <string name="filesystem_info_dialog_total_disk_usage">Totaal:</string>
-  <!-- Filesystem Info Dialog * Used Disk Usage -->
-  <string name="filesystem_info_dialog_used_disk_usage">Gebruikt:</string>
-  <!-- Filesystem Info Dialog * Free Disk Usage -->
-  <string name="filesystem_info_dialog_free_disk_usage">Beschikbaar:</string>
-
-
-  <!-- Fso Properties * Not allowed message -->
-  <string name="fso_properties_permissions_not_allowed_msg">Machtigingsbewerking is niet toegestaan in veilige modus. Tik om naar root-toegangsmodus te schakelen.</string>
-  <!-- Fso Properties * Failed to change owner to fso -->
-  <string name="fso_properties_failed_to_change_owner_msg">Het wijzigen van eigenaar is mislukt.\n\nOm veiligheidsredenen staan sommige bestandssystemen, zoals op SD-kaarten, een eigenaarswijziging niet toe.</string>
-  <!-- Fso Properties * Failed to change group to fso -->
-  <string name="fso_properties_failed_to_change_group_msg">Het wijzigen van groep is mislukt.\n\nOm veiligheidsredenen staan sommige bestandssystemen, zoals op SD-kaarten, een groepswijziging niet toe.</string>
-  <!-- Fso Properties * Failed to change group to fso -->
-  <string name="fso_properties_failed_to_change_permission_msg">Het wijzigen van machtigingen is mislukt.\n\nOm veiligheidsredenen staan sommige bestandssystemen, zoals op SD-kaarten, een wijziging van rechten niet toe.</string>
-  <!-- Fso Properties Dialog * Title -->
-  <string name="fso_properties_dialog_title">Eigenschappen</string>
-  <!-- Fso Properties Dialog * Tab * Info -->
-  <string name="fso_properties_dialog_tab_info">Info</string>
-  <!-- Fso Properties Dialog * Tab * Permissions -->
-  <string name="fso_properties_dialog_tab_permissions">Machtigingen</string>
-  <!-- Fso Properties Dialog * Name Label -->
-  <string name="fso_properties_dialog_name">Naam:</string>
-  <!-- Fso Properties Dialog * Parent Folder Label -->
-  <string name="fso_properties_dialog_parent">Bovenliggend:</string>
-  <!-- Fso Properties Dialog * Type Label -->
-  <string name="fso_properties_dialog_type">Type:</string>
-  <!-- Fso Properties Dialog * Category Label -->
-  <string name="fso_properties_dialog_category">Categorie:</string>
-  <!-- Fso Properties Dialog * Link Label -->
-  <string name="fso_properties_dialog_link">Verwijst naar:</string>
-  <!-- Fso Properties Dialog * Size Label -->
-  <string name="fso_properties_dialog_size">Grootte:</string>
-  <!-- Fso Properties Dialog * Contains Label -->
-  <string name="fso_properties_dialog_contains">Inhoud:</string>
-  <!-- Fso Properties Dialog * Last Accessed Time Label -->
-  <string name="fso_properties_dialog_last_accessed_date">Geopend:</string>
-  <!-- Fso Properties Dialog * Last Modified Time Label -->
-  <string name="fso_properties_dialog_last_modified_date">Bewerkt:</string>
-  <!-- Fso Properties Dialog * Last Changed Time -->
-  <string name="fso_properties_dialog_last_changed_date">Gewijzigd:</string>
-  <!-- Fso Properties Dialog * Owner Label -->
-  <string name="fso_properties_dialog_owner">Eigenaar:</string>
-  <!-- Fso Properties Dialog * Group Label -->
-  <string name="fso_properties_dialog_group">Groep:</string>
-  <!-- Fso Properties Dialog * Others Label -->
-  <string name="fso_properties_dialog_others">Andere:</string>
-  <!-- Fso Properties Dialog * Folders -->
-  <plurals name="fso_properties_dialog_folders">
-    <item quantity="zero">0 mappen</item>
-    <item quantity="one">1 map</item>
-    <item quantity="other"><xliff:g id="folders">%1$d</xliff:g> mappen</item>
-  </plurals>
-  <!-- Fso Properties Dialog * Files -->
-  <plurals name="fso_properties_dialog_files">
-    <item quantity="zero">0 bestanden</item>
-    <item quantity="one">1 bestand</item>
-    <item quantity="other"><xliff:g id="files">%1$d</xliff:g> bestanden</item>
-  </plurals>
-  <!-- Fso Properties Dialog * Skip media scan -->
-  <string name="fso_properties_dialog_include_in_media_scan">Mediascan overslaan:</string>
-  <string name="fso_failed_to_allow_media_scan">Kan mediascan niet toestaan</string>
-  <string name="fso_failed_to_prevent_media_scan">Kan mediascan niet blokkeren</string>
-  <string name="fso_delete_nomedia_dir_title">.nomedia-map verwijderen</string>
-  <string name="fso_delete_nomedia_dir_body">Deze map bevat een .nomedia-map.\n\nWeet u zeker dat u deze, en de inhoud ervan, wilt verwijderen?</string>
-  <string name="fso_delete_nomedia_non_empty_title">.nomedia-bestand verwijderen</string>
-  <string name="fso_delete_nomedia_non_empty_body">Deze map bevat een .nomedia-bestand dat niet leeg is.\n\nWeet u zeker dat u het wilt verwijderen?</string>
-
-  <!-- History * History activity title -->
-  <string name="history">Geschiedenis</string>
-  <!-- History * The history is empty -->
-  <string name="msgs_history_empty">Geschiedenis is leeg.</string>
-  <!-- History * The history reference is not in the actual history list -->
-  <string name="msgs_history_unknown">Onbekend geschiedenisitem.</string>
-
-  <!-- Search * Search activity title -->
-  <string name="search">Zoekresultaten</string>
-  <!-- Search * Search hint message -->
-  <string name="search_hint">Typ zoekopdracht</string>
-  <!-- Search * Voice search hint message -->
-  <string name="search_voice_hint">Spreek zoekopdracht</string>
-  <!-- Search * Search error message -->
-  <string name="search_error_msg">Een fout is opgetreden tijdens het zoeken. Geen resultaten gevonden.</string>
-  <!-- Search * Search no results message -->
-  <string name="search_no_results_msg">Geen resultaten gevonden.</string>
-  <!-- Search * Search found items -->
-  <plurals name="search_found_items">
-    <item quantity="zero">Geen items gevonden</item>
-    <item quantity="one">1 item gevonden</item>
-    <item quantity="other"><xliff:g id="count">%d</xliff:g> items gevonden</item>
-  </plurals>
-  <!-- Search * Number of items found in directory -->
-  <string name="search_found_items_in_directory"><xliff:g id="items">%1$s</xliff:g> in <xliff:g id="path">%2$s</xliff:g></string>
-  <!-- Search * Search query terms -->
-  <string name="search_terms"><![CDATA[<b>Termen:</b>]]> <xliff:g id="terms">%1$s</xliff:g></string>
-  <!-- Search * Confirm search -->
-  <string name="search_few_characters_title">Zoeken bevestigen</string>
-  <!-- Search * Some terms of the search are too small. The operation could be very costly -->
-  <string name="search_few_characters_msg">Sommige zoektermen hebben een klein aantal karakters. De bewerking zou te veel tijd of systeembronnen in beslag kunnen nemen.\n\nWeet u zeker dat u door wilt gaan?</string>
-  <!-- Search * Searching dialog title -->
-  <string name="searching">Een ogenblik a.u.b.</string>
-  <!-- Search * Searching label -->
-  <string name="searching_action_label">Bezig met zoeken</string>
-
-  <!-- Picker Activity * Dialog title -->
-  <string name="picker_title">Kies een bestand</string>
-  <string name="directory_picker_title">Kies een map</string>
-
-  <!-- Editor * Editor activity title -->
-  <string name="editor">Bewerker</string>
-  <!-- Editor * Invalid file message -->
-  <string name="editor_invalid_file_msg">Ongeldig bestand.</string>
-  <!-- Editor * File not found message -->
-  <string name="editor_file_not_found_msg">Bestand niet gevonden.</string>
-  <!-- Editor * File size exceed the limit -->
-  <string name="editor_file_exceed_size_msg">Het bestand is te groot om te openen op het apparaat.</string>
-  <!-- Editor * Editor is dirty, ask the user * Dialog title -->
-  <string name="editor_dirty_ask_title">Afsluiten bevestigen</string>
-  <!-- Editor * Editor is dirty, ask the user * Dialog message -->
-  <string name="editor_dirty_ask_msg">Het bestand is gewijzigd.\n\nAfsluiten zonder opslaan?</string>
-  <!-- Editor * Save operation success -->
-  <string name="editor_successfully_saved">Het bestand is succesvol opgeslagen.</string>
-  <!-- Editor * Read-only file mode -->
-  <string name="editor_read_only_mode">Het bestand is geopend als alleen-lezen.</string>
-
-  <!-- Bookmarks * Bookmarks activity title -->
-  <string name="bookmarks">Favorieten</string>
-  <!-- Bookmarks * Bookmark name * Home -->
-  <string name="bookmarks_home">Thuis</string>
-  <!-- Bookmarks * Bookmark name * Root folder -->
-  <string name="bookmarks_root_folder">Hoofdmap</string>
-  <!-- Bookmarks * Bookmark name * System folder -->
-  <string name="bookmarks_system_folder">Systeemmap</string>
-  <!-- Bookmarks * Bookmark name * Button * Initial directory content description -->
-  <string name="bookmarks_button_config_cd">Kies de beginmap.</string>
-  <!-- Bookmarks * Bookmark name * Button * Remove bookmark content description -->
-  <string name="bookmarks_button_remove_bookmark_cd">Favoriet verwijderen.</string>
-  <!-- Bookmarks * Bookmarks * Actions * Bookmark successfully added -->
-  <string name="bookmarks_msgs_add_success">Favoriet is succesvol toegevoegd.</string>
-
-  <!-- Initial directory dialog title -->
-  <string name="initial_directory_dialog_title">Beginmap</string>
-  <!-- Initial directory label -->
-  <string name="initial_directory_label">Kies de beginmap:</string>
-  <!-- Initial directory is relative -->
-  <string name="initial_directory_relative_msg">Paden moeten beginnen met een slash.</string>
-  <!-- Initial directory error message -->
-  <string name="initial_directory_error_msg">Er is een fout opgetreden tijdens het opslaan van de beginmap.</string>
-
-  <!-- Menu * Navigation * History -->
-  <string name="menu_history">Geschiedenis</string>
-  <!-- Menu * Navigation * Bookmarks -->
-  <string name="menu_bookmarks">Favorieten</string>
-  <!-- Menu * Navigation * Search -->
-  <string name="menu_search">Zoeken</string>
-  <!-- Menu * Navigation * Settings -->
-  <string name="menu_settings">Instellingen</string>
-  <!-- Menu * History * Clear history -->
-  <string name="menu_clear_history">Geschiedenis wissen</string>
-
-  <!-- Regular expression for create copy action -->
-  <string name="create_copy_regexp"><xliff:g id="name">%1$s</xliff:g> - kopieer<xliff:g id="extension">%2$s</xliff:g></string>
-  <!-- Regular expression for new compressed file -->
-  <string name="create_new_compress_file_regexp"><xliff:g id="name">%1$s</xliff:g> - nieuw<xliff:g id="extension">%2$s</xliff:g></string>
-
-  <!-- Waiting dialog * Performing operation message -->
-  <string name="waiting_dialog_msg">Bewerkingen uitvoeren\u2026</string>
-  <!-- Waiting dialog * Copying title -->
-  <string name="waiting_dialog_copying_title">Kopiëren\u2026</string>
-  <!-- Waiting dialog * Copying message -->
-  <string name="waiting_dialog_copying_msg"><![CDATA[<b>Van</b>]]> <xliff:g id="from">%1$s</xliff:g><![CDATA[<br/>]]><![CDATA[<b>Naar</b>]]> <xliff:g id="to">%2$s</xliff:g></string>
-  <!-- Waiting dialog * Moving title -->
-  <string name="waiting_dialog_moving_title">Verplaatsen\u2026</string>
-  <!-- Waiting dialog * Moving message -->
-  <string name="waiting_dialog_moving_msg"><![CDATA[<b>Van</b>]]> <xliff:g id="from">%1$s</xliff:g><![CDATA[<br/>]]><![CDATA[<b>Naar</b>]]> <xliff:g id="to">%2$s</xliff:g></string>
-  <!-- Waiting dialog * Deleting title -->
-  <string name="waiting_dialog_deleting_title">Verwijderen\u2026</string>
-  <!-- Waiting dialog * Deleting message -->
-  <string name="waiting_dialog_deleting_msg"><![CDATA[<b>Bestand</b>]]> <xliff:g id="file">%1$s</xliff:g></string>
-  <!-- Waiting dialog * Extracting title -->
-  <string name="waiting_dialog_extracting_title">Uitpakken\u2026</string>
-  <!-- Waiting dialog * Extracting message -->
-  <string name="waiting_dialog_extracting_msg"><![CDATA[<b>Bestand</b>]]> <xliff:g id="file">%1$s</xliff:g></string>
-  <!-- Waiting dialog * Extracting title -->
-  <string name="waiting_dialog_compressing_title">Comprimeren\u2026</string>
-  <!-- Waiting dialog * Extracting message -->
-  <string name="waiting_dialog_compressing_msg"><![CDATA[<b>Bestand</b>]]> <xliff:g id="file">%1$s</xliff:g></string>
-  <!-- Waiting dialog * Initializing the dialog -->
-  <string name="waiting_dialog_analizing_msg"><![CDATA[<b>Analyseren\u2026</b>]]></string>
-  <!-- Extracting * Success message -->
-  <string name="msgs_extracting_success">Het uitpakken is succesvol voltooid. De gegevens zijn uitgepakt naar <xliff:g id="destination">%1$s</xliff:g>.</string>
-  <!-- Compressing * Success message -->
-  <string name="msgs_compressing_success">Het comprimeren is succesvol voltooid. De gegevens zijn gecomprimeerd naar <xliff:g id="destination">%1$s</xliff:g>.</string>
-
-  <!-- Actions Dialog * Title -->
-  <string name="actions_dialog_title">Acties</string>
-  <!-- Actions Dialog * Menu * Properties of current folder -->
-  <string name="actions_menu_properties_current_folder">Eigenschappen</string>
-  <!-- Actions Dialog * Menu * Refresh -->
-  <string name="actions_menu_refresh">Vernieuwen</string>
-  <!-- Actions Dialog * Menu * New directory -->
-  <string name="actions_menu_new_directory">Nieuwe map</string>
-  <!-- Actions Dialog * Menu * New file -->
-  <string name="actions_menu_new_file">Nieuw bestand</string>
-  <!-- Actions Dialog * Menu * Select all -->
-  <string name="actions_menu_select_all">Alles selecteren</string>
-  <!-- Actions Dialog * Menu * Deselect all -->
-  <string name="actions_menu_deselect_all">Alles deselecteren</string>
-  <!-- Actions Dialog * Menu * Select -->
-  <string name="actions_menu_select">Selecteren</string>
-  <!-- Actions Dialog * Menu * Deselect -->
-  <string name="actions_menu_deselect">Deselecteren</string>
-  <!-- Actions Dialog * Menu * Paste selection -->
-  <string name="actions_menu_paste_selection">Selectie hier plakken</string>
-  <!-- Actions Dialog * Menu * Move selection -->
-  <string name="actions_menu_move_selection">Selectie hier verplaatsen</string>
-  <!-- Actions Dialog * Menu * Delete selection -->
-  <string name="actions_menu_delete_selection">Selectie verwijderen</string>
-  <!-- Actions Dialog * Menu * Compress selection -->
-  <string name="actions_menu_compress_selection">Selectie comprimeren</string>
-  <!-- Actions Dialog * Menu * Create link -->
-  <string name="actions_menu_create_link">Symlink maken</string>
-  <!-- Actions Dialog * Menu * Open -->
-  <string name="actions_menu_open">Openen</string>
-  <!-- Actions Dialog * Menu * Open with -->
-  <string name="actions_menu_open_with">Openen met</string>
-  <!-- Actions Dialog * Menu * Execute -->
-  <string name="actions_menu_execute">Uitvoeren</string>
-  <!-- Actions Dialog * Menu * Send -->
-  <string name="actions_menu_send">Verzenden</string>
-  <!-- Actions Dialog * Menu * Send selection -->
-  <string name="actions_menu_send_selection">Selectie verzenden</string>
-  <!-- Actions Dialog * Menu * Compress -->
-  <string name="actions_menu_compress">Comprimeren</string>
-  <!-- Actions Dialog * Menu * Extract -->
-  <string name="actions_menu_extract">Uitpakken</string>
-  <!-- Actions Dialog * Menu * Delete -->
-  <string name="actions_menu_delete">Verwijderen</string>
-  <!-- Actions Dialog * Menu * Rename -->
-  <string name="actions_menu_rename">Naam wijzigen</string>
-  <!-- Actions Dialog * Menu * Create copy -->
-  <string name="actions_menu_create_copy">Kopie maken</string>
-  <!-- Actions Dialog * Menu * Properties -->
-  <string name="actions_menu_properties">Eigenschappen</string>
-  <!-- Actions Dialog * Menu * Add to bookmarks -->
-  <string name="actions_menu_add_to_bookmarks">Toevoegen aan favorieten</string>
-  <!-- Actions Dialog * Menu * Add shortcut -->
-  <string name="actions_menu_add_shortcut">Snelkoppeling toevoegen</string>
-  <!-- Actions Dialog * Menu * Open parent folder -->
-  <string name="actions_menu_open_parent_folder">Bovenliggende map openen</string>
-
-  <!-- Actions * Ask user prior to do an undone operation. Dialog message -->
-  <string name="actions_ask_undone_operation_msg">Deze actie kan niet ongedaan worden gemaakt. Weet u zeker dat u door wilt gaan?</string>
-
-  <!-- Enter Name Dialog * Label -->
-  <string name="input_name_dialog_label">Naam:</string>
-  <!-- Enter Name Dialog * Message * Empty name -->
-  <string name="input_name_dialog_message_empty_name">De naam kan niet leeg zijn.</string>
-  <!-- Enter Name Dialog * Message * Invalid name -->
-  <string name="input_name_dialog_message_invalid_path_name">Ongeldige naam. De karakters \'<xliff:g id="invalid_characters">%1$s</xliff:g>\' zijn niet toegestaan.</string>
-  <!-- Enter Name Dialog * Message * Invalid name -->
-  <string name="input_name_dialog_message_invalid_name">Ongeldige naam. De namen \'.\' en \'..\' zijn niet toegestaan.</string>
-  <!-- Enter Name Dialog * Message * Name exists -->
-  <string name="input_name_dialog_message_name_exists">Deze naam bestaat al.</string>
-
-  <!-- Associations Dialog * Title -->
-  <string name="associations_dialog_title">Gekoppelde apps</string>
-  <!-- Associations Dialog * Remember the user action -->
-  <string name="associations_dialog_remember">Selectie bewaren</string>
-  <!-- Associations Dialog * Open with Title -->
-  <string name="associations_dialog_openwith_title">Openen met</string>
-    <!-- Associations Dialog * Open action (button title) -->
-  <string name="associations_dialog_openwith_action">Openen</string>
-  <!-- Associations Dialog * Send with Title -->
-  <string name="associations_dialog_sendwith_title">Versturen met</string>
-    <!-- Associations Dialog * Send action (button title) -->
-  <string name="associations_dialog_sendwith_action">Versturen</string>
-
-  <!-- Inline Autocomplete Widget * Tab message nothing to complete -->
-  <string name="inline_autocomplete_tab_nothing_to_complete_msg">Niets af te ronden.</string>
-
-  <!-- Execution console * Title -->
-  <string name="execution_console_title">Console</string>
-  <!-- Execution console * The script name label -->
-  <string name="execution_console_script_name_label">Script:</string>
-  <!-- Execution console * The script execution time label -->
-  <string name="execution_console_script_execution_time_label">Tijd:</string>
-  <!-- Execution console * The script exit code label -->
-  <string name="execution_console_script_exitcode_label">Afsluitcode:</string>
-  <!-- Execution console * The script execution time seconds string -->
-  <string name="execution_console_script_execution_time_text"><xliff:g id="seconds">%1$s</xliff:g> sec.</string>
-
-  <!-- Mime/Types * Folder -->
-  <string name="mime_folder">Map</string>
-  <!-- Mime/Types * Symlink -->
-  <string name="mime_symlink">Symlink</string>
-  <!-- Mime/Types * Unknown -->
-  <string name="mime_unknown">Onbekend</string>
-
-  <!-- Selection. All possibilities. [1 folder; >1 folders; 1 file; >1 files;
-     >1 folders and 1 file; 1 folder and >1 files; >1 folders and >1 files]
-     Avoid using plural item because is more complex to achieved all strings -->
-  <string name="selection_one_folder"><xliff:g id="folders">%1$s</xliff:g> map geselecteerd.</string>
-  <string name="selection_other_folders"><xliff:g id="folders">%1$s</xliff:g> mappen geselecteerd.</string>
-  <string name="selection_one_file"><xliff:g id="files">%1$s</xliff:g> bestand geselecteerd.</string>
-  <string name="selection_other_files"><xliff:g id="files">%1$s</xliff:g> bestanden geselecteerd.</string>
-  <string name="selection_other_folders_one_file"><xliff:g id="folders">%1$s</xliff:g> mappen en <xliff:g id="files">%2$s</xliff:g> bestand geselecteerd.</string>
-  <string name="selection_one_folder_other_files"><xliff:g id="folder2">%1$s</xliff:g> map en <xliff:g id="file2">%2$s</xliff:g> bestand geselecteerd.</string>
-  <string name="selection_other_folders_other_files"><xliff:g id="folder2">%1$s</xliff:g> mappen en <xliff:g id="files">%2$s</xliff:g> bestanden geselecteerd.</string>
-
-  <!-- Category descriptions -->
-  <string name="category_system">SYSTEEM</string>
-  <string name="category_app">APP</string>
-  <string name="category_binary">BINAIR</string>
-  <string name="category_text">TEKST</string>
-  <string name="category_document">DOCUMENT</string>
-  <string name="category_ebook">E-BOOK</string>
-  <string name="category_mail">E-MAIL</string>
-  <string name="category_compress">GECOMPRIMEERD</string>
-  <string name="category_exec">UITVOERBAAR</string>
-  <string name="category_database">DATABASE</string>
-  <string name="category_font">LETTERTYPE</string>
-  <string name="category_image">AFBEELDING</string>
-  <string name="category_audio">GELUID</string>
-  <string name="category_video">VIDEO</string>
-  <string name="category_security">BEVEILIGING</string>
-
-  <!-- Compression * Compression modes dialog title -->
-  <string name="compression_mode_title">Comprimeermodus</string>
-
-  <!-- Shortcut. Failed to handle the shortcut -->
-  <string name="shortcut_failed_msg">Snelkoppeling behandelen mislukt.</string>
-  <!-- Shortcut. The shortcut was created -->
-  <string name="shortcut_creation_success_msg">Snelkoppeling succesvol aangemaakt.</string>
-  <!-- Shortcut. The shortcut wasn't created -->
-  <string name="shortcut_creation_failed_msg">Snelkoppeling maken mislukt.</string>
-
-  <!-- Preferences title -->
-  <string name="pref">Instellingen</string>
-  <!-- Preferences * General title -->
-  <string name="pref_general">Algemeen</string>
-  <!-- Preferences * Search title -->
-  <string name="pref_search">Zoeken</string>
-  <!-- Preferences * Themes title -->
-  <string name="pref_themes">Thema\'s</string>
-  <!-- Preferences * About title -->
-  <string name="pref_about">Over</string>
-  <!-- Preferences * About summary -->
-  <string name="pref_about_summary">Bestandsbeheerder v<xliff:g id="version">%1$s</xliff:g>\nCopyright \u00A9 2012-2013 Het CyanogenMod-project</string>
-
-  <!-- Preferences * General * Behaviour category -->
-  <string name="pref_general_behaviour_category">Algemeen</string>
-  <!-- Preferences * General * Case sensitive sort title -->
-  <string name="pref_case_sensitive_sort">Hoofdlettergevoelig sorteren</string>
-  <!-- Preferences * General *Disk usage warning level title -->
-  <string name="pref_disk_usage_warning_level">Schijfgebruikswaarschuwing</string>
-  <!-- Preferences * General * Disk usage warning level summary -->
-  <!-- FIXME Use "percent" instead of "%" symbol, because it make crash the app on getSummary
-       of ListPreference. This should be fixed in frameworks base prior to be added here. -->
-  <string name="pref_disk_usage_warning_level_summary" formatted="false">Andere kleur voor schijfgebruikwidgets tonen wanneer ze <xliff:g id="level">%1$s</xliff:g> procent vrije ruimte bereiken</string>
-  <!-- Preferences * General * Compute folder statistics title -->
-  <string name="pref_compute_folder_statistics">Mapstatistieken berekenen</string>
-  <!-- Preferences * General * Compute folder statistics summary on -->
-  <string name="pref_compute_folder_statistics_on">Let op: het berekenen van mapstatistieken kost tijd en systeembronnen</string>
-  <!-- Preferences * General * Use flinger detection -->
-  <string name="pref_use_flinger">Veegbewegingen gebruiken</string>
-  <!-- Preferences * General * Use flinger detection summary -->
-  <string name="pref_use_flinger_summary">Vegen van links naar rechts gebruiken om bestanden of mappen te verwijderen.</string>
-  <!-- Preferences * General * Advanced settings category -->
-  <string name="pref_general_advanced_settings_category">Geavanceerd</string>
-  <!-- Preferences * General * Access mode -->
-  <string name="pref_access_mode">Toegangsmodus</string>
-  <!-- Preferences * General * Safe mode -->
-  <string name="pref_access_mode_safe">Veilige modus</string>
-  <!-- Preferences * General * Safe mode summary -->
-  <string name="pref_access_mode_safe_summary">Veilige modus\n\nDe app werkt zonder machtigingen en alleen opslagvolumes (SD-kaart en USB) zijn toegankelijk</string>
-  <!-- Preferences * General * Prompt user mode -->
-  <string name="pref_access_mode_prompt">Vragen naar toegangsmodus</string>
-  <!-- Preferences * General * Prompt user mode summary -->
-  <string name="pref_access_mode_prompt_summary">Vragen naar toegangsmodus\n\nDe app heeft volledige toegang tot het bestandssysteem, maar zal toestemming vragen voor bewerking waarvoor machtigingen nodig zijn</string>
-  <!-- Preferences * General * Root access mode -->
-  <string name="pref_access_mode_root">Root-toegangsmodus</string>
-  <!-- Preferences * General * Root access mode summary -->
-  <string name="pref_access_mode_root_summary">Root-toegangsmodus\n\nLet op! Deze modus staat bewerkingen toe die het apparaat kunnen beschadingen. Het is uw eigen verantwoordelijk om te zorgen dat een bewerking veilig is</string>
-  <!-- Preferences * Search * Results category -->
-  <string name="pref_search_results_category">Resultaten</string>
-  <!-- Preferences * Search * Show relevance widget -->
-  <string name="pref_show_relevance_widget">Relevantiepictogram tonen</string>
-  <!-- Preferences * Search * Highlight search terms -->
-  <string name="pref_highlight_terms">Zoektermen markeren</string>
-  <!-- Preferences * Search * Sort results mode -->
-  <string name="pref_sort_search_results_mode">Resultaten sorteren</string>
-  <!-- Preferences * Search * Sort results mode. None -->
-  <string name="pref_sort_search_results_mode_none">Niet sorteren</string>
-  <!-- Preferences * Search * Sort results mode. None -->
-  <string name="pref_sort_search_results_mode_name">Op naam</string>
-  <!-- Preferences * Search * Sort results mode. Relevance -->
-  <string name="pref_sort_search_results_mode_relevance">Op relevantie</string>
-  <!-- Preferences * Search * Privacity category -->
-  <string name="pref_search_privacity_category">Privacy</string>
-  <!-- Preferences * Search * Save search terms -->
-  <string name="pref_save_search_terms">Zoektermen opslaan</string>
-  <!-- Preferences * Search * Save search terms summary on -->
-  <string name="pref_save_search_terms_on">Zoektermen worden opgeslagen en gebruikt als suggesties voor toekomstige zoekopdrachten</string>
-  <!-- Preferences * Search * Save search terms summary off -->
-  <string name="pref_save_search_terms_off">Zoektermen worden niet opgeslagen</string>
-  <!-- Preferences * Search * Remove saved search terms -->
-  <string name="pref_remove_saved_search_terms">Opgeslagen zoektermen verwijderen</string>
-  <!-- Preferences * Search * Remove saved search terms summary -->
-  <string name="pref_remove_saved_search_terms_summary">Tik om alle opgeslagen zoektermen te verwijderen</string>
-  <!-- Preferences * Search * Suggestions were truncated -->
-  <string name="pref_remove_saved_search_terms_msg">Alle opgeslagen zoektermen zijn verwijderd.</string>
-  <!-- Preferences * Themes * Themes selection category -->
-  <string name="pref_themes_selection_category">Thema\'s</string>
-  <!-- Preferences * Themes * Set theme button -->
-  <string name="pref_themes_set_theme">Thema instellen</string>
-  <!-- Preferences * Themes * No preview -->
-  <string name="pref_themes_no_preview">Geen voorbeeld\nbeschikbaar</string>
-  <!-- Preferences * Themes * Confirmation message -->
-  <string name="pref_themes_confirmation">Thema succesvol toegepast</string>
-  <!-- Preferences * Themes * Theme not found message -->
-  <string name="pref_themes_not_found">Kan thema niet vinden</string>
-
-  <!-- Preferences * Debug * Capture debug traces -->
-  <string name="pref_debug_traces">Foutopsporingsinformatie opslaan</string>
-
-  <!-- Themes * Default theme name -->
-  <string name="theme_default_name">Licht thema</string>
-  <!-- Themes * Default theme description -->
-  <string name="theme_default_description">Lichte kleuren voor de bestandsbeheerder</string>
-  <!-- Themes * Default theme author -->
-  <string name="themes_author">CyanogenMod</string>
-
-  <!-- Security * Extract relative or absolute files -->
-  <string name="security_warning_extract">Let op!\n\nHet uitpakken van een gecomprimeerd bestand met relatieve/absolute paden kan systeembestanden overschrijven en daardoor schadelijk zijn voor uw apparaat.\n\nWeet u zeker dat u wilt doorgaan?</string>
-
-  <!-- ChangeLog * Dialog title -->
-  <string name="changelog_title">Changelog</string>
-
-  <!-- Welcome Dialog * Title -->
-  <string name="welcome_title">Welkom</string>
-  <!-- Welcome Dialog * Message -->
-  <string name="welcome_msg">Welkom bij de bestandsbeheerder van CyanogenMod\n\nHiermee kunt u uw bestandssysteem bekijken en bewerkingen uitvoeren die schadelijk kunnen zijn voor uw apparaat. Om dit te voorkomen opent de app in een veilige modus zonder machtigingen.\n\nU kunt naar de geavanceerde modus met volledige machtigingen gaan via Instellingen. De bewerkingen die u uitvoert gebeuren op eigen verantwoordelijkheid.\n\nHet CyanogenMod-project\n</string>
-
+    <string name="app_name">Bestandsbeheerder</string>
+    <string name="app_description">Een bestandsbeheerder van CyanogenMod.</string>
+    <string name="device_blockdevice">Blokapparaat</string>
+    <string name="device_characterdevice">Karakterapparaat</string>
+    <string name="device_namedpipe">Named pipe</string>
+    <string name="device_domainsocket">Domain socket</string>
+    <string name="mount_point_readonly">RO</string>
+    <string name="mount_point_readwrite">RW</string>
+    <string name="yes">Ja</string>
+    <string name="no">Nee</string>
+    <string name="all">Alles</string>
+    <string name="overwrite">Overschrijven</string>
+    <string name="select">Selecteren</string>
+    <string name="root_directory_name"><![CDATA[<Hoofdmap>]]></string>
+    <string name="search_result_name">Zoeken: <xliff:g id="terms">%1$s</xliff:g></string>
+    <string name="loading_message">Laden\u2026</string>
+    <string name="cancelled_message">Geannuleerd</string>
+    <string name="error_message">Fout</string>
+    <string name="warning_title">Let op</string>
+    <string name="error_title">Fout opgetreden</string>
+    <string name="confirm_operation">Bewerken bevestigen</string>
+    <string name="confirm_overwrite">Overschrijven bevestigen</string>
+    <string name="confirm_deletion">Verwijderen bevestigen</string>
+    <string name="msgs_change_to_prompt_access_mode_title">Schakelen bevestigen</string>
+    <string name="msgs_change_to_prompt_access_mode_msg">Kan geen root-toegang verkrijgen. Schakelen naar veilige modus.\n\nDeze wijziging toepassen?</string>
+    <string name="msgs_cant_create_console">Kan de vereiste machtigingen niet verkrijgen.</string>
+    <string name="msgs_privileged_console_alloc_failed">Kan geen root-toegang verkrijgen. Schakelen naar veilige modus.</string>
+    <string name="msgs_settings_save_failure">Kan de instellingen niet toepassen/opslaan.</string>
+    <string name="msgs_settings_invalid_initial_directory">De eerste map \'<xliff:g id="initial_dir">%1$s</xliff:g>\' is ongeldig. Veranderen naar hoofdmap.</string>
+    <string name="msgs_success">Bewerking succesvol voltooid</string>
+    <string name="msgs_unknown">Er is een fout opgetreden. De bewerking is mislukt.</string>
+    <string name="msgs_insufficient_permissions">Deze bewerking heeft verhoogde machtigingen nodig. Probeer naar root-toegangsmodus te schakelen.</string>
+    <string name="msgs_file_not_found">Het bestand of de map is niet gevonden.</string>
+    <string name="msgs_command_not_found">Het bewerkingscommando is niet gevonden of is ongeldig.</string>
+    <string name="msgs_io_failed">Lees-/schrijffout.</string>
+    <string name="msgs_operation_timeout">Bewerkingstime-out.</string>
+    <string name="msgs_operation_failure">De bewerking is mislukt.</string>
+    <string name="msgs_console_alloc_failure">Er is een interne fout opgetreden.</string>
+    <string name="msgs_operation_can_not_be_cancelled">De bewerking kan niet worden geannuleerd.</string>
+    <string name="msgs_read_only_filesystem">Het bestandssysteem is gekoppeld als alleen-lezen. Probeer het bestandssysteem als beschrijfbaar te koppelen alvorens de bewerking uit te voeren.</string>
+    <string name="msgs_illegal_argument">Ongeldig argument. Activering mislukt.</string>
+    <string name="msgs_unresolved_inconsistencies">Deze bewerking is niet toegestaan omdat het inconsistenties zal veroorzaken.</string>
+    <string name="msgs_operation_not_allowed_in_current_directory">Deze bewerking is niet toegestaan in de huidige map.\n\nDe doelmap kan niet hetzelfde zijn als of een submap zijn van de bron.</string>
+    <string name="msgs_push_again_to_exit">Tik nogmaals om af te sluiten.</string>
+    <string name="msgs_not_registered_app">Er is geen app geïnstalleerd om het geselecteerde bestandstype te openen.</string>
+    <string name="msgs_overwrite_files">Een aantal bestanden bestaat al in de doelmap.\n\nOverschrijven?</string>
+    <string name="msgs_action_association_failed">Koppelen van de actie aan de app is mislukt.</string>
+    <string name="advise_insufficient_permissions">De bewerking vereist verhoogde machtigingen.\n\nWilt u naar root-toegangsmodus schakelen?</string>
+    <string name="parent_dir">Bovenliggende map</string>
+    <string name="external_storage">Externe opslag</string>
+    <string name="usb_storage">USB-opslag</string>
+    <string name="actionbar_button_filesystem_cd">Bestandssysteeminfo</string>
+    <string name="actionbar_button_sort_mode_cd">Sortering</string>
+    <string name="actionbar_button_layout_mode_cd">Indeling</string>
+    <string name="actionbar_button_other_view_options_cd">Andere beeldopties</string>
+    <string name="actionbar_button_selection_done_cd">Gereed</string>
+    <string name="actionbar_button_actions_cd">Acties</string>
+    <string name="actionbar_button_history_cd">Geschiedenis</string>
+    <string name="actionbar_button_bookmarks_cd">Favorieten</string>
+    <string name="actionbar_button_search_cd">Zoeken</string>
+    <string name="actionbar_button_overflow_cd">Meer\u2026</string>
+    <string name="actionbar_button_storage_cd">Opslagvolumes</string>
+    <string name="actionbar_button_save_cd">Opslaan</string>
+    <string name="sort_by_name_asc">Op naam &#x25B2;</string>
+    <string name="sort_by_name_desc">Op naam &#x25BC;</string>
+    <string name="sort_by_date_asc">Op datum &#x25B2;</string>
+    <string name="sort_by_date_desc">Op datum &#x25BC;</string>
+    <string name="layout_icons">Pictogrammen</string>
+    <string name="layout_simple">Eenvoudig</string>
+    <string name="layout_details">Uitgebreid</string>
+    <string name="cm_filemanager_show_dirs_first">Eerst mappen</string>
+    <string name="cm_filemanager_show_hidden">Verborgen bestanden tonen</string>
+    <string name="cm_filemanager_show_system">Systeembestanden tonen</string>
+    <string name="cm_filemanager_show_symlinks">Symlinks tonen</string>
+    <string name="filesystem_info_warning_title">Geen informatie</string>
+    <string name="filesystem_info_warning_msg">Er is geen informatie beschikbaar over het bestandssysteem.</string>
+    <string name="filesystem_info_cant_be_mounted_msg">Het bestandssysteem kan niet worden gekoppeld/ontkoppeld.</string>
+    <string name="filesystem_info_mount_not_allowed_msg">Koppelen van bestandssystem is niet toegestaan in veilige modus. Tik om naar root-toegangsmodus te schakelen.</string>
+    <string name="filesystem_info_mount_failed_msg">Koppelen van het bestandssysteem mislukt. Sommige bestandssystemen, zoals op SD-kaarten, kunnen niet worden gekoppeld/ontkoppeld omdat het alleen-lezenbestandssystemen zijn.</string>
+    <string name="filesystem_info_dialog_title">Bestandssysteeminfo</string>
+    <string name="filesystem_info_dialog_tab_info">Informatie</string>
+    <string name="filesystem_info_dialog_tab_disk_usage">Schijfgebruik</string>
+    <string name="filesystem_info_dialog_status">Status:</string>
+    <string name="filesystem_info_dialog_mount_point">Aankoppelingspad:</string>
+    <string name="filesystem_info_dialog_device">Apparaat:</string>
+    <string name="filesystem_info_dialog_type">Type:</string>
+    <string name="filesystem_info_dialog_options">Opties:</string>
+    <string name="filesystem_info_dialog_dump_pass">Dump / Pass:</string>
+    <string name="filesystem_info_dialog_total_disk_usage">Totaal:</string>
+    <string name="filesystem_info_dialog_used_disk_usage">Gebruikt:</string>
+    <string name="filesystem_info_dialog_free_disk_usage">Beschikbaar:</string>
+    <string name="fso_properties_permissions_not_allowed_msg">Machtigingsbewerking is niet toegestaan in veilige modus. Tik om naar root-toegangsmodus te schakelen.</string>
+    <string name="fso_properties_failed_to_change_owner_msg">Het wijzigen van eigenaar is mislukt.\n\nOm veiligheidsredenen staan sommige bestandssystemen, zoals op SD-kaarten, een eigenaarswijziging niet toe.</string>
+    <string name="fso_properties_failed_to_change_group_msg">Het wijzigen van groep is mislukt.\n\nOm veiligheidsredenen staan sommige bestandssystemen, zoals op SD-kaarten, een groepswijziging niet toe.</string>
+    <string name="fso_properties_failed_to_change_permission_msg">Het wijzigen van machtigingen is mislukt.\n\nOm veiligheidsredenen staan sommige bestandssystemen, zoals op SD-kaarten, een wijziging van rechten niet toe.</string>
+    <string name="fso_properties_dialog_title">Eigenschappen</string>
+    <string name="fso_properties_dialog_tab_info">Info</string>
+    <string name="fso_properties_dialog_tab_permissions">Machtigingen</string>
+    <string name="fso_properties_dialog_name">Naam:</string>
+    <string name="fso_properties_dialog_parent">Bovenliggend:</string>
+    <string name="fso_properties_dialog_type">Type:</string>
+    <string name="fso_properties_dialog_category">Categorie:</string>
+    <string name="fso_properties_dialog_link">Verwijst naar:</string>
+    <string name="fso_properties_dialog_size">Grootte:</string>
+    <string name="fso_properties_dialog_contains">Inhoud:</string>
+    <string name="fso_properties_dialog_last_accessed_date">Geopend:</string>
+    <string name="fso_properties_dialog_last_modified_date">Bewerkt:</string>
+    <string name="fso_properties_dialog_last_changed_date">Gewijzigd:</string>
+    <string name="fso_properties_dialog_owner">Eigenaar:</string>
+    <string name="fso_properties_dialog_group">Groep:</string>
+    <string name="fso_properties_dialog_others">Andere:</string>
+    <plurals name="fso_properties_dialog_folders">
+        <item quantity="zero">0 mappen</item>
+        <item quantity="one">1 map</item>
+        <item quantity="other"><xliff:g id="folders">%1$d</xliff:g> mappen</item>
+    </plurals>
+    <plurals name="fso_properties_dialog_files">
+        <item quantity="zero">0 bestanden</item>
+        <item quantity="one">1 bestand</item>
+        <item quantity="other"><xliff:g id="files">%1$d</xliff:g> bestanden</item>
+    </plurals>
+    <string name="fso_properties_dialog_include_in_media_scan">Mediascan overslaan:</string>
+    <string name="fso_failed_to_allow_media_scan">Kan mediascan niet toestaan</string>
+    <string name="fso_failed_to_prevent_media_scan">Kan mediascan niet blokkeren</string>
+    <string name="fso_delete_nomedia_dir_title">.nomedia-map verwijderen</string>
+    <string name="fso_delete_nomedia_dir_body">Deze map bevat een .nomedia-map.\n\nWeet u zeker dat u deze, en de inhoud ervan, wilt verwijderen?</string>
+    <string name="fso_delete_nomedia_non_empty_title">.nomedia-bestand verwijderen</string>
+    <string name="fso_delete_nomedia_non_empty_body">Deze map bevat een .nomedia-bestand dat niet leeg is.\n\nWeet u zeker dat u het wilt verwijderen?</string>
+    <string name="history">Geschiedenis</string>
+    <string name="msgs_history_empty">Geschiedenis is leeg.</string>
+    <string name="msgs_history_unknown">Onbekend geschiedenisitem.</string>
+    <string name="search">Zoekresultaten</string>
+    <string name="search_hint">Typ zoekopdracht</string>
+    <string name="search_voice_hint">Spreek zoekopdracht</string>
+    <string name="search_error_msg">Een fout is opgetreden tijdens het zoeken. Geen resultaten gevonden.</string>
+    <string name="search_no_results_msg">Geen resultaten gevonden.</string>
+    <plurals name="search_found_items">
+        <item quantity="zero">Geen items gevonden</item>
+        <item quantity="one">1 item gevonden</item>
+        <item quantity="other"><xliff:g id="count">%d</xliff:g> items gevonden</item>
+    </plurals>
+    <string name="search_found_items_in_directory"><xliff:g id="items">%1$s</xliff:g> in <xliff:g id="path">%2$s</xliff:g></string>
+    <string name="search_terms"><![CDATA[<b>Termen:</b>]]> <xliff:g id="terms">%1$s</xliff:g></string>
+    <string name="search_few_characters_title">Zoeken bevestigen</string>
+    <string name="search_few_characters_msg">Sommige zoektermen hebben een klein aantal karakters. De bewerking zou te veel tijd of systeembronnen in beslag kunnen nemen.\n\nWeet u zeker dat u door wilt gaan?</string>
+    <string name="searching">Een ogenblik a.u.b.</string>
+    <string name="searching_action_label">Bezig met zoeken</string>
+    <string name="picker_title">Kies een bestand</string>
+    <string name="directory_picker_title">Kies een map</string>
+    <string name="editor">Bewerker</string>
+    <string name="editor_invalid_file_msg">Ongeldig bestand.</string>
+    <string name="editor_file_not_found_msg">Bestand niet gevonden.</string>
+    <string name="editor_file_exceed_size_msg">Het bestand is te groot om te openen op het apparaat.</string>
+    <string name="editor_dirty_ask_title">Afsluiten bevestigen</string>
+    <string name="editor_dirty_ask_msg">Het bestand is gewijzigd.\n\nAfsluiten zonder opslaan?</string>
+    <string name="editor_successfully_saved">Het bestand is succesvol opgeslagen.</string>
+    <string name="editor_read_only_mode">Het bestand is geopend als alleen-lezen.</string>
+    <string name="bookmarks">Favorieten</string>
+    <string name="bookmarks_home">Thuis</string>
+    <string name="bookmarks_root_folder">Hoofdmap</string>
+    <string name="bookmarks_system_folder">Systeemmap</string>
+    <string name="bookmarks_button_config_cd">Kies de beginmap.</string>
+    <string name="bookmarks_button_remove_bookmark_cd">Favoriet verwijderen.</string>
+    <string name="bookmarks_msgs_add_success">Favoriet is succesvol toegevoegd.</string>
+    <string name="initial_directory_dialog_title">Beginmap</string>
+    <string name="initial_directory_label">Kies de beginmap:</string>
+    <string name="initial_directory_relative_msg">Paden moeten beginnen met een slash.</string>
+    <string name="initial_directory_error_msg">Er is een fout opgetreden tijdens het opslaan van de beginmap.</string>
+    <string name="menu_history">Geschiedenis</string>
+    <string name="menu_bookmarks">Favorieten</string>
+    <string name="menu_search">Zoeken</string>
+    <string name="menu_settings">Instellingen</string>
+    <string name="menu_clear_history">Geschiedenis wissen</string>
+    <string name="create_copy_regexp"><xliff:g id="name">%1$s</xliff:g> - kopieer<xliff:g id="extension">%2$s</xliff:g></string>
+    <string name="create_new_compress_file_regexp"><xliff:g id="name">%1$s</xliff:g> - nieuw<xliff:g id="extension">%2$s</xliff:g></string>
+    <string name="waiting_dialog_msg">Bewerkingen uitvoeren\u2026</string>
+    <string name="waiting_dialog_copying_title">Kopiëren\u2026</string>
+    <string name="waiting_dialog_copying_msg"><![CDATA[<b>Van</b>]]> <xliff:g id="from">%1$s</xliff:g><![CDATA[<br/>]]><![CDATA[<b>Naar</b>]]> <xliff:g id="to">%2$s</xliff:g></string>
+    <string name="waiting_dialog_moving_title">Verplaatsen\u2026</string>
+    <string name="waiting_dialog_moving_msg"><![CDATA[<b>Van</b>]]> <xliff:g id="from">%1$s</xliff:g><![CDATA[<br/>]]><![CDATA[<b>Naar</b>]]> <xliff:g id="to">%2$s</xliff:g></string>
+    <string name="waiting_dialog_deleting_title">Verwijderen\u2026</string>
+    <string name="waiting_dialog_deleting_msg"><![CDATA[<b>Bestand</b>]]> <xliff:g id="file">%1$s</xliff:g></string>
+    <string name="waiting_dialog_extracting_title">Uitpakken\u2026</string>
+    <string name="waiting_dialog_extracting_msg"><![CDATA[<b>Bestand</b>]]> <xliff:g id="file">%1$s</xliff:g></string>
+    <string name="waiting_dialog_compressing_title">Comprimeren\u2026</string>
+    <string name="waiting_dialog_compressing_msg"><![CDATA[<b>Bestand</b>]]> <xliff:g id="file">%1$s</xliff:g></string>
+    <string name="waiting_dialog_analizing_msg"><![CDATA[<b>Analyseren\u2026</b>]]></string>
+    <string name="msgs_extracting_success">Het uitpakken is succesvol voltooid. De gegevens zijn uitgepakt naar <xliff:g id="destination">%1$s</xliff:g>.</string>
+    <string name="msgs_compressing_success">Het comprimeren is succesvol voltooid. De gegevens zijn gecomprimeerd naar <xliff:g id="destination">%1$s</xliff:g>.</string>
+    <string name="actions_dialog_title">Acties</string>
+    <string name="actions_menu_properties_current_folder">Eigenschappen</string>
+    <string name="actions_menu_refresh">Vernieuwen</string>
+    <string name="actions_menu_new_directory">Nieuwe map</string>
+    <string name="actions_menu_new_file">Nieuw bestand</string>
+    <string name="actions_menu_select_all">Alles selecteren</string>
+    <string name="actions_menu_deselect_all">Alles deselecteren</string>
+    <string name="actions_menu_select">Selecteren</string>
+    <string name="actions_menu_deselect">Deselecteren</string>
+    <string name="actions_menu_paste_selection">Selectie hier plakken</string>
+    <string name="actions_menu_move_selection">Selectie hier verplaatsen</string>
+    <string name="actions_menu_delete_selection">Selectie verwijderen</string>
+    <string name="actions_menu_compress_selection">Selectie comprimeren</string>
+    <string name="actions_menu_create_link">Symlink maken</string>
+    <string name="actions_menu_open">Openen</string>
+    <string name="actions_menu_open_with">Openen met</string>
+    <string name="actions_menu_execute">Uitvoeren</string>
+    <string name="actions_menu_send">Verzenden</string>
+    <string name="actions_menu_send_selection">Selectie verzenden</string>
+    <string name="actions_menu_compress">Comprimeren</string>
+    <string name="actions_menu_extract">Uitpakken</string>
+    <string name="actions_menu_delete">Verwijderen</string>
+    <string name="actions_menu_rename">Naam wijzigen</string>
+    <string name="actions_menu_create_copy">Kopie maken</string>
+    <string name="actions_menu_properties">Eigenschappen</string>
+    <string name="actions_menu_add_to_bookmarks">Toevoegen aan favorieten</string>
+    <string name="actions_menu_add_shortcut">Snelkoppeling toevoegen</string>
+    <string name="actions_menu_open_parent_folder">Bovenliggende map openen</string>
+    <string name="actions_ask_undone_operation_msg">Deze actie kan niet ongedaan worden gemaakt. Weet u zeker dat u door wilt gaan?</string>
+    <string name="input_name_dialog_label">Naam:</string>
+    <string name="input_name_dialog_message_empty_name">De naam kan niet leeg zijn.</string>
+    <string name="input_name_dialog_message_invalid_path_name">Ongeldige naam. De karakters \'<xliff:g id="invalid_characters">%1$s</xliff:g>\' zijn niet toegestaan.</string>
+    <string name="input_name_dialog_message_invalid_name">Ongeldige naam. De namen \'.\' en \'..\' zijn niet toegestaan.</string>
+    <string name="input_name_dialog_message_name_exists">Deze naam bestaat al.</string>
+    <string name="associations_dialog_title">Gekoppelde apps</string>
+    <string name="associations_dialog_remember">Selectie bewaren</string>
+    <string name="associations_dialog_openwith_title">Openen met</string>
+    <string name="associations_dialog_openwith_action">Openen</string>
+    <string name="associations_dialog_sendwith_title">Versturen met</string>
+    <string name="associations_dialog_sendwith_action">Versturen</string>
+    <string name="inline_autocomplete_tab_nothing_to_complete_msg">Niets af te ronden.</string>
+    <string name="execution_console_title">Console</string>
+    <string name="execution_console_script_name_label">Script:</string>
+    <string name="execution_console_script_execution_time_label">Tijd:</string>
+    <string name="execution_console_script_exitcode_label">Afsluitcode:</string>
+    <string name="execution_console_script_execution_time_text"><xliff:g id="seconds">%1$s</xliff:g> sec.</string>
+    <string name="mime_folder">Map</string>
+    <string name="mime_symlink">Symlink</string>
+    <string name="mime_unknown">Onbekend</string>
+    <string name="selection_one_folder"><xliff:g id="folders">%1$s</xliff:g> map geselecteerd.</string>
+    <string name="selection_other_folders"><xliff:g id="folders">%1$s</xliff:g> mappen geselecteerd.</string>
+    <string name="selection_one_file"><xliff:g id="files">%1$s</xliff:g> bestand geselecteerd.</string>
+    <string name="selection_other_files"><xliff:g id="files">%1$s</xliff:g> bestanden geselecteerd.</string>
+    <string name="selection_other_folders_one_file"><xliff:g id="folders">%1$s</xliff:g> mappen en <xliff:g id="files">%2$s</xliff:g> bestand geselecteerd.</string>
+    <string name="selection_one_folder_other_files"><xliff:g id="folder2">%1$s</xliff:g> map en <xliff:g id="file2">%2$s</xliff:g> bestand geselecteerd.</string>
+    <string name="selection_other_folders_other_files"><xliff:g id="folder2">%1$s</xliff:g> mappen en <xliff:g id="files">%2$s</xliff:g> bestanden geselecteerd.</string>
+    <string name="category_system">SYSTEEM</string>
+    <string name="category_app">APP</string>
+    <string name="category_binary">BINAIR</string>
+    <string name="category_text">TEKST</string>
+    <string name="category_document">DOCUMENT</string>
+    <string name="category_ebook">E-BOOK</string>
+    <string name="category_mail">E-MAIL</string>
+    <string name="category_compress">GECOMPRIMEERD</string>
+    <string name="category_exec">UITVOERBAAR</string>
+    <string name="category_database">DATABASE</string>
+    <string name="category_font">LETTERTYPE</string>
+    <string name="category_image">AFBEELDING</string>
+    <string name="category_audio">GELUID</string>
+    <string name="category_video">VIDEO</string>
+    <string name="category_security">BEVEILIGING</string>
+    <string name="compression_mode_title">Comprimeermodus</string>
+    <string name="shortcut_failed_msg">Snelkoppeling behandelen mislukt.</string>
+    <string name="shortcut_creation_success_msg">Snelkoppeling succesvol aangemaakt.</string>
+    <string name="shortcut_creation_failed_msg">Snelkoppeling maken mislukt.</string>
+    <string name="pref">Instellingen</string>
+    <string name="pref_general">Algemeen</string>
+    <string name="pref_search">Zoeken</string>
+    <string name="pref_themes">Thema\'s</string>
+    <string name="pref_about">Over</string>
+    <string name="pref_about_summary">Bestandsbeheerder v<xliff:g id="version">%1$s</xliff:g>\nCopyright \u00A9 2012-2013 Het CyanogenMod-project</string>
+    <string name="pref_general_behaviour_category">Algemeen</string>
+    <string name="pref_disk_usage_warning_level">Schijfgebruikswaarschuwing</string>
+    <string name="pref_disk_usage_warning_level_summary" formatted="false">Andere kleur voor schijfgebruikwidgets tonen wanneer ze <xliff:g id="level">%1$s</xliff:g> procent vrije ruimte bereiken</string>
+    <string name="pref_compute_folder_statistics">Mapstatistieken berekenen</string>
+    <string name="pref_compute_folder_statistics_on">Let op: het berekenen van mapstatistieken kost tijd en systeembronnen</string>
+    <string name="pref_use_flinger">Veegbewegingen gebruiken</string>
+    <string name="pref_use_flinger_summary">Vegen van links naar rechts gebruiken om bestanden of mappen te verwijderen.</string>
+    <string name="pref_general_advanced_settings_category">Geavanceerd</string>
+    <string name="pref_access_mode">Toegangsmodus</string>
+    <string name="pref_access_mode_safe">Veilige modus</string>
+    <string name="pref_access_mode_safe_summary">Veilige modus\n\nDe app werkt zonder machtigingen en alleen opslagvolumes (SD-kaart en USB) zijn toegankelijk</string>
+    <string name="pref_access_mode_prompt">Vragen naar toegangsmodus</string>
+    <string name="pref_access_mode_prompt_summary">Vragen naar toegangsmodus\n\nDe app heeft volledige toegang tot het bestandssysteem, maar zal toestemming vragen voor bewerking waarvoor machtigingen nodig zijn</string>
+    <string name="pref_access_mode_root">Root-toegangsmodus</string>
+    <string name="pref_access_mode_root_summary">Root-toegangsmodus\n\nLet op! Deze modus staat bewerkingen toe die het apparaat kunnen beschadingen. Het is uw eigen verantwoordelijk om te zorgen dat een bewerking veilig is</string>
+    <string name="pref_search_results_category">Resultaten</string>
+    <string name="pref_show_relevance_widget">Relevantiepictogram tonen</string>
+    <string name="pref_highlight_terms">Zoektermen markeren</string>
+    <string name="pref_sort_search_results_mode">Resultaten sorteren</string>
+    <string name="pref_sort_search_results_mode_none">Niet sorteren</string>
+    <string name="pref_sort_search_results_mode_name">Op naam</string>
+    <string name="pref_sort_search_results_mode_relevance">Op relevantie</string>
+    <string name="pref_search_privacity_category">Privacy</string>
+    <string name="pref_save_search_terms">Zoektermen opslaan</string>
+    <string name="pref_save_search_terms_on">Zoektermen worden opgeslagen en gebruikt als suggesties voor toekomstige zoekopdrachten</string>
+    <string name="pref_save_search_terms_off">Zoektermen worden niet opgeslagen</string>
+    <string name="pref_remove_saved_search_terms">Opgeslagen zoektermen verwijderen</string>
+    <string name="pref_remove_saved_search_terms_summary">Tik om alle opgeslagen zoektermen te verwijderen</string>
+    <string name="pref_remove_saved_search_terms_msg">Alle opgeslagen zoektermen zijn verwijderd.</string>
+    <string name="pref_themes_selection_category">Thema\'s</string>
+    <string name="pref_themes_set_theme">Thema instellen</string>
+    <string name="pref_themes_no_preview">Geen voorbeeld\nbeschikbaar</string>
+    <string name="pref_themes_confirmation">Thema succesvol toegepast</string>
+    <string name="pref_themes_not_found">Kan thema niet vinden</string>
+    <string name="pref_debug_traces">Foutopsporingsinformatie opslaan</string>
+    <string name="theme_default_name">Licht thema</string>
+    <string name="theme_default_description">Lichte kleuren voor de bestandsbeheerder</string>
+    <string name="themes_author">CyanogenMod</string>
+    <string name="security_warning_extract">Let op!\n\nHet uitpakken van een gecomprimeerd bestand met relatieve/absolute paden kan systeembestanden overschrijven en daardoor schadelijk zijn voor uw apparaat.\n\nWeet u zeker dat u wilt doorgaan?</string>
+    <string name="changelog_title">Changelog</string>
+    <string name="welcome_title">Welkom</string>
+    <string name="welcome_msg">Welkom bij de bestandsbeheerder van CyanogenMod\n\nHiermee kunt u uw bestandssysteem bekijken en bewerkingen uitvoeren die schadelijk kunnen zijn voor uw apparaat. Om dit te voorkomen opent de app in een veilige modus zonder machtigingen.\n\nU kunt naar de geavanceerde modus met volledige machtigingen gaan via Instellingen. De bewerkingen die u uitvoert gebeuren op eigen verantwoordelijkheid.\n\nHet CyanogenMod-project\n</string>
 </resources>

@@ -193,6 +193,9 @@
   <string name="menu_search">Ricerca</string>
   <string name="menu_settings">Impostazioni</string>
   <string name="menu_clear_history">Svuota cronologia</string>
+  <string name="menu_no_suggestions">Nessun suggerimento</string>
+  <string name="menu_word_wrap">A capo automatico</string>
+  <string name="menu_syntax_highlight">Evidenziatore sintassi</string>
   <string name="create_copy_regexp">
     <xliff:g id="name">%1$s</xliff:g> - copia<xliff:g id="extension">%2$s</xliff:g></string>
   <string name="create_new_compress_file_regexp">
@@ -304,7 +307,8 @@
   <string name="shortcut_creation_failed_msg">Impossibile creare il collegamento.</string>
   <string name="pref">Impostazioni</string>
   <string name="pref_general">Impostazioni generali</string>
-  <string name="pref_search">Opzioni di ricerca</string>
+  <string name="pref_search">Opzioni ricerca</string>
+  <string name="pref_editor">Opzioni editor</string>
   <string name="pref_themes">Temi</string>
   <string name="pref_about">About</string>
   <string name="pref_about_summary">File Manager v<xliff:g id="version">%1$s</xliff:g>
@@ -340,6 +344,20 @@
   <string name="pref_remove_saved_search_terms">Rimuovi i termini di ricerca salvati</string>
   <string name="pref_remove_saved_search_terms_summary">Tocca per rimuovere tutti i termini di ricerca salvati</string>
   <string name="pref_remove_saved_search_terms_msg">Tutti i termini di ricerca salvati sono stati cancellati.</string>
+  <string name="pref_editor_behaviour_category">Comportamento</string>
+  <string name="pref_no_suggestions">Nessun suggerimento</string>
+  <string name="pref_no_suggestions_desc">Non visualizzare i suggerimenti del dizionario durante la modifica del file</string>
+  <string name="pref_word_wrap">A capo automatico</string>
+  <string name="pref_hexdump">Dump hex file binari</string>
+  <string name="pref_hexdump_desc">Quando si apre un file binario, genera un esadecimale del file e aprilo nel visualizzatore esadecimale.</string>
+  <string name="pref_editor_syntax_highlight_category">Evidenziatore sintassi</string>
+  <string name="pref_syntax_highlight">Evidenziatore sintassi</string>
+  <string name="pref_syntax_highlight_desc">Evidenzia la sintassi del file visualizzato nell\'editor (solo quando un processore di evidenziazione della sintassi è disponibile per il tipo di file)</string>
+  <string name="pref_syntax_highlight_color_scheme">Schema colori</string>
+  <string name="pref_syntax_highlight_color_scheme_desc">Tocca per selezionare lo schema di colori per l\'evidenziazione della sintassi</string>
+  <string name="pref_syntax_sh_use_theme_default">Usa tema predefinito</string>
+  <string name="pref_syntax_sh_use_theme_default_desc">Usa l\'evidenziazione predefinita della sintassi del tema corrente</string>
+  <string name="pref_editor_sh_item_category">Elementi</string>
   <string name="pref_themes_selection_category">Temi</string>
   <string name="pref_themes_set_theme">Imposta tema</string>
   <string name="pref_themes_no_preview">Anteprima\nnon disponibile</string>
@@ -348,6 +366,19 @@
   <string name="pref_debug_traces">Registra informazioni debug</string>
   <string name="theme_default_name">Tema chiaro</string>
   <string name="theme_default_description">Un tema chiaro per il file manager di CyanogenMod.</string>
+  <string name="themes_author">CyanogenMod</string>
+  <string name="color_picker_alpha_slider_text">Alpha</string>
+  <string name="color_picker_current_text">Corrente:</string>
+  <string name="color_picker_new_text">Nuovo:</string>
+  <string name="color_picker_color">Colore:</string>
+  <string name="ash_reset_color_scheme">Tocca per ripristinare lo schema predefinito dei colori del tema</string>
+  <string name="ash_text">Testo</string>
+  <string name="ash_assignment">Assegnazione</string>
+  <string name="ash_singleline_comment">Commento singola linea</string>
+  <string name="ash_multiline_comment">Commento multi linea</string>
+  <string name="ash_keyword">Parola chiave</string>
+  <string name="ash_quoted_string">Stringa tra virgolette</string>
+  <string name="ash_variable">Variabile</string>
   <string name="security_warning_extract">Attenzione!\n\nEstrarre un archivio con percorsi relativi o assoluti può danneggiare il dispositivo in quanto possono venire sovrascritti file di sistema.\n\nContinuare?</string>
   <string name="changelog_title">Changelog</string>
   <string name="welcome_title">Benvenuti</string>

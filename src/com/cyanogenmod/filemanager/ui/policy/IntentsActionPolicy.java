@@ -145,7 +145,7 @@ public final class IntentsActionPolicy extends ActionsPolicy {
             resolveIntent(
                     ctx,
                     intent,
-                    false,
+                    true,
                     null,
                     0,
                     R.string.associations_dialog_sendwith_title,
@@ -212,7 +212,7 @@ public final class IntentsActionPolicy extends ActionsPolicy {
             resolveIntent(
                     ctx,
                     intent,
-                    false,
+                    true,
                     null,
                     0,
                     R.string.associations_dialog_sendwith_title,

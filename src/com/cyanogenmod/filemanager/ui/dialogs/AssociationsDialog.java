@@ -138,7 +138,7 @@ public class AssociationsDialog implements OnItemClickListener {
                 isPlatformSigned && this.mAllowPreferred ? View.VISIBLE : View.GONE);
         this.mGrid = (GridView)v.findViewById(R.id.associations_gridview);
         AssociationsAdapter adapter =
-                new AssociationsAdapter(this.mContext, this.mIntents, this);
+                new AssociationsAdapter(this.mContext, this.mGrid, this.mIntents, this);
         this.mGrid.setAdapter(adapter);
 
         // Ensure a default title dialog
@@ -208,21 +208,28 @@ public class AssociationsDialog implements OnItemClickListener {
      */
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        deselectAll();
-        ((ViewGroup)view).setSelected(true);
+        // If the item is selected, then just open it like ActivityChooserView
+        // If there is no parent, that means an internal call. In this case ignore it.
+        if (parent != null && ((ViewGroup)view).isSelected()) {
+            this.mDialog.getButton(DialogInterface.BUTTON_POSITIVE).performClick();
 
-        // Internal editors can be associated
-        boolean isPlatformSigned = AndroidHelper.isAppPlatformSignature(this.mContext);
-        if (isPlatformSigned && this.mAllowPreferred) {
-            ResolveInfo ri = getSelected();
-            this.mRemember.setVisibility(
-                    IntentsActionPolicy.isInternalEditor(ri) ?
-                           View.INVISIBLE :
-                           View.VISIBLE);
+        } else {
+            deselectAll();
+            ((ViewGroup)view).setSelected(true);
+
+            // Internal editors can be associated
+            boolean isPlatformSigned = AndroidHelper.isAppPlatformSignature(this.mContext);
+            if (isPlatformSigned && this.mAllowPreferred) {
+                ResolveInfo ri = getSelected();
+                this.mRemember.setVisibility(
+                        IntentsActionPolicy.isInternalEditor(ri) ?
+                               View.INVISIBLE :
+                               View.VISIBLE);
+            }
+
+            // Enable action button
+            this.mDialog.getButton(DialogInterface.BUTTON_POSITIVE).setEnabled(true);
         }
-
-        // Enable action button
-        this.mDialog.getButton(DialogInterface.BUTTON_POSITIVE).setEnabled(true);
     }
 
     /**

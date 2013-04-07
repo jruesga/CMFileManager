@@ -37,7 +37,6 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.CheckBox;
 import android.widget.GridView;
-import android.widget.ListAdapter;
 import android.widget.Toast;
 
 import com.cyanogenmod.filemanager.R;
@@ -293,10 +292,8 @@ public class AssociationsDialog implements OnItemClickListener {
                 ResolveInfo info = this.mIntents.get(i);
                 if (info.activityInfo.name.equals(this.mPreferred.activityInfo.name)) {
                     ViewGroup item = (ViewGroup)this.mGrid.getChildAt(i);
-                    if (item != null) {
-                        if (item.isSelected()) {
-                            return true;
-                        }
+                    if (item != null && item.isSelected()) {
+                        return true;
                     }
                 }
             }
@@ -308,26 +305,27 @@ public class AssociationsDialog implements OnItemClickListener {
      * Method that deselect all the items of the grid view
      */
     private void deselectAll() {
-        ListAdapter adapter = this.mGrid.getAdapter();
-        int cc = adapter.getCount();
+        int cc = this.mGrid.getChildCount();
         for (int i = 0; i < cc; i++) {
             ViewGroup item = (ViewGroup)this.mGrid.getChildAt(i);
-            item.setSelected(false);
+            if (item != null) {
+                item.setSelected(false);
+            }
         }
     }
 
     /**
-     * Method that deselect all the items of the grid view
+     * Method that returns the selected item of the grid view
      *
      * @return ResolveInfo The selected item
      * @hide
      */
     ResolveInfo getSelected() {
         AssociationsAdapter adapter = (AssociationsAdapter)this.mGrid.getAdapter();
-        int count = adapter.getCount();
-        for (int i = 0; i < count; i++) {
+        int cc = this.mGrid.getChildCount();
+        for (int i = 0; i < cc; i++) {
             ViewGroup item = (ViewGroup)this.mGrid.getChildAt(i);
-            if (item.isSelected()) {
+            if (item != null && item.isSelected()) {
                 return adapter.getItem(i);
             }
         }

@@ -17,269 +17,160 @@
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
   xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
 
-  <!-- The name of the application -->
   <string name="app_name">文件管理器</string>
-  <!-- The description of the application -->
   <string name="app_description">CyanogenMod 文件管理器.</string>
 
-  <!-- Devices types -->
   <string name="device_blockdevice">块设备</string>
   <string name="device_characterdevice">字符设备</string>
   <string name="device_namedpipe">命名管道</string>
   <string name="device_domainsocket">域套接字</string>
 
-  <!-- Mount Point States -->
   <string name="mount_point_readonly">只读</string>
   <string name="mount_point_readwrite">读写</string>
 
-  <!-- Default buttons -->
   <string name="yes">是</string>
   <string name="no">否</string>
   <string name="all">全部</string>
   <string name="overwrite">覆盖</string>
   <string name="select">选择</string>
 
-  <!-- The root directory name -->
   <string name="root_directory_name"><![CDATA[<根目录>]]></string>
-  <!-- The search result name -->
   <string name="search_result_name">搜索: <xliff:g id="terms">%1$s</xliff:g></string>
 
-  <!-- Loading waiting message -->
   <string name="loading_message">读取中\u2026</string>
 
-  <!-- Cancelled message -->
   <string name="cancelled_message">已取消.</string>
-  <!-- Error message -->
   <string name="error_message">错误.</string>
+  <string name="copy_text_cd">点击将文本复制到剪贴板</string>
+  <string name="copy_text_msg">文本已复制到剪贴板</string>
 
-  <!-- Warning dialog title -->
   <string name="warning_title">警告</string>
-  <!-- Error dialog title -->
   <string name="error_title">检测到错误</string>
-  <!-- Confirm operation dialog title -->
   <string name="confirm_operation">确认此操作</string>
-  <!-- Confirm overwrite dialog title -->
   <string name="confirm_overwrite">确认覆盖</string>
-  <!-- Confirm deletion dialog title -->
   <string name="confirm_deletion">确认删除</string>
 
-  <!--  A console couldn't be created. Ask the user to change the access mode. Dialog Title -->
   <string name="msgs_change_to_prompt_access_mode_title">确认切换</string>
-  <!--  A console couldn't be created. Ask the user to change the access mode. Dialog Message -->
   <string name="msgs_change_to_prompt_access_mode_msg">
     无法在 Root 访问模式下运行. 正在切换至安全模式.\n\n应用此更改?</string>
 
-  <!-- A console couldn't be created. Without privileges, the application won't work -->
   <string name="msgs_cant_create_console">无法得到运行需要的权限.</string>
-  <!-- The message shown when an allocation of a privileged console fails, and a non
-       privileged is allocated -->
   <string name="msgs_privileged_console_alloc_failed">无法在 Root 访问模式下运行. 正在切换至安全模式.</string>
-  <!-- The selected setting was not applied or stored -->
   <string name="msgs_settings_save_failure">设置无法被应用与保存.</string>
-  <!-- The initial directory has an invalid or inaccessible reference -->
   <string name="msgs_settings_invalid_initial_directory">初始文件夹 \"<xliff:g id="initial_dir">%1$s</xliff:g>\" 是无效的. 切换至 Root 文件夹.</string>
 
-  <!-- Success -->
   <string name="msgs_success">操作已成功的完成.</string>
-  <!-- Unknown error -->
   <string name="msgs_unknown">检测到了一个错误. 此操作未能成功完成.</string>
-  <!-- When an operation requires elevated privileged (normally caused for the use of a
-       non-privileged console) -->
   <string name="msgs_insufficient_permissions">此操作需要更高的权限. 请尝试切换到 Root 访问模式.</string>
-  <!-- The file or directory was not found -->
   <string name="msgs_file_not_found">未找到文件或文件夹.</string>
-  <!-- The command reference couldn't be created (not found or invalid definition)
-       (normally caused by a development error) -->
   <string name="msgs_command_not_found">此操作的命令未被找到或带有无效的定义.</string>
-  <!-- I/O exception -->
   <string name="msgs_io_failed">读/写失败.</string>
-  <!-- Operation timeout detected -->
   <string name="msgs_operation_timeout">操作超时.</string>
-  <!-- The operation returns an invalid exit code -->
   <string name="msgs_operation_failure">操作失败.</string>
-  <!-- A console couldn't be allocated -->
   <string name="msgs_console_alloc_failure">发生了内部错误.</string>
-  <!-- An operation can't be cancelled -->
   <string name="msgs_operation_can_not_be_cancelled">无法取消此操作.</string>
-  <!-- The operation requieres mount the file system prior to execute the command -->
   <string name="msgs_read_only_filesystem">只读文件系统. 请在再次尝试操作之前使用读写模式挂载文件系统.</string>
-  <!-- Illegal argument (normally caused by a development error when calling internal api) -->
   <string name="msgs_illegal_argument">非法参数. 调用失败.</string>
-  <!-- The operation will cause inconsistencies -->
   <string name="msgs_unresolved_inconsistencies">此操作不被允许，因为它会产生不一致性.</string>
-  <!-- Operation not permitted in current directory -->
   <string name="msgs_operation_not_allowed_in_current_directory">
     此操作在当前所在的文件夹是不被允许的.\n\n目标文件夹不能为来源文件夹或来源的子文件夹</string>
 
-  <!-- The advice message prior to exit the application -->
   <string name="msgs_push_again_to_exit">再次点击即可退出.</string>
 
-  <!-- There is no registered application that can handle the mime-type -->
   <string name="msgs_not_registered_app">没有任何与此类型文件关联的程序.</string>
 
-  <!-- Overwrite files? -->
   <string name="msgs_overwrite_files">
     有些文件在目标文件夹内已存在.\n\n是否覆盖?</string>
 
-  <!-- The association of an action to the application failed -->
   <string name="msgs_action_association_failed">程序与操作的关联失败.</string>
 
-  <!-- An operation requires elevated privileged. Ask the user. -->
   <string name="advise_insufficient_permissions">此操作需要提升权限.\n\n
     您想切换至超级用户访问模式吗?</string>
 
-
-  <!-- The parent directory of the current directory in navigation view -->
   <string name="parent_dir">父目录</string>
-  <!-- External storage descripton -->
   <string name="external_storage">外置存储</string>
-  <!-- Usb storage descripton -->
   <string name="usb_storage">USB 存储</string>
 
-  <!-- ActionBar Buttons * FileSystem -->
   <string name="actionbar_button_filesystem_cd">文件系统信息</string>
-  <!-- ActionBar Buttons * Sort Mode -->
   <string name="actionbar_button_sort_mode_cd">排序方式</string>
-  <!-- ActionBar Buttons * Layout Mode -->
   <string name="actionbar_button_layout_mode_cd">布局方式</string>
-  <!-- ActionBar Buttons * Other View Options -->
   <string name="actionbar_button_other_view_options_cd">其他视图选项</string>
-  <!-- ActionBar Buttons * Done -->
   <string name="actionbar_button_selection_done_cd">完成</string>
-  <!-- ActionBar Buttons * Actions -->
   <string name="actionbar_button_actions_cd">操作</string>
-  <!-- ActionBar Buttons * History -->
   <string name="actionbar_button_history_cd">历史</string>
-  <!-- ActionBar Buttons * Bookmarks -->
   <string name="actionbar_button_bookmarks_cd">书签</string>
-  <!-- ActionBar Buttons * Search -->
   <string name="actionbar_button_search_cd">搜索</string>
-  <!-- ActionBar Buttons * Overflow -->
   <string name="actionbar_button_overflow_cd">更多选项</string>
-  <!-- ActionBar Buttons * Storage volumes -->
   <string name="actionbar_button_storage_cd">存储卷</string>
-  <!-- ActionBar Buttons * Save -->
   <string name="actionbar_button_save_cd">保存</string>
 
-  <!-- Navigation View * Sort * Sort by name (ascending) -->
   <string name="sort_by_name_asc">按名称排列 &#x25B2;</string>
-  <!-- Navigation View * Sort * Sort by name (descending) -->
   <string name="sort_by_name_desc">按名称排列 &#x25BC;</string>
-  <!-- Navigation View * Sort * Sort by date (ascending) -->
   <string name="sort_by_date_asc">按日期排列 &#x25B2;</string>
-  <!-- Navigation View * Sort * Sort by date (descending) -->
   <string name="sort_by_date_desc">按日期排列 &#x25BC;</string>
 
-  <!-- Navigation View * Layout * Icons -->
   <string name="layout_icons">图标</string>
-  <!-- Navigation View * Layout * Simple -->
   <string name="layout_simple">简单</string>
-  <!-- Navigation View * Layout * Details -->
   <string name="layout_details">详细信息</string>
 
-  <!-- Navigation View * View * Show folders first -->
   <string name="cm_filemanager_show_dirs_first">文件夹优先显示</string>
-  <!-- Navigation View * View * Show hidden files option -->
   <string name="cm_filemanager_show_hidden">显示隐藏文件</string>
-  <!-- Navigation View * View * Show system files option -->
   <string name="cm_filemanager_show_system">显示系统文件</string>
-  <!-- Navigation View * View * Show symlinks option -->
   <string name="cm_filemanager_show_symlinks">显示符号链接</string>
 
-  <!-- Filesystem Info (no data). Dialog title -->
   <string name="filesystem_info_warning_title">无信息</string>
-  <!-- Filesystem Info (no data). Dialog message -->
   <string name="filesystem_info_warning_msg">没有关于此文件系统可用的信息.</string>
-  <!-- Filesystem Info * Filesystem couldn't be mounted -->
   <string name="filesystem_info_cant_be_mounted_msg">无法挂载或卸载文件系统.</string>
-  <!-- Filesystem Info * Not allowed message -->
   <string name="filesystem_info_mount_not_allowed_msg">在安全模式下不允许挂载文件系统的操作. 点击切换至超级用户访问模式.</string>
-  <!-- Filesystem Info * Mount failed -->
   <string name="filesystem_info_mount_failed_msg">文件系统挂载失败.
     有些文件系统 (例如 SD 存储卡) 是被设计为只读文件系统的, 所以不能被挂载或卸载.</string>
-  <!-- Filesystem Info Dialog * Title -->
   <string name="filesystem_info_dialog_title">文件系统信息</string>
-  <!-- Filesystem Info Dialog * Tab * Info -->
   <string name="filesystem_info_dialog_tab_info">信息</string>
-  <!-- Filesystem Info Dialog * Tab * Disk Usage -->
   <string name="filesystem_info_dialog_tab_disk_usage">磁盘使用情况</string>
-  <!-- Filesystem Info Dialog * Status Label -->
   <string name="filesystem_info_dialog_status">状态:</string>
-  <!-- Filesystem Info Dialog * Mount Point Label -->
   <string name="filesystem_info_dialog_mount_point">挂载点:</string>
-  <!-- Filesystem Info Dialog * Device Label -->
   <string name="filesystem_info_dialog_device">设备:</string>
-  <!-- Filesystem Info Dialog * Type Label -->
   <string name="filesystem_info_dialog_type">类型:</string>
-  <!-- Filesystem Info Dialog * Options Label -->
   <string name="filesystem_info_dialog_options">选项:</string>
-  <!-- Filesystem Info Dialog * Dump/Pass Label -->
   <string name="filesystem_info_dialog_dump_pass">转储 / 传递:</string>
-  <!-- Filesystem Info Dialog * Total Disk Usage -->
   <string name="filesystem_info_dialog_total_disk_usage">总数:</string>
-  <!-- Filesystem Info Dialog * Used Disk Usage -->
   <string name="filesystem_info_dialog_used_disk_usage">已用:</string>
-  <!-- Filesystem Info Dialog * Free Disk Usage -->
   <string name="filesystem_info_dialog_free_disk_usage">可用:</string>
 
-
-  <!-- Fso Properties * Not allowed message -->
   <string name="fso_properties_permissions_not_allowed_msg">在安全模式下不允许做出改变权限的操作. 点击即可切换至超级用户访问模式.</string>
-  <!-- Fso Properties * Failed to change owner to fso -->
   <string name="fso_properties_failed_to_change_owner_msg">更改拥有者失败.\n\n
     由于安全因素, 有些文件系统 (例如 SD 存储卡) 不允许更改拥有者的操作.</string>
-  <!-- Fso Properties * Failed to change group to fso -->
   <string name="fso_properties_failed_to_change_group_msg">更改群组失败.\n\n
     由于安全因素, 有些文件系统 (例如 SD 存储卡) 不允许更改群组的操作.</string>
-  <!-- Fso Properties * Failed to change group to fso -->
   <string name="fso_properties_failed_to_change_permission_msg">更改文件权限失败.\n\n
     由于安全因素, 在有些文件系统 (例如 SD 存储卡) 不允许更改权限的操作.</string>
-  <!-- Fso Properties Dialog * Title -->
   <string name="fso_properties_dialog_title">属性</string>
-  <!-- Fso Properties Dialog * Tab * Info -->
   <string name="fso_properties_dialog_tab_info">信息</string>
-  <!-- Fso Properties Dialog * Tab * Permissions -->
   <string name="fso_properties_dialog_tab_permissions">权限</string>
-  <!-- Fso Properties Dialog * Name Label -->
   <string name="fso_properties_dialog_name">名字:</string>
-  <!-- Fso Properties Dialog * Parent Folder Label -->
   <string name="fso_properties_dialog_parent">父目录:</string>
-  <!-- Fso Properties Dialog * Type Label -->
   <string name="fso_properties_dialog_type">类型:</string>
-  <!-- Fso Properties Dialog * Category Label -->
   <string name="fso_properties_dialog_category">类别:</string>
-  <!-- Fso Properties Dialog * Link Label -->
   <string name="fso_properties_dialog_link">链接:</string>
-  <!-- Fso Properties Dialog * Size Label -->
   <string name="fso_properties_dialog_size">大小:</string>
-  <!-- Fso Properties Dialog * Contains Label -->
   <string name="fso_properties_dialog_contains">包含:</string>
   <string name="fso_properties_dialog_last_accessed_date">最后访问:</string>
-  <!-- Fso Properties Dialog * Last Modified Time Label -->
   <string name="fso_properties_dialog_last_modified_date">最后修改:</string>
-  <!-- Fso Properties Dialog * Last Changed Time -->
   <string name="fso_properties_dialog_last_changed_date">最后改变:</string>
-  <!-- Fso Properties Dialog * Owner Label -->
-  <!-- Fso Properties Dialog * Owner Label -->
   <string name="fso_properties_dialog_owner">拥有者:</string>
-  <!-- Fso Properties Dialog * Group Label -->
   <string name="fso_properties_dialog_group">群组:</string>
-  <!-- Fso Properties Dialog * Others Label -->
   <string name="fso_properties_dialog_others">其它:</string>
-  <!-- Fso Properties Dialog * Folders -->
   <plurals name="fso_properties_dialog_folders">
     <item quantity="zero">0 个文件夹</item>
     <item quantity="one">1 个文件夹</item>
     <item quantity="other"><xliff:g id="folders">%1$d</xliff:g> 个文件夹</item>
   </plurals>
-  <!-- Fso Properties Dialog * Files -->
   <plurals name="fso_properties_dialog_files">
     <item quantity="zero">0 个文件</item>
     <item quantity="one">1 个文件</item>
     <item quantity="other"><xliff:g id="files">%1$d</xliff:g> 个文件</item>
   </plurals>
 
-  <!-- Fso Properties Dialog * Skip media scan -->
   <string name="fso_properties_dialog_include_in_media_scan">跳过媒体扫描:</string>
   <string name="fso_failed_to_allow_media_scan">允许媒体扫描失败</string>
   <string name="fso_failed_to_prevent_media_scan">防止媒体扫描失败</string>
@@ -288,258 +179,160 @@
   <string name="fso_delete_nomedia_non_empty_title">删除 .nomedia 文件</string>
   <string name="fso_delete_nomedia_non_empty_body">此目录包含这一个非空白的 .nomedia 文件.\n\n您确定要删除此文件吗?</string>
 
-  <!-- History * History activity title -->
   <string name="history">历史</string>
-  <!-- History * The history is empty -->
   <string name="msgs_history_empty">历史记录项为空.</string>
-  <!-- History * The history reference is not in the actual history list -->
   <string name="msgs_history_unknown">未知的历史记录项.</string>
 
-  <!-- Search * Search activity title -->
   <string name="search">搜索结果</string>
-  <!-- Search * Search hint message -->
   <string name="search_hint">输入您的搜索内容</string>
-  <!-- Search * Voice search hint message -->
   <string name="search_voice_hint">说出您的搜索内容</string>
-  <!-- Search * Search error message -->
   <string name="search_error_msg">搜索时发生了错误. 未找到任何结果.</string>
-  <!-- Search * Search no results message -->
   <string name="search_no_results_msg">未找到任何结果.</string>
-  <!-- Search * Search found items -->
   <plurals name="search_found_items">
     <item quantity="zero">未找到任何结果</item>
     <item quantity="one">找到了 1 项</item>
     <item quantity="other">找到了 <xliff:g id="count">%d</xliff:g> 项</item>
   </plurals>
-  <!-- Search * Number of items found in directory -->
   <string name="search_found_items_in_directory">在 <xliff:g id="path">%2$s</xliff:g> 内<xliff:g id="items">%1$s</xliff:g></string>
 
-  <!-- Search * Search query terms -->
   <string name="search_terms"><![CDATA[<b>关键词:</b>]]> <xliff:g id="terms">%1$s</xliff:g></string>
-  <!-- Search * Confirm search -->
   <string name="search_few_characters_title">确认搜索</string>
-  <!-- Search * Some terms of the search are too small. The operation could be very costly -->
   <string name="search_few_characters_msg">有些关键词包涵了过少的字符. 此操作可能会花费较长的时间与较多的系统资源.\n\n您确定要继续吗?</string>
-  <!-- Search * Searching dialog title -->
   <string name="searching">请稍等\u2026</string>
-  <!-- Search * Searching label -->
   <string name="searching_action_label">搜索进行中</string>
 
-  <!-- Picker Activity * Dialog title -->
   <string name="picker_title">选择一个文件</string>
   <string name="directory_picker_title">选择一个目录</string>
 
-  <!-- Editor * Editor activity title -->
   <string name="editor">编辑器</string>
-  <!-- Editor * Invalid file message -->
   <string name="editor_invalid_file_msg">无效的文件.</string>
-  <!-- Editor * File not found message -->
   <string name="editor_file_not_found_msg">未找到文件.</string>
-  <!-- Editor * File size exceed the limit -->
   <string name="editor_file_exceed_size_msg">此文件过于庞大, 无法在此设备上打开.</string>
-  <!-- Editor * Editor is dirty, ask the user * Dialog title -->
   <string name="editor_dirty_ask_title">确认退出</string>
-  <!-- Editor * Editor is dirty, ask the user * Dialog message -->
   <string name="editor_dirty_ask_msg">还有尚未保存的更改.\n\n丢弃更改并退出?</string>
-  <!-- Editor * Save operation success -->
   <string name="editor_successfully_saved">文件已被成功的保存.</string>
-  <!-- Editor * Read-only file mode -->
   <string name="editor_read_only_mode">文件已用只读模式打开.</string>
+  <string name="dumping_message">正在生成十六进制转储\u2026</string>
+  <string name="displaying_message">正在显示\u2026</string>
 
-  <!-- Bookmarks * Bookmarks activity title -->
   <string name="bookmarks">书签</string>
-  <!-- Bookmarks * Bookmark name * Home -->
   <string name="bookmarks_home">Home</string>
-  <!-- Bookmarks * Bookmark name * Root folder -->
   <string name="bookmarks_root_folder">根目录</string>
-  <!-- Bookmarks * Bookmark name * System folder -->
   <string name="bookmarks_system_folder">系统文件夹</string>
-  <!-- Bookmarks * Bookmark name * Button * Initial directory content description -->
   <string name="bookmarks_button_config_cd">设置初始文件夹.</string>
-  <!-- Bookmarks * Bookmark name * Button * Remove bookmark content description -->
   <string name="bookmarks_button_remove_bookmark_cd">移除书签.</string>
-  <!-- Bookmarks * Bookmarks * Actions * Bookmark successfully added -->
   <string name="bookmarks_msgs_add_success">书签已成功加入.</string>
 
-  <!-- Initial directory dialog title -->
   <string name="initial_directory_dialog_title">初始文件夹</string>
-  <!-- Initial directory label -->
   <string name="initial_directory_label">选择初始文件夹:</string>
-  <!-- Initial directory is relative -->
   <string name="initial_directory_relative_msg">不允许相对性路径.</string>
-  <!-- Initial directory error message -->
   <string name="initial_directory_error_msg">保存初始文件夹时发生了错误.</string>
 
-  <!-- Menu * Navigation * History -->
   <string name="menu_history">历史</string>
-  <!-- Menu * Navigation * Bookmarks -->
   <string name="menu_bookmarks">书签</string>
-  <!-- Menu * Navigation * Search -->
   <string name="menu_search">搜索</string>
-  <!-- Menu * Navigation * Settings -->
   <string name="menu_settings">设置</string>
-  <!-- Menu * History * Clear history -->
   <string name="menu_clear_history">清除历史</string>
+  <string name="menu_no_suggestions">没有建议</string>
+  <string name="menu_word_wrap">自动换行</string>
+  <string name="menu_syntax_highlight">语法高亮</string>
 
-  <!-- Regular expression for create copy action -->
   <string name="create_copy_regexp">
     <xliff:g id="name">%1$s</xliff:g> - 副本<xliff:g id="extension">%2$s</xliff:g></string>
-  <!-- Regular expression for new compressed file -->
   <string name="create_new_compress_file_regexp">
     <xliff:g id="name">%1$s</xliff:g> - 新建<xliff:g id="extension">%2$s</xliff:g></string>
 
-  <!-- Waiting dialog * Performing operation message -->
   <string name="waiting_dialog_msg">正在执行操作\u2026</string>
-  <!-- Waiting dialog * Copying title -->
   <string name="waiting_dialog_copying_title">正在复制\u2026</string>
-  <!-- Waiting dialog * Copying message -->
   <string name="waiting_dialog_copying_msg">
     <![CDATA[<b>从</b>]]> <xliff:g id="from">%1$s</xliff:g><![CDATA[<br/>]]>
     <![CDATA[<b>到</b>]]> <xliff:g id="to">%2$s</xliff:g></string>
-  <!-- Waiting dialog * Moving title -->
   <string name="waiting_dialog_moving_title">正在移动\u2026</string>
-  <!-- Waiting dialog * Moving message -->
   <string name="waiting_dialog_moving_msg">
     <![CDATA[<b>从</b>]]> <xliff:g id="from">%1$s</xliff:g><![CDATA[<br/>]]>
     <![CDATA[<b>到</b>]]> <xliff:g id="to">%2$s</xliff:g></string>
-  <!-- Waiting dialog * Deleting title -->
   <string name="waiting_dialog_deleting_title">正在删除\u2026</string>
-  <!-- Waiting dialog * Deleting message -->
   <string name="waiting_dialog_deleting_msg">
     <![CDATA[<b>文件</b>]]> <xliff:g id="file">%1$s</xliff:g></string>
-  <!-- Waiting dialog * Extracting title -->
   <string name="waiting_dialog_extracting_title">正在解压\u2026</string>
-  <!-- Waiting dialog * Extracting message -->
   <string name="waiting_dialog_extracting_msg">
     <![CDATA[<b>File</b>]]> <xliff:g id="file">%1$s</xliff:g></string>
-  <!-- Waiting dialog * Extracting title -->
   <string name="waiting_dialog_compressing_title">正在压缩\u2026</string>
-  <!-- Waiting dialog * Extracting message -->
   <string name="waiting_dialog_compressing_msg">
     <![CDATA[<b>文件</b>]]> <xliff:g id="file">%1$s</xliff:g></string>
-  <!-- Waiting dialog * Initializing the dialog -->
   <string name="waiting_dialog_analizing_msg">
     <![CDATA[<b>正在分析\u2026</b>]]></string>
-  <!-- Extracting * Success message -->
   <string name="msgs_extracting_success">
     解压操作成功. 数据已被解压到:
     <xliff:g id="destination">%1$s</xliff:g>.</string>
-  <!-- Compressing * Success message -->
   <string name="msgs_compressing_success">
     压缩操作成功. 数据已被压缩到:
     <xliff:g id="destination">%1$s</xliff:g>.</string>
 
-  <!-- Actions Dialog * Title -->
   <string name="actions_dialog_title">操作</string>
-  <!-- Actions Dialog * Menu * Properties of current folder -->
   <string name="actions_menu_properties_current_folder">属性</string>
-  <!-- Actions Dialog * Menu * Refresh -->
   <string name="actions_menu_refresh">刷新</string>
-  <!-- Actions Dialog * Menu * New directory -->
   <string name="actions_menu_new_directory">新建文件夹</string>
-  <!-- Actions Dialog * Menu * New file -->
   <string name="actions_menu_new_file">新建文件</string>
-  <!-- Actions Dialog * Menu * Select all -->
   <string name="actions_menu_select_all">全部选择</string>
-  <!-- Actions Dialog * Menu * Deselect all -->
   <string name="actions_menu_deselect_all">取消全选</string>
-  <!-- Actions Dialog * Menu * Select -->
   <string name="actions_menu_select">选择</string>
-  <!-- Actions Dialog * Menu * Deselect -->
   <string name="actions_menu_deselect">取消选择</string>
-  <!-- Actions Dialog * Menu * Paste selection -->
   <string name="actions_menu_paste_selection">粘贴选择项到这</string>
-  <!-- Actions Dialog * Menu * Move selection -->
   <string name="actions_menu_move_selection">移动选择项到这</string>
-  <!-- Actions Dialog * Menu * Delete selection -->
   <string name="actions_menu_delete_selection">删除选择项</string>
-  <!-- Actions Dialog * Menu * Compress selection -->
   <string name="actions_menu_compress_selection">压缩选择项</string>
-  <!-- Actions Dialog * Menu * Create link -->
   <string name="actions_menu_create_link">创建链接</string>
-  <!-- Actions Dialog * Menu * Open -->
   <string name="actions_menu_open">打开</string>
-  <!-- Actions Dialog * Menu * Open with -->
   <string name="actions_menu_open_with">打开方式</string>
-  <!-- Actions Dialog * Menu * Execute -->
   <string name="actions_menu_execute">执行</string>
-  <!-- Actions Dialog * Menu * Send -->
   <string name="actions_menu_send">发送</string>
-  <!-- Actions Dialog * Menu * Send selection -->
   <string name="actions_menu_send_selection">发送选择项</string>
-  <!-- Actions Dialog * Menu * Compress -->
   <string name="actions_menu_compress">压缩</string>
-  <!-- Actions Dialog * Menu * Extract -->
   <string name="actions_menu_extract">解压</string>
-  <!-- Actions Dialog * Menu * Delete -->
   <string name="actions_menu_delete">删除</string>
-  <!-- Actions Dialog * Menu * Rename -->
   <string name="actions_menu_rename">重命名</string>
-  <!-- Actions Dialog * Menu * Create copy -->
   <string name="actions_menu_create_copy">创建副本</string>
-  <!-- Actions Dialog * Menu * Properties -->
   <string name="actions_menu_properties">属性</string>
-  <!-- Actions Dialog * Menu * Add to bookmarks -->
   <string name="actions_menu_add_to_bookmarks">添加到书签</string>
-  <!-- Actions Dialog * Menu * Add shortcut -->
   <string name="actions_menu_add_shortcut">添加快捷方式</string>
-  <!-- Actions Dialog * Menu * Open parent folder -->
   <string name="actions_menu_open_parent_folder">打开父目录</string>
+  <string name="actions_menu_compute_checksum">计算校验和</string>
 
-  <!-- Actions * Ask user prior to do an undone operation. Dialog message -->
   <string name="actions_ask_undone_operation_msg">
     此操作无法撤销. 您确定要继续?</string>
 
-  <!-- Enter Name Dialog * Label -->
   <string name="input_name_dialog_label">名称:</string>
-  <!-- Enter Name Dialog * Message * Empty name -->
   <string name="input_name_dialog_message_empty_name">名称不能为空.</string>
-  <!-- Enter Name Dialog * Message * Invalid name -->
   <string name="input_name_dialog_message_invalid_path_name">无效的名称. 名称中不能包涵以下字符: \'<xliff:g id="invalid_characters">%1$s</xliff:g>\'.</string>
-  <!-- Enter Name Dialog * Message * Invalid name -->
   <string name="input_name_dialog_message_invalid_name">无效的名称. 名称中不能包涵 \'.\' 与
     \'..\' .</string>
-  <!-- Enter Name Dialog * Message * Name exists -->
   <string name="input_name_dialog_message_name_exists">此名称已存在.</string>
 
-  <!-- Associations Dialog * Title -->
   <string name="associations_dialog_title">关联</string>
-  <!-- Associations Dialog * Remember the user action -->
   <string name="associations_dialog_remember">记住此选择</string>
-  <!-- Associations Dialog * Open with Title -->
   <string name="associations_dialog_openwith_title">打开方式</string>
-    <!-- Associations Dialog * Open action (button title) -->
   <string name="associations_dialog_openwith_action">打开</string>
-  <!-- Associations Dialog * Send with Title -->
   <string name="associations_dialog_sendwith_title">发送方式</string>
-    <!-- Associations Dialog * Send action (button title) -->
   <string name="associations_dialog_sendwith_action">发送</string>
 
-  <!-- Inline Autocomplete Widget * Tab message nothing to complete -->
   <string name="inline_autocomplete_tab_nothing_to_complete_msg">没有需要完成的项目.</string>
 
-  <!-- Execution console * Title -->
   <string name="execution_console_title">控制台</string>
-  <!-- Execution console * The script name label -->
   <string name="execution_console_script_name_label">脚本:</string>
-  <!-- Execution console * The script execution time label -->
   <string name="execution_console_script_execution_time_label">时间:</string>
-  <!-- Execution console * The script exit code label -->
   <string name="execution_console_script_exitcode_label">退出代码:</string>
-  <!-- Execution console * The script execution time seconds string -->
   <string name="execution_console_script_execution_time_text">
     <xliff:g id="seconds">%1$s</xliff:g> 秒</string>
 
-  <!-- Mime/Types * Folder -->
+  <string name="compute_checksum_title">计算检验和</string>
+  <string name="compute_checksum_filename_label">文件:</string>
+  <string name="compute_checksum_computing_checksum_msg">正在计算检验和\u2026</string>
+
   <string name="mime_folder">文件夹</string>
-  <!-- Mime/Types * Symlink -->
   <string name="mime_symlink">符号链接</string>
-  <!-- Mime/Types * Unknown -->
   <string name="mime_unknown">未知</string>
 
-  <!-- Selection. All possibilities. [1 folder; >1 folders; 1 file; >1 files;
-     >1 folders and 1 file; 1 folder and >1 files; >1 folders and >1 files]
-     Avoid using plural item because is more complex to achieved all strings -->
   <string name="selection_one_folder"><xliff:g id="folders">%1$s</xliff:g> 个文件夹被选.</string>
   <string name="selection_other_folders"><xliff:g id="folders">%1$s</xliff:g> 个文件夹被选.</string>
   <string name="selection_one_file"><xliff:g id="files">%1$s</xliff:g> 个文件被选.</string>
@@ -550,7 +343,6 @@
     <xliff:g id="file2">%2$s</xliff:g> 个文件被选.</string>
   <string name="selection_other_folders_other_files"><xliff:g id="folder2">%1$s</xliff:g> 个文件夹与 <xliff:g id="files">%2$s</xliff:g> 个文件被选.</string>
 
-  <!-- Category descriptions -->
   <string name="category_system">系统</string>
   <string name="category_app">程序</string>
   <string name="category_binary">二进制</string>
@@ -567,124 +359,98 @@
   <string name="category_video">视频</string>
   <string name="category_security">安全</string>
 
-  <!-- Compression * Compression modes dialog title -->
   <string name="compression_mode_title">压缩方式</string>
 
-  <!-- Shortcut. Failed to handle the shortcut -->
   <string name="shortcut_failed_msg">快捷方式处理失败.</string>
-  <!-- Shortcut. The shortcut was created -->
   <string name="shortcut_creation_success_msg">快捷方式创建成功.</string>
-  <!-- Shortcut. The shortcut wasn't created -->
   <string name="shortcut_creation_failed_msg">快捷方式创建失败.</string>
 
-  <!-- Preferences title -->
   <string name="pref">设置</string>
-  <!-- Preferences * General title -->
   <string name="pref_general">常规设置</string>
-  <!-- Preferences * Search title -->
   <string name="pref_search">搜索选项</string>
-  <!-- Preferences * Themes title -->
+  <string name="pref_editor">编辑器选项</string>
   <string name="pref_themes">主题</string>
-  <!-- Preferences * About title -->
   <string name="pref_about">关于</string>
-  <!-- Preferences * About summary -->
   <string name="pref_about_summary">文件管理器 v<xliff:g id="version">%1$s</xliff:g>
     \n版权所有 \u00A9 2013 CyanogenMod</string>
 
-  <!-- Preferences * General * Behaviour category -->
   <string name="pref_general_behaviour_category">常规</string>
-  <!-- Preferences * General * Case sensitive sort title -->
   <string name="pref_case_sensitive_sort">区分大小写</string>
-  <!-- Preferences * General * Case sensitive sort and navigating summary -->
   <string name="pref_case_sensitive_sort_summary">导航或排列搜索结果时区分大小写</string>
-  <!-- Preferences * General *Disk usage warning level title -->
   <string name="pref_disk_usage_warning_level">磁盘使用警告</string>
-  <!-- Preferences * General * Disk usage warning level summary -->
-  <!-- FIXME Use "percent" instead of "%" symbol, because it make crash the app on getSummary
-       of ListPreference. This should be fixed in frameworks base prior to be added here. -->
   <string name="pref_disk_usage_warning_level_summary" formatted="false">当磁盘使用量到达百分之 <xliff:g id="level">%1$s</xliff:g> 的可用空间时, 在磁盘使用小部件中显示不同的颜色</string>
-  <!-- Preferences * General * Compute folder statistics title -->
   <string name="pref_compute_folder_statistics">计算文件夹统计数据</string>
-  <!-- Preferences * General * Compute folder statistics summary on -->
   <string name="pref_compute_folder_statistics_on">警告! 文件夹统计数据的计将算会花费较长的时间与较多的系统资源</string>
-  <!-- Preferences * General * Use flinger detection -->
   <string name="pref_use_flinger">使用滑动手势</string>
-  <!-- Preferences * General * Use flinger detection summary -->
   <string name="pref_use_flinger_summary">向左到右滑动将会删除文件或文件夹.</string>
-  <!-- Preferences * General * Advanced settings category -->
   <string name="pref_general_advanced_settings_category">高级</string>
-  <!-- Preferences * General * Access mode -->
   <string name="pref_access_mode">访问模式</string>
-  <!-- Preferences * General * Safe mode -->
   <string name="pref_access_mode_safe">安全模式</string>
-  <!-- Preferences * General * Safe mode summary -->
   <string name="pref_access_mode_safe_summary">安全模式\n\n程序目前在没有特权的情况下运行, 并且只能访问存储卷文件系统 (例如 SD 存储与 USB) .</string>
-  <!-- Preferences * General * Prompt user mode -->
   <string name="pref_access_mode_prompt">用户提示模式</string>
-  <!-- Preferences * General * Prompt user mode summary -->
   <string name="pref_access_mode_prompt_summary">用户提示模式\n\n程序目前有完全访问文件系统的权限, 但会在执行任何需要特权的操作前提示用户.</string>
-  <!-- Preferences * General * Root access mode -->
   <string name="pref_access_mode_root">超级用户访问模式</string>
-  <!-- Preferences * General * Root access mode summary -->
   <string name="pref_access_mode_root_summary">超级用户访问模式\n\n警告! 此模式将允许可能导致系统损伤的操作. 您需要确认自己操作的安全性.</string>
-  <!-- Preferences * Search * Results category -->
   <string name="pref_search_results_category">结果</string>
-  <!-- Preferences * Search * Show relevance widget -->
   <string name="pref_show_relevance_widget">显示相关部件</string>
-  <!-- Preferences * Search * Highlight search terms -->
   <string name="pref_highlight_terms">高亮搜索关键词</string>
-  <!-- Preferences * Search * Sort results mode -->
   <string name="pref_sort_search_results_mode">搜索结果排列方式</string>
-  <!-- Preferences * Search * Sort results mode. None -->
   <string name="pref_sort_search_results_mode_none">无序</string>
-  <!-- Preferences * Search * Sort results mode. None -->
   <string name="pref_sort_search_results_mode_name">按名称</string>
-  <!-- Preferences * Search * Sort results mode. Relevance -->
   <string name="pref_sort_search_results_mode_relevance">按相关性</string>
-  <!-- Preferences * Search * Privacity category -->
   <string name="pref_search_privacity_category">隐私</string>
-  <!-- Preferences * Search * Save search terms -->
   <string name="pref_save_search_terms">保存关键词</string>
-  <!-- Preferences * Search * Save search terms summary on -->
   <string name="pref_save_search_terms_on">搜索关键词将会被保存并成为未来搜索的建议</string>
-  <!-- Preferences * Search * Save search terms summary off -->
   <string name="pref_save_search_terms_off">搜索关键词将不会被保存</string>
-  <!-- Preferences * Search * Remove saved search terms -->
   <string name="pref_remove_saved_search_terms">删除保存的关键词</string>
-  <!-- Preferences * Search * Remove saved search terms summary -->
   <string name="pref_remove_saved_search_terms_summary">点击此将会删除所有保存的搜索关键词</string>
-  <!-- Preferences * Search * Suggestions were truncated -->
   <string name="pref_remove_saved_search_terms_msg">所有保存的搜索关键词已被删除.</string>
-  <!-- Preferences * Themes * Themes selection category -->
+  <string name="pref_editor_behaviour_category">行为</string>
+  <string name="pref_no_suggestions">不显示建议</string>
+  <string name="pref_no_suggestions_desc">编辑文件时不要显示字典建议</string>
+  <string name="pref_word_wrap">自动换行</string>
+  <string name="pref_hexdump">Hexdump 二进制文件</string>
+  <string name="pref_hexdump_desc">开启二进制文件时, 生成这个文件的十六进制转储并在十六进制查看器内打开.</string>
+  <string name="pref_editor_syntax_highlight_category">语法高亮</string>
+  <string name="pref_syntax_highlight">高亮语法</string>
+  <string name="pref_syntax_highlight_desc">高亮在编辑器内显示的文件的语法 (仅在能够处理文件类型的语法高亮处理器存在时)</string>
+  <string name="pref_syntax_highlight_color_scheme">配色方案</string>
+  <string name="pref_syntax_highlight_color_scheme_desc">点击以选择语法高亮配色方案</string>
+  <string name="pref_syntax_sh_use_theme_default">使用主题默认值</string>
+  <string name="pref_syntax_sh_use_theme_default_desc">使用目前主题的默认语法高亮配色方案</string>
+  <string name="pref_editor_sh_item_category">项目</string>
   <string name="pref_themes_selection_category">主题</string>
-  <!-- Preferences * Themes * Set theme button -->
   <string name="pref_themes_set_theme">设置主题</string>
-  <!-- Preferences * Themes * No preview -->
   <string name="pref_themes_no_preview">无可用\n预览</string>
-  <!-- Preferences * Themes * Confirmation message -->
   <string name="pref_themes_confirmation">主题已被成功应用.</string>
-  <!-- Preferences * Themes * Theme not found message -->
   <string name="pref_themes_not_found">未找到主题.</string>
 
-  <!-- Preferences * Debug * Capture debug traces -->
   <string name="pref_debug_traces">记录调试信息</string>
 
-  <!-- Themes * Default theme name -->
   <string name="theme_default_name">淡色主题</string>
-  <!-- Themes * Default theme description -->
   <string name="theme_default_description">用于 CyanogenMod 文件管理器的淡色主题.</string>
 
-  <!-- Security * Extract relative or absolute files -->
+  <string name="color_picker_alpha_slider_text">阿尔法通道</string>
+  <string name="color_picker_current_text">目前:</string>
+  <string name="color_picker_new_text">新的:</string>
+  <string name="color_picker_color">颜色:</string>
+
+  <string name="ash_reset_color_scheme">点击以还原为主题的默认配色方案</string>
+  <string name="ash_text">文字</string>
+  <string name="ash_assignment">赋值</string>
+  <string name="ash_singleline_comment">单行注释</string>
+  <string name="ash_multiline_comment">多行注释</string>
+  <string name="ash_keyword">关键词</string>
+  <string name="ash_quoted_string">带引号的字符串</string>
+  <string name="ash_variable">变量</string>
+
   <string name="security_warning_extract">警告!\n\n
       解压一个使用相对或绝对路径的压缩文件有可能覆盖并损坏系统文件.\n\n
       您确定要继续吗?</string>
 
-  <!-- ChangeLog * Dialog title -->
   <string name="changelog_title">更改记录</string>
 
-  <!-- Welcome Dialog * Title -->
   <string name="welcome_title">欢迎</string>
-  <!-- Welcome Dialog * Message -->
   <string name="welcome_msg">
     欢迎您使用 CyanogenMod 文件管理器.
     \n\n本程序将会允许您浏览设备的文件系统并做出可能导致损伤的操作. 为了避免损伤, 此程序默认将会在低权限与安全的模式下开始运行.

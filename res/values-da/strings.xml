@@ -14,495 +14,268 @@
      limitations under the License.
  -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-  <!-- The name of the application -->
   <string name="app_name">Filstyring</string>
-  <!-- The description of the application -->
   <string name="app_description">En filstyring til CyanogenMod.</string>
-
-  <!-- Devices types -->
   <string name="device_blockdevice">Blok-enheder</string>
   <string name="device_characterdevice">Tegn-enheder</string>
   <string name="device_namedpipe">Named pipe</string>
   <string name="device_domainsocket">Domain socket</string>
-
-  <!-- Mount Point States -->
   <string name="mount_point_readonly">RO</string>
   <string name="mount_point_readwrite">RW</string>
-
-  <!-- Default buttons -->
   <string name="yes">Ja</string>
   <string name="no">Nej</string>
   <string name="all">Alle</string>
   <string name="overwrite">Overskriv</string>
-
-  <!-- The root directory name -->
+  <string name="select">Vælg</string>
   <string name="root_directory_name"><![CDATA[<Root folder>]]></string>
-  <!-- The search result name -->
   <string name="search_result_name">Søg: <xliff:g id="terms">%1$s</xliff:g></string>
-
-  <!-- Loading waiting message -->
   <string name="loading_message">Indlæser\u2026</string>
-  <!-- Cancelled message -->
   <string name="cancelled_message">Annulleret.</string>
-  <!-- Error message -->
   <string name="error_message">Fejl.</string>
-
-  <!-- Warning dialog title -->
+  <string name="copy_text_cd">Tryk for at kopiere tekst til udklipsholder</string>
+  <string name="copy_text_msg">Tekst kopieret til udklipsholder</string>
   <string name="warning_title">Advarsel</string>
-  <!-- Error dialog title -->
   <string name="error_title">Fejl fundet</string>
-  <!-- Confirm operation dialog title -->
   <string name="confirm_operation">Bekræft handling</string>
-  <!-- Confirm overwrite dialog title -->
   <string name="confirm_overwrite">Bekræft overskrivning</string>
-  <!-- Confirm deletion dialog title -->
   <string name="confirm_deletion">Bekræft sletning</string>
-
-  <!--  A console couldn't be created. Ask the user to change the access mode. Dialog Title -->
   <string name="msgs_change_to_prompt_access_mode_title">Bekræft skift</string>
-  <!--  A console couldn't be created. Ask the user to change the access mode. Dialog Message -->
   <string name="msgs_change_to_prompt_access_mode_msg">Kan ikke køre i tilstanden Root-adgang. Skifter til Sikker tilstand.\n\nAnvend denne ændring?</string>
-
-  <!-- A console couldn't be created. Without privileges, the application won't work -->
   <string name="msgs_cant_create_console">Kan ikke opnå de påkrævede rettigheder til funktionen.</string>
-  <!-- The message shown when an allocation of a privileged console fails, and a non
-       privileged is allocated -->
   <string name="msgs_privileged_console_alloc_failed">Kan ikke køre i tilstanden Root-adgang. Skifter til Sikker tilstand.</string>
-  <!-- The selected setting was not applied or stored -->
   <string name="msgs_settings_save_failure">Indstillingen kunne ikke anvendes eller gemmes.</string>
-  <!-- The initial directory has an invalid or inaccessible reference -->
   <string name="msgs_settings_invalid_initial_directory">Opstartsmappen "<xliff:g id="initial_dir">%1$s</xliff:g>" er ugyldig. Skifter til rodmappe.</string>
-
-  <!-- Success -->
   <string name="msgs_success">Handlingen blev gennemført med succes.</string>
-  <!-- Unknown error -->
   <string name="msgs_unknown">Der blev fundet en fejl. Handlingen mislykkedes</string>
-  <!-- When an operation requires elevated privileged (normally caused for the use of a
-       non-privileged console) -->
   <string name="msgs_insufficient_permissions">Denne handling kræver forøgede rettigheder. Prøver at skifte til tilstanden Root-adgang.</string>
-  <!-- The file or directory was not found -->
   <string name="msgs_file_not_found">Filen eller mappen blev ikke fundet.</string>
-  <!-- The command reference couldn't be created (not found or invalid definition)
-       (normally caused by a development error) -->
   <string name="msgs_command_not_found">Handlingens kommando blev ikke fundet eller har en ugyldig definition.</string>
-  <!-- I/O exception -->
   <string name="msgs_io_failed">Læse/skrive-fejl.</string>
-  <!-- Operation timeout detected -->
   <string name="msgs_operation_timeout">Handlingen timede ud.</string>
-  <!-- The operation returns an invalid exit code -->
   <string name="msgs_operation_failure">Handlingen mislykkedes.</string>
-  <!-- A console couldn't be allocated -->
   <string name="msgs_console_alloc_failure">Der opstod en intern fejl.</string>
-  <!-- An operation can't be cancelled -->
   <string name="msgs_operation_can_not_be_cancelled">Handlingen kan ikke annulleres.</string>
-  <!-- The operation requieres mount the file system prior to execute the command -->
   <string name="msgs_read_only_filesystem">Filsystemet er skrivebeskyttet. Prøver at montere filsystemet som læs/skriv, før handlingen forsøges..</string>
-  <!-- Illegal argument (normally caused by a development error when calling internal api) -->
   <string name="msgs_illegal_argument">Ugyldigt argument. Aktivering mislykkedes.</string>
-  <!-- The operation will cause inconsistencies -->
   <string name="msgs_unresolved_inconsistencies">Handlingen er ikke tilladt, da den vil skabe uoverensstemmelser.</string>
-  <!-- Operation not permitted in current directory -->
   <string name="msgs_operation_not_allowed_in_current_directory">Handlingen er ikke tilladt i denne mappe.</string>
-
-  <!-- The advice message prior to exit the application -->
   <string name="msgs_push_again_to_exit">Tryk igen for at afslutte.</string>
-
-  <!-- There is no registered application that can handle the mime-type -->
   <string name="msgs_not_registered_app">Der er ikke registreret noget program til at håndtere den valgte filtype.</string>
-
-  <!-- Overwrite files? -->
   <string name="msgs_overwrite_files">Nogle af filerne findes allerede i destinationsmappen.\n\nOverskriv?</string>
-
-  <!-- The association of an action to the application failed -->
   <string name="msgs_action_association_failed">Det lykkedes ikke at tilknytte handlingen til programmet.</string>
-
-  <!-- An operation requires elevated privileged. Ask the user. -->
   <string name="advise_insufficient_permissions">Handlingen kræver forøgede rettigheder.\n\nVil du skifte til tilstanden Root-adgang?</string>
-
-  <!-- The parent directory of the current directory in navigation view -->
   <string name="parent_dir">Overordnet mappe</string>
-  <!-- External storage descripton -->
   <string name="external_storage">Eksternt lager</string>
-  <!-- Usb storage descripton -->
   <string name="usb_storage">USB-lager</string>
-
-  <!-- ActionBar Buttons * FileSystem -->
   <string name="actionbar_button_filesystem_cd">Info om filsystemet</string>
-  <!-- ActionBar Buttons * Sort Mode -->
   <string name="actionbar_button_sort_mode_cd">Sorteringstilstand</string>
-  <!-- ActionBar Buttons * Layout Mode -->
   <string name="actionbar_button_layout_mode_cd">Layout-tilstand</string>
-  <!-- ActionBar Buttons * Other View Options -->
   <string name="actionbar_button_other_view_options_cd">Andre visningsmuligheder</string>
-  <!-- ActionBar Buttons * Done -->
   <string name="actionbar_button_selection_done_cd">Færdig</string>
-  <!-- ActionBar Buttons * Actions -->
   <string name="actionbar_button_actions_cd">Handlinger</string>
-  <!-- ActionBar Buttons * History -->
   <string name="actionbar_button_history_cd">Historik</string>
-  <!-- ActionBar Buttons * Bookmarks -->
   <string name="actionbar_button_bookmarks_cd">Bogmærker</string>
-  <!-- ActionBar Buttons * Search -->
   <string name="actionbar_button_search_cd">Søg</string>
-  <!-- ActionBar Buttons * Overflow -->
   <string name="actionbar_button_overflow_cd">Flere muligheder</string>
-  <!-- ActionBar Buttons * Storage volumes -->
   <string name="actionbar_button_storage_cd">Lagringsenheder</string>
-  <!-- ActionBar Buttons * Save -->
   <string name="actionbar_button_save_cd">Gem</string>
-
-  <!-- Navigation View * Sort * Sort by name (ascending) -->
   <string name="sort_by_name_asc">Efter navn &#x25B2;</string>
-  <!-- Navigation View * Sort * Sort by name (descending) -->
   <string name="sort_by_name_desc">Efter navn &#x25BC;</string>
-  <!-- Navigation View * Sort * Sort by date (ascending) -->
   <string name="sort_by_date_asc">Efter dato &#x25B2;</string>
-  <!-- Navigation View * Sort * Sort by date (descending) -->
   <string name="sort_by_date_desc">Efter dato &#x25BC;</string>
-
-  <!-- Navigation View * Layout * Icons -->
   <string name="layout_icons">Ikoner</string>
-  <!-- Navigation View * Layout * Simple -->
   <string name="layout_simple">Simpel</string>
-  <!-- Navigation View * Layout * Details -->
   <string name="layout_details">Detaljer</string>
-
-  <!-- Navigation View * View * Show folders first -->
   <string name="cm_filemanager_show_dirs_first">Vis mapper først</string>
-  <!-- Navigation View * View * Show hidden files option -->
   <string name="cm_filemanager_show_hidden">Vis skjulte filer</string>
-  <!-- Navigation View * View * Show system files option -->
   <string name="cm_filemanager_show_system">Vis systemfiler</string>
-  <!-- Navigation View * View * Show symlinks option -->
   <string name="cm_filemanager_show_symlinks">Vis symbolske links</string>
-
-  <!-- Filesystem Info (no data). Dialog title -->
   <string name="filesystem_info_warning_title">Ingen information</string>
-  <!-- Filesystem Info (no data). Dialog message -->
   <string name="filesystem_info_warning_msg">Der er ingen information tilgængelig for filsystemet.</string>
-  <!-- Filesystem Info * Filesystem couldn't be mounted -->
   <string name="filesystem_info_cant_be_mounted_msg">Filsystemet kan ikke monteres/afmonteres.</string>
-  <!-- Filesystem Info * Not allowed message -->
   <string name="filesystem_info_mount_not_allowed_msg">Monteringshandlinger i filsystemet er ikke tilladt i Sikker tilstand. Tryk for at skifte til tilstanden Root-adgang.</string>
-  <!-- Filesystem Info * Mount failed -->
   <string name="filesystem_info_mount_failed_msg">Monteringshandlingen i filsystemet mislykkedes. Nogle filsystemer, fx SD-kort, kan ikke mountes/unmountes, fordi de er indbyggede som skrivebeskyttede filsystemer.</string>
-  <!-- Filesystem Info Dialog * Title -->
   <string name="filesystem_info_dialog_title">Information om filsystemet</string>
-  <!-- Filesystem Info Dialog * Tab * Info -->
   <string name="filesystem_info_dialog_tab_info">Info</string>
-  <!-- Filesystem Info Dialog * Tab * Disk Usage -->
   <string name="filesystem_info_dialog_tab_disk_usage">Diskforbrug</string>
-  <!-- Filesystem Info Dialog * Status Label -->
   <string name="filesystem_info_dialog_status">Status:</string>
-  <!-- Filesystem Info Dialog * Mount Point Label -->
   <string name="filesystem_info_dialog_mount_point">Monteringspunkt:</string>
-  <!-- Filesystem Info Dialog * Device Label -->
   <string name="filesystem_info_dialog_device">Enhed:</string>
-  <!-- Filesystem Info Dialog * Type Label -->
   <string name="filesystem_info_dialog_type">Type:</string>
-  <!-- Filesystem Info Dialog * Options Label -->
   <string name="filesystem_info_dialog_options">Muligheder:</string>
-  <!-- Filesystem Info Dialog * Dump/Pass Label -->
   <string name="filesystem_info_dialog_dump_pass">Dumpe / Bestå:</string>
-  <!-- Filesystem Info Dialog * Total Disk Usage -->
   <string name="filesystem_info_dialog_total_disk_usage">Total:</string>
-  <!-- Filesystem Info Dialog * Used Disk Usage -->
   <string name="filesystem_info_dialog_used_disk_usage">I brug:</string>
-  <!-- Filesystem Info Dialog * Free Disk Usage -->
   <string name="filesystem_info_dialog_free_disk_usage">Fri:</string>
-
-
-  <!-- Fso Properties * Not allowed message -->
   <string name="fso_properties_permissions_not_allowed_msg">Rettighedshandlinger er ikke tilladt i Sikker tilstand. Tryk for at skifte til tilstanden Root-adgang.</string>
-  <!-- Fso Properties * Failed to change owner to fso -->
   <string name="fso_properties_failed_to_change_owner_msg">Ændringen af ejer mislykkedes.\n\nAf sikkerhedsgrunde tillader nogle filsystemer, fx SD-kort, ikke ændring af ejerskab.</string>
-  <!-- Fso Properties * Failed to change group to fso -->
   <string name="fso_properties_failed_to_change_group_msg">Ændringen af gruppe mislykkedes.\n\nAf sikkerhedsgrunde tillader nogle filsystemer, fx SD-kort, ikke ændring af gruppe.</string>
-  <!-- Fso Properties * Failed to change group to fso -->
   <string name="fso_properties_failed_to_change_permission_msg">Ændringen af rettigheder mislykkedes.\n\nAf sikkerhedsgrunde tillader nogle filsystemer, fx SD-kort, ikke ændring af rettigheder.</string>
-  <!-- Fso Properties Dialog * Title -->
   <string name="fso_properties_dialog_title">Egenskaber</string>
-  <!-- Fso Properties Dialog * Tab * Info -->
   <string name="fso_properties_dialog_tab_info">Info</string>
-  <!-- Fso Properties Dialog * Tab * Permissions -->
   <string name="fso_properties_dialog_tab_permissions">Rettigheder</string>
-  <!-- Fso Properties Dialog * Name Label -->
   <string name="fso_properties_dialog_name">Navn:</string>
-  <!-- Fso Properties Dialog * Parent Folder Label -->
   <string name="fso_properties_dialog_parent">Overordnet:</string>
-  <!-- Fso Properties Dialog * Type Label -->
   <string name="fso_properties_dialog_type">Type:</string>
-  <!-- Fso Properties Dialog * Category Label -->
   <string name="fso_properties_dialog_category">Kategori:</string>
-  <!-- Fso Properties Dialog * Link Label -->
   <string name="fso_properties_dialog_link">Link:</string>
-  <!-- Fso Properties Dialog * Size Label -->
   <string name="fso_properties_dialog_size">Størrelse:</string>
-  <!-- Fso Properties Dialog * Contains Label -->
   <string name="fso_properties_dialog_contains">Indeholder:</string>
-  <!-- Fso Properties Dialog * Owner Label -->
+  <string name="fso_properties_dialog_last_accessed_date">Tilgået:</string>
+  <string name="fso_properties_dialog_last_modified_date">Modificeret:</string>
+  <string name="fso_properties_dialog_last_changed_date">Ændret:</string>
   <string name="fso_properties_dialog_owner">Ejer:</string>
-  <!-- Fso Properties Dialog * Group Label -->
   <string name="fso_properties_dialog_group">Gruppe:</string>
-  <!-- Fso Properties Dialog * Others Label -->
   <string name="fso_properties_dialog_others">Andre:</string>
-  <!-- Fso Properties Dialog * Folders -->
   <plurals name="fso_properties_dialog_folders">
     <item quantity="zero">0 mapper</item>
     <item quantity="one">1 mappe</item>
     <item quantity="other"><xliff:g id="folders">%1$d</xliff:g> mapper</item>
   </plurals>
-  <!-- Fso Properties Dialog * Files -->
   <plurals name="fso_properties_dialog_files">
     <item quantity="zero">0 filer</item>
     <item quantity="one">1 fil</item>
     <item quantity="other"><xliff:g id="files">%1$d</xliff:g> filer</item>
   </plurals>
-
-  <!-- History * History activity title -->
+  <string name="fso_properties_dialog_include_in_media_scan">Spring mediescanning over:</string>
+  <string name="fso_failed_to_allow_media_scan">Kunne ikke tillade mediescanning</string>
+  <string name="fso_failed_to_prevent_media_scan">Kunne ikke forhindre mediescanning</string>
+  <string name="fso_delete_nomedia_dir_title">Slet .nomedia-mappe</string>
+  <string name="fso_delete_nomedia_dir_body">Denne mappe indeholder en .nomedia-mappe.\n\nVil du slette den og al dens indhold?</string>
+  <string name="fso_delete_nomedia_non_empty_title">Slet .nomedia-fil</string>
+  <string name="fso_delete_nomedia_non_empty_body">Denne mappe indeholder en ikke-tom .nomedia-fil.\n\nVil du slette den?</string>
   <string name="history">Historik</string>
-  <!-- History * The history is empty -->
   <string name="msgs_history_empty">Historikken er tom.</string>
-  <!-- History * The history reference is not in the actual history list -->
   <string name="msgs_history_unknown">Ukendt historik-element.</string>
-
-  <!-- Search * Search activity title -->
   <string name="search">Søgeresultater</string>
-  <!-- Search * Search hint message -->
   <string name="search_hint">Tast din søgning</string>
-  <!-- Search * Voice search hint message -->
   <string name="search_voice_hint">Indtal din søgning</string>
-  <!-- Search * Search error message -->
   <string name="search_error_msg">Der opstod en fejl under søgning. Ingen resultater fundet.</string>
-  <!-- Search * Search no results message -->
   <string name="search_no_results_msg">Ingen resultater fundet.</string>
-  <!-- Search * Search found items -->
   <plurals name="search_found_items">
     <item quantity="zero">Ingen elementer fundet</item>
     <item quantity="one">1 element fundet</item>
     <item quantity="other"><xliff:g id="count">%d</xliff:g> elementer fundet</item>
   </plurals>
-  <!-- Search * Number of items found in directory -->
   <string name="search_found_items_in_directory"><xliff:g id="items">%1$s</xliff:g> i <xliff:g id="path">%2$s</xliff:g></string>
-  <!-- Search * Search query terms -->
   <string name="search_terms"><![CDATA[<b>Termer:</b>]]> <xliff:g id="terms">%1$s</xliff:g></string>
-  <!-- Search * Confirm search -->
   <string name="search_few_characters_title">Bekræft søgning</string>
-  <!-- Search * Some terms of the search are too small. The operation could be very costly -->
   <string name="search_few_characters_msg">Nogle af søgetermerne har et lavt antal tegn. Handlingen kan være meget tids- og ressourcekrævende.\n\nVil du fortsætte?</string>
-  <!-- Search * Searching dialog title -->
   <string name="searching">Vent venligst\u2026</string>
-  <!-- Search * Searching label -->
   <string name="searching_action_label">Søgning i gang</string>
-
-  <!-- Picker Activity * Dialog title -->
   <string name="picker_title">Vælg en fil</string>
-
-  <!-- Editor * Editor activity title -->
+  <string name="directory_picker_title">Vælg en mappe</string>
   <string name="editor">Editor</string>
-  <!-- Editor * Invalid file message -->
   <string name="editor_invalid_file_msg">Ugyldig fil.</string>
-  <!-- Editor * File not found message -->
   <string name="editor_file_not_found_msg">Fil ikke fundet.</string>
-  <!-- Editor * File size exceed the limit -->
   <string name="editor_file_exceed_size_msg">Filen er for stor til at kunne åbnes i denne enhed.</string>
-  <!-- Editor * Editor is dirty, ask the user * Dialog title -->
   <string name="editor_dirty_ask_title">Bekræft afslut</string>
-  <!-- Editor * Editor is dirty, ask the user * Dialog message -->
   <string name="editor_dirty_ask_msg">Der er ugemte ændringer.\n\nAfslut uden at gemme?</string>
-  <!-- Editor * Save operation success -->
   <string name="editor_successfully_saved">Filen blev gemt med succes.</string>
-  <!-- Editor * Read-only file mode -->
   <string name="editor_read_only_mode">Filen er åbnet i tilstanden skrivebeskyttet.</string>
-
-  <!-- Bookmarks * Bookmarks activity title -->
+  <string name="dumping_message">Genererer hex-dump\u2026</string>
+  <string name="displaying_message">Viser\u2026</string>
   <string name="bookmarks">Bogmærker</string>
-  <!-- Bookmarks * Bookmark name * Home -->
   <string name="bookmarks_home">Hjem</string>
-  <!-- Bookmarks * Bookmark name * Root folder -->
   <string name="bookmarks_root_folder">Rodmappe</string>
-  <!-- Bookmarks * Bookmark name * System folder -->
   <string name="bookmarks_system_folder">Systemmappe</string>
-  <!-- Bookmarks * Bookmark name * Button * Initial directory content description -->
   <string name="bookmarks_button_config_cd">Sæt opstartsmappen.</string>
-  <!-- Bookmarks * Bookmark name * Button * Remove bookmark content description -->
   <string name="bookmarks_button_remove_bookmark_cd">Fjern bogmærket.</string>
-  <!-- Bookmarks * Bookmarks * Actions * Bookmark successfully added -->
   <string name="bookmarks_msgs_add_success">Bogmærket blev tilføjet med succes.</string>
-
-  <!-- Initial directory dialog title -->
   <string name="initial_directory_dialog_title">Opstartsmappe</string>
-  <!-- Initial directory label -->
   <string name="initial_directory_label">Vælg opstartsmappen:</string>
-  <!-- Initial directory is relative -->
   <string name="initial_directory_relative_msg">Relative stier er ikke tilladt.</string>
-  <!-- Initial directory error message -->
   <string name="initial_directory_error_msg">Opstartsmappen kunne ikke gemmes pga. en fejl.</string>
-
-  <!-- Menu * Navigation * History -->
   <string name="menu_history">Historik</string>
-  <!-- Menu * Navigation * Bookmarks -->
   <string name="menu_bookmarks">Bogmærker</string>
-  <!-- Menu * Navigation * Search -->
   <string name="menu_search">Søg</string>
-  <!-- Menu * Navigation * Settings -->
   <string name="menu_settings">Indstillinger</string>
-  <!-- Menu * History * Clear history -->
   <string name="menu_clear_history">Ryd historik</string>
-
-  <!-- Regular expression for create copy action -->
+  <string name="menu_no_suggestions">Ingen forslag</string>
+  <string name="menu_word_wrap">Tekstombrydning</string>
+  <string name="menu_syntax_highlight">Syntaksfremhævning</string>
   <string name="create_copy_regexp">
     <xliff:g id="name">%1$s</xliff:g> - kopi<xliff:g id="extension">%2$s</xliff:g></string>
-  <!-- Regular expression for new compressed file -->
   <string name="create_new_compress_file_regexp">
     <xliff:g id="name">%1$s</xliff:g> - ny<xliff:g id="extension">%2$s</xliff:g></string>
-
-  <!-- Waiting dialog * Performing operation message -->
   <string name="waiting_dialog_msg">Udfører handling\u2026</string>
-  <!-- Waiting dialog * Copying title -->
   <string name="waiting_dialog_copying_title">Kopierer\u2026</string>
-  <!-- Waiting dialog * Copying message -->
   <string name="waiting_dialog_copying_msg">
     <![CDATA[<b>Fra</b>]]> <xliff:g id="from">%1$s</xliff:g><![CDATA[<br/>]]>
     <![CDATA[<b>Til</b>]]> <xliff:g id="to">%2$s</xliff:g></string>
-  <!-- Waiting dialog * Moving title -->
   <string name="waiting_dialog_moving_title">Flytter\u2026</string>
-  <!-- Waiting dialog * Moving message -->
   <string name="waiting_dialog_moving_msg">
     <![CDATA[<b>Fra</b>]]> <xliff:g id="from">%1$s</xliff:g><![CDATA[<br/>]]>
     <![CDATA[<b>Til</b>]]> <xliff:g id="to">%2$s</xliff:g></string>
-  <!-- Waiting dialog * Deleting title -->
   <string name="waiting_dialog_deleting_title">Sletter\u2026</string>
-  <!-- Waiting dialog * Deleting message -->
   <string name="waiting_dialog_deleting_msg">
     <![CDATA[<b>Fil</b>]]> <xliff:g id="file">%1$s</xliff:g></string>
-  <!-- Waiting dialog * Extracting title -->
   <string name="waiting_dialog_extracting_title">Udpakker\u2026</string>
-  <!-- Waiting dialog * Extracting message -->
   <string name="waiting_dialog_extracting_msg">
     <![CDATA[<b>Fil</b>]]> <xliff:g id="file">%1$s</xliff:g></string>
-  <!-- Waiting dialog * Extracting title -->
   <string name="waiting_dialog_compressing_title">Komprimerer\u2026</string>
-  <!-- Waiting dialog * Extracting message -->
   <string name="waiting_dialog_compressing_msg">
     <![CDATA[<b>Fil</b>]]> <xliff:g id="file">%1$s</xliff:g></string>
-  <!-- Waiting dialog * Initializing the dialog -->
   <string name="waiting_dialog_analizing_msg">
     <![CDATA[<b>Analyserer\u2026</b>]]></string>
-  <!-- Extracting * Success message -->
   <string name="msgs_extracting_success">
     Udpakningen blev afsluttet med succes. Dataene blev udpakket til <xliff:g id="destination">%1$s</xliff:g>.</string>
-  <!-- Compressing * Success message -->
   <string name="msgs_compressing_success">
     Komprimeringen blev afsluttet med succes. Dataene blev komprimeret til <xliff:g id="destination">%1$s</xliff:g>.</string>
-
-  <!-- Actions Dialog * Title -->
   <string name="actions_dialog_title">Handlinger</string>
-  <!-- Actions Dialog * Menu * Properties of current folder -->
   <string name="actions_menu_properties_current_folder">Egenskaber</string>
-  <!-- Actions Dialog * Menu * Refresh -->
   <string name="actions_menu_refresh">Genopfrisk</string>
-  <!-- Actions Dialog * Menu * New directory -->
   <string name="actions_menu_new_directory">Ny mappe</string>
-  <!-- Actions Dialog * Menu * New file -->
   <string name="actions_menu_new_file">Ny fil</string>
-  <!-- Actions Dialog * Menu * Select all -->
   <string name="actions_menu_select_all">Vælg alt</string>
-  <!-- Actions Dialog * Menu * Deselect all -->
   <string name="actions_menu_deselect_all">Fravælg alt</string>
-  <!-- Actions Dialog * Menu * Select -->
   <string name="actions_menu_select">Vælg</string>
-  <!-- Actions Dialog * Menu * Deselect -->
   <string name="actions_menu_deselect">Fravælg</string>
-  <!-- Actions Dialog * Menu * Paste selection -->
   <string name="actions_menu_paste_selection">Indsæt det valgte</string>
-  <!-- Actions Dialog * Menu * Move selection -->
   <string name="actions_menu_move_selection">Flyt det valgte</string>
-  <!-- Actions Dialog * Menu * Delete selection -->
   <string name="actions_menu_delete_selection">Slet det valgte</string>
-  <!-- Actions Dialog * Menu * Compress selection -->
   <string name="actions_menu_compress_selection">Komprimér det valgte</string>
-  <!-- Actions Dialog * Menu * Create link -->
   <string name="actions_menu_create_link">Opret link</string>
-  <!-- Actions Dialog * Menu * Open -->
   <string name="actions_menu_open">Åbn</string>
-  <!-- Actions Dialog * Menu * Open with -->
   <string name="actions_menu_open_with">Åbn med</string>
-  <!-- Actions Dialog * Menu * Execute -->
   <string name="actions_menu_execute">Eksekvér</string>
-  <!-- Actions Dialog * Menu * Send -->
   <string name="actions_menu_send">Send</string>
-  <!-- Actions Dialog * Menu * Compress -->
+  <string name="actions_menu_send_selection">Send valg</string>
   <string name="actions_menu_compress">Komprimér</string>
-  <!-- Actions Dialog * Menu * Extract -->
   <string name="actions_menu_extract">Udpak</string>
-  <!-- Actions Dialog * Menu * Delete -->
   <string name="actions_menu_delete">Slet</string>
-  <!-- Actions Dialog * Menu * Rename -->
   <string name="actions_menu_rename">Omdøb</string>
-  <!-- Actions Dialog * Menu * Create copy -->
   <string name="actions_menu_create_copy">Opret kopi</string>
-  <!-- Actions Dialog * Menu * Properties -->
   <string name="actions_menu_properties">Egenskaber</string>
-  <!-- Actions Dialog * Menu * Add to bookmarks -->
   <string name="actions_menu_add_to_bookmarks">Tilføj til bogmærker</string>
-  <!-- Actions Dialog * Menu * Add shortcut -->
   <string name="actions_menu_add_shortcut">Tilføj genvej</string>
-  <!-- Actions Dialog * Menu * Open parent folder -->
   <string name="actions_menu_open_parent_folder">Åbn overordnet</string>
-
-  <!-- Actions * Ask user prior to do an undone operation. Dialog message -->
+  <string name="actions_menu_compute_checksum">Beregn checksum</string>
   <string name="actions_ask_undone_operation_msg">Denne handling kan ikke fortrydes. Vil du fortsætte?</string>
-
-  <!-- Enter Name Dialog * Label -->
   <string name="input_name_dialog_label">Navn:</string>
-  <!-- Enter Name Dialog * Message * Empty name -->
   <string name="input_name_dialog_message_empty_name">Navnet kan ikke være tomt.</string>
-  <!-- Enter Name Dialog * Message * Invalid name -->
   <string name="input_name_dialog_message_invalid_path_name">Ugyldigt navn. Tegnene \'<xliff:g id="invalid_characters">%1$s</xliff:g>\' er ikke tilladte.</string>
-  <!-- Enter Name Dialog * Message * Invalid name -->
   <string name="input_name_dialog_message_invalid_name">Ugyldigt navn. Navnene \'.\' og
     \'..\' er ikke tilladt.</string>
-  <!-- Enter Name Dialog * Message * Name exists -->
   <string name="input_name_dialog_message_name_exists">Navnet findes allerede.</string>
-
-  <!-- Associations Dialog * Title -->
   <string name="associations_dialog_title">Tilknytninger</string>
-  <!-- Associations Dialog * Remember the user action -->
   <string name="associations_dialog_remember">Husk selektion</string>
-  <!-- Associations Dialog * Open with Title -->
   <string name="associations_dialog_openwith_title">Åbn med</string>
-    <!-- Associations Dialog * Open action (button title) -->
   <string name="associations_dialog_openwith_action">Åbn</string>
-  <!-- Associations Dialog * Send with Title -->
   <string name="associations_dialog_sendwith_title">Send med</string>
-    <!-- Associations Dialog * Send action (button title) -->
   <string name="associations_dialog_sendwith_action">Send</string>
-
-  <!-- Inline Autocomplete Widget * Tab message nothing to complete -->
   <string name="inline_autocomplete_tab_nothing_to_complete_msg">Intet at afslutte.</string>
-
-  <!-- Execution console * Title -->
   <string name="execution_console_title">Konsol</string>
-  <!-- Execution console * The script name label -->
   <string name="execution_console_script_name_label">Skript:</string>
-  <!-- Execution console * The script execution time label -->
   <string name="execution_console_script_execution_time_label">Tid:</string>
-  <!-- Execution console * The script exit code label -->
   <string name="execution_console_script_exitcode_label">Afslutningskode:</string>
-  <!-- Execution console * The script execution time seconds string -->
   <string name="execution_console_script_execution_time_text"><xliff:g id="seconds">%1$s</xliff:g> sek.</string>
-
-  <!-- Mime/Types * Folder -->
+  <string name="compute_checksum_title">Beregn checksum</string>
+  <string name="compute_checksum_filename_label">Fil:</string>
+  <string name="compute_checksum_computing_checksum_msg">Beregner checksum\u2026</string>
   <string name="mime_folder">Mappe</string>
-  <!-- Mime/Types * Symlink -->
   <string name="mime_symlink">Symbolsk link</string>
-  <!-- Mime/Types * Unknown -->
   <string name="mime_unknown">Ukendt</string>
-
-  <!-- Selection. All possibilities. [1 folder; >1 folders; 1 file; >1 files;
-     >1 folders and 1 file; 1 folder and >1 files; >1 folders and >1 files]
-     Avoid using plural item because is more complex to achieved all strings -->
   <string name="selection_one_folder"><xliff:g id="folders">%1$s</xliff:g> mappe valgt.</string>
   <string name="selection_other_folders"><xliff:g id="folders">%1$s</xliff:g> mapper valgt.</string>
   <string name="selection_one_file"><xliff:g id="files">%1$s</xliff:g> fil valgt.</string>
@@ -510,8 +283,6 @@
   <string name="selection_other_folders_one_file"><xliff:g id="folders">%1$s</xliff:g> mapper og <xliff:g id="files">%2$s</xliff:g> fil valgt.</string>
   <string name="selection_one_folder_other_files"><xliff:g id="folder2">%1$s</xliff:g> mappe og <xliff:g id="file2">%2$s</xliff:g> filer valgt.</string>
   <string name="selection_other_folders_other_files"><xliff:g id="folder2">%1$s</xliff:g> mapper og <xliff:g id="files">%2$s</xliff:g> filer valgt.</string>
-
-  <!-- Category descriptions -->
   <string name="category_system">SYSTEM</string>
   <string name="category_app">APP</string>
   <string name="category_binary">BINÆR</string>
@@ -527,102 +298,86 @@
   <string name="category_audio">LYD</string>
   <string name="category_video">VIDEO</string>
   <string name="category_security">SIKKERHED</string>
-
-  <!-- Compression * Compression modes dialog title -->
   <string name="compression_mode_title">Komprimeringstilstand</string>
-
-  <!-- Shortcut. Failed to handle the shortcut -->
   <string name="shortcut_failed_msg">Det lykkedes ikke at håndtere genvejen.</string>
-  <!-- Shortcut. The shortcut was created -->
   <string name="shortcut_creation_success_msg">Genvej oprettet med succes.</string>
-  <!-- Shortcut. The shortcut wasn't created -->
   <string name="shortcut_creation_failed_msg">Oprettelse af genvej mislykkedes.</string>
-
-  <!-- Preferences title -->
   <string name="pref">Indstillinger</string>
-  <!-- Preferences * General title -->
   <string name="pref_general">Generelle indstillinger</string>
-  <!-- Preferences * Search title -->
   <string name="pref_search">Søgemuligheder</string>
-  <!-- Preferences * About title -->
+  <string name="pref_editor">Redigeringsmuligheder</string>
+  <string name="pref_themes">Temaer</string>
   <string name="pref_about">Om</string>
-  <!-- Preferences * About summary -->
   <string name="pref_about_summary">Filstyring v<xliff:g id="version">%1$s</xliff:g>
     \nCopyright \u00A9 2012 The CyanogenMod Project</string>
-
-  <!-- Preferences * General * Behaviour category -->
   <string name="pref_general_behaviour_category">Generelt</string>
-  <!-- Preferences * General * Case sensitive sort title -->
   <string name="pref_case_sensitive_sort">Brug case-sensitiv sortering</string>
-  <!-- Preferences * General *Disk usage warning level title -->
+  <string name="pref_case_sensitive_sort_summary">Forskel på store/små bogstaver ved navigering eller sortering af søgeresultater</string>
   <string name="pref_disk_usage_warning_level">Advarsel om diskforbrug</string>
-  <!-- Preferences * General * Disk usage warning level summary -->
   <string name="pref_disk_usage_warning_level_summary" formatted="false">Vis en anderledes farve i diskforbrugs-widgets, når de når <xliff:g id="level">%1$s</xliff:g> procent af ledig diskplads</string>
-  <!-- Preferences * General * Compute folder statistics title -->
   <string name="pref_compute_folder_statistics">Beregn mappestatistikker</string>
-  <!-- Preferences * General * Compute folder statistics summary on -->
   <string name="pref_compute_folder_statistics_on">Advarsel! Beregningen af mappestatistikker er tids- og ressourcekrævende</string>
-  <!-- Preferences * General * Use flinger detection -->
   <string name="pref_use_flinger">Brug glidebevægelser</string>
-  <!-- Preferences * General * Use flinger detection summary -->
   <string name="pref_use_flinger_summary">Glid fra venstre mod højre for at slette filer eller mapper.</string>
-  <!-- Preferences * General * Advanced settings category -->
   <string name="pref_general_advanced_settings_category">Avanceret</string>
-  <!-- Preferences * General * Access mode -->
   <string name="pref_access_mode">Adgangstilstand</string>
-  <!-- Preferences * General * Safe mode -->
   <string name="pref_access_mode_safe">Sikker tilstand</string>
-  <!-- Preferences * General * Safe mode summary -->
   <string name="pref_access_mode_safe_summary">Sikker tilstand\n\nAppen kører uden priviligier, og de eneste tilgængelige filsystemer er lagringsenheder (SD-kort og USB)</string>
-  <!-- Preferences * General * Prompt user mode -->
   <string name="pref_access_mode_prompt">Tilstanden Spørg bruger</string>
-  <!-- Preferences * General * Prompt user mode summary -->
   <string name="pref_access_mode_prompt_summary">Tilstanden Spørg bruger\n\nAppen kører med fuld adgang til filsystemet, men vil spørge efter tilladelse, før priviligerede handlinger foretages.</string>
-  <!-- Preferences * General * Root access mode -->
   <string name="pref_access_mode_root">Tilstanden Root-adgang</string>
-  <!-- Preferences * General * Root access mode summary -->
   <string name="pref_access_mode_root_summary">Tilstanden Root-adgang\n\nAdvarsel! Denne tilstand tillader operationer, der kan beskadige din enhed. Det er dit ansvar at sikre, at en handling er sikker</string>
-  <!-- Preferences * Search * Results category -->
   <string name="pref_search_results_category">Resultater</string>
-  <!-- Preferences * Search * Show relevance widget -->
   <string name="pref_show_relevance_widget">Vis relevans-widget</string>
-  <!-- Preferences * Search * Highlight search terms -->
   <string name="pref_highlight_terms">Fremhæv søgetermer</string>
-  <!-- Preferences * Search * Sort results mode -->
   <string name="pref_sort_search_results_mode">Tilstanden Sortér resultater</string>
-  <!-- Preferences * Search * Sort results mode. None -->
   <string name="pref_sort_search_results_mode_none">Ingen sortering</string>
-  <!-- Preferences * Search * Sort results mode. None -->
   <string name="pref_sort_search_results_mode_name">Efter navn</string>
-  <!-- Preferences * Search * Sort results mode. Relevance -->
   <string name="pref_sort_search_results_mode_relevance">Efter relevans</string>
-  <!-- Preferences * Search * Privacity category -->
   <string name="pref_search_privacity_category">Privatliv</string>
-  <!-- Preferences * Search * Save search terms -->
   <string name="pref_save_search_terms">Gem søgetermer</string>
-  <!-- Preferences * Search * Save search terms summary on -->
   <string name="pref_save_search_terms_on">Søgetermer vil blive gemt og brugt som forslag i fremtidige søgninger</string>
-  <!-- Preferences * Search * Save search terms summary off -->
   <string name="pref_save_search_terms_off">Søgetermer vil ikke blive gemt</string>
-  <!-- Preferences * Search * Remove saved search terms -->
   <string name="pref_remove_saved_search_terms">Fjern gemte søgetermer</string>
-  <!-- Preferences * Search * Remove saved search terms summary -->
   <string name="pref_remove_saved_search_terms_summary">Tryk for at fjerne alle de gemte søgetermer</string>
-  <!-- Preferences * Search * Suggestions were truncated -->
   <string name="pref_remove_saved_search_terms_msg">Alle gemte søgetermer blev fjernet.</string>
-
-  <!-- Preferences * Debug * Capture debug traces -->
+  <string name="pref_editor_behaviour_category">Opførsel</string>
+  <string name="pref_no_suggestions">Ingen forslag</string>
+  <string name="pref_no_suggestions_desc">Vis ikke ordbogsforslag, når filen redigeres</string>
+  <string name="pref_word_wrap">Tekstombrydning</string>
+  <string name="pref_hexdump">Hexdump af binære filer</string>
+  <string name="pref_hexdump_desc">Dan et hex-dump af filen og åbn den i en hex-viser, når en binær fil åbnes.</string>
+  <string name="pref_editor_syntax_highlight_category">Syntaksfremhævning</string>
+  <string name="pref_syntax_highlight">Syntaksfremhævning</string>
+  <string name="pref_syntax_highlight_desc">Fremhæv syntaksen for den viste fil i editoren (kun når et syntaksfremhævningsmodul er tilgængelig for filtypen)</string>
+  <string name="pref_syntax_highlight_color_scheme">Farveskema</string>
+  <string name="pref_syntax_highlight_color_scheme_desc">Tryk for at vælge farveskema til syntaksfremhævning</string>
+  <string name="pref_syntax_sh_use_theme_default">Brug standardtema</string>
+  <string name="pref_syntax_sh_use_theme_default_desc">Brug standard-syntaksfremhævningen i det aktuelle tema</string>
+  <string name="pref_editor_sh_item_category">Elementer</string>
+  <string name="pref_themes_selection_category">Temaer</string>
+  <string name="pref_themes_set_theme">Sæt tema</string>
+  <string name="pref_themes_no_preview">Intet eksempel\ntilgængeligt</string>
+  <string name="pref_themes_confirmation">Temaet blev korrekt anvendt.</string>
+  <string name="pref_themes_not_found">Tema ikke fundet.</string>
   <string name="pref_debug_traces">Log debug-information</string>
-
-  <!-- Security * Extract relative or absolute files -->
+  <string name="theme_default_name">Lyst tema</string>
+  <string name="theme_default_description">Et lyst tema til CyanogenMods filstyring.</string>
+  <string name="themes_author">CyanogenMod</string>
+  <string name="color_picker_alpha_slider_text">Alfa</string>
+  <string name="color_picker_current_text">Aktuel:</string>
+  <string name="color_picker_new_text">Ny:</string>
+  <string name="color_picker_color">Farve:</string>
+  <string name="ash_reset_color_scheme">Tryk for at gendanne standard-farveskemaet</string>
+  <string name="ash_text">Tekst</string>
+  <string name="ash_assignment">Tildeling</string>
+  <string name="ash_singleline_comment">Enkeltlinje-kommentar</string>
+  <string name="ash_multiline_comment">Flerlinje-kommentar</string>
+  <string name="ash_keyword">Nøgleord</string>
+  <string name="ash_quoted_string">Citeret streng</string>
+  <string name="ash_variable">Variabel</string>
   <string name="security_warning_extract">Advarsel!\n\nUdpakning af en arkivfil med relative eller absolutte stier kan forårsage skade på din enhed ved at overskrive systemfiler.\n\nVil du fortsætte?</string>
-
-  <!-- ChangeLog * Dialog title -->
   <string name="changelog_title">Ændringslog</string>
-
-  <!-- Welcome Dialog * Title -->
   <string name="welcome_title">Velkommen</string>
-  <!-- Welcome Dialog * Message -->
   <string name="welcome_msg">Velkommen til CyanogenMods filstyring.\n\nDenne app tillader dig at udforske filsystemet og udføre handlinger, som kan ødelægge din enhed. For at forebygge skader vil denne app starte i en tilstand med få rettigheder.\n\nDu kan tilgå den avancerede tilstand med alle rettigheder i Indstillinger. Det er dit ansvar at sikre, at en handling ikke ødelægger dit system.\n\nHoldet bag CyanogenMod.\n</string>
-
 </resources>

@@ -382,10 +382,13 @@ public class NavigationActivity extends Activity
         this.mHandler.post(new Runnable() {
             @Override
             public void run() {
+                // Initialize console
+                initConsole();
+
                 //Initialize navigation
                 int cc = NavigationActivity.this.mNavigationViews.length;
                 for (int i = 0; i < cc; i++) {
-                    initNavigation(i, false);
+                    initNavigation(i, false, getIntent());
                 }
 
                 //Check the intent action
@@ -403,7 +406,7 @@ public class NavigationActivity extends Activity
     @Override
     protected void onNewIntent(Intent intent) {
         //Initialize navigation
-        initNavigation(this.mCurrentNavigationView, true);
+        initNavigation(this.mCurrentNavigationView, true, intent);
 
         //Check the intent action
         checkIntent(intent);
@@ -586,46 +589,53 @@ public class NavigationActivity extends Activity
     }
 
     /**
+     * Method that initialize the console
+     * @hide
+     */
+    void initConsole() {
+        //Create the default console (from the preferences)
+        try {
+            Console console = ConsoleBuilder.getConsole(NavigationActivity.this);
+            if (console == null) {
+                throw new ConsoleAllocException("console == null"); //$NON-NLS-1$
+            }
+        } catch (Throwable ex) {
+            if (!NavigationActivity.this.mChRooted) {
+                //Show exception and exit
+                Log.e(TAG, getString(R.string.msgs_cant_create_console), ex);
+                // We don't have any console
+                // Show exception and exit
+                DialogHelper.showToast(
+                        NavigationActivity.this,
+                        R.string.msgs_cant_create_console, Toast.LENGTH_LONG);
+                exit();
+                return;
+            }
+
+            // We are in a trouble (something is not allowing creating the console)
+            // Ask the user to return to prompt or root access mode mode with a
+            // non-privileged console, prior to make crash the application
+            askOrExit();
+            return;
+        }
+    }
+
+    /**
      * Method that initializes the navigation.
      *
      * @param viewId The navigation view identifier where apply the navigation
      * @param restore Initialize from a restore info
+     * @param intent The current intent
      * @hide
      */
-    void initNavigation(final int viewId, final boolean restore) {
+    void initNavigation(final int viewId, final boolean restore, final Intent intent) {
         final NavigationView navigationView = getNavigationView(viewId);
         this.mHandler.post(new Runnable() {
             @Override
             public void run() {
-                //Create the default console (from the preferences)
-                try {
-                    Console console = ConsoleBuilder.getConsole(NavigationActivity.this);
-                    if (console == null) {
-                        throw new ConsoleAllocException("console == null"); //$NON-NLS-1$
-                    }
-                } catch (Throwable ex) {
-                    if (!NavigationActivity.this.mChRooted) {
-                        //Show exception and exit
-                        Log.e(TAG, getString(R.string.msgs_cant_create_console), ex);
-                        // We don't have any console
-                        // Show exception and exit
-                        DialogHelper.showToast(
-                                NavigationActivity.this,
-                                R.string.msgs_cant_create_console, Toast.LENGTH_LONG);
-                        exit();
-                        return;
-                    }
-
-                    // We are in a trouble (something is not allowing creating the console)
-                    // Ask the user to return to prompt or root access mode mode with a
-                    // non-privileged console, prior to make crash the application
-                    askOrExit();
-                    return;
-                }
-
                 //Is necessary navigate?
                 if (!restore) {
-                    applyInitialDir(navigationView);
+                    applyInitialDir(navigationView, intent);
                 }
             }
         });
@@ -635,9 +645,10 @@ public class NavigationActivity extends Activity
      * Method that applies the user-defined initial directory
      *
      * @param navigationView The navigation view
+     * @param intent The current intent
      * @hide
      */
-    void applyInitialDir(final NavigationView navigationView) {
+    void applyInitialDir(final NavigationView navigationView, final Intent intent) {
         //Load the user-defined initial directory
         String initialDir =
                 Preferences.getSharedPreferences().getString(
@@ -647,26 +658,28 @@ public class NavigationActivity extends Activity
 
         // Check if request navigation to directory (use as default), and
         // ensure chrooted and absolute path
-        String navigateTo = getIntent().getStringExtra(EXTRA_NAVIGATE_TO);
+        String navigateTo = intent.getStringExtra(EXTRA_NAVIGATE_TO);
         if (navigateTo != null && navigateTo.length() > 0) {
             initialDir = navigateTo;
         }
 
         if (this.mChRooted) {
             // Initial directory is the first external sdcard (sdcard, emmc, usb, ...)
-            StorageVolume[] volumes =
-                    StorageHelper.getStorageVolumes(this);
-            if (volumes != null && volumes.length > 0) {
-                initialDir = volumes[0].getPath();
-                //Ensure that initial directory is an absolute directory
-                initialDir = FileHelper.getAbsPath(initialDir);
-            } else {
-                // Show exception and exit
-                DialogHelper.showToast(
-                        this,
-                        R.string.msgs_cant_create_console, Toast.LENGTH_LONG);
-                exit();
-                return;
+            if (!StorageHelper.isPathInStorageVolume(initialDir)) {
+                StorageVolume[] volumes =
+                        StorageHelper.getStorageVolumes(this);
+                if (volumes != null && volumes.length > 0) {
+                    initialDir = volumes[0].getPath();
+                    //Ensure that initial directory is an absolute directory
+                    initialDir = FileHelper.getAbsPath(initialDir);
+                } else {
+                    // Show exception and exit
+                    DialogHelper.showToast(
+                            this,
+                            R.string.msgs_cant_create_console, Toast.LENGTH_LONG);
+                    exit();
+                    return;
+                }
             }
         } else {
             //Ensure that initial directory is an absolute directory
@@ -771,12 +784,6 @@ public class NavigationActivity extends Activity
             }
             startActivityForResult(searchIntent, INTENT_REQUEST_SEARCH);
             return;
-        }
-
-        // Navigate to the requested path
-        String navigateTo = intent.getStringExtra(EXTRA_NAVIGATE_TO);
-        if (navigateTo != null && navigateTo.length() >= 0) {
-            getCurrentNavigationView().changeCurrentDir(navigateTo);
         }
     }
 

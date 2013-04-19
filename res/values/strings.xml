@@ -28,6 +28,9 @@
   <string name="size_megabytes" translatable="false">MB</string>
   <string name="size_gigabytes" translatable="false">GB</string>
 
+  <!-- Date/time format order (%1$s: date; %2$s: time) -->
+  <string name="datetime_format_order">%1$s %2$s</string>
+
   <!-- Devices types -->
   <string name="device_blockdevice">Block device</string>
   <string name="device_characterdevice">Character device</string>
@@ -602,6 +605,13 @@
   <!-- Mime/Types * Unknown -->
   <string name="mime_unknown">Unknown</string>
 
+  <!--  Filetime formats -->
+  <string name="filetime_format_mode_system">System-defined</string>
+  <string name="filetime_format_mode_locale">Locale-defined</string>
+  <string name="filetime_format_mode_ddMMyyyy_HHmmss">dd/mm/yyyy hh:mm:ss</string>
+  <string name="filetime_format_mode_MMddyyyy_HHmmss">mm/dd/yyyy hh:mm:ss</string>
+  <string name="filetime_format_mode_yyyyMMdd_HHmmss">yyyy-mm-dd hh:mm:ss</string>
+
   <!-- Selection. All possibilities. [1 folder; >1 folders; 1 file; >1 files;
      >1 folders and 1 file; 1 folder and >1 files; >1 folders and >1 files]
      Avoid using plural item because is more complex to achieved all strings -->
@@ -673,6 +683,8 @@
   <string name="pref_case_sensitive_sort">Case-sensitive</string>
   <!-- Preferences * General * Case sensitive sort and navigating summary -->
   <string name="pref_case_sensitive_sort_summary">Consider case when navigating or sorting search results</string>
+  <!-- Preferences * General * Filetime format mode title -->
+  <string name="pref_filetime_format_mode">Date/time format</string>
   <!-- Preferences * General *Disk usage warning level title -->
   <string name="pref_disk_usage_warning_level">Disk usage warning</string>
   <!-- Preferences * General * Disk usage warning level summary -->

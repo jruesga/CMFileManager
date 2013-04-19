@@ -45,8 +45,10 @@ import com.cyanogenmod.filemanager.model.SystemFile;
 import com.cyanogenmod.filemanager.model.User;
 import com.cyanogenmod.filemanager.preferences.DisplayRestrictions;
 import com.cyanogenmod.filemanager.preferences.FileManagerSettings;
+import com.cyanogenmod.filemanager.preferences.FileTimeFormatMode;
 import com.cyanogenmod.filemanager.preferences.NavigationSortMode;
 import com.cyanogenmod.filemanager.preferences.ObjectIdentifier;
+import com.cyanogenmod.filemanager.preferences.ObjectStringIdentifier;
 import com.cyanogenmod.filemanager.preferences.Preferences;
 import com.cyanogenmod.filemanager.util.MimeTypeHelper.MimeTypeCategory;
 
@@ -56,6 +58,8 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
@@ -107,6 +111,20 @@ public final class FileHelper {
      * @hide
      */
     public static final String NEWLINE = System.getProperty("line.separator"); //$NON-NLS-1$
+
+    // The date/time formats objects
+    /**
+     * @hide
+     */
+    public final static Object DATETIME_SYNC = new Object();
+    /**
+     * @hide
+     */
+    public static boolean sReloadDateTimeFormats = true;
+    private static String sDateTimeFormatOrder = null;
+    private static FileTimeFormatMode sFiletimeFormatMode = null;
+    private static DateFormat sDateFormat = null;
+    private static DateFormat sTimeFormat = null;
 
     /**
      * Constructor of <code>FileHelper</code>.
@@ -1260,5 +1278,48 @@ public final class FileHelper {
             Log.e(TAG, "Failed to check fso execute permission,", e); //$NON-NLS-1$
         }
         throw new InsufficientPermissionsException(executable);
+    }
+
+    /**
+     * Method that formats a filetime date with the specific system settings
+     *
+     * @param ctx The current context
+     * @param filetime The filetime date
+     * @return String The filetime date formatted
+     */
+    public static String formatFileTime(Context ctx, Date filetime) {
+        synchronized (DATETIME_SYNC) {
+            if (sReloadDateTimeFormats) {
+                String defaultValue =
+                        ((ObjectStringIdentifier)FileManagerSettings.
+                                    SETTINGS_FILETIME_FORMAT_MODE.getDefaultValue()).getId();
+                String id = FileManagerSettings.SETTINGS_FILETIME_FORMAT_MODE.getId();
+                sFiletimeFormatMode =
+                        FileTimeFormatMode.fromId(
+                                Preferences.getSharedPreferences().getString(id, defaultValue));
+                if (sFiletimeFormatMode.compareTo(FileTimeFormatMode.SYSTEM) == 0) {
+                    sDateTimeFormatOrder = ctx.getString(R.string.datetime_format_order);
+                    sDateFormat = android.text.format.DateFormat.getDateFormat(ctx);
+                    sTimeFormat = android.text.format.DateFormat.getTimeFormat(ctx);
+                } else if (sFiletimeFormatMode.compareTo(FileTimeFormatMode.LOCALE) == 0) {
+                    sDateFormat =
+                            DateFormat.getDateTimeInstance(DateFormat.SHORT, DateFormat.SHORT);
+                } else {
+                    sDateFormat = new SimpleDateFormat(sFiletimeFormatMode.getFormat());
+                }
+                sReloadDateTimeFormats = false;
+            }
+        }
+
+        // Apply the user settings
+        String formatted = "-"; //$NON-NLS-1$
+        if (sFiletimeFormatMode.compareTo(FileTimeFormatMode.SYSTEM) == 0) {
+            String date = sDateFormat.format(filetime);
+            String time = sTimeFormat.format(filetime);
+            formatted = String.format(sDateTimeFormatOrder, date, time);
+        } else {
+            formatted = sDateFormat.format(filetime);
+        }
+        return formatted;
     }
 }

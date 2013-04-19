@@ -37,7 +37,6 @@ import com.cyanogenmod.filemanager.ui.ThemeManager.Theme;
 import com.cyanogenmod.filemanager.util.FileHelper;
 import com.cyanogenmod.filemanager.util.MimeTypeHelper;
 
-import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -201,7 +200,6 @@ public class FileSystemObjectAdapter
     private void processData(List<FileSystemObject> files) {
         Theme theme = ThemeManager.getCurrentTheme(getContext());
         Resources res = getContext().getResources();
-        DateFormat df = DateFormat.getDateTimeInstance(DateFormat.SHORT, DateFormat.SHORT);
         this.mData = new DataHolder[getCount()];
         int cc = (files == null) ? getCount() : files.size();
         for (int i = 0; i < cc; i++) {
@@ -213,7 +211,9 @@ public class FileSystemObjectAdapter
             if (fso instanceof ParentDirectory) {
                 sbSummary.append(res.getString(R.string.parent_dir));
             } else {
-                sbSummary.append(df.format(fso.getLastModifiedTime()));
+                sbSummary.append(
+                        FileHelper.formatFileTime(
+                                getContext(), fso.getLastModifiedTime()));
                 sbSummary.append("   "); //$NON-NLS-1$
                 sbSummary.append(fso.toRawPermissionString());
             }

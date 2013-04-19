@@ -30,6 +30,15 @@
         android:persistent="true"
         android:defaultValue="false" />
 
+      <!-- Filetime format -->
+      <ListPreference
+        android:key="cm_filemanager_filetime_format_mode"
+        android:title="@string/pref_filetime_format_mode"
+        android:entries="@array/filetime_format_mode_labels"
+        android:entryValues="@array/filetime_format_mode_values"
+        android:defaultValue="1"
+        android:persistent="true" />
+
       <!-- Disk usage warning level -->
       <ListPreference
         android:key="cm_filemanager_disk_usage_warning_level"

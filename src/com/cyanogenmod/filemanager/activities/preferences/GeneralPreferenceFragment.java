@@ -44,6 +44,7 @@ public class GeneralPreferenceFragment extends TitlePreferenceFragment {
     private static final boolean DEBUG = false;
 
     private CheckBoxPreference mCaseSensitiveSort;
+    private ListPreference mFiletimeFormatMode;
     private ListPreference mFreeDiskSpaceWarningLevel;
     private CheckBoxPreference mComputeFolderStatistics;
 //    private CheckBoxPreference mUseFlinger;
@@ -69,8 +70,18 @@ public class GeneralPreferenceFragment extends TitlePreferenceFragment {
                             String.valueOf(newValue)));
             }
 
+            // Filetime format mode
+            if (FileManagerSettings.SETTINGS_FILETIME_FORMAT_MODE.
+                    getId().compareTo(key) == 0) {
+                String value = (String)newValue;
+                int valueId = Integer.valueOf(value).intValue();
+                String[] labels = getResources().getStringArray(
+                        R.array.filetime_format_mode_labels);
+                                    preference.setSummary(labels[valueId]);
+            }
+
             // Disk usage warning level
-            if (FileManagerSettings.SETTINGS_DISK_USAGE_WARNING_LEVEL.
+            else if (FileManagerSettings.SETTINGS_DISK_USAGE_WARNING_LEVEL.
                     getId().compareTo(key) == 0) {
                 String value = (String)newValue;
                 preference.setSummary(
@@ -141,17 +152,29 @@ public class GeneralPreferenceFragment extends TitlePreferenceFragment {
                         FileManagerSettings.SETTINGS_CASE_SENSITIVE_SORT.getId());
         this.mCaseSensitiveSort.setOnPreferenceChangeListener(this.mOnChangeListener);
 
-        //Disk usage warning level
+        // Filetime format mode
+        this.mFiletimeFormatMode =
+                (ListPreference)findPreference(
+                        FileManagerSettings.SETTINGS_FILETIME_FORMAT_MODE.getId());
+        String defaultValue = ((ObjectStringIdentifier)FileManagerSettings.
+                SETTINGS_FILETIME_FORMAT_MODE.getDefaultValue()).getId();
+        String value = Preferences.getSharedPreferences().getString(
+                            FileManagerSettings.SETTINGS_FILETIME_FORMAT_MODE.getId(),
+                            defaultValue);
+        this.mOnChangeListener.onPreferenceChange(this.mFiletimeFormatMode, value);
+        this.mFiletimeFormatMode.setOnPreferenceChangeListener(this.mOnChangeListener);
+
+        // Disk usage warning level
         this.mFreeDiskSpaceWarningLevel =
                 (ListPreference)findPreference(
                         FileManagerSettings.SETTINGS_DISK_USAGE_WARNING_LEVEL.getId());
-        this.mFreeDiskSpaceWarningLevel.setOnPreferenceChangeListener(this.mOnChangeListener);
-        String defaultValue = ((String)FileManagerSettings.
+        defaultValue = ((String)FileManagerSettings.
                             SETTINGS_DISK_USAGE_WARNING_LEVEL.getDefaultValue());
-        String value = Preferences.getSharedPreferences().getString(
+        value = Preferences.getSharedPreferences().getString(
                             FileManagerSettings.SETTINGS_DISK_USAGE_WARNING_LEVEL.getId(),
                             defaultValue);
         this.mOnChangeListener.onPreferenceChange(this.mFreeDiskSpaceWarningLevel, value);
+        this.mFreeDiskSpaceWarningLevel.setOnPreferenceChangeListener(this.mOnChangeListener);
 
         // Compute folder statistics
         this.mComputeFolderStatistics =

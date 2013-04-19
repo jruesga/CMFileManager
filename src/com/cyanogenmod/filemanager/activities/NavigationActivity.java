@@ -235,6 +235,16 @@ public class NavigationActivity extends Activity
                                 }
                             }
                         }
+
+                        // Filetime format mode
+                        if (key.compareTo(FileManagerSettings.
+                                SETTINGS_FILETIME_FORMAT_MODE.getId()) == 0) {
+                            // Refresh the data
+                            synchronized (FileHelper.DATETIME_SYNC) {
+                                FileHelper.sReloadDateTimeFormats = true;
+                                NavigationActivity.this.getCurrentNavigationView().refresh();
+                            }
+                        }
                     }
 
                 } else if (intent.getAction().compareTo(
@@ -250,9 +260,19 @@ public class NavigationActivity extends Activity
                     } catch (Exception e) {
                         ExceptionUtil.translateException(context, e, true, false);
                     }
+
                 } else if (intent.getAction().compareTo(
                         FileManagerSettings.INTENT_THEME_CHANGED) == 0) {
                     applyTheme();
+
+                } else if (intent.getAction().compareTo(Intent.ACTION_TIME_CHANGED) == 0 ||
+                           intent.getAction().compareTo(Intent.ACTION_DATE_CHANGED) == 0 ||
+                           intent.getAction().compareTo(Intent.ACTION_TIMEZONE_CHANGED) == 0) {
+                    // Refresh the data
+                    synchronized (FileHelper.DATETIME_SYNC) {
+                        FileHelper.sReloadDateTimeFormats = true;
+                        NavigationActivity.this.getCurrentNavigationView().refresh();
+                    }
                 }
             }
         }
@@ -301,6 +321,9 @@ public class NavigationActivity extends Activity
         filter.addAction(FileManagerSettings.INTENT_SETTING_CHANGED);
         filter.addAction(FileManagerSettings.INTENT_FILE_CHANGED);
         filter.addAction(FileManagerSettings.INTENT_THEME_CHANGED);
+        filter.addAction(Intent.ACTION_DATE_CHANGED);
+        filter.addAction(Intent.ACTION_TIME_CHANGED);
+        filter.addAction(Intent.ACTION_TIMEZONE_CHANGED);
         registerReceiver(this.mNotificationReceiver, filter);
 
         //Set the main layout of the activity

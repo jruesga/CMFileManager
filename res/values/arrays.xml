@@ -31,6 +31,22 @@
     <item>@string/layout_details</item>
   </string-array>
 
+  <!-- General. Filetime format mode -->
+  <string-array name="filetime_format_mode_labels" translatable="false">
+    <item>@string/filetime_format_mode_system</item>
+    <item>@string/filetime_format_mode_locale</item>
+    <item>@string/filetime_format_mode_ddMMyyyy_HHmmss</item>
+    <item>@string/filetime_format_mode_MMddyyyy_HHmmss</item>
+    <item>@string/filetime_format_mode_yyyyMMdd_HHmmss</item>
+  </string-array>
+  <string-array name="filetime_format_mode_values" translatable="false">
+    <item>0</item>
+    <item>1</item>
+    <item>2</item>
+    <item>3</item>
+    <item>4</item>
+  </string-array>
+
   <!-- General. Disk usage warning level -->
   <string-array name="disk_usage_warning_level_labels" translatable="false">
     <item>75%</item>

@@ -78,7 +78,7 @@
 
   <string name="advise_insufficient_permissions">Операция требует повышенных привилегий.\n\nВы хотите изменить режим Root-доступа?</string>
 
-  <string name="parent_dir">Наверх</string>
+  <string name="parent_dir">Вверх</string>
   <string name="external_storage">Внешний накопитель</string>
   <string name="usb_storage">USB-накопитель</string>
 
@@ -146,7 +146,7 @@
   <string name="fso_properties_dialog_last_changed_date">Изменено:</string>
   <string name="fso_properties_dialog_owner">Владелец:</string>
   <string name="fso_properties_dialog_group">Группа:</string>
-  <string name="fso_properties_dialog_others">Другое:</string>
+  <string name="fso_properties_dialog_others">Другие:</string>
   <plurals name="fso_properties_dialog_folders">
     <item quantity="zero">0 папок</item>
     <item quantity="one">1 папка</item>
@@ -263,7 +263,7 @@
   <string name="actions_menu_open_parent_folder">Открыть папку с файлом</string>
   <string name="actions_menu_compute_checksum">Контрольные суммы</string>
 
-  <string name="actions_ask_undone_operation_msg">Это действие не обратимо. Вы хотите продолжить?</string>
+  <string name="actions_ask_undone_operation_msg">Это действие необратимо. Вы хотите продолжить?</string>
 
   <string name="input_name_dialog_label">Имя:</string>
   <string name="input_name_dialog_message_empty_name">Имя не может быть пустым</string>
@@ -293,6 +293,12 @@
   <string name="mime_folder">Папка</string>
   <string name="mime_symlink">Симлинк</string>
   <string name="mime_unknown">Неизвестно</string>
+
+  <string name="filetime_format_mode_system">Системный</string>
+  <string name="filetime_format_mode_locale">Региональный</string>
+  <string name="filetime_format_mode_ddMMyyyy_HHmmss">дд/мм/гггг чч:мм:сс</string>
+  <string name="filetime_format_mode_MMddyyyy_HHmmss">мм/дд/гггг чч:мм:сс</string>
+  <string name="filetime_format_mode_yyyyMMdd_HHmmss">гггг-мм-дд чч:мм:сс</string>
 
   <string name="selection_one_folder"><xliff:g id="folders">%1$s</xliff:g> папка выделена</string>
   <string name="selection_other_folders"><xliff:g id="folders">%1$s</xliff:g> папки(-ок) выделено</string>
@@ -334,6 +340,7 @@
   <string name="pref_general_behaviour_category">Основные</string>
   <string name="pref_case_sensitive_sort">Учитывать регистр при сортировке</string>
   <string name="pref_case_sensitive_sort_summary">Сортировка результатов при поиске или навигации</string>
+  <string name="pref_filetime_format_mode">Формат даты/времени</string>
   <string name="pref_disk_usage_warning_level">Предупреждения исп. памяти</string>
   <string name="pref_disk_usage_warning_level_summary" formatted="false">Показывать разноцветные индикации дискового пространства, когда они достигают <xliff:g id="level">%1$s</xliff:g> процентов свободного места</string>
   <string name="pref_compute_folder_statistics">Расчёт статистики по папкам</string>

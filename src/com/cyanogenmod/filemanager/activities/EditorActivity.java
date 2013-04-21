@@ -1430,6 +1430,8 @@ public class EditorActivity extends Activity implements TextWatcher {
         theme.setTextColor(this, (TextView)v, "text_color"); //$NON-NLS-1$
         v = findViewById(R.id.ab_button1);
         theme.setImageDrawable(this, (ImageView)v, "ab_save_drawable"); //$NON-NLS-1$
+        v = findViewById(R.id.ab_button2);
+        theme.setImageDrawable(this, (ImageView)v, "ab_overflow_drawable"); //$NON-NLS-1$
         //- View
         v = findViewById(R.id.editor_layout);
         theme.setBackgroundDrawable(this, v, "background_drawable"); //$NON-NLS-1$

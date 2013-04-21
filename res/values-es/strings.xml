@@ -12,11 +12,16 @@
      WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
      See the License for the specific language governing permissions and
      limitations under the License.
- -->
-<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+-->
 
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="app_name">File Manager</string>
     <string name="app_description">Un explorador de archivos de CyanogenMod.</string>
+    <string name="datetime_format_order">%1$s %2$s</string>
+    <string name="device_blockdevice">Dispositivo de bloques</string>
+    <string name="device_characterdevice">Dispositivo de caracteres</string>
+    <string name="device_namedpipe">Tubería nombrada</string>
+    <string name="device_domainsocket">Socket de dominio</string>
     <string name="mount_point_readonly">RO</string>
     <string name="mount_point_readwrite">RW</string>
     <string name="yes">Sí</string>
@@ -270,6 +275,11 @@
     <string name="mime_folder">Carpeta</string>
     <string name="mime_symlink">Acceso directo</string>
     <string name="mime_unknown">Desconocido</string>
+    <string name="filetime_format_mode_system">Configuración del sistema</string>
+    <string name="filetime_format_mode_locale">Configuración regional</string>
+    <string name="filetime_format_mode_ddMMyyyy_HHmmss">dd/mm/aaaa hh:mm:ss</string>
+    <string name="filetime_format_mode_MMddyyyy_HHmmss">mm/dd/aaaa hh:mm:ss</string>
+    <string name="filetime_format_mode_yyyyMMdd_HHmmss">aaaa-mm-dd hh:mm:ss</string>
     <string name="selection_one_folder"><xliff:g id="folders">%1$s</xliff:g> carpeta seleccionada.</string>
     <string name="selection_other_folders"><xliff:g id="folders">%1$s</xliff:g> carpetas seleccionadas.</string>
     <string name="selection_one_file"><xliff:g id="files">%1$s</xliff:g> archivo seleccionado.</string>
@@ -307,6 +317,7 @@
     <string name="pref_general_behaviour_category">General</string>
     <string name="pref_case_sensitive_sort">Ordenación sensible</string>
     <string name="pref_case_sensitive_sort_summary">Tener en cuenta minúsculas/mayúsculas al navegar o mostrar resultados de búsqueda</string>
+    <string name="pref_filetime_format_mode">Formato de fecha/hora</string>
     <string name="pref_disk_usage_warning_level">Aviso de uso de disco</string>
     <string name="pref_disk_usage_warning_level_summary" formatted="false">Mostrar un color diferente para los widgets de uso de disco, cuando el espacio ocupado supere el <xliff:g id="level">%1$s</xliff:g> por ciento del total</string>
     <string name="pref_compute_folder_statistics">Estadísticas de carpetas</string>
@@ -374,5 +385,4 @@
     <string name="changelog_title">Registro de cambios</string>
     <string name="welcome_title">Bienvenido</string>
     <string name="welcome_msg">Bienvenido al explorador de archivos de CyanogenMod.\n\nEsta aplicación permite explorar el sistema de archivos y con ello, realizar operaciones que podrían bloquear el dispositivo. Para prevenir esta circunstancia, la aplicación se iniciará en modo seguro.\n\nPodrá acceder al modo avanzado de superusuario mediante el menú Ajustes, pero será su responsabilidad el evitar que una operación dañe el dispositivo.\n\nEl equipo de CyanogenMod.\n</string>
-
 </resources>

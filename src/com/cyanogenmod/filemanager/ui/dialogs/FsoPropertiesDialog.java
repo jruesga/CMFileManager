@@ -71,7 +71,7 @@ import com.cyanogenmod.filemanager.util.StorageHelper;
 
 import java.io.File;
 import java.io.IOException;
-import java.text.DateFormat;
+
 /**
  * A class that wraps a dialog for showing information about a {@link FileSystemObject}
  */
@@ -310,22 +310,12 @@ public class FsoPropertiesDialog
         }
         this.mTvSize.setText(size);
         this.mTvContains.setText("-");  //$NON-NLS-1$
-        DateFormat df = DateFormat.getDateTimeInstance(DateFormat.SHORT, DateFormat.SHORT);
-        try {
-            tvLastAccessedTime.setText(df.format(this.mFso.getLastAccessedTime()));
-        } catch (Exception e) {
-            tvLastAccessedTime.setText("-");  //$NON-NLS-1$
-        }
-        try {
-            tvLastModifiedTime.setText(df.format(this.mFso.getLastModifiedTime()));
-        } catch (Exception e) {
-            tvLastModifiedTime.setText("-");  //$NON-NLS-1$
-        }
-        try {
-            tvLastChangedTime.setText(df.format(this.mFso.getLastChangedTime()));
-        } catch (Exception e) {
-            tvLastChangedTime.setText("-");  //$NON-NLS-1$
-        }
+        tvLastAccessedTime.setText(
+                FileHelper.formatFileTime(this.mContext, this.mFso.getLastAccessedTime()));
+        tvLastModifiedTime.setText(
+                FileHelper.formatFileTime(this.mContext, this.mFso.getLastModifiedTime()));
+        tvLastChangedTime.setText(
+                FileHelper.formatFileTime(this.mContext, this.mFso.getLastChangedTime()));
 
         //- Permissions
         String loadingMsg = this.mContext.getString(R.string.loading_message);

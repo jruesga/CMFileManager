@@ -79,6 +79,12 @@ public enum FileManagerSettings {
      */
     SETTINGS_CASE_SENSITIVE_SORT("cm_filemanager_case_sensitive_sort", Boolean.FALSE), //$NON-NLS-1$
     /**
+     * Defines the filetime format mode to use
+     * @hide
+     */
+    SETTINGS_FILETIME_FORMAT_MODE(
+            "cm_filemanager_filetime_format_mode", FileTimeFormatMode.LOCALE), //$NON-NLS-1$
+    /**
      * When display a warning in free disk widget
      * @hide
      */

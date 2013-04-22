@@ -16,6 +16,7 @@
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="app_name">Διαχείριση αρχείων</string>
     <string name="app_description">Διαχείριση αρχείων του CyanogenMod</string>
+    <string name="datetime_format_order">%1$s %2$s</string>
     <string name="device_blockdevice">Συσκευή μπλοκ</string>
     <string name="device_characterdevice">Συσκευή χαρακτήρων</string>
     <string name="device_namedpipe">Συσκευή διασωλήνωσης</string>
@@ -263,6 +264,11 @@
     <string name="mime_folder">Φάκελος</string>
     <string name="mime_symlink">Symlink</string>
     <string name="mime_unknown">Άγνωστο</string>
+    <string name="filetime_format_mode_system">Προεπιλογή συστήματος</string>
+    <string name="filetime_format_mode_locale">Προεπιλογή γλώσσας</string>
+    <string name="filetime_format_mode_ddMMyyyy_HHmmss">ηη/μμ/εεεε ωω:λλ:δδ</string>
+    <string name="filetime_format_mode_MMddyyyy_HHmmss">μμ/ηη/εεεε ωω:λλ:δδ</string>
+    <string name="filetime_format_mode_yyyyMMdd_HHmmss">εεεε-μμ-ηη ωω:λλ:δδ</string>
     <string name="selection_one_folder">Επιλέχθηκε <xliff:g id="folders">%1$s</xliff:g> φάκελος.</string>
     <string name="selection_other_folders">Επιλέχθηκαν <xliff:g id="folders">%1$s</xliff:g> φάκελοι.</string>
     <string name="selection_one_file">Επιλέχθηκε <xliff:g id="files">%1$s</xliff:g> αρχείο.</string>
@@ -299,6 +305,7 @@
     <string name="pref_general_behaviour_category">Γενικά</string>
     <string name="pref_case_sensitive_sort">Πεζά-κεφαλαία</string>
     <string name="pref_case_sensitive_sort_summary">Ταξινόμιση με βάση πεζά-κεφαλαία κατά την πλοήγηση ή την εμφάνιση αποτελεσμάτων αναζήτησης</string>
+    <string name="pref_filetime_format_mode">Μορφή ημερομηνίας/ώρας</string>
     <string name="pref_disk_usage_warning_level">Προειδοποίηση χρήσης δίσκου</string>
     <string name="pref_disk_usage_warning_level_summary" formatted="false">Εμφάνιση διαφορετικού χρώματος στα widget χρήσης δίσκου όταν καταληφθεί το <xliff:g id="level">%1$s</xliff:g> τοις εκατό του ελεύθερου χώρου</string>
     <string name="pref_compute_folder_statistics">Υπολογισμός στατιστικών φακέλου</string>

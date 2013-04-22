@@ -17,6 +17,7 @@
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
   <string name="app_name">Explorateur de fichiers</string>
   <string name="app_description">Explorateur de fichiers CyanogenMod</string>
+  <string name="datetime_format_order">%1$s %2$s</string>
   <string name="device_blockdevice">Block device</string>
   <string name="device_characterdevice">Character device</string>
   <string name="device_namedpipe">Named pipe</string>
@@ -274,6 +275,11 @@
   <string name="mime_folder">Dossier</string>
   <string name="mime_symlink">Lien symbolique</string>
   <string name="mime_unknown">Inconnu</string>
+  <string name="filetime_format_mode_system">Paramètre système</string>
+  <string name="filetime_format_mode_locale">Paramètre local</string>
+  <string name="filetime_format_mode_ddMMyyyy_HHmmss">jj/mm/aaaa hh:mm:ss</string>
+  <string name="filetime_format_mode_MMddyyyy_HHmmss">mm/jj/aaaa hh:mm:ss</string>
+  <string name="filetime_format_mode_yyyyMMdd_HHmmss">aaaa-mm-jj hh:mm:ss</string>
   <string name="selection_one_folder"><xliff:g id="folders">%1$s</xliff:g> dossier sélectionné</string>
   <string name="selection_other_folders"><xliff:g id="folders">%1$s</xliff:g> dossiers sélectionnés</string>
   <string name="selection_one_file"><xliff:g id="files">%1$s</xliff:g> fichier sélectionné</string>
@@ -311,6 +317,7 @@
   <string name="pref_general_behaviour_category">Général</string>
   <string name="pref_case_sensitive_sort">Sensible à la casse</string>
   <string name="pref_case_sensitive_sort_summary">Tenir compte de la casse lors de la navigation ou du tri des résultats de recherche</string>
+  <string name="pref_filetime_format_mode">Format Date/Heure</string>
   <string name="pref_disk_usage_warning_level">Avertissement d\'utilisation disque</string>
   <string name="pref_disk_usage_warning_level_summary" formatted="false">Afficher une couleur différente dans la barre d\'utilisation de l\'espace disque lorsque <xliff:g id="level">%1$s</xliff:g> pourcent d\'espace est utilisé</string>
   <string name="pref_compute_folder_statistics">Calculer les statistiques de dossiers</string>

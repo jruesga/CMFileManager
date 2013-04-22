@@ -17,6 +17,7 @@
 
     <string name="app_name">Fájlkezelő</string>
     <string name="app_description">CyanogenMod fájlkezelő</string>
+    <string name="datetime_format_order">%1$s %2$s</string>
     <string name="device_blockdevice">Blokkeszköz</string>
     <string name="device_characterdevice">Karaktereszköz</string>
     <string name="device_namedpipe">Nevesített cső</string>
@@ -259,6 +260,11 @@
     <string name="mime_folder">Könyvtár</string>
     <string name="mime_symlink">Szimbolikus link</string>
     <string name="mime_unknown">Ismeretlen</string>
+    <string name="filetime_format_mode_system">Rendszer által meghatározott</string>
+    <string name="filetime_format_mode_locale">Nyelv által meghatározott</string>
+    <string name="filetime_format_mode_ddMMyyyy_HHmmss">nn/hh/éééé óó:pp:mm</string>
+    <string name="filetime_format_mode_MMddyyyy_HHmmss">hh/nn/éééé óó:pp:mm</string>
+    <string name="filetime_format_mode_yyyyMMdd_HHmmss">éééé/hh/nn óó:pp:mm</string>
     <string name="selection_one_folder"><xliff:g id="folders">%1$s</xliff:g> könyvtár kiválasztva.</string>
     <string name="selection_other_folders"><xliff:g id="folders">%1$s</xliff:g> könyvtár kiválasztva.</string>
     <string name="selection_one_file"><xliff:g id="files">%1$s</xliff:g> fájl kiválasztva.</string>
@@ -295,6 +301,7 @@
     <string name="pref_general_behaviour_category">Általános</string>
     <string name="pref_case_sensitive_sort">Kis-/nagybetű helyes rendezés</string>
     <string name="pref_case_sensitive_sort_summary">Kis-/nagybetű figyelembe vétele navigáláskor, illetve találatok sorba rendezésekor</string>
+    <string name="pref_filetime_format_mode">Dátum/idő formátum</string>
     <string name="pref_disk_usage_warning_level">Figyelmeztetés kevés tárterületnél</string>
     <string name="pref_disk_usage_warning_level_summary" formatted="false">Tárterület-használat megjelenítése más színnel, amikor az eléri a <xliff:g id="level">%1$s</xliff:g> százalékot.</string>
     <string name="pref_compute_folder_statistics">Mappa statisztika számítása</string>
@@ -331,7 +338,7 @@
     <string name="pref_hexdump_desc">Bináris fájl megnyitásakor generáljon hexadecimális nézetet, majd jelenítse azt meg.</string>
     <string name="pref_editor_syntax_highlight_category">Szintaxis kiemelés</string>
     <string name="pref_syntax_highlight">Szintaxis kiemelés</string>
-    <string name="pref_syntax_highlight_desc">Szinaxis kiemelés a megjelenített fájlban (ha elérhető szintaxis feldolgozó az adott fájltípushoz)</string>
+    <string name="pref_syntax_highlight_desc">Szintaxis kiemelés a megjelenített fájlban (ha elérhető szintaxis feldolgozó az adott fájltípushoz)</string>
     <string name="pref_syntax_highlight_color_scheme">Színséma</string>
     <string name="pref_syntax_highlight_color_scheme_desc">Érintse meg a szintaxis kiemelés beállításához.</string>
     <string name="pref_syntax_sh_use_theme_default">Téma alapértelmezése</string>

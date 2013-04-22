@@ -364,4 +364,10 @@
     <string name="ash_keyword">Palavra chave</string>
     <string name="ash_quoted_string">String citada</string>
     <string name="ash_variable">Variável</string>
+    <string name="filetime_format_mode_system">Definido pelo sistema</string>
+    <string name="filetime_format_mode_locale">Definido por locale</string>
+    <string name="filetime_format_mode_ddMMyyyy_HHmmss">dd/mm/aaaa hh:mm:ss</string>
+    <string name="filetime_format_mode_MMddyyyy_HHmmss">mm/dd/aaaa hh:mm:ss</string>
+    <string name="filetime_format_mode_yyyyMMdd_HHmmss">aaaa-mm-dd hh:mm:ss</string>
+    <string name="pref_filetime_format_mode">Formato data/hora</string>
 </resources>

@@ -21,6 +21,9 @@
     <string name="app_name">Dateimanager</string>
     <string name="app_description">Der CyanogenMod-Dateimanager</string>
 
+    <!-- Date/time format order (%1$s: date; %2$s: time) -->
+    <string name="datetime_format_order">%1$s %2$s</string>
+
     <!-- Devices types -->
     <string name="device_blockdevice">Blockorientiertes Gerät</string>
     <string name="device_characterdevice">Zeichenorientiertes Gerät</string>
@@ -338,6 +341,10 @@
     <string name="mime_symlink">Symbolischer Link</string>
     <string name="mime_unknown">Unbekannt</string>
 
+    <!--  Filetime formats -->
+    <string name="filetime_format_mode_system">System-Format</string>
+    <string name="filetime_format_mode_locale">Gebietsschema-Format</string>
+
     <!-- Selections -->
     <string name="selection_one_folder"><xliff:g id="folders">%1$s</xliff:g> Ordner ausgewählt</string>
     <string name="selection_other_folders"><xliff:g id="folders">%1$s</xliff:g> Ordner ausgewählt</string>
@@ -384,6 +391,7 @@
     <string name="pref_general_behaviour_category">Allgemein</string>
     <string name="pref_case_sensitive_sort">Groß- und Kleinschreibung</string>
     <string name="pref_case_sensitive_sort_summary">Beim Navigieren und Sortieren Groß- und Kleinschreibung berücksichtigen</string>
+    <string name="pref_filetime_format_mode">Datums- und Zeitformat</string>
     <string name="pref_disk_usage_warning_level">Speichernutzungswarnung</string>
     <string name="pref_disk_usage_warning_level_summary" formatted="false">Eine andere Farbe verwenden, wenn mehr als <xliff:g id="level">%1$s</xliff:g> Prozent des Speichers belegt sind</string>
     <string name="pref_compute_folder_statistics">Verzeichnisstatistiken</string>

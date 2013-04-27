@@ -374,7 +374,8 @@
   <string name="pref_remove_saved_search_terms_summary">Wybierz by usunąć wszystkie zapisane wyszukiwane frazy</string>
   <string name="pref_remove_saved_search_terms_msg">Wszystkie zapisane wyszukiwane frazy zostały usunięte.</string>
   <string name="pref_editor_behaviour_category">Zachowanie</string>
-  <string name="pref_no_suggestions">Brak sugestii</string>
+  <string name="pref_no_suggestions">Brak podpowiedzi</string>
+  <string name="pref_no_suggestions_desc">Nie wyświetlaj podpowiedzi w trakcie edycji pliku</string>
   <string name="pref_word_wrap">Zawijanie wierszy</string>
   <string name="pref_hexdump">Pliki binarne w heksach</string>
   <string name="pref_hexdump_desc">Generuj widok heksadecymalny dla plików binarnych i otwieraj je w przeglądarce heksów</string>
@@ -423,4 +424,11 @@
     \n\nAplikacja ta pozwala Ci przeglądać pliki systemowe i wykonywać czynności, które mogą uszkodzić urządzenie. Aby zapobiec ewentualnym szkodom, aplikacja zostanie uruchomiona w bezpiecznym trybie bez podwyższonych uprawnień.
     \n\nTryb z pełnymi uprawnieniami możesz aktywować w ustawieniach aplikacji. Ponosisz odpowiedzialność za to, by swoimi działaniami nie doprowadzić do uszkodzenia systemu.
     \n\nZespół CyanogenMod.\n</string>
+
+  <string name="pref_filetime_format_mode">Format daty i czasu</string>
+  <string name="filetime_format_mode_system">Zdefiniowane przez system</string>
+  <string name="filetime_format_mode_locale">Ustawienia regionalne</string>
+  <string name="filetime_format_mode_ddMMyyyy_HHmmss">dd/mm/rrrr gg:mm:ss</string>
+  <string name="filetime_format_mode_MMddyyyy_HHmmss">mm/dd/rrrr gg:mm:ss</string>
+  <string name="filetime_format_mode_yyyyMMdd_HHmmss">rrrr-mm-dd gg:mm:ss</string>
 </resources>

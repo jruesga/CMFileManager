@@ -381,17 +381,22 @@ public class FileSystemObjectAdapter
                     }
 
                     //Add or remove from the global selected items
+                    final List<FileSystemObject> selectedItems =
+                            FileSystemObjectAdapter.this.mSelectedItems;
                     if (data.mSelected) {
-                        FileSystemObjectAdapter.this.mSelectedItems.add(fso);
+                        if (!selectedItems.contains(fso)) {
+                            selectedItems.add(fso);
+                        }
                     } else {
-                        FileSystemObjectAdapter.this.mSelectedItems.remove(fso);
+                        if (selectedItems.contains(fso)) {
+                            selectedItems.remove(fso);
+                        }
                     }
 
                     //Communicate event
                     if (this.mOnSelectionChangedListener != null) {
                         List<FileSystemObject> selection =
-                                new ArrayList<FileSystemObject>(
-                                        FileSystemObjectAdapter.this.mSelectedItems);
+                                new ArrayList<FileSystemObject>(selectedItems);
                         this.mOnSelectionChangedListener.onSelectionChanged(selection);
                     }
 
@@ -455,11 +460,15 @@ public class FileSystemObjectAdapter
 
                 //Add or remove from the global selected items
                 FileSystemObject fso = getItem(i);
+                final List<FileSystemObject> selectedItems =
+                        FileSystemObjectAdapter.this.mSelectedItems;
                 if (data.mSelected) {
-                    FileSystemObjectAdapter.this.mSelectedItems.add(fso);
+                    if (!selectedItems.contains(fso)) {
+                        selectedItems.add(fso);
+                    }
                 } else {
-                    if (FileSystemObjectAdapter.this.mSelectedItems.contains(fso)) {
-                        FileSystemObjectAdapter.this.mSelectedItems.remove(fso);
+                    if (selectedItems.contains(fso)) {
+                        selectedItems.remove(fso);
                     }
                 }
             }

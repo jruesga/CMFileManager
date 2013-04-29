@@ -181,7 +181,7 @@
     <string name="bookmarks_system_folder">Systeemmap</string>
     <string name="bookmarks_button_config_cd">Kies de beginmap.</string>
     <string name="bookmarks_button_remove_bookmark_cd">Favoriet verwijderen.</string>
-    <string name="bookmarks_msgs_add_success">Favoriet is succesvol toegevoegd.</string>
+    <string name="bookmarks_msgs_add_success">Favoriet succesvol aangemaakt.</string>
     <string name="initial_directory_dialog_title">Beginmap</string>
     <string name="initial_directory_label">Kies de beginmap:</string>
     <string name="initial_directory_relative_msg">Paden moeten beginnen met een slash.</string>
@@ -194,7 +194,7 @@
     <string name="menu_no_suggestions">Geen suggesties</string>
     <string name="menu_word_wrap">Automatische terugloop</string>
     <string name="menu_syntax_highlight">Syntaxiskleuring</string>
-    <string name="create_copy_regexp"><xliff:g id="name">%1$s</xliff:g> - kopieer<xliff:g id="extension">%2$s</xliff:g></string>
+    <string name="create_copy_regexp"><xliff:g id="name">%1$s</xliff:g> - kopie<xliff:g id="extension">%2$s</xliff:g></string>
     <string name="create_new_compress_file_regexp"><xliff:g id="name">%1$s</xliff:g> - nieuw<xliff:g id="extension">%2$s</xliff:g></string>
     <string name="waiting_dialog_msg">Bewerkingen uitvoeren\u2026</string>
     <string name="waiting_dialog_copying_title">Kopiëren\u2026</string>
@@ -219,24 +219,24 @@
     <string name="actions_menu_deselect_all">Alles deselecteren</string>
     <string name="actions_menu_select">Selecteren</string>
     <string name="actions_menu_deselect">Deselecteren</string>
-    <string name="actions_menu_paste_selection">Selectie hier plakken</string>
-    <string name="actions_menu_move_selection">Selectie hier verplaatsen</string>
-    <string name="actions_menu_delete_selection">Selectie verwijderen</string>
-    <string name="actions_menu_compress_selection">Selectie comprimeren</string>
+    <string name="actions_menu_paste_selection">Hier plakken (selectie)</string>
+    <string name="actions_menu_move_selection">Hier verplaatsen (selectie)</string>
+    <string name="actions_menu_delete_selection">Verwijderen (selectie)</string>
+    <string name="actions_menu_compress_selection">Comprimeren (selectie)</string>
     <string name="actions_menu_create_link">Symlink maken</string>
     <string name="actions_menu_open">Openen</string>
     <string name="actions_menu_open_with">Openen met</string>
     <string name="actions_menu_execute">Uitvoeren</string>
     <string name="actions_menu_send">Verzenden</string>
-    <string name="actions_menu_send_selection">Selectie verzenden</string>
+    <string name="actions_menu_send_selection">Verzenden (selectie)</string>
     <string name="actions_menu_compress">Comprimeren</string>
     <string name="actions_menu_extract">Uitpakken</string>
     <string name="actions_menu_delete">Verwijderen</string>
     <string name="actions_menu_rename">Naam wijzigen</string>
     <string name="actions_menu_create_copy">Kopie maken</string>
     <string name="actions_menu_properties">Eigenschappen</string>
-    <string name="actions_menu_add_to_bookmarks">Toevoegen aan favorieten</string>
-    <string name="actions_menu_add_shortcut">Snelkoppeling toevoegen</string>
+    <string name="actions_menu_add_to_bookmarks">Favoriet maken</string>
+    <string name="actions_menu_add_shortcut">Snelkoppeling maken</string>
     <string name="actions_menu_open_parent_folder">Bovenliggende map openen</string>
     <string name="actions_menu_compute_checksum">Checksum berekenen</string>
     <string name="actions_ask_undone_operation_msg">Deze actie kan niet ongedaan worden gemaakt. Weet u zeker dat u door wilt gaan?</string>
@@ -246,11 +246,11 @@
     <string name="input_name_dialog_message_invalid_name">Ongeldige naam. De namen \'.\' en \'..\' zijn niet toegestaan.</string>
     <string name="input_name_dialog_message_name_exists">Deze naam bestaat al.</string>
     <string name="associations_dialog_title">Gekoppelde apps</string>
-    <string name="associations_dialog_remember">Selectie bewaren</string>
+    <string name="associations_dialog_remember">Keuze onthouden</string>
     <string name="associations_dialog_openwith_title">Openen met</string>
     <string name="associations_dialog_openwith_action">Openen</string>
-    <string name="associations_dialog_sendwith_title">Versturen met</string>
-    <string name="associations_dialog_sendwith_action">Versturen</string>
+    <string name="associations_dialog_sendwith_title">Verzenden met</string>
+    <string name="associations_dialog_sendwith_action">Verzenden</string>
     <string name="inline_autocomplete_tab_nothing_to_complete_msg">Niets af te ronden.</string>
     <string name="execution_console_title">Console</string>
     <string name="execution_console_script_name_label">Script:</string>

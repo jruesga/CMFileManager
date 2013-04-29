@@ -303,6 +303,12 @@
   <string name="mime_symlink">Symbolický odkaz</string>
   <string name="mime_unknown">Neznámý</string>
 
+  <string name="filetime_format_mode_system">Ze systému</string>
+  <string name="filetime_format_mode_locale">Z lokalizace</string>
+  <string name="filetime_format_mode_ddMMyyyy_HHmmss">dd/mm/yyyy hh:mm:ss</string>
+  <string name="filetime_format_mode_MMddyyyy_HHmmss">mm/dd/yyyy hh:mm:ss</string>
+  <string name="filetime_format_mode_yyyyMMdd_HHmmss">yyyy-mm-dd hh:mm:ss</string>
+
   <string name="selection_one_folder"><xliff:g id="folders">%1$s</xliff:g> složka vybrána.</string>
   <string name="selection_other_folders">Vybraných složek: <xliff:g id="folders">%1$s</xliff:g></string>
   <string name="selection_one_file"><xliff:g id="files">%1$s</xliff:g> soubor vybrán.</string>
@@ -343,6 +349,7 @@
   <string name="pref_general_behaviour_category">Obecné</string>
   <string name="pref_case_sensitive_sort">Rozlišit velká a malá písmena při hledání.</string>
   <string name="pref_case_sensitive_sort_summary">Brát v potaz velikost písmen při prohlížení nebo třídění vyhledaných položek</string>
+  <string name="pref_filetime_format_mode">Formát data a času</string>
   <string name="pref_disk_usage_warning_level">Varování o využití disku</string>
   <!-- NOTE: Use "percent" instead of "%" symbol, because it make crash the app on getSummary
        of ListPreference. This should be fixed in frameworks base prior to be added here. -->

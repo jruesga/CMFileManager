@@ -125,7 +125,7 @@
   <string name="msgs_operation_can_not_be_cancelled">The operation cannot be cancelled.</string>
   <!-- The operation requieres mount the file system prior to execute the command -->
   <string name="msgs_read_only_filesystem">The file system is read-only. Try to mount the
-    file system as read-write before attepting the operation.</string>
+    file system as read-write before attempting the operation.</string>
   <!-- Illegal argument (normally caused by a development error when calling internal api) -->
   <string name="msgs_illegal_argument">Illegal argument. Invocation failed.</string>
   <!-- The operation will cause inconsistencies -->

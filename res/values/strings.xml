@@ -308,18 +308,6 @@
   <!-- Fso Properties Dialog * Execute Label -->
   <string name="fso_properties_dialog_folder_items" translatable="false">
     <xliff:g id="folders">%1$s</xliff:g> / <xliff:g id="files">%2$s</xliff:g></string>
-  <!-- Fso Properties Dialog * Folders -->
-  <plurals name="fso_properties_dialog_folders">
-    <item quantity="zero">0 folders</item>
-    <item quantity="one">1 folder</item>
-    <item quantity="other"><xliff:g id="folders">%1$d</xliff:g> folders</item>
-  </plurals>
-  <!-- Fso Properties Dialog * Files -->
-  <plurals name="fso_properties_dialog_files">
-    <item quantity="zero">0 files</item>
-    <item quantity="one">1 files</item>
-    <item quantity="other"><xliff:g id="files">%1$d</xliff:g> files</item>
-  </plurals>
   <!-- Fso Properties Dialog * Skip media scan -->
   <string name="fso_properties_dialog_include_in_media_scan">Skip media scan:</string>
   <string name="fso_failed_to_allow_media_scan">Failed to allow media scanning</string>
@@ -346,12 +334,6 @@
   <string name="search_error_msg">An error occurred while searching. No results found.</string>
   <!-- Search * Search no results message -->
   <string name="search_no_results_msg">No results found.</string>
-  <!-- Search * Search found items -->
-  <plurals name="search_found_items">
-    <item quantity="zero">No items found</item>
-    <item quantity="one">1 item found</item>
-    <item quantity="other"><xliff:g id="count">%d</xliff:g> items found</item>
-  </plurals>
   <!-- Search * Number of items found in directory -->
   <string name="search_found_items_in_directory"><xliff:g id="items">%1$s</xliff:g> in
     <xliff:g id="path">%2$s</xliff:g></string>

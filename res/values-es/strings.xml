@@ -128,16 +128,6 @@
     <string name="fso_properties_dialog_owner">Propietario:</string>
     <string name="fso_properties_dialog_group">Grupo:</string>
     <string name="fso_properties_dialog_others">Otros:</string>
-    <plurals name="fso_properties_dialog_folders">
-        <item quantity="zero">0 carpetas</item>
-        <item quantity="one">1 carpeta</item>
-        <item quantity="other"><xliff:g id="folders">%1$d</xliff:g> carpetas</item>
-    </plurals>
-    <plurals name="fso_properties_dialog_files">
-        <item quantity="zero">0 archivos</item>
-        <item quantity="one">1 archivo</item>
-        <item quantity="other"><xliff:g id="files">%1$d</xliff:g> archivos</item>
-    </plurals>
     <string name="fso_properties_dialog_include_in_media_scan">Omitir escan.\nmedios:</string>
     <string name="fso_failed_to_allow_media_scan">Fallo al permitir el escaneado de medios</string>
     <string name="fso_failed_to_prevent_media_scan">Fallo al impedir el escaneado de medios</string>
@@ -153,11 +143,6 @@
     <string name="search_voice_hint">Dictar búsqueda</string>
     <string name="search_error_msg">Ocurrió un error mientras se buscaba. No se han encontrado resultados.</string>
     <string name="search_no_results_msg">No se han encontrado resultados.</string>
-    <plurals name="search_found_items">
-        <item quantity="zero">No se han encontrado elementos</item>
-        <item quantity="one">1 elemento encontrado</item>
-        <item quantity="other"><xliff:g id="count">%d</xliff:g> elementos encontrados</item>
-    </plurals>
     <string name="search_found_items_in_directory"><xliff:g id="items">%1$s</xliff:g> en
     <xliff:g id="path">%2$s</xliff:g></string>
     <string name="search_terms"><![CDATA[<b>Términos:</b>]]> <xliff:g id="terms">%1$s</xliff:g></string>

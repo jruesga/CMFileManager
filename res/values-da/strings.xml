@@ -16,6 +16,7 @@
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
   <string name="app_name">Filstyring</string>
   <string name="app_description">En filstyring til CyanogenMod.</string>
+  <string name="datetime_format_order">%1$s %2$s</string>
   <string name="device_blockdevice">Blok-enheder</string>
   <string name="device_characterdevice">Tegn-enheder</string>
   <string name="device_namedpipe">Named pipe</string>
@@ -127,16 +128,6 @@
   <string name="fso_properties_dialog_owner">Ejer:</string>
   <string name="fso_properties_dialog_group">Gruppe:</string>
   <string name="fso_properties_dialog_others">Andre:</string>
-  <plurals name="fso_properties_dialog_folders">
-    <item quantity="zero">0 mapper</item>
-    <item quantity="one">1 mappe</item>
-    <item quantity="other"><xliff:g id="folders">%1$d</xliff:g> mapper</item>
-  </plurals>
-  <plurals name="fso_properties_dialog_files">
-    <item quantity="zero">0 filer</item>
-    <item quantity="one">1 fil</item>
-    <item quantity="other"><xliff:g id="files">%1$d</xliff:g> filer</item>
-  </plurals>
   <string name="fso_properties_dialog_include_in_media_scan">Spring mediescanning over:</string>
   <string name="fso_failed_to_allow_media_scan">Kunne ikke tillade mediescanning</string>
   <string name="fso_failed_to_prevent_media_scan">Kunne ikke forhindre mediescanning</string>
@@ -152,11 +143,6 @@
   <string name="search_voice_hint">Indtal din søgning</string>
   <string name="search_error_msg">Der opstod en fejl under søgning. Ingen resultater fundet.</string>
   <string name="search_no_results_msg">Ingen resultater fundet.</string>
-  <plurals name="search_found_items">
-    <item quantity="zero">Ingen elementer fundet</item>
-    <item quantity="one">1 element fundet</item>
-    <item quantity="other"><xliff:g id="count">%d</xliff:g> elementer fundet</item>
-  </plurals>
   <string name="search_found_items_in_directory"><xliff:g id="items">%1$s</xliff:g> i <xliff:g id="path">%2$s</xliff:g></string>
   <string name="search_terms"><![CDATA[<b>Termer:</b>]]> <xliff:g id="terms">%1$s</xliff:g></string>
   <string name="search_few_characters_title">Bekræft søgning</string>
@@ -276,6 +262,11 @@
   <string name="mime_folder">Mappe</string>
   <string name="mime_symlink">Symbolsk link</string>
   <string name="mime_unknown">Ukendt</string>
+  <string name="filetime_format_mode_system">Systembestemt</string>
+  <string name="filetime_format_mode_locale">Landebestemt</string>
+  <string name="filetime_format_mode_ddMMyyyy_HHmmss">dd/mm/åååå tt:mm:ss</string>
+  <string name="filetime_format_mode_MMddyyyy_HHmmss">mm/dd/åååå tt:mm:ss</string>
+  <string name="filetime_format_mode_yyyyMMdd_HHmmss">åååå-mm-dd tt:mm:ss</string>
   <string name="selection_one_folder"><xliff:g id="folders">%1$s</xliff:g> mappe valgt.</string>
   <string name="selection_other_folders"><xliff:g id="folders">%1$s</xliff:g> mapper valgt.</string>
   <string name="selection_one_file"><xliff:g id="files">%1$s</xliff:g> fil valgt.</string>
@@ -313,6 +304,7 @@
   <string name="pref_general_behaviour_category">Generelt</string>
   <string name="pref_case_sensitive_sort">Brug case-sensitiv sortering</string>
   <string name="pref_case_sensitive_sort_summary">Forskel på store/små bogstaver ved navigering eller sortering af søgeresultater</string>
+  <string name="pref_filetime_format_mode">Format til dato/tid</string>
   <string name="pref_disk_usage_warning_level">Advarsel om diskforbrug</string>
   <string name="pref_disk_usage_warning_level_summary" formatted="false">Vis en anderledes farve i diskforbrugs-widgets, når de når <xliff:g id="level">%1$s</xliff:g> procent af ledig diskplads</string>
   <string name="pref_compute_folder_statistics">Beregn mappestatistikker</string>

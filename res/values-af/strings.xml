@@ -35,6 +35,7 @@
   <string name="no">Nee</string>
   <string name="all">Alles</string>
   <string name="overwrite">Oorskryf</string>
+  <string name="select">Kies</string>
 
   <!-- The root directory name -->
   <string name="root_directory_name"><![CDATA[<\'Root\' vouergids>]]></string>
@@ -324,6 +325,7 @@
 
   <!-- Picker Activity * Dialog title -->
   <string name="picker_title">Kies \'n lêer</string>
+  <string name="directory_picker_title">Kies \'n vouergids</string>
 
   <!-- Editor * Editor activity title -->
   <string name="editor">Notaboek</string>
@@ -341,6 +343,10 @@
   <string name="editor_successfully_saved">Die lêer is suksesvol gestoor.</string>
   <!-- Editor * Read-only file mode -->
   <string name="editor_read_only_mode">Die lêer was geopen in leesalleen modus.</string>
+  <!-- Editor * Dumping message -->
+  <string name="dumping_message">Genereer \'n hex storting\u2026</string>
+  <!-- Editor * Displaying -->
+  <string name="displaying_message">Vertoon\u2026</string>
 
   <!-- Bookmarks * Bookmarks activity title -->
   <string name="bookmarks">Boekmerke</string>
@@ -610,6 +616,8 @@
   <string name="pref_general_behaviour_category">Algemeen</string>
   <!-- Preferences * General * Case sensitive sort title -->
   <string name="pref_case_sensitive_sort">Gebruik letter-sensitiewe sortering</string>
+  <!-- Preferences * General * Case sensitive sort and navigating summary -->
+  <string name="pref_case_sensitive_sort_summary">Oorweeg letter-sensitiewe navigasie en sortering van soek resultate</string>
   <!-- Preferences * General *Disk usage warning level title -->
   <string name="pref_disk_usage_warning_level">Bergingspasie waarskuwing</string>
   <!-- Preferences * General * Disk usage warning level summary -->

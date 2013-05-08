@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2013 Jorge Ruesga
+ * Copyright (C) 2013 The CyanogenMod Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -32,10 +32,13 @@ import android.util.AttributeSet;
 import android.util.DisplayMetrics;
 import android.util.TypedValue;
 import android.view.Gravity;
+import android.view.View;
+import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 /**
@@ -105,14 +108,38 @@ public class ColorDialogView extends RelativeLayout
         // To fight color branding.
         ((Activity)getContext()).getWindow().setFormat(PixelFormat.RGBA_8888);
 
+        // Create the scrollview over the dialog
+        final int dlgMarging = (int)convertDpToPixel(DEFAULT_MARGIN_DP);
+        ScrollView sv = new ScrollView(getContext());
+        sv.setId(generateViewId());
+        RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(
+                android.view.ViewGroup.LayoutParams.MATCH_PARENT,
+                android.view.ViewGroup.LayoutParams.WRAP_CONTENT);
+        lp.setMargins(dlgMarging, 0, dlgMarging, 0);
+        sv.setLayoutParams(lp);
+        sv.setScrollBarStyle(View.SCROLLBARS_OUTSIDE_INSET);
+
+        // Now the vertical layout
+        LinearLayout ll = new LinearLayout(getContext());
+        ll.setId(generateViewId());
+        lp = new RelativeLayout.LayoutParams(
+                android.view.ViewGroup.LayoutParams.MATCH_PARENT,
+                android.view.ViewGroup.LayoutParams.MATCH_PARENT);
+        ll.setLayoutParams(lp);
+        ll.setOrientation(LinearLayout.VERTICAL);
+        sv.addView(ll);
+
         // Creates the color input field
-        int id = createColorInput();
+        int id = createColorInput(ll);
 
         // Creates the color picker
-        id = createColorPicker(id);
+        id = createColorPicker(ll, id);
 
         // Creates the current color and new color panels
-        id = createColorsPanel(id);
+        id = createColorsPanel(ll, id);
+
+        // Add the scrollview
+        addView(sv);
 
         // Sets the input color
         this.etColor.setText(toHex(this.mNewColorView.getColor()));
@@ -120,8 +147,10 @@ public class ColorDialogView extends RelativeLayout
 
     /**
      * Method that creates the color input
+     *
+     * @param parent The parent layout
      */
-    private int createColorInput() {
+    private int createColorInput(ViewGroup parent) {
         final int dlgMarging = (int)convertDpToPixel(DEFAULT_MARGIN_DP);
         LinearLayout.LayoutParams lp2 = new LinearLayout.LayoutParams(
                 android.view.ViewGroup.LayoutParams.WRAP_CONTENT,
@@ -179,7 +208,7 @@ public class ColorDialogView extends RelativeLayout
         ll1.setLayoutParams(lp);
         ll1.addView(this.tvColorLabel);
         ll1.addView(this.etColor);
-        addView(ll1);
+        parent.addView(ll1);
 
         return ll1.getId();
     }
@@ -187,10 +216,11 @@ public class ColorDialogView extends RelativeLayout
     /**
      * Method that creates the color picker
      *
+     * @param parent The parent layout
      * @param belowOf The anchor view
      * @return id The layout id
      */
-    private int createColorPicker(int belowOf) {
+    private int createColorPicker(ViewGroup parent, int belowOf) {
         final int dlgMarging = (int)convertDpToPixel(DEFAULT_MARGIN_DP);
         this.mPickerView = new ColorPickerView(getContext());
         this.mPickerView.setId(generateViewId());
@@ -201,17 +231,18 @@ public class ColorDialogView extends RelativeLayout
         lp.setMargins(dlgMarging, 0, dlgMarging, 0);
         lp.addRule(RelativeLayout.BELOW, belowOf);
         this.mPickerView.setLayoutParams(lp);
-        addView(this.mPickerView);
+        parent.addView(this.mPickerView);
         return this.mPickerView.getId();
     }
 
     /**
      * Method that creates the colors panel (current and new)
      *
+     * @param parent The parent layout
      * @param belowOf The anchor view
      * @return id The layout id
      */
-    private int createColorsPanel(int belowOf) {
+    private int createColorsPanel(ViewGroup parent, int belowOf) {
         final int dlgMarging = (int)convertDpToPixel(DEFAULT_MARGIN_DP);
         final int panelHeight = (int)convertDpToPixel(DEFAULT_PANEL_HEIGHT_DP);
         LinearLayout.LayoutParams lp2 = new LinearLayout.LayoutParams(
@@ -253,7 +284,7 @@ public class ColorDialogView extends RelativeLayout
         ll1.addView(this.tvCurrent);
         ll1.addView(sep1);
         ll1.addView(this.tvNew);
-        addView(ll1);
+        parent.addView(ll1);
 
         // Color panels
         lp2 = new LinearLayout.LayoutParams(
@@ -284,7 +315,7 @@ public class ColorDialogView extends RelativeLayout
         ll2.addView(this.mCurrentColorView);
         ll2.addView(sep2);
         ll2.addView(this.mNewColorView);
-        addView(ll2);
+        parent.addView(ll2);
 
         return ll2.getId();
     }

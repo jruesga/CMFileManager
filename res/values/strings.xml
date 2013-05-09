@@ -17,9 +17,9 @@
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
   xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
 
-  <!-- The name of the application -->
+  <!-- The name of the app -->
   <string name="app_name">File Manager</string>
-  <!-- The description of the application -->
+  <!-- The description of the app -->
   <string name="app_description">A CyanogenMod file manager.</string>
 
   <!-- Human readable sizes -->
@@ -87,7 +87,7 @@
   <string name="msgs_change_to_prompt_access_mode_msg">
     Unable to run in Root Access mode. Changing to Safe mode.\n\nApply this change?</string>
 
-  <!-- A console couldn't be created. Without privileges, the application won't work -->
+  <!-- A console couldn't be created. Without privileges, the app won't work -->
   <string name="msgs_cant_create_console">Unable to gain the required privileges to function.</string>
   <!-- The message shown when an allocation of a privileged console fails, and a non
        privileged is allocated -->
@@ -136,20 +136,20 @@
     The operation is not permitted in current folder.\n\nDestination folder cannot be subfolder
     of source or be same as source.</string>
 
-  <!-- The advice message prior to exit the application -->
+  <!-- The advice message prior to exit the app -->
   <string name="msgs_push_again_to_exit">Press again to exit.</string>
 
-  <!-- There is no registered application that can handle the mime-type -->
-  <string name="msgs_not_registered_app">There is no application registered to handle
+  <!-- There is no registered app that can handle the mime-type -->
+  <string name="msgs_not_registered_app">There is no app registered to handle
     the type of file selected.</string>
 
   <!-- Overwrite files? -->
   <string name="msgs_overwrite_files">
     Some of the files already exist in the destination folder.\n\nOverwrite?</string>
 
-  <!-- The association of an action to the application failed -->
+  <!-- The association of an action to the app failed -->
   <string name="msgs_action_association_failed">Associating the action to the
-    application failed.</string>
+    app failed.</string>
 
   <!-- An operation requires elevated privileged. Ask the user. -->
   <string name="advise_insufficient_permissions">The operation requires elevated privileges.\n\n

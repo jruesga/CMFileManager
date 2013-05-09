@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Copyright (C) 2012 The CyanogenMod Project
+<!-- Copyright (C) 2012-2013 The CyanogenMod Project
 
      Licensed under the Apache License, Version 2.0 (the "License");
      you may not use this file except in compliance with the License.
@@ -13,7 +13,6 @@
      See the License for the specific language governing permissions and
      limitations under the License.
  -->
-
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
   xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
 
@@ -23,10 +22,10 @@
   <string name="app_description">A CyanogenMod file manager.</string>
 
   <!-- Human readable sizes -->
-  <string name="size_bytes" translatable="false">B</string>
-  <string name="size_kilobytes" translatable="false">kB</string>
-  <string name="size_megabytes" translatable="false">MB</string>
-  <string name="size_gigabytes" translatable="false">GB</string>
+  <string name="size_bytes">B</string>
+  <string name="size_kilobytes">kB</string>
+  <string name="size_megabytes">MB</string>
+  <string name="size_gigabytes">GB</string>
 
   <!-- Date/time format order (%1$s: date; %2$s: time) -->
   <string name="datetime_format_order">%1$s %2$s</string>

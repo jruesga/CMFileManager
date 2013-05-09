@@ -17,6 +17,10 @@
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
   <string name="app_name">Explorateur de fichiers</string>
   <string name="app_description">Explorateur de fichiers CyanogenMod</string>
+  <string name="size_bytes">o</string>
+  <string name="size_kilobytes">ko</string>
+  <string name="size_megabytes">Mo</string>
+  <string name="size_gigabytes">Go</string>
   <string name="datetime_format_order">%1$s %2$s</string>
   <string name="device_blockdevice">Block device</string>
   <string name="device_characterdevice">Character device</string>

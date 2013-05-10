@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Copyright (C) 2012 The CyanogenMod Project
+<!-- Copyright (C) 2012-2013 The CyanogenMod Project
 
      Licensed under the Apache License, Version 2.0 (the "License");
      you may not use this file except in compliance with the License.
@@ -17,6 +17,11 @@
 
   <string name="app_name">Файловый менеджер</string>
   <string name="app_description">Файловый менеджер CyanogenMod</string>
+
+  <string name="size_bytes">Б</string>
+  <string name="size_kilobytes">КБ</string>
+  <string name="size_megabytes">МБ</string>
+  <string name="size_gigabytes">ГБ</string>
 
   <string name="device_blockdevice">Блочное устройство</string>
   <string name="device_characterdevice">Символьное устройство</string>
@@ -147,16 +152,6 @@
   <string name="fso_properties_dialog_owner">Владелец:</string>
   <string name="fso_properties_dialog_group">Группа:</string>
   <string name="fso_properties_dialog_others">Другие:</string>
-  <plurals name="fso_properties_dialog_folders">
-    <item quantity="zero">0 папок</item>
-    <item quantity="one">1 папка</item>
-    <item quantity="other"><xliff:g id="folders">%1$d</xliff:g> папки(-ок,-а)</item>
-  </plurals>
-  <plurals name="fso_properties_dialog_files">
-    <item quantity="zero">0 файлов</item>
-    <item quantity="one">1 файл</item>
-    <item quantity="other"><xliff:g id="files">%1$d</xliff:g> файл(-ов,-а)</item>
-  </plurals>
 
   <string name="fso_properties_dialog_include_in_media_scan">Исключить поиск медиа:</string>
   <string name="fso_failed_to_allow_media_scan">Не удалось произвести поиск медиа файлов</string>
@@ -175,11 +170,6 @@
   <string name="search_voice_hint">Произнесите условие поиска</string>
   <string name="search_error_msg">При поиске произошла ошибка. Ничего не найдено</string>
   <string name="search_no_results_msg">Ничего не найдено</string>
-  <plurals name="search_found_items">
-    <item quantity="zero">Ничего не найдено</item>
-    <item quantity="one">Найдено 1 значение</item>
-    <item quantity="other">Найдено <xliff:g id="count">%d</xliff:g> значения(-й)</item>
-  </plurals>
   <string name="search_found_items_in_directory"><xliff:g id="items">%1$s</xliff:g> в <xliff:g id="path">%2$s</xliff:g></string>
   <string name="search_few_characters_title">Подтвердите поиск</string>
   <string name="search_few_characters_msg">Некоторые условия поиска имеют очень мало символов. Операция может быть очень затратна по времени и системным ресурсам.\n\nВы действительно хотите продолжить?</string>

@@ -135,7 +135,7 @@
   <string name="fso_properties_permissions_not_allowed_msg">Изменение разрешений невозможно в Безопасном режиме. Нажмите для изменения режима Root-доступа</string>
   <string name="fso_properties_failed_to_change_owner_msg">Изменение владельца не удалось.\n\nПо соображениям безопасности, некоторые файловые системы, такие как SD-карты, не позволяют изменять владельца</string>
   <string name="fso_properties_failed_to_change_group_msg">Изменение группы не удалось.\n\nПо соображения безопасности, некоторые файловые системы, такие как SD-карты, не позволяют изменять группы</string>
-  <string name="fso_properties_failed_to_change_permission_msg">Изменение разрешение не удалось.\n\nПо соображения безопасности, некоторые файловые системы, такие как SD-карты, не позволяют изменять разрешения</string>
+  <string name="fso_properties_failed_to_change_permission_msg">Изменение разрешений не удалось.\n\nПо соображениям безопасности, некоторые файловые системы, такие как SD-карты, не позволяют изменять разрешения</string>
   <string name="fso_properties_dialog_title">Свойства</string>
   <string name="fso_properties_dialog_tab_info">Инфо</string>
   <string name="fso_properties_dialog_tab_permissions">Разрешения</string>
@@ -154,8 +154,8 @@
   <string name="fso_properties_dialog_others">Другие:</string>
 
   <string name="fso_properties_dialog_include_in_media_scan">Исключить поиск медиа:</string>
-  <string name="fso_failed_to_allow_media_scan">Не удалось произвести поиск медиа файлов</string>
-  <string name="fso_failed_to_prevent_media_scan">Не удалось отменить поиск медиа файлов</string>
+  <string name="fso_failed_to_allow_media_scan">Не удалось произвести поиск медиафайлов</string>
+  <string name="fso_failed_to_prevent_media_scan">Не удалось отменить поиск медиафайлов</string>
   <string name="fso_delete_nomedia_dir_title">Удалить каталог .nomedia</string>
   <string name="fso_delete_nomedia_dir_body">Этот каталог содержит .nomedia.\n\nВы действительно хотите удалить его со всем содержимым?</string>
   <string name="fso_delete_nomedia_non_empty_title">Удалить файл .nomedia</string>
@@ -173,7 +173,7 @@
   <string name="search_found_items_in_directory"><xliff:g id="items">%1$s</xliff:g> в <xliff:g id="path">%2$s</xliff:g></string>
   <string name="search_few_characters_title">Подтвердите поиск</string>
   <string name="search_few_characters_msg">Некоторые условия поиска имеют очень мало символов. Операция может быть очень затратна по времени и системным ресурсам.\n\nВы действительно хотите продолжить?</string>
-  <string name="searching">Пожалуйста подождите\u2026</string>
+  <string name="searching">Пожалуйста, подождите\u2026</string>
   <string name="searching_action_label">Продолжается поиск\u2026</string>
 
   <string name="picker_title">Выбрать файл</string>
@@ -183,7 +183,7 @@
   <string name="editor_file_not_found_msg">Файл не найден</string>
   <string name="editor_file_exceed_size_msg">Файл слишком большой для открытия на этом устройстве</string>
   <string name="editor_dirty_ask_title">Подтвердите выход</string>
-  <string name="editor_dirty_ask_msg">Имеются не сохранённые изменения.\n\nВыйти без сохранения?</string>
+  <string name="editor_dirty_ask_msg">Имеются несохранённые изменения.\n\nВыйти без сохранения?</string>
   <string name="editor_successfully_saved">Файл успешно сохранён</string>
   <string name="editor_read_only_mode">Файл открыт только для чтения</string>
   <string name="dumping_message">Создание дампа\u2026</string>
@@ -290,13 +290,13 @@
   <string name="filetime_format_mode_MMddyyyy_HHmmss">мм/дд/гггг чч:мм:сс</string>
   <string name="filetime_format_mode_yyyyMMdd_HHmmss">гггг-мм-дд чч:мм:сс</string>
 
-  <string name="selection_one_folder"><xliff:g id="folders">%1$s</xliff:g> папка выделена</string>
-  <string name="selection_other_folders"><xliff:g id="folders">%1$s</xliff:g> папки(-ок) выделено</string>
-  <string name="selection_one_file"><xliff:g id="files">%1$s</xliff:g> файл выделен</string>
-  <string name="selection_other_files"><xliff:g id="files">%1$s</xliff:g> файлов(-а) выделено</string>
-  <string name="selection_other_folders_one_file"><xliff:g id="folders">%1$s</xliff:g> папки(-ок,-а) и <xliff:g id="files">%2$s</xliff:g> файл выделен</string>
-  <string name="selection_one_folder_other_files"><xliff:g id="folder2">%1$s</xliff:g> папка и <xliff:g id="file2">%2$s</xliff:g> файлов(-а) выделено</string>
-  <string name="selection_other_folders_other_files"><xliff:g id="folder2">%1$s</xliff:g> папки(-ок,-а) и <xliff:g id="files">%2$s</xliff:g> файлов(-а) выделено</string>
+  <string name="selection_one_folder">Выбрана <xliff:g id="folders">%1$s</xliff:g> папка</string>
+  <string name="selection_other_folders">Выбрано папок: <xliff:g id="folders">%1$s</xliff:g></string>
+  <string name="selection_one_file">Выбран <xliff:g id="files">%1$s</xliff:g> файл</string>
+  <string name="selection_other_files">Выбрано файлов: <xliff:g id="files">%1$s</xliff:g></string>
+  <string name="selection_other_folders_one_file">Выбрано папок: <xliff:g id="folders">%1$s</xliff:g> и файлов: <xliff:g id="files">%2$s</xliff:g></string>
+  <string name="selection_one_folder_other_files">Выбрана <xliff:g id="folder2">%1$s</xliff:g> папка и файлов: <xliff:g id="file2">%2$s</xliff:g></string>
+  <string name="selection_other_folders_other_files">Выбрано папок: <xliff:g id="folder2">%1$s</xliff:g> и файлов: <xliff:g id="files">%2$s</xliff:g></string>
 
   <string name="category_system">СИСТЕМА</string>
   <string name="category_app">ПРИЛОЖЕНИЕ</string>
@@ -352,8 +352,8 @@
   <string name="pref_sort_search_results_mode_none">Не сортировать</string>
   <string name="pref_sort_search_results_mode_name">По имени</string>
   <string name="pref_sort_search_results_mode_relevance">По актуальности</string>
-  <string name="pref_search_privacity_category">Конфиденциальности</string>
-  <string name="pref_save_search_terms">Сохранить условия поиска</string>
+  <string name="pref_search_privacity_category">Конфиденциальность</string>
+  <string name="pref_save_search_terms">Сохранять условия поиска</string>
   <string name="pref_save_search_terms_on">Условия поиска будут сохранены для дальнейшего использования в качестве подсказок</string>
   <string name="pref_save_search_terms_off">Условия поиска не будут сохраняться</string>
   <string name="pref_remove_saved_search_terms">Удалить сохранённые условия поиска</string>
@@ -363,8 +363,8 @@
   <string name="pref_no_suggestions">Не предлагать исправления</string>
   <string name="pref_no_suggestions_desc">Не показывать варианты исправлений при редактировании файла</string>
   <string name="pref_word_wrap">Перенос слов</string>
-  <string name="pref_hexdump">Шестнадцатиричный формат</string>
-  <string name="pref_hexdump_desc">Вывод содержимого бинарных файлов в шестнадцатиричном формате</string>
+  <string name="pref_hexdump">Шестнадцатеричный формат</string>
+  <string name="pref_hexdump_desc">Вывод содержимого бинарных файлов в шестнадцатеричном формате</string>
   <string name="pref_editor_syntax_highlight_category">Подсветка синтаксиса</string>
   <string name="pref_syntax_highlight">Подсветка синтаксиса</string>
   <string name="pref_syntax_highlight_desc">Подсвечивать синтаксис редактируемого файла (только для поддерживаемых редактором типов файлов)</string>
@@ -375,7 +375,7 @@
   <string name="pref_editor_sh_item_category">Элементы</string>
   <string name="pref_themes_selection_category">Темы</string>
   <string name="pref_themes_set_theme">Применить</string>
-  <string name="pref_themes_no_preview">Превью недоступно</string>
+  <string name="pref_themes_no_preview">Предпросмотр недоступен</string>
   <string name="pref_themes_confirmation">Тема успешно применена</string>
   <string name="pref_themes_not_found">Тема не найдена</string>
 

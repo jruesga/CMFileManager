@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Copyright (C) 2012 The CyanogenMod Project
+<!-- Copyright (C) 2012-2013 The CyanogenMod Project
 
      Licensed under the Apache License, Version 2.0 (the "License");
      you may not use this file except in compliance with the License.
@@ -160,17 +160,6 @@
   <string name="fso_properties_dialog_owner">拥有者:</string>
   <string name="fso_properties_dialog_group">群组:</string>
   <string name="fso_properties_dialog_others">其它:</string>
-  <plurals name="fso_properties_dialog_folders">
-    <item quantity="zero">0 个文件夹</item>
-    <item quantity="one">1 个文件夹</item>
-    <item quantity="other"><xliff:g id="folders">%1$d</xliff:g> 个文件夹</item>
-  </plurals>
-  <plurals name="fso_properties_dialog_files">
-    <item quantity="zero">0 个文件</item>
-    <item quantity="one">1 个文件</item>
-    <item quantity="other"><xliff:g id="files">%1$d</xliff:g> 个文件</item>
-  </plurals>
-
   <string name="fso_properties_dialog_include_in_media_scan">跳过媒体扫描:</string>
   <string name="fso_failed_to_allow_media_scan">允许媒体扫描失败</string>
   <string name="fso_failed_to_prevent_media_scan">防止媒体扫描失败</string>
@@ -188,11 +177,6 @@
   <string name="search_voice_hint">说出您的搜索内容</string>
   <string name="search_error_msg">搜索时发生了错误. 未找到任何结果.</string>
   <string name="search_no_results_msg">未找到任何结果.</string>
-  <plurals name="search_found_items">
-    <item quantity="zero">未找到任何结果</item>
-    <item quantity="one">找到了 1 项</item>
-    <item quantity="other">找到了 <xliff:g id="count">%d</xliff:g> 项</item>
-  </plurals>
   <string name="search_found_items_in_directory">在 <xliff:g id="path">%2$s</xliff:g> 内<xliff:g id="items">%1$s</xliff:g></string>
 
   <string name="search_terms"><![CDATA[<b>关键词:</b>]]> <xliff:g id="terms">%1$s</xliff:g></string>
@@ -333,6 +317,12 @@
   <string name="mime_symlink">符号链接</string>
   <string name="mime_unknown">未知</string>
 
+  <string name="filetime_format_mode_system">由系统指定</string>
+  <string name="filetime_format_mode_locale">由区域设置指定</string>
+  <string name="filetime_format_mode_ddMMyyyy_HHmmss">日/月/年 时:分:秒</string>
+  <string name="filetime_format_mode_MMddyyyy_HHmmss">月/日/年 时:分:秒</string>
+  <string name="filetime_format_mode_yyyyMMdd_HHmmss">年-月-日 时:分:秒</string>
+
   <string name="selection_one_folder"><xliff:g id="folders">%1$s</xliff:g> 个文件夹被选.</string>
   <string name="selection_other_folders"><xliff:g id="folders">%1$s</xliff:g> 个文件夹被选.</string>
   <string name="selection_one_file"><xliff:g id="files">%1$s</xliff:g> 个文件被选.</string>
@@ -379,6 +369,7 @@
   <string name="pref_case_sensitive_sort_summary">导航或排列搜索结果时区分大小写</string>
   <string name="pref_disk_usage_warning_level">磁盘使用警告</string>
   <string name="pref_disk_usage_warning_level_summary" formatted="false">当磁盘使用量到达百分之 <xliff:g id="level">%1$s</xliff:g> 的可用空间时, 在磁盘使用小部件中显示不同的颜色</string>
+  <string name="pref_filetime_format_mode">时间/日期格式</string>
   <string name="pref_compute_folder_statistics">计算文件夹统计数据</string>
   <string name="pref_compute_folder_statistics_on">警告! 文件夹统计数据的计将算会花费较长的时间与较多的系统资源</string>
   <string name="pref_use_flinger">使用滑动手势</string>

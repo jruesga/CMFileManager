@@ -16,6 +16,10 @@
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="app_name">Διαχείριση αρχείων</string>
     <string name="app_description">Διαχείριση αρχείων του CyanogenMod</string>
+    <string name="size_bytes">B</string>
+    <string name="size_kilobytes">kB</string>
+    <string name="size_megabytes">MB</string>
+    <string name="size_gigabytes">GB</string>
     <string name="datetime_format_order">%1$s %2$s</string>
     <string name="device_blockdevice">Συσκευή μπλοκ</string>
     <string name="device_characterdevice">Συσκευή χαρακτήρων</string>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Copyright (C) 2012 The CyanogenMod Project
+<!-- Copyright (C) 2012-2013 The CyanogenMod Project
 
      Licensed under the Apache License, Version 2.0 (the "License");
      you may not use this file except in compliance with the License.
@@ -33,6 +33,7 @@
   <string name="all">Tous</string>
   <string name="overwrite">Écraser</string>
   <string name="select">Sélectionner</string>
+  <string name="root_directory_name"><![CDATA[<Dossier racine>]]></string>
   <string name="search_result_name">Rechercher\u00A0: <xliff:g id="terms">%1$s</xliff:g></string>
   <string name="loading_message">Chargement\u2026</string>
   <string name="cancelled_message">Annulé</string>
@@ -49,7 +50,7 @@
   <string name="msgs_cant_create_console">Impossible d\'obtenir les privilèges requis pour fonctionner</string>
   <string name="msgs_privileged_console_alloc_failed">Impossible de passer en mode Root. Retour au mode normal.</string>
   <string name="msgs_settings_save_failure">Impossible d\'appliquer ou d\'enregistrer le réglage</string>
-  <string name="msgs_settings_invalid_initial_directory">Le dossier d\'accueil "<xliff:g id="initial_dir">%1$s</xliff:g>" est invalide. Changement vers le dossier Root.</string>
+  <string name="msgs_settings_invalid_initial_directory">Le dossier d\'accueil "<xliff:g id="initial_dir">%1$s</xliff:g>" est invalide. Changement vers le dossier racine.</string>
   <string name="msgs_success">Opération réussie</string>
   <string name="msgs_unknown">Une erreur a été détectée. L\'opération a échoué</string>
   <string name="msgs_insufficient_permissions">Cette opération nécessite une élévation des droits. Tentative d\'accès Root.</string>
@@ -182,7 +183,7 @@
   <string name="displaying_message">Affichage\u2026</string>
   <string name="bookmarks">Favoris</string>
   <string name="bookmarks_home">Accueil</string>
-  <string name="bookmarks_root_folder">Dossier Root</string>
+  <string name="bookmarks_root_folder">Dossier racine</string>
   <string name="bookmarks_system_folder">Dossier système</string>
   <string name="bookmarks_button_config_cd">Choisir le dossier d\'accueil.</string>
   <string name="bookmarks_button_remove_bookmark_cd">Supprimer le favori</string>

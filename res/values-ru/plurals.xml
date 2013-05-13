@@ -18,18 +18,18 @@
   <plurals name="fso_properties_dialog_folders">
     <item quantity="zero">0 папок</item>
     <item quantity="one">1 папка</item>
-    <item quantity="other"><xliff:g id="folders">%1$d</xliff:g> папки(-ок,-а)</item>
+    <item quantity="other">папок: <xliff:g id="folders">%1$d</xliff:g></item>
   </plurals>
   <!-- Fso Properties Dialog * Files -->
   <plurals name="fso_properties_dialog_files">
     <item quantity="zero">0 файлов</item>
     <item quantity="one">1 файл</item>
-    <item quantity="other"><xliff:g id="files">%1$d</xliff:g> файл(-ов,-а)</item>
+    <item quantity="other">файлов: <xliff:g id="files">%1$d</xliff:g></item>
   </plurals>
   <!-- Search * Search found items -->
   <plurals name="search_found_items">
     <item quantity="zero">Ничего не найдено</item>
     <item quantity="one">Найдено 1 значение</item>
-    <item quantity="other">Найдено <xliff:g id="count">%d</xliff:g> значения(-й)</item>
+    <item quantity="other">Найдено значений: <xliff:g id="count">%d</xliff:g></item>
   </plurals>
 </resources>

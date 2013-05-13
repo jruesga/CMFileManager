@@ -35,6 +35,7 @@
   <string name="no">Нет</string>
   <string name="all">Все</string>
   <string name="overwrite">Заменить</string>
+  <string name="select">Выбрать</string>
 
   <string name="search_result_name">Поиск: <xliff:g id="terms">%1$s</xliff:g></string>
 
@@ -171,12 +172,14 @@
   <string name="search_error_msg">При поиске произошла ошибка. Ничего не найдено</string>
   <string name="search_no_results_msg">Ничего не найдено</string>
   <string name="search_found_items_in_directory"><xliff:g id="items">%1$s</xliff:g> в <xliff:g id="path">%2$s</xliff:g></string>
+  <string name="search_terms"><![CDATA[<b>Условия:</b>]]> <xliff:g id="terms">%1$s</xliff:g></string>
   <string name="search_few_characters_title">Подтвердите поиск</string>
   <string name="search_few_characters_msg">Некоторые условия поиска имеют очень мало символов. Операция может быть очень затратна по времени и системным ресурсам.\n\nВы действительно хотите продолжить?</string>
   <string name="searching">Пожалуйста, подождите\u2026</string>
   <string name="searching_action_label">Продолжается поиск\u2026</string>
 
-  <string name="picker_title">Выбрать файл</string>
+  <string name="picker_title">Выберите файл</string>
+  <string name="directory_picker_title">Выберите папку</string>
 
   <string name="editor">Редактор</string>
   <string name="editor_invalid_file_msg">Недопустимый файл</string>
@@ -216,10 +219,24 @@
 
   <string name="waiting_dialog_msg">Выполнение операции\u2026</string>
   <string name="waiting_dialog_copying_title">Копирование\u2026</string>
+  <string name="waiting_dialog_copying_msg">
+    <![CDATA[<b>Из</b>]]> <xliff:g id="from">%1$s</xliff:g><![CDATA[<br/>]]>
+    <![CDATA[<b>В</b>]]> <xliff:g id="to">%2$s</xliff:g></string>
   <string name="waiting_dialog_moving_title">Перемещение\u2026</string>
+  <string name="waiting_dialog_moving_msg">
+    <![CDATA[<b>Из</b>]]> <xliff:g id="from">%1$s</xliff:g><![CDATA[<br/>]]>
+    <![CDATA[<b>В</b>]]> <xliff:g id="to">%2$s</xliff:g></string>
   <string name="waiting_dialog_deleting_title">Удаление\u2026</string>
+  <string name="waiting_dialog_deleting_msg">
+    <![CDATA[<b>Файл</b>]]> <xliff:g id="file">%1$s</xliff:g></string>
   <string name="waiting_dialog_extracting_title">Извлечение\u2026</string>
+  <string name="waiting_dialog_extracting_msg">
+    <![CDATA[<b>Файл</b>]]> <xliff:g id="file">%1$s</xliff:g></string>
   <string name="waiting_dialog_compressing_title">Сжатие\u2026</string>
+  <string name="waiting_dialog_compressing_msg">
+    <![CDATA[<b>Файл</b>]]> <xliff:g id="file">%1$s</xliff:g></string>
+  <string name="waiting_dialog_analizing_msg">
+    <![CDATA[<b>Анализ\u2026</b>]]></string>
   <string name="msgs_extracting_success">Извлечение успешно завершено. Данные извлечены в <xliff:g id="destination">%1$s</xliff:g></string>
   <string name="msgs_compressing_success">Сжатие успешно завершено. Данные сжаты в <xliff:g id="destination">%1$s</xliff:g></string>
 
@@ -370,8 +387,8 @@
   <string name="pref_syntax_highlight_desc">Подсвечивать синтаксис редактируемого файла (только для поддерживаемых редактором типов файлов)</string>
   <string name="pref_syntax_highlight_color_scheme">Цветовая схема</string>
   <string name="pref_syntax_highlight_color_scheme_desc">Нажмите для выбора цветовой схемы подсветки синтаксиса</string>
-  <string name="pref_syntax_sh_use_theme_default">Тема по умолчанию</string>
-  <string name="pref_syntax_sh_use_theme_default_desc">Использовать текущую тему в качестве темы по умолчанию</string>
+  <string name="pref_syntax_sh_use_theme_default">Схема по умолчанию</string>
+  <string name="pref_syntax_sh_use_theme_default_desc">Использовать схему подсветки синтаксиса текущей темы</string>
   <string name="pref_editor_sh_item_category">Элементы</string>
   <string name="pref_themes_selection_category">Темы</string>
   <string name="pref_themes_set_theme">Применить</string>

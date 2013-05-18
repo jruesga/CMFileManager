@@ -33,6 +33,7 @@
     <string name="all">Todo</string>
     <string name="overwrite">Sobrescribir</string>
     <string name="select">Seleccionar</string>
+    <string name="root_directory_name"><![CDATA[<Carpeta raíz>]]></string>
     <string name="search_result_name">Buscar: <xliff:g id="terms">%1$s</xliff:g></string>
     <string name="loading_message">Cargando\u2026</string>
     <string name="cancelled_message">Cancelado</string>
@@ -52,7 +53,7 @@
     <string name="msgs_settings_invalid_initial_directory">La carpeta inicial "<xliff:g id="initial_dir">%1$s</xliff:g>" es inválida. Cambiando a la carpeta raíz.</string>
     <string name="msgs_success">La operación ha sido completada.</string>
     <string name="msgs_unknown">Ocurrió un error. La operación no se completó.</string>
-    <string name="msgs_insufficient_permissions">Esta operación requiere permisos de superusuario. Intente cambiar a modo superusuario.</string>
+    <string name="msgs_insufficient_permissions">Esta operación requiere permisos de superusuario. Intenta cambiar a modo superusuario.</string>
     <string name="msgs_file_not_found">La carpeta o archivo no existe.</string>
     <string name="msgs_command_not_found">El comando para completar la operación no se ha encontrado o es erróneo.</string>
     <string name="msgs_io_failed">Error de lectura/escritura.</string>
@@ -60,11 +61,11 @@
     <string name="msgs_operation_failure">La operación falló.</string>
     <string name="msgs_console_alloc_failure">Ocurrió un error interno.</string>
     <string name="msgs_operation_can_not_be_cancelled">La operación no pudo ser cancelada.</string>
-    <string name="msgs_read_only_filesystem">El sistema de archivos es de solo-lectura. Intente montarlo como lectura-escritura antes de repetir la operación.</string>
+    <string name="msgs_read_only_filesystem">El sistema de archivos es de solo-lectura. Intenta montarlo como lectura-escritura antes de repetir la operación.</string>
     <string name="msgs_illegal_argument">Argumento ilegal. Invocación fallida.</string>
     <string name="msgs_unresolved_inconsistencies">La operación no está permitida porque podría crear inconsistencias.</string>
     <string name="msgs_operation_not_allowed_in_current_directory">La operación no está permitida en la carpeta actual.\n\nLa carpeta de destino no puede ser una subcarpeta de la actual o ser la misma que la actual.</string>
-    <string name="msgs_push_again_to_exit">Pulse de nuevo para salir.</string>
+    <string name="msgs_push_again_to_exit">Pulsa de nuevo para salir.</string>
     <string name="msgs_not_registered_app">No hay ninguna aplicación registrada para abrir el tipo de archivo seleccionado.</string>
     <string name="msgs_overwrite_files">Alguno de los archivos existe en la carpeta de destino. \n\n¿Sobrescribir?</string>
     <string name="msgs_action_association_failed">Se produjo un error al asociar la acción a la aplicación.</string>
@@ -152,7 +153,7 @@
     <string name="search_terms"><![CDATA[<b>Términos:</b>]]> <xliff:g id="terms">%1$s</xliff:g></string>
     <string name="search_few_characters_title">Confirmar búsqueda</string>
     <string name="search_few_characters_msg">Alguno de los elementos a buscar es muy corto y la operación podrá requerir más tiempo y recursos del sistema de lo habitual.\n\n¿Continuar?</string>
-    <string name="searching">Por favor, espere\u2026</string>
+    <string name="searching">Por favor, espera\u2026</string>
     <string name="searching_action_label">Búsqueda en progreso</string>
     <string name="picker_title">Seleccionar archivo</string>
     <string name="directory_picker_title">Seleccionar carpeta</string>
@@ -320,7 +321,7 @@
     <string name="pref_access_mode_prompt">Modo confirmación</string>
     <string name="pref_access_mode_prompt_summary">Modo confirmación\n\nLa aplicación está ejecutándose con acceso completo al sistema de archivos, pero se preguntará antes de ejecutar acciones de superusuario</string>
     <string name="pref_access_mode_root">Modo superusuario</string>
-    <string name="pref_access_mode_root_summary">Modo superusuario\n\n¡Aviso! Este modo permite operaciones que pueden bloquear el dispositivo. Será su responsabilidad asegurarse de que la operación sea segura</string>
+    <string name="pref_access_mode_root_summary">Modo superusuario\n\n¡Aviso! Este modo permite operaciones que pueden bloquear el dispositivo. Será tu responsabilidad asegurarte de que la operación sea segura</string>
     <string name="pref_search_results_category">Resultados</string>
     <string name="pref_show_relevance_widget">Mostrar relevancia</string>
     <string name="pref_highlight_terms">Resaltar términos de búsqueda</string>
@@ -370,8 +371,8 @@
     <string name="ash_keyword">Palabra clave</string>
     <string name="ash_quoted_string">Cadena</string>
     <string name="ash_variable">Variable</string>
-    <string name="security_warning_extract">¡Aviso!\n\nExtraer archivos comprimidos que contienen rutas absolutas o relativas puede causar daños en su dispositivo por la posible sobrescritura de archivos de sistema.\n\n¿Continuar?</string>
+    <string name="security_warning_extract">¡Aviso!\n\nExtraer archivos comprimidos que contienen rutas absolutas o relativas puede causar daños en el dispositivo por la posible sobrescritura de archivos de sistema.\n\n¿Continuar?</string>
     <string name="changelog_title">Registro de cambios</string>
     <string name="welcome_title">Bienvenido</string>
-    <string name="welcome_msg">Bienvenido al explorador de archivos de CyanogenMod.\n\nEsta aplicación permite explorar el sistema de archivos y con ello, realizar operaciones que podrían bloquear el dispositivo. Para prevenir esta circunstancia, la aplicación se iniciará en modo seguro.\n\nPodrá acceder al modo avanzado de superusuario mediante el menú Ajustes, pero será su responsabilidad el evitar que una operación dañe el dispositivo.\n\nEl equipo de CyanogenMod.\n</string>
+    <string name="welcome_msg">Bienvenido al explorador de archivos de CyanogenMod.\n\nEsta aplicación permite explorar el sistema de archivos y con ello, realizar operaciones que podrían bloquear el dispositivo. Para prevenir esta circunstancia, la aplicación se iniciará en modo seguro.\n\nPodrás acceder al modo avanzado de superusuario mediante el menú Ajustes, pero será tu responsabilidad el evitar que una operación dañe el dispositivo.\n\nEl equipo de CyanogenMod.\n</string>
 </resources>

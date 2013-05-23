@@ -13,7 +13,8 @@
      See the License for the specific language governing permissions and
      limitations under the License.
  -->
-<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+<resources xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
 
   <!-- The name of the application -->
   <string name="app_name">Správca súborov</string>
@@ -581,10 +582,14 @@
   <string name="pref_general">Všeobecné nastavenia</string>
   <!-- Preferences * Search title -->
   <string name="pref_search">Nastavenie vyhľadávania</string>
+  <!-- Preferences * Editor title -->
+  <string name="pref_editor">Voľby editora</string>
+  <!-- Preferences * Themes title -->
+  <string name="pref_themes">Témy</string>
   <!-- Preferences * About title -->
   <string name="pref_about">O aplikácii</string>
   <!-- Preferences * About summary -->
-  <string name="pref_about_summary">Správca súborov ver.<xliff:g id="version">%1$s</xliff:g>\nCopyright © 2012 The CyanogenMod Project</string>
+  <string name="pref_about_summary">Správca súborov ver.<xliff:g id="version">%1$s</xliff:g>\nAutorské práva © 2012 The CyanogenMod Project</string>
 
   <!-- Preferences * General * Behaviour category -->
   <string name="pref_general_behaviour_category">Všeobecné</string>

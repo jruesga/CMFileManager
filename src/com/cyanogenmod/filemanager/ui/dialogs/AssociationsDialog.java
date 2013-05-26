@@ -323,10 +323,11 @@ public class AssociationsDialog implements OnItemClickListener {
     ResolveInfo getSelected() {
         AssociationsAdapter adapter = (AssociationsAdapter)this.mGrid.getAdapter();
         int cc = this.mGrid.getChildCount();
+        int firstVisible = this.mGrid.getFirstVisiblePosition();
         for (int i = 0; i < cc; i++) {
             ViewGroup item = (ViewGroup)this.mGrid.getChildAt(i);
             if (item != null && item.isSelected()) {
-                return adapter.getItem(i);
+                return adapter.getItem(i + firstVisible);
             }
         }
         return null;

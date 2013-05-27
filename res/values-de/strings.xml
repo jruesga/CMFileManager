@@ -21,6 +21,12 @@
     <string name="app_name">Dateimanager</string>
     <string name="app_description">Der CyanogenMod-Dateimanager</string>
 
+    <!-- Human readable sizes -->
+    <string name="size_bytes">B</string>
+    <string name="size_kilobytes">kB</string>
+    <string name="size_megabytes">MB</string>
+    <string name="size_gigabytes">GB</string>
+
     <!-- Date/time format order (%1$s: date; %2$s: time) -->
     <string name="datetime_format_order">%1$s %2$s</string>
 
@@ -344,6 +350,9 @@
     <!--  Filetime formats -->
     <string name="filetime_format_mode_system">System-Format</string>
     <string name="filetime_format_mode_locale">Gebietsschema-Format</string>
+    <string name="filetime_format_mode_ddMMyyyy_HHmmss">dd/mm/yyyy hh:mm:ss</string>
+    <string name="filetime_format_mode_MMddyyyy_HHmmss">mm/dd/yyyy hh:mm:ss</string>
+    <string name="filetime_format_mode_yyyyMMdd_HHmmss">yyyy-mm-dd hh:mm:ss</string>
 
     <!-- Selections -->
     <string name="selection_one_folder"><xliff:g id="folders">%1$s</xliff:g> Ordner ausgewählt</string>

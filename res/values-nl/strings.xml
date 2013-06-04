@@ -16,6 +16,11 @@
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="app_name">Bestanden</string>
     <string name="app_description">Een bestandsbeheerder van CyanogenMod.</string>
+    <string name="size_bytes">B</string>
+    <string name="size_kilobytes">kB</string>
+    <string name="size_megabytes">MB</string>
+    <string name="size_gigabytes">GB</string>
+    <string name="datetime_format_order">%1$s %2$s</string>
     <string name="device_blockdevice">Blokapparaat</string>
     <string name="device_characterdevice">Karakterapparaat</string>
     <string name="device_namedpipe">Named pipe</string>
@@ -265,6 +270,9 @@
     <string name="mime_unknown">Onbekend</string>
     <string name="filetime_format_mode_system">Systeeminstelling</string>
     <string name="filetime_format_mode_locale">Regionale instelling</string>
+    <string name="filetime_format_mode_ddMMyyyy_HHmmss">dd/mm/yyyy hh:mm:ss</string>
+    <string name="filetime_format_mode_MMddyyyy_HHmmss">mm/dd/yyyy hh:mm:ss</string>
+    <string name="filetime_format_mode_yyyyMMdd_HHmmss">yyyy-mm-dd hh:mm:ss</string>
     <string name="selection_one_folder"><xliff:g id="folders">%1$s</xliff:g> map geselecteerd.</string>
     <string name="selection_other_folders"><xliff:g id="folders">%1$s</xliff:g> mappen geselecteerd.</string>
     <string name="selection_one_file"><xliff:g id="files">%1$s</xliff:g> bestand geselecteerd.</string>

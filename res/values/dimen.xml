@@ -13,7 +13,7 @@
      See the License for the specific language governing permissions and
      limitations under the License.
  -->
-<resources xmlns:android="http://schemas.android.com/apk/res/android">
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
 
   <!-- The primary text size -->
   <dimen name="title_text_size">16sp</dimen>

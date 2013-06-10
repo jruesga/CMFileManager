@@ -22,8 +22,8 @@
   <string name="app_description">Gestor de Ficheiros CyanogenMod.</string>
 
   <!-- Devices types -->
-  <string name="device_blockdevice">Dispositivo de Bloco</string>
-  <string name="device_characterdevice">Dispositivo de Caracteres</string>
+  <string name="device_blockdevice">Dispositivo por Blocos</string>
+  <string name="device_characterdevice">Dispositivo por Caracteres</string>
   <string name="device_namedpipe">Pipe com nome</string>
   <string name="device_domainsocket">Socket de domínio</string>
 
@@ -103,11 +103,11 @@
   <string name="msgs_read_only_filesystem">Sistema de ficheiros apenas de leitura. Tente montar o
     sistema de ficheiros como rw antes de efectuar novamente a operação.</string>
   <!-- Illegal argument (normally caused by a development error when calling internal api) -->
-  <string name="msgs_illegal_argument">Argumento inválida. Invocação falhou.</string>
+  <string name="msgs_illegal_argument">Argumento inválido. Invocação falhou.</string>
   <!-- The operation will cause inconsistencies -->
   <string name="msgs_unresolved_inconsistencies">A operação não é permitida pois pode criar inconsistências.</string>
   <!-- Operation not permitted in current directory -->
-  <string name="msgs_operation_not_allowed_in_current_directory">A operação não é permitida na pasta currente.</string>
+  <string name="msgs_operation_not_allowed_in_current_directory">A operação não é permitida na pasta actual.</string>
 
   <!-- The advice message prior to exit the application -->
   <string name="msgs_push_again_to_exit">Pressione novamente para sair.</string>
@@ -169,7 +169,7 @@
   <string name="sort_by_date_desc">Por data &#x25BC;</string>
 
   <!-- Navigation View * Layout * Icons -->
-  <string name="layout_icons">Icons</string>
+  <string name="layout_icons">Icones</string>
   <!-- Navigation View * Layout * Simple -->
   <string name="layout_simple">Simples</string>
   <!-- Navigation View * Layout * Details -->
@@ -245,7 +245,7 @@
   <!-- Fso Properties Dialog * Name Label -->
   <string name="fso_properties_dialog_name">Nome:</string>
   <!-- Fso Properties Dialog * Parent Folder Label -->
-  <string name="fso_properties_dialog_parent">Parente:</string>
+  <string name="fso_properties_dialog_parent">Pai:</string>
   <!-- Fso Properties Dialog * Type Label -->
   <string name="fso_properties_dialog_type">Tipo:</string>
   <!-- Fso Properties Dialog * Category Label -->
@@ -307,7 +307,7 @@
   <string name="search_few_characters_title">Confirme pesquisa</string>
   <!-- Search * Some terms of the search are too small. The operation could be very costly -->
   <string name="search_few_characters_msg">Alguns dos termos de pesquisa têm poucos caracteres. A
-      operação pode ser cara em termos de tempo e recursos do sistema.\n\nDeseja continuar?</string>
+      operação pode ser exaustiva em termos de tempo e recursos do sistema.\n\nDeseja continuar?</string>
   <!-- Search * Searching dialog title -->
   <string name="searching">Aguarde\u2026</string>
   <!-- Search * Searching label -->
@@ -470,7 +470,7 @@
   <!-- Actions Dialog * Menu * Add shortcut -->
   <string name="actions_menu_add_shortcut">Adicionar atalho</string>
   <!-- Actions Dialog * Menu * Open parent folder -->
-  <string name="actions_menu_open_parent_folder">Abrir parente</string>
+  <string name="actions_menu_open_parent_folder">Abrir pasta mãe</string>
 
   <!-- Actions * Ask user prior to do an undone operation. Dialog message -->
   <string name="actions_ask_undone_operation_msg">
@@ -559,11 +559,11 @@
   <string name="compression_mode_title">Modo de compressão</string>
 
   <!-- Shortcut. Failed to handle the shortcut -->
-  <string name="shortcut_failed_msg">Falha do lidar com o atalho.</string>
+  <string name="shortcut_failed_msg">Falha ao lidar com o atalho.</string>
   <!-- Shortcut. The shortcut was created -->
   <string name="shortcut_creation_success_msg">Atalho criado com sucesso.</string>
   <!-- Shortcut. The shortcut wasn't created -->
-  <string name="shortcut_creation_failed_msg">Atalho criado sem sucesso.</string>
+  <string name="shortcut_creation_failed_msg">Criação de atalho sem sucesso.</string>
 
   <!-- Preferences title -->
   <string name="pref">Definições</string>
@@ -594,7 +594,7 @@
   <!-- Preferences * General * Compute folder statistics title -->
   <string name="pref_compute_folder_statistics">Calcular estatísticas da pasta</string>
   <!-- Preferences * General * Compute folder statistics summary on -->
-  <string name="pref_compute_folder_statistics_on">Atenção! O cálculo das estatísticas das pastas é cara em
+  <string name="pref_compute_folder_statistics_on">Atenção! O cálculo das estatísticas das pastas é exaustiva em
       tempo e recursos de sistema</string>
   <!-- Preferences * General * Use flinger detection -->
   <string name="pref_use_flinger">Usar gestos</string>
@@ -610,9 +610,9 @@
   <string name="pref_access_mode_safe_summary">Modo seguro\n\nA aplicação é executada sem previlégios
       e apenas será acessível sistemas de ficheiros como volumes de armazenamento (cartões SD e USB)</string>
   <!-- Preferences * General * Prompt user mode -->
-  <string name="pref_access_mode_prompt">Modo de pergunta</string>
+  <string name="pref_access_mode_prompt">Modo de questão</string>
   <!-- Preferences * General * Prompt user mode summary -->
-  <string name="pref_access_mode_prompt_summary">Modo de Pergunta\n\nA aplicação é executada com acesso total
+  <string name="pref_access_mode_prompt_summary">Modo de Questão\n\nA aplicação é executada com acesso total
       ao sistema de ficheiros mas pedirá permissões antes de executar acções previlegiadas</string>
   <!-- Preferences * General * Root access mode -->
   <string name="pref_access_mode_root">Modo de acesso Root</string>
@@ -652,7 +652,7 @@
   <!-- Preferences * Themes * Set theme button -->
   <string name="pref_themes_set_theme">Definir item</string>
   <!-- Preferences * Themes * No preview -->
-  <string name="pref_themes_no_preview">Sem pré-visualização\ndisponível</string>
+  <string name="pref_themes_no_preview">Sem pré-visualização\indisponível</string>
   <!-- Preferences * Themes * Confirmation message -->
   <string name="pref_themes_confirmation">Tema aplicado com sucesso.</string>
   <!-- Preferences * Themes * Theme not found message -->

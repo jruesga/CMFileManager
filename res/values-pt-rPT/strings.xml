@@ -652,7 +652,7 @@
   <!-- Preferences * Themes * Set theme button -->
   <string name="pref_themes_set_theme">Definir item</string>
   <!-- Preferences * Themes * No preview -->
-  <string name="pref_themes_no_preview">Sem pré-visualização\indisponível</string>
+  <string name="pref_themes_no_preview">Sem pré-visualização\ndisponível</string>
   <!-- Preferences * Themes * Confirmation message -->
   <string name="pref_themes_confirmation">Tema aplicado com sucesso.</string>
   <!-- Preferences * Themes * Theme not found message -->

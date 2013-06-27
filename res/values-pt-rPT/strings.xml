@@ -36,6 +36,7 @@
   <string name="no">Não</string>
   <string name="all">Todos</string>
   <string name="overwrite">Substituir</string>
+  <string name="select">Seleccionar</string>
 
   <!-- The root directory name -->
   <string name="root_directory_name"><![CDATA[<Root folder>]]></string>
@@ -48,6 +49,10 @@
   <string name="cancelled_message">Cancelado.</string>
   <!-- Error message -->
   <string name="error_message">Erro.</string>
+  <!-- Copy text content description -->
+  <string name="copy_text_cd">Tocar para copiar texto para transferência</string>
+  <!-- Copy text content message -->
+  <string name="copy_text_msg">Texto copiado para transferência</string>
 
   <!-- Warning dialog title -->
   <string name="warning_title">Aviso</string>
@@ -69,7 +74,7 @@
   <string name="msgs_cant_create_console">Incapaz de obter os previlégios necessários ao funcionamento.</string>
   <!-- The message shown when an allocation of a privileged console fails, and a non
        privileged is allocated -->
-  <string name="msgs_privileged_console_alloc_failed">Incapaz de executar em modo de acesso Root. Alterando para modo Seguro.</string>
+  <string name="msgs_privileged_console_alloc_failed">Incapaz de executar em modo de acesso Root. Alterando para modo seguro.</string>
   <!-- The selected setting was not applied or stored -->
   <string name="msgs_settings_save_failure">A definição não pôde ser aplicada ou guardada.</string>
   <!-- The initial directory has an invalid or inaccessible reference -->
@@ -101,7 +106,7 @@
   <string name="msgs_operation_can_not_be_cancelled">A operação não pode ser cancelada.</string>
   <!-- The operation requieres mount the file system prior to execute the command -->
   <string name="msgs_read_only_filesystem">Sistema de ficheiros apenas de leitura. Tente montar o
-    sistema de ficheiros como rw antes de efectuar novamente a operação.</string>
+    sistema de ficheiros como RW antes de efectuar novamente a operação.</string>
   <!-- Illegal argument (normally caused by a development error when calling internal api) -->
   <string name="msgs_illegal_argument">Argumento inválido. Invocação falhou.</string>
   <!-- The operation will cause inconsistencies -->
@@ -139,15 +144,15 @@
   <!-- ActionBar Buttons * Sort Mode -->
   <string name="actionbar_button_sort_mode_cd">Modo de ordenação</string>
   <!-- ActionBar Buttons * Layout Mode -->
-  <string name="actionbar_button_layout_mode_cd">Modo de vista</string>
+  <string name="actionbar_button_layout_mode_cd">Modo de visualização</string>
   <!-- ActionBar Buttons * Other View Options -->
-  <string name="actionbar_button_other_view_options_cd">Outras opções de vista</string>
+  <string name="actionbar_button_other_view_options_cd">Outras opções de visualização</string>
   <!-- ActionBar Buttons * Done -->
   <string name="actionbar_button_selection_done_cd">Concluído</string>
   <!-- ActionBar Buttons * Actions -->
   <string name="actionbar_button_actions_cd">Acções</string>
   <!-- ActionBar Buttons * History -->
-  <string name="actionbar_button_history_cd">História</string>
+  <string name="actionbar_button_history_cd">Histórico</string>
   <!-- ActionBar Buttons * Bookmarks -->
   <string name="actionbar_button_bookmarks_cd">Marcadores</string>
   <!-- ActionBar Buttons * Search -->
@@ -203,7 +208,7 @@
   <!-- Filesystem Info Dialog * Tab * Info -->
   <string name="filesystem_info_dialog_tab_info">Info</string>
   <!-- Filesystem Info Dialog * Tab * Disk Usage -->
-  <string name="filesystem_info_dialog_tab_disk_usage">Util. disco</string>
+  <string name="filesystem_info_dialog_tab_disk_usage">Utilização</string>
   <!-- Filesystem Info Dialog * Status Label -->
   <string name="filesystem_info_dialog_status">Estado:</string>
   <!-- Filesystem Info Dialog * Mount Point Label -->
@@ -256,12 +261,27 @@
   <string name="fso_properties_dialog_size">Tamanho:</string>
   <!-- Fso Properties Dialog * Contains Label -->
   <string name="fso_properties_dialog_contains">Contém:</string>
+  <!-- Fso Properties Dialog * Last Accessed Time Label -->
+  <string name="fso_properties_dialog_last_accessed_date">Acedido:</string>
+  <!-- Fso Properties Dialog * Last Modified Time Label -->
+  <string name="fso_properties_dialog_last_modified_date">Modificado:</string>
+  <!-- Fso Properties Dialog * Last Changed Time -->
+  <string name="fso_properties_dialog_last_changed_date">Alterado:</string>
   <!-- Fso Properties Dialog * Owner Label -->
   <string name="fso_properties_dialog_owner">Dono:</string>
   <!-- Fso Properties Dialog * Group Label -->
   <string name="fso_properties_dialog_group">Grupo:</string>
   <!-- Fso Properties Dialog * Others Label -->
   <string name="fso_properties_dialog_others">Outros:</string>
+  <!-- Fso Properties Dialog * Skip media scan -->
+  <string name="fso_properties_dialog_include_in_media_scan">Saltar pesquisa Multimedia:</string>
+  <string name="fso_failed_to_allow_media_scan">Falha de permissão na pesquisa multimédia</string>
+  <string name="fso_failed_to_prevent_media_scan">Falha ao cancelar pesquisa multimédia</string>
+  <string name="fso_delete_nomedia_dir_title">Remover pasta .nomedia</string>
+  <string name="fso_delete_nomedia_dir_body">Esta pasta contém uma pasta .nomedia.\n\nDeseja remover com todo o seu conteúdo?</string>
+  <string name="fso_delete_nomedia_non_empty_title">Remover ficheiro .nomedia</string>
+  <string name="fso_delete_nomedia_non_empty_body">Esta pasta contém um ficheiro .nomedia com dados.\n\nDeseja removê-lo?</string>
+  
   <!-- Fso Properties Dialog * Folders -->
   <plurals name="fso_properties_dialog_folders">
     <item quantity="zero">0 pastas</item>
@@ -316,6 +336,7 @@
   <!-- Picker Activity -->
   <!-- Picker Activity * Dialog title -->
   <string name="picker_title">Escolha um ficheiro</string>
+  <string name="directory_picker_title">Escolha uma pasta</string>
 
   <!-- Editor * Editor activity title -->
   <string name="editor">Editor</string>
@@ -333,6 +354,10 @@
   <string name="editor_successfully_saved">O ficheiro foi guardado com sucesso.</string>
   <!-- Editor * Read-only file mode -->
   <string name="editor_read_only_mode">O ficheiro está aberto apenas em modo de leitura.</string>
+  <!-- Editor * Dumping message -->
+  <string name="dumping_message">Gerando hex dump\u2026</string>
+  <!-- Editor * Displaying -->
+  <string name="displaying_message">A mostrar\u2026</string>
 
   <!-- Bookmarks * Bookmarks activity title -->
   <string name="bookmarks">Marcadores</string>
@@ -368,6 +393,12 @@
   <string name="menu_settings">Definições</string>
   <!-- Menu * History * Clear history -->
   <string name="menu_clear_history">Limpar histórico</string>
+  <!-- Menu * Editor * No suggestions -->
+  <string name="menu_no_suggestions">Sem sugestões</string>
+  <!-- Menu * Editor * Word wrap -->
+  <string name="menu_word_wrap">Quebra de linha</string>
+  <!-- Menu * Editor * Sintax highlight -->
+  <string name="menu_syntax_highlight">Realçar sintaxe</string>
 
   <!-- Regular expression for create copy action -->
   <string name="create_copy_regexp">
@@ -453,6 +484,8 @@
   <string name="actions_menu_execute">Executar</string>
   <!-- Actions Dialog * Menu * Send -->
   <string name="actions_menu_send">Enviar</string>
+  <!-- Actions Dialog * Menu * Send selection -->
+  <string name="actions_menu_send_selection">Enviar selecção</string>
   <!-- Actions Dialog * Menu * Compress -->
   <string name="actions_menu_compress">Comprimir</string>
   <!-- Actions Dialog * Menu * Extract -->
@@ -471,6 +504,8 @@
   <string name="actions_menu_add_shortcut">Adicionar atalho</string>
   <!-- Actions Dialog * Menu * Open parent folder -->
   <string name="actions_menu_open_parent_folder">Abrir pasta mãe</string>
+  <!-- Actions Dialog * Menu * Compute checksum -->
+  <string name="actions_menu_compute_checksum">Calcular verificação</string>
 
   <!-- Actions * Ask user prior to do an undone operation. Dialog message -->
   <string name="actions_ask_undone_operation_msg">
@@ -516,6 +551,13 @@
   <!-- Execution console * The script execution time seconds string -->
   <string name="execution_console_script_execution_time_text">
     <xliff:g id="seconds">%1$s</xliff:g> seg.</string>
+	
+  <!-- Compute checksum * Title -->
+  <string name="compute_checksum_title">Calcular verificação</string>
+  <!-- Compute checksum * The file name label -->
+  <string name="compute_checksum_filename_label">Ficheiro:</string>
+  <!-- Compute checksum * The computing checksum message-->
+  <string name="compute_checksum_computing_checksum_msg">A calcular verificação\u2026</string>
 
   <!-- Mime/Types * Folder -->
   <string name="mime_folder">Pasta</string>
@@ -523,6 +565,13 @@
   <string name="mime_symlink">Symlink</string>
   <!-- Mime/Types * Unknown -->
   <string name="mime_unknown">Desconhecido</string>
+  
+    <!--  Filetime formats -->
+  <string name="filetime_format_mode_system">Definido pelo sistema</string>
+  <string name="filetime_format_mode_locale">Definido pela localização</string>
+  <string name="filetime_format_mode_ddMMyyyy_HHmmss">dd/mm/aaaa hh:mm:ss</string>
+  <string name="filetime_format_mode_MMddyyyy_HHmmss">mm/dd/aaaa hh:mm:ss</string>
+  <string name="filetime_format_mode_yyyyMMdd_HHmmss">aaaa-mm-dd hh:mm:ss</string>
 
   <!-- Selection. All possibilities. [1 folder; >1 folders; 1 file; >1 files;
      >1 folders and 1 file; 1 folder and >1 files; >1 folders and >1 files]
@@ -571,6 +620,8 @@
   <string name="pref_general">Definições gerais</string>
   <!-- Preferences * Search title -->
   <string name="pref_search">Opções de pesquisa</string>
+  <!-- Preferences * Editor title -->
+  <string name="pref_editor">Opções do editor</string>
   <!-- Preferences * Themes title -->
   <string name="pref_themes">Temas</string>
   <!-- Preferences * About title -->
@@ -582,17 +633,21 @@
   <!-- Preferences * General * Behaviour category -->
   <string name="pref_general_behaviour_category">Geral</string>
   <!-- Preferences * General * Case sensitive sort title -->
-  <string name="pref_case_sensitive_sort">Usar ordenação de maiúsculas e minúsculas</string>
+  <string name="pref_case_sensitive_sort">Ordenação maiúsculas/minúsculas</string>
+  <!-- Preferences * General * Case sensitive sort and navigating summary -->
+  <string name="pref_case_sensitive_sort_summary">Ter em conta Maiúsculas/minusculas ao navegar ou ordenar resultados da pesquisa</string>
+  <!-- Preferences * General * Filetime format mode title -->
+  <string name="pref_filetime_format_mode">Formato data/hora</string>
   <!-- Preferences * General *Disk usage warning level title -->
   <string name="pref_disk_usage_warning_level">Alerta de utilização de disco</string>
   <!-- Preferences * General * Disk usage warning level summary -->
   <!-- FIXME Use "percent" instead of "%" symbol, because it make crash the app on getSummary
        of ListPreference. This should be fixed in frameworks base prior to be added here. -->
   <string name="pref_disk_usage_warning_level_summary" formatted="false">Mostrar uma cor diferente
-      nos widgets the utilização de disco quando atingem <xliff:g id="level">%1$s</xliff:g> porcento de
-      espaço livre.</string>
+      nos widgets da utilização de disco quando atingem <xliff:g id="level">%1$s</xliff:g> porcento de
+      espaço usado.</string>
   <!-- Preferences * General * Compute folder statistics title -->
-  <string name="pref_compute_folder_statistics">Calcular estatísticas da pasta</string>
+  <string name="pref_compute_folder_statistics">Estatísticas da pasta</string>
   <!-- Preferences * General * Compute folder statistics summary on -->
   <string name="pref_compute_folder_statistics_on">Atenção! O cálculo das estatísticas das pastas é exaustiva em
       tempo e recursos de sistema</string>
@@ -624,9 +679,9 @@
   <!-- Preferences * Search * Show relevance widget -->
   <string name="pref_show_relevance_widget">Mostrar widget relevante</string>
   <!-- Preferences * Search * Highlight search terms -->
-  <string name="pref_highlight_terms">Mostrar termos de pesquisa</string>
+  <string name="pref_highlight_terms">Salientar termos</string>
   <!-- Preferences * Search * Sort results mode -->
-  <string name="pref_sort_search_results_mode">Modo de ordenação de resultados</string>
+  <string name="pref_sort_search_results_mode">Modo de ordenação</string>
   <!-- Preferences * Search * Sort results mode. None -->
   <string name="pref_sort_search_results_mode_none">Sem ordenação</string>
   <!-- Preferences * Search * Sort results mode. None -->
@@ -636,17 +691,47 @@
   <!-- Preferences * Search * Privacity category -->
   <string name="pref_search_privacity_category">Privacidade</string>
   <!-- Preferences * Search * Save search terms -->
-  <string name="pref_save_search_terms">Guardar termos de pesquisa</string>
+  <string name="pref_save_search_terms">Lembrar pesquisas anteriores</string>
   <!-- Preferences * Search * Save search terms summary on -->
   <string name="pref_save_search_terms_on">Os termos de procura serão guardados e sugeridos em pesquisas futuras</string>
   <!-- Preferences * Search * Save search terms summary off -->
   <string name="pref_save_search_terms_off">Os termos de procura não serão guardados</string>
   <!-- Preferences * Search * Remove saved search terms -->
-  <string name="pref_remove_saved_search_terms">Remover termos de procura guardados</string>
+  <string name="pref_remove_saved_search_terms">Limpar pesquisas guardadas</string>
   <!-- Preferences * Search * Remove saved search terms summary -->
   <string name="pref_remove_saved_search_terms_summary">Toque para remover todos os termos de procura guardados</string>
   <!-- Preferences * Search * Suggestions were truncated -->
   <string name="pref_remove_saved_search_terms_msg">Todos os termos de procura guardados foram removidos.</string>
+  <!-- Preferences * Editor * Behaviour category -->
+  <string name="pref_editor_behaviour_category">Comprtamento</string>
+  <!-- Preferences * Editor * No suggestions -->
+  <string name="pref_no_suggestions">Sem sugestões</string>
+  <!-- Preferences * Editor * No suggestions summary -->
+  <string name="pref_no_suggestions_desc">Não mostrar sugestões do dicionário ao editar ficheiro</string>
+  <!-- Preferences * Editor * Word wrap -->
+  <string name="pref_word_wrap">Quebra de linha</string>
+  <!-- Preferences * Editor * Hexdump -->
+  <string name="pref_hexdump">Ficheiros binários Hexdump</string>
+  <!-- Preferences * Editor * Hexdump desc -->
+  <string name="pref_hexdump_desc">Ao abrir ficheiro binário, gerar Hexdump do ficheiro
+    e abri-lo no visualizador hexadécimal.</string>
+  <!-- Preferences * Editor * Syntax highlight category -->
+  <string name="pref_editor_syntax_highlight_category">Realçar sintaxe</string>
+  <!-- Preferences * Editor * Syntax highlight -->
+  <string name="pref_syntax_highlight">Realçar sintaxe</string>
+  <!-- Preferences * Editor * Syntax highlight summary -->
+  <string name="pref_syntax_highlight_desc">Realçar sintaxe do ficheiro mostrado no
+    editor (apenas quando disponível um  processador para o tipo de ficheiro que possua realce de sintaxe)</string>
+  <!-- Preferences * Editor * Syntax highlight color scheme -->
+  <string name="pref_syntax_highlight_color_scheme">Esquema de côr</string>
+  <!-- Preferences * Editor * Syntax highlight color scheme summary -->
+  <string name="pref_syntax_highlight_color_scheme_desc">Tocar para seleccionar esquema de côr de realce de sintaxe</string>
+  <!-- Preferences * Editor * Syntax highlight * Color Scheme -->
+  <string name="pref_syntax_sh_use_theme_default">Usar tema predefinido</string>
+  <!-- Preferences * Editor * Syntax highlight *Color Scheme summary -->
+  <string name="pref_syntax_sh_use_theme_default_desc">Usar predefinição do tema para realce de sintaxe</string>
+  <!-- Preferences * Editor * Syntax highlight * Color Scheme * Items category -->
+  <string name="pref_editor_sh_item_category">Items</string>
   <!-- Preferences * Themes * Themes selection category -->
   <string name="pref_themes_selection_category">Temas</string>
   <!-- Preferences * Themes * Set theme button -->
@@ -659,7 +744,7 @@
   <string name="pref_themes_not_found">Tema não encontrado.</string>
 
   <!-- Preferences * Debug * Capture debug traces -->
-  <string name="pref_debug_traces">Log de informação de depuração</string>
+  <string name="pref_debug_traces">Registo de depuração</string>
 
   <!-- Themes * Default theme name -->
   <string name="theme_default_name">Tema claro</string>
@@ -667,6 +752,26 @@
   <string name="theme_default_description">Um tema claro para o Gestor de Ficheiros CyanogenMod.</string>
   <!-- Themes * Default theme author -->
   <string name="themes_author">CyanogenMod</string>
+  
+  <!-- ColorPickerDialog -->
+  <!-- The text of the alpha slider control -->
+  <string name="color_picker_alpha_slider_text">Alpha</string>
+  <!-- The label of the current color panel -->
+  <string name="color_picker_current_text">Actual:</string>
+  <!-- The label of the new color panel -->
+  <string name="color_picker_new_text">Novo:</string>
+  <!-- The label of the color input -->
+  <string name="color_picker_color">Côr:</string>
+  
+  <!-- Android Syntax Highlight -->
+  <string name="ash_reset_color_scheme">Tocar para repor o esquema de côr predefinido do tema</string>
+  <string name="ash_text">Texto</string>
+  <string name="ash_assignment">Atribuição</string>
+  <string name="ash_singleline_comment">Comentar linha única</string>
+  <string name="ash_multiline_comment">Comentar várias linhas</string>
+  <string name="ash_keyword">Palavra-chave</string>
+  <string name="ash_quoted_string">frase mencionada</string>
+  <string name="ash_variable">Variável</string>
 
   <!-- Security * Extract relative or absolute files -->
   <string name="security_warning_extract">Aviso!\n\n

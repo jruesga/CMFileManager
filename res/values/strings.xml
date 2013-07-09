@@ -599,6 +599,8 @@
   <string name="selection_other_folders"><xliff:g id="folders">%1$s</xliff:g> folders selected.</string>
   <string name="selection_one_file"><xliff:g id="files">%1$s</xliff:g> file selected.</string>
   <string name="selection_other_files"><xliff:g id="files">%1$s</xliff:g> files selected.</string>
+  <string name="selection_one_folder_one_file"><xliff:g id="folders">%1$s</xliff:g> folder and
+    <xliff:g id="files">%2$s</xliff:g> file selected.</string>
   <string name="selection_other_folders_one_file"><xliff:g id="folders">%1$s</xliff:g> folders and
     <xliff:g id="files">%2$s</xliff:g> file selected.</string>
   <string name="selection_one_folder_other_files"><xliff:g id="folder2">%1$s</xliff:g> folder and

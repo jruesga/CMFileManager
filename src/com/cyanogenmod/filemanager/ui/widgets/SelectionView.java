@@ -134,16 +134,21 @@ public class SelectionView extends LinearLayout {
         if (folders == 0 && files == 1) {
             return getContext().getString(R.string.selection_one_file, Integer.valueOf(files));
         }
-        if (folders == 0 && files >= 1) {
+        if (folders == 0 && files > 1) {
             return getContext().getString(
                     R.string.selection_other_files, Integer.valueOf(files));
+        }
+        if (folders == 1 && files == 1) {
+            return getContext().getString(
+                    R.string.selection_one_folder_one_file,
+                    Integer.valueOf(folders), Integer.valueOf(files));
         }
         if (folders > 1 && files == 1) {
             return getContext().getString(
                     R.string.selection_other_folders_one_file,
                     Integer.valueOf(folders), Integer.valueOf(files));
         }
-        if (folders == 1 && files >= 1) {
+        if (folders == 1 && files > 1) {
             return getContext().getString(
                     R.string.selection_one_folder_other_files,
                     Integer.valueOf(folders), Integer.valueOf(files));

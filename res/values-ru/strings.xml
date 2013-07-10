@@ -52,16 +52,16 @@
   <string name="confirm_deletion">Подтвердите удаление</string>
 
   <string name="msgs_change_to_prompt_access_mode_title">Подтвердить переключение</string>
-  <string name="msgs_change_to_prompt_access_mode_msg">Невозможно запустить в Root-режиме. Переключение в безопасный режим.\n\nПрименить?</string>
+  <string name="msgs_change_to_prompt_access_mode_msg">Невозможно запустить в режиме root-доступа. Переключение в безопасный режим.\n\nПрименить?</string>
 
   <string name="msgs_cant_create_console">Не удаётся получить необходимые привилегии</string>
-  <string name="msgs_privileged_console_alloc_failed">Невозможно запустить в Root-режиме. Переключение в безопасный режим</string>
+  <string name="msgs_privileged_console_alloc_failed">Невозможно запустить в режиме root-доступа. Переключение в безопасный режим</string>
   <string name="msgs_settings_save_failure">Настройка не может быть применена или сохранена</string>
   <string name="msgs_settings_invalid_initial_directory">Начальная папка \"<xliff:g id="initial_dir">%1$s</xliff:g>\" недоступна. Переход в корневую папку</string>
 
   <string name="msgs_success">Операция прошла успешно</string>
   <string name="msgs_unknown">Были обнаружены ошибки. Операция завершилась неудачно</string>
-  <string name="msgs_insufficient_permissions">Эта операция требует повышенных привилегий. Попробуйте изменить Root-режим</string>
+  <string name="msgs_insufficient_permissions">Эта операция требует повышенных привилегий. Попробуйте изменить режим root-доступа</string>
   <string name="msgs_file_not_found">Файл или папка не найдены</string>
   <string name="msgs_command_not_found">Операции команды не были найдены или имеют неверное значение</string>
   <string name="msgs_io_failed">Ошибка чтения/записи</string>
@@ -82,7 +82,7 @@
 
   <string name="msgs_action_association_failed">Привязка приложения к действию не удалась</string>
 
-  <string name="advise_insufficient_permissions">Операция требует повышенных привилегий.\n\nВы хотите изменить режим Root-доступа?</string>
+  <string name="advise_insufficient_permissions">Операция требует повышенных привилегий.\n\nВы хотите изменить режим root-доступа?</string>
 
   <string name="parent_dir">Вверх</string>
   <string name="external_storage">Внешний накопитель</string>
@@ -118,7 +118,7 @@
   <string name="filesystem_info_warning_title">Нет информации</string>
   <string name="filesystem_info_warning_msg">Нет доступной информации о файловой системе</string>
   <string name="filesystem_info_cant_be_mounted_msg">Файловая система не может быть смонтирована/отмонтирована</string>
-  <string name="filesystem_info_mount_not_allowed_msg">Монтирование файловой системы невозможно в Безопасном режиме. Нажмите для изменения режима Root-доступа</string>
+  <string name="filesystem_info_mount_not_allowed_msg">Монтирование файловой системы невозможно в безопасном режиме. Нажмите для изменения режима root-доступа</string>
   <string name="filesystem_info_mount_failed_msg">Не удалось смонтировать файловую систему. Некоторые файловые системы, такие как SD-карты, не могут быть смонтированы/отмонтированы, потому что они имеют встроенную файловую систему только для чтения</string>
   <string name="filesystem_info_dialog_title">Информация о файловой системе</string>
   <string name="filesystem_info_dialog_tab_info">Информация</string>
@@ -133,7 +133,7 @@
   <string name="filesystem_info_dialog_used_disk_usage">Исп.:</string>
   <string name="filesystem_info_dialog_free_disk_usage">Своб.:</string>
 
-  <string name="fso_properties_permissions_not_allowed_msg">Изменение разрешений невозможно в Безопасном режиме. Нажмите для изменения режима Root-доступа</string>
+  <string name="fso_properties_permissions_not_allowed_msg">Изменение разрешений невозможно в безопасном режиме. Нажмите для изменения режима root-доступа</string>
   <string name="fso_properties_failed_to_change_owner_msg">Изменение владельца не удалось.\n\nПо соображениям безопасности, некоторые файловые системы, такие как SD-карты, не позволяют изменять владельца</string>
   <string name="fso_properties_failed_to_change_group_msg">Изменение группы не удалось.\n\nПо соображения безопасности, некоторые файловые системы, такие как SD-карты, не позволяют изменять группы</string>
   <string name="fso_properties_failed_to_change_permission_msg">Изменение разрешений не удалось.\n\nПо соображениям безопасности, некоторые файловые системы, такие как SD-карты, не позволяют изменять разрешения</string>
@@ -311,7 +311,8 @@
   <string name="selection_other_folders">Выбрано папок: <xliff:g id="folders">%1$s</xliff:g></string>
   <string name="selection_one_file">Выбран <xliff:g id="files">%1$s</xliff:g> файл</string>
   <string name="selection_other_files">Выбрано файлов: <xliff:g id="files">%1$s</xliff:g></string>
-  <string name="selection_other_folders_one_file">Выбрано папок: <xliff:g id="folders">%1$s</xliff:g> и файлов: <xliff:g id="files">%2$s</xliff:g></string>
+  <string name="selection_one_folder_one_file">Выбрана <xliff:g id="folders">%1$s</xliff:g> папка и <xliff:g id="files">%2$s</xliff:g> файл</string>
+  <string name="selection_other_folders_one_file">Выбрано папок: <xliff:g id="folders">%1$s</xliff:g> и <xliff:g id="files">%2$s</xliff:g> файл</string>
   <string name="selection_one_folder_other_files">Выбрана <xliff:g id="folder2">%1$s</xliff:g> папка и файлов: <xliff:g id="file2">%2$s</xliff:g></string>
   <string name="selection_other_folders_other_files">Выбрано папок: <xliff:g id="folder2">%1$s</xliff:g> и файлов: <xliff:g id="files">%2$s</xliff:g></string>
 
@@ -357,11 +358,11 @@
   <string name="pref_general_advanced_settings_category">Расширенные настройки</string>
   <string name="pref_access_mode">Режим доступа</string>
   <string name="pref_access_mode_safe">Безопасный режим</string>
-  <string name="pref_access_mode_safe_summary">Безопасный режим\n\nПриложение работает без Root-привилегий и имеет доступ только к файловой системе накопителей (SD-карты или USB)</string>
+  <string name="pref_access_mode_safe_summary">Безопасный режим\n\nПриложение работает без root-привилегий и имеет доступ только к файловой системе накопителей (SD-карты или USB)</string>
   <string name="pref_access_mode_prompt">Режим запроса</string>
-  <string name="pref_access_mode_prompt_summary">Режим запроса\n\nПриложение работает с Root-привилегиями, но будет выводить запрос на разрешение выполнения операций с системой</string>
-  <string name="pref_access_mode_root">Режим Root</string>
-  <string name="pref_access_mode_root_summary">Режим Root\n\nВнимание! Этот режим может вывести ваше устройство из строя. Все действия в этом режиме выполняются на ваш страх и риск</string>
+  <string name="pref_access_mode_prompt_summary">Режим запроса\n\nПриложение работает с root-привилегиями, но будет выводить запрос на разрешение выполнения операций с системой</string>
+  <string name="pref_access_mode_root">Режим root</string>
+  <string name="pref_access_mode_root_summary">Режим root\n\nВнимание! Этот режим может вывести ваше устройство из строя. Все действия в этом режиме выполняются на ваш страх и риск</string>
   <string name="pref_search_results_category">Результаты</string>
   <string name="pref_show_relevance_widget">Показывать виджет актуальности</string>
   <string name="pref_highlight_terms">Выделять условия поиска</string>

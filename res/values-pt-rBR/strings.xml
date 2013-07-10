@@ -241,6 +241,7 @@
     <string name="selection_other_folders"><xliff:g id="folders" xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">%1$s</xliff:g> pastas selecionadas</string>
     <string name="selection_one_file"><xliff:g id="files" xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">%1$s</xliff:g> arquivo selecionado</string>
     <string name="selection_other_files"><xliff:g id="files" xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">%1$s</xliff:g> arquivos selecionados</string>
+    <string name="selection_one_folder_one_file"><xliff:g id="folders" xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">%1$s</xliff:g> pasta e <xliff:g id="files" xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">%2$s</xliff:g> arquivo selecionados</string>
     <string name="selection_other_folders_one_file"><xliff:g id="folders" xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">%1$s</xliff:g> pastas e <xliff:g id="files" xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">%2$s</xliff:g> arquivo selecionados</string>
     <string name="selection_one_folder_other_files"><xliff:g id="folder2" xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">%1$s</xliff:g> pasta e <xliff:g id="file2" xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">%2$s</xliff:g> arquivos selecionados</string>
     <string name="selection_other_folders_other_files"><xliff:g id="folder2" xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">%1$s</xliff:g> pastas e <xliff:g id="files" xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">%2$s</xliff:g> arquivos selecionados</string>

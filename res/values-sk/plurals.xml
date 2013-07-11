@@ -15,14 +15,14 @@
  -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
   <!-- Fso Properties Dialog * Folders -->
-  <plurals name="fso_properties_dialog_folders">
+  <plurals name="n_folders">
     <item quantity="zero">0 priečinkov</item>
     <item quantity="one">1 priečinok</item>
     <item quantity="few"><xliff:g id="folders">%1$d</xliff:g> priečinky</item>
     <item quantity="other"><xliff:g id="folders">%1$d</xliff:g> priečinkov</item>
   </plurals>
   <!-- Fso Properties Dialog * Files -->
-  <plurals name="fso_properties_dialog_files">
+  <plurals name="n_files">
     <item quantity="zero">0 súborov</item>
     <item quantity="one">1 súbor</item>
     <item quantity="few"><xliff:g id="files">%1$d</xliff:g> súbory</item>

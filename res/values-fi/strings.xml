@@ -128,12 +128,12 @@
   <string name="fso_properties_dialog_owner">Omistaja:</string>
   <string name="fso_properties_dialog_group">Ryhmä:</string>
   <string name="fso_properties_dialog_others">Muut:</string>
-  <plurals name="fso_properties_dialog_folders">
+  <plurals name="n_folders">
     <item quantity="zero">0 kansiota</item>
     <item quantity="one">1 kansio</item>
     <item quantity="other"><xliff:g id="folders">%1$d</xliff:g> kansiota</item>
   </plurals>
-  <plurals name="fso_properties_dialog_files">
+  <plurals name="n_files">
     <item quantity="zero">0 tiedostoa</item>
     <item quantity="one">1 tiedosto</item>
     <item quantity="other"><xliff:g id="files">%1$d</xliff:g> tiedostoa</item>
@@ -254,13 +254,6 @@
   <string name="mime_folder">Kansio</string>
   <string name="mime_symlink">Symlinkki</string>
   <string name="mime_unknown">Tuntematon</string>
-  <string name="selection_one_folder"><xliff:g id="folders">%1$s</xliff:g> kansio valittu.</string>
-  <string name="selection_other_folders"><xliff:g id="folders">%1$s</xliff:g> kansiota valittu.</string>
-  <string name="selection_one_file"><xliff:g id="files">%1$s</xliff:g> tiedosto valittu.</string>
-  <string name="selection_other_files"><xliff:g id="files">%1$s</xliff:g> tiedostoa valittu.</string>
-  <string name="selection_other_folders_one_file"><xliff:g id="folders">%1$s</xliff:g> kansiota ja <xliff:g id="files">%2$s</xliff:g> tiedosto valittu.</string>
-  <string name="selection_one_folder_other_files"><xliff:g id="folder2">%1$s</xliff:g> kansio ja <xliff:g id="file2">%2$s</xliff:g> tiedostoa valittu.</string>
-  <string name="selection_other_folders_other_files"><xliff:g id="folder2">%1$s</xliff:g> kansiota ja <xliff:g id="files">%2$s</xliff:g> tiedostoa valittu.</string>
   <string name="category_system">JÄRJESTELMÄ</string>
   <string name="category_app">SOVELLUS</string>
   <string name="category_binary">BINÄÄRI</string>

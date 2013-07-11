@@ -14,21 +14,16 @@
      limitations under the License.
  -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-  <!-- Fso Properties Dialog * Folders -->
-  <plurals name="fso_properties_dialog_folders">
-    <item quantity="zero">0 folders</item>
+  <plurals name="n_folders">
     <item quantity="one">1 folder</item>
     <item quantity="other"><xliff:g id="folders">%1$d</xliff:g> folders</item>
   </plurals>
-  <!-- Fso Properties Dialog * Files -->
-  <plurals name="fso_properties_dialog_files">
-    <item quantity="zero">0 files</item>
-    <item quantity="one">1 files</item>
+  <plurals name="n_files">
+    <item quantity="one">1 file</item>
     <item quantity="other"><xliff:g id="files">%1$d</xliff:g> files</item>
   </plurals>
   <!-- Search * Search found items -->
   <plurals name="search_found_items">
-    <item quantity="zero">No items found</item>
     <item quantity="one">1 item found</item>
     <item quantity="other"><xliff:g id="count">%d</xliff:g> items found</item>
   </plurals>

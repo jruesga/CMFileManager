@@ -262,13 +262,13 @@
   <!-- Fso Properties Dialog * Others Label -->
   <string name="fso_properties_dialog_others">その他:</string>
   <!-- Fso Properties Dialog * Folders -->
-  <plurals name="fso_properties_dialog_folders">
+  <plurals name="n_folders">
     <item quantity="zero">0 フォルダ</item>
     <item quantity="one">1 フォルダ</item>
     <item quantity="other"><xliff:g id="folders">%1$d</xliff:g> フォルダ</item>
   </plurals>
   <!-- Fso Properties Dialog * Files -->
-  <plurals name="fso_properties_dialog_files">
+  <plurals name="n_files">
     <item quantity="zero">0 ファイル</item>
     <item quantity="one">1 ファイル</item>
     <item quantity="other"><xliff:g id="files">%1$d</xliff:g> ファイル</item>
@@ -519,20 +519,6 @@
   <string name="mime_symlink">シンボリックリンク</string>
   <!-- Mime/Types * Unknown -->
   <string name="mime_unknown">不明</string>
-
-  <!-- Selection. All possibilities. [1 folder; >1 folders; 1 file; >1 files;
-     >1 folders and 1 file; 1 folder and >1 files; >1 folders and >1 files]
-     Avoid using plural item because is more complex to achieved all strings -->
-  <string name="selection_one_folder"><xliff:g id="folders">%1$s</xliff:g> つのフォルダを選択中</string>
-  <string name="selection_other_folders"><xliff:g id="folders">%1$s</xliff:g> つのフォルダを選択中</string>
-  <string name="selection_one_file"><xliff:g id="files">%1$s</xliff:g> つのファイルを選択中</string>
-  <string name="selection_other_files"><xliff:g id="files">%1$s</xliff:g> つのファイルを選択中</string>
-  <string name="selection_other_folders_one_file"><xliff:g id="folders">%1$s</xliff:g> つのフォルダと
-    <xliff:g id="files">%2$s</xliff:g> つのファイルを選択中</string>
-  <string name="selection_one_folder_other_files"><xliff:g id="folder2">%1$s</xliff:g> つのフォルダと
-    <xliff:g id="file2">%2$s</xliff:g> つのファイルを選択中</string>
-  <string name="selection_other_folders_other_files"><xliff:g id="folder2">%1$s</xliff:g> つのフォルダと
-    and <xliff:g id="files">%2$s</xliff:g> つのファイルを選択中</string>
 
   <!-- Category descriptions -->
   <string name="category_system">システム</string>

@@ -15,12 +15,12 @@
 -->
 
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <plurals name="fso_properties_dialog_folders">
+    <plurals name="n_folders">
         <item quantity="zero">0 carpetas</item>
         <item quantity="one">1 carpeta</item>
         <item quantity="other"><xliff:g id="folders">%1$d</xliff:g> carpetas</item>
     </plurals>
-    <plurals name="fso_properties_dialog_files">
+    <plurals name="n_files">
         <item quantity="zero">0 archivos</item>
         <item quantity="one">1 archivo</item>
         <item quantity="other"><xliff:g id="files">%1$d</xliff:g> archivos</item>

@@ -271,13 +271,6 @@
   <string name="filetime_format_mode_ddMMyyyy_HHmmss">dd/mm/åååå tt:mm:ss</string>
   <string name="filetime_format_mode_MMddyyyy_HHmmss">mm/dd/åååå tt:mm:ss</string>
   <string name="filetime_format_mode_yyyyMMdd_HHmmss">åååå-mm-dd tt:mm:ss</string>
-  <string name="selection_one_folder"><xliff:g id="folders">%1$s</xliff:g> mappe valgt.</string>
-  <string name="selection_other_folders"><xliff:g id="folders">%1$s</xliff:g> mapper valgt.</string>
-  <string name="selection_one_file"><xliff:g id="files">%1$s</xliff:g> fil valgt.</string>
-  <string name="selection_other_files"><xliff:g id="files">%1$s</xliff:g> filer valgt.</string>
-  <string name="selection_other_folders_one_file"><xliff:g id="folders">%1$s</xliff:g> mapper og <xliff:g id="files">%2$s</xliff:g> fil valgt.</string>
-  <string name="selection_one_folder_other_files"><xliff:g id="folder2">%1$s</xliff:g> mappe og <xliff:g id="file2">%2$s</xliff:g> filer valgt.</string>
-  <string name="selection_other_folders_other_files"><xliff:g id="folder2">%1$s</xliff:g> mapper og <xliff:g id="files">%2$s</xliff:g> filer valgt.</string>
   <string name="category_system">SYSTEM</string>
   <string name="category_app">APP</string>
   <string name="category_binary">BINÆR</string>

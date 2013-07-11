@@ -270,13 +270,6 @@
     <string name="filetime_format_mode_ddMMyyyy_HHmmss">dd/mm/aaaa hh:mm:ss</string>
     <string name="filetime_format_mode_MMddyyyy_HHmmss">mm/dd/aaaa hh:mm:ss</string>
     <string name="filetime_format_mode_yyyyMMdd_HHmmss">aaaa-mm-dd hh:mm:ss</string>
-    <string name="selection_one_folder"><xliff:g id="folders">%1$s</xliff:g> carpeta seleccionada.</string>
-    <string name="selection_other_folders"><xliff:g id="folders">%1$s</xliff:g> carpetas seleccionadas.</string>
-    <string name="selection_one_file"><xliff:g id="files">%1$s</xliff:g> archivo seleccionado.</string>
-    <string name="selection_other_files"><xliff:g id="files">%1$s</xliff:g> archivos seleccionados.</string>
-    <string name="selection_other_folders_one_file"><xliff:g id="folders">%1$s</xliff:g> carpetas y <xliff:g id="files">%2$s</xliff:g> archivo seleccionado.</string>
-    <string name="selection_one_folder_other_files"><xliff:g id="folder2">%1$s</xliff:g> carpeta y <xliff:g id="file2">%2$s</xliff:g> archivos seleccionados.</string>
-    <string name="selection_other_folders_other_files"><xliff:g id="folder2">%1$s</xliff:g> carpetas y <xliff:g id="files">%2$s</xliff:g> archivos seleccionados.</string>
     <string name="category_system">SISTEMA</string>
     <string name="category_app">APLICACIÓN</string>
     <string name="category_binary">BINARIO</string>

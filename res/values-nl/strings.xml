@@ -132,12 +132,12 @@
     <string name="fso_properties_dialog_owner">Eigenaar:</string>
     <string name="fso_properties_dialog_group">Groep:</string>
     <string name="fso_properties_dialog_others">Andere:</string>
-    <plurals name="fso_properties_dialog_folders">
+    <plurals name="n_folders">
         <item quantity="zero">0 mappen</item>
         <item quantity="one">1 map</item>
         <item quantity="other"><xliff:g id="folders">%1$d</xliff:g> mappen</item>
     </plurals>
-    <plurals name="fso_properties_dialog_files">
+    <plurals name="n_files">
         <item quantity="zero">0 bestanden</item>
         <item quantity="one">1 bestand</item>
         <item quantity="other"><xliff:g id="files">%1$d</xliff:g> bestanden</item>
@@ -273,13 +273,6 @@
     <string name="filetime_format_mode_ddMMyyyy_HHmmss">dd/mm/yyyy hh:mm:ss</string>
     <string name="filetime_format_mode_MMddyyyy_HHmmss">mm/dd/yyyy hh:mm:ss</string>
     <string name="filetime_format_mode_yyyyMMdd_HHmmss">yyyy-mm-dd hh:mm:ss</string>
-    <string name="selection_one_folder"><xliff:g id="folders">%1$s</xliff:g> map geselecteerd.</string>
-    <string name="selection_other_folders"><xliff:g id="folders">%1$s</xliff:g> mappen geselecteerd.</string>
-    <string name="selection_one_file"><xliff:g id="files">%1$s</xliff:g> bestand geselecteerd.</string>
-    <string name="selection_other_files"><xliff:g id="files">%1$s</xliff:g> bestanden geselecteerd.</string>
-    <string name="selection_other_folders_one_file"><xliff:g id="folders">%1$s</xliff:g> mappen en <xliff:g id="files">%2$s</xliff:g> bestand geselecteerd.</string>
-    <string name="selection_one_folder_other_files"><xliff:g id="folder2">%1$s</xliff:g> map en <xliff:g id="file2">%2$s</xliff:g> bestand geselecteerd.</string>
-    <string name="selection_other_folders_other_files"><xliff:g id="folder2">%1$s</xliff:g> mappen en <xliff:g id="files">%2$s</xliff:g> bestanden geselecteerd.</string>
     <string name="category_system">SYSTEEM</string>
     <string name="category_app">APP</string>
     <string name="category_binary">BINAIR</string>

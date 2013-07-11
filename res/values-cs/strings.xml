@@ -145,13 +145,13 @@
   <string name="fso_properties_dialog_owner">Vlastník:</string>
   <string name="fso_properties_dialog_group">Skupina:</string>
   <string name="fso_properties_dialog_others">Ostatní:</string>
-  <plurals name="fso_properties_dialog_folders">
+  <plurals name="n_folders">
     <item quantity="zero">0 složek</item>
     <item quantity="one">1 složka</item>
     <item quantity="few"><xliff:g id="folders">%1$d</xliff:g> složky</item>
     <item quantity="other"><xliff:g id="folders">%1$d</xliff:g> složek</item>
   </plurals>
-  <plurals name="fso_properties_dialog_files">
+  <plurals name="n_files">
     <item quantity="zero">0 souborů</item>
     <item quantity="one">1 soubor</item>
     <item quantity="few"><xliff:g id="files">%1$d</xliff:g> soubory</item>
@@ -308,14 +308,6 @@
   <string name="filetime_format_mode_ddMMyyyy_HHmmss">dd/mm/yyyy hh:mm:ss</string>
   <string name="filetime_format_mode_MMddyyyy_HHmmss">mm/dd/yyyy hh:mm:ss</string>
   <string name="filetime_format_mode_yyyyMMdd_HHmmss">yyyy-mm-dd hh:mm:ss</string>
-
-  <string name="selection_one_folder"><xliff:g id="folders">%1$s</xliff:g> složka vybrána.</string>
-  <string name="selection_other_folders">Vybraných složek: <xliff:g id="folders">%1$s</xliff:g></string>
-  <string name="selection_one_file"><xliff:g id="files">%1$s</xliff:g> soubor vybrán.</string>
-  <string name="selection_other_files">Vybraných souborů: <xliff:g id="files">%1$s</xliff:g></string>
-  <string name="selection_other_folders_one_file">Vybraných složek: <xliff:g id="folders">%1$s</xliff:g> a <xliff:g id="files">%2$s</xliff:g> soubor vybrán.</string>
-  <string name="selection_one_folder_other_files">Vybrána složka <xliff:g id="folder2">%1$s</xliff:g> a vybraných souborů: <xliff:g id="file2">%2$s</xliff:g></string>
-  <string name="selection_other_folders_other_files">Vybraných složek: <xliff:g id="folder2">%1$s</xliff:g> a vybraných souborů: <xliff:g id="files">%2$s</xliff:g></string>
 
   <string name="category_system">SYSTÉM</string>
   <string name="category_app">APLIKACE</string>

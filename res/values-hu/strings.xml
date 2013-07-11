@@ -129,10 +129,10 @@
     <string name="fso_properties_dialog_owner">Tulajdonos:</string>
     <string name="fso_properties_dialog_group">Csoport:</string>
     <string name="fso_properties_dialog_others">Mások:</string>
-    <plurals name="fso_properties_dialog_folders">
+    <plurals name="n_folders">
       <item quantity="other"><xliff:g id="folders">%1$d</xliff:g> könyvtár</item>
     </plurals>
-    <plurals name="fso_properties_dialog_files">
+    <plurals name="n_files">
       <item quantity="other"><xliff:g id="files">%1$d</xliff:g> fájl</item>
     </plurals>
     <string name="fso_properties_dialog_include_in_media_scan">Médiakeresés kihagyása:</string>
@@ -265,13 +265,6 @@
     <string name="filetime_format_mode_ddMMyyyy_HHmmss">nn/hh/éééé óó:pp:mm</string>
     <string name="filetime_format_mode_MMddyyyy_HHmmss">hh/nn/éééé óó:pp:mm</string>
     <string name="filetime_format_mode_yyyyMMdd_HHmmss">éééé/hh/nn óó:pp:mm</string>
-    <string name="selection_one_folder"><xliff:g id="folders">%1$s</xliff:g> könyvtár kiválasztva.</string>
-    <string name="selection_other_folders"><xliff:g id="folders">%1$s</xliff:g> könyvtár kiválasztva.</string>
-    <string name="selection_one_file"><xliff:g id="files">%1$s</xliff:g> fájl kiválasztva.</string>
-    <string name="selection_other_files"><xliff:g id="files">%1$s</xliff:g> fájl kiválasztva.</string>
-    <string name="selection_other_folders_one_file"><xliff:g id="folders">%1$s</xliff:g> könyvtár és <xliff:g id="files">%2$s</xliff:g> fájl kiválasztva.</string>
-    <string name="selection_one_folder_other_files"><xliff:g id="folder2">%1$s</xliff:g> könyvtár és <xliff:g id="file2">%2$s</xliff:g> fájl kiválasztva.</string>
-    <string name="selection_other_folders_other_files"><xliff:g id="folder2">%1$s</xliff:g> könyvtár és <xliff:g id="files">%2$s</xliff:g> fájl kiválasztva.</string>
     <string name="category_system">RENDSZER</string>
     <string name="category_app">ALKALMAZÁS</string>
     <string name="category_binary">BINÁRIS</string>

@@ -539,17 +539,6 @@
   <string name="filetime_format_mode_MMddyyyy_HHmmss">mm/dd/yyyy hh:mm:ss</string>
   <string name="filetime_format_mode_yyyyMMdd_HHmmss">yyyy-mm-dd hh:mm:ss</string>
 
-  <!-- Selection. All possibilities. [1 folder; >1 folders; 1 file; >1 files;
-     >1 folders and 1 file; 1 folder and >1 files; >1 folders and >1 files]
-     Avoid using plural item because is more complex to achieved all strings -->
-  <string name="selection_one_folder"><xliff:g id="folders">%1$s</xliff:g> vybraný priečinok.</string>
-  <string name="selection_other_folders"><xliff:g id="folders">%1$s</xliff:g> vybrané(-ých) priečinky(-ov).</string>
-  <string name="selection_one_file"><xliff:g id="files">%1$s</xliff:g> vybraný súbor.</string>
-  <string name="selection_other_files"><xliff:g id="files">%1$s</xliff:g> vybrané(-ých) súbory(-ov).</string>
-  <string name="selection_other_folders_one_file"><xliff:g id="folders">%1$s</xliff:g> vybrané(-ých) priečinky(-ov) a <xliff:g id="files">%2$s</xliff:g> súbory(-ov).</string>
-  <string name="selection_one_folder_other_files"><xliff:g id="folder2">%1$s</xliff:g> vybraný priečinok a <xliff:g id="file2">%2$s</xliff:g> súbory(-ov).</string>
-  <string name="selection_other_folders_other_files"><xliff:g id="folder2">%1$s</xliff:g> vybrané(-ých) priečinky(-ov) a <xliff:g id="files">%2$s</xliff:g> súbor.</string>
-
   <!-- Category descriptions -->
   <string name="category_system">SYSTÉM</string>
   <string name="category_app">APLIKÁCIA</string>

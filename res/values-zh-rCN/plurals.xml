@@ -14,12 +14,12 @@
      limitations under the License.
  -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-  <plurals name="fso_properties_dialog_folders">
+  <plurals name="n_folders">
     <item quantity="zero">0 个文件夹</item>
     <item quantity="one">1 个文件夹</item>
     <item quantity="other"><xliff:g id="folders">%1$d</xliff:g> 个文件夹</item>
   </plurals>
-  <plurals name="fso_properties_dialog_files">
+  <plurals name="n_files">
     <item quantity="zero">0 个文件</item>
     <item quantity="one">1 个文件</item>
     <item quantity="other"><xliff:g id="files">%1$d</xliff:g> 个文件</item>

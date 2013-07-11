@@ -296,14 +296,6 @@ xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="mime_symlink">Посилання</string>
     <string name="mime_unknown">Невідомо</string>
 
-    <string name="selection_one_folder"><xliff:g id="folders">%1$s</xliff:g> папка виділена</string>
-    <string name="selection_other_folders"><xliff:g id="folders">%1$s</xliff:g> папки(-ок) виділено</string>
-    <string name="selection_one_file"><xliff:g id="files">%1$s</xliff:g> файл виділений</string>
-    <string name="selection_other_files"><xliff:g id="files">%1$s</xliff:g> файлів(-и) виділено</string>
-    <string name="selection_other_folders_one_file"><xliff:g id="folders">%1$s</xliff:g> папки(-ок,-а) і <xliff:g id="files">%2$s</xliff:g> файл виділений</string>
-    <string name="selection_one_folder_other_files"><xliff:g id="folder2">%1$s</xliff:g> папка і <xliff:g id="file2">%2$s</xliff:g> файлів(-и) виділено</string>
-    <string name="selection_other_folders_other_files"><xliff:g id="folder2">%1$s</xliff:g> папки(-ок,-а) і <xliff:g id="files">%2$s</xliff:g> файлів(-и) виділено</string>
-
     <string name="category_system">СИСТЕМА</string>
     <string name="category_app">ДОДАТОК</string>
     <string name="category_binary">ДВІЙКОВИЙ</string>

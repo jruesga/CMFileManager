@@ -119,12 +119,12 @@
     <string name="fso_properties_dialog_owner">Proprietário:</string>
     <string name="fso_properties_dialog_group">Grupo:</string>
     <string name="fso_properties_dialog_others">Outros:</string>
-    <plurals name="fso_properties_dialog_folders">
+    <plurals name="n_folders">
         <item quantity="zero">0 pastas</item>
         <item quantity="one">1 pasta</item>
         <item quantity="other"><xliff:g id="folders" xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">%1$d</xliff:g> pastas</item>
     </plurals>
-    <plurals name="fso_properties_dialog_files">
+    <plurals name="n_files">
         <item quantity="zero">0 arquivos</item>
         <item quantity="one">1 arquivos</item>
         <item quantity="other"><xliff:g id="files" xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">%1$d</xliff:g> arquivos</item>
@@ -237,14 +237,6 @@
     <string name="mime_folder">Pasta</string>
     <string name="mime_symlink">Link simbólico</string>
     <string name="mime_unknown">Desconhecido</string>
-    <string name="selection_one_folder"><xliff:g id="folders" xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">%1$s</xliff:g> pasta selecionada</string>
-    <string name="selection_other_folders"><xliff:g id="folders" xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">%1$s</xliff:g> pastas selecionadas</string>
-    <string name="selection_one_file"><xliff:g id="files" xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">%1$s</xliff:g> arquivo selecionado</string>
-    <string name="selection_other_files"><xliff:g id="files" xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">%1$s</xliff:g> arquivos selecionados</string>
-    <string name="selection_one_folder_one_file"><xliff:g id="folders" xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">%1$s</xliff:g> pasta e <xliff:g id="files" xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">%2$s</xliff:g> arquivo selecionados</string>
-    <string name="selection_other_folders_one_file"><xliff:g id="folders" xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">%1$s</xliff:g> pastas e <xliff:g id="files" xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">%2$s</xliff:g> arquivo selecionados</string>
-    <string name="selection_one_folder_other_files"><xliff:g id="folder2" xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">%1$s</xliff:g> pasta e <xliff:g id="file2" xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">%2$s</xliff:g> arquivos selecionados</string>
-    <string name="selection_other_folders_other_files"><xliff:g id="folder2" xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">%1$s</xliff:g> pastas e <xliff:g id="files" xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">%2$s</xliff:g> arquivos selecionados</string>
     <string name="category_system">SISTEMA</string>
     <string name="category_app">APLICATIVO</string>
     <string name="category_binary">BINÁRIO</string>

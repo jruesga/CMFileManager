@@ -323,16 +323,6 @@
   <string name="filetime_format_mode_MMddyyyy_HHmmss">月/日/年 时:分:秒</string>
   <string name="filetime_format_mode_yyyyMMdd_HHmmss">年-月-日 时:分:秒</string>
 
-  <string name="selection_one_folder"><xliff:g id="folders">%1$s</xliff:g> 个文件夹被选.</string>
-  <string name="selection_other_folders"><xliff:g id="folders">%1$s</xliff:g> 个文件夹被选.</string>
-  <string name="selection_one_file"><xliff:g id="files">%1$s</xliff:g> 个文件被选.</string>
-  <string name="selection_other_files"><xliff:g id="files">%1$s</xliff:g> 个文件被选.</string>
-  <string name="selection_other_folders_one_file"><xliff:g id="folders">%1$s</xliff:g> 个文件夹与
-    <xliff:g id="files">%2$s</xliff:g> 个文件被选.</string>
-  <string name="selection_one_folder_other_files"><xliff:g id="folder2">%1$s</xliff:g> 个文件夹与
-    <xliff:g id="file2">%2$s</xliff:g> 个文件被选.</string>
-  <string name="selection_other_folders_other_files"><xliff:g id="folder2">%1$s</xliff:g> 个文件夹与 <xliff:g id="files">%2$s</xliff:g> 个文件被选.</string>
-
   <string name="category_system">系统</string>
   <string name="category_app">程序</string>
   <string name="category_binary">二进制</string>

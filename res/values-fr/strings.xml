@@ -133,12 +133,12 @@
   <string name="fso_properties_dialog_owner">Propriétaire\u00A0:</string>
   <string name="fso_properties_dialog_group">Groupe\u00A0:</string>
   <string name="fso_properties_dialog_others">Autres\u00A0:</string>
-  <plurals name="fso_properties_dialog_folders">
+  <plurals name="n_folders">
     <item quantity="zero">0 dossier</item>
     <item quantity="one">1 dossier</item>
     <item quantity="other"><xliff:g id="folders">%1$d</xliff:g> dossiers</item>
   </plurals>
-  <plurals name="fso_properties_dialog_files">
+  <plurals name="n_files">
     <item quantity="zero">0 fichier</item>
     <item quantity="one">1 fichier</item>
     <item quantity="other"><xliff:g id="files">%1$d</xliff:g> fichiers</item>
@@ -285,13 +285,6 @@
   <string name="filetime_format_mode_ddMMyyyy_HHmmss">jj/mm/aaaa hh:mm:ss</string>
   <string name="filetime_format_mode_MMddyyyy_HHmmss">mm/jj/aaaa hh:mm:ss</string>
   <string name="filetime_format_mode_yyyyMMdd_HHmmss">aaaa-mm-jj hh:mm:ss</string>
-  <string name="selection_one_folder"><xliff:g id="folders">%1$s</xliff:g> dossier sélectionné</string>
-  <string name="selection_other_folders"><xliff:g id="folders">%1$s</xliff:g> dossiers sélectionnés</string>
-  <string name="selection_one_file"><xliff:g id="files">%1$s</xliff:g> fichier sélectionné</string>
-  <string name="selection_other_files"><xliff:g id="files">%1$s</xliff:g> fichiers sélectionnés</string>
-  <string name="selection_other_folders_one_file"><xliff:g id="folders">%1$s</xliff:g> dossier et <xliff:g id="files">%2$s</xliff:g> fichier sélectionnés</string>
-  <string name="selection_one_folder_other_files"><xliff:g id="folder2">%1$s</xliff:g> dossier et <xliff:g id="file2">%2$s</xliff:g> fichiers sélectionnés</string>
-  <string name="selection_other_folders_other_files"><xliff:g id="folder2">%1$s</xliff:g> dossiers et <xliff:g id="files">%2$s</xliff:g> fichiers sélectionnés</string>
   <string name="category_system">SYSTEM</string>
   <string name="category_app">APP</string>
   <string name="category_binary">BINARY</string>

@@ -113,12 +113,12 @@
   <string name="fso_properties_dialog_owner">Proprietar:</string>
   <string name="fso_properties_dialog_group">Grup:</string>
   <string name="fso_properties_dialog_others">Altele:</string>
-  <plurals name="fso_properties_dialog_folders">
+  <plurals name="n_folders">
     <item quantity="zero">0 dosare</item>
     <item quantity="one">1 dosar</item>
     <item quantity="other"><xliff:g id="folders">%1$d</xliff:g> dosare</item>
   </plurals>
-  <plurals name="fso_properties_dialog_files">
+  <plurals name="n_files">
     <item quantity="zero">0 fişiere</item>
     <item quantity="one">1 fişiere</item>
     <item quantity="other"><xliff:g id="files">%1$d</xliff:g> fişiere</item>
@@ -224,13 +224,6 @@
   <string name="mime_folder">Dosar</string>
   <string name="mime_symlink">Legătură simbolică</string>
   <string name="mime_unknown">Necunoscut</string>
-  <string name="selection_one_folder"><xliff:g id="folders">%1$s</xliff:g> dosare selectate.</string>
-  <string name="selection_other_folders"><xliff:g id="folders">%1$s</xliff:g> dosare selectate.</string>
-  <string name="selection_one_file"><xliff:g id="files">%1$s</xliff:g> fişiere selectate.</string>
-  <string name="selection_other_files"><xliff:g id="files">%1$s</xliff:g> fişiere selectate.</string>
-  <string name="selection_other_folders_one_file"><xliff:g id="folders">%1$s</xliff:g> dosare şi<xliff:g id="files">%2$s</xliff:g> fişiere selectate.</string>
-  <string name="selection_one_folder_other_files"><xliff:g id="folder2">%1$s</xliff:g> dosare şi<xliff:g id="file2">%2$s</xliff:g> fişiere selectate.</string>
-  <string name="selection_other_folders_other_files"><xliff:g id="folder2">%1$s</xliff:g> dosare şi<xliff:g id="files">%2$s</xliff:g> fişiere selectate.</string>
   <string name="category_system">SISTEM</string>
   <string name="category_app">APLICAŢIE</string>
   <string name="category_binary">BINAR</string>

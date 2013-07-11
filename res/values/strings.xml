@@ -592,21 +592,11 @@
   <string name="filetime_format_mode_MMddyyyy_HHmmss">mm/dd/yyyy hh:mm:ss</string>
   <string name="filetime_format_mode_yyyyMMdd_HHmmss">yyyy-mm-dd hh:mm:ss</string>
 
-  <!-- Selection. All possibilities. [1 folder; >1 folders; 1 file; >1 files;
-     >1 folders and 1 file; 1 folder and >1 files; >1 folders and >1 files]
-     Avoid using plural item because is more complex to achieved all strings -->
-  <string name="selection_one_folder"><xliff:g id="folders">%1$s</xliff:g> folder selected.</string>
-  <string name="selection_other_folders"><xliff:g id="folders">%1$s</xliff:g> folders selected.</string>
-  <string name="selection_one_file"><xliff:g id="files">%1$s</xliff:g> file selected.</string>
-  <string name="selection_other_files"><xliff:g id="files">%1$s</xliff:g> files selected.</string>
-  <string name="selection_one_folder_one_file"><xliff:g id="folders">%1$s</xliff:g> folder and
-    <xliff:g id="files">%2$s</xliff:g> file selected.</string>
-  <string name="selection_other_folders_one_file"><xliff:g id="folders">%1$s</xliff:g> folders and
-    <xliff:g id="files">%2$s</xliff:g> file selected.</string>
-  <string name="selection_one_folder_other_files"><xliff:g id="folder2">%1$s</xliff:g> folder and
-    <xliff:g id="file2">%2$s</xliff:g> files selected.</string>
-  <string name="selection_other_folders_other_files"><xliff:g id="folder2">%1$s</xliff:g> folders
-    and <xliff:g id="files">%2$s</xliff:g> files selected.</string>
+  <!-- Selection. -->
+  <!-- For example "2 files selected." or "2 folders selected." -->
+  <string name="selection_folders_or_files"><xliff:g id="items">%1$s</xliff:g> selected.</string>
+  <!-- For example "2 folders and 1 file selected." -->
+  <string name="selection_folders_and_files"><xliff:g id="folders">%1$s</xliff:g> and <xliff:g id="files">%2$s</xliff:g> selected.</string>
 
   <!-- Category descriptions -->
   <string name="category_system">SYSTEM</string>

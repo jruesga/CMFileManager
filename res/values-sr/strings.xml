@@ -282,13 +282,13 @@
   <!-- Fso Properties Dialog * Others Label -->
   <string name="fso_properties_dialog_others">Остали:</string>
   <!-- Fso Properties Dialog * Folders -->
-  <plurals name="fso_properties_dialog_folders">
+  <plurals name="n_folders">
     <item quantity="zero">0 фолдера</item>
     <item quantity="one">1 фолдер</item>
     <item quantity="other"><xliff:g id="folders">%1$d</xliff:g> фолдера</item>
   </plurals>
   <!-- Fso Properties Dialog * Files -->
-  <plurals name="fso_properties_dialog_files">
+  <plurals name="n_files">
     <item quantity="zero">0 фајлова</item>
     <item quantity="one">1 фајл</item>
     <item quantity="other"><xliff:g id="files">%1$d</xliff:g> фајлова</item>
@@ -563,20 +563,6 @@
   <string name="mime_symlink">Симлинк</string>
   <!-- Mime/Types * Unknown -->
   <string name="mime_unknown">Непознато</string>
-
-  <!-- Selection. All possibilities. [1 folder; >1 folders; 1 file; >1 files;
-     >1 folders and 1 file; 1 folder and >1 files; >1 folders and >1 files]
-     Avoid using plural item because is more complex to achieved all strings -->
-  <string name="selection_one_folder"><xliff:g id="folders">%1$s</xliff:g> фолдер изабран.</string>
-  <string name="selection_other_folders"><xliff:g id="folders">%1$s</xliff:g> фолдера изабрано.</string>
-  <string name="selection_one_file"><xliff:g id="files">%1$s</xliff:g> фајл изабран.</string>
-  <string name="selection_other_files"><xliff:g id="files">%1$s</xliff:g> фајлова изабрано.</string>
-  <string name="selection_other_folders_one_file"><xliff:g id="folders">%1$s</xliff:g> фолдера и
-    <xliff:g id="files">%2$s</xliff:g> фајл изабрано.</string>
-  <string name="selection_one_folder_other_files"><xliff:g id="folder2">%1$s</xliff:g> фолдер и
-    <xliff:g id="file2">%2$s</xliff:g> фајлова изабрано.</string>
-  <string name="selection_other_folders_other_files"><xliff:g id="folder2">%1$s</xliff:g> фолдера
-    и <xliff:g id="files">%2$s</xliff:g> фајлова изабрано.</string>
 
   <!-- Category descriptions -->
   <string name="category_system">СИСТЕМ</string>

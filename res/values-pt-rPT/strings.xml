@@ -283,13 +283,13 @@
   <string name="fso_delete_nomedia_non_empty_body">Esta pasta contém um ficheiro .nomedia com dados.\n\nDeseja removê-lo?</string>
   
   <!-- Fso Properties Dialog * Folders -->
-  <plurals name="fso_properties_dialog_folders">
+  <plurals name="n_folders">
     <item quantity="zero">0 pastas</item>
     <item quantity="one">1 pasta</item>
     <item quantity="other"><xliff:g id="folders">%1$d</xliff:g> pastas</item>
   </plurals>
   <!-- Fso Properties Dialog * Files -->
-  <plurals name="fso_properties_dialog_files">
+  <plurals name="n_files">
     <item quantity="zero">0 ficheiros</item>
     <item quantity="one">1 ficheiro</item>
     <item quantity="other"><xliff:g id="files">%1$d</xliff:g> ficheiros</item>
@@ -572,20 +572,6 @@
   <string name="filetime_format_mode_ddMMyyyy_HHmmss">dd/mm/aaaa hh:mm:ss</string>
   <string name="filetime_format_mode_MMddyyyy_HHmmss">mm/dd/aaaa hh:mm:ss</string>
   <string name="filetime_format_mode_yyyyMMdd_HHmmss">aaaa-mm-dd hh:mm:ss</string>
-
-  <!-- Selection. All possibilities. [1 folder; >1 folders; 1 file; >1 files;
-     >1 folders and 1 file; 1 folder and >1 files; >1 folders and >1 files]
-     Avoid using plural item because is more complex to achieved all strings -->
-  <string name="selection_one_folder"><xliff:g id="folders">%1$s</xliff:g> pasta seleccionada.</string>
-  <string name="selection_other_folders"><xliff:g id="folders">%1$s</xliff:g> pastas seleccionada.</string>
-  <string name="selection_one_file"><xliff:g id="files">%1$s</xliff:g> ficheiro seleccionado.</string>
-  <string name="selection_other_files"><xliff:g id="files">%1$s</xliff:g> ficheiros seleccionado.</string>
-  <string name="selection_other_folders_one_file"><xliff:g id="folders">%1$s</xliff:g> pastas e
-    <xliff:g id="files">%2$s</xliff:g> ficheiro seleccionados.</string>
-  <string name="selection_one_folder_other_files"><xliff:g id="folder2">%1$s</xliff:g> pasta e
-    <xliff:g id="file2">%2$s</xliff:g> ficheiros seleccionados.</string>
-  <string name="selection_other_folders_other_files"><xliff:g id="folder2">%1$s</xliff:g> pastas
-    e <xliff:g id="files">%2$s</xliff:g> ficheiros seleccionados.</string>
 
   <!-- Category descriptions -->
   <string name="category_system">SISTEMA</string>

@@ -16,12 +16,12 @@
 
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
   xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-  <plurals name="fso_properties_dialog_folders">
+  <plurals name="n_folders">
     <item quantity="zero">0 mapper</item>
     <item quantity="one">1 mappe</item>
     <item quantity="other"><xliff:g id="folders">%1$d</xliff:g> mapper</item>
   </plurals>
-  <plurals name="fso_properties_dialog_files">
+  <plurals name="n_files">
     <item quantity="zero">0 filer</item>
     <item quantity="one">1 fil</item>
     <item quantity="other"><xliff:g id="files">%1$d</xliff:g> filer</item>

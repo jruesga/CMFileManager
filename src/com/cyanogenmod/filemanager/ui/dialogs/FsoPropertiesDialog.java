@@ -1132,11 +1132,11 @@ public class FsoPropertiesDialog
 
             // Compute folders and files string
             String folders = res.getQuantityString(
-                                        R.plurals.fso_properties_dialog_folders,
+                                        R.plurals.n_folders,
                                         this.mFolderUsage.getNumberOfFolders(),
                                         Integer.valueOf(this.mFolderUsage.getNumberOfFolders()));
             String files = res.getQuantityString(
-                                        R.plurals.fso_properties_dialog_files,
+                                        R.plurals.n_files,
                                         this.mFolderUsage.getNumberOfFiles(),
                                         Integer.valueOf(this.mFolderUsage.getNumberOfFiles()));
             final String contains = res.getString(

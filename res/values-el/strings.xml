@@ -132,12 +132,12 @@
     <string name="fso_properties_dialog_owner">Ιδιοκτήτης:</string>
     <string name="fso_properties_dialog_group">Γκρουπ:</string>
     <string name="fso_properties_dialog_others">Άλλοι:</string>
-    <plurals name="fso_properties_dialog_folders">
+    <plurals name="n_folders">
         <item quantity="zero">0 φάκελοι</item>
         <item quantity="one">1 φάκελος</item>
         <item quantity="other"><xliff:g id="folders">%1$d</xliff:g> φάκελοι</item>
     </plurals>
-    <plurals name="fso_properties_dialog_files">
+    <plurals name="n_files">
         <item quantity="zero">0 αρχεία</item>
         <item quantity="one">1 αρχείο</item>
         <item quantity="other"><xliff:g id="files">%1$d</xliff:g> αρχεία</item>
@@ -273,13 +273,6 @@
     <string name="filetime_format_mode_ddMMyyyy_HHmmss">ηη/μμ/εεεε ωω:λλ:δδ</string>
     <string name="filetime_format_mode_MMddyyyy_HHmmss">μμ/ηη/εεεε ωω:λλ:δδ</string>
     <string name="filetime_format_mode_yyyyMMdd_HHmmss">εεεε-μμ-ηη ωω:λλ:δδ</string>
-    <string name="selection_one_folder">Επιλέχθηκε <xliff:g id="folders">%1$s</xliff:g> φάκελος.</string>
-    <string name="selection_other_folders">Επιλέχθηκαν <xliff:g id="folders">%1$s</xliff:g> φάκελοι.</string>
-    <string name="selection_one_file">Επιλέχθηκε <xliff:g id="files">%1$s</xliff:g> αρχείο.</string>
-    <string name="selection_other_files">Επιλέχθηκαν <xliff:g id="files">%1$s</xliff:g> αρχεία.</string>
-    <string name="selection_other_folders_one_file">Επιλέχθηκαν <xliff:g id="folders">%1$s</xliff:g> φάκελοι και <xliff:g id="files">%2$s</xliff:g> αρχείο.</string>
-    <string name="selection_one_folder_other_files">Επιλέχθηκαν <xliff:g id="folder2">%1$s</xliff:g> φάκελος και <xliff:g id="file2">%2$s</xliff:g> αρχεία.</string>
-    <string name="selection_other_folders_other_files">Επιλέχθηκαν <xliff:g id="folder2">%1$s</xliff:g> φάκελοι και <xliff:g id="files">%2$s</xliff:g> αρχεία.</string>
     <string name="category_system">ΣΥΣΤΗΜΑ</string>
     <string name="category_app">ΕΦΑΡΜΟΓΗ</string>
     <string name="category_binary">BINARY</string>

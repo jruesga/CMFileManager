@@ -172,14 +172,14 @@
     <string name="fso_properties_dialog_others">Andere:</string>
 
     <!-- Fso properties - Folders -->
-    <plurals name="fso_properties_dialog_folders">
+    <plurals name="n_folders">
         <item quantity="zero">Kein Ordner</item>
         <item quantity="one">1 Ordner</item>
         <item quantity="other"><xliff:g id="folders">%1$d</xliff:g> Ordner</item>
     </plurals>
 
     <!-- Fso properties - Files -->
-    <plurals name="fso_properties_dialog_files">
+    <plurals name="n_files">
         <item quantity="zero">Keine Dateien</item>
         <item quantity="one">1 Datei</item>
         <item quantity="other"><xliff:g id="files">%1$d</xliff:g> Dateien</item>
@@ -353,15 +353,6 @@
     <string name="filetime_format_mode_ddMMyyyy_HHmmss">dd/mm/yyyy hh:mm:ss</string>
     <string name="filetime_format_mode_MMddyyyy_HHmmss">mm/dd/yyyy hh:mm:ss</string>
     <string name="filetime_format_mode_yyyyMMdd_HHmmss">yyyy-mm-dd hh:mm:ss</string>
-
-    <!-- Selections -->
-    <string name="selection_one_folder"><xliff:g id="folders">%1$s</xliff:g> Ordner ausgewählt</string>
-    <string name="selection_other_folders"><xliff:g id="folders">%1$s</xliff:g> Ordner ausgewählt</string>
-    <string name="selection_one_file"><xliff:g id="files">%1$s</xliff:g> Datei ausgewählt.</string>
-    <string name="selection_other_files"><xliff:g id="files">%1$s</xliff:g> Dateien ausgewählt</string>
-    <string name="selection_other_folders_one_file"><xliff:g id="folders">%1$s</xliff:g> Ordner und <xliff:g id="files">%2$s</xliff:g> Datei ausgewählt</string>
-    <string name="selection_one_folder_other_files"><xliff:g id="folder2">%1$s</xliff:g> Ordner und <xliff:g id="file2">%2$s</xliff:g> Dateien ausgewählt</string>
-    <string name="selection_other_folders_other_files"><xliff:g id="folder2">%1$s</xliff:g> Ordner und <xliff:g id="files">%2$s</xliff:g> Dateien ausgewählt</string>
 
     <!-- Category descriptions -->
     <string name="category_system">SYSTEM</string>

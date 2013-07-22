@@ -145,18 +145,6 @@
   <string name="fso_properties_dialog_owner">Vlastník:</string>
   <string name="fso_properties_dialog_group">Skupina:</string>
   <string name="fso_properties_dialog_others">Ostatní:</string>
-  <plurals name="n_folders">
-    <item quantity="zero">0 složek</item>
-    <item quantity="one">1 složka</item>
-    <item quantity="few"><xliff:g id="folders">%1$d</xliff:g> složky</item>
-    <item quantity="other"><xliff:g id="folders">%1$d</xliff:g> složek</item>
-  </plurals>
-  <plurals name="n_files">
-    <item quantity="zero">0 souborů</item>
-    <item quantity="one">1 soubor</item>
-    <item quantity="few"><xliff:g id="files">%1$d</xliff:g> soubory</item>
-    <item quantity="other"><xliff:g id="files">%1$d</xliff:g> souborů</item>
-  </plurals>
   <string name="fso_properties_dialog_include_in_media_scan">Přeskočit skenování médií:</string>
   <string name="fso_failed_to_allow_media_scan">Povolování skenování médií selhalo</string>
   <string name="fso_failed_to_prevent_media_scan">Zakazování skenování médií selhalo</string>
@@ -174,12 +162,6 @@
   <string name="search_voice_hint">Řekněte, co hledáte</string>
   <string name="search_error_msg">Během vyhledávání došlo k chybě. Nebylo nic nalezeno.</string>
   <string name="search_no_results_msg">Nebylo nic nalezeno.</string>
-  <plurals name="search_found_items">
-    <item quantity="zero">Nic nenalezeno</item>
-    <item quantity="one">Nalezena 1 položka</item>
-    <item quantity="few"><xliff:g id="count">%d</xliff:g> položky nalezeny</item>
-    <item quantity="other"><xliff:g id="count">%d</xliff:g> položek nalezeno</item>
-  </plurals>
   <string name="search_found_items_in_directory"><xliff:g id="items">%1$s</xliff:g> v <xliff:g id="path">%2$s</xliff:g></string>
   <string name="search_terms"><![CDATA[<b>Výrazy:</b>]]> <xliff:g id="terms">%1$s</xliff:g></string>
   <string name="search_few_characters_title">Potvrdit hledání</string>
@@ -229,7 +211,7 @@
   <string name="waiting_dialog_msg">Operace probíhá\u2026</string>
   <string name="waiting_dialog_copying_title">Kopírování\u2026</string>
   <string name="waiting_dialog_copying_msg"><![CDATA[<b>Z</b>]]> <xliff:g id="from">%1$s</xliff:g><![CDATA[<br/>]]> <![CDATA[<b>do</b>]]> <xliff:g id="to">%2$s</xliff:g></string>
-  
+
   <string name="waiting_dialog_moving_title">Přesouvání\u2026</string>
   <string name="waiting_dialog_moving_msg"><![CDATA[<b>Z</b>]]> <xliff:g id="from">%1$s</xliff:g><![CDATA[<br/>]]> <![CDATA[<b>do</b>]]> <xliff:g id="to">%2$s</xliff:g></string>
   <string name="waiting_dialog_deleting_title">Mazání\u2026</string>
@@ -251,7 +233,7 @@
   <string name="actions_menu_deselect_all">Zrušit vyběr všech</string>
   <string name="actions_menu_select">Vybrat</string>
   <string name="actions_menu_deselect">Zrušit výběr</string>
-  <string name="actions_menu_paste_selection">Vložit vybrané</string>
+  <string name="actions_menu_paste_selection">Zkopírovat vybrané</string>
   <string name="actions_menu_move_selection">Přesunout vybrané</string>
   <string name="actions_menu_delete_selection">Smazat vybrané</string>
   <string name="actions_menu_compress_selection">Zabalit vybrané</string>
@@ -308,6 +290,8 @@
   <string name="filetime_format_mode_ddMMyyyy_HHmmss">dd/mm/yyyy hh:mm:ss</string>
   <string name="filetime_format_mode_MMddyyyy_HHmmss">mm/dd/yyyy hh:mm:ss</string>
   <string name="filetime_format_mode_yyyyMMdd_HHmmss">yyyy-mm-dd hh:mm:ss</string>
+
+  <string name="selection_folders_and_files"><xliff:g id="folders">%1$s</xliff:g> a <xliff:g id="files">%2$s</xliff:g> vybráno.</string>
 
   <string name="category_system">SYSTÉM</string>
   <string name="category_app">APLIKACE</string>

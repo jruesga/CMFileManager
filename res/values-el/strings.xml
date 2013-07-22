@@ -132,16 +132,6 @@
     <string name="fso_properties_dialog_owner">Ιδιοκτήτης:</string>
     <string name="fso_properties_dialog_group">Γκρουπ:</string>
     <string name="fso_properties_dialog_others">Άλλοι:</string>
-    <plurals name="n_folders">
-        <item quantity="zero">0 φάκελοι</item>
-        <item quantity="one">1 φάκελος</item>
-        <item quantity="other"><xliff:g id="folders">%1$d</xliff:g> φάκελοι</item>
-    </plurals>
-    <plurals name="n_files">
-        <item quantity="zero">0 αρχεία</item>
-        <item quantity="one">1 αρχείο</item>
-        <item quantity="other"><xliff:g id="files">%1$d</xliff:g> αρχεία</item>
-    </plurals>
     <string name="fso_properties_dialog_include_in_media_scan">Παράλειψη σάρωσης μέσων:</string>
     <string name="fso_failed_to_allow_media_scan">Το πρόγραμμα απέτυχε να επιτρέψει τη σάρωση μέσων</string>
     <string name="fso_failed_to_prevent_media_scan">Το πρόγραμμα απέτυχε να αποτρέψει τη σάρωση μέσων</string>
@@ -157,11 +147,6 @@
     <string name="search_voice_hint">Μιλήστε για αναζήτηση</string>
     <string name="search_error_msg">Ένα σφάλμα προέκυψε κατά την αναζήτηση. Δεν βρέθηκαν αποτέλεσματα.</string>
     <string name="search_no_results_msg">Δέν βρέθηκαν αποτελέσματα.</string>
-    <plurals name="search_found_items">
-        <item quantity="zero">Δέν βρέθηκαν αντικείμενα</item>
-        <item quantity="one">Βρέθηκε 1 αντικείμενο</item>
-        <item quantity="other">Βρέθηκαν <xliff:g id="count">%d</xliff:g> αντικείμενα</item>
-    </plurals>
     <string name="search_found_items_in_directory"><xliff:g id="items">%1$s</xliff:g> στο <xliff:g id="path">%2$s</xliff:g></string>
     <string name="search_terms"><![CDATA[<b>Όροι:</b>]]> <xliff:g id="terms">%1$s</xliff:g></string>
     <string name="search_few_characters_title">Επιβεβαίωση αναζήτησης</string>
@@ -224,7 +209,7 @@
     <string name="actions_menu_deselect_all">Αποεπιλογή όλων</string>
     <string name="actions_menu_select">Επιλογή</string>
     <string name="actions_menu_deselect">Αποεπιλογή</string>
-    <string name="actions_menu_paste_selection">Επικόλληση επιλογής εδώ</string>
+    <string name="actions_menu_paste_selection">Αντιγραφή επιλογής εδώ</string>
     <string name="actions_menu_move_selection">Μετακίνηση επιλογής εδώ</string>
     <string name="actions_menu_delete_selection">Διαγραφή επιλογής</string>
     <string name="actions_menu_compress_selection">Συμπίεση επιλογής</string>
@@ -273,6 +258,7 @@
     <string name="filetime_format_mode_ddMMyyyy_HHmmss">ηη/μμ/εεεε ωω:λλ:δδ</string>
     <string name="filetime_format_mode_MMddyyyy_HHmmss">μμ/ηη/εεεε ωω:λλ:δδ</string>
     <string name="filetime_format_mode_yyyyMMdd_HHmmss">εεεε-μμ-ηη ωω:λλ:δδ</string>
+    <string name="selection_folders_and_files">Επιλέχθηκαν <xliff:g id="folders">%1$s</xliff:g> και <xliff:g id="files">%2$s</xliff:g>.</string>
     <string name="category_system">ΣΥΣΤΗΜΑ</string>
     <string name="category_app">ΕΦΑΡΜΟΓΗ</string>
     <string name="category_binary">BINARY</string>

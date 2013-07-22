@@ -16,18 +16,18 @@
 
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <plurals name="n_folders">
-        <item quantity="zero">0 carpetas</item>
         <item quantity="one">1 carpeta</item>
         <item quantity="other"><xliff:g id="folders">%1$d</xliff:g> carpetas</item>
     </plurals>
     <plurals name="n_files">
-        <item quantity="zero">0 archivos</item>
         <item quantity="one">1 archivo</item>
         <item quantity="other"><xliff:g id="files">%1$d</xliff:g> archivos</item>
     </plurals>
     <plurals name="search_found_items">
-        <item quantity="zero">No se han encontrado elementos</item>
         <item quantity="one">1 elemento encontrado</item>
         <item quantity="other"><xliff:g id="count">%d</xliff:g> elementos encontrados</item>
+    </plurals>
+    <plurals name="selection_folders_or_files">
+        <item quantity="other"><xliff:g id="items">%1$s</xliff:g> seleccionados.</item>
     </plurals>
 </resources>

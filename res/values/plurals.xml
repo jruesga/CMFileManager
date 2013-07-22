@@ -27,4 +27,8 @@
     <item quantity="one">1 item found</item>
     <item quantity="other"><xliff:g id="count">%d</xliff:g> items found</item>
   </plurals>
+  <!-- Selection -->
+  <plurals name="selection_folders_or_files">
+    <item quantity="other"><xliff:g id="items">%1$s</xliff:g> selected.</item>
+  </plurals>
 </resources>

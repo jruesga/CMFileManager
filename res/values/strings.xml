@@ -593,8 +593,6 @@
   <string name="filetime_format_mode_yyyyMMdd_HHmmss">yyyy-mm-dd hh:mm:ss</string>
 
   <!-- Selection. -->
-  <!-- For example "2 files selected." or "2 folders selected." -->
-  <string name="selection_folders_or_files"><xliff:g id="items">%1$s</xliff:g> selected.</string>
   <!-- For example "2 folders and 1 file selected." -->
   <string name="selection_folders_and_files"><xliff:g id="folders">%1$s</xliff:g> and <xliff:g id="files">%2$s</xliff:g> selected.</string>
 

@@ -17,6 +17,7 @@
 package com.cyanogenmod.filemanager.ui.widgets;
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup;
@@ -124,18 +125,17 @@ public class SelectionView extends LinearLayout {
         }
 
         // Get the string
-        String nFoldersString = getContext().getResources().getQuantityString(R.plurals.n_folders, folders, folders);
-        String nFilesString = getContext().getResources().getQuantityString(R.plurals.n_files, files, files);
- 
-        if (files == 0) {
-            return getContext().getString(R.string.selection_folders_or_files, nFoldersString);
+        final Resources res = getContext().getResources();
+        String nFoldersString = res.getQuantityString(R.plurals.n_folders, folders, folders);
+        String nFilesString = res.getQuantityString(R.plurals.n_files, files, files);
+
+        if (files == 0 || folders == 0) {
+            String itemsString = files == 0 ? nFilesString : nFoldersString;
+            return res.getQuantityString(R.plurals.selection_folders_or_files,
+                    files + folders, itemsString);
         }
 
-        if (folders == 0) {
-            return getContext().getString(R.string.selection_folders_or_files, nFilesString);
-        }
-
-        return getContext().getString(R.string.selection_folders_and_files, nFoldersString, nFilesString);
+        return res.getString(R.string.selection_folders_and_files, nFoldersString, nFilesString);
     }
 
     /**

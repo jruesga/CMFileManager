@@ -16,64 +16,42 @@
 
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-
-    <!-- Name of the application -->
     <string name="app_name">Dateimanager</string>
     <string name="app_description">Der CyanogenMod-Dateimanager</string>
-
-    <!-- Human readable sizes -->
     <string name="size_bytes">B</string>
     <string name="size_kilobytes">kB</string>
     <string name="size_megabytes">MB</string>
     <string name="size_gigabytes">GB</string>
-
-    <!-- Date/time format order (%1$s: date; %2$s: time) -->
     <string name="datetime_format_order">%1$s %2$s</string>
-
-    <!-- Devices types -->
     <string name="device_blockdevice">Blockorientiertes Gerät</string>
     <string name="device_characterdevice">Zeichenorientiertes Gerät</string>
     <string name="device_namedpipe">Named Pipe</string>
     <string name="device_domainsocket">Domain Socket</string>
-
-    <!-- Mount point states -->
     <string name="mount_point_readonly">RO</string>
     <string name="mount_point_readwrite">RW</string>
-
-    <!-- Default buttons -->
     <string name="yes">Ja</string>
     <string name="no">Nein</string>
     <string name="all">Alle</string>
     <string name="overwrite">Überschreiben</string>
     <string name="select">Auswählen</string>
-
-    <!-- Root directory name -->
     <string name="root_directory_name"><![CDATA[<Wurzelverzeichnis>]]></string>
-
-    <!-- Search result name -->
     <string name="search_result_name">Suche: <xliff:g id="terms">%1$s</xliff:g></string>
-
     <string name="loading_message">Lade\u2026</string>
     <string name="cancelled_message">Abgebrochen</string>
     <string name="error_message">Fehler</string>
     <string name="copy_text_cd">Drücken, um Text in die Zwischenablage zu kopieren</string>
     <string name="copy_text_msg">Text wurde in die Zwischenablage kopiert</string>
-
-    <!-- Dialog titles -->
     <string name="warning_title">Warnung</string>
     <string name="error_title">Fehler festgestellt</string>
     <string name="confirm_operation">Aktion bestätigen</string>
     <string name="confirm_overwrite">Überschreiben bestätigen</string>
     <string name="confirm_deletion">Löschen bestätigen</string>
-
     <string name="msgs_change_to_prompt_access_mode_title">Wechsel bestätigen</string>
     <string name="msgs_change_to_prompt_access_mode_msg">Root-Zugriff konnte nicht erlangt werden. Es wird in den sicheren Modus gewechselt.\n\nÄnderung anwenden?</string>
-
     <string name="msgs_cant_create_console">Es war nicht möglich, die für diesen Vorgang nötigen Rechte zu erlangen.</string>
     <string name="msgs_privileged_console_alloc_failed">Root-Zugriff konnte nicht erlangt werden. Es wird in den sicheren Modus gewechselt.</string>
     <string name="msgs_settings_save_failure">Diese Einstellung konnte nicht angewendet werden.</string>
     <string name="msgs_settings_invalid_initial_directory">Das Standardverzeichnis "<xliff:g id="initial_dir">%1$s</xliff:g>" ist ungültig. Wechsle zum Wurzelverzeichnis.</string>
-
     <string name="msgs_success">Die Aktion wurde erfolgreich ausgeführt.</string>
     <string name="msgs_unknown">Ein Fehler ist aufgetreten. Die Aktion war nicht erfolgreich.</string>
     <string name="msgs_insufficient_permissions">Dieser Vorgang benötigt höhere Berechtigungen. Versuche in den
@@ -94,12 +72,9 @@
     <string name="msgs_overwrite_files">Einige der Dateien existieren bereits im Zielverzeichnis.\n\nDateien überschreiben?</string>
     <string name="msgs_action_association_failed">Verknüpfung der Aktion mit der App ist fehlgeschlagen.</string>
     <string name="advise_insufficient_permissions">Dieser Vorgang erfordert höhere Rechte.\n\nIn den Root-Zugriffsmodus wechseln?</string>
-
     <string name="parent_dir">Übergeordnetes Verzeichnis</string>
     <string name="external_storage">Externer Speicher</string>
     <string name="usb_storage">USB-Speicher</string>
-
-    <!-- ActionBar buttons -->
     <string name="actionbar_button_filesystem_cd">Dateisystem-Info</string>
     <string name="actionbar_button_sort_mode_cd">Sortiermodus</string>
     <string name="actionbar_button_layout_mode_cd">Layout-Modus</string>
@@ -112,25 +87,17 @@
     <string name="actionbar_button_overflow_cd">Weitere Optionen</string>
     <string name="actionbar_button_storage_cd">Speicherlaufwerke</string>
     <string name="actionbar_button_save_cd">Speichern</string>
-
-    <!-- Navigation view - Sort by -->
     <string name="sort_by_name_asc">Nach Name \u25B2</string>
     <string name="sort_by_name_desc">Nach Name \u25BC</string>
     <string name="sort_by_date_asc">Nach Datum \u25B2</string>
     <string name="sort_by_date_desc">Nach Datum \u25BC</string>
-
-    <!-- Navigation view - Layout -->
     <string name="layout_icons">Symbole</string>
     <string name="layout_simple">Einfach</string>
     <string name="layout_details">Details</string>
-
-    <!-- Navigation view - Show -->
     <string name="cm_filemanager_show_dirs_first">Ordner zuerst</string>
     <string name="cm_filemanager_show_hidden">Versteckte Dateien</string>
     <string name="cm_filemanager_show_system">Systemdateien</string>
     <string name="cm_filemanager_show_symlinks">Symbolische Links</string>
-
-    <!-- Filesystem info -->
     <string name="filesystem_info_warning_title">Keine Information</string>
     <string name="filesystem_info_warning_msg">Es sind keine Informationen zum Dateisystem verfügbar.</string>
     <string name="filesystem_info_cant_be_mounted_msg">Das Dateisystem kann nicht eingebunden/ausgehängt werden.</string>
@@ -148,8 +115,6 @@
     <string name="filesystem_info_dialog_total_disk_usage">Gesamt:</string>
     <string name="filesystem_info_dialog_used_disk_usage">Benutzt:</string>
     <string name="filesystem_info_dialog_free_disk_usage">Frei:</string>
-
-    <!-- Fso properties -->
     <string name="fso_properties_permissions_not_allowed_msg">Änderungen an den Zugriffsrechten sind im sicheren Modus nicht erlaubt. Tippen, um in den Root-Zugriffsmodus zu wechseln.</string>
     <string name="fso_properties_failed_to_change_owner_msg">Die Änderung des Besitzers ist fehlgeschlagen.\n\nAus Sicherheitsgründen erlauben manche Dateisysteme, z.B. auf SD-Karten, nicht die Änderung des Besitzers.</string>
     <string name="fso_properties_failed_to_change_group_msg">Die Änderung der Gruppe ist fehlgeschlagen.\n\nAus Sicherheitsgründen erlauben manche Dateisysteme, z.B. auf SD-Karten, nicht die Änderung der Gruppe.</string>
@@ -170,22 +135,6 @@
     <string name="fso_properties_dialog_owner">Besitzer:</string>
     <string name="fso_properties_dialog_group">Gruppe:</string>
     <string name="fso_properties_dialog_others">Andere:</string>
-
-    <!-- Fso properties - Folders -->
-    <plurals name="n_folders">
-        <item quantity="zero">Kein Ordner</item>
-        <item quantity="one">1 Ordner</item>
-        <item quantity="other"><xliff:g id="folders">%1$d</xliff:g> Ordner</item>
-    </plurals>
-
-    <!-- Fso properties - Files -->
-    <plurals name="n_files">
-        <item quantity="zero">Keine Dateien</item>
-        <item quantity="one">1 Datei</item>
-        <item quantity="other"><xliff:g id="files">%1$d</xliff:g> Dateien</item>
-    </plurals>
-
-    <!-- Fso properties - Skip media scan -->
     <string name="fso_properties_dialog_include_in_media_scan">Medienscan überspringen:</string>
     <string name="fso_failed_to_allow_media_scan">Medienscan konnte nicht aktiviert werden</string>
     <string name="fso_failed_to_prevent_media_scan">Medienscan konnte nicht übersprungen werden</string>
@@ -193,37 +142,22 @@
     <string name="fso_delete_nomedia_dir_body">Dieses Verzeichnis enthält ein Verzeichnis namens \'.nomedia\'.\n\nSoll das Verzeichnis und dessen Inhalt gelöscht werden?</string>
     <string name="fso_delete_nomedia_non_empty_title">Datei \'.nomedia\' löschen</string>
     <string name="fso_delete_nomedia_non_empty_body">Dieses Verzeichnis enthält bereits eine Datei namens \'.nomedia\', die nicht leer ist.\n\nSoll diese Datei gelöscht werden?</string>
-
-    <!-- History -->
     <string name="history">Verlauf</string>
     <string name="msgs_history_empty">Der Verlauf ist leer.</string>
     <string name="msgs_history_unknown">Unbekanntes Ereigniss.</string>
-
-    <!-- Search -->
     <string name="search">Suchergebnisse</string>
     <string name="search_hint">Suchbegriff eingeben</string>
     <string name="search_voice_hint">Suchbegriff sprechen</string>
     <string name="search_error_msg">Während der Suche ist ein Fehler aufgetreten. Keine Ergebnisse gefunden.</string>
     <string name="search_no_results_msg">Keine Ergebnisse gefunden.</string>
-
-    <plurals name="search_found_items">
-        <item quantity="zero">Keine Einträge gefunden</item>
-        <item quantity="one">1 Eintrag gefunden</item>
-        <item quantity="other"><xliff:g id="count">%d</xliff:g> Einträge gefunden</item>
-    </plurals>
-
     <string name="search_found_items_in_directory"><xliff:g id="items">%1$s</xliff:g> in <xliff:g id="path">%2$s</xliff:g></string>
     <string name="search_terms"><![CDATA[<b>Terms:</b>]]> <xliff:g id="terms">%1$s</xliff:g></string>
     <string name="search_few_characters_title">Suche bestätigen</string>
     <string name="search_few_characters_msg">Da der Suchbegriff sehr kurz ist, kann die Suche sehr lange dauern.\n\nTrotzdem fortfahren?</string>
     <string name="searching">Bitte warten\u2026</string>
     <string name="searching_action_label">Suche läuft</string>
-
-    <!-- Picker activity -->
     <string name="picker_title">Datei wählen</string>
     <string name="directory_picker_title">Verzeichnis wählen</string>
-
-    <!-- Editor -->
     <string name="editor">Editor</string>
     <string name="editor_invalid_file_msg">Ungültige Datei.</string>
     <string name="editor_file_not_found_msg">Datei nicht gefunden.</string>
@@ -234,8 +168,6 @@
     <string name="editor_read_only_mode">Die Datei ist nur lesbar geöffnet.</string>
     <string name="dumping_message">Hexdump wird generiert\u2026</string>
     <string name="displaying_message">Anzeige wird vorbereitet\u2026</string>
-
-    <!-- Bookmarks -->
     <string name="bookmarks">Lesezeichen</string>
     <string name="bookmarks_home">Home</string>
     <string name="bookmarks_root_folder">Wurzelverzeichnis</string>
@@ -243,14 +175,10 @@
     <string name="bookmarks_button_config_cd">Standardordner.</string>
     <string name="bookmarks_button_remove_bookmark_cd">Lesezeichen löschen.</string>
     <string name="bookmarks_msgs_add_success">Das Lesezeichen wurde erfolgreich hinzugefügt.</string>
-
-    <!-- Initial directory -->
     <string name="initial_directory_dialog_title">Standardverzeichnis</string>
     <string name="initial_directory_label">Standardverzeichnis wählen:</string>
     <string name="initial_directory_relative_msg">Relative Pfade sind nicht erlaubt.</string>
     <string name="initial_directory_error_msg">Beim Speichern des Standardverzeichnisses ist ein Fehler aufgetreten.</string>
-
-    <!-- Menu -->
     <string name="menu_history">Verlauf</string>
     <string name="menu_bookmarks">Lesezeichen</string>
     <string name="menu_search">Suche</string>
@@ -259,12 +187,8 @@
     <string name="menu_no_suggestions">Keine Vorschläge</string>
     <string name="menu_word_wrap">Zeilenumbruch</string>
     <string name="menu_syntax_highlight">Syntaxhervorhebung</string>
-
-    <!-- Regular expressions -->
-    <string name="create_copy_regexp"><xliff:g id="name">%1$s</xliff:g> - kopiere<xliff:g id="extension">%2$s</xliff:g></string>
-    <string name="create_new_compress_file_regexp"><xliff:g id="name">%1$s</xliff:g> - neu<xliff:g id="extension">%2$s</xliff:g></string>
-
-    <!-- Waiting dialogs -->
+    <string name="create_copy_regexp">Kopie von <xliff:g id="name">%1$s</xliff:g><xliff:g id="extension">%2$s</xliff:g></string>
+    <string name="create_new_compress_file_regexp">Neues Archiv <xliff:g id="name">%1$s</xliff:g><xliff:g id="extension">%2$s</xliff:g></string>
     <string name="waiting_dialog_msg">Führe Aktion aus\u2026</string>
     <string name="waiting_dialog_copying_title">Kopiere\u2026</string>
     <string name="waiting_dialog_copying_msg"><![CDATA[<b>Von</b>]]> <xliff:g id="from">%1$s</xliff:g><![CDATA[<br/>]]><![CDATA[<b>Nach</b>]]> <xliff:g id="to">%2$s</xliff:g></string>
@@ -279,8 +203,6 @@
     <string name="waiting_dialog_analizing_msg"><![CDATA[<b>Analysiere\u2026</b>]]></string>
     <string name="msgs_extracting_success">Das Entpacken war erfolgreich. Die Daten wurden in das Verzeichnis <xliff:g id="destination">%1$s</xliff:g>entpackt.</string>
     <string name="msgs_compressing_success">Das Komprimieren war erfolgreich. Die Daten wurden im Verzeichnis <xliff:g id="destination">%1$s</xliff:g>komprimiert.</string>
-
-    <!-- Actions dialogs -->
     <string name="actions_dialog_title">Aktionen</string>
     <string name="actions_menu_properties_current_folder">Eigenschaften</string>
     <string name="actions_menu_refresh">Aktualisieren</string>
@@ -311,50 +233,35 @@
     <string name="actions_menu_open_parent_folder">Übergeordnetes Verzeichnis öffnen</string>
     <string name="actions_menu_compute_checksum">Prüfsumme generieren</string>
     <string name="actions_ask_undone_operation_msg">Diese Aktion kann nicht rückgängig gemacht werden.\n\nTrotzdem fortfahren?</string>
-
-    <!-- Enter name dialogs -->
     <string name="input_name_dialog_label">Name:</string>
     <string name="input_name_dialog_message_empty_name">Der Name darf nicht leer sein.</string>
     <string name="input_name_dialog_message_invalid_path_name">Ungültiger Name. Die Zeichen \'<xliff:g id="invalid_characters">%1$s</xliff:g>\' sind nicht erlaubt.</string>
     <string name="input_name_dialog_message_invalid_name">Ungültiger Name. Die Namen \'.\' und \'..\' sind nicht erlaubt.</string>
     <string name="input_name_dialog_message_name_exists">Dieser Name existiert bereits.</string>
-
-    <!-- Associations dialogs -->
     <string name="associations_dialog_title">Verbindungen</string>
     <string name="associations_dialog_remember">Auswahl merken</string>
     <string name="associations_dialog_openwith_title">Öffne mit</string>
     <string name="associations_dialog_openwith_action">Öffnen</string>
     <string name="associations_dialog_sendwith_title">Sende mit</string>
     <string name="associations_dialog_sendwith_action">Senden</string>
-
-    <!-- Inline autocomplete widget -->
     <string name="inline_autocomplete_tab_nothing_to_complete_msg">Nichts zu tun.</string>
-
-    <!-- Execution console -->
     <string name="execution_console_title">Konsole</string>
     <string name="execution_console_script_name_label">Script:</string>
     <string name="execution_console_script_execution_time_label">Zeit:</string>
     <string name="execution_console_script_exitcode_label">Skript-Ergebnis:</string>
     <string name="execution_console_script_execution_time_text"><xliff:g id="seconds">%1$s</xliff:g> Sekunden.</string>
-
-    <!-- Compute checksum -->
     <string name="compute_checksum_title">Prüfsumme generieren</string>
     <string name="compute_checksum_filename_label">Datei:</string>
     <string name="compute_checksum_computing_checksum_msg">Prüfsumme wird generiert\u2026</string>
-
-    <!-- Mime types -->
     <string name="mime_folder">Ordner</string>
     <string name="mime_symlink">Symbolischer Link</string>
     <string name="mime_unknown">Unbekannt</string>
-
-    <!--  Filetime formats -->
     <string name="filetime_format_mode_system">System-Format</string>
     <string name="filetime_format_mode_locale">Gebietsschema-Format</string>
     <string name="filetime_format_mode_ddMMyyyy_HHmmss">dd/mm/yyyy hh:mm:ss</string>
     <string name="filetime_format_mode_MMddyyyy_HHmmss">mm/dd/yyyy hh:mm:ss</string>
     <string name="filetime_format_mode_yyyyMMdd_HHmmss">yyyy-mm-dd hh:mm:ss</string>
-
-    <!-- Category descriptions -->
+    <string name="selection_folders_and_files"><xliff:g id="folders">%1$s</xliff:g> und <xliff:g id="files">%2$s</xliff:g> ausgewählt.</string>
     <string name="category_system">SYSTEM</string>
     <string name="category_app">APP</string>
     <string name="category_binary">BINÄR</string>
@@ -370,16 +277,10 @@
     <string name="category_audio">AUDIO</string>
     <string name="category_video">VIDEO</string>
     <string name="category_security">SICHERHEIT</string>
-
-    <!-- Compression mode dialog -->
     <string name="compression_mode_title">Archivformat</string>
-
-    <!-- Shortcuts -->
     <string name="shortcut_failed_msg">Fehler beim Zugriff auf die Verknüpfung.</string>
     <string name="shortcut_creation_success_msg">Verknüpfung erfolgreich angelegt.</string>
     <string name="shortcut_creation_failed_msg">Verknüpfung konnte nicht angelegt werden.</string>
-
-    <!-- Preferences titles -->
     <string name="pref">Einstellungen</string>
     <string name="pref_general">Allgemeine Einstellungen</string>
     <string name="pref_search">Sucheinstellungen</string>
@@ -387,7 +288,6 @@
     <string name="pref_themes">Designs</string>
     <string name="pref_about">Über</string>
     <string name="pref_about_summary">Dateimanager v<xliff:g id="version">%1$s</xliff:g>\nCopyright \u00A9 2013 The CyanogenMod Project</string>
-
     <string name="pref_general_behaviour_category">Allgemein</string>
     <string name="pref_case_sensitive_sort">Groß- und Kleinschreibung</string>
     <string name="pref_case_sensitive_sort_summary">Beim Navigieren und Sortieren Groß- und Kleinschreibung berücksichtigen</string>
@@ -440,19 +340,13 @@
     <string name="pref_themes_confirmation">Design erfolgreich angewendet</string>
     <string name="pref_themes_not_found">Design nicht gefunden</string>
     <string name="pref_debug_traces">Fehlerprotokollierung</string>
-
-    <!-- Themes -->
     <string name="theme_default_name">Hell (Standard)</string>
     <string name="theme_default_description">Helles Design für den CM-Dateimanager.</string>
     <string name="themes_author">CyanogenMod</string>
-
-    <!-- ColorPicker dialog -->
     <string name="color_picker_alpha_slider_text">Deckkraft</string>
     <string name="color_picker_current_text">Aktuell:</string>
     <string name="color_picker_new_text">Neu:</string>
     <string name="color_picker_color">Farbe:</string>
-
-    <!-- Android syntax highlight -->
     <string name="ash_reset_color_scheme">Designvorgaben wiederherstellen</string>
     <string name="ash_text">Text</string>
     <string name="ash_assignment">Funktion</string>
@@ -461,14 +355,8 @@
     <string name="ash_keyword">Schlüsselwort</string>
     <string name="ash_quoted_string">Text in Anführungszeichen</string>
     <string name="ash_variable">Variable</string>
-
-    <!-- Security -->
     <string name="security_warning_extract">Warnung!\n\n Ein Archiv mit relativen oder absoluten Pfaden zu entpacken, kann das Gerät beschädigen, indem Systemdateien überschrieben werden.\n\nTrotzdem fortfahren?</string>
-
-    <!-- ChangeLog -->
     <string name="changelog_title">Changelog</string>
-
-    <!-- Welcome dialog -->
     <string name="welcome_title">Willkommen</string>
     <string name="welcome_msg">Willkommen im CyanogenMod-Dateimanager.\n\nDiese App erlaubt das Navigieren durch das Dateisystem des Gerätes. Dabei können Aktionen ausgeführt werden, die das Gerät beschädigen können. Um Schäden zu vermeiden, startet die App im sicheren Modus mit eingeschränkten Berechtigungen.\n\nErweiterte Modi, mit vollen Berechtigungen, können in den Einstellungen aktiviert werden.\n\nDas CyanogenMod-Team</string>
 </resources>

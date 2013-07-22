@@ -132,16 +132,6 @@
     <string name="fso_properties_dialog_owner">Eigenaar:</string>
     <string name="fso_properties_dialog_group">Groep:</string>
     <string name="fso_properties_dialog_others">Andere:</string>
-    <plurals name="n_folders">
-        <item quantity="zero">0 mappen</item>
-        <item quantity="one">1 map</item>
-        <item quantity="other"><xliff:g id="folders">%1$d</xliff:g> mappen</item>
-    </plurals>
-    <plurals name="n_files">
-        <item quantity="zero">0 bestanden</item>
-        <item quantity="one">1 bestand</item>
-        <item quantity="other"><xliff:g id="files">%1$d</xliff:g> bestanden</item>
-    </plurals>
     <string name="fso_properties_dialog_include_in_media_scan">Mediascan overslaan:</string>
     <string name="fso_failed_to_allow_media_scan">Kan mediascan niet toestaan</string>
     <string name="fso_failed_to_prevent_media_scan">Kan mediascan niet blokkeren</string>
@@ -155,13 +145,8 @@
     <string name="search">Zoekresultaten</string>
     <string name="search_hint">Typ zoekopdracht</string>
     <string name="search_voice_hint">Spreek zoekopdracht</string>
-    <string name="search_error_msg">Een fout is opgetreden tijdens het zoeken. Geen resultaten gevonden.</string>
+    <string name="search_error_msg">Er is een fout opgetreden tijdens het zoeken. Geen resultaten gevonden.</string>
     <string name="search_no_results_msg">Geen resultaten gevonden.</string>
-    <plurals name="search_found_items">
-        <item quantity="zero">Geen items gevonden</item>
-        <item quantity="one">1 item gevonden</item>
-        <item quantity="other"><xliff:g id="count">%d</xliff:g> items gevonden</item>
-    </plurals>
     <string name="search_found_items_in_directory"><xliff:g id="items">%1$s</xliff:g> in <xliff:g id="path">%2$s</xliff:g></string>
     <string name="search_terms"><![CDATA[<b>Termen:</b>]]> <xliff:g id="terms">%1$s</xliff:g></string>
     <string name="search_few_characters_title">Zoeken bevestigen</string>
@@ -224,7 +209,7 @@
     <string name="actions_menu_deselect_all">Alles deselecteren</string>
     <string name="actions_menu_select">Selecteren</string>
     <string name="actions_menu_deselect">Deselecteren</string>
-    <string name="actions_menu_paste_selection">Hier plakken (selectie)</string>
+    <string name="actions_menu_paste_selection">Hier kopiëren (selectie)</string>
     <string name="actions_menu_move_selection">Hier verplaatsen (selectie)</string>
     <string name="actions_menu_delete_selection">Verwijderen (selectie)</string>
     <string name="actions_menu_compress_selection">Comprimeren (selectie)</string>
@@ -273,6 +258,7 @@
     <string name="filetime_format_mode_ddMMyyyy_HHmmss">dd/mm/yyyy hh:mm:ss</string>
     <string name="filetime_format_mode_MMddyyyy_HHmmss">mm/dd/yyyy hh:mm:ss</string>
     <string name="filetime_format_mode_yyyyMMdd_HHmmss">yyyy-mm-dd hh:mm:ss</string>
+    <string name="selection_folders_and_files"><xliff:g id="folders">%1$s</xliff:g> en <xliff:g id="files">%2$s</xliff:g> geselecteerd.</string>
     <string name="category_system">SYSTEEM</string>
     <string name="category_app">APP</string>
     <string name="category_binary">BINAIR</string>

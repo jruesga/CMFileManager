@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Copyright (C) 2012 The CyanogenMod Project
+<!-- Copyright (C) 2013 The CyanogenMod Project
 
      Licensed under the Apache License, Version 2.0 (the "License");
      you may not use this file except in compliance with the License.
@@ -119,16 +119,6 @@
     <string name="fso_properties_dialog_owner">Proprietário:</string>
     <string name="fso_properties_dialog_group">Grupo:</string>
     <string name="fso_properties_dialog_others">Outros:</string>
-    <plurals name="n_folders">
-        <item quantity="zero">0 pastas</item>
-        <item quantity="one">1 pasta</item>
-        <item quantity="other"><xliff:g id="folders" xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">%1$d</xliff:g> pastas</item>
-    </plurals>
-    <plurals name="n_files">
-        <item quantity="zero">0 arquivos</item>
-        <item quantity="one">1 arquivos</item>
-        <item quantity="other"><xliff:g id="files" xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">%1$d</xliff:g> arquivos</item>
-    </plurals>
     <string name="history">Histórico</string>
     <string name="msgs_history_empty">Histórico está vazio</string>
     <string name="msgs_history_unknown">Histórico desconhecido</string>
@@ -137,11 +127,6 @@
     <string name="search_voice_hint">Fale para buscar</string>
     <string name="search_error_msg">Um erro ocorreu enquanto buscando. Nenhum resultado encontrado</string>
     <string name="search_no_results_msg">Nenhum resultado encontrado</string>
-    <plurals name="search_found_items">
-        <item quantity="zero">Nenhum ítem encontrado</item>
-        <item quantity="one">1 ítem encontrado</item>
-        <item quantity="other"><xliff:g id="count" xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">%d</xliff:g> ítems encontrados</item>
-    </plurals>
     <string name="search_found_items_in_directory"><xliff:g id="items" xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">%1$s</xliff:g> em <xliff:g id="path" xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">%2$s</xliff:g></string>
     <string name="search_terms"><![CDATA[<b>Termos:</b>]]> <xliff:g id="terms" xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">%1$s</xliff:g></string>
     <string name="search_few_characters_title">Confirmar busca</string>
@@ -370,4 +355,5 @@
     <string name="datetime_format_order">%1$s %2$s</string>
     <string name="mount_point_readonly">RO</string>
     <string name="mount_point_readwrite">RW</string>
+    <string name="selection_folders_and_files"><xliff:g id="folders">%1$s</xliff:g> e <xliff:g id="files">%2$s</xliff:g> selecionados.</string>
 </resources>

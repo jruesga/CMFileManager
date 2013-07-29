@@ -28,8 +28,4 @@
     <item quantity="one">1 item gevonden</item>
     <item quantity="other"><xliff:g id="count">%d</xliff:g> items gevonden</item>
   </plurals>
-
-  <plurals name="selection_folders_or_files">
-    <item quantity="other"><xliff:g id="items">%1$s</xliff:g> geselecteerd.</item>
-  </plurals>
 </resources>

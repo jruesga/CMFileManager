@@ -22,14 +22,8 @@
     <item quantity="one">1 αρχείο</item>
     <item quantity="other"><xliff:g id="files">%1$d</xliff:g> αρχεία</item>
   </plurals>
-  <!-- Search * Search found items -->
   <plurals name="search_found_items">
     <item quantity="one">Βρέθηκε 1 αντικείμενο</item>
     <item quantity="other">Βρέθηκαν <xliff:g id="count">%d</xliff:g> αντικείμενα</item>
-  </plurals>
-  <!-- Selection -->
-  <plurals name="selection_folders_or_files">
-    <item quantity="one">Επιλέχθηκε <xliff:g id="items">%1$s</xliff:g>.</item>
-    <item quantity="other">Επιλέχθηκαν <xliff:g id="items">%1$s</xliff:g>.</item>
   </plurals>
 </resources>

@@ -31,10 +31,4 @@
         <item quantity="few">Nalezeny <xliff:g id="count">%d</xliff:g> položky</item>
         <item quantity="other">Nalezeno <xliff:g id="count">%d</xliff:g> položek</item>
     </plurals>
-
-    <plurals name="selection_folders_or_files">
-        <item quantity="one">1 vybrán.</item>
-        <item quantity="few"><xliff:g id="items">%1$s</xliff:g> vybrány.</item>
-        <item quantity="other"><xliff:g id="items">%1$s</xliff:g> vybraných.</item>
-    </plurals>
 </resources>

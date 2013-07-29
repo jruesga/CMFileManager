@@ -126,15 +126,17 @@ public class SelectionView extends LinearLayout {
 
         // Get the string
         final Resources res = getContext().getResources();
-        String nFoldersString = res.getQuantityString(R.plurals.n_folders, folders, folders);
-        String nFilesString = res.getQuantityString(R.plurals.n_files, files, files);
 
-        if (files == 0 || folders == 0) {
-            String itemsString = files == 0 ? nFilesString : nFoldersString;
-            return res.getQuantityString(R.plurals.selection_folders_or_files,
-                    files + folders, itemsString);
+        if (files == 0) {
+            return res.getQuantityString(R.plurals.selection_folders, folders, folders);
         }
 
+        if (folders == 0) {
+            return res.getQuantityString(R.plurals.selection_files, files, files);
+        }
+
+        String nFoldersString = res.getQuantityString(R.plurals.n_folders, folders, folders);
+        String nFilesString = res.getQuantityString(R.plurals.n_files, files, files);
         return res.getString(R.string.selection_folders_and_files, nFoldersString, nFilesString);
     }
 

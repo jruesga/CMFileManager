@@ -13,7 +13,6 @@
      See the License for the specific language governing permissions and
      limitations under the License.
 -->
-
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <plurals name="n_folders">
         <item quantity="one">1 carpeta</item>
@@ -26,8 +25,5 @@
     <plurals name="search_found_items">
         <item quantity="one">1 elemento encontrado</item>
         <item quantity="other"><xliff:g id="count">%d</xliff:g> elementos encontrados</item>
-    </plurals>
-    <plurals name="selection_folders_or_files">
-        <item quantity="other"><xliff:g id="items">%1$s</xliff:g> seleccionados.</item>
     </plurals>
 </resources>

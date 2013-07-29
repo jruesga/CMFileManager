@@ -23,7 +23,4 @@
   <plurals name="search_found_items">
     <item quantity="other"><xliff:g id="count">%d</xliff:g> találat</item>
   </plurals>
-  <plurals name="selection_folders_or_files">
-    <item quantity="other"><xliff:g id="items">%1$s</xliff:g> kiválasztva.</item>
-  </plurals>
 </resources>

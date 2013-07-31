@@ -26,4 +26,12 @@
         <item quantity="one">1 elemento encontrado</item>
         <item quantity="other"><xliff:g id="count">%d</xliff:g> elementos encontrados</item>
     </plurals>
+    <plurals name="selection_folders">
+        <item quantity="one">1 carpeta seleccionada.</item>
+        <item quantity="other"><xliff:g id="folders">%1$d</xliff:g> carpetas seleccionadas.</item>
+    </plurals>
+    <plurals name="selection_files">
+        <item quantity="one">1 archivo seleccionado.</item>
+        <item quantity="other"><xliff:g id="files">%1$d</xliff:g> archivos seleccionados.</item>
+    </plurals>
 </resources>

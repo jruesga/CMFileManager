@@ -259,7 +259,7 @@
     <string name="filetime_format_mode_ddMMyyyy_HHmmss">nn/hh/éééé óó:pp:mm</string>
     <string name="filetime_format_mode_MMddyyyy_HHmmss">hh/nn/éééé óó:pp:mm</string>
     <string name="filetime_format_mode_yyyyMMdd_HHmmss">éééé/hh/nn óó:pp:mm</string>
-    <string name="selection_folders_and_files"><xliff:g id="folders">%1$s</xliff:g> könyvtár és <xliff:g id="files">%2$s</xliff:g> fájl kiválasztva.</string>
+    <string name="selection_folders_and_files"><xliff:g id="folders">%1$s</xliff:g> és <xliff:g id="files">%2$s</xliff:g> kiválasztva.</string>
     <string name="category_system">RENDSZER</string>
     <string name="category_app">ALKALMAZÁS</string>
     <string name="category_binary">BINÁRIS</string>

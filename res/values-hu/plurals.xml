@@ -23,4 +23,10 @@
   <plurals name="search_found_items">
     <item quantity="other"><xliff:g id="count">%d</xliff:g> találat</item>
   </plurals>
+  <plurals name="selection_folders">
+    <item quantity="other"><xliff:g id="folders">%1$d</xliff:g> könyvtár kiválasztva.</item>
+  </plurals>
+  <plurals name="selection_files">
+    <item quantity="other"><xliff:g id="files">%1$d</xliff:g> fájl kiválasztva.</item>
+  </plurals>
 </resources>

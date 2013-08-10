@@ -26,4 +26,12 @@
     <item quantity="one">Βρέθηκε 1 αντικείμενο</item>
     <item quantity="other">Βρέθηκαν <xliff:g id="count">%d</xliff:g> αντικείμενα</item>
   </plurals>
+  <plurals name="selection_folders">
+    <item quantity="one">Επιλέχθηκε 1 φάκελος.</item>
+    <item quantity="other">Επιλέχθηκαν <xliff:g id="folders">%1$d</xliff:g> φάκελοι.</item>
+  </plurals>
+  <plurals name="selection_files">
+    <item quantity="one">Επιλέχθηκε 1 αρχείο.</item>
+    <item quantity="other">Επιλέχθηκαν <xliff:g id="files">%1$d</xliff:g> αρχεία.</item>
+  </plurals>
 </resources>

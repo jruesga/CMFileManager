@@ -26,4 +26,12 @@
         <item quantity="one">1 item encontrado</item>
         <item quantity="other"><xliff:g id="count" xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">%d</xliff:g> itens encontrados</item>
     </plurals>
+    <plurals name="selection_folders">
+        <item quantity="one">1 pasta selecionada.</item>
+        <item quantity="other"><xliff:g id="folders">%1$d</xliff:g> pastas selecionadas.</item>
+    </plurals>
+    <plurals name="selection_files">
+        <item quantity="one">1 arquivo selecionado.</item>
+        <item quantity="other"><xliff:g id="files">%1$d</xliff:g> arquivos selecionados.</item>
+    </plurals>
 </resources>

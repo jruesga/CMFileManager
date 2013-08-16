@@ -14,25 +14,31 @@
      limitations under the License.
  -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-  <!-- Fso Properties Dialog * Folders -->
   <plurals name="n_folders">
-    <item quantity="zero">0 priečinkov</item>
     <item quantity="one">1 priečinok</item>
     <item quantity="few"><xliff:g id="folders">%1$d</xliff:g> priečinky</item>
     <item quantity="other"><xliff:g id="folders">%1$d</xliff:g> priečinkov</item>
   </plurals>
-  <!-- Fso Properties Dialog * Files -->
   <plurals name="n_files">
-    <item quantity="zero">0 súborov</item>
     <item quantity="one">1 súbor</item>
     <item quantity="few"><xliff:g id="files">%1$d</xliff:g> súbory</item>
     <item quantity="other"><xliff:g id="files">%1$d</xliff:g> súborov</item>
   </plurals>
   <!-- Search * Search found items -->
   <plurals name="search_found_items">
-    <item quantity="zero">Nenašli sa žiadne položky</item>
-    <item quantity="one">Našla sa 1 položka</item>
-    <item quantity="few">Našli sa <xliff:g id="count">%d</xliff:g> položky</item>
-    <item quantity="other">Našlo sa <xliff:g id="count">%d</xliff:g> položiek</item>
+    <item quantity="one">1 nájdená položka</item>
+    <item quantity="few"><xliff:g id="count">%d</xliff:g> nájdené položky</item>
+    <item quantity="other"><xliff:g id="count">%d</xliff:g> nájdených položiek</item>
+  </plurals>
+  <!-- Statusbar text if there are selected folders or files -->
+  <plurals name="selection_folders">
+    <item quantity="one">1 vybraný priečinok.</item>
+    <item quantity="few"><xliff:g id="folders">%1$d</xliff:g> vybrané priečinky.</item>
+    <item quantity="other"><xliff:g id="folders">%1$d</xliff:g> vybraných priečinkov.</item>
+  </plurals>
+  <plurals name="selection_files">
+    <item quantity="one">1 vybraný súbor.</item>
+    <item quantity="few"><xliff:g id="files">%1$d</xliff:g> vybrané súbory.</item>
+    <item quantity="other"><xliff:g id="files">%1$d</xliff:g> vybraných súborov.</item>
   </plurals>
 </resources>

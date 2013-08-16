@@ -723,5 +723,5 @@
   <!-- Welcome Dialog * Title -->
   <string name="welcome_title">Vitajte</string>
   <!-- Welcome Dialog * Message -->
-  <string name="welcome_msg">Vitajte v správcovi súborov CyanogenMod.\n\nTáto aplikácia umožňuje prechádzať súborový systém a robiť operácie, ktoré môžu poškodiť vaše zariadenie. Na zabránenie škôd bude aplikácia spustená v Bezpečnom režime.\n\nMôžete zapnúť pokročilý režim s plným oprávnením v Nastaveniach. Tým preberiete zodpovednosťza operácie, ktoré budete s aplikáciou vykonávať.\n\nTým CyanogenMod.\n</string>
+  <string name="welcome_msg">Vitajte v správcovi súborov CyanogenMod.\n\nTáto aplikácia umožňuje prehliadať súborový systém a robiť operácie, ktoré môžu poškodiť vaše zariadenie. Na zabránenie škôd bude aplikácia spustená v Bezpečnom režime.\n\nV nastaveniach môžete zapnúť pokročilý režim s plnými oprávneniami. Tým preberiete zodpovednosť za operácie, ktoré budete s aplikáciou vykonávať.\n\nTím CyanogenMod.\n</string>
 </resources>

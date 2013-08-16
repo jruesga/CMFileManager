@@ -17,6 +17,11 @@
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
   <string name="app_name">File Manager</string>
   <string name="app_description">File manager di CyanogenMod.</string>
+  <string name="size_bytes">B</string>
+  <string name="size_kilobytes">kB</string>
+  <string name="size_megabytes">MB</string>
+  <string name="size_gigabytes">GB</string>
+  <string name="datetime_format_order">%1$s %2$s</string>
   <string name="device_blockdevice">Block device</string>
   <string name="device_characterdevice">Character device</string>
   <string name="device_namedpipe">Named pipe</string>
@@ -128,16 +133,6 @@
   <string name="fso_properties_dialog_owner">Proprietario:</string>
   <string name="fso_properties_dialog_group">Gruppo:</string>
   <string name="fso_properties_dialog_others">Altri:</string>
-  <plurals name="n_folders">
-    <item quantity="zero">0 cartelle</item>
-    <item quantity="one">1 cartella</item>
-    <item quantity="other"><xliff:g id="folders">%1$d</xliff:g> cartelle</item>
-  </plurals>
-  <plurals name="n_files">
-    <item quantity="zero">0 file</item>
-    <item quantity="one">1 file</item>
-    <item quantity="other"><xliff:g id="files">%1$d</xliff:g> file</item>
-  </plurals>
   <string name="fso_properties_dialog_include_in_media_scan">Salta scansione media:</string>
   <string name="fso_failed_to_allow_media_scan">Impossibile consentire la scansione</string>
   <string name="fso_failed_to_prevent_media_scan">Impossibile impedire la scansione</string>
@@ -153,11 +148,6 @@
   <string name="search_voice_hint">Pronuncia i criteri di ricerca</string>
   <string name="search_error_msg">Errore nella ricerca. Nessun risultato.</string>
   <string name="search_no_results_msg">Nessun risultato.</string>
-  <plurals name="search_found_items">
-    <item quantity="zero">Nessun risultato</item>
-    <item quantity="one">1 elemento trovato</item>
-    <item quantity="other"><xliff:g id="count">%d</xliff:g> elementi trovati</item>
-  </plurals>
   <string name="search_found_items_in_directory"><xliff:g id="items">%1$s</xliff:g> in
     <xliff:g id="path">%2$s</xliff:g></string>
   <string name="search_terms"><![CDATA[<b>Parole:</b>]]> <xliff:g id="terms">%1$s</xliff:g></string>
@@ -281,6 +271,10 @@
   <string name="mime_unknown">Sconosciuto</string>
   <string name="filetime_format_mode_system">Definito da sistema</string>
   <string name="filetime_format_mode_locale">Definito da localizzazione</string>
+  <string name="filetime_format_mode_ddMMyyyy_HHmmss">dd/mm/yyyy hh:mm:ss</string>
+  <string name="filetime_format_mode_MMddyyyy_HHmmss">mm/dd/yyyy hh:mm:ss</string>
+  <string name="filetime_format_mode_yyyyMMdd_HHmmss">yyyy-mm-dd hh:mm:ss</string>
+  <string name="selection_folders_and_files"><xliff:g id="folders">%1$s</xliff:g> e <xliff:g id="files">%2$s</xliff:g> selezionati.</string>
   <string name="category_system">SISTEMA</string>
   <string name="category_app">APP</string>
   <string name="category_binary">BINARIO</string>

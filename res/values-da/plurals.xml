@@ -13,7 +13,6 @@
      See the License for the specific language governing permissions and
      limitations under the License.
  -->
-
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
   xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
   <plurals name="n_folders">
@@ -30,5 +29,13 @@
     <item quantity="zero">Ingen elementer fundet</item>
     <item quantity="one">1 element fundet</item>
     <item quantity="other"><xliff:g id="count">%d</xliff:g> elementer fundet</item>
+  </plurals>
+  <plurals name="selection_folders">
+    <item quantity="one">1 mappe valgt.</item>
+    <item quantity="other"><xliff:g id="folders">%1$d</xliff:g> mapper valgt.</item>
+  </plurals>
+  <plurals name="selection_files">
+    <item quantity="one">1 fil valgt.</item>
+    <item quantity="other"><xliff:g id="files">%1$d</xliff:g> filer valgt.</item>
   </plurals>
 </resources>

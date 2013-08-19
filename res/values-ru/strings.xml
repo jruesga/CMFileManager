@@ -15,7 +15,7 @@
  -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
 
-  <string name="app_name">Файловый менеджер</string>
+  <string name="app_name">Файлы</string>
   <string name="app_description">Файловый менеджер CyanogenMod</string>
 
   <string name="size_bytes">Б</string>
@@ -37,6 +37,7 @@
   <string name="overwrite">Заменить</string>
   <string name="select">Выбрать</string>
 
+  <string name="root_directory_name"><![CDATA[<Корневая папка>]]></string>
   <string name="search_result_name">Поиск: <xliff:g id="terms">%1$s</xliff:g></string>
 
   <string name="loading_message">Загрузка\u2026</string>
@@ -110,10 +111,10 @@
   <string name="layout_simple">Список</string>
   <string name="layout_details">Детально</string>
 
-  <string name="cm_filemanager_show_dirs_first">Отображать папки первыми</string>
-  <string name="cm_filemanager_show_hidden">Отображать скрытые файлы</string>
-  <string name="cm_filemanager_show_system">Отображать системные файлы</string>
-  <string name="cm_filemanager_show_symlinks">Отображать симлинки</string>
+  <string name="cm_filemanager_show_dirs_first">Папки первыми</string>
+  <string name="cm_filemanager_show_hidden">Скрытые файлы</string>
+  <string name="cm_filemanager_show_system">Системные файлы</string>
+  <string name="cm_filemanager_show_symlinks">Симлинки</string>
 
   <string name="filesystem_info_warning_title">Нет информации</string>
   <string name="filesystem_info_warning_msg">Нет доступной информации о файловой системе</string>
@@ -138,7 +139,7 @@
   <string name="fso_properties_failed_to_change_group_msg">Изменение группы не удалось.\n\nПо соображения безопасности, некоторые файловые системы, такие как SD-карты, не позволяют изменять группы</string>
   <string name="fso_properties_failed_to_change_permission_msg">Изменение разрешений не удалось.\n\nПо соображениям безопасности, некоторые файловые системы, такие как SD-карты, не позволяют изменять разрешения</string>
   <string name="fso_properties_dialog_title">Свойства</string>
-  <string name="fso_properties_dialog_tab_info">Инфо</string>
+  <string name="fso_properties_dialog_tab_info">Основные</string>
   <string name="fso_properties_dialog_tab_permissions">Разрешения</string>
   <string name="fso_properties_dialog_name">Имя:</string>
   <string name="fso_properties_dialog_parent">Родитель:</string>
@@ -306,6 +307,8 @@
   <string name="filetime_format_mode_ddMMyyyy_HHmmss">дд/мм/гггг чч:мм:сс</string>
   <string name="filetime_format_mode_MMddyyyy_HHmmss">мм/дд/гггг чч:мм:сс</string>
   <string name="filetime_format_mode_yyyyMMdd_HHmmss">гггг-мм-дд чч:мм:сс</string>
+
+  <string name="selection_folders_and_files">Выбрано: <xliff:g id="folders">%1$s</xliff:g> и <xliff:g id="files">%2$s</xliff:g>.</string>
 
   <string name="category_system">СИСТЕМА</string>
   <string name="category_app">ПРИЛОЖЕНИЕ</string>

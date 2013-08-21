@@ -1,0 +1,398 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (C) 2012-2013 The CyanogenMod Project
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+ -->
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+  <string name="app_name">Filhanterare</string>
+  <string name="app_description">CyanogenMods filhanterare.</string>
+  <string name="size_bytes">B</string>
+  <string name="size_kilobytes">kB</string>
+  <string name="size_megabytes">MB</string>
+  <string name="size_gigabytes">GB</string>
+  <string name="datetime_format_order">%1$s %2$s</string>
+  <string name="device_blockdevice">Blockenhet</string>
+  <string name="device_characterdevice">Teckenenhet</string>
+  <string name="device_namedpipe">FIFO</string>
+  <string name="device_domainsocket">Sockel</string>
+  <string name="mount_point_readonly">RO</string>
+  <string name="mount_point_readwrite">RW</string>
+  <string name="yes">Ja</string>
+  <string name="no">Nej</string>
+  <string name="all">Alla</string>
+  <string name="overwrite">Skriv över</string>
+  <string name="select">Välj</string>
+  <string name="root_directory_name"><![CDATA[<Rot>]]></string>
+  <string name="search_result_name">Sök: <xliff:g id="terms">%1$s</xliff:g></string>
+  <string name="loading_message">Laddar\u2026</string>
+  <string name="cancelled_message">Avbruten.</string>
+  <string name="error_message">Fel.</string>
+  <string name="copy_text_cd">Tryck för att kopiera till urklipp</string>
+  <string name="copy_text_msg">Text kopierad till urklipp</string>
+  <string name="warning_title">Varning</string>
+  <string name="error_title">Fel upptäckt</string>
+  <string name="confirm_operation">Bekräfta åtgärd</string>
+  <string name="confirm_overwrite">Bekräfta överskrivning</string>
+  <string name="confirm_deletion">Bekräfta radering</string>
+  <string name="msgs_change_to_prompt_access_mode_title">Bekräfta byte</string>
+  <string name="msgs_change_to_prompt_access_mode_msg">
+    Kan inte köra med Rootläge. Växlar till Säkert läge.\n\nTillämpa denna ändring?</string>
+  <string name="msgs_cant_create_console">Kan inte få de nödvändiga rättigheterna för att fungera.</string>
+  <string name="msgs_privileged_console_alloc_failed">Kan inte köra med Rootläge. Växlar lite Säkert läge.</string>
+  <string name="msgs_settings_save_failure">Denna inställning kunde inte verkställas eller lagras.</string>
+  <string name="msgs_settings_invalid_initial_directory">Hemmappen \"<xliff:g id="initial_dir">%1$s</xliff:g>\" är felaktig. Växlar till rotmapp.</string>
+  <string name="msgs_success">Åtgärden genomfördes framgångsrikt.</string>
+  <string name="msgs_unknown">Ett fel upptäcktes. Åtgärden misslyckades.</string>
+  <string name="msgs_insufficient_permissions">Denna åtgärd kräver förhöjda rättigheter. Försök att ändra till Rootläge.</string>
+  <string name="msgs_file_not_found">Filen eller mappen kunde inte hittas.</string>
+  <string name="msgs_command_not_found">Åtgärdens kommando kunde inte hittas eller har en felaktig definition.</string>
+  <string name="msgs_io_failed">Read/write-fel.</string>
+  <string name="msgs_operation_timeout">Åtgärden överskred tidsgränsen.</string>
+  <string name="msgs_operation_failure">Åtgärden misslyckades.</string>
+  <string name="msgs_console_alloc_failure">Ett internt fel inträffade.</string>
+  <string name="msgs_operation_can_not_be_cancelled">Åtgärden kan inte avbrytas.</string>
+  <string name="msgs_read_only_filesystem">Filsystemet är read-only. Försök att montera filsystemet som read-write innan du försöker genomföra åtgärden.</string>
+  <string name="msgs_illegal_argument">Illegalt argument. Invokationen misslyckades.</string>
+  <string name="msgs_unresolved_inconsistencies">
+    Åtgärden är inte tillåten eftersom den skulle skapa motsägelser.</string>
+  <string name="msgs_operation_not_allowed_in_current_directory">
+    Åtgärden är inte tillåten i den nuvarande mappen.\n\nDestinationsmappen kan inte vara undermapp till källan eller samma som källan.</string>
+  <string name="msgs_push_again_to_exit">Tryck igen för att avsluta.</string>
+  <string name="msgs_not_registered_app">Det finns ingen app registrerad för att hantera vald filtyp.</string>
+  <string name="msgs_overwrite_files">
+    Några av filerna finns redan i destinationsmappen.\n\nSkriva över?</string>
+  <string name="msgs_action_association_failed">Associering av åtgärden till appen misslyckades.</string>
+  <string name="advise_insufficient_permissions">Åtgärden kräver förhöjda rättigheter\n\n
+    Vill du växla till Rootläge?</string>
+  <string name="parent_dir">Upp</string>
+  <string name="external_storage">Extern lagring</string>
+  <string name="usb_storage">USB-lagring</string>
+  <string name="actionbar_button_filesystem_cd">Filsystemsinformation</string>
+  <string name="actionbar_button_sort_mode_cd">Sortering</string>
+  <string name="actionbar_button_layout_mode_cd">Visning</string>
+  <string name="actionbar_button_other_view_options_cd">Andra visningsinställningar</string>
+  <string name="actionbar_button_selection_done_cd">Färdig</string>
+  <string name="actionbar_button_actions_cd">Åtgärder</string>
+  <string name="actionbar_button_history_cd">Historik</string>
+  <string name="actionbar_button_bookmarks_cd">Bokmärken</string>
+  <string name="actionbar_button_search_cd">Sök</string>
+  <string name="actionbar_button_overflow_cd">Fler alternativ</string>
+  <string name="actionbar_button_storage_cd">Lagringsvolymer</string>
+  <string name="actionbar_button_save_cd">Spara</string>
+  <string name="sort_by_name_asc">Efter namn &#x25B2;</string>
+  <string name="sort_by_name_desc">Efter namn &#x25BC;</string>
+  <string name="sort_by_date_asc">Efter datum &#x25B2;</string>
+  <string name="sort_by_date_desc">Efter datum &#x25BC;</string>
+  <string name="layout_icons">Ikoner</string>
+  <string name="layout_simple">Enkel</string>
+  <string name="layout_details">Detaljerad</string>
+  <string name="cm_filemanager_show_dirs_first">Visa mappar först</string>
+  <string name="cm_filemanager_show_hidden">Visa dolda filer</string>
+  <string name="cm_filemanager_show_system">Visa systemfiler</string>
+  <string name="cm_filemanager_show_symlinks">Visa symlinks</string>
+  <string name="filesystem_info_warning_title">Ingen information</string>
+  <string name="filesystem_info_warning_msg">Det finns ingen information tillgänglig om filsystemet.</string>
+  <string name="filesystem_info_cant_be_mounted_msg">
+    Filsystemet kan inte monteras/avmonteras.</string>
+  <string name="filesystem_info_mount_not_allowed_msg">Filsystemsmontering är inte tillåtet i Säkert läge. Tryck för att växla till Rootläge.</string>
+  <string name="filesystem_info_mount_failed_msg">Filsystemsmonteringen misslyckades.
+    Vissa filsystem, som SD-kort, kan inte monteras/avmonteras för att
+    de är inbyggda som read-only.</string>
+  <string name="filesystem_info_dialog_title">Filsystemsinformation</string>
+  <string name="filesystem_info_dialog_tab_info">Information</string>
+  <string name="filesystem_info_dialog_tab_disk_usage">Diskanvändning</string>
+  <string name="filesystem_info_dialog_status">Status:</string>
+  <string name="filesystem_info_dialog_mount_point">Monteringspunkt:</string>
+  <string name="filesystem_info_dialog_device">Enhet:</string>
+  <string name="filesystem_info_dialog_type">Typ:</string>
+  <string name="filesystem_info_dialog_options">Alternativ:</string>
+  <string name="filesystem_info_dialog_dump_pass">Dump / Pass:</string>
+  <string name="filesystem_info_dialog_total_disk_usage">Totalt:</string>
+  <string name="filesystem_info_dialog_used_disk_usage">Använt:</string>
+  <string name="filesystem_info_dialog_free_disk_usage">Ledigt:</string>
+  <string name="fso_properties_permissions_not_allowed_msg">Rättighetsåtgärder är inte tillåtna i Säkert läge. Tryck för att växla till Rootläge.</string>
+  <string name="fso_properties_failed_to_change_owner_msg">Ägarbytesåtgärden misslyckades.\n\n
+    Av säkerhetsskäl tillåter inte vissa filsystem, som SD-kort, ägarskapsbyten.</string>
+  <string name="fso_properties_failed_to_change_group_msg">Gruppbytesåtgärden misslyckades.\n\n
+    Av säkerhetsskäl tillåter inte vissa filsystem, som SD-kort, gruppbyten.</string>
+  <string name="fso_properties_failed_to_change_permission_msg">Rättighetsbytet misslyckades.
+    \n\nAv säkerhetsskäl tillåter inte vissa filsystem, som SD-kort, rättighetsbyten.</string>
+  <string name="fso_properties_dialog_title">Egenskaper</string>
+  <string name="fso_properties_dialog_tab_info">Information</string>
+  <string name="fso_properties_dialog_tab_permissions">Rättigheter</string>
+  <string name="fso_properties_dialog_name">Namn:</string>
+  <string name="fso_properties_dialog_parent">Plats:</string>
+  <string name="fso_properties_dialog_type">Typ:</string>
+  <string name="fso_properties_dialog_category">Kategori:</string>
+  <string name="fso_properties_dialog_link">Länk:</string>
+  <string name="fso_properties_dialog_size">Storlek:</string>
+  <string name="fso_properties_dialog_contains">Innehåller:</string>
+  <string name="fso_properties_dialog_last_accessed_date">Använd:</string>
+  <string name="fso_properties_dialog_last_modified_date">Modifierad:</string>
+  <string name="fso_properties_dialog_last_changed_date">Ändrad:</string>
+  <string name="fso_properties_dialog_owner">Ägare:</string>
+  <string name="fso_properties_dialog_group">Grupp:</string>
+  <string name="fso_properties_dialog_others">Andra:</string>
+  <string name="fso_properties_dialog_include_in_media_scan">Hoppa över mediaskanning:</string>
+  <string name="fso_failed_to_allow_media_scan">Misslyckades med att tillåta mediaskanning</string>
+  <string name="fso_failed_to_prevent_media_scan">Misslyckades med att hindra mediaskanning</string>
+  <string name="fso_delete_nomedia_dir_title">Radera .nomedia-bibliotek</string>
+  <string name="fso_delete_nomedia_dir_body">Detta bibliotek innehåller ett .nomedia-bibliotek\n\nVill du radera det och allt dess innehåll?</string>
+  <string name="fso_delete_nomedia_non_empty_title">Radera .nomedia-fil</string>
+  <string name="fso_delete_nomedia_non_empty_body">Detta bibliotek innehåller en icke-tom .nomedia-fil\n\nVill du radera den?</string>
+  <string name="history">Historik</string>
+  <string name="msgs_history_empty">Historiken är tom.</string>
+  <string name="msgs_history_unknown">Okänt historikföremål.</string>
+  <string name="search">Sökresultat</string>
+  <string name="search_hint">Skriv in din sökning</string>
+  <string name="search_voice_hint">Tala in din sökning</string>
+  <string name="search_error_msg">Ett fel inträffade under sökning. Inga resultat funna.</string>
+  <string name="search_no_results_msg">Inga resultat funna.</string>
+  <string name="search_found_items_in_directory"><xliff:g id="items">%1$s</xliff:g> i
+    <xliff:g id="path">%2$s</xliff:g></string>
+  <string name="search_terms"><![CDATA[<b>Terms:</b>]]> <xliff:g id="terms">%1$s</xliff:g></string>
+  <string name="search_few_characters_title">Bekräfta sökning</string>
+  <string name="search_few_characters_msg">Några av söktermerna har få tecken. Sökåtgärden kan bli väldigt kostsam i tid och systemresurser.\n\nVill du fortsätta?</string>
+  <string name="searching">Var god vänta\u2026</string>
+  <string name="searching_action_label">Sökning pågår</string>
+  <string name="picker_title">Välj en fil</string>
+  <string name="directory_picker_title">Välj ett bibliotek</string>
+  <string name="editor">Redigerare</string>
+  <string name="editor_invalid_file_msg">Ogiltig fil.</string>
+  <string name="editor_file_not_found_msg">Kan inte hitta filen.</string>
+  <string name="editor_file_exceed_size_msg">Filen är för stor för att öppnas på denna enhet.</string>
+  <string name="editor_dirty_ask_title">Bekräfta avslut</string>
+  <string name="editor_dirty_ask_msg">Det finns osparade ändringar.\n\nAvsluta utan att spara?</string>
+  <string name="editor_successfully_saved">Filen sparades framgångsrikt.</string>
+  <string name="editor_read_only_mode">Filen öppnades som read-only.</string>
+  <string name="dumping_message">Genererar hex dump\u2026</string>
+  <string name="displaying_message">Visar\u2026</string>
+  <string name="bookmarks">Bokmärken</string>
+  <string name="bookmarks_home">Hem</string>
+  <string name="bookmarks_root_folder">Rot</string>
+  <string name="bookmarks_system_folder">System</string>
+  <string name="bookmarks_button_config_cd">Välj hemmapp.</string>
+  <string name="bookmarks_button_remove_bookmark_cd">Ta bort bokmärket.</string>
+  <string name="bookmarks_msgs_add_success">Bokmärket tillagt.</string>
+  <string name="initial_directory_dialog_title">Hemmapp</string>
+  <string name="initial_directory_label">Välj Hemmapp:</string>
+  <string name="initial_directory_relative_msg">Relativa sökvägar är inte tillåtna.</string>
+  <string name="initial_directory_error_msg">Ett fel inträffade när hemmappen sparades.</string>
+  <string name="menu_history">Historik</string>
+  <string name="menu_bookmarks">Bokmärken</string>
+  <string name="menu_search">Sök</string>
+  <string name="menu_settings">Inställningar</string>
+  <string name="menu_clear_history">Rensa historik</string>
+  <string name="menu_no_suggestions">Inga förslag</string>
+  <string name="menu_word_wrap">Radbrytning</string>
+  <string name="menu_syntax_highlight">Markera syntax</string>
+  <string name="create_copy_regexp">
+    <xliff:g id="name">%1$s</xliff:g> - kopiera<xliff:g id="extension">%2$s</xliff:g></string>
+  <string name="create_new_compress_file_regexp">
+    <xliff:g id="name">%1$s</xliff:g> - ny<xliff:g id="extension">%2$s</xliff:g></string>
+  <string name="waiting_dialog_msg">Utför åtgärd\u2026</string>
+  <string name="waiting_dialog_copying_title">Kopierar\u2026</string>
+  <string name="waiting_dialog_copying_msg">
+    <![CDATA[<b>Från</b>]]> <xliff:g id="from">%1$s</xliff:g><![CDATA[<br/>]]>
+    <![CDATA[<b>Till</b>]]> <xliff:g id="to">%2$s</xliff:g></string>
+  <string name="waiting_dialog_moving_title">Moving\u2026</string>
+  <string name="waiting_dialog_moving_msg">
+    <![CDATA[<b>Från</b>]]> <xliff:g id="from">%1$s</xliff:g><![CDATA[<br/>]]>
+    <![CDATA[<b>Till</b>]]> <xliff:g id="to">%2$s</xliff:g></string>
+  <string name="waiting_dialog_deleting_title">Raderar\u2026</string>
+  <string name="waiting_dialog_deleting_msg">
+    <![CDATA[<b>Fil</b>]]> <xliff:g id="file">%1$s</xliff:g></string>
+  <string name="waiting_dialog_extracting_title">Extraherar\u2026</string>
+  <string name="waiting_dialog_extracting_msg">
+    <![CDATA[<b>Fil</b>]]> <xliff:g id="file">%1$s</xliff:g></string>
+  <string name="waiting_dialog_compressing_title">Komprimerar\u2026</string>
+  <string name="waiting_dialog_compressing_msg">
+    <![CDATA[<b>Fil</b>]]> <xliff:g id="file">%1$s</xliff:g></string>
+  <string name="waiting_dialog_analizing_msg">
+    <![CDATA[<b>Analyserar\u2026</b>]]></string>
+  <string name="msgs_extracting_success">
+    Extraheringsåtgärden genomfördes framgångsrikt. Filerna packades upp till
+    <xliff:g id="destination">%1$s</xliff:g>.</string>
+  <string name="msgs_compressing_success">
+    Komprimeringsåtgärden genomfördes framgångsrikt. Filerna packades till
+    <xliff:g id="destination">%1$s</xliff:g>.</string>
+  <string name="actions_dialog_title">Åtgärder</string>
+  <string name="actions_menu_properties_current_folder">Egenskaper</string>
+  <string name="actions_menu_refresh">Uppdatera</string>
+  <string name="actions_menu_new_directory">Ny mapp</string>
+  <string name="actions_menu_new_file">Ny fil</string>
+  <string name="actions_menu_select_all">Markera alla</string>
+  <string name="actions_menu_deselect_all">Avmarkera alla</string>
+  <string name="actions_menu_select">Markera</string>
+  <string name="actions_menu_deselect">Avmarkera</string>
+  <string name="actions_menu_paste_selection">Kopiera markerade hit</string>
+  <string name="actions_menu_move_selection">Flytta markerade hit</string>
+  <string name="actions_menu_delete_selection">Radera markerade</string>
+  <string name="actions_menu_compress_selection">Komprimera markerade</string>
+  <string name="actions_menu_create_link">Skapa länk</string>
+  <string name="actions_menu_open">Öppna</string>
+  <string name="actions_menu_open_with">Öppna med</string>
+  <string name="actions_menu_execute">Kör</string>
+  <string name="actions_menu_send">Skicka</string>
+  <string name="actions_menu_send_selection">Skicka markering</string>
+  <string name="actions_menu_compress">Komprimera</string>
+  <string name="actions_menu_extract">Extrahera</string>
+  <string name="actions_menu_delete">Radera</string>
+  <string name="actions_menu_rename">Byt namn</string>
+  <string name="actions_menu_create_copy">Skapa kopia</string>
+  <string name="actions_menu_properties">Egenskaper</string>
+  <string name="actions_menu_add_to_bookmarks">Lägg till bokmärken</string>
+  <string name="actions_menu_add_shortcut">Lägg till genväg</string>
+  <string name="actions_menu_open_parent_folder">Öppna övermapp</string>
+  <string name="actions_menu_compute_checksum">Beräkna kontrollsumma</string>
+  <string name="actions_ask_undone_operation_msg">
+    Denna åtgärd kan inte ångras. Vill du fortsätta?</string>
+  <string name="input_name_dialog_label">Namn:</string>
+  <string name="input_name_dialog_message_empty_name">Namnet kan inte vara tomt.</string>
+  <string name="input_name_dialog_message_invalid_path_name">Ogiltigt namn. Tecknena
+    \'<xliff:g id="invalid_characters">%1$s</xliff:g>\' är inte tillåtna.</string>
+  <string name="input_name_dialog_message_invalid_name">Ogiltigt namn. Namnen \'.\' och
+    \'..\' är inte tillåtna.</string>
+  <string name="input_name_dialog_message_name_exists">Namnet finns redan.</string>
+  <string name="associations_dialog_title">Associeringar</string>
+  <string name="associations_dialog_remember">Kom ihåg markering</string>
+  <string name="associations_dialog_openwith_title">Öppna med</string>
+  <string name="associations_dialog_openwith_action">Öppna</string>
+  <string name="associations_dialog_sendwith_title">Skicka med</string>
+  <string name="associations_dialog_sendwith_action">Skicka</string>
+  <string name="inline_autocomplete_tab_nothing_to_complete_msg">Inget att slutföra.</string>
+  <string name="execution_console_title">Konsol</string>
+  <string name="execution_console_script_name_label">Skript:</string>
+  <string name="execution_console_script_execution_time_label">Tid:</string>
+  <string name="execution_console_script_exitcode_label">Utgångskod:</string>
+  <string name="execution_console_script_execution_time_text">
+    <xliff:g id="seconds">%1$s</xliff:g> sek.</string>
+  <string name="compute_checksum_title">Beräkna kontrollsumma</string>
+  <string name="compute_checksum_filename_label">Fil:</string>
+  <string name="compute_checksum_computing_checksum_msg">Beräknar kontrollsumma\u2026</string>
+  <string name="mime_folder">Mapp</string>
+  <string name="mime_symlink">Symlink</string>
+  <string name="mime_unknown">Okänd</string>
+  <string name="filetime_format_mode_system">Efter system</string>
+  <string name="filetime_format_mode_locale">Efter språk</string>
+  <string name="filetime_format_mode_ddMMyyyy_HHmmss">dd/mm/åååå hh:mm:ss</string>
+  <string name="filetime_format_mode_MMddyyyy_HHmmss">mm/dd/åååå hh:mm:ss</string>
+  <string name="filetime_format_mode_yyyyMMdd_HHmmss">åååå-mm-dd hh:mm:ss</string>
+  <string name="selection_folders_and_files"><xliff:g id="folders">%1$s</xliff:g> och <xliff:g id="files">%2$s</xliff:g> markerade.</string>
+  <string name="category_system">SYSTEM</string>
+  <string name="category_app">APP</string>
+  <string name="category_binary">BINARY</string>
+  <string name="category_text">TEXT</string>
+  <string name="category_document">DOCUMENT</string>
+  <string name="category_ebook">EBOOK</string>
+  <string name="category_mail">MAIL</string>
+  <string name="category_compress">COMPRESS</string>
+  <string name="category_exec">EXECUTABLE</string>
+  <string name="category_database">DATABASE</string>
+  <string name="category_font">FONT</string>
+  <string name="category_image">IMAGE</string>
+  <string name="category_audio">AUDIO</string>
+  <string name="category_video">VIDEO</string>
+  <string name="category_security">SECURITY</string>
+  <string name="compression_mode_title">Kompressionstyp</string>
+  <string name="shortcut_failed_msg">Misslyckades med att hantera genvägen.</string>
+  <string name="shortcut_creation_success_msg">Genvägen skapades framgångsrikt.</string>
+  <string name="shortcut_creation_failed_msg">Misslyckades med att skapa genväg.</string>
+  <string name="pref">Inställningar</string>
+  <string name="pref_general">Allmäna inställningar</string>
+  <string name="pref_search">Sökinställningar</string>
+  <string name="pref_editor">Redigerarinställningar</string>
+  <string name="pref_themes">Teman</string>
+  <string name="pref_about">Om</string>
+  <string name="pref_about_summary">Filhanterare v<xliff:g id="version">%1$s</xliff:g>
+    \nCopyright \u00A9 2013 The CyanogenMod Project</string>
+  <string name="pref_general_behaviour_category">Allmänt</string>
+  <string name="pref_case_sensitive_sort">Skriftlägeskänslig</string>
+  <string name="pref_case_sensitive_sort_summary">Överväger skriftläge vid navigering eller sortering av sökresultat</string>
+  <string name="pref_filetime_format_mode">Datum-/tidformat</string>
+  <string name="pref_disk_usage_warning_level">Varning vid diskanvändning</string>
+  <string name="pref_disk_usage_warning_level_summary" formatted="false">Visa diskanvändningswidgets i en annan färg när de når <xliff:g id="level">%1$s</xliff:g> procent
+    ledigt utrymme</string>
+  <string name="pref_compute_folder_statistics">Beräkna mappstatistik</string>
+  <string name="pref_compute_folder_statistics_on">Varning! Beräkningen av mappstatistik är kostsamt i tid och systemresurser</string>
+  <string name="pref_use_flinger">Använd svepgester</string>
+  <string name="pref_use_flinger_summary">Svep till höger för att radera filer eller mappar.</string>
+  <string name="pref_general_advanced_settings_category">Avancerat</string>
+  <string name="pref_access_mode">Behörighet</string>
+  <string name="pref_access_mode_safe">Säkert läge</string>
+  <string name="pref_access_mode_safe_summary">Säkert läge\n\nAppen körs utan rättigheter och de enda tillgängliga filsystemen är lagringsvolymerna (SD-kort och USB)</string>
+  <string name="pref_access_mode_prompt">Promptläge</string>
+  <string name="pref_access_mode_prompt_summary">Promptläge\n\nAppen körs
+    med full behörighet till filsystemet men kommer att fråga om tillstånd innan körning av förhöjda åtgärder</string>
+  <string name="pref_access_mode_root">Rootläge</string>
+  <string name="pref_access_mode_root_summary">Rootläge\n\nVarning! Detta läge möjliggör åtgärder som kan skada din enhet. Det är ditt eget ansvar att försäkra dig om att en åtgärd är säker</string>
+  <string name="pref_search_results_category">Resultat</string>
+  <string name="pref_show_relevance_widget">Visa relevans</string>
+  <string name="pref_highlight_terms">Markera söktermer</string>
+  <string name="pref_sort_search_results_mode">Sortera resultat</string>
+  <string name="pref_sort_search_results_mode_none">Sortera inte</string>
+  <string name="pref_sort_search_results_mode_name">Efter namn</string>
+  <string name="pref_sort_search_results_mode_relevance">Efter relevans</string>
+  <string name="pref_search_privacity_category">Integritet</string>
+  <string name="pref_save_search_terms">Spara söktermer</string>
+  <string name="pref_save_search_terms_on">Söktermer kommer att sparas och användas som förslag i framtida sökningar</string>
+  <string name="pref_save_search_terms_off">Söktermer kommer inte att sparas</string>
+  <string name="pref_remove_saved_search_terms">Ta bort sparade söktermer</string>
+  <string name="pref_remove_saved_search_terms_summary">Tryck för att ta bort alla sparade söktermer</string>
+  <string name="pref_remove_saved_search_terms_msg">Alla sparade söktermer togs bort.</string>
+  <string name="pref_editor_behaviour_category">Beteende</string>
+  <string name="pref_no_suggestions">Inga förslag</string>
+  <string name="pref_no_suggestions_desc">Visa inte ordboksförslag vid redigering av fil</string>
+  <string name="pref_word_wrap">Radbrytning</string>
+  <string name="pref_hexdump">Hexdumpa binärfiler</string>
+  <string name="pref_hexdump_desc">Vid öppning av en binärfil genereras en hexdump av filen som sedan öppnas i hexläsaren.</string>
+  <string name="pref_editor_syntax_highlight_category">Markera syntax</string>
+  <string name="pref_syntax_highlight">Markera syntax</string>
+  <string name="pref_syntax_highlight_desc">Markera filens syntax vid visning i redigeraren (endast när en behandlare för syntaxmarkering finns tillgänglig för filtypen)</string>
+  <string name="pref_syntax_highlight_color_scheme">Färgschema</string>
+  <string name="pref_syntax_highlight_color_scheme_desc">Tryck för att välja färgschema för syntaxmarkering</string>
+  <string name="pref_syntax_sh_use_theme_default">Använd standardtema</string>
+  <string name="pref_syntax_sh_use_theme_default_desc">Använd nuvarande temas standardsyntaxmarkering</string>
+  <string name="pref_editor_sh_item_category">Föremål</string>
+  <string name="pref_themes_selection_category">Teman</string>
+  <string name="pref_themes_set_theme">Välj tema</string>
+  <string name="pref_themes_no_preview">Ingen förhandsgranskning\ntillgänglig</string>
+  <string name="pref_themes_confirmation">Temat tillämpades med framgång.</string>
+  <string name="pref_themes_not_found">Temat hittades inte.</string>
+  <string name="pref_debug_traces">Logga debuginformation</string>
+  <string name="theme_default_name">Ljust tema</string>
+  <string name="theme_default_description">Ett ljust tema för CyanogenMods filhanterare.</string>
+  <string name="themes_author">CyanogenMod</string>
+  <string name="color_picker_alpha_slider_text">Alfa</string>
+  <string name="color_picker_current_text">Nuvarande:</string>
+  <string name="color_picker_new_text">Ny:</string>
+  <string name="color_picker_color">Färg:</string>
+  <string name="ash_reset_color_scheme">Tryck för att återställa standardfärgschema</string>
+  <string name="ash_text">Text</string>
+  <string name="ash_assignment">Tilldelning</string>
+  <string name="ash_singleline_comment">Radkommentar</string>
+  <string name="ash_multiline_comment">Blockkommentar</string>
+  <string name="ash_keyword">Nyckelord</string>
+  <string name="ash_quoted_string">Statisk sträng</string>
+  <string name="ash_variable">Variabel</string>
+  <string name="security_warning_extract">Varning!\n\n
+      Extrahering av arkiv till relativa eller absolut sökvägar kan orsaka skada i din enhet genom att skriva över systemfiler.\n\n
+      Vill du fortsätta?</string>
+  <string name="changelog_title">Ändringslogg</string>
+  <string name="welcome_title">Välkommen</string>
+  <string name="welcome_msg">
+    Välkommen till CyanogenMods filhanterare.
+    \n\nDenna app låter dig utforska filsystemet och genomföra åtgärder som kan skada din enhet. För att motverka skada startar appen i ett säkert läge utan rättigheter.
+    \n\nDu kan komma åt det avancerade läget med fulla rättigheter i Inställningar. Det är ditt ansvar att försäkra dig om att en åtgärd inte skadar din enhet.
+    \n\nThe CyanogenMod Team.\n</string>
+</resources>

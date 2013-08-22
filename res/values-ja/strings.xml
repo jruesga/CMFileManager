@@ -21,6 +21,15 @@
   <!-- The description of the application -->
   <string name="app_description">CyanogenMod ファイルマネージャ</string>
 
+  <!-- Human readable sizes -->
+  <string name="size_bytes">B</string>
+  <string name="size_kilobytes">kB</string>
+  <string name="size_megabytes">MB</string>
+  <string name="size_gigabytes">GB</string>
+
+  <!-- Date/time format order (%1$s: date; %2$s: time) -->
+  <string name="datetime_format_order">%1$s %2$s</string>
+
   <!-- Devices types -->
   <string name="device_blockdevice">ブロックデバイス</string>
   <string name="device_characterdevice">キャラクタデバイス</string>
@@ -36,9 +45,10 @@
   <string name="no">いいえ</string>
   <string name="all">すべて</string>
   <string name="overwrite">上書き</string>
+  <string name="select">選択</string>
 
   <!-- The root directory name -->
-  <string name="root_directory_name"><![CDATA[<Root folder>]]></string>
+  <string name="root_directory_name"><![CDATA[<ルートフォルダ>]]></string>
   <!-- The search result name -->
   <string name="search_result_name">検索: <xliff:g id="terms">%1$s</xliff:g></string>
 
@@ -47,6 +57,10 @@
   <string name="cancelled_message">キャンセルしました</string>
   <!-- Error message -->
   <string name="error_message">エラー</string>
+  <!-- Copy text content description -->
+  <string name="copy_text_cd">タップしてテキストをクリップボードにコピー</string>
+  <!-- Copy text content message -->
+  <string name="copy_text_msg">テキストをクリップボードにコピーしました</string>
 
   <!-- Warning dialog title -->
   <string name="warning_title">警告</string>
@@ -257,22 +271,24 @@
   <string name="fso_properties_dialog_contains">内包数:</string>
   <!-- Fso Properties Dialog * Owner Label -->
   <string name="fso_properties_dialog_owner">オーナー:</string>
+  <!-- Fso Properties Dialog * Last Accessed Time Label -->
+  <string name="fso_properties_dialog_last_accessed_date">アクセス日時:</string>
+  <!-- Fso Properties Dialog * Last Modified Time Label -->
+  <string name="fso_properties_dialog_last_modified_date">変更日時:</string>
+  <!-- Fso Properties Dialog * Last Changed Time -->
+  <string name="fso_properties_dialog_last_changed_date">更新日時:</string>
   <!-- Fso Properties Dialog * Group Label -->
   <string name="fso_properties_dialog_group">グループ:</string>
   <!-- Fso Properties Dialog * Others Label -->
   <string name="fso_properties_dialog_others">その他:</string>
-  <!-- Fso Properties Dialog * Folders -->
-  <plurals name="n_folders">
-    <item quantity="zero">0 フォルダ</item>
-    <item quantity="one">1 フォルダ</item>
-    <item quantity="other"><xliff:g id="folders">%1$d</xliff:g> フォルダ</item>
-  </plurals>
-  <!-- Fso Properties Dialog * Files -->
-  <plurals name="n_files">
-    <item quantity="zero">0 ファイル</item>
-    <item quantity="one">1 ファイル</item>
-    <item quantity="other"><xliff:g id="files">%1$d</xliff:g> ファイル</item>
-  </plurals>
+  <!-- Fso Properties Dialog * Skip media scan -->
+  <string name="fso_properties_dialog_include_in_media_scan">メディアスキャンをスキップ:</string>
+  <string name="fso_failed_to_allow_media_scan">メディアスキャンを許可できませんでした</string>
+  <string name="fso_failed_to_prevent_media_scan">メディアスキャンを中断できませんでした</string>
+  <string name="fso_delete_nomedia_dir_title">.nomediaディレクトリを削除</string>
+  <string name="fso_delete_nomedia_dir_body">このディレクトリには.nomediaディレクトリがあります。\n\nディレクトリの中身を含め全て削除しますか?</string>
+  <string name="fso_delete_nomedia_non_empty_title">.nomediaファイルを削除</string>
+  <string name="fso_delete_nomedia_non_empty_body">このディレクトリには空ではない.nomediaファイルがあります。\n\n削除しますか?</string>
 
   <!-- History * History activity title -->
   <string name="history">履歴</string>
@@ -291,12 +307,6 @@
   <string name="search_error_msg">検索中にエラーが発声しました。結果はありません。</string>
   <!-- Search * Search no results message -->
   <string name="search_no_results_msg">結果はありません。</string>
-  <!-- Search * Search found items -->
-  <plurals name="search_found_items">
-    <item quantity="zero">該当項目はありません</item>
-    <item quantity="one">1 項目見つかりました</item>
-    <item quantity="other"><xliff:g id="count">%d</xliff:g> 項目見つかりました</item>
-  </plurals>
   <!-- Search * Number of items found in directory -->
   <string name="search_found_items_in_directory"><xliff:g id="path">%2$s</xliff:g> に <xliff:g id="items">%1$s</xliff:g> つ</string>
   <!-- Search * Search query terms -->
@@ -312,6 +322,7 @@
 
   <!-- Picker Activity * Dialog title -->
   <string name="picker_title">ファイルを選択</string>
+  <string name="directory_picker_title">ディレクトリを選択</string>
 
   <!-- Editor * Editor activity title -->
   <string name="editor">エディタ</string>
@@ -329,6 +340,10 @@
   <string name="editor_successfully_saved">ファイルの保存に成功しました。</string>
   <!-- Editor * Read-only file mode -->
   <string name="editor_read_only_mode">ファイルは読み取り専用で開かれています。</string>
+  <!-- Editor * Dumping message -->
+  <string name="dumping_message">16進ダンプを生成中\u2026</string>
+  <!-- Editor * Displaying -->
+  <string name="displaying_message">表示中\u2026</string>
 
   <!-- Bookmarks * Bookmarks activity title -->
   <string name="bookmarks">ブックマーク</string>
@@ -364,6 +379,12 @@
   <string name="menu_settings">設定</string>
   <!-- Menu * History * Clear history -->
   <string name="menu_clear_history">履歴をクリア</string>
+  <!-- Menu * Editor * No suggestions -->
+  <string name="menu_no_suggestions">サジェストを表示しない</string>
+  <!-- Menu * Editor * Word wrap -->
+  <string name="menu_word_wrap">ワードラップ</string>
+  <!-- Menu * Editor * Sintax highlight -->
+  <string name="menu_syntax_highlight">シンタックスハイライト</string>
 
   <!-- Regular expression for create copy action -->
   <string name="create_copy_regexp">
@@ -449,6 +470,8 @@
   <string name="actions_menu_execute">実行</string>
   <!-- Actions Dialog * Menu * Send -->
   <string name="actions_menu_send">送信</string>
+  <!-- Actions Dialog * Menu * Send selection -->
+  <string name="actions_menu_send_selection">選択を送信</string>
   <!-- Actions Dialog * Menu * Compress -->
   <string name="actions_menu_compress">圧縮</string>
   <!-- Actions Dialog * Menu * Extract -->
@@ -467,6 +490,8 @@
   <string name="actions_menu_add_shortcut">ショートカットを追加</string>
   <!-- Actions Dialog * Menu * Open parent folder -->
   <string name="actions_menu_open_parent_folder">親フォルダを開く</string>
+  <!-- Actions Dialog * Menu * Compute checksum -->
+  <string name="actions_menu_compute_checksum">チェックサムを算出</string>
 
   <!-- Actions * Ask user prior to do an undone operation. Dialog message -->
   <string name="actions_ask_undone_operation_msg">
@@ -513,12 +538,30 @@
   <string name="execution_console_script_execution_time_text">
     <xliff:g id="seconds">%1$s</xliff:g> 秒.</string>
 
+  <!-- Compute checksum * Title -->
+  <string name="compute_checksum_title">チェックサムを算出</string>
+  <!-- Compute checksum * The file name label -->
+  <string name="compute_checksum_filename_label">ファイル:</string>
+  <!-- Compute checksum * The computing checksum message-->
+  <string name="compute_checksum_computing_checksum_msg">チェックサムを計算中\u2026</string>
+
   <!-- Mime/Types * Folder -->
   <string name="mime_folder">フォルダ</string>
   <!-- Mime/Types * Symlink -->
   <string name="mime_symlink">シンボリックリンク</string>
   <!-- Mime/Types * Unknown -->
   <string name="mime_unknown">不明</string>
+
+  <!--  Filetime formats -->
+  <string name="filetime_format_mode_system">システム定義</string>
+  <string name="filetime_format_mode_locale">ロケール定義</string>
+  <string name="filetime_format_mode_ddMMyyyy_HHmmss">dd/mm/yyyy hh:mm:ss</string>
+  <string name="filetime_format_mode_MMddyyyy_HHmmss">mm/dd/yyyy hh:mm:ss</string>
+  <string name="filetime_format_mode_yyyyMMdd_HHmmss">yyyy-mm-dd hh:mm:ss</string>
+
+  <!-- Selection. -->
+  <!-- For example "2 folders and 1 file selected." -->
+  <string name="selection_folders_and_files"><xliff:g id="folders">%1$s</xliff:g> と <xliff:g id="files">%2$s</xliff:g> を選択中。</string>
 
   <!-- Category descriptions -->
   <string name="category_system">システム</string>
@@ -553,18 +596,24 @@
   <string name="pref_general">一般設定</string>
   <!-- Preferences * Search title -->
   <string name="pref_search">検索オプション</string>
+  <!-- Preferences * Editor title -->
+  <string name="pref_editor">エディタオプション</string>
   <!-- Preferences * Themes title -->
   <string name="pref_themes">テーマ</string>
   <!-- Preferences * About title -->
   <string name="pref_about">情報</string>
   <!-- Preferences * About summary -->
   <string name="pref_about_summary">ファイルマネージャ v<xliff:g id="version">%1$s</xliff:g>
-    \nCopyright \u00A9 2012 The CyanogenMod Project</string>
+    \nCopyright \u00A9 2013 The CyanogenMod Project</string>
 
   <!-- Preferences * General * Behaviour category -->
   <string name="pref_general_behaviour_category">一般</string>
   <!-- Preferences * General * Case sensitive sort title -->
   <string name="pref_case_sensitive_sort">大文字小文字を区別してソート</string>
+  <!-- Preferences * General * Case sensitive sort and navigating summary -->
+  <string name="pref_case_sensitive_sort_summary">検索結果のソートや移動に大文字小文字を区別する</string>
+  <!-- Preferences * General * Filetime format mode title -->
+  <string name="pref_filetime_format_mode">日付と時間の書式</string>
   <!-- Preferences * General *Disk usage warning level title -->
   <string name="pref_disk_usage_warning_level">ディスク使用量の警告</string>
   <!-- Preferences * General * Disk usage warning level summary -->
@@ -623,6 +672,34 @@
   <string name="pref_remove_saved_search_terms_summary">タップしてすべての保存された検索語を削除する</string>
   <!-- Preferences * Search * Suggestions were truncated -->
   <string name="pref_remove_saved_search_terms_msg">すべての保存された検索語は削除されました。</string>
+  <!-- Preferences * Editor * Behaviour category -->
+  <string name="pref_editor_behaviour_category">挙動</string>
+  <!-- Preferences * Editor * No suggestions -->
+  <string name="pref_no_suggestions">サジェストを表示しない</string>
+  <!-- Preferences * Editor * No suggestions summary -->
+  <string name="pref_no_suggestions_desc">ファイルを編集中に辞書のサジェストを表示しない</string>
+  <!-- Preferences * Editor * Word wrap -->
+  <string name="pref_word_wrap">ワードラップ</string>
+  <!-- Preferences * Editor * Hexdump -->
+  <string name="pref_hexdump">バイナリファイルの16進ダンプ</string>
+  <!-- Preferences * Editor * Hexdump desc -->
+  <string name="pref_hexdump_desc">バイナリファイルを開くときは16進ダンプを生成して16進ビューワーで開きます。</string>
+    <!-- Preferences * Editor * Syntax highlight category -->
+  <string name="pref_editor_syntax_highlight_category">シンタックスハイライト</string>
+  <!-- Preferences * Editor * Syntax highlight -->
+  <string name="pref_syntax_highlight">シンタックスハイライト</string>
+  <!-- Preferences * Editor * Syntax highlight summary -->
+  <string name="pref_syntax_highlight_desc">ファイルの構文を強調してエディタに表示する(シンタックスハイライトプロセッサが利用可能なファイルタイプの場合のみ)</string>
+  <!-- Preferences * Editor * Syntax highlight color scheme -->
+  <string name="pref_syntax_highlight_color_scheme">カラースキーム</string>
+  <!-- Preferences * Editor * Syntax highlight color scheme summary -->
+  <string name="pref_syntax_highlight_color_scheme_desc">タップしてシンタックスハイライトのカラースキームを選択</string>
+  <!-- Preferences * Editor * Syntax highlight * Color Scheme -->
+  <string name="pref_syntax_sh_use_theme_default">テーマのデフォルト</string>
+  <!-- Preferences * Editor * Syntax highlight *Color Scheme summary -->
+  <string name="pref_syntax_sh_use_theme_default_desc">現在のテーマのデフォルトシンタックスハイライトを使用する</string>
+  <!-- Preferences * Editor * Syntax highlight * Color Scheme * Items category -->
+  <string name="pref_editor_sh_item_category">アイテム</string>
   <!-- Preferences * Themes * Themes selection category -->
   <string name="pref_themes_selection_category">テーマ</string>
   <!-- Preferences * Themes * Set theme button -->
@@ -643,6 +720,26 @@
   <string name="theme_default_description">CyanogenModファイルマネージャの明るいテーマ</string>
   <!-- Themes * Default theme author -->
   <string name="themes_author">CyanogenMod</string>
+
+  <!-- ColorPickerDialog -->
+  <!-- The text of the alpha slider control -->
+  <string name="color_picker_alpha_slider_text">アルファ</string>
+  <!-- The label of the current color panel -->
+  <string name="color_picker_current_text">現在:</string>
+  <!-- The label of the new color panel -->
+  <string name="color_picker_new_text">新規:</string>
+  <!-- The label of the color input -->
+  <string name="color_picker_color">色:</string>
+
+  <!-- Android Syntax Highlight -->
+  <string name="ash_reset_color_scheme">タップしてデフォルトのテーマカラースキームに戻す</string>
+  <string name="ash_text">テキスト</string>
+  <string name="ash_assignment">割り当て</string>
+  <string name="ash_singleline_comment">1行コメント</string>
+  <string name="ash_multiline_comment">複数行コメント</string>
+  <string name="ash_keyword">キーワード</string>
+  <string name="ash_quoted_string">引用文字列</string>
+  <string name="ash_variable">変数</string>
 
   <!-- Security * Extract relative or absolute files -->
   <string name="security_warning_extract">警告!\n\n

@@ -96,6 +96,8 @@ public class EditorActivity extends Activity implements TextWatcher {
 
     private static boolean DEBUG = false;
 
+    private static final int WRITE_RETRIES = 3;
+
     private final BroadcastReceiver mNotificationReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
@@ -1052,15 +1054,15 @@ public class EditorActivity extends Activity implements TextWatcher {
                     if (activity.mBinary && hexDump) {
                         // we do not use the Hexdump helper class, because we need to show the
                         // progress of the dump process
-                        this.mReader.mBuffer =
-                                new SpannableStringBuilder(
-                                        toHexPrintableString(
+                        final String data = toHexPrintableString(
                                                 toHexDump(
-                                                        this.mReader.mByteBuffer.toByteArray())));
+                                                        this.mReader.mByteBuffer.toByteArray()));
+                        this.mReader.mBuffer = new SpannableStringBuilder(data);
+                        Log.i(TAG, "Bytes read: " + data.getBytes().length); //$NON-NLS-1$
                     } else {
-                        this.mReader.mBuffer =
-                                new SpannableStringBuilder(
-                                        new String(this.mReader.mByteBuffer.toByteArray()));
+                        final String data = new String(this.mReader.mByteBuffer.toByteArray());
+                        this.mReader.mBuffer = new SpannableStringBuilder(data);
+                        Log.i(TAG, "Bytes read: " + data.getBytes().length); //$NON-NLS-1$
                     }
                     this.mReader.mByteBuffer = null;
 
@@ -1246,7 +1248,7 @@ public class EditorActivity extends Activity implements TextWatcher {
                     null);
 
             // Write the file
-            syncWrite();
+            ensureSyncWrite();
 
         } catch (Exception ex) {
             ExceptionUtil.translateException(
@@ -1254,7 +1256,7 @@ public class EditorActivity extends Activity implements TextWatcher {
                 @Override
                 public void onSuccess() {
                     // Write the file
-                    syncWrite();
+                    ensureSyncWrite();
                 }
 
                 @Override
@@ -1267,53 +1269,57 @@ public class EditorActivity extends Activity implements TextWatcher {
     }
 
     /**
-     * Method that write the file.
+     * Method that checks that the write to disk operation was successfully and the
+     * expected bytes are written to disk.
      * @hide
      */
-    void syncWrite() {
+    void ensureSyncWrite() {
         try {
-            // Configure the writer
-            AsyncWriter writer = new AsyncWriter();
+            for (int i = 0; i < WRITE_RETRIES; i++) {
+                // Configure the writer
+                AsyncWriter writer = new AsyncWriter();
 
-            // Create the writable command
-            WriteExecutable cmd =
-                    CommandHelper.write(this, this.mFso.getFullPath(), writer, null);
+                // Write to disk
+                final byte[] data = this.mEditor.getText().toString().getBytes();
+                long expected = data.length;
+                syncWrite(writer, data);
 
-            // Obtain access to the buffer (IMP! don't close the buffer here, it's manage
-            // by the command)
-            OutputStream os = cmd.createOutputStream();
-            try {
-                // Retrieve the text from the editor
-                String text = this.mEditor.getText().toString();
-                ByteArrayInputStream bais = new ByteArrayInputStream(text.getBytes());
-                text = null;
-                try {
-                    // Buffered write
-                    byte[] data = new byte[this.mBufferSize];
-                    int read = 0;
-                    while ((read = bais.read(data, 0, this.mBufferSize)) != -1) {
-                        os.write(data, 0, read);
+                // Sleep a bit
+                Thread.sleep(150L);
+
+                // Is error?
+                if (writer.mCause != null) {
+                    Log.e(TAG, "Write operation failed. Retries: " + i, writer.mCause);
+                    if (i == (WRITE_RETRIES-1)) {
+                        // Something was wrong. The file probably is corrupted
+                        DialogHelper.showToast(
+                                this, R.string.msgs_operation_failure, Toast.LENGTH_SHORT);
+                        break;
                     }
-                } finally {
-                    try {
-                        bais.close();
-                    } catch (Exception e) {/**NON BLOCK**/}
+
+                    // Retry
+                    continue;
                 }
 
-            } finally {
-                // Ok. Data is written or ensure buffer close
-                cmd.end();
-            }
+                // Check that all the bytes were written
+                FileSystemObject fso =
+                        CommandHelper.getFileInfo(this, this.mFso.getFullPath(), true, null);
+                if (fso == null || fso.getSize() != expected) {
+                    Log.e(TAG, String.format(
+                            "Size is not the same. Expected: %d, Written: %d. Retries: %d",
+                            expected, fso == null ? -1 : fso.getSize(), i));
+                    if (i == (WRITE_RETRIES-1)) {
+                        // Something was wrong. The destination data is not the same
+                        // as the source data
+                        DialogHelper.showToast(
+                                this, R.string.msgs_operation_failure, Toast.LENGTH_SHORT);
+                        break;
+                    }
 
-            // Sleep a bit
-            Thread.sleep(150L);
+                    // Retry
+                    continue;
+                }
 
-            // Is error?
-            if (writer.mCause != null) {
-                // Something was wrong. The file probably is corrupted
-                DialogHelper.showToast(
-                        this, R.string.msgs_operation_failure, Toast.LENGTH_SHORT);
-            } else {
                 // Success. The file was saved
                 DialogHelper.showToast(
                         this, R.string.editor_successfully_saved, Toast.LENGTH_SHORT);
@@ -1324,13 +1330,55 @@ public class EditorActivity extends Activity implements TextWatcher {
                 intent.putExtra(
                         FileManagerSettings.EXTRA_FILE_CHANGED_KEY, this.mFso.getFullPath());
                 sendBroadcast(intent);
-            }
 
-        } catch (Exception e) {
+                // Done
+                break;
+
+            }
+        } catch (Exception ex) {
             // Something was wrong, but the file was NOT written
+            Log.e(TAG, "The file wasn't written.", ex);
             DialogHelper.showToast(
                     this, R.string.msgs_operation_failure, Toast.LENGTH_SHORT);
-            return;
+        }
+    }
+
+    /**
+     * Method that write the file.
+     *
+     * @param writer The command listener
+     * @param bytes The bytes to write
+     * @throws Exception If something was wrong
+     */
+    private void syncWrite(AsyncWriter writer, byte[] bytes) throws Exception {
+        // Create the writable command
+        WriteExecutable cmd =
+                CommandHelper.write(this, this.mFso.getFullPath(), writer, null);
+
+        // Obtain access to the buffer (IMP! don't close the buffer here, it's manage
+        // by the command)
+        OutputStream os = cmd.createOutputStream();
+        try {
+            // Retrieve the text from the editor
+            ByteArrayInputStream bais = new ByteArrayInputStream(bytes);
+            try {
+                // Buffered write
+                byte[] data = new byte[this.mBufferSize];
+                int read = 0, written = 0;
+                while ((read = bais.read(data, 0, this.mBufferSize)) != -1) {
+                    os.write(data, 0, read);
+                    written += read;
+                }
+                Log.i(TAG, "Bytes written: " + written); //$NON-NLS-1$
+            } finally {
+                try {
+                    bais.close();
+                } catch (Exception e) {/**NON BLOCK**/}
+            }
+
+        } finally {
+            // Ok. Data is written or ensure buffer close
+            cmd.end();
         }
     }
 

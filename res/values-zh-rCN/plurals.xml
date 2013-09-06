@@ -29,4 +29,7 @@
     <item quantity="one">找到了 1 项</item>
     <item quantity="other">找到了 <xliff:g id="count">%d</xliff:g> 项</item>
   </plurals>
+  <plurals name="selection_folders_or_files">
+    <item quantity="other"><xliff:g id="items">%1$s</xliff:g> 个文件或文件夹被选中.</item>
+  </plurals>
 </resources>

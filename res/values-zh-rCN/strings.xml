@@ -14,8 +14,7 @@
      limitations under the License.
  -->
 
-<resources xmlns:android="http://schemas.android.com/apk/res/android"
-  xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
 
   <string name="app_name">文件管理器</string>
   <string name="app_description">CyanogenMod 文件管理器.</string>
@@ -57,7 +56,7 @@
   <string name="msgs_cant_create_console">无法得到运行需要的权限.</string>
   <string name="msgs_privileged_console_alloc_failed">无法在 Root 访问模式下运行. 正在切换至安全模式.</string>
   <string name="msgs_settings_save_failure">设置无法被应用与保存.</string>
-  <string name="msgs_settings_invalid_initial_directory">初始文件夹 \"<xliff:g id="initial_dir">%1$s</xliff:g>\" 是无效的. 切换至 Root 文件夹.</string>
+  <string name="msgs_settings_invalid_initial_directory">初始文件夹 "<xliff:g id="initial_dir">%1$s</xliff:g>" 是无效的. 切换至 Root 文件夹.</string>
 
   <string name="msgs_success">操作已成功的完成.</string>
   <string name="msgs_unknown">检测到了一个错误. 此操作未能成功完成.</string>
@@ -262,8 +261,8 @@
   <string name="actions_menu_deselect_all">取消全选</string>
   <string name="actions_menu_select">选择</string>
   <string name="actions_menu_deselect">取消选择</string>
-  <string name="actions_menu_paste_selection">粘贴选择项到这</string>
-  <string name="actions_menu_move_selection">移动选择项到这</string>
+  <string name="actions_menu_paste_selection">粘贴选择项</string>
+  <string name="actions_menu_move_selection">移动选择项</string>
   <string name="actions_menu_delete_selection">删除选择项</string>
   <string name="actions_menu_compress_selection">压缩选择项</string>
   <string name="actions_menu_create_link">创建链接</string>
@@ -323,6 +322,8 @@
   <string name="filetime_format_mode_MMddyyyy_HHmmss">月/日/年 时:分:秒</string>
   <string name="filetime_format_mode_yyyyMMdd_HHmmss">年-月-日 时:分:秒</string>
 
+  <string name="selection_folders_and_files">已选择 <xliff:g id="folders">%1$s</xliff:g> 个文件夹和 <xliff:g id="files">%2$s</xliff:g> 个文件.</string>
+
   <string name="category_system">系统</string>
   <string name="category_app">程序</string>
   <string name="category_binary">二进制</string>
@@ -355,7 +356,7 @@
     \n版权所有 \u00A9 2013 CyanogenMod</string>
 
   <string name="pref_general_behaviour_category">常规</string>
-  <string name="pref_case_sensitive_sort">区分大小写</string>
+  <string name="pref_case_sensitive_sort">排列时区分大小写</string>
   <string name="pref_case_sensitive_sort_summary">导航或排列搜索结果时区分大小写</string>
   <string name="pref_disk_usage_warning_level">磁盘使用警告</string>
   <string name="pref_disk_usage_warning_level_summary" formatted="false">当磁盘使用量到达百分之 <xliff:g id="level">%1$s</xliff:g> 的可用空间时, 在磁盘使用小部件中显示不同的颜色</string>

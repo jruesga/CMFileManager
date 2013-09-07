@@ -20,6 +20,18 @@
   <string name="app_name">Menedżer plików</string>
   <string name="app_description">Menedżer plików CyanogenMod</string>
 
+  <string name="size_bytes">B</string>
+  <string name="size_kilobytes">kB</string>
+  <string name="size_megabytes">MB</string>
+  <string name="size_gigabytes">GB</string>
+  <string name="datetime_format_order">%1$s %2$s</string>
+  <string name="device_blockdevice">Urządzenie blokowe</string>
+  <string name="device_characterdevice">Urządzenie znakowe</string>
+  <string name="device_namedpipe">Nazwany potok</string>
+  <string name="device_domainsocket">Gniazdo domeny</string>
+  <string name="mount_point_readonly">Odczyt</string>
+  <string name="mount_point_readwrite">Zapis/Odczyt</string>
+
   <string name="yes">Tak</string>
   <string name="no">Nie</string>
   <string name="all">Wszystko</string>
@@ -140,16 +152,6 @@
   <string name="fso_properties_dialog_owner">Właściciel:</string>
   <string name="fso_properties_dialog_group">Grupa:</string>
   <string name="fso_properties_dialog_others">Inni:</string>
-  <plurals name="n_folders">
-    <item quantity="zero">0 folderów</item>
-    <item quantity="one">1 folder</item>
-    <item quantity="other"><xliff:g id="folders">%1$d</xliff:g> folderów</item>
-  </plurals>
-  <plurals name="n_files">
-    <item quantity="zero">0 plików</item>
-    <item quantity="one">1 plik</item>
-    <item quantity="other"><xliff:g id="files">%1$d</xliff:g> plików</item>
-  </plurals>
   <string name="fso_properties_dialog_include_in_media_scan">Pomiń przy skanowaniu mediów:</string>
   <string name="fso_failed_to_allow_media_scan">Nie udało się uwzględnić przy skanowaniu mediów</string>
   <string name="fso_failed_to_prevent_media_scan">Nie udało się zapobiec uwzględnianiu przy skanowaniu mediów</string>
@@ -167,12 +169,7 @@
   <string name="search_voice_hint">Wypowiedz frazę wyszukiwania</string>
   <string name="search_error_msg">Napotkano błąd w trakcie wyszukiwania. Nie znaleziono wyników.</string>
   <string name="search_no_results_msg">Nie znaleziono wyników.</string>
-  <plurals name="search_found_items">
-    <item quantity="zero">Nie znaleziono elementów</item>
-    <item quantity="one">Znaleziono 1 element</item>
-    <item quantity="other">Znaleziono<xliff:g id="count">%d</xliff:g> elementów</item>
-  </plurals>
-  <string name="search_found_items_in_directory"><xliff:g id="items">%1$s</xliff:g> in
+  <string name="search_found_items_in_directory"><xliff:g id="items">%1$s</xliff:g> w
     <xliff:g id="path">%2$s</xliff:g></string>
   <string name="search_terms"><![CDATA[<b>Warunki:</b>]]> <xliff:g id="terms">%1$s</xliff:g></string>
   <string name="search_few_characters_title">Potwierdź wyszukiwanie</string>
@@ -273,6 +270,8 @@
   <string name="actions_menu_add_shortcut">Utwórz skrót</string>
   <string name="actions_menu_open_parent_folder">Otwórz folder nadrzędny</string>
   <string name="actions_menu_compute_checksum">Oblicz sumę kontrolną</string>
+
+  <string name="selection_folders_and_files">Zaznaczono <xliff:g id="folders">%1$s</xliff:g> i <xliff:g id="files">%2$s</xliff:g>.</string>
 
   <string name="actions_ask_undone_operation_msg">Ta czynność nie może zostać cofnięta. Czy chcesz kontynuować?</string>
 
@@ -396,6 +395,7 @@
   <string name="color_picker_new_text">Nowy:</string>
   <string name="color_picker_color">Kolor:</string>
 
+  <string name="ash_reset_color_scheme">Wybierz aby przywrócić domyślny schemat kolorów</string>
   <string name="ash_text">Tekst</string>
   <string name="ash_assignment">Przyporządkowanie</string>
   <string name="ash_singleline_comment">Jednowierszowy komentarz</string>

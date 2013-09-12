@@ -98,6 +98,12 @@ public enum FileManagerSettings {
     SETTINGS_COMPUTE_FOLDER_STATISTICS(
             "cm_filemanager_compute_folder_statistics", Boolean.FALSE), //$NON-NLS-1$
     /**
+     * When to display thumbs of pictures, videos, ...
+     * @hide
+     */
+    SETTINGS_DISPLAY_THUMBS(
+            "cm_filemanager_show_thumbs", Boolean.FALSE), //$NON-NLS-1$
+    /**
      * Whether use flinger to remove items
      * @hide
      */

@@ -104,7 +104,7 @@ public class BookmarksAdapter extends ArrayAdapter<Bookmark> {
     public BookmarksAdapter(
             Context context, List<Bookmark> bookmarks, OnClickListener onActionClickListener) {
         super(context, RESOURCE_ITEM_NAME, bookmarks);
-        this.mIconHolder = new IconHolder();
+        this.mIconHolder = new IconHolder(context, false);
         this.mOnActionClickListener = onActionClickListener;
 
         //Do cache of the data for better performance
@@ -126,7 +126,10 @@ public class BookmarksAdapter extends ArrayAdapter<Bookmark> {
     public void dispose() {
         clear();
         this.mData = null;
-        this.mIconHolder = null;
+        if (mIconHolder != null) {
+            mIconHolder.cleanup();
+            mIconHolder = null;
+        }
     }
 
     /**
@@ -144,21 +147,19 @@ public class BookmarksAdapter extends ArrayAdapter<Bookmark> {
             //Build the data holder
             this.mData[i] = new BookmarksAdapter.DataHolder();
             this.mData[i].mDwIcon =
-                    this.mIconHolder.getDrawable(getContext(), BookmarksHelper.getIcon(bookmark));
+                    this.mIconHolder.getDrawable(BookmarksHelper.getIcon(bookmark));
             this.mData[i].mName = bookmark.mName;
             this.mData[i].mPath = bookmark.mPath;
             this.mData[i].mDwAction = null;
             this.mData[i].mActionCd = null;
             if (bookmark.mType.compareTo(BOOKMARK_TYPE.HOME) == 0) {
                 this.mData[i].mDwAction =
-                        this.mIconHolder.getDrawable(
-                                getContext(), "ic_config_drawable"); //$NON-NLS-1$
+                        this.mIconHolder.getDrawable("ic_config_drawable"); //$NON-NLS-1$
                 this.mData[i].mActionCd =
                         getContext().getString(R.string.bookmarks_button_config_cd);
             } else if (bookmark.mType.compareTo(BOOKMARK_TYPE.USER_DEFINED) == 0) {
                 this.mData[i].mDwAction =
-                        this.mIconHolder.getDrawable(getContext(),
-                                    "ic_close_drawable"); //$NON-NLS-1$
+                        this.mIconHolder.getDrawable("ic_close_drawable"); //$NON-NLS-1$
                 this.mData[i].mActionCd =
                         getContext().getString(R.string.bookmarks_button_remove_bookmark_cd);
             }
@@ -220,7 +221,10 @@ public class BookmarksAdapter extends ArrayAdapter<Bookmark> {
      * Method that should be invoked when the theme of the app was changed
      */
     public void notifyThemeChanged() {
+        if (mIconHolder != null) {
+            mIconHolder.cleanup();
+        }
         // Empty icon holder
-        this.mIconHolder = new IconHolder();
+        this.mIconHolder = new IconHolder(getContext(), false);
     }
 }

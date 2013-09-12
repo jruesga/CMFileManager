@@ -553,4 +553,44 @@ public final class MimeTypeHelper {
         return mimeTypeExpression.replaceAll("\\*", ".\\*"); //$NON-NLS-1$ //$NON-NLS-2$
     }
 
+
+    /**
+     * Class for resolve known mime types
+     */
+    public static final class KnownMimeTypeResolver {
+        private static final String MIME_TYPE_APK = "application/vnd.android.package-archive";
+
+        /**
+         * Method that returns if the FileSystemObject is an Android app.
+         *
+         * @param context The current context
+         * @param fso The FileSystemObject to check
+         * @return boolean If the FileSystemObject is an Android app.
+         */
+        public static boolean isAndroidApp(Context context, FileSystemObject fso) {
+            return MIME_TYPE_APK.equals(MimeTypeHelper.getMimeType(context, fso));
+        }
+
+        /**
+         * Method that returns if the FileSystemObject is an image file.
+         *
+         * @param context The current context
+         * @param fso The FileSystemObject to check
+         * @return boolean If the FileSystemObject is an image file.
+         */
+        public static boolean isImage(Context context, FileSystemObject fso) {
+            return MimeTypeHelper.getCategory(context, fso).compareTo(MimeTypeCategory.IMAGE) == 0;
+        }
+
+        /**
+         * Method that returns if the FileSystemObject is an video file.
+         *
+         * @param context The current context
+         * @param fso The FileSystemObject to check
+         * @return boolean If the FileSystemObject is an video file.
+         */
+        public static boolean isVideo(Context context, FileSystemObject fso) {
+            return MimeTypeHelper.getCategory(context, fso).compareTo(MimeTypeCategory.VIDEO) == 0;
+        }
+    }
 }

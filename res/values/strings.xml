@@ -668,6 +668,10 @@
   <!-- Preferences * General * Compute folder statistics summary on -->
   <string name="pref_compute_folder_statistics_on">Warning! The computation of folder statistics is costly in time and
     system resources</string>
+  <!-- Preferences * General * Display thumbs -->
+  <string name="pref_display_thumbs">Preview</string>
+  <!-- Preferences * General * Display thumbs summary -->
+  <string name="pref_display_thumbs_summary">Show a preview image for pictures, videos, music files and apps.</string>
   <!-- Preferences * General * Use flinger detection -->
   <string name="pref_use_flinger">Use swipe gestures</string>
   <!-- Preferences * General * Use flinger detection summary -->

@@ -56,6 +56,14 @@
         android:persistent="true"
         android:defaultValue="false" />
 
+      <!-- Thumbs -->
+      <CheckBoxPreference
+        android:key="cm_filemanager_show_thumbs"
+        android:title="@string/pref_display_thumbs"
+        android:summary="@string/pref_display_thumbs_summary"
+        android:persistent="true"
+        android:defaultValue="false" />
+
       <!-- Use flinger -->
       <!--
       <CheckBoxPreference

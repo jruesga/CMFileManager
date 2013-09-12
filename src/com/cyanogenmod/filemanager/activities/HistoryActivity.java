@@ -220,33 +220,30 @@ public class HistoryActivity extends Activity implements OnItemClickListener {
         this.mListView = (ListView)findViewById(R.id.history_listview);
 
         // Load the history in background
-        AsyncTask<Void, Void, Boolean> task = new AsyncTask<Void, Void, Boolean>() {
+        AsyncTask<Void, Void, List<History>> task = new AsyncTask<Void, Void, List<History>>() {
             Exception mCause;
             List<History> mHistory;
 
             @Override
-            protected Boolean doInBackground(Void... params) {
+            protected List<History> doInBackground(Void... params) {
                 try {
                     this.mHistory =
                             (List<History>)getIntent().getSerializableExtra(EXTRA_HISTORY_LIST);
                     if (this.mHistory.isEmpty()) {
                         View msg = findViewById(R.id.history_empty_msg);
                         msg.setVisibility(View.VISIBLE);
-                        return Boolean.TRUE;
+                        return new ArrayList<History>();
                     }
                     HistoryActivity.this.mIsEmpty = this.mHistory.isEmpty();
 
                     //Show inverted history
                     final List<History> adapterList = new ArrayList<History>(this.mHistory);
                     Collections.reverse(adapterList);
-                    HistoryActivity.this.mAdapter =
-                            new HistoryAdapter(HistoryActivity.this, adapterList);
-
-                    return Boolean.TRUE;
+                    return adapterList;
 
                 } catch (Exception e) {
                     this.mCause = e;
-                    return Boolean.FALSE;
+                    return null;
                 }
             }
 
@@ -256,9 +253,12 @@ public class HistoryActivity extends Activity implements OnItemClickListener {
             }
 
             @Override
-            protected void onPostExecute(Boolean result) {
+            protected void onPostExecute(List<History> result) {
                 waiting.setVisibility(View.GONE);
-                if (result.booleanValue()) {
+                if (result != null) {
+                    HistoryActivity.this.mAdapter =
+                            new HistoryAdapter(HistoryActivity.this, result);
+
                     if (HistoryActivity.this.mListView != null &&
                         HistoryActivity.this.mAdapter != null) {
 

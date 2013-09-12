@@ -28,13 +28,14 @@
     android:contentDescription="@null"
     android:src="@drawable/btn_holo_light_check_off_normal" />
 
-  <ImageView
+  <com.cyanogenmod.filemanager.ui.widgets.FixedSizeImageView
     android:id="@+id/navigation_view_item_icon"
-    android:layout_width="wrap_content"
-    android:layout_height="match_parent"
+    android:layout_width="@dimen/default_row_height"
+    android:layout_height="@dimen/default_row_height"
     android:layout_alignParentTop="true"
     android:layout_toRightOf="@id/navigation_view_item_check"
     android:layout_alignWithParentIfMissing="true"
+    android:scaleType="centerInside"
     android:contentDescription="@null"
     android:src="@null" />
 

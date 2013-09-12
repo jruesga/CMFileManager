@@ -212,6 +212,7 @@ public class NavigationView extends RelativeLayout implements
     List<FileSystemObject> mFiles;
     private FileSystemObjectAdapter mAdapter;
 
+    private boolean mChangingDir;
     private final Object mSync = new Object();
 
     private OnHistoryListener mOnHistoryListener;
@@ -310,8 +311,15 @@ public class NavigationView extends RelativeLayout implements
      * Invoked when the instance need to be restored.
      *
      * @param info The serialized info
+     * @return boolean If can restore
      */
-    public void onRestoreState(NavigationViewInfoParcelable info) {
+    public boolean onRestoreState(NavigationViewInfoParcelable info) {
+        synchronized (mSync) {
+            if (mChangingDir) {
+                return false;
+            }
+        }
+
         //Restore the data
         this.mId = info.getId();
         this.mCurrentDir = info.getCurrentDir();
@@ -321,6 +329,7 @@ public class NavigationView extends RelativeLayout implements
 
         //Update the views
         refresh();
+        return true;
     }
 
     /**
@@ -585,11 +594,20 @@ public class NavigationView extends RelativeLayout implements
     }
 
     /**
+     * Method that recycles this object
+     */
+    public void recycle() {
+        if (this.mAdapter != null) {
+            this.mAdapter.dispose();
+        }
+    }
+
+    /**
      * Method that change the view mode.
      *
      * @param newMode The new mode
      */
-    @SuppressWarnings({ "unchecked", "null" })
+    @SuppressWarnings("unchecked")
     public void changeViewMode(final NavigationLayoutMode newMode) {
         synchronized (this.mSync) {
             //Check that it is really necessary change the mode
@@ -777,181 +795,201 @@ public class NavigationView extends RelativeLayout implements
         // is created)
         final String fNewDir = checkChRootedNavigation(newDir);
 
+        // Wait to finalization
         synchronized (this.mSync) {
-            //Check that it is really necessary change the directory
-            if (!reload && this.mCurrentDir != null && this.mCurrentDir.compareTo(fNewDir) == 0) {
-                return;
+            if (mChangingDir) {
+                try {
+                    mSync.wait();
+                } catch (InterruptedException iex) {
+                    // Ignore
+                }
             }
+            mChangingDir = true;
+        }
 
-            final boolean hasChanged =
-                    !(this.mCurrentDir != null && this.mCurrentDir.compareTo(fNewDir) == 0);
-            final boolean isNewHistory = (this.mCurrentDir != null);
+        //Check that it is really necessary change the directory
+        if (!reload && this.mCurrentDir != null && this.mCurrentDir.compareTo(fNewDir) == 0) {
+            return;
+        }
 
-            //Execute the listing in a background process
-            AsyncTask<String, Integer, List<FileSystemObject>> task =
-                    new AsyncTask<String, Integer, List<FileSystemObject>>() {
-                        /**
-                         * {@inheritDoc}
-                         */
-                        @Override
-                        protected List<FileSystemObject> doInBackground(String... params) {
-                            try {
-                                //Reset the custom title view and returns to breadcrumb
-                                if (NavigationView.this.mTitle != null) {
-                                    NavigationView.this.mTitle.post(new Runnable() {
-                                        @Override
-                                        public void run() {
-                                            try {
-                                                NavigationView.this.mTitle.restoreView();
-                                            } catch (Exception e) {
-                                                e.printStackTrace();
-                                            }
-                                        }
-                                    });
-                                }
+        final boolean hasChanged =
+                !(this.mCurrentDir != null && this.mCurrentDir.compareTo(fNewDir) == 0);
+        final boolean isNewHistory = (this.mCurrentDir != null);
 
-
-                                //Start of loading data
-                                if (NavigationView.this.mBreadcrumb != null) {
-                                    try {
-                                        NavigationView.this.mBreadcrumb.startLoading();
-                                    } catch (Throwable ex) {
-                                        /**NON BLOCK**/
-                                    }
-                                }
-
-                                //Get the files, resolve links and apply configuration
-                                //(sort, hidden, ...)
-                                List<FileSystemObject> files = NavigationView.this.mFiles;
-                                if (!useCurrent) {
-                                    files = CommandHelper.listFiles(getContext(), fNewDir, null);
-                                }
-                                return files;
-                            } catch (final ConsoleAllocException e) {
-                                //Show exception and exists
-                                NavigationView.this.post(new Runnable() {
+        //Execute the listing in a background process
+        AsyncTask<String, Integer, List<FileSystemObject>> task =
+                new AsyncTask<String, Integer, List<FileSystemObject>>() {
+                    /**
+                     * {@inheritDoc}
+                     */
+                    @Override
+                    protected List<FileSystemObject> doInBackground(String... params) {
+                        try {
+                            //Reset the custom title view and returns to breadcrumb
+                            if (NavigationView.this.mTitle != null) {
+                                NavigationView.this.mTitle.post(new Runnable() {
                                     @Override
                                     public void run() {
-                                        Context ctx = getContext();
-                                        Log.e(TAG, ctx.getString(
-                                                R.string.msgs_cant_create_console), e);
-                                        DialogHelper.showToast(ctx,
-                                                R.string.msgs_cant_create_console,
-                                                Toast.LENGTH_LONG);
-                                        ((Activity)ctx).finish();
+                                        try {
+                                            NavigationView.this.mTitle.restoreView();
+                                        } catch (Exception e) {
+                                            e.printStackTrace();
+                                        }
                                     }
                                 });
-                                return null;
+                            }
 
-                            } catch (Exception ex) {
-                                //End of loading data
-                                if (NavigationView.this.mBreadcrumb != null) {
-                                    try {
-                                        NavigationView.this.mBreadcrumb.endLoading();
-                                    } catch (Throwable ex2) {
-                                        /**NON BLOCK**/
-                                    }
+
+                            //Start of loading data
+                            if (NavigationView.this.mBreadcrumb != null) {
+                                try {
+                                    NavigationView.this.mBreadcrumb.startLoading();
+                                } catch (Throwable ex) {
+                                    /**NON BLOCK**/
                                 }
-
-                                //Capture exception (attach task, and use listener to do the anim)
-                                ExceptionUtil.attachAsyncTask(
-                                    ex,
-                                    new AsyncTask<Object, Integer, Boolean>() {
-                                        private List<FileSystemObject> mTaskFiles = null;
-                                        @Override
-                                        @SuppressWarnings({
-                                                "unchecked", "unqualified-field-access"
-                                        })
-                                        protected Boolean doInBackground(Object... taskParams) {
-                                            mTaskFiles = (List<FileSystemObject>)taskParams[0];
-                                            return Boolean.TRUE;
-                                        }
-
-                                        @Override
-                                        @SuppressWarnings("unqualified-field-access")
-                                        protected void onPostExecute(Boolean result) {
-                                            if (!result.booleanValue()) {
-                                                return;
-                                            }
-                                            onPostExecuteTask(
-                                                    mTaskFiles, addToHistory,
-                                                    isNewHistory, hasChanged,
-                                                    searchInfo, fNewDir, scrollTo);
-                                        }
-                                    });
-                                final OnRelaunchCommandResult exListener =
-                                        new OnRelaunchCommandResult() {
-                                    @Override
-                                    public void onSuccess() {
-                                        // Do animation
-                                        fadeEfect(false);
-                                    }
-                                    @Override
-                                    public void onFailed(Throwable cause) {
-                                        // Do animation
-                                        fadeEfect(false);
-                                    }
-                                    @Override
-                                    public void onCancelled() {
-                                        // Do animation
-                                        fadeEfect(false);
-                                    }
-                                };
-                                ExceptionUtil.translateException(
-                                        getContext(), ex, false, true, exListener);
                             }
-                            return null;
-                        }
 
-                        /**
-                         * {@inheritDoc}
-                         */
-                        @Override
-                        protected void onPreExecute() {
-                            // Do animation
-                            fadeEfect(true);
-                        }
-
-
-
-                        /**
-                         * {@inheritDoc}
-                         */
-                        @Override
-                        protected void onPostExecute(List<FileSystemObject> files) {
-                            if (files != null) {
-                                onPostExecuteTask(
-                                        files, addToHistory, isNewHistory,
-                                        hasChanged, searchInfo, fNewDir, scrollTo);
-
-                                // Do animation
-                                fadeEfect(false);
+                            //Get the files, resolve links and apply configuration
+                            //(sort, hidden, ...)
+                            List<FileSystemObject> files = NavigationView.this.mFiles;
+                            if (!useCurrent) {
+                                files = CommandHelper.listFiles(getContext(), fNewDir, null);
                             }
-                        }
+                            return files;
 
-                        /**
-                         * Method that performs a fade animation.
-                         *
-                         * @param out Fade out (true); Fade in (false)
-                         */
-                        void fadeEfect(final boolean out) {
-                            Activity activity = (Activity)getContext();
-                            activity.runOnUiThread(new Runnable() {
+                        } catch (final ConsoleAllocException e) {
+                            //Show exception and exists
+                            NavigationView.this.post(new Runnable() {
                                 @Override
                                 public void run() {
-                                    Animation fadeAnim = out ?
-                                            new AlphaAnimation(1, 0) :
-                                            new AlphaAnimation(0, 1);
-                                    fadeAnim.setDuration(50L);
-                                    fadeAnim.setFillAfter(true);
-                                    fadeAnim.setInterpolator(new AccelerateInterpolator());
-                                    NavigationView.this.startAnimation(fadeAnim);
+                                    Context ctx = getContext();
+                                    Log.e(TAG, ctx.getString(
+                                            R.string.msgs_cant_create_console), e);
+                                    DialogHelper.showToast(ctx,
+                                            R.string.msgs_cant_create_console,
+                                            Toast.LENGTH_LONG);
+                                    ((Activity)ctx).finish();
                                 }
                             });
+                            return null;
+
+                        } catch (Exception ex) {
+                            //End of loading data
+                            if (NavigationView.this.mBreadcrumb != null) {
+                                try {
+                                    NavigationView.this.mBreadcrumb.endLoading();
+                                } catch (Throwable ex2) {
+                                    /**NON BLOCK**/
+                                }
+                            }
+
+                            //Capture exception (attach task, and use listener to do the anim)
+                            ExceptionUtil.attachAsyncTask(
+                                ex,
+                                new AsyncTask<Object, Integer, Boolean>() {
+                                    private List<FileSystemObject> mTaskFiles = null;
+                                    @Override
+                                    @SuppressWarnings({
+                                            "unchecked", "unqualified-field-access"
+                                    })
+                                    protected Boolean doInBackground(Object... taskParams) {
+                                        mTaskFiles = (List<FileSystemObject>)taskParams[0];
+                                        return Boolean.TRUE;
+                                    }
+
+                                    @Override
+                                    @SuppressWarnings("unqualified-field-access")
+                                    protected void onPostExecute(Boolean result) {
+                                        if (!result.booleanValue()) {
+                                            return;
+                                        }
+                                        onPostExecuteTask(
+                                                mTaskFiles, addToHistory,
+                                                isNewHistory, hasChanged,
+                                                searchInfo, fNewDir, scrollTo);
+                                    }
+                                });
+                            final OnRelaunchCommandResult exListener =
+                                    new OnRelaunchCommandResult() {
+                                @Override
+                                public void onSuccess() {
+                                    done();
+                                }
+                                @Override
+                                public void onFailed(Throwable cause) {
+                                    done();
+                                }
+                                @Override
+                                public void onCancelled() {
+                                    done();
+                                }
+                                private void done() {
+                                    // Do animation
+                                    fadeEfect(false);
+                                    synchronized (mSync) {
+                                        mChangingDir = false;
+                                        mSync.notify();
+                                    }
+                                }
+                            };
+                            ExceptionUtil.translateException(
+                                    getContext(), ex, false, true, exListener);
                         }
-                   };
-            task.execute(fNewDir);
-        }
+                        return null;
+                    }
+
+                    /**
+                     * {@inheritDoc}
+                     */
+                    @Override
+                    protected void onPreExecute() {
+                        // Do animation
+                        fadeEfect(true);
+                    }
+
+                    /**
+                     * {@inheritDoc}
+                     */
+                    @Override
+                    protected void onPostExecute(List<FileSystemObject> files) {
+                        // This means an exception. This method will be recalled then
+                        if (files != null) {
+                            onPostExecuteTask(
+                                    files, addToHistory, isNewHistory,
+                                    hasChanged, searchInfo, fNewDir, scrollTo);
+
+                            // Do animation
+                            fadeEfect(false);
+
+                            synchronized (mSync) {
+                                mChangingDir = false;
+                                mSync.notify();
+                            }
+                        }
+                    }
+
+                    /**
+                     * Method that performs a fade animation.
+                     *
+                     * @param out Fade out (true); Fade in (false)
+                     */
+                    void fadeEfect(final boolean out) {
+                        Activity activity = (Activity)getContext();
+                        activity.runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                Animation fadeAnim = out ?
+                                        new AlphaAnimation(1, 0) :
+                                        new AlphaAnimation(0, 1);
+                                fadeAnim.setDuration(50L);
+                                fadeAnim.setFillAfter(true);
+                                fadeAnim.setInterpolator(new AccelerateInterpolator());
+                                NavigationView.this.startAnimation(fadeAnim);
+                            }
+                        });
+                    }
+               };
+        task.execute(fNewDir);
     }
 
 

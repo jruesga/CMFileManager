@@ -61,17 +61,17 @@ public enum FileManagerSettings {
      * When to show the hidden files.
      * @hide
      */
-    SETTINGS_SHOW_HIDDEN("cm_filemanager_show_hidden", Boolean.FALSE), //$NON-NLS-1$
+    SETTINGS_SHOW_HIDDEN("cm_filemanager_show_hidden", Boolean.TRUE), //$NON-NLS-1$
     /**
      * When to show the system files.
      * @hide
      */
-    SETTINGS_SHOW_SYSTEM("cm_filemanager_show_system", Boolean.FALSE), //$NON-NLS-1$
+    SETTINGS_SHOW_SYSTEM("cm_filemanager_show_system", Boolean.TRUE), //$NON-NLS-1$
     /**
      * When to show the symlinks files.
      * @hide
      */
-    SETTINGS_SHOW_SYMLINKS("cm_filemanager_show_symlinks", Boolean.FALSE), //$NON-NLS-1$
+    SETTINGS_SHOW_SYMLINKS("cm_filemanager_show_symlinks", Boolean.TRUE), //$NON-NLS-1$
 
     /**
      * When to use case sensitive comparison in sorting of files

@@ -324,6 +324,15 @@ public final class ExceptionUtil {
                             }
                         }
                     });
+        alert.setOnDismissListener(new DialogInterface.OnDismissListener() {
+            @Override
+            public void onDismiss(DialogInterface dialog) {
+                // Operation cancelled
+                if (listener != null) {
+                    listener.onCancelled();
+                }
+            }
+        });
         DialogHelper.delegateDialogShow(context, alert);
     }
 

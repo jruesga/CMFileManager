@@ -273,18 +273,6 @@
   <string name="fso_properties_dialog_group">Groepe:</string>
   <!-- Fso Properties Dialog * Others Label -->
   <string name="fso_properties_dialog_others">Ander:</string>
-  <!-- Fso Properties Dialog * Folders -->
-  <plurals name="n_folders">
-    <item quantity="zero">0 vouergidse</item>
-    <item quantity="one">1 vouergids</item>
-    <item quantity="other"><xliff:g id="folders">%1$d</xliff:g> vouergidse</item>
-  </plurals>
-  <!-- Fso Properties Dialog * Files -->
-  <plurals name="n_files">
-    <item quantity="zero">0 lêers</item>
-    <item quantity="one">1 lêer</item>
-    <item quantity="other"><xliff:g id="files">%1$d</xliff:g> lêers</item>
-  </plurals>
   <!-- Fso Properties Dialog * Skip media scan -->
   <string name="fso_properties_dialog_include_in_media_scan">Slaan mediaskandering oor:</string>
   <string name="fso_failed_to_allow_media_scan">Kon nie mediaskandering toe laat nie</string>
@@ -311,12 +299,6 @@
   <string name="search_error_msg">\'n Fout het voorgekom tydens die soektog. Geen resultate is gevind nie.</string>
   <!-- Search * Search no results message -->
   <string name="search_no_results_msg">Geen resultate is gevind nie.</string>
-  <!-- Search * Search found items -->
-  <plurals name="search_found_items">
-    <item quantity="zero">Geen items is gevind nie</item>
-    <item quantity="one">1 item gevind</item>
-    <item quantity="other"><xliff:g id="count">%d</xliff:g> items gevind</item>
-  </plurals>
   <!-- Search * Number of items found in directory -->
   <string name="search_found_items_in_directory"><xliff:g id="items">%1$s</xliff:g> in
     <xliff:g id="path">%2$s</xliff:g></string>
@@ -571,6 +553,8 @@
   <string name="filetime_format_mode_MMddyyyy_HHmmss">mm/dd/yyyy hh:mm:ss</string>
   <string name="filetime_format_mode_yyyyMMdd_HHmmss">yyyy-mm-dd hh:mm:ss</string>
 
+  <string name="selection_folders_and_files"><xliff:g id="folders">%1$s</xliff:g> en <xliff:g id="files">%2$s</xliff:g> geselekteer.</string>
+
   <!-- Category descriptions -->
   <string name="category_system">STELSEL</string>
   <string name="category_app">PROGRAM</string>
@@ -634,6 +618,10 @@
   <string name="pref_compute_folder_statistics">Bereken vouergids statistieke</string>
   <!-- Preferences * General * Compute folder statistics summary on -->
   <string name="pref_compute_folder_statistics_on">Waarskuwing! Die berekening van vouergids statistieke kan lank vat en stelsel bronne uitput</string>
+  <!-- Preferences - General - Display thumbs -->
+  <string name="pref_display_thumbs">Voorskou</string>
+  <!-- Preferences - General - Display thumbs summary -->
+  <string name="pref_display_thumbs_summary">Wys \'n voorbeeld prent vir programme, musiek lêers, foto\'s en video\'s.</string>
   <!-- Preferences * General * Use flinger detection -->
   <string name="pref_use_flinger">Gebruik gly-gebare</string>
   <!-- Preferences * General * Use flinger detection summary -->

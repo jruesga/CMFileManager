@@ -19,6 +19,7 @@ package com.cyanogenmod.filemanager.adapters;
 import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -76,6 +77,7 @@ public class FileSystemObjectAdapter
         TextView mTvName;
         TextView mTvSummary;
         TextView mTvSize;
+        Boolean mHasSelectedBg;
     }
 
     /**
@@ -256,6 +258,8 @@ public class FileSystemObjectAdapter
     public View getView(int position, View convertView, ViewGroup parent) {
         //Check to reuse view
         View v = convertView;
+        Theme theme = ThemeManager.getCurrentTheme(getContext());
+
         if (v == null) {
             //Create the view holder
             LayoutInflater li =
@@ -273,6 +277,23 @@ public class FileSystemObjectAdapter
                 viewHolder.mBtCheck = (ImageButton)v.findViewById(RESOURCE_ITEM_CHECK);
                 viewHolder.mBtCheck.setVisibility(View.GONE);
             }
+
+            // Apply the current theme
+            if (this.mPickable) {
+                theme.setBackgroundDrawable(
+                        getContext(), v, "background_drawable"); //$NON-NLS-1$
+            }
+            theme.setTextColor(
+                    getContext(), viewHolder.mTvName, "text_color"); //$NON-NLS-1$
+            if (viewHolder.mTvSummary != null) {
+                theme.setTextColor(
+                        getContext(), viewHolder.mTvSummary, "text_color"); //$NON-NLS-1$
+            }
+            if (viewHolder.mTvSize != null) {
+                theme.setTextColor(
+                        getContext(), viewHolder.mTvSize, "text_color"); //$NON-NLS-1$
+            }
+
             v.setTag(viewHolder);
         }
 
@@ -281,21 +302,6 @@ public class FileSystemObjectAdapter
 
         //Retrieve the view holder
         ViewHolder viewHolder = (ViewHolder)v.getTag();
-
-        // Apply the current theme
-        Theme theme = ThemeManager.getCurrentTheme(getContext());
-        theme.setBackgroundDrawable(
-                getContext(), v, "background_drawable"); //$NON-NLS-1$
-        theme.setTextColor(
-                getContext(), viewHolder.mTvName, "text_color"); //$NON-NLS-1$
-        if (viewHolder.mTvSummary != null) {
-            theme.setTextColor(
-                    getContext(), viewHolder.mTvSummary, "text_color"); //$NON-NLS-1$
-        }
-        if (viewHolder.mTvSize != null) {
-            theme.setTextColor(
-                    getContext(), viewHolder.mTvSize, "text_color"); //$NON-NLS-1$
-        }
 
         //Set the data
 
@@ -314,18 +320,20 @@ public class FileSystemObjectAdapter
         }
         if (!this.mPickable) {
             viewHolder.mBtCheck.setVisibility(
-                    dataHolder.mName.compareTo(
-                            FileHelper.PARENT_DIRECTORY) == 0 ? View.INVISIBLE : View.VISIBLE);
+                    TextUtils.equals(dataHolder.mName, FileHelper.PARENT_DIRECTORY) ?
+                            View.INVISIBLE : View.VISIBLE);
+
             viewHolder.mBtCheck.setImageDrawable(dataHolder.mDwCheck);
             viewHolder.mBtCheck.setTag(Integer.valueOf(position));
 
-            // Apply theme
-            if (dataHolder.mSelected) {
-                theme.setBackgroundDrawable(
-                        getContext(), v, "selectors_selected_drawable"); //$NON-NLS-1$
-            } else {
-                theme.setBackgroundDrawable(
-                        getContext(), v, "selectors_deselected_drawable"); //$NON-NLS-1$
+            if (viewHolder.mHasSelectedBg == null
+                    || viewHolder.mHasSelectedBg != dataHolder.mSelected) {
+                String drawableId = dataHolder.mSelected
+                        ? "selectors_selected_drawable" //$NON-NLS-1$
+                        : "selectors_deselected_drawable"; //$NON-NLS-1$
+
+                theme.setBackgroundDrawable(getContext(), v, drawableId);
+                viewHolder.mHasSelectedBg = dataHolder.mSelected;
             }
         }
 
@@ -379,20 +387,6 @@ public class FileSystemObjectAdapter
                                 theme.getDrawable(
                                         getContext(),
                                             "checkbox_deselected_drawable"); //$NON-NLS-1$
-                    }
-                    if (v != null) {
-                        ((ImageView)v).setImageDrawable(data.mDwCheck);
-                        if (data.mSelected) {
-                            theme.setBackgroundDrawable(
-                                    getContext(),
-                                    (View)v.getParent(),
-                                    "selectors_selected_drawable"); //$NON-NLS-1$
-                        } else {
-                            theme.setBackgroundDrawable(
-                                    getContext(),
-                                    (View)v.getParent(),
-                                    "selectors_deselected_drawable"); //$NON-NLS-1$
-                        }
                     }
 
                     //Add or remove from the global selected items

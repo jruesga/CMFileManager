@@ -77,6 +77,7 @@ public class UserPermission extends Permission {
      */
     public void setSetUID(boolean setuid) {
         this.mSetuid = setuid;
+        invalidateRawString();
     }
 
     /**
@@ -124,7 +125,7 @@ public class UserPermission extends Permission {
      * {@inheritDoc}
      */
     @Override
-    public String toRawString() {
+    protected String getRawString() {
         StringBuilder p = new StringBuilder();
         p.append(isRead() ? READ : UNASIGNED);
         p.append(isWrite() ? WRITE : UNASIGNED);

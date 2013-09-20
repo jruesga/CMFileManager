@@ -184,7 +184,6 @@ public final class FileHelper {
      */
     public static String getHumanReadableSize(long size) {
         Resources res = FileManagerApplication.getInstance().getResources();
-        final String format = "%d %s"; //$NON-NLS-1$
         final int[] magnitude = {
                                  R.string.size_bytes,
                                  R.string.size_kilobytes,
@@ -197,12 +196,11 @@ public final class FileHelper {
         for (int i = 0; i < cc; i++) {
             long s = aux / 1024;
             if (aux < 1024) {
-                return String.format(format, Long.valueOf(aux), res.getString(magnitude[i]));
+                return Long.toString(aux) + " " + res.getString(magnitude[i]); //$NON-NLS-1$
             }
             aux = s;
         }
-        return String.format(
-                format, Long.valueOf(aux), res.getString(magnitude[magnitude.length - 1]));
+        return Long.toString(aux) + " " + res.getString(magnitude[cc - 1]); //$NON-NLS-1$
     }
 
     /**
@@ -828,7 +826,7 @@ public final class FileHelper {
             if (ext == null) {
                 ext = ""; //$NON-NLS-1$
             } else {
-                ext = String.format(".%s", ext); //$NON-NLS-1$
+                ext = "." + ext; //$NON-NLS-1$
             }
             newName = ctx.getString(regexp, name, ext);
         } while (isNameExists(files, newName));
@@ -1312,14 +1310,12 @@ public final class FileHelper {
         }
 
         // Apply the user settings
-        String formatted = "-"; //$NON-NLS-1$
         if (sFiletimeFormatMode.compareTo(FileTimeFormatMode.SYSTEM) == 0) {
             String date = sDateFormat.format(filetime);
             String time = sTimeFormat.format(filetime);
-            formatted = String.format(sDateTimeFormatOrder, date, time);
+            return String.format(sDateTimeFormatOrder, date, time);
         } else {
-            formatted = sDateFormat.format(filetime);
+            return sDateFormat.format(filetime);
         }
-        return formatted;
     }
 }

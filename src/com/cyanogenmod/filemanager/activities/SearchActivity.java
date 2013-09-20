@@ -786,7 +786,6 @@ public class SearchActivity extends Activity
     void removeAll() {
         SearchResultAdapter adapter = (SearchResultAdapter)this.mSearchListView.getAdapter();
         adapter.clear();
-        adapter.notifyDataSetChanged();
         this.mSearchListView.setSelection(0);
         toggleResults(false, true);
     }

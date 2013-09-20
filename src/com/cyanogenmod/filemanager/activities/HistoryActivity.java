@@ -352,7 +352,6 @@ public class HistoryActivity extends Activity implements OnItemClickListener {
     void clearHistory() {
         if (this.mAdapter != null) {
             this.mAdapter.clear();
-            this.mAdapter.notifyDataSetChanged();
             View msg = findViewById(R.id.history_empty_msg);
             msg.setVisibility(View.VISIBLE);
             this.mIsClearHistory = true;

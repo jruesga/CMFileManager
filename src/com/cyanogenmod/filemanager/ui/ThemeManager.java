@@ -354,11 +354,7 @@ public final class ThemeManager {
         public Drawable getPreviewImage(Context ctx) {
             String resId = "theme_preview_drawable"; //$NON-NLS-1$
             if (this.compareTo(ThemeManager.getDefaultTheme(ctx)) != 0) {
-                resId =
-                    String.format(
-                            "%s_%s", //$NON-NLS-1$
-                            this.mId,
-                            "theme_preview_drawable"); //$NON-NLS-1$
+                resId = mId + "_theme_preview_drawable"; //$NON-NLS-1$
             }
             int id = this.mResources.getIdentifier(resId, "drawable", this.mPackage); //$NON-NLS-1$
             if (id != 0) {
@@ -374,11 +370,7 @@ public final class ThemeManager {
          * @return Drawable The drawable
          */
         public Drawable getNoPreviewImage(Context ctx) {
-            String resId =
-                    String.format(
-                            "%s_%s", //$NON-NLS-1$
-                            this.mId,
-                            "theme_no_preview_drawable"); //$NON-NLS-1$
+            String resId = mId + "_theme_no_preview_drawable"; //$NON-NLS-1$
             int id = this.mResources.getIdentifier(resId, "drawable", this.mPackage); //$NON-NLS-1$
             if (id != 0) {
                 return this.mResources.getDrawable(id);
@@ -399,8 +391,7 @@ public final class ThemeManager {
          * @param overlay Indicates if the theme should be the overlay one
          */
         public void setBaseTheme(Context ctx, boolean overlay) {
-            String resId =
-                    String.format("%s_%s", this.mId, "base_theme"); //$NON-NLS-1$ //$NON-NLS-2$
+            String resId = mId + "_base_theme"; //$NON-NLS-1$
             int id = this.mResources.getIdentifier(resId, "string", this.mPackage); //$NON-NLS-1$
             if (id != 0) {
                 String base = this.mResources.getString(id, "holo_light"); //$NON-NLS-1$
@@ -439,7 +430,7 @@ public final class ThemeManager {
          * @param resource The string resource
          */
         public void setTitlebarDrawable(Context ctx, ActionBar actionBar, String resource) {
-            String resId = String.format("%s_%s", this.mId, resource); //$NON-NLS-1$
+            String resId = this.mId + "_" + resource; //$NON-NLS-1$
             int id = this.mResources.getIdentifier(resId, "drawable", this.mPackage); //$NON-NLS-1$
             if (id != 0) {
                 actionBar.setBackgroundDrawable(this.mResources.getDrawable(id));
@@ -460,7 +451,7 @@ public final class ThemeManager {
          * @param resource The string resource
          */
         public void setBackgroundDrawable(Context ctx, View view, String resource) {
-            String resId = String.format("%s_%s", this.mId, resource); //$NON-NLS-1$
+            String resId = mId + "_" + resource; //$NON-NLS-1$
             int id = this.mResources.getIdentifier(resId, "drawable", this.mPackage); //$NON-NLS-1$
             if (id != 0) {
                 view.setBackground(this.mResources.getDrawable(id));
@@ -481,7 +472,7 @@ public final class ThemeManager {
          * @param resource The string resource
          */
         public void setImageDrawable(Context ctx, ImageView view, String resource) {
-            String resId = String.format("%s_%s", this.mId, resource); //$NON-NLS-1$
+            String resId = mId + "_" + resource; //$NON-NLS-1$
             int id = this.mResources.getIdentifier(resId, "drawable", this.mPackage); //$NON-NLS-1$
             if (id != 0) {
                 view.setImageDrawable(this.mResources.getDrawable(id));
@@ -502,7 +493,7 @@ public final class ThemeManager {
          * @return Drawable The drawable
          */
         public Drawable getDrawable(Context ctx, String resource) {
-            String resId = String.format("%s_%s", this.mId, resource); //$NON-NLS-1$
+            String resId = mId + "_" + resource; //$NON-NLS-1$
             int id = this.mResources.getIdentifier(resId, "drawable", this.mPackage); //$NON-NLS-1$
             if (id != 0) {
                 return this.mResources.getDrawable(id);
@@ -522,7 +513,7 @@ public final class ThemeManager {
          * @param resource The string resource
          */
         public void setTextColor(Context ctx, TextView view, String resource) {
-            String resId = String.format("%s_%s", this.mId, resource); //$NON-NLS-1$
+            String resId = mId + "_" + resource; //$NON-NLS-1$
             int id = this.mResources.getIdentifier(resId, "color", this.mPackage); //$NON-NLS-1$
             if (id != 0) {
                 view.setTextColor(this.mResources.getColor(id));
@@ -543,7 +534,7 @@ public final class ThemeManager {
          * @return int The color reference
          */
         public int getColor(Context ctx, String resource) {
-            String resId = String.format("%s_%s", this.mId, resource); //$NON-NLS-1$
+            String resId = mId + "_" + resource; //$NON-NLS-1$
             int id = this.mResources.getIdentifier(resId, "color", this.mPackage); //$NON-NLS-1$
             if (id != 0) {
                 return this.mResources.getColor(id);
@@ -563,7 +554,7 @@ public final class ThemeManager {
          * @param resource The string resource
          */
         public void setBackgroundColor(Context ctx, View view, String resource) {
-            String resId = String.format("%s_%s", this.mId, resource); //$NON-NLS-1$
+            String resId = mId + "_" + resource; //$NON-NLS-1$
             int id = this.mResources.getIdentifier(resId, "color", this.mPackage); //$NON-NLS-1$
             if (id != 0) {
                 view.setBackgroundColor(this.mResources.getColor(id));

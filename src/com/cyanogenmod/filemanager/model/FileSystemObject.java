@@ -348,9 +348,8 @@ public abstract class FileSystemObject implements Serializable, Comparable<FileS
      * @return String The string representation
      */
     public String toRawPermissionString() {
-        return String.format("%s%s", //$NON-NLS-1$
-                String.valueOf(getUnixIdentifier()),
-                getPermissions().toRawString());
+        return Character.toString(getUnixIdentifier())
+                + getPermissions().toRawString();
     }
 
     /**

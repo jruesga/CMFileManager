@@ -53,6 +53,8 @@ public abstract class Permission implements Serializable {
     private boolean mWrite;
     private boolean mExecute;
 
+    private String mRawString;
+
     /**
      * Constructor of <code>Permission</code>.
      *
@@ -83,6 +85,7 @@ public abstract class Permission implements Serializable {
      */
     public void setRead(boolean read) {
         this.mRead = read;
+        invalidateRawString();
     }
 
     /**
@@ -101,6 +104,7 @@ public abstract class Permission implements Serializable {
      */
     public void setWrite(boolean write) {
         this.mWrite = write;
+        invalidateRawString();
     }
 
     /**
@@ -119,6 +123,7 @@ public abstract class Permission implements Serializable {
      */
     public void setExecute(boolean execute) {
         this.mExecute = execute;
+        invalidateRawString();
     }
 
     /**
@@ -176,6 +181,15 @@ public abstract class Permission implements Serializable {
      *
      * @return String The string representation of the permissions
      */
-    public abstract String toRawString();
+    public String toRawString() {
+        if (mRawString == null) {
+            mRawString = getRawString();
+        }
+        return mRawString;
+    }
 
+    protected void invalidateRawString() {
+        mRawString = null;
+    }
+    protected abstract String getRawString();
 }

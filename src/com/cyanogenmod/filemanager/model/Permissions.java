@@ -182,10 +182,9 @@ public class Permissions implements Serializable, Comparable<Permissions> {
      * @return String The string representation of the permissions
      */
     public String toRawString() {
-        return String.format("%s%s%s", //$NON-NLS-1$
-                    this.mUser.toRawString(),
-                    this.mGroup.toRawString(),
-                    this.mOthers.toRawString());
+        return this.mUser.toRawString()
+                + this.mGroup.toRawString()
+                + this.mOthers.toRawString();
     }
 
     /**

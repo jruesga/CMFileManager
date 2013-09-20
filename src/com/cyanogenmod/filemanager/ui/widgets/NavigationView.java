@@ -683,7 +683,6 @@ public class NavigationView extends RelativeLayout implements
             }
             this.mFiles = files;
             adapter.addAll(files);
-            adapter.notifyDataSetChanged();
 
             //Set the adapter
             this.mAdapter = adapter;
@@ -720,7 +719,6 @@ public class NavigationView extends RelativeLayout implements
      * @param fso The file system object
      */
     public void removeItem(FileSystemObject fso) {
-        this.mAdapter.remove(fso);
         // Delete also from internal list
         if (fso != null) {
             int cc = this.mFiles.size()-1;
@@ -732,7 +730,7 @@ public class NavigationView extends RelativeLayout implements
                 }
             }
         }
-        this.mAdapter.notifyDataSetChanged();
+        this.mAdapter.remove(fso);
     }
 
     /**
@@ -744,7 +742,6 @@ public class NavigationView extends RelativeLayout implements
         FileSystemObject fso = this.mAdapter.getItem(path);
         if (fso != null) {
             this.mAdapter.remove(fso);
-            this.mAdapter.notifyDataSetChanged();
         }
     }
 
@@ -1084,6 +1081,7 @@ public class NavigationView extends RelativeLayout implements
         final AdapterView<ListAdapter> view =
                 (AdapterView<ListAdapter>)findViewById(RESOURCE_CURRENT_LAYOUT);
         FileSystemObjectAdapter adapter = (FileSystemObjectAdapter)view.getAdapter();
+        adapter.setNotifyOnChange(false);
         adapter.clear();
         adapter.addAll(files);
         adapter.notifyDataSetChanged();

@@ -117,7 +117,6 @@ public class BookmarksActivity extends Activity implements OnItemClickListener, 
                     }
                     responder.accept();
                     adapter.remove(bookmark);
-                    adapter.notifyDataSetChanged();
                     return;
                 }
 
@@ -304,7 +303,6 @@ public class BookmarksActivity extends Activity implements OnItemClickListener, 
                 waiting.setVisibility(View.GONE);
                 if (result.booleanValue()) {
                     adapter.addAll(this.mBookmarks);
-                    adapter.notifyDataSetChanged();
                     BookmarksActivity.this.mBookmarksListView.setSelection(0);
 
                 } else {
@@ -393,7 +391,6 @@ public class BookmarksActivity extends Activity implements OnItemClickListener, 
               return;
           }
           adapter.remove(bookmark);
-          adapter.notifyDataSetChanged();
           return;
       }
     }

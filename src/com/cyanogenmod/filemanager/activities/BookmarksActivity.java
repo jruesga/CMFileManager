@@ -65,6 +65,7 @@ import com.cyanogenmod.filemanager.util.StorageHelper;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 /**
  * An activity for show bookmarks and links.
@@ -549,7 +550,7 @@ public class BookmarksActivity extends Activity implements OnItemClickListener, 
             StorageVolume[] volumes = StorageHelper.getStorageVolumes(getApplication());
             int cc = volumes.length;
             for (int i = 0; i < cc ; i++) {
-                if (volumes[i].getPath().toLowerCase().indexOf("usb") != -1) { //$NON-NLS-1$
+                if (volumes[i].getPath().toLowerCase(Locale.ROOT).indexOf("usb") != -1) { //$NON-NLS-1$
                     bookmarks.add(
                             new Bookmark(
                                     BOOKMARK_TYPE.USB,

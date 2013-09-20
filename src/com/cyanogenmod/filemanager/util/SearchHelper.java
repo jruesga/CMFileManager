@@ -28,6 +28,7 @@ import com.cyanogenmod.filemanager.model.SearchResult;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -68,8 +69,8 @@ public final class SearchHelper {
         }
 
         //Convert the string to lower and upper
-        final String lowerCase = q.toLowerCase();
-        final String upperCase = q.toUpperCase();
+        final String lowerCase = q.toLowerCase(Locale.ROOT);
+        final String upperCase = q.toUpperCase(Locale.ROOT);
 
         //Create the regular expression filter
         StringBuffer sb = new StringBuffer();

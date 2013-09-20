@@ -29,6 +29,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
 import java.security.MessageDigest;
+import java.util.Locale;
 
 /**
  * A class for calculate MD5 and SHA-1 checksums of a file system object.<br />
@@ -241,7 +242,8 @@ public class ChecksumCommand extends Program implements ChecksumExecutable {
             checkCancelled();
 
             // Finally digest
-            this.mChecksums[type.ordinal()] = HexDump.toHexString(md.digest()).toLowerCase();
+            this.mChecksums[type.ordinal()] =
+                    HexDump.toHexString(md.digest()).toLowerCase(Locale.ROOT);
             checkCancelled();
             if (this.mAsyncResultListener != null) {
                 this.mAsyncResultListener.onPartialResult(this.mChecksums[type.ordinal()]);

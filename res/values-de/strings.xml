@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Copyright (C) 2012-2013 The CyanogenMod Project
+<!--
+     Copyright (C) 2012-2013 The CyanogenMod Project
 
      Licensed under the Apache License, Version 2.0 (the "License");
      you may not use this file except in compliance with the License.
@@ -12,10 +13,9 @@
      WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
      See the License for the specific language governing permissions and
      limitations under the License.
- -->
+-->
 
-<resources xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="app_name">Dateimanager</string>
     <string name="app_description">Der CyanogenMod-Dateimanager</string>
     <string name="size_bytes">B</string>
@@ -54,8 +54,7 @@
     <string name="msgs_settings_invalid_initial_directory">Das Standardverzeichnis "<xliff:g id="initial_dir">%1$s</xliff:g>" ist ungültig. Wechsle zum Wurzelverzeichnis.</string>
     <string name="msgs_success">Die Aktion wurde erfolgreich ausgeführt.</string>
     <string name="msgs_unknown">Ein Fehler ist aufgetreten. Die Aktion war nicht erfolgreich.</string>
-    <string name="msgs_insufficient_permissions">Dieser Vorgang benötigt höhere Berechtigungen. Versuche in den
-    Root-Zugriffsmodus zu wechseln.</string>
+    <string name="msgs_insufficient_permissions">Dieser Vorgang benötigt höhere Berechtigungen. Versuche in den Root-Zugriffsmodus zu wechseln.</string>
     <string name="msgs_file_not_found">Die Datei oder der Ordner wurde nicht gefunden.</string>
     <string name="msgs_command_not_found">Der Befehl des Vorgangs wurde nicht gefunden oder ist ungültig.</string>
     <string name="msgs_io_failed">Lese-/Schreibfehler.</string>
@@ -296,6 +295,8 @@
     <string name="pref_disk_usage_warning_level_summary" formatted="false">Eine andere Farbe verwenden, wenn mehr als <xliff:g id="level">%1$s</xliff:g> Prozent des Speichers belegt sind</string>
     <string name="pref_compute_folder_statistics">Verzeichnisstatistiken</string>
     <string name="pref_compute_folder_statistics_on">Die Berechnung der Verzeichnisstatistiken kann die Systemleistung beeinträchtigen</string>
+    <string name="pref_display_thumbs">Vorschau</string>
+    <string name="pref_display_thumbs_summary">Eine Vorschau für Apps, Bilder, Musikdateien und Videos anzeigen.</string>
     <string name="pref_use_flinger">Wischgesten verwenden</string>
     <string name="pref_use_flinger_summary">Von rechts nach links wischen um eine Datei oder einen Ordner zu löschen</string>
     <string name="pref_general_advanced_settings_category">Erweitert</string>

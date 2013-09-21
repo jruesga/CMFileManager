@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Copyright (C) 2012-2013 The CyanogenMod Project
+<!--
+     Copyright (C) 2012-2013-2013 The CyanogenMod Project
 
      Licensed under the Apache License, Version 2.0 (the "License");
      you may not use this file except in compliance with the License.
@@ -12,28 +13,31 @@
      WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
      See the License for the specific language governing permissions and
      limitations under the License.
- -->
+-->
+
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-  <plurals name="n_folders">
-    <item quantity="one">1 folder</item>
-    <item quantity="other"><xliff:g id="folders">%1$d</xliff:g> folders</item>
-  </plurals>
-  <plurals name="n_files">
-    <item quantity="one">1 file</item>
-    <item quantity="other"><xliff:g id="files">%1$d</xliff:g> files</item>
-  </plurals>
-  <!-- Search * Search found items -->
-  <plurals name="search_found_items">
-    <item quantity="one">1 item found</item>
-    <item quantity="other"><xliff:g id="count">%d</xliff:g> items found</item>
-  </plurals>
-  <!-- Statusbar text if there are selected folders or files -->
-  <plurals name="selection_folders">
-    <item quantity="one">1 folder selected.</item>
-    <item quantity="other"><xliff:g id="folders">%1$d</xliff:g> folders selected.</item>
-  </plurals>
-  <plurals name="selection_files">
-    <item quantity="one">1 file selected.</item>
-    <item quantity="other"><xliff:g id="files">%1$d</xliff:g> files selected.</item>
-  </plurals>
+    <plurals name="n_folders">
+        <item quantity="one">1 folder</item>
+        <item quantity="other"><xliff:g id="folders">%1$d</xliff:g> folders</item>
+    </plurals>
+    <plurals name="n_files">
+        <item quantity="one">1 file</item>
+        <item quantity="other"><xliff:g id="files">%1$d</xliff:g> files</item>
+    </plurals>
+
+    <!-- Search - Found items -->
+    <plurals name="search_found_items">
+        <item quantity="one">1 item found</item>
+        <item quantity="other"><xliff:g id="count">%d</xliff:g> items found</item>
+    </plurals>
+
+    <!-- Statusbar text if there are selected files or folders -->
+    <plurals name="selection_folders">
+        <item quantity="one">1 folder selected.</item>
+        <item quantity="other"><xliff:g id="folders">%1$d</xliff:g> folders selected.</item>
+    </plurals>
+    <plurals name="selection_files">
+        <item quantity="one">1 file selected.</item>
+        <item quantity="other"><xliff:g id="files">%1$d</xliff:g> files selected.</item>
+    </plurals>
 </resources>

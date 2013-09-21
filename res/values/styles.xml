@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Copyright (C) 2012 The CyanogenMod Project
+<!--
+     Copyright (C) 2012-2013 The CyanogenMod Project
 
      Licensed under the Apache License, Version 2.0 (the "License");
      you may not use this file except in compliance with the License.
@@ -12,127 +13,131 @@
      WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
      See the License for the specific language governing permissions and
      limitations under the License.
- -->
+-->
+
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <!-- Base themes -->
+    <style name="FileManager.Theme.Holo.Light" parent="@android:style/Theme.Holo.Light">
+        <item name="android:windowBackground">@color/default_background</item>
+        <item name="android:actionBarStyle">@style/FileManager.Widget.ActionBar.White</item>
+        <item name="android:homeAsUpIndicator">@drawable/ic_ab_back_holo_light</item>
+    </style>
+    <style name="FileManager.Theme.Holo" parent="@android:style/Theme.Holo">
+        <item name="android:homeAsUpIndicator">@drawable/ic_ab_back_holo_light</item>
+    </style>
 
-  <!-- Base themes -->
-  <style name="FileManager.Theme.Holo.Light" parent="@android:style/Theme.Holo.Light">
-    <item name="android:windowBackground">@color/default_background</item>
-    <item name="android:actionBarStyle">@style/FileManager.Widget.ActionBar.White</item>
-    <item name="android:homeAsUpIndicator">@drawable/ic_ab_back_holo_light</item>
-  </style>
-  <style name="FileManager.Theme.Holo" parent="@android:style/Theme.Holo">
-    <item name="android:homeAsUpIndicator">@drawable/ic_ab_back_holo_light</item>
-  </style>
+    <!-- A theme with overlay -->
+    <style name="FileManager.Theme.Holo.Light.Overlay" parent="@style/FileManager.Theme.Holo.Light">
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowBackground">@color/black_transparent</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:backgroundDimEnabled">false</item>
+    </style>
+    <style name="FileManager.Theme.Holo.Overlay" parent="@style/FileManager.Theme.Holo">
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowBackground">@color/black_transparent</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:backgroundDimEnabled">false</item>
+    </style>
 
-  <!-- A theme with overlay -->
-  <style name="FileManager.Theme.Holo.Light.Overlay" parent="@style/FileManager.Theme.Holo.Light">
-    <item name="android:windowIsTranslucent">true</item>
-    <item name="android:windowBackground">@color/black_transparent</item>
-    <item name="android:windowContentOverlay">@null</item>
-    <item name="android:windowNoTitle">true</item>
-    <item name="android:windowIsFloating">true</item>
-    <item name="android:backgroundDimEnabled">false</item>
-  </style>
-  <style name="FileManager.Theme.Holo.Overlay" parent="@style/FileManager.Theme.Holo">
-    <item name="android:windowIsTranslucent">true</item>
-    <item name="android:windowBackground">@color/black_transparent</item>
-    <item name="android:windowContentOverlay">@null</item>
-    <item name="android:windowNoTitle">true</item>
-    <item name="android:windowIsFloating">true</item>
-    <item name="android:backgroundDimEnabled">false</item>
-  </style>
+    <!-- Action bar -->
+    <style name="FileManager.Widget.ActionBar.White" parent="@android:style/Widget.Holo.Light.ActionBar">
+        <item name="android:titleTextStyle">@style/primary_text_appearance</item>
+        <item name="android:background">@color/default_background</item>
+        <item name="android:backgroundStacked">@color/default_background</item>
+        <item name="android:backgroundSplit">@color/default_background</item>
+    </style>
 
-  <!-- Action bar -->
-  <style name="FileManager.Widget.ActionBar.White" parent="@android:style/Widget.Holo.Light.ActionBar">
-    <item name="android:titleTextStyle">@style/primary_text_appearance</item>
-    <item name="android:background">@color/default_background</item>
-    <item name="android:backgroundStacked">@color/default_background</item>
-    <item name="android:backgroundSplit">@color/default_background</item>
-  </style>
+    <!-- Title -->
+    <style name="title_text_appearance">
+        <item name="android:textSize">@dimen/title_text_size</item>
+        <item name="android:textColor">@color/black_transparent</item>
+        <item name="android:textStyle">bold</item>
+    </style>
 
-  <!-- Title -->
-  <style name="title_text_appearance">
-    <item name="android:textSize">@dimen/title_text_size</item>
-    <item name="android:textColor">@color/black_transparent</item>
-    <item name="android:textStyle">bold</item>
-  </style>
+    <!-- The text appearance for principal information (text that need to be highlighted) -->
+    <style name="primary_text_appearance">
+        <item name="android:textSize">@dimen/primary_text_size</item>
+        <item name="android:textColor">@color/black_transparent</item>
+        <item name="android:textStyle">bold</item>
+    </style>
 
-  <!-- The text appearance for principal information (text that need to be highlighted) -->
-  <style name="primary_text_appearance">
-    <item name="android:textSize">@dimen/primary_text_size</item>
-    <item name="android:textColor">@color/black_transparent</item>
-    <item name="android:textStyle">bold</item>
-  </style>
-  <!-- The text appearance for principal information (important but not highlight) -->
-  <style name="primary_text_appearance_nohighlight" parent="@style/primary_text_appearance">
-    <item name="android:textStyle">normal</item>
-  </style>
-  <!-- The text appearance for secondary information (text with a lower importance) -->
-  <style name="secondary_text_appearance">
-    <item name="android:textSize">@dimen/secondary_text_size</item>
-    <item name="android:textColor">@color/black_transparent</item>
-    <item name="android:textStyle">normal</item>
-  </style>
-  <!-- The text appearance for hexeditor -->
-  <style name="hexeditor_text_appearance">
-    <item name="android:textSize">@dimen/hexeditor_text_size</item>
-    <item name="android:textColor">@color/black_transparent</item>
-    <item name="android:textStyle">normal</item>
-  </style>
-  <!-- The text appearance for a console widget -->
-  <style name="console_text_appearance">
-    <item name="android:textSize">@dimen/console_text_size</item>
-    <item name="android:textColor">@color/console_fg</item>
-    <item name="android:textStyle">normal</item>
-  </style>
-  <!-- The text appearance for dialog titles -->
-  <style name="dialog_title_text_appearance">
-    <item name="android:textSize">@dimen/dialog_title_text_size</item>
-    <item name="android:textColor">@android:color/holo_blue_dark</item>
-    <item name="android:textStyle">bold</item>
-  </style>
+    <!-- The text appearance for principal information (important but not highlight) -->
+    <style name="primary_text_appearance_nohighlight" parent="@style/primary_text_appearance">
+        <item name="android:textStyle">normal</item>
+    </style>
 
-  <!-- Breadcrumb Element -->
-  <style name="breadcrumb_elemement">
-    <item name="android:gravity">center|center_vertical</item>
-  </style>
+    <!-- The text appearance for secondary information (text with a lower importance) -->
+    <style name="secondary_text_appearance">
+        <item name="android:textSize">@dimen/secondary_text_size</item>
+        <item name="android:textColor">@color/black_transparent</item>
+        <item name="android:textStyle">normal</item>
+    </style>
 
-  <!-- Breadcrumb Item -->
-  <style name="breadcrumb_item" parent="@style/breadcrumb_elemement">
-    <item name="android:textAppearance">@style/primary_text_appearance</item>
-    <item name="android:singleLine">true</item>
-    <item name="android:paddingLeft">@dimen/breadcrumb_item_margin_space</item>
-    <item name="android:paddingRight">@dimen/breadcrumb_item_margin_space</item>
-    <item name="android:minWidth">@dimen/breadcrumb_item_min_size</item>
-  </style>
+    <!-- The text appearance for hexeditor -->
+    <style name="hexeditor_text_appearance">
+        <item name="android:textSize">@dimen/hexeditor_text_size</item>
+        <item name="android:textColor">@color/black_transparent</item>
+        <item name="android:textStyle">normal</item>
+    </style>
 
-  <!-- Breadcrumb ActionBar Buttom -->
-  <style name="breadcrumb_actionbar_buttom">
-    <item name="android:paddingLeft">@dimen/extra_margin</item>
-    <item name="android:paddingRight">@dimen/default_margin</item>
-  </style>
+    <!-- The text appearance for a console widget -->
+    <style name="console_text_appearance">
+        <item name="android:textSize">@dimen/console_text_size</item>
+        <item name="android:textColor">@color/console_fg</item>
+        <item name="android:textStyle">normal</item>
+    </style>
 
-  <!-- Navigation Grid Layout -->
-  <style name="navigation_grid">
-    <item name="android:numColumns">@integer/default_grid_columns</item>
-    <item name="android:stretchMode">columnWidth</item>
-    <item name="android:horizontalSpacing">@dimen/default_horizontal_grid_spacing</item>
-    <item name="android:verticalSpacing">@dimen/default_vertical_grid_spacing</item>
-  </style>
+    <!-- The text appearance for dialog titles -->
+    <style name="dialog_title_text_appearance">
+        <item name="android:textSize">@dimen/dialog_title_text_size</item>
+        <item name="android:textColor">@android:color/holo_blue_dark</item>
+        <item name="android:textStyle">bold</item>
+    </style>
 
-  <!-- Horizontal Divider -->
-  <style name="horizontal_divider">
-    <item name="android:layout_marginTop">@dimen/default_margin</item>
-    <item name="android:layout_marginBottom">@dimen/default_margin</item>
-    <item name="android:background">@color/divider_color_light</item>
-  </style>
+    <!-- Breadcrumb element -->
+    <style name="breadcrumb_elemement">
+        <item name="android:gravity">center|center_vertical</item>
+    </style>
 
-  <!-- Vertical Divider -->
-  <style name="vertical_divider">
-    <item name="android:layout_marginLeft">@dimen/default_margin</item>
-    <item name="android:layout_marginRight">@dimen/default_margin</item>
-    <item name="android:background">@color/divider_color</item>
-  </style>
+    <!-- Breadcrumb item -->
+    <style name="breadcrumb_item" parent="@style/breadcrumb_elemement">
+        <item name="android:textAppearance">@style/primary_text_appearance</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:paddingLeft">@dimen/breadcrumb_item_margin_space</item>
+        <item name="android:paddingRight">@dimen/breadcrumb_item_margin_space</item>
+        <item name="android:minWidth">@dimen/breadcrumb_item_min_size</item>
+    </style>
 
+  <!-- Breadcrumb ActionBar buttom -->
+    <style name="breadcrumb_actionbar_buttom">
+        <item name="android:paddingLeft">@dimen/extra_margin</item>
+        <item name="android:paddingRight">@dimen/default_margin</item>
+    </style>
+
+    <!-- Navigation grid layout -->
+    <style name="navigation_grid">
+        <item name="android:numColumns">@integer/default_grid_columns</item>
+        <item name="android:stretchMode">columnWidth</item>
+        <item name="android:horizontalSpacing">@dimen/default_horizontal_grid_spacing</item>
+        <item name="android:verticalSpacing">@dimen/default_vertical_grid_spacing</item>
+    </style>
+
+    <!-- Horizontal divider -->
+    <style name="horizontal_divider">
+        <item name="android:layout_marginTop">@dimen/default_margin</item>
+        <item name="android:layout_marginBottom">@dimen/default_margin</item>
+        <item name="android:background">@color/divider_color_light</item>
+    </style>
+
+    <!-- Vertical Divider -->
+    <style name="vertical_divider">
+        <item name="android:layout_marginLeft">@dimen/default_margin</item>
+        <item name="android:layout_marginRight">@dimen/default_margin</item>
+        <item name="android:background">@color/divider_color</item>
+    </style>
 </resources>

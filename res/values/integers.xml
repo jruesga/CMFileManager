@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Copyright (C) 2012 The CyanogenMod Project
+<!--
+     Copyright (C) 2012-2013 The CyanogenMod Project
 
      Licensed under the Apache License, Version 2.0 (the "License");
      you may not use this file except in compliance with the License.
@@ -12,19 +13,18 @@
      WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
      See the License for the specific language governing permissions and
      limitations under the License.
- -->
+-->
+
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <!-- The default progress value -->
+    <integer name="default_progress_value">0</integer>
 
-  <!-- The default progress value -->
-  <integer name="default_progress_value">0</integer>
+    <!-- The default grid columns value -->
+    <integer name="default_grid_columns">3</integer>
 
-  <!-- The default grid columns value -->
-  <integer name="default_grid_columns">3</integer>
+    <!-- The max lines of text of the grid items -->
+    <integer name="default_grid_item_text_max_lines">2</integer>
 
-  <!-- The max lines of text of the grid items -->
-  <integer name="default_grid_item_text_max_lines">2</integer>
-
-  <!-- Normal edit text sise -->
-  <integer name="default_edit_text_ems">8</integer>
-
+    <!-- Normal edit text sise -->
+    <integer name="default_edit_text_ems">8</integer>
 </resources>

@@ -57,8 +57,8 @@
 
   <string name="msgs_cant_create_console">Не удаётся получить необходимые привилегии</string>
   <string name="msgs_privileged_console_alloc_failed">Запуск в режиме суперпользователя невозможен. Переключение в безопасный режим</string>
-  <string name="msgs_settings_save_failure">Настройка не может быть применена или сохранена</string>
-  <string name="msgs_settings_invalid_initial_directory">Начальная папка «<xliff:g id="initial_dir">%1$s</xliff:g>» недоступна. Переход в корневую папку</string>
+  <string name="msgs_settings_save_failure">Не удалось сохранить настройки</string>
+  <string name="msgs_settings_invalid_initial_directory">Начальная папка «<xliff:g id="initial_dir">%1$s</xliff:g>» недоступна. Переход в корневую папку\u2026</string>
 
   <string name="msgs_success">Операция прошла успешно</string>
   <string name="msgs_unknown">Были обнаружены ошибки. Операция завершилась неудачно</string>
@@ -72,8 +72,8 @@
   <string name="msgs_operation_can_not_be_cancelled">Операция не может быть отменена</string>
   <string name="msgs_read_only_filesystem">Файловая система доступна только для чтения. Попробуйте смонтировать файловую систему для чтения/записи</string>
   <string name="msgs_illegal_argument">Недопустимый аргумент. Вызов не удался</string>
-  <string name="msgs_unresolved_inconsistencies">Операция не допускается, поскольку это создаст несоответствия</string>
-  <string name="msgs_operation_not_allowed_in_current_directory">Операция не допускается в текущей папке. \n\nПапка назначения не может быть вложенной папкой источника или самим источником</string>
+  <string name="msgs_unresolved_inconsistencies">Невозможно выполнить операцию.\n\nЭто приведёт к созданию несоответствий файловой системы.</string>
+  <string name="msgs_operation_not_allowed_in_current_directory">Невозможно выполнить операцию.\n\nНельзя переместить папку саму в себя.</string>
 
   <string name="msgs_push_again_to_exit">Нажмите ещё раз для выхода</string>
 
@@ -125,19 +125,19 @@
   <string name="filesystem_info_dialog_tab_info">Информация</string>
   <string name="filesystem_info_dialog_tab_disk_usage">Диск</string>
   <string name="filesystem_info_dialog_status">Статус:</string>
-  <string name="filesystem_info_dialog_mount_point">Точка монтирования:</string>
+  <string name="filesystem_info_dialog_mount_point">Точка монт.:</string>
   <string name="filesystem_info_dialog_device">Устройство:</string>
-  <string name="filesystem_info_dialog_type">Тип:</string>
-  <string name="filesystem_info_dialog_options">Опции:</string>
+  <string name="filesystem_info_dialog_type">Тип ФС:</string>
+  <string name="filesystem_info_dialog_options">Опции монт.:</string>
   <string name="filesystem_info_dialog_dump_pass">Dump / Pass:</string>
-  <string name="filesystem_info_dialog_total_disk_usage">Всего:</string>
+  <string name="filesystem_info_dialog_total_disk_usage">Объём:</string>
   <string name="filesystem_info_dialog_used_disk_usage">Исп.:</string>
   <string name="filesystem_info_dialog_free_disk_usage">Своб.:</string>
 
   <string name="fso_properties_permissions_not_allowed_msg">Изменение разрешений невозможно в безопасном режиме. Нажмите для переключения в режим суперпользователя</string>
-  <string name="fso_properties_failed_to_change_owner_msg">Изменение владельца не удалось.\n\nПо соображениям безопасности, некоторые файловые системы, такие как SD-карты, не позволяют изменять владельца</string>
-  <string name="fso_properties_failed_to_change_group_msg">Изменение группы не удалось.\n\nПо соображения безопасности, некоторые файловые системы, такие как SD-карты, не позволяют изменять группы</string>
-  <string name="fso_properties_failed_to_change_permission_msg">Изменение разрешений не удалось.\n\nПо соображениям безопасности, некоторые файловые системы, такие как SD-карты, не позволяют изменять разрешения</string>
+  <string name="fso_properties_failed_to_change_owner_msg">Изменение владельца не удалось.\n\nПо соображениям безопасности, некоторые файловые системы (например, используемые на SD-картах) не позволяют изменять владельца</string>
+  <string name="fso_properties_failed_to_change_group_msg">Изменение группы не удалось.\n\nПо соображениям безопасности, некоторые файловые системы (например, используемые на SD-картах) не позволяют изменять группы</string>
+  <string name="fso_properties_failed_to_change_permission_msg">Изменение разрешений не удалось.\n\nПо соображениям безопасности, некоторые файловые системы (например, используемые на SD-картах) не позволяют изменять разрешения</string>
   <string name="fso_properties_dialog_title">Свойства</string>
   <string name="fso_properties_dialog_tab_info">Основные</string>
   <string name="fso_properties_dialog_tab_permissions">Разрешения</string>
@@ -173,9 +173,9 @@
   <string name="search_error_msg">При поиске произошла ошибка. Ничего не найдено</string>
   <string name="search_no_results_msg">Ничего не найдено</string>
   <string name="search_found_items_in_directory"><xliff:g id="items">%1$s</xliff:g> в <xliff:g id="path">%2$s</xliff:g></string>
-  <string name="search_terms"><![CDATA[<b>Условия:</b>]]> <xliff:g id="terms">%1$s</xliff:g></string>
+  <string name="search_terms"><![CDATA[<b>Запрос:</b>]]> <xliff:g id="terms">%1$s</xliff:g></string>
   <string name="search_few_characters_title">Подтвердите поиск</string>
-  <string name="search_few_characters_msg">Некоторые условия поиска имеют очень мало символов. Операция может быть очень затратна по времени и системным ресурсам.\n\nВы действительно хотите продолжить?</string>
+  <string name="search_few_characters_msg">Поисковый запрос очень короткий, поиск может занять много времени.\n\nВы действительно хотите продолжить?</string>
   <string name="searching">Пожалуйста, подождите\u2026</string>
   <string name="searching_action_label">Выполняется поиск\u2026</string>
 
@@ -212,13 +212,13 @@
   <string name="menu_settings">Настройки</string>
   <string name="menu_clear_history">Очистить историю</string>
   <string name="menu_no_suggestions">Не предлагать исправления</string>
-  <string name="menu_syntax_highlight">Подсветка синтаксиса</string>
-  <string name="menu_word_wrap">Перенос слов</string>
+  <string name="menu_syntax_highlight">Включить подсветку синтаксиса</string>
+  <string name="menu_word_wrap">Включить перенос текста</string>
 
-  <string name="create_copy_regexp"><xliff:g id="name">%1$s</xliff:g> — копия <xliff:g id="extension">%2$s</xliff:g></string>
-  <string name="create_new_compress_file_regexp"><xliff:g id="name">%1$s</xliff:g> — новый <xliff:g id="extension">%2$s</xliff:g></string>
+  <string name="create_copy_regexp"><xliff:g id="name">%1$s</xliff:g> — копия<xliff:g id="extension">%2$s</xliff:g></string>
+  <string name="create_new_compress_file_regexp"><xliff:g id="name">%1$s</xliff:g> — новый<xliff:g id="extension">%2$s</xliff:g></string>
 
-  <string name="waiting_dialog_msg">Выполнение операции\u2026</string>
+  <string name="waiting_dialog_msg">Обработка\u2026</string>
   <string name="waiting_dialog_copying_title">Копирование\u2026</string>
   <string name="waiting_dialog_copying_msg">
     <![CDATA[<b>Из</b>]]> <xliff:g id="from">%1$s</xliff:g><![CDATA[<br/>]]>
@@ -238,36 +238,36 @@
     <![CDATA[<b>Файл</b>]]> <xliff:g id="file">%1$s</xliff:g></string>
   <string name="waiting_dialog_analizing_msg">
     <![CDATA[<b>Анализ\u2026</b>]]></string>
-  <string name="msgs_extracting_success">Извлечение успешно завершено. Файлы распакованы в <xliff:g id="destination">%1$s</xliff:g></string>
-  <string name="msgs_compressing_success">Сжатие успешно завершено. Архив помещён в <xliff:g id="destination">%1$s</xliff:g></string>
+  <string name="msgs_extracting_success">Файлы извлечены в «<xliff:g id="destination">%1$s</xliff:g>»</string>
+  <string name="msgs_compressing_success">Архив «<xliff:g id="destination">%1$s</xliff:g>» создан</string>
 
   <string name="actions_dialog_title">Действия</string>
   <string name="actions_menu_properties_current_folder">Свойства</string>
   <string name="actions_menu_refresh">Обновить</string>
   <string name="actions_menu_new_directory">Новая папка</string>
   <string name="actions_menu_new_file">Новый файл</string>
-  <string name="actions_menu_select_all">Выбрать всё</string>
-  <string name="actions_menu_deselect_all">Снять выбор</string>
-  <string name="actions_menu_select">Выбор</string>
-  <string name="actions_menu_deselect">Снять выбор</string>
-  <string name="actions_menu_paste_selection">Скопировать выбранное сюда</string>
-  <string name="actions_menu_move_selection">Переместить выбранное сюда</string>
-  <string name="actions_menu_delete_selection">Удалить выбранное</string>
-  <string name="actions_menu_compress_selection">Сжать выбранное</string>
+  <string name="actions_menu_select_all">Выделить все</string>
+  <string name="actions_menu_deselect_all">Снять выделение со всех</string>
+  <string name="actions_menu_select">Выделить</string>
+  <string name="actions_menu_deselect">Снять выделение</string>
+  <string name="actions_menu_paste_selection">Скопировать выделенное сюда</string>
+  <string name="actions_menu_move_selection">Переместить выделенное сюда</string>
+  <string name="actions_menu_delete_selection">Удалить выделенное</string>
+  <string name="actions_menu_compress_selection">Создать архив из выделенного</string>
   <string name="actions_menu_create_link">Создать ссылку</string>
   <string name="actions_menu_open">Открыть</string>
   <string name="actions_menu_open_with">Открыть в\u2026</string>
   <string name="actions_menu_execute">Выполнить</string>
   <string name="actions_menu_send">Отправить</string>
-  <string name="actions_menu_send_selection">Отправить выбранное</string>
-  <string name="actions_menu_compress">Сжать</string>
+  <string name="actions_menu_send_selection">Отправить выделенное</string>
+  <string name="actions_menu_compress">Создать архив</string>
   <string name="actions_menu_extract">Извлечь</string>
   <string name="actions_menu_delete">Удалить</string>
   <string name="actions_menu_rename">Переименовать</string>
-  <string name="actions_menu_create_copy">Копировать</string>
+  <string name="actions_menu_create_copy">Создать копию</string>
   <string name="actions_menu_properties">Свойства</string>
   <string name="actions_menu_add_to_bookmarks">Добавить в закладки</string>
-  <string name="actions_menu_add_shortcut">Добавить ярлык</string>
+  <string name="actions_menu_add_shortcut">Поместить на главный экран</string>
   <string name="actions_menu_open_parent_folder">Открыть папку с файлом</string>
   <string name="actions_menu_compute_checksum">Контрольные суммы</string>
 
@@ -277,7 +277,7 @@
   <string name="input_name_dialog_message_empty_name">Имя не может быть пустым</string>
   <string name="input_name_dialog_message_invalid_path_name">Недопустимое имя. Нельзя использовать символы: <xliff:g id="invalid_characters">%1$s</xliff:g></string>
   <string name="input_name_dialog_message_invalid_name">Недопустимое имя. Имена «.» и «..» не разрешены</string>
-  <string name="input_name_dialog_message_name_exists">Такое имя уже существует</string>
+  <string name="input_name_dialog_message_name_exists">Имя уже используется в этой папке</string>
 
   <string name="associations_dialog_title">Ассоциации</string>
   <string name="associations_dialog_remember">Запомнить выбор</string>
@@ -308,7 +308,7 @@
   <string name="filetime_format_mode_MMddyyyy_HHmmss">мм/дд/гггг чч:мм:сс</string>
   <string name="filetime_format_mode_yyyyMMdd_HHmmss">гггг-мм-дд чч:мм:сс</string>
 
-  <string name="selection_folders_and_files">Выбрано: <xliff:g id="folders">%1$s</xliff:g> и <xliff:g id="files">%2$s</xliff:g>.</string>
+  <string name="selection_folders_and_files">Выделено <xliff:g id="folders">%1$s</xliff:g> и <xliff:g id="files">%2$s</xliff:g></string>
 
   <string name="category_system">СИСТЕМА</string>
   <string name="category_app">ПРИЛОЖЕНИЕ</string>
@@ -347,8 +347,8 @@
   <string name="pref_filetime_format_mode">Формат даты/времени</string>
   <string name="pref_disk_usage_warning_level">Уровень предупреждения исп. памяти</string>
   <string name="pref_disk_usage_warning_level_summary" formatted="false">Отмечать красным индикатор занятого места, если диск заполнен на <xliff:g id="level">%1$s</xliff:g> процентов</string>
-  <string name="pref_compute_folder_statistics">Расчёт статистики по папкам</string>
-  <string name="pref_compute_folder_statistics_on">Внимание! Расчёт статистики по папкам займёт длительное время и потребует значительное количество системных ресурсов</string>
+  <string name="pref_compute_folder_statistics">Показывать число объектов в папках</string>
+  <string name="pref_compute_folder_statistics_on">Внимание! Анализ содержимого папок может увеличить время обработки их свойств</string>
   <string name="pref_display_thumbs">Показывать эскизы</string>
   <string name="pref_display_thumbs_summary">Отображение эскизов картинок, видеозаписей, музыкальных файлов и приложений</string>
   <string name="pref_use_flinger">Использовать жесты</string>
@@ -362,19 +362,19 @@
   <string name="pref_access_mode_root">Режим суперпользователя</string>
   <string name="pref_access_mode_root_summary">Режим суперпользователя\n\nВнимание! Этот режим может вывести ваше устройство из строя. Все действия в этом режиме выполняются на ваш страх и риск</string>
   <string name="pref_search_results_category">Результаты</string>
-  <string name="pref_show_relevance_widget">Показывать виджет актуальности</string>
+  <string name="pref_show_relevance_widget">Показывать индикатор актуальности</string>
   <string name="pref_highlight_terms">Выделять условия поиска</string>
   <string name="pref_sort_search_results_mode">Режим сортировки</string>
   <string name="pref_sort_search_results_mode_none">Не сортировать</string>
   <string name="pref_sort_search_results_mode_name">По имени</string>
   <string name="pref_sort_search_results_mode_relevance">По актуальности</string>
   <string name="pref_search_privacity_category">Конфиденциальность</string>
-  <string name="pref_save_search_terms">Сохранять условия поиска</string>
-  <string name="pref_save_search_terms_on">Условия поиска будут сохранены для дальнейшего использования в качестве подсказок</string>
-  <string name="pref_save_search_terms_off">Условия поиска не будут сохраняться</string>
-  <string name="pref_remove_saved_search_terms">Удалить сохранённые условия поиска</string>
-  <string name="pref_remove_saved_search_terms_summary">Нажмите для удаления всех сохранённых условий поиска</string>
-  <string name="pref_remove_saved_search_terms_msg">Все сохранённые условия поиска были удалены</string>
+  <string name="pref_save_search_terms">Сохранять поисковые запросы</string>
+  <string name="pref_save_search_terms_on">Поисковые запросы сохраняются и используются в качестве подсказок</string>
+  <string name="pref_save_search_terms_off">Поисковые запросы не сохраняются</string>
+  <string name="pref_remove_saved_search_terms">Удалить сохранённые запросы</string>
+  <string name="pref_remove_saved_search_terms_summary">Нажмите для удаления всех сохранённых поисковых запросов</string>
+  <string name="pref_remove_saved_search_terms_msg">Сохранённые поисковые запросы удалены</string>
   <string name="pref_editor_behaviour_category">Поведение</string>
   <string name="pref_no_suggestions">Не предлагать исправления</string>
   <string name="pref_no_suggestions_desc">Не показывать варианты исправлений при редактировании файла</string>
@@ -405,7 +405,7 @@
   <string name="color_picker_new_text">Новый:</string>
   <string name="color_picker_color">Цвет:</string>
 
-  <string name="ash_reset_color_scheme">Нажмите для восстановления цветовой схемы по умолчанию</string>
+  <string name="ash_reset_color_scheme">Нажмите здесь для восстановления цветовой схемы по умолчанию</string>
   <string name="ash_text">Текст</string>
   <string name="ash_assignment">Присваивание</string>
   <string name="ash_singleline_comment">Однострочный комментарий</string>

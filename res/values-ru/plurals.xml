@@ -25,18 +25,18 @@
     <item quantity="many"><xliff:g id="files">%1$d</xliff:g> файлов</item>
   </plurals>
   <plurals name="search_found_items">
-    <item quantity="one">Найдено <xliff:g id="count">%d</xliff:g> значение</item>
-    <item quantity="few">Найдено <xliff:g id="count">%d</xliff:g> значения</item>
-    <item quantity="many">Найдено <xliff:g id="count">%d</xliff:g> значений</item>
+    <item quantity="one">Найден <xliff:g id="count">%d</xliff:g> объект</item>
+    <item quantity="few">Найдено <xliff:g id="count">%d</xliff:g> объекта</item>
+    <item quantity="many">Найдено <xliff:g id="count">%d</xliff:g> объектов</item>
   </plurals>
   <plurals name="selection_folders">
-    <item quantity="one">Выбрана <xliff:g id="folders">%1$d</xliff:g> папка.</item>
-    <item quantity="few">Выбрано <xliff:g id="folders">%1$d</xliff:g> папки.</item>
-    <item quantity="many">Выбрано <xliff:g id="folders">%1$d</xliff:g> папок.</item>
+    <item quantity="one">Выделена <xliff:g id="folders">%1$d</xliff:g> папка</item>
+    <item quantity="few">Выделено <xliff:g id="folders">%1$d</xliff:g> папки</item>
+    <item quantity="many">Выделено <xliff:g id="folders">%1$d</xliff:g> папок</item>
   </plurals>
   <plurals name="selection_files">
-    <item quantity="one">Выбран <xliff:g id="files">%1$d</xliff:g> файл.</item>
-    <item quantity="few">Выбрано <xliff:g id="files">%1$d</xliff:g> файла.</item>
-    <item quantity="many">Выбрано <xliff:g id="files">%1$d</xliff:g> файлов.</item>
+    <item quantity="one">Выделен <xliff:g id="files">%1$d</xliff:g> файл</item>
+    <item quantity="few">Выделено <xliff:g id="files">%1$d</xliff:g> файла</item>
+    <item quantity="many">Выделено <xliff:g id="files">%1$d</xliff:g> файлов</item>
   </plurals>
 </resources>

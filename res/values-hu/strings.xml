@@ -294,6 +294,8 @@
     <string name="pref_disk_usage_warning_level_summary" formatted="false">Tárterület-használat megjelenítése más színnel, amikor az eléri a <xliff:g id="level">%1$s</xliff:g> százalékot.</string>
     <string name="pref_compute_folder_statistics">Mappa statisztika számítása</string>
     <string name="pref_compute_folder_statistics_on">Figyelem! A művelet sokáig eltarthat és megterhelheti a rendszert.</string>
+    <string name="pref_display_thumbs">Miniatűrök</string>
+    <string name="pref_display_thumbs_summary">Miniatűrök megjelenítése ismert fájltípus esetén (kép, videó, zene, alkalmazás).</string>
     <string name="pref_use_flinger">Kézmozdulatok használata</string>
     <string name="pref_use_flinger_summary">Fájlok és mappák törlése jobbra történő elhúzással.</string>
     <string name="pref_general_advanced_settings_category">Speciális</string>

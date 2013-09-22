@@ -63,7 +63,7 @@
     <string name="msgs_read_only_filesystem">Het bestandssysteem is gekoppeld als alleen-lezen. Probeer het bestandssysteem als beschrijfbaar te koppelen alvorens de bewerking uit te voeren.</string>
     <string name="msgs_illegal_argument">Ongeldig argument. Activering mislukt.</string>
     <string name="msgs_unresolved_inconsistencies">Deze bewerking is niet toegestaan omdat het inconsistenties zal veroorzaken.</string>
-    <string name="msgs_operation_not_allowed_in_current_directory">Deze bewerking is niet toegestaan in de huidige map.\n\nDe doelmap kan niet hetzelfde zijn als of een submap zijn van de bron.</string>
+    <string name="msgs_operation_not_allowed_in_current_directory">Deze bewerking is niet toegestaan in de huidige map.\n\nDe doelmap kan niet hetzelfde zijn als de bron of een submap zijn van de bron.</string>
     <string name="msgs_push_again_to_exit">Tik nogmaals om af te sluiten.</string>
     <string name="msgs_not_registered_app">Er is geen app geïnstalleerd om het geselecteerde bestandstype te openen.</string>
     <string name="msgs_overwrite_files">Een aantal bestanden bestaat al in de doelmap.\n\nOverschrijven?</string>
@@ -98,7 +98,7 @@
     <string name="filesystem_info_warning_title">Geen informatie</string>
     <string name="filesystem_info_warning_msg">Er is geen informatie beschikbaar over het bestandssysteem.</string>
     <string name="filesystem_info_cant_be_mounted_msg">Het bestandssysteem kan niet worden gekoppeld/ontkoppeld.</string>
-    <string name="filesystem_info_mount_not_allowed_msg">Koppelen van bestandssystem is niet toegestaan in veilige modus. Tik om naar roottoegangsmodus te schakelen.</string>
+    <string name="filesystem_info_mount_not_allowed_msg">Koppelen van bestandssysteem is niet toegestaan in veilige modus. Tik om naar roottoegangsmodus te schakelen.</string>
     <string name="filesystem_info_mount_failed_msg">Koppelen van het bestandssysteem mislukt. Sommige bestandssystemen, zoals op SD-kaarten, kunnen niet worden gekoppeld/ontkoppeld omdat het alleen-lezenbestandssystemen zijn.</string>
     <string name="filesystem_info_dialog_title">Bestandssysteeminfo</string>
     <string name="filesystem_info_dialog_tab_info">Informatie</string>
@@ -286,13 +286,15 @@
     <string name="pref_about">Over</string>
     <string name="pref_about_summary">Bestandsbeheerder v<xliff:g id="version">%1$s</xliff:g>\nCopyright \u00A9 2012-2013 Het CyanogenMod-project</string>
     <string name="pref_general_behaviour_category">Algemeen</string>
-    <string name="pref_case_sensitive_sort">Hooflettergevoelig</string>
+    <string name="pref_case_sensitive_sort">Hoofdlettergevoelig</string>
     <string name="pref_case_sensitive_sort_summary">Inhoud en zoekresultaten hoofdlettergevoelig sorteren</string>
     <string name="pref_filetime_format_mode">Datum-/tijdnotatie</string>
     <string name="pref_disk_usage_warning_level">Schijfgebruikwaarschuwing</string>
     <string name="pref_disk_usage_warning_level_summary" formatted="false">Andere kleur voor schijfgebruikwidgets tonen wanneer ze <xliff:g id="level">%1$s</xliff:g> procent vrije ruimte bereiken</string>
     <string name="pref_compute_folder_statistics">Mapstatistieken berekenen</string>
     <string name="pref_compute_folder_statistics_on">Let op: het berekenen van mapstatistieken kost tijd en systeembronnen</string>
+    <string name="pref_display_thumbs">Voorbeeld</string>
+    <string name="pref_display_thumbs_summary">Voorbeeldweergave voor afbeeldingen, video\'s, muziek en apps</string>
     <string name="pref_use_flinger">Veegbewegingen gebruiken</string>
     <string name="pref_use_flinger_summary">Vegen van links naar rechts gebruiken om bestanden of mappen te verwijderen.</string>
     <string name="pref_general_advanced_settings_category">Geavanceerd</string>
@@ -300,9 +302,9 @@
     <string name="pref_access_mode_safe">Veilige modus</string>
     <string name="pref_access_mode_safe_summary">Veilige modus\n\nDe app werkt zonder machtigingen en alleen opslagvolumes (SD-kaart en USB) zijn toegankelijk</string>
     <string name="pref_access_mode_prompt">Vragen naar toegangsmodus</string>
-    <string name="pref_access_mode_prompt_summary">Vragen naar toegangsmodus\n\nDe app heeft volledige toegang tot het bestandssysteem, maar zal toestemming vragen voor bewerking waarvoor machtigingen nodig zijn</string>
+    <string name="pref_access_mode_prompt_summary">Vragen naar toegangsmodus\n\nDe app heeft volledige toegang tot het bestandssysteem, maar zal toestemming vragen voor bewerkingen waarvoor machtigingen nodig zijn</string>
     <string name="pref_access_mode_root">Roottoegangsmodus</string>
-    <string name="pref_access_mode_root_summary">Roottoegangsmodus\n\nLet op! Deze modus staat bewerkingen toe die het apparaat kunnen beschadingen. Het is uw eigen verantwoordelijk om te zorgen dat een bewerking veilig is</string>
+    <string name="pref_access_mode_root_summary">Roottoegangsmodus\n\nLet op! Deze modus staat bewerkingen toe die het apparaat kunnen beschadingen. Het is uw eigen verantwoordelijkheid om te zorgen dat een bewerking veilig is</string>
     <string name="pref_search_results_category">Resultaten</string>
     <string name="pref_show_relevance_widget">Relevantiepictogram tonen</string>
     <string name="pref_highlight_terms">Zoektermen markeren</string>
@@ -321,8 +323,8 @@
     <string name="pref_no_suggestions">Geen suggesties</string>
     <string name="pref_no_suggestions_desc">Woordenboeksuggesties verbergen tijdens het bewerken van een bestand</string>
     <string name="pref_word_wrap">Automatische terugloop</string>
-    <string name="pref_hexdump">Hex-dump maken</string>
-    <string name="pref_hexdump_desc">Bij het openen van een binair bestand een hex-dump generen en deze openen in een hex-viewer</string>
+    <string name="pref_hexdump">Hex-dump genereren</string>
+    <string name="pref_hexdump_desc">Hex-dump genereren bij openen binair bestand en deze openen in hex-viewer</string>
     <string name="pref_editor_syntax_highlight_category">Syntaxiskleuring</string>
     <string name="pref_syntax_highlight">Syntaxiskleuring</string>
     <string name="pref_syntax_highlight_desc">Syntaxiskleuring inschakelen in de bewerker indien mogelijk</string>

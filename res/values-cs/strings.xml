@@ -332,6 +332,8 @@
   <string name="pref_disk_usage_warning_level_summary" formatted="false">Pokud využití disku dosáhne úrovně <xliff:g id="level">%1$s</xliff:g> procent volného místa, bude ve využití disku zobrazen odlišnou barvou.</string>
   <string name="pref_compute_folder_statistics">Spočítat statistiku složky</string>
   <string name="pref_compute_folder_statistics_on">Varování! Spočítání statistiky složky je náročné na čas a systémové prostředky.</string>
+  <string name="pref_display_thumbs">Náhled</string>
+  <string name="pref_display_thumbs_summary">Zobrazovat náhledy pro aplikace, hudební soubory, obrázky a videa.</string>
   <string name="pref_use_flinger">Použít gesta přejetím</string>
   <string name="pref_use_flinger_summary">Použít detekci gesta přejetím zleva do prava pro mazání souborů a složek.</string>
   <string name="pref_general_advanced_settings_category">Pokočilé</string>

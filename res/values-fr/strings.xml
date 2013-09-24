@@ -305,6 +305,8 @@
     <string name="pref_disk_usage_warning_level_summary" formatted="false">Afficher une couleur différente dans la barre d\'utilisation de l\'espace disque lorsque <xliff:g id="level">%1$s</xliff:g> pourcent d\'espace est utilisé</string>
     <string name="pref_compute_folder_statistics">Calculer les statistiques de dossiers</string>
     <string name="pref_compute_folder_statistics_on">Attention\u00A0! Le calcul des statistiques de dossiers est coûteux en temps et en ressources système.</string>
+    <string name="pref_display_thumbs">Aperçu</string>
+    <string name="pref_display_thumbs_summary">Afficher un aperçu pour les applications, les vidéos, les musiques et les images</string>
     <string name="pref_use_flinger">Utiliser les mouvements de glissement</string>
     <string name="pref_use_flinger_summary">Utiliser le mouvement de gauche à droite pour supprimer un fichier ou un dossier</string>
     <string name="pref_general_advanced_settings_category">Avancé</string>

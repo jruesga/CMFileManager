@@ -293,6 +293,8 @@
     <string name="pref_disk_usage_warning_level_summary" formatted="false">Εμφάνιση διαφορετικού χρώματος στα widget χρήσης δίσκου όταν καταληφθεί το <xliff:g id="level">%1$s</xliff:g> τοις εκατό του ελεύθερου χώρου</string>
     <string name="pref_compute_folder_statistics">Υπολογισμός στατιστικών φακέλου</string>
     <string name="pref_compute_folder_statistics_on">Προσοχή! Ο υπολογισμός των στατιστικών φακέλου είναι δαπανηρός σε χρόνο και πόρους του συστήματος</string>
+    <string name="pref_display_thumbs">Προεπισκόπιση</string>
+    <string name="pref_display_thumbs_summary">Εμφάνιση εικονιδίου προεπισκόπισης για εφαρμογές, αρχεία μουσικής, φωτογραφίες και βίντεο.</string>
     <string name="pref_use_flinger">Χρήση χειρονομιών swipe</string>
     <string name="pref_use_flinger_summary">Κάντε swipe από αριστερά προς δεξιά για διαγραφή αρχείων ή φακέλων.</string>
     <string name="pref_general_advanced_settings_category">Για προχωρημένους</string>

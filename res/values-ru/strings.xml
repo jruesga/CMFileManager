@@ -211,9 +211,9 @@
   <string name="menu_search">Поиск</string>
   <string name="menu_settings">Настройки</string>
   <string name="menu_clear_history">Очистить историю</string>
-  <string name="menu_no_suggestions">Не предлагать исправления</string>
-  <string name="menu_syntax_highlight">Включить подсветку синтаксиса</string>
-  <string name="menu_word_wrap">Включить перенос текста</string>
+  <string name="menu_no_suggestions">Не предл. исправления</string>
+  <string name="menu_syntax_highlight">Подсветка синтаксиса</string>
+  <string name="menu_word_wrap">Перенос текста</string>
 
   <string name="create_copy_regexp"><xliff:g id="name">%1$s</xliff:g> — копия<xliff:g id="extension">%2$s</xliff:g></string>
   <string name="create_new_compress_file_regexp"><xliff:g id="name">%1$s</xliff:g> — новый<xliff:g id="extension">%2$s</xliff:g></string>
@@ -378,11 +378,11 @@
   <string name="pref_editor_behaviour_category">Поведение</string>
   <string name="pref_no_suggestions">Не предлагать исправления</string>
   <string name="pref_no_suggestions_desc">Не показывать варианты исправлений при редактировании файла</string>
-  <string name="pref_word_wrap">Перенос слов</string>
+  <string name="pref_word_wrap">Включить перенос текста</string>
   <string name="pref_hexdump">Шестнадцатеричный формат</string>
   <string name="pref_hexdump_desc">Вывод содержимого бинарных файлов в шестнадцатеричном формате</string>
   <string name="pref_editor_syntax_highlight_category">Подсветка синтаксиса</string>
-  <string name="pref_syntax_highlight">Подсветка синтаксиса</string>
+  <string name="pref_syntax_highlight">Включить подсветку синтаксиса</string>
   <string name="pref_syntax_highlight_desc">Подсвечивать синтаксис редактируемого файла (только для поддерживаемых редактором типов файлов)</string>
   <string name="pref_syntax_highlight_color_scheme">Цветовая схема</string>
   <string name="pref_syntax_highlight_color_scheme_desc">Нажмите для выбора цветовой схемы подсветки синтаксиса</string>

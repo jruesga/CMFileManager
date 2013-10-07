@@ -30,6 +30,7 @@ import android.widget.TextView;
 
 import com.cyanogenmod.filemanager.FileManagerApplication;
 import com.cyanogenmod.filemanager.R;
+import com.cyanogenmod.filemanager.console.Console;
 import com.cyanogenmod.filemanager.console.ConsoleBuilder;
 import com.cyanogenmod.filemanager.model.DiskUsage;
 import com.cyanogenmod.filemanager.model.MountPoint;
@@ -338,6 +339,16 @@ public class FilesystemInfoDialog implements OnClickListener, OnCheckedChangeLis
                     ret = CommandHelper.remount(
                             this.mContext,
                             this.mMountPoint, isChecked, null);
+
+                    if (ret) {
+                        Console bgConsole = FileManagerApplication.getBackgroundConsole();
+                        if (bgConsole != null) {
+                            ret = CommandHelper.remount(
+                                    this.mContext,
+                                    this.mMountPoint, isChecked, bgConsole);
+                        }
+                    }
+
                     //Hide warning message
                     this.mInfoMsgView.setVisibility(View.GONE);
                     //Communicate the mount change

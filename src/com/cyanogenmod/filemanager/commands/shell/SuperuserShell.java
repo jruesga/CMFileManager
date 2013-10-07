@@ -35,6 +35,10 @@ public class SuperuserShell extends Shell {
 
     private static final String ID = "su";  //$NON-NLS-1$
 
+    private static final String[] MOUNT_STORAGE_ENV = new String[] {
+        "MOUNT_EMULATED_STORAGE=1"
+    };
+
     /**
      * Constructor of <code>SuperuserShell</code>.
      *
@@ -42,6 +46,13 @@ public class SuperuserShell extends Shell {
      */
     public SuperuserShell() throws InvalidCommandDefinitionException {
         super(ID, ShellHelper.getProgramCmdLine(new BashShell()));
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public String[] getEnvironment() {
+        return MOUNT_STORAGE_ENV;
     }
 
     /**

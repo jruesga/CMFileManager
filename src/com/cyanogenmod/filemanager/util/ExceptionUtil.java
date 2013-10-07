@@ -271,59 +271,60 @@ public final class ExceptionUtil {
         }
 
         //Create a yes/no dialog and ask the user
+        final DialogInterface.OnClickListener clickListener =
+                new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                if (which == DialogInterface.BUTTON_POSITIVE) {
+                    //Run the executable again
+                    try {
+                        //Prepare the system before re-launch the command
+                        prepare(context, relaunchable);
+
+                        //Re-execute the command
+                        List<SyncResultExecutable> executables = relaunchable.getExecutables();
+                        int cc = executables.size();
+                        for (int i = 0; i < cc; i++) {
+                            SyncResultExecutable executable = executables.get(i);
+                            Object result = CommandHelper.reexecute(context, executable, null);
+                            AsyncTask<Object, Integer, Boolean> task = relaunchable.getTask();
+                            if (task != null && task.getStatus() != AsyncTask.Status.RUNNING) {
+                                task.execute(result);
+                            }
+                        }
+
+                        // Operation complete
+                        if (listener != null) {
+                            listener.onSuccess();
+                        }
+
+                    } catch (Throwable ex) {
+                        //Capture the exception, this time in quiet mode, if the
+                        //exception is the same
+                        boolean ask = ex.getClass().getName().compareTo(
+                                relaunchable.getClass().getName()) == 0;
+                        translateException(context, ex, quiet, !ask, listener);
+
+                        // Operation failed
+                        if (listener != null) {
+                            listener.onFailed(ex);
+                        }
+                    }
+                } else {
+                    // Operation cancelled
+                    if (listener != null) {
+                        listener.onCancelled();
+                    }
+                }
+            }
+        };
+
         AlertDialog alert = DialogHelper.createYesNoDialog(
                     context,
                     R.string.confirm_operation,
                     relaunchable.getQuestionResourceId(),
-                    new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            if (which == DialogInterface.BUTTON_POSITIVE) {
-                                //Run the executable again
-                                try {
-                                    //Prepare the system before re-launch the command
-                                    prepare(context, relaunchable);
+                    clickListener);
 
-                                    //Re-execute the command
-                                    List<SyncResultExecutable> executables =
-                                            relaunchable.getExecutables();
-                                    int cc = executables.size();
-                                    for (int i = 0; i < cc; i++) {
-                                        SyncResultExecutable executable = executables.get(i);
-                                        Object result = CommandHelper.reexecute(
-                                                context, executable, null);
-                                        if (relaunchable.getTask() != null) {
-                                            relaunchable.getTask().execute(result);
-                                        }
-                                    }
-
-                                    // Operation complete
-                                    if (listener != null) {
-                                        listener.onSuccess();
-                                    }
-
-                                } catch (Throwable ex) {
-                                    //Capture the exception, this time in quiet mode, if the
-                                    //exception is the same
-                                    boolean ask =
-                                            ex.getClass().getName().compareTo(
-                                                    relaunchable.getClass().getName()) == 0;
-                                    translateException(
-                                            context, ex, quiet, !ask, listener);
-
-                                    // Operation failed
-                                    if (listener != null) {
-                                        listener.onFailed(ex);
-                                    }
-                                }
-                            } else {
-                                // Operation cancelled
-                                if (listener != null) {
-                                    listener.onCancelled();
-                                }
-                            }
-                        }
-                    });
         alert.setOnDismissListener(new DialogInterface.OnDismissListener() {
             @Override
             public void onDismiss(DialogInterface dialog) {

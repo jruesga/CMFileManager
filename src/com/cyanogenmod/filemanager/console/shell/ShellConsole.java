@@ -53,6 +53,7 @@ import java.io.OutputStream;
 import java.security.SecureRandom;
 import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -220,17 +221,18 @@ public abstract class ShellConsole extends Console implements Program.ProgramLis
             this.mProc =
                     rt.exec(
                             cmd.toArray(new String[cmd.size()]),
-                            null,
+                            this.mShell.getEnvironment(),
                             new File(FileHelper.ROOT_DIRECTORY).getCanonicalFile());
             synchronized (this.mSync) {
                 this.mActive = true;
             }
             if (isTrace()) {
                 Log.v(TAG,
-                        String.format("Create console %s, command: %s, args: %s",  //$NON-NLS-1$
+                        String.format("Create console %s, command: %s, args: %s, env: %s",  //$NON-NLS-1$
                                 this.mShell.getId(),
                                 this.mShell.getCommand(),
-                                this.mShell.getArguments()));
+                                this.mShell.getArguments(),
+                                Arrays.toString(this.mShell.getEnvironment())));
             }
 
             //Allocate buffers

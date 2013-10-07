@@ -100,8 +100,8 @@
     <string name="filesystem_info_warning_title">Keine Information</string>
     <string name="filesystem_info_warning_msg">Es sind keine Informationen zum Dateisystem verfügbar.</string>
     <string name="filesystem_info_cant_be_mounted_msg">Das Dateisystem kann nicht eingebunden/ausgehängt werden.</string>
-    <string name="filesystem_info_mount_not_allowed_msg">Dateisystem Vorgänge sind im sicheren Modus nicht erlaubt. Tippe, um in den Root-Zugriffsmodus zu wechseln.</string>
-    <string name="filesystem_info_mount_failed_msg">Dateisystem Vorgang fehlgeschlagen. Manche Dateisysteme (z.B. SD-Karten) können nicht eingebunden/ausgehängt werden, weil es sich um nur-lesbare Dateisysteme handelt.</string>
+    <string name="filesystem_info_mount_not_allowed_msg">Dateisystemvorgänge sind im sicheren Modus nicht erlaubt. Tippen, um in den Root-Zugriffsmodus zu wechseln.</string>
+    <string name="filesystem_info_mount_failed_msg">Dateisystemvorgang fehlgeschlagen. Manche Dateisysteme, z.B. auf SD-Karten, sind nur lesbar und können daher nicht eingebunden oder ausgehängt werden.</string>
     <string name="filesystem_info_dialog_title">Dateisystem-Information</string>
     <string name="filesystem_info_dialog_tab_info">Informationen</string>
     <string name="filesystem_info_dialog_tab_disk_usage">Speichernutzung</string>

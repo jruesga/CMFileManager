@@ -17,6 +17,7 @@
 package com.cyanogenmod.filemanager.util;
 
 import android.content.Context;
+import android.media.MediaScannerConnection;
 
 import com.cyanogenmod.filemanager.commands.AsyncResultListener;
 import com.cyanogenmod.filemanager.commands.ChangeOwnerExecutable;
@@ -74,6 +75,7 @@ import com.cyanogenmod.filemanager.model.SearchResult;
 import com.cyanogenmod.filemanager.model.User;
 import com.cyanogenmod.filemanager.preferences.CompressionMode;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.List;
@@ -320,6 +322,11 @@ public final class CommandHelper {
         CreateFileExecutable executable =
                 c.getExecutableFactory().newCreator().createCreateFileExecutable(file);
         writableExecute(context, executable, c);
+
+        // Do media scan
+        MediaScannerConnection.scanFile(context, new String[]{
+                MediaHelper.normalizeMediaPath(file)}, null, null);
+
         return executable.getResult().booleanValue();
     }
 
@@ -352,6 +359,14 @@ public final class CommandHelper {
         DeleteDirExecutable executable =
                 c.getExecutableFactory().newCreator().createDeleteDirExecutable(directory);
         writableExecute(context, executable, c);
+
+        // Do media scan
+        File parent = new File(directory).getParentFile();
+        if (parent != null) {
+            MediaScannerConnection.scanFile(context, new String[]{
+                    MediaHelper.normalizeMediaPath(parent.getAbsolutePath())}, null, null);
+        }
+
         return executable.getResult().booleanValue();
     }
 
@@ -384,6 +399,14 @@ public final class CommandHelper {
         DeleteFileExecutable executable =
                 c.getExecutableFactory().newCreator().createDeleteFileExecutable(file);
         writableExecute(context, executable, c);
+
+        // Do media scan
+        File parent = new File(file).getParentFile();
+        if (parent != null) {
+            MediaScannerConnection.scanFile(context, new String[]{
+                    MediaHelper.normalizeMediaPath(parent.getAbsolutePath())}, null, null);
+        }
+
         return executable.getResult().booleanValue();
     }
 
@@ -708,6 +731,16 @@ public final class CommandHelper {
         MoveExecutable executable =
                 c.getExecutableFactory().newCreator().createMoveExecutable(src, dst);
         writableExecute(context, executable, c);
+
+        // Do media scan
+        File parent = new File(src).getParentFile();
+        if (parent != null) {
+            MediaScannerConnection.scanFile(context, new String[]{
+                    MediaHelper.normalizeMediaPath(parent.getAbsolutePath())}, null, null);
+        }
+        MediaScannerConnection.scanFile(context, new String[]{
+                MediaHelper.normalizeMediaPath(dst)}, null, null);
+
         return executable.getResult().booleanValue();
     }
 
@@ -741,6 +774,11 @@ public final class CommandHelper {
         CopyExecutable executable =
                 c.getExecutableFactory().newCreator().createCopyExecutable(src, dst);
         writableExecute(context, executable, c);
+
+        // Do media scan
+        MediaScannerConnection.scanFile(context, new String[]{
+                MediaHelper.normalizeMediaPath(dst)}, null, null);
+
         return executable.getResult().booleanValue();
     }
 
@@ -1438,6 +1476,11 @@ public final class CommandHelper {
 
             //- Compress
             execute(context, executable1, c);
+
+            // Do media scan
+            MediaScannerConnection.scanFile(context, new String[]{
+                    MediaHelper.normalizeMediaPath(dst)}, null, null);
+
             return executable1;
         }
         throw new ExecutionException(

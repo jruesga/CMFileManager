@@ -18,6 +18,7 @@ package com.cyanogenmod.filemanager.activities;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.ActivityNotFoundException;
 import android.content.BroadcastReceiver;
 import android.content.ComponentName;
 import android.content.Context;
@@ -98,7 +99,7 @@ public class PickerActivity extends Activity
     private static final ComponentName CROP_COMPONENT =
                                     new ComponentName(
                                             "com.android.gallery3d", //$NON-NLS-1$
-                                            "com.android.gallery3d.app.CropImage"); //$NON-NLS-1$
+                                            "com.android.gallery3d.filtershow.crop.CropActivity"); //$NON-NLS-1$
 
     // Gallery crop editor action
     private static final String ACTION_CROP = "com.android.camera.action.CROP"; //$NON-NLS-1$
@@ -408,8 +409,19 @@ public class PickerActivity extends Activity
                     intent.setData(Uri.fromFile(src));
                     intent.putExtras(extras);
                     intent.setComponent(CROP_COMPONENT);
-                    startActivityForResult(intent, RESULT_CROP_IMAGE);
-                    return;
+                    try {
+                        startActivityForResult(intent, RESULT_CROP_IMAGE);
+                        return;
+                    } catch (ActivityNotFoundException e) {
+                        Log.w(TAG, "Failed to find crop activity!");
+                    }
+                    intent.setComponent(null);
+                    try {
+                        startActivityForResult(intent, RESULT_CROP_IMAGE);
+                        return;
+                    } catch (ActivityNotFoundException e) {
+                        Log.w(TAG, "Failed to find any crop activity!");
+                    }
                 }
             }
 

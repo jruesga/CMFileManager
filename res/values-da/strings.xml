@@ -307,6 +307,8 @@
   <string name="pref_disk_usage_warning_level_summary" formatted="false">Vis en anderledes farve i diskforbrugs-widgets, når de når <xliff:g id="level">%1$s</xliff:g> procent af ledig diskplads</string>
   <string name="pref_compute_folder_statistics">Beregn mappestatistikker</string>
   <string name="pref_compute_folder_statistics_on">Advarsel! Beregningen af mappestatistikker er tids- og ressourcekrævende</string>
+  <string name="pref_display_thumbs">Eksempel</string>
+  <string name="pref_display_thumbs_summary">Vis et billedeksempel for apps, musikfiler, billeder og videoer.</string>
   <string name="pref_use_flinger">Brug glidebevægelser</string>
   <string name="pref_use_flinger_summary">Glid fra venstre mod højre for at slette filer eller mapper.</string>
   <string name="pref_general_advanced_settings_category">Avanceret</string>

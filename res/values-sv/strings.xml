@@ -395,4 +395,6 @@
     \n\nDenna app låter dig utforska filsystemet och genomföra åtgärder som kan skada din enhet. För att motverka skada startar appen i ett säkert läge utan rättigheter.
     \n\nDu kan komma åt det avancerade läget med fulla rättigheter i Inställningar. Det är ditt ansvar att försäkra dig om att en åtgärd inte skadar din enhet.
     \n\nThe CyanogenMod Team.\n</string>
+    <string name="pref_display_thumbs">Förhandsgranska</string>
+    <string name="pref_display_thumbs_summary">Visa en miniatyrbild för appar, musikfiler, bilder och filmklipp</string>
 </resources>

@@ -48,7 +48,7 @@ public class GeneralPreferenceFragment extends TitlePreferenceFragment {
     private ListPreference mFreeDiskSpaceWarningLevel;
     private CheckBoxPreference mComputeFolderStatistics;
     private CheckBoxPreference mDisplayThumbs;
-//    private CheckBoxPreference mUseFlinger;
+    private CheckBoxPreference mUseFlinger;
     private ListPreference mAccessMode;
     private CheckBoxPreference mDebugTraces;
 
@@ -190,10 +190,10 @@ public class GeneralPreferenceFragment extends TitlePreferenceFragment {
         this.mDisplayThumbs.setOnPreferenceChangeListener(this.mOnChangeListener);
 
         // Use flinger
-//        this.mUseFlinger =
-//                (CheckBoxPreference)findPreference(
-//                        FileManagerSettings.SETTINGS_USE_FLINGER.getId());
-//        this.mUseFlinger.setOnPreferenceChangeListener(this.mOnChangeListener);
+        this.mUseFlinger =
+                (CheckBoxPreference)findPreference(
+                        FileManagerSettings.SETTINGS_USE_FLINGER.getId());
+        this.mUseFlinger.setOnPreferenceChangeListener(this.mOnChangeListener);
 
         // Access mode
         this.mAccessMode =

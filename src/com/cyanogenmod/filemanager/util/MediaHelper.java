@@ -22,6 +22,7 @@ import android.net.Uri;
 import android.os.UserHandle;
 import android.provider.BaseColumns;
 import android.provider.MediaStore;
+import android.provider.MediaStore.MediaColumns;
 import android.text.TextUtils;
 
 import java.io.File;
@@ -32,6 +33,13 @@ import java.util.Map;
  * A helper class with useful methods to extract media data.
  */
 public final class MediaHelper {
+
+    private static final String EMULATED_STORAGE_SOURCE = System.getenv("EMULATED_STORAGE_SOURCE");
+    private static final String EMULATED_STORAGE_TARGET = System.getenv("EMULATED_STORAGE_TARGET");
+    private static final String EXTERNAL_STORAGE = System.getenv("EXTERNAL_STORAGE");
+
+    private static final String INTERNAL_VOLUME = "internal";
+    private static final String EXTERNAL_VOLUME = "external";
 
     /**
      * URIs that are relevant for determining album art;
@@ -98,9 +106,117 @@ public final class MediaHelper {
         return null;
     }
 
-    private static final String EMULATED_STORAGE_SOURCE = System.getenv("EMULATED_STORAGE_SOURCE");
-    private static final String EMULATED_STORAGE_TARGET = System.getenv("EMULATED_STORAGE_TARGET");
-    private static final String EXTERNAL_STORAGE = System.getenv("EXTERNAL_STORAGE");
+    /**
+     * Method that converts a file reference to a content uri reference
+     *
+     * @param cr A content resolver
+     * @param file The file reference
+     * @return Uri The content uri or null if file not exists in the media database
+     */
+    public static Uri fileToContentUri(ContentResolver cr, File file) {
+        // Normalize the path to ensure media search
+        final String normalizedPath = normalizeMediaPath(file.getAbsolutePath());
+
+        // Check in external and internal storages
+        Uri uri = fileToContentUri(cr, normalizedPath, EXTERNAL_VOLUME);
+        if (uri != null) {
+            return uri;
+        }
+        uri = fileToContentUri(cr, normalizedPath, INTERNAL_VOLUME);
+        if (uri != null) {
+            return uri;
+        }
+        return null;
+    }
+
+    /**
+     * Method that converts a file reference to a content uri reference
+     *
+     * @param cr A content resolver
+     * @param path The path to search
+     * @param volume The volume
+     * @return Uri The content uri or null if file not exists in the media database
+     */
+    private static Uri fileToContentUri(ContentResolver cr, String path, String volume) {
+        final String[] projection = {BaseColumns._ID, MediaStore.Files.FileColumns.MEDIA_TYPE};
+        final String where = MediaColumns.DATA + " = ?";
+        Uri baseUri = MediaStore.Files.getContentUri(volume);
+        Cursor c = cr.query(baseUri, projection, where, new String[]{path}, null);
+        try {
+            if (c != null && c.moveToNext()) {
+                int type = c.getInt(c.getColumnIndexOrThrow(
+                        MediaStore.Files.FileColumns.MEDIA_TYPE));
+                if (type != 0) {
+                    // Do not force to use content uri for no media files
+                    long id = c.getLong(c.getColumnIndexOrThrow(BaseColumns._ID));
+                    return Uri.withAppendedPath(baseUri, String.valueOf(id));
+                }
+            }
+        } finally {
+            if (c != null) {
+                c.close();
+            }
+        }
+        return null;
+    }
+
+    /**
+     * Method that converts a content uri to a file system path
+     *
+     * @param cr The content resolver
+     * @param uri The content uri
+     * @return File The file reference
+     */
+    public static File contentUriToFile(ContentResolver cr, Uri uri) {
+        // Sanity checks
+        if (uri == null || uri.getScheme() == null || uri.getScheme().compareTo("content") != 0) {
+            return null;
+        }
+
+        // Retrieve the request id
+        long id = 0;
+        try {
+            id = Long.parseLong(new File(uri.getPath()).getName());
+        } catch (NumberFormatException nfex) {
+            return null;
+        }
+
+        // Check in external and internal storages
+        File file = mediaIdToFile(cr, id, EXTERNAL_VOLUME);
+        if (file != null) {
+            return file;
+        }
+        file = mediaIdToFile(cr, id, INTERNAL_VOLUME);
+        if (file != null) {
+            return file;
+        }
+        return null;
+    }
+
+    /**
+     * Method that converts a content uri to a file system path
+     *
+     * @param cr The content resolver
+     * @param id The media database id
+     * @param volume The volume
+     * @return File The file reference
+     */
+    private static File mediaIdToFile(ContentResolver cr, long id, String volume) {
+        final String[] projection = {MediaColumns.DATA};
+        final String where = MediaColumns._ID + " = ?";
+        Uri baseUri = MediaStore.Files.getContentUri(volume);
+        Cursor c = cr.query(baseUri, projection, where, new String[]{String.valueOf(id)}, null);
+        try {
+            if (c != null && c.moveToNext()) {
+                return new File(c.getString(c.getColumnIndexOrThrow(MediaColumns.DATA)));
+            }
+        } finally {
+            if (c != null) {
+                c.close();
+            }
+        }
+        return null;
+    }
 
     /**
      * Method that converts a not standard media mount path to a standard media path

@@ -28,6 +28,7 @@ import android.content.IntentFilter;
 import android.content.res.Configuration;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
@@ -78,6 +79,7 @@ import com.cyanogenmod.filemanager.util.DialogHelper;
 import com.cyanogenmod.filemanager.util.ExceptionUtil;
 import com.cyanogenmod.filemanager.util.ExceptionUtil.OnRelaunchCommandResult;
 import com.cyanogenmod.filemanager.util.FileHelper;
+import com.cyanogenmod.filemanager.util.MediaHelper;
 import com.cyanogenmod.filemanager.util.ResourcesHelper;
 
 import java.io.ByteArrayInputStream;
@@ -907,7 +909,7 @@ public class EditorActivity extends Activity implements TextWatcher {
         this.mReadOnly = false;
 
         // Read the intent and check that is has a valid request
-        String path = getIntent().getData().getPath();
+        String path = uriToPath(this, getIntent().getData());
         if (path == null || path.length() == 0) {
             DialogHelper.showToast(
                     this, R.string.editor_invalid_file_msg, Toast.LENGTH_SHORT);
@@ -1509,4 +1511,18 @@ public class EditorActivity extends Activity implements TextWatcher {
         theme.setTextColor(this, editor, "text_color"); //$NON-NLS-1$
     }
 
+    /**
+     * Method that resolves the content uri to a valid system path
+     *
+     * @param ctx The current context
+     * @param uri The content uri
+     * @return String The system path
+     */
+    private static String uriToPath(Context ctx, Uri uri) {
+        File file = MediaHelper.contentUriToFile(ctx.getContentResolver(), uri);
+        if (file == null) {
+            file = new File(uri.getPath());
+        }
+        return file.getAbsolutePath();
+    }
 }

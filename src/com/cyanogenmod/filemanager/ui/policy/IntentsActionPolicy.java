@@ -17,6 +17,7 @@
 package com.cyanogenmod.filemanager.ui.policy;
 
 import android.content.ComponentName;
+import android.content.ContentResolver;
 import android.content.Context;
 import android.content.DialogInterface.OnCancelListener;
 import android.content.DialogInterface.OnDismissListener;
@@ -37,6 +38,7 @@ import com.cyanogenmod.filemanager.ui.dialogs.AssociationsDialog;
 import com.cyanogenmod.filemanager.util.DialogHelper;
 import com.cyanogenmod.filemanager.util.ExceptionUtil;
 import com.cyanogenmod.filemanager.util.FileHelper;
+import com.cyanogenmod.filemanager.util.MediaHelper;
 import com.cyanogenmod.filemanager.util.MimeTypeHelper;
 import com.cyanogenmod.filemanager.util.MimeTypeHelper.MimeTypeCategory;
 import com.cyanogenmod.filemanager.util.ResourcesHelper;
@@ -99,9 +101,9 @@ public final class IntentsActionPolicy extends ActionsPolicy {
             String mime = MimeTypeHelper.getMimeType(ctx, fso);
             File file = new File(fso.getFullPath());
             if (mime != null) {
-                intent.setDataAndType(Uri.fromFile(file), mime);
+                intent.setDataAndType(getUriFromFile(ctx, file), mime);
             } else {
-                intent.setData(Uri.fromFile(file));
+                intent.setData(getUriFromFile(ctx, file));
             }
 
             // Resolve the intent
@@ -138,7 +140,7 @@ public final class IntentsActionPolicy extends ActionsPolicy {
             intent.setAction(android.content.Intent.ACTION_SEND);
             intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
             intent.setType(MimeTypeHelper.getMimeType(ctx, fso));
-            Uri uri = Uri.fromFile(new File(fso.getFullPath()));
+            Uri uri = getUriFromFile(ctx, new File(fso.getFullPath()));
             intent.putExtra(Intent.EXTRA_STREAM, uri);
 
             // Resolve the intent
@@ -199,7 +201,7 @@ public final class IntentsActionPolicy extends ActionsPolicy {
                 lastMimeType = mimeType;
 
                 // Add the uri
-                uris.add(Uri.fromFile(new File(fso.getFullPath())));
+                uris.add(getUriFromFile(ctx, new File(fso.getFullPath())));
             }
             if (sameMimeType) {
                 intent.setType(lastMimeType);
@@ -570,5 +572,20 @@ public final class IntentsActionPolicy extends ActionsPolicy {
             }
         });
         return pref.get(0);
+    }
+
+    /**
+     * Method that returns the best Uri for the file (content uri, file uri, ...)
+     *
+     * @param ctx The current context
+     * @param file The file to resolve
+     */
+    private static Uri getUriFromFile(Context ctx, File file) {
+        ContentResolver cr = ctx.getContentResolver();
+        Uri uri = MediaHelper.fileToContentUri(cr, file);
+        if (uri == null) {
+            uri = Uri.fromFile(file);
+        }
+        return uri;
     }
 }

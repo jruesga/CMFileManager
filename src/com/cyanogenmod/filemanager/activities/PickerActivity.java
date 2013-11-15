@@ -21,6 +21,7 @@ import android.app.AlertDialog;
 import android.content.ActivityNotFoundException;
 import android.content.BroadcastReceiver;
 import android.content.ComponentName;
+import android.content.ContentResolver;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnCancelListener;
@@ -60,6 +61,7 @@ import com.cyanogenmod.filemanager.ui.widgets.NavigationView.OnFilePickedListene
 import com.cyanogenmod.filemanager.util.DialogHelper;
 import com.cyanogenmod.filemanager.util.ExceptionUtil;
 import com.cyanogenmod.filemanager.util.FileHelper;
+import com.cyanogenmod.filemanager.util.MediaHelper;
 import com.cyanogenmod.filemanager.util.MimeTypeHelper;
 import com.cyanogenmod.filemanager.util.StorageHelper;
 
@@ -428,7 +430,7 @@ public class PickerActivity extends Activity
             // Return the picked file, as expected (this activity should fill the intent data
             // and return RESULT_OK result)
             Intent result = new Intent();
-            result.setData(getResultUriForFileFromIntent(src, getIntent()));
+            result.setData(getResultUriForFileFromIntent(getContentResolver(), src, getIntent()));
             setResult(Activity.RESULT_OK, result);
             finish();
 
@@ -490,8 +492,12 @@ public class PickerActivity extends Activity
         return file.getParentFile();
     }
 
-    private static Uri getResultUriForFileFromIntent(File src, Intent intent) {
-        Uri result = Uri.fromFile(src);
+    private static Uri getResultUriForFileFromIntent(ContentResolver cr, File src, Intent intent) {
+        // Try to find the preferred uri scheme
+        Uri result = MediaHelper.fileToContentUri(cr, src);
+        if (result == null) {
+            result = Uri.fromFile(src);
+        }
 
         if (Intent.ACTION_PICK.equals(intent.getAction()) && intent.getData() != null) {
             String scheme = intent.getData().getScheme();

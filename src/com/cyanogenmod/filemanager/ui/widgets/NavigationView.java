@@ -806,6 +806,10 @@ public class NavigationView extends RelativeLayout implements
 
         //Check that it is really necessary change the directory
         if (!reload && this.mCurrentDir != null && this.mCurrentDir.compareTo(fNewDir) == 0) {
+            synchronized (this.mSync) {
+                mChangingDir = false;
+                mSync.notify();
+            }
             return;
         }
 

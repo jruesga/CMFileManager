@@ -28,6 +28,7 @@ import com.cyanogenmod.filemanager.console.RelaunchableException;
 import com.cyanogenmod.filemanager.listeners.OnRequestRefreshListener;
 import com.cyanogenmod.filemanager.listeners.OnSelectionListener;
 import com.cyanogenmod.filemanager.model.FileSystemObject;
+import com.cyanogenmod.filemanager.preferences.Bookmarks;
 import com.cyanogenmod.filemanager.ui.widgets.FlingerListView.OnItemFlingerResponder;
 import com.cyanogenmod.filemanager.util.CommandHelper;
 import com.cyanogenmod.filemanager.util.DialogHelper;
@@ -192,6 +193,13 @@ public final class DeleteActionPolicy extends ActionsPolicy {
                     onItemFlingerResponder.accept();
                 }
 
+                // Remove orphan bookmark paths
+                if (files != null) {
+                    for (FileSystemObject fso : files) {
+                        Bookmarks.deleteOrphanBookmarks(ctx, fso.getFullPath());
+                    }
+                }
+
                 // Refresh
                 if (this.mOnRequestRefreshListener != null) {
                     // The reference is not the same, so refresh the complete navigation view
@@ -232,7 +240,6 @@ public final class DeleteActionPolicy extends ActionsPolicy {
              * @param ctx The current context
              * @param fso The file or folder to be deleted
              */
-            @SuppressWarnings("hiding")
             private void doOperation(
                     final Context ctx, final FileSystemObject fso) throws Throwable {
                 try {

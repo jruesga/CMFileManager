@@ -316,6 +316,9 @@ public final class IntentsActionPolicy extends ActionsPolicy {
         // No registered application
         if (info.size() == 0) {
             DialogHelper.showToast(ctx, R.string.msgs_not_registered_app, Toast.LENGTH_SHORT);
+            if (onDismissListener != null) {
+                onDismissListener.onDismiss(null);
+            }
             return;
         }
 
@@ -329,12 +332,18 @@ public final class IntentsActionPolicy extends ActionsPolicy {
         // If we have a preferred application, then use it
         if (!choose && (mPreferredInfo  != null && mPreferredInfo.match != 0)) {
             ctx.startActivity(getIntentFromResolveInfo(mPreferredInfo, intent));
+            if (onDismissListener != null) {
+                onDismissListener.onDismiss(null);
+            }
             return;
         }
         // If there are only one activity (app or internal editor), then use it
         if (!choose && info.size() == 1) {
             ResolveInfo ri = info.get(0);
             ctx.startActivity(getIntentFromResolveInfo(ri, intent));
+            if (onDismissListener != null) {
+                onDismissListener.onDismiss(null);
+            }
             return;
         }
 

@@ -1,0 +1,370 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (C) 2012-2013 The CyanogenMod Project
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+ -->
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+  <string name="app_name">Gestor d\'arxius</string>
+  <string name="app_description">El gestor d\'arxius de CyanogenMod.</string>
+  <string name="size_bytes">B</string>
+  <string name="size_kilobytes">kB</string>
+  <string name="size_megabytes">MB</string>
+  <string name="size_gigabytes">GB</string>
+  <string name="datetime_format_order">%1$s %2$s</string>
+  <string name="device_blockdevice">Dispositiu de blocs</string>
+  <string name="device_characterdevice">Dispositiu de caràcters</string>
+  <string name="device_namedpipe">Tuberia amb nom</string>
+  <string name="device_domainsocket">Socket del domini</string>
+  <string name="mount_point_readonly">RO</string>
+  <string name="mount_point_readwrite">RW</string>
+  <string name="yes">Si</string>
+  <string name="no">No</string>
+  <string name="all">Tot</string>
+  <string name="overwrite">Sobreescriu</string>
+  <string name="select">Selecciona</string>
+  <string name="root_directory_name"><![CDATA[<Carpeta arrel>]]></string>
+  <string name="search_result_name">Cerca: <xliff:g id="terms">%1$s</xliff:g></string>
+  <string name="loading_message">Carregant\u2026</string>
+  <string name="cancelled_message">Cancel·lat.</string>
+  <string name="error_message">Error.</string>
+  <string name="copy_text_cd">Pica per copiar el text al portapapers</string>
+  <string name="copy_text_msg">Text copiat al portapapers</string>
+  <string name="warning_title">Alerta</string>
+  <string name="error_title">Error detectat</string>
+  <string name="confirm_operation">Confirma operació</string>
+  <string name="confirm_overwrite">Confirma sobreescriptura</string>
+  <string name="confirm_deletion">Confirma esborrat</string>
+  <string name="msgs_change_to_prompt_access_mode_title">Confirma canvi</string>
+  <string name="msgs_change_to_prompt_access_mode_msg">No s\'ha pogut executar el mode d\'accés superusuari. Canviant al mode segur.\n\nAplicar aquest canvi?</string>
+  <string name="msgs_cant_create_console">No s\'ha pogut guanyar els privilegis requerits per aquesta funció.</string>
+  <string name="msgs_privileged_console_alloc_failed">No s\'ha pogut executar el mode d\'accés superusuari. Canviant al mode segur.</string>
+  <string name="msgs_settings_save_failure">L\'ajustament no s\'ha pogut aplicar o desar.</string>
+  <string name="msgs_settings_invalid_initial_directory">La carpeta inicial \"<xliff:g id="initial_dir">%1$s</xliff:g>\" és invàlida. Canviant a la carpeta arrel.</string>
+  <string name="msgs_success">L\'operació s\'ha completat satisfactòriament.</string>
+  <string name="msgs_unknown">s\'ha detectat un error. L\'operació no ha estat satisfatòria.</string>
+  <string name="msgs_insufficient_permissions">Aquesta operació necessita més privilegis. Intenta-ho canviant al mode d\'accés de superusuari.</string>
+  <string name="msgs_file_not_found">L\'arxiu o carpeta no s\'ha trobat.</string>
+  <string name="msgs_command_not_found">L\'ordre de l\'operació no s\'ha trobat o té una definició invàlida.</string>
+  <string name="msgs_io_failed">Fallada de Lectura/escriptura.</string>
+  <string name="msgs_operation_timeout">El temps d\'espera de l\'operació s\'ha esgotat.</string>
+  <string name="msgs_operation_failure">L\'operació ha fallat.</string>
+  <string name="msgs_console_alloc_failure">Hi ha hagut un error intern.</string>
+  <string name="msgs_operation_can_not_be_cancelled">L\'operació no pot ser cancel·lada.</string>
+  <string name="msgs_read_only_filesystem">El sistema d\'arxius és de només lectura. Intenta muntar el sistema d\'arxius com a lectura-escriptura abans d\'intentar l\'operació.</string>
+  <string name="msgs_illegal_argument">Argument il·legal. Ha fallat l\'invocació.</string>
+  <string name="msgs_unresolved_inconsistencies">L\'operació no està permesa perquè crearia inconsistències.</string>
+  <string name="msgs_operation_not_allowed_in_current_directory">L\'operació no està permesa en la carpeta actual.\n\nLa carpeta de destí no pot ser una subcarpeta de l\'origen o la mateixa que l\'origen.</string>
+  <string name="msgs_push_again_to_exit">Apreta un altre cop per sortir.</string>
+  <string name="msgs_not_registered_app">No hi ha cap app registrada per gestionar el tipus d\'arxiu seleccionat.</string>
+  <string name="msgs_overwrite_files">Alguns dels arxius ja existeixen a la carpeta de destí.\n\nSobreescriurel\'s?</string>
+  <string name="msgs_action_association_failed">L\'associació d\'aquesta acció a l\'app ha fallat.</string>
+  <string name="advise_insufficient_permissions">L\'operació necessita més privilegis.\n\nVols canviar al mode d\'accés de superusuari?</string>
+  <string name="parent_dir">Carpeta pare</string>
+  <string name="external_storage">Emmagatzematge extern</string>
+  <string name="usb_storage">Emmagatzematge USB</string>
+  <string name="actionbar_button_filesystem_cd">Info del sistema d\'arxius</string>
+  <string name="actionbar_button_sort_mode_cd">Mode d\'ordenació</string>
+  <string name="actionbar_button_layout_mode_cd">Mode de visualització</string>
+  <string name="actionbar_button_other_view_options_cd">Altres opcions de visualització</string>
+  <string name="actionbar_button_selection_done_cd">Fet</string>
+  <string name="actionbar_button_actions_cd">Accions</string>
+  <string name="actionbar_button_history_cd">Historial</string>
+  <string name="actionbar_button_bookmarks_cd">Marcadors</string>
+  <string name="actionbar_button_search_cd">Cerca</string>
+  <string name="actionbar_button_overflow_cd">Més opcions</string>
+  <string name="actionbar_button_storage_cd">Mitjans d\'emmagatzematge</string>
+  <string name="actionbar_button_save_cd">Desa</string>
+  <string name="sort_by_name_asc">Per nom &#x25B2;</string>
+  <string name="sort_by_name_desc">Per nom &#x25BC;</string>
+  <string name="sort_by_date_asc">Per data &#x25B2;</string>
+  <string name="sort_by_date_desc">Per data &#x25BC;</string>
+  <string name="layout_icons">Icones</string>
+  <string name="layout_simple">Simple</string>
+  <string name="layout_details">Detalls</string>
+  <string name="cm_filemanager_show_dirs_first">Mostra primer les carpetes</string>
+  <string name="cm_filemanager_show_hidden">Mostra els arxius amagats</string>
+  <string name="cm_filemanager_show_system">Mostra els arxius de sistema</string>
+  <string name="cm_filemanager_show_symlinks">Mostra els symlinks</string>
+  <string name="filesystem_info_warning_title">Sense informació</string>
+  <string name="filesystem_info_warning_msg">No hi ha informació disponible per aquest sistema d\'arxius.</string>
+  <string name="filesystem_info_cant_be_mounted_msg">El sistema d\'arxius no pot ser muntat/desmuntat.</string>
+  <string name="filesystem_info_mount_not_allowed_msg">Les operacions de muntatge de sistemes d\'arxius no estan permeses en el mode segur. Pica per canviar al mode d\'accés de superusuari.</string>
+  <string name="filesystem_info_mount_failed_msg">L\'operació de muntatge del sistema d\'arxius ha fallat. Alguns sistemes d\'arxius, com les targetes SD, no poden ser muntades/desmuntades perquè estan incorporades com a sistemes d\'arxius de només lectura.</string>
+  <string name="filesystem_info_dialog_title">Informació del sistema d\'arxius</string>
+  <string name="filesystem_info_dialog_tab_info">Info</string>
+  <string name="filesystem_info_dialog_tab_disk_usage">Ús del disc</string>
+  <string name="filesystem_info_dialog_status">Estat:</string>
+  <string name="filesystem_info_dialog_mount_point">Punt de muntatge:</string>
+  <string name="filesystem_info_dialog_device">Dispositiu:</string>
+  <string name="filesystem_info_dialog_type">Tipus:</string>
+  <string name="filesystem_info_dialog_options">Opcions:</string>
+  <string name="filesystem_info_dialog_dump_pass">Dump / Pass:</string>
+  <string name="filesystem_info_dialog_total_disk_usage">Total:</string>
+  <string name="filesystem_info_dialog_used_disk_usage">Usats:</string>
+  <string name="filesystem_info_dialog_free_disk_usage">Lliures:</string>
+  <string name="fso_properties_permissions_not_allowed_msg">Les operacions de permisos no estan permeses en el mode segur. Pica per canviar al mode d\'accés de superusuari.</string>
+  <string name="fso_properties_failed_to_change_owner_msg">L\'operació de canvi de propietari ha fallat.\n\nPer raons de seguretat, alguns sistemes d\'arxius, com les targetes SD, no permeten el canvi de propietari.</string>
+  <string name="fso_properties_failed_to_change_group_msg">L\'operació de canvi de grup ha fallat.\n\nPer raons de seguretat, alguns sistemes d\'arxius, com les targetes SD, no permeten el canvi de grups.</string>
+  <string name="fso_properties_failed_to_change_permission_msg">L\'operació de canvi de permisos ha fallat.\n\nPer raons de seguretat, alguns sistemes d\'arxius, com les targetes SD, no permeten el canvi de permisos.</string>
+  <string name="fso_properties_dialog_title">Propietats</string>
+  <string name="fso_properties_dialog_tab_info">Info</string>
+  <string name="fso_properties_dialog_tab_permissions">Permisos</string>
+  <string name="fso_properties_dialog_name">Nom:</string>
+  <string name="fso_properties_dialog_parent">Pare:</string>
+  <string name="fso_properties_dialog_type">Tipus:</string>
+  <string name="fso_properties_dialog_category">Categoria:</string>
+  <string name="fso_properties_dialog_link">Enllaç:</string>
+  <string name="fso_properties_dialog_size">Mida:</string>
+  <string name="fso_properties_dialog_contains">Conté:</string>
+  <string name="fso_properties_dialog_last_accessed_date">Accedit:</string>
+  <string name="fso_properties_dialog_last_modified_date">Modificat:</string>
+  <string name="fso_properties_dialog_last_changed_date">Canviat:</string>
+  <string name="fso_properties_dialog_owner">Propietari:</string>
+  <string name="fso_properties_dialog_group">Grup:</string>
+  <string name="fso_properties_dialog_others">Altres:</string>
+  <string name="fso_properties_dialog_include_in_media_scan">Omet escan.\nmitjans:</string>
+  <string name="fso_failed_to_allow_media_scan">Fallada al permetre l\'escaneig de mitjans</string>
+  <string name="fso_failed_to_prevent_media_scan">Fallada a l\'impedir l\'escaneig de mitjans</string>
+  <string name="fso_delete_nomedia_dir_title">Esborra la carpeta .nomedia</string>
+  <string name="fso_delete_nomedia_dir_body">Aquesta carpeta conté una carpeta .nomedia.\n\nVols esborrar-la i també tots els seus continguts?</string>
+  <string name="fso_delete_nomedia_non_empty_title">Esborra els arxius .nomedia</string>
+  <string name="fso_delete_nomedia_non_empty_body">Aquesta carpeta conté un arxiu .nomedia no-buit.\n\nVols esborrar-lo?</string>
+  <string name="history">Historial</string>
+  <string name="msgs_history_empty">L\'historial és buit.</string>
+  <string name="msgs_history_unknown">Element de l\'historial desconegut.</string>
+  <string name="search">Resultats de la cerca</string>
+  <string name="search_hint">Escriu la teva cerca</string>
+  <string name="search_voice_hint">Digues la teva cerca</string>
+  <string name="search_error_msg">Hi ha hagut un error mentre es cercava. No s\'han trobat resultats.</string>
+  <string name="search_no_results_msg">No s\'han trobat resultats.</string>
+  <string name="search_found_items_in_directory"><xliff:g id="items">%1$s</xliff:g> en <xliff:g id="path">%2$s</xliff:g></string>
+  <string name="search_terms"><![CDATA[<b>Termes:</b>]]> <xliff:g id="terms">%1$s</xliff:g></string>
+  <string name="search_few_characters_title">Confirma la cerca</string>
+  <string name="search_few_characters_msg">Alguns termes de la cerca tenen un nombre petit de caràcters. L\'operació podría durar molt de temps i consumir molts recursos del sistema.\n\nVols continuar?</string>
+  <string name="searching">Si us plau espera\u2026</string>
+  <string name="searching_action_label">Cerca en curs</string>
+  <string name="picker_title">Escull un arxiu</string>
+  <string name="directory_picker_title">Escull un directori</string>
+  <string name="editor">Editor</string>
+  <string name="editor_invalid_file_msg">Arxiu invàlid.</string>
+  <string name="editor_file_not_found_msg">No s\'ha trobat l\'arxiu.</string>
+  <string name="editor_file_exceed_size_msg">L\'arxiu és massa gran per obrir-lo dins d\'aquest dispositiu.</string>
+  <string name="editor_dirty_ask_title">Confirma la sortida</string>
+  <string name="editor_dirty_ask_msg">Hi ha canvis no desats.\n\nSortir sense desar?</string>
+  <string name="editor_successfully_saved">L\'arxiu s\'ha desat satisfactòriament.</string>
+  <string name="editor_read_only_mode">L\'arxiu s\'ha obert en mode només lectura.</string>
+  <string name="dumping_message">Generant volcat hex\u2026</string>
+  <string name="displaying_message">Mostrant\u2026</string>
+  <string name="bookmarks">Marcadors</string>
+  <string name="bookmarks_home">Inici</string>
+  <string name="bookmarks_root_folder">Carpeta arrel</string>
+  <string name="bookmarks_system_folder">Carpeta de sistema</string>
+  <string name="bookmarks_button_config_cd">Estableix la carpeta inicial.</string>
+  <string name="bookmarks_button_remove_bookmark_cd">Treu el marcador.</string>
+  <string name="bookmarks_msgs_add_success">El marcador s\'ha afegit satisfactòriament.</string>
+  <string name="initial_directory_dialog_title">Carpeta inicial</string>
+  <string name="initial_directory_label">Escull la carpeta inicial:</string>
+  <string name="initial_directory_relative_msg">Les rutes relatives no estan permeses.</string>
+  <string name="initial_directory_error_msg">Hi ha hagut un error mentre es desava la carpeta inicial.</string>
+  <string name="menu_history">Historial</string>
+  <string name="menu_bookmarks">Marcadors</string>
+  <string name="menu_search">Cerca</string>
+  <string name="menu_settings">Ajustaments</string>
+  <string name="menu_clear_history">Neteja l\'historial</string>
+  <string name="menu_no_suggestions">Sense sugerències</string>
+  <string name="menu_word_wrap">Ajust de línia</string>
+  <string name="menu_syntax_highlight">Realçament de sintaxis</string>
+  <string name="create_copy_regexp"><xliff:g id="name">%1$s</xliff:g> - copia<xliff:g id="extension">%2$s</xliff:g></string>
+  <string name="create_new_compress_file_regexp"><xliff:g id="name">%1$s</xliff:g> - nou<xliff:g id="extension">%2$s</xliff:g></string>
+  <string name="waiting_dialog_msg">Realitzant l\'operació\u2026</string>
+  <string name="waiting_dialog_copying_title">Copiant\u2026</string>
+  <string name="waiting_dialog_copying_msg"><![CDATA[<b>De</b>]]> <xliff:g id="from">%1$s</xliff:g><![CDATA[<br/>]]><![CDATA[<b>A</b>]]> <xliff:g id="to">%2$s</xliff:g></string>
+  <string name="waiting_dialog_moving_title">Movent\u2026</string>
+  <string name="waiting_dialog_moving_msg"><![CDATA[<b>De</b>]]> <xliff:g id="from">%1$s</xliff:g><![CDATA[<br/>]]><![CDATA[<b>A</b>]]> <xliff:g id="to">%2$s</xliff:g></string>
+  <string name="waiting_dialog_deleting_title">Esborrant\u2026</string>
+  <string name="waiting_dialog_deleting_msg"><![CDATA[<b>Arxiu</b>]]> <xliff:g id="file">%1$s</xliff:g></string>
+  <string name="waiting_dialog_extracting_title">Extraient\u2026</string>
+  <string name="waiting_dialog_extracting_msg"><![CDATA[<b>Arxiu</b>]]> <xliff:g id="file">%1$s</xliff:g></string>
+  <string name="waiting_dialog_compressing_title">Comprimint\u2026</string>
+  <string name="waiting_dialog_compressing_msg"><![CDATA[<b>Arxiu</b>]]> <xliff:g id="file">%1$s</xliff:g></string>
+  <string name="waiting_dialog_analizing_msg"><![CDATA[<b>Analitzant\u2026</b>]]></string>
+  <string name="msgs_extracting_success">L\'operació d\'extracció s\'ha completat satisfactòriament. Les dades s\'han extret a
+ <xliff:g id="destination">%1$s</xliff:g>.</string>
+  <string name="msgs_compressing_success">L\'operació de compressió s\'ha completat satisfactòriament. Les dades s\'han comprimit a
+ <xliff:g id="destination">%1$s</xliff:g>.</string>
+  <string name="actions_dialog_title">Accions</string>
+  <string name="actions_menu_properties_current_folder">Propietats</string>
+  <string name="actions_menu_refresh">Refresca</string>
+  <string name="actions_menu_new_directory">Nova carpeta</string>
+  <string name="actions_menu_new_file">Nou arxiu</string>
+  <string name="actions_menu_select_all">Selecciona tot</string>
+  <string name="actions_menu_deselect_all">Deselecciona tot</string>
+  <string name="actions_menu_select">Selecciona</string>
+  <string name="actions_menu_deselect">Deselecciona</string>
+  <string name="actions_menu_paste_selection">Copia la selecció aquí</string>
+  <string name="actions_menu_move_selection">Mou la selecció aquí</string>
+  <string name="actions_menu_delete_selection">Esborra la selecció</string>
+  <string name="actions_menu_compress_selection">Comprimeix la selecció</string>
+  <string name="actions_menu_create_link">Crea un enllaç</string>
+  <string name="actions_menu_open">Obre</string>
+  <string name="actions_menu_open_with">Obre amb</string>
+  <string name="actions_menu_execute">Executa</string>
+  <string name="actions_menu_send">Envia</string>
+  <string name="actions_menu_send_selection">Envia la selecció</string>
+  <string name="actions_menu_compress">Comprimeix</string>
+  <string name="actions_menu_extract">Extreu</string>
+  <string name="actions_menu_delete">Esborra</string>
+  <string name="actions_menu_rename">Reanomena</string>
+  <string name="actions_menu_create_copy">Crea una còpia</string>
+  <string name="actions_menu_properties">Propietats</string>
+  <string name="actions_menu_add_to_bookmarks">Afegeix als marcadors</string>
+  <string name="actions_menu_add_shortcut">Afegeix una drecera</string>
+  <string name="actions_menu_open_parent_folder">Obre el pare</string>
+  <string name="actions_menu_compute_checksum">Calcula el checksum</string>
+  <string name="actions_ask_undone_operation_msg">Aquesta acció no pot ser desfeta. Vols continuar?</string>
+  <string name="input_name_dialog_label">Nom:</string>
+  <string name="input_name_dialog_message_empty_name">El nom no pot estar buit.</string>
+  <string name="input_name_dialog_message_invalid_path_name">Nom invàlid. Els caràcters \'<xliff:g id="invalid_characters">%1$s</xliff:g>\' no estan permesos.</string>
+  <string name="input_name_dialog_message_invalid_name">Nom invàlid. Els noms \'.\' i \'..\' no estan permesos.</string>
+  <string name="input_name_dialog_message_name_exists">El nom ja existeix.</string>
+  <string name="associations_dialog_title">Associacions</string>
+  <string name="associations_dialog_remember">Recorda la selecció</string>
+  <string name="associations_dialog_openwith_title">Obre amb</string>
+  <string name="associations_dialog_openwith_action">Obre</string>
+  <string name="associations_dialog_sendwith_title">Envia amb</string>
+  <string name="associations_dialog_sendwith_action">Envia</string>
+  <string name="inline_autocomplete_tab_nothing_to_complete_msg">Res a completar.</string>
+  <string name="execution_console_title">Terminal</string>
+  <string name="execution_console_script_name_label">Script:</string>
+  <string name="execution_console_script_execution_time_label">Temps:</string>
+  <string name="execution_console_script_exitcode_label">Codi de sortida:</string>
+  <string name="execution_console_script_execution_time_text"><xliff:g id="seconds">%1$s</xliff:g> seg.</string>
+  <string name="compute_checksum_title">Calcula checksum</string>
+  <string name="compute_checksum_filename_label">Arxiu:</string>
+  <string name="compute_checksum_computing_checksum_msg">Calculant checksum\u2026</string>
+  <string name="mime_folder">Carpeta</string>
+  <string name="mime_symlink">Symlink</string>
+  <string name="mime_unknown">Desconegut</string>
+  <string name="filetime_format_mode_system">Definit-pel-sistema</string>
+  <string name="filetime_format_mode_locale">Definit-pel-fus-horari</string>
+  <string name="filetime_format_mode_ddMMyyyy_HHmmss">dd/mm/yyyy hh:mm:ss</string>
+  <string name="filetime_format_mode_MMddyyyy_HHmmss">mm/dd/yyyy hh:mm:ss</string>
+  <string name="filetime_format_mode_yyyyMMdd_HHmmss">yyyy-mm-dd hh:mm:ss</string>
+  <string name="selection_folders_and_files"><xliff:g id="folders">%1$s</xliff:g> i <xliff:g id="files">%2$s</xliff:g> seleccionats.</string>
+  <string name="category_system">SISTEMA</string>
+  <string name="category_app">APP</string>
+  <string name="category_binary">BINARI</string>
+  <string name="category_text">TEXT</string>
+  <string name="category_document">DOCUMENT</string>
+  <string name="category_ebook">EBOOK</string>
+  <string name="category_mail">CORREU</string>
+  <string name="category_compress">COMPRIMIT</string>
+  <string name="category_exec">EXECUTABLE</string>
+  <string name="category_database">BASEDEDADES</string>
+  <string name="category_font">TIPUSDELLETRA</string>
+  <string name="category_image">IMATGE</string>
+  <string name="category_audio">AUDIO</string>
+  <string name="category_video">VIDEO</string>
+  <string name="category_security">SEGURETAT</string>
+  <string name="compression_mode_title">Modes de compressió</string>
+  <string name="shortcut_failed_msg">No s\'ha pogut gestionar la drecera.</string>
+  <string name="shortcut_creation_success_msg">La drecera s\'ha creat satisfactòriament.</string>
+  <string name="shortcut_creation_failed_msg">La creació de la drecera ha fallat.</string>
+  <string name="pref">Ajustaments</string>
+  <string name="pref_general">Ajustaments generals</string>
+  <string name="pref_search">Opcions de cerca</string>
+  <string name="pref_editor">Opcions de l\'editor</string>
+  <string name="pref_themes">Temes</string>
+  <string name="pref_about">Quant a</string>
+  <string name="pref_about_summary">Gestor d\'arxius v<xliff:g id="version">%1$s</xliff:g>\nCopyright \u00A9 2013 The CyanogenMod Project</string>
+  <string name="pref_general_behaviour_category">General</string>
+  <string name="pref_case_sensitive_sort">Minúscules/Majúscules</string>
+  <string name="pref_case_sensitive_sort_summary">Considerar Minúscules/Majúscules quan es navegui o s\'ordenin els resultats de la cerca</string>
+  <string name="pref_filetime_format_mode">Format Data/hora</string>
+  <string name="pref_disk_usage_warning_level">Alerta d\'utilització del disc</string>
+  <string name="pref_disk_usage_warning_level_summary" formatted="false">Mostra un color diferent en el widget d\'utilització del disc quan s\'arribi al <xliff:g id="level">%1$s</xliff:g> percent d\'espai lliure</string>
+  <string name="pref_compute_folder_statistics">Calcula estadístiques de la carpeta</string>
+  <string name="pref_compute_folder_statistics_on">Alerta! El càlcul d\'estadístiques de la carpeta tarda temps i necessita força recursos del sistema</string>
+  <string name="pref_display_thumbs">Previsualització</string>
+  <string name="pref_display_thumbs_summary">Mostra una imatge de previsualització per les apps, arxius de música, fotografies i vídeos.</string>
+  <string name="pref_use_flinger">Utilitza gestos de lliscament</string>
+  <string name="pref_use_flinger_summary">Utilitza la detecció de gestos llisca a l\'esquerra o a la dreta per esborrar arxius o carpetes.</string>
+  <string name="pref_general_advanced_settings_category">Avançat</string>
+  <string name="pref_access_mode">Mode d\'accés</string>
+  <string name="pref_access_mode_safe">Mode segur</string>
+  <string name="pref_access_mode_safe_summary">Mode segur\n\nAquesta app s\'està executant sense privilegis i només té accés als sistemes d\'arxius d\'emmagatzematge (targetes SD i USB)</string>
+  <string name="pref_access_mode_prompt">Petició mode Usuari</string>
+  <string name="pref_access_mode_prompt_summary">Petició mode Usuari\n\nAquesta app s\'està executant amb accés complet al sistema d\'arxius però demanarà permís abans d\'executar qualsevol acció que demani més privilegis</string>
+  <string name="pref_access_mode_root">Mode d\'accés de superusuari</string>
+  <string name="pref_access_mode_root_summary">Mode d\'accés de superusuari\n\nAlerta! Aquest mode permet operacions que podrien espatllar el teu dispositiu. És la teva responsabilitat assegurar que les operacions són segures</string>
+  <string name="pref_search_results_category">Resultats</string>
+  <string name="pref_show_relevance_widget">Mostra widget rellevància</string>
+  <string name="pref_highlight_terms">Realça els termes de cerca</string>
+  <string name="pref_sort_search_results_mode">Mode d\'ordenació dels resultatsSort results mode</string>
+  <string name="pref_sort_search_results_mode_none">Sense ordre</string>
+  <string name="pref_sort_search_results_mode_name">Per nom</string>
+  <string name="pref_sort_search_results_mode_relevance">Per rellevància</string>
+  <string name="pref_search_privacity_category">Privacitat</string>
+  <string name="pref_save_search_terms">Desa termes de cerca</string>
+  <string name="pref_save_search_terms_on">Els termes de cerca seran desats i utilitzats com a sugerències en futures cerques</string>
+  <string name="pref_save_search_terms_off">Els termes de cerca no seran desats</string>
+  <string name="pref_remove_saved_search_terms">Esborra els termes de cerca desats</string>
+  <string name="pref_remove_saved_search_terms_summary">Pica per esborrar tots els termes de cerca desats</string>
+  <string name="pref_remove_saved_search_terms_msg">Tots els termes de cerca desats s\'han esborrat.</string>
+  <string name="pref_editor_behaviour_category">Comportament</string>
+  <string name="pref_no_suggestions">Sense sugerències</string>
+  <string name="pref_no_suggestions_desc">No mostris sugerències del diccionari mentre editis l\'arxiu</string>
+  <string name="pref_word_wrap">Ajust de línia</string>
+  <string name="pref_hexdump">Volcat Hex d\'arxius binaris</string>
+  <string name="pref_hexdump_desc">Quan s\'obri un arxiu binari, genera un volcat hex de l\'arxiu i l\'obre en el visor hex.</string>
+  <string name="pref_editor_syntax_highlight_category">Realçament de sintaxis</string>
+  <string name="pref_syntax_highlight">Realça la sintaxis</string>
+  <string name="pref_syntax_highlight_desc">Realça la sintaxis de l\'arxiu mostrat a l\'editor (només quan un processador de realçament de sintaxis està disponible pel tipus d\'arxiu)</string>
+  <string name="pref_syntax_highlight_color_scheme">Esquema de colors</string>
+  <string name="pref_syntax_highlight_color_scheme_desc">Pica per seleccionar l\'esquema de colors del realçament de sintaxis</string>
+  <string name="pref_syntax_sh_use_theme_default">Utilitza el tema predeterminat</string>
+  <string name="pref_syntax_sh_use_theme_default_desc">Utilitza el realçament de sintaxis predeterminat del tema actual</string>
+  <string name="pref_editor_sh_item_category">Elements</string>
+  <string name="pref_themes_selection_category">Temes</string>
+  <string name="pref_themes_set_theme">Estableix un tema</string>
+  <string name="pref_themes_no_preview">No hi ha previsual.\ndisponible</string>
+  <string name="pref_themes_confirmation">S\'ha aplicat el tema satisfactòriament.</string>
+  <string name="pref_themes_not_found">No s\'ha trobat el tema.</string>
+  <string name="pref_debug_traces">Registra la informació de depuració</string>
+  <string name="theme_default_name">Tema clar</string>
+  <string name="theme_default_description">Un tema clar pel Gestor d\'arxius de CyanogenMod.</string>
+  <string name="themes_author">CyanogenMod</string>
+  <string name="color_picker_alpha_slider_text">Alfa</string>
+  <string name="color_picker_current_text">Actual:</string>
+  <string name="color_picker_new_text">Nou:</string>
+  <string name="color_picker_color">Color:</string>
+  <string name="ash_reset_color_scheme">Pica per restaurar el tema de l\'esquema de colors predeterminat</string>
+  <string name="ash_text">Text</string>
+  <string name="ash_assignment">Assignament</string>
+  <string name="ash_singleline_comment">Comentari d\'una sola línia</string>
+  <string name="ash_multiline_comment">Comentari multi-línia</string>
+  <string name="ash_keyword">Paraula clau</string>
+  <string name="ash_quoted_string">Cadena comentada</string>
+  <string name="ash_variable">Variable</string>
+  <string name="security_warning_extract">Alerta!\n\n
+      Extraient un arxiu comprimit amb rutes relatives o absolutes podria causar danys al teu dispositiu
+      al sobreescriure arxius de sistema.\n\n
+      Segur que vols continuar?</string>
+  <string name="changelog_title">Registre de canvis</string>
+  <string name="welcome_title">Benvingut</string>
+  <string name="welcome_msg">
+    Benvingut al gestor d\'arxius de CyanogenMod.
+    \n\nAquesta app et permet explorar el sistema d\'arxius i fer operacions que podrien espatllar el teur dispositiu. Per evitar danys, aquesta app s\'executarà en mode segur, en mode de pocs privilegis.
+    \n\nPots accedir al mode avançat, amb privilegis complets mitjançant els Ajustaments. Està sota la teva responsabilitat assegurar que les operacions no espatllin el teu sistema.
+    \n\nL\'equip de CyanogenMod.\n</string>
+</resources>

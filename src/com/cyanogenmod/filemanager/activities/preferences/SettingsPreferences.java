@@ -185,4 +185,12 @@ public class SettingsPreferences extends PreferenceActivity {
                 "background_drawable"); //$NON-NLS-1$
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    protected boolean isValidFragment(String fragmentName) {
+        return true;
+    }
+
 }

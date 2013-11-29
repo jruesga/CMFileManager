@@ -275,23 +275,6 @@ public class FileSystemObjectAdapter
                 viewHolder.mBtCheck = (ImageButton)v.findViewById(RESOURCE_ITEM_CHECK);
                 viewHolder.mBtCheck.setVisibility(View.GONE);
             }
-
-            // Apply the current theme
-            if (this.mPickable) {
-                theme.setBackgroundDrawable(
-                        getContext(), v, "background_drawable"); //$NON-NLS-1$
-            }
-            theme.setTextColor(
-                    getContext(), viewHolder.mTvName, "text_color"); //$NON-NLS-1$
-            if (viewHolder.mTvSummary != null) {
-                theme.setTextColor(
-                        getContext(), viewHolder.mTvSummary, "text_color"); //$NON-NLS-1$
-            }
-            if (viewHolder.mTvSize != null) {
-                theme.setTextColor(
-                        getContext(), viewHolder.mTvSize, "text_color"); //$NON-NLS-1$
-            }
-
             v.setTag(viewHolder);
         }
 
@@ -300,9 +283,11 @@ public class FileSystemObjectAdapter
 
         //Retrieve the view holder
         ViewHolder viewHolder = (ViewHolder)v.getTag();
+        if (this.mPickable) {
+            theme.setBackgroundDrawable(getContext(), v, "background_drawable"); //$NON-NLS-1$
+        }
 
         //Set the data
-
         if (convertView != null) {
             // Cancel load for previous usage
             mIconHolder.cancelLoad(viewHolder.mIvIcon);
@@ -310,11 +295,14 @@ public class FileSystemObjectAdapter
         mIconHolder.loadDrawable(viewHolder.mIvIcon, getItem(position), dataHolder.mDwIcon);
 
         viewHolder.mTvName.setText(dataHolder.mName);
+        theme.setTextColor(getContext(), viewHolder.mTvName, "text_color"); //$NON-NLS-1$
         if (viewHolder.mTvSummary != null) {
             viewHolder.mTvSummary.setText(dataHolder.mSummary);
+            theme.setTextColor(getContext(), viewHolder.mTvSummary, "text_color"); //$NON-NLS-1$
         }
         if (viewHolder.mTvSize != null) {
             viewHolder.mTvSize.setText(dataHolder.mSize);
+            theme.setTextColor(getContext(), viewHolder.mTvSize, "text_color"); //$NON-NLS-1$
         }
         if (!this.mPickable) {
             viewHolder.mBtCheck.setVisibility(

@@ -17,7 +17,6 @@
 package com.cyanogenmod.filemanager.activities.preferences;
 
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.preference.Preference;
 import android.preference.Preference.OnPreferenceChangeListener;
@@ -50,17 +49,6 @@ public class ThemesPreferenceFragment extends TitlePreferenceFragment {
                             key,
                             String.valueOf(newValue)));
             }
-
-            // Notify to all activities that the theme has changed
-            Intent intent = new Intent(FileManagerSettings.INTENT_THEME_CHANGED);
-            intent.putExtra(FileManagerSettings.EXTRA_THEME_ID, (String)newValue);
-            getActivity().sendBroadcast(intent);
-
-            //Wait for allow activities to apply the theme, prior to finish settings
-            try {
-                Thread.sleep(250L);
-            } catch (Throwable e) {/**NON BLOCK**/}
-            getActivity().finish();
             return true;
         }
     };

@@ -23,6 +23,7 @@ import android.view.HapticFeedbackConstants;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewConfiguration;
+import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
@@ -143,9 +144,9 @@ public class FlingerListView extends ListView {
     private int mFlingingViewPos;
     private View mFlingingView;
     private boolean mFlingingViewPressed;
-    private int mFlingingViewHeight;
     private int mFlingingViewWidth;
     private boolean mScrolling;
+    private boolean mScrollInAnimation;
     private boolean mFlinging;
     private boolean mFlingingStarted;
     private boolean mMoveStarted;
@@ -199,6 +200,18 @@ public class FlingerListView extends ListView {
         //Initialize variables
         this.mFlingRemovePercentaje = DEFAULT_FLING_REMOVE_PERCENTAJE;
         this.mFlingThreshold = AndroidHelper.convertDpToPixel(getContext(), MIN_FLINGER_THRESHOLD);
+        setOnScrollListener(new OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(AbsListView view, int scrollState) {
+                mScrollInAnimation = (scrollState == SCROLL_STATE_FLING);
+            }
+
+            @Override
+            public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount,
+                    int totalItemCount) {
+            }
+        });
+        mScrollInAnimation = false;
     }
 
     /**
@@ -309,7 +322,6 @@ public class FlingerListView extends ListView {
                 Rect r = new Rect();
                 this.mFlingingView.getDrawingRect(r);
                 this.mFlingingViewWidth = r.width();
-                this.mFlingingViewHeight = r.height();
 
                 // Set the pressed state
                 this.mFlingingView.postDelayed(new Runnable() {
@@ -324,15 +336,14 @@ public class FlingerListView extends ListView {
                     }
                 }, PRESSED_DELAY_TIME);
 
-                // Enable this, cause some strange effects. By the other side, the scrolling
-                // is not as much smooth as it should be
-                //super.onTouchEvent(ev);
-                return true;
+                // If not the view is not scrolling the capture event
+                if (!mScrollInAnimation) {
+                    return true;
+                }
             }
             break;
 
         case MotionEvent.ACTION_MOVE:
-            this.mMoveStarted = true;
             if (this.mFlingingView != null) {
                 this.mFlingingView.removeCallbacks(this.mLongPressDetection);
                 this.mFlingingViewPressed = false;
@@ -342,7 +353,7 @@ public class FlingerListView extends ListView {
             // Detect scrolling
             this.mCurrentY = (int)ev.getY();
             this.mScrolling =
-                    Math.abs(this.mCurrentY - this.mStartY) > this.mFlingingViewHeight;
+                    Math.abs(this.mCurrentY - this.mStartY) > (this.mFlingThreshold / 3);
             if (this.mFlingingStarted) {
                 // Don't allow scrolling
                 this.mScrolling = false;
@@ -359,16 +370,25 @@ public class FlingerListView extends ListView {
                         this.mFlingingView.setPressed(false);
 
                         // Started
-                        if (!this.mFlingingStarted && this.mTranslationX > this.mFlingThreshold) {
+                        if (!this.mFlingingStarted) {
                             // Flinging starting
-                            if (!this.mOnItemFlingerListener.onItemFlingerStart(
-                                    this,
-                                    this.mFlingingView,
-                                    this.mFlingingViewPos,
-                                    this.mFlingingView.getId())) {
-                                break;
+                            if (!mMoveStarted) {
+                                if (!this.mOnItemFlingerListener.onItemFlingerStart(
+                                        this,
+                                        this.mFlingingView,
+                                        this.mFlingingViewPos,
+                                        this.mFlingingView.getId())) {
+                                    this.mCurrentX = 0;
+                                    this.mTranslationX = 0;
+                                    this.mFlingingView.setTranslationX(this.mTranslationX);
+                                    this.mFlingingView.setPressed(false);
+                                    break;
+                                }
                             }
-                            this.mFlingingStarted = true;
+                            mMoveStarted = true;
+                            if (this.mTranslationX > this.mFlingThreshold) {
+                                this.mFlingingStarted = true;
+                            }
                         }
 
                         // Detect if flinging occurs
@@ -398,6 +418,11 @@ public class FlingerListView extends ListView {
                             });
                         }
                     }
+                } else {
+                    this.mCurrentX = 0;
+                    this.mTranslationX = 0;
+                    this.mFlingingView.setTranslationX(this.mTranslationX);
+                    this.mFlingingView.setPressed(false);
                 }
             }
             if (this.mFlingingStarted) {
@@ -427,28 +452,26 @@ public class FlingerListView extends ListView {
 
             // What is the motion
             if (!this.mScrolling && this.mFlingingView != null) {
-                if (!this.mMoveStarted) {
-                    if (!this.mLongPress) {
-                        this.mFlingingViewPressed = false;
-                        this.mFlingingView.removeCallbacks(this.mLongPressDetection);
-                        this.mFlingingView.setPressed(true);
+                if(!this.mMoveStarted && !this.mLongPress) {
+                    this.mFlingingViewPressed = false;
+                    this.mFlingingView.removeCallbacks(this.mLongPressDetection);
+                    this.mFlingingView.setPressed(true);
 
-                        this.mFlingingView.postDelayed(new Runnable() {
-                            @Override
-                            @SuppressWarnings("synthetic-access")
-                            public void run() {
-                                FlingerListView.this.mFlingingView.setPressed(false);
-                            }
-                        }, PRESSED_DELAY_TIME);
-                        performItemClick(
-                                this.mFlingingView,
-                                this.mFlingingViewPos,
-                                this.mFlingingView.getId());
-                    }
+                    this.mFlingingView.postDelayed(new Runnable() {
+                        @Override
+                        @SuppressWarnings("synthetic-access")
+                        public void run() {
+                            FlingerListView.this.mFlingingView.setPressed(false);
+                        }
+                    }, PRESSED_DELAY_TIME);
+                    performItemClick(
+                            this.mFlingingView,
+                            this.mFlingingViewPos,
+                            this.mFlingingView.getId());
+
+                    // Handled
+                    this.mFlingingView.setPressed(false);
                 }
-
-                // Handled
-                this.mFlingingView.setPressed(false);
                 return true;
             }
 

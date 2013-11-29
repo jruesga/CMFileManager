@@ -279,6 +279,9 @@ public class FileSystemObjectAdapter
         }
 
         //Retrieve data holder
+        if (mData == null || this.mData[position] == null) {
+            return v;
+        }
         final DataHolder dataHolder = this.mData[position];
 
         //Retrieve the view holder

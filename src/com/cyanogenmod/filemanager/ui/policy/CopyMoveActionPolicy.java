@@ -349,7 +349,6 @@ public final class CopyMoveActionPolicy extends ActionsPolicy {
              * @param dst The destination file
              * @param operation Indicates the operation to do
              */
-            @SuppressWarnings("hiding")
             private void doOperation(
                     Context ctx, File src, File dst, COPY_MOVE_OPERATION operation)
                     throws Throwable {
@@ -357,18 +356,23 @@ public final class CopyMoveActionPolicy extends ActionsPolicy {
                 if (src.compareTo(dst) == 0) return;
 
                 try {
+                    // Be sure to append a / if source is a folder (otherwise system crashes
+                    // under using absolute paths) Issue: CYAN-2791
+                    String source = src.getAbsolutePath() +
+                            (src.isDirectory() ? File.separator : "");
+
                     // Copy or move?
                     if (operation.compareTo(COPY_MOVE_OPERATION.MOVE) == 0 ||
                             operation.compareTo(COPY_MOVE_OPERATION.RENAME) == 0) {
                         CommandHelper.move(
                                 ctx,
-                                src.getAbsolutePath(),
+                                source,
                                 dst.getAbsolutePath(),
                                 null);
                     } else {
                         CommandHelper.copy(
                                 ctx,
-                                src.getAbsolutePath(),
+                                source,
                                 dst.getAbsolutePath(),
                                 null);
                     }

@@ -33,7 +33,7 @@
     android:layout_width="@dimen/default_row_height"
     android:layout_height="@dimen/default_row_height"
     android:layout_gravity="center_vertical"
-    android:scaleType="centerInside"
+    android:scaleType="centerCrop"
     android:contentDescription="@null"
     android:src="@null" />
 

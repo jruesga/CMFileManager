@@ -21,6 +21,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.text.Spanned;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -117,35 +118,26 @@ public class MessageProgressDialog implements DialogInterface.OnClickListener {
                                         iconResourceId,
                                         titleResourceId,
                                         layout);
-        this.mDialog.setButton(
-                DialogInterface.BUTTON_NEUTRAL, context.getString(android.R.string.cancel), this);
-        this.mDialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
-            @Override
-            public void onCancel(DialogInterface dialog) {
-                // Disable cancel button
-                MessageProgressDialog.this.mDialog.getButton(
+        this.mDialog.setCancelable(cancellable);
+        if (cancellable) {
+            this.mDialog.setButton(
+                    DialogInterface.BUTTON_NEUTRAL, context.getString(android.R.string.cancel), this);
+            this.mDialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
+                @Override
+                public void onCancel(DialogInterface dialog) {
+                    // Disable cancel button
+                    MessageProgressDialog.this.mDialog.getButton(
                         DialogInterface.BUTTON_NEUTRAL).setEnabled(false);
 
-                // Wait for cancellation
-                if (MessageProgressDialog.this.mOnCancelListener != null) {
-                    if (!MessageProgressDialog.this.mOnCancelListener.onCancel()) {
-                        //The operation couldn't be cancelled
-                        DialogHelper.showToast(
+                    // Wait for cancellation
+                    if (MessageProgressDialog.this.mOnCancelListener != null) {
+                        if (!MessageProgressDialog.this.mOnCancelListener.onCancel()) {
+                            //The operation couldn't be cancelled
+                            DialogHelper.showToast(
                                 MessageProgressDialog.this.mContext,
                                 R.string.msgs_operation_can_not_be_cancelled, Toast.LENGTH_SHORT);
+                        }
                     }
-                }
-            }
-        });
-
-        // Is cancellable
-        this.mDialog.setCancelable(cancellable);
-        if (!cancellable) {
-            this.mProgress.post(new Runnable() {
-                @Override
-                public void run() {
-                    MessageProgressDialog.this.mDialog.getButton(
-                            DialogInterface.BUTTON_NEUTRAL).setEnabled(false);
                 }
             });
         }

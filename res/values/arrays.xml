@@ -14,7 +14,6 @@
      See the License for the specific language governing permissions and
      limitations under the License.
 -->
-
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <!-- The strings of the menu for navigation sort mode enumeration -->
     <string-array name="cm_filemanager_sort_mode" translatable="false">

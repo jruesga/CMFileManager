@@ -14,30 +14,29 @@
      See the License for the specific language governing permissions and
      limitations under the License.
 -->
-
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <plurals name="n_folders">
-        <item quantity="one">1 folder</item>
+        <item quantity="one"><xliff:g id="folders">%1$d</xliff:g> folder</item>
         <item quantity="other"><xliff:g id="folders">%1$d</xliff:g> folders</item>
     </plurals>
     <plurals name="n_files">
-        <item quantity="one">1 file</item>
+        <item quantity="one"><xliff:g id="files">%1$d</xliff:g> file</item>
         <item quantity="other"><xliff:g id="files">%1$d</xliff:g> files</item>
     </plurals>
 
     <!-- Search - Found items -->
     <plurals name="search_found_items">
-        <item quantity="one">1 item found</item>
+        <item quantity="one"><xliff:g id="count">%1$d</xliff:g> item found</item>
         <item quantity="other"><xliff:g id="count">%d</xliff:g> items found</item>
     </plurals>
 
     <!-- Statusbar text if there are selected files or folders -->
     <plurals name="selection_folders">
-        <item quantity="one">1 folder selected.</item>
+        <item quantity="one"><xliff:g id="folders">%1$d</xliff:g> folder selected.</item>
         <item quantity="other"><xliff:g id="folders">%1$d</xliff:g> folders selected.</item>
     </plurals>
     <plurals name="selection_files">
-        <item quantity="one">1 file selected.</item>
+        <item quantity="one"><xliff:g id="files">%1$d</xliff:g> file selected.</item>
         <item quantity="other"><xliff:g id="files">%1$d</xliff:g> files selected.</item>
     </plurals>
 </resources>

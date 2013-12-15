@@ -79,8 +79,8 @@ import java.util.Map;
  * navigate, ...).
  */
 public class NavigationView extends RelativeLayout implements
-    AdapterView.OnItemClickListener, AdapterView.OnItemLongClickListener,
-    BreadcrumbListener, OnSelectionChangedListener, OnSelectionListener, OnRequestRefreshListener {
+AdapterView.OnItemClickListener, AdapterView.OnItemLongClickListener,
+BreadcrumbListener, OnSelectionChangedListener, OnSelectionListener, OnRequestRefreshListener {
 
     private static final String TAG = "NavigationView"; //$NON-NLS-1$
 
@@ -302,29 +302,29 @@ public class NavigationView extends RelativeLayout implements
 
                 //Capture exception (attach task, and use listener to do the anim)
                 ExceptionUtil.attachAsyncTask(
-                    ex,
-                    new AsyncTask<Object, Integer, Boolean>() {
-                        private List<FileSystemObject> mTaskFiles = null;
-                        @Override
-                        @SuppressWarnings({
+                        ex,
+                        new AsyncTask<Object, Integer, Boolean>() {
+                            private List<FileSystemObject> mTaskFiles = null;
+                            @Override
+                            @SuppressWarnings({
                                 "unchecked", "unqualified-field-access"
-                        })
-                        protected Boolean doInBackground(Object... taskParams) {
-                            mTaskFiles = (List<FileSystemObject>)taskParams[0];
-                            return Boolean.TRUE;
-                        }
-
-                        @Override
-                        @SuppressWarnings("unqualified-field-access")
-                        protected void onPostExecute(Boolean result) {
-                            if (!result.booleanValue()) {
-                                return;
+                            })
+                            protected Boolean doInBackground(Object... taskParams) {
+                                mTaskFiles = (List<FileSystemObject>)taskParams[0];
+                                return Boolean.TRUE;
                             }
-                            onPostExecuteTask(
-                                    mTaskFiles, mAddToHistory, mIsNewHistory, mHasChanged,
-                                    mSearchInfo, mNewDirChecked, mScrollTo);
-                        }
-                    });
+
+                            @Override
+                            @SuppressWarnings("unqualified-field-access")
+                            protected void onPostExecute(Boolean result) {
+                                if (!result.booleanValue()) {
+                                    return;
+                                }
+                                onPostExecuteTask(
+                                        mTaskFiles, mAddToHistory, mIsNewHistory, mHasChanged,
+                                        mSearchInfo, mNewDirChecked, mScrollTo);
+                            }
+                        });
                 final OnRelaunchCommandResult exListener =
                         new OnRelaunchCommandResult() {
                     @Override
@@ -385,15 +385,15 @@ public class NavigationView extends RelativeLayout implements
                 public void run() {
                     Animation fadeAnim = out ?
                             new AlphaAnimation(1, 0) :
-                            new AlphaAnimation(0, 1);
-                    fadeAnim.setDuration(50L);
-                    fadeAnim.setFillAfter(true);
-                    fadeAnim.setInterpolator(new AccelerateInterpolator());
-                    NavigationView.this.startAnimation(fadeAnim);
+                                new AlphaAnimation(0, 1);
+                            fadeAnim.setDuration(50L);
+                            fadeAnim.setFillAfter(true);
+                            fadeAnim.setInterpolator(new AccelerateInterpolator());
+                            NavigationView.this.startAnimation(fadeAnim);
                 }
             });
         }
-   };
+    };
 
     private int mId;
     private String mCurrentDir;
@@ -493,6 +493,14 @@ public class NavigationView extends RelativeLayout implements
         parcel.setChRooted(this.mChRooted);
         parcel.setSelectedFiles(this.mAdapter.getSelectedItems());
         parcel.setFiles(this.mFiles);
+
+        int firstVisiblePosition = mAdapterView.getFirstVisiblePosition();
+        if (firstVisiblePosition >= 0 && firstVisiblePosition < mAdapter.getCount()) {
+            FileSystemObject firstVisible = mAdapter
+                    .getItem(firstVisiblePosition);
+            parcel.setFirstVisible(firstVisible);
+        }
+
         return parcel;
     }
 
@@ -510,8 +518,10 @@ public class NavigationView extends RelativeLayout implements
         this.mFiles = info.getFiles();
         this.mAdapter.setSelectedItems(info.getSelectedFiles());
 
+        final FileSystemObject firstVisible = info.getFirstVisible();
+
         //Update the views
-        refresh();
+        refresh(firstVisible);
         return true;
     }
 
@@ -525,8 +535,8 @@ public class NavigationView extends RelativeLayout implements
         // Retrieve the mode
         this.mNavigationMode = NAVIGATION_MODE.BROWSABLE;
         int mode = tarray.getInteger(
-                                R.styleable.Navigable_navigation,
-                                NAVIGATION_MODE.BROWSABLE.ordinal());
+                R.styleable.Navigable_navigation,
+                NAVIGATION_MODE.BROWSABLE.ordinal());
         if (mode >= 0 && mode < NAVIGATION_MODE.values().length) {
             this.mNavigationMode = NAVIGATION_MODE.values()[mode];
         }
@@ -709,7 +719,7 @@ public class NavigationView extends RelativeLayout implements
             if (this.mAdapterView instanceof FlingerListView) {
                 if (useFlinger) {
                     ((FlingerListView)this.mAdapterView).
-                        setOnItemFlingerListener(this.mOnItemFlingerListener);
+                    setOnItemFlingerListener(this.mOnItemFlingerListener);
                 } else {
                     ((FlingerListView)this.mAdapterView).setOnItemFlingerListener(null);
                 }
@@ -722,17 +732,32 @@ public class NavigationView extends RelativeLayout implements
      *
      * @param fso The file system object
      */
-    public void scrollTo(FileSystemObject fso) {
-        if (fso != null) {
-            try {
-                int position = this.mAdapter.getPosition(fso);
-                this.mAdapterView.setSelection(position);
-            } catch (Exception e) {
-                this.mAdapterView.setSelection(0);
+    public void scrollTo(final FileSystemObject fso) {
+
+        this.mAdapterView.post(new Runnable() {
+
+            @Override
+            public void run() {
+                if (fso != null) {
+                    try {
+                        int position = mAdapter.getPosition(fso);
+                        mAdapterView.setSelection(position);
+
+                        // Make the scrollbar appear
+                        if (position > 0) {
+                            mAdapterView.scrollBy(0, 1);
+                            mAdapterView.scrollBy(0, -1);
+                        }
+
+                    } catch (Exception e) {
+                        mAdapterView.setSelection(0);
+                    }
+                } else {
+                    mAdapterView.setSelection(0);
+                }
             }
-        } else {
-            this.mAdapterView.setSelection(0);
-        }
+        });
+
     }
 
     /**
@@ -801,9 +826,9 @@ public class NavigationView extends RelativeLayout implements
         boolean useFlinger =
                 Preferences.getSharedPreferences().getBoolean(
                         FileManagerSettings.SETTINGS_USE_FLINGER.getId(),
-                            ((Boolean)FileManagerSettings.
-                                    SETTINGS_USE_FLINGER.
-                                        getDefaultValue()).booleanValue());
+                        ((Boolean)FileManagerSettings.
+                                SETTINGS_USE_FLINGER.
+                                getDefaultValue()).booleanValue());
 
         //Creates the new layout
         AdapterView<ListAdapter> newView = null;
@@ -822,7 +847,7 @@ public class NavigationView extends RelativeLayout implements
             if (this.mNavigationMode.compareTo(NAVIGATION_MODE.BROWSABLE) == 0) {
                 if (useFlinger && newView instanceof FlingerListView) {
                     ((FlingerListView)newView).
-                        setOnItemFlingerListener(this.mOnItemFlingerListener);
+                    setOnItemFlingerListener(this.mOnItemFlingerListener);
                 }
             }
 
@@ -835,7 +860,7 @@ public class NavigationView extends RelativeLayout implements
             if (this.mNavigationMode.compareTo(NAVIGATION_MODE.BROWSABLE) == 0) {
                 if (useFlinger && newView instanceof FlingerListView) {
                     ((FlingerListView)newView).
-                        setOnItemFlingerListener(this.mOnItemFlingerListener);
+                    setOnItemFlingerListener(this.mOnItemFlingerListener);
                 }
             }
         }
@@ -1007,13 +1032,6 @@ public class NavigationView extends RelativeLayout implements
                 }
             }
 
-            //Load the data
-            loadData(sortedFiles);
-            this.mFiles = sortedFiles;
-            if (searchInfo != null) {
-                searchInfo.setSuccessNavigation(true);
-            }
-
             //Add to history?
             if (addToHistory && hasChanged && isNewHistory) {
                 if (this.mOnHistoryListener != null) {
@@ -1022,15 +1040,20 @@ public class NavigationView extends RelativeLayout implements
                 }
             }
 
+            //Load the data
+            loadData(sortedFiles);
+            this.mFiles = sortedFiles;
+            if (searchInfo != null) {
+                searchInfo.setSuccessNavigation(true);
+            }
+
             //Change the breadcrumb
             if (this.mBreadcrumb != null) {
                 this.mBreadcrumb.changeBreadcrumbPath(newDir, this.mChRooted);
             }
 
-            //Scroll to object?
-            if (scrollTo != null) {
-                scrollTo(scrollTo);
-            }
+            //If scrollTo is null, the position will be set to 0
+            scrollTo(scrollTo);
 
             //The current directory is now the "newDir"
             this.mCurrentDir = newDir;
@@ -1069,7 +1092,6 @@ public class NavigationView extends RelativeLayout implements
         adapter.clear();
         adapter.addAll(files);
         adapter.notifyDataSetChanged();
-        view.setSelection(0);
     }
 
     /**

@@ -363,6 +363,8 @@
   <string name="pref_filetime_format_mode">时间/日期格式</string>
   <string name="pref_compute_folder_statistics">计算文件夹统计数据</string>
   <string name="pref_compute_folder_statistics_on">警告! 文件夹统计数据的计将算会花费较长的时间与较多的系统资源</string>
+  <string name="pref_display_thumbs">预览</string>
+  <string name="pref_display_thumbs_summary">为应用, 音乐文件, 图片以及视频显示预览缩略图.</string>
   <string name="pref_use_flinger">使用滑动手势</string>
   <string name="pref_use_flinger_summary">向左到右滑动将会删除文件或文件夹.</string>
   <string name="pref_general_advanced_settings_category">高级</string>

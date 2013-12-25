@@ -1,0 +1,348 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+     Copyright (C) 2012-2013 The CyanogenMod Project
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+-->
+
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="app_name">ตัวจัดการไฟล์</string>
+    <string name="yes">ใช่</string>
+    <string name="no">ไม่ใช่</string>
+    <string name="all">ทั้งหมด</string>
+    <string name="overwrite">เขียนทับ</string>
+    <string name="select">เลือก</string>
+    <string name="search_result_name">ค้นหา: <xliff:g id="terms">%1$s</xliff:g></string>
+    <string name="loading_message">กำลังโหลด\u2026</string>
+    <string name="cancelled_message">ถูกยกเลิก</string>
+    <string name="error_message">ผิดพลาด</string>
+    <string name="copy_text_cd">แตะเพื่อคัดลอกข้อควมไปยังคลิปบอร์ด</string>
+    <string name="copy_text_msg">คัดลอกข้อความไปยังคลิปบอร์ดแล้ว</string>
+    <string name="warning_title">คำเตือน</string>
+    <string name="error_title">พบข้อผิดพลาด</string>
+    <string name="confirm_operation">ยืนยันการกระทำ</string>
+    <string name="confirm_overwrite">ยืนยันการเขียนทับ</string>
+    <string name="confirm_deletion">ยืนยันการลบ</string>
+    <string name="msgs_change_to_prompt_access_mode_title">ยืนยันการสลับ</string>
+    <string name="msgs_change_to_prompt_access_mode_msg">ไม่สามารถใช้งานรูปแบบสิทธิ Root ได้ จะใช้งานรูปแบบปลอดภัยแทน บันทึกการเปลี่ยนแปลงนี้หรือไม่?</string>
+    <string name="msgs_cant_create_console">ไม่สามารถที่จะได้รับสิทธิ์ที่จำเป็นในการทำงานนี้</string>
+    <string name="msgs_privileged_console_alloc_failed">ไม่สามารถใช้สิทธิ Root ได้ กลับไปใช้รูปแบบปลอดภัย</string>
+    <string name="msgs_settings_save_failure">การตั้งค่าที่ไม่สามารถนำมาใช้หรือเก็บไว้</string>
+    <string name="msgs_settings_invalid_initial_directory">โฟลเดอร์แรก \"<xliff:g id="initial_dir">%1$s</xliff:g>\" ไม่ถูกต้อง จะถูกสลับมาใช้โฟลเดอร์ root</string>
+    <string name="msgs_success">การทำงานเสร็จสิ้น</string>
+    <string name="msgs_unknown">พบข้อผิดพลา การทำงานล้มเหลว</string>
+    <string name="msgs_insufficient_permissions">การทำงานนี้ต้องการสิทธิ Root ลองเปลี่ยนไปใช้รูปแบบให้สิทธิ Root</string>
+    <string name="msgs_file_not_found">ไม่พบไฟล์หรือโฟลเดอร์</string>
+    <string name="msgs_command_not_found">การดำเนินงานล้มเหลว คำสั่งไม่พบหรือมีความหมายที่ไม่ถูกต้อง</string>
+    <string name="msgs_io_failed">อ่าน/เขียน ล้มเหลว</string>
+    <string name="msgs_operation_timeout">การดำเนินการใช้เวลานานเกินไป</string>
+    <string name="msgs_operation_failure">การดำเนินการล้มเหลว</string>
+    <string name="msgs_console_alloc_failure">เกิดความผิดพลาดภายใน</string>
+    <string name="msgs_operation_can_not_be_cancelled">การดำเนินการไม่สามารถยกเลิกได้</string>
+    <string name="msgs_read_only_filesystem">ไฟล์ระบบนี้เป็นแบบ อ่านอย่างเดียว ลองสลับเป็น อ่านและเขียน ก่อนดำเนินอีกครั้ง</string>
+    <string name="msgs_illegal_argument">อาร์กิวเมนต์ผิดพลาดไม่สามารถทำงานได้</string>
+    <string name="msgs_unresolved_inconsistencies">ไม่สามารถทำงานนี้ได้เพราะมันไม่สอดคล้องกัน</string>
+    <string name="msgs_operation_not_allowed_in_current_directory">ไม่สามารถทำงานนี้ได้ในโฟลเดอร์ปัจจุบัน</string>
+    <string name="msgs_push_again_to_exit">แตะอีกครั้งเพื่ออก</string>
+    <string name="msgs_not_registered_app">ไม่มีแอปที่ลงทะเบียนไว้เพื่อเปิดไฟล์ประเภทนี้</string>
+    <string name="msgs_overwrite_files">บางส่วนของไฟล์ที่มีอยู่แล้วในโฟลเดอร์ปลายทาง\n\nเขียนทับ?</string>
+    <string name="msgs_action_association_failed">การเชื่อมโยงการกระทำของแอปล้มเหลว</string>
+    <string name="advise_insufficient_permissions">การกระทำนี้ต้องการสิทธิ Root\n\nคุณต้องการเปลี่ยนไปใช้รูปแบบให้สิทธิ Root ไหม?</string>
+    <string name="parent_dir">โฟลเดอร์ที่บรรจุ</string>
+    <string name="external_storage">ที่เก็บข้อมูลภายนอก</string>
+    <string name="usb_storage">ที่เก็บข้อมูล USB</string>
+    <string name="actionbar_button_filesystem_cd">ข้อมูลไฟล์ระบบ</string>
+    <string name="actionbar_button_sort_mode_cd">รูปแบบการเรียง</string>
+    <string name="actionbar_button_layout_mode_cd">รูปแบบการแสดงผล</string>
+    <string name="actionbar_button_other_view_options_cd">ตัวเลือกในการดู</string>
+    <string name="actionbar_button_selection_done_cd">เสร็จสิ้น</string>
+    <string name="actionbar_button_actions_cd">การกระทำ</string>
+    <string name="actionbar_button_history_cd">ประวัติ</string>
+    <string name="actionbar_button_bookmarks_cd">คั่นหน้า</string>
+    <string name="actionbar_button_search_cd">ค้นหา</string>
+    <string name="actionbar_button_overflow_cd">ตัวเลือกเพิ่มเติม</string>
+    <string name="actionbar_button_storage_cd">ปริมาณการจัดเก็บข้อมูล</string>
+    <string name="actionbar_button_save_cd">บันทึก</string>
+    <string name="sort_by_name_asc">โดยชื่อ \u25B2</string>
+    <string name="sort_by_name_desc">โดยชื่อ \u25BC</string>
+    <string name="sort_by_date_asc">โดยวันที่ \u25B2</string>
+    <string name="sort_by_date_desc">โดยชื่อ \u25BC</string>
+    <string name="layout_icons">ไอคอน</string>
+    <string name="layout_simple">อย่างง่าย</string>
+    <string name="layout_details">รายละเอียด</string>
+    <string name="cm_filemanager_show_dirs_first">แสดงโฟลเดอร์ก่อน</string>
+    <string name="cm_filemanager_show_hidden">แสดงไฟล์ที่ซ่อน</string>
+    <string name="cm_filemanager_show_system">แสดงไฟล์ระบบ</string>
+    <string name="cm_filemanager_show_symlinks">แสดงลิงค์ไฟล์</string>
+    <string name="filesystem_info_warning_title">ไม่มีข้อมูล</string>
+    <string name="filesystem_info_warning_msg">ไม่มีข้อมูลสำหรับไฟล์ระบบ</string>
+    <string name="filesystem_info_cant_be_mounted_msg">ไฟล์ระบบไม่สามารถ mount/unmount ได้</string>
+    <string name="filesystem_info_mount_not_allowed_msg">การ mount ไม่สามารถทำได้บนรูปแบบปลอดภัย แตะเพื่อเปลี่ยนเป็นรูปแบบให้สิทธิ Root</string>
+    <string name="filesystem_info_mount_failed_msg">การ mount ล้มเหลว บางไฟล์ระบบ เช่น SD card ไม่สามารถ mount/unmount การเชื่อมต่อได้เพราะเป็นรูปแบบไฟล์อ่านเท่านั้น</string>
+    <string name="filesystem_info_dialog_title">ข้อมูลระบบไฟล์</string>
+    <string name="filesystem_info_dialog_tab_info">ข้อมูล</string>
+    <string name="filesystem_info_dialog_tab_disk_usage">การใช้ดิสก์</string>
+    <string name="filesystem_info_dialog_status">สถานะ:</string>
+    <string name="filesystem_info_dialog_mount_point">จุด Mount:</string>
+    <string name="filesystem_info_dialog_device">อุปกรณ์:</string>
+    <string name="filesystem_info_dialog_type">ประเภท:</string>
+    <string name="filesystem_info_dialog_options">ตัวเลือก:</string>
+    <string name="filesystem_info_dialog_total_disk_usage">ทั้งหมด:</string>
+    <string name="filesystem_info_dialog_used_disk_usage">ใช้แล้ว:</string>
+    <string name="filesystem_info_dialog_free_disk_usage">ว่าง:</string>
+    <string name="fso_properties_permissions_not_allowed_msg">ไม่อนุญาติให้ใช้คำสั่งนี้ในรูปแบบปลอดภับ แตะเพื่อเปลี่ยนเป็นรูปแบบให้สิทธิ Root</string>
+    <string name="fso_properties_failed_to_change_owner_msg">การดำเนินงานเปลี่ยนแปลงเจ้าของล้มเหลว\n\nสำหรับเหตุผลด้านความปลอดภัยระบบไฟล์บางอย่าง เช่น SDcard ไม่อนุญาตให้มีการเปลี่ยนแปลงของความเป็นเจ้าของ</string>
+    <string name="fso_properties_failed_to_change_group_msg">การเปลี่ยนแปลงของการดำเนินการกลุ่มล้มเหลว\n\nสำหรับเหตุผลด้านความปลอดภัยระบบไฟล์บางอย่าง เช่น SDcard ไม่อนุญาตให้มีการเปลี่ยนแปลงของกลุ่ม</string>
+    <string name="fso_properties_failed_to_change_permission_msg">การดำเนินงานเปลี่ยนแปลงสิทธิ์ล้มเหลว\n\nสำหรับเหตุผลด้านความปลอดภัยระบบไฟล์บางอย่าง เช่น SDcard ไม่อนุญาตให้มีการเปลี่ยนแปลงของสิทธิ์</string>
+    <string name="fso_properties_dialog_title">คุณสมบัติ</string>
+    <string name="fso_properties_dialog_tab_info">ข้อมูล</string>
+    <string name="fso_properties_dialog_tab_permissions">การอนุญาต</string>
+    <string name="fso_properties_dialog_name">ชื่อ:</string>
+    <string name="fso_properties_dialog_parent">บรรจุใน:</string>
+    <string name="fso_properties_dialog_type">ประเภท:</string>
+    <string name="fso_properties_dialog_category">กลุ่ม:</string>
+    <string name="fso_properties_dialog_link">การเชื่อมต่อ:</string>
+    <string name="fso_properties_dialog_size">ขนาด:</string>
+    <string name="fso_properties_dialog_contains">บรรจุ:</string>
+    <string name="fso_properties_dialog_last_accessed_date">การเข้าถึง:</string>
+    <string name="fso_properties_dialog_last_modified_date">แก้ไขเมื่อ:</string>
+    <string name="fso_properties_dialog_last_changed_date">การเปลี่ยน:</string>
+    <string name="fso_properties_dialog_owner">เข้าของ:</string>
+    <string name="fso_properties_dialog_group">กลุ่ม:</string>
+    <string name="fso_properties_dialog_others">อื่น:</string>
+    <string name="fso_properties_dialog_include_in_media_scan">ข้ามการค้นสื่อ:</string>
+    <string name="fso_failed_to_allow_media_scan">การอนุญาตค้นหาสื่อล้มเหลว</string>
+    <string name="fso_failed_to_prevent_media_scan">การค้นหาสื่อล้มเหลว</string>
+    <string name="fso_delete_nomedia_dir_title">ลบ .nomedia</string>
+    <string name="fso_delete_nomedia_dir_body">ในโฟลเดอร์นี้มีไฟล์ชื่อ .nomedia\n\nคุณต้องการลบมันและเนื้อหาทั้งหมด?</string>
+    <string name="fso_delete_nomedia_non_empty_title">ลบ .nomedia ไฟล์</string>
+    <string name="fso_delete_nomedia_non_empty_body">โฟลเดอร์นี้บรรจุไฟล์ .nomedia ที่มีเนื้อหา.\n\nคุณต้องการลบมัน?</string>
+    <string name="history">ประวัติ</string>
+    <string name="msgs_history_empty">ประวัติว่างเปล่า</string>
+    <string name="msgs_history_unknown">ไม่ทราบวัตถุของประวัติ</string>
+    <string name="search">ผลการค้นหา</string>
+    <string name="search_hint">พิมพ์สิ่งที่ต้อวการ</string>
+    <string name="search_voice_hint">พูดสิ่งที่ต้องการ</string>
+    <string name="search_error_msg">เกิดความผิดพลาดระหว่างการค้นหา ไม่พบผลการค้นหา</string>
+    <string name="search_no_results_msg">ไม่พบผลการหา</string>
+    <string name="search_found_items_in_directory"><xliff:g id="items">%1$s</xliff:g> ใน
+    <xliff:g id="path">%2$s</xliff:g></string>
+    <string name="search_few_characters_title">ยืนยันการค้นหา</string>
+    <string name="search_few_characters_msg">การค้นหามีคำสั้นๆจะใช้ทรัพยากรในการค้นหามาก\n\nต้องการทำต่อไหม?</string>
+    <string name="searching">กรุณารอ\u2026</string>
+    <string name="searching_action_label">กำลังค้นหา</string>
+    <string name="picker_title">เลือกไฟล์</string>
+    <string name="directory_picker_title">เลือกโฟลเดอร์</string>
+    <string name="editor">ตัวแก้ไขไฟล์</string>
+    <string name="editor_invalid_file_msg">ไฟล์ไม่ถูกต้อง</string>
+    <string name="editor_file_not_found_msg">ไม่พบไฟล์</string>
+    <string name="editor_file_exceed_size_msg">ไฟล์มีขนาดใหญ่กว่าที่จะเปิดในอุปกรณ์นี้ได้</string>
+    <string name="editor_dirty_ask_title">ยืนยันการออก</string>
+    <string name="editor_dirty_ask_msg">ไม่ได้บันทึกการเปลี่ยนแปลง\n\nออกโดยไม่ได้บันทึก?</string>
+    <string name="editor_successfully_saved">บันทึกไฟล์แล้ว</string>
+    <string name="editor_read_only_mode">ไฟล์นี้เปิดแบบอ่านอย่างเดียว</string>
+    <string name="dumping_message">กำลังสร้าง hexdump\u2026</string>
+    <string name="displaying_message">กำลังแสดง\u2026</string>
+    <string name="bookmarks">คั่นหน้า</string>
+    <string name="bookmarks_home">หน้าหลัก</string>
+    <string name="bookmarks_root_folder">โฟลเดอร์ Root</string>
+    <string name="bookmarks_system_folder">โฟลเดอร์ระบบ</string>
+    <string name="bookmarks_button_config_cd">ตั้งโฟลเดอร์เริ่มต้น</string>
+    <string name="bookmarks_button_remove_bookmark_cd">นำออกจากที่คันหน้า</string>
+    <string name="bookmarks_msgs_add_success">เพิ่มที่คั่นหน้าเรียบร้อยแล้ว</string>
+    <string name="initial_directory_dialog_title">โฟลเดอร์เริ่มต้น</string>
+    <string name="initial_directory_label">เลือกโฟล์เดอร์เริ่มต้น:</string>
+    <string name="initial_directory_relative_msg">ที่อยู่นี้ไม่ได้รับอนุญาติ</string>
+    <string name="initial_directory_error_msg">มีปัญหาขณะบันทึกโฟลเดอร์เริ่มต้น</string>
+    <string name="menu_history">ประวัติ</string>
+    <string name="menu_bookmarks">คั่นหน้า</string>
+    <string name="menu_search">ค้นหา</string>
+    <string name="menu_settings">ตั้งค่า</string>
+    <string name="menu_clear_history">ล้างประวัติ</string>
+    <string name="menu_no_suggestions">ไม่มีคำแนะนำ</string>
+    <string name="menu_word_wrap">ตัดคำขึ้นบรรทัดใหม่</string>
+    <string name="menu_syntax_highlight">เน้นสี Syntax</string>
+    <string name="create_copy_regexp"><xliff:g id="name">%1$s</xliff:g> - คัดลอก<xliff:g id="extension">%2$s</xliff:g></string>
+    <string name="create_new_compress_file_regexp"><xliff:g id="name">%1$s</xliff:g> - ใหม่<xliff:g id="extension">%2$s</xliff:g></string>
+    <string name="waiting_dialog_msg">กำลังดำเนินการแสดง\u2026</string>
+    <string name="waiting_dialog_copying_title">กำลังคัลอก\u2026</string>
+    <string name="waiting_dialog_copying_msg"><![CDATA[<b>จาก</b>]]> <xliff:g id="from">%1$s</xliff:g><![CDATA[<br/>]]><![CDATA[<b>ไปยัง</b>]]> <xliff:g id="to">%2$s</xliff:g></string>
+    <string name="waiting_dialog_moving_title">กำลังย้าย\u2026</string>
+    <string name="waiting_dialog_moving_msg"><![CDATA[<b>จาก</b>]]> <xliff:g id="from">%1$s</xliff:g><![CDATA[<br/>]]><![CDATA[<b>ไปยัง</b>]]> <xliff:g id="to">%2$s</xliff:g></string>
+    <string name="waiting_dialog_deleting_title">กำลังลบ\u2026</string>
+    <string name="waiting_dialog_deleting_msg"><![CDATA[<b>ไฟล์</b>]]> <xliff:g id="file">%1$s</xliff:g></string>
+    <string name="waiting_dialog_extracting_title">กำลังแตกไฟล์\u2026</string>
+    <string name="waiting_dialog_extracting_msg"><![CDATA[<b>ไฟล์</b>]]> <xliff:g id="file">%1$s</xliff:g></string>
+    <string name="waiting_dialog_compressing_title">กำลังบีบอัดไฟล์\u2026</string>
+    <string name="waiting_dialog_compressing_msg"><![CDATA[<b>ไฟล์</b>]]> <xliff:g id="file">%1$s</xliff:g></string>
+    <string name="waiting_dialog_analizing_msg"><![CDATA[<b>กำลังแยกแยะไฟล์\u2026</b>]]></string>
+    <string name="msgs_extracting_success">การแตกไฟล์เสร็จสิ้น ข้อมูลทั้งหมดถูกนำไปไว้ที่<xliff:g id="destination">%1$s</xliff:g>.</string>
+    <string name="msgs_compressing_success">บีบอัดไฟล์เสร็จสิ้น ข้อมูลทั้งหมดถูกนำไปไว้ที่<xliff:g id="destination">%1$s</xliff:g>.</string>
+    <string name="actions_dialog_title">การกระทำ</string>
+    <string name="actions_menu_properties_current_folder">คุณสมบัติ</string>
+    <string name="actions_menu_refresh">รีเฟรช</string>
+    <string name="actions_menu_new_directory">โฟลเดอร์ใหม่</string>
+    <string name="actions_menu_new_file">ไฟล์ใหม่</string>
+    <string name="actions_menu_select_all">เลือกทั้งหมด</string>
+    <string name="actions_menu_deselect_all">ไม่เลือกทั้งหมด</string>
+    <string name="actions_menu_select">เลือก</string>
+    <string name="actions_menu_deselect">ไม่เลือก</string>
+    <string name="actions_menu_paste_selection">คัดลอกที่เลือก</string>
+    <string name="actions_menu_move_selection">ย้ายที่เลือก</string>
+    <string name="actions_menu_delete_selection">ลบที่เลือก</string>
+    <string name="actions_menu_compress_selection">บีบอัดที่เลือก</string>
+    <string name="actions_menu_create_link">สร้างลิงค์</string>
+    <string name="actions_menu_open">เปิด</string>
+    <string name="actions_menu_open_with">เปิดด้วย</string>
+    <string name="actions_menu_execute">ใช้งาน</string>
+    <string name="actions_menu_send">ส่ง</string>
+    <string name="actions_menu_send_selection">ส่งที่เลือก</string>
+    <string name="actions_menu_compress">บีบอัด</string>
+    <string name="actions_menu_extract">แตกไฟล์</string>
+    <string name="actions_menu_delete">ลบ</string>
+    <string name="actions_menu_rename">เปลี่ยนชื่อ</string>
+    <string name="actions_menu_create_copy">สร้างตัวขัดลอก</string>
+    <string name="actions_menu_properties">คุณลักษณะ</string>
+    <string name="actions_menu_add_to_bookmarks">เพิ่มที่คั่นหน้า</string>
+    <string name="actions_menu_add_shortcut">เพิ่มทางลัด</string>
+    <string name="actions_menu_open_parent_folder">เปิดโฟลเดอร์ที่บรรจุ</string>
+    <string name="actions_menu_compute_checksum">คำนวณหา checksum</string>
+    <string name="actions_ask_undone_operation_msg">การกระทำนี้ไม่สามารถยกเลิกได้ ต้องการทำไหม?</string>
+    <string name="input_name_dialog_label">ชื่อ:</string>
+    <string name="input_name_dialog_message_empty_name">ชื่อไม่สามารถเว้นว่างได้</string>
+    <string name="input_name_dialog_message_invalid_path_name">ชื่อไม่ถูกต้อง ตัวอักษร \'<xliff:g id="invalid_characters">%1$s</xliff:g>\' ไม่อนุญาตให้ใช้งาน</string>
+    <string name="input_name_dialog_message_invalid_name">ชื่อไม่ถูกต้อง ชื่อ \'.\' และ \'..\' ไม่อนุญาตให้ใช้งาน</string>
+    <string name="input_name_dialog_message_name_exists">มีชื่อนี้อยู่แล้ว</string>
+    <string name="associations_dialog_remember">จำการเลือกไว้</string>
+    <string name="associations_dialog_openwith_title">เปิดด้วย</string>
+    <string name="associations_dialog_openwith_action">เปิด</string>
+    <string name="associations_dialog_sendwith_title">ส่งไปยัง</string>
+    <string name="associations_dialog_sendwith_action">ส่ง</string>
+    <string name="inline_autocomplete_tab_nothing_to_complete_msg">ไม่มีอะไรให้เสร็จสิ้น</string>
+    <string name="execution_console_title">คอนโซล</string>
+    <string name="execution_console_script_name_label">คำสั่ง:</string>
+    <string name="execution_console_script_execution_time_label">เวลา:</string>
+    <string name="execution_console_script_exitcode_label">รหัสสิ้นสุด:</string>
+    <string name="execution_console_script_execution_time_text">
+    <xliff:g id="seconds">%1$s</xliff:g> วินาที</string>
+    <string name="compute_checksum_title">คำนวณ checksum</string>
+    <string name="compute_checksum_filename_label">ไฟล์:</string>
+    <string name="compute_checksum_computing_checksum_msg">กำลังคำนวณ checksum\u2026</string>
+    <string name="mime_folder">โฟลเดอร์</string>
+    <string name="mime_symlink">ลิงค์ไฟล์</string>
+    <string name="mime_unknown">ไม่ทราบ</string>
+    <string name="filetime_format_mode_system">ใช้ค่าระบบ</string>
+    <string name="filetime_format_mode_locale">ใช้ค่าพื้นที่</string>
+    <string name="filetime_format_mode_ddMMyyyy_HHmmss">วว/ดด/ปปปป ชช:นน:วว</string>
+    <string name="filetime_format_mode_MMddyyyy_HHmmss">ดด/วว/ปปปป ชช:นน:วว</string>
+    <string name="filetime_format_mode_yyyyMMdd_HHmmss">ปปปป-ดด-วว ชช:นน:วว</string>
+    <string name="selection_folders_and_files"><xliff:g id="folders">%1$s</xliff:g> และ <xliff:g id="files">%2$s</xliff:g> ถูกเลือก</string>
+    <string name="category_system">ระบบ</string>
+    <string name="category_app">แอป</string>
+    <string name="category_binary">ไบนารี่</string>
+    <string name="category_text">ข้อความ</string>
+    <string name="category_document">เอกสาน</string>
+    <string name="category_ebook">หนังสือ</string>
+    <string name="category_mail">จดหมาย</string>
+    <string name="category_compress">บีบอัด</string>
+    <string name="category_exec">ไฟล์ใช้งาน</string>
+    <string name="category_database">ฐานข้อมูล</string>
+    <string name="category_font">แบบอักษร</string>
+    <string name="category_image">ภาพ</string>
+    <string name="category_audio">เสียง</string>
+    <string name="category_video">วิดีโอ</string>
+    <string name="category_security">ความปลอดภัย</string>
+    <string name="compression_mode_title">รูปแบบการบีบอัด</string>
+    <string name="shortcut_failed_msg">การเรียกทางลัดล้มเหลว</string>
+    <string name="shortcut_creation_success_msg">สร้างทางลัดเรียบร้อย</string>
+    <string name="shortcut_creation_failed_msg">สร้างทางลัดล้มเหลว</string>
+    <string name="pref">ตั้งค่า</string>
+    <string name="pref_general">ตั้งค่าทั่วไป</string>
+    <string name="pref_search">ทางเลือกการค้นหา</string>
+    <string name="pref_editor">ทางเลือกการแก้ไขไฟล์</string>
+    <string name="pref_themes">ธีม</string>
+    <string name="pref_about">เกี่ยวกับ</string>
+    <string name="pref_about_summary">ตัวจัดการไฟล์ รุ่น<xliff:g id="version">%1$s</xliff:g>\nสงวนลิขสิทธิ์ \u00A9 2013 The CyanogenMod Project</string>
+    <string name="pref_general_behaviour_category">ทั่วไป</string>
+    <string name="pref_case_sensitive_sort">มีผลต่อตัวพิมพ์ใหญ่-เล็ก</string>
+    <string name="pref_case_sensitive_sort_summary">คำนึงถึงตัวอักษรใหญ่เล็กเมื่อเรียงสิ่งที่แสดงผล</string>
+    <string name="pref_filetime_format_mode">รูปแบบ วัน/เวลา</string>
+    <string name="pref_disk_usage_warning_level">คำเตือน ความจำเหลือน้อย</string>
+    <string name="pref_disk_usage_warning_level_summary" formatted="false">แสดงสีที่แตกต่างกันของวิดเจ็ทปริมาณการใช้หน่วยความจำเมื่อเหลือหน่วยความจำน้อยกว่า <xliff:g id="level">%1$s</xliff:g> เปอร์เซนต์</string>
+    <string name="pref_compute_folder_statistics">คำนวณสถิติโฟลเดอร์</string>
+    <string name="pref_compute_folder_statistics_on">คำเตือน! การคำนวณสถิติโฟลเดอร์จะใช้ทรัพยากรของระบบจำนวนมาก</string>
+    <string name="pref_display_thumbs">แสดงตัวอย่าง</string>
+    <string name="pref_display_thumbs_summary">แสดงตัวอย่าง รูป,วิดีโอ,แอปและเพลง</string>
+    <string name="pref_use_flinger">ใช้งานการปัด</string>
+    <string name="pref_use_flinger_summary">ปัดจากซ้ายไปขวาเพื่อลบไฟล์หรือโฟลเดอร์</string>
+    <string name="pref_general_advanced_settings_category">ขั้นสูง</string>
+    <string name="pref_access_mode">รูปแบบการเข้าถึง</string>
+    <string name="pref_access_mode_safe">รูปแบบปลอดภัย</string>
+    <string name="pref_access_mode_safe_summary">รูปแบบปลอดภัย\n\nแอปจะทำงานโดยไม่ใช้สิทธิ Root และจะสามารถเข้าถึงได้เพียงไฟล์ระบบที่เป็นที่เก็บข้อมูล(SD cards และ USB)</string>
+    <string name="pref_access_mode_prompt">รูปแบบผู้ใช้ตัดสินใจ</string>
+    <string name="pref_access_mode_prompt_summary">รูปแบบผู้ใช้ตัดสินใจ\n\nแอปจะใช้สิทธิ Root อย่างเต็มประสิทธิภาพ แต่แอปจะขอสิทธิในการใช้ Root ก่อนทุกครั้งเมื่อมีการใช้งานคำสั่งอันตราย</string>
+    <string name="pref_access_mode_root">รูปแบบให้สิทธิ Root</string>
+    <string name="pref_access_mode_root_summary">รูปแบบให้สิทธิ Root\n\nคำเตือน! ในการใช้รูปแบบนี้อาจใช้คำสั่งที่ทำให้อุปกรณ์คุณมีปัญหาได้ มันเป็นความรับผิดชอบของคุณเพื่อให้แน่ใจว่าการดำเนินการมีความปลอดภัย</string>
+    <string name="pref_search_results_category">ผลการค้นหา</string>
+    <string name="pref_show_relevance_widget">แสดงเครื่องมือที่เกี่ยวข้อง</string>
+    <string name="pref_highlight_terms">เน้นคำที่ใช้ค้นหา</string>
+    <string name="pref_sort_search_results_mode">รูปแบบการเรียงผลการค้นหา</string>
+    <string name="pref_sort_search_results_mode_none">ไม่เรียง</string>
+    <string name="pref_sort_search_results_mode_name">โดยชื่อ</string>
+    <string name="pref_sort_search_results_mode_relevance">ตามความเกี่ยวข้อง</string>
+    <string name="pref_search_privacity_category">ความเป็นส่วนตัว</string>
+    <string name="pref_save_search_terms">บันทึกคำที่ใช้ค้นหา</string>
+    <string name="pref_save_search_terms_on">คำค้นหาจะถูกบันทึกและใช้เป็นคำแนะนำเมื่อค้นหาอีกในอนาคต</string>
+    <string name="pref_save_search_terms_off">คำค้นหาจะไม่ถูกบันทึก</string>
+    <string name="pref_remove_saved_search_terms">นำคำค้นหาที่บันทึกไว้ออก</string>
+    <string name="pref_remove_saved_search_terms_summary">แตะเพื่อนำคำค้นหาที่บันทึกไว้ออก</string>
+    <string name="pref_remove_saved_search_terms_msg">คำค้นหาที่บันทึกไว้ทั้งหมดถูกนำออกแล้ว</string>
+    <string name="pref_editor_behaviour_category">พฤติกรรม</string>
+    <string name="pref_no_suggestions">ไม่มีคำแนะนำ</string>
+    <string name="pref_no_suggestions_desc">ไม่แสดงคำแนะนำศัพท์จากดิกชินารีเมื่อแก้ไขไฟล์</string>
+    <string name="pref_word_wrap">ตัดคำขึ้นบรรทัดใหม่</string>
+    <string name="pref_hexdump">ไฟล์ไบนารี่ Hexdump</string>
+    <string name="pref_hexdump_desc">เมื่อเปิดไบนารี่ไฟล์, จะสร้าง hexdump ของไฟล์และเปิดในตัวดู hex</string>
+    <string name="pref_editor_syntax_highlight_category">เน้น Syntax</string>
+    <string name="pref_syntax_highlight">เน้น Syntax</string>
+    <string name="pref_syntax_highlight_desc">เน้น syntax ของไฟล์ที่แสดงในตัวแก้ไขไฟล์(เฉพาะเมื่อ syntax highlight processor รองรับไฟล์ประเภทนี้)</string>
+    <string name="pref_syntax_highlight_color_scheme">เฉดสี</string>
+    <string name="pref_syntax_highlight_color_scheme_desc">แตะเพื่อเลือกเฉดสีของการเน้น syntax</string>
+    <string name="pref_syntax_sh_use_theme_default">ใช้ธีมเริ่มต้น</string>
+    <string name="pref_syntax_sh_use_theme_default_desc">ใช้การเน้นสี syntax แบบเริ่มต้นกับธีมปัจจุบัน</string>
+    <string name="pref_editor_sh_item_category">วัตถุ</string>
+    <string name="pref_themes_selection_category">ธีม</string>
+    <string name="pref_themes_set_theme">ตั้งธีม</string>
+    <string name="pref_themes_no_preview">ไม่มีภาพตัวอย่าง</string>
+    <string name="pref_themes_confirmation">ใช้ธีมเรียบร้อยแล้ว</string>
+    <string name="pref_themes_not_found">ไม่พบธีม</string>
+    <string name="pref_debug_traces">ประวัติสำหรับหาข้อผิดพลาด</string>
+    <string name="theme_default_name">ธีมสว่าง</string>
+    <string name="theme_default_description">ธีมสว่างของตัวจัดการไฟล์</string>
+    <string name="color_picker_alpha_slider_text">โปร่งใส</string>
+    <string name="color_picker_current_text">ปัจจุบัน:</string>
+    <string name="color_picker_new_text">ใหม่:</string>
+    <string name="color_picker_color">สี:</string>
+    <string name="ash_reset_color_scheme">แตะเพื่อเลือกธีมสีเริ่มต้น</string>
+    <string name="ash_text">ข้อความ</string>
+    <string name="ash_assignment">การกำหนดค่า</string>
+    <string name="ash_singleline_comment">คอมเม้นบรรทัดเดียว</string>
+    <string name="ash_multiline_comment">คอมเม้นหลายบรรทัด</string>
+    <string name="ash_keyword">คีย์เวิร์ด</string>
+    <string name="ash_quoted_string">ข้อความที่ยกมา</string>
+    <string name="ash_variable">ตัวแปร</string>
+    <string name="security_warning_extract">คำเตือน!\n\nการแตกไฟล์อาจทำให้เกิดการเสียหายต่ออุปกรณ์โดยการเขียนทับไฟล์ระบบ\n\nต้องการดำเนินการต่อ?</string>
+    <string name="changelog_title">ความเปลี่ยนแปลง</string>
+    <string name="welcome_title">ยินดีต้อนรับ</string>
+    <string name="welcome_msg">ยินดีต้อนรับสู่ตัวจัดการไฟล์ของ CyanogenMod\n\nแอปนี้อนุญาติให้คุณสำรวจระบบไฟล์และใช้คำสั่งที่สามารถทำอันตรายต่ออุปกรณ์คุณได้ เพื่อหลีกเลี่ยงความเสียหา แอปจะเปิดในรูปแบบปลอดภัย\n\nคุณสามารถใช้สิทธิการเข้าถึงแบบเต็มได้ในการตั้งค่า มันเป็นความรับผิดชอบของคุณเพื่อให้แน่ใจว่าการดำเนินการไม่ทำลายระบบของคุณ\n\nทีมงาน CyanogenMod</string>
+</resources>

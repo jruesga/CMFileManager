@@ -110,8 +110,8 @@
     <string name="filesystem_info_dialog_type">Tipas:</string>
     <string name="filesystem_info_dialog_options">Pasirinkimai:</string>
     <string name="filesystem_info_dialog_dump_pass">Dump/Pass:</string>
-    <string name="filesystem_info_dialog_total_disk_usage">Iš viso:</string>
-    <string name="filesystem_info_dialog_used_disk_usage">Naudota:</string>
+    <string name="filesystem_info_dialog_total_disk_usage">Viso:</string>
+    <string name="filesystem_info_dialog_used_disk_usage">Naudojama:</string>
     <string name="filesystem_info_dialog_free_disk_usage">Laisva:</string>
     <string name="fso_properties_permissions_not_allowed_msg">Veiksmų leidimai negalimi saugiame režime. Bakstelėkite, jei norite pakeisti į root prieigos režimą.</string>
     <string name="fso_properties_failed_to_change_owner_msg">Savininko eksploatavimo pakeitimas nepavyko.\n\nDėl saugumo priežasčių, kai kurie sistemos failai, pavyzdžiui, SD kortelių, neleidžia nuosavybės keitimuisi.</string>
@@ -121,12 +121,12 @@
     <string name="fso_properties_dialog_tab_info">Informacija</string>
     <string name="fso_properties_dialog_tab_permissions">Leidimai</string>
     <string name="fso_properties_dialog_name">Pavadinimas:</string>
-    <string name="fso_properties_dialog_parent">Pagrindinis:</string>
+    <string name="fso_properties_dialog_parent">Pagrindinis aplankas:</string>
     <string name="fso_properties_dialog_type">Tipas:</string>
     <string name="fso_properties_dialog_category">Kategorija:</string>
     <string name="fso_properties_dialog_link">Nuoroda:</string>
     <string name="fso_properties_dialog_size">Dydis:</string>
-    <string name="fso_properties_dialog_contains">Turi:</string>
+    <string name="fso_properties_dialog_contains">Etiketė:</string>
     <string name="fso_properties_dialog_last_accessed_date">Atverta:</string>
     <string name="fso_properties_dialog_last_modified_date">Modifikuota:</string>
     <string name="fso_properties_dialog_last_changed_date">Pakeista:</string>
@@ -256,12 +256,12 @@
     <string name="mime_folder">Aplankas</string>
     <string name="mime_symlink">Simbolinė nuoroda</string>
     <string name="mime_unknown">Nežinoma</string>
-    <string name="filetime_format_mode_system">Sistemos nustatymas</string>
-    <string name="filetime_format_mode_locale">Regiono nustatymas</string>
+    <string name="filetime_format_mode_system">Sistemos nuostata</string>
+    <string name="filetime_format_mode_locale">Regiono nuostata</string>
     <string name="filetime_format_mode_ddMMyyyy_HHmmss">dd/mm/mmmm vv:mm:ss</string>
     <string name="filetime_format_mode_MMddyyyy_HHmmss">mm/dd/mmmm vv:mm:ss</string>
     <string name="filetime_format_mode_yyyyMMdd_HHmmss">mmmm-mm-dd vv:mm:ss</string>
-    <string name="selection_folders_and_files"><xliff:g id="folders">%1$s</xliff:g> ir <xliff:g id="files">%2$s</xliff:g> pasirinkti.</string>
+    <string name="selection_folders_and_files">Pažymėti: <xliff:g id="folders">%1$s</xliff:g> ir <xliff:g id="files">%2$s</xliff:g></string>
     <string name="category_system">SISTEMA</string>
     <string name="category_app">PROGRAMA</string>
     <string name="category_binary">DVEJETAINIS</string>
@@ -284,7 +284,7 @@
     <string name="pref">Nustatymai</string>
     <string name="pref_general">Bendrieji parametrai</string>
     <string name="pref_search">Paieškos parametrai</string>
-    <string name="pref_editor">Redaktorius parinktys</string>
+    <string name="pref_editor">Redaktoriaus parinktys</string>
     <string name="pref_themes">Temos</string>
     <string name="pref_about">Apie</string>
     <string name="pref_about_summary">Failų tvarkyklė v<xliff:g id="version">%1$s</xliff:g>\nAutorinės teisės \u00A9 2013 CyanogenMod projektas</string>
@@ -293,7 +293,7 @@
     <string name="pref_case_sensitive_sort_summary">Turinio ir paieškos rezultatų nejautrus rūšiavimas</string>
     <string name="pref_filetime_format_mode">Datos/laiko formatas</string>
     <string name="pref_disk_usage_warning_level">Disko naudojimo įspėjimas</string>
-    <string name="pref_disk_usage_warning_level_summary" formatted="false">Kita spalva disko naudojimo raštai rodomi, kai <xliff:g id="level">%1$s</xliff:g> procentai laisvos vietos diske</string>
+    <string name="pref_disk_usage_warning_level_summary" formatted="false">Kita spalva disko naudojimo raštai rodomi, kai <xliff:g id="level">%1$s</xliff:g> procentai laisvos vietos lieka diske</string>
     <string name="pref_compute_folder_statistics">Apskaičiuoti aplanko statistiką</string>
     <string name="pref_compute_folder_statistics_on">Įspėjimas! Aplanko statistikos skaičiavimas užima daug laiko ir sistemos išteklių</string>
     <string name="pref_display_thumbs">Peržiūra</string>
@@ -309,7 +309,7 @@
     <string name="pref_access_mode_root">Root prieigos režimas</string>
     <string name="pref_access_mode_root_summary">Root prieigos režimas\n\nĮspėjimas! Šis režimas leidžia veiksmus kurie galėtų pakenkti jūsų įrenginiui. jūsų atsakomybė yra užtikrinti, kad veiksmas yra saugus</string>
     <string name="pref_search_results_category">Rezultatai</string>
-    <string name="pref_show_relevance_widget">Rodyti svarbų valdiklį</string>
+    <string name="pref_show_relevance_widget">Rodyti valdiklį</string>
     <string name="pref_highlight_terms">Paryškinti paieškos terminus</string>
     <string name="pref_sort_search_results_mode">Rezultatų rūšiavimo režimas</string>
     <string name="pref_sort_search_results_mode_none">Nerūšiuoti</string>
@@ -317,7 +317,7 @@
     <string name="pref_sort_search_results_mode_relevance">Pagal svarbumą</string>
     <string name="pref_search_privacity_category">Slaptumas</string>
     <string name="pref_save_search_terms">Išsaugoti paieškos terminus</string>
-    <string name="pref_save_search_terms_on">Paieškos terminai bus išsaugoti ir naudojami kaip pasiūlymai būsimų paieškų</string>
+    <string name="pref_save_search_terms_on">Paieškos terminai bus išsaugoti ir naudojami kaip pasiūlymai būsimoms paieškoms</string>
     <string name="pref_save_search_terms_off">Paieškos terminai nebus išsaugoti</string>
     <string name="pref_remove_saved_search_terms">Pašalinti paieškos terminus</string>
     <string name="pref_remove_saved_search_terms_summary">Bakstelėkite, jei norite pašalinti visus išsaugotus paieškos terminus</string>
@@ -326,8 +326,8 @@
     <string name="pref_no_suggestions">Jokių pasiūlymų</string>
     <string name="pref_no_suggestions_desc">Nerodyti žodyno pasiūlymų redaguojant failą</string>
     <string name="pref_word_wrap">Žodžių laužymas</string>
-    <string name="pref_hexdump">Hexdump dvejetainis failas</string>
-    <string name="pref_hexdump_desc">Atidarant dvejetainį failą, generuoti failo Hexdump ir atidaryti jį naudojant hex viewer.</string>
+    <string name="pref_hexdump">Dvejetainis failas</string>
+    <string name="pref_hexdump_desc">Rodo dvejetainių failų turinį šešioliktainiu formatu.</string>
     <string name="pref_editor_syntax_highlight_category">Sintaksės išryškinimas</string>
     <string name="pref_syntax_highlight">Sintaksės išryškinimas</string>
     <string name="pref_syntax_highlight_desc">Jei įmanoma, įjungti sintaksės išriškinimą</string>
@@ -353,10 +353,10 @@
     <string name="ash_text">Tekstas</string>
     <string name="ash_assignment">Paskyrimas</string>
     <string name="ash_singleline_comment">Vienos linijos komentaras</string>
-    <string name="ash_multiline_comment">Kelių linijų komentaras</string>
+    <string name="ash_multiline_comment">Kelių linijų komentarai</string>
     <string name="ash_keyword">Raktinis žodis</string>
-    <string name="ash_quoted_string">Cituojamas eilutė</string>
-    <string name="ash_variable">Kintamas</string>
+    <string name="ash_quoted_string">Cituojama eilutė</string>
+    <string name="ash_variable">Kintamasis</string>
     <string name="security_warning_extract">Įspėjimas!\n\nIšpakuojant archyvo failą su susijusiu arba absoliučiu keliu gali pakenkti jūsų prietaisui perrašant sistemos failus.\n\nAr norite tęsti?</string>
     <string name="changelog_title">Pakeitimų sąrašas</string>
     <string name="welcome_title">Sveiki</string>

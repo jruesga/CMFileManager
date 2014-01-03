@@ -16,23 +16,28 @@
  -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <plurals name="n_folders">
-        <item quantity="one">1 aplankas</item>
-        <item quantity="other"><xliff:g id="folders">%1$d</xliff:g> aplankai</item>
+        <item quantity="one"><xliff:g id="folders">%1$d</xliff:g> aplankas</item>
+        <item quantity="few"><xliff:g id="folders">%1$d</xliff:g> aplankai</item>
+        <item quantity="other"><xliff:g id="folders">%1$d</xliff:g> aplankų</item>
     </plurals>
     <plurals name="n_files">
-        <item quantity="one">1 failas</item>
-        <item quantity="other"><xliff:g id="files">%1$d</xliff:g> failai</item>
+        <item quantity="one"><xliff:g id="files">%1$d</xliff:g> failas</item>
+        <item quantity="few"><xliff:g id="files">%1$d</xliff:g> failai</item>
+        <item quantity="other"><xliff:g id="files">%1$d</xliff:g> failų</item>
     </plurals>
     <plurals name="search_found_items">
-        <item quantity="one">1 elementas rastas</item>
-        <item quantity="other"><xliff:g id="count">%d</xliff:g> rasti elementai</item>
+        <item quantity="one">Rastas <xliff:g id="count">%d</xliff:g> elementas</item>
+        <item quantity="few">Rasti <xliff:g id="count">%d</xliff:g> elementai</item>
+        <item quantity="other">Rasta <xliff:g id="count">%d</xliff:g> elementų</item>
     </plurals>
     <plurals name="selection_folders">
-        <item quantity="one">1 aplankas pažymėtas.</item>
-        <item quantity="other"><xliff:g id="folders">%1$d</xliff:g> pažymėti aplankai.</item>
+        <item quantity="one">Pažymėtas <xliff:g id="folders">%1$d</xliff:g> aplankas</item>
+        <item quantity="few">Pažymėti <xliff:g id="folders">%1$d</xliff:g> aplankai</item>
+        <item quantity="other">Pažymėta <xliff:g id="folders">%1$d</xliff:g> aplankų</item>
     </plurals>
     <plurals name="selection_files">
-        <item quantity="one">1 failas pasirinktas.</item>
-        <item quantity="other"><xliff:g id="files">%1$d</xliff:g> pažymėti failai.</item>
+        <item quantity="one">Pažymėtas <xliff:g id="files">%1$d</xliff:g> failas</item>
+        <item quantity="few">Pažymėti <xliff:g id="files">%1$d</xliff:g> failai</item>
+        <item quantity="other">Pažymėta <xliff:g id="files">%1$d</xliff:g> failų</item>
     </plurals>
 </resources>

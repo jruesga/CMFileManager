@@ -15,17 +15,14 @@
  -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
   <plurals name="n_folders">
-    <item quantity="zero">0 vouergidse</item>
     <item quantity="one">1 vouergids</item>
     <item quantity="other"><xliff:g id="folders">%1$d</xliff:g> vouergidse</item>
   </plurals>
   <plurals name="n_files">
-    <item quantity="zero">0 lêers</item>
     <item quantity="one">1 lêer</item>
     <item quantity="other"><xliff:g id="files">%1$d</xliff:g> lêers</item>
   </plurals>
   <plurals name="search_found_items">
-    <item quantity="zero">Geen items is gevind nie</item>
     <item quantity="one">1 item gevind</item>
     <item quantity="other"><xliff:g id="count">%d</xliff:g> items gevind</item>
   </plurals>

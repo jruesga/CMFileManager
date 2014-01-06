@@ -233,7 +233,7 @@ public final class FileManagerApplication extends Application {
         readSystemProperties();
 
         // Check if the application is debuggable
-        sIsDebuggable = (0 != (getApplicationInfo().flags &= ApplicationInfo.FLAG_DEBUGGABLE));
+        sIsDebuggable = (0 != (getApplicationInfo().flags & ApplicationInfo.FLAG_DEBUGGABLE));
 
         // Check if the device is rooted
         sIsDeviceRooted = areShellCommandsPresent();

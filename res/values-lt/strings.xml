@@ -50,7 +50,7 @@
     <string name="msgs_cant_create_console">Nepavyko gauti reikiamų privilegijų, veikimui.</string>
     <string name="msgs_privileged_console_alloc_failed">Nepavyko paleisti root prieigos režimu. Keičiama į saugų režimą.</string>
     <string name="msgs_settings_save_failure">Nustatymas negali būti taikomas/saugomas.</string>
-    <string name="msgs_settings_invalid_initial_directory">Pradinis aplankas \'<xliff:g id="initial_dir">%1$s</xliff:g>\' yra negaliojantis. Keičiama į root aplanką.</string>
+    <string name="msgs_settings_invalid_initial_directory">Pradinis aplankas \„<xliff:g id="initial_dir">%1$s</xliff:g>\“ yra negaliojantis. Keičiama į root aplanką.</string>
     <string name="msgs_success">Veiksmas baigtas sėkmingai.</string>
     <string name="msgs_unknown">Aptikta klaida. Veiksmas nepavyko.</string>
     <string name="msgs_insufficient_permissions">Šis veiksmas reikalauja didesnių leidimų. Pabandykite pakeisti į root prieigos režimą.</string>
@@ -117,7 +117,7 @@
     <string name="fso_properties_failed_to_change_owner_msg">Savininko eksploatavimo pakeitimas nepavyko.\n\nDėl saugumo priežasčių, kai kurie sistemos failai, pavyzdžiui, SD kortelių, neleidžia nuosavybės keitimuisi.</string>
     <string name="fso_properties_failed_to_change_group_msg">Grupės eksploatavimo pakeitimas nepavyko.\n\nDėl saugumo priežasčių, kai kurie sistemos failai, pavyzdžiui, SD kortelių, neleidžia grupių keitimuisi.</string>
     <string name="fso_properties_failed_to_change_permission_msg">Leidimų eksploatavimo pakeitimas nepavyko.\n\nDėl saugumo priežasčių, kai kurie sistemos failai, pavyzdžiui, SD kortelių, neleidžia leidimų keitimuisi.</string>
-    <string name="fso_properties_dialog_title">Savybės</string>
+    <string name="fso_properties_dialog_title">Ypatybės</string>
     <string name="fso_properties_dialog_tab_info">Informacija</string>
     <string name="fso_properties_dialog_tab_permissions">Leidimai</string>
     <string name="fso_properties_dialog_name">Pavadinimas:</string>
@@ -234,8 +234,8 @@
     <string name="actions_ask_undone_operation_msg">Šis veiksmas negali būti atšauktas. Ar norite tęsti?</string>
     <string name="input_name_dialog_label">Pavadinimas:</string>
     <string name="input_name_dialog_message_empty_name">Pavadinimas negali būti tuščias.</string>
-    <string name="input_name_dialog_message_invalid_path_name">Klaidingas pavadinimas. Simboliai \'<xliff:g id="invalid_characters">%1$s</xliff:g>\' neleidžiami.</string>
-    <string name="input_name_dialog_message_invalid_name">Klaidingas pavadinimas. Pavadinimai su \'.\' ir \'..\' neleidžiami.</string>
+    <string name="input_name_dialog_message_invalid_path_name">Klaidingas pavadinimas. Simboliai \„<xliff:g id="invalid_characters">%1$s</xliff:g>\“ neleidžiami.</string>
+    <string name="input_name_dialog_message_invalid_name">Klaidingas pavadinimas. Pavadinimai su \„.\“ ir \„..\“ neleidžiami.</string>
     <string name="input_name_dialog_message_name_exists">Pavadinimas jau egzistuoja.</string>
     <string name="associations_dialog_title">Asociacijos</string>
     <string name="associations_dialog_remember">Prisiminti pasirinkimą</string>
@@ -327,7 +327,7 @@
     <string name="pref_no_suggestions_desc">Nerodyti žodyno pasiūlymų redaguojant failą</string>
     <string name="pref_word_wrap">Žodžių laužymas</string>
     <string name="pref_hexdump">Dvejetainis failas</string>
-    <string name="pref_hexdump_desc">Rodo dvejetainių failų turinį šešioliktainiu formatu.</string>
+    <string name="pref_hexdump_desc">Rodyti dvejetainių failų turinį šešioliktainiu formatu.</string>
     <string name="pref_editor_syntax_highlight_category">Sintaksės išryškinimas</string>
     <string name="pref_syntax_highlight">Sintaksės išryškinimas</string>
     <string name="pref_syntax_highlight_desc">Jei įmanoma, įjungti sintaksės išriškinimą</string>

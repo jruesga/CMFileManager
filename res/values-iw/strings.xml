@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Copyright (C) 2012 The CyanogenMod Project
+<!--
+     Copyright (C) 2012-2013 The CyanogenMod Project
 
      Licensed under the Apache License, Version 2.0 (the "License");
      you may not use this file except in compliance with the License.
@@ -12,264 +13,127 @@
      WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
      See the License for the specific language governing permissions and
      limitations under the License.
- -->
-
+-->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-
-  <!-- The name of the application -->
   <string name="app_name">מנהל קבצים</string>
-  <!-- The description of the application -->
   <string name="app_description">מנהל הקבצים של CyanogenMod.</string>
-
-  <!-- Devices types -->
-  <string name="device_blockdevice">Block device</string>
-  <string name="device_characterdevice">Character device</string>
+  <string name="size_bytes">בייט</string>
+  <string name="size_kilobytes">קילו בייט</string>
+  <string name="size_megabytes">מגה בייט</string>
+  <string name="size_gigabytes">ג\'יגה-בייט</string>
+  <string name="datetime_format_order">%1$s %2$s</string>
+  <string name="device_blockdevice">התקן בלוקים</string>
+  <string name="device_characterdevice">התקן תווים</string>
   <string name="device_namedpipe">Named pipe</string>
   <string name="device_domainsocket">Domain socket</string>
-
-  <!-- Mount Point States -->
-  <string name="mount_point_readonly">RO</string>
-  <string name="mount_point_readwrite">RW</string>
-
-  <!-- Default buttons -->
+  <string name="mount_point_readonly">קריאה בלבד</string>
+  <string name="mount_point_readwrite">קריאה וכתיבה</string>
   <string name="yes">כן</string>
   <string name="no">לא</string>
   <string name="all">הכל</string>
   <string name="overwrite">החלף</string>
   <string name="select">בחר</string>
-
-  <!-- The root directory name -->
   <string name="root_directory_name"><![CDATA[<תיקיית השורש>]]></string>
-  <!-- The search result name -->
   <string name="search_result_name">חיפוש: <xliff:g id="terms">%1$s</xliff:g></string>
-
-  <!-- Loading waiting message -->
   <string name="loading_message">טוען\u2026</string>
-  <!-- Cancelled message -->
   <string name="cancelled_message">בוטל.</string>
-  <!-- Error message -->
   <string name="error_message">שגיאה.</string>
-
-  <!-- Warning dialog title -->
+  <string name="copy_text_cd">הקש כדי להעתיק טקסט ללוח</string>
+  <string name="copy_text_msg">הטקסט הועתק ללוח</string>
   <string name="warning_title">אזהרה</string>
-  <!-- Error dialog title -->
   <string name="error_title">התגלתה שגיאה</string>
-  <!-- Confirm operation dialog title -->
   <string name="confirm_operation">אישור פעולה</string>
-  <!-- Confirm overwrite dialog title -->
   <string name="confirm_overwrite">אישור החלפה</string>
-  <!-- Confirm deletion dialog title -->
   <string name="confirm_deletion">אישור מחיקה</string>
-
-  <!--  A console couldn't be created. Ask the user to change the access mode. Dialog Title -->
   <string name="msgs_change_to_prompt_access_mode_title">אישור מעבר מצב</string>
-  <!--  A console couldn't be created. Ask the user to change the access mode. Dialog Message -->
   <string name="msgs_change_to_prompt_access_mode_msg">לא ניתן לעלות במצב גישת Root. עובר למצב בטוח.\n\nלהחיל את השינוי?</string>
-
-  <!-- A console couldn't be created. Without privileges, the application won't work -->
   <string name="msgs_cant_create_console">לא ניתן לקבל את ההרשאות המתאימות לפעולה.</string>
-  <!-- The message shown when an allocation of a privileged console fails, and a non
-       privileged is allocated -->
   <string name="msgs_privileged_console_alloc_failed">לא ניתן לעלות במצב גישת Root. עובר למצב בטוח.</string>
-  <!-- The selected setting was not applied or stored -->
   <string name="msgs_settings_save_failure">נכשל בהחלת ההגדרה או שמירתה.</string>
-  <!-- The initial directory has an invalid or inaccessible reference -->
   <string name="msgs_settings_invalid_initial_directory">התיקייה ההתחלתית
     \"<xliff:g id="initial_dir">%1$s</xliff:g>\" שגויה. עובר לתיקיית השורש.</string>
-
-  <!-- Success -->
   <string name="msgs_success">הפעולה הושלמה בהצלחה.</string>
-  <!-- Unknown error -->
   <string name="msgs_unknown">התגלתה שגיאה. הפעולה נכשלה.</string>
-  <!-- When an operation requires elevated privileged (normally caused for the use of a
-       non-privileged console) -->
   <string name="msgs_insufficient_permissions">פעולה זו דורשת הרשאות גבוהות. נסה לשנות למצב גישת Root.</string>
-  <!-- The file or directory was not found -->
   <string name="msgs_file_not_found">הקובץ או התיקייה לא נמצאו.</string>
-  <!-- The command reference couldn't be created (not found or invalid definition)
-       (normally caused by a development error) -->
   <string name="msgs_command_not_found">הפקודה לפעולה לא נמצאה או בעלת הגדרה שגויה.</string>
-  <!-- I/O exception -->
   <string name="msgs_io_failed">כשלון בקריאה/כתיבה.</string>
-  <!-- Operation timeout detected -->
   <string name="msgs_operation_timeout">הזמן המוקצב לפעולה נגמר.</string>
-  <!-- The operation returns an invalid exit code -->
   <string name="msgs_operation_failure">הפעולה נכשלה.</string>
-  <!-- A console couldn't be allocated -->
   <string name="msgs_console_alloc_failure">התרחשה שגיאה פנימית.</string>
-  <!-- An operation can't be cancelled -->
   <string name="msgs_operation_can_not_be_cancelled">לא ניתן לבטל את הפעולה.</string>
-  <!-- The operation requieres mount the file system prior to execute the command -->
   <string name="msgs_read_only_filesystem">מערכת הקבצים היא לקריאה בלבד. נסה לעגן אותה כ\"קריאה/כתיבה\" לפני ביצוע הפעולה.</string>
-  <!-- Illegal argument (normally caused by a development error when calling internal api) -->
   <string name="msgs_illegal_argument">טיעון בלתי חוקי. ההפעלה נכשלה.</string>
-  <!-- The operation will cause inconsistencies -->
   <string name="msgs_unresolved_inconsistencies">הפעולה אסורה, היא תגרום לחוסר עקביות.</string>
-  <!-- Operation not permitted in current directory -->
   <string name="msgs_operation_not_allowed_in_current_directory">הפעולה אסורה בתיקייה הנוכחית.\n\nתיקיית היעד אינה יכולה להיות תת-תיקייה של תיקיית המקור או זהה למקור.</string>
-
-  <!-- The advice message prior to exit the application -->
   <string name="msgs_push_again_to_exit">לחץ שוב ליציאה.</string>
-
-  <!-- There is no registered application that can handle the mime-type -->
   <string name="msgs_not_registered_app">אין יישום הרשום לטיפול בסוג קובץ זה.</string>
-
-  <!-- Overwrite files? -->
   <string name="msgs_overwrite_files">חלק מהקבצים כבר קיימים בתיקיית היעד. \n\n להחליף?</string>
-
-  <!-- The association of an action to the application failed -->
   <string name="msgs_action_association_failed">שיוך הפעולה ליישום נכשלה.</string>
-
-  <!-- An operation requires elevated privileged. Ask the user. -->
   <string name="advise_insufficient_permissions">פעולה זו דורשת הרשאות גבוהות.\n\n לעבור למצב גישת Root?</string>
-
-
-  <!-- The parent directory of the current directory in navigation view -->
   <string name="parent_dir">תיקיית הורה</string>
-  <!-- External storage descripton -->
   <string name="external_storage">אחסון חיצוני</string>
-  <!-- Usb storage descripton -->
   <string name="usb_storage">אחסון USB</string>
-
-  <!-- ActionBar Buttons * FileSystem -->
   <string name="actionbar_button_filesystem_cd">מידע על מערכת הקבצים</string>
-  <!-- ActionBar Buttons * Sort Mode -->
   <string name="actionbar_button_sort_mode_cd">אופן סידור</string>
-  <!-- ActionBar Buttons * Layout Mode -->
   <string name="actionbar_button_layout_mode_cd">מצב תצוגה</string>
-  <!-- ActionBar Buttons * Other View Options -->
   <string name="actionbar_button_other_view_options_cd">אפשרויות תצוגה נוספות</string>
-  <!-- ActionBar Buttons * Done -->
   <string name="actionbar_button_selection_done_cd">בוצע</string>
-  <!-- ActionBar Buttons * Actions -->
   <string name="actionbar_button_actions_cd">פעולות</string>
-  <!-- ActionBar Buttons * History -->
   <string name="actionbar_button_history_cd">היסטוריה</string>
-  <!-- ActionBar Buttons * Bookmarks -->
   <string name="actionbar_button_bookmarks_cd">מועדפים</string>
-  <!-- ActionBar Buttons * Search -->
   <string name="actionbar_button_search_cd">חיפוש</string>
-  <!-- ActionBar Buttons * Overflow -->
   <string name="actionbar_button_overflow_cd">אפשרויות נוספות</string>
-  <!-- ActionBar Buttons * Storage volumes -->
   <string name="actionbar_button_storage_cd">מחיצות אחסון</string>
-  <!-- ActionBar Buttons * Save -->
   <string name="actionbar_button_save_cd">שמור</string>
-
-  <!-- Navigation View * Sort * Sort by name (ascending) -->
-  <string name="sort_by_name_asc">לפי שם &#x25B2;</string>
-  <!-- Navigation View * Sort * Sort by name (descending) -->
-  <string name="sort_by_name_desc">לפי שם &#x25BC;</string>
-  <!-- Navigation View * Sort * Sort by date (ascending) -->
-  <string name="sort_by_date_asc">לפי תאריך &#x25B2;</string>
-  <!-- Navigation View * Sort * Sort by date (descending) -->
-  <string name="sort_by_date_desc">לפי תאריך &#x25BC;</string>
-
-  <!-- Navigation View * Layout * Icons -->
+  <string name="sort_by_name_asc">לפי שם ▲</string>
+  <string name="sort_by_name_desc">לפי שם ▼</string>
+  <string name="sort_by_date_asc">לפי תאריך ▲</string>
+  <string name="sort_by_date_desc">לפי תאריך ▼</string>
   <string name="layout_icons">סמלים</string>
-  <!-- Navigation View * Layout * Simple -->
   <string name="layout_simple">פשוט</string>
-  <!-- Navigation View * Layout * Details -->
   <string name="layout_details">פרטים</string>
-
-  <!-- Navigation View * View * Show folders first -->
   <string name="cm_filemanager_show_dirs_first">הצג תיקיות לפני קבצים</string>
-  <!-- Navigation View * View * Show hidden files option -->
   <string name="cm_filemanager_show_hidden">הצג קבצים מוסתרים</string>
-  <!-- Navigation View * View * Show system files option -->
   <string name="cm_filemanager_show_system">הצג קבצי מערכת</string>
-  <!-- Navigation View * View * Show symlinks option -->
   <string name="cm_filemanager_show_symlinks">הצג Symlinks</string>
-
-  <!-- Filesystem Info (no data). Dialog title -->
   <string name="filesystem_info_warning_title">מידע לא קיים</string>
-  <!-- Filesystem Info (no data). Dialog message -->
   <string name="filesystem_info_warning_msg">אין מידע זמין על מערכת הקבצים.</string>
-  <!-- Filesystem Info * Filesystem couldn't be mounted -->
   <string name="filesystem_info_cant_be_mounted_msg">לא ניתן לעגן או לבטל את עיגון מערכת הקבצים.</string>
-  <!-- Filesystem Info * Not allowed message -->
   <string name="filesystem_info_mount_not_allowed_msg">פעולות עיגון של מערכות קבצים אסורות במצב בטוח. לחץ כדי לעבור למצב גישת Root.</string>
-  <!-- Filesystem Info * Mount failed -->
   <string name="filesystem_info_mount_failed_msg">פעולת עיגון מערכת הקבצים נכשלה. ישנן מערכות קבצים, כמו כרטיסי SD, שלא ניתן לעגן או לבטל את עיגונן בגלל שהן מובנות כמערכות קבצים לקריאה בלבד.</string>
-  <!-- Filesystem Info Dialog * Title -->
   <string name="filesystem_info_dialog_title">מידע על מערכת קבצים</string>
-  <!-- Filesystem Info Dialog * Tab * Info -->
   <string name="filesystem_info_dialog_tab_info">מידע</string>
-  <!-- Filesystem Info Dialog * Tab * Disk Usage -->
   <string name="filesystem_info_dialog_tab_disk_usage">שימוש בדיסק</string>
-  <!-- Filesystem Info Dialog * Status Label -->
   <string name="filesystem_info_dialog_status">מצב:</string>
-  <!-- Filesystem Info Dialog * Mount Point Label -->
   <string name="filesystem_info_dialog_mount_point">נקודת עיגון:</string>
-  <!-- Filesystem Info Dialog * Device Label -->
   <string name="filesystem_info_dialog_device">מכשיר:</string>
-  <!-- Filesystem Info Dialog * Type Label -->
   <string name="filesystem_info_dialog_type">סוג:</string>
-  <!-- Filesystem Info Dialog * Options Label -->
   <string name="filesystem_info_dialog_options">אפשרויות:</string>
-  <!-- Filesystem Info Dialog * Dump/Pass Label -->
-  <string name="filesystem_info_dialog_dump_pass">Dump / Pass:</string>
-  <!-- Filesystem Info Dialog * Total Disk Usage -->
+  <string name="filesystem_info_dialog_dump_pass">לזרוק / להעביר:</string>
   <string name="filesystem_info_dialog_total_disk_usage">סה\"כ:</string>
-  <!-- Filesystem Info Dialog * Used Disk Usage -->
   <string name="filesystem_info_dialog_used_disk_usage">תפוס:</string>
-  <!-- Filesystem Info Dialog * Free Disk Usage -->
   <string name="filesystem_info_dialog_free_disk_usage">פנוי:</string>
-
-
-  <!-- Fso Properties * Not allowed message -->
   <string name="fso_properties_permissions_not_allowed_msg">פעולות בהרשאות אינן אפשריות במצב בטוח. לחץ כדי לעבור למצב גישת Root.</string>
-  <!-- Fso Properties * Failed to change owner to fso -->
   <string name="fso_properties_failed_to_change_owner_msg">פעולת שינוי בעלות נכשלה.\n\nמסיבות בטיחותיות, חלק ממערכות הקבצים,כמו כרטיסי SD, לא מאפשרות שינויי בעלות.</string>
-  <!-- Fso Properties * Failed to change group to fso -->
   <string name="fso_properties_failed_to_change_group_msg">פעולת שינוי קבוצה נכשלה.\n\nמסיבות בטיחותיות, חלק ממערכות הקבצים,כמו כרטיסי SD, לא מאפשרות שינויי קבוצות.</string>
-  <!-- Fso Properties * Failed to change group to fso -->
   <string name="fso_properties_failed_to_change_permission_msg">פעולת שינוי הרשאות נכשלה.\n\nמסיבות בטיחותיות, חלק ממערכות הקבצים,כמו כרטיסי SD, לא מאפשרות שינויי הרשאות.</string>
-  <!-- Fso Properties Dialog * Title -->
   <string name="fso_properties_dialog_title">מאפיינים</string>
-  <!-- Fso Properties Dialog * Tab * Info -->
   <string name="fso_properties_dialog_tab_info">מידע</string>
-  <!-- Fso Properties Dialog * Tab * Permissions -->
   <string name="fso_properties_dialog_tab_permissions">הרשאות</string>
-  <!-- Fso Properties Dialog * Name Label -->
   <string name="fso_properties_dialog_name">שם:</string>
-  <!-- Fso Properties Dialog * Parent Folder Label -->
   <string name="fso_properties_dialog_parent">הורה:</string>
-  <!-- Fso Properties Dialog * Type Label -->
   <string name="fso_properties_dialog_type">סוג:</string>
-  <!-- Fso Properties Dialog * Category Label -->
   <string name="fso_properties_dialog_category">קטגוריה:</string>
-  <!-- Fso Properties Dialog * Link Label -->
   <string name="fso_properties_dialog_link">קישור:</string>
-  <!-- Fso Properties Dialog * Size Label -->
   <string name="fso_properties_dialog_size">גודל:</string>
-  <!-- Fso Properties Dialog * Contains Label -->
   <string name="fso_properties_dialog_contains">מכילה:</string>
-  <!-- Fso Properties Dialog * Last Accessed Time Label -->
   <string name="fso_properties_dialog_last_accessed_date">ניגש לאחרונה:</string>
-  <!-- Fso Properties Dialog * Last Modified Time Label -->
   <string name="fso_properties_dialog_last_modified_date">נערך לאחרונה:</string>
-  <!-- Fso Properties Dialog * Last Changed Time -->
   <string name="fso_properties_dialog_last_changed_date">השתנה לאחרונה:</string>
-  <!-- Fso Properties Dialog * Owner Label -->
   <string name="fso_properties_dialog_owner">בעלים:</string>
-  <!-- Fso Properties Dialog * Group Label -->
   <string name="fso_properties_dialog_group">קבוצה:</string>
-  <!-- Fso Properties Dialog * Others Label -->
   <string name="fso_properties_dialog_others">אחרים:</string>
-  <!-- Fso Properties Dialog * Folders -->
-  <plurals name="n_folders">
-    <item quantity="zero">אין תיקיות</item>
-    <item quantity="one">תיקייה אחת</item>
-    <item quantity="other"><xliff:g id="folders">%1$d</xliff:g> תיקיות</item>
-  </plurals>
-  <!-- Fso Properties Dialog * Files -->
-  <plurals name="n_files">
-    <item quantity="zero">אין קבצים</item>
-    <item quantity="one">קובץ אחד</item>
-    <item quantity="other"><xliff:g id="files">%1$d</xliff:g> קבצים</item>
-  </plurals>
-  <!-- Fso Properties Dialog * Skip media scan -->
   <string name="fso_properties_dialog_include_in_media_scan">דלג על סריקת מדיה:</string>
   <string name="fso_failed_to_allow_media_scan">נכשל באפשור סריקת מדיה</string>
   <string name="fso_failed_to_prevent_media_scan">נכשל במניעת סריקת מדיה</string>
@@ -277,253 +141,140 @@
   <string name="fso_delete_nomedia_dir_body">תיקייה זו מכילה תיקיית .nomedia.\n\nהאם ברצונך למחוק אותה ואת כל תוכנה?</string>
   <string name="fso_delete_nomedia_non_empty_title">מחיקת קובץ .nomedia</string>
   <string name="fso_delete_nomedia_non_empty_body">תיקייה זו מכילה קובץ .nomedia שאינו ריק.\n\nהאם ברצונך למחוק אותו?</string>
-
-  <!-- History * History activity title -->
   <string name="history">היסטוריה</string>
-  <!-- History * The history is empty -->
   <string name="msgs_history_empty">ההיסטוריה ריקה.</string>
-  <!-- History * The history reference is not in the actual history list -->
   <string name="msgs_history_unknown">קובץ היסטוריה לא ידוע.</string>
-
-  <!-- Search * Search activity title -->
   <string name="search">תוצאות חיפוש</string>
-  <!-- Search * Search hint message -->
   <string name="search_hint">הקלד כדי לחפש</string>
-  <!-- Search * Voice search hint message -->
   <string name="search_voice_hint">דבר כדי לחפש</string>
-  <!-- Search * Search error message -->
   <string name="search_error_msg">התרחשה שגיאה במהלך החיפוש. לא נמצאו תוצאות.</string>
-  <!-- Search * Search no results message -->
   <string name="search_no_results_msg">לא נמצאו תוצאות.</string>
-  <!-- Search * Search found items -->
-  <plurals name="search_found_items">
-    <item quantity="zero">לא נמצאו פריטים</item>
-    <item quantity="one">נמצא פריט אחד</item>
-    <item quantity="other"><xliff:g id="count">%d</xliff:g> פריטים נמצאו</item>
-  </plurals>
-  <!-- Search * Number of items found in directory -->
-  <string name="search_found_items_in_directory"><xliff:g id="items">%1$s</xliff:g> ב-\"<xliff:g id="path">%2$s</xliff:g>\"</string>
-  <!-- Search * Search query terms -->
+  <string name="search_found_items_in_directory"><xliff:g id="items">%1$s</xliff:g> ב-"<xliff:g id="path">%2$s</xliff:g>\"</string>
   <string name="search_terms"><![CDATA[<b>תנאי חיפוש:</b>]]> <xliff:g id="terms">%1$s</xliff:g></string>
-  <!-- Search * Confirm search -->
   <string name="search_few_characters_title">אשר חיפוש</string>
-  <!-- Search * Some terms of the search are too small. The operation could be very costly -->
   <string name="search_few_characters_msg">חלק מתנאי החיפוש מכילים מספר תווים קטן. הפעולה עלולה לארוך זמן רב ולצרוך המון משאבים.\n\nהאם ברצונך להמשיך?</string>
-  <!-- Search * Searching dialog title -->
   <string name="searching">אנא המתן\u2026</string>
-  <!-- Search * Searching label -->
   <string name="searching_action_label">מתבצע חיפוש</string>
-
-  <!-- Picker Activity * Dialog title -->
   <string name="picker_title">בחר קובץ</string>
   <string name="directory_picker_title">בחר תיקייה</string>
-
-  <!-- Editor * Editor activity title -->
   <string name="editor">עורך</string>
-  <!-- Editor * Invalid file message -->
   <string name="editor_invalid_file_msg">קובץ שגוי.</string>
-  <!-- Editor * File not found message -->
   <string name="editor_file_not_found_msg">קובץ לא נמצא.</string>
-  <!-- Editor * File size exceed the limit -->
   <string name="editor_file_exceed_size_msg">הקובץ גדול מידי לפתיחה במכשיר זה.</string>
-  <!-- Editor * Editor is dirty, ask the user * Dialog title -->
   <string name="editor_dirty_ask_title">אשר יציאה</string>
-  <!-- Editor * Editor is dirty, ask the user * Dialog message -->
   <string name="editor_dirty_ask_msg">קיימים שינויים לא שמורים.\n\nלצאת מבלי לשמור?</string>
-  <!-- Editor * Save operation success -->
   <string name="editor_successfully_saved">הקובץ נשמר בהצלחה.</string>
-  <!-- Editor * Read-only file mode -->
   <string name="editor_read_only_mode">הקובץ נפתח במצב \"קריאה בלבד\".</string>
-
-  <!-- Bookmarks * Bookmarks activity title -->
+  <string name="dumping_message">Generating hex dump\u2026</string>
+  <string name="displaying_message">מציג\u2026</string>
   <string name="bookmarks">מועדפים</string>
-  <!-- Bookmarks * Bookmark name * Home -->
   <string name="bookmarks_home">בית</string>
-  <!-- Bookmarks * Bookmark name * Root folder -->
   <string name="bookmarks_root_folder">תיקיית השורש</string>
-  <!-- Bookmarks * Bookmark name * System folder -->
   <string name="bookmarks_system_folder">תיקיית המערכת</string>
-  <!-- Bookmarks * Bookmark name * Button * Initial directory content description -->
   <string name="bookmarks_button_config_cd">הגדר את התיקייה ההתחלתית.</string>
-  <!-- Bookmarks * Bookmark name * Button * Remove bookmark content description -->
   <string name="bookmarks_button_remove_bookmark_cd">מחק ממועדפים.</string>
-  <!-- Bookmarks * Bookmarks * Actions * Bookmark successfully added -->
   <string name="bookmarks_msgs_add_success">נוסף בהצלחה למועדפים.</string>
-
-  <!-- Initial directory dialog title -->
   <string name="initial_directory_dialog_title">תיקייה התחלתית</string>
-  <!-- Initial directory label -->
   <string name="initial_directory_label">בחר את התיקייה ההתחלתית:</string>
-  <!-- Initial directory is relative -->
   <string name="initial_directory_relative_msg">נתיבים יחסיים אסורים.</string>
-  <!-- Initial directory error message -->
   <string name="initial_directory_error_msg">התרחשה שגיאה בעת שמירת נתיב התיקייה ההתחלתית.</string>
-
-  <!-- Menu * Navigation * History -->
   <string name="menu_history">היסטוריה</string>
-  <!-- Menu * Navigation * Bookmarks -->
   <string name="menu_bookmarks">מועדפים</string>
-  <!-- Menu * Navigation * Search -->
   <string name="menu_search">חיפוש</string>
-  <!-- Menu * Navigation * Settings -->
   <string name="menu_settings">הגדרות</string>
-  <!-- Menu * History * Clear history -->
   <string name="menu_clear_history">נקה היסטוריה</string>
-
-  <!-- Regular expression for create copy action -->
+  <string name="menu_no_suggestions">אין הצעות</string>
+  <string name="menu_word_wrap">גלישת מילים</string>
+  <string name="menu_syntax_highlight">הבלט תחביר</string>
   <string name="create_copy_regexp">
     <xliff:g id="name">%1$s</xliff:g> - עותק<xliff:g id="extension">%2$s</xliff:g></string>
-  <!-- Regular expression for new compressed file -->
   <string name="create_new_compress_file_regexp">
     <xliff:g id="name">%1$s</xliff:g> - חדש<xliff:g id="extension">%2$s</xliff:g></string>
-
-  <!-- Waiting dialog * Performing operation message -->
   <string name="waiting_dialog_msg">מבצע פעולה\u2026</string>
-  <!-- Waiting dialog * Copying title -->
   <string name="waiting_dialog_copying_title">מעתיק\u2026</string>
-  <!-- Waiting dialog * Copying message -->
   <string name="waiting_dialog_copying_msg">
     <![CDATA[<b>מ-</b>]]><xliff:g id="from">%1$s</xliff:g><![CDATA[<br/>]]>
     <![CDATA[<b>אל</b>]]> <xliff:g id="to">%2$s</xliff:g></string>
-  <!-- Waiting dialog * Moving title -->
   <string name="waiting_dialog_moving_title">מעביר\u2026</string>
-  <!-- Waiting dialog * Moving message -->
   <string name="waiting_dialog_moving_msg">
     <![CDATA[<b>מ-</b>]]><xliff:g id="from">%1$s</xliff:g><![CDATA[<br/>]]>
     <![CDATA[<b>אל</b>]]> <xliff:g id="to">%2$s</xliff:g></string>
-  <!-- Waiting dialog * Deleting title -->
   <string name="waiting_dialog_deleting_title">מוחק\u2026</string>
-  <!-- Waiting dialog * Deleting message -->
   <string name="waiting_dialog_deleting_msg">
     <![CDATA[<b>קובץ</b>]]> <xliff:g id="file">%1$s</xliff:g></string>
-  <!-- Waiting dialog * Extracting title -->
   <string name="waiting_dialog_extracting_title">מחלץ\u2026</string>
-  <!-- Waiting dialog * Extracting message -->
   <string name="waiting_dialog_extracting_msg">
     <![CDATA[<b>קובץ</b>]]> <xliff:g id="file">%1$s</xliff:g></string>
-  <!-- Waiting dialog * Extracting title -->
   <string name="waiting_dialog_compressing_title">דוחס\u2026</string>
-  <!-- Waiting dialog * Extracting message -->
   <string name="waiting_dialog_compressing_msg">
     <![CDATA[<b>קובץ</b>]]> <xliff:g id="file">%1$s</xliff:g></string>
-  <!-- Waiting dialog * Initializing the dialog -->
   <string name="waiting_dialog_analizing_msg">
     <![CDATA[<b>מנתח\u2026</b>]]></string>
-  <!-- Extracting * Success message -->
   <string name="msgs_extracting_success">פעולת החילוץ הושלמה בהצלחה. המידע חולץ אל
     <xliff:g id="destination">%1$s</xliff:g>.</string>
-  <!-- Compressing * Success message -->
   <string name="msgs_compressing_success">פעולת הדחיסה הושלמה בהצלחה. המידע נדחס אל
     <xliff:g id="destination">%1$s</xliff:g>.</string>
-
-  <!-- Actions Dialog * Title -->
   <string name="actions_dialog_title">פעולות</string>
-  <!-- Actions Dialog * Menu * Properties of current folder -->
   <string name="actions_menu_properties_current_folder">מאפיינים</string>
-  <!-- Actions Dialog * Menu * Refresh -->
   <string name="actions_menu_refresh">רענן</string>
-  <!-- Actions Dialog * Menu * New directory -->
   <string name="actions_menu_new_directory">תיקייה חדשה</string>
-  <!-- Actions Dialog * Menu * New file -->
   <string name="actions_menu_new_file">קובץ חדש</string>
-  <!-- Actions Dialog * Menu * Select all -->
   <string name="actions_menu_select_all">בחר הכל</string>
-  <!-- Actions Dialog * Menu * Deselect all -->
   <string name="actions_menu_deselect_all">בטל את כל הבחירות</string>
-  <!-- Actions Dialog * Menu * Select -->
   <string name="actions_menu_select">בחר</string>
-  <!-- Actions Dialog * Menu * Deselect -->
   <string name="actions_menu_deselect">בטל בחירה</string>
-  <!-- Actions Dialog * Menu * Paste selection -->
   <string name="actions_menu_paste_selection">הדבק את הבחירה כאן</string>
-  <!-- Actions Dialog * Menu * Move selection -->
   <string name="actions_menu_move_selection">העבר את הבחירה לכאן</string>
-  <!-- Actions Dialog * Menu * Delete selection -->
   <string name="actions_menu_delete_selection">מחק בחירה</string>
-  <!-- Actions Dialog * Menu * Compress selection -->
   <string name="actions_menu_compress_selection">דחוס בחירה</string>
-  <!-- Actions Dialog * Menu * Create link -->
   <string name="actions_menu_create_link">צור קישור</string>
-  <!-- Actions Dialog * Menu * Open -->
   <string name="actions_menu_open">פתח</string>
-  <!-- Actions Dialog * Menu * Open with -->
   <string name="actions_menu_open_with">פתח באמצעות</string>
-  <!-- Actions Dialog * Menu * Execute -->
   <string name="actions_menu_execute">הרץ</string>
-  <!-- Actions Dialog * Menu * Send -->
   <string name="actions_menu_send">שלח</string>
-  <!-- Actions Dialog * Menu * Send selection -->
   <string name="actions_menu_send_selection">שלח בחירה</string>
-  <!-- Actions Dialog * Menu * Compress -->
   <string name="actions_menu_compress">דחוס</string>
-  <!-- Actions Dialog * Menu * Extract -->
   <string name="actions_menu_extract">חלץ</string>
-  <!-- Actions Dialog * Menu * Delete -->
   <string name="actions_menu_delete">מחק</string>
-  <!-- Actions Dialog * Menu * Rename -->
   <string name="actions_menu_rename">שנה שם</string>
-  <!-- Actions Dialog * Menu * Create copy -->
   <string name="actions_menu_create_copy">צור עותק</string>
-  <!-- Actions Dialog * Menu * Properties -->
   <string name="actions_menu_properties">מאפיינים</string>
-  <!-- Actions Dialog * Menu * Add to bookmarks -->
   <string name="actions_menu_add_to_bookmarks">הוספה למועדפים</string>
-  <!-- Actions Dialog * Menu * Add shortcut -->
   <string name="actions_menu_add_shortcut">הוספת קיצור דרך</string>
-  <!-- Actions Dialog * Menu * Open parent folder -->
   <string name="actions_menu_open_parent_folder">פתח תיקיית הורה</string>
-
-  <!-- Actions * Ask user prior to do an undone operation. Dialog message -->
+  <string name="actions_menu_compute_checksum">מחשב חתימה</string>
   <string name="actions_ask_undone_operation_msg">לא ניתן לבטל פעולה זו. האם ברצונך להמשיך?</string>
-
-  <!-- Enter Name Dialog * Label -->
   <string name="input_name_dialog_label">שם:</string>
-  <!-- Enter Name Dialog * Message * Empty name -->
   <string name="input_name_dialog_message_empty_name">השם אינו יכול להשאר ריק.</string>
-  <!-- Enter Name Dialog * Message * Invalid name -->
   <string name="input_name_dialog_message_invalid_path_name">שם שגוי. התווים
     \'<xliff:g id="invalid_characters">%1$s</xliff:g>\' אסורים.</string>
-  <!-- Enter Name Dialog * Message * Invalid name -->
   <string name="input_name_dialog_message_invalid_name">שם שגוי. השמות \'.\' ו-\'..\' אסורים.</string>
-  <!-- Enter Name Dialog * Message * Name exists -->
   <string name="input_name_dialog_message_name_exists">השם כבר קיים.</string>
-
-  <!-- Associations Dialog * Title -->
   <string name="associations_dialog_title">שיוכים</string>
-  <!-- Associations Dialog * Remember the user action -->
   <string name="associations_dialog_remember">זכור בחירה</string>
-  <!-- Associations Dialog * Open with Title -->
   <string name="associations_dialog_openwith_title">פתח באמצעות</string>
-    <!-- Associations Dialog * Open action (button title) -->
   <string name="associations_dialog_openwith_action">פתח</string>
-  <!-- Associations Dialog * Send with Title -->
   <string name="associations_dialog_sendwith_title">שלח בעזרת</string>
-    <!-- Associations Dialog * Send action (button title) -->
   <string name="associations_dialog_sendwith_action">שלח</string>
-
-  <!-- Inline Autocomplete Widget * Tab message nothing to complete -->
   <string name="inline_autocomplete_tab_nothing_to_complete_msg">אין הצעות.</string>
-
-  <!-- Execution console * Title -->
-  <string name="execution_console_title">Console</string>
-  <!-- Execution console * The script name label -->
+  <string name="execution_console_title">מסוף</string>
   <string name="execution_console_script_name_label">סקריפט:</string>
-  <!-- Execution console * The script execution time label -->
   <string name="execution_console_script_execution_time_label">זמן ריצה:</string>
-  <!-- Execution console * The script exit code label -->
   <string name="execution_console_script_exitcode_label">קוד יציאה:</string>
-  <!-- Execution console * The script execution time seconds string -->
   <string name="execution_console_script_execution_time_text">
     <xliff:g id="seconds">%1$s</xliff:g> שנ\'</string>
-
-  <!-- Mime/Types * Folder -->
+  <string name="compute_checksum_title">מחשב חתימה</string>
+  <string name="compute_checksum_filename_label">קובץ:</string>
+  <string name="compute_checksum_computing_checksum_msg">מחשב חתימה\u2026</string>
   <string name="mime_folder">תיקייה</string>
-  <!-- Mime/Types * Symlink -->
-  <string name="mime_symlink">Symlink</string>
-  <!-- Mime/Types * Unknown -->
+  <string name="mime_symlink">קישור</string>
   <string name="mime_unknown">לא ידוע</string>
-
-  <!-- Category descriptions -->
+  <string name="filetime_format_mode_system">מוגדר על-ידי המערכת</string>
+  <string name="filetime_format_mode_locale">מוגדר על פי אזור</string>
+  <string name="filetime_format_mode_ddMMyyyy_HHmmss">dd/mm/yyyy hh:mm:ss</string>
+  <string name="filetime_format_mode_MMddyyyy_HHmmss">mm/dd/yyyy hh:mm:ss</string>
+  <string name="filetime_format_mode_yyyyMMdd_HHmmss">yyyy-mm-dd hh:mm:ss</string>
+  <string name="selection_folders_and_files"><xliff:g id="folders">%1$s</xliff:g> ו-<xliff:g id="files">%2$s</xliff:g> נבחרו.</string>
   <string name="category_system">מערכת</string>
   <string name="category_app">יישום</string>
   <string name="category_binary">בינארי</string>
@@ -539,128 +290,94 @@
   <string name="category_audio">קול</string>
   <string name="category_video">וידאו</string>
   <string name="category_security">אבטחה</string>
-
-  <!-- Compression * Compression modes dialog title -->
   <string name="compression_mode_title">מצב דחיסה</string>
-
-  <!-- Shortcut. Failed to handle the shortcut -->
   <string name="shortcut_failed_msg">נכשל בניהול קיצור הדרך.</string>
-  <!-- Shortcut. The shortcut was created -->
   <string name="shortcut_creation_success_msg">קיצור הדרך נוצר בהצלחה.</string>
-  <!-- Shortcut. The shortcut wasn't created -->
   <string name="shortcut_creation_failed_msg">נכשל ביצירת קיצור הדרך.</string>
-
-  <!-- Preferences title -->
   <string name="pref">הגדרות</string>
-  <!-- Preferences * General title -->
   <string name="pref_general">הגדרות כלליות</string>
-  <!-- Preferences * Search title -->
   <string name="pref_search">אפשרויות חיפוש</string>
-  <!-- Preferences * Themes title -->
+  <string name="pref_editor">אפשרויות עורך</string>
   <string name="pref_themes">ערכות נושא</string>
-  <!-- Preferences * About title -->
   <string name="pref_about">אודות</string>
-  <!-- Preferences * About summary -->
   <string name="pref_about_summary">מנהל הקבצים v<xliff:g id="version">%1$s</xliff:g>
     \nכל הזכויות שמורות \u00A9 2012 פרוייקט CyanogenMod</string>
-
-  <!-- Preferences * General * Behaviour category -->
   <string name="pref_general_behaviour_category">כללי</string>
-  <!-- Preferences * General * Case sensitive sort title -->
   <string name="pref_case_sensitive_sort">מיין לפי אותיות גדולות וקטנות</string>
-  <!-- Preferences * General *Disk usage warning level title -->
+  <string name="pref_case_sensitive_sort_summary">Consider case when navigating or sorting search results</string>
+  <string name="pref_filetime_format_mode">תבנית תאריך/שעה</string>
   <string name="pref_disk_usage_warning_level">אזהרות שימוש בדיסק</string>
-  <!-- Preferences * General * Disk usage warning level summary -->
-  <!-- FIXME Use "percent" instead of "%" symbol, because it make crash the app on getSummary
-       of ListPreference. This should be fixed in frameworks base prior to be added here. -->
   <string name="pref_disk_usage_warning_level_summary" formatted="false">הצג צבע שונה בוידג\'טי שימוש בדיסק כשהם מגיעים ל-<xliff:g id="level">%1$s</xliff:g> אחוזים משטח הדיסק הפנוי</string>
-  <!-- Preferences * General * Compute folder statistics title -->
   <string name="pref_compute_folder_statistics">חשב סטטיסטיקות תיקייה</string>
-  <!-- Preferences * General * Compute folder statistics summary on -->
   <string name="pref_compute_folder_statistics_on">אזהרה! חישוב סטטיסטיקות של תקיות יקר בזמן ומשאבי מערכת</string>
-  <!-- Preferences * General * Use flinger detection -->
+  <string name="pref_display_thumbs">תצוגה מקדימה</string>
+  <string name="pref_display_thumbs_summary">הצג תצוגה מקדימה של תמונה עבור אפליקציות, קבצי מוזיקה, וידאו ותמונות.</string>
   <string name="pref_use_flinger">השתמש במחוות החלקה</string>
-  <!-- Preferences * General * Use flinger detection summary -->
   <string name="pref_use_flinger_summary">השתמש בהחלקה ימינה או שמאלה כדי למחוק קבצים ותיקיות.</string>
-  <!-- Preferences * General * Advanced settings category -->
   <string name="pref_general_advanced_settings_category">מתקדם</string>
-  <!-- Preferences * General * Access mode -->
   <string name="pref_access_mode">מצב גישה</string>
-  <!-- Preferences * General * Safe mode -->
   <string name="pref_access_mode_safe">מצב בטוח</string>
-  <!-- Preferences * General * Safe mode summary -->
   <string name="pref_access_mode_safe_summary">מצב בטוח\n\nהיישום רץ ללא הרשאות, מערכות הקבצים היחידות שנגישות הן מחיצות האחסון (כרטיסי זיכרון ו-USB)</string>
-  <!-- Preferences * General * Prompt user mode -->
   <string name="pref_access_mode_prompt">מצב התראה למשתמש</string>
-  <!-- Preferences * General * Prompt user mode summary -->
   <string name="pref_access_mode_prompt_summary">מצב התראה למשתמש\n\nהיישום רץ עם הרשאות מלאות למערכת הקבצים, אך יתריע לפני ביצוע כל פעולה הדורשת הרשאות אלו</string>
-  <!-- Preferences * General * Root access mode -->
   <string name="pref_access_mode_root">מצב גישת Root</string>
-  <!-- Preferences * General * Root access mode summary -->
   <string name="pref_access_mode_root_summary">מצב גישת Root\n\nאזהרה! מצב זה מאפשר פעולות שעלולת להרוס את המכשיר. זוהי אחריותך לוודא שפעולות אלו בטוחות</string>
-  <!-- Preferences * Search * Results category -->
   <string name="pref_search_results_category">תוצאות</string>
-  <!-- Preferences * Search * Show relevance widget -->
   <string name="pref_show_relevance_widget">הצג וידג\'ט רלוונטיות</string>
-  <!-- Preferences * Search * Highlight search terms -->
   <string name="pref_highlight_terms">הדגש את תנאי החיפוש</string>
-  <!-- Preferences * Search * Sort results mode -->
   <string name="pref_sort_search_results_mode">אופן סידור התוצאות</string>
-  <!-- Preferences * Search * Sort results mode. None -->
   <string name="pref_sort_search_results_mode_none">ללא סידור</string>
-  <!-- Preferences * Search * Sort results mode. None -->
   <string name="pref_sort_search_results_mode_name">לפי שם</string>
-  <!-- Preferences * Search * Sort results mode. Relevance -->
   <string name="pref_sort_search_results_mode_relevance">לפי רלוונטיות</string>
-  <!-- Preferences * Search * Privacity category -->
   <string name="pref_search_privacity_category">פרטיות</string>
-  <!-- Preferences * Search * Save search terms -->
   <string name="pref_save_search_terms">שמור את תנאי החיפוש</string>
-  <!-- Preferences * Search * Save search terms summary on -->
   <string name="pref_save_search_terms_on">תנאי החיפוש ישמרו וישמשו כהצעות בחיפושים עתידיים</string>
-  <!-- Preferences * Search * Save search terms summary off -->
   <string name="pref_save_search_terms_off">תנאי החיפוש לא ישמרו</string>
-  <!-- Preferences * Search * Remove saved search terms -->
   <string name="pref_remove_saved_search_terms">הסר תנאי חיפוש שמורים</string>
-  <!-- Preferences * Search * Remove saved search terms summary -->
   <string name="pref_remove_saved_search_terms_summary">לחץ כדי להסיר את כל תנאי החיפוש השמורים</string>
-  <!-- Preferences * Search * Suggestions were truncated -->
   <string name="pref_remove_saved_search_terms_msg">כל תנאי החיפוש השמורים הוסרו.</string>
-  <!-- Preferences * Themes * Themes selection category -->
+  <string name="pref_editor_behaviour_category">התנהגות</string>
+  <string name="pref_no_suggestions">אין הצעות</string>
+  <string name="pref_no_suggestions_desc">אל תציג הצעות מילון בעת עריכת קובץ</string>
+  <string name="pref_word_wrap">גלישת מילים</string>
+  <string name="pref_hexdump">Hexdump binary files</string>
+  <string name="pref_hexdump_desc">When opening a binary file, generate an hexdump of the file and open it in the hex viewer.</string>
+  <string name="pref_editor_syntax_highlight_category">הבלט תחביר</string>
+  <string name="pref_syntax_highlight">הבלט תחביר</string>
+  <string name="pref_syntax_highlight_desc">סמן את התחביר של הקובץ מוצג בעורך (יעבד סימון תחביר רק עבור קבצים עם מבנה זמין)</string>
+  <string name="pref_syntax_highlight_color_scheme">ערכת צבעים</string>
+  <string name="pref_syntax_highlight_color_scheme_desc">הקש כדי לבחור את ערכת הצבעים של סימון תחביר</string>
+  <string name="pref_syntax_sh_use_theme_default">השתמש בערכת הנושא המוגדרת כברירת מחדל</string>
+  <string name="pref_syntax_sh_use_theme_default_desc">Use the default syntax highlight of the current theme</string>
+  <string name="pref_editor_sh_item_category">פריטים</string>
   <string name="pref_themes_selection_category">ערכות נושא</string>
-  <!-- Preferences * Themes * Set theme button -->
   <string name="pref_themes_set_theme">הגדר ערכת נושא</string>
-  <!-- Preferences * Themes * No preview -->
   <string name="pref_themes_no_preview">אין\nתצוגה מקדימה\nזמינה</string>
-  <!-- Preferences * Themes * Confirmation message -->
   <string name="pref_themes_confirmation">ערכת הנושא הוחלה בהצלחה.</string>
-  <!-- Preferences * Themes * Theme not found message -->
   <string name="pref_themes_not_found">ערכת הנושא לא נמצאה.</string>
-
-  <!-- Preferences * Debug * Capture debug traces -->
   <string name="pref_debug_traces">תעד ניפוי שגיאות</string>
-
-  <!-- Themes * Default theme name -->
   <string name="theme_default_name">ערכת נושא בהירה</string>
-  <!-- Themes * Default theme description -->
   <string name="theme_default_description">ערכת נושא בהירה עבור מנהל הקבצים של CyanogenMod.</string>
-  <!-- Themes * Default theme author -->
   <string name="themes_author">CyanogenMod</string>
-
-  <!-- Security * Extract relative or absolute files -->
+  <string name="color_picker_alpha_slider_text">שקיפות</string>
+  <string name="color_picker_current_text">נוכחי:</string>
+  <string name="color_picker_new_text">חדש:</string>
+  <string name="color_picker_color">צבע:</string>
+  <string name="ash_reset_color_scheme">הקש כדי לשחזר את ערכת הצבעים של ברירת מחדל</string>
+  <string name="ash_text">טקסט</string>
+  <string name="ash_assignment">משימה</string>
+  <string name="ash_singleline_comment">הערה בשורה בודדת</string>
+  <string name="ash_multiline_comment">תגובה מרובת שורות</string>
+  <string name="ash_keyword">מילת מפתח</string>
+  <string name="ash_quoted_string">מחרוזת מצוטטת</string>
+  <string name="ash_variable">משתנה</string>
   <string name="security_warning_extract">אזהרה!\n\nחילוץ קובץ ארכיון עם נתיבים יחסיים או מוחלטים עלול לגרום נזק למכשירך על ידי דריסת קבצי מערכת.\n\n האם ברצונך להמשיך?</string>
-
-  <!-- ChangeLog * Dialog title -->
   <string name="changelog_title">תיעוד שינויים</string>
-
-  <!-- Welcome Dialog * Title -->
   <string name="welcome_title">ברוכים הבאים</string>
-  <!-- Welcome Dialog * Message -->
   <string name="welcome_msg">ברוכים הבאים למנהל הקבצים של CyanogenMod.
     \n\nיישום זה מאפשר לך לסייר במערכת הקבצים ולבצע פעולות שעלולות להרוס את המכשיר.
     כדי למנוע נזק, היישום יתחיל במצב בטוח, עם הרשאות נמוכות.
     \n\nבאפשרותך לגשת למצב המתקדם, בעל הרשאות מלאות דרך ההגדרות. זוהי
     אחריותך לוודא שפעולה שתבוצע לא תהרוס את מערכת ההפעלה.
     \n\nצוות CyanogenMod.\n</string>
-
 </resources>

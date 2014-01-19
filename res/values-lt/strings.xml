@@ -16,7 +16,7 @@
  -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="app_name">Failų tvarkyklė</string>
-    <string name="app_description">CyanogenMod failų tvarkyklė</string>
+    <string name="app_description">"„CyanogenMod“ failų tvarkyklė"</string>
     <string name="size_bytes">B</string>
     <string name="size_kilobytes">kB</string>
     <string name="size_megabytes">MB</string>
@@ -46,14 +46,14 @@
     <string name="confirm_overwrite">Patvirtinkite perrašymą</string>
     <string name="confirm_deletion">Patvirtinkite trynimą</string>
     <string name="msgs_change_to_prompt_access_mode_title">Patvirtinkite perjungimą</string>
-    <string name="msgs_change_to_prompt_access_mode_msg">Nepavyko paleisti root režimu. Keičiama į saugų režimą.\n\nTaikyti šį pakeitimą?</string>
+    <string name="msgs_change_to_prompt_access_mode_msg">"Nepavyko paleisti „Root“ režimu. Keičiama į saugų režimą.\n\nTaikyti šį pakeitimą?"</string>
     <string name="msgs_cant_create_console">Nepavyko gauti reikiamų privilegijų, veikimui.</string>
-    <string name="msgs_privileged_console_alloc_failed">Nepavyko paleisti root prieigos režimu. Keičiama į saugų režimą.</string>
+    <string name="msgs_privileged_console_alloc_failed">"Nepavyko paleisti „Root“ prieigos režimu. Keičiama į saugų režimą."</string>
     <string name="msgs_settings_save_failure">Nustatymas negali būti taikomas/saugomas.</string>
-    <string name="msgs_settings_invalid_initial_directory">Pradinis aplankas \„<xliff:g id="initial_dir">%1$s</xliff:g>\“ yra negaliojantis. Keičiama į root aplanką.</string>
+    <string name="msgs_settings_invalid_initial_directory">"Pradinis aplankas „<xliff:g id="initial_dir">%1$s</xliff:g>“ yra negaliojantis. Keičiama į „Root“ aplanką."</string>
     <string name="msgs_success">Veiksmas baigtas sėkmingai.</string>
     <string name="msgs_unknown">Aptikta klaida. Veiksmas nepavyko.</string>
-    <string name="msgs_insufficient_permissions">Šis veiksmas reikalauja didesnių leidimų. Pabandykite pakeisti į root prieigos režimą.</string>
+    <string name="msgs_insufficient_permissions">"Šis veiksmas reikalauja didesnių leidimų. Pabandykite pakeisti į „Root“ prieigos režimą."</string>
     <string name="msgs_file_not_found">Failas arba aplankas nerastas.</string>
     <string name="msgs_command_not_found">Veiksmo komanda nerasta arba turi neteisingą apibrėžimą.</string>
     <string name="msgs_io_failed">Skaitymo/rašymo triktis.</string>
@@ -68,7 +68,7 @@
     <string name="msgs_push_again_to_exit">Paspauskite dar kartą norėdami išeiti.</string>
     <string name="msgs_not_registered_app">Nėra registruotos programos kuri tvarkytu pažymėtą failo tipą.</string>
     <string name="msgs_overwrite_files">Kai kurie failai jau egzistuoja aplanke.\n\nPerrašyti?</string>
-    <string name="msgs_action_association_failed">Veiksmo susiejimas programai, nepavyko.</string>
+    <string name="msgs_action_association_failed">Nepavyko susieti veiksmo, programai.</string>
     <string name="advise_insufficient_permissions">Veiksmas reikalauja didesnės privilegijos.\n\nAr norite pakeisti į root prieigos režimą?</string>
     <string name="parent_dir">Pagrindinis aplankas</string>
     <string name="external_storage">Išorinė saugykla</string>
@@ -99,7 +99,7 @@
     <string name="filesystem_info_warning_title">Nėra informacijos</string>
     <string name="filesystem_info_warning_msg">Sistemos failų informacija nėra prieinama.</string>
     <string name="filesystem_info_cant_be_mounted_msg">Failas negali būti pridedamas/atskiriamas.</string>
-    <string name="filesystem_info_mount_not_allowed_msg">Sistemos failų pridėjimo veiksmas neleidžiamas saugiame režime. Bakstelėkite, jei norite pakeisti į root prieigos režimą.</string>
+    <string name="filesystem_info_mount_not_allowed_msg">"Sistemos failų pridėjimo veiksmas neleidžiamas saugiame režime. Bakstelėkite, jei norite pakeisti į „Root“ prieigos režimą."</string>
     <string name="filesystem_info_mount_failed_msg">Sistemos failų pridėjimo veiksmas nepavyko. Kai kurie sistemos failai, pavyzdžiui, SD kortelių, negali būti pridedami/atskiriami, nes jie yra įtaisyti ir naudojami tik skaityti sistemos failus.</string>
     <string name="filesystem_info_dialog_title">Sistemos failų informacija</string>
     <string name="filesystem_info_dialog_tab_info">Informacija</string>
@@ -113,7 +113,7 @@
     <string name="filesystem_info_dialog_total_disk_usage">Viso:</string>
     <string name="filesystem_info_dialog_used_disk_usage">Naudojama:</string>
     <string name="filesystem_info_dialog_free_disk_usage">Laisva:</string>
-    <string name="fso_properties_permissions_not_allowed_msg">Veiksmų leidimai negalimi saugiame režime. Bakstelėkite, jei norite pakeisti į root prieigos režimą.</string>
+    <string name="fso_properties_permissions_not_allowed_msg">"Veiksmų leidimai negalimi saugiame režime. Bakstelėkite, jei norite pakeisti į „Root“ prieigos režimą."</string>
     <string name="fso_properties_failed_to_change_owner_msg">Savininko eksploatavimo pakeitimas nepavyko.\n\nDėl saugumo priežasčių, kai kurie sistemos failai, pavyzdžiui, SD kortelių, neleidžia nuosavybės keitimuisi.</string>
     <string name="fso_properties_failed_to_change_group_msg">Grupės eksploatavimo pakeitimas nepavyko.\n\nDėl saugumo priežasčių, kai kurie sistemos failai, pavyzdžiui, SD kortelių, neleidžia grupių keitimuisi.</string>
     <string name="fso_properties_failed_to_change_permission_msg">Leidimų eksploatavimo pakeitimas nepavyko.\n\nDėl saugumo priežasčių, kai kurie sistemos failai, pavyzdžiui, SD kortelių, neleidžia leidimų keitimuisi.</string>
@@ -136,10 +136,10 @@
     <string name="fso_properties_dialog_include_in_media_scan">Praleisti talpyklos nuskaitymą:</string>
     <string name="fso_failed_to_allow_media_scan">Nepavyko leisti nuskaityti talpyklą</string>
     <string name="fso_failed_to_prevent_media_scan">Nepavyko išvengti talpyklos nuskaitymo</string>
-    <string name="fso_delete_nomedia_dir_title">Ištrinti .nomedia katalogą</string>
-    <string name="fso_delete_nomedia_dir_body">Šiame kataloge yra .nomedia katalogas.\n\nAr norite jį ir visą jo turinį ištrinti?</string>
-    <string name="fso_delete_nomedia_non_empty_title">Ištrinti .nomedia failą</string>
-    <string name="fso_delete_nomedia_non_empty_body">Šiame kataloge yra ne tuščias .nomedia failas.\n\nAr norite jį ištrinti?</string>
+    <string name="fso_delete_nomedia_dir_title">"Ištrinti „.nomedia“ katalogą"</string>
+    <string name="fso_delete_nomedia_dir_body">"Šiame kataloge yra „.nomedia“ katalogas.\n\nAr norite jį ir visą jo turinį ištrinti?"</string>
+    <string name="fso_delete_nomedia_non_empty_title">"Ištrinti „.nomedia“ failą"</string>
+    <string name="fso_delete_nomedia_non_empty_body">"Šiame kataloge yra ne tuščias „.nomedia“ failas.\n\nAr norite jį ištrinti?"</string>
     <string name="history">Istorija</string>
     <string name="msgs_history_empty">Istorija tuščia.</string>
     <string name="msgs_history_unknown">Nežinomas istorijos elementas.</string>
@@ -148,8 +148,7 @@
     <string name="search_voice_hint">Sakykite savo paiešką</string>
     <string name="search_error_msg">Beieškant įvyko klaida. Rezultatų nerasta.</string>
     <string name="search_no_results_msg">Rezultatų nerasta.</string>
-    <string name="search_found_items_in_directory"><xliff:g id="items">%1$s</xliff:g> tarp
-    <xliff:g id="path">%2$s</xliff:g></string>
+    <string name="search_found_items_in_directory"><xliff:g id="items">%1$s</xliff:g> tarp <xliff:g id="path">%2$s</xliff:g></string>
     <string name="search_terms"><![CDATA[<b>Sąlygos:</b>]]> <xliff:g id="terms">%1$s</xliff:g></string>
     <string name="search_few_characters_title">Patvirtinkite paiešką</string>
     <string name="search_few_characters_msg">Kai kurie paieškos terminai turi nedidelius skaičius. Šiam veiksmui gali reikėti daug laiko ir sistemos išteklių.\n\nAr norite tęsti?</string>
@@ -165,11 +164,11 @@
     <string name="editor_dirty_ask_msg">Yra neišsaugotų pakeitimų.\n\nIšeiti neišsaugant?</string>
     <string name="editor_successfully_saved">Failas sėkmingai išsaugotas.</string>
     <string name="editor_read_only_mode">Failas atidarytas tik skaitymo režimu.</string>
-    <string name="dumping_message">Generuojamas hex dump\u2026</string>
+    <string name="dumping_message">Generuojamas dvejetainis failas\u2026</string>
     <string name="displaying_message">Rodoma\u2026</string>
     <string name="bookmarks">Žymės</string>
     <string name="bookmarks_home">Namai</string>
-    <string name="bookmarks_root_folder">Root aplankas</string>
+    <string name="bookmarks_root_folder">"„Root“ aplankas"</string>
     <string name="bookmarks_system_folder">Sistemos aplankas</string>
     <string name="bookmarks_button_config_cd">Nustatykite pradinį aplanką.</string>
     <string name="bookmarks_button_remove_bookmark_cd">Pašalinti žymę.</string>
@@ -234,8 +233,8 @@
     <string name="actions_ask_undone_operation_msg">Šis veiksmas negali būti atšauktas. Ar norite tęsti?</string>
     <string name="input_name_dialog_label">Pavadinimas:</string>
     <string name="input_name_dialog_message_empty_name">Pavadinimas negali būti tuščias.</string>
-    <string name="input_name_dialog_message_invalid_path_name">Klaidingas pavadinimas. Simboliai \„<xliff:g id="invalid_characters">%1$s</xliff:g>\“ neleidžiami.</string>
-    <string name="input_name_dialog_message_invalid_name">Klaidingas pavadinimas. Pavadinimai su \„.\“ ir \„..\“ neleidžiami.</string>
+    <string name="input_name_dialog_message_invalid_path_name">"Klaidingas pavadinimas. Simboliai „<xliff:g id="invalid_characters">%1$s</xliff:g>“ neleidžiami."</string>
+    <string name="input_name_dialog_message_invalid_name">"Klaidingas pavadinimas. Pavadinimai su „.“ ir „..“ neleidžiami."</string>
     <string name="input_name_dialog_message_name_exists">Pavadinimas jau egzistuoja.</string>
     <string name="associations_dialog_title">Asociacijos</string>
     <string name="associations_dialog_remember">Prisiminti pasirinkimą</string>
@@ -248,8 +247,7 @@
     <string name="execution_console_script_name_label">Scenarijus:</string>
     <string name="execution_console_script_execution_time_label">Laikas:</string>
     <string name="execution_console_script_exitcode_label">Išėjimo kodas:</string>
-    <string name="execution_console_script_execution_time_text">
-    <xliff:g id="seconds">%1$s</xliff:g> sek.</string>
+    <string name="execution_console_script_execution_time_text"><xliff:g id="seconds">%1$s</xliff:g> sek.</string>
     <string name="compute_checksum_title">Apskaičiuoti kontrolinę sumą</string>
     <string name="compute_checksum_filename_label">Failas:</string>
     <string name="compute_checksum_computing_checksum_msg">Apskaičiuojama kontrolinė suma\u2026</string>
@@ -261,7 +259,7 @@
     <string name="filetime_format_mode_ddMMyyyy_HHmmss">dd/mm/mmmm vv:mm:ss</string>
     <string name="filetime_format_mode_MMddyyyy_HHmmss">mm/dd/mmmm vv:mm:ss</string>
     <string name="filetime_format_mode_yyyyMMdd_HHmmss">mmmm-mm-dd vv:mm:ss</string>
-    <string name="selection_folders_and_files">Pažymėti: <xliff:g id="folders">%1$s</xliff:g> ir <xliff:g id="files">%2$s</xliff:g></string>
+    <string name="selection_folders_and_files">Pažymėta: <xliff:g id="folders">%1$s</xliff:g> ir <xliff:g id="files">%2$s</xliff:g></string>
     <string name="category_system">SISTEMA</string>
     <string name="category_app">PROGRAMA</string>
     <string name="category_binary">DVEJETAINIS</string>
@@ -287,11 +285,11 @@
     <string name="pref_editor">Redaktoriaus parinktys</string>
     <string name="pref_themes">Temos</string>
     <string name="pref_about">Apie</string>
-    <string name="pref_about_summary">Failų tvarkyklė v<xliff:g id="version">%1$s</xliff:g>\nAutorinės teisės \u00A9 2013 CyanogenMod projektas</string>
+    <string name="pref_about_summary">"Failų tvarkyklė v<xliff:g id="version">%1$s</xliff:g>\nAutorinės teisės \u00A9 2013 „CyanogenMod“ projektas"</string>
     <string name="pref_general_behaviour_category">Bendra</string>
     <string name="pref_case_sensitive_sort">Didžiosios ir mažosios raidės</string>
     <string name="pref_case_sensitive_sort_summary">Turinio ir paieškos rezultatų nejautrus rūšiavimas</string>
-    <string name="pref_filetime_format_mode">Datos/laiko formatas</string>
+    <string name="pref_filetime_format_mode">Datos / laiko formatas</string>
     <string name="pref_disk_usage_warning_level">Disko naudojimo įspėjimas</string>
     <string name="pref_disk_usage_warning_level_summary" formatted="false">Kita spalva disko naudojimo raštai rodomi, kai <xliff:g id="level">%1$s</xliff:g> procentai laisvos vietos lieka diske</string>
     <string name="pref_compute_folder_statistics">Apskaičiuoti aplanko statistiką</string>
@@ -306,8 +304,8 @@
     <string name="pref_access_mode_safe_summary">Saugus režimas\n\nPrograma veikia be privilegijų. Vieninteliai prieinami sistemos failai yra (SD kortelės ir USB) saugyklos talpos</string>
     <string name="pref_access_mode_prompt">Greito vartotojo režimas</string>
     <string name="pref_access_mode_prompt_summary">Greito vartotojo režimas\n\nPrograma veikia su pilna prieiga prie sistemos failų, bet paprašys leidimo prieš vykdant bet kokius išskirtinius veiksmus</string>
-    <string name="pref_access_mode_root">Root prieigos režimas</string>
-    <string name="pref_access_mode_root_summary">Root prieigos režimas\n\nĮspėjimas! Šis režimas leidžia veiksmus kurie galėtų pakenkti jūsų įrenginiui. jūsų atsakomybė yra užtikrinti, kad veiksmas yra saugus</string>
+    <string name="pref_access_mode_root">"„Root“ prieigos režimas"</string>
+    <string name="pref_access_mode_root_summary">"„Root“ prieigos režimas\n\nĮspėjimas! Šis režimas leidžia veiksmus kurie galėtų pakenkti jūsų įrenginiui. jūsų atsakomybė yra užtikrinti, kad veiksmas yra saugus"</string>
     <string name="pref_search_results_category">Rezultatai</string>
     <string name="pref_show_relevance_widget">Rodyti valdiklį</string>
     <string name="pref_highlight_terms">Paryškinti paieškos terminus</string>
@@ -343,8 +341,8 @@
     <string name="pref_themes_not_found">Tema nerasta.</string>
     <string name="pref_debug_traces">Vesti užrašus apie derinimo informaciją</string>
     <string name="theme_default_name">Šviesi tema</string>
-    <string name="theme_default_description">Šviesi tema CyanogenMod failų tvarkyklei.</string>
-    <string name="themes_author">CyanogenMod</string>
+    <string name="theme_default_description">"Šviesi tema „CyanogenMod“ failų tvarkyklei."</string>
+    <string name="themes_author">"„CyanogenMod“"</string>
     <string name="color_picker_alpha_slider_text">Skaidrumas</string>
     <string name="color_picker_current_text">Dabartinis:</string>
     <string name="color_picker_new_text">Naujas:</string>
@@ -360,5 +358,5 @@
     <string name="security_warning_extract">Įspėjimas!\n\nIšpakuojant archyvo failą su susijusiu arba absoliučiu keliu gali pakenkti jūsų prietaisui perrašant sistemos failus.\n\nAr norite tęsti?</string>
     <string name="changelog_title">Pakeitimų sąrašas</string>
     <string name="welcome_title">Sveiki</string>
-    <string name="welcome_msg">Sveiki atvykę į CyanogenMod failų tvarkyklę.\n\nŠi programa leidžia ieškoti sistemos failų ir daryti veiksmus kurie gali pažeisti jūsų įrenginį. Kad išvengtumėte galymos žalos, programa startuos saugiame, mažo privilegijuotumo režime.\n\nNaudodamiesi Nustatymais jūs galite prisijungti prie pažangaus, pilnai priveligijuoto režimo. Jūsų atsakomybė yra užtikrinti, kad savo veiksmais nepažeisite sistemos.\n\nCyanogenMod komanda</string>
+    <string name="welcome_msg">"Sveiki atvykę į „CyanogenMod“ failų tvarkyklę.\n\nŠi programa leidžia ieškoti sistemos failų ir daryti veiksmus kurie gali pažeisti jūsų įrenginį. Kad išvengtumėte galymos žalos, programa startuos saugiame, mažo privilegijuotumo režime.\n\nNaudodamiesi Nustatymais jūs galite prisijungti prie pažangaus, pilnai priveligijuoto režimo. Jūsų atsakomybė yra užtikrinti, kad savo veiksmais nepažeisite sistemos.\n\n„CyanogenMod“ komanda"</string>
 </resources>

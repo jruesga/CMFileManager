@@ -291,7 +291,7 @@
     <string name="pref_case_sensitive_sort_summary">Turinio ir paieškos rezultatų nejautrus rūšiavimas</string>
     <string name="pref_filetime_format_mode">Datos / laiko formatas</string>
     <string name="pref_disk_usage_warning_level">Disko naudojimo įspėjimas</string>
-    <string name="pref_disk_usage_warning_level_summary" formatted="false">Kita spalva disko naudojimo raštai rodomi, kai <xliff:g id="level">%1$s</xliff:g> procentai laisvos vietos lieka diske</string>
+    <string name="pref_disk_usage_warning_level_summary" formatted="false">Kita spalva disko naudojimo raštai rodomi, kai <xliff:g id="level">%1$s</xliff:g> procentai (-ų) laisvos vietos lieka diske</string>
     <string name="pref_compute_folder_statistics">Apskaičiuoti aplanko statistiką</string>
     <string name="pref_compute_folder_statistics_on">Įspėjimas! Aplanko statistikos skaičiavimas užima daug laiko ir sistemos išteklių</string>
     <string name="pref_display_thumbs">Peržiūra</string>

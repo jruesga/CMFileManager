@@ -210,8 +210,8 @@
     <string name="actions_menu_deselect_all">Atžymėti viską</string>
     <string name="actions_menu_select">Pažymėti</string>
     <string name="actions_menu_deselect">Atžymėti</string>
-    <string name="actions_menu_paste_selection">Kopijuoti čia, pasirinkimą</string>
-    <string name="actions_menu_move_selection">Perkelti čia, pasirinkimą</string>
+    <string name="actions_menu_paste_selection">Kopijuoti čia</string>
+    <string name="actions_menu_move_selection">Perkelti čia</string>
     <string name="actions_menu_delete_selection">Ištrinti pažymėtąjį</string>
     <string name="actions_menu_compress_selection">Suspausti pažymėtąjį</string>
     <string name="actions_menu_create_link">Sukurti nuorodą</string>
@@ -240,7 +240,7 @@
     <string name="associations_dialog_remember">Prisiminti pasirinkimą</string>
     <string name="associations_dialog_openwith_title">Atidaryti su</string>
     <string name="associations_dialog_openwith_action">Atidaryti</string>
-    <string name="associations_dialog_sendwith_title">Siųsti su</string>
+    <string name="associations_dialog_sendwith_title">Siųsti naudojant:</string>
     <string name="associations_dialog_sendwith_action">Siųsti</string>
     <string name="inline_autocomplete_tab_nothing_to_complete_msg">Neužpildyta.</string>
     <string name="execution_console_title">Konsolė</string>
@@ -281,7 +281,7 @@
     <string name="shortcut_creation_failed_msg">Nuorodos sukurti nepavyko.</string>
     <string name="pref">Nustatymai</string>
     <string name="pref_general">Bendrieji parametrai</string>
-    <string name="pref_search">Paieškos parametrai</string>
+    <string name="pref_search">Paieškos parinktys</string>
     <string name="pref_editor">Redaktoriaus parinktys</string>
     <string name="pref_themes">Temos</string>
     <string name="pref_about">Apie</string>
@@ -320,15 +320,15 @@
     <string name="pref_remove_saved_search_terms">Pašalinti paieškos terminus</string>
     <string name="pref_remove_saved_search_terms_summary">Bakstelėkite, jei norite pašalinti visus išsaugotus paieškos terminus</string>
     <string name="pref_remove_saved_search_terms_msg">Visi paieškos terminai pašalinti.</string>
-    <string name="pref_editor_behaviour_category">Elgesys</string>
+    <string name="pref_editor_behaviour_category">Elgsena</string>
     <string name="pref_no_suggestions">Jokių pasiūlymų</string>
     <string name="pref_no_suggestions_desc">Nerodyti žodyno pasiūlymų redaguojant failą</string>
-    <string name="pref_word_wrap">Žodžių laužymas</string>
+    <string name="pref_word_wrap">Žodžio laužymas</string>
     <string name="pref_hexdump">Dvejetainis failas</string>
     <string name="pref_hexdump_desc">Rodyti dvejetainių failų turinį šešioliktainiu formatu.</string>
     <string name="pref_editor_syntax_highlight_category">Sintaksės išryškinimas</string>
     <string name="pref_syntax_highlight">Sintaksės išryškinimas</string>
-    <string name="pref_syntax_highlight_desc">Jei įmanoma, įjungti sintaksės išriškinimą</string>
+    <string name="pref_syntax_highlight_desc">Jei įmanoma, įjungti sintaksės išryškinimą</string>
     <string name="pref_syntax_highlight_color_scheme">Spalvų schema</string>
     <string name="pref_syntax_highlight_color_scheme_desc">Bakstelėkite, kad pasirinktumėte sintaksės paryškinimo spalvų schemą</string>
     <string name="pref_syntax_sh_use_theme_default">Naudoti numatytąją temą</string>
@@ -342,7 +342,7 @@
     <string name="pref_debug_traces">Vesti užrašus apie derinimo informaciją</string>
     <string name="theme_default_name">Šviesi tema</string>
     <string name="theme_default_description">"Šviesi tema „CyanogenMod“ failų tvarkyklei."</string>
-    <string name="themes_author">"„CyanogenMod“"</string>
+    <string name="themes_author">CyanogenMod</string>
     <string name="color_picker_alpha_slider_text">Skaidrumas</string>
     <string name="color_picker_current_text">Dabartinis:</string>
     <string name="color_picker_new_text">Naujas:</string>

@@ -92,7 +92,7 @@
     <!-- The selected setting was not applied or stored -->
     <string name="msgs_settings_save_failure">The setting could not be applied or stored.</string>
     <!-- The initial directory has an invalid or inaccessible reference -->
-    <string name="msgs_settings_invalid_initial_directory">The initial folder\"<xliff:g id="initial_dir">%1$s</xliff:g>\" is invalid. Changing to root folder.</string>
+    <string name="msgs_settings_invalid_initial_directory">The initial folder \u2018<xliff:g id="initial_dir">%1$s</xliff:g>\u2019 is invalid. Changing to root folder.</string>
 
     <!-- Success -->
     <string name="msgs_success">The operation was completed successfully.</string>
@@ -310,8 +310,7 @@
     <!-- Search - Search no results message -->
     <string name="search_no_results_msg">No results found.</string>
     <!-- Search - Number of items found in directory -->
-    <string name="search_found_items_in_directory"><xliff:g id="items">%1$s</xliff:g> in
-    <xliff:g id="path">%2$s</xliff:g></string>
+    <string name="search_found_items_in_directory"><xliff:g id="items">%1$s</xliff:g> in <xliff:g id="path">%2$s</xliff:g></string>
     <!-- Search - Search query terms -->
     <string name="search_terms"><![CDATA[<b>Terms:</b>]]> <xliff:g id="terms">%1$s</xliff:g></string>
     <!-- Search - Confirm search -->
@@ -492,7 +491,7 @@
     <!-- Enter Name Dialog - Message - Empty name -->
     <string name="input_name_dialog_message_empty_name">The name cannot be empty.</string>
     <!-- Enter Name Dialog - Message - Invalid name -->
-    <string name="input_name_dialog_message_invalid_path_name">Invalid name. The characters \'<xliff:g id="invalid_characters">%1$s</xliff:g>\' are not allowed.</string>
+    <string name="input_name_dialog_message_invalid_path_name">Invalid name. The characters \u2018<xliff:g id="invalid_characters">%1$s</xliff:g>\u2019 are not allowed.</string>
     <!-- Enter Name Dialog - Message - Invalid name -->
     <string name="input_name_dialog_message_invalid_name">Invalid name. The names \'.\' and \'..\' are not allowed.</string>
     <!-- Enter Name Dialog - Message - Name exists -->
@@ -523,8 +522,7 @@
     <!-- Execution console - The script exit code label -->
     <string name="execution_console_script_exitcode_label">Exit code:</string>
     <!-- Execution console - The script execution time seconds string -->
-    <string name="execution_console_script_execution_time_text">
-    <xliff:g id="seconds">%1$s</xliff:g> sec.</string>
+    <string name="execution_console_script_execution_time_text"><xliff:g id="seconds">%1$s</xliff:g> sec.</string>
 
     <!-- Compute checksum - Title -->
     <string name="compute_checksum_title">Compute checksum</string>

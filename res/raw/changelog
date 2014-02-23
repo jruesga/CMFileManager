@@ -1,6 +1,10 @@
 CyanogenMod File Manager
 ========================
 
+Version 1.0.2
+-------------
+* move bookmarks and history into a navigation drawer (by Florian Edelmann)
+
 Version 1.0.1
 -------------
 * NFC support

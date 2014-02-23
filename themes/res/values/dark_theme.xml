@@ -72,6 +72,12 @@
     <!-- The highlight color for terms found in the search result -->
     <color name="dark_search_highlight_color">#9933b5e5</color>
 
+    <!-- The background color of the navigation drawer -->
+    <color name="dark_drawer_color">#ff222222</color>
+
+    <!-- The drawer icon -->
+    <drawable name="dark_drawer_icon">@drawable/ic_holo_dark_navigation_drawer</drawable>
+
     <!-- FileSystem locked drawable -->
     <drawable name="dark_filesystem_locked_drawable">@drawable/ic_holo_dark_fs_locked</drawable>
     <!-- FileSystem unlocked drawable -->

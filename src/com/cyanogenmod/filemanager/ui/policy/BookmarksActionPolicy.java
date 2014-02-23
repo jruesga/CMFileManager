@@ -38,7 +38,7 @@ public final class BookmarksActionPolicy extends ActionsPolicy {
      * @param ctx The current context
      * @param fso The file system object
      */
-    public static void addToBookmarks(final Context ctx, final FileSystemObject fso) {
+    public static Bookmark addToBookmarks(final Context ctx, final FileSystemObject fso) {
         try {
             // Create the bookmark
             Bookmark bookmark =
@@ -50,17 +50,20 @@ public final class BookmarksActionPolicy extends ActionsPolicy {
                         ctx,
                         R.string.msgs_operation_failure,
                         Toast.LENGTH_SHORT);
-            } else {
-                // Success
-                DialogHelper.showToast(
-                        ctx,
-                        R.string.bookmarks_msgs_add_success,
-                        Toast.LENGTH_SHORT);
+                return null;
             }
+
+            // Success
+            DialogHelper.showToast(
+                    ctx,
+                    R.string.bookmarks_msgs_add_success,
+                    Toast.LENGTH_SHORT);
+            return bookmark;
 
         } catch (Exception e) {
             ExceptionUtil.translateException(ctx, e);
         }
+        return null;
     }
 
 }

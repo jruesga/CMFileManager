@@ -146,6 +146,7 @@ public class SettingsPreferences extends PreferenceActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
        switch (item.getItemId()) {
           case android.R.id.home:
+              setResult(RESULT_OK);
               finish();
               return true;
           default:

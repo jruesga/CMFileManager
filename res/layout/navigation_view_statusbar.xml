@@ -60,26 +60,6 @@
         android:src="@drawable/ic_holo_light_search"
         android:visibility="invisible" />
 
-      <com.cyanogenmod.filemanager.ui.widgets.ButtonItem
-        android:id="@+id/ab_bookmarks"
-        android:layout_width="@dimen/default_buttom_width"
-        android:layout_height="match_parent"
-        android:layout_toLeftOf="@id/ab_search"
-        android:contentDescription="@string/actionbar_button_bookmarks_cd"
-        android:onClick="onActionBarItemClick"
-        android:src="@drawable/ic_holo_light_bookmarks"
-        android:visibility="invisible" />
-
-      <com.cyanogenmod.filemanager.ui.widgets.ButtonItem
-        android:id="@+id/ab_history"
-        android:layout_width="@dimen/default_buttom_width"
-        android:layout_height="match_parent"
-        android:layout_toLeftOf="@id/ab_bookmarks"
-        android:contentDescription="@string/actionbar_button_history_cd"
-        android:onClick="onActionBarItemClick"
-        android:src="@drawable/ic_holo_light_history"
-        android:visibility="invisible" />
-
     </RelativeLayout>
 
   </RelativeLayout>

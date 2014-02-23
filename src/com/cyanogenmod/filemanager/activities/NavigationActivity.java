@@ -26,28 +26,47 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.res.Configuration;
+import android.content.res.Resources;
+import android.content.res.XmlResourceParser;
+import android.database.Cursor;
+import android.graphics.Typeface;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.nfc.NfcAdapter;
 import android.nfc.NfcEvent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Parcelable;
 import android.os.storage.StorageVolume;
+import android.transition.Visibility;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.ArrayAdapter;
+import android.widget.BaseAdapter;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ListAdapter;
 import android.widget.ListPopupWindow;
+import android.widget.ListView;
 import android.widget.PopupWindow;
+import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.internal.util.XmlUtils;
 import com.cyanogenmod.filemanager.FileManagerApplication;
 import com.cyanogenmod.filemanager.R;
 import com.cyanogenmod.filemanager.activities.preferences.SettingsPreferences;
@@ -61,31 +80,40 @@ import com.cyanogenmod.filemanager.console.InsufficientPermissionsException;
 import com.cyanogenmod.filemanager.console.NoSuchFileOrDirectory;
 import com.cyanogenmod.filemanager.listeners.OnHistoryListener;
 import com.cyanogenmod.filemanager.listeners.OnRequestRefreshListener;
+import com.cyanogenmod.filemanager.model.Bookmark;
 import com.cyanogenmod.filemanager.model.DiskUsage;
 import com.cyanogenmod.filemanager.model.FileSystemObject;
 import com.cyanogenmod.filemanager.model.History;
 import com.cyanogenmod.filemanager.model.MountPoint;
+import com.cyanogenmod.filemanager.model.Bookmark.BOOKMARK_TYPE;
 import com.cyanogenmod.filemanager.parcelables.HistoryNavigable;
 import com.cyanogenmod.filemanager.parcelables.NavigationViewInfoParcelable;
 import com.cyanogenmod.filemanager.parcelables.SearchInfoParcelable;
 import com.cyanogenmod.filemanager.preferences.AccessMode;
+import com.cyanogenmod.filemanager.preferences.Bookmarks;
 import com.cyanogenmod.filemanager.preferences.FileManagerSettings;
 import com.cyanogenmod.filemanager.preferences.NavigationLayoutMode;
 import com.cyanogenmod.filemanager.preferences.ObjectIdentifier;
 import com.cyanogenmod.filemanager.preferences.Preferences;
+import com.cyanogenmod.filemanager.ui.IconHolder;
 import com.cyanogenmod.filemanager.ui.ThemeManager;
 import com.cyanogenmod.filemanager.ui.ThemeManager.Theme;
 import com.cyanogenmod.filemanager.ui.dialogs.ActionsDialog;
 import com.cyanogenmod.filemanager.ui.dialogs.FilesystemInfoDialog;
+import com.cyanogenmod.filemanager.ui.dialogs.InitialDirectoryDialog;
 import com.cyanogenmod.filemanager.ui.dialogs.FilesystemInfoDialog.OnMountListener;
+import com.cyanogenmod.filemanager.ui.widgets.ActionBarDrawerToggle;
 import com.cyanogenmod.filemanager.ui.widgets.Breadcrumb;
 import com.cyanogenmod.filemanager.ui.widgets.ButtonItem;
+import com.cyanogenmod.filemanager.ui.widgets.DrawerLayout;
+import com.cyanogenmod.filemanager.ui.widgets.FlingerListView;
 import com.cyanogenmod.filemanager.ui.widgets.NavigationCustomTitleView;
 import com.cyanogenmod.filemanager.ui.widgets.NavigationView;
 import com.cyanogenmod.filemanager.ui.widgets.NavigationView.OnNavigationRequestMenuListener;
 import com.cyanogenmod.filemanager.ui.widgets.NavigationView.OnNavigationSelectionChangedListener;
 import com.cyanogenmod.filemanager.ui.widgets.SelectionView;
 import com.cyanogenmod.filemanager.util.AndroidHelper;
+import com.cyanogenmod.filemanager.util.BookmarksHelper;
 import com.cyanogenmod.filemanager.util.CommandHelper;
 import com.cyanogenmod.filemanager.util.DialogHelper;
 import com.cyanogenmod.filemanager.util.ExceptionUtil;
@@ -99,6 +127,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Locale;
 
 /**
  * The main navigation activity. This activity is the center of the application.
@@ -120,39 +149,19 @@ public class NavigationActivity extends Activity
 
     private static boolean DEBUG = false;
 
-    /**
-     * Intent code for request a bookmark selection.
-     */
-    public static final int INTENT_REQUEST_BOOKMARK = 10001;
-
-    /**
-     * Intent code for request a history selection.
-     */
-    public static final int INTENT_REQUEST_HISTORY = 20001;
+    // Bookmark list XML tags
+    private static final String TAG_BOOKMARKS = "Bookmarks"; //$NON-NLS-1$
+    private static final String TAG_BOOKMARK = "bookmark"; //$NON-NLS-1$
 
     /**
      * Intent code for request a search.
      */
-    public static final int INTENT_REQUEST_SEARCH = 30001;
-
-
-    /**
-     * Constant for extra information about selected bookmark.
-     */
-    public static final String EXTRA_BOOKMARK_SELECTION =
-            "extra_bookmark_selection"; //$NON-NLS-1$
+    public static final int INTENT_REQUEST_SEARCH = 10001;
 
     /**
-     * Constant for extra information about selected history entry.
+     * Intent code for request a search.
      */
-    public static final String EXTRA_HISTORY_ENTRY_SELECTION =
-            "extra_history_entry_selection"; //$NON-NLS-1$
-
-    /**
-     * Constant for extra information about clear selection action.
-     */
-    public static final String EXTRA_HISTORY_CLEAR =
-            "extra_history_clear_history"; //$NON-NLS-1$
+    public static final int INTENT_REQUEST_SETTINGS = 20001;
 
     /**
      * Constant for extra information about selected search entry.
@@ -297,6 +306,15 @@ public class NavigationActivity extends Activity
     private ViewGroup mActionBar;
     private SelectionView mSelectionBar;
 
+    private DrawerLayout mDrawerLayout;
+    private ScrollView mDrawer;
+    private ActionBarDrawerToggle mDrawerToggle;
+    private LinearLayout mDrawerHistory;
+    private TextView mDrawerHistoryEmpty;
+
+    private List<Bookmark> mBookmarks;
+    private LinearLayout mDrawerBookmarks;
+
     private boolean mExitFlag = false;
     private long mExitBackTimeout = -1;
 
@@ -373,6 +391,10 @@ public class NavigationActivity extends Activity
         initStatusActionBar();
         initSelectionBar();
 
+        // Initialize navigation drawer
+        initDrawer();
+        initBookmarks();
+
         // Adjust layout (only when start on landscape mode)
         int orientation = getResources().getConfiguration().orientation;
         if (orientation == Configuration.ORIENTATION_LANDSCAPE) {
@@ -408,6 +430,13 @@ public class NavigationActivity extends Activity
         super.onCreate(state);
     }
 
+    @Override
+    protected void onPostCreate(Bundle savedInstanceState) {
+        super.onPostCreate(savedInstanceState);
+        // Sync the toggle state after onRestoreInstanceState has occurred.
+        mDrawerToggle.syncState();
+    }
+
     /**
      * {@inheritDoc}
      */
@@ -427,6 +456,7 @@ public class NavigationActivity extends Activity
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
         onLayoutChanged();
+        mDrawerToggle.onConfigurationChanged(newConfig);
     }
 
     /**
@@ -488,9 +518,12 @@ public class NavigationActivity extends Activity
 
         //Display the welcome message?
         if (firstUse) {
-            AlertDialog dialog = DialogHelper.createAlertDialog(
-                this, R.drawable.ic_launcher,
-                R.string.welcome_title, getString(R.string.welcome_msg), false);
+            // open navigation drawer to show user that it exists
+            mDrawerLayout.openDrawer(mDrawer);
+
+            AlertDialog dialog = DialogHelper.createAlertDialog(this,
+                    R.drawable.ic_launcher, R.string.welcome_title,
+                    getString(R.string.welcome_msg), false);
             DialogHelper.delegateDialogShow(this, dialog);
 
             // Don't display again this dialog
@@ -505,6 +538,8 @@ public class NavigationActivity extends Activity
      * Method that initializes the titlebar of the activity.
      */
     private void initTitleActionBar() {
+        getActionBar().setTitle(R.string.app_name);
+
         //Inflate the view and associate breadcrumb
         View titleLayout = getLayoutInflater().inflate(
                 R.layout.navigation_view_customtitle, null, false);
@@ -582,6 +617,504 @@ public class NavigationActivity extends Activity
      */
     private void initSelectionBar() {
         this.mSelectionBar = (SelectionView)findViewById(R.id.navigation_selectionbar);
+    }
+
+    /**
+     * Method that initializes the navigation drawer of the activity.
+     */
+    private void initDrawer() {
+        mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+        mDrawer = (ScrollView) findViewById(R.id.drawer);
+        mDrawerBookmarks = (LinearLayout) findViewById(R.id.bookmarks_list);
+        mDrawerHistory = (LinearLayout) findViewById(R.id.history_list);
+        mDrawerHistoryEmpty = (TextView) findViewById(R.id.history_empty);
+
+        // Set the navigation drawer "hamburger" icon
+        mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout,
+                R.drawable.ic_holo_light_navigation_drawer,
+                R.string.drawer_open, R.string.drawer_close) {
+
+            /** Called when a drawer has settled in a completely closed state. */
+            public void onDrawerClosed(View view) {
+                super.onDrawerClosed(view);
+                getActionBar().setDisplayOptions(
+                        ActionBar.DISPLAY_SHOW_CUSTOM
+                                | ActionBar.DISPLAY_SHOW_HOME);
+                getActionBar().setDisplayHomeAsUpEnabled(true);
+                getActionBar().setHomeButtonEnabled(true);
+                invalidateOptionsMenu(); // creates call to onPrepareOptionsMenu()
+            }
+
+            /** Called when a drawer has settled in a completely open state. */
+            public void onDrawerOpened(View drawerView) {
+                super.onDrawerOpened(drawerView);
+                getActionBar().setDisplayOptions(
+                        ActionBar.DISPLAY_SHOW_TITLE
+                                | ActionBar.DISPLAY_SHOW_HOME);
+                getActionBar().setDisplayHomeAsUpEnabled(true);
+                getActionBar().setHomeButtonEnabled(true);
+
+                // change ActionBar title text color
+                Theme theme = ThemeManager
+                        .getCurrentTheme(NavigationActivity.this);
+                // get ActionBar title TextView id
+                int titleId = Resources.getSystem().getIdentifier(
+                        "action_bar_title", "id", "android");
+                TextView v = (TextView) findViewById(titleId);
+                theme.setTextColor(NavigationActivity.this, v, "text_color"); //$NON-NLS-1$
+
+                invalidateOptionsMenu(); // creates call to onPrepareOptionsMenu()
+            }
+        };
+
+        // Set the drawer toggle as the DrawerListener
+        mDrawerLayout.setDrawerListener(mDrawerToggle);
+
+        getActionBar().setDisplayHomeAsUpEnabled(true);
+        getActionBar().setHomeButtonEnabled(true);
+    }
+
+    /**
+     * Method adds a history entry to the history list in the drawer
+     */
+    private void addHistoryToDrawer(int index, HistoryNavigable navigable) {
+        // hide empty message
+        mDrawerHistoryEmpty.setVisibility(View.GONE);
+
+        Theme theme = ThemeManager.getCurrentTheme(this);
+        IconHolder iconholder = new IconHolder(this, false);
+
+        // inflate single bookmark layout item and fill it
+        LinearLayout view = (LinearLayout) getLayoutInflater().inflate(
+                R.layout.history_item, null);
+
+        ImageView iconView = (ImageView) view
+                .findViewById(R.id.history_item_icon);
+        TextView name = (TextView) view.findViewById(R.id.history_item_name);
+        TextView directory = (TextView) view
+                .findViewById(R.id.history_item_directory);
+        TextView position = (TextView) view
+                .findViewById(R.id.history_item_position);
+
+        // if (history.getItem() instanceof NavigationViewInfoParcelable)
+        Drawable icon = iconholder.getDrawable("ic_fso_folder_drawable"); //$NON-NLS-1$
+        if (navigable instanceof SearchInfoParcelable) {
+            icon = iconholder.getDrawable("ic_history_search_drawable"); //$NON-NLS-1$
+        }
+        iconView.setImageDrawable(icon);
+
+        String title = navigable.getTitle();
+        if (title == null || title.trim().length() == 0) {
+            title = getString(R.string.root_directory_name);
+        }
+
+        name.setText(title);
+        directory.setText(navigable.getDescription());
+        position.setText(String.format("#%d", index + 1));
+
+        theme.setTextColor(this, name, "text_color");
+        theme.setTextColor(this, directory, "text_color");
+        theme.setTextColor(this, position, "text_color");
+
+        // handle item click
+        view.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final int index = mDrawerHistory.indexOfChild(v);
+                final int count = mDrawerHistory.getChildCount();
+                final History history = mHistory.get(count - index - 1);
+
+                navigateToHistory(history);
+                mDrawerLayout.closeDrawer(mDrawer);
+            }
+        });
+
+        // add as first child
+        mDrawerHistory.addView(view, 0);
+    }
+
+    /**
+     * Method takes a bookmark as argument and adds it to mBookmarks and the
+     * list in the drawer
+     */
+    public void addBookmark(Bookmark bookmark) {
+        mBookmarks.add(bookmark);
+        addBookmarkToDrawer(bookmark);
+    }
+
+    /**
+     * Method takes a bookmark as argument and adds it to the bookmark list in
+     * the drawer
+     */
+    private void addBookmarkToDrawer(Bookmark bookmark) {
+        Theme theme = ThemeManager.getCurrentTheme(this);
+        IconHolder iconholder = new IconHolder(this, false);
+
+        // inflate single bookmark layout item and fill it
+        LinearLayout view = (LinearLayout) getLayoutInflater().inflate(
+                R.layout.bookmarks_item, null);
+
+        ImageView icon = (ImageView) view
+                .findViewById(R.id.bookmarks_item_icon);
+        TextView name = (TextView) view.findViewById(R.id.bookmarks_item_name);
+        TextView path = (TextView) view.findViewById(R.id.bookmarks_item_path);
+        ImageButton actionButton = (ImageButton) view
+                .findViewById(R.id.bookmarks_item_action);
+
+        name.setText(bookmark.mName);
+        path.setText(bookmark.mPath);
+
+        theme.setTextColor(this, name, "text_color");
+        theme.setTextColor(this, path, "text_color");
+
+        icon.setImageDrawable(iconholder.getDrawable(BookmarksHelper
+                .getIcon(bookmark)));
+
+        Drawable action = null;
+        String actionCd = null;
+        if (bookmark.mType.compareTo(BOOKMARK_TYPE.HOME) == 0) {
+            action = iconholder.getDrawable("ic_config_drawable"); //$NON-NLS-1$
+            actionCd = getApplicationContext().getString(
+                    R.string.bookmarks_button_config_cd);
+        }
+        else if (bookmark.mType.compareTo(BOOKMARK_TYPE.USER_DEFINED) == 0) {
+            action = iconholder.getDrawable("ic_close_drawable"); //$NON-NLS-1$
+            actionCd = getApplicationContext().getString(
+                    R.string.bookmarks_button_remove_bookmark_cd);
+        }
+
+        actionButton.setImageDrawable(action);
+        actionButton.setVisibility(action != null ? View.VISIBLE : View.GONE);
+        actionButton.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                final View v = (View) view.getParent();
+                final int index = mDrawerBookmarks.indexOfChild(v);
+                final Bookmark bookmark = mBookmarks.get(index);
+
+                // Configure home
+                if (bookmark.mType.compareTo(BOOKMARK_TYPE.HOME) == 0) {
+                    // Show a dialog for configure initial directory
+                    InitialDirectoryDialog dialog = new InitialDirectoryDialog(
+                            NavigationActivity.this);
+                    dialog.setOnValueChangedListener(new InitialDirectoryDialog.OnValueChangedListener() {
+                        @Override
+                        public void onValueChanged(String newInitialDir) {
+                            bookmark.mPath = newInitialDir;
+
+                            // reset drawer bookmarks list
+                            initBookmarks();
+                        }
+                    });
+                    dialog.show();
+                    return;
+                }
+
+                // Remove bookmark
+                if (bookmark.mType.compareTo(BOOKMARK_TYPE.USER_DEFINED) == 0) {
+                    boolean result = Bookmarks.removeBookmark(
+                            getApplicationContext(), bookmark);
+                    if (!result) { // Show warning
+                        DialogHelper.showToast(getApplicationContext(),
+                                R.string.msgs_operation_failure,
+                                Toast.LENGTH_SHORT);
+                        return;
+                    }
+                    mBookmarks.remove(bookmark);
+                    mDrawerBookmarks.removeView(v);
+                    return;
+                }
+            }
+        });
+        actionButton.setContentDescription(actionCd);
+
+        // handle item click
+        view.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final int index = mDrawerBookmarks.indexOfChild(v);
+                final Bookmark bookmark = mBookmarks.get(index);
+
+                // try to navigate to the bookmark path
+                try {
+                    FileSystemObject fso = CommandHelper.getFileInfo(
+                            getApplicationContext(), bookmark.mPath, null);
+                    if (fso != null) {
+                        getCurrentNavigationView().open(fso);
+                        mDrawerLayout.closeDrawer(mDrawer);
+                    }
+                    else {
+                        // The bookmark does not exist, delete the user-defined
+                        // bookmark
+                        try {
+                            Bookmarks.removeBookmark(getApplicationContext(),
+                                    bookmark);
+
+                            // reset bookmarks list to default
+                            initBookmarks();
+                        }
+                        catch (Exception ex) {
+                        }
+                    }
+                }
+                catch (Exception e) { // Capture the exception
+                    ExceptionUtil
+                            .translateException(NavigationActivity.this, e);
+                    if (e instanceof NoSuchFileOrDirectory
+                            || e instanceof FileNotFoundException) {
+                        // The bookmark does not exist, delete the user-defined
+                        // bookmark
+                        try {
+                            Bookmarks.removeBookmark(getApplicationContext(),
+                                    bookmark);
+
+                            // reset bookmarks list to default
+                            initBookmarks();
+                        }
+                        catch (Exception ex) {
+                        }
+                    }
+                    return;
+                }
+            }
+        });
+
+        mDrawerBookmarks.addView(view);
+    }
+
+    /**
+     * Method that initializes the bookmarks.
+     */
+    private void initBookmarks() {
+        // Retrieve the loading view
+        final View waiting = findViewById(R.id.bookmarks_loading);
+
+        // Load bookmarks in background
+        AsyncTask<Void, Void, Boolean> task = new AsyncTask<Void, Void, Boolean>() {
+            Exception mCause;
+
+            @Override
+            protected Boolean doInBackground(Void... params) {
+                try {
+                    mBookmarks = loadBookmarks();
+                    return Boolean.TRUE;
+
+                }
+                catch (Exception e) {
+                    this.mCause = e;
+                    return Boolean.FALSE;
+                }
+            }
+
+            @Override
+            protected void onPreExecute() {
+                waiting.setVisibility(View.VISIBLE);
+                mDrawerBookmarks.removeAllViews();
+            }
+
+            @Override
+            protected void onPostExecute(Boolean result) {
+                waiting.setVisibility(View.GONE);
+                if (result.booleanValue()) {
+                    for (Bookmark bookmark : mBookmarks) {
+                        addBookmarkToDrawer(bookmark);
+                    }
+                }
+                else {
+                    if (this.mCause != null) {
+                        ExceptionUtil.translateException(
+                                NavigationActivity.this, this.mCause);
+                    }
+                }
+            }
+
+            @Override
+            protected void onCancelled() {
+                waiting.setVisibility(View.GONE);
+            }
+        };
+        task.execute();
+    }
+
+    /**
+     * Method that loads all kind of bookmarks and join in an array to be used
+     * in the listview adapter.
+     *
+     * @return List<Bookmark>
+     * @hide
+     */
+    List<Bookmark> loadBookmarks() {
+        // Bookmarks = HOME + FILESYSTEM + SD STORAGES + USER DEFINED
+        // In ChRooted mode = SD STORAGES + USER DEFINED (from SD STORAGES)
+        List<Bookmark> bookmarks = new ArrayList<Bookmark>();
+        if (!this.mChRooted) {
+            bookmarks.add(loadHomeBookmarks());
+            bookmarks.addAll(loadFilesystemBookmarks());
+        }
+        bookmarks.addAll(loadSdStorageBookmarks());
+        bookmarks.addAll(loadUserBookmarks());
+        return bookmarks;
+    }
+
+    /**
+     * Method that loads the home bookmark from the user preference.
+     *
+     * @return Bookmark The bookmark loaded
+     */
+    private Bookmark loadHomeBookmarks() {
+        String initialDir = Preferences.getSharedPreferences().getString(
+                FileManagerSettings.SETTINGS_INITIAL_DIR.getId(),
+                (String) FileManagerSettings.SETTINGS_INITIAL_DIR
+                        .getDefaultValue());
+        return new Bookmark(BOOKMARK_TYPE.HOME,
+                getString(R.string.bookmarks_home), initialDir);
+    }
+
+    /**
+     * Method that loads the filesystem bookmarks from the internal xml file.
+     * (defined by this application)
+     *
+     * @return List<Bookmark> The bookmarks loaded
+     */
+    private List<Bookmark> loadFilesystemBookmarks() {
+        try {
+            // Initialize the bookmarks
+            List<Bookmark> bookmarks = new ArrayList<Bookmark>();
+
+            // Read the command list xml file
+            XmlResourceParser parser = getResources().getXml(
+                    R.xml.filesystem_bookmarks);
+
+            try {
+                // Find the root element
+                XmlUtils.beginDocument(parser, TAG_BOOKMARKS);
+                while (true) {
+                    XmlUtils.nextElement(parser);
+                    String element = parser.getName();
+                    if (element == null) {
+                        break;
+                    }
+
+                    if (TAG_BOOKMARK.equals(element)) {
+                        CharSequence name = null;
+                        CharSequence directory = null;
+
+                        try {
+                            name = getString(parser.getAttributeResourceValue(
+                                    R.styleable.Bookmark_name, 0));
+                        }
+                        catch (Exception e) {
+                            /** NON BLOCK **/
+                        }
+                        try {
+                            directory = getString(parser
+                                    .getAttributeResourceValue(
+                                            R.styleable.Bookmark_directory, 0));
+                        }
+                        catch (Exception e) {
+                            /** NON BLOCK **/
+                        }
+                        if (directory == null) {
+                            directory = parser
+                                    .getAttributeValue(R.styleable.Bookmark_directory);
+                        }
+                        if (name != null && directory != null) {
+                            bookmarks.add(new Bookmark(
+                                    BOOKMARK_TYPE.FILESYSTEM, name.toString(),
+                                    directory.toString()));
+                        }
+                    }
+                }
+
+                // Return the bookmarks
+                return bookmarks;
+
+            }
+            finally {
+                parser.close();
+            }
+        }
+        catch (Throwable ex) {
+            Log.e(TAG, "Load filesystem bookmarks failed", ex); //$NON-NLS-1$
+        }
+
+        // No data
+        return new ArrayList<Bookmark>();
+    }
+
+    /**
+     * Method that loads the secure digital card storage bookmarks from the
+     * system.
+     *
+     * @return List<Bookmark> The bookmarks loaded
+     */
+    private List<Bookmark> loadSdStorageBookmarks() {
+        // Initialize the bookmarks
+        List<Bookmark> bookmarks = new ArrayList<Bookmark>();
+
+        try {
+            // Recovery sdcards from storage manager
+            StorageVolume[] volumes = StorageHelper
+                    .getStorageVolumes(getApplication());
+            int cc = volumes.length;
+            for (int i = 0; i < cc; i++) {
+                if (volumes[i].getPath().toLowerCase(Locale.ROOT)
+                        .indexOf("usb") != -1) { //$NON-NLS-1$
+                    bookmarks.add(new Bookmark(BOOKMARK_TYPE.USB, StorageHelper
+                            .getStorageVolumeDescription(getApplication(),
+                                    volumes[i]), volumes[i].getPath()));
+                }
+                else {
+                    bookmarks.add(new Bookmark(BOOKMARK_TYPE.SDCARD,
+                            StorageHelper.getStorageVolumeDescription(
+                                    getApplication(), volumes[i]), volumes[i]
+                                    .getPath()));
+                }
+            }
+
+            // Return the bookmarks
+            return bookmarks;
+        }
+        catch (Throwable ex) {
+            Log.e(TAG, "Load filesystem bookmarks failed", ex); //$NON-NLS-1$
+        }
+
+        // No data
+        return new ArrayList<Bookmark>();
+    }
+
+    /**
+     * Method that loads the user bookmarks (added by the user).
+     *
+     * @return List<Bookmark> The bookmarks loaded
+     */
+    private List<Bookmark> loadUserBookmarks() {
+        List<Bookmark> bookmarks = new ArrayList<Bookmark>();
+        Cursor cursor = Bookmarks.getAllBookmarks(this.getContentResolver());
+        try {
+            if (cursor != null && cursor.moveToFirst()) {
+                do {
+                    Bookmark bm = new Bookmark(cursor);
+                    if (this.mChRooted
+                            && !StorageHelper.isPathInStorageVolume(bm.mPath)) {
+                        continue;
+                    }
+                    bookmarks.add(bm);
+                }
+                while (cursor.moveToNext());
+            }
+        }
+        finally {
+            try {
+                if (cursor != null) {
+                    cursor.close();
+                }
+            }
+            catch (Exception e) {
+                /** NON BLOCK **/
+            }
+        }
+        return bookmarks;
     }
 
     /**
@@ -820,16 +1353,58 @@ public class NavigationActivity extends Activity
      */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-       switch (item.getItemId()) {
-          case android.R.id.home:
-              if ((getActionBar().getDisplayOptions() & ActionBar.DISPLAY_HOME_AS_UP)
-                      == ActionBar.DISPLAY_HOME_AS_UP) {
-                  checkBackAction();
-              }
-              return true;
-          default:
-             return super.onOptionsItemSelected(item);
-       }
+        // Pass the event to ActionBarDrawerToggle, if it returns
+        // true, then it has handled the app icon touch event
+        if (mDrawerToggle.onOptionsItemSelected(item)) {
+            return true;
+        }
+
+        // just handle the drawer list here
+        switch (item.getItemId()) {
+            case R.id.mnu_actions_add_to_bookmarks_current_folder:
+                // TODO add bookmark
+                Log.d(TAG, "add bookmark");
+                return true;
+            case R.id.mnu_clear_history:
+                clearHistory();
+                return true;
+            case R.id.mnu_settings:
+                openSettings();
+                return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+    /**
+     * Called when the menu is created. Just includes the drawer's overflow
+     * menu. All entries are hidden until onPrepareOptionsMenu unhides them.
+     */
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.drawer, menu);
+        return true;
+    }
+
+    /**
+     * Called whenever we call invalidateOptionsMenu()
+     */
+    @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+        boolean drawerOpen = mDrawerLayout.isDrawerOpen(mDrawer);
+
+        for (int i = 0; i < menu.size(); i++) {
+            // show all items if drawer is open,
+            // hide them if not
+            menu.getItem(i).setVisible(drawerOpen);
+
+            if (menu.getItem(i).getItemId() == R.id.mnu_clear_history) {
+                menu.getItem(i).setEnabled(mHistory.size() > 0);
+            }
+        }
+
+        return super.onPrepareOptionsMenu(menu);
     }
 
     /**
@@ -907,15 +1482,8 @@ public class NavigationActivity extends Activity
             //Action Bar buttons
             //######################
             case R.id.ab_actions:
-                openActionsDialog(getCurrentNavigationView().getCurrentDir(), true);
-                break;
-
-            case R.id.ab_bookmarks:
-                openBookmarks();
-                break;
-
-            case R.id.ab_history:
-                openHistory();
+                openActionsDialog(getCurrentNavigationView().getCurrentDir(),
+                        true);
                 break;
 
             case R.id.ab_search:
@@ -936,34 +1504,15 @@ public class NavigationActivity extends Activity
      */
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == INTENT_REQUEST_SETTINGS) {
+            // reset bookmarks list to default as the user could changed the
+            // root mode which changes the system bookmarks
+            initBookmarks();
+            return;
+        }
+
         if (data != null) {
             switch (requestCode) {
-                case INTENT_REQUEST_BOOKMARK:
-                    if (resultCode == RESULT_OK) {
-                        FileSystemObject fso =
-                                (FileSystemObject)data.
-                                    getSerializableExtra(EXTRA_BOOKMARK_SELECTION);
-                        if (fso != null) {
-                            //Open the fso
-                            getCurrentNavigationView().open(fso);
-                        }
-                    }
-                    break;
-
-                case INTENT_REQUEST_HISTORY:
-                    if (resultCode == RESULT_OK) {
-                        //Change current directory
-                        History history =
-                                (History)data.getSerializableExtra(EXTRA_HISTORY_ENTRY_SELECTION);
-                        navigateToHistory(history);
-                    } else if (resultCode == RESULT_CANCELED) {
-                        boolean clear = data.getBooleanExtra(EXTRA_HISTORY_CLEAR, false);
-                        if (clear) {
-                            clearHistory();
-                        }
-                    }
-                    break;
-
                 case INTENT_REQUEST_SEARCH:
                     if (resultCode == RESULT_OK) {
                         //Change directory?
@@ -988,6 +1537,9 @@ public class NavigationActivity extends Activity
                             getCurrentNavigationView().refresh(true);
                         }
                     }
+                    // reset bookmarks list to default as the user could have set a
+                    // new bookmark in the search activity
+                    initBookmarks();
                     break;
 
                 default:
@@ -1001,11 +1553,10 @@ public class NavigationActivity extends Activity
      */
     @Override
     public void onNewHistory(HistoryNavigable navigable) {
+        addHistoryToDrawer(this.mHistory.size(), navigable);
         //Recollect information about current status
         History history = new History(this.mHistory.size(), navigable);
         this.mHistory.add(history);
-        getActionBar().setDisplayHomeAsUpEnabled(true);
-        getActionBar().setHomeButtonEnabled(true);
     }
 
     /**
@@ -1013,10 +1564,6 @@ public class NavigationActivity extends Activity
      */
     @Override
     public void onCheckHistory() {
-        //Need to show HomeUp Button
-        boolean enabled = this.mHistory != null && this.mHistory.size() > 0;
-        getActionBar().setDisplayHomeAsUpEnabled(enabled);
-        getActionBar().setHomeButtonEnabled(enabled);
     }
 
     /**
@@ -1184,21 +1731,7 @@ public class NavigationActivity extends Activity
                         switch (itemId) {
                             case R.id.mnu_settings:
                                 //Settings
-                                Intent settings = new Intent(
-                                        NavigationActivity.this, SettingsPreferences.class);
-                                startActivity(settings);
-                                break;
-
-                            case R.id.mnu_history:
-                                //History
-                                openHistory();
-                                popup.dismiss();
-                                break;
-
-                            case R.id.mnu_bookmarks:
-                                //Bookmarks
-                                openBookmarks();
-                                popup.dismiss();
+                                openSettings();
                                 break;
 
                             case R.id.mnu_search:
@@ -1307,7 +1840,8 @@ public class NavigationActivity extends Activity
      */
     private void clearHistory() {
         this.mHistory.clear();
-        onCheckHistory();
+        mDrawerHistory.removeAllViews();
+        mDrawerHistoryEmpty.setVisibility(View.VISIBLE);
     }
 
     /**
@@ -1350,10 +1884,11 @@ public class NavigationActivity extends Activity
             int cc = realHistory.getPosition();
             for (int i = this.mHistory.size() - 1; i >= cc; i--) {
                 this.mHistory.remove(i);
+                mDrawerHistory.removeViewAt(0);
             }
-            if (this.mHistory.size() == 0) {
-                getActionBar().setDisplayHomeAsUpEnabled(false);
-                getActionBar().setHomeButtonEnabled(false);
+
+            if (mDrawerHistory.getChildCount() == 0) {
+                mDrawerHistoryEmpty.setVisibility(View.VISIBLE);
             }
 
             //Navigate
@@ -1460,35 +1995,15 @@ public class NavigationActivity extends Activity
         }
 
         // Show the dialog
-        ActionsDialog dialog = new ActionsDialog(this, fso, global, false);
+        ActionsDialog dialog = new ActionsDialog(this, this, fso, global, false);
         dialog.setOnRequestRefreshListener(this);
         dialog.setOnSelectionListener(getCurrentNavigationView());
         dialog.show();
     }
 
     /**
-     * Method that opens the bookmarks activity.
-     * @hide
-     */
-    void openBookmarks() {
-        Intent bookmarksIntent = new Intent(this, BookmarksActivity.class);
-        bookmarksIntent.addFlags(Intent.FLAG_ACTIVITY_TASK_ON_HOME);
-        startActivityForResult(bookmarksIntent, INTENT_REQUEST_BOOKMARK);
-    }
-
-    /**
-     * Method that opens the history activity.
-     * @hide
-     */
-    void openHistory() {
-        Intent historyIntent = new Intent(this, HistoryActivity.class);
-        historyIntent.putExtra(HistoryActivity.EXTRA_HISTORY_LIST, (Serializable)this.mHistory);
-        historyIntent.addFlags(Intent.FLAG_ACTIVITY_TASK_ON_HOME);
-        startActivityForResult(historyIntent, INTENT_REQUEST_HISTORY);
-    }
-
-    /**
      * Method that opens the search activity.
+     *
      * @hide
      */
     void openSearch() {
@@ -1496,9 +2011,21 @@ public class NavigationActivity extends Activity
     }
 
     /**
+     * Method that opens the settings activity.
+     *
+     * @hide
+     */
+    void openSettings() {
+        Intent settingsIntent = new Intent(NavigationActivity.this,
+                SettingsPreferences.class);
+        startActivityForResult(settingsIntent, INTENT_REQUEST_SETTINGS);
+    }
+
+    /**
      * Method that remove the {@link FileSystemObject} from the history
      */
     private void removeFromHistory(FileSystemObject fso) {
+        // TODO remove drawer entry here, too
         if (this.mHistory != null) {
             int cc = this.mHistory.size();
             for (int i = cc-1; i >= 0 ; i--) {
@@ -1631,11 +2158,17 @@ public class NavigationActivity extends Activity
      */
     private void onLayoutChanged() {
         Theme theme = ThemeManager.getCurrentTheme(this);
+        boolean drawerOpen = mDrawerLayout.isDrawerOpen(mDrawer);
 
         // Apply only when the orientation was changed
         int orientation = getResources().getConfiguration().orientation;
         if (this.mOrientation == orientation) return;
         this.mOrientation = orientation;
+
+        // imitate a closed drawer while layout is rebuilt to avoid NullPointerException
+        if (drawerOpen) {
+            mDrawerToggle.onDrawerClosed(mDrawer);
+        }
 
         if (this.mOrientation == Configuration.ORIENTATION_LANDSCAPE) {
             // Landscape mode
@@ -1702,6 +2235,11 @@ public class NavigationActivity extends Activity
             // Show holder
             newParent.setVisibility(View.VISIBLE);
         }
+
+        // if drawer was open, imitate reopening
+        if (drawerOpen) {
+            mDrawerToggle.onDrawerOpened(mDrawer);
+        }
     }
 
     /**
@@ -1713,11 +2251,19 @@ public class NavigationActivity extends Activity
         Theme theme = ThemeManager.getCurrentTheme(this);
         theme.setBaseTheme(this, false);
 
+        // imitate a closed drawer while layout is rebuilt to avoid NullPointerException
+        boolean drawerOpen = mDrawerLayout.isDrawerOpen(mDrawer);
+        if (drawerOpen) {
+            mDrawerToggle.onDrawerClosed(mDrawer);
+        }
+
         //- Layout
         View v = findViewById(R.id.navigation_layout);
         theme.setBackgroundDrawable(this, v, "background_drawable"); //$NON-NLS-1$
+
         //- ActionBar
         theme.setTitlebarDrawable(this, getActionBar(), "titlebar_drawable"); //$NON-NLS-1$
+
         //- StatusBar
         v = findViewById(R.id.navigation_statusbar);
         if (orientation == Configuration.ORIENTATION_LANDSCAPE) {
@@ -1731,10 +2277,7 @@ public class NavigationActivity extends Activity
         theme.setImageDrawable(this, (ImageView)v, "ab_actions_drawable"); //$NON-NLS-1$
         v = findViewById(R.id.ab_search);
         theme.setImageDrawable(this, (ImageView)v, "ab_search_drawable"); //$NON-NLS-1$
-        v = findViewById(R.id.ab_bookmarks);
-        theme.setImageDrawable(this, (ImageView)v, "ab_bookmarks_drawable"); //$NON-NLS-1$
-        v = findViewById(R.id.ab_history);
-        theme.setImageDrawable(this, (ImageView)v, "ab_history_drawable"); //$NON-NLS-1$
+
         //- Expanders
         v = findViewById(R.id.ab_configuration);
         theme.setImageDrawable(this, (ImageView)v, "expander_open_drawable"); //$NON-NLS-1$
@@ -1746,6 +2289,7 @@ public class NavigationActivity extends Activity
         theme.setImageDrawable(this, (ImageView)v, "ab_layout_mode_drawable"); //$NON-NLS-1$
         v = findViewById(R.id.ab_view_options);
         theme.setImageDrawable(this, (ImageView)v, "ab_view_options_drawable"); //$NON-NLS-1$
+
         //- SelectionBar
         v = findViewById(R.id.navigation_selectionbar);
         theme.setBackgroundDrawable(this, v, "selectionbar_drawable"); //$NON-NLS-1$
@@ -1753,10 +2297,37 @@ public class NavigationActivity extends Activity
         theme.setImageDrawable(this, (ImageView)v, "ab_selection_done_drawable"); //$NON-NLS-1$
         v = findViewById(R.id.navigation_status_selection_label);
         theme.setTextColor(this, (TextView)v, "text_color"); //$NON-NLS-1$
+
+        // - Navigation drawer
+        theme.setBackgroundColor(this, mDrawer, "drawer_color");
+        v = findViewById(R.id.bookmarks_header);
+        theme.setTextColor(this, (TextView)v, "text_color"); //$NON-NLS-1$
+        v = findViewById(R.id.history_header);
+        theme.setTextColor(this, (TextView)v, "text_color"); //$NON-NLS-1$
+        v = findViewById(R.id.history_empty);
+        theme.setTextColor(this, (TextView)v, "text_color"); //$NON-NLS-1$
+        mDrawerToggle.setDrawerImageResource(theme.getResourceId(this, "drawer_icon"));
+
+        for (int i=0; i<mDrawerHistory.getChildCount(); i++) {
+            View item = mDrawerHistory.getChildAt(i);
+
+            v = item.findViewById(R.id.history_item_name);
+            theme.setTextColor(this, (TextView)v, "text_color"); //$NON-NLS-1$
+            v = item.findViewById(R.id.history_item_directory);
+            theme.setTextColor(this, (TextView)v, "text_color"); //$NON-NLS-1$
+            v = item.findViewById(R.id.history_item_position);
+            theme.setTextColor(this, (TextView)v, "text_color"); //$NON-NLS-1$
+        }
+
         //- NavigationView
         int cc = this.mNavigationViews.length;
         for (int i = 0; i < cc; i++) {
             getNavigationView(i).applyTheme();
+        }
+
+        // if drawer was open, imitate reopening
+        if (drawerOpen) {
+            mDrawerToggle.onDrawerOpened(mDrawer);
         }
     }
 

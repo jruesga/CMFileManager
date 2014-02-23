@@ -18,14 +18,6 @@
 
   <!-- Actions -->
   <item
-    android:id="@+id/mnu_history"
-    android:showAsAction="ifRoom"
-    android:title="@string/menu_history"/>
-  <item
-    android:id="@+id/mnu_bookmarks"
-    android:showAsAction="ifRoom"
-    android:title="@string/menu_bookmarks"/>
-  <item
     android:id="@+id/mnu_search"
     android:showAsAction="ifRoom"
     android:title="@string/menu_search"/>

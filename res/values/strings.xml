@@ -722,6 +722,10 @@
     <!-- Themes - Default theme author -->
     <string name="themes_author">CyanogenMod</string>
 
+    <!-- Navigation drawer -->
+    <string name="drawer_open">Open navigation drawer</string>
+    <string name="drawer_close">Close navigation drawer</string>
+
     <!-- ColorPickerDialog -->
     <!-- The text of the alpha slider control -->
     <string name="color_picker_alpha_slider_text">Alpha</string>

@@ -83,6 +83,12 @@
     <!-- The highlight color for terms found in the search result -->
     <color name="search_highlight_color">@color/search_highlight</color>
 
+    <!-- The background color of the navigation drawer -->
+    <color name="drawer_color">#ffffffff</color>
+
+    <!-- The drawer icon -->
+    <drawable name="drawer_icon">@drawable/ic_holo_light_navigation_drawer</drawable>
+
     <!-- The breadcrumb divider drawable -->
     <drawable name="breadcrumb_divider_drawable">@drawable/ic_holo_light_breadcrumb_divider</drawable>
 

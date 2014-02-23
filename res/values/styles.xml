@@ -15,16 +15,14 @@
      limitations under the License.
 -->
 
-<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2" xmlns:android="http://schemas.android.com/apk/res/android">
+
     <!-- Base themes -->
     <style name="FileManager.Theme.Holo.Light" parent="@android:style/Theme.Holo.Light">
         <item name="android:windowBackground">@color/default_background</item>
         <item name="android:actionBarStyle">@style/FileManager.Widget.ActionBar.White</item>
-        <item name="android:homeAsUpIndicator">@drawable/ic_ab_back_holo_light</item>
     </style>
-    <style name="FileManager.Theme.Holo" parent="@android:style/Theme.Holo">
-        <item name="android:homeAsUpIndicator">@drawable/ic_ab_back_holo_light</item>
-    </style>
+    <style name="FileManager.Theme.Holo" parent="@android:style/Theme.Holo"></style>
 
     <!-- A theme with overlay -->
     <style name="FileManager.Theme.Holo.Light.Overlay" parent="@style/FileManager.Theme.Holo.Light">
@@ -113,7 +111,7 @@
         <item name="android:minWidth">@dimen/breadcrumb_item_min_size</item>
     </style>
 
-  <!-- Breadcrumb ActionBar buttom -->
+    <!-- Breadcrumb ActionBar buttom -->
     <style name="breadcrumb_actionbar_buttom">
         <item name="android:paddingLeft">@dimen/extra_margin</item>
         <item name="android:paddingRight">@dimen/default_margin</item>
@@ -140,4 +138,14 @@
         <item name="android:layout_marginRight">@dimen/default_margin</item>
         <item name="android:background">@color/divider_color</item>
     </style>
+
+    <!-- Navigation drawer -->
+    <style name="drawer_header">
+        <item name="android:padding">@dimen/default_margin</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:textSize">@dimen/primary_text_size</item>
+        <item name="android:textColor">@color/black_transparent</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
 </resources>

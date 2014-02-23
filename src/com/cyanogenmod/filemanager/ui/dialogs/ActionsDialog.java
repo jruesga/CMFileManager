@@ -34,9 +34,11 @@ import android.widget.Toast;
 
 import com.cyanogenmod.filemanager.FileManagerApplication;
 import com.cyanogenmod.filemanager.R;
+import com.cyanogenmod.filemanager.activities.NavigationActivity;
 import com.cyanogenmod.filemanager.adapters.TwoColumnsMenuListAdapter;
 import com.cyanogenmod.filemanager.listeners.OnRequestRefreshListener;
 import com.cyanogenmod.filemanager.listeners.OnSelectionListener;
+import com.cyanogenmod.filemanager.model.Bookmark;
 import com.cyanogenmod.filemanager.model.FileSystemObject;
 import com.cyanogenmod.filemanager.model.Symlink;
 import com.cyanogenmod.filemanager.model.SystemFile;
@@ -74,6 +76,7 @@ public class ActionsDialog implements OnItemClickListener, OnItemLongClickListen
      * @hide
      */
     final Context mContext;
+    final NavigationActivity mBackRef;
     private final boolean mGlobal;
     private final boolean mSearch;
     private final boolean mChRooted;
@@ -105,12 +108,14 @@ public class ActionsDialog implements OnItemClickListener, OnItemLongClickListen
      * @param global If the menu to display will be the global one (Global actions)
      * @param search If the call is from search activity
      */
-    public ActionsDialog(Context context, FileSystemObject fso, boolean global, boolean search) {
+    public ActionsDialog(Context context, NavigationActivity backRef, FileSystemObject fso,
+            boolean global, boolean search) {
         super();
 
         //Save the data
         this.mFso = fso;
         this.mContext = context;
+        this.mBackRef = backRef;
         this.mGlobal = global;
         this.mSearch = search;
         this.mChRooted = FileManagerApplication.getAccessMode().compareTo(AccessMode.SAFE) == 0;
@@ -386,7 +391,12 @@ public class ActionsDialog implements OnItemClickListener, OnItemLongClickListen
             //- Add to bookmarks
             case R.id.mnu_actions_add_to_bookmarks:
             case R.id.mnu_actions_add_to_bookmarks_current_folder:
-                BookmarksActionPolicy.addToBookmarks(this.mContext, this.mFso);
+                Bookmark bookmark = BookmarksActionPolicy.addToBookmarks(
+                        this.mContext, this.mFso);
+                if (mBackRef != null) {
+                    // tell NavigationActivity's drawer to add the bookmark
+                    mBackRef.addBookmark(bookmark);
+                }
                 break;
 
             //- Add shortcut

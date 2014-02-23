@@ -933,7 +933,7 @@ public class SearchActivity extends Activity
             return;
         }
 
-        ActionsDialog dialog = new ActionsDialog(this, fso, false, true);
+        ActionsDialog dialog = new ActionsDialog(this, null, fso, false, true);
         dialog.setOnRequestRefreshListener(this);
         dialog.show();
     }

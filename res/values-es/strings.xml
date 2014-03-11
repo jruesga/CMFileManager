@@ -349,6 +349,8 @@
     <string name="theme_default_name">Tema claro</string>
     <string name="theme_default_description">Un tema en colores claros para File Manager.</string>
     <string name="themes_author">CyanogenMod</string>
+    <string name="drawer_open">Abrir panel de navegación</string>
+    <string name="drawer_close">Cerrar panel de navegación</string>
     <string name="color_picker_alpha_slider_text">Transparencia</string>
     <string name="color_picker_current_text">Actual:</string>
     <string name="color_picker_new_text">Nuevo:</string>

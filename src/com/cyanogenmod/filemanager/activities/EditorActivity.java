@@ -534,6 +534,10 @@ public class EditorActivity extends Activity implements TextWatcher {
         // Generate a random separator
         this.mHexLineSeparator = UUID.randomUUID().toString();
 
+        // Set the theme before setContentView
+        Theme theme = ThemeManager.getCurrentTheme(this);
+        theme.setBaseTheme(this, false);
+
         //Set the main layout of the activity
         setContentView(R.layout.editor);
 

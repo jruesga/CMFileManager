@@ -69,6 +69,7 @@ public class ChangeLogActivity extends Activity implements OnCancelListener, OnD
         IntentFilter filter = new IntentFilter();
         filter.addAction(FileManagerSettings.INTENT_THEME_CHANGED);
         registerReceiver(this.mNotificationReceiver, filter);
+        applyTheme();
 
         //Save state
         super.onCreate(state);

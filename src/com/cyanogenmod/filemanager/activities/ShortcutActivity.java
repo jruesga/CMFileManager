@@ -98,6 +98,10 @@ public class ShortcutActivity extends Activity implements OnCancelListener, OnDi
         filter.addAction(FileManagerSettings.INTENT_THEME_CHANGED);
         registerReceiver(this.mNotificationReceiver, filter);
 
+        // Set the theme before setContentView
+        Theme theme = ThemeManager.getCurrentTheme(this);
+        theme.setBaseTheme(this, true);
+
         //Save state
         super.onCreate(state);
 

@@ -74,6 +74,10 @@ public class SettingsPreferences extends PreferenceActivity {
         filter.addAction(FileManagerSettings.INTENT_THEME_CHANGED);
         registerReceiver(this.mNotificationReceiver, filter);
 
+        // Set the theme before setContentView
+        Theme theme = ThemeManager.getCurrentTheme(this);
+        theme.setBaseTheme(this, false);
+
         //Initialize action bars
         initTitleActionBar();
 

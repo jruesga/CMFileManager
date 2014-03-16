@@ -29,7 +29,6 @@ import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.content.res.XmlResourceParser;
 import android.database.Cursor;
-import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.nfc.NfcAdapter;
@@ -39,9 +38,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Parcelable;
 import android.os.storage.StorageVolume;
-import android.transition.Visibility;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -51,17 +48,11 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
-import android.widget.ArrayAdapter;
-import android.widget.BaseAdapter;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.ListAdapter;
 import android.widget.ListPopupWindow;
-import android.widget.ListView;
 import android.widget.PopupWindow;
-import android.widget.ProgressBar;
-import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -106,7 +97,6 @@ import com.cyanogenmod.filemanager.ui.widgets.ActionBarDrawerToggle;
 import com.cyanogenmod.filemanager.ui.widgets.Breadcrumb;
 import com.cyanogenmod.filemanager.ui.widgets.ButtonItem;
 import com.cyanogenmod.filemanager.ui.widgets.DrawerLayout;
-import com.cyanogenmod.filemanager.ui.widgets.FlingerListView;
 import com.cyanogenmod.filemanager.ui.widgets.NavigationCustomTitleView;
 import com.cyanogenmod.filemanager.ui.widgets.NavigationView;
 import com.cyanogenmod.filemanager.ui.widgets.NavigationView.OnNavigationRequestMenuListener;
@@ -123,7 +113,6 @@ import com.cyanogenmod.filemanager.util.StorageHelper;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -351,6 +340,10 @@ public class NavigationActivity extends Activity
         filter.addAction(Intent.ACTION_TIME_CHANGED);
         filter.addAction(Intent.ACTION_TIMEZONE_CHANGED);
         registerReceiver(this.mNotificationReceiver, filter);
+
+        // Set the theme before setContentView
+        Theme theme = ThemeManager.getCurrentTheme(this);
+        theme.setBaseTheme(this, false);
 
         //Set the main layout of the activity
         setContentView(R.layout.navigation);

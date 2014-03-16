@@ -138,6 +138,10 @@ public class PickerActivity extends Activity
         filter.addAction(FileManagerSettings.INTENT_THEME_CHANGED);
         registerReceiver(this.mNotificationReceiver, filter);
 
+        // Set the theme before setContentView
+        Theme theme = ThemeManager.getCurrentTheme(this);
+        theme.setBaseTheme(this, true);
+
         // Initialize the activity
         init();
 

@@ -16,18 +16,6 @@
 -->
 
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <!-- The default progress value -->
-    <integer name="default_progress_value">0</integer>
-
-    <!-- The default grid columns value -->
-    <integer name="default_grid_columns">3</integer>
-
-    <!-- The max lines of text of the grid items -->
-    <integer name="default_grid_item_text_max_lines">2</integer>
-
-    <!-- Normal edit text sise -->
-    <integer name="default_edit_text_ems">8</integer>
-
     <!-- Association items per row -->
-    <integer name="associations_items_per_row">3</integer>
+    <integer name="associations_items_per_row">5</integer>
 </resources>

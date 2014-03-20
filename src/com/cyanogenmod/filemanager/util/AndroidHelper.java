@@ -20,6 +20,8 @@ import android.content.Context;
 import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.content.res.Resources;
+import android.os.UserHandle;
+import android.os.UserManager;
 import android.util.DisplayMetrics;
 import android.view.ViewConfiguration;
 
@@ -101,4 +103,16 @@ public final class AndroidHelper {
         return false;
     }
 
+    public static boolean hasSupportForMultipleUsers(Context context) {
+        return UserManager.supportsMultipleUsers();
+    }
+
+    public static boolean isUserOwner() {
+        return UserHandle.myUserId() == UserHandle.USER_OWNER;
+    }
+
+    public static boolean isSecondaryUser(Context context) {
+        return AndroidHelper.hasSupportForMultipleUsers(context)
+                && !AndroidHelper.isUserOwner();
+    }
 }

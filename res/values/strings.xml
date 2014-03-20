@@ -645,6 +645,10 @@
     <string name="pref_access_mode_root">Root Access mode</string>
     <!-- Preferences - General - Root access mode summary -->
     <string name="pref_access_mode_root_summary">Root Access mode\n\nWarning! This mode allows operations that could break your device. It\'s your responsibility to ensure that an operation is safe</string>
+    <!-- Preferences - General - Restrict secondary users access title -->
+    <string name="pref_restrict_secondary_users_access_title">Restrict users access</string>
+    <!-- Preferences - General - Restrict secondary users access summary -->
+    <string name="pref_restrict_secondary_users_access_summary">Restrict access to the whole system to secondary users</string>
     <!-- Preferences - Search - Results category -->
     <string name="pref_search_results_category">Results</string>
     <!-- Preferences - Search - Show relevance widget -->

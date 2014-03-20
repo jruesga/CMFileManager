@@ -242,6 +242,22 @@ public class NavigationActivity extends Activity
                             }
                         }
 
+                        // Restricted access
+                        if (key.compareTo(FileManagerSettings.
+                                SETTINGS_RESTRICT_SECONDARY_USERS_ACCESS.getId()) == 0) {
+                            if (AndroidHelper.isSecondaryUser(context)) {
+                                try {
+                                    Preferences.savePreference(
+                                            FileManagerSettings.SETTINGS_ACCESS_MODE,
+                                            AccessMode.SAFE, true);
+                                } catch (Throwable ex) {
+                                    Log.w(TAG, "can't save console preference", ex); //$NON-NLS-1$
+                                }
+                                ConsoleBuilder.changeToNonPrivilegedConsole(context);
+                                createChRooted();
+                            }
+                        }
+
                         // Filetime format mode
                         if (key.compareTo(FileManagerSettings.
                                 SETTINGS_FILETIME_FORMAT_MODE.getId()) == 0) {
@@ -421,6 +437,16 @@ public class NavigationActivity extends Activity
 
         //Save state
         super.onCreate(state);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        // Check restrictions
+        if (!FileManagerApplication.checkRestrictSecondaryUsersAccess(this, mChRooted)) {
+            return;
+        }
     }
 
     @Override

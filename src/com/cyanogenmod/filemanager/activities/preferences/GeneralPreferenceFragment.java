@@ -23,6 +23,7 @@ import android.os.Bundle;
 import android.preference.CheckBoxPreference;
 import android.preference.ListPreference;
 import android.preference.Preference;
+import android.preference.PreferenceCategory;
 import android.preference.Preference.OnPreferenceChangeListener;
 import android.util.Log;
 
@@ -33,6 +34,7 @@ import com.cyanogenmod.filemanager.preferences.AccessMode;
 import com.cyanogenmod.filemanager.preferences.FileManagerSettings;
 import com.cyanogenmod.filemanager.preferences.ObjectStringIdentifier;
 import com.cyanogenmod.filemanager.preferences.Preferences;
+import com.cyanogenmod.filemanager.util.AndroidHelper;
 
 /**
  * A class that manages the commons options of the application
@@ -50,6 +52,7 @@ public class GeneralPreferenceFragment extends TitlePreferenceFragment {
     private CheckBoxPreference mDisplayThumbs;
     private CheckBoxPreference mUseFlinger;
     private ListPreference mAccessMode;
+    private CheckBoxPreference mRestrictSecondaryUsersAccess;
     private CheckBoxPreference mDebugTraces;
 
     /**
@@ -62,6 +65,7 @@ public class GeneralPreferenceFragment extends TitlePreferenceFragment {
         @Override
         public boolean onPreferenceChange(final Preference preference, Object newValue) {
             boolean ret = true;
+            boolean notify = false;
 
             String key = preference.getKey();
             if (DEBUG) {
@@ -120,9 +124,21 @@ public class GeneralPreferenceFragment extends TitlePreferenceFragment {
                                     preference.setSummary(summary[valueId]);
             }
 
+            // Restricted secondary users access
+            else if (FileManagerSettings.SETTINGS_RESTRICT_SECONDARY_USERS_ACCESS.getId().
+                    compareTo(key) == 0) {
+                String value = String.valueOf(newValue);
+                if (Preferences.writeWorldReadableProperty(getActivity(), key, value)) {
+                    ((CheckBoxPreference) preference).setChecked((Boolean) newValue);
+                    updateAccessModeStatus();
+                    notify = true;
+                }
+                ret = false;
+            }
+
             // Notify the change (only if fragment is loaded. Default values are loaded
             // while not in loaded mode)
-            if (GeneralPreferenceFragment.this.mLoaded && ret) {
+            if (GeneralPreferenceFragment.this.mLoaded && (ret || notify)) {
                 Intent intent = new Intent(FileManagerSettings.INTENT_SETTING_CHANGED);
                 intent.putExtra(
                         FileManagerSettings.EXTRA_SETTING_CHANGED_KEY, preference.getKey());
@@ -206,8 +222,24 @@ public class GeneralPreferenceFragment extends TitlePreferenceFragment {
                             FileManagerSettings.SETTINGS_ACCESS_MODE.getId(),
                             defaultValue);
         this.mOnChangeListener.onPreferenceChange(this.mAccessMode, value);
-        // If device is not rooted, this setting cannot be changed
-        this.mAccessMode.setEnabled(FileManagerApplication.isDeviceRooted());
+        updateAccessModeStatus();
+
+        // Capture Debug traces
+        this.mRestrictSecondaryUsersAccess =
+                (CheckBoxPreference)findPreference(
+                        FileManagerSettings.SETTINGS_RESTRICT_SECONDARY_USERS_ACCESS.getId());
+        if (!AndroidHelper.hasSupportForMultipleUsers(getActivity()) ||
+                AndroidHelper.isSecondaryUser(getActivity())) {
+            // Remove if device doesn't support multiple users accounts or the current user
+            // is a secondary user
+            PreferenceCategory category = (PreferenceCategory) findPreference(
+                    "general_advanced_settings");
+            category.removePreference(this.mRestrictSecondaryUsersAccess);
+        } else {
+            this.mRestrictSecondaryUsersAccess.setChecked(
+                    FileManagerApplication.isRestrictSecondaryUsersAccess(getActivity()));
+            this.mRestrictSecondaryUsersAccess.setOnPreferenceChangeListener(this.mOnChangeListener);
+        }
 
         // Capture Debug traces
         this.mDebugTraces =
@@ -217,6 +249,14 @@ public class GeneralPreferenceFragment extends TitlePreferenceFragment {
 
         // Loaded
         this.mLoaded = true;
+    }
+
+    private void updateAccessModeStatus() {
+        // If device is not rooted, or is a restricted user, this setting cannot be changed
+        final Context context = getActivity();
+        boolean restrictedAccess = AndroidHelper.isSecondaryUser(context) &&
+                FileManagerApplication.isRestrictSecondaryUsersAccess(context);
+        this.mAccessMode.setEnabled(FileManagerApplication.isDeviceRooted() && !restrictedAccess);
     }
 
     /**

@@ -29,6 +29,7 @@ import com.cyanogenmod.filemanager.console.shell.PrivilegedConsole;
 import com.cyanogenmod.filemanager.preferences.AccessMode;
 import com.cyanogenmod.filemanager.preferences.FileManagerSettings;
 import com.cyanogenmod.filemanager.preferences.Preferences;
+import com.cyanogenmod.filemanager.util.AndroidHelper;
 import com.cyanogenmod.filemanager.util.DialogHelper;
 
 import java.io.FileNotFoundException;
@@ -188,7 +189,19 @@ public final class ConsoleBuilder {
                 FileManagerApplication.getAccessMode().compareTo(AccessMode.ROOT) == 0;
         boolean advancedMode =
                 FileManagerApplication.getAccessMode().compareTo(AccessMode.SAFE) != 0;
-        if (superuserMode && !advancedMode) {
+        boolean restrictedMode =
+                AndroidHelper.hasSupportForMultipleUsers(context) && !AndroidHelper.isUserOwner();
+        if (restrictedMode) {
+            // Is a secondary user. Restrict access to the whole system
+            try {
+                Preferences.savePreference(
+                        FileManagerSettings.SETTINGS_ACCESS_MODE, AccessMode.SAFE, true);
+            } catch (Throwable ex) {
+                Log.w(TAG, "can't save console preference", ex); //$NON-NLS-1$
+            }
+            superuserMode = false;
+        }
+        else if (superuserMode && !advancedMode) {
             try {
                 Preferences.savePreference(
                         FileManagerSettings.SETTINGS_ACCESS_MODE, AccessMode.PROMPT, true);

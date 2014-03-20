@@ -36,6 +36,7 @@ import com.cyanogenmod.filemanager.preferences.Preferences;
 import com.cyanogenmod.filemanager.ui.ThemeManager;
 import com.cyanogenmod.filemanager.ui.ThemeManager.Theme;
 import com.cyanogenmod.filemanager.util.AIDHelper;
+import com.cyanogenmod.filemanager.util.AndroidHelper;
 import com.cyanogenmod.filemanager.util.MimeTypeHelper;
 
 import java.io.File;
@@ -436,6 +437,41 @@ public final class FileManagerApplication extends Application {
         AccessMode mode =
                 AccessMode.fromId(Preferences.getSharedPreferences().getString(id, defaultValue));
         return mode;
+    }
+
+    public static boolean isRestrictSecondaryUsersAccess(Context context) {
+        String value = Preferences.getWorldReadableProperties(
+                context, FileManagerSettings.SETTINGS_RESTRICT_SECONDARY_USERS_ACCESS.getId());
+        if (value == null) {
+            value = String.valueOf(FileManagerSettings.SETTINGS_RESTRICT_SECONDARY_USERS_ACCESS.
+                    getDefaultValue());
+        }
+        return Boolean.parseBoolean(value);
+    }
+
+    public static boolean checkRestrictSecondaryUsersAccess(Context context, boolean isChroot) {
+        if (!AndroidHelper.isSecondaryUser(context)) {
+            return true;
+        }
+        boolean needChroot = !isChroot && isRestrictSecondaryUsersAccess(context);
+        if (!needChroot) {
+            return true;
+        }
+
+        try {
+            Preferences.savePreference(
+                    FileManagerSettings.SETTINGS_ACCESS_MODE, AccessMode.SAFE, true);
+        } catch (Throwable ex) {
+            Log.w(TAG, "can't save console preference", ex); //$NON-NLS-1$
+        }
+        ConsoleBuilder.changeToNonPrivilegedConsole(context);
+
+        // Notify the change
+        Intent intent = new Intent(FileManagerSettings.INTENT_SETTING_CHANGED);
+        intent.putExtra(FileManagerSettings.EXTRA_SETTING_CHANGED_KEY,
+                FileManagerSettings.SETTINGS_ACCESS_MODE.getId());
+        context.sendBroadcast(intent);
+        return false;
     }
 
     /**

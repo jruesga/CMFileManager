@@ -36,6 +36,13 @@ public enum FileManagerSettings {
     SETTINGS_ACCESS_MODE("cm_filemanager_access_mode", AccessMode.SAFE), //$NON-NLS-1$
 
     /**
+     * When secondary users will have a chrooted console
+     * @hide
+     */
+    SETTINGS_RESTRICT_SECONDARY_USERS_ACCESS("cm_filemanager_restrict_secondary_users_access",
+            Boolean.TRUE), //$NON-NLS-1$
+
+    /**
      * The initial directory to be used.
      * @hide
      */

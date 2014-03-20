@@ -44,7 +44,7 @@
     android:layout_height="match_parent"
     android:layout_below="@id/navigation_view_item_icon"
     android:layout_toRightOf="@id/navigation_view_item_check"
-    android:ellipsize="end"
+    android:ellipsize="middle"
     android:gravity="center|center_vertical"
     android:maxLines="@integer/default_grid_item_text_max_lines"
     android:textAppearance="@style/secondary_text_appearance"

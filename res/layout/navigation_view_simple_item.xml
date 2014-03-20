@@ -46,6 +46,7 @@
     android:layout_marginRight="@dimen/extra_margin"
     android:gravity="left|center_vertical"
     android:singleLine="true"
+    android:ellipsize="middle"
     android:textAppearance="@style/primary_text_appearance" />
 
 </LinearLayout>

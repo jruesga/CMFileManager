@@ -51,6 +51,7 @@
       android:layout_alignParentTop="true"
       android:layout_marginLeft="@dimen/default_margin"
       android:layout_marginTop="@dimen/default_margin"
+      android:ellipsize="middle"
       android:singleLine="true"
       android:textAppearance="@style/primary_text_appearance" />
 

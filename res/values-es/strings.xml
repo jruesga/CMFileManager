@@ -312,6 +312,8 @@
     <string name="pref_access_mode_prompt_summary">Modo confirmación\n\nLa aplicación está ejecutándose con acceso completo al sistema de archivos, pero se preguntará antes de ejecutar acciones de superusuario</string>
     <string name="pref_access_mode_root">Modo superusuario</string>
     <string name="pref_access_mode_root_summary">Modo superusuario\n\n¡Aviso! Este modo permite operaciones que pueden bloquear el dispositivo. Será tu responsabilidad asegurarte de que la operación sea segura</string>
+    <string name="pref_restrict_secondary_users_access_title">Restringir acceso</string>
+    <string name="pref_restrict_secondary_users_access_summary">Restringir el acceso a todo el sistema a los usuarios secundarios</string>
     <string name="pref_search_results_category">Resultados</string>
     <string name="pref_show_relevance_widget">Mostrar relevancia</string>
     <string name="pref_highlight_terms">Resaltar términos de búsqueda</string>

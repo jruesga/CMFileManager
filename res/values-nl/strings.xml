@@ -342,6 +342,8 @@
     <string name="theme_default_name">Licht thema</string>
     <string name="theme_default_description">Lichte kleuren voor de bestandsbeheerder</string>
     <string name="themes_author">CyanogenMod</string>
+    <string name="drawer_open">Navigatiemenu openen</string>
+    <string name="drawer_close">Navigatiemenu sluiten</string>
     <string name="color_picker_alpha_slider_text">Transparantie</string>
     <string name="color_picker_current_text">Huidig:</string>
     <string name="color_picker_new_text">Nieuw:</string>

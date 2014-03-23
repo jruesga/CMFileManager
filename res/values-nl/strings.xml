@@ -284,7 +284,7 @@
     <string name="pref_editor">Bewerker</string>
     <string name="pref_themes">Thema\'s</string>
     <string name="pref_about">Over</string>
-    <string name="pref_about_summary">Bestandsbeheerder v<xliff:g id="version">%1$s</xliff:g>\nCopyright \u00A9 2012-2013 Het CyanogenMod-project</string>
+    <string name="pref_about_summary">Bestandsbeheerder v<xliff:g id="version">%1$s</xliff:g>\nCopyright \u00A9 2012-2014 The CyanogenMod Project</string>
     <string name="pref_general_behaviour_category">Algemeen</string>
     <string name="pref_case_sensitive_sort">Hoofdlettergevoelig</string>
     <string name="pref_case_sensitive_sort_summary">Inhoud en zoekresultaten hoofdlettergevoelig sorteren</string>
@@ -305,6 +305,8 @@
     <string name="pref_access_mode_prompt_summary">Vragen naar toegangsmodus\n\nDe app heeft volledige toegang tot het bestandssysteem, maar zal toestemming vragen voor bewerkingen waarvoor machtigingen nodig zijn</string>
     <string name="pref_access_mode_root">Roottoegangsmodus</string>
     <string name="pref_access_mode_root_summary">Roottoegangsmodus\n\nLet op! Deze modus staat bewerkingen toe die het apparaat kunnen beschadingen. Het is uw eigen verantwoordelijkheid om te zorgen dat een bewerking veilig is</string>
+    <string name="pref_restrict_secondary_users_access_title">Gebruikers toegang beperken</string>
+    <string name="pref_restrict_secondary_users_access_summary">Toegang tot het complete systeem beperken voor secundaire gebruikers</string>
     <string name="pref_search_results_category">Resultaten</string>
     <string name="pref_show_relevance_widget">Relevantiepictogram tonen</string>
     <string name="pref_highlight_terms">Zoektermen markeren</string>

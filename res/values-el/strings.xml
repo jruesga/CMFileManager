@@ -307,6 +307,8 @@
   <string name="pref_access_mode_prompt_summary">Λειτουργία ερώτησης χρήστη\n\nΗ εφαρμογή τρέχει με πλήρη πρόσβαση στο σύστημα αρχείων, αλλά θα ζητήσει άδεια πριν από την εκτέλεση οποιασδήποτε ενέργειας που απαιτεί δικαιώματα</string>
   <string name="pref_access_mode_root">Λειτουργία πρόσβασης Root</string>
   <string name="pref_access_mode_root_summary">Λειτουργία πρόσβασης Root\n\nΠροσοχή! Αυτή η λειτουργία επιτρέπει ενέργειες που θα μπορούσαν να χαλάσουν τη συσκευή σας. Είναι δική σας ευθύνη να διασφαλίσετε ότι μία ενέργεια είναι ασφαλής</string>
+  <string name="pref_restrict_secondary_users_access_title">Περιορισμός πρόσβασης χρηστών</string>
+  <string name="pref_restrict_secondary_users_access_summary">Περιορίστε την πρόσβαση σε ολόκληρο το σύστημα στους δευτερεύοντες χρήστες</string>
   <string name="pref_search_results_category">Αποτελέσματα</string>
   <string name="pref_show_relevance_widget">Εμφάνιση widget συνάφειας</string>
   <string name="pref_highlight_terms">Επισήμανση όρων αναζήτησης</string>
@@ -344,6 +346,8 @@
   <string name="theme_default_name">Φωτεινό θέμα</string>
   <string name="theme_default_description">Ένα φωτεινό θέμα για την Διαχείριση αρχείων του CyanogenMod.</string>
   <string name="themes_author">CyanogenMod</string>
+  <string name="drawer_open">Άνοιγμα συρταριού πλοήγησης</string>
+  <string name="drawer_close">Κλείσιμο συρταριού πλοήγησης</string>
   <string name="color_picker_alpha_slider_text">Alpha</string>
   <string name="color_picker_current_text">Τρέχον:</string>
   <string name="color_picker_new_text">Νέο:</string>

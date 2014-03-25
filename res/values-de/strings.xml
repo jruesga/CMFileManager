@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-     Copyright (C) 2012-2013 The CyanogenMod Project
+     Copyright (C) 2012-2014 The CyanogenMod Project
 
      Licensed under the Apache License, Version 2.0 (the "License");
      you may not use this file except in compliance with the License.
@@ -307,6 +307,8 @@
     <string name="pref_access_mode_prompt_summary">Erweiterter Modus\n\nDieser Modus bietet alle Zugriffsrechte auf das Dateisystem, fragt aber vor dem Ausführen einer Aktion nach Ihrer Zustimmung.</string>
     <string name="pref_access_mode_root">Root-Zugriffsmodus</string>
     <string name="pref_access_mode_root_summary">Root-Zugriffsmodus\n\nDieser Modus erlaubt Aktionen, die das Gerät beschädigen können. Sie sind für jede ausgeführte Aktion selbst verantwortlich.</string>
+    <string name="pref_restrict_secondary_users_access_title">Benutzerzugriff beschränken</string>
+    <string name="pref_restrict_secondary_users_access_summary">Zugriff auf Systemdateien auf sekundäre Benutzer beschränken</string>
     <string name="pref_search_results_category">Suchergebnisse</string>
     <string name="pref_show_relevance_widget">Relevanzindikator anzeigen</string>
     <string name="pref_highlight_terms">Suchergebnisse hervorheben</string>
@@ -344,6 +346,8 @@
     <string name="theme_default_name">Hell (Standard)</string>
     <string name="theme_default_description">Helles Design für den CM-Dateimanager.</string>
     <string name="themes_author">CyanogenMod</string>
+    <string name="drawer_open">Navigationsleiste öffnen</string>
+    <string name="drawer_close">Navigationsleiste schließen</string>
     <string name="color_picker_alpha_slider_text">Deckkraft</string>
     <string name="color_picker_current_text">Aktuell:</string>
     <string name="color_picker_new_text">Neu:</string>

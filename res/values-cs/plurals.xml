@@ -31,4 +31,16 @@
         <item quantity="few">Nalezeny <xliff:g id="count">%d</xliff:g> položky</item>
         <item quantity="other">Nalezeno <xliff:g id="count">%d</xliff:g> položek</item>
     </plurals>
+
+    <plurals name="selection_folders">
+        <item quantity="one"><xliff:g id="folders">%1$d</xliff:g> složka vybrána.</item>
+        <item quantity="few"><xliff:g id="folders">%1$d</xliff:g> složky vybrány.</item>
+        <item quantity="other"><xliff:g id="folders">%1$d</xliff:g> složek vybráno.</item>
+    </plurals>
+
+    <plurals name="selection_files">
+        <item quantity="one"><xliff:g id="files">%1$d</xliff:g> soubor vybrán.</item>
+        <item quantity="few"><xliff:g id="files">%1$d</xliff:g> soubory vybrány.</item>
+        <item quantity="other"><xliff:g id="files">%1$d</xliff:g> souborů vybráno.</item>
+    </plurals>
 </resources>

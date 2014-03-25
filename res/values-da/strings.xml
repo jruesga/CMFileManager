@@ -319,6 +319,8 @@
   <string name="pref_access_mode_prompt_summary">Tilstanden Spørg bruger\n\nAppen kører med fuld adgang til filsystemet, men vil spørge efter tilladelse, før priviligerede handlinger foretages.</string>
   <string name="pref_access_mode_root">Tilstanden Root-adgang</string>
   <string name="pref_access_mode_root_summary">Tilstanden Root-adgang\n\nAdvarsel! Denne tilstand tillader operationer, der kan beskadige din enhed. Det er dit ansvar at sikre, at en handling er sikker</string>
+  <string name="pref_restrict_secondary_users_access_title">Begræns brugeradgang</string>
+  <string name="pref_restrict_secondary_users_access_summary">Begræns adgang til hele systemet til sekundære brugere</string>
   <string name="pref_search_results_category">Resultater</string>
   <string name="pref_show_relevance_widget">Vis relevans-widget</string>
   <string name="pref_highlight_terms">Fremhæv søgetermer</string>
@@ -356,6 +358,8 @@
   <string name="theme_default_name">Lyst tema</string>
   <string name="theme_default_description">Et lyst tema til CyanogenMods filstyring.</string>
   <string name="themes_author">CyanogenMod</string>
+  <string name="drawer_open">Åbn navigationsliste</string>
+  <string name="drawer_close">Luk navigationsliste</string>
   <string name="color_picker_alpha_slider_text">Alfa</string>
   <string name="color_picker_current_text">Aktuel:</string>
   <string name="color_picker_new_text">Ny:</string>

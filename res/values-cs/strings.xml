@@ -344,6 +344,8 @@
   <string name="pref_access_mode_prompt_summary">Režim na vyžádání\n\nAplikace běží s plným oprávněním, ale při každé privilegované akce zažádá o povolení</string>
   <string name="pref_access_mode_root">Režim bez omezení</string>
   <string name="pref_access_mode_root_summary">Režim bez omezení\n\nVarování! Tento režim umožňuje operace, které mohou poškodit vaše zařízení. Je na uživateli posoudit, zda je požadovaná akce bezpečná.</string>
+  <string name="pref_restrict_secondary_users_access_title">Omezení přístupu uživatelů</string>
+  <string name="pref_restrict_secondary_users_access_summary">Omezit přístup sekundárních uživatelů do celého systému</string>
   <string name="pref_search_results_category">Výsledky</string>
   <string name="pref_show_relevance_widget">Zobrazit widget relevance</string>
   <string name="pref_highlight_terms">Zvýraznit hledaný výraz</string>
@@ -382,7 +384,9 @@
 
   <string name="theme_default_name">Světlé téma</string>
   <string name="theme_default_description">Světlé téma pro Správce souborů CyanogenMod.</string>
-  <string name="themes_author">CyanogenMod</string>
+
+  <string name="drawer_open">Otevřít navigační panel</string>
+  <string name="drawer_close">Zavřít navigační panel</string>
 
   <string name="color_picker_alpha_slider_text">Průhlednost</string>
   <string name="color_picker_current_text">Aktuální:</string>

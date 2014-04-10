@@ -116,7 +116,7 @@
   <string name="filesystem_info_dialog_free_disk_usage">Ελεύθερα:</string>
   <string name="fso_properties_permissions_not_allowed_msg">Η αλλαγή δικαιωμάτων δεν επιτρέπεται στην Ασφαλή Λειτουργία. Πιέστε για αλλαγή σε λειτουργία πρόσβασης Root.</string>
   <string name="fso_properties_failed_to_change_owner_msg">Η αλλαγή ιδιοκτήτη απέτυχε.\n\nΓια λόγους ασφαλείας, μερικά συστήματα αρχείων, όπως οι κάρτες SD, δεν επιτρέπουν την αλλαγή ιδιοκτήτη.</string>
-  <string name="fso_properties_failed_to_change_group_msg">Η αλλαγή γκρουπ απέτυχε.\n\nΓια λόγους ασφαλείας, μερικά συστήματα αρχείων, όπως οι κάρτες SD, δεν επιτρέπουν την αλλαγή γκρουπ.</string>
+  <string name="fso_properties_failed_to_change_group_msg">Η αλλαγή ομάδας απέτυχε.\n\nΓια λόγους ασφαλείας, μερικά συστήματα αρχείων, όπως οι κάρτες SD, δεν επιτρέπουν την αλλαγή ομάδας.</string>
   <string name="fso_properties_failed_to_change_permission_msg">Η αλλαγή δικαιωμάτων απέτυχε.\n\nΓια λόγους ασφαλείας, μερικά συστήματα αρχείων, όπως οι κάρτες SD, δεν επιτρέπουν την αλλαγή δικαιωμάτων.</string>
   <string name="fso_properties_dialog_title">Ιδιότητες</string>
   <string name="fso_properties_dialog_tab_info">Πληροφορίες</string>
@@ -132,7 +132,7 @@
   <string name="fso_properties_dialog_last_modified_date">Τροποποιήθηκε:</string>
   <string name="fso_properties_dialog_last_changed_date">Αλλάχθηκε:</string>
   <string name="fso_properties_dialog_owner">Ιδιοκτήτης:</string>
-  <string name="fso_properties_dialog_group">Γκρουπ:</string>
+  <string name="fso_properties_dialog_group">Ομάδα:</string>
   <string name="fso_properties_dialog_others">Άλλοι:</string>
   <string name="fso_properties_dialog_include_in_media_scan">Παράλειψη σάρωσης μέσων:</string>
   <string name="fso_failed_to_allow_media_scan">Το πρόγραμμα απέτυχε να επιτρέψει τη σάρωση μέσων</string>
@@ -286,7 +286,7 @@
   <string name="pref_editor">Επιλογές επεξεργασίας</string>
   <string name="pref_themes">Θέματα</string>
   <string name="pref_about">Σχετικά</string>
-  <string name="pref_about_summary">Διαχείριση αρχείων v<xliff:g id="version">%1$s</xliff:g>\nCopyright \u00A9 2013 The CyanogenMod Project</string>
+  <string name="pref_about_summary">Διαχείριση αρχείων v<xliff:g id="version">%1$s</xliff:g>\nCopyright \u00A9 2012-2014 The CyanogenMod Project</string>
   <string name="pref_general_behaviour_category">Γενικά</string>
   <string name="pref_case_sensitive_sort">Πεζά-κεφαλαία</string>
   <string name="pref_case_sensitive_sort_summary">Ταξινόμηση με βάση πεζά-κεφαλαία κατά την πλοήγηση ή την εμφάνιση αποτελεσμάτων αναζήτησης</string>

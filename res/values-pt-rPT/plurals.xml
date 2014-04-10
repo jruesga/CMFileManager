@@ -17,23 +17,23 @@
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
   <plurals name="n_folders">
-    <item quantity="one"><xliff:g id="folders">%1$d</xliff:g> carpeta</item>
-    <item quantity="other"><xliff:g id="folders">%1$d</xliff:g> carpetes</item>
+    <item quantity="one"><xliff:g id="folders">%1$d</xliff:g> pasta</item>
+    <item quantity="other"><xliff:g id="folders">%1$d</xliff:g> pastas</item>
   </plurals>
   <plurals name="n_files">
-    <item quantity="one"><xliff:g id="files">%1$d</xliff:g> fitxer</item>
-    <item quantity="other"><xliff:g id="files">%1$d</xliff:g> fitxers</item>
+    <item quantity="one"><xliff:g id="files">%1$d</xliff:g> ficheiro</item>
+    <item quantity="other"><xliff:g id="files">%1$d</xliff:g> ficheiros</item>
   </plurals>
   <plurals name="search_found_items">
-    <item quantity="one"><xliff:g id="count">%1$d</xliff:g> element trobat</item>
-    <item quantity="other"><xliff:g id="count">%d</xliff:g> elements trobats</item>
+    <item quantity="one"><xliff:g id="count">%1$d</xliff:g> item encontrado</item>
+    <item quantity="other"><xliff:g id="count">%d</xliff:g> items encontrados</item>
   </plurals>
   <plurals name="selection_folders">
-    <item quantity="one"><xliff:g id="folders">%1$d</xliff:g> carpeta seleccionada.</item>
-    <item quantity="other"><xliff:g id="folders">%1$d</xliff:g> carpetes seleccionades.</item>
+    <item quantity="one"><xliff:g id="folders">%1$d</xliff:g> pasta selecionada.</item>
+    <item quantity="other"><xliff:g id="folders">%1$d</xliff:g> pastas selecionadas.</item>
   </plurals>
   <plurals name="selection_files">
-    <item quantity="one"><xliff:g id="files">%1$d</xliff:g> arxiu seleccionat.</item>
-    <item quantity="other"><xliff:g id="files">%1$d</xliff:g> arxius seleccionats.</item>
+    <item quantity="one"><xliff:g id="files">%1$d</xliff:g> ficheiro selecionado.</item>
+    <item quantity="other"><xliff:g id="files">%1$d</xliff:g> ficheiros selecionados.</item>
   </plurals>
 </resources>

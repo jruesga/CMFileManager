@@ -16,6 +16,6 @@
      limitations under the License.
 -->
 <resources>
-  <string name="dark_theme_name">Tmavá téma</string>
-  <string name="dark_theme_desc">Tmavá téma pre Správcu súborov CyanogenMod.</string>
+  <string name="dark_theme_name">Tema escuru</string>
+  <string name="dark_theme_desc">Un tema de colores escuros pa File Manager.</string>
 </resources>

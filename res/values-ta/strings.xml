@@ -15,7 +15,6 @@
      See the License for the specific language governing permissions and
      limitations under the License.
 -->
-<resources>
-  <string name="dark_theme_name">Tmavá téma</string>
-  <string name="dark_theme_desc">Tmavá téma pre Správcu súborov CyanogenMod.</string>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+  <string name="bookmarks_home">வீடு</string>
 </resources>

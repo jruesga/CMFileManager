@@ -15,7 +15,16 @@
      See the License for the specific language governing permissions and
      limitations under the License.
 -->
-<resources>
-  <string name="dark_theme_name">Tmavá téma</string>
-  <string name="dark_theme_desc">Tmavá téma pre Správcu súborov CyanogenMod.</string>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+  <string name="actionbar_button_search_cd">搜尋</string>
+  <string name="bookmarks_home">住家</string>
+  <string name="menu_search">搜尋</string>
+  <string name="actions_menu_delete">刪除</string>
+  <string name="actions_menu_rename">重新命名</string>
+  <string name="mime_unknown">未知</string>
+  <string name="pref_themes">主題</string>
+  <string name="pref_general_behaviour_category">一般</string>
+  <string name="pref_display_thumbs">預覽</string>
+  <string name="pref_general_advanced_settings_category">進階</string>
+  <string name="pref_themes_selection_category">主題</string>
 </resources>

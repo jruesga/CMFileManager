@@ -68,7 +68,7 @@
   <string name="msgs_unresolved_inconsistencies">A operação não é permitida porque iria criar inconsistências.</string>
   <string name="msgs_operation_not_allowed_in_current_directory">A operação não é permitida na pasta atual.\n\nA pasta de destino não pode ser subpasta da origem ou ser a mesma que a origem.</string>
   <string name="msgs_push_again_to_exit">Clique novamente para sair.</string>
-  <string name="msgs_not_registered_app">Não há nenhuma app registada para abrir o tipo de ficheiro selecionado.</string>
+  <string name="msgs_not_registered_app">Não há nenhuma aplicação registada para abrir o tipo de ficheiro selecionado.</string>
   <string name="msgs_overwrite_files">Alguns dos ficheiros já existem na pasta de destino.\n\nSobrescrever?</string>
   <string name="msgs_action_association_failed">Associar a ação à aplicação falhou.</string>
   <string name="advise_insufficient_permissions">A operação necessita de previlégios elevados.\n\nDeseja mudar para o modo de Acesso Root?</string>
@@ -111,6 +111,7 @@
   <string name="filesystem_info_dialog_device">Dispositivo:</string>
   <string name="filesystem_info_dialog_type">Tipo:</string>
   <string name="filesystem_info_dialog_options">Opções:</string>
+  <string name="filesystem_info_dialog_dump_pass">Lixeira / Aprovado:</string>
   <string name="filesystem_info_dialog_total_disk_usage">Total:</string>
   <string name="filesystem_info_dialog_used_disk_usage">Usado:</string>
   <string name="filesystem_info_dialog_free_disk_usage">Disponível:</string>
@@ -123,7 +124,7 @@
     Por razões de segurança, alguns sistemas de ficheiros, como cartões SD, não permitem alteração de permissões.</string>
   <string name="fso_properties_dialog_title">Propriedades</string>
   <string name="fso_properties_dialog_tab_info">Informação</string>
-  <string name="fso_properties_dialog_tab_permissions">Permições </string>
+  <string name="fso_properties_dialog_tab_permissions">Permissões</string>
   <string name="fso_properties_dialog_name">Nome:</string>
   <string name="fso_properties_dialog_parent">Pai:</string>
   <string name="fso_properties_dialog_type">Tipo:</string>
@@ -152,7 +153,7 @@
   <string name="search_voice_hint">Dite a sua pesquisa</string>
   <string name="search_error_msg">Ocorreu um erro durante a pesquisa. Nenhuns resultados encontrados.</string>
   <string name="search_no_results_msg">Sem resultados.</string>
-  <string name="search_found_items_in_directory"><xliff:g id="items">%1$s</xliff:g> in
+  <string name="search_found_items_in_directory"><xliff:g id="items">%1$s</xliff:g> em
     <xliff:g id="path">%2$s</xliff:g></string>
   <string name="search_terms"><![CDATA[<b>Termos:</b>]]> <xliff:g id="terms">%1$s</xliff:g></string>
   <string name="search_few_characters_title">Confirmar pesquisa</string>
@@ -165,7 +166,7 @@
   <string name="editor">Editor</string>
   <string name="editor_invalid_file_msg">Ficheiro inválido.</string>
   <string name="editor_file_not_found_msg">Ficheiro não encontrado.</string>
-  <string name="editor_file_exceed_size_msg">O ficheiro e demasiado grande para ser aberto no dispositivo.</string>
+  <string name="editor_file_exceed_size_msg">O ficheiro é demasiado grande para ser aberto neste dispositivo.</string>
   <string name="editor_dirty_ask_title">Confirme saída</string>
   <string name="editor_dirty_ask_msg">Existem alterações por guardar.\n\nDeseja sair sem guardar?</string>
   <string name="editor_successfully_saved">O ficheiro foi gravado.</string>
@@ -219,23 +220,23 @@
   <string name="actions_menu_new_directory">Nova pasta</string>
   <string name="actions_menu_new_file">Novo ficheiro</string>
   <string name="actions_menu_select_all">Selecionar todos</string>
-  <string name="actions_menu_deselect_all">Desselecionar todos</string>
+  <string name="actions_menu_deselect_all">Desmarcar todos</string>
   <string name="actions_menu_select">Selecionar</string>
-  <string name="actions_menu_deselect">Desselecionar</string>
+  <string name="actions_menu_deselect">Desmarcar</string>
   <string name="actions_menu_paste_selection">Copiar selecionados aqui</string>
   <string name="actions_menu_move_selection">Mover selecionados aqui</string>
   <string name="actions_menu_delete_selection">Apagar selecionados</string>
   <string name="actions_menu_compress_selection">Comprimir selecionados</string>
-  <string name="actions_menu_create_link">Criar link</string>
+  <string name="actions_menu_create_link">Criar hiperligação</string>
   <string name="actions_menu_open">Abrir</string>
   <string name="actions_menu_open_with">Abrir com</string>
   <string name="actions_menu_execute">Executar</string>
   <string name="actions_menu_send">Enviar</string>
-  <string name="actions_menu_send_selection">Enviar selecção</string>
+  <string name="actions_menu_send_selection">Enviar seleção</string>
   <string name="actions_menu_compress">Comprimir</string>
   <string name="actions_menu_extract">Extrair</string>
   <string name="actions_menu_delete">Remover</string>
-  <string name="actions_menu_rename">Renomear</string>
+  <string name="actions_menu_rename">Mudar o nome</string>
   <string name="actions_menu_create_copy">Criar cópia</string>
   <string name="actions_menu_properties">Propriedades</string>
   <string name="actions_menu_add_to_bookmarks">Adicionar aos favoritos</string>
@@ -308,23 +309,23 @@
   <string name="pref_filetime_format_mode">Formato data/hora</string>
   <string name="pref_disk_usage_warning_level">Alerta de utilização de disco</string>
   <string name="pref_disk_usage_warning_level_summary" formatted="false">Mostrar uma cor diferente
-      nos widgets da utilização de disco quando atingem <xliff:g id="level">%1$s</xliff:g> porcento de
-      espaço usado.</string>
+      nos widgets da utilização de disco quando atingem <xliff:g id="level">%1$s</xliff:g> por cento de
+      espaço usado</string>
   <string name="pref_compute_folder_statistics">Estatísticas da pasta</string>
   <string name="pref_compute_folder_statistics_on">Atenção! O cálculo das estatísticas das pastas é exaustiva em
       tempo e recursos de sistema</string>
   <string name="pref_display_thumbs">Previsualizar </string>
   <string name="pref_display_thumbs_summary">Mostrar uma imagem de pré-visualização para aplicações, ficheiros de música, imagens e vídeos.</string>
   <string name="pref_use_flinger">Usar gestos</string>
-  <string name="pref_use_flinger_summary">Usar detecção de gestos da esquerda para direita para remover ficheiros ou pastas.</string>
+  <string name="pref_use_flinger_summary">Usar deteção de gestos da esquerda para direita para remover ficheiros ou pastas.</string>
   <string name="pref_general_advanced_settings_category">Avançadas</string>
   <string name="pref_access_mode">Modo de acesso</string>
   <string name="pref_access_mode_safe">Modo seguro</string>
   <string name="pref_access_mode_safe_summary">Modo seguro\n\nA aplicação é executada sem previlégios
-      e apenas será acessível sistemas de ficheiros como volumes de armazenamento (cartões SD e USB)</string>
+      e apenas terá acesso a sistemas de ficheiros como volumes de armazenamento (cartões SD e USB)</string>
   <string name="pref_access_mode_prompt">Modo de questão</string>
   <string name="pref_access_mode_prompt_summary">Modo de Questão\n\nA aplicação é executada com acesso total
-      ao sistema de ficheiros mas pedirá permissões antes de executar acções previlegiadas</string>
+      ao sistema de ficheiros mas pedirá permissões antes de executar ações previlegiadas</string>
   <string name="pref_access_mode_root">Modo de acesso Root</string>
   <string name="pref_access_mode_root_summary">Modo de acesso Root\n\nAviso! Este modo permite operações que podem
       danificar o seu dispositivo. É da sua responsabilidade garantir que as operações são seguras</string>
@@ -344,9 +345,9 @@
   <string name="pref_remove_saved_search_terms">Limpar pesquisas guardadas</string>
   <string name="pref_remove_saved_search_terms_summary">Toque para remover todos os termos de procura guardados</string>
   <string name="pref_remove_saved_search_terms_msg">Todos os termos de procura guardados foram removidos.</string>
-  <string name="pref_editor_behaviour_category">Comprtamento</string>
+  <string name="pref_editor_behaviour_category">Comportamento</string>
   <string name="pref_no_suggestions">Sem sugestões</string>
-  <string name="pref_no_suggestions_desc">Não mostrar sugestões do dicionário ao editar ficheiro</string>
+  <string name="pref_no_suggestions_desc">Não mostrar sugestões do dicionário ao editar o ficheiro</string>
   <string name="pref_word_wrap">Quebra de linha</string>
   <string name="pref_hexdump">Ficheiros binários Hexdump</string>
   <string name="pref_hexdump_desc">Ao abrir ficheiro binário, gerar Hexdump do ficheiro
@@ -356,7 +357,7 @@
   <string name="pref_syntax_highlight_desc">Realçar sintaxe do ficheiro mostrado no
     editor (apenas quando disponível um  processador para o tipo de ficheiro que possua realce de sintaxe)</string>
   <string name="pref_syntax_highlight_color_scheme">Esquema de cor</string>
-  <string name="pref_syntax_highlight_color_scheme_desc">Tocar para seleccionar esquema de côr de realce de sintaxe</string>
+  <string name="pref_syntax_highlight_color_scheme_desc">Tocar para selecionar esquema de côr de realce de sintaxe</string>
   <string name="pref_syntax_sh_use_theme_default">Usar tema predefinido</string>
   <string name="pref_syntax_sh_use_theme_default_desc">Usar predefinição do tema para realce de sintaxe</string>
   <string name="pref_editor_sh_item_category">Items</string>
@@ -389,12 +390,11 @@
       Deseja continuar?</string>
   <string name="changelog_title">Lista de alterações</string>
   <string name="welcome_title">Bem-vindo</string>
-  <string name="welcome_msg">
-    Bem-vindo ao Gestor de Ficheiros Cyanogenmod.
-    \n\nEste dispositivo permite-lhe explorar o sistema de ficheiro e realizar operações que podem
+  <string name="welcome_msg">Bem-vindo ao Gestor de Ficheiros Cyanogenmod.
+    \n\nEsta aplicação permite-lhe explorar o sistema de ficheiro e realizar operações que podem
     alterar a estabilidade do seu dispositivo. Para previnir falhas, a aplicação irá iniciar num modo
     de segurança, com poucos previlégios.
-    \n\nPode aceder às definições mais avançadas via Definições. É sua a responsabilidade de garantir
-    que uma operação não afecte a estabilidade do seu sistema.
+    \n\nPode aceder às definições mais avançadas via Configurações. É sua a responsabilidade de garantir
+    que uma operação não afete a estabilidade do seu sistema.
     \n\nA Equipa CyanogenMod.\n</string>
 </resources>

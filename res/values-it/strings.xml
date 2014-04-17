@@ -45,7 +45,7 @@
   <string name="error_title">Rilevato errore</string>
   <string name="confirm_operation">Conferma</string>
   <string name="confirm_overwrite">Conferma sovrascrittura</string>
-  <string name="confirm_deletion">Conferma cancellazione</string>
+  <string name="confirm_deletion">Conferma l\'eliminazione</string>
   <string name="msgs_change_to_prompt_access_mode_title">Conferma</string>
   <string name="msgs_change_to_prompt_access_mode_msg">Impossibile eseguire in modalità Root. Richiesto passaggio a modalità Safe.\n\nConfermare?</string>
   <string name="msgs_cant_create_console">Impossibile ottenere i privilegi richiesti per eseguire la funzione.</string>
@@ -322,7 +322,7 @@
   <string name="pref_save_search_terms_off">I termini di ricerca non verranno salvati</string>
   <string name="pref_remove_saved_search_terms">Rimuovi i termini di ricerca salvati</string>
   <string name="pref_remove_saved_search_terms_summary">Tocca per rimuovere tutti i termini di ricerca salvati</string>
-  <string name="pref_remove_saved_search_terms_msg">Tutti i termini di ricerca salvati sono stati cancellati.</string>
+  <string name="pref_remove_saved_search_terms_msg">Tutti i termini di ricerca salvati sono stati eliminati.</string>
   <string name="pref_editor_behaviour_category">Comportamento</string>
   <string name="pref_no_suggestions">Nessun suggerimento</string>
   <string name="pref_no_suggestions_desc">Non visualizzare i suggerimenti del dizionario durante la modifica del file</string>

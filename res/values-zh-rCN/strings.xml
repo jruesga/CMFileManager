@@ -175,7 +175,6 @@
   <string name="dumping_message">正在生成十六进制转储\u2026</string>
   <string name="displaying_message">正在显示\u2026</string>
   <string name="bookmarks">书签</string>
-  <string name="bookmarks_home">住宅</string>
   <string name="bookmarks_root_folder">根目录</string>
   <string name="bookmarks_system_folder">系统文件夹</string>
   <string name="bookmarks_button_config_cd">设置初始文件夹.</string>

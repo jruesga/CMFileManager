@@ -119,6 +119,7 @@
   <string name="fso_properties_failed_to_change_group_msg">Le changement de groupe a échoué.\n\nPour des raisons de sécurité, certains systèmes de fichiers, comme les cartes SD, ne permettent pas de changer de groupe.</string>
   <string name="fso_properties_failed_to_change_permission_msg">La modification des permissions a échoué.\n\nPour des raisons de sécurité, certains systèmes de fichiers, comme les cartes SD, ne permettent pas de modifer les permissions.</string>
   <string name="fso_properties_dialog_title">Propriétés</string>
+  <string name="fso_properties_dialog_tab_info">Info</string>
   <string name="fso_properties_dialog_tab_permissions">Permissions</string>
   <string name="fso_properties_dialog_name">Nom\u00A0:</string>
   <string name="fso_properties_dialog_parent">Parent\u00A0:</string>

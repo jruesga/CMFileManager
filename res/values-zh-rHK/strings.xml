@@ -19,10 +19,24 @@
   <string name="app_name">檔案管理器</string>
   <string name="app_description">CyanogenMod 檔案管理器</string>
   <string name="root_directory_name"><![CDATA[<Root folder>]]></string>
+  <string name="confirm_operation">確認操作</string>
+  <string name="confirm_overwrite">確認覆寫</string>
+  <string name="confirm_deletion">確認刪除</string>
+  <string name="msgs_change_to_prompt_access_mode_title">確認切換</string>
+  <string name="actionbar_button_history_cd">紀錄</string>
+  <string name="filesystem_info_dialog_type">類型：</string>
+  <string name="history">紀錄</string>
+  <string name="msgs_history_empty">紀錄空白的。</string>
+  <string name="msgs_history_unknown">未知的記錄項目。</string>
+  <string name="menu_history">紀錄</string>
+  <string name="menu_settings">設定</string>
+  <string name="menu_clear_history">清除紀錄</string>
   <string name="actions_menu_delete">刪除</string>
   <string name="associations_dialog_remember">記住選擇</string>
   <string name="execution_console_script_execution_time_text"><xliff:g id="seconds">%1$s</xliff:g> 秒</string>
+  <string name="pref">設定</string>
   <string name="pref_themes">主題</string>
+  <string name="pref_about">關於</string>
   <string name="pref_about_summary">檔案管理器 v<xliff:g id="version">%1$s</xliff:g>\n版權所有 \u00A9 2012-2014 CyanogenMod 計畫</string>
   <string name="pref_syntax_sh_use_theme_default">使用主題預設值</string>
   <string name="pref_themes_selection_category">主題</string>

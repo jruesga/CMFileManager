@@ -47,44 +47,33 @@
   <string name="confirm_overwrite">Потврдите преписивање</string>
   <string name="confirm_deletion">Потврдите брисање</string>
   <string name="msgs_change_to_prompt_access_mode_title">Потврдите промену</string>
-  <string name="msgs_change_to_prompt_access_mode_msg">
-    Немогуће извршавање у режиму Root-а. Мењам у сигуран режим.\n\nПримени ову промену?</string>
-  <string name="msgs_cant_create_console">Немогуће добити довољне привилегије за функционисање.</string>
-  <string name="msgs_privileged_console_alloc_failed">Немогуће извршавање у режиму Root-а.
-    Мењам у сигуран режим.</string>
+  <string name="msgs_change_to_prompt_access_mode_msg">Немогуће извршавање у режиму Root-а. Мењам у сигуран режим.\n\nПримени ову промену?</string>
+  <string name="msgs_cant_create_console">Немогуће је добијање захтеване привилегије за функционисање.</string>
+  <string name="msgs_privileged_console_alloc_failed">Немогуће извршавање у режиму Root-а.        Мењам у сигуран режим.</string>
   <string name="msgs_settings_save_failure">Подешавање није било могуће применити или сачувати.</string>
-  <string name="msgs_settings_invalid_initial_directory">Почетни фолдер
-    \"<xliff:g id="initial_dir">%1$s</xliff:g>\" није валидан. Идем у корени фолдер.</string>
+  <string name="msgs_settings_invalid_initial_directory">Почетни фолдер \"<xliff:g id="initial_dir">%1$s</xliff:g>\" није валидан. Промена у корени фолдер.</string>
   <string name="msgs_success">Операција је успешно завршена.</string>
   <string name="msgs_unknown">Откривена је грешка. Операција је била неуспешна.</string>
-  <string name="msgs_insufficient_permissions">Ова операција захтева додатне дозволе. Покушајте
-    да пређете у режим Root-а.</string>
+  <string name="msgs_insufficient_permissions">Ова операција захтева додатне дозволе. Покушајте да пређете у режим Root-а.</string>
   <string name="msgs_file_not_found">Фајл или фолдер није нађен.</string>
-  <string name="msgs_command_not_found">Команда операције није нађена или је
-    погрешно дефинисана.</string>
+  <string name="msgs_command_not_found">Команда операције није нађена или је погрешно дефинисана.</string>
   <string name="msgs_io_failed">Грешка читања/писања.</string>
   <string name="msgs_operation_timeout">Истекло је време операције.</string>
   <string name="msgs_operation_failure">Операција није успела.</string>
   <string name="msgs_console_alloc_failure">Дошло је до интерне грешке.</string>
   <string name="msgs_operation_can_not_be_cancelled">Операција не може да се прекине.</string>
-  <string name="msgs_read_only_filesystem">Систем фајлова је само за читање. Покушајте га монтирати
-    за читање и писање пре но што покушате ову операцију.</string>
+  <string name="msgs_read_only_filesystem">Систем фајлова је само за читање. Покушајте га монтирати за читање и писање пре него што покушате ову операцију.</string>
   <string name="msgs_illegal_argument">Нелегалан аргумент. Позив није успео.</string>
-  <string name="msgs_unresolved_inconsistencies">
-    Операција није дозвољена јер би довела до неконзистенција.</string>
-  <string name="msgs_operation_not_allowed_in_current_directory">
-    Операција није дозвољена у текућем фолдеру.\n\nЦиљни фолдер не може бити подфолдер изворног или исти као изворни.</string>
+  <string name="msgs_unresolved_inconsistencies">Операција није дозвољена јер би довела до неконзистенција.</string>
+  <string name="msgs_operation_not_allowed_in_current_directory">Операција није дозвољена у текућем фолдеру.\n\nЦиљни фолдер не може бити подфолдер изворног или исти као изворни.</string>
   <string name="msgs_push_again_to_exit">Притисните опет за излаз.</string>
-  <string name="msgs_not_registered_app">Нема апликације регистроване за обраду
-    типа изабраног фајла.</string>
-  <string name="msgs_overwrite_files">
-    Неки фајлови већ постоје у циљном фолдеру.\n\nПреписати их?</string>
+  <string name="msgs_not_registered_app">Нема апликације регистроване за обраду типа изабраног фајла.</string>
+  <string name="msgs_overwrite_files">Неки фајлови већ постоје у циљном фолдеру.\n\nПреписати их?</string>
   <string name="msgs_action_association_failed">Асоцирање акције и апликације није успело.</string>
-  <string name="advise_insufficient_permissions">Операција захтева додатне привилегије.\n\n
-    Желите ли да пређете у Root режим?</string>
+  <string name="advise_insufficient_permissions">Операција захтева додатне привилегије.\n\nЖелите ли да пређете у Root режим?</string>
   <string name="parent_dir">Родитељски фолдер</string>
   <string name="external_storage">Спољашњи диск</string>
-  <string name="usb_storage">УСБ диск</string>
+  <string name="usb_storage">USB диск</string>
   <string name="actionbar_button_filesystem_cd">Информације о систему фајлова</string>
   <string name="actionbar_button_sort_mode_cd">Режим сортирања</string>
   <string name="actionbar_button_layout_mode_cd">Режим изгледа</string>
@@ -109,17 +98,10 @@
   <string name="cm_filemanager_show_system">Прикажи системске фајлове</string>
   <string name="cm_filemanager_show_symlinks">Прикажи симболичке везе</string>
   <string name="filesystem_info_warning_title">Нема информација</string>
-  <string name="filesystem_info_warning_msg">Нема доступних
-  информација за овај систем фајлова.</string>
-  <string name="filesystem_info_cant_be_mounted_msg">
-    Систем фајлова се не може монтирати/демонтирати.</string>
-  <string name="filesystem_info_mount_not_allowed_msg">
-    Операције монтирања система фајлова нису дозвољене
-    у сигурном режиму. Тапните да пређете у режим Root-а.</string>
-  <string name="filesystem_info_mount_failed_msg">
-    Операција монтирања система фајлова није успела. Неки системи
-    фајлова, као SD картице, не могу да се монтирају/демонтирају јер
-    су уграђени као системи фајлова само за читање.</string>
+  <string name="filesystem_info_warning_msg">Нема доступних информација за овај систем фајлова.</string>
+  <string name="filesystem_info_cant_be_mounted_msg">Систем фајлова се не може монтирати/демонтирати.</string>
+  <string name="filesystem_info_mount_not_allowed_msg">Операције монтирања система фајлова нису дозвољене у сигурном режиму. Додирните да пређете у режим Root-а.</string>
+  <string name="filesystem_info_mount_failed_msg">Операција монтирања система фајлова није успела. Неки системи фајлова, као SD картице, не могу да се монтирају/демонтирају јер су уграђени као системи фајлова само за читање.</string>
   <string name="filesystem_info_dialog_title">Информације о систему фајлова</string>
   <string name="filesystem_info_dialog_tab_info">Инфо</string>
   <string name="filesystem_info_dialog_tab_disk_usage">Коришћење диска</string>
@@ -132,17 +114,10 @@
   <string name="filesystem_info_dialog_total_disk_usage">Укупно:</string>
   <string name="filesystem_info_dialog_used_disk_usage">Искоришћено:</string>
   <string name="filesystem_info_dialog_free_disk_usage">Слободно:</string>
-  <string name="fso_properties_permissions_not_allowed_msg">Операције промена дозвола нису могуће
-    у сигурном режиму. Кликните за промену у режим Root-а.</string>
-  <string name="fso_properties_failed_to_change_owner_msg">Операција промене власника није успела.\n\n
-    Из сигурносних разлога неки системи фајлова, као нпр. SD картице, не дозвољавају промену власништва.</string>
-  <string name="fso_properties_failed_to_change_group_msg">Операција промене групе није успела.\n\n
-    Из сигурносних разлога неки системи фајлова, као нпр. SD картице, не дозвољавају промену групе.</string>
-  <string name="fso_properties_failed_to_change_permission_msg">
-    Операција промене дозвола није успела.\n\nИз сигурносних разлога
-    неки системи фајлова, као нпр. SD картице, не дозвољавају промену
-    дозвола.
-  </string>
+  <string name="fso_properties_permissions_not_allowed_msg">Операције промена дозвола нису могуће у сигурном режиму. Кликните за промену у режим Root-а.</string>
+  <string name="fso_properties_failed_to_change_owner_msg">Операција промене власника није успела.\n\nИз сигурносних разлога неки системи фајлова, као нпр. SD картице, не дозвољавају промену власништва.</string>
+  <string name="fso_properties_failed_to_change_group_msg">Операција промене групе није успела.\n\nИз сигурносних разлога неки системи фајлова, као нпр. SD картице, не дозвољавају промену групе.</string>
+  <string name="fso_properties_failed_to_change_permission_msg">Операција промене дозвола није успела.\n\nИз сигурносних разлога неки системи фајлова, као нпр. SD картице, не дозвољавају промену дозвола.      </string>
   <string name="fso_properties_dialog_title">Својства</string>
   <string name="fso_properties_dialog_tab_info">Инфо</string>
   <string name="fso_properties_dialog_tab_permissions">Дозволе</string>
@@ -159,34 +134,25 @@
   <string name="fso_properties_dialog_owner">Власник:</string>
   <string name="fso_properties_dialog_group">Група:</string>
   <string name="fso_properties_dialog_others">Остали:</string>
-  <string name="fso_properties_dialog_include_in_media_scan">Прескочи
-  тражење медија:</string>
-  <string name="fso_failed_to_allow_media_scan">Неуспело дозвољавање
-  тражења медија</string>
-  <string name="fso_failed_to_prevent_media_scan">Неуспело искључивање
-  из тражења медија</string>
+  <string name="fso_properties_dialog_include_in_media_scan">Прескочи тражење медија:</string>
+  <string name="fso_failed_to_allow_media_scan">Неуспело дозвољавање тражења медија</string>
+  <string name="fso_failed_to_prevent_media_scan">Неуспело искључивање из тражења медија</string>
   <string name="fso_delete_nomedia_dir_title">Избриши .nomedia директоријум</string>
-  <string name="fso_delete_nomedia_dir_body">Овај директоријум садржи
-  .nomedia директоријум.\n\nДа ли желите да га избришете заједно са садржајем?</string>
+  <string name="fso_delete_nomedia_dir_body">Овај директоријум садржи .nomedia директоријум.\n\nДа ли желите да га избришете заједно са садржајем?</string>
   <string name="fso_delete_nomedia_non_empty_title">Избриши .nomedia фајл</string>
-  <string name="fso_delete_nomedia_non_empty_body">Овај директоријум
-  садржи не-празан .nomedia фајл.\n\nДа ли желите да га избришете?</string>
+  <string name="fso_delete_nomedia_non_empty_body">Овај директоријум садржи не-празан .nomedia фајл.\n\nДа ли желите да га избришете?</string>
   <string name="history">Историја</string>
   <string name="msgs_history_empty">Историја је празна.</string>
   <string name="msgs_history_unknown">Непозната ставка у историји.</string>
   <string name="search">Резултати претраге</string>
-  <string name="search_hint">Упишите вашу претрагу</string>
-  <string name="search_voice_hint">Изговорите вашу претрагу</string>
-  <string name="search_error_msg">Дошло је до грешке у току
-  претраге. Нема нађених резултата.</string>
+  <string name="search_hint">Упишите Вашу претрагу</string>
+  <string name="search_voice_hint">Изговорите Вашу претрагу</string>
+  <string name="search_error_msg">Дошло је до грешке у току претраге. Нема нађених резултата.</string>
   <string name="search_no_results_msg">Нема резултата претраге.</string>
-  <string name="search_found_items_in_directory"><xliff:g id="items">%1$s</xliff:g> у
-    <xliff:g id="path">%2$s</xliff:g></string>
+  <string name="search_found_items_in_directory"><xliff:g id="items">%1$s</xliff:g> у <xliff:g id="path">%2$s</xliff:g></string>
   <string name="search_terms"><![CDATA[<b>Услови:</b>]]> <xliff:g id="terms">%1$s</xliff:g></string>
   <string name="search_few_characters_title">Потврди претрагу</string>
-  <string name="search_few_characters_msg">Неки од услова претраге
-  имају сувише мало карактера. Операција ће бити веома скупа по питању
-  времена и системских ресурса.\n\nДа ли желите да наставите?</string>
+  <string name="search_few_characters_msg">Неки од услова претраге имају сувише мало карактера. Операција ће бити веома скупа по питању времена и системских ресурса.\n\nДа ли желите да наставите?</string>
   <string name="searching">Молимо сачекајте\u2026</string>
   <string name="searching_action_label">Претрага у току</string>
   <string name="picker_title">Изаберите фајл</string>
@@ -194,11 +160,9 @@
   <string name="editor">Уређивач</string>
   <string name="editor_invalid_file_msg">Фајл није валидан.</string>
   <string name="editor_file_not_found_msg">Фајл није нађен.</string>
-  <string name="editor_file_exceed_size_msg">Фајл је сувише велики да
-  би се отворио на овом уређају.</string>
+  <string name="editor_file_exceed_size_msg">Фајл је сувише велики да би се отворио на овом уређају.</string>
   <string name="editor_dirty_ask_title">Потврди излазак</string>
-  <string name="editor_dirty_ask_msg">Постоје несачуване
-  измене.\n\nИзаћи без чувања?</string>
+  <string name="editor_dirty_ask_msg">Постоје несачуване измене.\n\nИзаћи без чувања?</string>
   <string name="editor_successfully_saved">Фајл је успешно сачуван.</string>
   <string name="editor_read_only_mode">Фајл је отворен само за читање.</string>
   <string name="dumping_message">Генерисање хексадецималног исписа\u2026</string>
@@ -213,8 +177,7 @@
   <string name="initial_directory_dialog_title">Почетни фолдер</string>
   <string name="initial_directory_label">Изабери почетни фолдер:</string>
   <string name="initial_directory_relative_msg">Релативне путање нису дозвољене.</string>
-  <string name="initial_directory_error_msg">Дошло је до грешке у току
-  чувања почетног фолдера.</string>
+  <string name="initial_directory_error_msg">Дошло је до грешке у току чувања почетног фолдера.</string>
   <string name="menu_history">Историја</string>
   <string name="menu_bookmarks">Обележивачи</string>
   <string name="menu_search">Претрага</string>
@@ -223,36 +186,24 @@
   <string name="menu_no_suggestions">Нема предлога</string>
   <string name="menu_word_wrap">Увијена реч</string>
   <string name="menu_syntax_highlight">Врхунац синтаксе</string>
-  <string name="create_copy_regexp">
-    <xliff:g id="name">%1$s</xliff:g> - копија<xliff:g id="extension">%2$s</xliff:g></string>
-  <string name="create_new_compress_file_regexp">
-    <xliff:g id="name">%1$s</xliff:g> - нови<xliff:g id="extension">%2$s</xliff:g></string>
+  <string name="create_copy_regexp"><xliff:g id="name">%1$s</xliff:g> - копија<xliff:g id="extension">%2$s</xliff:g></string>
+  <string name="create_new_compress_file_regexp"><xliff:g id="name">%1$s</xliff:g> - нови<xliff:g id="extension">%2$s</xliff:g></string>
   <string name="waiting_dialog_msg">Извршавам операцију\u2026</string>
   <string name="waiting_dialog_copying_title">Копирам\u2026</string>
-  <string name="waiting_dialog_copying_msg">
-    <![CDATA[<b>Из</b>]]> <xliff:g id="from">%1$s</xliff:g><![CDATA[<br/>]]>
+  <string name="waiting_dialog_copying_msg"><![CDATA[<b>Из</b>]]> <xliff:g id="from">%1$s</xliff:g><![CDATA[<br/>]]>
     <![CDATA[<b>у</b>]]> <xliff:g id="to">%2$s</xliff:g></string>
   <string name="waiting_dialog_moving_title">Премештам\u2026</string>
-  <string name="waiting_dialog_moving_msg">
-    <![CDATA[<b>Из</b>]]> <xliff:g id="from">%1$s</xliff:g><![CDATA[<br/>]]>
+  <string name="waiting_dialog_moving_msg"><![CDATA[<b>Из</b>]]> <xliff:g id="from">%1$s</xliff:g><![CDATA[<br/>]]>
     <![CDATA[<b>у</b>]]> <xliff:g id="to">%2$s</xliff:g></string>
   <string name="waiting_dialog_deleting_title">Бришем\u2026</string>
-  <string name="waiting_dialog_deleting_msg">
-    <![CDATA[<b>Фајл</b>]]> <xliff:g id="file">%1$s</xliff:g></string>
+  <string name="waiting_dialog_deleting_msg"><![CDATA[<b>Фајл</b>]]> <xliff:g id="file">%1$s</xliff:g></string>
   <string name="waiting_dialog_extracting_title">Распакујем\u2026</string>
-  <string name="waiting_dialog_extracting_msg">
-    <![CDATA[<b>Фајл</b>]]> <xliff:g id="file">%1$s</xliff:g></string>
-  <string name="waiting_dialog_compressing_title">Компримујем\u2026</string>
-  <string name="waiting_dialog_compressing_msg">
-    <![CDATA[<b>Фајл</b>]]> <xliff:g id="file">%1$s</xliff:g></string>
-  <string name="waiting_dialog_analizing_msg">
-    <![CDATA[<b>Анализирам\u2026</b>]]></string>
-  <string name="msgs_extracting_success">
-    Операција распакивања је успешно завршена. Подаци су распаковани у
-    <xliff:g id="destination">%1$s</xliff:g>.</string>
-  <string name="msgs_compressing_success">
-    Операција компримовања је успешно завршена. Подаци су компримовани у
-    <xliff:g id="destination">%1$s</xliff:g>.</string>
+  <string name="waiting_dialog_extracting_msg"><![CDATA[<b>Фајл</b>]]> <xliff:g id="file">%1$s</xliff:g></string>
+  <string name="waiting_dialog_compressing_title">Компресовање\u2026</string>
+  <string name="waiting_dialog_compressing_msg"><![CDATA[<b>Фајл</b>]]> <xliff:g id="file">%1$s</xliff:g></string>
+  <string name="waiting_dialog_analizing_msg"><![CDATA[<b>Анализирам\u2026</b>]]></string>
+  <string name="msgs_extracting_success">Операција распакивања је успешно завршена. Подаци су распаковани у <xliff:g id="destination">%1$s</xliff:g>.</string>
+  <string name="msgs_compressing_success">Операција компримовања је успешно завршена. Подаци су компримовани у <xliff:g id="destination">%1$s</xliff:g>.</string>
   <string name="actions_dialog_title">Акције</string>
   <string name="actions_menu_properties_current_folder">Особине</string>
   <string name="actions_menu_refresh">Освежи</string>
@@ -282,14 +233,11 @@
   <string name="actions_menu_add_shortcut">Додај пречицу</string>
   <string name="actions_menu_open_parent_folder">Отвори родитеља</string>
   <string name="actions_menu_compute_checksum">Израчунавање збира</string>
-  <string name="actions_ask_undone_operation_msg">
-    Ова акција не може да се обрне. Да ли желите да наставите?</string>
+  <string name="actions_ask_undone_operation_msg">Ова акција не може да се обрне. Да ли желите да наставите?</string>
   <string name="input_name_dialog_label">Име:</string>
   <string name="input_name_dialog_message_empty_name">Име не може да буде празно.</string>
-  <string name="input_name_dialog_message_invalid_path_name">Лоше име. Карактери
-    \'<xliff:g id="invalid_characters">%1$s</xliff:g>\' нису дозвољени.</string>
-  <string name="input_name_dialog_message_invalid_name">Лоше име. Имена \'.\' и
-    \'..\' нису дозвољена.</string>
+  <string name="input_name_dialog_message_invalid_path_name">Лоше име. Карактери \'<xliff:g id="invalid_characters">%1$s</xliff:g>\' нису дозвољени.</string>
+  <string name="input_name_dialog_message_invalid_name">Лоше име. Имена \'.\' и \'..\' нису дозвољена.</string>
   <string name="input_name_dialog_message_name_exists">Име већ постоји.</string>
   <string name="associations_dialog_title">Придруживања</string>
   <string name="associations_dialog_remember">Запамти избор</string>
@@ -297,14 +245,12 @@
   <string name="associations_dialog_openwith_action">Отвори</string>
   <string name="associations_dialog_sendwith_title">Пошаљи са</string>
   <string name="associations_dialog_sendwith_action">Пошаљи</string>
-  <string name="inline_autocomplete_tab_nothing_to_complete_msg">Ништа
-  за довршавање.</string>
+  <string name="inline_autocomplete_tab_nothing_to_complete_msg">Ништа за довршавање.</string>
   <string name="execution_console_title">Конзола</string>
   <string name="execution_console_script_name_label">Скрипт:</string>
   <string name="execution_console_script_execution_time_label">Време:</string>
   <string name="execution_console_script_exitcode_label">Излазни код:</string>
-  <string name="execution_console_script_execution_time_text">
-    <xliff:g id="seconds">%1$s</xliff:g> сек.</string>
+  <string name="execution_console_script_execution_time_text"><xliff:g id="seconds">%1$s</xliff:g> сек.</string>
   <string name="compute_checksum_title">Израчунавање збира</string>
   <string name="compute_checksum_filename_label">Фајл:</string>
   <string name="compute_checksum_computing_checksum_msg">Израчунавање збира\u2026</string>
@@ -318,7 +264,7 @@
   <string name="filetime_format_mode_yyyyMMdd_HHmmss">гггг-мм-дд чч:мм:сс</string>
   <string name="selection_folders_and_files"><xliff:g id="folders">%1$s</xliff:g> and <xliff:g id="files">%2$s</xliff:g> изабрано.</string>
   <string name="category_system">СИСТЕМ</string>
-  <string name="category_app">ПРОГРАМ</string>
+  <string name="category_app">АПЛИКАЦИЈА</string>
   <string name="category_binary">БИНАРНО</string>
   <string name="category_text">ТЕКСТ</string>
   <string name="category_document">ДОКУМЕНТ</string>
@@ -346,37 +292,25 @@
   <string name="pref_general_behaviour_category">Опште</string>
   <string name="pref_case_sensitive_sort">Разликуј мала и велика слова код сортирања</string>
   <string name="pref_case_sensitive_sort_summary">Размислите о случају приликом навигације или сортирања резултата претраге</string>
-  <string name="pref_filetime_format_mode">Формат датума / времена</string>
+  <string name="pref_filetime_format_mode">Формат датума/времена</string>
   <string name="pref_disk_usage_warning_level">Упозорење о употреби диска</string>
-  <string name="pref_disk_usage_warning_level_summary" formatted="false">
-    Прикажи различиту боју у виџетима употребе диска када стигну до
-    <xliff:g id="level">%1$s</xliff:g> процената слободног простора
+  <string name="pref_disk_usage_warning_level_summary" formatted="false">Прикажи различиту боју у виџетима употребе диска када стигну до <xliff:g id="level">%1$s</xliff:g> процената слободног простора
   </string>
   <string name="pref_compute_folder_statistics">Рачунај статистике фолдера</string>
-  <string name="pref_compute_folder_statistics_on">
-    Упозорење! Рачунање статистика фолдера је захтева време и
-    системске ресурсе</string>
+  <string name="pref_compute_folder_statistics_on">Упозорење! Рачунање статистика фолдера је захтева време и системске ресурсе</string>
   <string name="pref_display_thumbs">Преглед</string>
   <string name="pref_display_thumbs_summary">Покажите слику прегледа за апликације, музичке датотеке, слике и видео снимке.</string>
   <string name="pref_use_flinger">Користи гестове превлачења</string>
-  <string name="pref_use_flinger_summary">
-    Користи гест превлачења са лева на десно за брисање фајлова или фолдера.
-  </string>
+  <string name="pref_use_flinger_summary">Користи гест превлачења са лева на десно за брисање фајлова или фолдера.  </string>
   <string name="pref_general_advanced_settings_category">Напредно</string>
   <string name="pref_access_mode">Режим приступа</string>
   <string name="pref_access_mode_safe">Сигурни режим</string>
-  <string name="pref_access_mode_safe_summary">
-    Сигурни режим\n\nПрограм ради без додатних привилегија и једини
-    доступни системи фајлова су они за податке (SD картице и USB)</string>
+  <string name="pref_access_mode_safe_summary">Сигурни режим\n\nПрограм ради без додатних привилегија и једини доступни системи фајлова су они за податке (SD картице и USB)</string>
   <string name="pref_access_mode_prompt">Режим питања корисника</string>
-  <string name="pref_access_mode_prompt_summary">
-    Режим питања корисника\n\nПрограм ради са пуним приступом систему
-    фајлова, али ће питати за дозволу пре извршавања привилегованих акција
+  <string name="pref_access_mode_prompt_summary">Режим питања корисника\n\nПрограм ради са пуним приступом систему фајлова, али ће питати за дозволу пре извршавања привилегованих акција
   </string>
   <string name="pref_access_mode_root">Режим Root-а</string>
-  <string name="pref_access_mode_root_summary">
-    Режим Root-а\n\nУпозорење! Овај режим омогућава операције које
-    могу да покваре уређај. Ваша је одговорност да до тога не дође
+  <string name="pref_access_mode_root_summary">Режим Root-а\n\nУпозорење! Овај режим омогућава операције које могу да покваре уређај. Ваша је одговорност да до тога не дође
   </string>
   <string name="pref_restrict_secondary_users_access_title">Забранити приступ корисницима</string>
   <string name="pref_restrict_secondary_users_access_summary">Ограничите приступ целом систему у средњим корисницима</string>
@@ -389,16 +323,13 @@
   <string name="pref_sort_search_results_mode_relevance">По релевантности</string>
   <string name="pref_search_privacity_category">Приватност</string>
   <string name="pref_save_search_terms">Чувај услове претраге</string>
-  <string name="pref_save_search_terms_on">
-    Услови претраге ће бити чувани и коришћени као предлог у будућим претрагама
+  <string name="pref_save_search_terms_on">Услови претраге ће бити чувани и коришћени као предлог у будућим претрагама
   </string>
   <string name="pref_save_search_terms_off">Услови претраге неће бити чувани</string>
   <string name="pref_remove_saved_search_terms">Избриши сачуване услове претраге</string>
-  <string name="pref_remove_saved_search_terms_summary">
-    Притисните да избришете све сачуване услове претраге
+  <string name="pref_remove_saved_search_terms_summary">Притисните да избришете све сачуване услове претраге
   </string>
-  <string name="pref_remove_saved_search_terms_msg">Сви сачувани
-  услови претраге су избрисани.</string>
+  <string name="pref_remove_saved_search_terms_msg">Сви сачувани услови претраге су избрисани.</string>
   <string name="pref_editor_behaviour_category">Понашање</string>
   <string name="pref_no_suggestions">Нема предлога</string>
   <string name="pref_no_suggestions_desc">Не приказуј сугестије речника приликом уређивања датотеке</string>
@@ -420,8 +351,7 @@
   <string name="pref_themes_not_found">Тема није нађена.</string>
   <string name="pref_debug_traces">Логуј информације о грешкама</string>
   <string name="theme_default_name">Светла тема</string>
-  <string name="theme_default_description">Светла тема за CyanogenMod
-  менаџер фајлова.</string>
+  <string name="theme_default_description">Светла тема за CyanogenMod менаџер фајлова.</string>
   <string name="themes_author">CyanogenMod</string>
   <string name="drawer_open">Отвори навигациону фиоку</string>
   <string name="drawer_close">Затвори навигациону фиоку</string>

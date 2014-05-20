@@ -348,7 +348,7 @@ Autorské práva © 2012 The CyanogenMod Project</string>
   <string name="pref_themes_selection_category">Témy</string>
   <string name="pref_themes_set_theme">Nastaviť tému</string>
   <string name="pref_themes_no_preview">Nie je dostupná\nukážka</string>
-  <string name="pref_themes_confirmation">Téma bola aplikovaná úspešne.</string>
+  <string name="pref_themes_confirmation">Téma bola úspešne aplikovaná.</string>
   <string name="pref_themes_not_found">Téma sa nenašla.</string>
   <string name="pref_debug_traces">Zaznamenať informácie ladenia</string>
   <string name="theme_default_name">Svetlá téma</string>

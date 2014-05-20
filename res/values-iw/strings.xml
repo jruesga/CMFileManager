@@ -25,6 +25,8 @@
   <string name="datetime_format_order">%1$s %2$s</string>
   <string name="device_blockdevice">התקן בלוקים</string>
   <string name="device_characterdevice">התקן תווים</string>
+  <string name="device_namedpipe">Named pipe</string>
+  <string name="device_domainsocket">סוקט הדומיין</string>
   <string name="mount_point_readonly">קריאה בלבד</string>
   <string name="mount_point_readwrite">קריאה וכתיבה</string>
   <string name="yes">כן</string>
@@ -164,6 +166,7 @@
   <string name="editor_dirty_ask_msg">קיימים שינויים לא שמורים.\n\nלצאת מבלי לשמור?</string>
   <string name="editor_successfully_saved">הקובץ נשמר בהצלחה.</string>
   <string name="editor_read_only_mode">הקובץ נפתח במצב \"קריאה בלבד\".</string>
+  <string name="dumping_message">יוצר קובץ hex dump\u2026</string>
   <string name="displaying_message">מציג\u2026</string>
   <string name="bookmarks">מועדפים</string>
   <string name="bookmarks_home">בית</string>
@@ -301,6 +304,7 @@
   <string name="pref_about_summary">מנהל הקבצים v<xliff:g id="version">%1$s</xliff:g>\nזכויות יוצרים \u00A9 2012-2014 פרויקט ה-CyanogenMod</string>
   <string name="pref_general_behaviour_category">כללי</string>
   <string name="pref_case_sensitive_sort">מיין לפי אותיות גדולות וקטנות</string>
+  <string name="pref_case_sensitive_sort_summary">שקול מקרה כאשר מנווטים או ממיינים תוצאות חיפוש</string>
   <string name="pref_filetime_format_mode">תבנית תאריך/שעה</string>
   <string name="pref_disk_usage_warning_level">אזהרות שימוש בדיסק</string>
   <string name="pref_disk_usage_warning_level_summary" formatted="false">הצג צבע שונה בוידג\'טי שימוש בדיסק כשהם מגיעים ל-<xliff:g id="level">%1$s</xliff:g> אחוזים משטח הדיסק הפנוי</string>
@@ -319,6 +323,7 @@
   <string name="pref_access_mode_root">מצב גישת Root</string>
   <string name="pref_access_mode_root_summary">מצב גישת Root\n\nאזהרה! מצב זה מאפשר פעולות שעלולת להרוס את המכשיר. זוהי אחריותך לוודא שפעולות אלו בטוחות</string>
   <string name="pref_restrict_secondary_users_access_title">הגבל גישה למשתמשים</string>
+  <string name="pref_restrict_secondary_users_access_summary">הגבל גישה לכל המערכת למשתמשים משניים</string>
   <string name="pref_search_results_category">תוצאות</string>
   <string name="pref_show_relevance_widget">הצג וידג\'ט רלוונטיות</string>
   <string name="pref_highlight_terms">הדגש את תנאי החיפוש</string>
@@ -337,12 +342,15 @@
   <string name="pref_no_suggestions">אין הצעות</string>
   <string name="pref_no_suggestions_desc">אל תציג הצעות מילון בעת עריכת קובץ</string>
   <string name="pref_word_wrap">גלישת מילים</string>
+  <string name="pref_hexdump">קבצים בינארים של Hexdump</string>
+  <string name="pref_hexdump_desc">כאשר פותחים קובץ בינארי, צור hexdump של הקובץ ופתח אותו באמצעות hex viewer.</string>
   <string name="pref_editor_syntax_highlight_category">הבלט תחביר</string>
   <string name="pref_syntax_highlight">הבלט תחביר</string>
   <string name="pref_syntax_highlight_desc">סמן את התחביר של הקובץ מוצג בעורך (יעבד סימון תחביר רק עבור קבצים עם מבנה זמין)</string>
   <string name="pref_syntax_highlight_color_scheme">ערכת צבעים</string>
   <string name="pref_syntax_highlight_color_scheme_desc">הקש כדי לבחור את ערכת הצבעים של סימון תחביר</string>
   <string name="pref_syntax_sh_use_theme_default">השתמש בערכת הנושא המוגדרת כברירת מחדל</string>
+  <string name="pref_syntax_sh_use_theme_default_desc">השתמש בנוסח הרגיל המודגש של הערכת נושא הנוכחית</string>
   <string name="pref_editor_sh_item_category">פריטים</string>
   <string name="pref_themes_selection_category">ערכות נושא</string>
   <string name="pref_themes_set_theme">הגדר ערכת נושא</string>

@@ -54,7 +54,7 @@
   <string name="msgs_settings_invalid_initial_directory">La carpeta inicial \"<xliff:g id="initial_dir">%1$s</xliff:g>\" ye inválida. Camudando a la carpeta raíz.</string>
   <string name="msgs_success">Completóse la operación.</string>
   <string name="msgs_unknown">Hebo un fallu. La operación nun se completó.</string>
-  <string name="msgs_insufficient_permissions">Esta operación requier permisos de superusuariu. Intenta camudar a mou superusuariu.</string>
+  <string name="msgs_insufficient_permissions">Esta operación rique permisos de superusuariu. Intenta camudar a mou superusuariu.</string>
   <string name="msgs_file_not_found">La carpeta o ficheru nun esiste.</string>
   <string name="msgs_command_not_found">El comando pa completar la operación nun s\'atopó o ye erroneu.</string>
   <string name="msgs_io_failed">Fallu de llectura/escritura.</string>
@@ -67,10 +67,10 @@
   <string name="msgs_unresolved_inconsistencies">La operación nun ta permitida porque podría crear inconsistencies.</string>
   <string name="msgs_operation_not_allowed_in_current_directory">La operación nun ta permitida na carpeta actual.\n\nLa carpeta de destín nun pue ser una subcarpeta de l\'actual o ser la mesma que l\'actual.</string>
   <string name="msgs_push_again_to_exit">Calca pa salir.</string>
-  <string name="msgs_not_registered_app">Nun hai denguna aplicación rexistrada p\'abrir la triba de ficheru esbilláu.</string>
+  <string name="msgs_not_registered_app">Nun hai nenguna aplicación rexistrada p\'abrir la triba de ficheru esbilláu.</string>
   <string name="msgs_overwrite_files">Dalgún de los ficheros esiste na carpeta de destín. \n\n¿Sobrescribir?</string>
   <string name="msgs_action_association_failed">Hebo un fallu al asociar l\'aición a l\'aplicación.</string>
-  <string name="advise_insufficient_permissions">La operación requier permisos de superusuariu. ¿Camudar a mou superusuariu?</string>
+  <string name="advise_insufficient_permissions">La operación rique permisos de superusuariu.\n\n¿Camudar a mou superusuariu?</string>
   <string name="parent_dir">Carpeta raíz</string>
   <string name="external_storage">Almacenamientu esternu</string>
   <string name="usb_storage">Almacenamientu USB</string>
@@ -100,8 +100,8 @@
   <string name="filesystem_info_warning_title">Ensin información</string>
   <string name="filesystem_info_warning_msg">Nun hai información disponible pal sistema de ficheros.</string>
   <string name="filesystem_info_cant_be_mounted_msg">El sistema de ficheros nun pue montase/desmontase.</string>
-  <string name="filesystem_info_mount_not_allowed_msg">La operación de montaxe del sistema de ficheros nun ta permitida en mou seguru. Tocar equí pa camudar a mou superusuariu.</string>
-  <string name="filesystem_info_mount_failed_msg">La operación de montaxe del sistema de ficheros falló. Dalgunos sistemes de ficheros, como les tarxetas SD, nun puen montase o desmontase porque tán diseñaos como sistemes de namái-llectura.</string>
+  <string name="filesystem_info_mount_not_allowed_msg">El montaxe del sistema de ficheros nun ta permitíu en mou seguru. Tocar equí pa camudar a mou superusuariu.</string>
+  <string name="filesystem_info_mount_failed_msg">El montaxe del sistema de ficheros falló. Dalgunos sistemes de ficheros, como les tarxetes SD, nun puen montase o desmontase porque tán diseñaos como sistemes de namái-llectura.</string>
   <string name="filesystem_info_dialog_title">Información del sistema de ficheros</string>
   <string name="filesystem_info_dialog_tab_info">Información</string>
   <string name="filesystem_info_dialog_tab_disk_usage">Usu</string>
@@ -213,8 +213,8 @@
   <string name="actions_menu_refresh">Anovar</string>
   <string name="actions_menu_new_directory">Carpeta nueva</string>
   <string name="actions_menu_new_file">Ficheru nuevu</string>
-  <string name="actions_menu_select_all">Marcar too</string>
-  <string name="actions_menu_deselect_all">Desmarcar too</string>
+  <string name="actions_menu_select_all">Marcalo too</string>
+  <string name="actions_menu_deselect_all">Desmarcalo too</string>
   <string name="actions_menu_select">Marcar</string>
   <string name="actions_menu_deselect">Desmarcar</string>
   <string name="actions_menu_paste_selection">Apegar equí</string>
@@ -249,7 +249,7 @@
   <string name="associations_dialog_openwith_action">Abrir</string>
   <string name="associations_dialog_sendwith_title">Unviar con</string>
   <string name="associations_dialog_sendwith_action">Unviar</string>
-  <string name="inline_autocomplete_tab_nothing_to_complete_msg">Res que completar.</string>
+  <string name="inline_autocomplete_tab_nothing_to_complete_msg">Nun hai un res que completar.</string>
   <string name="execution_console_title">Consola</string>
   <string name="execution_console_script_name_label">Script:</string>
   <string name="execution_console_script_execution_time_label">Tiempu:</string>

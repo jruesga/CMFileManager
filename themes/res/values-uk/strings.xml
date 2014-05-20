@@ -16,6 +16,6 @@
      limitations under the License.
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-  <string name="dark_theme_name">深色主題</string>
-  <string name="dark_theme_desc">用於 CyanogenMod 檔案管理器的深色主題。</string>
+  <string name="dark_theme_name">Темна тема</string>
+  <string name="dark_theme_desc">Темна тема для файлового менеджера CyanogenMod.</string>
 </resources>

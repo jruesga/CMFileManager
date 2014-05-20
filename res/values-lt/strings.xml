@@ -150,7 +150,7 @@
   <string name="search_error_msg">Beieškant įvyko klaida. Rezultatų nerasta.</string>
   <string name="search_no_results_msg">Rezultatų nerasta.</string>
   <string name="search_found_items_in_directory"><xliff:g id="items">%1$s</xliff:g> tarp <xliff:g id="path">%2$s</xliff:g></string>
-  <string name="search_terms"><![CDATA[<b>Sąlygos:</b>]]> <xliff:g id="terms">%1$s</xliff:g></string>
+  <string name="search_terms"><![CDATA[<b>Terminai:</b>]]> <xliff:g id="terms">%1$s</xliff:g></string>
   <string name="search_few_characters_title">Patvirtinkite paiešką</string>
   <string name="search_few_characters_msg">Kai kurie paieškos terminai turi nedidelius skaičius. Šiam veiksmui gali reikėti daug laiko ir sistemos išteklių.\n\nAr norite tęsti?</string>
   <string name="searching">Prašome palaukti\u2026</string>

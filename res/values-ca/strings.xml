@@ -36,7 +36,7 @@
   <string name="select">Selecciona</string>
   <string name="root_directory_name"><![CDATA[<Carpeta arrel>]]></string>
   <string name="search_result_name">Cerca: <xliff:g id="terms">%1$s</xliff:g></string>
-  <string name="loading_message">Carregant\u2026</string>
+  <string name="loading_message">S\'està carregant\u2026</string>
   <string name="cancelled_message">Cancel·lat.</string>
   <string name="error_message">Error.</string>
   <string name="copy_text_cd">Pica per copiar el text al portapapers</string>

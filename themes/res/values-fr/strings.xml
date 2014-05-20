@@ -15,7 +15,7 @@
      See the License for the specific language governing permissions and
      limitations under the License.
 -->
-<resources>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
   <string name="dark_theme_name">Thème Sombre</string>
   <string name="dark_theme_desc">Un thème sombre pour l\'Explorateur de fichier CyanogenMod.</string>
 </resources>

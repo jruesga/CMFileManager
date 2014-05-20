@@ -103,7 +103,7 @@
   <string name="filesystem_info_cant_be_mounted_msg">
     このファイルシステムはマウント/マウント解除できません。</string>
   <string name="filesystem_info_mount_not_allowed_msg">ファイルシステムのマウント操作はセーフモードでは許可されていません。タップしてルートアクセスモードに変更します。</string>
-  <string name="filesystem_info_mount_failed_msg">ファイルシステムのマウント操作に失敗しました。SDカードのような一部のファイルシステムは読み取り専用のファイルシステムとして内蔵されているため、マウント/マウント解除することはできません。</string>
+  <string name="filesystem_info_mount_failed_msg">ファイルシステムのマウント操作ができませんでした。SDカードのような一部のファイルシステムは読み取り専用のファイルシステムとして内蔵されているため、マウント/マウント解除することはできません。</string>
   <string name="filesystem_info_dialog_title">ファイルシステム情報</string>
   <string name="filesystem_info_dialog_tab_info">情報</string>
   <string name="filesystem_info_dialog_tab_disk_usage">ディスク使用量</string>
@@ -117,9 +117,9 @@
   <string name="filesystem_info_dialog_used_disk_usage">使用領域:</string>
   <string name="filesystem_info_dialog_free_disk_usage">空き領域:</string>
   <string name="fso_properties_permissions_not_allowed_msg">権限の操作はセーフモードでは許可されていません。タップしてルートアクセスモードに変更します。</string>
-  <string name="fso_properties_failed_to_change_owner_msg">所有者の変更の操作に失敗しました。\n\nセキュリティの理由により、SDカードのような一部のファイルシステムは所有権の変更を許可していません。</string>
+  <string name="fso_properties_failed_to_change_owner_msg">所有者の変更の操作ができませんでした。\n\nセキュリティの理由により、SDカードのような一部のファイルシステムは所有権の変更を許可していません。</string>
   <string name="fso_properties_failed_to_change_group_msg">グループの変更の操作に失敗しました。\n\nセキュリティの理由により、SDカードのような一部のファイルシステムはグループの変更を許可していません。</string>
-  <string name="fso_properties_failed_to_change_permission_msg">権限の変更の操作に失敗しました。\n\nセキュリティの理由により、SDカードのような一部のファイルシステムは権限の変更を許可していません。</string>
+  <string name="fso_properties_failed_to_change_permission_msg">権限の変更の操作ができませんでした。\n\nセキュリティの理由により、SDカードのような一部のファイルシステムは権限の変更を許可していません。</string>
   <string name="fso_properties_dialog_title">プロパティ</string>
   <string name="fso_properties_dialog_tab_info">情報</string>
   <string name="fso_properties_dialog_tab_permissions">権限</string>
@@ -137,7 +137,7 @@
   <string name="fso_properties_dialog_group">グループ:</string>
   <string name="fso_properties_dialog_others">その他:</string>
   <string name="fso_properties_dialog_include_in_media_scan">メディアスキャンをスキップ:</string>
-  <string name="fso_failed_to_allow_media_scan">メディアスキャンの許可に失敗しました</string>
+  <string name="fso_failed_to_allow_media_scan">メディアスキャンを許可できませんでした</string>
   <string name="fso_failed_to_prevent_media_scan">メディアスキャンを中断できませんでした</string>
   <string name="fso_delete_nomedia_dir_title">.nomediaディレクトリを削除</string>
   <string name="fso_delete_nomedia_dir_body">このディレクトリは.nomediaディレクトリを含んでいます。\n\nそれらのコンテンツのすべてを削除しますか？</string>
@@ -280,9 +280,9 @@
   <string name="category_video">動画</string>
   <string name="category_security">セキュリティ</string>
   <string name="compression_mode_title">圧縮モード</string>
-  <string name="shortcut_failed_msg">ショートカットの操作に失敗しました。</string>
+  <string name="shortcut_failed_msg">ショートカットの操作ができませんでした</string>
   <string name="shortcut_creation_success_msg">ショートカットの作成が完了しました。</string>
-  <string name="shortcut_creation_failed_msg">ショートカットの作成に失敗しました。</string>
+  <string name="shortcut_creation_failed_msg">ショートカットの作成ができませんでした。</string>
   <string name="pref">設定</string>
   <string name="pref_general">全般設定</string>
   <string name="pref_search">検索オプション</string>

@@ -18,6 +18,11 @@
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
   <string name="app_name">Správce souborů</string>
   <string name="app_description">CyanogenMod správce souborů</string>
+  <string name="size_bytes">B</string>
+  <string name="size_kilobytes">kB</string>
+  <string name="size_megabytes">MB</string>
+  <string name="size_gigabytes">GB</string>
+  <string name="datetime_format_order">%1$s %2$s</string>
   <string name="device_blockdevice">Blokové zařízení</string>
   <string name="device_characterdevice">Znakové zařízení</string>
   <string name="device_namedpipe">Pojmenovaná roura</string>
@@ -340,6 +345,7 @@
   <string name="pref_debug_traces">Zaznamenávat ladící informace</string>
   <string name="theme_default_name">Světlé téma</string>
   <string name="theme_default_description">Světlé téma pro Správce souborů CyanogenMod.</string>
+  <string name="themes_author">CyanogenMod</string>
   <string name="drawer_open">Otevřít navigační panel</string>
   <string name="drawer_close">Zavřít navigační panel</string>
   <string name="color_picker_alpha_slider_text">Průhlednost</string>

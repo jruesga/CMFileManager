@@ -141,10 +141,10 @@
   <string name="fso_properties_dialog_include_in_media_scan">Saltar pesquisa Multimedia:</string>
   <string name="fso_failed_to_allow_media_scan">Falha de permissão na pesquisa multimédia</string>
   <string name="fso_failed_to_prevent_media_scan">Falha ao cancelar pesquisa multimédia</string>
-  <string name="fso_delete_nomedia_dir_title">Remover pasta .nomedia</string>
-  <string name="fso_delete_nomedia_dir_body">Esta pasta contém uma pasta .nomedia.\n\nDeseja remover com todo o seu conteúdo?</string>
-  <string name="fso_delete_nomedia_non_empty_title">Remover ficheiro .nomedia</string>
-  <string name="fso_delete_nomedia_non_empty_body">Esta pasta contém um ficheiro .nomedia com dados.\n\nDeseja removê-lo?</string>
+  <string name="fso_delete_nomedia_dir_title">Eliminar pasta .nomedia</string>
+  <string name="fso_delete_nomedia_dir_body">Esta pasta contém uma pasta .nomedia.\n\nDeseja eliminar com todo o seu conteúdo?</string>
+  <string name="fso_delete_nomedia_non_empty_title">Eliminar ficheiro .nomedia</string>
+  <string name="fso_delete_nomedia_non_empty_body">Esta pasta contém um ficheiro .nomedia com dados.\n\nDeseja elimina-la?</string>
   <string name="history">Histórico</string>
   <string name="msgs_history_empty">O histórico está vazio.</string>
   <string name="msgs_history_unknown">Item de histórico desconhecido.</string>
@@ -187,7 +187,7 @@
   <string name="menu_history">Histórico</string>
   <string name="menu_bookmarks">Favoritos</string>
   <string name="menu_search">Procura</string>
-  <string name="menu_settings">Configurações</string>
+  <string name="menu_settings">Definições</string>
   <string name="menu_clear_history">Apagar histórico</string>
   <string name="menu_no_suggestions">Sem sugestões</string>
   <string name="menu_word_wrap">Quebra de linha</string>
@@ -225,7 +225,7 @@
   <string name="actions_menu_deselect">Desmarcar</string>
   <string name="actions_menu_paste_selection">Copiar selecionados aqui</string>
   <string name="actions_menu_move_selection">Mover selecionados aqui</string>
-  <string name="actions_menu_delete_selection">Apagar selecionados</string>
+  <string name="actions_menu_delete_selection">Eliminar selecionados</string>
   <string name="actions_menu_compress_selection">Comprimir selecionados</string>
   <string name="actions_menu_create_link">Criar hiperligação</string>
   <string name="actions_menu_open">Abrir</string>
@@ -235,7 +235,7 @@
   <string name="actions_menu_send_selection">Enviar seleção</string>
   <string name="actions_menu_compress">Comprimir</string>
   <string name="actions_menu_extract">Extrair</string>
-  <string name="actions_menu_delete">Remover</string>
+  <string name="actions_menu_delete">Eliminar</string>
   <string name="actions_menu_rename">Mudar o nome</string>
   <string name="actions_menu_create_copy">Criar cópia</string>
   <string name="actions_menu_properties">Propriedades</string>
@@ -296,7 +296,7 @@
   <string name="shortcut_failed_msg">Falha ao lidar com o atalho.</string>
   <string name="shortcut_creation_success_msg">Atalho criado com sucesso.</string>
   <string name="shortcut_creation_failed_msg">Criação de atalho sem sucesso.</string>
-  <string name="pref">Configurações</string>
+  <string name="pref">Definições</string>
   <string name="pref_general">Definições gerais</string>
   <string name="pref_search">Opções de pesquisa</string>
   <string name="pref_editor">Opções do editor</string>
@@ -317,7 +317,7 @@
   <string name="pref_display_thumbs">Previsualizar </string>
   <string name="pref_display_thumbs_summary">Mostrar uma imagem de pré-visualização para aplicações, ficheiros de música, imagens e vídeos.</string>
   <string name="pref_use_flinger">Usar gestos</string>
-  <string name="pref_use_flinger_summary">Usar deteção de gestos da esquerda para direita para remover ficheiros ou pastas.</string>
+  <string name="pref_use_flinger_summary">Usar deteção de gestos da esquerda para direita para eliminar ficheiros ou pastas.</string>
   <string name="pref_general_advanced_settings_category">Avançadas</string>
   <string name="pref_access_mode">Modo de acesso</string>
   <string name="pref_access_mode_safe">Modo seguro</string>
@@ -391,10 +391,10 @@
   <string name="changelog_title">Lista de alterações</string>
   <string name="welcome_title">Bem-vindo</string>
   <string name="welcome_msg">Bem-vindo ao Gestor de Ficheiros Cyanogenmod.
-    \n\nEsta aplicação permite-lhe explorar o sistema de ficheiro e realizar operações que podem
+    \n\nEsta aplicação permite-lhe explorar o sistema de ficheiros e realizar operações que podem
     alterar a estabilidade do seu dispositivo. Para previnir falhas, a aplicação irá iniciar num modo
     de segurança, com poucos previlégios.
-    \n\nPode aceder às definições mais avançadas via Configurações. É sua a responsabilidade de garantir
+    \n\nPode aceder às definições mais avançadas via Definições. É sua a responsabilidade de garantir
     que uma operação não afete a estabilidade do seu sistema.
     \n\nA Equipa CyanogenMod.\n</string>
 </resources>

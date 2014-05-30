@@ -50,7 +50,7 @@
   <string name="msgs_change_to_prompt_access_mode_msg">No s\'ha pogut executar el mode d\'accés superusuari. Canviant al mode segur.\n\nAplicar aquest canvi?</string>
   <string name="msgs_cant_create_console">No s\'ha pogut guanyar els privilegis requerits per aquesta funció.</string>
   <string name="msgs_privileged_console_alloc_failed">No s\'ha pogut executar el mode d\'accés superusuari. Canviant al mode segur.</string>
-  <string name="msgs_settings_save_failure">L\'ajustament no s\'ha pogut aplicar o desar.</string>
+  <string name="msgs_settings_save_failure">La configuració no s\'ha pogut aplicar o desar.</string>
   <string name="msgs_settings_invalid_initial_directory">La carpeta inicial \'<xliff:g id="initial_dir">%1$s</xliff:g>\' és invàlida. Canviant a la carpeta arrel.</string>
   <string name="msgs_success">L\'operació s\'ha completat satisfactòriament.</string>
   <string name="msgs_unknown">s\'ha detectat un error. L\'operació no ha estat satisfatòria.</string>
@@ -181,7 +181,7 @@
   <string name="menu_history">Historial</string>
   <string name="menu_bookmarks">Marcadors</string>
   <string name="menu_search">Cerca</string>
-  <string name="menu_settings">Ajustaments</string>
+  <string name="menu_settings">Configuració</string>
   <string name="menu_clear_history">Neteja l\'historial</string>
   <string name="menu_no_suggestions">Sense sugerències</string>
   <string name="menu_word_wrap">Ajust de línia</string>
@@ -281,8 +281,8 @@
   <string name="shortcut_failed_msg">No s\'ha pogut gestionar la drecera.</string>
   <string name="shortcut_creation_success_msg">La drecera s\'ha creat satisfactòriament.</string>
   <string name="shortcut_creation_failed_msg">La creació de la drecera ha fallat.</string>
-  <string name="pref">Ajustaments</string>
-  <string name="pref_general">Ajustaments generals</string>
+  <string name="pref">Configuració</string>
+  <string name="pref_general">Configuració general</string>
   <string name="pref_search">Opcions de cerca</string>
   <string name="pref_editor">Opcions de l\'editor</string>
   <string name="pref_themes">Temes</string>
@@ -367,9 +367,5 @@
       Segur que vols continuar?</string>
   <string name="changelog_title">Registre de canvis</string>
   <string name="welcome_title">Benvingut</string>
-  <string name="welcome_msg">
-    Benvingut al gestor d\'arxius de CyanogenMod.
-    \n\nAquesta app et permet explorar el sistema d\'arxius i fer operacions que podrien espatllar el teur dispositiu. Per evitar danys, aquesta app s\'executarà en mode segur, en mode de pocs privilegis.
-    \n\nPots accedir al mode avançat, amb privilegis complets mitjançant els Ajustaments. Està sota la teva responsabilitat assegurar que les operacions no espatllin el teu sistema.
-    \n\nL\'equip de CyanogenMod.\n</string>
+  <string name="welcome_msg">Benvingut al gestor d\'arxius de CyanogenMod.\n\nAquesta app et permet explorar el sistema d\'arxius i fer operacions que podrien espatllar el teur dispositiu. Per evitar danys, aquesta app s\'executarà en mode segur, en mode de pocs privilegis.\n\nPots accedir al mode avançat, amb privilegis complets mitjançant la Configuració. Està sota la teva responsabilitat assegurar que les operacions no espatllin el teu sistema.\n\nL\'equip de CyanogenMod.\n</string>
 </resources>

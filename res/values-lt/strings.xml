@@ -272,7 +272,7 @@
   <string name="category_exec">VYKDOMA</string>
   <string name="category_database">DUOMENŲ BAZĖ</string>
   <string name="category_font">ŠRIFTAS</string>
-  <string name="category_image">ATVAIZDAS</string>
+  <string name="category_image">VAIZDAS</string>
   <string name="category_audio">GARSAS</string>
   <string name="category_video">VAIZDAS</string>
   <string name="category_security">SAUGUMAS</string>
@@ -296,7 +296,7 @@
   <string name="pref_compute_folder_statistics">Apskaičiuoti aplanko statistiką</string>
   <string name="pref_compute_folder_statistics_on">Įspėjimas! Aplanko statistikos skaičiavimas užima daug laiko ir sistemos išteklių</string>
   <string name="pref_display_thumbs">Peržiūra</string>
-  <string name="pref_display_thumbs_summary">Rodyti programų atvaizdų, muzikos failų, nuotraukų ir vaizdo įrašų peržiūrą</string>
+  <string name="pref_display_thumbs_summary">Rodyti programų, muzikos failų, nuotraukų ir vaizdo įrašų peržiūros vaizdą</string>
   <string name="pref_use_flinger">Naudoti braukiamuosius gestus</string>
   <string name="pref_use_flinger_summary">Naudokite braukimą iš kairės į dešinę norėdami ištrinti failus ar aplankus</string>
   <string name="pref_general_advanced_settings_category">Papildoma</string>

@@ -80,7 +80,7 @@
   <string name="actionbar_button_other_view_options_cd">其他視圖選項</string>
   <string name="actionbar_button_selection_done_cd">完成</string>
   <string name="actionbar_button_actions_cd">操作</string>
-  <string name="actionbar_button_history_cd">紀錄</string>
+  <string name="actionbar_button_history_cd">記錄</string>
   <string name="actionbar_button_bookmarks_cd">書籤</string>
   <string name="actionbar_button_search_cd">搜尋</string>
   <string name="actionbar_button_overflow_cd">更多選項</string>
@@ -141,8 +141,8 @@
   <string name="fso_delete_nomedia_dir_body">此目錄包含這一個 .nomedia 目錄。\n\n您確定要刪除此 .nomedia 目錄與它包含的所有內容嗎？</string>
   <string name="fso_delete_nomedia_non_empty_title">刪除 .nomedia 檔案</string>
   <string name="fso_delete_nomedia_non_empty_body">此目錄包含這一個非空白的 .nomedia 檔案。\n\n您確定要刪除此檔案嗎？</string>
-  <string name="history">紀錄</string>
-  <string name="msgs_history_empty">紀錄空白的。</string>
+  <string name="history">記錄</string>
+  <string name="msgs_history_empty">記錄空白的。</string>
   <string name="msgs_history_unknown">未知的記錄項目。</string>
   <string name="search">搜尋結果</string>
   <string name="search_hint">輸入您的搜尋內容</string>
@@ -178,11 +178,11 @@
   <string name="initial_directory_label">選擇初始資料夾：</string>
   <string name="initial_directory_relative_msg">不允許相對路徑。</string>
   <string name="initial_directory_error_msg">儲存初始資料夾時發生了錯誤。</string>
-  <string name="menu_history">紀錄</string>
+  <string name="menu_history">記錄</string>
   <string name="menu_bookmarks">書籤</string>
   <string name="menu_search">搜尋</string>
   <string name="menu_settings">設定</string>
-  <string name="menu_clear_history">清除紀錄</string>
+  <string name="menu_clear_history">清除記錄</string>
   <string name="menu_no_suggestions">沒有建議</string>
   <string name="menu_word_wrap">自動換行</string>
   <string name="menu_syntax_highlight">語法突顯</string>

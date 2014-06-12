@@ -101,7 +101,7 @@
   <string name="filesystem_info_warning_msg">Nie sú k dispozícii žiadne informácie o súborovom systéme.</string>
   <string name="filesystem_info_cant_be_mounted_msg">Súborový systém nie je možné pripojiť/odpojiť.</string>
   <string name="filesystem_info_mount_not_allowed_msg">V bezpečnom režime nie je povolené pripojiť súborový systém. Kliknite tu pre zmenu na režim bez obmedzenia.</string>
-  <string name="filesystem_info_mount_failed_msg">Pripojenie súborového systému zlyhalo. Niektoré súborové systémy ako SD karty, nemôžu byť pripojené/odpojené, pretože sú zostavené v režime iba na čítanie.</string>
+  <string name="filesystem_info_mount_failed_msg">Pripojenie súborového systému zlyhalo. Niektoré súborové systémy, ako karty SD, nemôžu byť pripojené/odpojené, pretože sú zostavené v režime iba na čítanie.</string>
   <string name="filesystem_info_dialog_title">Informácie o súborovom systéme</string>
   <string name="filesystem_info_dialog_tab_info">Informácie</string>
   <string name="filesystem_info_dialog_tab_disk_usage">Využitie disku</string>
@@ -115,9 +115,9 @@
   <string name="filesystem_info_dialog_used_disk_usage">Použité:</string>
   <string name="filesystem_info_dialog_free_disk_usage">Voľné:</string>
   <string name="fso_properties_permissions_not_allowed_msg">Operácie s oprávneniami nie sú povolené v bezpečnom režime. Kliknite pre zmenu na režim bez obmedzenia.</string>
-  <string name="fso_properties_failed_to_change_owner_msg">Zmena vlastníka zlyhala. \n\nZ bezpečnostných dôvodov, niektoré súborové systémy, ako napr. SD karty, neumožňujú zmenu vlastníctva.</string>
-  <string name="fso_properties_failed_to_change_group_msg">Zmena skupiny zlyhala. \n\nZ bezpečnostných dôvodov, niektoré súborové systémy, ako napr. SD karty, neumožňujú zmenu skupiny.</string>
-  <string name="fso_properties_failed_to_change_permission_msg">Zmena oprávnení zlyhala. \n \nZ bezpečnostných dôvodov, niektoré súborové systémy, ako napr. SD karty, neumožňujú zmenu oprávnení.</string>
+  <string name="fso_properties_failed_to_change_owner_msg">Zmena vlastníka zlyhala. \n\nZ bezpečnostných dôvodov niektoré súborové systémy, ako karty SD, neumožňujú zmenu vlastníctva.</string>
+  <string name="fso_properties_failed_to_change_group_msg">Zmena skupiny zlyhala. \n\nZ bezpečnostných dôvodov niektoré súborové systémy, ako karty SD, neumožňujú zmenu skupiny.</string>
+  <string name="fso_properties_failed_to_change_permission_msg">Zmena oprávnení zlyhala. \n \nZ bezpečnostných dôvodov niektoré súborové systémy, ako karty SD, neumožňujú zmenu oprávnení.</string>
   <string name="fso_properties_dialog_title">Vlastnosti</string>
   <string name="fso_properties_dialog_tab_info">Informácie</string>
   <string name="fso_properties_dialog_tab_permissions">Oprávnenia</string>
@@ -310,7 +310,7 @@ Autorské práva © 2012 The CyanogenMod Project</string>
   <string name="pref_general_advanced_settings_category">Pokročilé</string>
   <string name="pref_access_mode">Režim prístupu</string>
   <string name="pref_access_mode_safe">Bezpečný režim</string>
-  <string name="pref_access_mode_safe_summary">Bezpečný režim\n\nAplikácia beží bez rozšírených oprávnení a môže pristupovať iba k užívateľským súborovým systémom (SD karte a USB)</string>
+  <string name="pref_access_mode_safe_summary">Bezpečný režim\n\nAplikácia beží bez rozšírených oprávnení a môže pristupovať iba k používateľským súborovým systémom (karty SD a USB)</string>
   <string name="pref_access_mode_prompt">Režim na požiadanie</string>
   <string name="pref_access_mode_prompt_summary">Režim na vyžiadanie\n\nAplikácia beží s plným oprávnením k súborovému systému, ale pri každej privilegovanej akcii požiada o oprávnenie.</string>
   <string name="pref_access_mode_root">Režim bez obmedzenia</string>

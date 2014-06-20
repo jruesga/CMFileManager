@@ -624,11 +624,11 @@
     <!-- Preferences - General - Display thumbs -->
     <string name="pref_display_thumbs">Preview</string>
     <!-- Preferences - General - Display thumbs summary -->
-    <string name="pref_display_thumbs_summary">Show a preview image for apps, music files, pictures and videos.</string>
+    <string name="pref_display_thumbs_summary">Show a preview image for apps, music files, pictures and videos</string>
     <!-- Preferences - General - Use flinger detection -->
     <string name="pref_use_flinger">Use swipe gestures</string>
     <!-- Preferences - General - Use flinger detection summary -->
-    <string name="pref_use_flinger_summary">Use swipe left to right gesture detection to delete files or folders.</string>
+    <string name="pref_use_flinger_summary">Use swipe left to right gesture detection to delete files or folders</string>
     <!-- Preferences - General - Advanced settings category -->
     <string name="pref_general_advanced_settings_category">Advanced</string>
     <!-- Preferences - General - Access mode -->
@@ -685,10 +685,10 @@
     <string name="pref_no_suggestions_desc">Do not display dictionary suggestions while editing the file</string>
     <!-- Preferences - Editor - Word wrap -->
     <string name="pref_word_wrap">Word wrap</string>
-    <!-- Preferences - Editor - Hexdump -->
-    <string name="pref_hexdump">Hexdump binary files</string>
-    <!-- Preferences - Editor - Hexdump desc -->
-    <string name="pref_hexdump_desc">When opening a binary file, generate an hexdump of the file and open it in the hex viewer.</string>
+    <!-- Preferences - Editor - Hex dump -->
+    <string name="pref_hexdump">Hex dump binary files</string>
+    <!-- Preferences - Editor - Hex dump desc -->
+    <string name="pref_hexdump_desc">When opening a binary file, generate a hex dump of the file and open it in the hex viewer</string>
     <!-- Preferences - Editor - Syntax highlight category -->
     <string name="pref_editor_syntax_highlight_category">Syntax highlight</string>
     <!-- Preferences - Editor - Syntax highlight -->
@@ -698,7 +698,7 @@
     <!-- Preferences - Editor - Syntax highlight color scheme -->
     <string name="pref_syntax_highlight_color_scheme">Color scheme</string>
     <!-- Preferences - Editor - Syntax highlight color scheme summary -->
-    <string name="pref_syntax_highlight_color_scheme_desc">Tap to select the syntax highlight color scheme</string>
+    <string name="pref_syntax_highlight_color_scheme_desc">Select the syntax highlight color scheme</string>
     <!-- Preferences - Editor - Syntax highlight - Color Scheme -->
     <string name="pref_syntax_sh_use_theme_default">Use theme default</string>
     <!-- Preferences - Editor - Syntax highlight -Color Scheme summary -->
@@ -741,7 +741,7 @@
     <string name="color_picker_color">Color:</string>
 
     <!-- Android Syntax Highlight -->
-    <string name="ash_reset_color_scheme">Tap to restore the default theme color scheme</string>
+    <string name="ash_reset_color_scheme">Restore the default theme color scheme</string>
     <string name="ash_text">Text</string>
     <string name="ash_assignment">Assignment</string>
     <string name="ash_singleline_comment">Single-Line comment</string>

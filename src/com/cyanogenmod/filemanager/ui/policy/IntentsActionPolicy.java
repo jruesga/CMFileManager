@@ -375,7 +375,7 @@ public final class IntentsActionPolicy extends ActionsPolicy {
             // Create the intent that will handle the shortcut
             Intent shortcutIntent = new Intent(ctx, ShortcutActivity.class);
             shortcutIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            shortcutIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            shortcutIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             if (FileHelper.isDirectory(fso)) {
                 shortcutIntent.putExtra(
                         ShortcutActivity.EXTRA_TYPE,ShortcutActivity.SHORTCUT_TYPE_NAVIGATE);
@@ -471,6 +471,10 @@ public final class IntentsActionPolicy extends ActionsPolicy {
                         Intent.ACTION_VIEW);
             }
             intent.setAction(a);
+        } else {
+            // Create a new stack for the activity
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         }
         return intent;
     }

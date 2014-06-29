@@ -306,9 +306,9 @@ Copyright \u00A9 2013 Projekt CyanogenMod</string>
   <string name="pref_compute_folder_statistics">Obliczaj statystyki folderów</string>
   <string name="pref_compute_folder_statistics_on">Uwaga! Obliczanie statystyk folderów wymaga dużo czasu oraz zasobów systemowych</string>
   <string name="pref_display_thumbs">Miniatury</string>
-  <string name="pref_display_thumbs_summary">Pokaż miniatury dla aplikacji, muzyki, obrazów i wideo.</string>
+  <string name="pref_display_thumbs_summary">Pokazuj miniaturki dla aplikacji, plików muzycznych, zdjęć i filmów</string>
   <string name="pref_use_flinger">Używaj gestów przewijania</string>
-  <string name="pref_use_flinger_summary">Usuwaj pliki i foldery za pomocą gestów przewijania od lewej do prawej.</string>
+  <string name="pref_use_flinger_summary">Usuwaj pliki i foldery za pomocą gestu przeciągania palcem w lewo</string>
   <string name="pref_general_advanced_settings_category">Zaawansowane</string>
   <string name="pref_access_mode">Tryb dostępu</string>
   <string name="pref_access_mode_safe">Tryb bezpieczny</string>
@@ -337,13 +337,13 @@ Copyright \u00A9 2013 Projekt CyanogenMod</string>
   <string name="pref_no_suggestions">Brak podpowiedzi</string>
   <string name="pref_no_suggestions_desc">Nie wyświetlaj podpowiedzi w trakcie edycji pliku</string>
   <string name="pref_word_wrap">Zawijanie wierszy</string>
-  <string name="pref_hexdump">Pliki binarne w heksach</string>
-  <string name="pref_hexdump_desc">Generuj widok heksadecymalny dla plików binarnych i otwieraj je w przeglądarce heksów</string>
+  <string name="pref_hexdump">Heksadecymalny zrzut plików binarnych</string>
+  <string name="pref_hexdump_desc">Gdy otwierasz plik binarny generuj heksadecymalny zrzut pliku i otwórz go w przeglądarce plików heksadecymalnych</string>
   <string name="pref_editor_syntax_highlight_category">Podświetlanie składni</string>
   <string name="pref_syntax_highlight">Podświetlanie składni</string>
   <string name="pref_syntax_highlight_desc">Podświetlaj składnię plików otwartych w edytorze (tylko, jeśli dany typ pliku jest obsługiwany przez moduł podświetlania)</string>
   <string name="pref_syntax_highlight_color_scheme">Schemat kolorów</string>
-  <string name="pref_syntax_highlight_color_scheme_desc">Naciśnij aby wybrać schemat kolorów, w którym podświetlana będzie składnia</string>
+  <string name="pref_syntax_highlight_color_scheme_desc">Wybierz schemat kolorów podświetlenia składni</string>
   <string name="pref_syntax_sh_use_theme_default">Użyj domyślnego</string>
   <string name="pref_syntax_sh_use_theme_default_desc">Użyj podświetlania składni domyślnego dla wybranego motywu</string>
   <string name="pref_editor_sh_item_category">Elementy</string>
@@ -362,7 +362,7 @@ Copyright \u00A9 2013 Projekt CyanogenMod</string>
   <string name="color_picker_current_text">Bieżący:</string>
   <string name="color_picker_new_text">Nowy:</string>
   <string name="color_picker_color">Kolor:</string>
-  <string name="ash_reset_color_scheme">Wybierz aby przywrócić domyślny schemat kolorów</string>
+  <string name="ash_reset_color_scheme">Przywróć domyślny schemat kolorów</string>
   <string name="ash_text">Tekst</string>
   <string name="ash_assignment">Przyporządkowanie</string>
   <string name="ash_singleline_comment">Jednowierszowy komentarz</string>

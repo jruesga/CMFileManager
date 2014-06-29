@@ -315,9 +315,9 @@
   <string name="pref_compute_folder_statistics_on">Atenção! O cálculo das estatísticas das pastas é exaustiva em
       tempo e recursos de sistema</string>
   <string name="pref_display_thumbs">Previsualizar </string>
-  <string name="pref_display_thumbs_summary">Mostrar uma imagem de pré-visualização para aplicações, ficheiros de música, imagens e vídeos.</string>
+  <string name="pref_display_thumbs_summary">Mostrar uma imagem de pré-visualização para aplicações, ficheiros de música, imagens e vídeos</string>
   <string name="pref_use_flinger">Usar gestos</string>
-  <string name="pref_use_flinger_summary">Usar deteção de gestos da esquerda para direita para eliminar ficheiros ou pastas.</string>
+  <string name="pref_use_flinger_summary">Usar detecção de gestos da esquerda para direita para remover ficheiros ou pastas</string>
   <string name="pref_general_advanced_settings_category">Avançadas</string>
   <string name="pref_access_mode">Modo de acesso</string>
   <string name="pref_access_mode_safe">Modo seguro</string>
@@ -351,13 +351,13 @@
   <string name="pref_word_wrap">Quebra de linha</string>
   <string name="pref_hexdump">Ficheiros binários Hexdump</string>
   <string name="pref_hexdump_desc">Ao abrir ficheiro binário, gerar Hexdump do ficheiro
-    e abri-lo no visualizador hexadécimal.</string>
+    e abri-lo no visualizador hexadécimal</string>
   <string name="pref_editor_syntax_highlight_category">Realçar sintaxe</string>
   <string name="pref_syntax_highlight">Realçar sintaxe</string>
   <string name="pref_syntax_highlight_desc">Realçar sintaxe do ficheiro mostrado no
     editor (apenas quando disponível um  processador para o tipo de ficheiro que possua realce de sintaxe)</string>
   <string name="pref_syntax_highlight_color_scheme">Esquema de cor</string>
-  <string name="pref_syntax_highlight_color_scheme_desc">Tocar para selecionar esquema de côr de realce de sintaxe</string>
+  <string name="pref_syntax_highlight_color_scheme_desc">Selecione o esquema de cores de realce de sintaxe</string>
   <string name="pref_syntax_sh_use_theme_default">Usar tema predefinido</string>
   <string name="pref_syntax_sh_use_theme_default_desc">Usar predefinição do tema para realce de sintaxe</string>
   <string name="pref_editor_sh_item_category">Items</string>
@@ -376,7 +376,7 @@
   <string name="color_picker_current_text">Atual:</string>
   <string name="color_picker_new_text">Nova:</string>
   <string name="color_picker_color">Cor:</string>
-  <string name="ash_reset_color_scheme">Tocar para repor o esquema de côr predefinido do tema</string>
+  <string name="ash_reset_color_scheme">Restaurar o esquema de cores de tema padrão</string>
   <string name="ash_text">Texto</string>
   <string name="ash_assignment">Atribuição</string>
   <string name="ash_singleline_comment">Comentar linha única</string>

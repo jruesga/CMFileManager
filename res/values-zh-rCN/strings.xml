@@ -284,7 +284,7 @@
   <string name="filetime_format_mode_ddMMyyyy_HHmmss">日/月/年 时:分:秒</string>
   <string name="filetime_format_mode_MMddyyyy_HHmmss">月/日/年 时:分:秒</string>
   <string name="filetime_format_mode_yyyyMMdd_HHmmss">年-月-日 时:分:秒</string>
-  <string name="selection_folders_and_files">已选择 <xliff:g id="folders">%1$s</xliff:g> 个文件夹和 <xliff:g id="files">%2$s</xliff:g> 个文件.</string>
+  <string name="selection_folders_and_files">已选择 <xliff:g id="folders">%1$s</xliff:g>和 <xliff:g id="files">%2$s</xliff:g>。</string>
   <string name="category_system">系统</string>
   <string name="category_app">程序</string>
   <string name="category_binary">二进制</string>
@@ -321,9 +321,9 @@
   <string name="pref_compute_folder_statistics">计算文件夹统计数据</string>
   <string name="pref_compute_folder_statistics_on">警告! 文件夹统计数据的计将算会花费较长的时间与较多的系统资源</string>
   <string name="pref_display_thumbs">预览</string>
-  <string name="pref_display_thumbs_summary">为应用, 音乐文件, 图片以及视频显示预览缩略图.</string>
+  <string name="pref_display_thumbs_summary">为应用、音乐文件、图片、视频显示预览图。</string>
   <string name="pref_use_flinger">使用滑动手势</string>
-  <string name="pref_use_flinger_summary">向左到右滑动将会删除文件或文件夹.</string>
+  <string name="pref_use_flinger_summary">从左到右滑动将删除文件或文件夹。</string>
   <string name="pref_general_advanced_settings_category">高级</string>
   <string name="pref_access_mode">访问模式</string>
   <string name="pref_access_mode_safe">安全模式</string>
@@ -352,13 +352,13 @@
   <string name="pref_no_suggestions">不显示建议</string>
   <string name="pref_no_suggestions_desc">编辑文件时不要显示字典建议</string>
   <string name="pref_word_wrap">自动换行</string>
-  <string name="pref_hexdump">Hexdump 二进制文件</string>
-  <string name="pref_hexdump_desc">开启二进制文件时, 生成这个文件的十六进制转储并在十六进制查看器内打开.</string>
+  <string name="pref_hexdump">二进制文件十六进制转储</string>
+  <string name="pref_hexdump_desc">打开二进制文件时，生成文件的十六进制转储并在十六进制查看器中打开。</string>
   <string name="pref_editor_syntax_highlight_category">语法高亮</string>
   <string name="pref_syntax_highlight">高亮语法</string>
   <string name="pref_syntax_highlight_desc">高亮在编辑器内显示的文件的语法 (仅在能够处理文件类型的语法高亮处理器存在时)</string>
   <string name="pref_syntax_highlight_color_scheme">配色方案</string>
-  <string name="pref_syntax_highlight_color_scheme_desc">点击以选择语法高亮配色方案</string>
+  <string name="pref_syntax_highlight_color_scheme_desc">选择语法高亮的颜色方案</string>
   <string name="pref_syntax_sh_use_theme_default">使用主题默认值</string>
   <string name="pref_syntax_sh_use_theme_default_desc">使用目前主题的默认语法高亮配色方案</string>
   <string name="pref_editor_sh_item_category">项目</string>
@@ -377,7 +377,7 @@
   <string name="color_picker_current_text">目前:</string>
   <string name="color_picker_new_text">新的:</string>
   <string name="color_picker_color">颜色:</string>
-  <string name="ash_reset_color_scheme">点击以还原为主题的默认配色方案</string>
+  <string name="ash_reset_color_scheme">恢复默认主题配色方案</string>
   <string name="ash_text">文字</string>
   <string name="ash_assignment">赋值</string>
   <string name="ash_singleline_comment">单行注释</string>

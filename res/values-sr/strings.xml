@@ -299,9 +299,9 @@
   <string name="pref_compute_folder_statistics">Рачунај статистике фолдера</string>
   <string name="pref_compute_folder_statistics_on">Упозорење! Рачунање статистика фолдера захтева време и системске ресурсе</string>
   <string name="pref_display_thumbs">Преглед</string>
-  <string name="pref_display_thumbs_summary">Прикажи слику прегледа за апликације, музичке датотеке, слике и видео снимке.</string>
+  <string name="pref_display_thumbs_summary">Прикажи слику прегледа за апликације, музичке датотеке, слике и видео снимке</string>
   <string name="pref_use_flinger">Користи гестове превлачења</string>
-  <string name="pref_use_flinger_summary">Користи гест превлачења са лева на десно за брисање фајлова или фолдера.  </string>
+  <string name="pref_use_flinger_summary">Користи гест превлачења са лева на десно за брисање фајлова или фолдера</string>
   <string name="pref_general_advanced_settings_category">Напредно</string>
   <string name="pref_access_mode">Режим приступа</string>
   <string name="pref_access_mode_safe">Сигурни режим</string>
@@ -335,12 +335,12 @@
   <string name="pref_no_suggestions_desc">Не приказуј предлоге речника приликом уређивања датотеке</string>
   <string name="pref_word_wrap">Увијена реч</string>
   <string name="pref_hexdump">Хексадекадне бинарне датотеке</string>
-  <string name="pref_hexdump_desc">Приликом отварања бинарног фајла, генеришите хексадекадне датотеке и отворите их у хек прегледник.</string>
+  <string name="pref_hexdump_desc">Приликом отварања бинарног фајла, генериши хексадекадне датотеке и отвори их у хек прегледник</string>
   <string name="pref_editor_syntax_highlight_category">Врхунац синтаксе</string>
   <string name="pref_syntax_highlight">Врхунац синтаксе</string>
   <string name="pref_syntax_highlight_desc">Истакни синтаксу датотеке приказану у едитору (само када је процесор врхунца синтаксе доступан за тип датотеке)</string>
   <string name="pref_syntax_highlight_color_scheme">Шема боје</string>
-  <string name="pref_syntax_highlight_color_scheme_desc">Додирни да би изабрао шему боја врхунца синтаксе</string>
+  <string name="pref_syntax_highlight_color_scheme_desc">Изабери шему боја синтаксе</string>
   <string name="pref_syntax_sh_use_theme_default">Користи подразумевану тему</string>
   <string name="pref_syntax_sh_use_theme_default_desc">Користи подразумевану тему врхунца синтаксе</string>
   <string name="pref_editor_sh_item_category">Артикли</string>
@@ -359,7 +359,7 @@
   <string name="color_picker_current_text">Тренутно:</string>
   <string name="color_picker_new_text">Ново:</string>
   <string name="color_picker_color">Боја:</string>
-  <string name="ash_reset_color_scheme">Додирни да вратиш подразумевану шему боја</string>
+  <string name="ash_reset_color_scheme">Врати подразумевану шему боја</string>
   <string name="ash_text">Текст</string>
   <string name="ash_assignment">Задатак</string>
   <string name="ash_singleline_comment">Једноредни коментар</string>

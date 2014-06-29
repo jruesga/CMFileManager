@@ -303,7 +303,7 @@
   <string name="pref_display_thumbs">Vista preliminar</string>
   <string name="pref_display_thumbs_summary">Mostrar una vista preliminar para archivos de imagen, vídeo, música y aplicaciones</string>
   <string name="pref_use_flinger">Usar gestos</string>
-  <string name="pref_use_flinger_summary">Realizar un gesto de izquierda a derecha para borrar archivos o carpetas.</string>
+  <string name="pref_use_flinger_summary">Realizar un gesto de izquierda a derecha para borrar archivos o carpetas</string>
   <string name="pref_general_advanced_settings_category">Avanzado</string>
   <string name="pref_access_mode">Modo de acceso</string>
   <string name="pref_access_mode_safe">Modo seguro</string>
@@ -338,7 +338,7 @@
   <string name="pref_syntax_highlight">Resaltar sintaxis</string>
   <string name="pref_syntax_highlight_desc">Resaltar la sintaxis del archivo mostrado (aplicable cuando exista un intérprete disponible para ese tipo de archivo)</string>
   <string name="pref_syntax_highlight_color_scheme">Esquema de color</string>
-  <string name="pref_syntax_highlight_color_scheme_desc">Tocar para seleccionar el esquema de color para el resaltado de sintaxis</string>
+  <string name="pref_syntax_highlight_color_scheme_desc">Seleccionar el esquema de color para el resaltado de sintaxis</string>
   <string name="pref_syntax_sh_use_theme_default">Tema por defecto</string>
   <string name="pref_syntax_sh_use_theme_default_desc">Usar el resaltado de sintaxis por defecto del tema actual</string>
   <string name="pref_editor_sh_item_category">Elementos</string>
@@ -357,7 +357,7 @@
   <string name="color_picker_current_text">Actual:</string>
   <string name="color_picker_new_text">Nuevo:</string>
   <string name="color_picker_color">Color:</string>
-  <string name="ash_reset_color_scheme">Tocar para restaurar el esquema de color por defecto</string>
+  <string name="ash_reset_color_scheme">Restaurar el esquema de color por defecto</string>
   <string name="ash_text">Texto</string>
   <string name="ash_assignment">Asignación</string>
   <string name="ash_singleline_comment">Comentario simple</string>

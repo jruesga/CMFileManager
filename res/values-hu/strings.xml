@@ -296,9 +296,9 @@
   <string name="pref_compute_folder_statistics">Mappa statisztika számítása</string>
   <string name="pref_compute_folder_statistics_on">Figyelem! A művelet sokáig eltarthat és megterhelheti a rendszert.</string>
   <string name="pref_display_thumbs">Miniatűrök</string>
-  <string name="pref_display_thumbs_summary">Miniatűrök megjelenítése ismert fájltípus esetén (kép, videó, zene, alkalmazás).</string>
+  <string name="pref_display_thumbs_summary">Miniatűrök megjelenítése ismert fájltípus esetén (kép, videó, zene, alkalmazás)</string>
   <string name="pref_use_flinger">Kézmozdulatok használata</string>
-  <string name="pref_use_flinger_summary">Fájlok és mappák törlése jobbra történő elhúzással.</string>
+  <string name="pref_use_flinger_summary">Fájlok és mappák törlése jobbra történő elhúzással</string>
   <string name="pref_general_advanced_settings_category">Speciális</string>
   <string name="pref_access_mode">Hozzáférési mód</string>
   <string name="pref_access_mode_safe">Biztonságos mód</string>
@@ -328,12 +328,12 @@
   <string name="pref_no_suggestions_desc">Fájl szerkesztéskor ne legyenek szótár javaslatok</string>
   <string name="pref_word_wrap">Sortörés</string>
   <string name="pref_hexdump">Hexadecimális nézet</string>
-  <string name="pref_hexdump_desc">Bináris fájl megnyitásakor generáljon hexadecimális nézetet, majd jelenítse azt meg.</string>
+  <string name="pref_hexdump_desc">Bináris fájlt hexadecimális nézetben jelenítsen meg</string>
   <string name="pref_editor_syntax_highlight_category">Szintaxis kiemelés</string>
   <string name="pref_syntax_highlight">Szintaxis kiemelés</string>
   <string name="pref_syntax_highlight_desc">Szintaxis kiemelés a megjelenített fájlban (ha elérhető szintaxis feldolgozó az adott fájltípushoz)</string>
   <string name="pref_syntax_highlight_color_scheme">Színséma</string>
-  <string name="pref_syntax_highlight_color_scheme_desc">Érintse meg a szintaxis kiemelés beállításához.</string>
+  <string name="pref_syntax_highlight_color_scheme_desc">Szintaxis-kiemelés színsémájának kiválasztása</string>
   <string name="pref_syntax_sh_use_theme_default">Téma alapértelmezése</string>
   <string name="pref_syntax_sh_use_theme_default_desc">Téma alapértelmezésének használata a szintaxis kiemeléshez</string>
   <string name="pref_editor_sh_item_category">Elemek</string>
@@ -352,7 +352,7 @@
   <string name="color_picker_current_text">Jelenlegi:</string>
   <string name="color_picker_new_text">Új:</string>
   <string name="color_picker_color">Szín:</string>
-  <string name="ash_reset_color_scheme">Érintse meg az alapértelmezett színséma visszaállításához</string>
+  <string name="ash_reset_color_scheme">Téma színsémájának visszaállítása</string>
   <string name="ash_text">Szöveg</string>
   <string name="ash_assignment">Hozzárendelés</string>
   <string name="ash_singleline_comment">Egysoros megjegyzés</string>

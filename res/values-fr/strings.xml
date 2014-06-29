@@ -258,8 +258,7 @@
   <string name="execution_console_script_name_label">Scripts\u00A0:</string>
   <string name="execution_console_script_execution_time_label">Durée\u00A0:</string>
   <string name="execution_console_script_exitcode_label">Code de sortie\u00A0:</string>
-  <string name="execution_console_script_execution_time_text">
-    <xliff:g id="seconds">%1$s</xliff:g> sec.</string>
+  <string name="execution_console_script_execution_time_text"><xliff:g id="seconds">%1$s</xliff:g> s.</string>
   <string name="compute_checksum_title">Somme de contrôle</string>
   <string name="compute_checksum_filename_label">Fichier :</string>
   <string name="compute_checksum_computing_checksum_msg">Calcul de la somme de contrôle\u2026</string>
@@ -307,9 +306,9 @@
   <string name="pref_compute_folder_statistics">Calculer les statistiques de dossiers</string>
   <string name="pref_compute_folder_statistics_on">Attention\u00A0! Le calcul des statistiques de dossiers est coûteux en temps et en ressources système.</string>
   <string name="pref_display_thumbs">Aperçu</string>
-  <string name="pref_display_thumbs_summary">Afficher un aperçu pour les applications, les vidéos, les musiques et les images</string>
+  <string name="pref_display_thumbs_summary">Afficher un aperçu pour les applications, les musiques, les images et les vidéos</string>
   <string name="pref_use_flinger">Utiliser les mouvements de glissement</string>
-  <string name="pref_use_flinger_summary">Utiliser le mouvement de gauche à droite pour supprimer un fichier ou un dossier</string>
+  <string name="pref_use_flinger_summary">Utiliser un mouvement de gauche à droite pour supprimer un fichier ou un dossier</string>
   <string name="pref_general_advanced_settings_category">Avancé</string>
   <string name="pref_access_mode">Mode d\'accès</string>
   <string name="pref_access_mode_safe">Mode sécurisé</string>
@@ -339,12 +338,12 @@
   <string name="pref_no_suggestions_desc">Ne pas afficher les suggestions pendant l\'édition d\'un fichier</string>
   <string name="pref_word_wrap">Retour à la ligne</string>
   <string name="pref_hexdump">Fichier binaire</string>
-  <string name="pref_hexdump_desc">Générer une convertion hexadecimale lors de l\'ouverture d\'un fichier binaire et l\'ouvrir dans la visionneuse hexadécimale.</string>
+  <string name="pref_hexdump_desc">Générer une conversion hexadécimale lors de l\'ouverture d\'un fichier binaire et l\'ouvrir dans la visionneuse hexadécimale</string>
   <string name="pref_editor_syntax_highlight_category">Coloration syntaxique</string>
   <string name="pref_syntax_highlight">Coloration syntaxique</string>
   <string name="pref_syntax_highlight_desc">Utiliser la coloration syntaxique du fichier affiché dans l\'éditeur (Uniquement lorsque le type de fichier le permet)</string>
   <string name="pref_syntax_highlight_color_scheme">Couleur</string>
-  <string name="pref_syntax_highlight_color_scheme_desc">Appuyer pour sélectionner le jeu de couleur syntaxique</string>
+  <string name="pref_syntax_highlight_color_scheme_desc">Sélectionner le jeu de couleurs de la coloration synthaxique</string>
   <string name="pref_syntax_sh_use_theme_default">Uitliser le thème par défaut</string>
   <string name="pref_syntax_sh_use_theme_default_desc">Utiliser la coloration par défaut du thème courant</string>
   <string name="pref_editor_sh_item_category">Articles</string>
@@ -363,7 +362,7 @@
   <string name="color_picker_current_text">Courant :</string>
   <string name="color_picker_new_text">Nouveau :</string>
   <string name="color_picker_color">Couleur :</string>
-  <string name="ash_reset_color_scheme">Appuyer pour restaurer les couleurs par défaut</string>
+  <string name="ash_reset_color_scheme">Restaurer le jeu de couleurs du thème par défaut</string>
   <string name="ash_text">Texte</string>
   <string name="ash_assignment">Affectation</string>
   <string name="ash_singleline_comment">Commentaire sur une ligne</string>

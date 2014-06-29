@@ -296,9 +296,9 @@
   <string name="pref_compute_folder_statistics">ෆෝල්ඩර සංඛ්‍යායන ගණනය කරන්න</string>
   <string name="pref_compute_folder_statistics_on">අවවාදයයි! ෆෝල්ඩර සංඛ්‍යායන ගණනය සඳහා වේලාව සහ පද්ධති සම්පත් වැඩි ලෙස වැයවේ</string>
   <string name="pref_display_thumbs">පූර්වදර්ශනය</string>
-  <string name="pref_display_thumbs_summary">යෙදුම්, සංගීත ගොනු, පින්තූර සහ වීඩියෝ සඳහා පූර්වදර්ශන පිළිරුවක් පෙන්වන්න.</string>
+  <string name="pref_display_thumbs_summary">යෙදුම්, සංගීත ගොනු, පින්තූර සහ වීඩියෝ සඳහා පූර්වදර්ශන පිළිරුවක් පෙන්වන්න</string>
   <string name="pref_use_flinger">ඇතිල්ලීමේ අභින භාවිතාකරන්න</string>
-  <string name="pref_use_flinger_summary">ගොනු හෝ ෆෝල්ඩර මකා දැමීමට වමේ සිට දකුණට ඇතිල්ලීමේ අභිනය භාවිතාකරන්න.</string>
+  <string name="pref_use_flinger_summary">ගොනු හෝ ෆෝල්ඩර මකා දැමීමට වමේ සිට දකුණට ඇතිල්ලීමේ අභිනය භාවිතාකරන්න</string>
   <string name="pref_general_advanced_settings_category">උසස්</string>
   <string name="pref_access_mode">පිවිසුම් ප්‍රකාරය</string>
   <string name="pref_access_mode_safe">සුරක්ෂිත ප්‍රකාරය</string>
@@ -328,12 +328,12 @@
   <string name="pref_no_suggestions_desc">ගොනුව සකසන අතරතුර ශබ්දකෝෂ යෝජනා නොපෙන්වන්න</string>
   <string name="pref_word_wrap">පද එතුම</string>
   <string name="pref_hexdump">ද්ව්‍යංගී ගොනු hex නික්ෂේපය</string>
-  <string name="pref_hexdump_desc">ද්ව්‍යංගී ගොනුවක් විවෘත කිරීමේදී, ගොනුවේ hex නික්ෂේපයක් සාදා එය hex පෙන්වනයේ විවෘත කරන්න.</string>
+  <string name="pref_hexdump_desc">ද්ව්‍යංගී ගොනුවක් විවෘත කිරීමේදී, ගොනුවේ hex නික්ෂේපයක් සාදා එය hex පෙන්වනයේ විවෘත කරන්න</string>
   <string name="pref_editor_syntax_highlight_category">වාග් රීති ඉස්මතු කිරීම</string>
   <string name="pref_syntax_highlight">වාග් රීති ඉස්මතු කිරීම</string>
   <string name="pref_syntax_highlight_desc">සංස්කාරකයේ සංදර්ශනය වන ගොනුවේ වාග් රීති ඉස්මතු කරන්න (ගොනු වර්ගය සඳහා වාග් රීති ඉස්මතු කිරීම් සකසනයක් ඇතිවිට පමණි)</string>
   <string name="pref_syntax_highlight_color_scheme">වර්ණ ක්‍රමානුරූපය</string>
-  <string name="pref_syntax_highlight_color_scheme_desc">වාග් රීති ඉස්මතු කිරීමේ වර්ණ ක්‍රමානුරූපය තේරීමට තට්ටුකරන්න</string>
+  <string name="pref_syntax_highlight_color_scheme_desc">වාග් රීති ඉස්මතු කිරීමේ වර්ණ ක්‍රමානුරූපය තෝරන්න</string>
   <string name="pref_syntax_sh_use_theme_default">තේමා පෙරනිමි භාවිතාකරන්න</string>
   <string name="pref_syntax_sh_use_theme_default_desc">පවත්නා තේමාවේ පෙරනිමි වාග් රීති ඉස්මතු කිරීම භාවිතාකරන්න</string>
   <string name="pref_editor_sh_item_category">අයිතමයන්</string>
@@ -352,7 +352,7 @@
   <string name="color_picker_current_text">පවත්නා:</string>
   <string name="color_picker_new_text">අලුත්:</string>
   <string name="color_picker_color">පාට:</string>
-  <string name="ash_reset_color_scheme">පෙරනිමි තේමා වර්ණ ක්‍රමානුරූපය පිළිනැගුමට තට්ටු කරන්න</string>
+  <string name="ash_reset_color_scheme">පෙරනිමි තේමා වර්ණ ක්‍රමානුරූපය පිළිනගන්න</string>
   <string name="ash_text">පෙළ</string>
   <string name="ash_assignment">පවරා දීම</string>
   <string name="ash_singleline_comment">එක්-පේළි අනුසටහන</string>

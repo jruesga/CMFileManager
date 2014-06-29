@@ -297,9 +297,9 @@
   <string name="pref_compute_folder_statistics">Calcula estadístiques de la carpeta</string>
   <string name="pref_compute_folder_statistics_on">Alerta! El càlcul d\'estadístiques de la carpeta tarda temps i necessita força recursos del sistema</string>
   <string name="pref_display_thumbs">Previsualització</string>
-  <string name="pref_display_thumbs_summary">Mostra una imatge de previsualització per les apps, fitxers de música, fotografies i vídeos.</string>
+  <string name="pref_display_thumbs_summary">Mostra una imatge de previsualització per les apps, arxius de música, fotografies i vídeos</string>
   <string name="pref_use_flinger">Utilitza gestos de lliscament</string>
-  <string name="pref_use_flinger_summary">Utilitza la detecció de gestos llisca a l\'esquerra o a la dreta per esborrar fitxers o carpetes.</string>
+  <string name="pref_use_flinger_summary">Utilitza la detecció de gestos lliscar d\'esquerra a dreta per esborrar arxius o carpetes</string>
   <string name="pref_general_advanced_settings_category">Avançat</string>
   <string name="pref_access_mode">Mode d\'accés</string>
   <string name="pref_access_mode_safe">Mode segur</string>
@@ -328,13 +328,13 @@
   <string name="pref_no_suggestions">Sense sugerències</string>
   <string name="pref_no_suggestions_desc">No mostris sugerències del diccionari mentre editis l\'arxiu</string>
   <string name="pref_word_wrap">Ajust de línia</string>
-  <string name="pref_hexdump">Volcat Hex d\'arxius binaris</string>
-  <string name="pref_hexdump_desc">Quan s\'obri un arxiu binari, genera un volcat hex de l\'arxiu i l\'obre en el visor hex.</string>
+  <string name="pref_hexdump">Volcat hexadecimal d\'arxius binaris</string>
+  <string name="pref_hexdump_desc">Quan s\'obri un arxiu binari, genera un volcat hexadecimal de l\'arxiu i l\'obre\'l al visor hexadecimal</string>
   <string name="pref_editor_syntax_highlight_category">Realçament de sintaxis</string>
   <string name="pref_syntax_highlight">Realça la sintaxis</string>
   <string name="pref_syntax_highlight_desc">Realça la sintaxis de l\'arxiu mostrat a l\'editor (només quan un processador de realçament de sintaxis està disponible pel tipus d\'arxiu)</string>
   <string name="pref_syntax_highlight_color_scheme">Esquema de colors</string>
-  <string name="pref_syntax_highlight_color_scheme_desc">Pica per seleccionar l\'esquema de colors del realçament de sintaxis</string>
+  <string name="pref_syntax_highlight_color_scheme_desc">Selecciona la combinació de colors del realçament de sintaxis</string>
   <string name="pref_syntax_sh_use_theme_default">Utilitza el tema predeterminat</string>
   <string name="pref_syntax_sh_use_theme_default_desc">Utilitza el realçament de sintaxis predeterminat del tema actual</string>
   <string name="pref_editor_sh_item_category">Elements</string>
@@ -353,7 +353,7 @@
   <string name="color_picker_current_text">Actual:</string>
   <string name="color_picker_new_text">Nou:</string>
   <string name="color_picker_color">Color:</string>
-  <string name="ash_reset_color_scheme">Pica per restaurar el tema de l\'esquema de colors predeterminat</string>
+  <string name="ash_reset_color_scheme">Restaura la combinació de colors del tema predefinit</string>
   <string name="ash_text">Text</string>
   <string name="ash_assignment">Assignament</string>
   <string name="ash_singleline_comment">Comentari d\'una sola línia</string>

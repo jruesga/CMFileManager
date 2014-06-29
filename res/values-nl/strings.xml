@@ -297,8 +297,8 @@
   <string name="pref_compute_folder_statistics_on">Let op: het berekenen van mapstatistieken kost tijd en systeembronnen</string>
   <string name="pref_display_thumbs">Voorbeeld</string>
   <string name="pref_display_thumbs_summary">Voorbeeldweergave voor afbeeldingen, video\'s, muziek en apps</string>
-  <string name="pref_use_flinger">Veegbewegingen gebruiken</string>
-  <string name="pref_use_flinger_summary">Vegen van links naar rechts gebruiken om bestanden of mappen te verwijderen.</string>
+  <string name="pref_use_flinger">Veeggebaren</string>
+  <string name="pref_use_flinger_summary">Vegen van links naar rechts om bestanden of mappen te verwijderen</string>
   <string name="pref_general_advanced_settings_category">Geavanceerd</string>
   <string name="pref_access_mode">Toegangsmodus</string>
   <string name="pref_access_mode_safe">Veilige modus</string>
@@ -327,13 +327,13 @@
   <string name="pref_no_suggestions">Geen suggesties</string>
   <string name="pref_no_suggestions_desc">Woordenboeksuggesties verbergen tijdens het bewerken van een bestand</string>
   <string name="pref_word_wrap">Automatische terugloop</string>
-  <string name="pref_hexdump">Hex-dump genereren</string>
+  <string name="pref_hexdump">Hex-dump</string>
   <string name="pref_hexdump_desc">Hex-dump genereren bij openen binair bestand en deze openen in hex-viewer</string>
   <string name="pref_editor_syntax_highlight_category">Syntaxiskleuring</string>
   <string name="pref_syntax_highlight">Syntaxiskleuring</string>
   <string name="pref_syntax_highlight_desc">Syntaxiskleuring inschakelen in de bewerker indien mogelijk</string>
   <string name="pref_syntax_highlight_color_scheme">Kleurenschema</string>
-  <string name="pref_syntax_highlight_color_scheme_desc">Tik om het kleurenschema voor syntaxiskleuring in te stellen</string>
+  <string name="pref_syntax_highlight_color_scheme_desc">Kleurenschema voor syntaxiskleuring instellen</string>
   <string name="pref_syntax_sh_use_theme_default">Themastandaard</string>
   <string name="pref_syntax_sh_use_theme_default_desc">Standaardkleurenschema gebruiken van huidig thema</string>
   <string name="pref_editor_sh_item_category">Items</string>
@@ -352,7 +352,7 @@
   <string name="color_picker_current_text">Huidig:</string>
   <string name="color_picker_new_text">Nieuw:</string>
   <string name="color_picker_color">Kleur:</string>
-  <string name="ash_reset_color_scheme">Tik om het standaardkleurenschema te herstellen van dit thema</string>
+  <string name="ash_reset_color_scheme">Standaardkleurenschema herstellen</string>
   <string name="ash_text">Tekst</string>
   <string name="ash_assignment">Toewijzing</string>
   <string name="ash_singleline_comment">Enkellijnige opmerking</string>

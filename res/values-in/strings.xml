@@ -296,9 +296,9 @@
   <string name="pref_compute_folder_statistics">Hitung statistik folder</string>
   <string name="pref_compute_folder_statistics_on">Peringatan! Perhitungan statistik folder menghabiskan waktu dan sumber daya sistem</string>
   <string name="pref_display_thumbs">Pratinjau</string>
-  <string name="pref_display_thumbs_summary">Tampilkan pratinjau gambar untuk aplikasi, berkas musik, gambar dan video.</string>
+  <string name="pref_display_thumbs_summary">Tampilkan pratinjau gambar untuk aplikasi, berkas musik, gambar dan video</string>
   <string name="pref_use_flinger">Gunakan gerakan gesek</string>
-  <string name="pref_use_flinger_summary">Gunakan deteksi gerakan gesek kiri ke kanan untuk menghapus berkas atau folder.</string>
+  <string name="pref_use_flinger_summary">Gunakan deteksi gerakan geser kiri ke kanan untuk menghapus berkas atau folder</string>
   <string name="pref_general_advanced_settings_category">Tingkat lanjut</string>
   <string name="pref_access_mode">Modus akses</string>
   <string name="pref_access_mode_safe">Modus Aman</string>
@@ -327,13 +327,13 @@
   <string name="pref_no_suggestions">Tidak ada saran</string>
   <string name="pref_no_suggestions_desc">Jangan tampilkan kamus saran ketika mengubah berkas</string>
   <string name="pref_word_wrap">Penggal kata</string>
-  <string name="pref_hexdump">Berkas binari hexdump</string>
-  <string name="pref_hexdump_desc">Ketika membuka berkas binari, buat hexdump berkas dan buka dengan penampil hex.</string>
+  <string name="pref_hexdump">Berkas binari Hex dump</string>
+  <string name="pref_hexdump_desc">Ketika membuka berkas binari, buat hex dump berkas dan buka dengan penampil hex</string>
   <string name="pref_editor_syntax_highlight_category">Sorot sintaks</string>
   <string name="pref_syntax_highlight">Sorot sintaks</string>
   <string name="pref_syntax_highlight_desc">Sorot sintaks berkas yang ditampilkan dalam editor (hanya saat prosesor sorot sintaks tersedia untuk jenis berkas tersebut)</string>
   <string name="pref_syntax_highlight_color_scheme">Skema warna</string>
-  <string name="pref_syntax_highlight_color_scheme_desc">Ketuk untuk memilih skema warna sorot sintaks</string>
+  <string name="pref_syntax_highlight_color_scheme_desc">Pilih skema warna highlight sintaks</string>
   <string name="pref_syntax_sh_use_theme_default">Gunakan tema default</string>
   <string name="pref_syntax_sh_use_theme_default_desc">Gunakan sorot sintaks baku dari tema saat ini</string>
   <string name="pref_editor_sh_item_category">Item</string>
@@ -352,7 +352,7 @@
   <string name="color_picker_current_text">Saat ini:</string>
   <string name="color_picker_new_text">Baru:</string>
   <string name="color_picker_color">Warna:</string>
-  <string name="ash_reset_color_scheme">Tap untuk mengembalikan skema warna tema default</string>
+  <string name="ash_reset_color_scheme">Kembalikan skema warna tema default</string>
   <string name="ash_text">Teks</string>
   <string name="ash_assignment">Penugasan</string>
   <string name="ash_singleline_comment">Komentar satu-baris</string>

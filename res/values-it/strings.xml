@@ -296,9 +296,9 @@
   <string name="pref_compute_folder_statistics">Calcola statistiche cartella</string>
   <string name="pref_compute_folder_statistics_on">Attenzione! Il calcolo delle statistiche è costoso in termini di tempo e risorse</string>
   <string name="pref_display_thumbs">Anteprima</string>
-  <string name="pref_display_thumbs_summary">Mostra un\'anteprima per le app, i file musicali, le foto e i video.</string>
-  <string name="pref_use_flinger">Usa gesti di scorrimento</string>
-  <string name="pref_use_flinger_summary">Usa gesto di scorrimento da sinistra a destra per eliminare file o cartelle.</string>
+  <string name="pref_display_thumbs_summary">Visualizza un\'immagine di anteprima per applicazioni, file musicali, foto e video</string>
+  <string name="pref_use_flinger">Usa gesture scorrimento</string>
+  <string name="pref_use_flinger_summary">Usa un gesto di scorrimento da sinistra a destra per eliminare file o cartelle</string>
   <string name="pref_general_advanced_settings_category">Avanzate</string>
   <string name="pref_access_mode">Modalità accesso</string>
   <string name="pref_access_mode_safe">Modalità Safe</string>
@@ -328,12 +328,12 @@
   <string name="pref_no_suggestions_desc">Non visualizzare i suggerimenti del dizionario durante la modifica del file</string>
   <string name="pref_word_wrap">A capo automatico</string>
   <string name="pref_hexdump">Dump hex file binari</string>
-  <string name="pref_hexdump_desc">Quando si apre un file binario, genera un esadecimale del file e aprilo nel visualizzatore esadecimale.</string>
+  <string name="pref_hexdump_desc">Quando si apre un file binario, genera un dump esadecimale del file e aprilo nel visualizzatore esadecimale</string>
   <string name="pref_editor_syntax_highlight_category">Evidenziatore sintassi</string>
   <string name="pref_syntax_highlight">Evidenziatore sintassi</string>
   <string name="pref_syntax_highlight_desc">Evidenzia la sintassi del file visualizzato nell\'editor (solo quando un processore di evidenziazione della sintassi è disponibile per il tipo di file)</string>
   <string name="pref_syntax_highlight_color_scheme">Schema colori</string>
-  <string name="pref_syntax_highlight_color_scheme_desc">Tocca per selezionare lo schema di colori per l\'evidenziazione della sintassi</string>
+  <string name="pref_syntax_highlight_color_scheme_desc">Seleziona lo schema di colore di evidenziazione della sintassi</string>
   <string name="pref_syntax_sh_use_theme_default">Usa tema predefinito</string>
   <string name="pref_syntax_sh_use_theme_default_desc">Usa l\'evidenziazione predefinita della sintassi del tema corrente</string>
   <string name="pref_editor_sh_item_category">Elementi</string>
@@ -352,7 +352,7 @@
   <string name="color_picker_current_text">Corrente:</string>
   <string name="color_picker_new_text">Nuovo:</string>
   <string name="color_picker_color">Colore:</string>
-  <string name="ash_reset_color_scheme">Tocca per ripristinare lo schema predefinito dei colori del tema</string>
+  <string name="ash_reset_color_scheme">Ripristina la combinazione di colori del tema predefinito</string>
   <string name="ash_text">Testo</string>
   <string name="ash_assignment">Assegnazione</string>
   <string name="ash_singleline_comment">Commento singola linea</string>

@@ -296,9 +296,9 @@
   <string name="pref_compute_folder_statistics">Verzeichnisstatistiken</string>
   <string name="pref_compute_folder_statistics_on">Die Berechnung der Verzeichnisstatistiken kann die Systemleistung beeinträchtigen</string>
   <string name="pref_display_thumbs">Vorschau</string>
-  <string name="pref_display_thumbs_summary">Eine Vorschau für Apps, Bilder, Musikdateien und Videos anzeigen.</string>
+  <string name="pref_display_thumbs_summary">Vorschaubilder für Apps, Musik-, Bild- und Videodateien anzeigen</string>
   <string name="pref_use_flinger">Wischgesten verwenden</string>
-  <string name="pref_use_flinger_summary">Von rechts nach links wischen um eine Datei oder einen Ordner zu löschen</string>
+  <string name="pref_use_flinger_summary">Von links nach rechts wischen, um eine Datei oder einen Ordner zu löschen</string>
   <string name="pref_general_advanced_settings_category">Erweitert</string>
   <string name="pref_access_mode">Zugriffsmodus</string>
   <string name="pref_access_mode_safe">Sicherer Modus</string>
@@ -327,13 +327,13 @@
   <string name="pref_no_suggestions">Keine Vorschläge</string>
   <string name="pref_no_suggestions_desc">Keine Wortvorschläge während des Bearbeitens einer Datei anzeigen</string>
   <string name="pref_word_wrap">Zeilenumbruch</string>
-  <string name="pref_hexdump">Hexdump anzeigen</string>
+  <string name="pref_hexdump">Hexdump von Binärdateien generieren</string>
   <string name="pref_hexdump_desc">Beim Öffnen einer Binärdatei den Hexdump der Datei generieren und im Hex-Editor anzeigen</string>
   <string name="pref_editor_syntax_highlight_category">Syntaxhervorhebung</string>
   <string name="pref_syntax_highlight">Syntaxhervorhebung</string>
   <string name="pref_syntax_highlight_desc">Die Syntax einer Datei beim Anzeigen hervorheben (nicht bei allen Dateitypen verfügbar)</string>
   <string name="pref_syntax_highlight_color_scheme">Farbschema</string>
-  <string name="pref_syntax_highlight_color_scheme_desc">Das Farbschema der Syntaxhervorhebung anpassen</string>
+  <string name="pref_syntax_highlight_color_scheme_desc">Wählen Sie das Farbschema der Syntaxhervorhebung</string>
   <string name="pref_syntax_sh_use_theme_default">Designvorgaben verwenden</string>
   <string name="pref_syntax_sh_use_theme_default_desc">Das standardmäßige Farbschema des aktuellen Designs verwenden</string>
   <string name="pref_editor_sh_item_category">Objekte</string>
@@ -352,7 +352,7 @@
   <string name="color_picker_current_text">Aktuell:</string>
   <string name="color_picker_new_text">Neu:</string>
   <string name="color_picker_color">Farbe:</string>
-  <string name="ash_reset_color_scheme">Designvorgaben wiederherstellen</string>
+  <string name="ash_reset_color_scheme">Standard-Farbschema der Syntaxhervorhebung wiederherstellen</string>
   <string name="ash_text">Text</string>
   <string name="ash_assignment">Funktion</string>
   <string name="ash_singleline_comment">Einzeiliger Kommentar</string>

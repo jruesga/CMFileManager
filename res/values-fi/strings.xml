@@ -296,9 +296,9 @@
   <string name="pref_compute_folder_statistics">Laske kansion tilastot</string>
   <string name="pref_compute_folder_statistics_on">Varoitus! Kansion tilastojen laskeminen vie paljon aikaa ja järjestelmän resursseja!</string>
   <string name="pref_display_thumbs">Esikatsele</string>
-  <string name="pref_display_thumbs_summary">Näytä esikatselukuva sovelluksille, musiikille, kuville ja videoille.</string>
+  <string name="pref_display_thumbs_summary">Näytä esikatselukuva sovelluksille, musiikkitiedostoille, sekä kuville ja videoille</string>
   <string name="pref_use_flinger">Käytä eleitä</string>
-  <string name="pref_use_flinger_summary">Vedä oikealle tai vasemmalle poistaaksesi tiedostoja tai kansioita.</string>
+  <string name="pref_use_flinger_summary">Pyyhkäise vasemmalta oikealle poistaaksesi tiedostoja ja kansioita</string>
   <string name="pref_general_advanced_settings_category">Lisäasetukset</string>
   <string name="pref_access_mode">Oikeudet</string>
   <string name="pref_access_mode_safe">Turvallinen tila</string>
@@ -327,13 +327,13 @@
   <string name="pref_no_suggestions">Ei ehdotuksia</string>
   <string name="pref_no_suggestions_desc">Älä näytä sanakirjan ehdotuksia muokatessa tiedostoa</string>
   <string name="pref_word_wrap">Rivitys</string>
-  <string name="pref_hexdump">Hexdump-binääritiedostot</string>
-  <string name="pref_hexdump_desc">Binääritiedostoa avatessa, luodaan hexdump-tiedosto ja avataan se hexselaimella.</string>
+  <string name="pref_hexdump">Hex dump-binääritiedostot</string>
+  <string name="pref_hexdump_desc">Avattaessa binääritiedostoa, luo hex dump tiedostosta ja avaa se heksadesimaalieditorissa</string>
   <string name="pref_editor_syntax_highlight_category">Syntaksinkorostus</string>
   <string name="pref_syntax_highlight">Syntaksinkorostus</string>
   <string name="pref_syntax_highlight_desc">Korota syntaksit kun tiedosto näytetään editorissa (vain kun tiedostotyyppi tukee sitä)</string>
   <string name="pref_syntax_highlight_color_scheme">Väriteema</string>
-  <string name="pref_syntax_highlight_color_scheme_desc">Kosketa valitaksesi syntaksinkorotuksen värit</string>
+  <string name="pref_syntax_highlight_color_scheme_desc">Valitse syntaksin korostuksen värisävy</string>
   <string name="pref_syntax_sh_use_theme_default">Käytä teeman oletusta</string>
   <string name="pref_syntax_sh_use_theme_default_desc">Käytä syntaksinkorotuksina nykyisen teeman oletuksia</string>
   <string name="pref_editor_sh_item_category">Kohteet</string>
@@ -352,7 +352,7 @@
   <string name="color_picker_current_text">Nykyinen:</string>
   <string name="color_picker_new_text">Uusi:</string>
   <string name="color_picker_color">Väri:</string>
-  <string name="ash_reset_color_scheme">Napauta palauttaaksesi oletusteeman värit</string>
+  <string name="ash_reset_color_scheme">Palauta alkuperäinen värisävy</string>
   <string name="ash_text">Teksti</string>
   <string name="ash_assignment">Tehtävä</string>
   <string name="ash_singleline_comment">Yksirivinen kommentti</string>

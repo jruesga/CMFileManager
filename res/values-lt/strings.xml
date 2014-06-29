@@ -296,9 +296,9 @@
   <string name="pref_compute_folder_statistics">Apskaičiuoti aplanko statistiką</string>
   <string name="pref_compute_folder_statistics_on">Įspėjimas! Aplanko statistikos skaičiavimas užima daug laiko ir sistemos išteklių</string>
   <string name="pref_display_thumbs">Peržiūra</string>
-  <string name="pref_display_thumbs_summary">Rodyti programų, muzikos failų, nuotraukų ir vaizdo įrašų peržiūros vaizdą</string>
+  <string name="pref_display_thumbs_summary">Rodyti programų atvaizdų, muzikos failų, nuotraukų ir vaizdo įrašų peržiūrą</string>
   <string name="pref_use_flinger">Naudoti braukiamuosius gestus</string>
-  <string name="pref_use_flinger_summary">Naudokite braukimą iš kairės į dešinę norėdami ištrinti failus ar aplankus</string>
+  <string name="pref_use_flinger_summary">Naudoti braukimą iš kairės į dešinę norint ištrinti failus ar aplankus</string>
   <string name="pref_general_advanced_settings_category">Papildoma</string>
   <string name="pref_access_mode">Prieigos režimas</string>
   <string name="pref_access_mode_safe">Saugus režimas</string>
@@ -327,13 +327,13 @@
   <string name="pref_no_suggestions">Jokių pasiūlymų</string>
   <string name="pref_no_suggestions_desc">Nerodyti žodyno pasiūlymų redaguojant failą</string>
   <string name="pref_word_wrap">Žodžio laužymas</string>
-  <string name="pref_hexdump">Dvejetainis failas</string>
+  <string name="pref_hexdump">Dvejetainiai failai</string>
   <string name="pref_hexdump_desc">Rodyti dvejetainių failų turinį šešioliktainiu formatu</string>
   <string name="pref_editor_syntax_highlight_category">Sintaksės išryškinimas</string>
   <string name="pref_syntax_highlight">Sintaksės išryškinimas</string>
   <string name="pref_syntax_highlight_desc">Jei įmanoma, įjungti sintaksės išryškinimą</string>
   <string name="pref_syntax_highlight_color_scheme">Spalvų schema</string>
-  <string name="pref_syntax_highlight_color_scheme_desc">Bakstelėkite, kad pasirinktumėte sintaksės paryškinimo spalvų schemą</string>
+  <string name="pref_syntax_highlight_color_scheme_desc">Pasirinkite sintaksės paryškinimo spalvų schemą</string>
   <string name="pref_syntax_sh_use_theme_default">Naudoti numatytąją temą</string>
   <string name="pref_syntax_sh_use_theme_default_desc">Naudokite numatytąjį sintaksės paryškinimą dabartinėje temoje</string>
   <string name="pref_editor_sh_item_category">Elementai</string>
@@ -352,7 +352,7 @@
   <string name="color_picker_current_text">Dabartinis:</string>
   <string name="color_picker_new_text">Naujas:</string>
   <string name="color_picker_color">Spalva:</string>
-  <string name="ash_reset_color_scheme">Bakstelėkite, jei norite atkurti numatytąją temos spalvų schemą</string>
+  <string name="ash_reset_color_scheme">Atkurti numatytąją temos spalvos schemą</string>
   <string name="ash_text">Tekstas</string>
   <string name="ash_assignment">Paskyrimas</string>
   <string name="ash_singleline_comment">Vienos linijos komentaras</string>

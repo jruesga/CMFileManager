@@ -298,7 +298,7 @@
   <string name="pref_compute_folder_statistics">คำนวณสถิติโฟลเดอร์</string>
   <string name="pref_compute_folder_statistics_on">คำเตือน! การคำนวณสถิติโฟลเดอร์จะใช้ทรัพยากรของระบบจำนวนมาก</string>
   <string name="pref_display_thumbs">แสดงตัวอย่าง</string>
-  <string name="pref_display_thumbs_summary">แสดงตัวอย่าง รูป,วิดีโอ,แอปและเพลง</string>
+  <string name="pref_display_thumbs_summary">แสดงตัวอย่าง แอป,เพลง,รูปและวิดีโอ</string>
   <string name="pref_use_flinger">ใช้งานการปัด</string>
   <string name="pref_use_flinger_summary">ปัดจากซ้ายไปขวาเพื่อลบไฟล์หรือโฟลเดอร์</string>
   <string name="pref_general_advanced_settings_category">ขั้นสูง</string>
@@ -335,7 +335,7 @@
   <string name="pref_syntax_highlight">เน้น Syntax</string>
   <string name="pref_syntax_highlight_desc">เน้น syntax ของไฟล์ที่แสดงในตัวแก้ไขไฟล์(เฉพาะเมื่อ syntax highlight processor รองรับไฟล์ประเภทนี้)</string>
   <string name="pref_syntax_highlight_color_scheme">เฉดสี</string>
-  <string name="pref_syntax_highlight_color_scheme_desc">แตะเพื่อเลือกเฉดสีของการเน้น syntax</string>
+  <string name="pref_syntax_highlight_color_scheme_desc">เลือกโทนสี Syntax highlight</string>
   <string name="pref_syntax_sh_use_theme_default">ใช้ธีมเริ่มต้น</string>
   <string name="pref_syntax_sh_use_theme_default_desc">ใช้การเน้นสี syntax แบบเริ่มต้นกับธีมปัจจุบัน</string>
   <string name="pref_editor_sh_item_category">วัตถุ</string>
@@ -354,7 +354,7 @@
   <string name="color_picker_current_text">ปัจจุบัน:</string>
   <string name="color_picker_new_text">ใหม่:</string>
   <string name="color_picker_color">สี:</string>
-  <string name="ash_reset_color_scheme">แตะเพื่อเลือกธีมสีเริ่มต้น</string>
+  <string name="ash_reset_color_scheme">คืนค่าสีชุดรูปแบบเริ่มต้น</string>
   <string name="ash_text">ข้อความ</string>
   <string name="ash_assignment">การกำหนดค่า</string>
   <string name="ash_singleline_comment">คอมเม้นบรรทัดเดียว</string>

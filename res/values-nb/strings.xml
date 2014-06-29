@@ -304,9 +304,9 @@
   <string name="pref_compute_folder_statistics">Beregn mappe-statistikk</string>
   <string name="pref_compute_folder_statistics_on">Advarsel! Beregning av mappen-statistikk er kostbart i tid og systemressurser</string>
   <string name="pref_display_thumbs">Forhåndsvisning</string>
-  <string name="pref_display_thumbs_summary">Vis et forhåndsvisningsbilde for apps, musikkfiler, bilder og videoer.</string>
+  <string name="pref_display_thumbs_summary">Vis et forhåndsvisningsbilde for apps, musikkfiler, bilder og videoer</string>
   <string name="pref_use_flinger">Bruk bevegelser</string>
-  <string name="pref_use_flinger_summary">Bruk \"dra fra venstre til høyre\" bevegelse for å slette filer og mapper.</string>
+  <string name="pref_use_flinger_summary">Bruk \"dra fra venstre til høyre\" bevegelse for å slette filer og mapper</string>
   <string name="pref_general_advanced_settings_category">Avansert</string>
   <string name="pref_access_mode">Tilgangsmodus</string>
   <string name="pref_access_mode_safe">Sikker tilgang</string>
@@ -336,12 +336,12 @@
   <string name="pref_no_suggestions_desc">Ikke vis forslag mens filer redigeres</string>
   <string name="pref_word_wrap">Tekstbryting</string>
   <string name="pref_hexdump">Hexdump av binære filer</string>
-  <string name="pref_hexdump_desc">Generer en hex-dump av den binære filen og åpne den i en hex-editor.</string>
+  <string name="pref_hexdump_desc">Generer en hex-dump av den binære filen og åpne den i en hex-editor</string>
   <string name="pref_editor_syntax_highlight_category">Fremheving av syntaks</string>
   <string name="pref_syntax_highlight">Fremheving av syntaks</string>
   <string name="pref_syntax_highlight_desc">Fremhev syntaksen i filen når den åpnes i editoren (Kun når editoren støtter det)</string>
   <string name="pref_syntax_highlight_color_scheme">Fargevalg</string>
-  <string name="pref_syntax_highlight_color_scheme_desc">Trykk for å velge fargene på fremhevingen av syntaksen</string>
+  <string name="pref_syntax_highlight_color_scheme_desc">Fargevalg til syntaks utheving</string>
   <string name="pref_syntax_sh_use_theme_default">Bruk standard</string>
   <string name="pref_syntax_sh_use_theme_default_desc">Bruk standard fremheving av syntaks fra det nåværende temaet</string>
   <string name="pref_editor_sh_item_category">Elementer</string>
@@ -360,7 +360,7 @@
   <string name="color_picker_current_text">Nåværende:</string>
   <string name="color_picker_new_text">Ny:</string>
   <string name="color_picker_color">Farge:</string>
-  <string name="ash_reset_color_scheme">Trykk for å gjenopprette standard fargevalg.</string>
+  <string name="ash_reset_color_scheme">Gjenopprette standard fargevalg</string>
   <string name="ash_text">Tekst</string>
   <string name="ash_assignment">Oppdrag</string>
   <string name="ash_singleline_comment">Kommentar på én linje</string>

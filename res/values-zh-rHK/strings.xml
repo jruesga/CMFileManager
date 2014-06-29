@@ -297,9 +297,7 @@
   <string name="pref_compute_folder_statistics">計算資料夾統計數據</string>
   <string name="pref_compute_folder_statistics_on">警告! 資料夾統計數據的計算將會花費較長的時間與較多的系統資源</string>
   <string name="pref_display_thumbs">預覽</string>
-  <string name="pref_display_thumbs_summary">為應用程式、音樂、相片及影片顯示預覽圖片。</string>
   <string name="pref_use_flinger">使用滑動手勢</string>
-  <string name="pref_use_flinger_summary">向左到右滑動將會刪除檔案或資料夾。</string>
   <string name="pref_general_advanced_settings_category">進階</string>
   <string name="pref_access_mode">存取模式</string>
   <string name="pref_access_mode_safe">安全模式</string>
@@ -328,13 +326,10 @@
   <string name="pref_no_suggestions">沒有建議</string>
   <string name="pref_no_suggestions_desc">編輯檔案時不要顯示字典建議</string>
   <string name="pref_word_wrap">自動換行</string>
-  <string name="pref_hexdump">十六進制轉儲二進位檔案</string>
-  <string name="pref_hexdump_desc">當打開二進制檔案時，產生十六進制轉儲 (hexdump) 的檔案，並用十六進制檢視器開啟。</string>
   <string name="pref_editor_syntax_highlight_category">語法突顯</string>
   <string name="pref_syntax_highlight">語法突顯</string>
   <string name="pref_syntax_highlight_desc">突顯在編輯器內顯示的檔案的語法 (僅在能夠處理檔案類型的語法突顯處理器存在時)</string>
   <string name="pref_syntax_highlight_color_scheme">配色方案</string>
-  <string name="pref_syntax_highlight_color_scheme_desc">輕按以選擇語法突顯配色方案</string>
   <string name="pref_syntax_sh_use_theme_default">使用主題預設值</string>
   <string name="pref_syntax_sh_use_theme_default_desc">使用目前主題的預設語法突顯配色方案</string>
   <string name="pref_editor_sh_item_category">項目</string>
@@ -353,7 +348,6 @@
   <string name="color_picker_current_text">目前：</string>
   <string name="color_picker_new_text">新的：</string>
   <string name="color_picker_color">顏色：</string>
-  <string name="ash_reset_color_scheme">輕按以還原爲主題的預設配色方案</string>
   <string name="ash_text">文字</string>
   <string name="ash_assignment">分配</string>
   <string name="ash_singleline_comment">單行註解</string>

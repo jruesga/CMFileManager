@@ -296,9 +296,9 @@
   <string name="pref_compute_folder_statistics">حساب إحصائيات المجلد</string>
   <string name="pref_compute_folder_statistics_on">تحذير! حساب إحصائيات مجلد مكلف في الوقت وموارد النظام</string>
   <string name="pref_display_thumbs">معاينة</string>
-  <string name="pref_display_thumbs_summary">إظهار صورة لمعاينة التطبيقات وملفات الموسيقى، والصور وأشرطة الفيديو.</string>
+  <string name="pref_display_thumbs_summary">إظهار صورة لمعاينة التطبيقات وملفات الموسيقى، والصور والفيديو</string>
   <string name="pref_use_flinger">استخدام الإيماءات ممغنطة</string>
-  <string name="pref_use_flinger_summary">استخدم إيمائة مرر من اليسار الى يمين لحذف الملفات أو المجلدات.</string>
+  <string name="pref_use_flinger_summary">استخدم إيمائة مرر من اليسار الى يمين لحذف الملفات أو المجلدات</string>
   <string name="pref_general_advanced_settings_category">متقدم</string>
   <string name="pref_access_mode">وضع الوصول</string>
   <string name="pref_access_mode_safe">الوضع الأمن</string>
@@ -328,12 +328,12 @@
   <string name="pref_no_suggestions_desc">لا يتم عرض اقتراحات قاموس أثناء تحرير الملف</string>
   <string name="pref_word_wrap">اللتفاف النص</string>
   <string name="pref_hexdump">الملفات الثنائية Hexdump</string>
-  <string name="pref_hexdump_desc">عند فتح ملف ثنائي، تولد Hexdump الملف وفتحه في عارض سداسي عشري.</string>
+  <string name="pref_hexdump_desc">عند فتح ملف ثنائي، تولد Hexdump الملف وفتحه في عارض سداسي عشري</string>
   <string name="pref_editor_syntax_highlight_category">تسليط الضوء على بناء الجملة</string>
   <string name="pref_syntax_highlight">تسليط الضوء على بناء الجملة</string>
   <string name="pref_syntax_highlight_desc">تسليط الضوء على بناء الجملة للملف المعروض في المحرر (فقط عندما يتوفر معالج تسليط الضوء على بناء جملة لنوع الملف)</string>
   <string name="pref_syntax_highlight_color_scheme">نظام الألوان</string>
-  <string name="pref_syntax_highlight_color_scheme_desc">انقر لتحديد نظام ألوان تسليط الضوء على بناء الجملة</string>
+  <string name="pref_syntax_highlight_color_scheme_desc">حدد نظام الألوان تسليط الضوء على بناء الجملة</string>
   <string name="pref_syntax_sh_use_theme_default">استخدام السمة الافتراضية</string>
   <string name="pref_syntax_sh_use_theme_default_desc">استخدم تسليط الضوء على بناء الجملة الافتراضي من السمة الحالية</string>
   <string name="pref_editor_sh_item_category">العناصر</string>
@@ -352,7 +352,7 @@
   <string name="color_picker_current_text">الحالي:</string>
   <string name="color_picker_new_text">الجديد:</string>
   <string name="color_picker_color">لون:</string>
-  <string name="ash_reset_color_scheme">اضغط على استعادة نظام ألوان السمة الافتراضية</string>
+  <string name="ash_reset_color_scheme">استعادة نظام ألوان السمة الافتراضية</string>
   <string name="ash_text">نص</string>
   <string name="ash_assignment">الواجب</string>
   <string name="ash_singleline_comment">تعليق الخط المفرد</string>

@@ -149,7 +149,7 @@
   <string name="search_voice_hint">Aramanızı söyleyin</string>
   <string name="search_error_msg">Arama yaparken bir sorun oluştu. Hiç bir sonuç bulunamadı.</string>
   <string name="search_no_results_msg">Sonuç bulunamadı.</string>
-  <string name="search_found_items_in_directory"><xliff:g id="items">%1$s</xliff:g> şunun içinde: <xliff:g id="path">%2$s</xliff:g></string>
+  <string name="search_found_items_in_directory"><xliff:g id="path">%2$s</xliff:g> dizininde <xliff:g id="items">%1$s</xliff:g></string>
   <string name="search_terms"><![CDATA[<b>Terimler:</b>]]> <xliff:g id="terms">%1$s</xliff:g></string>
   <string name="search_few_characters_title">Aramayı onayla</string>
   <string name="search_few_characters_msg">Bazı arama terimleri küçük sayıda karakterler içeriyor. Bu işlem zaman ve sistem kaynağı açısından çok maliyetli olabilir.\n\nDevam etmek istiyor musunuz?</string>
@@ -184,8 +184,8 @@
   <string name="menu_settings">Ayarlar</string>
   <string name="menu_clear_history">Geçmişi sil</string>
   <string name="menu_no_suggestions">Öneri yok</string>
-  <string name="menu_word_wrap">Kelime sarmalama</string>
-  <string name="menu_syntax_highlight">Sözdilimi renklendirme</string>
+  <string name="menu_word_wrap">Sözcük kaydırma</string>
+  <string name="menu_syntax_highlight">Sözdizimi vurgulama</string>
   <string name="create_copy_regexp"><xliff:g id="name">%1$s</xliff:g> - kopya<xliff:g id="extension">%2$s</xliff:g></string>
   <string name="create_new_compress_file_regexp"><xliff:g id="name">%1$s</xliff:g> - yeni<xliff:g id="extension">%2$s</xliff:g></string>
   <string name="waiting_dialog_msg">İşlem gerçekleştiriliyor\u2026</string>
@@ -199,7 +199,7 @@
   <string name="waiting_dialog_extracting_msg"><![CDATA[<b>Dosya</b>]]> <xliff:g id="file">%1$s</xliff:g></string>
   <string name="waiting_dialog_compressing_title">Sıkıştırılıyor\u2026</string>
   <string name="waiting_dialog_compressing_msg"><![CDATA[<b>Dosya</b>]]> <xliff:g id="file">%1$s</xliff:g></string>
-  <string name="waiting_dialog_analizing_msg"><![CDATA[<b>Analiz edililiyor\u2026</b>]]></string>
+  <string name="waiting_dialog_analizing_msg"><![CDATA[<b>Analiz ediliyor\u2026</b>]]></string>
   <string name="msgs_extracting_success">Arşivden çıkarma işlemi başarıyla tamamlandı. Veri şuraya çıkarıldı: <xliff:g id="destination">%1$s</xliff:g>.</string>
   <string name="msgs_compressing_success">Sıkıştırma işlemi başarıyla tamamlandı. Veri şuraya sıkıştırıldı: <xliff:g id="destination">%1$s</xliff:g>.</string>
   <string name="actions_dialog_title">İşlevler</string>
@@ -296,9 +296,9 @@
   <string name="pref_compute_folder_statistics">Klasör istatistiklerini hesapla</string>
   <string name="pref_compute_folder_statistics_on">Dikkat! Klasör istatistiklerininin hesaplanması zaman ve sistem kaynağı açısından maliyetlidir</string>
   <string name="pref_display_thumbs">Önizle</string>
-  <string name="pref_display_thumbs_summary">Uygulamalar, müzik dosyaları, resim ve videolar için ön izleme resmi göster.</string>
+  <string name="pref_display_thumbs_summary">Uygulamalar, müzik dosyaları, resim ve videolar için ön izleme resmi göster</string>
   <string name="pref_use_flinger">Kaydırma kısayollarını kullan</string>
-  <string name="pref_use_flinger_summary">Dosya ve klasörleri silmek için soldan sağa kaydırma tespitini kullan.</string>
+  <string name="pref_use_flinger_summary">Dosya veya klasörleri silmek için soldan sağa kaydırma hareketini kullan</string>
   <string name="pref_general_advanced_settings_category">Gelişmiş</string>
   <string name="pref_access_mode">Erişim modu</string>
   <string name="pref_access_mode_safe">Güvenli mod</string>
@@ -310,7 +310,7 @@
   <string name="pref_restrict_secondary_users_access_title">Kullanıcı erişimini sınırlandır</string>
   <string name="pref_restrict_secondary_users_access_summary">İkincil kullanıcılar için tüm sistem erişimi sınırla</string>
   <string name="pref_search_results_category">Sonuçlar</string>
-  <string name="pref_show_relevance_widget">Uygunluk widgetini göster</string>
+  <string name="pref_show_relevance_widget">İlintili widgeti göster</string>
   <string name="pref_highlight_terms">Arama terimlerini vurgula</string>
   <string name="pref_sort_search_results_mode">Sonuçları sıralama modu</string>
   <string name="pref_sort_search_results_mode_none">Sıralama yok</string>
@@ -326,14 +326,14 @@
   <string name="pref_editor_behaviour_category">Davranış</string>
   <string name="pref_no_suggestions">Öneri yok</string>
   <string name="pref_no_suggestions_desc">Dosya düzenlerken sözlük önerilerini gösterme</string>
-  <string name="pref_word_wrap">Kelime sarmalama</string>
-  <string name="pref_hexdump">Binary dosyalarını hexdumpla</string>
+  <string name="pref_word_wrap">Sözcük kaydırma</string>
+  <string name="pref_hexdump">İkili dosyaları hexdumpla</string>
   <string name="pref_hexdump_desc">İkili dosyaları açarken bir hexdump oluştur ve onaltılık görüntüleyicide göster</string>
-  <string name="pref_editor_syntax_highlight_category">Sözdilimi renklendirme</string>
-  <string name="pref_syntax_highlight">Sözdilimi renklendirme</string>
-  <string name="pref_syntax_highlight_desc">Düzenleyicide görüntülünen dosyanın sözdilimini renklendir (sadece ilgili dosya türü için sözdilim renklendirici mevcutsa)</string>
+  <string name="pref_editor_syntax_highlight_category">Sözdizimi vurgulama</string>
+  <string name="pref_syntax_highlight">Sözdizimi vurgulama</string>
+  <string name="pref_syntax_highlight_desc">Düzenleyicide görüntülünen dosyanın sözdizimini vurgula (sadece ilgili dosya türü için sözdizimi vurgulama kullanılabilirse)</string>
   <string name="pref_syntax_highlight_color_scheme">Renk planı</string>
-  <string name="pref_syntax_highlight_color_scheme_desc">Sözdilim renklendirme renk şemasını seçmek için dokunun</string>
+  <string name="pref_syntax_highlight_color_scheme_desc">Sözdizimi vurgulama renk düzenini seç</string>
   <string name="pref_syntax_sh_use_theme_default">Varsayılan temayı kullan</string>
   <string name="pref_syntax_sh_use_theme_default_desc">Şu an kullanılan temanın sözdilim renklendirmesini kullan</string>
   <string name="pref_editor_sh_item_category">Ögeler</string>
@@ -342,26 +342,26 @@
   <string name="pref_themes_no_preview">Önizleme yok\n </string>
   <string name="pref_themes_confirmation">Tema başarıyla uygulandı.</string>
   <string name="pref_themes_not_found">Tema bulunamadı.</string>
-  <string name="pref_debug_traces">Hata ayıklama bilgisini kütüğe yaz</string>
+  <string name="pref_debug_traces">Hata ayıklama bilgisini günlüğe yaz</string>
   <string name="theme_default_name">Açık Renkli Tema</string>
   <string name="theme_default_description">CyanogenMod dosya yöneticisi için açık renkli bir tema</string>
   <string name="themes_author">CyanogenMod</string>
-  <string name="drawer_open">Navigasyon çekmecesini aç</string>
-  <string name="drawer_close">Navigasyon çekmecesini kapat</string>
+  <string name="drawer_open">Gezinti çekmecesini aç</string>
+  <string name="drawer_close">Gezinti çekmecesini kapat</string>
   <string name="color_picker_alpha_slider_text">Alfa</string>
   <string name="color_picker_current_text">Şimdiki:</string>
   <string name="color_picker_new_text">Yeni:</string>
   <string name="color_picker_color">Renk:</string>
-  <string name="ash_reset_color_scheme">Varsayılan renk şemasını geri yüklemek için dokunun</string>
+  <string name="ash_reset_color_scheme">Temanın varsayılan renk düzenini geri yükle</string>
   <string name="ash_text">Metin</string>
   <string name="ash_assignment">İlişkilendirme</string>
   <string name="ash_singleline_comment">Tek satırlı yorum</string>
   <string name="ash_multiline_comment">Çok satırlı yorum</string>
   <string name="ash_keyword">Anahtar kelime</string>
-  <string name="ash_quoted_string">Quoted string</string>
+  <string name="ash_quoted_string">Alıntılanan dize</string>
   <string name="ash_variable">Değişken</string>
   <string name="security_warning_extract">Uyarı!\n\nKesin ya da ilişkili yol içeren arşivleri çıkarmak bazı dosyaların üzerine yazarak cihazınıza zarar verebilir.\n\nDevam etmek istiyor musunuz?</string>
-  <string name="changelog_title">Değişiklik kütüğü</string>
+  <string name="changelog_title">Değişiklik kaydı</string>
   <string name="welcome_title">Hoş geldiniz</string>
   <string name="welcome_msg">CyanogenMod dosya yöneticisine hoş geldiniz.\n\nBu uygulama dosya sistemine göz atmanızı ve cihazınıza zarar verebilecek işlemler yapmanıza izin verir. Zararları engellemek için bu uygulama güvenli, düşük yetkili modda başlayacaktır.\n\nGelişmiş, tam yetkili moda Ayarlar aracılığıyla erişebilirsiniz. Yaptığınız işlemlerin sisteminize zarar vermemesini sağlamak sizin sorumluluğunuzda olacaktır.\n\nCyanogenMod Takımı</string>
 </resources>

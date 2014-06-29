@@ -296,9 +296,9 @@
   <string name="pref_compute_folder_statistics">Gerar estatísticas da pasta</string>
   <string name="pref_compute_folder_statistics_on">Aviso! A computação das estatísticas da pasta gasta tempo e recursos do sistema</string>
   <string name="pref_display_thumbs">Pré-visualização</string>
-  <string name="pref_display_thumbs_summary">Exibir uma imagem de pré-visualização para aplicativos, arquivos de música, fotos e vídeos.</string>
+  <string name="pref_display_thumbs_summary">Exibir uma imagem de previsualização para aplicativos, arquivos de música, fotos e vídeos</string>
   <string name="pref_use_flinger">Usar gestos</string>
-  <string name="pref_use_flinger_summary">Usar detecção de gestos de delizar para esquerda e direita para excluir arquivos e pastas</string>
+  <string name="pref_use_flinger_summary">Usar gestos de delizar da esquerda para a direita para excluir arquivos e pastas</string>
   <string name="pref_general_advanced_settings_category">Avançado</string>
   <string name="pref_access_mode">Modo de acesso</string>
   <string name="pref_access_mode_safe">Modo de seguro</string>
@@ -328,12 +328,12 @@
   <string name="pref_no_suggestions_desc">Não exibir sugestões do dicionário ao editar um arquivo</string>
   <string name="pref_word_wrap">Quebra palavra</string>
   <string name="pref_hexdump">Gerar hex de arq. binários</string>
-  <string name="pref_hexdump_desc">Ao abrir um arquivo binário, gerar hexadecimal do arquivo e abrí-lo no visualizador hexadecimal.</string>
+  <string name="pref_hexdump_desc">Ao abrir um arquivo binário, gerar hexadecimal do arquivo e abrí-lo no visualizador hexadecimal</string>
   <string name="pref_editor_syntax_highlight_category">Destacar sintaxe</string>
   <string name="pref_syntax_highlight">Destacar sintaxe</string>
   <string name="pref_syntax_highlight_desc">Destacar a sintaxe do arquivo exibido no editor (somente quando um analisador de sintaxe estiver disponível para o tipo de arquivo)</string>
   <string name="pref_syntax_highlight_color_scheme">Esquema de cor</string>
-  <string name="pref_syntax_highlight_color_scheme_desc">Pressione para selecionar o esquema de cor do destaque de sintaxe</string>
+  <string name="pref_syntax_highlight_color_scheme_desc">Selecione o esquema de cores de realce de sintaxe</string>
   <string name="pref_syntax_sh_use_theme_default">Usar tema padrão</string>
   <string name="pref_syntax_sh_use_theme_default_desc">Usar o destaque de sintaxe padrão para o tema atual</string>
   <string name="pref_editor_sh_item_category">Itens</string>
@@ -352,7 +352,7 @@
   <string name="color_picker_current_text">Atual:</string>
   <string name="color_picker_new_text">Novo:</string>
   <string name="color_picker_color">Cor:</string>
-  <string name="ash_reset_color_scheme">Pressione para restaurar o tema do esquema de cor padrão</string>
+  <string name="ash_reset_color_scheme">Restaurar o esquema de cores do tema padrão</string>
   <string name="ash_text">Texto</string>
   <string name="ash_assignment">Atribuição</string>
   <string name="ash_singleline_comment">Comentário de única linha</string>

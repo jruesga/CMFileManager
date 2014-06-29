@@ -296,9 +296,9 @@
   <string name="pref_compute_folder_statistics">Υπολογισμός στατιστικών φακέλου</string>
   <string name="pref_compute_folder_statistics_on">Προσοχή! Ο υπολογισμός των στατιστικών φακέλου είναι δαπανηρός σε χρόνο και πόρους του συστήματος</string>
   <string name="pref_display_thumbs">Προεπισκόπιση</string>
-  <string name="pref_display_thumbs_summary">Εμφάνιση εικονιδίου προεπισκόπισης για εφαρμογές, αρχεία μουσικής, φωτογραφίες και βίντεο.</string>
+  <string name="pref_display_thumbs_summary">Εμφάνιση εικονιδίου προεπισκόπισης για εφαρμογές, αρχεία μουσικής, φωτογραφίες και βίντεο</string>
   <string name="pref_use_flinger">Χρήση χειρονομιών swipe</string>
-  <string name="pref_use_flinger_summary">Κάντε swipe από αριστερά προς δεξιά για διαγραφή αρχείων ή φακέλων.</string>
+  <string name="pref_use_flinger_summary">Κάντε swipe από αριστερά προς δεξιά για διαγραφή αρχείων ή φακέλων</string>
   <string name="pref_general_advanced_settings_category">Για προχωρημένους</string>
   <string name="pref_access_mode">Λειτουργία πρόσβασης</string>
   <string name="pref_access_mode_safe">Ασφαλής Λειτουργία</string>
@@ -328,12 +328,12 @@
   <string name="pref_no_suggestions_desc">Να μην εμφανίζονται προτάσεις λεξικού κατά την επεξεργασία του αρχείου</string>
   <string name="pref_word_wrap">Αναδίπλωση λέξεων</string>
   <string name="pref_hexdump">Δημιουργία δεκαεξαδικής μορφής σε αρχεία binary</string>
-  <string name="pref_hexdump_desc">Κατά το άνοιγμα ενός αρχείου binary, δημιουργία δεκαεξαδικής μορφής του αρχείου και άνοιγμα στην προβολή δεκαεξαδικής μορφής.</string>
+  <string name="pref_hexdump_desc">Κατά το άνοιγμα ενός αρχείου binary, δημιουργία δεκαεξαδικής μορφής του αρχείου και άνοιγμα στην προβολή δεκαεξαδικής μορφής</string>
   <string name="pref_editor_syntax_highlight_category">Επισήμανση σύνταξης</string>
   <string name="pref_syntax_highlight">Επισήμανση σύνταξης</string>
   <string name="pref_syntax_highlight_desc">Επισήμανση της σύνταξης του αρχείου που εμφανίζεται στον επεξεργαστή (μόνο όταν υπάρχει επεξεργαστής επισήμανσης για τον συγκεκριμένο τύπο αρχείου)</string>
   <string name="pref_syntax_highlight_color_scheme">Συνδυασμός χρωμάτων</string>
-  <string name="pref_syntax_highlight_color_scheme_desc">Πιέστε για επιλογή του συνδυασμού χρωμάτων της επισήμανσης σύνταξης</string>
+  <string name="pref_syntax_highlight_color_scheme_desc">Επιλογή του συνδυασμού χρωμάτων της επισήμανσης σύνταξης</string>
   <string name="pref_syntax_sh_use_theme_default">Χρήση προεπιλογής του θέματος</string>
   <string name="pref_syntax_sh_use_theme_default_desc">Χρήση του προεπιλεγμένου συνδυασμού χρωμάτων του τρέχοντος θέματος</string>
   <string name="pref_editor_sh_item_category">Αντικείμενα</string>
@@ -352,7 +352,7 @@
   <string name="color_picker_current_text">Τρέχον:</string>
   <string name="color_picker_new_text">Νέο:</string>
   <string name="color_picker_color">Χρώμα:</string>
-  <string name="ash_reset_color_scheme">Πιέστε για επαναφορά του προεπιλεγμένου συνδυασμού χρωμάτων του θέματος</string>
+  <string name="ash_reset_color_scheme">Επαναφορά του προεπιλεγμένου συνδυασμού χρωμάτων του θέματος</string>
   <string name="ash_text">Κείμενο</string>
   <string name="ash_assignment">Εκχώρηση</string>
   <string name="ash_singleline_comment">Σχόλιο μιας γραμμής</string>

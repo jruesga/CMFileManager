@@ -311,9 +311,9 @@
   <string name="pref_compute_folder_statistics">חשב סטטיסטיקות תיקייה</string>
   <string name="pref_compute_folder_statistics_on">אזהרה! חישוב סטטיסטיקות של תקיות יקר בזמן ומשאבי מערכת</string>
   <string name="pref_display_thumbs">תצוגה מקדימה</string>
-  <string name="pref_display_thumbs_summary">הצג תצוגה מקדימה של תמונה עבור אפליקציות, קבצי מוזיקה, וידאו ותמונות.</string>
+  <string name="pref_display_thumbs_summary">הצג תצוגה מקדימה של תמונה עבור אפליקציות, קבצי מוזיקה, וידאו ותמונות</string>
   <string name="pref_use_flinger">השתמש במחוות החלקה</string>
-  <string name="pref_use_flinger_summary">השתמש בהחלקה ימינה או שמאלה כדי למחוק קבצים ותיקיות.</string>
+  <string name="pref_use_flinger_summary">השתמש בהחלקה ימינה או שמאלה כדי למחוק קבצים ותיקיות</string>
   <string name="pref_general_advanced_settings_category">מתקדם</string>
   <string name="pref_access_mode">מצב גישה</string>
   <string name="pref_access_mode_safe">מצב בטוח</string>
@@ -343,12 +343,12 @@
   <string name="pref_no_suggestions_desc">אל תציג הצעות מילון בעת עריכת קובץ</string>
   <string name="pref_word_wrap">גלישת מילים</string>
   <string name="pref_hexdump">קבצים בינארים של Hexdump</string>
-  <string name="pref_hexdump_desc">כאשר פותחים קובץ בינארי, צור hexdump של הקובץ ופתח אותו באמצעות hex viewer.</string>
+  <string name="pref_hexdump_desc">כאשר פותחים קובץ בינארי, צור hexdump של הקובץ ופתח אותו באמצעות hex viewer</string>
   <string name="pref_editor_syntax_highlight_category">הבלט תחביר</string>
   <string name="pref_syntax_highlight">הבלט תחביר</string>
   <string name="pref_syntax_highlight_desc">סמן את התחביר של הקובץ מוצג בעורך (יעבד סימון תחביר רק עבור קבצים עם מבנה זמין)</string>
   <string name="pref_syntax_highlight_color_scheme">ערכת צבעים</string>
-  <string name="pref_syntax_highlight_color_scheme_desc">הקש כדי לבחור את ערכת הצבעים של סימון תחביר</string>
+  <string name="pref_syntax_highlight_color_scheme_desc">בחר את ערכת הצבעים של סימון תחביר</string>
   <string name="pref_syntax_sh_use_theme_default">השתמש בערכת הנושא המוגדרת כברירת מחדל</string>
   <string name="pref_syntax_sh_use_theme_default_desc">השתמש בנוסח הרגיל המודגש של הערכת נושא הנוכחית</string>
   <string name="pref_editor_sh_item_category">פריטים</string>
@@ -367,7 +367,7 @@
   <string name="color_picker_current_text">נוכחי:</string>
   <string name="color_picker_new_text">חדש:</string>
   <string name="color_picker_color">צבע:</string>
-  <string name="ash_reset_color_scheme">הקש כדי לשחזר את ערכת הצבעים של ברירת מחדל</string>
+  <string name="ash_reset_color_scheme">שנה סכמת ערכת עיצוב ברירת מחדל</string>
   <string name="ash_text">טקסט</string>
   <string name="ash_assignment">משימה</string>
   <string name="ash_singleline_comment">הערה בשורה בודדת</string>

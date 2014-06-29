@@ -310,9 +310,9 @@
   <string name="pref_compute_folder_statistics">Beregn mappestatistikker</string>
   <string name="pref_compute_folder_statistics_on">Advarsel! Beregningen af mappestatistikker er tids- og ressourcekrævende</string>
   <string name="pref_display_thumbs">Eksempel</string>
-  <string name="pref_display_thumbs_summary">Vis et billedeksempel for apps, musikfiler, billeder og videoer.</string>
+  <string name="pref_display_thumbs_summary">Vis et billedeksempel for apps, musikfiler, billeder og videoer</string>
   <string name="pref_use_flinger">Brug glidebevægelser</string>
-  <string name="pref_use_flinger_summary">Glid fra venstre mod højre for at slette filer eller mapper.</string>
+  <string name="pref_use_flinger_summary">Glid fra venstre mod højre for at slette filer eller mapper</string>
   <string name="pref_general_advanced_settings_category">Avanceret</string>
   <string name="pref_access_mode">Adgangstilstand</string>
   <string name="pref_access_mode_safe">Sikker tilstand</string>
@@ -342,12 +342,12 @@
   <string name="pref_no_suggestions_desc">Vis ikke ordbogsforslag, når filen redigeres</string>
   <string name="pref_word_wrap">Tekstombrydning</string>
   <string name="pref_hexdump">Hexdump af binære filer</string>
-  <string name="pref_hexdump_desc">Dan et hex-dump af filen og åbn den i en hex-viser, når en binær fil åbnes.</string>
+  <string name="pref_hexdump_desc">Dan et hex-dump af filen og åbn den i en hex-viser, når en binær fil åbnes</string>
   <string name="pref_editor_syntax_highlight_category">Syntaksfremhævning</string>
   <string name="pref_syntax_highlight">Syntaksfremhævning</string>
   <string name="pref_syntax_highlight_desc">Fremhæv syntaksen for den viste fil i editoren (kun når et syntaksfremhævningsmodul er tilgængelig for filtypen)</string>
   <string name="pref_syntax_highlight_color_scheme">Farveskema</string>
-  <string name="pref_syntax_highlight_color_scheme_desc">Tryk for at vælge farveskema til syntaksfremhævning</string>
+  <string name="pref_syntax_highlight_color_scheme_desc">Vælg farvesammensætning for syntaksfremhævning</string>
   <string name="pref_syntax_sh_use_theme_default">Brug standardtema</string>
   <string name="pref_syntax_sh_use_theme_default_desc">Brug standard-syntaksfremhævningen i det aktuelle tema</string>
   <string name="pref_editor_sh_item_category">Elementer</string>
@@ -366,7 +366,7 @@
   <string name="color_picker_current_text">Aktuel:</string>
   <string name="color_picker_new_text">Ny:</string>
   <string name="color_picker_color">Farve:</string>
-  <string name="ash_reset_color_scheme">Tryk for at gendanne standard-farveskemaet</string>
+  <string name="ash_reset_color_scheme">Gendan farvesammensætningen for standardtema</string>
   <string name="ash_text">Tekst</string>
   <string name="ash_assignment">Tildeling</string>
   <string name="ash_singleline_comment">Enkeltlinje-kommentar</string>

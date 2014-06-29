@@ -304,7 +304,7 @@
   <string name="pref_display_thumbs">Vista previa</string>
   <string name="pref_display_thumbs_summary">Amosar una vista previa pa ficheros d\'imaxe, videu, música y aplicaciones</string>
   <string name="pref_use_flinger">Usar xestos</string>
-  <string name="pref_use_flinger_summary">Facer un xestu d\'esquierda a derecha pa desaniciar ficheros o carpetes.</string>
+  <string name="pref_use_flinger_summary">Facer un xestu d\'esquierda a derecha pa desaniciar ficheros o carpetes</string>
   <string name="pref_general_advanced_settings_category">Avanzáu</string>
   <string name="pref_access_mode">Mou d\'accesu</string>
   <string name="pref_access_mode_safe">Mou seguru</string>
@@ -339,7 +339,7 @@
   <string name="pref_syntax_highlight">Resaltar sintaxis</string>
   <string name="pref_syntax_highlight_desc">Resaltar la sintaxis del ficheru amosáu (aplicable cuando esista un intérprete disponible pa esta triba de ficheru)</string>
   <string name="pref_syntax_highlight_color_scheme">Esquema de color</string>
-  <string name="pref_syntax_highlight_color_scheme_desc">Tocar pa esbillar l\'esquema de color pal resaltáu de sintaxis</string>
+  <string name="pref_syntax_highlight_color_scheme_desc">Seleicionar l\'esquema de color pal resaltáu de sintaxis</string>
   <string name="pref_syntax_sh_use_theme_default">Tema por defeutu</string>
   <string name="pref_syntax_sh_use_theme_default_desc">Usar el resaltáu de sintaxis por defeutu del tema actual</string>
   <string name="pref_editor_sh_item_category">Elementos</string>
@@ -358,7 +358,7 @@
   <string name="color_picker_current_text">Actual:</string>
   <string name="color_picker_new_text">Nuevu:</string>
   <string name="color_picker_color">Color:</string>
-  <string name="ash_reset_color_scheme">Tocar pa restaurar l\'esquema de color predetermináu</string>
+  <string name="ash_reset_color_scheme">Restaurar l\'esquema de color por defeutu</string>
   <string name="ash_text">Testu</string>
   <string name="ash_assignment">Asignación</string>
   <string name="ash_singleline_comment">Comentariu simple</string>

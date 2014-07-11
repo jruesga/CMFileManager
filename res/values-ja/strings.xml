@@ -301,7 +301,7 @@
   <string name="pref_display_thumbs_summary">アプリ、音楽ファイル、写真、動画のプレビュー画像を表示する</string>
   <string name="pref_use_flinger">スワイプジェスチャーを使用</string>
   <string name="pref_use_flinger_summary">ファイルやフォルダの削除に左から右へのジェスチャーの検出を使用する</string>
-  <string name="pref_general_advanced_settings_category">高度な設定</string>
+  <string name="pref_general_advanced_settings_category">詳細設定</string>
   <string name="pref_access_mode">アクセスモード</string>
   <string name="pref_access_mode_safe">セーフモード</string>
   <string name="pref_access_mode_safe_summary">セーフモード\n\nアプリは権限を持たずに実行されて、アクセス可能なファイルシステムはストレージボリューム（SDカードとUSB）だけです。</string>
@@ -320,14 +320,14 @@
   <string name="pref_sort_search_results_mode_relevance">関連度順</string>
   <string name="pref_search_privacity_category">プライバシー</string>
   <string name="pref_save_search_terms">検索語を保存</string>
-  <string name="pref_save_search_terms_on">検索語は保存され、変換候補として使用されます</string>
+  <string name="pref_save_search_terms_on">検索語は保存されて、今後の検索で候補として使用されます</string>
   <string name="pref_save_search_terms_off">検索語は保存されません</string>
-  <string name="pref_remove_saved_search_terms">保存された検索語を削除</string>
+  <string name="pref_remove_saved_search_terms">保存されている検索語を削除</string>
   <string name="pref_remove_saved_search_terms_summary">タップすると保存されているすべての検索語を削除します</string>
   <string name="pref_remove_saved_search_terms_msg">保存されていたすべての検索語が削除されました。</string>
   <string name="pref_editor_behaviour_category">動作</string>
   <string name="pref_no_suggestions">変換候補を表示しない</string>
-  <string name="pref_no_suggestions_desc">ファイルを編集中は変換候補を表示しない</string>
+  <string name="pref_no_suggestions_desc">ファイル編集中は変換候補を表示しない</string>
   <string name="pref_word_wrap">右端で折り返す</string>
   <string name="pref_hexdump">バイナリファイルの16進ダンプ</string>
   <string name="pref_hexdump_desc">バイナリファイルは16進ダンプを生成して16進ビューワーで開く</string>

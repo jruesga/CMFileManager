@@ -82,7 +82,7 @@
   <string name="actionbar_button_actions_cd">Actions</string>
   <string name="actionbar_button_history_cd">Historique</string>
   <string name="actionbar_button_bookmarks_cd">Favoris</string>
-  <string name="actionbar_button_search_cd">Recherche</string>
+  <string name="actionbar_button_search_cd">Rechercher</string>
   <string name="actionbar_button_overflow_cd">Plus d\'options</string>
   <string name="actionbar_button_storage_cd">Volumes de stockage</string>
   <string name="actionbar_button_save_cd">Sauvegarder</string>
@@ -180,7 +180,7 @@
   <string name="initial_directory_error_msg">Erreur lors de l\'enregistrement du dossier d\'accueil</string>
   <string name="menu_history">Historique</string>
   <string name="menu_bookmarks">Favoris</string>
-  <string name="menu_search">Recherche</string>
+  <string name="menu_search">Rechercher</string>
   <string name="menu_settings">Paramètres</string>
   <string name="menu_clear_history">Effacer l\'historique</string>
   <string name="menu_no_suggestions">Pas de suggestions</string>
@@ -214,7 +214,7 @@
   <string name="msgs_compressing_success">Compression correctement terminée. Les donnéees ont été compressé dans <xliff:g id="destination">%1$s</xliff:g>.</string>
   <string name="actions_dialog_title">Actions</string>
   <string name="actions_menu_properties_current_folder">Propriétés</string>
-  <string name="actions_menu_refresh">Rafraîchir</string>
+  <string name="actions_menu_refresh">Actualiser</string>
   <string name="actions_menu_new_directory">Nouveau dossier</string>
   <string name="actions_menu_new_file">Nouveau fichier</string>
   <string name="actions_menu_select_all">Tout sélectionner</string>
@@ -327,7 +327,7 @@
   <string name="pref_sort_search_results_mode_name">Par nom</string>
   <string name="pref_sort_search_results_mode_relevance">Par pertinence</string>
   <string name="pref_search_privacity_category">Privé</string>
-  <string name="pref_save_search_terms">Sauvergarder les termes recherchés</string>
+  <string name="pref_save_search_terms">Sauvegarder les termes recherchés</string>
   <string name="pref_save_search_terms_on">Les termes recherchés seront sauvegardés et seront suggérés dans les recherches futures</string>
   <string name="pref_save_search_terms_off">Les termes recherchés ne seront pas sauvegardés</string>
   <string name="pref_remove_saved_search_terms">Effacer l\'historique de recherche</string>
@@ -359,8 +359,8 @@
   <string name="drawer_open">Ouvrir le volet de navigation</string>
   <string name="drawer_close">Fermer le volet de navigation</string>
   <string name="color_picker_alpha_slider_text">Alpha</string>
-  <string name="color_picker_current_text">Courant :</string>
-  <string name="color_picker_new_text">Nouveau :</string>
+  <string name="color_picker_current_text">Actuelle :</string>
+  <string name="color_picker_new_text">Nouvelle :</string>
   <string name="color_picker_color">Couleur :</string>
   <string name="ash_reset_color_scheme">Restaurer le jeu de couleurs du thème par défaut</string>
   <string name="ash_text">Texte</string>

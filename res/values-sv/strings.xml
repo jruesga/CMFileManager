@@ -310,7 +310,9 @@
   <string name="pref_compute_folder_statistics">Beräkna mappstatistik</string>
   <string name="pref_compute_folder_statistics_on">Varning! Beräkningen av mappstatistik är kostsamt i tid och systemresurser</string>
   <string name="pref_display_thumbs">Förhandsgranska</string>
+  <string name="pref_display_thumbs_summary">Visa en förhandsgranskningsbild för appar, musik, bilder och videor</string>
   <string name="pref_use_flinger">Använd svepgester</string>
+  <string name="pref_use_flinger_summary">Använd ett svep från vänster till till höger för att radera filer eller mappar</string>
   <string name="pref_general_advanced_settings_category">Avancerat</string>
   <string name="pref_access_mode">Behörighet</string>
   <string name="pref_access_mode_safe">Säkert läge</string>
@@ -339,10 +341,13 @@
   <string name="pref_no_suggestions">Inga förslag</string>
   <string name="pref_no_suggestions_desc">Visa inte ordboksförslag vid redigering av fil</string>
   <string name="pref_word_wrap">Radbrytning</string>
+  <string name="pref_hexdump">Hexdumpbinärfiler</string>
+  <string name="pref_hexdump_desc">Vid öppning av en binärfil genereras en hexdump av filen som sedan öppnas i hexläsaren</string>
   <string name="pref_editor_syntax_highlight_category">Markera syntax</string>
   <string name="pref_syntax_highlight">Markera syntax</string>
   <string name="pref_syntax_highlight_desc">Markera filens syntax vid visning i redigeraren (endast när en behandlare för syntaxmarkering finns tillgänglig för filtypen)</string>
   <string name="pref_syntax_highlight_color_scheme">Färgschema</string>
+  <string name="pref_syntax_highlight_color_scheme_desc">Välj färgschema för syntaxmarkering</string>
   <string name="pref_syntax_sh_use_theme_default">Använd standardtema</string>
   <string name="pref_syntax_sh_use_theme_default_desc">Använd nuvarande temas standardsyntaxmarkering</string>
   <string name="pref_editor_sh_item_category">Föremål</string>
@@ -361,6 +366,7 @@
   <string name="color_picker_current_text">Nuvarande:</string>
   <string name="color_picker_new_text">Ny:</string>
   <string name="color_picker_color">Färg:</string>
+  <string name="ash_reset_color_scheme">Återställ till temats standardfärgschema</string>
   <string name="ash_text">Text</string>
   <string name="ash_assignment">Tilldelning</string>
   <string name="ash_singleline_comment">Radkommentar</string>

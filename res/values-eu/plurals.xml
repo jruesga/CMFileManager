@@ -17,18 +17,23 @@
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
   <plurals name="n_folders">
-    <item quantity="other"><xliff:g id="folders">%1$d</xliff:g>개의 폴더</item>
+    <item quantity="one">Karpeta 1</item>
+    <item quantity="other"><xliff:g id="folders">%1$d</xliff:g> karpeta</item>
   </plurals>
   <plurals name="n_files">
-    <item quantity="other"><xliff:g id="files">%1$d</xliff:g>개의 파일</item>
+    <item quantity="one">Fitxategi 1</item>
+    <item quantity="other"><xliff:g id="files">%1$d</xliff:g> fitxategi</item>
   </plurals>
   <plurals name="search_found_items">
-    <item quantity="other"><xliff:g id="count">%d</xliff:g>개의 항목을 찾았습니다.</item>
+    <item quantity="one">Elementu 1 aurkitu da</item>
+    <item quantity="other"><xliff:g id="count">%d</xliff:g> elementu aurkitu dira</item>
   </plurals>
   <plurals name="selection_folders">
-    <item quantity="other"><xliff:g id="folders">%1$d</xliff:g>개의 폴더가 선택되었습니다.</item>
+    <item quantity="one">Karpeta 1 aukeratuta</item>
+    <item quantity="other"><xliff:g id="folders">%1$d</xliff:g> karpeta aukeratuta.</item>
   </plurals>
   <plurals name="selection_files">
-    <item quantity="other"><xliff:g id="files">%1$d</xliff:g>개의 파일이 선택되었습니다.</item>
+    <item quantity="one">Fitxategi 1 aukeratuta.</item>
+    <item quantity="other"><xliff:g id="files">%1$d</xliff:g> fitxategi aukeratuta.</item>
   </plurals>
 </resources>

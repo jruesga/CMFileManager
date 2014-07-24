@@ -87,10 +87,10 @@
   <string name="actionbar_button_overflow_cd">Meer opsies</string>
   <string name="actionbar_button_storage_cd">Skyf volumes</string>
   <string name="actionbar_button_save_cd">Stoor</string>
-  <string name="sort_by_name_asc">Met naam ▲</string>
-  <string name="sort_by_name_desc">Met naam ▼</string>
-  <string name="sort_by_date_asc">Met datum ▲</string>
-  <string name="sort_by_date_desc">Met datum ▼</string>
+  <string name="sort_by_name_asc">Volgens naam ▲</string>
+  <string name="sort_by_name_desc">Volgens naam ▼</string>
+  <string name="sort_by_date_asc">Volgens datum ▲</string>
+  <string name="sort_by_date_desc">Volgens datum ▼</string>
   <string name="layout_icons">Ikone</string>
   <string name="layout_simple">Eenvoudig</string>
   <string name="layout_details">Besonderhede</string>

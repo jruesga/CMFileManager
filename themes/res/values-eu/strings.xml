@@ -16,19 +16,6 @@
      limitations under the License.
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-  <plurals name="n_folders">
-    <item quantity="other"><xliff:g id="folders">%1$d</xliff:g>개의 폴더</item>
-  </plurals>
-  <plurals name="n_files">
-    <item quantity="other"><xliff:g id="files">%1$d</xliff:g>개의 파일</item>
-  </plurals>
-  <plurals name="search_found_items">
-    <item quantity="other"><xliff:g id="count">%d</xliff:g>개의 항목을 찾았습니다.</item>
-  </plurals>
-  <plurals name="selection_folders">
-    <item quantity="other"><xliff:g id="folders">%1$d</xliff:g>개의 폴더가 선택되었습니다.</item>
-  </plurals>
-  <plurals name="selection_files">
-    <item quantity="other"><xliff:g id="files">%1$d</xliff:g>개의 파일이 선택되었습니다.</item>
-  </plurals>
+  <string name="dark_theme_name">Gai iluna</string>
+  <string name="dark_theme_desc">CyanogenMod-en fitxategi kudeatzailearentzako gai ilun bat.</string>
 </resources>

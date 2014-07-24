@@ -33,7 +33,7 @@
   <string name="no">Ne</string>
   <string name="all">Visi</string>
   <string name="overwrite">Perrašyti</string>
-  <string name="select">Pažymėti</string>
+  <string name="select">Pasirinkti</string>
   <string name="root_directory_name"><![CDATA[<Root aplankas>]]></string>
   <string name="search_result_name">Paieška: <xliff:g id="terms">%1$s</xliff:g></string>
   <string name="loading_message">Įkeliama\u2026</string>
@@ -50,7 +50,7 @@
   <string name="msgs_change_to_prompt_access_mode_msg">Nepavyko paleisti „Root“ režimu. Keičiama į saugų režimą.\n\nTaikyti šį pakeitimą?</string>
   <string name="msgs_cant_create_console">Nepavyko gauti reikiamų privilegijų, veikimui.</string>
   <string name="msgs_privileged_console_alloc_failed">Nepavyko paleisti „Root“ prieigos režimu. Keičiama į saugų režimą.</string>
-  <string name="msgs_settings_save_failure">Nustatymas negali būti taikomas/saugomas.</string>
+  <string name="msgs_settings_save_failure">Nustatymas negali būti taikomas / saugomas.</string>
   <string name="msgs_settings_invalid_initial_directory">Pradinis aplankas „<xliff:g id="initial_dir">%1$s</xliff:g>“ yra negaliojantis. Keičiama į „Root“ aplanką.</string>
   <string name="msgs_success">Veiksmas baigtas sėkmingai.</string>
   <string name="msgs_unknown">Aptikta klaida. Veiksmas nepavyko.</string>
@@ -67,7 +67,7 @@
   <string name="msgs_unresolved_inconsistencies">Šis veiksmas neleidžiamas, nes tai sukels neatitikimų.</string>
   <string name="msgs_operation_not_allowed_in_current_directory">Veiksmas neleistinas dabartiniame aplanke.\n\nPaskirties vieta negali būti ta pati kaip šaltinio arba šaltinio poaplankio.</string>
   <string name="msgs_push_again_to_exit">Paspauskite dar kartą norėdami išeiti.</string>
-  <string name="msgs_not_registered_app">Nėra registruotos programos kuri tvarkytu pažymėtą failo tipą.</string>
+  <string name="msgs_not_registered_app">Nėra registruotos programos kuri tvarkytu pasirinktą failo tipą.</string>
   <string name="msgs_overwrite_files">Kai kurie failai jau egzistuoja aplanke.\n\nPerrašyti?</string>
   <string name="msgs_action_association_failed">Nepavyko susieti veiksmo, programai.</string>
   <string name="advise_insufficient_permissions">Veiksmas reikalauja didesnės privilegijos.\n\nAr norite pakeisti į root prieigos režimą?</string>
@@ -207,9 +207,9 @@
   <string name="actions_menu_refresh">Atnaujinti</string>
   <string name="actions_menu_new_directory">Naujas aplankas</string>
   <string name="actions_menu_new_file">Naujas failas</string>
-  <string name="actions_menu_select_all">Pažymėti viską</string>
+  <string name="actions_menu_select_all">Pasirinkti viską</string>
   <string name="actions_menu_deselect_all">Atžymėti viską</string>
-  <string name="actions_menu_select">Pažymėti</string>
+  <string name="actions_menu_select">Pasirinkti</string>
   <string name="actions_menu_deselect">Atžymėti</string>
   <string name="actions_menu_paste_selection">Kopijuoti čia</string>
   <string name="actions_menu_move_selection">Perkelti čia</string>
@@ -260,7 +260,7 @@
   <string name="filetime_format_mode_ddMMyyyy_HHmmss">dd/mm/mmmm vv:mm:ss</string>
   <string name="filetime_format_mode_MMddyyyy_HHmmss">mm/dd/mmmm vv:mm:ss</string>
   <string name="filetime_format_mode_yyyyMMdd_HHmmss">mmmm-mm-dd vv:mm:ss</string>
-  <string name="selection_folders_and_files">Pažymėta: <xliff:g id="folders">%1$s</xliff:g> ir <xliff:g id="files">%2$s</xliff:g></string>
+  <string name="selection_folders_and_files">Pasirinkta: <xliff:g id="folders">%1$s</xliff:g> ir <xliff:g id="files">%2$s</xliff:g></string>
   <string name="category_system">SISTEMA</string>
   <string name="category_app">PROGRAMA</string>
   <string name="category_binary">DVEJETAINIS</string>

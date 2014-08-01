@@ -37,8 +37,8 @@
     <item quantity="other">Pažymėta <xliff:g id="folders">%1$d</xliff:g> aplankų</item>
   </plurals>
   <plurals name="selection_files">
-    <item quantity="one">Pažymėtas <xliff:g id="files">%1$d</xliff:g> failas</item>
-    <item quantity="few">Pažymėti <xliff:g id="files">%1$d</xliff:g> failai</item>
-    <item quantity="other">Pažymėta <xliff:g id="files">%1$d</xliff:g> failų</item>
+    <item quantity="one">Pasirinktas <xliff:g id="files">%1$d</xliff:g> failas.</item>
+    <item quantity="few">Pasirinkti <xliff:g id="files">%1$d</xliff:g> failai.</item>
+    <item quantity="other">Pasirinkta <xliff:g id="files">%1$d</xliff:g> failų.</item>
   </plurals>
 </resources>

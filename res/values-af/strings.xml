@@ -114,7 +114,7 @@
   <string name="filesystem_info_dialog_dump_pass">Stort/Slaag:</string>
   <string name="filesystem_info_dialog_total_disk_usage">Totaal:</string>
   <string name="filesystem_info_dialog_used_disk_usage">Gebruik:</string>
-  <string name="filesystem_info_dialog_free_disk_usage">Vry:</string>
+  <string name="filesystem_info_dialog_free_disk_usage">Gratis:</string>
   <string name="fso_properties_permissions_not_allowed_msg">Regte veranderinge word nie toegelaat in die veilige modus nie. Raak om toegang na \'root\' modus te verander.</string>
   <string name="fso_properties_failed_to_change_owner_msg">Die verandering van die eienaar aksie het misluk.\n\n
     Vir sekuriteit redes laat sommige lêerstelsels, soos SD-kaarte, dit toe nie.</string>

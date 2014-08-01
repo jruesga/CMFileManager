@@ -65,7 +65,7 @@
   <string name="msgs_read_only_filesystem">A fájlrendszer csak olvasható. Próbálja meg írhatóként újracsatlakoztatni a művelet előtt.</string>
   <string name="msgs_illegal_argument">Érvénytelen paraméter, sikertelen futtatás.</string>
   <string name="msgs_unresolved_inconsistencies">A művelet nem engedélyezett, mert következetlenséget okozna.</string>
-  <string name="msgs_operation_not_allowed_in_current_directory">A művelet nem engedélyezett a jelenlegi mappában.\n\nA célmappa nem lehet azonos a forrásmappával, és nem lehet annak almappája.</string>
+  <string name="msgs_operation_not_allowed_in_current_directory">A művelet nem engedélyezett a jelenlegi könyvtárban.\n\nA célkönyvtár nem lehet azonos a forrás könyvtárral, és nem lehet annak alkönyvtára.</string>
   <string name="msgs_push_again_to_exit">Nyomja meg mégegyszer a kilépéshez.</string>
   <string name="msgs_not_registered_app">A kijelölt fájltípushoz nincs alkalmazás társítva.</string>
   <string name="msgs_overwrite_files">Néhány fájl már létezik a célkönyvtárban.\n\nFelülírja?</string>
@@ -234,7 +234,7 @@
   <string name="actions_ask_undone_operation_msg">A művelet nem visszavonható. Biztosan folytatja?</string>
   <string name="input_name_dialog_label">Név:</string>
   <string name="input_name_dialog_message_empty_name">A név mező nem lehet üres.</string>
-  <string name="input_name_dialog_message_invalid_path_name">Helytelen név. A \'<xliff:g id="invalid_characters">%1$s</xliff:g>\' karakterek nem megengedettek.</string>
+  <string name="input_name_dialog_message_invalid_path_name">Helytelen név. A \"<xliff:g id="invalid_characters">%1$s</xliff:g>\" karakterek nem megengedettek.</string>
   <string name="input_name_dialog_message_invalid_name">Helytelen név. A \'.\' és a \'..\' nem megengedett.</string>
   <string name="input_name_dialog_message_name_exists">A név már létezik.</string>
   <string name="associations_dialog_title">Társítások</string>

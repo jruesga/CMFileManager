@@ -39,8 +39,8 @@
   <string name="loading_message">Учитавам\u2026</string>
   <string name="cancelled_message">Отказано.</string>
   <string name="error_message">Грешка.</string>
-  <string name="copy_text_cd">Додирни да копираш текст у клипборд</string>
-  <string name="copy_text_msg">Текст копиран у клипборд</string>
+  <string name="copy_text_cd">Додирни да копираш текст у привремену меморију</string>
+  <string name="copy_text_msg">Текст је копиран у привремену меморију</string>
   <string name="warning_title">Упозорење</string>
   <string name="error_title">Пронађена грешка</string>
   <string name="confirm_operation">Потврди операцију</string>
@@ -268,7 +268,7 @@
   <string name="category_binary">БИНАРНО</string>
   <string name="category_text">ТЕКСТ</string>
   <string name="category_document">ДОКУМЕНТ</string>
-  <string name="category_ebook">ЕЛ. КЊИГА</string>
+  <string name="category_ebook">Е-КЊИГА</string>
   <string name="category_mail">ПОШТА</string>
   <string name="category_compress">КОМПРЕСОВАНО</string>
   <string name="category_exec">ИЗВРШНИ</string>

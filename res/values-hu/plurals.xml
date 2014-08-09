@@ -20,6 +20,10 @@
     <item quantity="one"><xliff:g id="folders">%1$d</xliff:g> könyvtár</item>
     <item quantity="other"><xliff:g id="folders">%1$d</xliff:g> könyvtár</item>
   </plurals>
+  <plurals name="n_files">
+    <item quantity="one"><xliff:g id="files">%1$d</xliff:g> fájl</item>
+    <item quantity="other"><xliff:g id="files">%1$d</xliff:g> fájl</item>
+  </plurals>
   <plurals name="search_found_items">
     <item quantity="one"><xliff:g id="count">%1$d</xliff:g> találat</item>
     <item quantity="other"><xliff:g id="count">%d</xliff:g> találat</item>
@@ -27,5 +31,9 @@
   <plurals name="selection_folders">
     <item quantity="one"><xliff:g id="folders">%1$d</xliff:g> könyvtár kiválasztva.</item>
     <item quantity="other"><xliff:g id="folders">%1$d</xliff:g> könyvtár kiválasztva.</item>
+  </plurals>
+  <plurals name="selection_files">
+    <item quantity="one"><xliff:g id="files">%1$d</xliff:g> fájl kiválasztva.</item>
+    <item quantity="other"><xliff:g id="files">%1$d</xliff:g> fájl kiválasztva.</item>
   </plurals>
 </resources>

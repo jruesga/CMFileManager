@@ -197,11 +197,11 @@
   <string name="waiting_dialog_deleting_msg"><![CDATA[<b>Failas</b>]]> <xliff:g id="file">%1$s</xliff:g></string>
   <string name="waiting_dialog_extracting_title">Išpakuojama\u2026</string>
   <string name="waiting_dialog_extracting_msg"><![CDATA[<b>Failas</b>]]> <xliff:g id="file">%1$s</xliff:g></string>
-  <string name="waiting_dialog_compressing_title">Suspaudžiama\u2026</string>
+  <string name="waiting_dialog_compressing_title">Suglaudinama\u2026</string>
   <string name="waiting_dialog_compressing_msg"><![CDATA[<b>Failas</b>]]> <xliff:g id="file">%1$s</xliff:g></string>
   <string name="waiting_dialog_analizing_msg"><![CDATA[<b>Analizuojama\u2026</b>]]></string>
   <string name="msgs_extracting_success">Išpakavimo veiksmas baigtas sėkmingai. Duomenys išpakuoti į <xliff:g id="destination">%1$s</xliff:g>.</string>
-  <string name="msgs_compressing_success">Suspaudimo veiksmas baigtas sėkmingai. Duomenys suspausti į <xliff:g id="destination">%1$s</xliff:g>.</string>
+  <string name="msgs_compressing_success">Suglaudinimo veiksmas baigtas sėkmingai. Duomenys suglaudinti į <xliff:g id="destination">%1$s</xliff:g>.</string>
   <string name="actions_dialog_title">Veiksmai</string>
   <string name="actions_menu_properties_current_folder">Savybės</string>
   <string name="actions_menu_refresh">Atnaujinti</string>
@@ -214,14 +214,14 @@
   <string name="actions_menu_paste_selection">Kopijuoti čia</string>
   <string name="actions_menu_move_selection">Perkelti čia</string>
   <string name="actions_menu_delete_selection">Ištrinti</string>
-  <string name="actions_menu_compress_selection">Suspausti</string>
+  <string name="actions_menu_compress_selection">Suglaudinti</string>
   <string name="actions_menu_create_link">Sukurti nuorodą</string>
   <string name="actions_menu_open">Atidaryti</string>
   <string name="actions_menu_open_with">Atidaryti naudojant</string>
   <string name="actions_menu_execute">Vykdyti</string>
   <string name="actions_menu_send">Siųsti</string>
   <string name="actions_menu_send_selection">Siųsti</string>
-  <string name="actions_menu_compress">Suspausti</string>
+  <string name="actions_menu_compress">Suglaudinti</string>
   <string name="actions_menu_extract">Išpakuoti</string>
   <string name="actions_menu_delete">Ištrinti</string>
   <string name="actions_menu_rename">Pervardyti</string>
@@ -268,7 +268,7 @@
   <string name="category_document">DOKUMENTAS</string>
   <string name="category_ebook">EL. KNYGA</string>
   <string name="category_mail">PAŠTAS</string>
-  <string name="category_compress">SUSPAUSTI</string>
+  <string name="category_compress">SUGLAUDINTI</string>
   <string name="category_exec">VYKDOMA</string>
   <string name="category_database">DUOMENŲ BAZĖ</string>
   <string name="category_font">ŠRIFTAS</string>
@@ -276,7 +276,7 @@
   <string name="category_audio">GARSAS</string>
   <string name="category_video">VAIZDAS</string>
   <string name="category_security">SAUGUMAS</string>
-  <string name="compression_mode_title">Suspaudimo režimas</string>
+  <string name="compression_mode_title">Suglaudinimo režimas</string>
   <string name="shortcut_failed_msg">Nepavyko apdoroti nuorodos.</string>
   <string name="shortcut_creation_success_msg">Nuoroda sukurta sėkmingai.</string>
   <string name="shortcut_creation_failed_msg">Nuorodos sukurti nepavyko.</string>

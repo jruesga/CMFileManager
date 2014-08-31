@@ -153,7 +153,7 @@
   <string name="search_terms"><![CDATA[<b>Termen:</b>]]> <xliff:g id="terms">%1$s</xliff:g></string>
   <string name="search_few_characters_title">Zoeken bevestigen</string>
   <string name="search_few_characters_msg">Sommige zoektermen hebben een klein aantal karakters. De bewerking zou te veel tijd of systeembronnen in beslag kunnen nemen.\n\nWeet u zeker dat u door wilt gaan?</string>
-  <string name="searching">Een ogenblik geduld a.u.b.</string>
+  <string name="searching">Even geduld\u2026</string>
   <string name="searching_action_label">Bezig met zoeken</string>
   <string name="picker_title">Kies een bestand</string>
   <string name="directory_picker_title">Kies een map</string>

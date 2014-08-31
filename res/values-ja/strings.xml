@@ -217,7 +217,7 @@
   <string name="actions_menu_compress_selection">選択を圧縮</string>
   <string name="actions_menu_create_link">リンクを作成</string>
   <string name="actions_menu_open">開く</string>
-  <string name="actions_menu_open_with">別のアプリで開く</string>
+  <string name="actions_menu_open_with">他のアプリで開く</string>
   <string name="actions_menu_execute">実行</string>
   <string name="actions_menu_send">送信</string>
   <string name="actions_menu_send_selection">送信方法</string>

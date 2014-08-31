@@ -67,9 +67,9 @@
   <string name="msgs_unresolved_inconsistencies">Operazione non permessa, in quanto potrebbe produrre inconsistenze.</string>
   <string name="msgs_operation_not_allowed_in_current_directory">Operazione non permessa nella cartella corrente.</string>
   <string name="msgs_push_again_to_exit">Premere ancora per uscire.</string>
-  <string name="msgs_not_registered_app">Nessuna applicazione registrata per gestire il tipo di file selezionato.</string>
+  <string name="msgs_not_registered_app">Nessuna app registrata per gestire il tipo di file selezionato.</string>
   <string name="msgs_overwrite_files">Alcuni file esistono già nella cartella destinazione.\n\nSovrascrivere?</string>
-  <string name="msgs_action_association_failed">Impossibile associare l\'azione all\'applicazione.</string>
+  <string name="msgs_action_association_failed">Impossibile associare l\'azione all\'app.</string>
   <string name="advise_insufficient_permissions">L\'operazione richiede privilegi elevati.\n\nPassare alla modalità Root?</string>
   <string name="parent_dir">Cartella superiore</string>
   <string name="external_storage">Memoria esterna</string>
@@ -296,15 +296,15 @@
   <string name="pref_compute_folder_statistics">Calcola statistiche cartella</string>
   <string name="pref_compute_folder_statistics_on">Attenzione! Il calcolo delle statistiche è costoso in termini di tempo e risorse</string>
   <string name="pref_display_thumbs">Anteprima</string>
-  <string name="pref_display_thumbs_summary">Visualizza un\'immagine di anteprima per applicazioni, file musicali, foto e video</string>
+  <string name="pref_display_thumbs_summary">Visualizza un\'immagine di anteprima per app, file musicali, foto e video</string>
   <string name="pref_use_flinger">Usa gesture scorrimento</string>
   <string name="pref_use_flinger_summary">Usa un gesto di scorrimento da sinistra a destra per eliminare file o cartelle</string>
   <string name="pref_general_advanced_settings_category">Avanzate</string>
   <string name="pref_access_mode">Modalità accesso</string>
   <string name="pref_access_mode_safe">Modalità Safe</string>
-  <string name="pref_access_mode_safe_summary">Modalità Safe\n\nL\'applicazione viene eseguita senza privilegi di superutente e gli unici file system accessibili sono le memorie storage (SD e USB)</string>
+  <string name="pref_access_mode_safe_summary">Modalità Safe\n\nL\'app viene eseguita senza privilegi di superutente e gli unici file system accessibili sono le memorie storage (SD e USB)</string>
   <string name="pref_access_mode_prompt">Richiedi all\'utente</string>
-  <string name="pref_access_mode_prompt_summary">Richiedi all\'utente\n\nL\'applicazione viene eseguita con pieno accesso al file system, ma chiederà il permesso all\'utente prima di eseguire ogni azione che richieda elevati privilegi.</string>
+  <string name="pref_access_mode_prompt_summary">Richiedi all\'utente\n\nL\'app viene eseguita con pieno accesso al file system, ma chiederà il permesso all\'utente prima di eseguire ogni azione che richieda elevati privilegi.</string>
   <string name="pref_access_mode_root">Modalità Root</string>
   <string name="pref_access_mode_root_summary">Modalità Root\n\nAttenzione! Questa modalità consente operazioni che possono danneggiare il dispositivo. E\' responsabilità dell\'utente assicurarsi che ciascuna operazione sia non dannosa.</string>
   <string name="pref_restrict_secondary_users_access_title">Limita accesso utenti</string>
@@ -363,5 +363,5 @@
   <string name="security_warning_extract">Attenzione!\n\nEstrarre un archivio con percorsi relativi o assoluti può danneggiare il dispositivo in quanto possono venire sovrascritti file di sistema.\n\nContinuare?</string>
   <string name="changelog_title">Changelog</string>
   <string name="welcome_title">Benvenuti</string>
-  <string name="welcome_msg">Benvenuti nel file manager di CyanogenMod.\n\nQuesta applicazione permette di esplorare il file system ed effettuare operazioni che potrebbero danneggiare il vostro dispositivo. Per evitare danni, l\'applicazione partirà in modalità sicura, a basso privilegio.\n\nE\' possibile accedere alla modalità avanzata, con pieni privilegi, dalle impostazioni. E\' responsabilità dell\'utente far sì che le operazioni effettuate con questa modalità non danneggino il sistema.\n\nIl Team CyanogenMod.\n</string>
+  <string name="welcome_msg">Benvenuti nel file manager di CyanogenMod.\n\nQuesta app permette di esplorare il file system ed effettuare operazioni che potrebbero danneggiare il vostro dispositivo. Per evitare danni, l\'app partirà in modalità sicura, a basso privilegio.\n\nE\' possibile accedere alla modalità avanzata, con pieni privilegi, dalle impostazioni. E\' responsabilità dell\'utente far sì che le operazioni effettuate con questa modalità non danneggino il sistema.\n\nIl Team CyanogenMod.\n</string>
 </resources>

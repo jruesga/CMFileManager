@@ -16,6 +16,8 @@
 
 package com.cyanogenmod.filemanager.model;
 
+import android.os.Parcel;
+import android.os.Parcelable;
 import android.text.TextUtils;
 
 import java.io.Serializable;
@@ -26,9 +28,9 @@ import java.util.List;
  * A class that restrict the number of queries that can
  * be made to the application search system.
  */
-public class Query implements Serializable {
+public class Query implements Serializable, Parcelable {
 
-    private static final long serialVersionUID = 3485374541081012723L;
+    private static final long serialVersionUID = 638590514968634860L;
 
     //IMP! This need to be sync which the command_list.xml resource
     //to have the same slots as the filled for the find command
@@ -41,6 +43,15 @@ public class Query implements Serializable {
      */
     public Query() {
         super();
+    }
+
+    /**
+     * Constructor of <code>Query</code>.
+     *
+     * @param in The parcel information
+     */
+    public Query(Parcel in) {
+        readFromParcel(in);
     }
 
     /**
@@ -120,4 +131,60 @@ public class Query implements Serializable {
         }
         return terms;
     }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeStringArray(this.mQUERIES);
+    }
+
+    /**
+     * Fill the object from the parcel information.
+     *
+     * @param in The parcel information to recreate the object
+     */
+    private void readFromParcel(Parcel in) {
+        String[] queries = in.readStringArray();
+        if (queries != null) {
+            int  count = Math.min(SLOTS_COUNT, queries.length);
+            for (int i = 0; i < count; i++) {
+                mQUERIES[i] = queries[i];
+            }
+        }
+    }
+
+    /**
+     * The {@link android.os.Parcelable.Creator}.
+     *
+     * This field is needed for Android to be able to
+     * create new objects, individually or as arrays.
+     */
+    public static final Parcelable.Creator<Query> CREATOR =
+            new Parcelable.Creator<Query>() {
+        /**
+         * {@inheritDoc}
+         */
+        @Override
+        public Query createFromParcel(Parcel in) {
+            return new Query(in);
+        }
+
+        /**
+         * {@inheritDoc}
+         */
+        @Override
+        public Query[] newArray(int size) {
+            return new Query[size];
+        }
+    };
 }

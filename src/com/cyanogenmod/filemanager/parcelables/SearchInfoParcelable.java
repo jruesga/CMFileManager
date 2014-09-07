@@ -37,6 +37,7 @@ public class SearchInfoParcelable extends HistoryNavigable {
     private String mSearchDirectory;
     private List<SearchResult> mSearchResultList;
     private Query mSearchQuery;
+    private String mTitle;
     private boolean mSuccessNavigation = false;
 
     /**
@@ -44,6 +45,7 @@ public class SearchInfoParcelable extends HistoryNavigable {
      */
     public SearchInfoParcelable() {
         super();
+        setTitle();
     }
 
     /**
@@ -60,11 +62,16 @@ public class SearchInfoParcelable extends HistoryNavigable {
      */
     @Override
     public String getTitle() {
-        return FileManagerApplication.getInstance().
-                    getResources().
-                        getString(
-                            R.string.search_result_name,
-                            this.mSearchQuery.getTerms());
+        return mTitle;
+    }
+
+    private void setTitle() {
+        String terms = "";
+        if (this.mSearchQuery != null) {
+            terms = this.mSearchQuery.getTerms();
+        }
+        mTitle = FileManagerApplication.getInstance().getResources().getString(
+                R.string.search_result_name, terms);
     }
 
     /**
@@ -127,6 +134,7 @@ public class SearchInfoParcelable extends HistoryNavigable {
      */
     public void setSearchQuery(Query searchQuery) {
         this.mSearchQuery = searchQuery;
+        setTitle();
     }
 
     /**
@@ -173,7 +181,7 @@ public class SearchInfoParcelable extends HistoryNavigable {
         //- 2
         dest.writeInt(this.mSearchQuery == null ? 0 : 1);
         if (this.mSearchQuery != null) {
-            dest.writeSerializable(this.mSearchQuery);
+            dest.writeParcelable(this.mSearchQuery, 0);
         }
         //- 3
         dest.writeInt(this.mSuccessNavigation ? 1 : 0);
@@ -200,8 +208,9 @@ public class SearchInfoParcelable extends HistoryNavigable {
         //- 2
         int hasSearchQuery = in.readInt();
         if (hasSearchQuery == 1) {
-            this.mSearchQuery = (Query)in.readSerializable();
+            this.mSearchQuery = (Query)in.readParcelable(getClass().getClassLoader());
         }
+        setTitle();
         //- 3
         this.mSuccessNavigation = in.readInt() != 1;
     }

@@ -748,6 +748,9 @@ public class SearchActivity extends Activity
                     SearchActivity.this.mSearchListView.setAdapter(adapter);
                     SearchActivity.this.mSearchListView.setSelection(0);
 
+                    SearchActivity.this.mQuery = query;
+                    SearchActivity.this.mSearchDirectory = mRestoreState.getSearchDirectory();
+
                 } catch (Throwable ex) {
                     //Capture the exception
                     ExceptionUtil.translateException(SearchActivity.this, ex);

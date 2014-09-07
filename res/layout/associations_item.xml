@@ -25,9 +25,11 @@
       android:height="@dimen/grid_image_height"
       android:layout_width="@dimen/grid_width"
       android:layout_height="@dimen/grid_height"
+      android:padding="16dp"
       android:contentDescription="@null"
       android:layout_centerInParent="true"
-      android:scaleType="center"
+      android:scaleType="fitXY"
+      android:adjustViewBounds="true"
       android:src="@null" />
 
     <TextView android:id="@+id/associations_item_text"

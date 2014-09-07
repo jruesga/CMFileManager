@@ -16,6 +16,8 @@
 
 package com.cyanogenmod.filemanager.util;
 
+import android.app.ActivityManager;
+import android.app.ActivityManager.MemoryInfo;
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.content.res.Configuration;
@@ -114,5 +116,13 @@ public final class AndroidHelper {
     public static boolean isSecondaryUser(Context context) {
         return AndroidHelper.hasSupportForMultipleUsers(context)
                 && !AndroidHelper.isUserOwner();
+    }
+
+    public static long getAvailableMemory(Context context) {
+        ActivityManager am = (ActivityManager) context.getSystemService(
+                Context.ACTIVITY_SERVICE);
+        MemoryInfo memoryInfo = new MemoryInfo();
+        am.getMemoryInfo(memoryInfo);
+        return memoryInfo.availMem;
     }
 }

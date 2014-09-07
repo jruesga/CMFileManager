@@ -427,7 +427,7 @@ public class EditorActivity extends Activity implements TextWatcher {
     FileSystemObject mFso;
 
     private int mBufferSize;
-    private int mMaxFileSize;
+    private long mMaxFileSize;
 
     /**
      * @hide
@@ -542,10 +542,10 @@ public class EditorActivity extends Activity implements TextWatcher {
         setContentView(R.layout.editor);
 
         // Get the limit vars
-        this.mBufferSize =
-                getApplicationContext().getResources().getInteger(R.integer.buffer_size);
-        this.mMaxFileSize =
-                getApplicationContext().getResources().getInteger(R.integer.editor_max_file_size);
+        this.mBufferSize = getResources().getInteger(R.integer.buffer_size);
+        long availMem = AndroidHelper.getAvailableMemory(this);
+        this.mMaxFileSize = Math.min(availMem,
+                getResources().getInteger(R.integer.editor_max_file_size));
 
         //Initialize
         initTitleActionBar();
@@ -616,7 +616,7 @@ public class EditorActivity extends Activity implements TextWatcher {
         configuration.setContentDescription(getString(R.string.actionbar_button_overflow_cd));
 
         View status = findViewById(R.id.editor_status);
-        boolean showOptionsMenu = AndroidHelper.showOptionsMenu(getApplicationContext());
+        boolean showOptionsMenu = AndroidHelper.showOptionsMenu(this);
         configuration.setVisibility(showOptionsMenu ? View.VISIBLE : View.GONE);
         this.mOptionsAnchorView = showOptionsMenu ? configuration : status;
 

@@ -40,14 +40,17 @@ import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.KeyEvent;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListPopupWindow;
+import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.TextView.BufferType;
@@ -82,11 +85,15 @@ import com.cyanogenmod.filemanager.util.FileHelper;
 import com.cyanogenmod.filemanager.util.MediaHelper;
 import com.cyanogenmod.filemanager.util.ResourcesHelper;
 
+import java.io.BufferedReader;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.OutputStream;
+import java.io.StringReader;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.UUID;
 
 /**
@@ -195,6 +202,42 @@ public class EditorActivity extends Activity implements TextWatcher {
         }
     };
 
+    private static class HexDumpAdapter extends ArrayAdapter<String> {
+        private static class ViewHolder {
+            TextView mTextView;
+        }
+
+        public HexDumpAdapter(Context context, List<String> data) {
+            super(context, R.layout.hexdump_line, data);
+        }
+
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent) {
+            View v = convertView;
+            if (v == null) {
+                final Context context = getContext();
+                LayoutInflater inflater = LayoutInflater.from(context);
+                Theme theme = ThemeManager.getCurrentTheme(context);
+
+                v = inflater.inflate(R.layout.hexdump_line, parent, false);
+                ViewHolder viewHolder = new EditorActivity.HexDumpAdapter.ViewHolder();
+                viewHolder.mTextView = (TextView)v.findViewById(android.R.id.text1);
+
+                viewHolder.mTextView.setTextAppearance(context, R.style.hexeditor_text_appearance);
+                viewHolder.mTextView.setTypeface(Typeface.MONOSPACE);
+                theme.setTextColor(context, viewHolder.mTextView, "text_color"); //$NON-NLS-1$
+
+                v.setTag(viewHolder);
+            }
+
+            String text = getItem(position);
+            ViewHolder viewHolder = (ViewHolder)v.getTag();
+            viewHolder.mTextView.setText(text);
+
+            return v;
+        }
+    }
+
     /**
      * Internal interface to notify progress update
      */
@@ -209,6 +252,7 @@ public class EditorActivity extends Activity implements TextWatcher {
 
         final Object mSync = new Object();
         ByteArrayOutputStream mByteBuffer = null;
+        ArrayList<String> mBinaryBuffer = null;
         SpannableStringBuilder mBuffer = null;
         Exception mCause;
         long mSize;
@@ -453,6 +497,10 @@ public class EditorActivity extends Activity implements TextWatcher {
     /**
      * @hide
      */
+    ListView mBinaryEditor;
+    /**
+     * @hide
+     */
     View mProgress;
     /**
      * @hide
@@ -532,7 +580,7 @@ public class EditorActivity extends Activity implements TextWatcher {
         registerReceiver(this.mNotificationReceiver, filter);
 
         // Generate a random separator
-        this.mHexLineSeparator = UUID.randomUUID().toString();
+        this.mHexLineSeparator = UUID.randomUUID().toString() + UUID.randomUUID().toString();
 
         // Set the theme before setContentView
         Theme theme = ThemeManager.getCurrentTheme(this);
@@ -635,6 +683,8 @@ public class EditorActivity extends Activity implements TextWatcher {
         this.mNoWordWrapView = (ViewGroup)findViewById(R.id.editor_no_word_wrap_view);
         this.mWordWrapView.setVisibility(View.VISIBLE);
         this.mNoWordWrapView.setVisibility(View.GONE);
+
+        this.mBinaryEditor = (ListView)findViewById(R.id.editor_binary);
 
         this.mNoSuggestions = false;
         this.mWordWrap = true;
@@ -1060,11 +1110,15 @@ public class EditorActivity extends Activity implements TextWatcher {
                     if (activity.mBinary && hexDump) {
                         // we do not use the Hexdump helper class, because we need to show the
                         // progress of the dump process
-                        final String data = toHexPrintableString(
-                                                toHexDump(
-                                                        this.mReader.mByteBuffer.toByteArray()));
-                        this.mReader.mBuffer = new SpannableStringBuilder(data);
-                        Log.i(TAG, "Bytes read: " + data.getBytes().length); //$NON-NLS-1$
+                        final String data = toHexPrintableString(toHexDump(
+                                this.mReader.mByteBuffer.toByteArray()));
+                        this.mReader.mBinaryBuffer = new ArrayList<String>();
+                        BufferedReader reader = new BufferedReader(new StringReader(data));
+                        String line;
+                        while ((line = reader.readLine()) != null) {
+                            this.mReader.mBinaryBuffer.add(line);
+                        }
+                        Log.i(TAG, "Bytes read: " + data.length()); //$NON-NLS-1$
                     } else {
                         final String data = new String(this.mReader.mByteBuffer.toByteArray());
                         this.mReader.mBuffer = new SpannableStringBuilder(data);
@@ -1093,7 +1147,6 @@ public class EditorActivity extends Activity implements TextWatcher {
             @Override
             protected void onPostExecute(Boolean result) {
                 final EditorActivity activity = EditorActivity.this;
-
                 // Is error?
                 if (!result.booleanValue()) {
                     if (this.mCause != null) {
@@ -1103,8 +1156,12 @@ public class EditorActivity extends Activity implements TextWatcher {
                 } else {
                     // Now we have the buffer, set the text of the editor
                     if (activity.mBinary) {
-                        activity.mEditor.setText(
-                                this.mReader.mBuffer, BufferType.NORMAL);
+                        HexDumpAdapter adapter = new HexDumpAdapter(EditorActivity.this,
+                                this.mReader.mBinaryBuffer);
+                        mBinaryEditor.setAdapter(adapter);
+
+                        // Cleanup
+                        this.mReader.mBinaryBuffer = null;
                     } else {
                         activity.mEditor.setText(
                                 this.mReader.mBuffer, BufferType.EDITABLE);
@@ -1120,8 +1177,11 @@ public class EditorActivity extends Activity implements TextWatcher {
                                 Log.e(TAG, "Syntax highlight failed.", ex); //$NON-NLS-1$
                             }
                         }
+
+                        //Cleanup
+                        this.mReader.mBuffer = null;
                     }
-                    this.mReader.mBuffer = null; //Cleanup
+
                     setDirty(false);
                     activity.mEditor.setEnabled(!activity.mReadOnly);
 
@@ -1157,18 +1217,12 @@ public class EditorActivity extends Activity implements TextWatcher {
                 activity.mProgress.setVisibility(visible ? View.VISIBLE : View.GONE);
 
                 if (this.changeToBinaryMode) {
-                    // Hexdump always in nowrap mode
-                    if (activity.mWordWrap) {
-                        activity.toggleWordWrap();
-                    }
-                    // Hexdump always has no syntax highlight
-                    if (activity.mSyntaxHighlight) {
-                        activity.toggleSyntaxHighlight();
-                    }
+                    mWordWrapView.setVisibility(View.GONE);
+                    mNoWordWrapView.setVisibility(View.GONE);
+                    mBinaryEditor.setVisibility(View.VISIBLE);
 
                     // Show hex dumping text
                     activity.mProgressBarMsg.setText(R.string.dumping_message);
-                    applyHexViewerTheme();
                     this.changeToBinaryMode = false;
                 }
                 else if (this.changeToDisplaying) {
@@ -1203,7 +1257,7 @@ public class EditorActivity extends Activity implements TextWatcher {
                     //offset   dump(16)   data\n
                     String linedata = new String(line, 0, read);
                     sb.append(HexDump.toHexString(offset));
-                    sb.append("   "); //$NON-NLS-1$
+                    sb.append(" "); //$NON-NLS-1$
                     String hexDump = HexDump.toHexString(line, 0, read);
                     if (hexDump.length() != (DISPLAY_SIZE * 2)) {
                         char[] array = new char[(DISPLAY_SIZE * 2) - hexDump.length()];
@@ -1211,7 +1265,7 @@ public class EditorActivity extends Activity implements TextWatcher {
                         hexDump += new String(array);
                     }
                     sb.append(hexDump);
-                    sb.append("   "); //$NON-NLS-1$
+                    sb.append(" "); //$NON-NLS-1$
                     sb.append(linedata);
                     sb.append(EditorActivity.this.mHexLineSeparator);
                     offset += DISPLAY_SIZE;
@@ -1501,18 +1555,6 @@ public class EditorActivity extends Activity implements TextWatcher {
         if (!this.mBinary && this.mSyntaxHighlight && this.mSyntaxHighlightProcessor != null) {
             reloadSyntaxHighlight();
         }
-    }
-
-    /**
-     * Method that applies the current theme to the hex viewer editor
-     * @hide
-     */
-    void applyHexViewerTheme() {
-        Theme theme = ThemeManager.getCurrentTheme(this);
-        TextView editor = (TextView)findViewById(R.id.editor);
-        editor.setTextAppearance(this, R.style.hexeditor_text_appearance);
-        editor.setTypeface(Typeface.MONOSPACE);
-        theme.setTextColor(this, editor, "text_color"); //$NON-NLS-1$
     }
 
     /**

@@ -67,6 +67,20 @@
     </ScrollView>
   </HorizontalScrollView>
 
+  <!-- editor in a listview (binary) -->
+  <ListView
+      android:id="@+id/editor_binary"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:padding="@dimen/default_margin"
+      android:scrollbars="vertical"
+      android:scrollbarStyle="outsideOverlay"
+      android:fillViewport="true"
+      android:dividerHeight="0dp"
+      android:divider="@null"
+      android:listSelector="@android:color/transparent"
+      android:visibility="gone" />
+
   <RelativeLayout
     android:id="@+id/editor_progress"
     android:layout_width="match_parent"

@@ -48,7 +48,7 @@
   <string name="confirm_deletion">確認刪除</string>
   <string name="msgs_change_to_prompt_access_mode_title">確認切換</string>
   <string name="msgs_change_to_prompt_access_mode_msg">無法在超級使用者存取模式下執行。正在切換至安全模式。\n\n套用此更改？</string>
-  <string name="msgs_cant_create_console">無法獲得執行所需的權限。</string>
+  <string name="msgs_cant_create_console">無法取得執行所需的權限。</string>
   <string name="msgs_privileged_console_alloc_failed">無法在超級使用者存取模式下執行。正在切換至安全模式。</string>
   <string name="msgs_settings_save_failure">無法套用或儲存設定。</string>
   <string name="msgs_settings_invalid_initial_directory">初始資料夾「<xliff:g id="initial_dir">%1$s</xliff:g>」無效。切換至 root 資料夾。</string>
@@ -212,8 +212,8 @@
   <string name="actions_menu_deselect_all">取消全選</string>
   <string name="actions_menu_select">選取</string>
   <string name="actions_menu_deselect">取消選取</string>
-  <string name="actions_menu_paste_selection">複製到當前的選擇</string>
-  <string name="actions_menu_move_selection">移動到當前的選擇</string>
+  <string name="actions_menu_paste_selection">貼上選擇至此</string>
+  <string name="actions_menu_move_selection">移動選擇至此</string>
   <string name="actions_menu_delete_selection">刪除此選擇</string>
   <string name="actions_menu_compress_selection">壓縮此選擇</string>
   <string name="actions_menu_create_link">建立連結</string>

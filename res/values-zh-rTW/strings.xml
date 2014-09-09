@@ -124,11 +124,20 @@
   <string name="picker_title">選擇一個檔案</string>
   <string name="directory_picker_title">選擇一個目錄</string>
   <string name="editor_file_exceed_size_msg">此檔案過於龐大，無法在此裝置上開啟。</string>
+  <string name="displaying_message">正在顯示\u2026</string>
+  <string name="bookmarks">書籤</string>
   <string name="bookmarks_system_folder">系統資料夾</string>
+  <string name="bookmarks_msgs_add_success">書籤已成功加入。</string>
+  <string name="menu_bookmarks">書籤</string>
+  <string name="menu_search">搜尋</string>
   <string name="menu_settings">設定</string>
+  <string name="menu_no_suggestions">沒有建議</string>
+  <string name="waiting_dialog_copying_title">正在複製\u2026</string>
+  <string name="waiting_dialog_moving_title">正在移動\u2026</string>
   <string name="waiting_dialog_moving_msg"><![CDATA[<b>從</b>]]> <xliff:g id="from">%1$s</xliff:g><![CDATA[<br/><b>到</b>]]> <xliff:g id="to">%2$s</xliff:g></string>
   <string name="waiting_dialog_deleting_title">正在刪除\u2026</string>
   <string name="waiting_dialog_deleting_msg"><![CDATA[<b>檔案</b>]]> <xliff:g id="file">%1$s</xliff:g></string>
+  <string name="waiting_dialog_extracting_title">正在解壓縮\u2026</string>
   <string name="waiting_dialog_extracting_msg"><![CDATA[<b>檔案</b>]]> <xliff:g id="file">%1$s</xliff:g></string>
   <string name="actions_dialog_title">動作</string>
   <string name="actions_menu_properties_current_folder">屬性</string>
@@ -136,13 +145,30 @@
   <string name="actions_menu_new_directory">新增資料夾</string>
   <string name="actions_menu_new_file">新增檔案</string>
   <string name="actions_menu_select_all">全選</string>
+  <string name="actions_menu_deselect_all">取消全選</string>
   <string name="actions_menu_execute">執行</string>
   <string name="actions_menu_delete">刪除</string>
   <string name="input_name_dialog_label">名稱：</string>
+  <string name="input_name_dialog_message_invalid_name">無效的名稱。名稱中不能包含「.」與「..」。</string>
+  <string name="input_name_dialog_message_name_exists">此名稱已存在。</string>
+  <string name="associations_dialog_openwith_title">開啟方式</string>
+  <string name="associations_dialog_openwith_action">開啟</string>
+  <string name="associations_dialog_sendwith_title">傳送方式</string>
   <string name="associations_dialog_sendwith_action">傳送</string>
+  <string name="execution_console_title">主控台</string>
   <string name="execution_console_script_execution_time_text"><xliff:g id="seconds">%1$s</xliff:g> 秒</string>
-  <string name="selection_folders_and_files">已選取 <xliff:g id="folders">%1$s</xliff:g> 個資料夾和 <xliff:g id="files">%2$s</xliff:g> 個檔案。</string>
+  <string name="mime_folder">資料夾</string>
+  <string name="mime_unknown">未知</string>
+  <string name="selection_folders_and_files">已選取 <xliff:g id="folders">%1$s</xliff:g>和 <xliff:g id="files">%2$s</xliff:g></string>
   <string name="category_system">系統</string>
+  <string name="category_ebook">電子書</string>
+  <string name="category_mail">郵件</string>
+  <string name="category_compress">壓縮檔</string>
+  <string name="category_database">資料庫</string>
+  <string name="category_image">圖片</string>
+  <string name="category_audio">音訊</string>
+  <string name="category_video">影片</string>
+  <string name="compression_mode_title">壓縮方式</string>
   <string name="pref">設定</string>
   <string name="pref_general">一般設定</string>
   <string name="pref_search">搜尋選項</string>

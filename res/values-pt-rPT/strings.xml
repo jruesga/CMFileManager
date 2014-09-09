@@ -317,7 +317,7 @@
   <string name="pref_display_thumbs">Previsualizar </string>
   <string name="pref_display_thumbs_summary">Mostrar uma imagem de pré-visualização para aplicações, ficheiros de música, imagens e vídeos</string>
   <string name="pref_use_flinger">Usar gestos</string>
-  <string name="pref_use_flinger_summary">Usar detecção de gestos da esquerda para direita para remover ficheiros ou pastas</string>
+  <string name="pref_use_flinger_summary">Usar deteção de gestos da esquerda para direita para remover ficheiros ou pastas</string>
   <string name="pref_general_advanced_settings_category">Avançadas</string>
   <string name="pref_access_mode">Modo de acesso</string>
   <string name="pref_access_mode_safe">Modo seguro</string>

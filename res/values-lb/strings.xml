@@ -16,8 +16,10 @@
      limitations under the License.
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+  <string name="size_gigabytes">GB</string>
   <string name="external_storage">Externe Späicher</string>
   <string name="usb_storage">USB-Späicher</string>
+  <string name="actionbar_button_filesystem_cd">Informatioun vum Fichierssystem</string>
   <string name="actionbar_button_sort_mode_cd">Zortéiermodus</string>
   <string name="layout_icons">Symboler</string>
 </resources>

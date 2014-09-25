@@ -159,10 +159,6 @@
     <string name="actionbar_button_selection_done_cd">Done</string>
     <!-- ActionBar Buttons - Actions -->
     <string name="actionbar_button_actions_cd">Actions</string>
-    <!-- ActionBar Buttons - History -->
-    <string name="actionbar_button_history_cd">History</string>
-    <!-- ActionBar Buttons - Bookmarks -->
-    <string name="actionbar_button_bookmarks_cd">Bookmarks</string>
     <!-- ActionBar Buttons - Search -->
     <string name="actionbar_button_search_cd">Search</string>
     <!-- ActionBar Buttons - Overflow -->
@@ -187,15 +183,6 @@
     <string name="layout_simple">Simple</string>
     <!-- Navigation View - Layout - Details -->
     <string name="layout_details">Details</string>
-
-    <!-- Navigation View - View - Show folders first -->
-    <string name="cm_filemanager_show_dirs_first">Show folders first</string>
-    <!-- Navigation View - View - Show hidden files option -->
-    <string name="cm_filemanager_show_hidden">Show hidden files</string>
-    <!-- Navigation View - View - Show system files option -->
-    <string name="cm_filemanager_show_system">Show system files</string>
-    <!-- Navigation View - View - Show symlinks option -->
-    <string name="cm_filemanager_show_symlinks">Show symlinks</string>
 
     <!-- Filesystem Info (no data). Dialog title -->
     <string name="filesystem_info_warning_title">No information</string>
@@ -373,10 +360,6 @@
     <!-- Initial directory error message -->
     <string name="initial_directory_error_msg">An error occurred while saving the initial folder.</string>
 
-    <!-- Menu - Navigation - History -->
-    <string name="menu_history">History</string>
-    <!-- Menu - Navigation - Bookmarks -->
-    <string name="menu_bookmarks">Bookmarks</string>
     <!-- Menu - Navigation - Search -->
     <string name="menu_search">Search</string>
     <!-- Menu - Navigation - Settings -->
@@ -553,23 +536,6 @@
     <!-- For example "2 folders and 1 file selected." -->
     <string name="selection_folders_and_files"><xliff:g id="folders">%1$s</xliff:g> and <xliff:g id="files">%2$s</xliff:g> selected.</string>
 
-    <!-- Category descriptions -->
-    <string name="category_system">SYSTEM</string>
-    <string name="category_app">APP</string>
-    <string name="category_binary">BINARY</string>
-    <string name="category_text">TEXT</string>
-    <string name="category_document">DOCUMENT</string>
-    <string name="category_ebook">EBOOK</string>
-    <string name="category_mail">MAIL</string>
-    <string name="category_compress">COMPRESS</string>
-    <string name="category_exec">EXECUTABLE</string>
-    <string name="category_database">DATABASE</string>
-    <string name="category_font">FONT</string>
-    <string name="category_image">IMAGE</string>
-    <string name="category_audio">AUDIO</string>
-    <string name="category_video">VIDEO</string>
-    <string name="category_security">SECURITY</string>
-
     <!-- Compression - Compression modes dialog title -->
     <string name="compression_mode_title">Compression mode</string>
     <!-- Compression - Supported archive and compression modes -->
@@ -709,8 +675,6 @@
     <string name="pref_themes_selection_category">Themes</string>
     <!-- Preferences - Themes - Set theme button -->
     <string name="pref_themes_set_theme">Set theme</string>
-    <!-- Preferences - Themes - No preview -->
-    <string name="pref_themes_no_preview">No preview\navailable</string>
     <!-- Preferences - Themes - Confirmation message -->
     <string name="pref_themes_confirmation">Theme was applied successfully.</string>
     <!-- Preferences - Themes - Theme not found message -->

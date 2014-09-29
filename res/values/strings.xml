@@ -184,6 +184,15 @@
     <!-- Navigation View - Layout - Details -->
     <string name="layout_details">Details</string>
 
+    <!-- Navigation View - View - Show folders first -->
+    <string name="cm_filemanager_show_dirs_first">Show folders first</string>
+    <!-- Navigation View - View - Show hidden files option -->
+    <string name="cm_filemanager_show_hidden">Show hidden files</string>
+    <!-- Navigation View - View - Show system files option -->
+    <string name="cm_filemanager_show_system">Show system files</string>
+    <!-- Navigation View - View - Show symlinks option -->
+    <string name="cm_filemanager_show_symlinks">Show symlinks</string>
+
     <!-- Filesystem Info (no data). Dialog title -->
     <string name="filesystem_info_warning_title">No information</string>
     <!-- Filesystem Info (no data). Dialog message -->

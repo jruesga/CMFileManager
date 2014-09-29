@@ -80,8 +80,6 @@
   <string name="actionbar_button_other_view_options_cd">Altres opcions de visualització</string>
   <string name="actionbar_button_selection_done_cd">Fet</string>
   <string name="actionbar_button_actions_cd">Accions</string>
-  <string name="actionbar_button_history_cd">Historial</string>
-  <string name="actionbar_button_bookmarks_cd">Marcadors</string>
   <string name="actionbar_button_search_cd">Cerca</string>
   <string name="actionbar_button_overflow_cd">Més opcions</string>
   <string name="actionbar_button_storage_cd">Mitjans d\'emmagatzematge</string>
@@ -93,10 +91,6 @@
   <string name="layout_icons">Icones</string>
   <string name="layout_simple">Simple</string>
   <string name="layout_details">Detalls</string>
-  <string name="cm_filemanager_show_dirs_first">Mostra primer les carpetes</string>
-  <string name="cm_filemanager_show_hidden">Mostra els arxius amagats</string>
-  <string name="cm_filemanager_show_system">Mostra els arxius de sistema</string>
-  <string name="cm_filemanager_show_symlinks">Mostra els symlinks</string>
   <string name="filesystem_info_warning_title">Sense informació</string>
   <string name="filesystem_info_warning_msg">No hi ha informació disponible per aquest sistema d\'arxius.</string>
   <string name="filesystem_info_cant_be_mounted_msg">El sistema d\'arxius no pot ser muntat/desmuntat.</string>
@@ -178,8 +172,6 @@
   <string name="initial_directory_label">Escull la carpeta inicial:</string>
   <string name="initial_directory_relative_msg">Les rutes relatives no estan permeses.</string>
   <string name="initial_directory_error_msg">Hi ha hagut un error mentre es desava la carpeta inicial.</string>
-  <string name="menu_history">Historial</string>
-  <string name="menu_bookmarks">Marcadors</string>
   <string name="menu_search">Cerca</string>
   <string name="menu_settings">Configuració</string>
   <string name="menu_clear_history">Neteja l\'historial</string>
@@ -262,21 +254,6 @@
   <string name="filetime_format_mode_MMddyyyy_HHmmss">mm/dd/yyyy hh:mm:ss</string>
   <string name="filetime_format_mode_yyyyMMdd_HHmmss">yyyy-mm-dd hh:mm:ss</string>
   <string name="selection_folders_and_files"><xliff:g id="folders">%1$s</xliff:g> i <xliff:g id="files">%2$s</xliff:g> seleccionats.</string>
-  <string name="category_system">SISTEMA</string>
-  <string name="category_app">APP</string>
-  <string name="category_binary">BINARI</string>
-  <string name="category_text">TEXT</string>
-  <string name="category_document">DOCUMENT</string>
-  <string name="category_ebook">EBOOK</string>
-  <string name="category_mail">CORREU</string>
-  <string name="category_compress">COMPRIMIT</string>
-  <string name="category_exec">EXECUTABLE</string>
-  <string name="category_database">BASEDEDADES</string>
-  <string name="category_font">TIPUSDELLETRA</string>
-  <string name="category_image">IMATGE</string>
-  <string name="category_audio">AUDIO</string>
-  <string name="category_video">VIDEO</string>
-  <string name="category_security">SEGURETAT</string>
   <string name="compression_mode_title">Modes de compressió</string>
   <string name="shortcut_failed_msg">No s\'ha pogut gestionar la drecera.</string>
   <string name="shortcut_creation_success_msg">La drecera s\'ha creat satisfactòriament.</string>
@@ -340,7 +317,6 @@
   <string name="pref_editor_sh_item_category">Elements</string>
   <string name="pref_themes_selection_category">Temes</string>
   <string name="pref_themes_set_theme">Estableix un tema</string>
-  <string name="pref_themes_no_preview">No hi ha previsual.\ndisponible</string>
   <string name="pref_themes_confirmation">S\'ha aplicat el tema satisfactòriament.</string>
   <string name="pref_themes_not_found">No s\'ha trobat el tema.</string>
   <string name="pref_debug_traces">Registra la informació de depuració</string>

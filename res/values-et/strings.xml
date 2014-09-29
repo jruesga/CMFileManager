@@ -50,9 +50,6 @@
   <string name="sort_by_name_desc">Nime järgi \u25BC</string>
   <string name="sort_by_date_asc">Kuupäeva järgi \u25B2</string>
   <string name="sort_by_date_desc">Kuupäeva järgi \u25BC</string>
-  <string name="cm_filemanager_show_hidden">Näita peidetud faile</string>
-  <string name="cm_filemanager_show_system">Näita süsteemi faile</string>
-  <string name="cm_filemanager_show_symlinks">Näita sümlinke</string>
   <string name="filesystem_info_warning_title">Info puudub</string>
   <string name="filesystem_info_dialog_tab_disk_usage">Ruumi kasutus</string>
   <string name="filesystem_info_dialog_status">Olek:</string>
@@ -65,17 +62,6 @@
   <string name="filesystem_info_dialog_used_disk_usage">Kasutatud:</string>
   <string name="filesystem_info_dialog_free_disk_usage">Vaba:</string>
   <string name="search_few_characters_title">Kinnita otsing</string>
-  <string name="category_document">DOKUMENT</string>
-  <string name="category_ebook">E-RAAMAT</string>
-  <string name="category_mail">MEIL</string>
-  <string name="category_compress">PAKITU</string>
-  <string name="category_exec">KÄITATAV</string>
-  <string name="category_database">ANDMEBAAS</string>
-  <string name="category_font">KIRJASTIIL</string>
-  <string name="category_image">PILT</string>
-  <string name="category_audio">HELI</string>
-  <string name="category_video">VIDEO</string>
-  <string name="category_security">TURVALISUS</string>
   <string name="compression_mode_title">Pakkimise viis</string>
   <string name="shortcut_failed_msg">Viga otsetee leidmisel.</string>
   <string name="shortcut_creation_success_msg">Otsetee loomine õnnestus.</string>
@@ -113,7 +99,6 @@
   <string name="pref_editor_sh_item_category">Üksused</string>
   <string name="pref_themes_selection_category">Kujundused</string>
   <string name="pref_themes_set_theme">Vali kujundus</string>
-  <string name="pref_themes_no_preview">Eelvaade puudub</string>
   <string name="pref_themes_confirmation">Teema edukalt vahetatud.</string>
   <string name="pref_themes_not_found">Teemat ei leitud.</string>
   <string name="pref_debug_traces">Logid</string>

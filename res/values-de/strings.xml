@@ -80,8 +80,6 @@
   <string name="actionbar_button_other_view_options_cd">Andere Ansichtsoptionen</string>
   <string name="actionbar_button_selection_done_cd">Erledigt</string>
   <string name="actionbar_button_actions_cd">Aktionen</string>
-  <string name="actionbar_button_history_cd">Verlauf</string>
-  <string name="actionbar_button_bookmarks_cd">Lesezeichen</string>
   <string name="actionbar_button_search_cd">Suche</string>
   <string name="actionbar_button_overflow_cd">Weitere Optionen</string>
   <string name="actionbar_button_storage_cd">Speicherlaufwerke</string>
@@ -93,10 +91,6 @@
   <string name="layout_icons">Symbole</string>
   <string name="layout_simple">Einfach</string>
   <string name="layout_details">Details</string>
-  <string name="cm_filemanager_show_dirs_first">Ordner zuerst</string>
-  <string name="cm_filemanager_show_hidden">Versteckte Dateien</string>
-  <string name="cm_filemanager_show_system">Systemdateien</string>
-  <string name="cm_filemanager_show_symlinks">Symbolische Links</string>
   <string name="filesystem_info_warning_title">Keine Information</string>
   <string name="filesystem_info_warning_msg">Es sind keine Informationen zum Dateisystem verfügbar.</string>
   <string name="filesystem_info_cant_be_mounted_msg">Das Dateisystem kann nicht eingebunden/ausgehängt werden.</string>
@@ -178,8 +172,6 @@
   <string name="initial_directory_label">Standardverzeichnis wählen:</string>
   <string name="initial_directory_relative_msg">Relative Pfade sind nicht erlaubt.</string>
   <string name="initial_directory_error_msg">Beim Speichern des Standardverzeichnisses ist ein Fehler aufgetreten.</string>
-  <string name="menu_history">Verlauf</string>
-  <string name="menu_bookmarks">Lesezeichen</string>
   <string name="menu_search">Suche</string>
   <string name="menu_settings">Einstellungen</string>
   <string name="menu_clear_history">Verlauf löschen</string>
@@ -261,21 +253,6 @@
   <string name="filetime_format_mode_MMddyyyy_HHmmss">mm/dd/yyyy hh:mm:ss</string>
   <string name="filetime_format_mode_yyyyMMdd_HHmmss">yyyy-mm-dd hh:mm:ss</string>
   <string name="selection_folders_and_files"><xliff:g id="folders">%1$s</xliff:g> und <xliff:g id="files">%2$s</xliff:g> ausgewählt.</string>
-  <string name="category_system">SYSTEM</string>
-  <string name="category_app">APP</string>
-  <string name="category_binary">BINÄR</string>
-  <string name="category_text">TEXT</string>
-  <string name="category_document">DOKUMENT</string>
-  <string name="category_ebook">E-BOOK</string>
-  <string name="category_mail">E-MAIL</string>
-  <string name="category_compress">KOMPRIMIERT</string>
-  <string name="category_exec">AUSFÜHRBAR</string>
-  <string name="category_database">DATENBANK</string>
-  <string name="category_font">SCHRIFTART</string>
-  <string name="category_image">BILD</string>
-  <string name="category_audio">AUDIO</string>
-  <string name="category_video">VIDEO</string>
-  <string name="category_security">SICHERHEIT</string>
   <string name="compression_mode_title">Archivformat</string>
   <string name="shortcut_failed_msg">Fehler beim Zugriff auf die Verknüpfung.</string>
   <string name="shortcut_creation_success_msg">Verknüpfung erfolgreich angelegt.</string>
@@ -339,7 +316,6 @@
   <string name="pref_editor_sh_item_category">Objekte</string>
   <string name="pref_themes_selection_category">Designs</string>
   <string name="pref_themes_set_theme">Design auswählen</string>
-  <string name="pref_themes_no_preview">Keine Vorschau verfügbar</string>
   <string name="pref_themes_confirmation">Design erfolgreich angewendet</string>
   <string name="pref_themes_not_found">Design nicht gefunden</string>
   <string name="pref_debug_traces">Fehlerprotokollierung</string>

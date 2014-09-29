@@ -80,8 +80,6 @@
   <string name="actionbar_button_other_view_options_cd">Diğer görünüm seçenekleri</string>
   <string name="actionbar_button_selection_done_cd">Tamamlandı</string>
   <string name="actionbar_button_actions_cd">İşlevler</string>
-  <string name="actionbar_button_history_cd">Geçmiş</string>
-  <string name="actionbar_button_bookmarks_cd">Yer işaretleri</string>
   <string name="actionbar_button_search_cd">Arama</string>
   <string name="actionbar_button_overflow_cd">Daha fazla ayarlar</string>
   <string name="actionbar_button_storage_cd">Depolama birimleri</string>
@@ -93,10 +91,6 @@
   <string name="layout_icons">Simgeler</string>
   <string name="layout_simple">Basit</string>
   <string name="layout_details">Ayrıntılar</string>
-  <string name="cm_filemanager_show_dirs_first">Önce dizinleri göster</string>
-  <string name="cm_filemanager_show_hidden">Gizli dosyaları göster</string>
-  <string name="cm_filemanager_show_system">Sistem dosyalarını göster</string>
-  <string name="cm_filemanager_show_symlinks">Sembolik linkleri göster</string>
   <string name="filesystem_info_warning_title">Bilgi yok</string>
   <string name="filesystem_info_warning_msg">Dosya sistemi için bilgi bulunamadı.</string>
   <string name="filesystem_info_cant_be_mounted_msg">Dosya sistemi bağlanamadı/çıkarılamadı.</string>
@@ -178,8 +172,6 @@
   <string name="initial_directory_label">Açılış dizinini seçin:</string>
   <string name="initial_directory_relative_msg">Göreceli yollara izin verilmiyor.</string>
   <string name="initial_directory_error_msg">Başlagıç klasörünü kaydederken bir sorun oluştu.</string>
-  <string name="menu_history">Geçmiş</string>
-  <string name="menu_bookmarks">Yer imleri</string>
   <string name="menu_search">Arama</string>
   <string name="menu_settings">Ayarlar</string>
   <string name="menu_clear_history">Geçmişi sil</string>
@@ -261,21 +253,6 @@
   <string name="filetime_format_mode_MMddyyyy_HHmmss">aa/gg/yyyy ss:dd:ss</string>
   <string name="filetime_format_mode_yyyyMMdd_HHmmss">yyyy-aa-gg ss:dd:ss</string>
   <string name="selection_folders_and_files"><xliff:g id="folders">%1$s</xliff:g> ve <xliff:g id="files">%2$s</xliff:g> seçildi.</string>
-  <string name="category_system">SİSTEM</string>
-  <string name="category_app">UYGULAMA</string>
-  <string name="category_binary">İKİLİ</string>
-  <string name="category_text">METİN</string>
-  <string name="category_document">BELGE</string>
-  <string name="category_ebook">E-KİTAP</string>
-  <string name="category_mail">POSTA</string>
-  <string name="category_compress">SIKIŞTIR</string>
-  <string name="category_exec">ÇALIŞTIRILABİLİR</string>
-  <string name="category_database">VERİTABANI</string>
-  <string name="category_font">YAZI TİPİ</string>
-  <string name="category_image">RESİM</string>
-  <string name="category_audio">SES</string>
-  <string name="category_video">VİDEO</string>
-  <string name="category_security">GÜVENLİK</string>
   <string name="compression_mode_title">Sıkıştırma modu</string>
   <string name="shortcut_failed_msg">Kısayolu işleme başarısız oldu.</string>
   <string name="shortcut_creation_success_msg">Kısayol başarıyla oluşturuldu.</string>
@@ -339,7 +316,6 @@
   <string name="pref_editor_sh_item_category">Ögeler</string>
   <string name="pref_themes_selection_category">Temalar</string>
   <string name="pref_themes_set_theme">Tema ayarla</string>
-  <string name="pref_themes_no_preview">Önizleme yok\n </string>
   <string name="pref_themes_confirmation">Tema başarıyla uygulandı.</string>
   <string name="pref_themes_not_found">Tema bulunamadı.</string>
   <string name="pref_debug_traces">Hata ayıklama bilgisini günlüğe yaz</string>

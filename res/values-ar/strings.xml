@@ -80,8 +80,6 @@
   <string name="actionbar_button_other_view_options_cd">خيارات عرض أخرى</string>
   <string name="actionbar_button_selection_done_cd">تم</string>
   <string name="actionbar_button_actions_cd">الاجراءات</string>
-  <string name="actionbar_button_history_cd">السّجل</string>
-  <string name="actionbar_button_bookmarks_cd">الإشارات المرجعيّة</string>
   <string name="actionbar_button_search_cd">بحث</string>
   <string name="actionbar_button_overflow_cd">المزيد من الخيارات</string>
   <string name="actionbar_button_storage_cd">وحدات التخزين</string>
@@ -93,10 +91,6 @@
   <string name="layout_icons">أيقونات</string>
   <string name="layout_simple">بسيط</string>
   <string name="layout_details">التفاصيل</string>
-  <string name="cm_filemanager_show_dirs_first">إظهار المجلدات أولاً</string>
-  <string name="cm_filemanager_show_hidden">أظهار المجلدات المخفية</string>
-  <string name="cm_filemanager_show_system">إظهار ملفات النظام</string>
-  <string name="cm_filemanager_show_symlinks">إظهار روابط الرمزية</string>
   <string name="filesystem_info_warning_title">لا توجد معلومات</string>
   <string name="filesystem_info_warning_msg">لا تتوفر أي معلومات عن نظام الملفات.</string>
   <string name="filesystem_info_cant_be_mounted_msg">نظام الملفات لا يمكن أن تكون محملة/غير محملة .</string>
@@ -178,8 +172,6 @@
   <string name="initial_directory_label">اختر المجلد الأولية:</string>
   <string name="initial_directory_relative_msg">غير مسموح بالمسارات الخاص.</string>
   <string name="initial_directory_error_msg">حدث خطأ أثناء حفظ المجلد الأولية.</string>
-  <string name="menu_history">السّجل</string>
-  <string name="menu_bookmarks">الإشارات المرجعيّة</string>
   <string name="menu_search">بحث</string>
   <string name="menu_settings">إعدادات</string>
   <string name="menu_clear_history">مسح المحفوظات</string>
@@ -261,21 +253,6 @@
   <string name="filetime_format_mode_MMddyyyy_HHmmss">mm/dd/yyyy hh:mm:ss</string>
   <string name="filetime_format_mode_yyyyMMdd_HHmmss">yyyy-mm-dd hh:mm:ss</string>
   <string name="selection_folders_and_files"><xliff:g id="folders">%1$s</xliff:g> و <xliff:g id="files">%2$s</xliff:g> أختير.</string>
-  <string name="category_system">نظام</string>
-  <string name="category_app">التطبيق</string>
-  <string name="category_binary">ثنائي</string>
-  <string name="category_text">نص</string>
-  <string name="category_document">وثيقة</string>
-  <string name="category_ebook">الكتاب الإليكتروني</string>
-  <string name="category_mail">البريد</string>
-  <string name="category_compress">ضغط</string>
-  <string name="category_exec">الملف القابل للتنفيذ</string>
-  <string name="category_database">قاعدة بيانات</string>
-  <string name="category_font">الخط</string>
-  <string name="category_image">الصورة</string>
-  <string name="category_audio">الصوت</string>
-  <string name="category_video">فيديو</string>
-  <string name="category_security">الأمن</string>
   <string name="compression_mode_title">وضع الضغط</string>
   <string name="shortcut_failed_msg">فشل في التعامل مع الاختصار.</string>
   <string name="shortcut_creation_success_msg">تم بنجاح إنشاء الاختصار.</string>
@@ -339,7 +316,6 @@
   <string name="pref_editor_sh_item_category">العناصر</string>
   <string name="pref_themes_selection_category">المواضيع</string>
   <string name="pref_themes_set_theme">تعيين الموضوع</string>
-  <string name="pref_themes_no_preview">لا معاينة\nمتاح</string>
   <string name="pref_themes_confirmation">وكان تطبيق السمة بنجاح.</string>
   <string name="pref_themes_not_found">لم يتم العثور على الموضوع.</string>
   <string name="pref_debug_traces">قم بتسجيل معلومات تصحيح الأخطاء</string>

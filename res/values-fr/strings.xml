@@ -80,8 +80,6 @@
   <string name="actionbar_button_other_view_options_cd">Autres options d\'affichage</string>
   <string name="actionbar_button_selection_done_cd">Terminé</string>
   <string name="actionbar_button_actions_cd">Actions</string>
-  <string name="actionbar_button_history_cd">Historique</string>
-  <string name="actionbar_button_bookmarks_cd">Favoris</string>
   <string name="actionbar_button_search_cd">Rechercher</string>
   <string name="actionbar_button_overflow_cd">Plus d\'options</string>
   <string name="actionbar_button_storage_cd">Volumes de stockage</string>
@@ -93,10 +91,6 @@
   <string name="layout_icons">Icônes</string>
   <string name="layout_simple">Simple</string>
   <string name="layout_details">Détails</string>
-  <string name="cm_filemanager_show_dirs_first">Dossiers en premier</string>
-  <string name="cm_filemanager_show_hidden">Fichiers cachés</string>
-  <string name="cm_filemanager_show_system">Fichiers systèmes</string>
-  <string name="cm_filemanager_show_symlinks">Raccourcis</string>
   <string name="filesystem_info_warning_title">Aucune information</string>
   <string name="filesystem_info_warning_msg">Aucune information disponible pour le système de fichiers</string>
   <string name="filesystem_info_cant_be_mounted_msg">Impossible de monter/démonter le système de fichiers</string>
@@ -178,8 +172,6 @@
   <string name="initial_directory_label">Choisir le dossier d\'accueil</string>
   <string name="initial_directory_relative_msg">Chemins relatifs non autorisés</string>
   <string name="initial_directory_error_msg">Erreur lors de l\'enregistrement du dossier d\'accueil</string>
-  <string name="menu_history">Historique</string>
-  <string name="menu_bookmarks">Favoris</string>
   <string name="menu_search">Rechercher</string>
   <string name="menu_settings">Paramètres</string>
   <string name="menu_clear_history">Effacer l\'historique</string>
@@ -270,21 +262,6 @@
   <string name="filetime_format_mode_MMddyyyy_HHmmss">mm/jj/aaaa hh:mm:ss</string>
   <string name="filetime_format_mode_yyyyMMdd_HHmmss">aaaa-mm-jj hh:mm:ss</string>
   <string name="selection_folders_and_files"><xliff:g id="folders">%1$s</xliff:g> et <xliff:g id="files">%2$s</xliff:g> sélectionnés.</string>
-  <string name="category_system">SYSTÈME</string>
-  <string name="category_app">APPLICATION</string>
-  <string name="category_binary">BINAIRE</string>
-  <string name="category_text">TEXTE</string>
-  <string name="category_document">DOCUMENT</string>
-  <string name="category_ebook">EBOOK</string>
-  <string name="category_mail">MAIL</string>
-  <string name="category_compress">COMPRESSÉ</string>
-  <string name="category_exec">ÉXECUTABLE</string>
-  <string name="category_database">BASE DE DONNÉES</string>
-  <string name="category_font">POLICE</string>
-  <string name="category_image">IMAGE</string>
-  <string name="category_audio">AUDIO</string>
-  <string name="category_video">VIDÉO</string>
-  <string name="category_security">SÉCURITÉ</string>
   <string name="compression_mode_title">Mode de compression</string>
   <string name="shortcut_failed_msg">Impossible d\'atteindre le raccourci</string>
   <string name="shortcut_creation_success_msg">Raccourci créé</string>
@@ -348,7 +325,6 @@
   <string name="pref_editor_sh_item_category">Articles</string>
   <string name="pref_themes_selection_category">Thèmes</string>
   <string name="pref_themes_set_theme">Appliquer le thème</string>
-  <string name="pref_themes_no_preview">Aucune prévisualisation\ndisponible</string>
   <string name="pref_themes_confirmation">Thème appliqué avec succès</string>
   <string name="pref_themes_not_found">Thème introuvable</string>
   <string name="pref_debug_traces">Informations de débogage</string>

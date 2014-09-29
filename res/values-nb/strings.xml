@@ -80,8 +80,6 @@
   <string name="actionbar_button_other_view_options_cd">Andre visningsmuligheter</string>
   <string name="actionbar_button_selection_done_cd">Ferdig</string>
   <string name="actionbar_button_actions_cd">Handlinger</string>
-  <string name="actionbar_button_history_cd">Historie</string>
-  <string name="actionbar_button_bookmarks_cd">Bokmerker</string>
   <string name="actionbar_button_search_cd">Søk</string>
   <string name="actionbar_button_overflow_cd">Flere alternativer</string>
   <string name="actionbar_button_storage_cd">Lagringsvolumer</string>
@@ -93,10 +91,6 @@
   <string name="layout_icons">Ikoner</string>
   <string name="layout_simple">Enkel</string>
   <string name="layout_details">Detaljer</string>
-  <string name="cm_filemanager_show_dirs_first">Vis mapper først</string>
-  <string name="cm_filemanager_show_hidden">Vis skjulte filer</string>
-  <string name="cm_filemanager_show_system">Vis systemfiler</string>
-  <string name="cm_filemanager_show_symlinks">Vis symbolske lenker</string>
   <string name="filesystem_info_warning_title">Ingen informasjon</string>
   <string name="filesystem_info_warning_msg">Det er ingen tilgjengelig informasjon for filsystemet.</string>
   <string name="filesystem_info_cant_be_mounted_msg">Filsystemet kan ikke monteres/avmonteres.</string>
@@ -178,8 +172,6 @@
   <string name="initial_directory_label">Velg oppstartsmappe</string>
   <string name="initial_directory_relative_msg">Relative stier er ikke tillatt.</string>
   <string name="initial_directory_error_msg">En feil oppstod under lagring av oppstartsmappe.</string>
-  <string name="menu_history">Historie</string>
-  <string name="menu_bookmarks">Bokmerker</string>
   <string name="menu_search">Søk</string>
   <string name="menu_settings">Innstillinger</string>
   <string name="menu_clear_history">Slett historie</string>
@@ -268,21 +260,6 @@
   <string name="filetime_format_mode_MMddyyyy_HHmmss">mm/dd/åååå tt:mm:ss</string>
   <string name="filetime_format_mode_yyyyMMdd_HHmmss">åååå-mm-dd tt:mm:ss</string>
   <string name="selection_folders_and_files"><xliff:g id="folders">%1$s</xliff:g> og <xliff:g id="files">%2$s</xliff:g> valgt.</string>
-  <string name="category_system">SYSTEM</string>
-  <string name="category_app">APP</string>
-  <string name="category_binary">BINÆR</string>
-  <string name="category_text">TEKST</string>
-  <string name="category_document">DOKUMENT</string>
-  <string name="category_ebook">E-BOK</string>
-  <string name="category_mail">E-POST</string>
-  <string name="category_compress">KOMPRIMERT</string>
-  <string name="category_exec">KJØRBAR</string>
-  <string name="category_database">DATABASE</string>
-  <string name="category_font">SKRIFTTYPE</string>
-  <string name="category_image">BILDE</string>
-  <string name="category_audio">LYD</string>
-  <string name="category_video">VIDEO</string>
-  <string name="category_security">SIKKERHET</string>
   <string name="compression_mode_title">Komprimeringstype</string>
   <string name="shortcut_failed_msg">Klarte ikke å håndtere snarveien.</string>
   <string name="shortcut_creation_success_msg">Snarvei opprettet.</string>
@@ -346,7 +323,6 @@
   <string name="pref_editor_sh_item_category">Elementer</string>
   <string name="pref_themes_selection_category">Temaer</string>
   <string name="pref_themes_set_theme">Sett tema</string>
-  <string name="pref_themes_no_preview">Ingen forhåndsvisning\ntilgjengelig</string>
   <string name="pref_themes_confirmation">Temaet ble påført.</string>
   <string name="pref_themes_not_found">Tema ikke funnet.</string>
   <string name="pref_debug_traces">Logg debuggings-informasjon</string>

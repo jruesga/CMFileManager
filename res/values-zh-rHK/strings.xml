@@ -80,8 +80,6 @@
   <string name="actionbar_button_other_view_options_cd">其他視圖選項</string>
   <string name="actionbar_button_selection_done_cd">完成</string>
   <string name="actionbar_button_actions_cd">操作</string>
-  <string name="actionbar_button_history_cd">記錄</string>
-  <string name="actionbar_button_bookmarks_cd">書籤</string>
   <string name="actionbar_button_search_cd">搜尋</string>
   <string name="actionbar_button_overflow_cd">更多選項</string>
   <string name="actionbar_button_storage_cd">儲存容體</string>
@@ -93,10 +91,6 @@
   <string name="layout_icons">圖示</string>
   <string name="layout_simple">簡單</string>
   <string name="layout_details">詳細</string>
-  <string name="cm_filemanager_show_dirs_first">資料夾優先顯示</string>
-  <string name="cm_filemanager_show_hidden">顯示隱藏檔案</string>
-  <string name="cm_filemanager_show_system">顯示系統檔案</string>
-  <string name="cm_filemanager_show_symlinks">顯示符號連結</string>
   <string name="filesystem_info_warning_title">無資訊</string>
   <string name="filesystem_info_warning_msg">沒有關於此檔案系統可用的資訊。</string>
   <string name="filesystem_info_cant_be_mounted_msg">無法掛載或卸載檔案系統。</string>
@@ -178,8 +172,6 @@
   <string name="initial_directory_label">選擇初始資料夾：</string>
   <string name="initial_directory_relative_msg">不允許相對路徑。</string>
   <string name="initial_directory_error_msg">儲存初始資料夾時發生了錯誤。</string>
-  <string name="menu_history">記錄</string>
-  <string name="menu_bookmarks">書籤</string>
   <string name="menu_search">搜尋</string>
   <string name="menu_settings">設定</string>
   <string name="menu_clear_history">清除記錄</string>
@@ -262,21 +254,6 @@
   <string name="filetime_format_mode_MMddyyyy_HHmmss">mm/dd/yyyy hh:mm:ss</string>
   <string name="filetime_format_mode_yyyyMMdd_HHmmss">yyyy-mm-dd hh:mm:ss</string>
   <string name="selection_folders_and_files">已選取 <xliff:g id="folders">%1$s</xliff:g> 個資料夾和 <xliff:g id="files">%2$s</xliff:g> 個檔案。</string>
-  <string name="category_system">SYSTEM</string>
-  <string name="category_app">程式</string>
-  <string name="category_binary">二進制</string>
-  <string name="category_text">文字</string>
-  <string name="category_document">文件</string>
-  <string name="category_ebook">電子書</string>
-  <string name="category_mail">郵件</string>
-  <string name="category_compress">壓縮</string>
-  <string name="category_exec">可執行</string>
-  <string name="category_database">數據庫</string>
-  <string name="category_font">字體</string>
-  <string name="category_image">圖像</string>
-  <string name="category_audio">音訊</string>
-  <string name="category_video">影片</string>
-  <string name="category_security">安全性</string>
   <string name="compression_mode_title">壓縮模式</string>
   <string name="shortcut_failed_msg">處理捷徑失敗。</string>
   <string name="shortcut_creation_success_msg">建立捷徑成功。</string>
@@ -335,7 +312,6 @@
   <string name="pref_editor_sh_item_category">項目</string>
   <string name="pref_themes_selection_category">主題</string>
   <string name="pref_themes_set_theme">設定主題</string>
-  <string name="pref_themes_no_preview">無可用\n預覽</string>
   <string name="pref_themes_confirmation">主題已被成功套用。</string>
   <string name="pref_themes_not_found">未找到主題。</string>
   <string name="pref_debug_traces">記錄偵錯資訊</string>

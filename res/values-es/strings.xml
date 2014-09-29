@@ -80,8 +80,6 @@
   <string name="actionbar_button_other_view_options_cd">Otras opciones de visualización</string>
   <string name="actionbar_button_selection_done_cd">Hecho</string>
   <string name="actionbar_button_actions_cd">Acciones</string>
-  <string name="actionbar_button_history_cd">Historial</string>
-  <string name="actionbar_button_bookmarks_cd">Marcadores</string>
   <string name="actionbar_button_search_cd">Búsqueda</string>
   <string name="actionbar_button_overflow_cd">Más opciones</string>
   <string name="actionbar_button_storage_cd">Medios de almacenamiento</string>
@@ -93,10 +91,6 @@
   <string name="layout_icons">Iconos</string>
   <string name="layout_simple">Simple</string>
   <string name="layout_details">Detallado</string>
-  <string name="cm_filemanager_show_dirs_first">Ver carpetas primero</string>
-  <string name="cm_filemanager_show_hidden">Ver archivos ocultos</string>
-  <string name="cm_filemanager_show_system">Ver archivos de sistema</string>
-  <string name="cm_filemanager_show_symlinks">Ver accesos directos</string>
   <string name="filesystem_info_warning_title">Sin información</string>
   <string name="filesystem_info_warning_msg">No hay información disponible para el sistema de archivos.</string>
   <string name="filesystem_info_cant_be_mounted_msg">El sistema de archivos no puede ser montado/desmontado.</string>
@@ -179,8 +173,6 @@
   <string name="initial_directory_label">Elegir la carpeta inicial:</string>
   <string name="initial_directory_relative_msg">Las rutas relativas no están permitidas.</string>
   <string name="initial_directory_error_msg">Ocurrió un error al establecer la carpeta inicial.</string>
-  <string name="menu_history">Historial</string>
-  <string name="menu_bookmarks">Marcadores</string>
   <string name="menu_search">Búsqueda</string>
   <string name="menu_settings">Ajustes</string>
   <string name="menu_clear_history">Borrar historial</string>
@@ -265,21 +257,6 @@
   <string name="filetime_format_mode_MMddyyyy_HHmmss">mm/dd/aaaa hh:mm:ss</string>
   <string name="filetime_format_mode_yyyyMMdd_HHmmss">aaaa-mm-dd hh:mm:ss</string>
   <string name="selection_folders_and_files"><xliff:g id="folders">%1$s</xliff:g> y <xliff:g id="files">%2$s</xliff:g> seleccionados.</string>
-  <string name="category_system">SISTEMA</string>
-  <string name="category_app">APLICACIÓN</string>
-  <string name="category_binary">BINARIO</string>
-  <string name="category_text">TEXTO</string>
-  <string name="category_document">DOCUMENTO</string>
-  <string name="category_ebook">E-BOOK</string>
-  <string name="category_mail">CORREO</string>
-  <string name="category_compress">COMPRIMIDO</string>
-  <string name="category_exec">EJECUTABLE</string>
-  <string name="category_database">BB.DD.</string>
-  <string name="category_font">FUENTE</string>
-  <string name="category_image">IMAGEN</string>
-  <string name="category_audio">AUDIO</string>
-  <string name="category_video">VÍDEO</string>
-  <string name="category_security">SEGURIDAD</string>
   <string name="compression_mode_title">Modo de compresión</string>
   <string name="shortcut_failed_msg">Error al abrir el acceso directo.</string>
   <string name="shortcut_creation_success_msg">Acceso directo creado.</string>
@@ -343,7 +320,6 @@
   <string name="pref_editor_sh_item_category">Elementos</string>
   <string name="pref_themes_selection_category">Temas</string>
   <string name="pref_themes_set_theme">Aplicar tema</string>
-  <string name="pref_themes_no_preview">Vista previa\nno disponible</string>
   <string name="pref_themes_confirmation">Tema aplicado satisfactoriamente.</string>
   <string name="pref_themes_not_found">Tema no encontrado.</string>
   <string name="pref_debug_traces">Habilitar depuración</string>

@@ -80,8 +80,6 @@
   <string name="actionbar_button_other_view_options_cd">ตัวเลือกในการดู</string>
   <string name="actionbar_button_selection_done_cd">เสร็จสิ้น</string>
   <string name="actionbar_button_actions_cd">การกระทำ</string>
-  <string name="actionbar_button_history_cd">ประวัติ</string>
-  <string name="actionbar_button_bookmarks_cd">คั่นหน้า</string>
   <string name="actionbar_button_search_cd">ค้นหา</string>
   <string name="actionbar_button_overflow_cd">ตัวเลือกเพิ่มเติม</string>
   <string name="actionbar_button_storage_cd">ปริมาณการจัดเก็บข้อมูล</string>
@@ -93,10 +91,6 @@
   <string name="layout_icons">ไอคอน</string>
   <string name="layout_simple">อย่างง่าย</string>
   <string name="layout_details">รายละเอียด</string>
-  <string name="cm_filemanager_show_dirs_first">แสดงโฟลเดอร์ก่อน</string>
-  <string name="cm_filemanager_show_hidden">แสดงไฟล์ที่ซ่อน</string>
-  <string name="cm_filemanager_show_system">แสดงไฟล์ระบบ</string>
-  <string name="cm_filemanager_show_symlinks">แสดงลิงค์ไฟล์</string>
   <string name="filesystem_info_warning_title">ไม่มีข้อมูล</string>
   <string name="filesystem_info_warning_msg">ไม่มีข้อมูลสำหรับไฟล์ระบบ</string>
   <string name="filesystem_info_cant_be_mounted_msg">ไฟล์ระบบไม่สามารถ mount/unmount ได้</string>
@@ -179,8 +173,6 @@
   <string name="initial_directory_label">เลือกโฟล์เดอร์เริ่มต้น:</string>
   <string name="initial_directory_relative_msg">ที่อยู่นี้ไม่ได้รับอนุญาติ</string>
   <string name="initial_directory_error_msg">มีปัญหาขณะบันทึกโฟลเดอร์เริ่มต้น</string>
-  <string name="menu_history">ประวัติ</string>
-  <string name="menu_bookmarks">คั่นหน้า</string>
   <string name="menu_search">ค้นหา</string>
   <string name="menu_settings">ตั้งค่า</string>
   <string name="menu_clear_history">ล้างประวัติ</string>
@@ -263,21 +255,6 @@
   <string name="filetime_format_mode_MMddyyyy_HHmmss">ดด/วว/ปปปป ชช:นน:วว</string>
   <string name="filetime_format_mode_yyyyMMdd_HHmmss">ปปปป-ดด-วว ชช:นน:วว</string>
   <string name="selection_folders_and_files"><xliff:g id="folders">%1$s</xliff:g> และ <xliff:g id="files">%2$s</xliff:g> ถูกเลือก</string>
-  <string name="category_system">ระบบ</string>
-  <string name="category_app">แอป</string>
-  <string name="category_binary">ไบนารี่</string>
-  <string name="category_text">ข้อความ</string>
-  <string name="category_document">เอกสาน</string>
-  <string name="category_ebook">หนังสือ</string>
-  <string name="category_mail">จดหมาย</string>
-  <string name="category_compress">บีบอัด</string>
-  <string name="category_exec">ไฟล์ใช้งาน</string>
-  <string name="category_database">ฐานข้อมูล</string>
-  <string name="category_font">แบบอักษร</string>
-  <string name="category_image">ภาพ</string>
-  <string name="category_audio">เสียง</string>
-  <string name="category_video">วิดีโอ</string>
-  <string name="category_security">ความปลอดภัย</string>
   <string name="compression_mode_title">รูปแบบการบีบอัด</string>
   <string name="shortcut_failed_msg">การเรียกทางลัดล้มเหลว</string>
   <string name="shortcut_creation_success_msg">สร้างทางลัดเรียบร้อย</string>
@@ -341,7 +318,6 @@
   <string name="pref_editor_sh_item_category">วัตถุ</string>
   <string name="pref_themes_selection_category">ธีม</string>
   <string name="pref_themes_set_theme">ตั้งธีม</string>
-  <string name="pref_themes_no_preview">ไม่มีภาพตัวอย่าง</string>
   <string name="pref_themes_confirmation">ใช้ธีมเรียบร้อยแล้ว</string>
   <string name="pref_themes_not_found">ไม่พบธีม</string>
   <string name="pref_debug_traces">ประวัติสำหรับหาข้อผิดพลาด</string>

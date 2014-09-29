@@ -80,8 +80,6 @@
   <string name="actionbar_button_other_view_options_cd">Andra visningsinställningar</string>
   <string name="actionbar_button_selection_done_cd">Färdig</string>
   <string name="actionbar_button_actions_cd">Åtgärder</string>
-  <string name="actionbar_button_history_cd">Historik</string>
-  <string name="actionbar_button_bookmarks_cd">Bokmärken</string>
   <string name="actionbar_button_search_cd">Sök</string>
   <string name="actionbar_button_overflow_cd">Fler alternativ</string>
   <string name="actionbar_button_storage_cd">Lagringsvolymer</string>
@@ -93,10 +91,6 @@
   <string name="layout_icons">Ikoner</string>
   <string name="layout_simple">Enkel</string>
   <string name="layout_details">Detaljerad</string>
-  <string name="cm_filemanager_show_dirs_first">Visa mappar först</string>
-  <string name="cm_filemanager_show_hidden">Visa dolda filer</string>
-  <string name="cm_filemanager_show_system">Visa systemfiler</string>
-  <string name="cm_filemanager_show_symlinks">Visa symlinks</string>
   <string name="filesystem_info_warning_title">Ingen information</string>
   <string name="filesystem_info_warning_msg">Det finns ingen information tillgänglig om filsystemet.</string>
   <string name="filesystem_info_cant_be_mounted_msg">Filsystemet kan inte monteras/avmonteras.</string>
@@ -182,8 +176,6 @@
   <string name="initial_directory_label">Välj Hemmapp:</string>
   <string name="initial_directory_relative_msg">Relativa sökvägar är inte tillåtna.</string>
   <string name="initial_directory_error_msg">Ett fel inträffade när hemmappen sparades.</string>
-  <string name="menu_history">Historik</string>
-  <string name="menu_bookmarks">Bokmärken</string>
   <string name="menu_search">Sök</string>
   <string name="menu_settings">Inställningar</string>
   <string name="menu_clear_history">Rensa historik</string>
@@ -273,21 +265,6 @@
   <string name="filetime_format_mode_MMddyyyy_HHmmss">mm/dd/åååå hh:mm:ss</string>
   <string name="filetime_format_mode_yyyyMMdd_HHmmss">åååå-mm-dd hh:mm:ss</string>
   <string name="selection_folders_and_files"><xliff:g id="folders">%1$s</xliff:g> och <xliff:g id="files">%2$s</xliff:g> markerade.</string>
-  <string name="category_system">SYSTEM</string>
-  <string name="category_app">APP</string>
-  <string name="category_binary">BINÄR</string>
-  <string name="category_text">TEXT</string>
-  <string name="category_document">DOKUMENT</string>
-  <string name="category_ebook">E-BOK</string>
-  <string name="category_mail">MAIL</string>
-  <string name="category_compress">KOMPRIMERA</string>
-  <string name="category_exec">EXEKVERBAR</string>
-  <string name="category_database">DATABAS</string>
-  <string name="category_font">TYPSNITT</string>
-  <string name="category_image">BILD</string>
-  <string name="category_audio">AUDIO</string>
-  <string name="category_video">VIDEO</string>
-  <string name="category_security">SÄKERHET</string>
   <string name="compression_mode_title">Kompressionstyp</string>
   <string name="shortcut_failed_msg">Misslyckades med att hantera genvägen.</string>
   <string name="shortcut_creation_success_msg">Genvägen skapades framgångsrikt.</string>
@@ -352,7 +329,6 @@
   <string name="pref_editor_sh_item_category">Föremål</string>
   <string name="pref_themes_selection_category">Teman</string>
   <string name="pref_themes_set_theme">Välj tema</string>
-  <string name="pref_themes_no_preview">Ingen förhandsgranskning\ntillgänglig</string>
   <string name="pref_themes_confirmation">Temat tillämpades med framgång.</string>
   <string name="pref_themes_not_found">Temat hittades inte.</string>
   <string name="pref_debug_traces">Logga debuginformation</string>

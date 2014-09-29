@@ -80,8 +80,6 @@
   <string name="actionbar_button_other_view_options_cd">Остале опције изгледа</string>
   <string name="actionbar_button_selection_done_cd">Готово</string>
   <string name="actionbar_button_actions_cd">Акције</string>
-  <string name="actionbar_button_history_cd">Историја</string>
-  <string name="actionbar_button_bookmarks_cd">Обележивачи</string>
   <string name="actionbar_button_search_cd">Тражи</string>
   <string name="actionbar_button_overflow_cd">Више опција</string>
   <string name="actionbar_button_storage_cd">Складишта</string>
@@ -93,10 +91,6 @@
   <string name="layout_icons">Иконе</string>
   <string name="layout_simple">Једноставно</string>
   <string name="layout_details">Детаљи</string>
-  <string name="cm_filemanager_show_dirs_first">Прикажи прво фолдере</string>
-  <string name="cm_filemanager_show_hidden">Прикажи сакривене фајлове</string>
-  <string name="cm_filemanager_show_system">Прикажи системске фајлове</string>
-  <string name="cm_filemanager_show_symlinks">Прикажи симболичке везе</string>
   <string name="filesystem_info_warning_title">Нема информација</string>
   <string name="filesystem_info_warning_msg">Нема доступних информација за овај систем фајлова.</string>
   <string name="filesystem_info_cant_be_mounted_msg">Систем фајлова се не може монтирати/демонтирати.</string>
@@ -178,8 +172,6 @@
   <string name="initial_directory_label">Изабери почетни фолдер:</string>
   <string name="initial_directory_relative_msg">Релативне путање нису дозвољене.</string>
   <string name="initial_directory_error_msg">Дошло је до грешке у току чувања почетног фолдера.</string>
-  <string name="menu_history">Историја</string>
-  <string name="menu_bookmarks">Обележивачи</string>
   <string name="menu_search">Претрага</string>
   <string name="menu_settings">Подешавања</string>
   <string name="menu_clear_history">Избриши историју</string>
@@ -263,21 +255,6 @@
   <string name="filetime_format_mode_MMddyyyy_HHmmss">мм/дд/гггг чч:мм:сс</string>
   <string name="filetime_format_mode_yyyyMMdd_HHmmss">гггг-мм-дд чч:мм:сс</string>
   <string name="selection_folders_and_files"><xliff:g id="folders">%1$s</xliff:g> и <xliff:g id="files">%2$s</xliff:g> изабрано.</string>
-  <string name="category_system">СИСТЕМ</string>
-  <string name="category_app">АПЛИКАЦИЈА</string>
-  <string name="category_binary">БИНАРНО</string>
-  <string name="category_text">ТЕКСТ</string>
-  <string name="category_document">ДОКУМЕНТ</string>
-  <string name="category_ebook">Е-КЊИГА</string>
-  <string name="category_mail">ПОШТА</string>
-  <string name="category_compress">КОМПРЕСОВАНО</string>
-  <string name="category_exec">ИЗВРШНИ</string>
-  <string name="category_database">БАЗА ПОДАТАКА</string>
-  <string name="category_font">ФОНТ</string>
-  <string name="category_image">СЛИКА</string>
-  <string name="category_audio">АУДИО</string>
-  <string name="category_video">ВИДЕО</string>
-  <string name="category_security">ЗАШТИТА</string>
   <string name="compression_mode_title">Режим компресије</string>
   <string name="shortcut_failed_msg">Неуспело обрађивање пречице.</string>
   <string name="shortcut_creation_success_msg">Пречица успешно направљена.</string>
@@ -346,7 +323,6 @@
   <string name="pref_editor_sh_item_category">Артикли</string>
   <string name="pref_themes_selection_category">Теме</string>
   <string name="pref_themes_set_theme">Постави тему</string>
-  <string name="pref_themes_no_preview">Нема прегледа\nнедоступан</string>
   <string name="pref_themes_confirmation">Тема је успешно примењена.</string>
   <string name="pref_themes_not_found">Тема није нађена.</string>
   <string name="pref_debug_traces">Евидентирај информације о грешкама</string>

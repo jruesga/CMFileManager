@@ -80,8 +80,6 @@
   <string name="actionbar_button_other_view_options_cd">Muut ulkoasuasetukset</string>
   <string name="actionbar_button_selection_done_cd">Valmis</string>
   <string name="actionbar_button_actions_cd">Tehtävät</string>
-  <string name="actionbar_button_history_cd">Historia</string>
-  <string name="actionbar_button_bookmarks_cd">Kirjanmerkit</string>
   <string name="actionbar_button_search_cd">Haku</string>
   <string name="actionbar_button_overflow_cd">Lisäasetukset</string>
   <string name="actionbar_button_storage_cd">Tallennustilan osiot</string>
@@ -93,10 +91,6 @@
   <string name="layout_icons">Kuvakkeet</string>
   <string name="layout_simple">Yksinkertainen</string>
   <string name="layout_details">Tietoja</string>
-  <string name="cm_filemanager_show_dirs_first">Näytä kansiot ensin</string>
-  <string name="cm_filemanager_show_hidden">Näytä piilotetut tiedostot</string>
-  <string name="cm_filemanager_show_system">Näytä järjestelmätiedostot</string>
-  <string name="cm_filemanager_show_symlinks">Näytä symlinkit</string>
   <string name="filesystem_info_warning_title">Ei tietoja</string>
   <string name="filesystem_info_warning_msg">Tietoja tiedostojärjestelmästä ei ole saatavilla.</string>
   <string name="filesystem_info_cant_be_mounted_msg">Tiedostojärjestelmää ei voida kiinnittää/poistaa kiinnitystä.</string>
@@ -178,8 +172,6 @@
   <string name="initial_directory_label">Valitse aloituskansio:</string>
   <string name="initial_directory_relative_msg">Suhteelliset polut ei ole sallittuja.</string>
   <string name="initial_directory_error_msg">Virhe tallennettaessa aloituskansiota.</string>
-  <string name="menu_history">Historia</string>
-  <string name="menu_bookmarks">Kirjanmerkit</string>
   <string name="menu_search">Haku</string>
   <string name="menu_settings">Asetukset</string>
   <string name="menu_clear_history">Tyhjennä historia</string>
@@ -261,21 +253,6 @@
   <string name="filetime_format_mode_MMddyyyy_HHmmss">kk/pp/yyyy tt:mm:ss</string>
   <string name="filetime_format_mode_yyyyMMdd_HHmmss">vvvv-kk-pp tt:mm:ss</string>
   <string name="selection_folders_and_files"><xliff:g id="folders">%1$s</xliff:g> ja <xliff:g id="files">%2$s</xliff:g> valittu.</string>
-  <string name="category_system">JÄRJESTELMÄ</string>
-  <string name="category_app">SOVELLUS</string>
-  <string name="category_binary">BINÄÄRI</string>
-  <string name="category_text">TEKSTI</string>
-  <string name="category_document">DOKUMENTTI</string>
-  <string name="category_ebook">E-KIRJA</string>
-  <string name="category_mail">POSTI</string>
-  <string name="category_compress">ARKISTO</string>
-  <string name="category_exec">SUORITETTAVA</string>
-  <string name="category_database">TIETOKANTA</string>
-  <string name="category_font">FONTTI</string>
-  <string name="category_image">KUVA</string>
-  <string name="category_audio">ÄÄNI</string>
-  <string name="category_video">VIDEO</string>
-  <string name="category_security">TURVALLISUUS</string>
   <string name="compression_mode_title">Pakkaustila</string>
   <string name="shortcut_failed_msg">Pikakuvake ei toimi.</string>
   <string name="shortcut_creation_success_msg">Pikakuvake luotu onnistuneesti.</string>
@@ -339,7 +316,6 @@
   <string name="pref_editor_sh_item_category">Kohteet</string>
   <string name="pref_themes_selection_category">Teemat</string>
   <string name="pref_themes_set_theme">Aseta teema</string>
-  <string name="pref_themes_no_preview">Ei esikatselua</string>
   <string name="pref_themes_confirmation">Teema asetettu onnistuneesti.</string>
   <string name="pref_themes_not_found">Teemaa ei löytynyt.</string>
   <string name="pref_debug_traces">Kirjaa debug-tilan tiedot</string>

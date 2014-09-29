@@ -80,8 +80,6 @@
   <string name="actionbar_button_other_view_options_cd">Altre opzioni di visualizzazione</string>
   <string name="actionbar_button_selection_done_cd">Fatto</string>
   <string name="actionbar_button_actions_cd">Azioni</string>
-  <string name="actionbar_button_history_cd">Cronologia</string>
-  <string name="actionbar_button_bookmarks_cd">Segnalibri</string>
   <string name="actionbar_button_search_cd">Ricerca</string>
   <string name="actionbar_button_overflow_cd">Altre opzioni</string>
   <string name="actionbar_button_storage_cd">Memorie</string>
@@ -93,10 +91,6 @@
   <string name="layout_icons">Icone</string>
   <string name="layout_simple">Semplice</string>
   <string name="layout_details">Dettagli</string>
-  <string name="cm_filemanager_show_dirs_first">Mostra prima le cartelle</string>
-  <string name="cm_filemanager_show_hidden">Mostra file nascosti</string>
-  <string name="cm_filemanager_show_system">Mostra file di sistema</string>
-  <string name="cm_filemanager_show_symlinks">Mostra symlinks</string>
   <string name="filesystem_info_warning_title">Nessuna informazione</string>
   <string name="filesystem_info_warning_msg">Non ci sono informazioni disponibili sul file system.</string>
   <string name="filesystem_info_cant_be_mounted_msg">Il file system non può essere montato/smontato.</string>
@@ -178,8 +172,6 @@
   <string name="initial_directory_label">Scegliere la cartella iniziale:</string>
   <string name="initial_directory_relative_msg">I percorsi relativi non sono ammessi.</string>
   <string name="initial_directory_error_msg">Errore nel salvataggio della cartella iniziale.</string>
-  <string name="menu_history">Cronologia</string>
-  <string name="menu_bookmarks">Segnalibri</string>
   <string name="menu_search">Ricerca</string>
   <string name="menu_settings">Impostazioni</string>
   <string name="menu_clear_history">Svuota cronologia</string>
@@ -261,21 +253,6 @@
   <string name="filetime_format_mode_MMddyyyy_HHmmss">mm/dd/yyyy hh:mm:ss</string>
   <string name="filetime_format_mode_yyyyMMdd_HHmmss">yyyy-mm-dd hh:mm:ss</string>
   <string name="selection_folders_and_files"><xliff:g id="folders">%1$s</xliff:g> e <xliff:g id="files">%2$s</xliff:g> selezionati.</string>
-  <string name="category_system">SISTEMA</string>
-  <string name="category_app">APP</string>
-  <string name="category_binary">BINARIO</string>
-  <string name="category_text">TESTO</string>
-  <string name="category_document">DOCUMENTO</string>
-  <string name="category_ebook">EBOOK</string>
-  <string name="category_mail">MAIL</string>
-  <string name="category_compress">COMPRESSO</string>
-  <string name="category_exec">ESEGUIBILE</string>
-  <string name="category_database">DATABASE</string>
-  <string name="category_font">FONT</string>
-  <string name="category_image">IMMAGINE</string>
-  <string name="category_audio">AUDIO</string>
-  <string name="category_video">VIDEO</string>
-  <string name="category_security">SICUREZZA</string>
   <string name="compression_mode_title">Modalità compressione</string>
   <string name="shortcut_failed_msg">Impossibile gestire il collegamento.</string>
   <string name="shortcut_creation_success_msg">Collegamento creato.</string>
@@ -339,7 +316,6 @@
   <string name="pref_editor_sh_item_category">Elementi</string>
   <string name="pref_themes_selection_category">Temi</string>
   <string name="pref_themes_set_theme">Imposta tema</string>
-  <string name="pref_themes_no_preview">Anteprima\nnon disponibile</string>
   <string name="pref_themes_confirmation">Il tema è stato applicato con successo.</string>
   <string name="pref_themes_not_found">Tema non trovato.</string>
   <string name="pref_debug_traces">Registra informazioni debug</string>

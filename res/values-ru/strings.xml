@@ -80,8 +80,6 @@
   <string name="actionbar_button_other_view_options_cd">Настройки отображения</string>
   <string name="actionbar_button_selection_done_cd">Готово</string>
   <string name="actionbar_button_actions_cd">Действия</string>
-  <string name="actionbar_button_history_cd">История</string>
-  <string name="actionbar_button_bookmarks_cd">Закладки</string>
   <string name="actionbar_button_search_cd">Поиск</string>
   <string name="actionbar_button_overflow_cd">Дополнительные действия</string>
   <string name="actionbar_button_storage_cd">Накопительные устройства</string>
@@ -178,8 +176,6 @@
   <string name="initial_directory_label">Выбор начальной папки:</string>
   <string name="initial_directory_relative_msg">Относительные пути не допускаются</string>
   <string name="initial_directory_error_msg">При установке начальной папки произошла ошибка</string>
-  <string name="menu_history">История</string>
-  <string name="menu_bookmarks">Закладки</string>
   <string name="menu_search">Поиск</string>
   <string name="menu_settings">Настройки</string>
   <string name="menu_clear_history">Очистить историю</string>
@@ -268,21 +264,6 @@
   <string name="filetime_format_mode_MMddyyyy_HHmmss">мм/дд/гггг чч:мм:сс</string>
   <string name="filetime_format_mode_yyyyMMdd_HHmmss">гггг-мм-дд чч:мм:сс</string>
   <string name="selection_folders_and_files">Выделены <xliff:g id="folders">%1$s</xliff:g> и <xliff:g id="files">%2$s</xliff:g></string>
-  <string name="category_system">СИСТЕМА</string>
-  <string name="category_app">ПРИЛОЖЕНИЕ</string>
-  <string name="category_binary">ДВОИЧНЫЙ</string>
-  <string name="category_text">ТЕКСТ</string>
-  <string name="category_document">ДОКУМЕНТ</string>
-  <string name="category_ebook">ЭЛ. КНИГА</string>
-  <string name="category_mail">ПОЧТА</string>
-  <string name="category_compress">СЖАТЫЙ</string>
-  <string name="category_exec">ИСПОЛН. ФАЙЛ</string>
-  <string name="category_database">БАЗА ДАННЫХ</string>
-  <string name="category_font">ШРИФТ</string>
-  <string name="category_image">ИЗОБРАЖЕНИЕ</string>
-  <string name="category_audio">АУДИО</string>
-  <string name="category_video">ВИДЕО</string>
-  <string name="category_security">ЗАЩИТА</string>
   <string name="compression_mode_title">Формат сжатия</string>
   <string name="shortcut_failed_msg">Не удалось обработать ярлык</string>
   <string name="shortcut_creation_success_msg">Ярлык создан успешно</string>
@@ -346,7 +327,6 @@
   <string name="pref_editor_sh_item_category">Элементы</string>
   <string name="pref_themes_selection_category">Темы</string>
   <string name="pref_themes_set_theme">Применить</string>
-  <string name="pref_themes_no_preview">Предпросмотр недоступен</string>
   <string name="pref_themes_confirmation">Тема успешно применена</string>
   <string name="pref_themes_not_found">Тема не найдена</string>
   <string name="pref_debug_traces">Записывать отладочные данные</string>

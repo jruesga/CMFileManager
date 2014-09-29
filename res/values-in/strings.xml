@@ -80,8 +80,6 @@
   <string name="actionbar_button_other_view_options_cd">Pilihan tampilan lainnya</string>
   <string name="actionbar_button_selection_done_cd">Selesai</string>
   <string name="actionbar_button_actions_cd">Aksi</string>
-  <string name="actionbar_button_history_cd">Riwayat</string>
-  <string name="actionbar_button_bookmarks_cd">Bookmark</string>
   <string name="actionbar_button_search_cd">Cari</string>
   <string name="actionbar_button_overflow_cd">Pilihan lebih</string>
   <string name="actionbar_button_storage_cd">Volume penyimpanan</string>
@@ -93,10 +91,6 @@
   <string name="layout_icons">Ikon</string>
   <string name="layout_simple">Sederhana</string>
   <string name="layout_details">Terinci</string>
-  <string name="cm_filemanager_show_dirs_first">Tampilkan folder pertama kali</string>
-  <string name="cm_filemanager_show_hidden">Tampilkan berkas tersembunyi</string>
-  <string name="cm_filemanager_show_system">Tampilkan berkas sistem</string>
-  <string name="cm_filemanager_show_symlinks">Tampilkan symlink</string>
   <string name="filesystem_info_warning_title">Tidak ada informasi</string>
   <string name="filesystem_info_warning_msg">Ada tidak ada informasi yang tersedia untuk sistem berkas.</string>
   <string name="filesystem_info_cant_be_mounted_msg">Sistem berkas tidak dapat dipasang/dilepas.</string>
@@ -178,8 +172,6 @@
   <string name="initial_directory_label">Pilih folder awal:</string>
   <string name="initial_directory_relative_msg">Path relatif tidak diperbolehkan.</string>
   <string name="initial_directory_error_msg">Terjadi kesalahan saat menyimpan folder awal.</string>
-  <string name="menu_history">Riwayat</string>
-  <string name="menu_bookmarks">Bookmark</string>
   <string name="menu_search">Cari</string>
   <string name="menu_settings">Pengaturan</string>
   <string name="menu_clear_history">Bersihkan riwayat</string>
@@ -261,21 +253,6 @@
   <string name="filetime_format_mode_MMddyyyy_HHmmss">mm/dd/yyyy hh:mm:ss</string>
   <string name="filetime_format_mode_yyyyMMdd_HHmmss">yyyy-mm-dd hh:mm:ss</string>
   <string name="selection_folders_and_files"><xliff:g id="folders">%1$s</xliff:g> dan <xliff:g id="files">%2$s</xliff:g> terpilih.</string>
-  <string name="category_system">SISTEM</string>
-  <string name="category_app">APP</string>
-  <string name="category_binary">BINARI</string>
-  <string name="category_text">TEKS</string>
-  <string name="category_document">DOKUMEN</string>
-  <string name="category_ebook">EBOOK</string>
-  <string name="category_mail">MAIL</string>
-  <string name="category_compress">KOMPRES</string>
-  <string name="category_exec">EKSEKUSI</string>
-  <string name="category_database">DATABASE</string>
-  <string name="category_font">HURUF</string>
-  <string name="category_image">GAMBAR</string>
-  <string name="category_audio">AUDIO</string>
-  <string name="category_video">VIDEO</string>
-  <string name="category_security">KEAMANAN</string>
   <string name="compression_mode_title">Modus kompresi</string>
   <string name="shortcut_failed_msg">Gagal untuk menangani pintasan.</string>
   <string name="shortcut_creation_success_msg">Pintasan dibuat dengan sukses.</string>
@@ -339,7 +316,6 @@
   <string name="pref_editor_sh_item_category">Item</string>
   <string name="pref_themes_selection_category">Tema</string>
   <string name="pref_themes_set_theme">Atur tema</string>
-  <string name="pref_themes_no_preview">Tidak ada pratinjau\ntersedia</string>
   <string name="pref_themes_confirmation">Tema berhasil diterapkan.</string>
   <string name="pref_themes_not_found">Tema tidak ditemukan.</string>
   <string name="pref_debug_traces">Log Informasi debug</string>

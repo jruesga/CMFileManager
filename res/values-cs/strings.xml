@@ -80,8 +80,6 @@
   <string name="actionbar_button_other_view_options_cd">Další možnosti zobrazení</string>
   <string name="actionbar_button_selection_done_cd">Hotovo</string>
   <string name="actionbar_button_actions_cd">Akce</string>
-  <string name="actionbar_button_history_cd">Historie</string>
-  <string name="actionbar_button_bookmarks_cd">Záložky</string>
   <string name="actionbar_button_search_cd">Hledat</string>
   <string name="actionbar_button_overflow_cd">Více možností</string>
   <string name="actionbar_button_storage_cd">Svazky úložiště</string>
@@ -93,10 +91,6 @@
   <string name="layout_icons">Ikony</string>
   <string name="layout_simple">Jednoduchý</string>
   <string name="layout_details">Podrobnosti</string>
-  <string name="cm_filemanager_show_dirs_first">Zobrazit složky první</string>
-  <string name="cm_filemanager_show_hidden">Zobrazit skryté soubory</string>
-  <string name="cm_filemanager_show_system">Zobrazit systémové soubory</string>
-  <string name="cm_filemanager_show_symlinks">Zobrazit symbolické odkazy</string>
   <string name="filesystem_info_warning_title">Žádné informace</string>
   <string name="filesystem_info_warning_msg">Nejsou dostupné žádné informace o systému souborů</string>
   <string name="filesystem_info_cant_be_mounted_msg">Souborový systém nemohl být připojen/odpojen.</string>
@@ -178,8 +172,6 @@
   <string name="initial_directory_label">Vyberte výchozí složku:</string>
   <string name="initial_directory_relative_msg">Relativní cesty nejsou povoleny.</string>
   <string name="initial_directory_error_msg">Během ukládání výchozí složky došlo k chybě.</string>
-  <string name="menu_history">Historie</string>
-  <string name="menu_bookmarks">Záložky</string>
   <string name="menu_search">Hledat</string>
   <string name="menu_settings">Nastavení</string>
   <string name="menu_clear_history">Vymazat historii</string>
@@ -261,21 +253,6 @@
   <string name="filetime_format_mode_MMddyyyy_HHmmss">mm/dd/yyyy hh:mm:ss</string>
   <string name="filetime_format_mode_yyyyMMdd_HHmmss">yyyy-mm-dd hh:mm:ss</string>
   <string name="selection_folders_and_files"><xliff:g id="folders">%1$s</xliff:g> a <xliff:g id="files">%2$s</xliff:g> vybráno.</string>
-  <string name="category_system">SYSTÉM</string>
-  <string name="category_app">APLIKACE</string>
-  <string name="category_binary">BINÁRNÍ SOUBOR</string>
-  <string name="category_text">TEXTOVÝ SOUBOR</string>
-  <string name="category_document">DOKUMENT</string>
-  <string name="category_ebook">EBOOK</string>
-  <string name="category_mail">POŠTA</string>
-  <string name="category_compress">KOMPRIMOVÁNO</string>
-  <string name="category_exec">SPUSTITELNÉ</string>
-  <string name="category_database">DATABÁZE</string>
-  <string name="category_font">PÍSMO</string>
-  <string name="category_image">OBRÁZEK</string>
-  <string name="category_audio">ZVUK</string>
-  <string name="category_video">VIDEO</string>
-  <string name="category_security">ZABEZPEČENÍ</string>
   <string name="compression_mode_title">Typ komprese</string>
   <string name="shortcut_failed_msg">Chyba při zpracování zástupce.</string>
   <string name="shortcut_creation_success_msg">Zástupce úspěšně vytvořen.</string>
@@ -339,7 +316,6 @@
   <string name="pref_editor_sh_item_category">Položky</string>
   <string name="pref_themes_selection_category">Motivy</string>
   <string name="pref_themes_set_theme">Nastavit motiv</string>
-  <string name="pref_themes_no_preview">Náhled není\ndostupný</string>
   <string name="pref_themes_confirmation">Motiv byl úspěšně nastaven.</string>
   <string name="pref_themes_not_found">Motiv nebyl nalezen.</string>
   <string name="pref_debug_traces">Zaznamenávat ladící informace</string>

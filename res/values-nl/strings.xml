@@ -80,8 +80,6 @@
   <string name="actionbar_button_other_view_options_cd">Andere beeldopties</string>
   <string name="actionbar_button_selection_done_cd">Gereed</string>
   <string name="actionbar_button_actions_cd">Acties</string>
-  <string name="actionbar_button_history_cd">Geschiedenis</string>
-  <string name="actionbar_button_bookmarks_cd">Favorieten</string>
   <string name="actionbar_button_search_cd">Zoeken</string>
   <string name="actionbar_button_overflow_cd">Meer\u2026</string>
   <string name="actionbar_button_storage_cd">Opslagvolumes</string>
@@ -93,10 +91,6 @@
   <string name="layout_icons">Pictogrammen</string>
   <string name="layout_simple">Eenvoudig</string>
   <string name="layout_details">Uitgebreid</string>
-  <string name="cm_filemanager_show_dirs_first">Mappen eerst</string>
-  <string name="cm_filemanager_show_hidden">Verborgen bestanden tonen</string>
-  <string name="cm_filemanager_show_system">Systeembestanden tonen</string>
-  <string name="cm_filemanager_show_symlinks">Symlinks tonen</string>
   <string name="filesystem_info_warning_title">Geen informatie</string>
   <string name="filesystem_info_warning_msg">Er is geen informatie beschikbaar over het bestandssysteem.</string>
   <string name="filesystem_info_cant_be_mounted_msg">Het bestandssysteem kan niet worden gekoppeld/ontkoppeld.</string>
@@ -178,8 +172,6 @@
   <string name="initial_directory_label">Kies de beginmap:</string>
   <string name="initial_directory_relative_msg">Paden moeten beginnen met een slash.</string>
   <string name="initial_directory_error_msg">Er is een fout opgetreden tijdens het opslaan van de beginmap.</string>
-  <string name="menu_history">Geschiedenis</string>
-  <string name="menu_bookmarks">Favorieten</string>
   <string name="menu_search">Zoeken</string>
   <string name="menu_settings">Instellingen</string>
   <string name="menu_clear_history">Geschiedenis wissen</string>
@@ -261,21 +253,6 @@
   <string name="filetime_format_mode_MMddyyyy_HHmmss">mm/dd/yyyy hh:mm:ss</string>
   <string name="filetime_format_mode_yyyyMMdd_HHmmss">yyyy-mm-dd hh:mm:ss</string>
   <string name="selection_folders_and_files"><xliff:g id="folders">%1$s</xliff:g> en <xliff:g id="files">%2$s</xliff:g> geselecteerd.</string>
-  <string name="category_system">SYSTEEM</string>
-  <string name="category_app">APP</string>
-  <string name="category_binary">BINAIR</string>
-  <string name="category_text">TEKST</string>
-  <string name="category_document">DOCUMENT</string>
-  <string name="category_ebook">E-BOOK</string>
-  <string name="category_mail">E-MAIL</string>
-  <string name="category_compress">GECOMPRIMEERD</string>
-  <string name="category_exec">UITVOERBAAR</string>
-  <string name="category_database">DATABASE</string>
-  <string name="category_font">LETTERTYPE</string>
-  <string name="category_image">AFBEELDING</string>
-  <string name="category_audio">GELUID</string>
-  <string name="category_video">VIDEO</string>
-  <string name="category_security">BEVEILIGING</string>
   <string name="compression_mode_title">Comprimeermodus</string>
   <string name="shortcut_failed_msg">Snelkoppeling behandelen mislukt.</string>
   <string name="shortcut_creation_success_msg">Snelkoppeling succesvol aangemaakt.</string>
@@ -339,7 +316,6 @@
   <string name="pref_editor_sh_item_category">Items</string>
   <string name="pref_themes_selection_category">Thema\'s</string>
   <string name="pref_themes_set_theme">Thema instellen</string>
-  <string name="pref_themes_no_preview">Geen voorbeeld\nbeschikbaar</string>
   <string name="pref_themes_confirmation">Thema succesvol toegepast</string>
   <string name="pref_themes_not_found">Kan thema niet vinden</string>
   <string name="pref_debug_traces">Foutopsporingsmodus</string>

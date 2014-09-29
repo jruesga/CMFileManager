@@ -81,8 +81,6 @@
   <string name="actionbar_button_other_view_options_cd">אפשרויות תצוגה נוספות</string>
   <string name="actionbar_button_selection_done_cd">בוצע</string>
   <string name="actionbar_button_actions_cd">פעולות</string>
-  <string name="actionbar_button_history_cd">היסטוריה</string>
-  <string name="actionbar_button_bookmarks_cd">מועדפים</string>
   <string name="actionbar_button_search_cd">חיפוש</string>
   <string name="actionbar_button_overflow_cd">אפשרויות נוספות</string>
   <string name="actionbar_button_storage_cd">מחיצות אחסון</string>
@@ -94,10 +92,6 @@
   <string name="layout_icons">סמלים</string>
   <string name="layout_simple">פשוט</string>
   <string name="layout_details">פרטים</string>
-  <string name="cm_filemanager_show_dirs_first">הצג תיקיות לפני קבצים</string>
-  <string name="cm_filemanager_show_hidden">הצג קבצים מוסתרים</string>
-  <string name="cm_filemanager_show_system">הצג קבצי מערכת</string>
-  <string name="cm_filemanager_show_symlinks">הצג Symlinks</string>
   <string name="filesystem_info_warning_title">מידע לא קיים</string>
   <string name="filesystem_info_warning_msg">אין מידע זמין על מערכת הקבצים.</string>
   <string name="filesystem_info_cant_be_mounted_msg">לא ניתן לעגן או לבטל את עיגון מערכת הקבצים.</string>
@@ -179,8 +173,6 @@
   <string name="initial_directory_label">בחר את התיקייה ההתחלתית:</string>
   <string name="initial_directory_relative_msg">נתיבים יחסיים אסורים.</string>
   <string name="initial_directory_error_msg">התרחשה שגיאה בעת שמירת נתיב התיקייה ההתחלתית.</string>
-  <string name="menu_history">היסטוריה</string>
-  <string name="menu_bookmarks">מועדפים</string>
   <string name="menu_search">חיפוש</string>
   <string name="menu_settings">הגדרות</string>
   <string name="menu_clear_history">נקה היסטוריה</string>
@@ -275,21 +267,6 @@
   <string name="filetime_format_mode_MMddyyyy_HHmmss">mm/dd/yyyy hh:mm:ss</string>
   <string name="filetime_format_mode_yyyyMMdd_HHmmss">yyyy-mm-dd hh:mm:ss</string>
   <string name="selection_folders_and_files"><xliff:g id="folders">%1$s</xliff:g> ו-<xliff:g id="files">%2$s</xliff:g> נבחרו.</string>
-  <string name="category_system">מערכת</string>
-  <string name="category_app">יישום</string>
-  <string name="category_binary">בינארי</string>
-  <string name="category_text">מלל</string>
-  <string name="category_document">מסמך</string>
-  <string name="category_ebook">ספר אלקטרוני</string>
-  <string name="category_mail">דוא\"ל</string>
-  <string name="category_compress">דחוס</string>
-  <string name="category_exec">ניתן להרצה</string>
-  <string name="category_database">בסיס נתונים</string>
-  <string name="category_font">גופן</string>
-  <string name="category_image">תמונה</string>
-  <string name="category_audio">קול</string>
-  <string name="category_video">וידאו</string>
-  <string name="category_security">אבטחה</string>
   <string name="compression_mode_title">מצב דחיסה</string>
   <string name="shortcut_failed_msg">נכשל בניהול קיצור הדרך.</string>
   <string name="shortcut_creation_success_msg">קיצור הדרך נוצר בהצלחה.</string>
@@ -353,7 +330,6 @@
   <string name="pref_editor_sh_item_category">פריטים</string>
   <string name="pref_themes_selection_category">ערכות נושא</string>
   <string name="pref_themes_set_theme">הגדר ערכת נושא</string>
-  <string name="pref_themes_no_preview">אין\nתצוגה מקדימה\nזמינה</string>
   <string name="pref_themes_confirmation">ערכת הנושא הוחלה בהצלחה.</string>
   <string name="pref_themes_not_found">ערכת הנושא לא נמצאה.</string>
   <string name="pref_debug_traces">תעד ניפוי שגיאות</string>

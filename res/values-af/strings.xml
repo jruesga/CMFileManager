@@ -81,8 +81,6 @@
   <string name="actionbar_button_other_view_options_cd">Ander wysopsies</string>
   <string name="actionbar_button_selection_done_cd">Klaar</string>
   <string name="actionbar_button_actions_cd">Aksies</string>
-  <string name="actionbar_button_history_cd">Geskiedenis</string>
-  <string name="actionbar_button_bookmarks_cd">Boekmerke</string>
   <string name="actionbar_button_search_cd">Soek</string>
   <string name="actionbar_button_overflow_cd">Meer opsies</string>
   <string name="actionbar_button_storage_cd">Skyf volumes</string>
@@ -94,15 +92,11 @@
   <string name="layout_icons">Ikone</string>
   <string name="layout_simple">Eenvoudig</string>
   <string name="layout_details">Besonderhede</string>
-  <string name="cm_filemanager_show_dirs_first">Wys vouergidse eerste</string>
-  <string name="cm_filemanager_show_hidden">Wys versteekte vouers</string>
-  <string name="cm_filemanager_show_system">Wys stelsel vouers</string>
-  <string name="cm_filemanager_show_symlinks">Wys simboliese koppelings</string>
   <string name="filesystem_info_warning_title">Geen inligting</string>
   <string name="filesystem_info_warning_msg">Daar is geen inligting beskikbaar vir die lêerstelsel nie.</string>
   <string name="filesystem_info_cant_be_mounted_msg">Die lêerstelsel kan nie geheg/ontheg word nie.</string>
   <string name="filesystem_info_mount_not_allowed_msg">Lêerstelsel hegging word nie toegelaat in die veilige modus nie. Raak om toegang na \'root\' modus te verander.</string>
-  <string name="filesystem_info_mount_failed_msg">Die lêerstelsel hegging het misluk. Sommige lêerstelsels, soos SD-kaarte, kan nie geheg/ontheg word nie aangesien hulle leesalleen lêerstelsels is.</string>
+  <string name="filesystem_info_mount_failed_msg">Die lêerstelsel hegging het misluk. Sommige lêerstelsels, soos SD kaarte, kan nie geheg/ontheg word nie aangesien hulle leesalleen lêerstelsels is.</string>
   <string name="filesystem_info_dialog_title">Lêerstelsel inligting</string>
   <string name="filesystem_info_dialog_tab_info">Inligting</string>
   <string name="filesystem_info_dialog_tab_disk_usage">Bergingspasie</string>
@@ -116,12 +110,9 @@
   <string name="filesystem_info_dialog_used_disk_usage">Gebruik:</string>
   <string name="filesystem_info_dialog_free_disk_usage">Gratis:</string>
   <string name="fso_properties_permissions_not_allowed_msg">Regte veranderinge word nie toegelaat in die veilige modus nie. Raak om toegang na \'root\' modus te verander.</string>
-  <string name="fso_properties_failed_to_change_owner_msg">Die verandering van die eienaar aksie het misluk.\n\n
-    Vir sekuriteit redes laat sommige lêerstelsels, soos SD-kaarte, dit toe nie.</string>
-  <string name="fso_properties_failed_to_change_group_msg">Die verandering van die groep aksie het misluk.\n\n
-    Vir sekuriteit redes laat sommige lêerstelsels, soos SD-kaarte, dit toe nie.</string>
-  <string name="fso_properties_failed_to_change_permission_msg">Die verandering van regte het misluk.\n\n
-    Vir sekuriteits redes laat sommige lêerstelsels, soos SD-kaarte, nie die verandering toe nie.</string>
+  <string name="fso_properties_failed_to_change_owner_msg">Die verandering van die eienaar aksie het misluk.\n\nVir sekuriteit redes laat sommige lêerstelsels, soos SD kaarte, dit toe nie.</string>
+  <string name="fso_properties_failed_to_change_group_msg">Die verandering van die groep aksie het misluk.\n\nVir sekuriteit redes laat sommige lêerstelsels, soos SD kaarte, dit toe nie.</string>
+  <string name="fso_properties_failed_to_change_permission_msg">Die verandering van regte het misluk.\n\nVir sekuriteits redes laat sommige lêerstelsels, soos SD kaarte, nie die verandering toe nie.</string>
   <string name="fso_properties_dialog_title">Eienskappe</string>
   <string name="fso_properties_dialog_tab_info">Inligting</string>
   <string name="fso_properties_dialog_tab_permissions">Toestemmings</string>
@@ -184,8 +175,6 @@
   <string name="initial_directory_label">Kies die aanvanklike vouergids:</string>
   <string name="initial_directory_relative_msg">Relatiewe paaie word nie toegelaat nie.</string>
   <string name="initial_directory_error_msg">Fout met die stoor van die aanvanklike vouergids.</string>
-  <string name="menu_history">Vorige items</string>
-  <string name="menu_bookmarks">Boekmerke</string>
   <string name="menu_search">Soek na</string>
   <string name="menu_settings">Instellings</string>
   <string name="menu_clear_history">Verwyder alle geskiedenis</string>
@@ -283,21 +272,6 @@
   <string name="filetime_format_mode_MMddyyyy_HHmmss">mm/dd/yyyy hh:mm:ss</string>
   <string name="filetime_format_mode_yyyyMMdd_HHmmss">yyyy-mm-dd hh:mm:ss</string>
   <string name="selection_folders_and_files"><xliff:g id="folders">%1$s</xliff:g> en <xliff:g id="files">%2$s</xliff:g> geselekteer.</string>
-  <string name="category_system">STELSEL</string>
-  <string name="category_app">PROGRAM</string>
-  <string name="category_binary">BINÊRE</string>
-  <string name="category_text">TEKS</string>
-  <string name="category_document">DOKUMENT</string>
-  <string name="category_ebook">EBOEK</string>
-  <string name="category_mail">POS</string>
-  <string name="category_compress">VERKLEIN</string>
-  <string name="category_exec">UITVOERBAAR</string>
-  <string name="category_database">DATABASIS</string>
-  <string name="category_font">LETTER TIPE</string>
-  <string name="category_image">BEELD</string>
-  <string name="category_audio">OUDIO</string>
-  <string name="category_video">VIDEO</string>
-  <string name="category_security">SEKURITEIT</string>
   <string name="compression_mode_title">Verkleinings metode</string>
   <string name="shortcut_failed_msg">Kon nie van die loodskortpad gebruik maak nie.</string>
   <string name="shortcut_creation_success_msg">Loodskortpad suksesvol geskep.</string>
@@ -327,7 +301,7 @@
   <string name="pref_general_advanced_settings_category">Gevorderd</string>
   <string name="pref_access_mode">Toegangsmodus</string>
   <string name="pref_access_mode_safe">Veilige modus</string>
-  <string name="pref_access_mode_safe_summary">Veilige modus\n\nDie program is aktief sonder regte en die enigste toeganklike lêerstelsels is skyf volumes (SD-kaart en USB-berging)</string>
+  <string name="pref_access_mode_safe_summary">Veilige modus\n\nDie program is aktief sonder regte en die enigste toeganklike lêerstelsels is skyf volumes (SD kaart en USB-berging)</string>
   <string name="pref_access_mode_prompt">Vra Gebruiker modus</string>
   <string name="pref_access_mode_prompt_summary">Vra Gebruiker modus\n\nDie program is aktief met volle toegang tot die lêerstelsel, maar sal vra vir toestemming voor die uitvoering van enige gevorderde aksies</string>
   <string name="pref_access_mode_root">\'Root\' modus</string>
@@ -364,7 +338,6 @@
   <string name="pref_editor_sh_item_category">Items</string>
   <string name="pref_themes_selection_category">Temas</string>
   <string name="pref_themes_set_theme">Pas tema aan</string>
-  <string name="pref_themes_no_preview">Geen voorskou beskikbaar nie.</string>
   <string name="pref_themes_confirmation">Tema suksesvol toegepas.</string>
   <string name="pref_themes_not_found">Die tema kon nie gevind word nie.</string>
   <string name="pref_debug_traces">Meld ontfoutings inligting aan</string>

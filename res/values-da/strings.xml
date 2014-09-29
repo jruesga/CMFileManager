@@ -80,8 +80,6 @@
   <string name="actionbar_button_other_view_options_cd">Andre visningsmuligheder</string>
   <string name="actionbar_button_selection_done_cd">Færdig</string>
   <string name="actionbar_button_actions_cd">Handlinger</string>
-  <string name="actionbar_button_history_cd">Historik</string>
-  <string name="actionbar_button_bookmarks_cd">Bogmærker</string>
   <string name="actionbar_button_search_cd">Søg</string>
   <string name="actionbar_button_overflow_cd">Flere muligheder</string>
   <string name="actionbar_button_storage_cd">Lagringsenheder</string>
@@ -93,10 +91,6 @@
   <string name="layout_icons">Ikoner</string>
   <string name="layout_simple">Simpel</string>
   <string name="layout_details">Detaljer</string>
-  <string name="cm_filemanager_show_dirs_first">Vis mapper først</string>
-  <string name="cm_filemanager_show_hidden">Vis skjulte filer</string>
-  <string name="cm_filemanager_show_system">Vis systemfiler</string>
-  <string name="cm_filemanager_show_symlinks">Vis symbolske links</string>
   <string name="filesystem_info_warning_title">Ingen information</string>
   <string name="filesystem_info_warning_msg">Der er ingen information tilgængelig for filsystemet.</string>
   <string name="filesystem_info_cant_be_mounted_msg">Filsystemet kan ikke monteres/afmonteres.</string>
@@ -178,8 +172,6 @@
   <string name="initial_directory_label">Vælg opstartsmappen:</string>
   <string name="initial_directory_relative_msg">Relative stier er ikke tilladt.</string>
   <string name="initial_directory_error_msg">Opstartsmappen kunne ikke gemmes pga. en fejl.</string>
-  <string name="menu_history">Historik</string>
-  <string name="menu_bookmarks">Bogmærker</string>
   <string name="menu_search">Søg</string>
   <string name="menu_settings">Indstillinger</string>
   <string name="menu_clear_history">Ryd historik</string>
@@ -273,21 +265,6 @@
   <string name="filetime_format_mode_MMddyyyy_HHmmss">mm/dd/åååå tt:mm:ss</string>
   <string name="filetime_format_mode_yyyyMMdd_HHmmss">åååå-mm-dd tt:mm:ss</string>
   <string name="selection_folders_and_files"><xliff:g id="folders">%1$s</xliff:g> og <xliff:g id="files">%2$s</xliff:g> valgt.</string>
-  <string name="category_system">SYSTEM</string>
-  <string name="category_app">APP</string>
-  <string name="category_binary">BINÆR</string>
-  <string name="category_text">TEKST</string>
-  <string name="category_document">DOKUMENT</string>
-  <string name="category_ebook">E-BOG</string>
-  <string name="category_mail">MAIL</string>
-  <string name="category_compress">KOMPRIMERET</string>
-  <string name="category_exec">EKSEKVERBAR</string>
-  <string name="category_database">DATABASE</string>
-  <string name="category_font">FONT</string>
-  <string name="category_image">BILLEDE</string>
-  <string name="category_audio">LYD</string>
-  <string name="category_video">VIDEO</string>
-  <string name="category_security">SIKKERHED</string>
   <string name="compression_mode_title">Komprimeringstilstand</string>
   <string name="shortcut_failed_msg">Det lykkedes ikke at håndtere genvejen.</string>
   <string name="shortcut_creation_success_msg">Genvej oprettet med succes.</string>
@@ -352,7 +329,6 @@
   <string name="pref_editor_sh_item_category">Elementer</string>
   <string name="pref_themes_selection_category">Temaer</string>
   <string name="pref_themes_set_theme">Sæt tema</string>
-  <string name="pref_themes_no_preview">Intet eksempel\ntilgængeligt</string>
   <string name="pref_themes_confirmation">Temaet blev korrekt anvendt.</string>
   <string name="pref_themes_not_found">Tema ikke fundet.</string>
   <string name="pref_debug_traces">Log debug-information</string>

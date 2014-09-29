@@ -83,8 +83,6 @@
   <string name="actionbar_button_other_view_options_cd">其他视图选项</string>
   <string name="actionbar_button_selection_done_cd">完成</string>
   <string name="actionbar_button_actions_cd">操作</string>
-  <string name="actionbar_button_history_cd">历史</string>
-  <string name="actionbar_button_bookmarks_cd">书签</string>
   <string name="actionbar_button_search_cd">搜索</string>
   <string name="actionbar_button_overflow_cd">更多选项</string>
   <string name="actionbar_button_storage_cd">存储卷</string>
@@ -96,10 +94,6 @@
   <string name="layout_icons">图标</string>
   <string name="layout_simple">简单</string>
   <string name="layout_details">详细信息</string>
-  <string name="cm_filemanager_show_dirs_first">文件夹优先显示</string>
-  <string name="cm_filemanager_show_hidden">显示隐藏文件</string>
-  <string name="cm_filemanager_show_system">显示系统文件</string>
-  <string name="cm_filemanager_show_symlinks">显示符号链接</string>
   <string name="filesystem_info_warning_title">无信息</string>
   <string name="filesystem_info_warning_msg">没有关于此文件系统可用的信息.</string>
   <string name="filesystem_info_cant_be_mounted_msg">无法挂载或卸载文件系统.</string>
@@ -185,8 +179,6 @@
   <string name="initial_directory_label">选择初始文件夹:</string>
   <string name="initial_directory_relative_msg">不允许相对性路径.</string>
   <string name="initial_directory_error_msg">保存初始文件夹时发生了错误.</string>
-  <string name="menu_history">历史</string>
-  <string name="menu_bookmarks">书签</string>
   <string name="menu_search">搜索</string>
   <string name="menu_settings">设置</string>
   <string name="menu_clear_history">清除历史</string>
@@ -284,21 +276,6 @@
   <string name="filetime_format_mode_MMddyyyy_HHmmss">月/日/年 时:分:秒</string>
   <string name="filetime_format_mode_yyyyMMdd_HHmmss">年-月-日 时:分:秒</string>
   <string name="selection_folders_and_files">已选择 <xliff:g id="folders">%1$s</xliff:g>和 <xliff:g id="files">%2$s</xliff:g>。</string>
-  <string name="category_system">系统</string>
-  <string name="category_app">应用</string>
-  <string name="category_binary">二进制</string>
-  <string name="category_text">文本</string>
-  <string name="category_document">文档</string>
-  <string name="category_ebook">电子书</string>
-  <string name="category_mail">邮件</string>
-  <string name="category_compress">压缩</string>
-  <string name="category_exec">可执行文件</string>
-  <string name="category_database">数据库</string>
-  <string name="category_font">字体</string>
-  <string name="category_image">图像</string>
-  <string name="category_audio">音频</string>
-  <string name="category_video">视频</string>
-  <string name="category_security">安全</string>
   <string name="compression_mode_title">压缩方式</string>
   <string name="shortcut_failed_msg">快捷方式处理失败.</string>
   <string name="shortcut_creation_success_msg">快捷方式创建成功.</string>
@@ -363,7 +340,6 @@
   <string name="pref_editor_sh_item_category">项目</string>
   <string name="pref_themes_selection_category">主题</string>
   <string name="pref_themes_set_theme">设置主题</string>
-  <string name="pref_themes_no_preview">无可用\n预览</string>
   <string name="pref_themes_confirmation">主题已被成功应用.</string>
   <string name="pref_themes_not_found">未找到主题.</string>
   <string name="pref_debug_traces">记录调试信息</string>

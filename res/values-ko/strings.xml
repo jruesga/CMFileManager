@@ -80,8 +80,6 @@
   <string name="actionbar_button_other_view_options_cd">다른 보기 옵션</string>
   <string name="actionbar_button_selection_done_cd">완료</string>
   <string name="actionbar_button_actions_cd">동작</string>
-  <string name="actionbar_button_history_cd">기록</string>
-  <string name="actionbar_button_bookmarks_cd">북마크</string>
   <string name="actionbar_button_search_cd">검색</string>
   <string name="actionbar_button_overflow_cd">기타 옵션</string>
   <string name="actionbar_button_storage_cd">저장소 볼륨</string>
@@ -93,10 +91,6 @@
   <string name="layout_icons">아이콘</string>
   <string name="layout_simple">단순하게</string>
   <string name="layout_details">자세하게</string>
-  <string name="cm_filemanager_show_dirs_first">폴더를 먼저 표시</string>
-  <string name="cm_filemanager_show_hidden">숨김 파일 표시</string>
-  <string name="cm_filemanager_show_system">시스템 파일 표시</string>
-  <string name="cm_filemanager_show_symlinks">심볼릭 링크 표시</string>
   <string name="filesystem_info_warning_title">정보 없음</string>
   <string name="filesystem_info_warning_msg">이 파일 시스템에 대한 정보가 없습니다.</string>
   <string name="filesystem_info_cant_be_mounted_msg">이 파일 시스템을 마운트/언마운트할 수 없습니다.</string>
@@ -178,8 +172,6 @@
   <string name="initial_directory_label">시작 폴더 선택:</string>
   <string name="initial_directory_relative_msg">상대 경로는 허용되지 않습니다.</string>
   <string name="initial_directory_error_msg">시작 폴더를 저장하는 동안 오류가 발생했습니다.</string>
-  <string name="menu_history">기록</string>
-  <string name="menu_bookmarks">북마크</string>
   <string name="menu_search">검색</string>
   <string name="menu_settings">설정</string>
   <string name="menu_clear_history">기록 지우기</string>
@@ -261,21 +253,6 @@
   <string name="filetime_format_mode_MMddyyyy_HHmmss">mm/dd/yyyy hh:mm:ss</string>
   <string name="filetime_format_mode_yyyyMMdd_HHmmss">yyyy-mm-dd hh:mm:ss</string>
   <string name="selection_folders_and_files"><xliff:g id="folders">%1$s</xliff:g> 폴더와 <xliff:g id="files">%2$s</xliff:g> 파일이 선택되었습니다.</string>
-  <string name="category_system">시스템</string>
-  <string name="category_app">앱</string>
-  <string name="category_binary">바이너리</string>
-  <string name="category_text">텍스트</string>
-  <string name="category_document">문서</string>
-  <string name="category_ebook">이북</string>
-  <string name="category_mail">메일</string>
-  <string name="category_compress">압축</string>
-  <string name="category_exec">실행 파일</string>
-  <string name="category_database">데이터베이스</string>
-  <string name="category_font">글꼴</string>
-  <string name="category_image">이미지</string>
-  <string name="category_audio">오디오</string>
-  <string name="category_video">비디오</string>
-  <string name="category_security">보안</string>
   <string name="compression_mode_title">압축 방식</string>
   <string name="shortcut_failed_msg">바로가기를 처리하지 못했습니다.</string>
   <string name="shortcut_creation_success_msg">바로가기를 성공적으로 생성했습니다.</string>
@@ -339,7 +316,6 @@
   <string name="pref_editor_sh_item_category">항목</string>
   <string name="pref_themes_selection_category">테마</string>
   <string name="pref_themes_set_theme">테마 설정</string>
-  <string name="pref_themes_no_preview">미리보기\n없음</string>
   <string name="pref_themes_confirmation">테마가 성공적으로 적용되었습니다.</string>
   <string name="pref_themes_not_found">테마를 찾을 수 없습니다.</string>
   <string name="pref_debug_traces">디버깅 정보 기록</string>

@@ -80,8 +80,6 @@
   <string name="actionbar_button_other_view_options_cd">Kitos vaizdo parinktys</string>
   <string name="actionbar_button_selection_done_cd">Baigta</string>
   <string name="actionbar_button_actions_cd">Veiksmai</string>
-  <string name="actionbar_button_history_cd">Istorija</string>
-  <string name="actionbar_button_bookmarks_cd">Žymės</string>
   <string name="actionbar_button_search_cd">Paieška</string>
   <string name="actionbar_button_overflow_cd">Daugiau parinkčių</string>
   <string name="actionbar_button_storage_cd">Saugyklos talpa</string>
@@ -93,10 +91,6 @@
   <string name="layout_icons">Piktogramos</string>
   <string name="layout_simple">Paprastas</string>
   <string name="layout_details">Informacinis</string>
-  <string name="cm_filemanager_show_dirs_first">Pirma rodyti aplankus</string>
-  <string name="cm_filemanager_show_hidden">Rodyti paslėptus failus</string>
-  <string name="cm_filemanager_show_system">Rodyti sistemos failus</string>
-  <string name="cm_filemanager_show_symlinks">Rodyti simbolines nuorodas</string>
   <string name="filesystem_info_warning_title">Nėra informacijos</string>
   <string name="filesystem_info_warning_msg">Sistemos failų informacija nėra prieinama.</string>
   <string name="filesystem_info_cant_be_mounted_msg">Failas negali būti pridedamas/atskiriamas.</string>
@@ -178,8 +172,6 @@
   <string name="initial_directory_label">Pasirinkite pradinį aplanką:</string>
   <string name="initial_directory_relative_msg">Kelias turi prasidėti pasviruoju brūkšniu.</string>
   <string name="initial_directory_error_msg">Įvyko klaida išsaugant pradinį aplanką.</string>
-  <string name="menu_history">Istorija</string>
-  <string name="menu_bookmarks">Žymės</string>
   <string name="menu_search">Paieška</string>
   <string name="menu_settings">Nustatymai</string>
   <string name="menu_clear_history">Ištrinti istoriją</string>
@@ -261,21 +253,6 @@
   <string name="filetime_format_mode_MMddyyyy_HHmmss">mm/dd/mmmm vv:mm:ss</string>
   <string name="filetime_format_mode_yyyyMMdd_HHmmss">mmmm-mm-dd vv:mm:ss</string>
   <string name="selection_folders_and_files">Pasirinkta: <xliff:g id="folders">%1$s</xliff:g> ir <xliff:g id="files">%2$s</xliff:g></string>
-  <string name="category_system">SISTEMA</string>
-  <string name="category_app">PROGRAMA</string>
-  <string name="category_binary">DVEJETAINIS</string>
-  <string name="category_text">TEKSTAS</string>
-  <string name="category_document">DOKUMENTAS</string>
-  <string name="category_ebook">EL. KNYGA</string>
-  <string name="category_mail">PAŠTAS</string>
-  <string name="category_compress">SUGLAUDINTI</string>
-  <string name="category_exec">VYKDOMA</string>
-  <string name="category_database">DUOMENŲ BAZĖ</string>
-  <string name="category_font">ŠRIFTAS</string>
-  <string name="category_image">VAIZDAS</string>
-  <string name="category_audio">GARSAS</string>
-  <string name="category_video">VAIZDAS</string>
-  <string name="category_security">SAUGUMAS</string>
   <string name="compression_mode_title">Suglaudinimo režimas</string>
   <string name="shortcut_failed_msg">Nepavyko apdoroti nuorodos.</string>
   <string name="shortcut_creation_success_msg">Nuoroda sukurta sėkmingai.</string>
@@ -339,7 +316,6 @@
   <string name="pref_editor_sh_item_category">Elementai</string>
   <string name="pref_themes_selection_category">Temos</string>
   <string name="pref_themes_set_theme">Nustatyti temą</string>
-  <string name="pref_themes_no_preview">Peržiūra\nprieinama</string>
   <string name="pref_themes_confirmation">Tema sėkmingai pritaikyta.</string>
   <string name="pref_themes_not_found">Tema nerasta.</string>
   <string name="pref_debug_traces">Vesti užrašus apie derinimo informaciją</string>

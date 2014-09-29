@@ -80,8 +80,6 @@
   <string name="actionbar_button_other_view_options_cd">他の表示オプション</string>
   <string name="actionbar_button_selection_done_cd">完了</string>
   <string name="actionbar_button_actions_cd">操作</string>
-  <string name="actionbar_button_history_cd">履歴</string>
-  <string name="actionbar_button_bookmarks_cd">ブックマーク</string>
   <string name="actionbar_button_search_cd">検索</string>
   <string name="actionbar_button_overflow_cd">他のオプション</string>
   <string name="actionbar_button_storage_cd">ストレージボリューム</string>
@@ -93,10 +91,6 @@
   <string name="layout_icons">アイコン</string>
   <string name="layout_simple">シンプル</string>
   <string name="layout_details">詳細</string>
-  <string name="cm_filemanager_show_dirs_first">最初にフォルダを表示</string>
-  <string name="cm_filemanager_show_hidden">隠しファイルを表示</string>
-  <string name="cm_filemanager_show_system">システムファイルを表示</string>
-  <string name="cm_filemanager_show_symlinks">シンボリックリンクを表示</string>
   <string name="filesystem_info_warning_title">情報がありません</string>
   <string name="filesystem_info_warning_msg">このファイルシステムには利用可能な情報がありません。</string>
   <string name="filesystem_info_cant_be_mounted_msg">このファイルシステムはマウント/マウント解除できません。</string>
@@ -178,8 +172,6 @@
   <string name="initial_directory_label">初期フォルダを選択してください:</string>
   <string name="initial_directory_relative_msg">相対パスは使用できません。</string>
   <string name="initial_directory_error_msg">初期フォルダの保存中にエラーが発生しました。</string>
-  <string name="menu_history">履歴</string>
-  <string name="menu_bookmarks">ブックマーク</string>
   <string name="menu_search">検索</string>
   <string name="menu_settings">設定</string>
   <string name="menu_clear_history">履歴を消去</string>
@@ -262,21 +254,6 @@
   <string name="filetime_format_mode_MMddyyyy_HHmmss">mm/dd/yyyy hh:mm:ss</string>
   <string name="filetime_format_mode_yyyyMMdd_HHmmss">yyyy-mm-dd hh:mm:ss</string>
   <string name="selection_folders_and_files"><xliff:g id="folders">%1$s</xliff:g>と<xliff:g id="files">%2$s</xliff:g>を選択しています。</string>
-  <string name="category_system">システム</string>
-  <string name="category_app">アプリ</string>
-  <string name="category_binary">バイナリ</string>
-  <string name="category_text">テキスト</string>
-  <string name="category_document">文書</string>
-  <string name="category_ebook">電子書籍</string>
-  <string name="category_mail">メール</string>
-  <string name="category_compress">書庫</string>
-  <string name="category_exec">実行可能</string>
-  <string name="category_database">データベース</string>
-  <string name="category_font">フォント</string>
-  <string name="category_image">画像</string>
-  <string name="category_audio">音声</string>
-  <string name="category_video">動画</string>
-  <string name="category_security">セキュリティ</string>
   <string name="compression_mode_title">圧縮モード</string>
   <string name="shortcut_failed_msg">ショートカットの操作ができませんでした</string>
   <string name="shortcut_creation_success_msg">ショートカットの作成が完了しました。</string>
@@ -293,7 +270,7 @@
   <string name="pref_case_sensitive_sort_summary">検索結果の並べ替えや移動で大文字と小文字を区別する</string>
   <string name="pref_filetime_format_mode">日付と時刻の形式</string>
   <string name="pref_disk_usage_warning_level">ディスク使用量の警告</string>
-  <string name="pref_disk_usage_warning_level_summary" formatted="false">空きディスク容量が<xliff:g id="level">%1$s</xliff:g>パーセントに達したとき、ディスク使用量ウィジェットでは異なる色で表示する</string>
+  <string name="pref_disk_usage_warning_level_summary" formatted="false">ディスク使用量が空きディスク容量の<xliff:g id="level">%1$s</xliff:g>パーセントに達したときは、ディスク使用量ウィジェットでは異なる色で表示する</string>
   <string name="pref_compute_folder_statistics">フォルダの統計情報を計算</string>
   <string name="pref_compute_folder_statistics_on">警告！フォルダの統計情報の計算は多くの時間とシステムリソースを消費します</string>
   <string name="pref_display_thumbs">プレビュー</string>
@@ -322,7 +299,7 @@
   <string name="pref_save_search_terms_on">検索語は保存され、今後の検索で候補として使用されます</string>
   <string name="pref_save_search_terms_off">検索語は保存されません</string>
   <string name="pref_remove_saved_search_terms">保存されている検索語を削除</string>
-  <string name="pref_remove_saved_search_terms_summary">タップすると保存されているすべての検索語を削除します</string>
+  <string name="pref_remove_saved_search_terms_summary">タップして保存されているすべての検索語を削除する</string>
   <string name="pref_remove_saved_search_terms_msg">保存されていたすべての検索語を削除しました。</string>
   <string name="pref_editor_behaviour_category">動作</string>
   <string name="pref_no_suggestions">変換候補を表示しない</string>
@@ -340,7 +317,6 @@
   <string name="pref_editor_sh_item_category">項目</string>
   <string name="pref_themes_selection_category">テーマ</string>
   <string name="pref_themes_set_theme">テーマを設定</string>
-  <string name="pref_themes_no_preview">プレビューが\nありません</string>
   <string name="pref_themes_confirmation">テーマの適用が完了しました。</string>
   <string name="pref_themes_not_found">テーマが見つかりませんでした。</string>
   <string name="pref_debug_traces">デバッグ情報のログを記録</string>

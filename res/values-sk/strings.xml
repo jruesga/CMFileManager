@@ -80,8 +80,6 @@
   <string name="actionbar_button_other_view_options_cd">Ďalšie možnosti zobrazenia</string>
   <string name="actionbar_button_selection_done_cd">Hotovo</string>
   <string name="actionbar_button_actions_cd">Akcie</string>
-  <string name="actionbar_button_history_cd">História</string>
-  <string name="actionbar_button_bookmarks_cd">Záložky</string>
   <string name="actionbar_button_search_cd">Hľadať</string>
   <string name="actionbar_button_overflow_cd">Viac možností</string>
   <string name="actionbar_button_storage_cd">Zväzky úložiska</string>
@@ -93,10 +91,6 @@
   <string name="layout_icons">Ikony</string>
   <string name="layout_simple">Jednoduché</string>
   <string name="layout_details">Podrobnosti</string>
-  <string name="cm_filemanager_show_dirs_first">Zobraziť najskôr priečinky</string>
-  <string name="cm_filemanager_show_hidden">Zobraziť skryté súbory</string>
-  <string name="cm_filemanager_show_system">Zobraziť systémové súbory</string>
-  <string name="cm_filemanager_show_symlinks">Zobraziť symbolické odkazy</string>
   <string name="filesystem_info_warning_title">Žiadne informácie</string>
   <string name="filesystem_info_warning_msg">Nie sú k dispozícii žiadne informácie o súborovom systéme.</string>
   <string name="filesystem_info_cant_be_mounted_msg">Súborový systém nie je možné pripojiť/odpojiť.</string>
@@ -178,8 +172,6 @@
   <string name="initial_directory_label">Vyberte počiatočný priečinok:</string>
   <string name="initial_directory_relative_msg">Relatívna cesty nie sú povolené.</string>
   <string name="initial_directory_error_msg">Došlo k chybe pri ukladaní počiatočného priečinka.</string>
-  <string name="menu_history">História</string>
-  <string name="menu_bookmarks">Záložky</string>
   <string name="menu_search">Hľadať</string>
   <string name="menu_settings">Nastavenia</string>
   <string name="menu_clear_history">Vymazať históriu</string>
@@ -268,21 +260,6 @@
   <string name="filetime_format_mode_MMddyyyy_HHmmss">mm/dd/yyyy hh:mm:ss</string>
   <string name="filetime_format_mode_yyyyMMdd_HHmmss">yyyy-mm-dd hh:mm:ss</string>
   <string name="selection_folders_and_files"><xliff:g id="folders">%1$s</xliff:g> a <xliff:g id="files">%2$s</xliff:g> vybraných.</string>
-  <string name="category_system">SYSTÉM</string>
-  <string name="category_app">APLIKÁCIA</string>
-  <string name="category_binary">BINÁRNY SÚBOR</string>
-  <string name="category_text">TEXTOVÝ SÚBOR</string>
-  <string name="category_document">DOKUMENT</string>
-  <string name="category_ebook">EL. KNIHA</string>
-  <string name="category_mail">POŠTA</string>
-  <string name="category_compress">KOMPRIMOVANÝ SÚBOR</string>
-  <string name="category_exec">SPUSTITEĽNÝ SÚBOR</string>
-  <string name="category_database">DATABÁZA</string>
-  <string name="category_font">PÍSMO</string>
-  <string name="category_image">OBRÁZOK</string>
-  <string name="category_audio">AUDIO</string>
-  <string name="category_video">VIDEO</string>
-  <string name="category_security">BEZPEČNOSŤ</string>
   <string name="compression_mode_title">Režim kompresie</string>
   <string name="shortcut_failed_msg">Chyba pri spracovaní skratky.</string>
   <string name="shortcut_creation_success_msg">Skratka bola úspešne vytvorená.</string>
@@ -347,7 +324,6 @@ Autorské práva © 2012 The CyanogenMod Project</string>
   <string name="pref_editor_sh_item_category">Položky</string>
   <string name="pref_themes_selection_category">Témy</string>
   <string name="pref_themes_set_theme">Nastaviť tému</string>
-  <string name="pref_themes_no_preview">Nie je dostupná\nukážka</string>
   <string name="pref_themes_confirmation">Téma bola úspešne aplikovaná.</string>
   <string name="pref_themes_not_found">Téma sa nenašla.</string>
   <string name="pref_debug_traces">Zaznamenať informácie ladenia</string>

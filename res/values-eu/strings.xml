@@ -80,8 +80,6 @@
   <string name="actionbar_button_other_view_options_cd">Beste ikuspegi modu batzuk</string>
   <string name="actionbar_button_selection_done_cd">Eginda</string>
   <string name="actionbar_button_actions_cd">Ekintzak</string>
-  <string name="actionbar_button_history_cd">Historia</string>
-  <string name="actionbar_button_bookmarks_cd">Laster markak</string>
   <string name="actionbar_button_search_cd">Bilaketa</string>
   <string name="actionbar_button_overflow_cd">Aukera gehiago</string>
   <string name="actionbar_button_storage_cd">Biltegiratze euskarriak</string>
@@ -93,10 +91,6 @@
   <string name="layout_icons">Ikonoak</string>
   <string name="layout_simple">Sinpleak</string>
   <string name="layout_details">Xehetasunez</string>
-  <string name="cm_filemanager_show_dirs_first">Karpetak lehenengo erakutsi</string>
-  <string name="cm_filemanager_show_hidden">Izkutuko fitxategiak erakutsi</string>
-  <string name="cm_filemanager_show_system">Sistemaren fitxategiak erakutsi</string>
-  <string name="cm_filemanager_show_symlinks">Lasterbideak erakutsi</string>
   <string name="filesystem_info_warning_title">Informaziorik ez</string>
   <string name="filesystem_info_warning_msg">Ez dago informaziorik eskuragarri fitxategi sistemarako.</string>
   <string name="filesystem_info_cant_be_mounted_msg">Fitxategi sistema ezin da muntatu/desmuntatu.</string>
@@ -178,8 +172,6 @@
   <string name="initial_directory_label">Hasierako karpeta aukeratu:</string>
   <string name="initial_directory_relative_msg">Ibilbide erlatiboak ez daude onartuta.</string>
   <string name="initial_directory_error_msg">Hasierako karpeta berrezartzean akats bat egon da.</string>
-  <string name="menu_history">Historia</string>
-  <string name="menu_bookmarks">Laster markak</string>
   <string name="menu_search">Bilaketa</string>
   <string name="menu_settings">Ezarpenak</string>
   <string name="menu_clear_history">Historia garbitu</string>
@@ -261,21 +253,6 @@
   <string name="filetime_format_mode_MMddyyyy_HHmmss">hh/ee/uuuu hh:mm:ss</string>
   <string name="filetime_format_mode_yyyyMMdd_HHmmss">uuuu-hh-ee hh:mm:ss</string>
   <string name="selection_folders_and_files"><xliff:g id="folders">%1$s</xliff:g> eta <xliff:g id="files">%2$s</xliff:g> aukeratuta.</string>
-  <string name="category_system">SISTEMA</string>
-  <string name="category_app">APLIKAZIOA</string>
-  <string name="category_binary">BINARIOA</string>
-  <string name="category_text">TESTUA</string>
-  <string name="category_document">DOKUMENTUA</string>
-  <string name="category_ebook">E-BOOK</string>
-  <string name="category_mail">POSTA</string>
-  <string name="category_compress">KONPRIMATUA</string>
-  <string name="category_exec">EXEKUTAGARRIA</string>
-  <string name="category_database">DATU BASEA</string>
-  <string name="category_font">ITURBURUA</string>
-  <string name="category_image">IRUDIA</string>
-  <string name="category_audio">AUDIOA</string>
-  <string name="category_video">BIDEOA</string>
-  <string name="category_security">SEGURTASUNA</string>
   <string name="compression_mode_title">Konprimatze era</string>
   <string name="shortcut_failed_msg">Akatsa lasterbidea irekitzerakoan.</string>
   <string name="shortcut_creation_success_msg">Lasterbidea arrakastaz sortua.</string>
@@ -339,7 +316,6 @@
   <string name="pref_editor_sh_item_category">Elementuak</string>
   <string name="pref_themes_selection_category">Gaiak</string>
   <string name="pref_themes_set_theme">Gaia ezarri</string>
-  <string name="pref_themes_no_preview">Aurrebista\nez erabilgarri</string>
   <string name="pref_themes_confirmation">Gaia arrakastaz ezarri da.</string>
   <string name="pref_themes_not_found">Ez da gaia aurkitu.</string>
   <string name="pref_debug_traces">Arazketa gaitu</string>

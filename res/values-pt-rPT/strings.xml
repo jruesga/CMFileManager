@@ -81,8 +81,6 @@
   <string name="actionbar_button_other_view_options_cd">Outras opções de visualização</string>
   <string name="actionbar_button_selection_done_cd">Feito</string>
   <string name="actionbar_button_actions_cd">Ações</string>
-  <string name="actionbar_button_history_cd">Histórico</string>
-  <string name="actionbar_button_bookmarks_cd">Favoritos</string>
   <string name="actionbar_button_search_cd">Pesquisa</string>
   <string name="actionbar_button_overflow_cd">Mais opções</string>
   <string name="actionbar_button_storage_cd">Volumes de armazenamento</string>
@@ -94,10 +92,6 @@
   <string name="layout_icons">Ícones</string>
   <string name="layout_simple">Simples</string>
   <string name="layout_details">Detalhes</string>
-  <string name="cm_filemanager_show_dirs_first">Mostrar pastas primeiro</string>
-  <string name="cm_filemanager_show_hidden">Mostrar ficheiros ocultos</string>
-  <string name="cm_filemanager_show_system">Mostrar ficheiros de sistema</string>
-  <string name="cm_filemanager_show_symlinks">Mostrar ligações simbólicas</string>
   <string name="filesystem_info_warning_title">Sem informação</string>
   <string name="filesystem_info_warning_msg">Não há informação disponível para o ficheiro de sistema.</string>
   <string name="filesystem_info_cant_be_mounted_msg">O sistema de ficheiros não pode ser montado/desmontado</string>
@@ -184,8 +178,6 @@
   <string name="initial_directory_label">Escolha a pasta inicial:</string>
   <string name="initial_directory_relative_msg">Caminhos relativos não são permitidos.</string>
   <string name="initial_directory_error_msg">Ocorreu um erro durante a gravação da pasta inicial.</string>
-  <string name="menu_history">Histórico</string>
-  <string name="menu_bookmarks">Favoritos</string>
   <string name="menu_search">Procura</string>
   <string name="menu_settings">Definições</string>
   <string name="menu_clear_history">Apagar histórico</string>
@@ -277,21 +269,6 @@
   <string name="filetime_format_mode_MMddyyyy_HHmmss">mm/dd/aaaa hh:mm:ss</string>
   <string name="filetime_format_mode_yyyyMMdd_HHmmss">aaaa-mm-dd hh:mm:ss</string>
   <string name="selection_folders_and_files"><xliff:g id="folders">%1$s</xliff:g> e <xliff:g id="files">%2$s</xliff:g> selecionado.</string>
-  <string name="category_system">SISTEMA</string>
-  <string name="category_app">APLICAÇÃO</string>
-  <string name="category_binary">BINÁRIO</string>
-  <string name="category_text">TEXTO</string>
-  <string name="category_document">DOCUMENTO</string>
-  <string name="category_ebook">EBOOK</string>
-  <string name="category_mail">CORREIO</string>
-  <string name="category_compress">COMPRIMIR</string>
-  <string name="category_exec">EXECUTÁVEL</string>
-  <string name="category_database">BASE DE DADOS</string>
-  <string name="category_font">FONTE</string>
-  <string name="category_image">IMAGEM</string>
-  <string name="category_audio">ÁUDIO</string>
-  <string name="category_video">VÍDEO</string>
-  <string name="category_security">SEGURANÇA</string>
   <string name="compression_mode_title">Modo de compressão</string>
   <string name="shortcut_failed_msg">Falha ao lidar com o atalho.</string>
   <string name="shortcut_creation_success_msg">Atalho criado com sucesso.</string>
@@ -363,7 +340,6 @@
   <string name="pref_editor_sh_item_category">Items</string>
   <string name="pref_themes_selection_category">Temas</string>
   <string name="pref_themes_set_theme">Definir item</string>
-  <string name="pref_themes_no_preview">Sem pré-visualização\ndisponível</string>
   <string name="pref_themes_confirmation">Tema aplicado com sucesso.</string>
   <string name="pref_themes_not_found">Tema não encontrado</string>
   <string name="pref_debug_traces">Registo de depuração</string>

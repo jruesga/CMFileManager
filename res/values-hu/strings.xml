@@ -80,8 +80,6 @@
   <string name="actionbar_button_other_view_options_cd">Egyéb megjelenítési opciók</string>
   <string name="actionbar_button_selection_done_cd">Kész</string>
   <string name="actionbar_button_actions_cd">Események</string>
-  <string name="actionbar_button_history_cd">Előzmények</string>
-  <string name="actionbar_button_bookmarks_cd">Könyvjelzők</string>
   <string name="actionbar_button_search_cd">Keresés</string>
   <string name="actionbar_button_overflow_cd">További opciók</string>
   <string name="actionbar_button_storage_cd">Tárhely kötetek</string>
@@ -93,10 +91,6 @@
   <string name="layout_icons">Ikonok</string>
   <string name="layout_simple">Egyszerű</string>
   <string name="layout_details">Részletek</string>
-  <string name="cm_filemanager_show_dirs_first">Mappák elől</string>
-  <string name="cm_filemanager_show_hidden">Rejtett fájlok megjelenítése</string>
-  <string name="cm_filemanager_show_system">Rendszerfájlok megjelenítése</string>
-  <string name="cm_filemanager_show_symlinks">Szimbolikus linkek megjelenítése</string>
   <string name="filesystem_info_warning_title">Nincs információ</string>
   <string name="filesystem_info_warning_msg">Nincs elérhető információ a fájlrendszerről.</string>
   <string name="filesystem_info_cant_be_mounted_msg">A fájlrendszer nem csatolható.</string>
@@ -178,8 +172,6 @@
   <string name="initial_directory_label">Válasszon kezdőkönyvtárat:</string>
   <string name="initial_directory_relative_msg">Relatív útvonalak nem használhatóak.</string>
   <string name="initial_directory_error_msg">Hiba történt a kezdőkönyvtár mentésekor.</string>
-  <string name="menu_history">Előzmények</string>
-  <string name="menu_bookmarks">Könyvjelzők</string>
   <string name="menu_search">Keresés</string>
   <string name="menu_settings">Beállítások</string>
   <string name="menu_clear_history">Előzmények törlése</string>
@@ -261,21 +253,6 @@
   <string name="filetime_format_mode_MMddyyyy_HHmmss">hh/nn/éééé óó:pp:mm</string>
   <string name="filetime_format_mode_yyyyMMdd_HHmmss">éééé/hh/nn óó:pp:mm</string>
   <string name="selection_folders_and_files"><xliff:g id="folders">%1$s</xliff:g> és <xliff:g id="files">%2$s</xliff:g> kiválasztva.</string>
-  <string name="category_system">RENDSZER</string>
-  <string name="category_app">ALKALMAZÁS</string>
-  <string name="category_binary">BINÁRIS</string>
-  <string name="category_text">SZÖVEG</string>
-  <string name="category_document">DOKUMENTUM</string>
-  <string name="category_ebook">E-BOOK</string>
-  <string name="category_mail">E-MAIL</string>
-  <string name="category_compress">TÖMÖRÍTETT</string>
-  <string name="category_exec">FUTTATHATÓ</string>
-  <string name="category_database">ADATBÁZIS</string>
-  <string name="category_font">BETŰTÍPUS</string>
-  <string name="category_image">KÉP</string>
-  <string name="category_audio">HANG</string>
-  <string name="category_video">VIDEÓ</string>
-  <string name="category_security">BIZTONSÁGI</string>
   <string name="compression_mode_title">Tömörítési mód</string>
   <string name="shortcut_failed_msg">Nem lehet kezelni a parancsikont.</string>
   <string name="shortcut_creation_success_msg">Parancsikon sikeresen létrehozva.</string>
@@ -339,7 +316,6 @@
   <string name="pref_editor_sh_item_category">Elemek</string>
   <string name="pref_themes_selection_category">Témák</string>
   <string name="pref_themes_set_theme">Téma beállítása</string>
-  <string name="pref_themes_no_preview">Nincs előnézeti kép</string>
   <string name="pref_themes_confirmation">Téma beállítva.</string>
   <string name="pref_themes_not_found">Nem található téma.</string>
   <string name="pref_debug_traces">Hibakeresési napló</string>

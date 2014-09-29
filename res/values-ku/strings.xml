@@ -80,8 +80,6 @@
   <string name="actionbar_button_other_view_options_cd">هەڵبژاردنەکانی پیشاندانەکانی تر</string>
   <string name="actionbar_button_selection_done_cd">تەواو</string>
   <string name="actionbar_button_actions_cd">فرمانەکان</string>
-  <string name="actionbar_button_history_cd">مێژوو</string>
-  <string name="actionbar_button_bookmarks_cd">نیشانەکراوەکان</string>
   <string name="actionbar_button_search_cd">گه‌ڕان</string>
   <string name="actionbar_button_overflow_cd">هەڵبژاردنی زیاتر</string>
   <string name="actionbar_button_storage_cd">قەبارەی یادگەکان</string>
@@ -93,10 +91,6 @@
   <string name="layout_icons">وێنۆچکه‌</string>
   <string name="layout_simple">ساده‌</string>
   <string name="layout_details">زانیاری زیاتر</string>
-  <string name="cm_filemanager_show_dirs_first">پیشاندانی فۆڵدەرەکان لەپێشدا</string>
-  <string name="cm_filemanager_show_hidden">پیشاندانی فایلە شاراوەکان</string>
-  <string name="cm_filemanager_show_system">پیشاندانی فایلەکانی سیستەم</string>
-  <string name="cm_filemanager_show_symlinks">symlinks پیشاندانی</string>
   <string name="filesystem_info_warning_title">زانیاری نیە</string>
   <string name="filesystem_info_warning_msg">هیچ زانیارییەک لەبەردەستدا نیە بۆ فایلی سیستەم.</string>
   <string name="filesystem_info_cant_be_mounted_msg">په‌ڕگه‌ی سیسته‌م ناتوانرێ ده‌ربکرێ/پێوه‌بکرێ.</string>
@@ -178,8 +172,6 @@
   <string name="initial_directory_label">بوخچه‌ی سه‌ره‌تایی دیاری بکه‌:</string>
   <string name="initial_directory_relative_msg">ڕێڕه‌وی ڕێژه‌یی ڕێگه‌پێنه‌دراوه‌.</string>
   <string name="initial_directory_error_msg">هه‌ڵه‌یه‌ک ڕوویدا له‌کاتی پاشه‌که‌وتکردنی بوخچه‌ی سه‌ره‌تایی.</string>
-  <string name="menu_history">مێژوو</string>
-  <string name="menu_bookmarks">نیشانەکراوەکان</string>
   <string name="menu_search">گەڕان</string>
   <string name="menu_settings">ڕێکخستنه‌کان</string>
   <string name="menu_clear_history">خاوێنکردنەوەی مێژوو</string>
@@ -261,21 +253,6 @@
   <string name="filetime_format_mode_MMddyyyy_HHmmss">mm/dd/yyyy hh:mm:ss</string>
   <string name="filetime_format_mode_yyyyMMdd_HHmmss">yyyy-mm-dd hh:mm:ss</string>
   <string name="selection_folders_and_files"><xliff:g id="folders">%1$s</xliff:g> وه‌  <xliff:g id="files">%2$s</xliff:g> دیاریکراون.</string>
-  <string name="category_system">سیستەم</string>
-  <string name="category_app">بەرنامە</string>
-  <string name="category_binary">فایلی کاتی</string>
-  <string name="category_text">دەق</string>
-  <string name="category_document">بەڵگەنامە</string>
-  <string name="category_ebook">پەرتووکی ئەلکتۆنی</string>
-  <string name="category_mail">پۆست</string>
-  <string name="category_compress">پەستاندن</string>
-  <string name="category_exec">جێبه‌جێکه‌ر</string>
-  <string name="category_database">داتابەیس</string>
-  <string name="category_font">فۆنت</string>
-  <string name="category_image">وێنە</string>
-  <string name="category_audio">دەنگ</string>
-  <string name="category_video">ڤیدیۆ</string>
-  <string name="category_security">پارێزگاری</string>
   <string name="compression_mode_title">شێوازی پەستاندن</string>
   <string name="shortcut_failed_msg">سه‌رکه‌وتوو نه‌بوو له‌ ڕێکخستنی کورته‌وێنۆچکه‌.</string>
   <string name="shortcut_creation_success_msg">کورتە وێنۆچکه‌ بەسەرکەوتوویی دروستکرا.</string>
@@ -339,7 +316,6 @@
   <string name="pref_editor_sh_item_category">فایلەکان</string>
   <string name="pref_themes_selection_category">ڕووکارەکان</string>
   <string name="pref_themes_set_theme">رێکخستنی ڕووکار</string>
-  <string name="pref_themes_no_preview">پیشاندان\nلە بەردەستدا نیە</string>
   <string name="pref_themes_confirmation">ڕووکار بەسەرکەوتوویی گۆرا.</string>
   <string name="pref_themes_not_found">ڕووکار نەدۆزرایەوە.</string>
   <string name="pref_debug_traces">تۆمارکردنی زانیاری هه‌ڵدۆزین</string>

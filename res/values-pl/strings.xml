@@ -80,8 +80,6 @@
   <string name="actionbar_button_other_view_options_cd">Inne opcje wyświetlania</string>
   <string name="actionbar_button_selection_done_cd">Wykonano</string>
   <string name="actionbar_button_actions_cd">Polecenia</string>
-  <string name="actionbar_button_history_cd">Historia</string>
-  <string name="actionbar_button_bookmarks_cd">Zakładki</string>
   <string name="actionbar_button_search_cd">Wyszukiwanie</string>
   <string name="actionbar_button_overflow_cd">Więcej opcji</string>
   <string name="actionbar_button_storage_cd">Woluminy pamięci</string>
@@ -93,10 +91,6 @@
   <string name="layout_icons">Ikony</string>
   <string name="layout_simple">Prosty</string>
   <string name="layout_details">Szczegółowy</string>
-  <string name="cm_filemanager_show_dirs_first">Pokaż najpierw foldery</string>
-  <string name="cm_filemanager_show_hidden">Pokaż ukryte pliki</string>
-  <string name="cm_filemanager_show_system">Pokaż pliki systemowe</string>
-  <string name="cm_filemanager_show_symlinks">Pokaż dowiązania</string>
   <string name="filesystem_info_warning_title">Brak informacji</string>
   <string name="filesystem_info_warning_msg">Nie ma żadnych informacji na temat systemu plików</string>
   <string name="filesystem_info_cant_be_mounted_msg">System plików nie może zostać zamontowany/odmontowany.</string>
@@ -178,8 +172,6 @@
   <string name="initial_directory_label">Wybierz folder początkowy:</string>
   <string name="initial_directory_relative_msg">Ścieżki względne nie są dozwolone.</string>
   <string name="initial_directory_error_msg">Wystąpił błąd podczas zapisywania folderu początkowego.</string>
-  <string name="menu_history">Historia</string>
-  <string name="menu_bookmarks">Zakładki</string>
   <string name="menu_search">Wyszukiwanie</string>
   <string name="menu_settings">Ustawienia</string>
   <string name="menu_clear_history">Wyczyść historię</string>
@@ -270,21 +262,6 @@
   <string name="filetime_format_mode_MMddyyyy_HHmmss">mm/dd/rrrr gg:mm:ss</string>
   <string name="filetime_format_mode_yyyyMMdd_HHmmss">rrrr-mm-dd gg:mm:ss</string>
   <string name="selection_folders_and_files">Zaznaczono <xliff:g id="folders">%1$s</xliff:g> i <xliff:g id="files">%2$s</xliff:g>.</string>
-  <string name="category_system">SYSTEM</string>
-  <string name="category_app">APLIKACJE</string>
-  <string name="category_binary">PLIKI BINARNE</string>
-  <string name="category_text">TEKST</string>
-  <string name="category_document">DOKUMENTY</string>
-  <string name="category_ebook">EBOOKI</string>
-  <string name="category_mail">E-MAILE</string>
-  <string name="category_compress">ARCHIWA</string>
-  <string name="category_exec">WYKONYWALNE</string>
-  <string name="category_database">BAZY DANYCH</string>
-  <string name="category_font">CZCIONKI</string>
-  <string name="category_image">OBRAZY</string>
-  <string name="category_audio">PLIKI AUDIO</string>
-  <string name="category_video">PLIKI WIDEO</string>
-  <string name="category_security">ZABEZPIECZENIA</string>
   <string name="compression_mode_title">Tryb kompresji</string>
   <string name="shortcut_failed_msg">Nie udało się wykonać skrótu.</string>
   <string name="shortcut_creation_success_msg">Skrót utworzony pomyślnie.</string>
@@ -349,7 +326,6 @@ Copyright \u00A9 2013 Projekt CyanogenMod</string>
   <string name="pref_editor_sh_item_category">Elementy</string>
   <string name="pref_themes_selection_category">Motywy</string>
   <string name="pref_themes_set_theme">Zastosuj motyw</string>
-  <string name="pref_themes_no_preview">Brak podglądu</string>
   <string name="pref_themes_confirmation">Motyw został zastosowany.</string>
   <string name="pref_themes_not_found">Nie znaleziono motywu.</string>
   <string name="pref_debug_traces">Zapisuj informacje debugowania</string>

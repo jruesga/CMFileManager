@@ -80,8 +80,6 @@
   <string name="actionbar_button_other_view_options_cd">Άλλες επιλογές εμφάνισης</string>
   <string name="actionbar_button_selection_done_cd">Τέλος</string>
   <string name="actionbar_button_actions_cd">Ενέργειες</string>
-  <string name="actionbar_button_history_cd">Ιστορικό</string>
-  <string name="actionbar_button_bookmarks_cd">Σελιδοδείκτες</string>
   <string name="actionbar_button_search_cd">Αναζήτηση</string>
   <string name="actionbar_button_overflow_cd">Περισσότερες επιλογές</string>
   <string name="actionbar_button_storage_cd">Μονάδες αποθήκευσης</string>
@@ -178,8 +176,6 @@
   <string name="initial_directory_label">Επιλέξτε τον αρχικό φάκελο:</string>
   <string name="initial_directory_relative_msg">Δεν επιτρέπονται σχετικές διαδρομές.</string>
   <string name="initial_directory_error_msg">Προέκυψε σφάλμα κατά την αποθήκευση του αρχικού φακέλου.</string>
-  <string name="menu_history">Ιστορικό</string>
-  <string name="menu_bookmarks">Σελιδοδείκτες</string>
   <string name="menu_search">Αναζήτηση</string>
   <string name="menu_settings">Ρυθμίσεις</string>
   <string name="menu_clear_history">Καθαρισμός ιστορικού</string>
@@ -261,21 +257,6 @@
   <string name="filetime_format_mode_MMddyyyy_HHmmss">μμ/ηη/εεεε ωω:λλ:δδ</string>
   <string name="filetime_format_mode_yyyyMMdd_HHmmss">εεεε-μμ-ηη ωω:λλ:δδ</string>
   <string name="selection_folders_and_files">Επιλέχθηκαν <xliff:g id="folders">%1$s</xliff:g> και <xliff:g id="files">%2$s</xliff:g>.</string>
-  <string name="category_system">ΣΥΣΤΗΜΑ</string>
-  <string name="category_app">ΕΦΑΡΜΟΓΗ</string>
-  <string name="category_binary">BINARY</string>
-  <string name="category_text">ΚΕΙΜΕΝΟ</string>
-  <string name="category_document">ΕΓΓΡΑΦΟ</string>
-  <string name="category_ebook">EBOOK</string>
-  <string name="category_mail">ΜΗΝΥΜΑ</string>
-  <string name="category_compress">ΣΥΜΠΙΕΣΜΕΝΟ</string>
-  <string name="category_exec">ΕΚΤΕΛΕΣΙΜΟ</string>
-  <string name="category_database">ΒΑΣΗ ΔΕΔΟΜΕΝΩΝ</string>
-  <string name="category_font">ΓΡΑΜΜΑΤΟΣΕΙΡΑ</string>
-  <string name="category_image">ΕΙΚΟΝΑ</string>
-  <string name="category_audio">ΗΧΟΣ</string>
-  <string name="category_video">ΒΙΝΤΕΟ</string>
-  <string name="category_security">ΑΣΦΑΛΕΙΑ</string>
   <string name="compression_mode_title">Τύπος συμπίεσης</string>
   <string name="shortcut_failed_msg">Αποτυχία χειρισμού της συντόμευσης.</string>
   <string name="shortcut_creation_success_msg">Επιτυχής δημιουργία συντόμευσης.</string>
@@ -339,7 +320,6 @@
   <string name="pref_editor_sh_item_category">Αντικείμενα</string>
   <string name="pref_themes_selection_category">Θέματα</string>
   <string name="pref_themes_set_theme">Ορισμός θέματος</string>
-  <string name="pref_themes_no_preview">Δεν υπάρχει\nδιαθέσιμη προεπισκόπηση</string>
   <string name="pref_themes_confirmation">Το θέμα εφαρμόστηκε με επιτυχία.</string>
   <string name="pref_themes_not_found">Το θέμα δεν βρέθηκε.</string>
   <string name="pref_debug_traces">Καταγραφή πληροφοριών αποσφαλμάτωσης</string>

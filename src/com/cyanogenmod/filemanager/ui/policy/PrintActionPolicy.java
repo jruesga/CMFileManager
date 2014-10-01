@@ -514,8 +514,8 @@ public final class PrintActionPolicy extends ActionsPolicy {
                 Matrix matrix = new Matrix();
 
                 // Compute and apply scale to fill the page.
-                int widthRatio = content.width() / imageWidth;
-                int heightRatio = content.height() / imageHeight;
+                float widthRatio = content.width() / imageWidth;
+                float heightRatio = content.height() / imageHeight;
                 float scale = Math.max(widthRatio, heightRatio);
                 matrix.postScale(scale, scale);
 

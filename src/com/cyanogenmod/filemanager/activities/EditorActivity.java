@@ -84,6 +84,7 @@ import com.cyanogenmod.filemanager.util.ExceptionUtil.OnRelaunchCommandResult;
 import com.cyanogenmod.filemanager.util.FileHelper;
 import com.cyanogenmod.filemanager.util.MediaHelper;
 import com.cyanogenmod.filemanager.util.ResourcesHelper;
+import com.cyanogenmod.filemanager.util.StringHelper;
 
 import java.io.BufferedReader;
 import java.io.ByteArrayInputStream;
@@ -304,7 +305,7 @@ public class EditorActivity extends Activity implements TextWatcher {
                 // is read-only
                 if (!EditorActivity.this.mReadOnly) {
                     for (int i = 0; i < partial.length-1; i++) {
-                        if (!isPrintableCharacter((char)partial[i])) {
+                        if (!StringHelper.isPrintableCharacter((char)partial[i])) {
                             EditorActivity.this.mBinary = true;
                             EditorActivity.this.mReadOnly = true;
                             break;
@@ -549,8 +550,6 @@ public class EditorActivity extends Activity implements TextWatcher {
      * @hide
      */
     Handler mHandler;
-
-    private static final char[] VALID_NON_PRINTABLE_CHARS = {' ', '\t', '\r', '\n'};
 
     /**
      * @hide
@@ -1505,23 +1504,6 @@ public class EditorActivity extends Activity implements TextWatcher {
         }
         setResult(Activity.RESULT_OK);
         finish();
-    }
-
-    /**
-     * Method that check if a character is valid printable character
-     *
-     * @param c The character to check
-     * @return boolean If the character is printable
-     * @hide
-     */
-    static boolean isPrintableCharacter(char c) {
-        int cc = VALID_NON_PRINTABLE_CHARS.length;
-        for (int i = 0; i < cc; i++) {
-            if (c == VALID_NON_PRINTABLE_CHARS[i]) {
-                return true;
-            }
-        }
-        return TextUtils.isGraphic(c);
     }
 
     /**

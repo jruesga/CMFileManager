@@ -55,6 +55,7 @@ import com.cyanogenmod.filemanager.ui.policy.InfoActionPolicy;
 import com.cyanogenmod.filemanager.ui.policy.IntentsActionPolicy;
 import com.cyanogenmod.filemanager.ui.policy.NavigationActionPolicy;
 import com.cyanogenmod.filemanager.ui.policy.NewActionPolicy;
+import com.cyanogenmod.filemanager.ui.policy.PrintActionPolicy;
 import com.cyanogenmod.filemanager.util.DialogHelper;
 import com.cyanogenmod.filemanager.util.FileHelper;
 import com.cyanogenmod.filemanager.util.MimeTypeHelper;
@@ -410,6 +411,11 @@ public class ActionsDialog implements OnItemClickListener, OnItemLongClickListen
                 InfoActionPolicy.showComputeChecksumDialog(this.mContext, this.mFso);
                 break;
 
+            //- Print
+            case R.id.mnu_actions_print:
+                PrintActionPolicy.printDocument(this.mContext, this.mFso);
+                break;
+
             //- Properties
             case R.id.mnu_actions_properties:
             case R.id.mnu_actions_properties_current_folder:
@@ -634,6 +640,12 @@ public class ActionsDialog implements OnItemClickListener, OnItemLongClickListen
             //- Checksum (only supported for files)
             if (FileHelper.isDirectory(this.mFso) || this.mFso instanceof Symlink) {
                 menu.removeItem(R.id.mnu_actions_compute_checksum);
+            }
+
+            //- Print (only for text and image categories)
+            if (category.compareTo(MimeTypeCategory.TEXT) != 0 &&
+                    category.compareTo(MimeTypeCategory.IMAGE) != 0) {
+                menu.removeItem(R.id.mnu_actions_print);
             }
         }
 

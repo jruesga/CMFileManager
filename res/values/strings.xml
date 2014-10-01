@@ -474,6 +474,8 @@
     <string name="actions_menu_open_parent_folder">Open parent</string>
     <!-- Actions Dialog - Menu - Compute checksum -->
     <string name="actions_menu_compute_checksum">Compute checksum</string>
+    <!-- Actions Dialog - Menu - Print -->
+    <string name="actions_menu_print">Print</string>
 
     <!-- Actions - Ask user prior to do an undone operation. Dialog message -->
     <string name="actions_ask_undone_operation_msg">This action cannot be undone. Do you want to continue?</string>
@@ -722,6 +724,16 @@
     <string name="ash_keyword">Keyword</string>
     <string name="ash_quoted_string">Quoted string</string>
     <string name="ash_variable">Variable</string>
+
+    <!-- Print messages -->
+    <!-- Unsupported document format -->
+    <string name="print_unsupported_document">Unsupported document format</string>
+    <!-- Unsupported image format -->
+    <string name="print_unsupported_image">Unsupported image format</string>
+    <!-- Print header -->
+    <string name="print_document_header">Document: <xliff:g id="document_name">%1$s</xliff:g></string>
+    <!-- Print footer -->
+    <string name="print_document_footer">Page <xliff:g id="page_number">%1$s</xliff:g></string>
 
     <!-- Security - Extract relative or absolute files -->
     <string name="security_warning_extract">Warning!\n\nExtracting an archive file with relative or absolute paths may cause damage to your device by overwriting system files.\n\nDo you want to continue?</string>

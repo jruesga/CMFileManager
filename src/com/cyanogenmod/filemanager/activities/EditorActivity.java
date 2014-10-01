@@ -36,7 +36,6 @@ import android.preference.PreferenceActivity;
 import android.text.Editable;
 import android.text.InputType;
 import android.text.SpannableStringBuilder;
-import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -203,8 +202,8 @@ public class EditorActivity extends Activity implements TextWatcher {
         }
     };
 
-    private static class HexDumpAdapter extends ArrayAdapter<String> {
-        private static class ViewHolder {
+    private class HexDumpAdapter extends ArrayAdapter<String> {
+        private class ViewHolder {
             TextView mTextView;
         }
 
@@ -225,7 +224,7 @@ public class EditorActivity extends Activity implements TextWatcher {
                 viewHolder.mTextView = (TextView)v.findViewById(android.R.id.text1);
 
                 viewHolder.mTextView.setTextAppearance(context, R.style.hexeditor_text_appearance);
-                viewHolder.mTextView.setTypeface(Typeface.MONOSPACE);
+                viewHolder.mTextView.setTypeface(mHexTypeface);
                 theme.setTextColor(context, viewHolder.mTextView, "text_color"); //$NON-NLS-1$
 
                 v.setTag(viewHolder);
@@ -544,6 +543,8 @@ public class EditorActivity extends Activity implements TextWatcher {
 
     private View mOptionsAnchorView;
 
+    private Typeface mHexTypeface;
+
     private final Object mExecSync = new Object();
 
     /**
@@ -571,6 +572,9 @@ public class EditorActivity extends Activity implements TextWatcher {
         }
 
         this.mHandler = new Handler();
+
+        // Load typeface for hex editor
+        mHexTypeface = Typeface.createFromAsset(getAssets(), "fonts/Courier-Prime.ttf");
 
         // Register the broadcast receiver
         IntentFilter filter = new IntentFilter();

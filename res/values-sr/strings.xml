@@ -91,6 +91,10 @@
   <string name="layout_icons">Иконе</string>
   <string name="layout_simple">Једноставно</string>
   <string name="layout_details">Детаљи</string>
+  <string name="cm_filemanager_show_dirs_first">Прикажи прво фолдере</string>
+  <string name="cm_filemanager_show_hidden">Прикажи сакривене фајлове</string>
+  <string name="cm_filemanager_show_system">Прикажи системске фајлове</string>
+  <string name="cm_filemanager_show_symlinks">Прикажи симболичке везе</string>
   <string name="filesystem_info_warning_title">Нема информација</string>
   <string name="filesystem_info_warning_msg">Нема доступних информација за овај систем фајлова.</string>
   <string name="filesystem_info_cant_be_mounted_msg">Систем фајлова се не може монтирати/демонтирати.</string>

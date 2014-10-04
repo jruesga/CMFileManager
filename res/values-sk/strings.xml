@@ -91,6 +91,10 @@
   <string name="layout_icons">Ikony</string>
   <string name="layout_simple">Jednoduché</string>
   <string name="layout_details">Podrobnosti</string>
+  <string name="cm_filemanager_show_dirs_first">Zobraziť najprv priečinky</string>
+  <string name="cm_filemanager_show_hidden">Zobraziť skryté súbory</string>
+  <string name="cm_filemanager_show_system">Zobraziť systémové súbory</string>
+  <string name="cm_filemanager_show_symlinks">Zobraziť symbolické odkazy</string>
   <string name="filesystem_info_warning_title">Žiadne informácie</string>
   <string name="filesystem_info_warning_msg">Nie sú k dispozícii žiadne informácie o súborovom systéme.</string>
   <string name="filesystem_info_cant_be_mounted_msg">Súborový systém nie je možné pripojiť/odpojiť.</string>

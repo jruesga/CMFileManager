@@ -91,6 +91,10 @@
   <string name="layout_icons">Simgeler</string>
   <string name="layout_simple">Basit</string>
   <string name="layout_details">Ayrıntılar</string>
+  <string name="cm_filemanager_show_dirs_first">İlk, klasörleri göster</string>
+  <string name="cm_filemanager_show_hidden">Gizli dosyaları göster</string>
+  <string name="cm_filemanager_show_system">Sistem dosyalarını göster</string>
+  <string name="cm_filemanager_show_symlinks">Sembolik linkleri göster</string>
   <string name="filesystem_info_warning_title">Bilgi yok</string>
   <string name="filesystem_info_warning_msg">Dosya sistemi için bilgi bulunamadı.</string>
   <string name="filesystem_info_cant_be_mounted_msg">Dosya sistemi bağlanamadı/çıkarılamadı.</string>

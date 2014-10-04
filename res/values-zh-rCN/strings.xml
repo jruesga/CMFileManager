@@ -94,6 +94,10 @@
   <string name="layout_icons">图标</string>
   <string name="layout_simple">简单</string>
   <string name="layout_details">详细信息</string>
+  <string name="cm_filemanager_show_dirs_first">在顶端显示文件夹</string>
+  <string name="cm_filemanager_show_hidden">显示隐藏文件</string>
+  <string name="cm_filemanager_show_system">显示系统文件</string>
+  <string name="cm_filemanager_show_symlinks">显示符号链接</string>
   <string name="filesystem_info_warning_title">无信息</string>
   <string name="filesystem_info_warning_msg">没有关于此文件系统可用的信息.</string>
   <string name="filesystem_info_cant_be_mounted_msg">无法挂载或卸载文件系统.</string>

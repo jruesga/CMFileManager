@@ -91,6 +91,10 @@
   <string name="layout_icons">Ikonok</string>
   <string name="layout_simple">Egyszerű</string>
   <string name="layout_details">Részletek</string>
+  <string name="cm_filemanager_show_dirs_first">Mappák elől</string>
+  <string name="cm_filemanager_show_hidden">Rejtett fájlok megjelenítése</string>
+  <string name="cm_filemanager_show_system">Rendszerfájlok megjelenítése</string>
+  <string name="cm_filemanager_show_symlinks">Szimbolikus linkek megjelenítése</string>
   <string name="filesystem_info_warning_title">Nincs információ</string>
   <string name="filesystem_info_warning_msg">Nincs elérhető információ a fájlrendszerről.</string>
   <string name="filesystem_info_cant_be_mounted_msg">A fájlrendszer nem csatolható.</string>

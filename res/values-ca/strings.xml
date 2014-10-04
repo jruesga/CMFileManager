@@ -91,6 +91,10 @@
   <string name="layout_icons">Icones</string>
   <string name="layout_simple">Simple</string>
   <string name="layout_details">Detalls</string>
+  <string name="cm_filemanager_show_dirs_first">Mostra primer les carpetes</string>
+  <string name="cm_filemanager_show_hidden">Mostra els arxius amagats</string>
+  <string name="cm_filemanager_show_system">Mostra els arxius de sistema</string>
+  <string name="cm_filemanager_show_symlinks">Mostra els symlinks</string>
   <string name="filesystem_info_warning_title">Sense informació</string>
   <string name="filesystem_info_warning_msg">No hi ha informació disponible per aquest sistema d\'arxius.</string>
   <string name="filesystem_info_cant_be_mounted_msg">El sistema d\'arxius no pot ser muntat/desmuntat.</string>

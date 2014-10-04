@@ -91,6 +91,10 @@
   <string name="layout_icons">Iconos</string>
   <string name="layout_simple">Simple</string>
   <string name="layout_details">Detalláu</string>
+  <string name="cm_filemanager_show_dirs_first">Ver carpetes primero</string>
+  <string name="cm_filemanager_show_hidden">Ver ficheros anubríos</string>
+  <string name="cm_filemanager_show_system">Ver ficheros de sistema</string>
+  <string name="cm_filemanager_show_symlinks">Ver accesos direutos</string>
   <string name="filesystem_info_warning_title">Ensin información</string>
   <string name="filesystem_info_warning_msg">Nun hai información disponible pal sistema de ficheros.</string>
   <string name="filesystem_info_cant_be_mounted_msg">El sistema de ficheros nun pue montase/desmontase.</string>

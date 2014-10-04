@@ -91,6 +91,10 @@
   <string name="layout_icons">Piktogramos</string>
   <string name="layout_simple">Paprastas</string>
   <string name="layout_details">Informacinis</string>
+  <string name="cm_filemanager_show_dirs_first">Pirma rodyti aplankus</string>
+  <string name="cm_filemanager_show_hidden">Rodyti paslėptus failus</string>
+  <string name="cm_filemanager_show_system">Rodyti sistemos failus</string>
+  <string name="cm_filemanager_show_symlinks">Rodyti simbolines nuorodas</string>
   <string name="filesystem_info_warning_title">Nėra informacijos</string>
   <string name="filesystem_info_warning_msg">Sistemos failų informacija nėra prieinama.</string>
   <string name="filesystem_info_cant_be_mounted_msg">Failas negali būti pridedamas/atskiriamas.</string>

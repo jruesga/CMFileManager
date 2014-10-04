@@ -91,6 +91,10 @@
   <string name="layout_icons">අයිකන</string>
   <string name="layout_simple">සරල</string>
   <string name="layout_details">තොරතුරු</string>
+  <string name="cm_filemanager_show_dirs_first">ෆෝල්ඩර පළමුව පෙන්වන්න</string>
+  <string name="cm_filemanager_show_hidden">සැඟවුණු ගොනු පෙන්වන්න</string>
+  <string name="cm_filemanager_show_system">පද්ධති ගොනු පෙන්වන්න</string>
+  <string name="cm_filemanager_show_symlinks">සංකේතාත්මක සබැඳි පෙන්වන්න</string>
   <string name="filesystem_info_warning_title">තොරතුරු නැත</string>
   <string name="filesystem_info_warning_msg">ගොනු පද්ධතිය සඳහා කිසිඳු තොරතුරක් ලබාගත නොහැක.</string>
   <string name="filesystem_info_cant_be_mounted_msg">ගොනු පද්ධතිය ආරූඩ/අනාරූඩ කල නොහැක.</string>

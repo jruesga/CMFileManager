@@ -91,6 +91,10 @@
   <string name="layout_icons">Icone</string>
   <string name="layout_simple">Semplice</string>
   <string name="layout_details">Dettagli</string>
+  <string name="cm_filemanager_show_dirs_first">Mostra cartelle prima</string>
+  <string name="cm_filemanager_show_hidden">Mostra file nascosti</string>
+  <string name="cm_filemanager_show_system">Mostra file di sistema</string>
+  <string name="cm_filemanager_show_symlinks">Mostra collegamenti simbolici</string>
   <string name="filesystem_info_warning_title">Nessuna informazione</string>
   <string name="filesystem_info_warning_msg">Non ci sono informazioni disponibili sul file system.</string>
   <string name="filesystem_info_cant_be_mounted_msg">Il file system non può essere montato/smontato.</string>

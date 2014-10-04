@@ -91,6 +91,10 @@
   <string name="layout_icons">アイコン</string>
   <string name="layout_simple">シンプル</string>
   <string name="layout_details">詳細</string>
+  <string name="cm_filemanager_show_dirs_first">フォルダを先に表示</string>
+  <string name="cm_filemanager_show_hidden">隠しファイルを表示</string>
+  <string name="cm_filemanager_show_system">システムファイルを表示</string>
+  <string name="cm_filemanager_show_symlinks">シンボリックリンクを表示</string>
   <string name="filesystem_info_warning_title">情報がありません</string>
   <string name="filesystem_info_warning_msg">このファイルシステムには利用可能な情報がありません。</string>
   <string name="filesystem_info_cant_be_mounted_msg">このファイルシステムはマウント/マウント解除できません。</string>

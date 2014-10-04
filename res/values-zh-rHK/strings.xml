@@ -52,7 +52,7 @@
   <string name="msgs_privileged_console_alloc_failed">無法在超級使用者存取模式下執行。正在切換至安全模式。</string>
   <string name="msgs_settings_save_failure">無法套用或儲存設定。</string>
   <string name="msgs_settings_invalid_initial_directory">初始資料夾「<xliff:g id="initial_dir">%1$s</xliff:g>」無效。切換至 root 資料夾。</string>
-  <string name="msgs_success">操已成功的完成。</string>
+  <string name="msgs_success">操作成功。</string>
   <string name="msgs_unknown">檢測到了一個錯誤。此操作未能成功完成。</string>
   <string name="msgs_insufficient_permissions">此操作需要更高的權限。請嘗試切換到超級使用者存取模式。</string>
   <string name="msgs_file_not_found">未找到檔案或資料夾。</string>
@@ -91,6 +91,10 @@
   <string name="layout_icons">圖示</string>
   <string name="layout_simple">簡單</string>
   <string name="layout_details">詳細</string>
+  <string name="cm_filemanager_show_dirs_first">資料夾優先顯示</string>
+  <string name="cm_filemanager_show_hidden">顯示隱藏檔案</string>
+  <string name="cm_filemanager_show_system">顯示系統檔案</string>
+  <string name="cm_filemanager_show_symlinks">顯示符號連結</string>
   <string name="filesystem_info_warning_title">無資訊</string>
   <string name="filesystem_info_warning_msg">沒有關於此檔案系統可用的資訊。</string>
   <string name="filesystem_info_cant_be_mounted_msg">無法掛載或卸載檔案系統。</string>
@@ -274,7 +278,9 @@
   <string name="pref_compute_folder_statistics">計算資料夾統計數據</string>
   <string name="pref_compute_folder_statistics_on">警告! 資料夾統計數據的計算將會花費較長的時間與較多的系統資源</string>
   <string name="pref_display_thumbs">預覽</string>
+  <string name="pref_display_thumbs_summary">為應用程式、音樂、相片及影片顯示預覽圖片。</string>
   <string name="pref_use_flinger">使用滑動手勢</string>
+  <string name="pref_use_flinger_summary">自左到右滑動將會刪除檔案或資料夾。</string>
   <string name="pref_general_advanced_settings_category">進階</string>
   <string name="pref_access_mode">存取模式</string>
   <string name="pref_access_mode_safe">安全模式</string>

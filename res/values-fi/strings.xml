@@ -91,6 +91,10 @@
   <string name="layout_icons">Kuvakkeet</string>
   <string name="layout_simple">Yksinkertainen</string>
   <string name="layout_details">Tietoja</string>
+  <string name="cm_filemanager_show_dirs_first">Näytä kansiot ensin</string>
+  <string name="cm_filemanager_show_hidden">Näytä piilotetut tiedostot</string>
+  <string name="cm_filemanager_show_system">Näytä järjestelmätiedostot</string>
+  <string name="cm_filemanager_show_symlinks">Näytä symlinkit</string>
   <string name="filesystem_info_warning_title">Ei tietoja</string>
   <string name="filesystem_info_warning_msg">Tietoja tiedostojärjestelmästä ei ole saatavilla.</string>
   <string name="filesystem_info_cant_be_mounted_msg">Tiedostojärjestelmää ei voida kiinnittää/poistaa kiinnitystä.</string>

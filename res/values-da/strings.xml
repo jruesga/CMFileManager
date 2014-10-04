@@ -91,6 +91,10 @@
   <string name="layout_icons">Ikoner</string>
   <string name="layout_simple">Simpel</string>
   <string name="layout_details">Detaljer</string>
+  <string name="cm_filemanager_show_dirs_first">Vis mapper først</string>
+  <string name="cm_filemanager_show_hidden">Vis skjulte filer</string>
+  <string name="cm_filemanager_show_system">Vis systemfiler</string>
+  <string name="cm_filemanager_show_symlinks">Vis symbolske links</string>
   <string name="filesystem_info_warning_title">Ingen information</string>
   <string name="filesystem_info_warning_msg">Der er ingen information tilgængelig for filsystemet.</string>
   <string name="filesystem_info_cant_be_mounted_msg">Filsystemet kan ikke monteres/afmonteres.</string>

@@ -91,6 +91,10 @@
   <string name="layout_icons">아이콘</string>
   <string name="layout_simple">단순하게</string>
   <string name="layout_details">자세하게</string>
+  <string name="cm_filemanager_show_dirs_first">폴더를 먼저 표시</string>
+  <string name="cm_filemanager_show_hidden">숨김 파일 표시</string>
+  <string name="cm_filemanager_show_system">시스템 파일 표시</string>
+  <string name="cm_filemanager_show_symlinks">심볼릭 링크 표시</string>
   <string name="filesystem_info_warning_title">정보 없음</string>
   <string name="filesystem_info_warning_msg">이 파일 시스템에 대한 정보가 없습니다.</string>
   <string name="filesystem_info_cant_be_mounted_msg">이 파일 시스템을 마운트/언마운트할 수 없습니다.</string>

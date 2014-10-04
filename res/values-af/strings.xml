@@ -92,6 +92,10 @@
   <string name="layout_icons">Ikone</string>
   <string name="layout_simple">Eenvoudig</string>
   <string name="layout_details">Besonderhede</string>
+  <string name="cm_filemanager_show_dirs_first">Wys vouergidse eerste</string>
+  <string name="cm_filemanager_show_hidden">Wys versteekte leërs</string>
+  <string name="cm_filemanager_show_system">Wys stelsel leërs</string>
+  <string name="cm_filemanager_show_symlinks">Wys simboliese koppelings</string>
   <string name="filesystem_info_warning_title">Geen inligting</string>
   <string name="filesystem_info_warning_msg">Daar is geen inligting beskikbaar vir die lêerstelsel nie.</string>
   <string name="filesystem_info_cant_be_mounted_msg">Die lêerstelsel kan nie geheg/ontheg word nie.</string>

@@ -91,6 +91,10 @@
   <string name="layout_icons">Symbole</string>
   <string name="layout_simple">Einfach</string>
   <string name="layout_details">Details</string>
+  <string name="cm_filemanager_show_dirs_first">Ordner zuerst</string>
+  <string name="cm_filemanager_show_hidden">Versteckte Dateien</string>
+  <string name="cm_filemanager_show_system">Systemdateien</string>
+  <string name="cm_filemanager_show_symlinks">Symbolische Links</string>
   <string name="filesystem_info_warning_title">Keine Information</string>
   <string name="filesystem_info_warning_msg">Es sind keine Informationen zum Dateisystem verfügbar.</string>
   <string name="filesystem_info_cant_be_mounted_msg">Das Dateisystem kann nicht eingebunden/ausgehängt werden.</string>

@@ -234,6 +234,7 @@
   <string name="actions_menu_add_shortcut">Поместить на главный экран</string>
   <string name="actions_menu_open_parent_folder">Открыть папку с файлом</string>
   <string name="actions_menu_compute_checksum">Контрольные суммы</string>
+  <string name="actions_menu_print">Печать</string>
   <string name="actions_ask_undone_operation_msg">Это действие необратимо. Вы хотите продолжить?</string>
   <string name="input_name_dialog_label">Имя:</string>
   <string name="input_name_dialog_message_empty_name">Имя не может быть пустым</string>
@@ -347,6 +348,10 @@
   <string name="ash_keyword">Ключевое слово</string>
   <string name="ash_quoted_string">Строка в кавычках</string>
   <string name="ash_variable">Переменная</string>
+  <string name="print_unsupported_document">Формат документа не поддерживается</string>
+  <string name="print_unsupported_image">Формат изображения не поддерживается</string>
+  <string name="print_document_header">Документ: <xliff:g id="document_name">%1$s</xliff:g></string>
+  <string name="print_document_footer">Страница <xliff:g id="page_number">%1$s</xliff:g></string>
   <string name="security_warning_extract">Внимание!\n\n Извлечение архива с относительными или абсолютными путями может привести к повреждению устройства путём перезаписи системных файлов.\n\nВы действительно хотите продолжить?</string>
   <string name="changelog_title">Список изменений</string>
   <string name="welcome_title">Добро пожаловать!</string>

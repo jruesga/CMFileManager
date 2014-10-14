@@ -73,7 +73,7 @@
   <string name="advise_insufficient_permissions">İşlem arttırılmış izinler gerektiriyor.\n\nRoot Erişimi moduna geçmek istiyor musunuz?</string>
   <string name="parent_dir">Üst klasör</string>
   <string name="external_storage">Harici depolama</string>
-  <string name="usb_storage">USB depolama</string>
+  <string name="usb_storage">USB bellek</string>
   <string name="actionbar_button_filesystem_cd">Dosya sistemi bilgisi</string>
   <string name="actionbar_button_sort_mode_cd">Sıralama modu</string>
   <string name="actionbar_button_layout_mode_cd">Düzen modu</string>
@@ -227,6 +227,7 @@
   <string name="actions_menu_add_shortcut">Kısayol ekle</string>
   <string name="actions_menu_open_parent_folder">Üst klasörü aç</string>
   <string name="actions_menu_compute_checksum">Kontrol özetini (checksum) hesapla</string>
+  <string name="actions_menu_print">Yazdır</string>
   <string name="actions_ask_undone_operation_msg">Bu işlem geri alınamaz. Devam etmek istiyor musunuz?</string>
   <string name="input_name_dialog_label">İsim:</string>
   <string name="input_name_dialog_message_empty_name">İsim boş olamaz.</string>
@@ -340,6 +341,10 @@
   <string name="ash_keyword">Anahtar kelime</string>
   <string name="ash_quoted_string">Alıntılanan dize</string>
   <string name="ash_variable">Değişken</string>
+  <string name="print_unsupported_document">Desteklenmeyen belge biçimi</string>
+  <string name="print_unsupported_image">Desteklenmeyen resim biçimi</string>
+  <string name="print_document_header">Belge: <xliff:g id="document_name">%1$s</xliff:g></string>
+  <string name="print_document_footer">Sayfa <xliff:g id="page_number">%1$s</xliff:g></string>
   <string name="security_warning_extract">Uyarı!\n\nKesin ya da ilişkili yol içeren arşivleri çıkarmak bazı dosyaların üzerine yazarak cihazınıza zarar verebilir.\n\nDevam etmek istiyor musunuz?</string>
   <string name="changelog_title">Değişiklik kaydı</string>
   <string name="welcome_title">Hoş geldiniz</string>

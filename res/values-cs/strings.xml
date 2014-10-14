@@ -227,6 +227,7 @@
   <string name="actions_menu_add_shortcut">Přidat zástupce</string>
   <string name="actions_menu_open_parent_folder">Otevřít nadřazenou</string>
   <string name="actions_menu_compute_checksum">Vypočítat kontrolní součet</string>
+  <string name="actions_menu_print">Tisknout</string>
   <string name="actions_ask_undone_operation_msg">Tuto akci nelze vzít zpět. Opravdu chcete pokračovat?</string>
   <string name="input_name_dialog_label">Název:</string>
   <string name="input_name_dialog_message_empty_name">Název nemůže být prázdný.</string>
@@ -340,6 +341,10 @@
   <string name="ash_keyword">Klíčové slovo</string>
   <string name="ash_quoted_string">Řetězec v uvozovkách</string>
   <string name="ash_variable">Proměnná</string>
+  <string name="print_unsupported_document">Nepodporovaný formát dokumentu</string>
+  <string name="print_unsupported_image">Nepodporovaný formát obrázku</string>
+  <string name="print_document_header">Dokument: <xliff:g id="document_name">%1$s</xliff:g></string>
+  <string name="print_document_footer">Stránka <xliff:g id="page_number">%1$s</xliff:g></string>
   <string name="security_warning_extract">Varování!\n\nRozbalování archivovaného souboru s relativní či absolutní cestou může způsobit poškození vašeho zařízení tím, že dojde k přepsání systémových souborů.\n\nOpravdu chcete pokračovat?</string>
   <string name="changelog_title">Seznam změn</string>
   <string name="welcome_title">Vítejte</string>

@@ -91,6 +91,10 @@
   <string name="layout_icons">ไอคอน</string>
   <string name="layout_simple">อย่างง่าย</string>
   <string name="layout_details">รายละเอียด</string>
+  <string name="cm_filemanager_show_dirs_first">แสดงโฟลเดอร์ก่อน</string>
+  <string name="cm_filemanager_show_hidden">แสดงไฟล์ที่ซ่อน</string>
+  <string name="cm_filemanager_show_system">แสดงไฟล์ระบบ</string>
+  <string name="cm_filemanager_show_symlinks">แสดงลิงค์ไฟล์</string>
   <string name="filesystem_info_warning_title">ไม่มีข้อมูล</string>
   <string name="filesystem_info_warning_msg">ไม่มีข้อมูลสำหรับไฟล์ระบบ</string>
   <string name="filesystem_info_cant_be_mounted_msg">ไฟล์ระบบไม่สามารถ mount/unmount ได้</string>
@@ -224,6 +228,7 @@
   <string name="actions_menu_add_shortcut">เพิ่มทางลัด</string>
   <string name="actions_menu_open_parent_folder">เปิดโฟลเดอร์ที่บรรจุ</string>
   <string name="actions_menu_compute_checksum">คำนวณหา checksum</string>
+  <string name="actions_menu_print">พิมพ์</string>
   <string name="actions_ask_undone_operation_msg">การกระทำนี้ไม่สามารถยกเลิกได้ ต้องการทำไหม?</string>
   <string name="input_name_dialog_label">ชื่อ:</string>
   <string name="input_name_dialog_message_empty_name">ชื่อไม่สามารถเว้นว่างได้</string>
@@ -338,6 +343,10 @@
   <string name="ash_keyword">คีย์เวิร์ด</string>
   <string name="ash_quoted_string">ข้อความที่ยกมา</string>
   <string name="ash_variable">ตัวแปร</string>
+  <string name="print_unsupported_document">MD5:</string>
+  <string name="print_unsupported_image">ไม่รองรับภาพประเภทนี้</string>
+  <string name="print_document_header">เอกสาร: <xliff:g id="document_name">%1$s</xliff:g></string>
+  <string name="print_document_footer">หน้า <xliff:g id="page_number">%1$s</xliff:g></string>
   <string name="security_warning_extract">คำเตือน!\n\nการแตกไฟล์อาจทำให้เกิดการเสียหายต่ออุปกรณ์โดยการเขียนทับไฟล์ระบบ\n\nต้องการดำเนินการต่อ?</string>
   <string name="changelog_title">ความเปลี่ยนแปลง</string>
   <string name="welcome_title">ยินดีต้อนรับ</string>

@@ -227,6 +227,7 @@
   <string name="actions_menu_add_shortcut">Luo pikakuvake</string>
   <string name="actions_menu_open_parent_folder">Avaa yläkansio</string>
   <string name="actions_menu_compute_checksum">Luo tarkistussumma</string>
+  <string name="actions_menu_print">Tulosta</string>
   <string name="actions_ask_undone_operation_msg">Tehtävää ei voi perua. Haluatko jatkaa?</string>
   <string name="input_name_dialog_label">Nimi:</string>
   <string name="input_name_dialog_message_empty_name">Nimi ei voi olla tyhjä.</string>
@@ -340,6 +341,10 @@
   <string name="ash_keyword">Hakusana</string>
   <string name="ash_quoted_string">Merkkijono</string>
   <string name="ash_variable">Muuttuja</string>
+  <string name="print_unsupported_document">Asiakirjamuotoa ei tueta</string>
+  <string name="print_unsupported_image">Kuvamuotoa ei tueta</string>
+  <string name="print_document_header">Asiakirja: <xliff:g id="document_name">%1$s</xliff:g></string>
+  <string name="print_document_footer">Sivu <xliff:g id="page_number">%1$s</xliff:g></string>
   <string name="security_warning_extract">Varoitus!\n\nTiedoston purkaminen väärässä paikassa saattaa aiheuttaa vahinkoa laitteellesi ylikirjoittamalla järjestelmätiedostoja.\n\nHaluatko jatkaa?</string>
   <string name="changelog_title">Muutosloki</string>
   <string name="welcome_title">Tervetuloa</string>

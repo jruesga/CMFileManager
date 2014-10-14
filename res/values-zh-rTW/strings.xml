@@ -72,6 +72,8 @@
   <string name="usb_storage">USB 儲存空間</string>
   <string name="actionbar_button_filesystem_cd">檔案系統資訊</string>
   <string name="actionbar_button_sort_mode_cd">排序方式</string>
+  <string name="actionbar_button_layout_mode_cd">檢視模式</string>
+  <string name="actionbar_button_other_view_options_cd">其他檢視選項</string>
   <string name="actionbar_button_selection_done_cd">完成</string>
   <string name="actionbar_button_actions_cd">動作</string>
   <string name="actionbar_button_search_cd">搜尋</string>
@@ -85,6 +87,10 @@
   <string name="layout_icons">圖示</string>
   <string name="layout_simple">簡單</string>
   <string name="layout_details">詳細資料</string>
+  <string name="cm_filemanager_show_dirs_first">資料夾優先顯示</string>
+  <string name="cm_filemanager_show_hidden">顯示隱藏檔案</string>
+  <string name="cm_filemanager_show_system">顯示系統檔案</string>
+  <string name="cm_filemanager_show_symlinks">顯示符號連結</string>
   <string name="filesystem_info_warning_title">無資訊</string>
   <string name="filesystem_info_warning_msg">沒有關於此檔案系統可用的資訊。</string>
   <string name="filesystem_info_cant_be_mounted_msg">無法掛載或卸載檔案系統。</string>
@@ -133,11 +139,13 @@
   <string name="msgs_history_unknown">未知的紀錄項。</string>
   <string name="search">搜尋結果</string>
   <string name="search_hint">輸入您的搜尋內容</string>
+  <string name="search_voice_hint">說出您欲搜尋的內容</string>
   <string name="search_error_msg">搜尋時發生了錯誤。未找到任何結果。</string>
   <string name="search_no_results_msg">未找到任何結果。</string>
   <string name="search_found_items_in_directory">在 <xliff:g id="path">%2$s</xliff:g> 內<xliff:g id="items">%1$s</xliff:g></string>
   <string name="search_terms"><![CDATA[<b>關鍵字：</b>]]> <xliff:g id="terms">%1$s</xliff:g></string>
   <string name="search_few_characters_title">確認搜尋</string>
+  <string name="search_few_characters_msg">部分關鍵字包含的字元過少。因此可能花費較長的時間與較多的系統資源。\n\n您確定要繼續嗎？</string>
   <string name="searching">請稍後\u2026</string>
   <string name="picker_title">選擇一個檔案</string>
   <string name="directory_picker_title">選擇一個目錄</string>
@@ -154,6 +162,7 @@
   <string name="bookmarks_root_folder">根目錄</string>
   <string name="bookmarks_system_folder">系統資料夾</string>
   <string name="bookmarks_button_config_cd">設定初始資料夾。</string>
+  <string name="bookmarks_button_remove_bookmark_cd">移除書籤。</string>
   <string name="bookmarks_msgs_add_success">書籤已成功加入。</string>
   <string name="initial_directory_dialog_title">初始資料夾</string>
   <string name="initial_directory_label">選擇初始資料夾：</string>
@@ -163,6 +172,7 @@
   <string name="menu_settings">設定</string>
   <string name="menu_clear_history">清除記錄</string>
   <string name="menu_no_suggestions">沒有建議</string>
+  <string name="menu_word_wrap">自動換行</string>
   <string name="menu_syntax_highlight">語法高亮</string>
   <string name="waiting_dialog_msg">正在執行動作\u2026</string>
   <string name="waiting_dialog_copying_title">正在複製\u2026</string>
@@ -179,9 +189,26 @@
   <string name="actions_menu_new_file">新增檔案</string>
   <string name="actions_menu_select_all">全選</string>
   <string name="actions_menu_deselect_all">取消全選</string>
+  <string name="actions_menu_select">選取</string>
+  <string name="actions_menu_deselect">取消選取</string>
+  <string name="actions_menu_paste_selection">貼上選取的項目</string>
+  <string name="actions_menu_move_selection">移動選取的項目</string>
+  <string name="actions_menu_create_link">建立連結</string>
+  <string name="actions_menu_open">開啟</string>
+  <string name="actions_menu_open_with">開啟方式</string>
   <string name="actions_menu_execute">執行</string>
+  <string name="actions_menu_send">傳送</string>
+  <string name="actions_menu_send_selection">傳送選取的項目</string>
+  <string name="actions_menu_compress">壓縮</string>
+  <string name="actions_menu_extract">解壓縮</string>
   <string name="actions_menu_delete">刪除</string>
+  <string name="actions_menu_rename">重新命名</string>
+  <string name="actions_menu_create_copy">建立副本</string>
+  <string name="actions_menu_add_to_bookmarks">新增至書籤</string>
+  <string name="actions_menu_add_shortcut">新增捷徑</string>
+  <string name="actions_menu_open_parent_folder">開啟上層目錄</string>
   <string name="input_name_dialog_label">名稱：</string>
+  <string name="input_name_dialog_message_empty_name">該名稱不能為空白。</string>
   <string name="input_name_dialog_message_invalid_name">無效的名稱。名稱中不能包含「.」與「..」。</string>
   <string name="input_name_dialog_message_name_exists">此名稱已存在。</string>
   <string name="associations_dialog_title">關聯</string>
@@ -204,10 +231,14 @@
   <string name="mime_unknown">未知</string>
   <string name="filetime_format_mode_system">由系統指定</string>
   <string name="filetime_format_mode_locale">由區域設定指定</string>
+  <string name="filetime_format_mode_ddMMyyyy_HHmmss">dd/mm/yyyy hh:mm:ss</string>
+  <string name="filetime_format_mode_MMddyyyy_HHmmss">mm/dd/yyyy hh:mm:ss</string>
+  <string name="filetime_format_mode_yyyyMMdd_HHmmss">yyyy-mm-dd hh:mm:ss</string>
   <string name="selection_folders_and_files">已選取 <xliff:g id="folders">%1$s</xliff:g>和 <xliff:g id="files">%2$s</xliff:g></string>
   <string name="compression_mode_title">壓縮方式</string>
   <string name="shortcut_failed_msg">捷徑處理失敗。</string>
   <string name="shortcut_creation_success_msg">捷徑建立成功。</string>
+  <string name="shortcut_creation_failed_msg">捷徑建立失敗。</string>
   <string name="pref">設定</string>
   <string name="pref_general">一般設定</string>
   <string name="pref_search">搜尋選項</string>
@@ -223,9 +254,28 @@
   <string name="pref_compute_folder_statistics">計算資料夾統計資料</string>
   <string name="pref_compute_folder_statistics_on">警告！資料夾統計資料的計將算會花費較長的時間與較多的系統資源</string>
   <string name="pref_display_thumbs">預覽</string>
+  <string name="pref_use_flinger">使用滑動手勢</string>
+  <string name="pref_use_flinger_summary">從左到右滑動將檔案或資料夾刪除</string>
+  <string name="pref_general_advanced_settings_category">進階</string>
+  <string name="pref_access_mode">存取模式</string>
+  <string name="pref_access_mode_safe">安全模式</string>
+  <string name="pref_access_mode_root">超級使用者存取模式</string>
+  <string name="pref_access_mode_root_summary">超級使用者存取模式\n\n警告！此模式將允許可能導致系統損傷的動作。您需要確認自己動作的安全性。</string>
+  <string name="pref_search_results_category">結果</string>
+  <string name="pref_highlight_terms">醒目提示搜尋關鍵字</string>
   <string name="pref_sort_search_results_mode_name">按名稱</string>
   <string name="pref_sort_search_results_mode_relevance">按相關性</string>
   <string name="pref_search_privacity_category">隱私</string>
+  <string name="pref_save_search_terms">儲存關鍵字</string>
+  <string name="pref_no_suggestions">不顯示建議</string>
+  <string name="pref_no_suggestions_desc">編輯檔案時不要顯示字典建議</string>
+  <string name="pref_editor_syntax_highlight_category">醒目提示語法</string>
+  <string name="pref_syntax_highlight">醒目提示語法</string>
+  <string name="pref_syntax_highlight_color_scheme">色彩配置</string>
+  <string name="pref_syntax_highlight_color_scheme_desc">選擇語法醒目提示的色彩配置</string>
+  <string name="pref_syntax_sh_use_theme_default">使用預設值</string>
+  <string name="pref_syntax_sh_use_theme_default_desc">使用目前主題預設的語法醒目提示色彩配置</string>
+  <string name="pref_editor_sh_item_category">項目</string>
   <string name="pref_themes_selection_category">主題</string>
   <string name="pref_themes_set_theme">設定主題</string>
   <string name="pref_themes_not_found">未找到主題。</string>
@@ -233,7 +283,19 @@
   <string name="theme_default_name">淺色主題</string>
   <string name="theme_default_description">用於 CyanogenMod 檔案管理器的淺色主題。</string>
   <string name="themes_author">CyanogenMod</string>
+  <string name="color_picker_alpha_slider_text">透明度</string>
   <string name="color_picker_current_text">目前：</string>
+  <string name="color_picker_new_text">新的：</string>
+  <string name="color_picker_color">色碼：</string>
+  <string name="ash_reset_color_scheme">恢復預設色彩配置</string>
+  <string name="ash_text">文字</string>
+  <string name="ash_keyword">關鍵字</string>
   <string name="security_warning_extract">警告！\n\n解壓一個使用相對或絕對路徑的壓縮檔案將會覆寫系統檔案，並對你的裝置造成損壞。\n\n您確定要繼續嗎？</string>
+  <string name="changelog_title">更新日誌</string>
   <string name="welcome_title">歡迎</string>
+  <string name="welcome_msg">
+        歡迎使用 CyanogenMod 檔案管理器。\n\n
+        此應用程式允許您瀏覽檔案系統並做出可能破壞您裝置的動作。為了避免損害，此應用程式預設在低權限、安全的模式下執行。\n\n
+        您可以經由設定切換至進階並擁有完全控制的模式。確保操作不會破壞系統將是您的責任。\n\n
+        CyanogenMod 團隊</string>
 </resources>

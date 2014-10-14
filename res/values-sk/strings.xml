@@ -234,6 +234,7 @@
   <string name="actions_menu_add_shortcut">Pridať skratku</string>
   <string name="actions_menu_open_parent_folder">Otvoriť nadradený</string>
   <string name="actions_menu_compute_checksum">Vypočítať kontrolny súčet</string>
+  <string name="actions_menu_print">Vytlačiť</string>
   <string name="actions_ask_undone_operation_msg">Túto akciu nemožno vrátiť späť. Chcete pokračovať?</string>
   <string name="input_name_dialog_label">Názov:</string>
   <string name="input_name_dialog_message_empty_name">Názov nesmie byť prázdny.</string>
@@ -348,6 +349,10 @@ Autorské práva © 2012 The CyanogenMod Project</string>
   <string name="ash_keyword">Kľúčové slovo</string>
   <string name="ash_quoted_string">Reťazec v úvodzovkách</string>
   <string name="ash_variable">Premenná</string>
+  <string name="print_unsupported_document">Nepodporované formát dokumentu</string>
+  <string name="print_unsupported_image">Nepodporovaný formát obrázku</string>
+  <string name="print_document_header">Dokument: <xliff:g id="document_name">%1$s</xliff:g></string>
+  <string name="print_document_footer">Stránka <xliff:g id="page_number">%1$s</xliff:g></string>
   <string name="security_warning_extract">Upozornenie!\n\nRozbaľovanie archívu s relatívnou alebo absolútnou cestou môže spôsobiť poškodenie vášho zariadenia tým, že dôjde k prepísaniu systémových súborov.\n\nUrčite chcete pokračovať?</string>
   <string name="changelog_title">Zoznam zmien</string>
   <string name="welcome_title">Vitajte</string>

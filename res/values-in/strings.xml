@@ -91,6 +91,10 @@
   <string name="layout_icons">Ikon</string>
   <string name="layout_simple">Sederhana</string>
   <string name="layout_details">Terinci</string>
+  <string name="cm_filemanager_show_dirs_first">Tampilkan folder lebih dulu</string>
+  <string name="cm_filemanager_show_hidden">Tampilkan berkas tersembunyi</string>
+  <string name="cm_filemanager_show_system">Tampilkan berkas sistem</string>
+  <string name="cm_filemanager_show_symlinks">Tampilkan symlink</string>
   <string name="filesystem_info_warning_title">Tidak ada informasi</string>
   <string name="filesystem_info_warning_msg">Ada tidak ada informasi yang tersedia untuk sistem berkas.</string>
   <string name="filesystem_info_cant_be_mounted_msg">Sistem berkas tidak dapat dipasang/dilepas.</string>
@@ -223,6 +227,7 @@
   <string name="actions_menu_add_shortcut">Tambah pintasan</string>
   <string name="actions_menu_open_parent_folder">Buka induk</string>
   <string name="actions_menu_compute_checksum">Hitung checksum</string>
+  <string name="actions_menu_print">Cetak</string>
   <string name="actions_ask_undone_operation_msg">Tindakan ini tidak dapat dikembalikan. Apakah Anda ingin melanjutkan?</string>
   <string name="input_name_dialog_label">Nama:</string>
   <string name="input_name_dialog_message_empty_name">Nama tak boleh kosong.</string>
@@ -336,6 +341,10 @@
   <string name="ash_keyword">Kata kunci</string>
   <string name="ash_quoted_string">Teks dikutip</string>
   <string name="ash_variable">Variabel</string>
+  <string name="print_unsupported_document">Format dokumen tidak didukung</string>
+  <string name="print_unsupported_image">Format gambar tidak didukung</string>
+  <string name="print_document_header">Dokumen: <xliff:g id="document_name">%1$s</xliff:g></string>
+  <string name="print_document_footer">Halaman <xliff:g id="page_number">%1$s</xliff:g></string>
   <string name="security_warning_extract">Peringatan!\n\nEkstraksi berkas arsip dengan path relatif atau absolut dapat menyebabkan kerusakan perangkat anda karena tertimpanya berkas sistem.\n\nApakah anda ingin melanjutkan?</string>
   <string name="changelog_title">Daftar perubahan</string>
   <string name="welcome_title">Selamat datang</string>

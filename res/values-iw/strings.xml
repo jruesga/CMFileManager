@@ -92,6 +92,10 @@
   <string name="layout_icons">סמלים</string>
   <string name="layout_simple">פשוט</string>
   <string name="layout_details">פרטים</string>
+  <string name="cm_filemanager_show_dirs_first">הצג תיקיות קודם</string>
+  <string name="cm_filemanager_show_hidden">הצג קבצים מוסתרים</string>
+  <string name="cm_filemanager_show_system">הצג קבצי מערכת</string>
+  <string name="cm_filemanager_show_symlinks">הצג קישורים</string>
   <string name="filesystem_info_warning_title">מידע לא קיים</string>
   <string name="filesystem_info_warning_msg">אין מידע זמין על מערכת הקבצים.</string>
   <string name="filesystem_info_cant_be_mounted_msg">לא ניתן לעגן או לבטל את עיגון מערכת הקבצים.</string>
@@ -235,6 +239,7 @@
   <string name="actions_menu_add_shortcut">הוספת קיצור דרך</string>
   <string name="actions_menu_open_parent_folder">פתח תיקיית הורה</string>
   <string name="actions_menu_compute_checksum">מחשב חתימה</string>
+  <string name="actions_menu_print">הדפס</string>
   <string name="actions_ask_undone_operation_msg">לא ניתן לבטל פעולה זו. האם ברצונך להמשיך?</string>
   <string name="input_name_dialog_label">שם:</string>
   <string name="input_name_dialog_message_empty_name">השם אינו יכול להשאר ריק.</string>
@@ -350,6 +355,10 @@
   <string name="ash_keyword">מילת מפתח</string>
   <string name="ash_quoted_string">מחרוזת מצוטטת</string>
   <string name="ash_variable">משתנה</string>
+  <string name="print_unsupported_document">פורמט מסמך לא נתמך</string>
+  <string name="print_unsupported_image">פורמט תמונה לא נתמך</string>
+  <string name="print_document_header">מסמך: <xliff:g id="document_name">%1$s</xliff:g></string>
+  <string name="print_document_footer">דף <xliff:g id="page_number">%1$s</xliff:g></string>
   <string name="security_warning_extract">אזהרה!\n\nחילוץ קובץ ארכיון עם נתיבים יחסיים או מוחלטים עלול לגרום נזק למכשירך על ידי דריסת קבצי מערכת.\n\n האם ברצונך להמשיך?</string>
   <string name="changelog_title">תיעוד שינויים</string>
   <string name="welcome_title">ברוכים הבאים</string>

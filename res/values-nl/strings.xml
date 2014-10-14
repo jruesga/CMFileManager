@@ -91,6 +91,10 @@
   <string name="layout_icons">Pictogrammen</string>
   <string name="layout_simple">Eenvoudig</string>
   <string name="layout_details">Uitgebreid</string>
+  <string name="cm_filemanager_show_dirs_first">Mappen eerst</string>
+  <string name="cm_filemanager_show_hidden">Verborgen bestanden tonen</string>
+  <string name="cm_filemanager_show_system">Systeembestanden tonen</string>
+  <string name="cm_filemanager_show_symlinks">Symlinks tonen</string>
   <string name="filesystem_info_warning_title">Geen informatie</string>
   <string name="filesystem_info_warning_msg">Er is geen informatie beschikbaar over het bestandssysteem.</string>
   <string name="filesystem_info_cant_be_mounted_msg">Het bestandssysteem kan niet worden gekoppeld/ontkoppeld.</string>
@@ -223,6 +227,7 @@
   <string name="actions_menu_add_shortcut">Snelkoppeling maken</string>
   <string name="actions_menu_open_parent_folder">Bovenliggende map openen</string>
   <string name="actions_menu_compute_checksum">Checksum berekenen</string>
+  <string name="actions_menu_print">Afdrukken</string>
   <string name="actions_ask_undone_operation_msg">Deze actie kan niet ongedaan worden gemaakt. Weet u zeker dat u door wilt gaan?</string>
   <string name="input_name_dialog_label">Naam:</string>
   <string name="input_name_dialog_message_empty_name">De naam kan niet leeg zijn.</string>
@@ -336,6 +341,10 @@
   <string name="ash_keyword">Sleutelwoord</string>
   <string name="ash_quoted_string">Quoted string</string>
   <string name="ash_variable">Variabele</string>
+  <string name="print_unsupported_document">Niet-ondersteunde documentindeling</string>
+  <string name="print_unsupported_image">Niet-ondersteunde afbeeldingsindeling</string>
+  <string name="print_document_header">Document: <xliff:g id="document_name">%1$s</xliff:g></string>
+  <string name="print_document_footer">Pagina <xliff:g id="page_number">%1$s</xliff:g></string>
   <string name="security_warning_extract">Let op:\n\nHet uitpakken van een gecomprimeerd bestand met relatieve/absolute paden kan systeembestanden overschrijven en daardoor schadelijk zijn voor uw apparaat.\n\nWeet u zeker dat u wilt doorgaan?</string>
   <string name="changelog_title">Changelog</string>
   <string name="welcome_title">Welkom</string>

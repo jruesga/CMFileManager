@@ -227,6 +227,7 @@
   <string name="actions_menu_add_shortcut">바로가기 추가</string>
   <string name="actions_menu_open_parent_folder">상위 폴더 열기</string>
   <string name="actions_menu_compute_checksum">체크섬 계산</string>
+  <string name="actions_menu_print">인쇄</string>
   <string name="actions_ask_undone_operation_msg">이 작업은 취소할 수 없습니다. 계속하시겠습니까?</string>
   <string name="input_name_dialog_label">이름:</string>
   <string name="input_name_dialog_message_empty_name">이름은 비워둘 수 없습니다.</string>
@@ -340,6 +341,10 @@
   <string name="ash_keyword">키워드</string>
   <string name="ash_quoted_string">따옴표 붙은 문자열</string>
   <string name="ash_variable">변수</string>
+  <string name="print_unsupported_document">지원되지 않는 문서 형식</string>
+  <string name="print_unsupported_image">지원되지 않는 이미지 형식</string>
+  <string name="print_document_header">문서: <xliff:g id="document_name">%1$s</xliff:g></string>
+  <string name="print_document_footer">페이지 <xliff:g id="page_number">%1$s</xliff:g></string>
   <string name="security_warning_extract">경고!\n\n절대 또는 상대 경로의 압축 파일 해제는 시스템 파일을 덮어써서 장치에 손상을 입힐 수 있습니다.\n\n계속하시겠습니까?</string>
   <string name="changelog_title">변경 사항</string>
   <string name="welcome_title">환영합니다</string>

@@ -91,6 +91,10 @@
   <string name="layout_icons">Ikony</string>
   <string name="layout_simple">Prosty</string>
   <string name="layout_details">Szczegółowy</string>
+  <string name="cm_filemanager_show_dirs_first">Pokaż najpierw foldery</string>
+  <string name="cm_filemanager_show_hidden">Pokaż ukryte pliki</string>
+  <string name="cm_filemanager_show_system">Pokaż pliki systemowe</string>
+  <string name="cm_filemanager_show_symlinks">Pokaż dowiązania symboliczne</string>
   <string name="filesystem_info_warning_title">Brak informacji</string>
   <string name="filesystem_info_warning_msg">Nie ma żadnych informacji na temat systemu plików</string>
   <string name="filesystem_info_cant_be_mounted_msg">System plików nie może zostać zamontowany/odmontowany.</string>
@@ -232,6 +236,7 @@
   <string name="actions_menu_add_shortcut">Utwórz skrót</string>
   <string name="actions_menu_open_parent_folder">Otwórz folder nadrzędny</string>
   <string name="actions_menu_compute_checksum">Oblicz sumę kontrolną</string>
+  <string name="actions_menu_print">Drukuj</string>
   <string name="actions_ask_undone_operation_msg">Ta czynność nie może zostać cofnięta. Czy chcesz kontynuować?</string>
   <string name="input_name_dialog_label">Nazwa:</string>
   <string name="input_name_dialog_message_empty_name">Nazwa nie może być pusta.</string>
@@ -346,6 +351,10 @@ Copyright \u00A9 2013 Projekt CyanogenMod</string>
   <string name="ash_keyword">Słowo kluczowe</string>
   <string name="ash_quoted_string">Fraza w cudzysłowie</string>
   <string name="ash_variable">Zmienna</string>
+  <string name="print_unsupported_document">Nieobsługiwany format dokumentu</string>
+  <string name="print_unsupported_image">Nieobsługiwany format obrazu</string>
+  <string name="print_document_header">Dokument: <xliff:g id="document_name">%1$s</xliff:g></string>
+  <string name="print_document_footer">Strona <xliff:g id="page_number">%1$s</xliff:g></string>
   <string name="security_warning_extract">Uwaga!\n\n\n    Wyodrębnienie pliku archiwum z ścieżkami względnymi lub bezwzględnymi może spowodować uszkodzenie urządzenia poprzez nadpisanie plików systemowych.\n\n\n    Czy chcesz kontynuować?</string>
   <string name="changelog_title">Lista zmian</string>
   <string name="welcome_title">Witaj</string>

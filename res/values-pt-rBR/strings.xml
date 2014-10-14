@@ -227,6 +227,7 @@
   <string name="actions_menu_add_shortcut">Adicionar atalho</string>
   <string name="actions_menu_open_parent_folder">Abrir pasta superior</string>
   <string name="actions_menu_compute_checksum">Calcular checksum</string>
+  <string name="actions_menu_print">Imprimir</string>
   <string name="actions_ask_undone_operation_msg">Esta ação não pode ser desfeita. Você deseja continuar?</string>
   <string name="input_name_dialog_label">Nome:</string>
   <string name="input_name_dialog_message_empty_name">O nome não pode estar vazio.</string>
@@ -340,6 +341,10 @@
   <string name="ash_keyword">Palavra chave</string>
   <string name="ash_quoted_string">String citada</string>
   <string name="ash_variable">Variável</string>
+  <string name="print_unsupported_document">Formato de documento não suportado</string>
+  <string name="print_unsupported_image">Formato de imagem não suportado</string>
+  <string name="print_document_header">Documento: <xliff:g id="document_name">%1$s</xliff:g></string>
+  <string name="print_document_footer">Página <xliff:g id="page_number">%1$s</xliff:g></string>
   <string name="security_warning_extract">Aviso!\n\nO dispositivo pode ser danificado se, ao extrair arquivos com caminhos relativos ou absolutos, arquivos de sistema forem sobrescritos.\n\nVocê deseja continuar?</string>
   <string name="changelog_title">Registro de mudanças</string>
   <string name="welcome_title">Bem-vindo</string>

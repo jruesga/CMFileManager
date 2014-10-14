@@ -247,6 +247,7 @@
   <string name="actions_menu_add_shortcut">添加快捷方式</string>
   <string name="actions_menu_open_parent_folder">打开父目录</string>
   <string name="actions_menu_compute_checksum">计算校验和</string>
+  <string name="actions_menu_print">打印</string>
   <string name="actions_ask_undone_operation_msg">
     此操作无法撤销. 您确定要继续?</string>
   <string name="input_name_dialog_label">名称:</string>
@@ -364,6 +365,10 @@
   <string name="ash_keyword">关键词</string>
   <string name="ash_quoted_string">带引号的字符串</string>
   <string name="ash_variable">变量</string>
+  <string name="print_unsupported_document">不受支持的文档格式</string>
+  <string name="print_unsupported_image">不受支持的图像格式</string>
+  <string name="print_document_header">文档: <xliff:g id="document_name">%1$s</xliff:g></string>
+  <string name="print_document_footer">第 <xliff:g id="page_number">%1$s</xliff:g> 页</string>
   <string name="security_warning_extract">警告!\n\n
       解压一个使用相对或绝对路径的压缩文件有可能覆盖并损坏系统文件.\n\n
       您确定要继续吗?</string>

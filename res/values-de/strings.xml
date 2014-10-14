@@ -227,6 +227,7 @@
   <string name="actions_menu_add_shortcut">Neue Verknüpfung</string>
   <string name="actions_menu_open_parent_folder">Übergeordnetes Verzeichnis öffnen</string>
   <string name="actions_menu_compute_checksum">Prüfsumme generieren</string>
+  <string name="actions_menu_print">Drucken</string>
   <string name="actions_ask_undone_operation_msg">Diese Aktion kann nicht rückgängig gemacht werden.\n\nTrotzdem fortfahren?</string>
   <string name="input_name_dialog_label">Name:</string>
   <string name="input_name_dialog_message_empty_name">Der Name darf nicht leer sein.</string>
@@ -340,6 +341,10 @@
   <string name="ash_keyword">Schlüsselwort</string>
   <string name="ash_quoted_string">Text in Anführungszeichen</string>
   <string name="ash_variable">Variable</string>
+  <string name="print_unsupported_document">Nicht unterstütztes Dokumentformat</string>
+  <string name="print_unsupported_image">Nicht unterstütztes Bildformat</string>
+  <string name="print_document_header">Dokument: <xliff:g id="document_name">%1$s</xliff:g></string>
+  <string name="print_document_footer">Seite <xliff:g id="page_number">%1$s</xliff:g></string>
   <string name="security_warning_extract">Warnung!\n\n Ein Archiv mit relativen oder absoluten Pfaden zu entpacken, kann das Gerät beschädigen, indem Systemdateien überschrieben werden.\n\nTrotzdem fortfahren?</string>
   <string name="changelog_title">Changelog</string>
   <string name="welcome_title">Willkommen</string>

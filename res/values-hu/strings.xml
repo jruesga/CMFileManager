@@ -227,6 +227,7 @@
   <string name="actions_menu_add_shortcut">Parancsikon létrehozása</string>
   <string name="actions_menu_open_parent_folder">Szülő könyvtár megnyitása</string>
   <string name="actions_menu_compute_checksum">Ellenőrzőösszeg számolása</string>
+  <string name="actions_menu_print">Nyomtatás</string>
   <string name="actions_ask_undone_operation_msg">A művelet nem visszavonható. Biztosan folytatja?</string>
   <string name="input_name_dialog_label">Név:</string>
   <string name="input_name_dialog_message_empty_name">A név mező nem lehet üres.</string>
@@ -340,6 +341,10 @@
   <string name="ash_keyword">Kulcsszó</string>
   <string name="ash_quoted_string">Idézett karakterlánc</string>
   <string name="ash_variable">Változó</string>
+  <string name="print_unsupported_document">Nem támogatott dokumentum formátum</string>
+  <string name="print_unsupported_image">Nem támogatott kép formátum</string>
+  <string name="print_document_header">Dokumentum: <xliff:g id="document_name">%1$s</xliff:g></string>
+  <string name="print_document_footer">Oldal <xliff:g id="page_number">%1$s</xliff:g></string>
   <string name="security_warning_extract">Figyelem!\n\nAz archív fájl relatív vagy abszolút elérési úttal történő kicsomagolása kárt okozhat a készülékben azáltal, hogy felülírja rendszerfájlokat.\n\nBiztosan folytatni kívánja?</string>
   <string name="changelog_title">Változások</string>
   <string name="welcome_title">Üdvözöljük</string>

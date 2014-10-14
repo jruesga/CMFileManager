@@ -227,6 +227,7 @@
   <string name="actions_menu_add_shortcut">ショートカットに追加</string>
   <string name="actions_menu_open_parent_folder">親フォルダを開く</string>
   <string name="actions_menu_compute_checksum">チェックサムを算出</string>
+  <string name="actions_menu_print">印刷</string>
   <string name="actions_ask_undone_operation_msg">
     この操作はやり直せません。続けますか？</string>
   <string name="input_name_dialog_label">名前:</string>
@@ -235,7 +236,7 @@
   <string name="input_name_dialog_message_invalid_name">無効な名前です。｢.｣と｢..｣の名前は使用できません。</string>
   <string name="input_name_dialog_message_name_exists">この名前は既に存在しています。</string>
   <string name="associations_dialog_title">連携</string>
-  <string name="associations_dialog_remember">選択を記憶する</string>
+  <string name="associations_dialog_remember">選択を記憶</string>
   <string name="associations_dialog_openwith_title">他のアプリで開く</string>
   <string name="associations_dialog_openwith_action">開く</string>
   <string name="associations_dialog_sendwith_title">送信方法</string>
@@ -341,6 +342,10 @@
   <string name="ash_keyword">キーワード</string>
   <string name="ash_quoted_string">引用文字列</string>
   <string name="ash_variable">変数</string>
+  <string name="print_unsupported_document">サポートされていないドキュメント形式</string>
+  <string name="print_unsupported_image">サポートされていない画像形式</string>
+  <string name="print_document_header">ドキュメント: <xliff:g id="document_name">%1$s</xliff:g></string>
+  <string name="print_document_footer"><xliff:g id="page_number">%1$s</xliff:g>ページ</string>
   <string name="security_warning_extract">警告！\n\n絶対パスまたは相対パスの書庫の解凍は、システムファイルを上書きして端末を損傷する可能性があります。\n\n続けますか？</string>
   <string name="changelog_title">更新履歴</string>
   <string name="welcome_title">ようこそ</string>

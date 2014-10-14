@@ -239,6 +239,7 @@
   <string name="actions_menu_add_shortcut">Adicionar atalho</string>
   <string name="actions_menu_open_parent_folder">Abrir pasta mãe</string>
   <string name="actions_menu_compute_checksum">Calcular verificação</string>
+  <string name="actions_menu_print">Imprimir</string>
   <string name="actions_ask_undone_operation_msg">
     Esta operação não poderá ser desfeita. Deseja continuar?</string>
   <string name="input_name_dialog_label">Nome:</string>
@@ -364,6 +365,10 @@
   <string name="ash_keyword">Palavra-chave</string>
   <string name="ash_quoted_string">frase mencionada</string>
   <string name="ash_variable">Variável</string>
+  <string name="print_unsupported_document">Formato de documento não suportado</string>
+  <string name="print_unsupported_image">Formato de imagem não suportado</string>
+  <string name="print_document_header">Documento: <xliff:g id="document_name">%1$s</xliff:g></string>
+  <string name="print_document_footer">Página <xliff:g id="page_number">%1$s</xliff:g></string>
   <string name="security_warning_extract">Aviso!\n\n
       Extrair um ficheiro de sistema com pastas absolutas ou relativas pode causar problemas no seu dispositivo
       ao substituir ficheiros de sistema.\n\n

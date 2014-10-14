@@ -238,6 +238,7 @@
   <string name="actions_menu_add_shortcut">Tilføj genvej</string>
   <string name="actions_menu_open_parent_folder">Åbn overordnet</string>
   <string name="actions_menu_compute_checksum">Beregn checksum</string>
+  <string name="actions_menu_print">Udskriv</string>
   <string name="actions_ask_undone_operation_msg">Denne handling kan ikke fortrydes. Vil du fortsætte?</string>
   <string name="input_name_dialog_label">Navn:</string>
   <string name="input_name_dialog_message_empty_name">Navnet kan ikke være tomt.</string>
@@ -353,6 +354,10 @@
   <string name="ash_keyword">Nøgleord</string>
   <string name="ash_quoted_string">Citeret streng</string>
   <string name="ash_variable">Variabel</string>
+  <string name="print_unsupported_document">Dokumentformatet understøttes ikke</string>
+  <string name="print_unsupported_image">Billedformatet understøttes ikke</string>
+  <string name="print_document_header">Dokument: <xliff:g id="document_name">%1$s</xliff:g></string>
+  <string name="print_document_footer">Side <xliff:g id="page_number">%1$s</xliff:g></string>
   <string name="security_warning_extract">Advarsel!\n\nUdpakning af en arkivfil med relative eller absolutte stier kan forårsage skade på din enhed ved at overskrive systemfiler.\n\nVil du fortsætte?</string>
   <string name="changelog_title">Ændringslog</string>
   <string name="welcome_title">Velkommen</string>

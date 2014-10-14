@@ -227,6 +227,7 @@
   <string name="actions_menu_add_shortcut">කෙටි මගක් එක් කරන්න</string>
   <string name="actions_menu_open_parent_folder">මව්පියා විවෘත කරන්න</string>
   <string name="actions_menu_compute_checksum">පිරික්සුම් එකතුව ගණනය කරන්න</string>
+  <string name="actions_menu_print">මුද්‍රණය</string>
   <string name="actions_ask_undone_operation_msg">මෙම ක්‍රියාව ආපසු කල නොහැක. ඔබට ඉදිරියට යාමට අවශ්‍යද?</string>
   <string name="input_name_dialog_label">නම:</string>
   <string name="input_name_dialog_message_empty_name">නම හිස් විය නොහැක.</string>
@@ -340,6 +341,10 @@
   <string name="ash_keyword">යතුරුපදය</string>
   <string name="ash_quoted_string">උධෘත අනුලකුණු වැල</string>
   <string name="ash_variable">විචල්‍යය</string>
+  <string name="print_unsupported_document">සහාය නොදක්වන ලේඛන ආකෘතියකි</string>
+  <string name="print_unsupported_image">සහාය නොදක්වන පින්තූර ආකෘතියකි</string>
+  <string name="print_document_header">ලේඛනය: <xliff:g id="document_name">%1$s</xliff:g></string>
+  <string name="print_document_footer">පිටුව <xliff:g id="page_number">%1$s</xliff:g></string>
   <string name="security_warning_extract">අවවාදයයි!\n\nසාපේක්ෂ හෝ ඒකාන්ත මංපෙත් සහිත හැකිලුනු ගොනුවක් අද ගැනීමේදී, පද්ධති ගොනු උඩින් ලිවීමක් සිදුවී ඔබගේ උපාංගයට හානි පැමිණිය හැක.\n\nඔබට ඉදිරියට යාමය අවශ්‍යද?</string>
   <string name="changelog_title">වෙනස්කම් ලොගය</string>
   <string name="welcome_title">ආයුබෝවන්</string>

@@ -231,6 +231,7 @@
   <string name="actions_menu_add_shortcut">Acceso directo</string>
   <string name="actions_menu_open_parent_folder">Abrir carpeta</string>
   <string name="actions_menu_compute_checksum">Checksum</string>
+  <string name="actions_menu_print">Imprimir</string>
   <string name="actions_ask_undone_operation_msg">Esta acción no puede deshacerse. ¿Continuar?</string>
   <string name="input_name_dialog_label">Nombre:</string>
   <string name="input_name_dialog_message_empty_name">El nombre no puede quedar en blanco.</string>
@@ -344,6 +345,10 @@
   <string name="ash_keyword">Palabra clave</string>
   <string name="ash_quoted_string">Cadena</string>
   <string name="ash_variable">Variable</string>
+  <string name="print_unsupported_document">Formato de documento no soportado</string>
+  <string name="print_unsupported_image">Formato de imagen no soportado</string>
+  <string name="print_document_header">Documento: <xliff:g id="document_name">%1$s</xliff:g></string>
+  <string name="print_document_footer">Página <xliff:g id="page_number">%1$s</xliff:g></string>
   <string name="security_warning_extract">¡Aviso!\n\nExtraer archivos comprimidos que contienen rutas absolutas o relativas puede causar daños en el dispositivo por la posible sobrescritura de archivos de sistema.\n\n¿Continuar?</string>
   <string name="changelog_title">Registro de cambios</string>
   <string name="welcome_title">Bienvenido</string>

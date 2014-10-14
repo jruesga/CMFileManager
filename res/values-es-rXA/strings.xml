@@ -232,6 +232,7 @@
   <string name="actions_menu_add_shortcut">Accesu direutu</string>
   <string name="actions_menu_open_parent_folder">Abrir carpeta</string>
   <string name="actions_menu_compute_checksum">Checksum</string>
+  <string name="actions_menu_print">Imprentar</string>
   <string name="actions_ask_undone_operation_msg">Esta aición nun pue desfacese. ¿Siguir?</string>
   <string name="input_name_dialog_label">Nome:</string>
   <string name="input_name_dialog_message_empty_name">El nome nun pue quedar baleru.</string>
@@ -345,6 +346,10 @@
   <string name="ash_keyword">Pallabra clave</string>
   <string name="ash_quoted_string">Cadena</string>
   <string name="ash_variable">Variable</string>
+  <string name="print_unsupported_document">Formatu de documentu non sofitáu</string>
+  <string name="print_unsupported_image">Formatu d\'imaxe non sofitáu</string>
+  <string name="print_document_header">Documentu: <xliff:g id="document_name">%1$s</xliff:g></string>
+  <string name="print_document_footer">Páxina <xliff:g id="page_number">%1$s</xliff:g></string>
   <string name="security_warning_extract">¡Avisu!\n\nEstraer ficheros comprimíos que contienen rutes absolutes o relatives pue facer daños al preséu pola posible sobrescritura de ficheros de sistema.\n\n¿Siguir?</string>
   <string name="changelog_title">Registru de cambeos</string>
   <string name="welcome_title">Bienllegáu</string>

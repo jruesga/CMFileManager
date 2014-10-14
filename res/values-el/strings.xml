@@ -227,6 +227,7 @@
   <string name="actions_menu_add_shortcut">Προσθήκη συντόμευσης</string>
   <string name="actions_menu_open_parent_folder">Άνοιγμα γονικού</string>
   <string name="actions_menu_compute_checksum">Υπολογισμός checksum</string>
+  <string name="actions_menu_print">Εκτύπωση</string>
   <string name="actions_ask_undone_operation_msg">Αυτή η ενέργεια δεν μπορεί να αναιρεθεί. Θέλετε να συνεχίσετε;</string>
   <string name="input_name_dialog_label">Όνομα:</string>
   <string name="input_name_dialog_message_empty_name">Το όνομα δεν μπορεί να είναι κενό.</string>
@@ -340,6 +341,10 @@
   <string name="ash_keyword">Λέξη-κλειδί</string>
   <string name="ash_quoted_string">Κείμενο σε εισαγωγικά</string>
   <string name="ash_variable">Μεταβλητή</string>
+  <string name="print_unsupported_document">Μη υποστηριζόμενη μορφή εγγράφου</string>
+  <string name="print_unsupported_image">Μη υποστηριζόμενη μορφή εικόνας</string>
+  <string name="print_document_header">Έγγραφο: <xliff:g id="document_name">%1$s</xliff:g></string>
+  <string name="print_document_footer">Σελίδα <xliff:g id="page_number">%1$s</xliff:g></string>
   <string name="security_warning_extract">Προσοχή!\n\nΗ εξαγωγή ενός αρχείου με σχετικά ή απόλυτα μονοπάτια μπορεί να προκαλέσει βλάβη στη συσκευή σας αντικαταστώντας αρχεία συστήματος.\n\nΘέλετε να συνεχίσετε;</string>
   <string name="changelog_title">Αρχείο αλλαγών</string>
   <string name="welcome_title">Καλώς ήλθατε</string>

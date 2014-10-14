@@ -236,6 +236,7 @@
   <string name="actions_menu_add_shortcut">Ajouter un raccourci</string>
   <string name="actions_menu_open_parent_folder">Ouvrir le dossier parent</string>
   <string name="actions_menu_compute_checksum">Somme de contrôle</string>
+  <string name="actions_menu_print">Imprimer</string>
   <string name="actions_ask_undone_operation_msg">Cette action ne peut pas être annulée. Voulez-vous continuer\u00A0?</string>
   <string name="input_name_dialog_label">Nom\u00A0:</string>
   <string name="input_name_dialog_message_empty_name">Nom requis</string>
@@ -349,6 +350,10 @@
   <string name="ash_keyword">Mot-clé</string>
   <string name="ash_quoted_string">Chaîne entre guillemets</string>
   <string name="ash_variable">Variable</string>
+  <string name="print_unsupported_document">Format de document non pris en charge</string>
+  <string name="print_unsupported_image">Format d\'image non pris en charge</string>
+  <string name="print_document_header">Document : <xliff:g id="document_name">%1$s</xliff:g></string>
+  <string name="print_document_footer">Page <xliff:g id="page_number">%1$s</xliff:g></string>
   <string name="security_warning_extract">Attention\u00A0!\n\n Extraire une archive vers un chemin absolu ou relatif peut causer des dommages sur votre appareil en écrasant des fichiers système.\n\nVoulez-vous continuer\u00A0?</string>
   <string name="changelog_title">Note de version</string>
   <string name="welcome_title">Bienvenue</string>

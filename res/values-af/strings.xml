@@ -243,6 +243,7 @@
   <string name="actions_menu_add_shortcut">Voeg kortpad</string>
   <string name="actions_menu_open_parent_folder">Maak vouer oop</string>
   <string name="actions_menu_compute_checksum">Bereken kontrolesom</string>
+  <string name="actions_menu_print">Druk</string>
   <string name="actions_ask_undone_operation_msg">Hierdie aksie kan nie teruggestel word nie. Wil jy voortgaan?</string>
   <string name="input_name_dialog_label">Naam:</string>
   <string name="input_name_dialog_message_empty_name">Die naam kan nie leeg wees nie.</string>
@@ -362,6 +363,10 @@
   <string name="ash_keyword">Sleutelwoord</string>
   <string name="ash_quoted_string">Aangehaalde teks</string>
   <string name="ash_variable">Veranderlike</string>
+  <string name="print_unsupported_document">Nie-ondersteunde dokument formaat</string>
+  <string name="print_unsupported_image">Nie-ondersteunde foto-formaat</string>
+  <string name="print_document_header">Dokument: <xliff:g id="document_name">%1$s</xliff:g></string>
+  <string name="print_document_footer">Bladsy <xliff:g id="page_number">%1$s</xliff:g></string>
   <string name="security_warning_extract">Waarskuwing!\n\n
     Gebruik van \'n argiefvouer met \'n relatiewe of absolute pad kan lei tot skade aan die toestel deur die oorskryf van stelsel vouers.\n\n
     Wil jy voortgaan?</string>

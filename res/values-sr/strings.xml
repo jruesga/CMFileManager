@@ -229,6 +229,7 @@
   <string name="actions_menu_add_shortcut">Додај пречицу</string>
   <string name="actions_menu_open_parent_folder">Отвори родитеља</string>
   <string name="actions_menu_compute_checksum">Израчунавање збира</string>
+  <string name="actions_menu_print">Штампај</string>
   <string name="actions_ask_undone_operation_msg">Ова акција не може да се откаже. Желиш ли да наставиш?</string>
   <string name="input_name_dialog_label">Име:</string>
   <string name="input_name_dialog_message_empty_name">Име не може да буде празно.</string>
@@ -347,6 +348,10 @@
   <string name="ash_keyword">Кључна реч</string>
   <string name="ash_quoted_string">Цитирани стринг</string>
   <string name="ash_variable">Варијабла</string>
+  <string name="print_unsupported_document">Неподржан формат документа</string>
+  <string name="print_unsupported_image">Неподржан формат слике</string>
+  <string name="print_document_header">Документ: <xliff:g id="document_name">%1$s</xliff:g></string>
+  <string name="print_document_footer">Страна <xliff:g id="page_number">%1$s</xliff:g></string>
   <string name="security_warning_extract">Упозорење!\n\nРаспакивање архиве са релативним или апсолутним путањама може оштетити твој уређај преписивајући системске фајлове.\n\nЖелиш ли да наставиш?
   </string>
   <string name="changelog_title">Евиденција промена</string>

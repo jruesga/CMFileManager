@@ -227,6 +227,7 @@
   <string name="actions_menu_add_shortcut">Aggiungi collegamento</string>
   <string name="actions_menu_open_parent_folder">Apri cartella sup.</string>
   <string name="actions_menu_compute_checksum">Calcola checksum</string>
+  <string name="actions_menu_print">Stampa</string>
   <string name="actions_ask_undone_operation_msg">Questa operazione non può essere annullata. Continuare?</string>
   <string name="input_name_dialog_label">Nome:</string>
   <string name="input_name_dialog_message_empty_name">Il nome non può essere vuoto.</string>
@@ -340,6 +341,10 @@
   <string name="ash_keyword">Parola chiave</string>
   <string name="ash_quoted_string">Stringa tra virgolette</string>
   <string name="ash_variable">Variabile</string>
+  <string name="print_unsupported_document">Formato documento non supportato</string>
+  <string name="print_unsupported_image">Formato immagine non supportato</string>
+  <string name="print_document_header">Documento: <xliff:g id="document_name">%1$s</xliff:g></string>
+  <string name="print_document_footer">Pagina <xliff:g id="page_number">%1$s</xliff:g></string>
   <string name="security_warning_extract">Attenzione!\n\nEstrarre un archivio con percorsi relativi o assoluti può danneggiare il dispositivo in quanto possono venire sovrascritti file di sistema.\n\nContinuare?</string>
   <string name="changelog_title">Changelog</string>
   <string name="welcome_title">Benvenuti</string>

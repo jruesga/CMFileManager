@@ -228,6 +228,7 @@
   <string name="actions_menu_add_shortcut">Afegeix una drecera</string>
   <string name="actions_menu_open_parent_folder">Obre el pare</string>
   <string name="actions_menu_compute_checksum">Calcula el checksum</string>
+  <string name="actions_menu_print">Imprimeix</string>
   <string name="actions_ask_undone_operation_msg">Aquesta acció no pot ser desfeta. Vols continuar?</string>
   <string name="input_name_dialog_label">Nom:</string>
   <string name="input_name_dialog_message_empty_name">El nom no pot estar buit.</string>
@@ -341,6 +342,10 @@
   <string name="ash_keyword">Paraula clau</string>
   <string name="ash_quoted_string">Cadena comentada</string>
   <string name="ash_variable">Variable</string>
+  <string name="print_unsupported_document">Format de document no suportat</string>
+  <string name="print_unsupported_image">Format d\'imatge no suportat</string>
+  <string name="print_document_header">Document: <xliff:g id="document_name">%1$s</xliff:g></string>
+  <string name="print_document_footer">Pàgina <xliff:g id="page_number">%1$s</xliff:g></string>
   <string name="security_warning_extract">Alerta!\n\n
       Extraient un arxiu comprimit amb rutes relatives o absolutes podria causar danys al teu dispositiu
       al sobreescriure arxius de sistema.\n\n

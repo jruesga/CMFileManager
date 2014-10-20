@@ -91,6 +91,10 @@
   <string name="layout_icons">Іконки</string>
   <string name="layout_simple">Список</string>
   <string name="layout_details">Детально</string>
+  <string name="cm_filemanager_show_dirs_first">Відображати папки першими</string>
+  <string name="cm_filemanager_show_hidden">Відображати приховані файли</string>
+  <string name="cm_filemanager_show_system">Відображати системні файли</string>
+  <string name="cm_filemanager_show_symlinks">Відображати сімлінки</string>
   <string name="filesystem_info_warning_title">Немає інформації</string>
   <string name="filesystem_info_warning_msg">Немає доступної інформації про файлову систему.</string>
   <string name="filesystem_info_cant_be_mounted_msg">Файлова система не може бути змонтована/розмонтована.</string>
@@ -223,6 +227,7 @@
   <string name="actions_menu_add_shortcut">Додати ярлик</string>
   <string name="actions_menu_open_parent_folder">Відкрити власника</string>
   <string name="actions_menu_compute_checksum">Обчислити контрольну суму</string>
+  <string name="actions_menu_print">Друк</string>
   <string name="actions_ask_undone_operation_msg">Ця дія безповоротна. Ви бажаєте продовжити?</string>
   <string name="input_name_dialog_label">Ім`я:</string>
   <string name="input_name_dialog_message_empty_name">Ім`я не може бути пустим</string>
@@ -337,6 +342,10 @@ Copyright \u00A9 2013 The CyanogenMod Project</string>
   <string name="ash_keyword">Ключове слово</string>
   <string name="ash_quoted_string">Цитований рядок</string>
   <string name="ash_variable">Змінна</string>
+  <string name="print_unsupported_document">Формат документа не підтримується</string>
+  <string name="print_unsupported_image">Формат зображення не підтримується</string>
+  <string name="print_document_header">Документ: <xliff:g id="document_name">%1$s</xliff:g></string>
+  <string name="print_document_footer">Сторінка <xliff:g id="page_number">%1$s</xliff:g></string>
   <string name="security_warning_extract">Увага!\n\nВидобування архіва з відносними або абсолютними шляхами може пошкодити пристрій шляхом перезапису системних файлів.\n\nВи дісно бажаєте продовжити?</string>
   <string name="changelog_title">Список змін</string>
   <string name="welcome_title">Ласкаво просимо!</string>

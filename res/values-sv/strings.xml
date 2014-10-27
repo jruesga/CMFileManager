@@ -91,6 +91,7 @@
   <string name="layout_icons">Ikoner</string>
   <string name="layout_simple">Enkel</string>
   <string name="layout_details">Detaljerad</string>
+  <string name="cm_filemanager_show_hidden">Visa dolda filer</string>
   <string name="filesystem_info_warning_title">Ingen information</string>
   <string name="filesystem_info_warning_msg">Det finns ingen information tillgänglig om filsystemet.</string>
   <string name="filesystem_info_cant_be_mounted_msg">Filsystemet kan inte monteras/avmonteras.</string>
@@ -231,6 +232,7 @@
   <string name="actions_menu_add_shortcut">Lägg till genväg</string>
   <string name="actions_menu_open_parent_folder">Öppna övermapp</string>
   <string name="actions_menu_compute_checksum">Beräkna kontrollsumma</string>
+  <string name="actions_menu_print">Skriv ut</string>
   <string name="actions_ask_undone_operation_msg">
     Denna åtgärd kan inte ångras. Vill du fortsätta?</string>
   <string name="input_name_dialog_label">Namn:</string>

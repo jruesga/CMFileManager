@@ -35,6 +35,7 @@ import com.cyanogenmod.filemanager.tasks.FilesystemAsyncTask;
 import com.cyanogenmod.filemanager.ui.ThemeManager;
 import com.cyanogenmod.filemanager.ui.ThemeManager.Theme;
 import com.cyanogenmod.filemanager.util.FileHelper;
+import com.cyanogenmod.filemanager.util.MountPointHelper;
 import com.cyanogenmod.filemanager.util.StorageHelper;
 
 import java.io.File;
@@ -369,6 +370,19 @@ public class BreadcrumbView extends RelativeLayout implements Breadcrumb, OnClic
         if (this.mDiskUsageInfo != null) {
             Drawable dw = theme.getDrawable(getContext(), "horizontal_progress_bar"); //$NON-NLS-1$
             this.mDiskUsageInfo.setProgressDrawable(dw);
+        }
+        final ImageView fsInfo = (ImageView)findViewById(R.id.ab_filesystem_info);
+        if (fsInfo != null) {
+            MountPoint mp = (MountPoint) fsInfo.getTag();
+            if (mp == null) {
+                theme.setImageDrawable(getContext(), fsInfo, "filesystem_warning_drawable");
+            } else {
+                String resource =
+                        MountPointHelper.isReadOnly(mp)
+                        ? "filesystem_locked_drawable"
+                        : "filesystem_unlocked_drawable";
+                theme.setImageDrawable(getContext(), fsInfo, resource);
+            }
         }
     }
 }

@@ -74,6 +74,7 @@ import com.cyanogenmod.filemanager.preferences.FileManagerSettings;
 import com.cyanogenmod.filemanager.preferences.Preferences;
 import com.cyanogenmod.filemanager.ui.ThemeManager;
 import com.cyanogenmod.filemanager.ui.ThemeManager.Theme;
+import com.cyanogenmod.filemanager.ui.policy.PrintActionPolicy;
 import com.cyanogenmod.filemanager.ui.widgets.ButtonItem;
 import com.cyanogenmod.filemanager.util.AndroidHelper;
 import com.cyanogenmod.filemanager.util.CommandHelper;
@@ -236,6 +237,21 @@ public class EditorActivity extends Activity implements TextWatcher {
 
             return v;
         }
+
+        /**
+         * Return the view as a document
+         *
+         * @return StringBuilder a buffer to the document
+         */
+        public StringBuilder toStringDocument() {
+            StringBuilder sb = new StringBuilder();
+            int c = getCount();
+            for (int i = 0; i < c; i++) {
+                sb.append(getItem(i));
+                sb.append("\n");
+            }
+            return sb;
+        }
     }
 
     /**
@@ -279,7 +295,12 @@ public class EditorActivity extends Activity implements TextWatcher {
          * {@inheritDoc}
          */
         @Override
-        public void onAsyncEnd(boolean cancelled) {/**NON BLOCK**/}
+        public void onAsyncEnd(boolean cancelled) {
+            if (!cancelled && StringHelper.isBinaryData(mByteBuffer.toByteArray())) {
+                EditorActivity.this.mBinary = true;
+                EditorActivity.this.mReadOnly = true;
+            }
+        }
 
         /**
          * {@inheritDoc}
@@ -298,20 +319,7 @@ public class EditorActivity extends Activity implements TextWatcher {
         public void onPartialResult(Object result) {
             try {
                 if (result == null) return;
-                byte[] partial = (byte[])result;
-
-                // Check if the file is a binary file. In this case the editor
-                // is read-only
-                if (!EditorActivity.this.mReadOnly) {
-                    for (int i = 0; i < partial.length-1; i++) {
-                        if (!StringHelper.isPrintableCharacter((char)partial[i])) {
-                            EditorActivity.this.mBinary = true;
-                            EditorActivity.this.mReadOnly = true;
-                            break;
-                        }
-                    }
-                }
-
+                byte[] partial = (byte[]) result;
                 this.mByteBuffer.write(partial, 0, partial.length);
                 this.mSize += partial.length;
                 if (this.mListener != null && this.mReadFso != null) {
@@ -514,6 +522,10 @@ public class EditorActivity extends Activity implements TextWatcher {
      * @hide
      */
     ButtonItem mSave;
+    /**
+     * @hide
+     */
+    ButtonItem mPrint;
 
     // No suggestions status
     /**
@@ -557,6 +569,8 @@ public class EditorActivity extends Activity implements TextWatcher {
      */
     String mHexLineSeparator;
 
+    private boolean mHexDump;
+
     /**
      * Intent extra parameter for the path of the file to open.
      */
@@ -575,6 +589,12 @@ public class EditorActivity extends Activity implements TextWatcher {
 
         // Load typeface for hex editor
         mHexTypeface = Typeface.createFromAsset(getAssets(), "fonts/Courier-Prime.ttf");
+
+        // Save hexdump user preference
+        mHexDump = Preferences.getSharedPreferences().getBoolean(
+                FileManagerSettings.SETTINGS_EDITOR_HEXDUMP.getId(),
+                ((Boolean)FileManagerSettings.SETTINGS_EDITOR_HEXDUMP.
+                        getDefaultValue()).booleanValue());
 
         // Register the broadcast receiver
         IntentFilter filter = new IntentFilter();
@@ -657,10 +677,16 @@ public class EditorActivity extends Activity implements TextWatcher {
         this.mTitle = (TextView)customTitle.findViewById(R.id.customtitle_title);
         this.mTitle.setText(R.string.editor);
         this.mTitle.setContentDescription(getString(R.string.editor));
-        this.mSave = (ButtonItem)customTitle.findViewById(R.id.ab_button1);
+
+        this.mSave = (ButtonItem)customTitle.findViewById(R.id.ab_button0);
         this.mSave.setImageResource(R.drawable.ic_holo_light_save);
         this.mSave.setContentDescription(getString(R.string.actionbar_button_save_cd));
         this.mSave.setVisibility(View.GONE);
+
+        this.mPrint = (ButtonItem)customTitle.findViewById(R.id.ab_button1);
+        this.mPrint.setImageResource(R.drawable.ic_holo_light_print);
+        this.mPrint.setContentDescription(getString(R.string.actionbar_button_print_cd));
+        this.mPrint.setVisibility(View.VISIBLE);
 
         ButtonItem configuration = (ButtonItem)customTitle.findViewById(R.id.ab_button2);
         configuration.setImageResource(R.drawable.ic_holo_light_overflow);
@@ -913,9 +939,17 @@ public class EditorActivity extends Activity implements TextWatcher {
      */
     public void onActionBarItemClick(View view) {
         switch (view.getId()) {
-            case R.id.ab_button1:
+            case R.id.ab_button0:
                 // Save the file
                 checkAndWrite();
+                break;
+
+            case R.id.ab_button1:
+                // Print the file
+                StringBuilder sb = mBinary
+                        ? ((HexDumpAdapter)mBinaryEditor.getAdapter()).toStringDocument()
+                        : new StringBuilder(mEditor.getText().toString());
+                PrintActionPolicy.printStringDocument(this, mFso, sb);
                 break;
 
             case R.id.ab_button2:
@@ -1105,12 +1139,7 @@ public class EditorActivity extends Activity implements TextWatcher {
                     // Now we have the byte array with all the data. is a binary file?
                     // Then dump them byte array to hex dump string (only if users settings
                     // to dump file)
-                    boolean hexDump =
-                            Preferences.getSharedPreferences().getBoolean(
-                                FileManagerSettings.SETTINGS_EDITOR_HEXDUMP.getId(),
-                                ((Boolean)FileManagerSettings.SETTINGS_EDITOR_HEXDUMP.
-                                        getDefaultValue()).booleanValue());
-                    if (activity.mBinary && hexDump) {
+                    if (activity.mBinary && mHexDump) {
                         // we do not use the Hexdump helper class, because we need to show the
                         // progress of the dump process
                         final String data = toHexPrintableString(toHexDump(
@@ -1158,7 +1187,7 @@ public class EditorActivity extends Activity implements TextWatcher {
                     }
                 } else {
                     // Now we have the buffer, set the text of the editor
-                    if (activity.mBinary) {
+                    if (activity.mBinary && mHexDump) {
                         HexDumpAdapter adapter = new HexDumpAdapter(EditorActivity.this,
                                 this.mReader.mBinaryBuffer);
                         mBinaryEditor.setAdapter(adapter);
@@ -1522,8 +1551,10 @@ public class EditorActivity extends Activity implements TextWatcher {
         theme.setTitlebarDrawable(this, getActionBar(), "titlebar_drawable"); //$NON-NLS-1$
         View v = getActionBar().getCustomView().findViewById(R.id.customtitle_title);
         theme.setTextColor(this, (TextView)v, "text_color"); //$NON-NLS-1$
-        v = findViewById(R.id.ab_button1);
+        v = findViewById(R.id.ab_button0);
         theme.setImageDrawable(this, (ImageView)v, "ab_save_drawable"); //$NON-NLS-1$
+        v = findViewById(R.id.ab_button1);
+        theme.setImageDrawable(this, (ImageView)v, "ab_print_drawable"); //$NON-NLS-1$
         v = findViewById(R.id.ab_button2);
         theme.setImageDrawable(this, (ImageView)v, "ab_overflow_drawable"); //$NON-NLS-1$
         //- View

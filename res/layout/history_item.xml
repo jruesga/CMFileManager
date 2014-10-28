@@ -56,15 +56,4 @@
             android:textAppearance="@style/secondary_text_appearance" />
     </LinearLayout>
 
-    <TextView
-        android:id="@+id/history_item_position"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical"
-        android:layout_marginLeft="@dimen/default_margin"
-        android:paddingRight="@dimen/extra_margin"
-        android:singleLine="true"
-        android:textAppearance="@style/primary_text_appearance"
-        android:textStyle="normal" />
-
 </LinearLayout>

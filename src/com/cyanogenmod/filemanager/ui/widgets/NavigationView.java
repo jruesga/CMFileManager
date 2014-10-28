@@ -38,7 +38,9 @@ import com.cyanogenmod.filemanager.FileManagerApplication;
 import com.cyanogenmod.filemanager.R;
 import com.cyanogenmod.filemanager.adapters.FileSystemObjectAdapter;
 import com.cyanogenmod.filemanager.adapters.FileSystemObjectAdapter.OnSelectionChangedListener;
+import com.cyanogenmod.filemanager.console.CancelledOperationException;
 import com.cyanogenmod.filemanager.console.ConsoleAllocException;
+import com.cyanogenmod.filemanager.console.VirtualMountPointConsole;
 import com.cyanogenmod.filemanager.listeners.OnHistoryListener;
 import com.cyanogenmod.filemanager.listeners.OnRequestRefreshListener;
 import com.cyanogenmod.filemanager.listeners.OnSelectionListener;
@@ -298,6 +300,9 @@ BreadcrumbListener, OnSelectionChangedListener, OnSelectionListener, OnRequestRe
                     } catch (Throwable ex2) {
                         /**NON BLOCK**/
                     }
+                }
+                if (ex instanceof CancelledOperationException) {
+                    return null;
                 }
 
                 //Capture exception (attach task, and use listener to do the anim)
@@ -973,6 +978,16 @@ BreadcrumbListener, OnSelectionChangedListener, OnSelectionListener, OnRequestRe
      * Method that changes the current directory of the view.
      *
      * @param newDir The new directory location
+     * @param addToHistory Add the directory to history
+     */
+    public void changeCurrentDir(final String newDir, boolean addToHistory) {
+        changeCurrentDir(newDir, addToHistory, false, false, null, null);
+    }
+
+    /**
+     * Method that changes the current directory of the view.
+     *
+     * @param newDir The new directory location
      * @param searchInfo The search information (if calling activity is {@link "SearchActivity"})
      */
     public void changeCurrentDir(final String newDir, SearchInfoParcelable searchInfo) {
@@ -996,6 +1011,27 @@ BreadcrumbListener, OnSelectionChangedListener, OnSelectionListener, OnRequestRe
         NavigationTask task = new NavigationTask(useCurrent, addToHistory, reload,
                 searchInfo, scrollTo);
         task.executeOnExecutor(AsyncTask.SERIAL_EXECUTOR, newDir);
+    }
+
+    /**
+     * Remove all unmounted files in the current selection
+     */
+    public void removeUnmountedSelection() {
+        List<FileSystemObject> selection = mAdapter.getSelectedItems();
+        int cc = selection.size() - 1;
+        for (int i = cc; i >= 0; i--) {
+            FileSystemObject item = selection.get(i);
+            VirtualMountPointConsole vc =
+                    VirtualMountPointConsole.getVirtualConsoleForPath(item.getFullPath());
+            if (vc != null && !vc.isMounted()) {
+                selection.remove(i);
+            }
+        }
+        mAdapter.setSelectedItems(selection);
+        mAdapter.notifyDataSetChanged();
+
+        // Do not call the selection listener. This method is supposed to be called by the
+        // listener itself
     }
 
 
@@ -1197,6 +1233,14 @@ BreadcrumbListener, OnSelectionChangedListener, OnSelectionListener, OnRequestRe
         if (clearSelection) {
             onDeselectAll();
         }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void onRequestBookmarksRefresh() {
+        // Ignore
     }
 
     /**

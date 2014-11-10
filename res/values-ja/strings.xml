@@ -16,8 +16,8 @@
      limitations under the License.
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-  <string name="app_name">ファイルマネージャ</string>
-  <string name="app_description">CyanogenModファイルマネージャ</string>
+  <string name="app_name">ファイルマネージャー</string>
+  <string name="app_description">CyanogenModファイルマネージャー</string>
   <string name="size_bytes">B</string>
   <string name="size_kilobytes">kB</string>
   <string name="size_megabytes">MB</string>
@@ -269,7 +269,7 @@
   <string name="pref_editor">エディタオプション</string>
   <string name="pref_themes">テーマ</string>
   <string name="pref_about">情報</string>
-  <string name="pref_about_summary">ファイルマネージャ v<xliff:g id="version">%1$s</xliff:g>\nCopyright \u00A9 2012-2014 The CyanogenMod Project</string>
+  <string name="pref_about_summary">ファイルマネージャー v<xliff:g id="version">%1$s</xliff:g>\nCopyright \u00A9 2012-2014 The CyanogenMod Project</string>
   <string name="pref_general_behaviour_category">全般</string>
   <string name="pref_case_sensitive_sort">大文字と小文字を区別</string>
   <string name="pref_case_sensitive_sort_summary">検索結果の並べ替えや移動で大文字と小文字を区別する</string>
@@ -286,8 +286,8 @@
   <string name="pref_access_mode">アクセスモード</string>
   <string name="pref_access_mode_safe">セーフモード</string>
   <string name="pref_access_mode_safe_summary">セーフモード\n\nアプリは権限を持たずに実行され、アクセス可能なファイルシステムはストレージボリューム（SDカードとUSB）のみです。</string>
-  <string name="pref_access_mode_prompt">プロンプトユーザーモード</string>
-  <string name="pref_access_mode_prompt_summary">プロンプトユーザーモード\n\nアプリはファイルシステムへのフルアクセスを持って実行されますが、権限が必要な操作を実行する前に権限のプロンプトを表示します。</string>
+  <string name="pref_access_mode_prompt">ダイアログユーザーモード</string>
+  <string name="pref_access_mode_prompt_summary">ダイアログユーザーモード\n\nアプリはファイルシステムへのフルアクセスを持って実行されますが、権限が必要な操作を実行する前に権限のダイアログを表示します。</string>
   <string name="pref_access_mode_root">ルートアクセスモード</string>
   <string name="pref_access_mode_root_summary">ルートアクセスモード\n\n警告！このモードは端末を破壊する可能性のある操作を許可します。操作が安全であることを確認するのは個人の責任です。</string>
   <string name="pref_restrict_secondary_users_access_title">ユーザーアクセスを制限</string>
@@ -326,7 +326,7 @@
   <string name="pref_themes_not_found">テーマが見つかりませんでした。</string>
   <string name="pref_debug_traces">デバッグ情報のログを記録</string>
   <string name="theme_default_name">ライトテーマ</string>
-  <string name="theme_default_description">CyanogenModファイルマネージャのライトテーマ。</string>
+  <string name="theme_default_description">CyanogenModファイルマネージャーのライトテーマ。</string>
   <string name="themes_author">CyanogenMod</string>
   <string name="drawer_open">ナビゲーションドロワーを開く</string>
   <string name="drawer_close">ナビゲーションドロワーを閉じる</string>
@@ -349,5 +349,5 @@
   <string name="security_warning_extract">警告！\n\n絶対パスまたは相対パスの書庫の解凍は、システムファイルを上書きして端末を損傷する可能性があります。\n\n続けますか？</string>
   <string name="changelog_title">更新履歴</string>
   <string name="welcome_title">ようこそ</string>
-  <string name="welcome_msg">CyanogenModファイルマネージャにようこそ。\n\nこのアプリはシステムファイルの操作や、端末を破壊する可能性のある操作を許可します。損害を防ぐために、アプリは安全で低い権限を持つモードで開始します。\n\n上級者向けのすべての権限を持つモードは設定からアクセスできます。操作がシステムを破壊しないことを確認するのは個人の責任です。\n\nCyanogenModチーム</string>
+  <string name="welcome_msg">CyanogenModファイルマネージャーへようこそ。\n\nこのアプリはシステムファイルの操作や、端末を破壊する可能性のある操作を許可します。損害を防ぐために、アプリは安全で低い権限を持つモードで開始します。\n\n上級者向けのすべての権限を持つモードは設定からアクセスできます。操作がシステムを破壊しないことを確認するのは個人の責任です。\n\nCyanogenModチーム</string>
 </resources>

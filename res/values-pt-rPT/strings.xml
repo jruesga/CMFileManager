@@ -124,7 +124,7 @@
   <string name="fso_properties_dialog_tab_info">Informação</string>
   <string name="fso_properties_dialog_tab_permissions">Permissões</string>
   <string name="fso_properties_dialog_name">Nome:</string>
-  <string name="fso_properties_dialog_parent">Pai:</string>
+  <string name="fso_properties_dialog_parent">Localização:</string>
   <string name="fso_properties_dialog_type">Tipo:</string>
   <string name="fso_properties_dialog_category">Categoria:</string>
   <string name="fso_properties_dialog_link">Ligação:</string>
@@ -136,7 +136,7 @@
   <string name="fso_properties_dialog_owner">Dono:</string>
   <string name="fso_properties_dialog_group">Grupo:</string>
   <string name="fso_properties_dialog_others">Outros:</string>
-  <string name="fso_properties_dialog_include_in_media_scan">Saltar pesquisa Multimedia:</string>
+  <string name="fso_properties_dialog_include_in_media_scan">Saltar pesquisa multimédia:</string>
   <string name="fso_failed_to_allow_media_scan">Falha de permissão na pesquisa multimédia</string>
   <string name="fso_failed_to_prevent_media_scan">Falha ao cancelar pesquisa multimédia</string>
   <string name="fso_delete_nomedia_dir_title">Eliminar pasta .nomedia</string>

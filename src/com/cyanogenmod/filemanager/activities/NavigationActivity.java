@@ -873,7 +873,7 @@ public class NavigationActivity extends Activity
         mDrawerHistory.addView(view, 0);
 
         // Show clear button if history tab is selected
-        mClearHistory.setVisibility(mHistoryTab.getVisibility());
+        mClearHistory.setVisibility(mHistoryTab.isSelected() ? View.VISIBLE : View.GONE);
     }
 
     /**
@@ -1999,6 +1999,8 @@ public class NavigationActivity extends Activity
             }
 
             //Navigate
+            boolean clearHistory = mHistoryTab.isSelected() && mHistory.size() > 0;
+            mClearHistory.setVisibility(clearHistory ? View.VISIBLE : View.GONE);
             return true;
 
         } catch (Throwable ex) {
@@ -2053,13 +2055,13 @@ public class NavigationActivity extends Activity
             }
         }
 
-        //Extract a history from the
+        //Navigate to history
         if (this.mHistory.size() > 0) {
-            //Navigate to history
             return navigateToHistory(this.mHistory.get(this.mHistory.size() - 1));
         }
 
         //Nothing to apply
+        mClearHistory.setVisibility(View.GONE);
         return false;
     }
 

@@ -593,6 +593,17 @@ public class NavigationActivity extends Activity
      * {@inheritDoc}
      */
     @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (mDrawerToggle.onOptionsItemSelected(item)) {
+          return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     protected void onDestroy() {
         if (DEBUG) {
             Log.d(TAG, "NavigationActivity.onDestroy"); //$NON-NLS-1$

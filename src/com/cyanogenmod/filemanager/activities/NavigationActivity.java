@@ -658,7 +658,7 @@ public class NavigationActivity extends Activity
                 ((Boolean)FileManagerSettings.SETTINGS_FIRST_USE.getDefaultValue()).booleanValue());
 
         //Display the welcome message?
-        if (firstUse && FileManagerApplication.isDeviceRooted()) {
+        if (firstUse && FileManagerApplication.hasShellCommands()) {
             // open navigation drawer to show user that it exists
             mDrawerLayout.openDrawer(mDrawer);
 

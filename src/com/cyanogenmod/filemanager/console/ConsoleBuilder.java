@@ -291,7 +291,7 @@ public final class ConsoleBuilder {
         int bufferSize = context.getResources().getInteger(R.integer.buffer_size);
 
         // Is rooted? Then create a shell console
-        if (FileManagerApplication.isDeviceRooted()) {
+        if (FileManagerApplication.hasShellCommands()) {
             NonPriviledgeConsole console = new NonPriviledgeConsole();
             console.setBufferSize(bufferSize);
             console.alloc();

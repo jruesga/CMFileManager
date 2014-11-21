@@ -93,6 +93,8 @@
     <string name="msgs_settings_save_failure">The setting could not be applied or stored.</string>
     <!-- The initial directory has an invalid or inaccessible reference -->
     <string name="msgs_settings_invalid_initial_directory">The initial folder \'<xliff:g id="initial_dir">%1$s</xliff:g>\' is invalid. Changing to root folder.</string>
+    <!-- Root is not available message -->
+    <string name="root_not_available_msg">Root is not available in this device. Cannot perform this operation.</string>
 
     <!-- Success -->
     <string name="msgs_success">The operation was completed successfully.</string>

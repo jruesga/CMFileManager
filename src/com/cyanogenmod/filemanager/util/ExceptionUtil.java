@@ -285,6 +285,17 @@ public final class ExceptionUtil {
             }
             return;
         }
+        if (relaunchable instanceof InsufficientPermissionsException &&
+                !FileManagerApplication.isDeviceRooted()) {
+            DialogHelper.showToast(context, R.string.root_not_available_msg,
+                    Toast.LENGTH_SHORT);
+
+            // Operation failed. Root is not available
+            if (listener != null) {
+                listener.onFailed(relaunchable);
+            }
+            return;
+        }
 
         //Create a yes/no dialog and ask the user
         final DialogInterface.OnClickListener clickListener =

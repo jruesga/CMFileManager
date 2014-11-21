@@ -97,7 +97,7 @@ public final class MountPointHelper {
             // Refresh mount points after some time (5 minutes should be enough)
             long now = System.currentTimeMillis();
             if (sMountPoints == null || (now - sLastCachedTime) > MAX_CACHED_TIME ||
-                FileManagerApplication.isDeviceRooted()) {
+                FileManagerApplication.hasShellCommands()) {
                 //Retrieve the mount points
                 List<MountPoint> mps =
                         CommandHelper.getMountPoints(null, console);

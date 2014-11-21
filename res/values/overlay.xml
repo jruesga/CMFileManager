@@ -65,12 +65,14 @@
         /system/xbin/pwd,
         /system/xbin/readlink,
         /system/xbin/stat,
-        /system/xbin/su,
         /system/xbin/tar,
         /system/xbin/xargs,
         /system/xbin/md5sum,
         /system/xbin/sha1sum
     </string>
+
+    <!-- The root command -->
+    <string name="root_command" translatable="false">/system/xbin/su</string>
 
     <!-- Optional shell commands in a pair=value format -->
     <string name="shell_optional_commands" translatable="false">

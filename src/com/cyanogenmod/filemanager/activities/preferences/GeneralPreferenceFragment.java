@@ -26,6 +26,7 @@ import android.preference.Preference;
 import android.preference.PreferenceCategory;
 import android.preference.Preference.OnPreferenceChangeListener;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.cyanogenmod.filemanager.FileManagerApplication;
 import com.cyanogenmod.filemanager.R;
@@ -35,6 +36,7 @@ import com.cyanogenmod.filemanager.preferences.FileManagerSettings;
 import com.cyanogenmod.filemanager.preferences.ObjectStringIdentifier;
 import com.cyanogenmod.filemanager.preferences.Preferences;
 import com.cyanogenmod.filemanager.util.AndroidHelper;
+import com.cyanogenmod.filemanager.util.DialogHelper;
 
 /**
  * A class that manages the commons options of the application
@@ -101,6 +103,14 @@ public class GeneralPreferenceFragment extends TitlePreferenceFragment {
                 String value = (String)newValue;
                 AccessMode oldMode = FileManagerApplication.getAccessMode();
                 AccessMode newMode = AccessMode.fromId(value);
+
+                // Denied change to root if su command is not present
+                if (newMode.compareTo(AccessMode.ROOT) == 0 &&
+                        !FileManagerApplication.isDeviceRooted()) {
+                    DialogHelper.showToast(activity, R.string.root_not_available_msg,
+                            Toast.LENGTH_SHORT);
+                    return false;
+                }
                 if (oldMode.compareTo(newMode) != 0) {
                     // The mode was changes. Change the console
                     if (newMode.compareTo(AccessMode.ROOT) == 0) {
@@ -256,8 +266,8 @@ public class GeneralPreferenceFragment extends TitlePreferenceFragment {
         final Context context = getActivity();
         boolean restrictedAccess = AndroidHelper.isSecondaryUser(context) &&
                 FileManagerApplication.isRestrictSecondaryUsersAccess(context);
-        this.mAccessMode.setEnabled(FileManagerApplication.isDeviceRooted() && !restrictedAccess);
-        if (!FileManagerApplication.isDeviceRooted()) {
+        this.mAccessMode.setEnabled(FileManagerApplication.hasShellCommands() && !restrictedAccess);
+        if (!FileManagerApplication.hasShellCommands()) {
             PreferenceCategory category = (PreferenceCategory) findPreference(
                     "general_advanced_settings");
             category.removePreference(mAccessMode);

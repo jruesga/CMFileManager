@@ -28,6 +28,7 @@ import com.cyanogenmod.filemanager.commands.shell.ResolveLinkCommand;
 import com.cyanogenmod.filemanager.console.Console;
 import com.cyanogenmod.filemanager.console.ExecutionException;
 import com.cyanogenmod.filemanager.console.InsufficientPermissionsException;
+import com.cyanogenmod.filemanager.console.java.JavaConsole;
 import com.cyanogenmod.filemanager.model.AID;
 import com.cyanogenmod.filemanager.model.BlockDevice;
 import com.cyanogenmod.filemanager.model.CharacterDevice;
@@ -1135,6 +1136,11 @@ public final class FileHelper {
                 // Should have access
                 return;
             }
+            if (console instanceof JavaConsole &&
+                    StorageHelper.isPathInStorageVolume(fso.getFullPath())) {
+                // Java console runs in chrooted environment, and sdcard are always readable
+                return;
+            }
             Identity identity = console.getIdentity();
             if (identity == null) {
                 throw new InsufficientPermissionsException(executable);
@@ -1188,6 +1194,11 @@ public final class FileHelper {
         try {
             if (console.isPrivileged()) {
                 // Should have access
+                return;
+            }
+            if (console instanceof JavaConsole &&
+                    StorageHelper.isPathInStorageVolume(fso.getFullPath())) {
+                // Java console runs in chrooted environment, and sdcard are always writeable
                 return;
             }
             Identity identity = console.getIdentity();
@@ -1244,6 +1255,11 @@ public final class FileHelper {
             if (console.isPrivileged()) {
                 // Should have access
                 return;
+            }
+            if (console instanceof JavaConsole &&
+                    StorageHelper.isPathInStorageVolume(fso.getFullPath())) {
+                // Java console runs in chrooted environment, and sdcard are never executable
+                throw new InsufficientPermissionsException(executable);
             }
             Identity identity = console.getIdentity();
             if (identity == null) {

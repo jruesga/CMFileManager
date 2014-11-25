@@ -551,6 +551,10 @@ public class NavigationActivity extends Activity
     @Override
     protected void onResume() {
         super.onResume();
+        
+        if (mSearchView.getVisibility() == View.VISIBLE) {
+            closeSearch();
+        }
 
         // Check restrictions
         if (!FileManagerApplication.checkRestrictSecondaryUsersAccess(this, mChRooted)) {
@@ -1933,18 +1937,15 @@ public class NavigationActivity extends Activity
         return !this.mExitFlag;
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
-    public boolean onSearchRequested() {
-        Bundle bundle = new Bundle();
-        bundle.putString(
-                SearchActivity.EXTRA_SEARCH_DIRECTORY,
-                getCurrentNavigationView().getCurrentDir());
-        startSearch(Preferences.getLastSearch(), true, bundle, false);
-        closeSearch();
-        return true;
+    public void startActivity(Intent intent) {
+        // check if search intent
+        if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
+            intent.putExtra(SearchActivity.EXTRA_SEARCH_DIRECTORY,
+                    getCurrentNavigationView().getCurrentDir());
+        }
+
+        super.startActivity(intent);
     }
 
     /**

@@ -574,6 +574,7 @@
     <string name="category_audio">AUDIO</string>
     <string name="category_video">VIDEO</string>
     <string name="category_security">SECURITY</string>
+    <string name="category_all">ALL</string>
 
     <!-- Compression - Compression modes dialog title -->
     <string name="compression_mode_title">Compression mode</string>

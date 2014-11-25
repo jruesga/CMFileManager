@@ -67,6 +67,19 @@
       android:layout_marginLeft="@dimen/default_margin"
       android:singleLine="true"
       android:textAppearance="@style/secondary_text_appearance" />
+
+    <Spinner
+      android:id="@+id/search_status_type_spinner"
+      android:layout_width="wrap_content"
+      android:layout_height="match_parent"
+      android:layout_alignParentBottom="true"
+      android:layout_alignParentRight="true"
+      android:layout_marginBottom="@dimen/default_margin"
+      android:layout_marginRight="@dimen/default_margin"
+      android:gravity="left"
+      android:textColor="@android:color/white"
+      android:dropDownVerticalOffset="20dp" />
+
   </RelativeLayout>
 
   <com.cyanogenmod.filemanager.ui.widgets.FlingerListView

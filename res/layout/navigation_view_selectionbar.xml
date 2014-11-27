@@ -28,7 +28,7 @@
     android:contentDescription="@string/actionbar_button_selection_done_cd"
     android:onClick="onActionBarItemClick"
     android:scaleType="fitCenter"
-    android:src="@drawable/ic_holo_light_accept" />
+    android:src="@drawable/ic_material_light_accept" />
 
   <include layout="@layout/horizontal_divider"
     android:layout_marginRight="@dimen/default_margin" />

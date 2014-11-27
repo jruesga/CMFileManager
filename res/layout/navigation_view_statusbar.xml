@@ -16,9 +16,10 @@
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/navigation_statusbar_portrait_holder"
+    android:elevation="4dp"
     android:layout_width="match_parent"
     android:layout_height="@dimen/default_row_height"
-    android:background="@drawable/bg_holo_statusbar"
+    android:background="@drawable/bg_material_statusbar"
     android:visibility="invisible">
 
   <RelativeLayout
@@ -33,7 +34,7 @@
         android:layout_alignParentRight="true"
         android:contentDescription="@string/actionbar_button_overflow_cd"
         android:onClick="onActionBarItemClick"
-        android:src="@drawable/ic_holo_light_overflow" />
+        android:src="@drawable/ic_material_light_overflow" />
 
     <com.cyanogenmod.filemanager.ui.widgets.ButtonItem
       android:id="@+id/ab_actions"
@@ -41,7 +42,7 @@
       android:layout_height="match_parent"
       android:contentDescription="@string/actionbar_button_actions_cd"
       android:onClick="onActionBarItemClick"
-      android:src="@drawable/ic_holo_light_contextual_action" />
+      android:src="@drawable/ic_material_light_contextual_action" />
 
     <RelativeLayout
       android:id="@+id/navigation_actionbar"
@@ -57,7 +58,7 @@
         android:layout_alignParentRight="true"
         android:contentDescription="@string/actionbar_button_search_cd"
         android:onClick="onActionBarItemClick"
-        android:src="@drawable/ic_holo_light_search"
+        android:src="@drawable/ic_material_light_search"
         android:visibility="invisible" />
 
     </RelativeLayout>

@@ -497,9 +497,9 @@ public class SearchActivity extends Activity
     private void initTitleActionBar() {
         //Configure the action bar options
         getActionBar().setBackgroundDrawable(
-                getResources().getDrawable(R.drawable.bg_holo_titlebar));
+                getResources().getDrawable(R.drawable.bg_material_titlebar));
         getActionBar().setDisplayOptions(
-                ActionBar.DISPLAY_SHOW_CUSTOM | ActionBar.DISPLAY_SHOW_HOME);
+                ActionBar.DISPLAY_SHOW_CUSTOM);
         getActionBar().setDisplayHomeAsUpEnabled(true);
         View customTitle = getLayoutInflater().inflate(R.layout.simple_customtitle, null, false);
 
@@ -507,7 +507,7 @@ public class SearchActivity extends Activity
         title.setText(R.string.search);
         title.setContentDescription(getString(R.string.search));
         ButtonItem configuration = (ButtonItem)customTitle.findViewById(R.id.ab_button1);
-        configuration.setImageResource(R.drawable.ic_holo_light_config);
+        configuration.setImageResource(R.drawable.ic_material_light_config);
         configuration.setVisibility(View.VISIBLE);
 
         getActionBar().setCustomView(customTitle);
@@ -679,7 +679,7 @@ public class SearchActivity extends Activity
         // Recovers the user preferences about save suggestions
         boolean saveSuggestions = Preferences.getSharedPreferences().getBoolean(
                 FileManagerSettings.SETTINGS_SAVE_SEARCH_TERMS.getId(),
-                ((Boolean)FileManagerSettings.SETTINGS_SAVE_SEARCH_TERMS.
+                ((Boolean) FileManagerSettings.SETTINGS_SAVE_SEARCH_TERMS.
                         getDefaultValue()).booleanValue());
         if (saveSuggestions) {
             //Save every query for use as recent suggestions
@@ -738,7 +738,7 @@ public class SearchActivity extends Activity
                                         if (SearchActivity.this.mExecutable.cancel()) {
                                             ListAdapter listAdapter =
                                                     SearchActivity.
-                                                        this.mSearchListView.getAdapter();
+                                                            this.mSearchListView.getAdapter();
                                             if (listAdapter != null) {
                                                 SearchActivity.this.toggleResults(
                                                         listAdapter.getCount() > 0, true);
@@ -1102,7 +1102,7 @@ public class SearchActivity extends Activity
     @Override
     public void onNavigateTo(Object o) {
         if (o instanceof FileSystemObject) {
-            back(false, (FileSystemObject)o, true);
+            back(false, (FileSystemObject) o, true);
         }
     }
 
@@ -1275,9 +1275,8 @@ public class SearchActivity extends Activity
         theme.setBaseTheme(this, false);
 
         //- ActionBar
-        theme.setTitlebarDrawable(this, getActionBar(), "titlebar_drawable"); //$NON-NLS-1$
         View v = getActionBar().getCustomView().findViewById(R.id.customtitle_title);
-        theme.setTextColor(this, (TextView)v, "text_color"); //$NON-NLS-1$
+        theme.setTextColor(this, (TextView)v, "action_bar_text_color"); //$NON-NLS-1$
         v = findViewById(R.id.ab_button1);
         theme.setImageDrawable(this, (ImageView)v, "ic_config_drawable"); //$NON-NLS-1$
         // ContentView
@@ -1287,9 +1286,9 @@ public class SearchActivity extends Activity
         v = findViewById(R.id.search_status);
         theme.setBackgroundDrawable(this, v, "statusbar_drawable"); //$NON-NLS-1$
         v = findViewById(R.id.search_status_found_items);
-        theme.setTextColor(this, (TextView)v, "text_color"); //$NON-NLS-1$
+        theme.setTextColor(this, (TextView)v, "action_bar_text_color"); //$NON-NLS-1$
         v = findViewById(R.id.search_status_query_terms);
-        theme.setTextColor(this, (TextView)v, "text_color"); //$NON-NLS-1$
+        theme.setTextColor(this, (TextView)v, "action_bar_text_color"); //$NON-NLS-1$
         //ListView
         if (this.mSearchListView.getAdapter() != null) {
             ((SearchResultAdapter)this.mSearchListView.getAdapter()).notifyDataSetChanged();

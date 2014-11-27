@@ -34,7 +34,7 @@
       android:layout_height="match_parent"
       android:contentDescription="@string/actionbar_button_sort_mode_cd"
       android:onClick="onActionBarItemClick"
-      android:src="@drawable/ic_holo_light_sort_alphabetically" />
+      android:src="@drawable/ic_material_light_sort_alphabetically" />
 
     <com.cyanogenmod.filemanager.ui.widgets.ButtonItem
       android:id="@+id/ab_layout_mode"
@@ -42,7 +42,7 @@
       android:layout_height="match_parent"
       android:contentDescription="@string/actionbar_button_layout_mode_cd"
       android:onClick="onActionBarItemClick"
-      android:src="@drawable/ic_holo_light_layout" />
+      android:src="@drawable/ic_material_light_layout" />
 
     <com.cyanogenmod.filemanager.ui.widgets.ButtonItem
       android:id="@+id/ab_view_options"
@@ -50,7 +50,7 @@
       android:layout_height="match_parent"
       android:contentDescription="@string/actionbar_button_other_view_options_cd"
       android:onClick="onActionBarItemClick"
-      android:src="@drawable/ic_holo_light_view" />
+      android:src="@drawable/ic_material_light_view" />
   </LinearLayout>
 
   <com.cyanogenmod.filemanager.ui.widgets.ButtonItem
@@ -60,6 +60,6 @@
     android:layout_alignParentRight="true"
     android:contentDescription="@null"
     android:onClick="onActionBarItemClick"
-    android:src="@drawable/ic_holo_light_expander_close" />
+    android:src="@drawable/ic_material_light_expander_close" />
 
 </RelativeLayout>

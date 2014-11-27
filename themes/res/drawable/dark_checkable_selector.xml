@@ -17,9 +17,9 @@
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
 
   <item
-    android:drawable="@drawable/btn_holo_dark_check_on_normal_inverted"
+    android:drawable="@drawable/btn_material_dark_check_on_normal_inverted"
     android:state_selected="true"/>
   <item
-    android:drawable="@drawable/btn_holo_dark_check_off_normal"/>
+    android:drawable="@drawable/btn_material_dark_check_off_normal"/>
 
 </selector>

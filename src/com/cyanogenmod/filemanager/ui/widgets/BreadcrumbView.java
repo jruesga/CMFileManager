@@ -358,7 +358,7 @@ public class BreadcrumbView extends RelativeLayout implements Breadcrumb, OnClic
                 if (v instanceof BreadcrumbItem) {
                     // Breadcrumb item
                     theme.setTextColor(
-                            getContext(), (BreadcrumbItem)v, "text_color"); //$NON-NLS-1$
+                            getContext(), (BreadcrumbItem)v, "action_bar_text_color"); //$NON-NLS-1$
                 } else if (v instanceof ImageView) {
                     // Divider drawable
                     theme.setImageDrawable(

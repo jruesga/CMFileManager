@@ -22,6 +22,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.preference.PreferenceActivity;
 import android.util.Log;
@@ -113,9 +114,9 @@ public class SettingsPreferences extends PreferenceActivity {
     private void initTitleActionBar() {
         //Configure the action bar options
         getActionBar().setBackgroundDrawable(
-                getResources().getDrawable(R.drawable.bg_holo_titlebar));
+                getResources().getDrawable(R.drawable.bg_material_titlebar));
         getActionBar().setDisplayOptions(
-                ActionBar.DISPLAY_SHOW_CUSTOM | ActionBar.DISPLAY_SHOW_HOME);
+                ActionBar.DISPLAY_SHOW_CUSTOM);
         getActionBar().setDisplayHomeAsUpEnabled(true);
         View customTitle = getLayoutInflater().inflate(R.layout.simple_customtitle, null, false);
         this.mTitle = (TextView)customTitle.findViewById(R.id.customtitle_title);
@@ -179,10 +180,9 @@ public class SettingsPreferences extends PreferenceActivity {
         Theme theme = ThemeManager.getCurrentTheme(this);
         theme.setBaseTheme(this, false);
 
-        //- ActionBar
-        theme.setTitlebarDrawable(this, getActionBar(), "titlebar_drawable"); //$NON-NLS-1$
         View v = getActionBar().getCustomView().findViewById(R.id.customtitle_title);
-        theme.setTextColor(this, (TextView)v, "text_color"); //$NON-NLS-1$
+        theme.setTextColor(this, (TextView)v, "action_bar_text_color"); //$NON-NLS-1$
+
         // -View
         theme.setBackgroundDrawable(
                 this,

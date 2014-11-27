@@ -26,7 +26,7 @@
     android:layout_height="match_parent"
     android:contentDescription="@string/actionbar_button_filesystem_cd"
     android:onClick="onActionBarItemClick"
-    android:src="@drawable/ic_holo_light_fs_warning"
+    android:src="@drawable/ic_material_light_fs_warning"
     android:visibility="invisible" />
 
   <ProgressBar

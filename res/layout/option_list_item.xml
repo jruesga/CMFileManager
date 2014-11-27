@@ -19,8 +19,7 @@
      not the same -->
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
   android:layout_width="wrap_content"
-  android:layout_height="48dp"
-  android:background="@drawable/holo_selector" >
+  android:layout_height="48dp" >
 
   <ImageView
     android:id="@+id/option_list_item_check"

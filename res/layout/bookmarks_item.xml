@@ -18,10 +18,10 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="48dp"
-    android:background="@drawable/holo_list_selector_deselected"
     android:orientation="horizontal"
     android:focusable="true"
-    android:clickable="true" >
+    android:clickable="true"
+    android:background="@drawable/material_selector" >
 
     <ImageView
         android:id="@+id/bookmarks_item_icon"

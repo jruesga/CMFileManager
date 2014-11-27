@@ -32,7 +32,7 @@
     <dimen name="hexeditor_text_size">10sp</dimen>
 
     <!-- The default row height -->
-    <dimen name="default_row_height">48dp</dimen>
+    <dimen name="default_row_height">56dp</dimen>
     <!-- An small row height -->
     <dimen name="small_row_height">40dp</dimen>
     <!-- An smallest row height -->
@@ -74,7 +74,7 @@
     <!-- The navigation grid width -->
     <dimen name="navigation_grid_width">85dp</dimen>
     <!-- The navigation grid height -->
-    <dimen name="navigation_grid_height">80dp</dimen>
+    <dimen name="navigation_grid_height">85dp</dimen>
     <!-- The navigation grid item width -->
     <dimen name="navigation_grid_item_width">25dp</dimen>
     <!-- The navigation grid item height -->
@@ -119,4 +119,9 @@
     <dimen name="print_text_size">6sp</dimen>
     <!-- Print page margins -->
     <dimen name="print_page_margins">5dp</dimen>
+
+    <!-- Scrim layout elevation -->
+    <dimen name="scrim_layout_elevation">10dp</dimen>
+    <!-- Drawer header height -->
+    <dimen name="drawer_header_height">150dp</dimen>
 </resources>

@@ -28,9 +28,6 @@
       android:fragment="com.cyanogenmod.filemanager.activities.preferences.EditorPreferenceFragment"
       android:title="@string/pref_editor" />
     <header
-      android:fragment="com.cyanogenmod.filemanager.activities.preferences.ThemesPreferenceFragment"
-      android:title="@string/pref_themes" />
-    <header
       android:title="@string/pref_about"
       android:summary="@null" />
 </preference-headers>

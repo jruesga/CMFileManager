@@ -17,7 +17,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
   android:layout_width="@dimen/grid_width"
   android:layout_height="wrap_content"
-  android:background="@drawable/holo_selection"
+  android:background="@drawable/material_selection"
   android:orientation="vertical">
 
     <ImageView android:id="@+id/associations_item_icon"

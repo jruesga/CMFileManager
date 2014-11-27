@@ -17,7 +17,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
   android:id="@+id/navigation_view_details_item"
   android:layout_width="@dimen/navigation_grid_width"
-  android:layout_height="@dimen/navigation_grid_height" >
+  android:layout_height="@dimen/navigation_grid_height">
 
   <com.cyanogenmod.filemanager.ui.widgets.TransparentNonFocusableButtonItem
     android:id="@+id/navigation_view_item_check"
@@ -26,7 +26,7 @@
     android:layout_above="@id/navigation_view_item_name"
     android:layout_alignParentLeft="true"
     android:gravity="center|center_vertical"
-    android:src="@drawable/btn_holo_light_check_off_normal" />
+    android:src="@drawable/btn_material_light_check_off_normal" />
 
   <com.cyanogenmod.filemanager.ui.widgets.FixedSizeImageView
     android:id="@+id/navigation_view_item_icon"

@@ -22,11 +22,14 @@ LOCAL_SRC_FILES += $(call all-java-files-under, themes/src)
 LOCAL_SRC_FILES += $(call all-java-files-under, libs/android-syntax-highlight/src)
 LOCAL_SRC_FILES += $(call all-java-files-under, libs/color-picker-view/src)
 
-LOCAL_STATIC_JAVA_LIBRARIES := libtruezip
-
-LOCAL_RESOURCE_DIR := $(addprefix $(LOCAL_PATH)/, themes/res res)
-LOCAL_AAPT_INCLUDE_ALL_RESOURCES := true
 LOCAL_AAPT_FLAGS := --auto-add-overlay
+
+LOCAL_STATIC_JAVA_LIBRARIES += libtruezip
+LOCAL_STATIC_JAVA_LIBRARIES += android-support-v4
+
+LOCAL_RESOURCE_DIR += $(addprefix $(LOCAL_PATH)/, themes/res res)
+
+LOCAL_AAPT_INCLUDE_ALL_RESOURCES := true
 
 LOCAL_PACKAGE_NAME := CMFileManager
 LOCAL_CERTIFICATE := platform

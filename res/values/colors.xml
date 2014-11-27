@@ -23,7 +23,7 @@
 
     <!-- A black color with some transparency -->
     <color name="black_transparent">#99000000</color>
-    <!-- A derivated blue from @android:color/holo_blue_light with some transparency -->
+    <!-- A derivated blue from @color/material_palette_blue_primary with some transparency -->
     <color name="blue_transparent">#9933b5e5</color>
 
     <!-- Disk usage total color -->
@@ -59,4 +59,10 @@
     <!-- Execution console -->
     <color name="console_bg">#99000000</color>
     <color name="console_fg">#99FFFFFF</color>
+
+    <color name="material_palette_blue_accent">#77E0E0E0</color>
+    <color name="material_palette_blue_accent_dark">#77BDBDBD</color>
+    <color name="material_palette_blue_primary">#1E88E5</color>
+    <color name="material_palette_blue_primary_dark">#1976D2</color>
+    <color name="actionbar_palette_blue_primary">#1E88E5</color>
 </resources>

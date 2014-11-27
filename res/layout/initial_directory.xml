@@ -46,7 +46,7 @@
     android:layout_marginLeft="@dimen/extra_large_margin"
     android:layout_marginRight="@dimen/extra_large_margin"
     android:contentDescription="@null"
-    android:drawableLeft="@drawable/ic_holo_light_fs_warning"
+    android:drawableLeft="@drawable/ic_material_light_fs_warning"
     android:drawablePadding="@dimen/default_margin"
     android:gravity="left|center_vertical"
     android:singleLine="false"

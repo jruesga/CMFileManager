@@ -140,7 +140,7 @@ public class ActionsDialog implements OnItemClickListener, OnItemLongClickListen
     private void init(Context context, int group) {
         //Create the menu adapter
         TwoColumnsMenuListAdapter adapter =
-                new TwoColumnsMenuListAdapter(context, R.menu.actions, group);
+                new TwoColumnsMenuListAdapter(context, R.menu.actions, group, false);
         adapter.setOnItemClickListener(this);
         adapter.setOnItemLongClickListener(this);
 

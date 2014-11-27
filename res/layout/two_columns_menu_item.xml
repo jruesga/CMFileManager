@@ -33,7 +33,7 @@
     android:gravity="left|center_vertical"
     android:singleLine="true"
     android:textAppearance="@style/primary_text_appearance_nohighlight"
-    android:background="@drawable/holo_selector" />
+    android:background="@drawable/material_selector" />
 
   <include layout="@layout/horizontal_divider" />
 
@@ -50,6 +50,6 @@
     android:gravity="left|center_vertical"
     android:singleLine="true"
     android:textAppearance="@style/primary_text_appearance_nohighlight"
-    android:background="@drawable/holo_selector" />
+    android:background="@drawable/material_selector" />
 
 </LinearLayout>

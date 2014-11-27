@@ -18,36 +18,84 @@
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2" xmlns:android="http://schemas.android.com/apk/res/android">
 
     <!-- Base themes -->
-    <style name="FileManager.Theme.Holo.Light" parent="@android:style/Theme.Holo.Light">
+    <style name="FileManager.Theme.Material.Light.NoActionBar" parent="@android:style/Theme.Material.Light.NoActionBar">
         <item name="android:windowBackground">@color/default_background</item>
-        <item name="android:actionBarStyle">@style/FileManager.Widget.ActionBar.White</item>
+        <item name="android:windowActionBar">false</item>
+        <item name="android:windowActionModeOverlay">true</item>
+        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:colorPrimary">@color/material_palette_blue_primary</item>
+        <item name="android:colorPrimaryDark">@color/material_palette_blue_primary_dark</item>
+        <item name="android:colorControlHighlight">@color/material_palette_blue_accent_dark</item>
+        <item name="android:colorAccent">@color/material_palette_blue_primary_dark</item>
     </style>
-    <style name="FileManager.Theme.Holo" parent="@android:style/Theme.Holo"></style>
+
+    <!-- Base themes -->
+    <style name="FileManager.Theme.Material.Light" parent="@android:style/Theme.Material.Light">
+        <item name="android:windowBackground">@color/default_background</item>
+        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+        <item name="android:colorPrimary">@color/material_palette_blue_primary</item>
+        <item name="android:colorPrimaryDark">@color/material_palette_blue_primary_dark</item>
+        <item name="android:colorControlHighlight">@color/material_palette_blue_accent_dark</item>
+        <item name="android:colorAccent">@color/material_palette_blue_primary</item>
+        <item name="android:actionBarStyle">@style/FileManager.Widget.ActionBar.White</item>
+        <item name="android:homeAsUpIndicator">@drawable/material_ripple_up_arrow</item>
+    </style>
+
+    <style name="FileManager.Theme.Material.NoActionBar" parent="@android:style/Theme.Material.NoActionBar">
+        <item name="android:windowActionBar">false</item>
+        <item name="android:windowActionModeOverlay">true</item>
+        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:colorPrimary">@color/material_palette_blue_primary</item>
+        <item name="android:colorPrimaryDark">@color/material_palette_blue_primary_dark</item>
+        <item name="android:colorControlHighlight">@color/material_palette_blue_accent_dark</item>
+        <item name="android:colorAccent">@color/material_palette_blue_accent</item>
+    </style>
+
+    <style name="FileManager.Theme.Material" parent="@android:style/Theme.Material">
+        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+        <item name="android:colorPrimary">@color/material_palette_blue_primary</item>
+        <item name="android:colorPrimaryDark">@color/material_palette_blue_primary_dark</item>
+        <item name="android:colorControlHighlight">@color/material_palette_blue_accent_dark</item>
+        <item name="android:colorAccent">@color/material_palette_blue_primary</item>
+        <item name="android:actionBarStyle">@style/FileManager.Widget.ActionBar.White</item>
+        <item name="android:homeAsUpIndicator">@drawable/material_ripple_up_arrow</item>
+    </style>
 
     <!-- A theme with overlay -->
-    <style name="FileManager.Theme.Holo.Light.Overlay" parent="@style/FileManager.Theme.Holo.Light">
+    <style name="FileManager.Theme.Material.Light.Overlay" parent="@style/FileManager.Theme.Material.Light">
         <item name="android:windowIsTranslucent">true</item>
         <item name="android:windowBackground">@color/black_transparent</item>
         <item name="android:windowContentOverlay">@null</item>
         <item name="android:windowNoTitle">true</item>
         <item name="android:windowIsFloating">true</item>
         <item name="android:backgroundDimEnabled">false</item>
+        <item name="android:homeAsUpIndicator">@drawable/material_ripple_up_arrow</item>
     </style>
-    <style name="FileManager.Theme.Holo.Overlay" parent="@style/FileManager.Theme.Holo">
+
+    <style name="FileManager.Theme.Material.Overlay" parent="@style/FileManager.Theme.Material">
         <item name="android:windowIsTranslucent">true</item>
         <item name="android:windowBackground">@color/black_transparent</item>
         <item name="android:windowContentOverlay">@null</item>
         <item name="android:windowNoTitle">true</item>
         <item name="android:windowIsFloating">true</item>
         <item name="android:backgroundDimEnabled">false</item>
+        <item name="android:homeAsUpIndicator">@drawable/material_ripple_up_arrow</item>
     </style>
 
     <!-- Action bar -->
-    <style name="FileManager.Widget.ActionBar.White" parent="@android:style/Widget.Holo.Light.ActionBar">
+    <style name="FileManager.Widget.ActionBar.White" parent="@android:style/Widget.Material.Light.ActionBar">
+        <item name="android:textColorPrimary">@android:color/white</item>
         <item name="android:titleTextStyle">@style/primary_text_appearance</item>
-        <item name="android:background">@color/default_background</item>
-        <item name="android:backgroundStacked">@color/default_background</item>
-        <item name="android:backgroundSplit">@color/default_background</item>
+        <item name="android:colorControlHighlight">@color/material_palette_blue_primary_dark</item>
+        <item name="android:colorAccent">@color/material_palette_blue_primary</item>
+        <item name="android:colorPrimary">@color/material_palette_blue_primary</item>
+        <item name="android:colorPrimaryDark">@color/material_palette_blue_primary_dark</item>
+        <item name="android:background">@color/material_palette_blue_primary</item>
     </style>
 
     <!-- Title -->
@@ -93,7 +141,7 @@
     <!-- The text appearance for dialog titles -->
     <style name="dialog_title_text_appearance">
         <item name="android:textSize">@dimen/dialog_title_text_size</item>
-        <item name="android:textColor">@android:color/holo_blue_dark</item>
+        <item name="android:textColor">@color/material_palette_blue_primary_dark</item>
         <item name="android:textStyle">bold</item>
     </style>
 

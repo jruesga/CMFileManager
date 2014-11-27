@@ -27,7 +27,7 @@
     android:layout_alignParentRight="true"
     android:contentDescription="@null"
     android:onClick="onActionBarItemClick"
-    android:src="@drawable/ic_holo_light_expander_open" />
+    android:src="@drawable/ic_material_light_expander_open" />
 
   <com.cyanogenmod.filemanager.ui.widgets.BreadcrumbView
     android:id="@+id/breadcrumb_view"

@@ -19,6 +19,7 @@ package com.cyanogenmod.filemanager.adapters;
 import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.cyanogenmod.filemanager.R;
@@ -36,9 +37,11 @@ public class HighlightedSimpleMenuListAdapter extends SimpleMenuListAdapter {
      *
      * @param context The current context
      * @param menuResourceId The resource identifier
+     * @param multiSelect Whether the menu allows for single or multi select
      */
-    public HighlightedSimpleMenuListAdapter(Context context, int menuResourceId) {
-        super(context, menuResourceId);
+    public HighlightedSimpleMenuListAdapter(Context context, int menuResourceId,
+                                            boolean multiSelect) {
+        super(context, menuResourceId, multiSelect);
         this.mContext = context;
     }
 
@@ -50,10 +53,11 @@ public class HighlightedSimpleMenuListAdapter extends SimpleMenuListAdapter {
      * @param context The current context
      * @param menuResourceId The resource identifier
      * @param menuGroupResourceId The menu group resource identifier
+     * @param multiSelect Whether the menu allows for single or multi select
      */
     public HighlightedSimpleMenuListAdapter(
-            Context context, int menuResourceId, int menuGroupResourceId) {
-        this(context, menuResourceId);
+            Context context, int menuResourceId, int menuGroupResourceId, boolean multiSelect) {
+        this(context, menuResourceId, multiSelect);
     }
 
     /**

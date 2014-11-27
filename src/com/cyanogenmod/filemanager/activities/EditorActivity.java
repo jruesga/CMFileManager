@@ -26,6 +26,7 @@ import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.res.Configuration;
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
@@ -669,9 +670,9 @@ public class EditorActivity extends Activity implements TextWatcher {
     private void initTitleActionBar() {
         //Configure the action bar options
         getActionBar().setBackgroundDrawable(
-                getResources().getDrawable(R.drawable.bg_holo_titlebar));
+                getResources().getDrawable(R.drawable.bg_material_titlebar));
         getActionBar().setDisplayOptions(
-                ActionBar.DISPLAY_SHOW_CUSTOM | ActionBar.DISPLAY_SHOW_HOME);
+                ActionBar.DISPLAY_SHOW_CUSTOM);
         getActionBar().setDisplayHomeAsUpEnabled(true);
         View customTitle = getLayoutInflater().inflate(R.layout.simple_customtitle, null, false);
         this.mTitle = (TextView)customTitle.findViewById(R.id.customtitle_title);
@@ -679,17 +680,17 @@ public class EditorActivity extends Activity implements TextWatcher {
         this.mTitle.setContentDescription(getString(R.string.editor));
 
         this.mSave = (ButtonItem)customTitle.findViewById(R.id.ab_button0);
-        this.mSave.setImageResource(R.drawable.ic_holo_light_save);
+        this.mSave.setImageResource(R.drawable.ic_material_light_save);
         this.mSave.setContentDescription(getString(R.string.actionbar_button_save_cd));
         this.mSave.setVisibility(View.GONE);
 
         this.mPrint = (ButtonItem)customTitle.findViewById(R.id.ab_button1);
-        this.mPrint.setImageResource(R.drawable.ic_holo_light_print);
+        this.mPrint.setImageResource(R.drawable.ic_material_light_print);
         this.mPrint.setContentDescription(getString(R.string.actionbar_button_print_cd));
         this.mPrint.setVisibility(View.VISIBLE);
 
         ButtonItem configuration = (ButtonItem)customTitle.findViewById(R.id.ab_button2);
-        configuration.setImageResource(R.drawable.ic_holo_light_overflow);
+        configuration.setImageResource(R.drawable.ic_material_light_overflow);
         configuration.setContentDescription(getString(R.string.actionbar_button_overflow_cd));
 
         View status = findViewById(R.id.editor_status);
@@ -873,7 +874,7 @@ public class EditorActivity extends Activity implements TextWatcher {
      */
     private void showOverflowPopUp(View anchor) {
         SimpleMenuListAdapter adapter =
-                new HighlightedSimpleMenuListAdapter(this, R.menu.editor);
+                new HighlightedSimpleMenuListAdapter(this, R.menu.editor, true);
         MenuItem noSuggestions = adapter.getMenu().findItem(R.id.mnu_no_suggestions);
         if (noSuggestions != null) {
             if (this.mBinary) {
@@ -1550,7 +1551,7 @@ public class EditorActivity extends Activity implements TextWatcher {
         //- ActionBar
         theme.setTitlebarDrawable(this, getActionBar(), "titlebar_drawable"); //$NON-NLS-1$
         View v = getActionBar().getCustomView().findViewById(R.id.customtitle_title);
-        theme.setTextColor(this, (TextView)v, "text_color"); //$NON-NLS-1$
+        theme.setTextColor(this, (TextView)v, "action_bar_text_color"); //$NON-NLS-1$
         v = findViewById(R.id.ab_button0);
         theme.setImageDrawable(this, (ImageView)v, "ab_save_drawable"); //$NON-NLS-1$
         v = findViewById(R.id.ab_button1);

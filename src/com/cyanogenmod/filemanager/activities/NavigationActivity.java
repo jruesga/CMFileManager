@@ -29,6 +29,7 @@ import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.content.res.XmlResourceParser;
 import android.database.Cursor;
+import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.nfc.NfcAdapter;
@@ -38,7 +39,10 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Parcelable;
 import android.os.storage.StorageVolume;
+import android.support.v4.app.ActionBarDrawerToggle;
+import android.support.v4.widget.DrawerLayout;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -54,9 +58,11 @@ import android.widget.LinearLayout;
 import android.widget.ListPopupWindow;
 import android.widget.PopupWindow;
 import android.widget.ScrollView;
+import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import android.widget.Toolbar;
 import com.android.internal.util.XmlUtils;
 import com.cyanogenmod.filemanager.FileManagerApplication;
 import com.cyanogenmod.filemanager.R;
@@ -96,10 +102,8 @@ import com.cyanogenmod.filemanager.ui.dialogs.ActionsDialog;
 import com.cyanogenmod.filemanager.ui.dialogs.FilesystemInfoDialog;
 import com.cyanogenmod.filemanager.ui.dialogs.InitialDirectoryDialog;
 import com.cyanogenmod.filemanager.ui.dialogs.FilesystemInfoDialog.OnMountListener;
-import com.cyanogenmod.filemanager.ui.widgets.ActionBarDrawerToggle;
 import com.cyanogenmod.filemanager.ui.widgets.Breadcrumb;
 import com.cyanogenmod.filemanager.ui.widgets.ButtonItem;
-import com.cyanogenmod.filemanager.ui.widgets.DrawerLayout;
 import com.cyanogenmod.filemanager.ui.widgets.NavigationCustomTitleView;
 import com.cyanogenmod.filemanager.ui.widgets.NavigationView;
 import com.cyanogenmod.filemanager.ui.widgets.NavigationView.OnNavigationRequestMenuListener;
@@ -183,6 +187,11 @@ public class NavigationActivity extends Activity
     // After this time user need to tap 2 times the back button to
     // exit, and the toast is shown again after the first tap.
     private static final int RELEASE_EXIT_CHECK_TIMEOUT = 3500;
+
+
+    private Toolbar mToolBar;
+    private SearchView mSearchView;
+    private NavigationCustomTitleView mCustomTitleView;
 
     private final BroadcastReceiver mNotificationReceiver = new BroadcastReceiver() {
         @Override
@@ -373,7 +382,7 @@ public class NavigationActivity extends Activity
         public void onClick(View v) {
             switch (v.getId()) {
                 case R.id.ab_settings:
-                    mDrawerLayout.closeDrawer(mDrawer);
+                    mDrawerLayout.closeDrawer(Gravity.START);
                     openSettings();
                     break;
                 case R.id.ab_clear_history:
@@ -454,7 +463,7 @@ public class NavigationActivity extends Activity
 
         // Set the theme before setContentView
         Theme theme = ThemeManager.getCurrentTheme(this);
-        theme.setBaseTheme(this, false);
+        theme.setBaseThemeNoActionBar(this);
 
         //Set the main layout of the activity
         setContentView(R.layout.navigation);
@@ -489,6 +498,11 @@ public class NavigationActivity extends Activity
 
         //Navigation views
         initNavigationViews();
+
+        // As we're using a Toolbar, we should retrieve it and set it
+        // to be our ActionBar
+        mToolBar = (Toolbar) findViewById(R.id.material_toolbar);
+        setActionBar(mToolBar);
 
         //Initialize action bars
         initTitleActionBar();
@@ -660,7 +674,7 @@ public class NavigationActivity extends Activity
         //Display the welcome message?
         if (firstUse && FileManagerApplication.hasShellCommands()) {
             // open navigation drawer to show user that it exists
-            mDrawerLayout.openDrawer(mDrawer);
+            mDrawerLayout.openDrawer(Gravity.START);
 
             AlertDialog dialog = DialogHelper.createAlertDialog(this,
                     R.drawable.ic_launcher, R.string.welcome_title,
@@ -679,8 +693,6 @@ public class NavigationActivity extends Activity
      * Method that initializes the titlebar of the activity.
      */
     private void initTitleActionBar() {
-        getActionBar().setTitle(R.string.app_name);
-
         //Inflate the view and associate breadcrumb
         View titleLayout = getLayoutInflater().inflate(
                 R.layout.navigation_view_customtitle, null, false);
@@ -705,10 +717,8 @@ public class NavigationActivity extends Activity
 
         //Configure the action bar options
         getActionBar().setBackgroundDrawable(
-                getResources().getDrawable(R.drawable.bg_holo_titlebar));
-        getActionBar().setDisplayOptions(
-                ActionBar.DISPLAY_SHOW_CUSTOM | ActionBar.DISPLAY_SHOW_HOME);
-        getActionBar().setCustomView(titleLayout);
+                getResources().getDrawable(R.drawable.bg_material_titlebar));
+        mToolBar.addView(titleLayout);
     }
 
     /**
@@ -764,6 +774,8 @@ public class NavigationActivity extends Activity
      */
     private void initDrawer() {
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+        //Set our status bar color
+        mDrawerLayout.setStatusBarBackgroundColor(R.color.material_palette_blue_primary_dark);
         mDrawer = (ViewGroup) findViewById(R.id.drawer);
         mDrawerBookmarks = (LinearLayout) findViewById(R.id.bookmarks_list);
         mDrawerHistory = (LinearLayout) findViewById(R.id.history_list);
@@ -790,44 +802,22 @@ public class NavigationActivity extends Activity
 
         // Set the navigation drawer "hamburger" icon
         mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout,
-                R.drawable.ic_holo_light_navigation_drawer,
+                R.drawable.ic_material_light_navigation_drawer,
                 R.string.drawer_open, R.string.drawer_close) {
 
             /** Called when a drawer has settled in a completely closed state. */
             public void onDrawerClosed(View view) {
                 super.onDrawerClosed(view);
-                getActionBar().setDisplayOptions(
-                        ActionBar.DISPLAY_SHOW_CUSTOM
-                                | ActionBar.DISPLAY_SHOW_HOME);
-                getActionBar().setDisplayHomeAsUpEnabled(true);
-                getActionBar().setHomeButtonEnabled(true);
             }
 
             /** Called when a drawer has settled in a completely open state. */
             public void onDrawerOpened(View drawerView) {
                 super.onDrawerOpened(drawerView);
-                getActionBar().setDisplayOptions(
-                        ActionBar.DISPLAY_SHOW_TITLE
-                                | ActionBar.DISPLAY_SHOW_HOME);
-                getActionBar().setDisplayHomeAsUpEnabled(true);
-                getActionBar().setHomeButtonEnabled(true);
-
-                // change ActionBar title text color
-                Theme theme = ThemeManager
-                        .getCurrentTheme(NavigationActivity.this);
-                // get ActionBar title TextView id
-                int titleId = Resources.getSystem().getIdentifier(
-                        "action_bar_title", "id", "android");
-                TextView v = (TextView) findViewById(titleId);
-                theme.setTextColor(NavigationActivity.this, v, "text_color"); //$NON-NLS-1$
             }
         };
 
         // Set the drawer toggle as the DrawerListener
         mDrawerLayout.setDrawerListener(mDrawerToggle);
-
-        getActionBar().setDisplayHomeAsUpEnabled(true);
-        getActionBar().setHomeButtonEnabled(true);
     }
 
     /**
@@ -876,7 +866,7 @@ public class NavigationActivity extends Activity
                 final History history = mHistory.get(count - index - 1);
 
                 navigateToHistory(history);
-                mDrawerLayout.closeDrawer(mDrawer);
+                mDrawerLayout.closeDrawer(Gravity.START);
             }
         });
 
@@ -995,7 +985,7 @@ public class NavigationActivity extends Activity
                             getApplicationContext(), bookmark.mPath, null);
                     if (fso != null) {
                         getCurrentNavigationView().open(fso);
-                        mDrawerLayout.closeDrawer(mDrawer);
+                        mDrawerLayout.closeDrawer(Gravity.START);
                     }
                     else {
                         // The bookmark does not exist, delete the user-defined
@@ -1545,9 +1535,9 @@ public class NavigationActivity extends Activity
     public boolean onKeyUp(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_MENU) {
             if (mDrawerLayout.isDrawerOpen(mDrawer)) {
-                mDrawerLayout.closeDrawer(mDrawer);
+                mDrawerLayout.closeDrawer(Gravity.START);
             } else {
-                mDrawerLayout.openDrawer(mDrawer);
+                mDrawerLayout.openDrawer(Gravity.START);
             }
             return true;
         }
@@ -1575,8 +1565,6 @@ public class NavigationActivity extends Activity
             case R.id.ab_configuration:
                 //Show navigation view configuration toolbar
                 getCurrentNavigationView().getCustomTitle().showConfigurationView();
-                getActionBar().setDisplayHomeAsUpEnabled(true);
-                getActionBar().setHomeButtonEnabled(true);
                 break;
             case R.id.ab_close:
                 //Hide navigation view configuration toolbar
@@ -1642,6 +1630,7 @@ public class NavigationActivity extends Activity
                 break;
 
             case R.id.ab_search:
+
                 openSearch();
                 break;
 
@@ -1911,6 +1900,10 @@ public class NavigationActivity extends Activity
         // We need a basic structure to check this
         if (getCurrentNavigationView() == null) return false;
 
+        if (mSearchView.getVisibility() == View.VISIBLE) {
+            closeSearch();
+        }
+
         //Check if the configuration view is showing. In this case back
         //action must be "close configuration"
         if (getCurrentNavigationView().getCustomTitle().isConfigurationViewShowing()) {
@@ -1950,6 +1943,7 @@ public class NavigationActivity extends Activity
                 SearchActivity.EXTRA_SEARCH_DIRECTORY,
                 getCurrentNavigationView().getCurrentDir());
         startSearch(Preferences.getLastSearch(), true, bundle, false);
+        closeSearch();
         return true;
     }
 
@@ -2122,12 +2116,20 @@ public class NavigationActivity extends Activity
     }
 
     /**
-     * Method that opens the search activity.
+     * Method that opens the search view.
      *
      * @hide
      */
     void openSearch() {
-        onSearchRequested();
+        mSearchView.setVisibility(View.VISIBLE);
+        mSearchView.onActionViewExpanded();
+        mCustomTitleView.setVisibility(View.GONE);
+    }
+
+    void closeSearch() {
+        mSearchView.setVisibility(View.GONE);
+        mSearchView.onActionViewCollapsed();
+        mCustomTitleView.setVisibility(View.VISIBLE);
     }
 
     /**
@@ -2291,7 +2293,7 @@ public class NavigationActivity extends Activity
      */
     private void onLayoutChanged() {
         Theme theme = ThemeManager.getCurrentTheme(this);
-        boolean drawerOpen = mDrawerLayout.isDrawerOpen(mDrawer);
+        boolean drawerOpen = mDrawerLayout.isDrawerOpen(Gravity.START);
 
         // Apply only when the orientation was changed
         int orientation = getResources().getConfiguration().orientation;
@@ -2300,7 +2302,7 @@ public class NavigationActivity extends Activity
 
         // imitate a closed drawer while layout is rebuilt to avoid NullPointerException
         if (drawerOpen) {
-            mDrawerToggle.onDrawerClosed(mDrawer);
+            mDrawerLayout.closeDrawer(Gravity.START);
         }
 
         if (this.mOrientation == Configuration.ORIENTATION_LANDSCAPE) {
@@ -2413,13 +2415,13 @@ public class NavigationActivity extends Activity
     void applyTheme() {
         int orientation = getResources().getConfiguration().orientation;
         Theme theme = ThemeManager.getCurrentTheme(this);
-        theme.setBaseTheme(this, false);
+        theme.setBaseThemeNoActionBar(this);
         applyTabTheme();
 
         // imitate a closed drawer while layout is rebuilt to avoid NullPointerException
-        boolean drawerOpen = mDrawerLayout.isDrawerOpen(mDrawer);
+        boolean drawerOpen = mDrawerLayout.isDrawerOpen(Gravity.START);
         if (drawerOpen) {
-            mDrawerToggle.onDrawerClosed(mDrawer);
+            mDrawerLayout.closeDrawer(Gravity.START);
         }
 
         //- Layout
@@ -2428,6 +2430,34 @@ public class NavigationActivity extends Activity
 
         //- ActionBar
         theme.setTitlebarDrawable(this, getActionBar(), "titlebar_drawable"); //$NON-NLS-1$
+
+        // Hackery to theme search view
+        mSearchView = (SearchView) findViewById(R.id.navigation_search_bar);
+        int searchPlateId = mSearchView.getContext().getResources()
+                .getIdentifier("android:id/search_plate", null, null);
+        View searchPlate = mSearchView.findViewById(searchPlateId);
+        if (searchPlate != null) {
+            int searchTextId = searchPlate.getContext().getResources()
+                    .getIdentifier("android:id/search_src_text", null, null);
+            TextView searchText = (TextView) searchPlate.findViewById(searchTextId);
+            if (searchText != null) {
+                searchText.setTextColor(Color.WHITE);
+                searchText.setHintTextColor(Color.WHITE);
+            }
+
+            int magId = getResources().getIdentifier("android:id/search_mag_icon", null, null);
+            ImageView magImage = (ImageView) mSearchView.findViewById(magId);
+            if (magImage != null) {
+                magImage.setLayoutParams(new LinearLayout.LayoutParams(0, 0));
+            }
+        }
+
+        SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
+        mSearchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
+        mSearchView.setIconifiedByDefault(false);
+
+        mCustomTitleView = (NavigationCustomTitleView) findViewById(R.id.navigation_title_flipper);
+        mCustomTitleView.setVisibility(View.VISIBLE);
 
         //- StatusBar
         v = findViewById(R.id.navigation_statusbar);
@@ -2466,7 +2496,6 @@ public class NavigationActivity extends Activity
         // - Navigation drawer
         v = findViewById(R.id.history_empty);
         theme.setTextColor(this, (TextView)v, "text_color"); //$NON-NLS-1$
-        mDrawerToggle.setDrawerImageResource(theme.getResourceId(this, "drawer_icon"));
 
         for (int i=0; i<mDrawerHistory.getChildCount(); i++) {
             View item = mDrawerHistory.getChildAt(i);

@@ -257,8 +257,6 @@ public class SearchResultAdapter extends ArrayAdapter<SearchResult> {
 
             // Apply the current theme
             Theme theme = ThemeManager.getCurrentTheme(getContext());
-            theme.setBackgroundDrawable(
-                    getContext(), v, "selectors_deselected_drawable"); //$NON-NLS-1$
             theme.setTextColor(
                     getContext(), viewHolder.mTvName, "text_color"); //$NON-NLS-1$
             if (viewHolder.mTvParentDir != null) {

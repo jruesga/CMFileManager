@@ -509,10 +509,25 @@ public final class IntentsActionPolicy extends ActionsPolicy {
         String authority = null;
         if (uri != null) {
             authority = uri.getAuthority();
+            grantSecureAccess(intent, authority, ri, uri);
         } else if (intent.getExtras() != null) {
-            uri = (Uri) intent.getExtras().get(Intent.EXTRA_STREAM);
-            authority = uri.getAuthority();
+            Object obj = intent.getExtras().get(Intent.EXTRA_STREAM);
+            if (obj instanceof Uri) {
+                uri = (Uri) intent.getExtras().get(Intent.EXTRA_STREAM);
+                authority = uri.getAuthority();
+                grantSecureAccess(intent, authority, ri, uri);
+            } else if (obj instanceof ArrayList) {
+                ArrayList<Uri> uris = (ArrayList<Uri>) intent.getExtras().get(Intent.EXTRA_STREAM);
+                for (Uri u : uris) {
+                    authority = u.getAuthority();
+                    grantSecureAccess(intent, authority, ri, u);
+                }
+            }
         }
+    }
+
+    private static final void grantSecureAccess(Intent intent, String authority, ResolveInfo ri,
+            Uri uri) {
         if (authority != null && authority.equals(SecureResourceProvider.AUTHORITY)) {
             boolean isInternalEditor = isInternalEditor(ri);
             if (isInternalEditor) {

@@ -40,7 +40,7 @@ public final class MediaHelper {
     private static final String EXTERNAL_STORAGE = System.getenv("EXTERNAL_STORAGE");
 
     private static final String INTERNAL_VOLUME = "internal";
-    private static final String EXTERNAL_VOLUME = "external";
+    public static final String EXTERNAL_VOLUME = "external";
 
     /**
      * URIs that are relevant for determining album art;

@@ -19,7 +19,9 @@ package com.cyanogenmod.filemanager.util;
 import android.content.Context;
 import android.content.Intent;
 import android.media.MediaScannerConnection;
+import android.provider.MediaStore.Files;
 
+import android.provider.MediaStore;
 import com.cyanogenmod.filemanager.commands.AsyncResultListener;
 import com.cyanogenmod.filemanager.commands.ChangeOwnerExecutable;
 import com.cyanogenmod.filemanager.commands.ChangePermissionsExecutable;
@@ -81,6 +83,7 @@ import com.cyanogenmod.filemanager.model.SearchResult;
 import com.cyanogenmod.filemanager.model.User;
 import com.cyanogenmod.filemanager.preferences.CompressionMode;
 import com.cyanogenmod.filemanager.preferences.FileManagerSettings;
+import com.cyanogenmod.filemanager.util.MediaHelper;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -421,12 +424,8 @@ public final class CommandHelper {
                 c.getExecutableFactory().newCreator().createDeleteFileExecutable(file);
         writableExecute(context, executable, c);
 
-        // Do media scan
-        File parent = new File(file).getParentFile();
-        if (parent != null) {
-            MediaScannerConnection.scanFile(context, new String[]{
-                    MediaHelper.normalizeMediaPath(parent.getAbsolutePath())}, null, null);
-        }
+        // Remove from media scanner
+        removeFromMediaStore(context, file);
 
         return executable.getResult().booleanValue();
     }
@@ -813,8 +812,8 @@ public final class CommandHelper {
             File parent = new File(src).getParentFile();
             if (parent != null) {
                 if (!VirtualMountPointConsole.isVirtualStorageResource(parent.getAbsolutePath())) {
-                    MediaScannerConnection.scanFile(context, new String[]{
-                            MediaHelper.normalizeMediaPath(parent.getAbsolutePath())}, null, null);
+                    // Remove from media scanner
+                    removeFromMediaStore(context, src);
                 }
             }
             if (!VirtualMountPointConsole.isVirtualStorageResource(parent.getAbsolutePath())) {
@@ -824,6 +823,11 @@ public final class CommandHelper {
         }
 
         return ret;
+    }
+
+    private static void removeFromMediaStore(Context context, String path) {
+        context.getContentResolver().delete(Files.getContentUri(MediaHelper.EXTERNAL_VOLUME),
+            MediaStore.Files.FileColumns.DATA + "=?", new String[]{path});
     }
 
     /**

@@ -668,8 +668,7 @@ public final class IntentsActionPolicy extends ActionsPolicy {
 
         // Try to resolve media data or return a file uri
         final File file = new File(fso.getFullPath());
-        ContentResolver cr = ctx.getContentResolver();
-        Uri uri = MediaHelper.fileToContentUri(cr, file);
+        Uri uri = MediaHelper.fileToContentUri(ctx, file);
         if (uri == null) {
             uri = Uri.fromFile(file);
         }

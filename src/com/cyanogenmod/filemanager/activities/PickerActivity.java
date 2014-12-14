@@ -434,7 +434,7 @@ public class PickerActivity extends Activity
             // Return the picked file, as expected (this activity should fill the intent data
             // and return RESULT_OK result)
             Intent result = new Intent();
-            result.setData(getResultUriForFileFromIntent(getContentResolver(), src, getIntent()));
+            result.setData(getResultUriForFileFromIntent(this, src, getIntent()));
             setResult(Activity.RESULT_OK, result);
             finish();
 
@@ -496,9 +496,9 @@ public class PickerActivity extends Activity
         return file.getParentFile();
     }
 
-    private static Uri getResultUriForFileFromIntent(ContentResolver cr, File src, Intent intent) {
+    private static Uri getResultUriForFileFromIntent(Context context, File src, Intent intent) {
         // Try to find the preferred uri scheme
-        Uri result = MediaHelper.fileToContentUri(cr, src);
+        Uri result = MediaHelper.fileToContentUri(context, src);
         if (result == null) {
             result = Uri.fromFile(src);
         }

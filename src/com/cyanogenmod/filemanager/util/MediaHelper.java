@@ -17,6 +17,7 @@
 package com.cyanogenmod.filemanager.util;
 
 import android.content.ContentResolver;
+import android.content.Context;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.UserHandle;
@@ -113,16 +114,16 @@ public final class MediaHelper {
      * @param file The file reference
      * @return Uri The content uri or null if file not exists in the media database
      */
-    public static Uri fileToContentUri(ContentResolver cr, File file) {
+    public static Uri fileToContentUri(Context context, File file) {
         // Normalize the path to ensure media search
         final String normalizedPath = normalizeMediaPath(file.getAbsolutePath());
 
         // Check in external and internal storages
-        Uri uri = fileToContentUri(cr, normalizedPath, EXTERNAL_VOLUME);
+        Uri uri = fileToContentUri(context, normalizedPath, EXTERNAL_VOLUME);
         if (uri != null) {
             return uri;
         }
-        uri = fileToContentUri(cr, normalizedPath, INTERNAL_VOLUME);
+        uri = fileToContentUri(context, normalizedPath, INTERNAL_VOLUME);
         if (uri != null) {
             return uri;
         }
@@ -137,16 +138,44 @@ public final class MediaHelper {
      * @param volume The volume
      * @return Uri The content uri or null if file not exists in the media database
      */
-    private static Uri fileToContentUri(ContentResolver cr, String path, String volume) {
-        final String[] projection = {BaseColumns._ID, MediaStore.Files.FileColumns.MEDIA_TYPE};
+    private static Uri fileToContentUri(Context context, String path, String volume) {
+        String[] projection = null;
         final String where = MediaColumns.DATA + " = ?";
+        File file = new File(path);
         Uri baseUri = MediaStore.Files.getContentUri(volume);
+        boolean isMimeTypeImage = false, isMimeTypeVideo = false, isMimeTypeAudio = false;
+        isMimeTypeImage = MimeTypeHelper.KnownMimeTypeResolver.isImage(context, file);
+        if (!isMimeTypeImage) {
+            isMimeTypeVideo = MimeTypeHelper.KnownMimeTypeResolver.isVideo(context, file);
+            if (!isMimeTypeVideo) {
+                isMimeTypeAudio = MimeTypeHelper.KnownMimeTypeResolver.isAudio(context, file);
+            }
+        }
+        if (isMimeTypeImage || isMimeTypeVideo || isMimeTypeAudio) {
+            projection = new String[]{BaseColumns._ID};
+            if (isMimeTypeImage) {
+                baseUri = MediaStore.Images.Media.EXTERNAL_CONTENT_URI;
+            } else if (isMimeTypeVideo) {
+                baseUri = MediaStore.Video.Media.EXTERNAL_CONTENT_URI;
+            } else if (isMimeTypeAudio) {
+                baseUri = MediaStore.Audio.Media.EXTERNAL_CONTENT_URI;
+            }
+        } else {
+            projection = new String[]{BaseColumns._ID, MediaStore.Files.FileColumns.MEDIA_TYPE};
+        }
+        ContentResolver cr = context.getContentResolver();
         Cursor c = cr.query(baseUri, projection, where, new String[]{path}, null);
         try {
             if (c != null && c.moveToNext()) {
-                int type = c.getInt(c.getColumnIndexOrThrow(
+                boolean isValid = false;
+                if (isMimeTypeImage || isMimeTypeVideo || isMimeTypeAudio) {
+                    isValid = true;
+                } else {
+                    int type = c.getInt(c.getColumnIndexOrThrow(
                         MediaStore.Files.FileColumns.MEDIA_TYPE));
-                if (type != 0) {
+                    isValid = type != 0;
+                }
+                if (isValid) {
                     // Do not force to use content uri for no media files
                     long id = c.getLong(c.getColumnIndexOrThrow(BaseColumns._ID));
                     return Uri.withAppendedPath(baseUri, String.valueOf(id));

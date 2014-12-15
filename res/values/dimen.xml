@@ -124,4 +124,10 @@
     <dimen name="scrim_layout_elevation">10dp</dimen>
     <!-- Drawer header height -->
     <dimen name="drawer_header_height">150dp</dimen>
+
+    <!-- usage graph stuff -->
+    <dimen name="legend_title_textSize">9sp</dimen>
+    <dimen name="legend_title_paddingLeft">3dp</dimen>
+    <dimen name="legend_padding">10dp</dimen>
+
 </resources>

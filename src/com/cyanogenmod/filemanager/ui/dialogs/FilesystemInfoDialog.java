@@ -19,37 +19,128 @@ package com.cyanogenmod.filemanager.ui.dialogs;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.database.Cursor;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
+import android.widget.GridLayout;
 import android.widget.Switch;
 import android.widget.TextView;
-
 import com.cyanogenmod.filemanager.FileManagerApplication;
 import com.cyanogenmod.filemanager.R;
 import com.cyanogenmod.filemanager.console.Console;
 import com.cyanogenmod.filemanager.console.ConsoleBuilder;
 import com.cyanogenmod.filemanager.model.DiskUsage;
+import com.cyanogenmod.filemanager.model.DiskUsageCategory;
 import com.cyanogenmod.filemanager.model.MountPoint;
 import com.cyanogenmod.filemanager.preferences.AccessMode;
 import com.cyanogenmod.filemanager.preferences.FileManagerSettings;
 import com.cyanogenmod.filemanager.preferences.Preferences;
+import com.cyanogenmod.filemanager.providers.MimeTypeIndexProvider;
+import com.cyanogenmod.filemanager.tasks.FetchStatsByTypeTask;
+import com.cyanogenmod.filemanager.tasks.FetchStatsByTypeTask.Listener;
 import com.cyanogenmod.filemanager.ui.ThemeManager;
 import com.cyanogenmod.filemanager.ui.ThemeManager.Theme;
 import com.cyanogenmod.filemanager.ui.widgets.DiskUsageGraph;
 import com.cyanogenmod.filemanager.util.CommandHelper;
 import com.cyanogenmod.filemanager.util.DialogHelper;
 import com.cyanogenmod.filemanager.util.FileHelper;
+import com.cyanogenmod.filemanager.util.MimeTypeHelper.MimeTypeCategory;
 import com.cyanogenmod.filemanager.util.MountPointHelper;
 
 /**
  * A class that wraps a dialog for showing information about a mount point.<br />
  * This class display information like mount point name, device name, size, type, ...
  */
-public class FilesystemInfoDialog implements OnClickListener, OnCheckedChangeListener {
+public class FilesystemInfoDialog implements OnClickListener, OnCheckedChangeListener, Listener {
+
+    @Override
+    public void onCursor(Cursor cursor) {
+        if (cursor == null) {
+            Log.w(TAG, "Cursor is null");
+            return;
+        }
+        if (mDiskUsage == null) {
+            Log.w(TAG, "No disk usage available!");
+            return;
+        }
+        mDiskUsage.clearUsageCategories();
+        while(cursor.moveToNext()) {
+            String fileRoot = cursor.getString(cursor.getColumnIndex(MimeTypeIndexProvider
+                    .COLUMN_FILE_ROOT));
+            String categoryString = cursor.getString(cursor.getColumnIndex(MimeTypeIndexProvider
+                    .COLUMN_CATEGORY));
+            long size = cursor.getLong(cursor.getColumnIndex(MimeTypeIndexProvider.COLUMN_SIZE));
+            MimeTypeCategory category = MimeTypeCategory.valueOf(categoryString);
+            DiskUsageCategory usageCategory = new DiskUsageCategory(category, size);
+            mDiskUsage.addUsageCategory(usageCategory);
+
+            // [TODO][MSB]: Unhandled case: No data, sync in progress, ready to draw
+            // * Should check if 0 length, then wait on uri notification?
+            // ** This should only happen if you are using it without a sync ever having happened
+            // ** before.
+            // * Should always wait on uri notification and update drawing?
+            // * Otherwise if we have data then we are good to go!
+            // * Also should think of a way to dispatch and index refresh (alarm manager? file
+            // ** observer?)
+
+        }
+
+        this.mDiskUsageGraph.post(new Runnable() {
+            @Override
+            public void run() {
+                //Animate disk usage graph
+                FilesystemInfoDialog.this.mDiskUsageGraph.drawDiskUsage(mDiskUsage);
+                if (mIsInUsageTab) {
+                    if (mLegendLayout.getVisibility() != View.VISIBLE) {
+                        populateLegend();
+                        mLegendLayout.setVisibility(View.VISIBLE);
+                    }
+                }
+                isFetching = false;
+            }
+        });
+    }
+
+    private void populateLegend() {
+        if (mLegendLayout == null) {
+            Log.w(TAG, "Unable to find view for legend");
+            return;
+        }
+        mLegendLayout.removeAllViews();
+        LayoutInflater inflater = LayoutInflater.from(mContext);
+        int index = 0;
+        if (mDiskUsage == null) {
+            Log.w(TAG, "No disk usage information");
+            return;
+        }
+        for (DiskUsageCategory category : mDiskUsage.getUsageCategoryList()) {
+            View ll = inflater.inflate(R.layout.disk_usage_category_view, null, false);
+            View colorView = ll.findViewById(R.id.v_legend_swatch);
+            index = (index < DiskUsageGraph.COLOR_LIST.size()) ? index : 0; // normalize index
+            colorView.setBackgroundColor(DiskUsageGraph.COLOR_LIST.get(index));
+            TextView titleView = (TextView) ll.findViewById(R.id.tv_legend_title);
+            String localizedName = MimeTypeCategory.getFriendlyLocalizedNames(mContext)[category
+                    .getCategory().ordinal()];
+            titleView.setText(localizedName);
+            mLegendLayout.addView(ll);
+            index++;
+        }
+    }
+
+    boolean isFetching;
+    FetchStatsByTypeTask mFetchStatsByTypeTask;
+    private void fetchStats(String fileRoot) {
+        if (!isFetching) {
+            isFetching = true;
+            mFetchStatsByTypeTask.execute(fileRoot);
+        } else {
+            Log.w(TAG, "Already fetching data...");
+        }
+    }
 
     /**
      * An interface to communicate when the user change the mount state
@@ -87,11 +178,13 @@ public class FilesystemInfoDialog implements OnClickListener, OnCheckedChangeLis
      */
     DiskUsageGraph mDiskUsageGraph;
     private TextView mInfoMsgView;
+    private GridLayout mLegendLayout;
 
     private OnMountListener mOnMountListener;
 
     private boolean mIsMountAllowed;
     private final boolean mIsAdvancedMode;
+    private boolean mIsInUsageTab = false;
 
     /**
      * Constructor of <code>FilesystemInfoDialog</code>.
@@ -108,6 +201,8 @@ public class FilesystemInfoDialog implements OnClickListener, OnCheckedChangeLis
 
         //Save data
         this.mMountPoint = mountPoint;
+        mFetchStatsByTypeTask = new FetchStatsByTypeTask(this.mContext, this);
+        fetchStats(mMountPoint.getMountPoint());
         this.mDiskUsage = diskUsage;
         this.mIsMountAllowed = false;
         this.mIsAdvancedMode =
@@ -167,6 +262,8 @@ public class FilesystemInfoDialog implements OnClickListener, OnCheckedChangeLis
         this.mDiskUsageView = contentView.findViewById(R.id.filesystem_tab_diskusage);
         this.mDiskUsageGraph =
                 (DiskUsageGraph)contentView.findViewById(R.id.filesystem_disk_usage_graph);
+
+        this.mLegendLayout = (GridLayout) contentView.findViewById(R.id.ll_legend);
 
         // Set the user preference about free disk space warning level
         String fds = Preferences.getSharedPreferences().getString(
@@ -255,6 +352,7 @@ public class FilesystemInfoDialog implements OnClickListener, OnCheckedChangeLis
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.filesystem_info_dialog_tab_info:
+                mIsInUsageTab = false;
                 if (!this.mInfoViewTab.isSelected()) {
                     this.mInfoViewTab.setSelected(true);
                     ((TextView)this.mInfoViewTab).setTextAppearance(
@@ -270,9 +368,11 @@ public class FilesystemInfoDialog implements OnClickListener, OnCheckedChangeLis
                 }
                 this.mInfoMsgView.setVisibility(
                         this.mIsMountAllowed || !this.mIsAdvancedMode ? View.GONE : View.VISIBLE);
+                mLegendLayout.setVisibility(View.INVISIBLE);
                 break;
 
             case R.id.filesystem_info_dialog_tab_disk_usage:
+                mIsInUsageTab = true;
                 if (!this.mDiskUsageViewTab.isSelected()) {
                     this.mInfoViewTab.setSelected(false);
                     ((TextView)this.mInfoViewTab).setTextAppearance(
@@ -290,13 +390,19 @@ public class FilesystemInfoDialog implements OnClickListener, OnCheckedChangeLis
                     @Override
                     public void run() {
                         //Animate disk usage graph
-                        FilesystemInfoDialog.this.mDiskUsageGraph.drawDiskUsage(
-                                FilesystemInfoDialog.this.mDiskUsage);
+                        FilesystemInfoDialog.this.mDiskUsageGraph.drawDiskUsage(mDiskUsage);
+                        if (mIsInUsageTab) {
+                            if (mLegendLayout.getVisibility() != View.VISIBLE) {
+                                populateLegend();
+                                mLegendLayout.setVisibility(View.VISIBLE);
+                            }
+                        }
                     }
                 });
                 break;
 
             case R.id.filesystem_info_msg:
+                mIsInUsageTab = false;
                 //Change the console
                 boolean superuser = ConsoleBuilder.changeToPrivilegedConsole(this.mContext);
                 if (superuser) {
@@ -319,9 +425,12 @@ public class FilesystemInfoDialog implements OnClickListener, OnCheckedChangeLis
                     this.mInfoMsgView.setVisibility(View.VISIBLE);
                     this.mIsMountAllowed = false;
                 }
+                mLegendLayout.setVisibility(View.INVISIBLE);
                 break;
 
             default:
+                mIsInUsageTab = false;
+                mLegendLayout.setVisibility(View.INVISIBLE);
                 break;
         }
     }

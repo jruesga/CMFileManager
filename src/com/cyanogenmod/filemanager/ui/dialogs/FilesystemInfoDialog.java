@@ -89,17 +89,18 @@ public class FilesystemInfoDialog implements OnClickListener, OnCheckedChangeLis
 
         }
 
+        if (mIsInUsageTab) {
+            if (mLegendLayout.getVisibility() != View.VISIBLE) {
+                populateLegend();
+                mLegendLayout.setVisibility(View.VISIBLE);
+            }
+        }
+
         this.mDiskUsageGraph.post(new Runnable() {
             @Override
             public void run() {
                 //Animate disk usage graph
                 FilesystemInfoDialog.this.mDiskUsageGraph.drawDiskUsage(mDiskUsage);
-                if (mIsInUsageTab) {
-                    if (mLegendLayout.getVisibility() != View.VISIBLE) {
-                        populateLegend();
-                        mLegendLayout.setVisibility(View.VISIBLE);
-                    }
-                }
                 isFetching = false;
             }
         });
@@ -386,17 +387,17 @@ public class FilesystemInfoDialog implements OnClickListener, OnCheckedChangeLis
                     // Apply theme
                     applyTabTheme();
                 }
+                if (mIsInUsageTab) {
+                    if (mLegendLayout.getVisibility() != View.VISIBLE) {
+                        populateLegend();
+                        mLegendLayout.setVisibility(View.VISIBLE);
+                    }
+                }
                 this.mDiskUsageGraph.post(new Runnable() {
                     @Override
                     public void run() {
                         //Animate disk usage graph
                         FilesystemInfoDialog.this.mDiskUsageGraph.drawDiskUsage(mDiskUsage);
-                        if (mIsInUsageTab) {
-                            if (mLegendLayout.getVisibility() != View.VISIBLE) {
-                                populateLegend();
-                                mLegendLayout.setVisibility(View.VISIBLE);
-                            }
-                        }
                     }
                 });
                 break;

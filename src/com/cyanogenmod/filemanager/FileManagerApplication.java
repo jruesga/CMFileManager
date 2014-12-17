@@ -181,7 +181,7 @@ public final class FileManagerApplication extends Application {
         // file manager
         File externalStorage = Environment.getExternalStorageDirectory();
         MimeTypeIndexService.indexFileRoot(this, externalStorage.getAbsolutePath());
-        MimeTypeIndexService.indexFileRoot(this, "/system");
+        MimeTypeIndexService.indexFileRoot(this, Environment.getRootDirectory().getAbsolutePath());
 
     }
 

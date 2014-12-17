@@ -1115,8 +1115,10 @@ public final class CommandHelper {
                     c.getExecutableFactory().newCreator().createDiskUsageExecutable(dir);
             execute(context, executable, c);
             List<DiskUsage> du = executable.getResult();
-            if (du != null && du.size() > 0) {
-                return du.get(0);
+            for (DiskUsage d : du) {
+                if (d.getMountPoint().equals(dir)) {
+                    return d;
+                }
             }
         }
         return null;

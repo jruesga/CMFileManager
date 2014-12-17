@@ -124,6 +124,13 @@ public class MimeTypeIndexService extends IntentService {
         if (dirs != null) {
             // Recurse directories
             for (File dir : dirs) {
+                long size = dir.length();
+                if (!groupUsageMap.containsKey(MimeTypeCategory.NONE)) {
+                    groupUsageMap.put(MimeTypeCategory.NONE, size);
+                } else {
+                    long newSum = groupUsageMap.get(MimeTypeCategory.NONE) + size;
+                    groupUsageMap.put(MimeTypeCategory.NONE, newSum);
+                }
                 calculateUsageByType(dir, groupUsageMap);
             }
         }

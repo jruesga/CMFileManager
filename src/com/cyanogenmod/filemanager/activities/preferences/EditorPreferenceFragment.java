@@ -19,9 +19,9 @@ package com.cyanogenmod.filemanager.activities.preferences;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.preference.CheckBoxPreference;
 import android.preference.Preference;
 import android.preference.Preference.OnPreferenceChangeListener;
+import android.preference.SwitchPreference;
 import android.util.Log;
 
 import com.cyanogenmod.filemanager.R;
@@ -37,11 +37,11 @@ public class EditorPreferenceFragment extends TitlePreferenceFragment {
 
     private static final boolean DEBUG = false;
 
-    private CheckBoxPreference mNoSuggestions;
-    private CheckBoxPreference mWordWrap;
-    private CheckBoxPreference mHexdump;
+    private SwitchPreference mNoSuggestions;
+    private SwitchPreference mWordWrap;
+    private SwitchPreference mHexdump;
 
-    private CheckBoxPreference mSyntaxHighlight;
+    private SwitchPreference mSyntaxHighlight;
 
 
     /**
@@ -93,25 +93,25 @@ public class EditorPreferenceFragment extends TitlePreferenceFragment {
 
         // No suggestions
         this.mNoSuggestions =
-                (CheckBoxPreference)findPreference(
+                (SwitchPreference)findPreference(
                         FileManagerSettings.SETTINGS_EDITOR_NO_SUGGESTIONS.getId());
         this.mNoSuggestions.setOnPreferenceChangeListener(this.mOnChangeListener);
 
         // WordWrap
         this.mWordWrap =
-                (CheckBoxPreference)findPreference(
+                (SwitchPreference)findPreference(
                         FileManagerSettings.SETTINGS_EDITOR_WORD_WRAP.getId());
         this.mWordWrap.setOnPreferenceChangeListener(this.mOnChangeListener);
 
         // Hexdump
         this.mHexdump =
-                (CheckBoxPreference)findPreference(
+                (SwitchPreference)findPreference(
                         FileManagerSettings.SETTINGS_EDITOR_HEXDUMP.getId());
         this.mHexdump.setOnPreferenceChangeListener(this.mOnChangeListener);
 
         // Syntax highlight
         this.mSyntaxHighlight =
-                (CheckBoxPreference)findPreference(
+                (SwitchPreference)findPreference(
                         FileManagerSettings.SETTINGS_EDITOR_SYNTAX_HIGHLIGHT.getId());
         this.mSyntaxHighlight.setOnPreferenceChangeListener(this.mOnChangeListener);
 

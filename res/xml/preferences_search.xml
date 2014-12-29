@@ -23,14 +23,14 @@
       android:title="@string/pref_search_results_category">
 
       <!-- Highlight search terms -->
-      <CheckBoxPreference
+      <SwitchPreference
         android:key="cm_filemanager_highlight_terms"
         android:title="@string/pref_highlight_terms"
         android:persistent="true"
         android:defaultValue="true" />
 
       <!-- Relevance widget -->
-      <CheckBoxPreference
+      <SwitchPreference
         android:key="cm_filemanager_show_relevance_widget"
         android:title="@string/pref_show_relevance_widget"
         android:persistent="true"
@@ -53,7 +53,7 @@
       android:title="@string/pref_search_privacity_category">
 
       <!-- Save search terms -->
-      <CheckBoxPreference
+      <SwitchPreference
         android:key="cm_filemanager_save_search_terms"
         android:title="@string/pref_save_search_terms"
         android:summaryOn="@string/pref_save_search_terms_on"

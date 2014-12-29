@@ -23,7 +23,7 @@
       android:title="@string/pref_general_behaviour_category">
 
       <!-- Case sensitive order -->
-      <CheckBoxPreference
+      <SwitchPreference
         android:key="cm_filemanager_case_sensitive_sort"
         android:title="@string/pref_case_sensitive_sort"
         android:summary="@string/pref_case_sensitive_sort_summary"
@@ -49,7 +49,7 @@
         android:persistent="true" />
 
       <!-- Compute folder statistics -->
-      <CheckBoxPreference
+      <SwitchPreference
         android:key="cm_filemanager_compute_folder_statistics"
         android:title="@string/pref_compute_folder_statistics"
         android:summaryOn="@string/pref_compute_folder_statistics_on"
@@ -57,7 +57,7 @@
         android:defaultValue="false" />
 
       <!-- Thumbs -->
-      <CheckBoxPreference
+      <SwitchPreference
         android:key="cm_filemanager_show_thumbs"
         android:title="@string/pref_display_thumbs"
         android:summary="@string/pref_display_thumbs_summary"
@@ -65,7 +65,7 @@
         android:defaultValue="false" />
 
       <!-- Use flinger -->
-      <CheckBoxPreference
+      <SwitchPreference
         android:key="cm_filemanager_use_flinger"
         android:title="@string/pref_use_flinger"
         android:summary="@string/pref_use_flinger_summary"
@@ -89,7 +89,7 @@
         android:persistent="true" />
 
       <!-- Restrict secondary users access -->
-      <CheckBoxPreference
+      <SwitchPreference
         android:key="cm_filemanager_restrict_secondary_users_access"
         android:title="@string/pref_restrict_secondary_users_access_title"
         android:summary="@string/pref_restrict_secondary_users_access_summary"
@@ -97,7 +97,7 @@
         android:defaultValue="false" />
 
       <!-- Capture debug traces -->
-      <CheckBoxPreference
+      <SwitchPreference
         android:key="cm_filemanager_show_debug_traces"
         android:title="@string/pref_debug_traces"
         android:persistent="true"

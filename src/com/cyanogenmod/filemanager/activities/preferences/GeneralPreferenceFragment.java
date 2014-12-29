@@ -20,11 +20,11 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.preference.CheckBoxPreference;
 import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.PreferenceCategory;
 import android.preference.Preference.OnPreferenceChangeListener;
+import android.preference.SwitchPreference;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -47,15 +47,15 @@ public class GeneralPreferenceFragment extends TitlePreferenceFragment {
 
     private static final boolean DEBUG = false;
 
-    private CheckBoxPreference mCaseSensitiveSort;
+    private SwitchPreference mCaseSensitiveSort;
     private ListPreference mFiletimeFormatMode;
     private ListPreference mFreeDiskSpaceWarningLevel;
-    private CheckBoxPreference mComputeFolderStatistics;
-    private CheckBoxPreference mDisplayThumbs;
-    private CheckBoxPreference mUseFlinger;
+    private SwitchPreference mComputeFolderStatistics;
+    private SwitchPreference mDisplayThumbs;
+    private SwitchPreference mUseFlinger;
     private ListPreference mAccessMode;
-    private CheckBoxPreference mRestrictSecondaryUsersAccess;
-    private CheckBoxPreference mDebugTraces;
+    private SwitchPreference mRestrictSecondaryUsersAccess;
+    private SwitchPreference mDebugTraces;
 
     /**
      * @hide
@@ -139,7 +139,7 @@ public class GeneralPreferenceFragment extends TitlePreferenceFragment {
                     compareTo(key) == 0) {
                 String value = String.valueOf(newValue);
                 if (Preferences.writeWorldReadableProperty(getActivity(), key, value)) {
-                    ((CheckBoxPreference) preference).setChecked((Boolean) newValue);
+                    ((SwitchPreference) preference).setChecked((Boolean) newValue);
                     updateAccessModeStatus();
                     notify = true;
                 }
@@ -175,7 +175,7 @@ public class GeneralPreferenceFragment extends TitlePreferenceFragment {
 
         // Case sensitive sort
         this.mCaseSensitiveSort =
-                (CheckBoxPreference)findPreference(
+                (SwitchPreference)findPreference(
                         FileManagerSettings.SETTINGS_CASE_SENSITIVE_SORT.getId());
         this.mCaseSensitiveSort.setOnPreferenceChangeListener(this.mOnChangeListener);
 
@@ -205,19 +205,19 @@ public class GeneralPreferenceFragment extends TitlePreferenceFragment {
 
         // Compute folder statistics
         this.mComputeFolderStatistics =
-                (CheckBoxPreference)findPreference(
+                (SwitchPreference)findPreference(
                         FileManagerSettings.SETTINGS_COMPUTE_FOLDER_STATISTICS.getId());
         this.mComputeFolderStatistics.setOnPreferenceChangeListener(this.mOnChangeListener);
 
         // Display thumbs
         this.mDisplayThumbs =
-                (CheckBoxPreference)findPreference(
+                (SwitchPreference)findPreference(
                         FileManagerSettings.SETTINGS_DISPLAY_THUMBS.getId());
         this.mDisplayThumbs.setOnPreferenceChangeListener(this.mOnChangeListener);
 
         // Use flinger
         this.mUseFlinger =
-                (CheckBoxPreference)findPreference(
+                (SwitchPreference)findPreference(
                         FileManagerSettings.SETTINGS_USE_FLINGER.getId());
         this.mUseFlinger.setOnPreferenceChangeListener(this.mOnChangeListener);
 
@@ -236,7 +236,7 @@ public class GeneralPreferenceFragment extends TitlePreferenceFragment {
 
         // Capture Debug traces
         this.mRestrictSecondaryUsersAccess =
-                (CheckBoxPreference)findPreference(
+                (SwitchPreference)findPreference(
                         FileManagerSettings.SETTINGS_RESTRICT_SECONDARY_USERS_ACCESS.getId());
         if (!AndroidHelper.hasSupportForMultipleUsers(getActivity()) ||
                 AndroidHelper.isSecondaryUser(getActivity())) {
@@ -253,7 +253,7 @@ public class GeneralPreferenceFragment extends TitlePreferenceFragment {
 
         // Capture Debug traces
         this.mDebugTraces =
-                (CheckBoxPreference)findPreference(
+                (SwitchPreference)findPreference(
                         FileManagerSettings.SETTINGS_SHOW_TRACES.getId());
         this.mDebugTraces.setOnPreferenceChangeListener(this.mOnChangeListener);
 

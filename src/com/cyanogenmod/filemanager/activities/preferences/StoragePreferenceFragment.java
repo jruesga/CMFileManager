@@ -21,10 +21,10 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
-import android.preference.CheckBoxPreference;
 import android.preference.Preference;
 import android.preference.Preference.OnPreferenceChangeListener;
 import android.preference.Preference.OnPreferenceClickListener;
+import android.preference.SwitchPreference;
 import android.util.Log;
 
 import com.cyanogenmod.filemanager.R;
@@ -46,7 +46,7 @@ public class StoragePreferenceFragment extends TitlePreferenceFragment {
 
     private Preference mResetPassword;
     private Preference mDeleteStorage;
-    private CheckBoxPreference mDelayedSync;
+    private SwitchPreference mDelayedSync;
 
     private final BroadcastReceiver mMountStatusReceiver = new BroadcastReceiver() {
         @Override
@@ -138,7 +138,7 @@ public class StoragePreferenceFragment extends TitlePreferenceFragment {
 
         // Delayed sync
         this.mDelayedSync =
-                (CheckBoxPreference)findPreference(
+                (SwitchPreference)findPreference(
                         FileManagerSettings.SETTINGS_SECURE_STORAGE_DELAYED_SYNC.getId());
         this.mDelayedSync.setOnPreferenceChangeListener(this.mOnChangeListener);
 

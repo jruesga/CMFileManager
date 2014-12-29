@@ -23,7 +23,7 @@
       android:title="@string/pref_editor_behaviour_category">
 
       <!-- No suggestions -->
-      <CheckBoxPreference
+      <SwitchPreference
         android:key="cm_filemanager_editor_no_suggestions"
         android:title="@string/pref_no_suggestions"
         android:summary="@string/pref_no_suggestions_desc"
@@ -31,14 +31,14 @@
         android:defaultValue="false" />
 
       <!-- Word wrap -->
-      <CheckBoxPreference
+      <SwitchPreference
         android:key="cm_filemanager_editor_word_wrap"
         android:title="@string/pref_word_wrap"
         android:persistent="true"
         android:defaultValue="true" />
 
       <!-- Hexdump -->
-      <CheckBoxPreference
+      <SwitchPreference
         android:key="cm_filemanager_editor_hexdump"
         android:title="@string/pref_hexdump"
         android:summary="@string/pref_hexdump_desc"
@@ -53,7 +53,7 @@
       android:title="@string/pref_editor_syntax_highlight_category">
 
       <!-- Syntax highlight -->
-      <CheckBoxPreference
+      <SwitchPreference
         android:key="cm_filemanager_editor_syntax_highlight"
         android:title="@string/pref_syntax_highlight"
         android:summary="@string/pref_syntax_highlight_desc"

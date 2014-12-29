@@ -19,11 +19,11 @@ package com.cyanogenmod.filemanager.activities.preferences;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.preference.CheckBoxPreference;
 import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.Preference.OnPreferenceChangeListener;
 import android.preference.Preference.OnPreferenceClickListener;
+import android.preference.SwitchPreference;
 import android.provider.SearchRecentSuggestions;
 import android.util.Log;
 import android.widget.Toast;
@@ -48,10 +48,10 @@ public class SearchPreferenceFragment extends TitlePreferenceFragment {
     private static final String REMOVE_SEARCH_TERMS_KEY =
                                         "cm_filemanager_remove_saved_search_terms"; //$NON-NLS-1$
 
-    private CheckBoxPreference mHighlightTerms;
-    private CheckBoxPreference mShowRelevanceWidget;
+    private SwitchPreference mHighlightTerms;
+    private SwitchPreference mShowRelevanceWidget;
     private ListPreference mSortSearchResultMode;
-    private CheckBoxPreference mSaveSearchTerms;
+    private SwitchPreference mSaveSearchTerms;
     private Preference mRemoveSearchTerms;
 
     /**
@@ -137,13 +137,13 @@ public class SearchPreferenceFragment extends TitlePreferenceFragment {
 
         // Highlight terms
         this.mHighlightTerms =
-                (CheckBoxPreference)findPreference(
+                (SwitchPreference)findPreference(
                         FileManagerSettings.SETTINGS_HIGHLIGHT_TERMS.getId());
         this.mHighlightTerms.setOnPreferenceChangeListener(this.mOnChangeListener);
 
         // Relevance widget
         this.mShowRelevanceWidget =
-                (CheckBoxPreference)findPreference(
+                (SwitchPreference)findPreference(
                         FileManagerSettings.SETTINGS_SHOW_RELEVANCE_WIDGET.getId());
         this.mShowRelevanceWidget.setOnPreferenceChangeListener(this.mOnChangeListener);
 
@@ -161,7 +161,7 @@ public class SearchPreferenceFragment extends TitlePreferenceFragment {
 
         // Saved search terms
         this.mSaveSearchTerms =
-                (CheckBoxPreference)findPreference(
+                (SwitchPreference)findPreference(
                         FileManagerSettings.SETTINGS_SAVE_SEARCH_TERMS.getId());
         this.mSaveSearchTerms.setOnPreferenceChangeListener(this.mOnChangeListener);
 

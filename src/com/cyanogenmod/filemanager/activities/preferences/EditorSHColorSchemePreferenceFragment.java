@@ -19,10 +19,10 @@ package com.cyanogenmod.filemanager.activities.preferences;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.preference.CheckBoxPreference;
 import android.preference.Preference;
 import android.preference.Preference.OnPreferenceChangeListener;
 import android.preference.Preference.OnPreferenceClickListener;
+import android.preference.SwitchPreference;
 import android.text.TextUtils;
 import android.util.Log;
 
@@ -45,7 +45,7 @@ public class EditorSHColorSchemePreferenceFragment extends TitlePreferenceFragme
 
     private static final String KEY_RESET_COLOR_SCHEME = "ash_reset_color_scheme"; //$NON-NLS-1$
 
-    private CheckBoxPreference mUseThemeDefault;
+    private SwitchPreference mUseThemeDefault;
     private Preference mResetColorScheme;
     private ColorPickerPreference[] mColorScheme;
 
@@ -136,7 +136,7 @@ public class EditorSHColorSchemePreferenceFragment extends TitlePreferenceFragme
 
         // Use Theme default
         this.mUseThemeDefault =
-                (CheckBoxPreference)findPreference(
+                (SwitchPreference)findPreference(
                         FileManagerSettings.SETTINGS_EDITOR_SH_USE_THEME_DEFAULT.getId());
         Boolean defaultValue = ((Boolean)FileManagerSettings.
                 SETTINGS_EDITOR_SH_USE_THEME_DEFAULT.getDefaultValue());

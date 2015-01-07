@@ -56,6 +56,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListPopupWindow;
+import android.widget.ListView;
 import android.widget.PopupWindow;
 import android.widget.ScrollView;
 import android.widget.SearchView;
@@ -63,6 +64,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import android.widget.Toolbar;
+import android.widget.ArrayAdapter;
 import com.android.internal.util.XmlUtils;
 import com.cyanogenmod.filemanager.FileManagerApplication;
 import com.cyanogenmod.filemanager.R;
@@ -116,14 +118,19 @@ import com.cyanogenmod.filemanager.util.DialogHelper;
 import com.cyanogenmod.filemanager.util.ExceptionUtil;
 import com.cyanogenmod.filemanager.util.ExceptionUtil.OnRelaunchCommandResult;
 import com.cyanogenmod.filemanager.util.FileHelper;
+import com.cyanogenmod.filemanager.util.MimeTypeHelper.MimeTypeCategory;
 import com.cyanogenmod.filemanager.util.StorageHelper;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
+
+import static com.cyanogenmod.filemanager.util.MimeTypeHelper.MimeTypeCategory.*;
 
 /**
  * The main navigation activity. This activity is the center of the application.
@@ -395,11 +402,41 @@ public class NavigationActivity extends Activity
         }
     };
 
+    static String MIME_TYPE_LOCALIZED_NAMES[];
+    /**
+     * @hide
+     */
+    static Map<MimeTypeCategory, Drawable> EASY_MODE_ICONS = new
+            HashMap<MimeTypeCategory, Drawable>();
+
     /**
      * @hide
      */
     NavigationView[] mNavigationViews;
+    /**
+     * @hide
+     */
+    ListView mEasyModeListView;
     private List<History> mHistory;
+
+    private static final List<MimeTypeCategory> EASY_MODE_LIST = new ArrayList<MimeTypeCategory>() {
+        {
+            add(NONE);
+            add(IMAGE);
+            add(VIDEO);
+            add(AUDIO);
+            add(DOCUMENT);
+        }
+    };
+
+    private ArrayAdapter<MimeTypeCategory> mEasyModeAdapter;
+    private View.OnClickListener mEasyModeItemClickListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            Integer position = (Integer) view.getTag();
+            onClicked(position);
+        }
+    };
 
     private int mCurrentNavigationView;
 
@@ -421,6 +458,7 @@ public class NavigationActivity extends Activity
     private ButtonItem mClearHistory;
 
     private List<Bookmark> mBookmarks;
+    private List<Bookmark> mSdBookmarks;
     private LinearLayout mDrawerBookmarks;
 
     private boolean mExitFlag = false;
@@ -543,6 +581,20 @@ public class NavigationActivity extends Activity
                 checkIntent(getIntent());
             }
         });
+
+        MIME_TYPE_LOCALIZED_NAMES = MimeTypeCategory.getFriendlyLocalizedNames(NavigationActivity
+            .this);
+
+        EASY_MODE_ICONS.put(MimeTypeCategory.NONE, getResources().getDrawable(R.drawable
+                .ic_em_all));
+        EASY_MODE_ICONS.put(MimeTypeCategory.IMAGE, getResources().getDrawable(R.drawable
+                .ic_em_image));
+        EASY_MODE_ICONS.put(MimeTypeCategory.VIDEO, getResources().getDrawable(R.drawable
+                .ic_em_video));
+        EASY_MODE_ICONS.put(MimeTypeCategory.AUDIO, getResources().getDrawable(R.drawable
+                .ic_em_music));
+        EASY_MODE_ICONS.put(MimeTypeCategory.DOCUMENT, getResources().getDrawable(R.drawable
+                .ic_em_document));
 
         //Save state
         super.onCreate(state);
@@ -891,6 +943,22 @@ public class NavigationActivity extends Activity
     }
 
     /**
+     * Show the easy mode view
+     */
+    private void performShowEasyMode() {
+        mEasyModeListView.setVisibility(View.VISIBLE);
+        getCurrentNavigationView().setVisibility(View.GONE);
+    }
+
+    /**
+     * Hide the easy mode view
+     */
+    private void performHideEasyMode() {
+        mEasyModeListView.setVisibility(View.GONE);
+        getCurrentNavigationView().setVisibility(View.VISIBLE);
+    }
+
+    /**
      * Method takes a bookmark as argument and adds it to the bookmark list in
      * the drawer
      */
@@ -983,11 +1051,18 @@ public class NavigationActivity extends Activity
                 final int index = mDrawerBookmarks.indexOfChild(v);
                 final Bookmark bookmark = mBookmarks.get(index);
 
+                boolean showEasyMode = (mSdBookmarks.contains(bookmark));
+
                 // try to navigate to the bookmark path
                 try {
                     FileSystemObject fso = CommandHelper.getFileInfo(
                             getApplicationContext(), bookmark.mPath, null);
                     if (fso != null) {
+                        if (showEasyMode) {
+                            performShowEasyMode();
+                        } else {
+                            performHideEasyMode();
+                        }
                         getCurrentNavigationView().open(fso);
                         mDrawerLayout.closeDrawer(Gravity.START);
                     }
@@ -1106,7 +1181,8 @@ public class NavigationActivity extends Activity
             bookmarks.add(loadHomeBookmarks());
             bookmarks.addAll(loadFilesystemBookmarks());
         }
-        bookmarks.addAll(loadSdStorageBookmarks());
+        mSdBookmarks = loadSdStorageBookmarks();
+        bookmarks.addAll(mSdBookmarks);
         bookmarks.addAll(loadVirtualBookmarks());
         bookmarks.addAll(loadUserBookmarks());
         return bookmarks;
@@ -1320,6 +1396,56 @@ public class NavigationActivity extends Activity
         //- 0
         this.mNavigationViews[0] = (NavigationView)findViewById(R.id.navigation_view);
         this.mNavigationViews[0].setId(0);
+        this.mEasyModeListView = (ListView) findViewById(R.id.lv_easy_mode);
+        mEasyModeAdapter = new ArrayAdapter<MimeTypeCategory>(this, R.layout
+                .navigation_view_simple_item) {
+            @Override
+            public View getView(int position, View convertView, ViewGroup parent) {
+                convertView = (convertView == null) ?getLayoutInflater().inflate(R.layout
+                        .navigation_view_simple_item, null, true) : convertView;
+                MimeTypeCategory item = getItem(position);
+                String typeTitle = MIME_TYPE_LOCALIZED_NAMES[item.ordinal()];
+                TextView typeTitleTV = (TextView) convertView
+                        .findViewById(R.id.navigation_view_item_name);
+                ImageView typeIconIV = (ImageView) convertView
+                        .findViewById(R.id.navigation_view_item_icon);
+                View checkBoxView = convertView.findViewById(R.id.navigation_view_item_check);
+                checkBoxView.setVisibility(View.GONE);
+                typeTitleTV.setText(typeTitle);
+                typeIconIV.setImageDrawable(EASY_MODE_ICONS.get(item));
+                convertView.setOnClickListener(mEasyModeItemClickListener);
+                convertView.setTag(position);
+                return convertView;
+            }
+        };
+        mEasyModeAdapter.addAll(EASY_MODE_LIST);
+        mEasyModeListView.setAdapter(mEasyModeAdapter);
+    }
+
+    private void onClicked(int position) {
+        Intent intent = new Intent(this, SearchActivity.class);
+        intent.setAction(Intent.ACTION_SEARCH);
+        intent.putExtra(SearchActivity.EXTRA_SEARCH_DIRECTORY,
+                getCurrentNavigationView().getCurrentDir());
+        intent.putExtra(SearchManager.QUERY, "*"); // Use wild-card '*'
+        switch (position) {
+            case 0:
+                performHideEasyMode();
+                return;
+            case 1:
+                intent.putExtra(SearchActivity.EXTRA_SEARCH_MIMETYPE, MimeTypeCategory.IMAGE);
+                break;
+            case 2:
+                intent.putExtra(SearchActivity.EXTRA_SEARCH_MIMETYPE, MimeTypeCategory.VIDEO);
+                break;
+            case 3:
+                intent.putExtra(SearchActivity.EXTRA_SEARCH_MIMETYPE, MimeTypeCategory.AUDIO);
+                break;
+            case 4:
+                intent.putExtra(SearchActivity.EXTRA_SEARCH_MIMETYPE, MimeTypeCategory.DOCUMENT);
+                break;
+        }
+        startActivity(intent);
     }
 
     /**
@@ -1473,6 +1599,18 @@ public class NavigationActivity extends Activity
             }
         }
 
+        boolean needsEasyMode = false;
+        for (Bookmark bookmark :mSdBookmarks) {
+            if (bookmark.mPath.equalsIgnoreCase(initialDir)) {
+                needsEasyMode = true;
+                break;
+            }
+        }
+        if (needsEasyMode) {
+            performShowEasyMode();
+        } else {
+            performHideEasyMode();
+        }
         // Change the current directory to the user-defined initial directory
         navigationView.changeCurrentDir(initialDir, addToHistory);
     }
@@ -1547,6 +1685,7 @@ public class NavigationActivity extends Activity
         }
         if (keyCode == KeyEvent.KEYCODE_BACK) {
             if (checkBackAction()) {
+                performHideEasyMode();
                 return true;
             }
 
@@ -1669,6 +1808,7 @@ public class NavigationActivity extends Activity
                             if (fso != null) {
                                 //Goto to new directory
                                 getCurrentNavigationView().open(fso, searchInfo);
+                                performHideEasyMode();
                             }
                         }
                     } else if (resultCode == RESULT_CANCELED) {

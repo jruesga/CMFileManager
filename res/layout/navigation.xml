@@ -56,6 +56,14 @@
                     android:layout_weight="1"
                     filemanager:navigation="browsable"/>
 
+            <ListView
+                android:background="@android:color/white"
+                android:id="@+id/lv_easy_mode"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:visibility="gone"/>
+
             <!-- SelectionBar -->
             <com.cyanogenmod.filemanager.ui.widgets.SelectionView
                     android:id="@+id/navigation_selectionbar"

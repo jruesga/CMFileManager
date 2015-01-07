@@ -86,6 +86,7 @@ import com.cyanogenmod.filemanager.util.ExceptionUtil;
 import com.cyanogenmod.filemanager.util.ExceptionUtil.OnRelaunchCommandResult;
 import com.cyanogenmod.filemanager.util.FileHelper;
 import com.cyanogenmod.filemanager.util.MimeTypeHelper;
+import com.cyanogenmod.filemanager.util.MimeTypeHelper.MimeTypeCategory;
 import com.cyanogenmod.filemanager.util.StorageHelper;
 
 import java.io.FileNotFoundException;
@@ -119,6 +120,10 @@ public class SearchActivity extends Activity
      */
     public static final String EXTRA_SEARCH_RESTORE = "extra_search_restore";  //$NON-NLS-1$
 
+    /**
+     * Intent extra parameter for passing the target mime type information.
+     */
+    public static final String EXTRA_SEARCH_MIMETYPE = "extra_search_mimetype";  //$NON-NLS-1$
 
     //Minimum characters to allow query
     private static final int MIN_CHARS_SEARCH = 3;
@@ -264,9 +269,19 @@ public class SearchActivity extends Activity
         public void onConcurrentPartialResult(final Object partialResults) {
             //Saved in the global result list, for save at the end
             if (partialResults instanceof FileSystemObject) {
-                SearchActivity.this.mResultList.add((FileSystemObject)partialResults);
+                FileSystemObject fso = (FileSystemObject) partialResults;
+                if (mMimeTypeCategory == null || mMimeTypeCategory == MimeTypeHelper
+                        .getCategory(SearchActivity.this, fso)) {
+                    SearchActivity.this.mResultList.add((FileSystemObject) partialResults);
+                }
             } else {
-                SearchActivity.this.mResultList.addAll((List<FileSystemObject>)partialResults);
+                List<FileSystemObject> fsoList = (List<FileSystemObject>) partialResults;
+                for (FileSystemObject fso : fsoList) {
+                    if (mMimeTypeCategory == null || mMimeTypeCategory == MimeTypeHelper
+                            .getCategory(SearchActivity.this, fso)) {
+                        SearchActivity.this.mResultList.add(fso);
+                    }
+                }
             }
 
             //Notify progress
@@ -324,6 +339,11 @@ public class SearchActivity extends Activity
     TextView mSearchTerms;
     private View mEmptyListMsg;
 
+    /**
+     * @hide
+     */
+    Spinner mMimeTypeSpinner;
+
     private String mSearchDirectory;
     /**
      * @hide
@@ -346,6 +366,10 @@ public class SearchActivity extends Activity
      */
     boolean mChRooted;
 
+    /**
+     * @hide
+     */
+    MimeTypeCategory mMimeTypeCategory;
 
     /**
      * {@inheritDoc}
@@ -559,6 +583,7 @@ public class SearchActivity extends Activity
         this.mSearchTerms = (TextView)findViewById(R.id.search_status_query_terms);
         this.mSearchTerms.setText(
                 Html.fromHtml(getString(R.string.search_terms, ""))); //$NON-NLS-1$
+        this.mMimeTypeSpinner = (Spinner) findViewById(R.id.search_status_type_spinner);
     }
 
     /**
@@ -586,6 +611,8 @@ public class SearchActivity extends Activity
      * Method that initializes the titlebar of the activity.
      */
     private void initSearch() {
+        mMimeTypeCategory = (MimeTypeCategory) getIntent()
+                .getSerializableExtra(EXTRA_SEARCH_MIMETYPE);
         //Stop any pending action
         try {
             if (SearchActivity.this.mDrawingSearchResultTask != null
@@ -633,15 +660,22 @@ public class SearchActivity extends Activity
         this.mQuery = new Query().fillSlots(filteredUserQueries);
         List<String> queries = this.mQuery.getQueries();
 
-        //Check if some queries has lower than allowed, in this case
-        //request the user for stop the search
         boolean ask = false;
-        int cc = queries.size();
-        for (int i = 0; i < cc; i++) {
-            if (queries.get(i).trim().length() < MIN_CHARS_SEARCH) {
-                ask = true;
-                break;
+        // Mime type search uses '*' which needs to bypass
+        // length check
+        if (mMimeTypeCategory == null) {
+            //Check if some queries has lower than allowed, in this case
+            //request the user for stop the search
+            int cc = queries.size();
+            for (int i = 0; i < cc; i++) {
+                if (queries.get(i).trim().length() < MIN_CHARS_SEARCH) {
+                    ask = true;
+                    break;
+                }
             }
+            mMimeTypeSpinner.setVisibility(View.VISIBLE);
+        } else {
+            mMimeTypeSpinner.setVisibility(View.INVISIBLE);
         }
         if (ask) {
             askUserBeforeSearch(voiceQuery, this.mQuery, this.mSearchDirectory);
@@ -723,8 +757,15 @@ public class SearchActivity extends Activity
         this.mSearchListView.setAdapter(adapter);
 
         //Set terms
-        this.mSearchTerms.setText(
-                Html.fromHtml(getString(R.string.search_terms, query.getTerms())));
+        if (mMimeTypeCategory == null) {
+            this.mSearchTerms.setText(
+                    Html.fromHtml(getString(R.string.search_terms, query.getTerms())));
+        } else {
+             this.mSearchTerms.setText(
+                     Html.fromHtml(getString(R.string.search_terms,
+                             NavigationActivity.MIME_TYPE_LOCALIZED_NAMES[mMimeTypeCategory
+                                     .ordinal()])));
+        }
 
         //Now, do the search in background
         this.mSearchListView.post(new Runnable() {

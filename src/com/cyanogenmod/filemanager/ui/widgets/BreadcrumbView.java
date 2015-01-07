@@ -52,7 +52,7 @@ public class BreadcrumbView extends RelativeLayout implements Breadcrumb, OnClic
      * @hide
      */
     HorizontalScrollView mScrollView;
-    private ViewGroup mBreadcrumbBar;
+    protected ViewGroup mBreadcrumbBar;
     /**
      * @hide
      */
@@ -65,13 +65,13 @@ public class BreadcrumbView extends RelativeLayout implements Breadcrumb, OnClic
      * @hide
      */
     View mLoading;
-    private FilesystemAsyncTask mFilesystemAsyncTask;
+    protected FilesystemAsyncTask mFilesystemAsyncTask;
 
-    private int mFreeDiskSpaceWarningLevel = 95;
+    protected int mFreeDiskSpaceWarningLevel = 95;
 
     private List<BreadcrumbListener> mBreadcrumbListeners;
 
-    private String mCurrentPath;
+    protected String mCurrentPath;
 
     /**
      * Constructor of <code>BreadcrumbView</code>.

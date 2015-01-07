@@ -23,7 +23,7 @@
   android:orientation="vertical">
 
   <!-- Breadcrumb -->
-  <com.cyanogenmod.filemanager.ui.widgets.BreadcrumbView
+  <com.cyanogenmod.filemanager.ui.widgets.DialogBreadcrumbView
     android:id="@+id/breadcrumb_view"
     android:layout_width="match_parent"
     android:layout_height="@dimen/default_row_height"

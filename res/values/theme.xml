@@ -108,6 +108,12 @@
     <drawable name="filesystem_unlocked_drawable">@drawable/ic_material_light_fs_unlocked</drawable>
     <!-- FileSystem warning drawable -->
     <drawable name="filesystem_warning_drawable">@drawable/ic_material_light_fs_warning</drawable>
+    <!-- FileSystem locked drawable -->
+    <drawable name="filesystem_dialog_locked_drawable">@drawable/ic_material_dialog_fs_locked</drawable>
+    <!-- FileSystem unlocked drawable -->
+    <drawable name="filesystem_dialog_unlocked_drawable">@drawable/ic_material_dialog_fs_unlocked</drawable>
+    <!-- FileSystem warning drawable -->
+    <drawable name="filesystem_dialog_warning_drawable">@drawable/ic_material_dialog_fs_warning</drawable>
 
     <!-- Secure FileSystem icon -->
     <drawable name="secure_filesystem_drawable">@drawable/ic_material_light_secure</drawable>

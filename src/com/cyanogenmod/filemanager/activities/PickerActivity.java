@@ -31,6 +31,7 @@ import android.content.IntentFilter;
 import android.content.res.Configuration;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.os.Handler;
 import android.os.storage.StorageVolume;
 import android.util.DisplayMetrics;
@@ -108,6 +109,11 @@ public class PickerActivity extends Activity
 
     // Extra data for Gallery CROP action
     private static final String EXTRA_CROP = "crop"; //$NON-NLS-1$
+
+    // Intent for folder picker
+    private static final String INTENT_FOLDER_SELECT = "com.android.fileexplorer.action.DIR_SEL";
+    // String extra for folder selection
+    private static final String EXTRA_FOLDER_PATH = "def_file_manager_result_dir";
 
     // Scheme for file and directory picking
     private static final String FILE_URI_SCHEME = "file"; //$NON-NLS-1$
@@ -431,6 +437,13 @@ public class PickerActivity extends Activity
                 }
             }
 
+            if (INTENT_FOLDER_SELECT.equals(getIntent().getAction())) {
+                Intent result = new Intent();
+                result.putExtra(EXTRA_FOLDER_PATH, src.getAbsolutePath());
+                setResult(Activity.RESULT_OK, result);
+                finish();
+            }
+
             // Return the picked file, as expected (this activity should fill the intent data
             // and return RESULT_OK result)
             Intent result = new Intent();
@@ -460,6 +473,10 @@ public class PickerActivity extends Activity
     }
 
     private static boolean isDirectoryPickIntent(Intent intent) {
+        if (INTENT_FOLDER_SELECT.equals(intent.getAction())) {
+            return true;
+        }
+
         if (Intent.ACTION_PICK.equals(intent.getAction()) && intent.getData() != null) {
             String scheme = intent.getData().getScheme();
             if (FOLDER_URI_SCHEME.equals(scheme) || DIRECTORY_URI_SCHEME.equals(scheme)) {
@@ -473,6 +490,10 @@ public class PickerActivity extends Activity
     private static File getInitialDirectoryFromIntent(Intent intent) {
         if (!Intent.ACTION_PICK.equals(intent.getAction())) {
             return null;
+        }
+
+        if (INTENT_FOLDER_SELECT.equals(intent.getAction())) {
+            return Environment.getExternalStorageDirectory();
         }
 
         final Uri data = intent.getData();

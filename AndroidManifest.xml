@@ -130,6 +130,10 @@
         <data android:scheme="folder" />
         <data android:scheme="directory" />
       </intent-filter>
+      <intent-filter>
+        <action android:name="com.android.fileexplorer.action.DIR_SEL" />
+        <category android:name="android.intent.category.DEFAULT"/>
+      </intent-filter>
     </activity>
 
     <activity

@@ -442,6 +442,7 @@ public class PickerActivity extends Activity
                 result.putExtra(EXTRA_FOLDER_PATH, src.getAbsolutePath());
                 setResult(Activity.RESULT_OK, result);
                 finish();
+                return;
             }
 
             // Return the picked file, as expected (this activity should fill the intent data

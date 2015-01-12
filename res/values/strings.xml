@@ -180,6 +180,10 @@
     <string name="sort_by_date_asc">By date \u25B2</string>
     <!-- Navigation View - Sort - Sort by date (descending) -->
     <string name="sort_by_date_desc">By date \u25BC</string>
+    <!-- Navigation View - Sort - Sort by size (ascending) -->
+    <string name="sort_by_size_asc">By size \u25B2</string>
+    <!-- Navigation View - Sort - Sort by size (descending) -->
+    <string name="sort_by_size_desc">By size \u25BC</string>
 
     <!-- Navigation View - Layout - Icons -->
     <string name="layout_icons">Icons</string>

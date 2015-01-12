@@ -36,7 +36,15 @@ public enum NavigationSortMode implements ObjectIdentifier {
     /**
      * That mode sorts objects by date (descending).
      */
-    DATE_DESC(3);
+    DATE_DESC(3),
+    /**
+     * That mode sorts objects by size (ascending).
+     */
+    SIZE_ASC(4),
+    /**
+     * That mode sorts objects by size (descending).
+     */
+    SIZE_DESC(5);
 
     private int mId;
 

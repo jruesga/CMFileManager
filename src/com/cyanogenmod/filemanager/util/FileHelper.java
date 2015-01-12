@@ -776,6 +776,15 @@ public final class FileHelper {
             return fso1.getLastModifiedTime().compareTo(fso2.getLastModifiedTime()) * -1;
         }
 
+        //Size (ascending)
+        if (mode.getId() == NavigationSortMode.SIZE_ASC.getId()) {
+            return Long.compare(fso1.getSize(), fso2.getSize());
+        }
+        //Size (descending)
+        if (mode.getId() == NavigationSortMode.SIZE_DESC.getId()) {
+            return Long.compare(fso1.getSize(), fso2.getSize()) * -1;
+        }
+
         //Comparison between files directly
         return fso1.compareTo(fso2);
     }

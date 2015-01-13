@@ -184,6 +184,10 @@
     <string name="sort_by_size_asc">By size \u25B2</string>
     <!-- Navigation View - Sort - Sort by size (descending) -->
     <string name="sort_by_size_desc">By size \u25BC</string>
+    <!-- Navigation View - Sort - Sort by type (ascending) -->
+    <string name="sort_by_type_asc">By type \u25B2</string>
+    <!-- Navigation View - Sort - Sort by type (descending) -->
+    <string name="sort_by_type_desc">By type \u25BC</string>
 
     <!-- Navigation View - Layout - Icons -->
     <string name="layout_icons">Icons</string>

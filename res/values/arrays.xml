@@ -23,6 +23,8 @@
         <item>@string/sort_by_date_desc</item>
         <item>@string/sort_by_size_asc</item>
         <item>@string/sort_by_size_desc</item>
+        <item>@string/sort_by_type_asc</item>
+        <item>@string/sort_by_type_desc</item>
     </string-array>
 
     <!-- The strings of the menu for navigation layout mode enumeration -->

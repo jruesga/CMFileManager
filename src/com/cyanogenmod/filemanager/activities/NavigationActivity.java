@@ -36,11 +36,14 @@ import android.nfc.NfcAdapter;
 import android.nfc.NfcEvent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Environment;
 import android.os.Handler;
 import android.os.Parcelable;
+import android.os.storage.StorageManager;
 import android.os.storage.StorageVolume;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.widget.DrawerLayout;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.KeyEvent;
@@ -155,6 +158,8 @@ public class NavigationActivity extends Activity
     // Bookmark list XML tags
     private static final String TAG_BOOKMARKS = "Bookmarks"; //$NON-NLS-1$
     private static final String TAG_BOOKMARK = "bookmark"; //$NON-NLS-1$
+
+    private static final String STR_USB = "usb"; // $NON-NLS-1$
 
     /**
      * Intent code for request a search.
@@ -322,6 +327,10 @@ public class NavigationActivity extends Activity
                     }
                 } else if (intent.getAction().compareTo(
                         FileManagerSettings.INTENT_MOUNT_STATUS_CHANGED) == 0) {
+                    onRequestBookmarksRefresh();
+                    removeUnmountedHistory();
+                    removeUnmountedSelection();
+                } else if(intent.getAction().equals(Intent.ACTION_MEDIA_MOUNTED)) {
                     onRequestBookmarksRefresh();
                     removeUnmountedHistory();
                     removeUnmountedSelection();
@@ -497,6 +506,7 @@ public class NavigationActivity extends Activity
         filter.addAction(Intent.ACTION_TIME_CHANGED);
         filter.addAction(Intent.ACTION_TIMEZONE_CHANGED);
         filter.addAction(FileManagerSettings.INTENT_MOUNT_STATUS_CHANGED);
+        filter.addAction(Intent.ACTION_MEDIA_MOUNTED);
         registerReceiver(this.mNotificationReceiver, filter);
 
         // Set the theme before setContentView
@@ -603,7 +613,7 @@ public class NavigationActivity extends Activity
     @Override
     protected void onResume() {
         super.onResume();
-        
+
         if (mSearchView.getVisibility() == View.VISIBLE) {
             closeSearch();
         }
@@ -1288,19 +1298,27 @@ public class NavigationActivity extends Activity
             // Recovery sdcards from storage manager
             StorageVolume[] volumes = StorageHelper
                     .getStorageVolumes(getApplication());
-            int cc = volumes.length;
-            for (int i = 0; i < cc; i++) {
-                if (volumes[i].getPath().toLowerCase(Locale.ROOT)
-                        .indexOf("usb") != -1) { //$NON-NLS-1$
-                    bookmarks.add(new Bookmark(BOOKMARK_TYPE.USB, StorageHelper
-                            .getStorageVolumeDescription(getApplication(),
-                                    volumes[i]), volumes[i].getPath()));
-                }
-                else {
-                    bookmarks.add(new Bookmark(BOOKMARK_TYPE.SDCARD,
-                            StorageHelper.getStorageVolumeDescription(
-                                    getApplication(), volumes[i]), volumes[i]
-                                    .getPath()));
+            for (StorageVolume volume: volumes) {
+                if (volume != null) {
+                    String mountedState = volume.getState();
+                    String path = volume.getPath();
+                    if (!Environment.MEDIA_MOUNTED.equalsIgnoreCase(mountedState) &&
+                            !Environment.MEDIA_MOUNTED_READ_ONLY.equalsIgnoreCase(mountedState)) {
+                        Log.w(TAG, "Ignoring '" + path + "' with state of '"+ mountedState + "'");
+                        continue;
+                    }
+                    if (!TextUtils.isEmpty(path)) {
+                        String lowerPath = path.toLowerCase(Locale.ROOT);
+                        Bookmark bookmark;
+                        if (lowerPath.contains(STR_USB)) {
+                            bookmark = new Bookmark(BOOKMARK_TYPE.USB, StorageHelper
+                                    .getStorageVolumeDescription(getApplication(), volume), path);
+                        } else {
+                            bookmark = new Bookmark(BOOKMARK_TYPE.SDCARD, StorageHelper
+                                    .getStorageVolumeDescription(getApplication(), volume), path);
+                        }
+                        bookmarks.add(bookmark);
+                    }
                 }
             }
 

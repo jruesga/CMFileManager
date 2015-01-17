@@ -27,6 +27,7 @@ import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -81,6 +82,11 @@ public final class IntentsActionPolicy extends ActionsPolicy {
      */
     public static final String CATEGORY_EDITOR =
             "com.cyanogenmod.filemanager.category.EDITOR"; //$NON-NLS-1$
+
+    /**
+     * The package name of Gallery2.
+     */
+    public static final String GALLERY2_PACKAGE = "com.android.gallery3d";
 
     /**
      * Method that opens a {@link FileSystemObject} with the default registered application
@@ -484,8 +490,15 @@ public final class IntentsActionPolicy extends ActionsPolicy {
             }
             intent.setAction(a);
         } else {
-            // Create a new stack for the activity
-            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            // Opening image files with Gallery2 will behave incorrectly when started
+            // as a new task. We want to be able to return to CMFM with the back button.
+            if (!(Intent.ACTION_VIEW.equals(intent.getAction())
+                  && isGallery2(ri)
+                  && intent.getData() != null
+                  && MediaStore.AUTHORITY.equals(intent.getData().getAuthority()))) {
+                // Create a new stack for the activity
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            }
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         }
 
@@ -576,6 +589,10 @@ public final class IntentsActionPolicy extends ActionsPolicy {
         return ri.activityInfo.metaData != null &&
                 ri.activityInfo.metaData.getBoolean(
                         IntentsActionPolicy.CATEGORY_INTERNAL_VIEWER, false);
+    }
+
+    public static final boolean isGallery2(ResolveInfo ri) {
+        return GALLERY2_PACKAGE.equals(ri.activityInfo.packageName);
     }
 
     /**

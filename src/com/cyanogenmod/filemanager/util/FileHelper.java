@@ -19,6 +19,8 @@ package com.cyanogenmod.filemanager.util;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
+import android.system.ErrnoException;
+import android.system.OsConstants;
 import android.util.Log;
 
 import com.cyanogenmod.filemanager.FileManagerApplication;
@@ -1053,7 +1055,8 @@ public final class FileHelper {
      * @param bufferSize The buffer size for the operation
      * @return boolean If the operation complete successfully
      */
-    public static boolean bufferedCopy(final File src, final File dst, int bufferSize) {
+    public static boolean bufferedCopy(final File src, final File dst,
+        int bufferSize) throws ExecutionException {
         BufferedInputStream bis = null;
         BufferedOutputStream bos = null;
         try {
@@ -1069,6 +1072,14 @@ public final class FileHelper {
         } catch (Throwable e) {
             Log.e(TAG,
                     String.format(TAG, "Failed to copy from %s to %d", src, dst), e); //$NON-NLS-1$
+
+            // Check if this error is an out of space exception and throw that specifically.
+            // ENOSPC -> Error No Space
+            if (e.getCause() instanceof ErrnoException
+                        && ((ErrnoException)e.getCause()).errno == OsConstants.ENOSPC) {
+                throw new ExecutionException(R.string.msgs_no_disk_space);
+            }
+
             return false;
         } finally {
             try {

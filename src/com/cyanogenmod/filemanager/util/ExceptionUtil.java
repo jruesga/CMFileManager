@@ -194,13 +194,21 @@ public final class ExceptionUtil {
         //Get the appropriate message for the exception
         int msgResId = R.string.msgs_unknown;
         boolean toast = true;
-        int cc = KNOWN_EXCEPTIONS.length;
-        for (int i = 0; i < cc; i++) {
-            if (KNOWN_EXCEPTIONS[i].getCanonicalName().compareTo(
-                    ex.getClass().getCanonicalName()) == 0) {
-                msgResId = KNOWN_EXCEPTIONS_IDS[i];
-                toast = KNOWN_EXCEPTIONS_TOAST[i];
-                break;
+
+        // If an ExecutionException has specified a resource string to use,
+        // this is a special case and should be displayed as such.
+        if ((ex instanceof ExecutionException)
+            && ((ExecutionException)ex).getDetailMessageResId() != 0) {
+            msgResId = ((ExecutionException)ex).getDetailMessageResId();
+        } else {
+            int cc = KNOWN_EXCEPTIONS.length;
+            for (int i = 0; i < cc; i++) {
+                if (KNOWN_EXCEPTIONS[i].getCanonicalName().compareTo(
+                        ex.getClass().getCanonicalName()) == 0) {
+                    msgResId = KNOWN_EXCEPTIONS_IDS[i];
+                    toast = KNOWN_EXCEPTIONS_TOAST[i];
+                    break;
+                }
             }
         }
 

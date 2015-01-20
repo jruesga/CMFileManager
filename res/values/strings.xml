@@ -103,6 +103,8 @@
     <!-- When an operation requires elevated privileged (normally caused for the use of a
          non-privileged console) -->
     <string name="msgs_insufficient_permissions">This operation requires elevated permissions. Try changing to Root Access mode.</string>
+    <!-- When an operation fails because the device has run out of storage. -->
+    <string name="msgs_no_disk_space">This operation failed because there is no space left on the device.</string>
     <!-- The file or directory was not found -->
     <string name="msgs_file_not_found">The file or folder was not found.</string>
     <!-- The command reference couldn't be created (not found or invalid definition)

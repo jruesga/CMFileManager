@@ -248,6 +248,7 @@
   <string name="actions_menu_open_parent_folder">打开父目录</string>
   <string name="actions_menu_compute_checksum">计算校验和</string>
   <string name="actions_menu_print">打印</string>
+  <string name="actions_menu_set_as_home">设置为主屏</string>
   <string name="actions_ask_undone_operation_msg">
     此操作无法撤销. 您确定要继续?</string>
   <string name="input_name_dialog_label">名称:</string>
@@ -288,6 +289,7 @@
   <string name="pref">设置</string>
   <string name="pref_general">常规设置</string>
   <string name="pref_search">搜索选项</string>
+  <string name="pref_storage">存储选项</string>
   <string name="pref_editor">编辑器选项</string>
   <string name="pref_themes">主题</string>
   <string name="pref_about">关于</string>
@@ -329,6 +331,7 @@
   <string name="pref_remove_saved_search_terms">删除保存的关键词</string>
   <string name="pref_remove_saved_search_terms_summary">点击此将会删除所有保存的搜索关键词</string>
   <string name="pref_remove_saved_search_terms_msg">所有保存的搜索关键词已被删除.</string>
+  <string name="pref_secure_storage_category">安全存储</string>
   <string name="pref_editor_behaviour_category">行为</string>
   <string name="pref_no_suggestions">不显示建议</string>
   <string name="pref_no_suggestions_desc">编辑文件时不要显示字典建议</string>

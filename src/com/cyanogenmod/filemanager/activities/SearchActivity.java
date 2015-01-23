@@ -90,7 +90,9 @@ import com.cyanogenmod.filemanager.util.MimeTypeHelper.MimeTypeCategory;
 import com.cyanogenmod.filemanager.util.StorageHelper;
 
 import java.io.FileNotFoundException;
+import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 
 /**
@@ -270,15 +272,15 @@ public class SearchActivity extends Activity
             //Saved in the global result list, for save at the end
             if (partialResults instanceof FileSystemObject) {
                 FileSystemObject fso = (FileSystemObject) partialResults;
-                if (mMimeTypeCategory == null || mMimeTypeCategory == MimeTypeHelper
-                        .getCategory(SearchActivity.this, fso)) {
+                if (mMimeTypeCategories == null || mMimeTypeCategories.contains(MimeTypeHelper
+                        .getCategory(SearchActivity.this, fso))) {
                     SearchActivity.this.mResultList.add((FileSystemObject) partialResults);
                 }
             } else {
                 List<FileSystemObject> fsoList = (List<FileSystemObject>) partialResults;
                 for (FileSystemObject fso : fsoList) {
-                    if (mMimeTypeCategory == null || mMimeTypeCategory == MimeTypeHelper
-                            .getCategory(SearchActivity.this, fso)) {
+                    if (mMimeTypeCategories == null || mMimeTypeCategories.contains(MimeTypeHelper
+                            .getCategory(SearchActivity.this, fso))) {
                         SearchActivity.this.mResultList.add(fso);
                     }
                 }
@@ -369,7 +371,7 @@ public class SearchActivity extends Activity
     /**
      * @hide
      */
-    MimeTypeCategory mMimeTypeCategory;
+    HashSet<MimeTypeCategory> mMimeTypeCategories;
 
     /**
      * {@inheritDoc}
@@ -611,8 +613,18 @@ public class SearchActivity extends Activity
      * Method that initializes the titlebar of the activity.
      */
     private void initSearch() {
-        mMimeTypeCategory = (MimeTypeCategory) getIntent()
-                .getSerializableExtra(EXTRA_SEARCH_MIMETYPE);
+        Serializable mimeTypeExtra = getIntent().getSerializableExtra(EXTRA_SEARCH_MIMETYPE);
+
+        if (mimeTypeExtra != null) {
+            MimeTypeCategory[] categories = (MimeTypeCategory[]) getIntent()
+                    .getSerializableExtra(EXTRA_SEARCH_MIMETYPE);
+            // setting load factor to 1 to avoid the backing map's resizing
+            mMimeTypeCategories = new HashSet<MimeTypeCategory>(categories.length, 1);
+            for (MimeTypeCategory category : categories) {
+                mMimeTypeCategories.add(category);
+            }
+        }
+
         //Stop any pending action
         try {
             if (SearchActivity.this.mDrawingSearchResultTask != null
@@ -663,7 +675,7 @@ public class SearchActivity extends Activity
         boolean ask = false;
         // Mime type search uses '*' which needs to bypass
         // length check
-        if (mMimeTypeCategory == null) {
+        if (mMimeTypeCategories == null) {
             //Check if some queries has lower than allowed, in this case
             //request the user for stop the search
             int cc = queries.size();
@@ -757,14 +769,17 @@ public class SearchActivity extends Activity
         this.mSearchListView.setAdapter(adapter);
 
         //Set terms
-        if (mMimeTypeCategory == null) {
+        if (mMimeTypeCategories == null) {
             this.mSearchTerms.setText(
                     Html.fromHtml(getString(R.string.search_terms, query.getTerms())));
         } else {
+            ArrayList<String> localizedNames = new ArrayList<String>(mMimeTypeCategories.size());
+            for (MimeTypeCategory category : mMimeTypeCategories) {
+                localizedNames
+                        .add(NavigationActivity.MIME_TYPE_LOCALIZED_NAMES[category.ordinal()]);
+            }
              this.mSearchTerms.setText(
-                     Html.fromHtml(getString(R.string.search_terms,
-                             NavigationActivity.MIME_TYPE_LOCALIZED_NAMES[mMimeTypeCategory
-                                     .ordinal()])));
+                     Html.fromHtml(getString(R.string.search_terms, localizedNames)));
         }
 
         //Now, do the search in background

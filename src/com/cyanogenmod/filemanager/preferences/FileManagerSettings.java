@@ -109,7 +109,7 @@ public enum FileManagerSettings {
      * @hide
      */
     SETTINGS_DISPLAY_THUMBS(
-            "cm_filemanager_show_thumbs", Boolean.FALSE), //$NON-NLS-1$
+            "cm_filemanager_show_thumbs", Boolean.TRUE), //$NON-NLS-1$
     /**
      * Whether use flinger to remove items
      * @hide

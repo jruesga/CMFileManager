@@ -479,6 +479,10 @@ public class SearchActivity extends Activity
         //Set out transition
         overridePendingTransition(R.anim.hold_in, R.anim.translate_to_left_out);
         super.onPause();
+        // stop search if the activity moves out of the foreground
+        if (mExecutable != null) {
+            mExecutable.cancel();
+        }
     }
 
     /**
@@ -621,10 +625,10 @@ public class SearchActivity extends Activity
         Serializable mimeTypeExtra = getIntent().getSerializableExtra(EXTRA_SEARCH_MIMETYPE);
 
         if (mimeTypeExtra != null) {
-            MimeTypeCategory[] categories = (MimeTypeCategory[]) getIntent()
+            ArrayList<MimeTypeCategory> categories = (ArrayList<MimeTypeCategory>) getIntent()
                     .getSerializableExtra(EXTRA_SEARCH_MIMETYPE);
             // setting load factor to 1 to avoid the backing map's resizing
-            mMimeTypeCategories = new HashSet<MimeTypeCategory>(categories.length, 1);
+            mMimeTypeCategories = new HashSet<MimeTypeCategory>(categories.size(), 1);
             for (MimeTypeCategory category : categories) {
                 mMimeTypeCategories.add(category);
             }
@@ -967,6 +971,10 @@ public class SearchActivity extends Activity
     public boolean onKeyUp(int keyCode, KeyEvent event) {
         switch (keyCode) {
             case KeyEvent.KEYCODE_BACK:
+                // release Console lock held by the async search task
+                if (mExecutable != null) {
+                    mExecutable.cancel();
+                }
                 back(true, null, false);
                 return true;
             default:
@@ -981,6 +989,10 @@ public class SearchActivity extends Activity
     public boolean onOptionsItemSelected(MenuItem item) {
        switch (item.getItemId()) {
           case android.R.id.home:
+              // release Console lock held by the async search task
+              if (mExecutable != null) {
+                  mExecutable.cancel();
+              }
               back(true, null, false);
               return true;
           default:

@@ -435,6 +435,7 @@ public class NavigationActivity extends Activity
             add(VIDEO);
             add(AUDIO);
             add(DOCUMENT);
+            add(APP);
         }
     };
 
@@ -605,6 +606,8 @@ public class NavigationActivity extends Activity
                 .ic_em_music));
         EASY_MODE_ICONS.put(MimeTypeCategory.DOCUMENT, getResources().getDrawable(R.drawable
                 .ic_em_document));
+        EASY_MODE_ICONS.put(MimeTypeCategory.APP, getResources().getDrawable(R.drawable
+                .ic_em_application));
 
         //Save state
         super.onCreate(state);
@@ -1421,7 +1424,7 @@ public class NavigationActivity extends Activity
             @Override
             public View getView(int position, View convertView, ViewGroup parent) {
                 convertView = (convertView == null) ?getLayoutInflater().inflate(R.layout
-                        .navigation_view_simple_item, null, true) : convertView;
+                        .navigation_view_simple_item, parent, false) : convertView;
                 MimeTypeCategory item = getItem(position);
                 String typeTitle = MIME_TYPE_LOCALIZED_NAMES[item.ordinal()];
                 TextView typeTitleTV = (TextView) convertView
@@ -1447,28 +1450,23 @@ public class NavigationActivity extends Activity
         intent.putExtra(SearchActivity.EXTRA_SEARCH_DIRECTORY,
                 getCurrentNavigationView().getCurrentDir());
         intent.putExtra(SearchManager.QUERY, "*"); // Use wild-card '*'
-        switch (position) {
-            case 0:
-                performHideEasyMode();
-                return;
-            case 1:
-                intent.putExtra(SearchActivity.EXTRA_SEARCH_MIMETYPE,
-                        new MimeTypeCategory[] { MimeTypeCategory.IMAGE });
-                break;
-            case 2:
-                intent.putExtra(SearchActivity.EXTRA_SEARCH_MIMETYPE,
-                        new MimeTypeCategory[] { MimeTypeCategory.VIDEO });
-                break;
-            case 3:
-                intent.putExtra(SearchActivity.EXTRA_SEARCH_MIMETYPE,
-                        new MimeTypeCategory[] { MimeTypeCategory.AUDIO });
-                break;
-            case 4:
-                // search for both DOCUMENT and TEXT mime types
-                MimeTypeCategory[] categories = { MimeTypeCategory.DOCUMENT, MimeTypeCategory.TEXT };
-                intent.putExtra(SearchActivity.EXTRA_SEARCH_MIMETYPE, categories);
-                break;
+
+        if (position == 0) {
+            performHideEasyMode();
+            return;
+
+        } else {
+            ArrayList<MimeTypeCategory> searchCategories = new ArrayList<MimeTypeCategory>();
+            MimeTypeCategory selectedCategory = EASY_MODE_LIST.get(position);
+            searchCategories.add(selectedCategory);
+            // a one off case where we implicitly want to also search for TEXT mimetypes when the
+            // DOCUMENTS category is selected
+            if (selectedCategory == MimeTypeCategory.DOCUMENT) {
+                searchCategories.add(MimeTypeCategory.TEXT);
+            }
+            intent.putExtra(SearchActivity.EXTRA_SEARCH_MIMETYPE, searchCategories);
         }
+
         startActivity(intent);
     }
 

@@ -29,8 +29,8 @@
 
   <com.cyanogenmod.filemanager.ui.widgets.FixedSizeImageView
     android:id="@+id/navigation_view_item_icon"
-    android:layout_marginLeft="@dimen/easy_mode_type_icon_margin_lr"
-    android:layout_marginRight="@dimen/easy_mode_type_icon_margin_lr"
+    android:layout_marginStart="@dimen/easy_mode_type_icon_margin_lr"
+    android:layout_marginEnd="@dimen/easy_mode_type_icon_margin_lr"
     android:layout_width="@dimen/easy_mode_type_icon_wh"
     android:layout_height="@dimen/easy_mode_type_icon_wh"
     android:layout_gravity="center_vertical"
@@ -43,8 +43,9 @@
     android:layout_width="0dp"
     android:layout_height="match_parent"
     android:layout_weight="1"
-    android:layout_marginRight="@dimen/extra_margin"
-    android:gravity="left|center_vertical"
+    android:layout_marginStart="@dimen/small_margin"
+    android:layout_marginEnd="@dimen/extra_margin"
+    android:gravity="start|center_vertical"
     android:singleLine="true"
     android:ellipsize="middle"
     android:textAppearance="@style/primary_text_appearance" />

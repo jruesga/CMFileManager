@@ -520,10 +520,6 @@ public class FsoPropertiesDialog
 
                     // Apply the them
                     applyTabTheme();
-
-                    // Adjust the size of the spinners
-                    adjustSpinnerSize(this.mSpnOwner);
-                    adjustSpinnerSize(this.mSpnGroup);
                 }
                 this.mInfoMsgView.setVisibility(
                         mIsVirtual || this.mHasPrivileged || !this.mIsAdvancedMode
@@ -1166,27 +1162,6 @@ public class FsoPropertiesDialog
                 }
             });
         }
-    }
-
-    /**
-     * Method that adjust the size of the spinner to fit the window
-     *
-     * @param spinner The spinner
-     */
-    private void adjustSpinnerSize(final Spinner spinner) {
-        final View v = this.mContentView.findViewById(R.id.fso_properties_dialog_tabhost);
-        spinner.post(new Runnable() {
-            @Override
-            public void run() {
-                // Align with the last checkbox of the column
-                int vW = v.getMeasuredWidth();
-                int[] cbSpn = new int[2];
-                spinner.getLocationInWindow(cbSpn);
-
-                // Set the width
-                spinner.getLayoutParams().width = vW - cbSpn[0];
-            }
-        });
     }
 
     /**

@@ -28,7 +28,7 @@
     android:text="@string/search_no_results_msg"
     android:textAppearance="@style/primary_text_appearance_nohighlight"
     android:textSize="@dimen/title_text_size"
-    android:visibility="visible" />
+    android:visibility="gone" />
 
   <ProgressBar
     android:id="@+id/search_waiting"
@@ -46,27 +46,14 @@
     android:layout_alignParentBottom="true"
     android:background="@drawable/bg_material_statusbar" >
 
-    <TextView
-      android:id="@+id/search_status_found_items"
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:layout_alignParentLeft="true"
-      android:layout_alignParentTop="true"
-      android:layout_marginLeft="@dimen/default_margin"
-      android:layout_marginTop="@dimen/default_margin"
-      android:singleLine="true"
-      android:textAppearance="@style/primary_text_appearance" />
-
-    <TextView
-      android:id="@+id/search_status_query_terms"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:layout_alignParentBottom="true"
-      android:layout_alignParentLeft="true"
-      android:layout_marginBottom="@dimen/default_margin"
-      android:layout_marginLeft="@dimen/default_margin"
-      android:singleLine="true"
-      android:textAppearance="@style/secondary_text_appearance" />
+    <ProgressBar
+      android:id="@+id/streaming_progress_bar"
+      android:layout_width="@dimen/default_progress_width"
+      android:layout_height="match_parent"
+      android:layout_alignParentRight="true"
+      android:layout_margin="@dimen/default_margin"
+      android:indeterminate="true"
+      android:indeterminateOnly="true" />
 
     <Spinner
       android:id="@+id/search_status_type_spinner"
@@ -78,7 +65,33 @@
       android:layout_marginRight="@dimen/default_margin"
       android:gravity="left"
       android:textColor="@android:color/white"
-      android:dropDownVerticalOffset="20dp" />
+      android:dropDownVerticalOffset="20dp"
+      android:visibility="gone" />
+
+    <TextView
+      android:id="@+id/search_status_found_items"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_alignParentLeft="true"
+      android:layout_alignParentTop="true"
+      android:layout_toLeftOf="@id/streaming_progress_bar"
+      android:layout_marginLeft="@dimen/default_margin"
+      android:layout_marginTop="@dimen/default_margin"
+      android:singleLine="true"
+      android:textAppearance="@style/primary_text_appearance" />
+
+    <TextView
+      android:id="@+id/search_status_query_terms"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_alignParentBottom="true"
+      android:layout_alignParentLeft="true"
+      android:layout_toLeftOf="@id/streaming_progress_bar"
+      android:layout_marginBottom="@dimen/default_margin"
+      android:layout_marginLeft="@dimen/default_margin"
+      android:singleLine="true"
+      android:textAppearance="@style/secondary_text_appearance" />
+
 
   </RelativeLayout>
 
@@ -87,7 +100,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_above="@id/search_status"
-    android:drawSelectorOnTop="true"
-    android:visibility="gone" />
+    android:drawSelectorOnTop="true" />
 
 </RelativeLayout>

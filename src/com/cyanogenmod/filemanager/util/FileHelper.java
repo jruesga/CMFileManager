@@ -634,6 +634,64 @@ public final class FileHelper {
     }
 
     /**
+     * Determines if a file system object complies w/ a user's display preferences implying that
+     * the user is interested in this file
+     * (sort mode, hidden files, ...).
+     *
+     * @param fso The file
+     * @param restrictions The restrictions to apply when displaying files
+     * @param chRooted If app run with no privileges
+     * @return boolean indicating user's interest
+     */
+    public static boolean compliesWithDisplayPreferences(
+            FileSystemObject fso, Map<DisplayRestrictions, Object> restrictions, boolean chRooted) {
+        //Retrieve user preferences
+        SharedPreferences prefs = Preferences.getSharedPreferences();
+        FileManagerSettings showHiddenPref = FileManagerSettings.SETTINGS_SHOW_HIDDEN;
+        FileManagerSettings showSystemPref = FileManagerSettings.SETTINGS_SHOW_SYSTEM;
+        FileManagerSettings showSymlinksPref = FileManagerSettings.SETTINGS_SHOW_SYMLINKS;
+
+        //Hidden files
+        if (!prefs.getBoolean(
+                showHiddenPref.getId(),
+                ((Boolean)showHiddenPref.getDefaultValue()).booleanValue()) || chRooted) {
+            if (fso.isHidden()) {
+                return false;
+            }
+        }
+
+        //System files
+        if (!prefs.getBoolean(
+                showSystemPref.getId(),
+                ((Boolean)showSystemPref.getDefaultValue()).booleanValue()) || chRooted) {
+            if (fso instanceof SystemFile) {
+                return false;
+            }
+        }
+
+        //Symlinks files
+        if (!prefs.getBoolean(
+                showSymlinksPref.getId(),
+                ((Boolean)showSymlinksPref.getDefaultValue()).booleanValue()) || chRooted) {
+            if (fso instanceof Symlink) {
+                return false;
+            }
+        }
+
+        // Restrictions (only apply to files)
+        if (restrictions != null) {
+            if (!isDirectory(fso)) {
+                if (!isDisplayAllowed(fso, restrictions)) {
+                    return false;
+                }
+            }
+        }
+
+        // all checks passed
+        return true;
+    }
+
+    /**
      * Method that check if a file should be displayed according to the restrictions
      *
      * @param fso The file system object to check
@@ -711,7 +769,7 @@ public final class FileHelper {
 
     /**
      * Method that resolve the symbolic links of the list of files passed as argument.<br />
-     * This method invokes the {@link ResolveLinkCommand} in those files that hasn't a valid
+     * This method invokes the {@link ResolveLinkCommand} in those files that have a valid
      * symlink reference
      *
      * @param context The current context
@@ -721,13 +779,25 @@ public final class FileHelper {
         int cc = files.size();
         for (int i = 0; i < cc; i++) {
             FileSystemObject fso = files.get(i);
-            if (fso instanceof Symlink && ((Symlink)fso).getLinkRef() == null) {
-                try {
-                    FileSystemObject symlink =
-                            CommandHelper.resolveSymlink(context, fso.getFullPath(), null);
-                    ((Symlink)fso).setLinkRef(symlink);
-                } catch (Throwable ex) {/**NON BLOCK**/}
-            }
+            resolveSymlink(context, fso);
+        }
+    }
+
+    /**
+     * Method that resolves the symbolic link of a file passed in as argument.<br />
+     * This method invokes the {@link ResolveLinkCommand} on the file that has a valid
+     * symlink reference
+     *
+     * @param context The current context
+     * @param fso FileSystemObject to resolve symlink
+     */
+    public static void resolveSymlink(Context context, FileSystemObject fso) {
+        if (fso instanceof Symlink && ((Symlink)fso).getLinkRef() == null) {
+            try {
+                FileSystemObject symlink =
+                        CommandHelper.resolveSymlink(context, fso.getFullPath(), null);
+                ((Symlink)fso).setLinkRef(symlink);
+            } catch (Throwable ex) {/**NON BLOCK**/}
         }
     }
 

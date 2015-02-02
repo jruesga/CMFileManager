@@ -743,7 +743,7 @@ public class NavigationActivity extends Activity
             mDrawerLayout.openDrawer(Gravity.START);
 
             AlertDialog dialog = DialogHelper.createAlertDialog(this,
-                    R.drawable.ic_launcher, R.string.welcome_title,
+                    R.mipmap.ic_launcher_filemanager, R.string.welcome_title,
                     getString(R.string.welcome_msg), false);
             DialogHelper.delegateDialogShow(this, dialog);
 

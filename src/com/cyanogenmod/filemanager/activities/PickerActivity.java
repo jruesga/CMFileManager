@@ -281,7 +281,7 @@ public class PickerActivity extends Activity
 
         // Create the dialog
         this.mDialog = DialogHelper.createDialog(
-            this, R.drawable.ic_launcher,
+            this, R.mipmap.ic_launcher_filemanager,
             pickingDirectory ? R.string.directory_picker_title : R.string.picker_title,
             this.mRootView);
 

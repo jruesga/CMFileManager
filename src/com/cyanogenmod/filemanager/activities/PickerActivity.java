@@ -34,6 +34,7 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
 import android.os.storage.StorageVolume;
+import android.text.TextUtils;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
@@ -600,10 +601,23 @@ public class PickerActivity extends Activity
         if (volumes != null) {
             int cc = volumes.length;
             for (int i = 0; i < cc; i++) {
-                String desc = StorageHelper.getStorageVolumeDescription(this, volumes[i]);
-                CheckableItem item = new CheckableItem(desc, false, false);
-                descriptions.add(item);
+                StorageVolume volume = volumes[i];
+                if (volumes[i] != null) {
+                    String mountedState = volumes[i].getState();
+                    String path = volumes[i].getPath();
+                    if (!Environment.MEDIA_MOUNTED.equalsIgnoreCase(mountedState) &&
+                            !Environment.MEDIA_MOUNTED_READ_ONLY.equalsIgnoreCase(mountedState)) {
+                        Log.w(TAG, "Ignoring '" + path + "' with state of '"+ mountedState + "'");
+                        continue;
+                    }
+                    if (!TextUtils.isEmpty(path)) {
+                        String desc = StorageHelper.getStorageVolumeDescription(this, volumes[i]);
+                        CheckableItem item = new CheckableItem(desc, false, false);
+                        descriptions.add(item);
+                    }
+                }
             }
+
         }
         CheckableListAdapter adapter =
                 new CheckableListAdapter(getApplicationContext(), descriptions);

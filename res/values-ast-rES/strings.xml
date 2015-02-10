@@ -84,6 +84,7 @@
   <string name="actionbar_button_overflow_cd">Más opciones</string>
   <string name="actionbar_button_storage_cd">Medios d\'almacenamientu</string>
   <string name="actionbar_button_save_cd">Guardar</string>
+  <string name="actionbar_button_print_cd">Imprentar</string>
   <string name="sort_by_name_asc">Por nome \u25B2</string>
   <string name="sort_by_name_desc">Por nome \u25BC</string>
   <string name="sort_by_date_asc">Por data \u25B2</string>
@@ -109,6 +110,7 @@
   <string name="filesystem_info_dialog_type">Triba:</string>
   <string name="filesystem_info_dialog_options">Opciones:</string>
   <string name="filesystem_info_dialog_dump_pass">Dump / Pass:</string>
+  <string name="filesystem_info_dialog_virtual">Virtual:</string>
   <string name="filesystem_info_dialog_total_disk_usage">Total:</string>
   <string name="filesystem_info_dialog_used_disk_usage">Usáu:</string>
   <string name="filesystem_info_dialog_free_disk_usage">Llibre:</string>
@@ -170,6 +172,8 @@
   <string name="bookmarks_home">Aniciu</string>
   <string name="bookmarks_root_folder">Carpeta raíz</string>
   <string name="bookmarks_system_folder">Carpeta del sistema</string>
+  <string name="bookmarks_secure">Almacenamientu seguru</string>
+  <string name="bookmarks_remote">Almacenamientu remotu</string>
   <string name="bookmarks_button_config_cd">Afitar carpeta inicial.</string>
   <string name="bookmarks_button_remove_bookmark_cd">Desaniciar marcador.</string>
   <string name="bookmarks_msgs_add_success">Amestóse\'l marcador.</string>
@@ -233,6 +237,7 @@
   <string name="actions_menu_open_parent_folder">Abrir carpeta</string>
   <string name="actions_menu_compute_checksum">Checksum</string>
   <string name="actions_menu_print">Imprentar</string>
+  <string name="actions_menu_set_as_home">Afitar como aniciu</string>
   <string name="actions_ask_undone_operation_msg">Esta aición nun pue desfacese. ¿Siguir?</string>
   <string name="input_name_dialog_label">Nome:</string>
   <string name="input_name_dialog_message_empty_name">El nome nun pue quedar baleru.</string>
@@ -263,6 +268,21 @@
   <string name="filetime_format_mode_MMddyyyy_HHmmss">mm/dd/aaaa hh:mm:ss</string>
   <string name="filetime_format_mode_yyyyMMdd_HHmmss">aaaa-mm-dd hh:mm:ss</string>
   <string name="selection_folders_and_files"><xliff:g id="folders">%1$s</xliff:g> y <xliff:g id="files">%2$s</xliff:g> seleicionaos.</string>
+  <string name="category_system">SISTEMA</string>
+  <string name="category_app">APP</string>
+  <string name="category_binary">BINARIU</string>
+  <string name="category_text">TESTU</string>
+  <string name="category_document">DOCUMENTU</string>
+  <string name="category_ebook">EBOOK</string>
+  <string name="category_mail">CORRÉU</string>
+  <string name="category_compress">COMPRIMÍU</string>
+  <string name="category_exec">EXECUTABLE</string>
+  <string name="category_database">BASEDATOS</string>
+  <string name="category_font">FONTE</string>
+  <string name="category_image">IMAXE</string>
+  <string name="category_audio">AUDIU</string>
+  <string name="category_video">VÍDEU</string>
+  <string name="category_security">SEGURIDÁ</string>
   <string name="compression_mode_title">Mou de compresión</string>
   <string name="shortcut_failed_msg">Fallu al abrir l\'accesu direutu.</string>
   <string name="shortcut_creation_success_msg">Accesu direutu creáu.</string>
@@ -270,10 +290,11 @@
   <string name="pref">Axustes</string>
   <string name="pref_general">Axustes xenerales</string>
   <string name="pref_search">Opciones de gueta</string>
+  <string name="pref_storage">Opciones d\'almacenamientu</string>
   <string name="pref_editor">Opciones del editor</string>
   <string name="pref_themes">Temes</string>
   <string name="pref_about">Tocante a</string>
-  <string name="pref_about_summary">Xestor de ficheros v<xliff:g id="version">%1$s</xliff:g>\nCopyright \u00A9 2012-2014 The CyanogenMod Project</string>
+  <string name="pref_about_summary">File Manager v<xliff:g id="version">%1$s</xliff:g>\nCopyright \u00A9 2012–2014 The CyanogenMod Project</string>
   <string name="pref_general_behaviour_category">Xeneral</string>
   <string name="pref_case_sensitive_sort">Ordenación sensible</string>
   <string name="pref_case_sensitive_sort_summary">Considerar minúscules/mayúscules al restolar o amosar resultaos de la gueta</string>
@@ -309,7 +330,12 @@
   <string name="pref_save_search_terms_off">Los términos de gueta nun van guardase</string>
   <string name="pref_remove_saved_search_terms">Desaniciar términos de gueta</string>
   <string name="pref_remove_saved_search_terms_summary">Tocar equí pa desaniciar tolos términos de gueta guardaos</string>
-  <string name="pref_remove_saved_search_terms_msg">Desaniciáronse tolos términos de gueta.</string>
+  <string name="pref_remove_saved_search_terms_msg">Borráronse tolos términos de busca</string>
+  <string name="pref_secure_storage_category">Almacenamientu seguru</string>
+  <string name="pref_secure_storage_delayed_sync_title">Sincronización retrasada</string>
+  <string name="pref_secure_storage_delayed_sync_summary">La sincronización de sistemes de ficheros ye una operación costosa. Habilita esta opción pa consiguir meyores tiempos de rempuesta dempués de cada operación, demorando la sincronización hasta que\'l sistema de ficheros nun tea n\'usu, pero a espenses de perder la información non sincronizada si l\'aplicación tien un zarru inesperáu.</string>
+  <string name="pref_secure_storage_reset_password_title">Restablecer contraseña</string>
+  <string name="pref_secure_storage_delete_storage_title">Desaniciar almacenamientu</string>
   <string name="pref_editor_behaviour_category">Comportamientu</string>
   <string name="pref_no_suggestions">Ensin suxerencies</string>
   <string name="pref_no_suggestions_desc">Nun amosar suxerencies del diccionariu mentanto la edición de ficheros</string>
@@ -346,6 +372,25 @@
   <string name="ash_keyword">Pallabra clave</string>
   <string name="ash_quoted_string">Cadena</string>
   <string name="ash_variable">Variable</string>
+  <string name="secure_storage_unlock_title">Desbloquiar almacenamientu</string>
+  <string name="secure_storage_create_title">Crear almacenamientu</string>
+  <string name="secure_storage_reset_title">Restablecer contraseña</string>
+  <string name="secure_storage_delete_title">Desaniciar almacenamientu</string>
+  <string name="secure_storage_unlock_key_prompt_msg">Escribi la contraseña pa desbloquiar el sistema d\'almacenamientu de ficheros seguru.</string>
+  <string name="secure_storage_unlock_key_new_msg">Escribi una contraseña pa protexer el sistema d\'almacenamientu de ficheros seguru.</string>
+  <string name="secure_storage_unlock_key_reset_msg">Escribi la contraseña actual y unes nueves pa restablecer el sistema d\'almacenamientu de ficheros seguru.</string>
+  <string name="secure_storage_unlock_key_delete_msg">Escribi la contraseña actual pa desaniciar el sistema d\'almacenamientu de ficheros seguru.</string>
+  <string name="secure_storage_unlock_old_key_title">Contraseña vieya:</string>
+  <string name="secure_storage_unlock_new_key_title">Contraseña nueva:</string>
+  <string name="secure_storage_unlock_key_title">Contraseña:</string>
+  <string name="secure_storage_unlock_repeat_title">Repitir contraseña:</string>
+  <string name="secure_storage_create_button">Crear</string>
+  <string name="secure_storage_unlock_button">Desbloquiar</string>
+  <string name="secure_storage_reset_button">Restablecer</string>
+  <string name="secure_storage_delete_button">Desaniciar</string>
+  <string name="secure_storage_unlock_failed">Nun pue desbloquiase l\'almacenamientu</string>
+  <string name="secure_storage_unlock_validation_length">La contraseña tien de tener a lo menos <xliff:g id="characters">%1$d</xliff:g> caráuteres.</string>
+  <string name="secure_storage_unlock_validation_equals">Les contraseñes nun concasen.</string>
   <string name="print_unsupported_document">Formatu de documentu non sofitáu</string>
   <string name="print_unsupported_image">Formatu d\'imaxe non sofitáu</string>
   <string name="print_document_header">Documentu: <xliff:g id="document_name">%1$s</xliff:g></string>

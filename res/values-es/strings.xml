@@ -84,6 +84,7 @@
   <string name="actionbar_button_overflow_cd">Más opciones</string>
   <string name="actionbar_button_storage_cd">Medios de almacenamiento</string>
   <string name="actionbar_button_save_cd">Guardar</string>
+  <string name="actionbar_button_print_cd">Imprimir</string>
   <string name="sort_by_name_asc">Por nombre \u25B2</string>
   <string name="sort_by_name_desc">Por nombre \u25BC</string>
   <string name="sort_by_date_asc">Por fecha \u25B2</string>
@@ -109,6 +110,7 @@
   <string name="filesystem_info_dialog_type">Tipo:</string>
   <string name="filesystem_info_dialog_options">Opciones:</string>
   <string name="filesystem_info_dialog_dump_pass">Dump / Pass:</string>
+  <string name="filesystem_info_dialog_virtual">Virtual:</string>
   <string name="filesystem_info_dialog_total_disk_usage">Total:</string>
   <string name="filesystem_info_dialog_used_disk_usage">Usado:</string>
   <string name="filesystem_info_dialog_free_disk_usage">Libre:</string>
@@ -170,6 +172,8 @@
   <string name="bookmarks_home">Inicio</string>
   <string name="bookmarks_root_folder">Carpeta raíz</string>
   <string name="bookmarks_system_folder">Carpeta del sistema</string>
+  <string name="bookmarks_secure">Almacenamiento seguro</string>
+  <string name="bookmarks_remote">Almacenamiento remoto</string>
   <string name="bookmarks_button_config_cd">Establecer carpeta inicial.</string>
   <string name="bookmarks_button_remove_bookmark_cd">Eliminar marcador.</string>
   <string name="bookmarks_msgs_add_success">El marcador fue añadido.</string>
@@ -232,6 +236,7 @@
   <string name="actions_menu_open_parent_folder">Abrir carpeta</string>
   <string name="actions_menu_compute_checksum">Checksum</string>
   <string name="actions_menu_print">Imprimir</string>
+  <string name="actions_menu_set_as_home">Establecer como inicio</string>
   <string name="actions_ask_undone_operation_msg">Esta acción no puede deshacerse. ¿Continuar?</string>
   <string name="input_name_dialog_label">Nombre:</string>
   <string name="input_name_dialog_message_empty_name">El nombre no puede quedar en blanco.</string>
@@ -262,6 +267,21 @@
   <string name="filetime_format_mode_MMddyyyy_HHmmss">mm/dd/aaaa hh:mm:ss</string>
   <string name="filetime_format_mode_yyyyMMdd_HHmmss">aaaa-mm-dd hh:mm:ss</string>
   <string name="selection_folders_and_files"><xliff:g id="folders">%1$s</xliff:g> y <xliff:g id="files">%2$s</xliff:g> seleccionados.</string>
+  <string name="category_system">SISTEMA</string>
+  <string name="category_app">APLICACIÓN</string>
+  <string name="category_binary">BINARIO</string>
+  <string name="category_text">TEXTO</string>
+  <string name="category_document">DOCUMENTO</string>
+  <string name="category_ebook">E-BOOK</string>
+  <string name="category_mail">CORREO</string>
+  <string name="category_compress">COMPRIMIDO</string>
+  <string name="category_exec">EJECUTABLE</string>
+  <string name="category_database">BB.DD.</string>
+  <string name="category_font">FUENTE</string>
+  <string name="category_image">IMAGEN</string>
+  <string name="category_audio">AUDIO</string>
+  <string name="category_video">VÍDEO</string>
+  <string name="category_security">SEGURIDAD</string>
   <string name="compression_mode_title">Modo de compresión</string>
   <string name="shortcut_failed_msg">Error al abrir el acceso directo.</string>
   <string name="shortcut_creation_success_msg">Acceso directo creado.</string>
@@ -269,10 +289,11 @@
   <string name="pref">Ajustes</string>
   <string name="pref_general">Ajustes generales</string>
   <string name="pref_search">Opciones de búsqueda</string>
+  <string name="pref_storage">Opciones de almacenamiento</string>
   <string name="pref_editor">Opciones del editor</string>
   <string name="pref_themes">Temas</string>
   <string name="pref_about">Acerca de</string>
-  <string name="pref_about_summary">File Manager v<xliff:g id="version">%1$s</xliff:g>\nCopyright \u00A9 2012-2014 The CyanogenMod Project</string>
+  <string name="pref_about_summary">File Manager v<xliff:g id="version">%1$s</xliff:g>\nCopyright \u00A9 2012–2014 The CyanogenMod Project</string>
   <string name="pref_general_behaviour_category">General</string>
   <string name="pref_case_sensitive_sort">Ordenación sensible</string>
   <string name="pref_case_sensitive_sort_summary">Tener en cuenta minúsculas/mayúsculas al navegar o mostrar resultados de búsqueda</string>
@@ -308,7 +329,12 @@
   <string name="pref_save_search_terms_off">Los términos de búsqueda no serán guardados</string>
   <string name="pref_remove_saved_search_terms">Borrar términos de búsqueda</string>
   <string name="pref_remove_saved_search_terms_summary">Tocar aquí para borrar todos los términos de búsqueda guardados</string>
-  <string name="pref_remove_saved_search_terms_msg">Todos los términos de búsqueda han sido borrados.</string>
+  <string name="pref_remove_saved_search_terms_msg">Todos los términos de búsqueda han sido borrados</string>
+  <string name="pref_secure_storage_category">Almacenamiento seguro</string>
+  <string name="pref_secure_storage_delayed_sync_title">Sincronización retrasada</string>
+  <string name="pref_secure_storage_delayed_sync_summary">La sincronización de sistemas de archivos seguros es una operación costosa. Habilitar esta opción permitirá mejores tiempos de respuesta después de cada operación, demorando la sincronización hasta que el sistema de archivos no esté en uso, pero a expensas de perder la información no sincronizada si la aplicación tiene un cierre inesperado.</string>
+  <string name="pref_secure_storage_reset_password_title">Restablecer contraseña</string>
+  <string name="pref_secure_storage_delete_storage_title">Borrar almacenamiento</string>
   <string name="pref_editor_behaviour_category">Comportamiento</string>
   <string name="pref_no_suggestions">Sin sugerencias</string>
   <string name="pref_no_suggestions_desc">No mostrar sugerencias del diccionario durante la edición de archivos</string>
@@ -345,6 +371,25 @@
   <string name="ash_keyword">Palabra clave</string>
   <string name="ash_quoted_string">Cadena</string>
   <string name="ash_variable">Variable</string>
+  <string name="secure_storage_unlock_title">Desbloquear almacenamiento</string>
+  <string name="secure_storage_create_title">Crear almacenamiento</string>
+  <string name="secure_storage_reset_title">Restablecer contraseña</string>
+  <string name="secure_storage_delete_title">Borrar almacenamiento</string>
+  <string name="secure_storage_unlock_key_prompt_msg">Escribe la contraseña para desbloquear el sistema de almacenamiento de archivos seguro.</string>
+  <string name="secure_storage_unlock_key_new_msg">Escribe una contraseña para proteger el sistema de almacenamiento de archivos seguro.</string>
+  <string name="secure_storage_unlock_key_reset_msg">Escribe la contraseña actual y unas nuevas para restablecer el sistema de almacenamiento de archivos seguro.</string>
+  <string name="secure_storage_unlock_key_delete_msg">Escribe la contraseña actual para borrar el sistema de almacenamiento de archivos seguro.</string>
+  <string name="secure_storage_unlock_old_key_title">Contraseña anterior:</string>
+  <string name="secure_storage_unlock_new_key_title">Nueva contraseña:</string>
+  <string name="secure_storage_unlock_key_title">Contraseña:</string>
+  <string name="secure_storage_unlock_repeat_title">Repetir contraseña:</string>
+  <string name="secure_storage_create_button">Crear</string>
+  <string name="secure_storage_unlock_button">Desbloquear</string>
+  <string name="secure_storage_reset_button">Restablecer</string>
+  <string name="secure_storage_delete_button">Eliminar</string>
+  <string name="secure_storage_unlock_failed">No se puede desbloquear el almacenamiento</string>
+  <string name="secure_storage_unlock_validation_length">La contraseña tiene que tener al menos <xliff:g id="characters">%1$d</xliff:g> caracteres.</string>
+  <string name="secure_storage_unlock_validation_equals">Las contraseñas no coinciden.</string>
   <string name="print_unsupported_document">Formato de documento no soportado</string>
   <string name="print_unsupported_image">Formato de imagen no soportado</string>
   <string name="print_document_header">Documento: <xliff:g id="document_name">%1$s</xliff:g></string>

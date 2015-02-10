@@ -263,7 +263,6 @@
   <string name="pref_editor">Editore aukerak</string>
   <string name="pref_themes">Gaiak</string>
   <string name="pref_about">Honi buruz</string>
-  <string name="pref_about_summary">File Manager v<xliff:g id="version">%1$s</xliff:g>\nCopyright \u00A9 2012-2014 The CyanogenMod Project</string>
   <string name="pref_general_behaviour_category">Orokorra</string>
   <string name="pref_case_sensitive_sort">Kudeaketa sentikorra</string>
   <string name="pref_case_sensitive_sort_summary">Bilaketa emaitzetan edo nabigatzean maiuskulak/minuskulak kontuan izan</string>
@@ -299,7 +298,6 @@
   <string name="pref_save_search_terms_off">Bilaketa baldintzak ez dira gordeko</string>
   <string name="pref_remove_saved_search_terms">Bilaketa baldintzak ezabatu</string>
   <string name="pref_remove_saved_search_terms_summary">Sakatu gordetako bilaketa baldintza guztiak ezabatzeko</string>
-  <string name="pref_remove_saved_search_terms_msg">Bilaketa baldintza guztiak ezabatu dira.</string>
   <string name="pref_editor_behaviour_category">Izaera</string>
   <string name="pref_no_suggestions">Iradokizunik gabe</string>
   <string name="pref_no_suggestions_desc">Ez erakutsi hiztegiaren iradokizunik fitxategiak editatzerakoan</string>

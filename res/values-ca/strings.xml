@@ -29,7 +29,7 @@
   <string name="device_domainsocket">Socket del domini</string>
   <string name="mount_point_readonly">RO</string>
   <string name="mount_point_readwrite">RW</string>
-  <string name="yes">Si</string>
+  <string name="yes">Sí</string>
   <string name="no">No</string>
   <string name="all">Tot</string>
   <string name="overwrite">Sobreescriu</string>
@@ -52,9 +52,11 @@
   <string name="msgs_privileged_console_alloc_failed">No s\'ha pogut executar el mode d\'accés superusuari. Canviant al mode segur.</string>
   <string name="msgs_settings_save_failure">La configuració no s\'ha pogut aplicar o desar.</string>
   <string name="msgs_settings_invalid_initial_directory">La carpeta inicial \'<xliff:g id="initial_dir">%1$s</xliff:g>\' és invàlida. Canviant a la carpeta arrel.</string>
+  <string name="root_not_available_msg">El superusuari no està disponible en aquest dispositiu. No es pot efectuar aquesta operació.</string>
   <string name="msgs_success">L\'operació s\'ha completat satisfactòriament.</string>
   <string name="msgs_unknown">s\'ha detectat un error. L\'operació no ha estat satisfatòria.</string>
   <string name="msgs_insufficient_permissions">Aquesta operació necessita més privilegis. Intenta-ho canviant al mode d\'accés de superusuari.</string>
+  <string name="msgs_no_disk_space">Aquesta operació ha fallat perquè no hi ha espai disponible al dispositiu.</string>
   <string name="msgs_file_not_found">L\'arxiu o carpeta no s\'ha trobat.</string>
   <string name="msgs_command_not_found">L\'ordre de l\'operació no s\'ha trobat o té una definició invàlida.</string>
   <string name="msgs_io_failed">Fallada de Lectura/escriptura.</string>
@@ -84,10 +86,15 @@
   <string name="actionbar_button_overflow_cd">Més opcions</string>
   <string name="actionbar_button_storage_cd">Mitjans d\'emmagatzematge</string>
   <string name="actionbar_button_save_cd">Desa</string>
+  <string name="actionbar_button_print_cd">Imprimeix</string>
   <string name="sort_by_name_asc">Per nom ▲</string>
   <string name="sort_by_name_desc">Per nom ▼</string>
   <string name="sort_by_date_asc">Per data ▲</string>
   <string name="sort_by_date_desc">Per data ▼</string>
+  <string name="sort_by_size_asc">Per mida \u25B2</string>
+  <string name="sort_by_size_desc">Per mida \u25BC</string>
+  <string name="sort_by_type_asc">Per tipus \u25B2</string>
+  <string name="sort_by_type_desc">Per tipus \u25BC</string>
   <string name="layout_icons">Icones</string>
   <string name="layout_simple">Simple</string>
   <string name="layout_details">Detalls</string>
@@ -109,6 +116,7 @@
   <string name="filesystem_info_dialog_type">Tipus:</string>
   <string name="filesystem_info_dialog_options">Opcions:</string>
   <string name="filesystem_info_dialog_dump_pass">Dump / Pass:</string>
+  <string name="filesystem_info_dialog_virtual">Virtual:</string>
   <string name="filesystem_info_dialog_total_disk_usage">Total:</string>
   <string name="filesystem_info_dialog_used_disk_usage">Usats:</string>
   <string name="filesystem_info_dialog_free_disk_usage">Lliures:</string>
@@ -169,6 +177,8 @@
   <string name="bookmarks_home">Inici</string>
   <string name="bookmarks_root_folder">Carpeta arrel</string>
   <string name="bookmarks_system_folder">Carpeta de sistema</string>
+  <string name="bookmarks_secure">Emmagatzematge segur</string>
+  <string name="bookmarks_remote">Emmagatzematge remot</string>
   <string name="bookmarks_button_config_cd">Estableix la carpeta inicial.</string>
   <string name="bookmarks_button_remove_bookmark_cd">Treu el marcador.</string>
   <string name="bookmarks_msgs_add_success">El marcador s\'ha afegit satisfactòriament.</string>
@@ -229,6 +239,7 @@
   <string name="actions_menu_open_parent_folder">Obre el pare</string>
   <string name="actions_menu_compute_checksum">Calcula el checksum</string>
   <string name="actions_menu_print">Imprimeix</string>
+  <string name="actions_menu_set_as_home">Estableix com a inici</string>
   <string name="actions_ask_undone_operation_msg">Aquesta acció no pot ser desfeta. Vols continuar?</string>
   <string name="input_name_dialog_label">Nom:</string>
   <string name="input_name_dialog_message_empty_name">El nom no pot estar buit.</string>
@@ -259,6 +270,22 @@
   <string name="filetime_format_mode_MMddyyyy_HHmmss">mm/dd/yyyy hh:mm:ss</string>
   <string name="filetime_format_mode_yyyyMMdd_HHmmss">yyyy-mm-dd hh:mm:ss</string>
   <string name="selection_folders_and_files"><xliff:g id="folders">%1$s</xliff:g> i <xliff:g id="files">%2$s</xliff:g> seleccionats.</string>
+  <string name="category_system">SISTEMA</string>
+  <string name="category_app">APP</string>
+  <string name="category_binary">BINARI</string>
+  <string name="category_text">TEXT</string>
+  <string name="category_document">DOCUMENT</string>
+  <string name="category_ebook">EBOOK</string>
+  <string name="category_mail">CORREU</string>
+  <string name="category_compress">COMPRIMIT</string>
+  <string name="category_exec">EXECUTABLE</string>
+  <string name="category_database">BASEDEDADES</string>
+  <string name="category_font">TIPUSDELLETRA</string>
+  <string name="category_image">IMATGE</string>
+  <string name="category_audio">SO</string>
+  <string name="category_video">VÍDEO</string>
+  <string name="category_security">SEGURETAT</string>
+  <string name="category_all">TOT</string>
   <string name="compression_mode_title">Modes de compressió</string>
   <string name="shortcut_failed_msg">No s\'ha pogut gestionar la drecera.</string>
   <string name="shortcut_creation_success_msg">La drecera s\'ha creat satisfactòriament.</string>
@@ -266,10 +293,11 @@
   <string name="pref">Configuració</string>
   <string name="pref_general">Configuració general</string>
   <string name="pref_search">Opcions de cerca</string>
+  <string name="pref_storage">Opcions d\'emmagatzematge</string>
   <string name="pref_editor">Opcions de l\'editor</string>
   <string name="pref_themes">Temes</string>
   <string name="pref_about">Quant a</string>
-  <string name="pref_about_summary">Gestor d\'arxius v<xliff:g id="version">%1$s</xliff:g>\nCopyright \u00A9 2012-2014 The CyanogenMod Project</string>
+  <string name="pref_about_summary">Gestor d\'arxius v<xliff:g id="version">%1$s</xliff:g>\nCopyright \u00A9 2012–2014 The CyanogenMod Project</string>
   <string name="pref_general_behaviour_category">General</string>
   <string name="pref_case_sensitive_sort">Minúscules/Majúscules</string>
   <string name="pref_case_sensitive_sort_summary">Considerar Minúscules/Majúscules quan es navegui o s\'ordenin els resultats de la cerca</string>
@@ -305,7 +333,12 @@
   <string name="pref_save_search_terms_off">Els termes de cerca no seran desats</string>
   <string name="pref_remove_saved_search_terms">Esborra els termes de cerca desats</string>
   <string name="pref_remove_saved_search_terms_summary">Pica per esborrar tots els termes de cerca desats</string>
-  <string name="pref_remove_saved_search_terms_msg">Tots els termes de cerca desats s\'han esborrat.</string>
+  <string name="pref_remove_saved_search_terms_msg">Tots els termes de cerca desats s\'han esborrat</string>
+  <string name="pref_secure_storage_category">Emmagatzematge segur</string>
+  <string name="pref_secure_storage_delayed_sync_title">Retard de sincronització</string>
+  <string name="pref_secure_storage_delayed_sync_summary">La sincronització de sistemes de fitxers segurs és una operació costosa. Habilita aquesta opció per aconseguir millors temps de resposta després de cada operació, realitzant la sincronització quan el sistema de fitxers està en un estat sense ús, però a costa de perdre informació pendent de ser sincronitzada si l\'app es penja.</string>
+  <string name="pref_secure_storage_reset_password_title">Restableix contrasenya</string>
+  <string name="pref_secure_storage_delete_storage_title">Esborra emmagatzematge</string>
   <string name="pref_editor_behaviour_category">Comportament</string>
   <string name="pref_no_suggestions">Sense sugerències</string>
   <string name="pref_no_suggestions_desc">No mostris sugerències del diccionari mentre editis l\'arxiu</string>
@@ -342,6 +375,25 @@
   <string name="ash_keyword">Paraula clau</string>
   <string name="ash_quoted_string">Cadena comentada</string>
   <string name="ash_variable">Variable</string>
+  <string name="secure_storage_unlock_title">Desbloqueja emmagatzematge</string>
+  <string name="secure_storage_create_title">Crea emmagatzematge</string>
+  <string name="secure_storage_reset_title">Restableix contrasenya</string>
+  <string name="secure_storage_delete_title">Esborra emmagatzematge</string>
+  <string name="secure_storage_unlock_key_prompt_msg">Escriu la contrasenya per desbloquejar el sistema de fitxers de l\'emmagatzematge segur.</string>
+  <string name="secure_storage_unlock_key_new_msg">Escriu una contrasenya per protegir el sistema de fitxers de l\'emmagatzematge segur.</string>
+  <string name="secure_storage_unlock_key_reset_msg">Escriu la contrasenya actual i la nova contrasenya per restablir el sistema de fitxers de l\'emmagatzematge segur.</string>
+  <string name="secure_storage_unlock_key_delete_msg">Escriu la contrasenya actual per esborrar el sistema de fitxers de l\'emmagatzematge segur.</string>
+  <string name="secure_storage_unlock_old_key_title">Contrasenya antiga:</string>
+  <string name="secure_storage_unlock_new_key_title">Contrasenya nova:</string>
+  <string name="secure_storage_unlock_key_title">Contrasenya:</string>
+  <string name="secure_storage_unlock_repeat_title">Repeteix la contrasenya:</string>
+  <string name="secure_storage_create_button">Crea</string>
+  <string name="secure_storage_unlock_button">Desbloqueja</string>
+  <string name="secure_storage_reset_button">Reestableix</string>
+  <string name="secure_storage_delete_button">Esborra</string>
+  <string name="secure_storage_unlock_failed">No s\'ha pogut desbloquejar l\'emmagatzematge</string>
+  <string name="secure_storage_unlock_validation_length">La contrasenya ha de tenir almenys <xliff:g id="characters">%1$d</xliff:g> caràcters.</string>
+  <string name="secure_storage_unlock_validation_equals">Les contrasenyes no coincideixen.</string>
   <string name="print_unsupported_document">Format de document no suportat</string>
   <string name="print_unsupported_image">Format d\'imatge no suportat</string>
   <string name="print_document_header">Document: <xliff:g id="document_name">%1$s</xliff:g></string>

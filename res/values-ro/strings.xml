@@ -51,12 +51,12 @@
   <string name="msgs_cant_create_console">Imposibil de obținut privilegiile necesare pentru funcționare.</string>
   <string name="msgs_privileged_console_alloc_failed">Imposibil de executat în modul Acces Root. Schimbare la modul Sigur.</string>
   <string name="msgs_settings_save_failure">Setarea nu poate fi aplicată sau stocată.</string>
-  <string name="msgs_settings_invalid_initial_directory">Dosarul inițial \"<xliff:g id="initial_dir">%1$s</xliff:g>\" nu este valid. Schimbare la dosarul rădăcină.</string>
+  <string name="msgs_settings_invalid_initial_directory">Dosarul inițial \"<xliff:g id="initial_dir">%1$s</xliff:g>\" nu este corect. Schimbare la dosarul rădăcină.</string>
   <string name="msgs_success">Operațiunea a fost finalizată cu succes.</string>
   <string name="msgs_unknown">A fost detectată o eroare. Operațiunea nu a reușit.</string>
   <string name="msgs_insufficient_permissions">Această operațiune necesită permisiuni ridicate. Încercați să schimbați la modul de Acces Root.</string>
   <string name="msgs_file_not_found">Fișierul sau dosarul nu a fost găsit.</string>
-  <string name="msgs_command_not_found">Comanda operațiunii nu a fost găsită sau are o definiție nevalidă.</string>
+  <string name="msgs_command_not_found">Comanda operațiunii nu a fost găsită sau are o definiție incorectă.</string>
   <string name="msgs_io_failed">Eroare citire/scriere.</string>
   <string name="msgs_operation_timeout">Operațiunea a expirat.</string>
   <string name="msgs_operation_failure">Operațiunea a eșuat.</string>
@@ -84,6 +84,7 @@
   <string name="actionbar_button_overflow_cd">Mai multe opțiuni</string>
   <string name="actionbar_button_storage_cd">Volume stocare</string>
   <string name="actionbar_button_save_cd">Salvare</string>
+  <string name="actionbar_button_print_cd">Imprimare</string>
   <string name="sort_by_name_asc">După nume ▲</string>
   <string name="sort_by_name_desc">După nume ▼</string>
   <string name="sort_by_date_asc">După dată ▲</string>
@@ -91,6 +92,10 @@
   <string name="layout_icons">Pictograme</string>
   <string name="layout_simple">Simplu</string>
   <string name="layout_details">Detaliat</string>
+  <string name="cm_filemanager_show_dirs_first">Afişare dosare întâi</string>
+  <string name="cm_filemanager_show_hidden">Afişare fişiere ascunse</string>
+  <string name="cm_filemanager_show_system">Afişare fişiere de sistem</string>
+  <string name="cm_filemanager_show_symlinks">Afişare legături simbolice</string>
   <string name="filesystem_info_warning_title">Nu există informații</string>
   <string name="filesystem_info_warning_msg">Nu există informații disponibile pentru fișierele de sistem.</string>
   <string name="filesystem_info_cant_be_mounted_msg">Fișierele de sistem nu pot fi montate/demontate.</string>
@@ -105,6 +110,7 @@
   <string name="filesystem_info_dialog_type">Tip:</string>
   <string name="filesystem_info_dialog_options">Opțiuni:</string>
   <string name="filesystem_info_dialog_dump_pass">Dump / Pass:</string>
+  <string name="filesystem_info_dialog_virtual">Virtuală:</string>
   <string name="filesystem_info_dialog_total_disk_usage">Total:</string>
   <string name="filesystem_info_dialog_used_disk_usage">Utilizat:</string>
   <string name="filesystem_info_dialog_free_disk_usage">Disponibil:</string>
@@ -152,7 +158,7 @@
   <string name="picker_title">Alegeți un fișier</string>
   <string name="directory_picker_title">Alegeți un director</string>
   <string name="editor">Editor</string>
-  <string name="editor_invalid_file_msg">Fișier nevalid.</string>
+  <string name="editor_invalid_file_msg">Fișier incorect.</string>
   <string name="editor_file_not_found_msg">Fișierul nu a fost găsit.</string>
   <string name="editor_file_exceed_size_msg">Fișierul este prea mare pentru a fi deschis în interiorul acestui dispozitiv.</string>
   <string name="editor_dirty_ask_title">Confirmați ieșirea</string>
@@ -165,6 +171,8 @@
   <string name="bookmarks_home">Acasă</string>
   <string name="bookmarks_root_folder">Dosarul rădăcină</string>
   <string name="bookmarks_system_folder">Dosarul sistem</string>
+  <string name="bookmarks_secure">Stocare securizată</string>
+  <string name="bookmarks_remote">Stocare la distanță</string>
   <string name="bookmarks_button_config_cd">Setați folderul inițial.</string>
   <string name="bookmarks_button_remove_bookmark_cd">Eliminați marcajul.</string>
   <string name="bookmarks_msgs_add_success">Marcajul a fost adăugat cu succes.</string>
@@ -223,11 +231,13 @@
   <string name="actions_menu_add_shortcut">Adăugare comandă rapidă</string>
   <string name="actions_menu_open_parent_folder">Deschidere sursă</string>
   <string name="actions_menu_compute_checksum">Calculează checksum</string>
+  <string name="actions_menu_print">Imprimare</string>
+  <string name="actions_menu_set_as_home">Setaţi ca acasă</string>
   <string name="actions_ask_undone_operation_msg">Această acțiune nu poate fi anulată. Doriți să continuați?</string>
   <string name="input_name_dialog_label">Nume:</string>
   <string name="input_name_dialog_message_empty_name">Numele nu poate fi gol.</string>
-  <string name="input_name_dialog_message_invalid_path_name">Nume nevalid. Caracterele \"<xliff:g id="invalid_characters">%1$s</xliff:g>\" nu sunt admise.</string>
-  <string name="input_name_dialog_message_invalid_name">Nume nevalid. Numele \".\" and \"..\" nu sunt admise.</string>
+  <string name="input_name_dialog_message_invalid_path_name">Nume incorect. Caracterele \"<xliff:g id="invalid_characters">%1$s</xliff:g>\" nu sunt admise.</string>
+  <string name="input_name_dialog_message_invalid_name">Nume incorect. Numele \".\" și \"..\" nu sunt admise.</string>
   <string name="input_name_dialog_message_name_exists">Numele există deja.</string>
   <string name="associations_dialog_title">Asociații</string>
   <string name="associations_dialog_remember">Rețineți selecția</string>
@@ -253,6 +263,21 @@
   <string name="filetime_format_mode_MMddyyyy_HHmmss">ll/zz/aaaa oo:mm:ss</string>
   <string name="filetime_format_mode_yyyyMMdd_HHmmss">aaaa-ll-zz oo:mm:ss</string>
   <string name="selection_folders_and_files"><xliff:g id="folders">%1$s</xliff:g> și <xliff:g id="files">%2$s</xliff:g> selectate.</string>
+  <string name="category_system">SISTEM</string>
+  <string name="category_app">APLICAŢIE</string>
+  <string name="category_binary">BINAR</string>
+  <string name="category_text">TEXT</string>
+  <string name="category_document">DOCUMENT</string>
+  <string name="category_ebook">EBOOK</string>
+  <string name="category_mail">MAIL</string>
+  <string name="category_compress">COMPRIMAT</string>
+  <string name="category_exec">EXECUTABIL</string>
+  <string name="category_database">BAZĂ DE DATE</string>
+  <string name="category_font">FONT</string>
+  <string name="category_image">IMAGINE</string>
+  <string name="category_audio">AUDIO</string>
+  <string name="category_video">VIDEO</string>
+  <string name="category_security">SECURITATE</string>
   <string name="compression_mode_title">Mod comrimare</string>
   <string name="shortcut_failed_msg">Eșuat.</string>
   <string name="shortcut_creation_success_msg">Comandă rapidă creată cu succes.</string>
@@ -260,6 +285,7 @@
   <string name="pref">Setări</string>
   <string name="pref_general">Setări generale</string>
   <string name="pref_search">Opțiuni căutare</string>
+  <string name="pref_storage">Opţiuni de stocare</string>
   <string name="pref_editor">Opțiuni editor</string>
   <string name="pref_themes">Teme</string>
   <string name="pref_about">Despre</string>
@@ -299,7 +325,12 @@
   <string name="pref_save_search_terms_off">Termenii de căutare nu vor fi salvați</string>
   <string name="pref_remove_saved_search_terms">Eliminați termenii de căutare salvați</string>
   <string name="pref_remove_saved_search_terms_summary">Apăsați pentru eliminarea tuturor termenilor de căutare salvați</string>
-  <string name="pref_remove_saved_search_terms_msg">Toți termenii de căutare salvați au fost eliminați.</string>
+  <string name="pref_remove_saved_search_terms_msg">Toţi termenii de căutare salvaţi au fost eliminaţi</string>
+  <string name="pref_secure_storage_category">Stocare securizată</string>
+  <string name="pref_secure_storage_delayed_sync_title">Sincronizare întârziată</string>
+  <string name="pref_secure_storage_delayed_sync_summary">Sincronizarea unor sisteme cu fişiere sigure este o operaţie costisitoare. Activaţi această opţiune pentru a permite răspunsuri în timp mai bune după fiecare operațiune, efectuând sincronizări atunci când sistemul de fişiere este în stare nefolosită, dar în detrimentul pierderii de informaţii în aşteptare de sincronizate în cazul unei erori a aplicației.</string>
+  <string name="pref_secure_storage_reset_password_title">Resetare parolă</string>
+  <string name="pref_secure_storage_delete_storage_title">Ştergeţi stocarea</string>
   <string name="pref_editor_behaviour_category">Comportament</string>
   <string name="pref_no_suggestions">Fără sugestii</string>
   <string name="pref_no_suggestions_desc">Nu afișa sugestiile din dicționar în timp ce editez fișierul</string>
@@ -336,6 +367,29 @@
   <string name="ash_keyword">Cuvânt cheie</string>
   <string name="ash_quoted_string">Șir de citate</string>
   <string name="ash_variable">Variabila</string>
+  <string name="secure_storage_unlock_title">Deblochează stocarea</string>
+  <string name="secure_storage_create_title">Crearea de stocare</string>
+  <string name="secure_storage_reset_title">Resetare parolă</string>
+  <string name="secure_storage_delete_title">Ştergeţi stocarea</string>
+  <string name="secure_storage_unlock_key_prompt_msg">Introduceţi parola pentru a debloca sistemul de fişiere sigure de stocare.</string>
+  <string name="secure_storage_unlock_key_new_msg">Tastaţi o parolă pentru a proteja sistemul de fişiere sigure de stocare.</string>
+  <string name="secure_storage_unlock_key_reset_msg">Tastați parola curentă şi ceea nouă pentru a reseta sistemul de fişiere sigure de stocare.</string>
+  <string name="secure_storage_unlock_key_delete_msg">Tastaţi parola curentă pentru a şterge sistemul de fişiere securizate de stocare.</string>
+  <string name="secure_storage_unlock_old_key_title">Parola veche:</string>
+  <string name="secure_storage_unlock_new_key_title">Parolă nouă:</string>
+  <string name="secure_storage_unlock_key_title">Parola:</string>
+  <string name="secure_storage_unlock_repeat_title">Repetați parola:</string>
+  <string name="secure_storage_create_button">Creează</string>
+  <string name="secure_storage_unlock_button">Deblocare</string>
+  <string name="secure_storage_reset_button">Resetați</string>
+  <string name="secure_storage_delete_button">Ștergeți</string>
+  <string name="secure_storage_unlock_failed">Nu s-a pot debloca stocarea</string>
+  <string name="secure_storage_unlock_validation_length">Parola trebuie să aibă cel puțin <xliff:g id="characters">%1$d</xliff:g> caractere.</string>
+  <string name="secure_storage_unlock_validation_equals">Parolele nu se potrivesc.</string>
+  <string name="print_unsupported_document">Formatul documentului neacceptat</string>
+  <string name="print_unsupported_image">Format de imagine neacceptat</string>
+  <string name="print_document_header">Document: <xliff:g id="document_name">%1$s</xliff:g></string>
+  <string name="print_document_footer">Pagina <xliff:g id="page_number">%1$s</xliff:g></string>
   <string name="security_warning_extract">Avertizare!\n\nExtragerea unui fișier arhivă cu căi relative sau absolute poate cauza defecțiuni dispozitivului dvs. prin suprascrierea fișierelor de sistem.\n\nDoriți să continuați?</string>
   <string name="changelog_title">Istoria schimbărilor</string>
   <string name="welcome_title">Bun venit</string>

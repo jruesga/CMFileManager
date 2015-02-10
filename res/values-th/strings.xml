@@ -84,6 +84,7 @@
   <string name="actionbar_button_overflow_cd">ตัวเลือกเพิ่มเติม</string>
   <string name="actionbar_button_storage_cd">ปริมาณการจัดเก็บข้อมูล</string>
   <string name="actionbar_button_save_cd">บันทึก</string>
+  <string name="actionbar_button_print_cd">พิมพ์</string>
   <string name="sort_by_name_asc">โดยชื่อ \u25B2</string>
   <string name="sort_by_name_desc">โดยชื่อ \u25BC</string>
   <string name="sort_by_date_asc">โดยวันที่ \u25B2</string>
@@ -109,6 +110,7 @@
   <string name="filesystem_info_dialog_type">ประเภท:</string>
   <string name="filesystem_info_dialog_options">ตัวเลือก:</string>
   <string name="filesystem_info_dialog_dump_pass">ถ่ายโอนข้อมูล / ส่ง:</string>
+  <string name="filesystem_info_dialog_virtual">จำลอง:</string>
   <string name="filesystem_info_dialog_total_disk_usage">ทั้งหมด:</string>
   <string name="filesystem_info_dialog_used_disk_usage">ใช้แล้ว:</string>
   <string name="filesystem_info_dialog_free_disk_usage">ว่าง:</string>
@@ -129,7 +131,7 @@
   <string name="fso_properties_dialog_last_accessed_date">การเข้าถึง:</string>
   <string name="fso_properties_dialog_last_modified_date">แก้ไขเมื่อ:</string>
   <string name="fso_properties_dialog_last_changed_date">การเปลี่ยน:</string>
-  <string name="fso_properties_dialog_owner">เข้าของ:</string>
+  <string name="fso_properties_dialog_owner">เจ้าของ:</string>
   <string name="fso_properties_dialog_group">กลุ่ม:</string>
   <string name="fso_properties_dialog_others">อื่น:</string>
   <string name="fso_properties_dialog_include_in_media_scan">ข้ามการค้นสื่อ:</string>
@@ -170,6 +172,8 @@
   <string name="bookmarks_home">หน้าหลัก</string>
   <string name="bookmarks_root_folder">โฟลเดอร์ Root</string>
   <string name="bookmarks_system_folder">โฟลเดอร์ระบบ</string>
+  <string name="bookmarks_secure">ที่เก็บปลอดภัย</string>
+  <string name="bookmarks_remote">ที่​เก็บ​ข้อมูล​ระยะ​ไกล​</string>
   <string name="bookmarks_button_config_cd">ตั้งโฟลเดอร์เริ่มต้น</string>
   <string name="bookmarks_button_remove_bookmark_cd">นำออกจากที่คันหน้า</string>
   <string name="bookmarks_msgs_add_success">เพิ่มที่คั่นหน้าเรียบร้อยแล้ว</string>
@@ -229,6 +233,7 @@
   <string name="actions_menu_open_parent_folder">เปิดโฟลเดอร์ที่บรรจุ</string>
   <string name="actions_menu_compute_checksum">คำนวณหา checksum</string>
   <string name="actions_menu_print">พิมพ์</string>
+  <string name="actions_menu_set_as_home">ตั้ง​เป็น​หน้า​เริ่ม​ต้น​</string>
   <string name="actions_ask_undone_operation_msg">การกระทำนี้ไม่สามารถยกเลิกได้ ต้องการทำไหม?</string>
   <string name="input_name_dialog_label">ชื่อ:</string>
   <string name="input_name_dialog_message_empty_name">ชื่อไม่สามารถเว้นว่างได้</string>
@@ -260,6 +265,21 @@
   <string name="filetime_format_mode_MMddyyyy_HHmmss">ดด/วว/ปปปป ชช:นน:วว</string>
   <string name="filetime_format_mode_yyyyMMdd_HHmmss">ปปปป-ดด-วว ชช:นน:วว</string>
   <string name="selection_folders_and_files"><xliff:g id="folders">%1$s</xliff:g> และ <xliff:g id="files">%2$s</xliff:g> ถูกเลือก</string>
+  <string name="category_system">ระบบ</string>
+  <string name="category_app">แอป</string>
+  <string name="category_binary">ไบนารี่</string>
+  <string name="category_text">ข้อความ</string>
+  <string name="category_document">เอกสาร</string>
+  <string name="category_ebook">หนังสือ</string>
+  <string name="category_mail">จดหมาย</string>
+  <string name="category_compress">บีบอัด</string>
+  <string name="category_exec">โปรแกรม</string>
+  <string name="category_database">ฐานข้อมูล</string>
+  <string name="category_font">แบบอักษร</string>
+  <string name="category_image">รูปภาพ</string>
+  <string name="category_audio">เสียง</string>
+  <string name="category_video">วิดีโอ</string>
+  <string name="category_security">ความปลอดภัย</string>
   <string name="compression_mode_title">รูปแบบการบีบอัด</string>
   <string name="shortcut_failed_msg">การเรียกทางลัดล้มเหลว</string>
   <string name="shortcut_creation_success_msg">สร้างทางลัดเรียบร้อย</string>
@@ -267,6 +287,7 @@
   <string name="pref">ตั้งค่า</string>
   <string name="pref_general">ตั้งค่าทั่วไป</string>
   <string name="pref_search">ทางเลือกการค้นหา</string>
+  <string name="pref_storage">ตัวเลือกที่จัดเก็บ</string>
   <string name="pref_editor">ทางเลือกการแก้ไขไฟล์</string>
   <string name="pref_themes">ธีม</string>
   <string name="pref_about">เกี่ยวกับ</string>
@@ -306,7 +327,12 @@
   <string name="pref_save_search_terms_off">คำค้นหาจะไม่ถูกบันทึก</string>
   <string name="pref_remove_saved_search_terms">นำคำค้นหาที่บันทึกไว้ออก</string>
   <string name="pref_remove_saved_search_terms_summary">แตะเพื่อนำคำค้นหาที่บันทึกไว้ออก</string>
-  <string name="pref_remove_saved_search_terms_msg">คำค้นหาที่บันทึกไว้ทั้งหมดถูกนำออกแล้ว</string>
+  <string name="pref_remove_saved_search_terms_msg">คำค้นหาที่บันทึกไว้ทั้งหมดออก</string>
+  <string name="pref_secure_storage_category">ที่เก็บปลอดภัย</string>
+  <string name="pref_secure_storage_delayed_sync_title">ซิงค์ล่าช้า</string>
+  <string name="pref_secure_storage_delayed_sync_summary">การซิงค์ที่เก็บข้อมูลที่ปลอดภัยมีทั้งผลดีและผลเสีย การเปิดใช้งานช่วยให้ให้ระยะเวลาตอบสนองของระบบลดน้อยลง และระบบจะซิงค์ระบบไฟล์ในช่วงที่ไม่มีการใช้งานเท่านั้น แต่อาจมีความเสี่ยงจากการที่ข้อมูลสูญหายอันเนื่องมาจากแอปทำงานผิดพลาดได้</string>
+  <string name="pref_secure_storage_reset_password_title">รีเซ็ตรหัสผ่าน</string>
+  <string name="pref_secure_storage_delete_storage_title">ลบที่เก็บข้อมูล</string>
   <string name="pref_editor_behaviour_category">พฤติกรรม</string>
   <string name="pref_no_suggestions">ไม่มีคำแนะนำ</string>
   <string name="pref_no_suggestions_desc">ไม่แสดงคำแนะนำศัพท์จากดิกชินารีเมื่อแก้ไขไฟล์</string>
@@ -343,6 +369,25 @@
   <string name="ash_keyword">คีย์เวิร์ด</string>
   <string name="ash_quoted_string">ข้อความที่ยกมา</string>
   <string name="ash_variable">ตัวแปร</string>
+  <string name="secure_storage_unlock_title">ปลดล็อคที่เก็บข้อมูล</string>
+  <string name="secure_storage_create_title">สร้างที่เก็บข้อมูล</string>
+  <string name="secure_storage_reset_title">รีเซ็ตรหัสผ่าน</string>
+  <string name="secure_storage_delete_title">ลบที่เก็บข้อมูล</string>
+  <string name="secure_storage_unlock_key_prompt_msg">ใส่รหัสผ่านเพื่อปลดล็อกที่เก็บไฟล์ที่ปลอดภัย</string>
+  <string name="secure_storage_unlock_key_new_msg">ใส่รหัสผ่านเพื่อป้องกันที่เก็บข้อมูลที่ปลอดภัย</string>
+  <string name="secure_storage_unlock_key_reset_msg">ใส่รหัสผ่านปัจจุบันและรหัสผ่านใหม่เพื่อรีเซ็ทที่เก็บข้อมูลที่ปลอดภัย</string>
+  <string name="secure_storage_unlock_key_delete_msg">ใส่รหัสผ่านปัจจุบันเพื่อลบทราเก็บข้อมูลที่ปลอดภัย</string>
+  <string name="secure_storage_unlock_old_key_title">รหัสผ่านเดิม:</string>
+  <string name="secure_storage_unlock_new_key_title">รหัสผ่านใหม่:</string>
+  <string name="secure_storage_unlock_key_title">รหัสผ่าน:</string>
+  <string name="secure_storage_unlock_repeat_title">ใส่รหัสอีกครั้ง:</string>
+  <string name="secure_storage_create_button">สร้าง</string>
+  <string name="secure_storage_unlock_button">ปลดล็อก</string>
+  <string name="secure_storage_reset_button">รีเซ็ต</string>
+  <string name="secure_storage_delete_button">ลบ</string>
+  <string name="secure_storage_unlock_failed">ไม่สามารถปลดล็อกเก็บข้อมูล</string>
+  <string name="secure_storage_unlock_validation_length">รหัสผ่านต้องมีอย่างน้อย <xliff:g id="characters">%1$d</xliff:g> ตัวอักษร</string>
+  <string name="secure_storage_unlock_validation_equals">รหัสผ่านไม่ตรงกัน</string>
   <string name="print_unsupported_document">MD5:</string>
   <string name="print_unsupported_image">ไม่รองรับภาพประเภทนี้</string>
   <string name="print_document_header">เอกสาร: <xliff:g id="document_name">%1$s</xliff:g></string>

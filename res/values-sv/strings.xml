@@ -84,6 +84,7 @@
   <string name="actionbar_button_overflow_cd">Fler alternativ</string>
   <string name="actionbar_button_storage_cd">Lagringsvolymer</string>
   <string name="actionbar_button_save_cd">Spara</string>
+  <string name="actionbar_button_print_cd">Skriv ut</string>
   <string name="sort_by_name_asc">Efter namn \u25B2</string>
   <string name="sort_by_name_desc">Efter namn ▼</string>
   <string name="sort_by_date_asc">Efter datum ▲</string>
@@ -91,7 +92,9 @@
   <string name="layout_icons">Ikoner</string>
   <string name="layout_simple">Enkel</string>
   <string name="layout_details">Detaljerad</string>
+  <string name="cm_filemanager_show_dirs_first">Visa mappar först</string>
   <string name="cm_filemanager_show_hidden">Visa dolda filer</string>
+  <string name="cm_filemanager_show_system">Visa systemfiler</string>
   <string name="filesystem_info_warning_title">Ingen information</string>
   <string name="filesystem_info_warning_msg">Det finns ingen information tillgänglig om filsystemet.</string>
   <string name="filesystem_info_cant_be_mounted_msg">Filsystemet kan inte monteras/avmonteras.</string>
@@ -108,6 +111,7 @@
   <string name="filesystem_info_dialog_type">Typ:</string>
   <string name="filesystem_info_dialog_options">Alternativ:</string>
   <string name="filesystem_info_dialog_dump_pass">Dump / Pass:</string>
+  <string name="filesystem_info_dialog_virtual">Virtuell:</string>
   <string name="filesystem_info_dialog_total_disk_usage">Totalt:</string>
   <string name="filesystem_info_dialog_used_disk_usage">Använt:</string>
   <string name="filesystem_info_dialog_free_disk_usage">Ledigt:</string>
@@ -170,6 +174,8 @@
   <string name="bookmarks_home">Hem</string>
   <string name="bookmarks_root_folder">Rot</string>
   <string name="bookmarks_system_folder">System</string>
+  <string name="bookmarks_secure">Skyddad lagring</string>
+  <string name="bookmarks_remote">Fjärrlagring</string>
   <string name="bookmarks_button_config_cd">Välj hemmapp.</string>
   <string name="bookmarks_button_remove_bookmark_cd">Ta bort bokmärket.</string>
   <string name="bookmarks_msgs_add_success">Bokmärket tillagt.</string>
@@ -233,6 +239,7 @@
   <string name="actions_menu_open_parent_folder">Öppna övermapp</string>
   <string name="actions_menu_compute_checksum">Beräkna kontrollsumma</string>
   <string name="actions_menu_print">Skriv ut</string>
+  <string name="actions_menu_set_as_home">Ange som hem</string>
   <string name="actions_ask_undone_operation_msg">
     Denna åtgärd kan inte ångras. Vill du fortsätta?</string>
   <string name="input_name_dialog_label">Namn:</string>
@@ -267,6 +274,21 @@
   <string name="filetime_format_mode_MMddyyyy_HHmmss">mm/dd/åååå hh:mm:ss</string>
   <string name="filetime_format_mode_yyyyMMdd_HHmmss">åååå-mm-dd hh:mm:ss</string>
   <string name="selection_folders_and_files"><xliff:g id="folders">%1$s</xliff:g> och <xliff:g id="files">%2$s</xliff:g> markerade.</string>
+  <string name="category_system">SYSTEM</string>
+  <string name="category_app">APP</string>
+  <string name="category_binary">BINÄR</string>
+  <string name="category_text">TEXT</string>
+  <string name="category_document">DOKUMENT</string>
+  <string name="category_ebook">E-BOK</string>
+  <string name="category_mail">E-POST</string>
+  <string name="category_compress">KOMPRIMERA</string>
+  <string name="category_exec">KÖRBAR FIL</string>
+  <string name="category_database">DATABAS</string>
+  <string name="category_font">TYPSNITT</string>
+  <string name="category_image">BILD</string>
+  <string name="category_audio">LJUD</string>
+  <string name="category_video">VIDEO</string>
+  <string name="category_security">SÄKERHET</string>
   <string name="compression_mode_title">Kompressionstyp</string>
   <string name="shortcut_failed_msg">Misslyckades med att hantera genvägen.</string>
   <string name="shortcut_creation_success_msg">Genvägen skapades framgångsrikt.</string>
@@ -274,6 +296,7 @@
   <string name="pref">Inställningar</string>
   <string name="pref_general">Allmäna inställningar</string>
   <string name="pref_search">Sökinställningar</string>
+  <string name="pref_storage">Lagringsalternativ</string>
   <string name="pref_editor">Redigerarinställningar</string>
   <string name="pref_themes">Teman</string>
   <string name="pref_about">Om</string>
@@ -314,7 +337,11 @@
   <string name="pref_save_search_terms_off">Söktermer kommer inte att sparas</string>
   <string name="pref_remove_saved_search_terms">Ta bort sparade söktermer</string>
   <string name="pref_remove_saved_search_terms_summary">Tryck för att ta bort alla sparade söktermer</string>
-  <string name="pref_remove_saved_search_terms_msg">Alla sparade söktermer togs bort.</string>
+  <string name="pref_remove_saved_search_terms_msg">Alla sparade söktermer togs bort</string>
+  <string name="pref_secure_storage_category">Skyddad lagring</string>
+  <string name="pref_secure_storage_delayed_sync_title">Fördröjd synkronisering</string>
+  <string name="pref_secure_storage_reset_password_title">Återställ lösenord</string>
+  <string name="pref_secure_storage_delete_storage_title">Ta bort lagringsenhet</string>
   <string name="pref_editor_behaviour_category">Beteende</string>
   <string name="pref_no_suggestions">Inga förslag</string>
   <string name="pref_no_suggestions_desc">Visa inte ordboksförslag vid redigering av fil</string>
@@ -351,6 +378,28 @@
   <string name="ash_keyword">Nyckelord</string>
   <string name="ash_quoted_string">Statisk sträng</string>
   <string name="ash_variable">Variabel</string>
+  <string name="secure_storage_create_title">Skapa lagringsenhet</string>
+  <string name="secure_storage_reset_title">Återställ lösenord</string>
+  <string name="secure_storage_delete_title">Ta bort lagringsenhet</string>
+  <string name="secure_storage_unlock_key_prompt_msg">Ange ett lösenord för att skydda filsystemet.</string>
+  <string name="secure_storage_unlock_key_new_msg">Ange ett lösenord för att skydda filsystemet.</string>
+  <string name="secure_storage_unlock_key_reset_msg">Ange det nuvarande och nya lösenordet för att återställa det skyddade filsystemet.</string>
+  <string name="secure_storage_unlock_key_delete_msg">Ange det aktuella lösenordet för att ta bort det skyddade filsystemet.</string>
+  <string name="secure_storage_unlock_old_key_title">Tidigare lösenord:</string>
+  <string name="secure_storage_unlock_new_key_title">Nytt Lösenord:</string>
+  <string name="secure_storage_unlock_key_title">Lösenord:</string>
+  <string name="secure_storage_unlock_repeat_title">Upprepa lösenord:</string>
+  <string name="secure_storage_create_button">Skapa</string>
+  <string name="secure_storage_unlock_button">Lås upp</string>
+  <string name="secure_storage_reset_button">Återställ</string>
+  <string name="secure_storage_delete_button">Ta bort</string>
+  <string name="secure_storage_unlock_failed">Kan inte låsa upp filsystemet</string>
+  <string name="secure_storage_unlock_validation_length">Lösenordet måste ha minst <xliff:g id="characters">%1$d </xliff:g> tecken.</string>
+  <string name="secure_storage_unlock_validation_equals">Lösenorden stämmer inte överens.</string>
+  <string name="print_unsupported_document">Dokumentformatet stöds ej</string>
+  <string name="print_unsupported_image">Bildformat stöds ej</string>
+  <string name="print_document_header">Dokument: <xliff:g id="document_name">%1$s</xliff:g></string>
+  <string name="print_document_footer">Sida <xliff:g id="page_number">%1$s</xliff:g></string>
   <string name="security_warning_extract">Varning!\n\nExtrahering av arkiv till relativa eller absolut sökvägar kan orsaka skada i din enhet genom att skriva över systemfiler.\n\nVill du fortsätta?</string>
   <string name="changelog_title">Ändringslogg</string>
   <string name="welcome_title">Välkommen</string>

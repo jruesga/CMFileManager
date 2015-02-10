@@ -52,9 +52,11 @@
   <string name="msgs_privileged_console_alloc_failed">Root-tilassa käynnistäminen epäonnistui. Vaihdetaan turvalliseen tilaan.</string>
   <string name="msgs_settings_save_failure">Asetusta ei voitu ottaa käyttöön tai tallentaa.</string>
   <string name="msgs_settings_invalid_initial_directory">Alkukansio \"<xliff:g id="initial_dir">%1$s</xliff:g>\" on virheellinen. Vaihdetaan juurikansioon.</string>
+  <string name="root_not_available_msg">Laitteessa ei ole root-oikeuksia. Tätä toimintoa ei voi suorittaa.</string>
   <string name="msgs_success">Toiminto suoritettiin onnistuneesti.</string>
   <string name="msgs_unknown">Virhe havaittu. Toiminto epäonnistui.</string>
   <string name="msgs_insufficient_permissions">Toiminto tarvitsee lisäoikeuksia. Kokeile vaihtaa Root-tilaan.</string>
+  <string name="msgs_no_disk_space">Toiminto epäonnistui, koska laitteessa ei ole tarpeeksi tallennustilaa.</string>
   <string name="msgs_file_not_found">Tiedostoa tai kansiota ei löydy.</string>
   <string name="msgs_command_not_found">Toiminnon komentoa ei löydy tai määritelmä on virheellinen.</string>
   <string name="msgs_io_failed">Virhe lukiessa/kirjoittaessa.</string>
@@ -84,10 +86,15 @@
   <string name="actionbar_button_overflow_cd">Lisäasetukset</string>
   <string name="actionbar_button_storage_cd">Tallennustilan osiot</string>
   <string name="actionbar_button_save_cd">Tallenna</string>
+  <string name="actionbar_button_print_cd">Tulosta</string>
   <string name="sort_by_name_asc">Nimen mukaan \u25B2</string>
   <string name="sort_by_name_desc">Nimen mukaan \u25BC</string>
   <string name="sort_by_date_asc">Ajan mukaan \u25B2</string>
   <string name="sort_by_date_desc">Ajan mukaan \u25BC</string>
+  <string name="sort_by_size_asc">Koon mukaan \u25B2</string>
+  <string name="sort_by_size_desc">Koon mukaan \u25BC</string>
+  <string name="sort_by_type_asc">Muodon mukaan \u25B2</string>
+  <string name="sort_by_type_desc">Muodon mukaan \u25BC</string>
   <string name="layout_icons">Kuvakkeet</string>
   <string name="layout_simple">Yksinkertainen</string>
   <string name="layout_details">Tietoja</string>
@@ -109,6 +116,7 @@
   <string name="filesystem_info_dialog_type">Tyyppi:</string>
   <string name="filesystem_info_dialog_options">Asetukset:</string>
   <string name="filesystem_info_dialog_dump_pass">Virhe/Läpäisy:</string>
+  <string name="filesystem_info_dialog_virtual">Virtuaalinen:</string>
   <string name="filesystem_info_dialog_total_disk_usage">Yhteensä:</string>
   <string name="filesystem_info_dialog_used_disk_usage">Käytetty:</string>
   <string name="filesystem_info_dialog_free_disk_usage">Vapaana:</string>
@@ -169,6 +177,8 @@
   <string name="bookmarks_home">Koti</string>
   <string name="bookmarks_root_folder">Juurikansio</string>
   <string name="bookmarks_system_folder">Järjestelmäkansio</string>
+  <string name="bookmarks_secure">Turvallinen tallennustila</string>
+  <string name="bookmarks_remote">Etätallennustila</string>
   <string name="bookmarks_button_config_cd">Valitse aloituskansio.</string>
   <string name="bookmarks_button_remove_bookmark_cd">Poista kirjanmerkki.</string>
   <string name="bookmarks_msgs_add_success">Kirjanmerkki luotiin onnistuneesti.</string>
@@ -228,6 +238,7 @@
   <string name="actions_menu_open_parent_folder">Avaa yläkansio</string>
   <string name="actions_menu_compute_checksum">Luo tarkistussumma</string>
   <string name="actions_menu_print">Tulosta</string>
+  <string name="actions_menu_set_as_home">Aseta kotisivuksi</string>
   <string name="actions_ask_undone_operation_msg">Tehtävää ei voi perua. Haluatko jatkaa?</string>
   <string name="input_name_dialog_label">Nimi:</string>
   <string name="input_name_dialog_message_empty_name">Nimi ei voi olla tyhjä.</string>
@@ -258,6 +269,22 @@
   <string name="filetime_format_mode_MMddyyyy_HHmmss">kk/pp/yyyy tt:mm:ss</string>
   <string name="filetime_format_mode_yyyyMMdd_HHmmss">vvvv-kk-pp tt:mm:ss</string>
   <string name="selection_folders_and_files"><xliff:g id="folders">%1$s</xliff:g> ja <xliff:g id="files">%2$s</xliff:g> valittu.</string>
+  <string name="category_system">JÄRJESTELMÄ</string>
+  <string name="category_app">SOVELLUS</string>
+  <string name="category_binary">BINÄÄRI</string>
+  <string name="category_text">TEKSTI</string>
+  <string name="category_document">DOKUMENTTI</string>
+  <string name="category_ebook">E-KIRJA</string>
+  <string name="category_mail">POSTI</string>
+  <string name="category_compress">PAKATTU</string>
+  <string name="category_exec">SUORITETTAVA</string>
+  <string name="category_database">TIETOKANTA</string>
+  <string name="category_font">FONTTI</string>
+  <string name="category_image">KUVA</string>
+  <string name="category_audio">ÄÄNI</string>
+  <string name="category_video">VIDEO</string>
+  <string name="category_security">TURVALLISUUS</string>
+  <string name="category_all">KAIKKI</string>
   <string name="compression_mode_title">Pakkaustila</string>
   <string name="shortcut_failed_msg">Pikakuvake ei toimi.</string>
   <string name="shortcut_creation_success_msg">Pikakuvake luotu onnistuneesti.</string>
@@ -265,6 +292,7 @@
   <string name="pref">Asetukset</string>
   <string name="pref_general">Yleiset asetukset</string>
   <string name="pref_search">Haun asetukset</string>
+  <string name="pref_storage">Tallennustilan asetukset</string>
   <string name="pref_editor">Editorin asetukset</string>
   <string name="pref_themes">Teemat</string>
   <string name="pref_about">Tietoja</string>
@@ -304,7 +332,12 @@
   <string name="pref_save_search_terms_off">Hakutermejä ei tallenneta</string>
   <string name="pref_remove_saved_search_terms">Poista tallennetut hakutermit</string>
   <string name="pref_remove_saved_search_terms_summary">Paina tästä poistaaksesi kaikki hakutermit</string>
-  <string name="pref_remove_saved_search_terms_msg">Kaikki hakutermit poistettu.</string>
+  <string name="pref_remove_saved_search_terms_msg">Kaikki hakutermit poistettu</string>
+  <string name="pref_secure_storage_category">Turvallinen tallennustila</string>
+  <string name="pref_secure_storage_delayed_sync_title">Viivästetty synkronointi</string>
+  <string name="pref_secure_storage_delayed_sync_summary">Turvallisten tiedostojärjestelmien synkronointi vaatii paljon resursseja. Ottamalla tämän käyttöön, toiminnot vastaavat nopeammin, ja synkronointi suoritetaan kun tiedostojärjestelmää ei käytetä, mutta sovelluksen kaatuessa menetät odottavat tiedot.</string>
+  <string name="pref_secure_storage_reset_password_title">Nollaa salasana</string>
+  <string name="pref_secure_storage_delete_storage_title">Poista tallennustila</string>
   <string name="pref_editor_behaviour_category">Käyttäytyminen</string>
   <string name="pref_no_suggestions">Ei ehdotuksia</string>
   <string name="pref_no_suggestions_desc">Älä näytä sanakirjan ehdotuksia muokatessa tiedostoa</string>
@@ -341,6 +374,25 @@
   <string name="ash_keyword">Hakusana</string>
   <string name="ash_quoted_string">Merkkijono</string>
   <string name="ash_variable">Muuttuja</string>
+  <string name="secure_storage_unlock_title">Avaa tallennustila</string>
+  <string name="secure_storage_create_title">Luo tallennustila</string>
+  <string name="secure_storage_reset_title">Nollaa salasana</string>
+  <string name="secure_storage_delete_title">Poista tallennustila</string>
+  <string name="secure_storage_unlock_key_prompt_msg">Kirjoita salasana avataksesi turvallisen tallennustilan.</string>
+  <string name="secure_storage_unlock_key_new_msg">Kirjoita salasana suojataksesi turvallisen tallennustilan.</string>
+  <string name="secure_storage_unlock_key_reset_msg">Kirjoita nykyinen ja uusi salasana palauttaaksesi turvallisen tallennustilan.</string>
+  <string name="secure_storage_unlock_key_delete_msg">Kirjoita nykyinen salasana poistaaksesi turvallisen tallennustilan.</string>
+  <string name="secure_storage_unlock_old_key_title">Vanha salasana:</string>
+  <string name="secure_storage_unlock_new_key_title">Uusi salasana:</string>
+  <string name="secure_storage_unlock_key_title">Salasana:</string>
+  <string name="secure_storage_unlock_repeat_title">Kirjoita salasana uudestaan:</string>
+  <string name="secure_storage_create_button">Luo</string>
+  <string name="secure_storage_unlock_button">Avaa lukitus</string>
+  <string name="secure_storage_reset_button">Palauta oletukset</string>
+  <string name="secure_storage_delete_button">Poista</string>
+  <string name="secure_storage_unlock_failed">Ei voida avata tallennustilaa</string>
+  <string name="secure_storage_unlock_validation_length">Salasanassa on oltava vähintään <xliff:g id="characters">%1$d</xliff:g> merkkiä.</string>
+  <string name="secure_storage_unlock_validation_equals">Salasanat eivät täsmää.</string>
   <string name="print_unsupported_document">Asiakirjamuotoa ei tueta</string>
   <string name="print_unsupported_image">Kuvamuotoa ei tueta</string>
   <string name="print_document_header">Asiakirja: <xliff:g id="document_name">%1$s</xliff:g></string>

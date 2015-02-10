@@ -16,8 +16,8 @@
      limitations under the License.
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-  <string name="app_name">Filstyring</string>
-  <string name="app_description">En filstyring til CyanogenMod.</string>
+  <string name="app_name">Filhåndtering</string>
+  <string name="app_description">Filhåndtering fra CyanogenMod</string>
   <string name="size_bytes">B</string>
   <string name="size_kilobytes">kB</string>
   <string name="size_megabytes">MB</string>
@@ -84,6 +84,7 @@
   <string name="actionbar_button_overflow_cd">Flere muligheder</string>
   <string name="actionbar_button_storage_cd">Lagringsenheder</string>
   <string name="actionbar_button_save_cd">Gem</string>
+  <string name="actionbar_button_print_cd">Udskriv</string>
   <string name="sort_by_name_asc">Efter navn ▲</string>
   <string name="sort_by_name_desc">Efter navn ▼</string>
   <string name="sort_by_date_asc">Efter dato ▲</string>
@@ -109,6 +110,7 @@
   <string name="filesystem_info_dialog_type">Type:</string>
   <string name="filesystem_info_dialog_options">Muligheder:</string>
   <string name="filesystem_info_dialog_dump_pass">Dumpe / Bestå:</string>
+  <string name="filesystem_info_dialog_virtual">Virtuel:</string>
   <string name="filesystem_info_dialog_total_disk_usage">Total:</string>
   <string name="filesystem_info_dialog_used_disk_usage">I brug:</string>
   <string name="filesystem_info_dialog_free_disk_usage">Fri:</string>
@@ -169,6 +171,8 @@
   <string name="bookmarks_home">Hjem</string>
   <string name="bookmarks_root_folder">Rodmappe</string>
   <string name="bookmarks_system_folder">Systemmappe</string>
+  <string name="bookmarks_secure">Sikret lager</string>
+  <string name="bookmarks_remote">Fjernlager</string>
   <string name="bookmarks_button_config_cd">Sæt opstartsmappen.</string>
   <string name="bookmarks_button_remove_bookmark_cd">Fjern bogmærket.</string>
   <string name="bookmarks_msgs_add_success">Bogmærket blev tilføjet med succes.</string>
@@ -239,6 +243,7 @@
   <string name="actions_menu_open_parent_folder">Åbn overordnet</string>
   <string name="actions_menu_compute_checksum">Beregn checksum</string>
   <string name="actions_menu_print">Udskriv</string>
+  <string name="actions_menu_set_as_home">Indstil som startposition</string>
   <string name="actions_ask_undone_operation_msg">Denne handling kan ikke fortrydes. Vil du fortsætte?</string>
   <string name="input_name_dialog_label">Navn:</string>
   <string name="input_name_dialog_message_empty_name">Navnet kan ikke være tomt.</string>
@@ -270,6 +275,21 @@
   <string name="filetime_format_mode_MMddyyyy_HHmmss">mm/dd/åååå tt:mm:ss</string>
   <string name="filetime_format_mode_yyyyMMdd_HHmmss">åååå-mm-dd tt:mm:ss</string>
   <string name="selection_folders_and_files"><xliff:g id="folders">%1$s</xliff:g> og <xliff:g id="files">%2$s</xliff:g> valgt.</string>
+  <string name="category_system">SYSTEM</string>
+  <string name="category_app">APP</string>
+  <string name="category_binary">BINÆR</string>
+  <string name="category_text">TEKST</string>
+  <string name="category_document">DOKUMENT</string>
+  <string name="category_ebook">E-BOG</string>
+  <string name="category_mail">POST</string>
+  <string name="category_compress">KOMPRIMERET</string>
+  <string name="category_exec">EKSEKVERBAR</string>
+  <string name="category_database">DATABASE</string>
+  <string name="category_font">SKRIFTTYPE</string>
+  <string name="category_image">BILLEDE</string>
+  <string name="category_audio">LYD</string>
+  <string name="category_video">VIDEO</string>
+  <string name="category_security">SIKKERHED</string>
   <string name="compression_mode_title">Komprimeringstilstand</string>
   <string name="shortcut_failed_msg">Det lykkedes ikke at håndtere genvejen.</string>
   <string name="shortcut_creation_success_msg">Genvej oprettet med succes.</string>
@@ -277,11 +297,11 @@
   <string name="pref">Indstillinger</string>
   <string name="pref_general">Generelle indstillinger</string>
   <string name="pref_search">Søgemuligheder</string>
+  <string name="pref_storage">Lagringsindstillinger</string>
   <string name="pref_editor">Redigeringsmuligheder</string>
   <string name="pref_themes">Temaer</string>
   <string name="pref_about">Om</string>
-  <string name="pref_about_summary">Filstyring v<xliff:g id="version">%1$s</xliff:g>
-    \nCopyright \u00A9 2012 The CyanogenMod Project</string>
+  <string name="pref_about_summary">Filhåndtering v<xliff:g id="version">%1$s</xliff:g>\nOphavsret \u00A9 2012–2014 The CyanogenMod Project</string>
   <string name="pref_general_behaviour_category">Generelt</string>
   <string name="pref_case_sensitive_sort">Brug case-sensitiv sortering</string>
   <string name="pref_case_sensitive_sort_summary">Forskel på store/små bogstaver ved navigering eller sortering af søgeresultater</string>
@@ -317,7 +337,12 @@
   <string name="pref_save_search_terms_off">Søgetermer vil ikke blive gemt</string>
   <string name="pref_remove_saved_search_terms">Fjern gemte søgetermer</string>
   <string name="pref_remove_saved_search_terms_summary">Tryk for at fjerne alle de gemte søgetermer</string>
-  <string name="pref_remove_saved_search_terms_msg">Alle gemte søgetermer blev fjernet.</string>
+  <string name="pref_remove_saved_search_terms_msg">Alle gemte søgetermer blev fjernet</string>
+  <string name="pref_secure_storage_category">Sikker lagring</string>
+  <string name="pref_secure_storage_delayed_sync_title">Forsinket synkronisering</string>
+  <string name="pref_secure_storage_delayed_sync_summary">Synkronisering af sikre filsystemer er en bekostelig operation. Aktivér denne mulighed for at tillade bedre svartider efter hver operation, hvor synkroniseringen udføres når filsystemet er i en ubenyttet tilstand, men på bekostning af tabt afventende information, som ikke synkroniseres hvis appen går ned.</string>
+  <string name="pref_secure_storage_reset_password_title">Nulstil adgangskode</string>
+  <string name="pref_secure_storage_delete_storage_title">Slet lager</string>
   <string name="pref_editor_behaviour_category">Opførsel</string>
   <string name="pref_no_suggestions">Ingen forslag</string>
   <string name="pref_no_suggestions_desc">Vis ikke ordbogsforslag, når filen redigeres</string>
@@ -354,6 +379,25 @@
   <string name="ash_keyword">Nøgleord</string>
   <string name="ash_quoted_string">Citeret streng</string>
   <string name="ash_variable">Variabel</string>
+  <string name="secure_storage_unlock_title">Lås lager op</string>
+  <string name="secure_storage_create_title">Opret lager</string>
+  <string name="secure_storage_reset_title">Nulstil adgangskode</string>
+  <string name="secure_storage_delete_title">Slet lager</string>
+  <string name="secure_storage_unlock_key_prompt_msg">Indtast adgangskoden for at låse det sikre filsystem op.</string>
+  <string name="secure_storage_unlock_key_new_msg">Indtast en adgangskode for at beskytte det sikre filsystem.</string>
+  <string name="secure_storage_unlock_key_reset_msg">Indtast den aktuelle og nye adgangskode for at nulstille det sikre filsystem.</string>
+  <string name="secure_storage_unlock_key_delete_msg">Indtast den aktuelle adgangskode for at slette det sikre filsystem.</string>
+  <string name="secure_storage_unlock_old_key_title">Gammel adgangskode:</string>
+  <string name="secure_storage_unlock_new_key_title">Ny adgangskode:</string>
+  <string name="secure_storage_unlock_key_title">Adgangskode:</string>
+  <string name="secure_storage_unlock_repeat_title">Gentag adgangskode:</string>
+  <string name="secure_storage_create_button">Opret</string>
+  <string name="secure_storage_unlock_button">Lås op</string>
+  <string name="secure_storage_reset_button">Nulstil</string>
+  <string name="secure_storage_delete_button">Slet</string>
+  <string name="secure_storage_unlock_failed">Kan ikke låse lager op</string>
+  <string name="secure_storage_unlock_validation_length">Adgangskoden skal mindst indholde <xliff:g id="characters">%1$d</xliff:g> tegn.</string>
+  <string name="secure_storage_unlock_validation_equals">Adgangskoderne er ikke ens.</string>
   <string name="print_unsupported_document">Dokumentformatet understøttes ikke</string>
   <string name="print_unsupported_image">Billedformatet understøttes ikke</string>
   <string name="print_document_header">Dokument: <xliff:g id="document_name">%1$s</xliff:g></string>

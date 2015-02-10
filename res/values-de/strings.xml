@@ -39,7 +39,7 @@
   <string name="loading_message">Lade\u2026</string>
   <string name="cancelled_message">Abgebrochen</string>
   <string name="error_message">Fehler</string>
-  <string name="copy_text_cd">Drücken, um Text in die Zwischenablage zu kopieren</string>
+  <string name="copy_text_cd">Berühren, um Text in die Zwischenablage zu kopieren</string>
   <string name="copy_text_msg">Text wurde in die Zwischenablage kopiert</string>
   <string name="warning_title">Warnung</string>
   <string name="error_title">Fehler festgestellt</string>
@@ -48,13 +48,15 @@
   <string name="confirm_deletion">Löschen bestätigen</string>
   <string name="msgs_change_to_prompt_access_mode_title">Wechsel bestätigen</string>
   <string name="msgs_change_to_prompt_access_mode_msg">Root-Zugriff konnte nicht erlangt werden. Es wird in den sicheren Modus gewechselt.\n\nÄnderung anwenden?</string>
-  <string name="msgs_cant_create_console">Es war nicht möglich, die für diesen Vorgang nötigen Rechte zu erlangen.</string>
+  <string name="msgs_cant_create_console">Die für diesen Vorgang nötigen Rechte konnten nicht erlangt werden.</string>
   <string name="msgs_privileged_console_alloc_failed">Root-Zugriff konnte nicht erlangt werden. Es wird in den sicheren Modus gewechselt.</string>
   <string name="msgs_settings_save_failure">Diese Einstellung konnte nicht angewendet werden.</string>
   <string name="msgs_settings_invalid_initial_directory">Das Standardverzeichnis \"<xliff:g id="initial_dir">%1$s</xliff:g>\" ist ungültig. Wechsle zum Wurzelverzeichnis.</string>
+  <string name="root_not_available_msg">Auf diesem Gerät ist kein Root verfügbar. Dieser Vorgang kann nicht ausgeführt werden.</string>
   <string name="msgs_success">Die Aktion wurde erfolgreich ausgeführt.</string>
-  <string name="msgs_unknown">Ein Fehler ist aufgetreten. Die Aktion war nicht erfolgreich.</string>
+  <string name="msgs_unknown">Ein Fehler ist aufgetreten. Die Vorgang konnte nicht ausgeführt werden.</string>
   <string name="msgs_insufficient_permissions">Dieser Vorgang benötigt höhere Berechtigungen. Versuche in den Root-Zugriffsmodus zu wechseln.</string>
+  <string name="msgs_no_disk_space">Dieser Vorgang ist fehlgeschlagen, da kein Speicherplatz mehr auf dem Gerät vorhanden ist.</string>
   <string name="msgs_file_not_found">Die Datei oder der Ordner wurde nicht gefunden.</string>
   <string name="msgs_command_not_found">Der Befehl des Vorgangs wurde nicht gefunden oder ist ungültig.</string>
   <string name="msgs_io_failed">Lese-/Schreibfehler.</string>
@@ -62,7 +64,7 @@
   <string name="msgs_operation_failure">Der Vorgang ist fehlgeschlagen.</string>
   <string name="msgs_console_alloc_failure">Ein interner Fehler ist aufgetreten.</string>
   <string name="msgs_operation_can_not_be_cancelled">Der Vorgang kann nicht abgebrochen werden.</string>
-  <string name="msgs_read_only_filesystem">Auf dem Dateisystem bestehen nur Leserechte. Versuche das Dateisystem mit Lese- und Schreibrechten einzubinden, bevor du Operation ausführst.</string>
+  <string name="msgs_read_only_filesystem">Auf dem Dateisystem bestehen nur Leserechte. Versuchen Sie das Dateisystem mit Lese- und Schreibrechten zu mounten, bevor Sie die Operation ausführen.</string>
   <string name="msgs_illegal_argument">Ungültiges Argument. Aufruf fehlgeschlagen.</string>
   <string name="msgs_unresolved_inconsistencies">Die Aktion ist nicht gestattet, da sie Inkonsistenzen verursacht.</string>
   <string name="msgs_operation_not_allowed_in_current_directory">Diese Aktion ist im aktuellen Verzeichnis nicht erlaubt.\n\nDas Zielverzeichnis darf nicht die Quelle oder deren Unterverzeichnis sein.</string>
@@ -84,10 +86,15 @@
   <string name="actionbar_button_overflow_cd">Weitere Optionen</string>
   <string name="actionbar_button_storage_cd">Speicherlaufwerke</string>
   <string name="actionbar_button_save_cd">Speichern</string>
+  <string name="actionbar_button_print_cd">Drucken</string>
   <string name="sort_by_name_asc">Nach Name \u25B2</string>
   <string name="sort_by_name_desc">Nach Name \u25BC</string>
   <string name="sort_by_date_asc">Nach Datum \u25B2</string>
   <string name="sort_by_date_desc">Nach Datum \u25BC</string>
+  <string name="sort_by_size_asc">Nach Größe \u25B2</string>
+  <string name="sort_by_size_desc">Nach Größe \u25BC</string>
+  <string name="sort_by_type_asc">Nach Typ \u25B2</string>
+  <string name="sort_by_type_desc">Nach Typ \u25B2</string>
   <string name="layout_icons">Symbole</string>
   <string name="layout_simple">Einfach</string>
   <string name="layout_details">Details</string>
@@ -97,9 +104,9 @@
   <string name="cm_filemanager_show_symlinks">Symbolische Links</string>
   <string name="filesystem_info_warning_title">Keine Information</string>
   <string name="filesystem_info_warning_msg">Es sind keine Informationen zum Dateisystem verfügbar.</string>
-  <string name="filesystem_info_cant_be_mounted_msg">Das Dateisystem kann nicht eingebunden/ausgehängt werden.</string>
+  <string name="filesystem_info_cant_be_mounted_msg">Das Dateisystem kann nicht gemountet/ausgehängt werden.</string>
   <string name="filesystem_info_mount_not_allowed_msg">Dateisystemvorgänge sind im sicheren Modus nicht erlaubt. Tippen, um in den Root-Zugriffsmodus zu wechseln.</string>
-  <string name="filesystem_info_mount_failed_msg">Dateisystemvorgang fehlgeschlagen. Manche Dateisysteme, z.B. auf SD-Karten, sind nur lesbar und können daher nicht eingebunden oder ausgehängt werden.</string>
+  <string name="filesystem_info_mount_failed_msg">Dateisystemvorgang fehlgeschlagen. Manche Dateisysteme, z.B. auf SD-Karten, sind nur lesbar und können daher nicht gemountet oder ausgehängt werden.</string>
   <string name="filesystem_info_dialog_title">Dateisystem-Information</string>
   <string name="filesystem_info_dialog_tab_info">Informationen</string>
   <string name="filesystem_info_dialog_tab_disk_usage">Speichernutzung</string>
@@ -109,6 +116,7 @@
   <string name="filesystem_info_dialog_type">Typ:</string>
   <string name="filesystem_info_dialog_options">Optionen:</string>
   <string name="filesystem_info_dialog_dump_pass">Sichern/Prüfen:</string>
+  <string name="filesystem_info_dialog_virtual">Virtuell:</string>
   <string name="filesystem_info_dialog_total_disk_usage">Gesamt:</string>
   <string name="filesystem_info_dialog_used_disk_usage">Benutzt:</string>
   <string name="filesystem_info_dialog_free_disk_usage">Frei:</string>
@@ -169,6 +177,8 @@
   <string name="bookmarks_home">Home</string>
   <string name="bookmarks_root_folder">Wurzelverzeichnis</string>
   <string name="bookmarks_system_folder">Systemordner</string>
+  <string name="bookmarks_secure">Sicherer Speicher</string>
+  <string name="bookmarks_remote">Remote Speicher</string>
   <string name="bookmarks_button_config_cd">Standardordner.</string>
   <string name="bookmarks_button_remove_bookmark_cd">Lesezeichen löschen.</string>
   <string name="bookmarks_msgs_add_success">Das Lesezeichen wurde erfolgreich hinzugefügt.</string>
@@ -228,6 +238,7 @@
   <string name="actions_menu_open_parent_folder">Übergeordnetes Verzeichnis öffnen</string>
   <string name="actions_menu_compute_checksum">Prüfsumme generieren</string>
   <string name="actions_menu_print">Drucken</string>
+  <string name="actions_menu_set_as_home">Als Startposition festlegen</string>
   <string name="actions_ask_undone_operation_msg">Diese Aktion kann nicht rückgängig gemacht werden.\n\nTrotzdem fortfahren?</string>
   <string name="input_name_dialog_label">Name:</string>
   <string name="input_name_dialog_message_empty_name">Der Name darf nicht leer sein.</string>
@@ -258,6 +269,22 @@
   <string name="filetime_format_mode_MMddyyyy_HHmmss">mm/dd/yyyy hh:mm:ss</string>
   <string name="filetime_format_mode_yyyyMMdd_HHmmss">yyyy-mm-dd hh:mm:ss</string>
   <string name="selection_folders_and_files"><xliff:g id="folders">%1$s</xliff:g> und <xliff:g id="files">%2$s</xliff:g> ausgewählt.</string>
+  <string name="category_system">SYSTEM</string>
+  <string name="category_app">APP</string>
+  <string name="category_binary">BINÄR</string>
+  <string name="category_text">TEXT</string>
+  <string name="category_document">DOKUMENT</string>
+  <string name="category_ebook">E-BOOK</string>
+  <string name="category_mail">E-MAIL</string>
+  <string name="category_compress">KOMPRIMIERT</string>
+  <string name="category_exec">AUSFÜHRBAR</string>
+  <string name="category_database">DATENBANK</string>
+  <string name="category_font">SCHRIFTART</string>
+  <string name="category_image">BILD</string>
+  <string name="category_audio">AUDIO</string>
+  <string name="category_video">VIDEO</string>
+  <string name="category_security">SICHERHEIT</string>
+  <string name="category_all">ALLE</string>
   <string name="compression_mode_title">Archivformat</string>
   <string name="shortcut_failed_msg">Fehler beim Zugriff auf die Verknüpfung.</string>
   <string name="shortcut_creation_success_msg">Verknüpfung erfolgreich angelegt.</string>
@@ -265,10 +292,11 @@
   <string name="pref">Einstellungen</string>
   <string name="pref_general">Allgemeine Einstellungen</string>
   <string name="pref_search">Sucheinstellungen</string>
+  <string name="pref_storage">Speicheroptionen</string>
   <string name="pref_editor">Editoreinstellungen</string>
   <string name="pref_themes">Designs</string>
   <string name="pref_about">Über</string>
-  <string name="pref_about_summary">Dateimanager v<xliff:g id="version">%1$s</xliff:g>\nCopyright \u00A9 2013 The CyanogenMod Project</string>
+  <string name="pref_about_summary">Dateimanager v<xliff:g id="version">%1$s</xliff:g>\nCopyright \u00A9 2012-2014 The CyanogenMod Project</string>
   <string name="pref_general_behaviour_category">Allgemein</string>
   <string name="pref_case_sensitive_sort">Groß- und Kleinschreibung</string>
   <string name="pref_case_sensitive_sort_summary">Beim Navigieren und Sortieren Groß- und Kleinschreibung berücksichtigen</string>
@@ -304,7 +332,12 @@
   <string name="pref_save_search_terms_off">Suchergebnisse werden nicht gespeichert</string>
   <string name="pref_remove_saved_search_terms">Gespeicherte Suchergebnisse löschen</string>
   <string name="pref_remove_saved_search_terms_summary">Tippen, um alle gespeicherten Suchergebnisse zu löschen</string>
-  <string name="pref_remove_saved_search_terms_msg">Alle gespeicherten Suchergebnisse wurden gelöscht</string>
+  <string name="pref_remove_saved_search_terms_msg">Alle gespeicherten Sucheanfragen wurden gelöscht</string>
+  <string name="pref_secure_storage_category">Sicherer Speicher</string>
+  <string name="pref_secure_storage_delayed_sync_title">Verzögerte Synchronisierung</string>
+  <string name="pref_secure_storage_delayed_sync_summary">Die Synchronisation eines sicheren Dateisystems ist ein aufwendiger Vorgang. Aktivieren Sie diese Option, um die Reaktionszeit nach jeder Operation zu verbessern, in dem die Synchronisation des Dateisystems erst erfolgt, wenn es gerade nicht verwendet wird, aber mit dem Risiko, dass Informationen die noch nicht synchronisiert sind bei einem Absturz der App verloren gehen.</string>
+  <string name="pref_secure_storage_reset_password_title">Passwort zurücksetzen</string>
+  <string name="pref_secure_storage_delete_storage_title">Speicher löschen</string>
   <string name="pref_editor_behaviour_category">Verhalten</string>
   <string name="pref_no_suggestions">Keine Vorschläge</string>
   <string name="pref_no_suggestions_desc">Keine Wortvorschläge während des Bearbeitens einer Datei anzeigen</string>
@@ -341,6 +374,25 @@
   <string name="ash_keyword">Schlüsselwort</string>
   <string name="ash_quoted_string">Text in Anführungszeichen</string>
   <string name="ash_variable">Variable</string>
+  <string name="secure_storage_unlock_title">Speicher entsperren</string>
+  <string name="secure_storage_create_title">Speicher erstellen</string>
+  <string name="secure_storage_reset_title">Passwort zurücksetzen</string>
+  <string name="secure_storage_delete_title">Speicher löschen</string>
+  <string name="secure_storage_unlock_key_prompt_msg">Geben Sie das Passwort zum Entsperren des sicheren Dateisystems ein.</string>
+  <string name="secure_storage_unlock_key_new_msg">Geben Sie ein Passwort zum Schutz des sicheren Dateisystems ein.</string>
+  <string name="secure_storage_unlock_key_reset_msg">Geben Sie das aktuelle und das neue Passwort ein, um das sichere Dateisystem zurückzuesetzen.</string>
+  <string name="secure_storage_unlock_key_delete_msg">Geben Sie das aktuelle Passwort ein, um das sichere Dateisystem zu löschen.</string>
+  <string name="secure_storage_unlock_old_key_title">Altes Passwort:</string>
+  <string name="secure_storage_unlock_new_key_title">Neues Passwort:</string>
+  <string name="secure_storage_unlock_key_title">Passwort:</string>
+  <string name="secure_storage_unlock_repeat_title">Passwort wiederholen:</string>
+  <string name="secure_storage_create_button">Erstellen</string>
+  <string name="secure_storage_unlock_button">Entsperren</string>
+  <string name="secure_storage_reset_button">Zurücksetzen</string>
+  <string name="secure_storage_delete_button">Löschen</string>
+  <string name="secure_storage_unlock_failed">Speicher kann nicht entsperrt werden</string>
+  <string name="secure_storage_unlock_validation_length">Das Passwort muss mindestens <xliff:g id="characters">%1$d</xliff:g> Zeichen lang sein.</string>
+  <string name="secure_storage_unlock_validation_equals">Passwörter stimmen nicht überein.</string>
   <string name="print_unsupported_document">Nicht unterstütztes Dokumentformat</string>
   <string name="print_unsupported_image">Nicht unterstütztes Bildformat</string>
   <string name="print_document_header">Dokument: <xliff:g id="document_name">%1$s</xliff:g></string>

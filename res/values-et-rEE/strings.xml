@@ -84,7 +84,6 @@
   <string name="pref_save_search_terms_off">Otsinguajalugu ei salvestata</string>
   <string name="pref_remove_saved_search_terms">Kustuta otsinguajalgu</string>
   <string name="pref_remove_saved_search_terms_summary">Vajutades kustutatakse otsingu ajalugu/ otsingusõnad</string>
-  <string name="pref_remove_saved_search_terms_msg">Kõik salvestatud otsingusõnad kustutati.</string>
   <string name="pref_editor_behaviour_category">Käitumine</string>
   <string name="pref_no_suggestions">Keela korrektor</string>
   <string name="pref_no_suggestions_desc">Ära näita korrigeerivaid ettepanekuid faili muutmisel</string>

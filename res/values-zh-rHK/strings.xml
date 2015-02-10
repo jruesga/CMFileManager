@@ -23,7 +23,6 @@
   <string name="size_megabytes">MB</string>
   <string name="size_gigabytes">GB</string>
   <string name="datetime_format_order">%1$s %2$s</string>
-  <string name="device_blockdevice">塊設備</string>
   <string name="device_characterdevice">字符設備</string>
   <string name="device_namedpipe">命名管道</string>
   <string name="device_domainsocket">網域終端 (Domain socket)</string>
@@ -268,7 +267,6 @@
   <string name="pref_editor">編輯器選項</string>
   <string name="pref_themes">主題</string>
   <string name="pref_about">關於</string>
-  <string name="pref_about_summary">檔案管理器 v<xliff:g id="version">%1$s</xliff:g>\n版權所有 \u00A9 2012-2014 CyanogenMod 計畫</string>
   <string name="pref_general_behaviour_category">一般</string>
   <string name="pref_case_sensitive_sort">區分大小寫</string>
   <string name="pref_case_sensitive_sort_summary">導航或排列搜尋結果時區分大小寫</string>
@@ -304,7 +302,6 @@
   <string name="pref_save_search_terms_off">搜尋關鍵字將不會被儲存</string>
   <string name="pref_remove_saved_search_terms">移除已保存的搜尋關鍵字</string>
   <string name="pref_remove_saved_search_terms_summary">輕按以移除所有儲存的搜尋關鍵字</string>
-  <string name="pref_remove_saved_search_terms_msg">所有儲存的搜尋關鍵字已被移除。</string>
   <string name="pref_editor_behaviour_category">行爲</string>
   <string name="pref_no_suggestions">沒有建議</string>
   <string name="pref_no_suggestions_desc">編輯檔案時不要顯示字典建議</string>

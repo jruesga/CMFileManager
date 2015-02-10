@@ -52,7 +52,7 @@
   <string name="msgs_privileged_console_alloc_failed">Kan geen roottoegang verkrijgen. Schakelen naar veilige modus.</string>
   <string name="msgs_settings_save_failure">Kan de instellingen niet toepassen/opslaan.</string>
   <string name="msgs_settings_invalid_initial_directory">De eerste map \'<xliff:g id="initial_dir">%1$s</xliff:g>\' is ongeldig. Veranderen naar hoofdmap.</string>
-  <string name="msgs_success">Bewerking succesvol voltooid</string>
+  <string name="msgs_success">Bewerking is voltooid</string>
   <string name="msgs_unknown">Er is een fout opgetreden. De bewerking is mislukt.</string>
   <string name="msgs_insufficient_permissions">Deze bewerking heeft verhoogde machtigingen nodig. Probeer naar roottoegangsmodus te schakelen.</string>
   <string name="msgs_file_not_found">Het bestand of de map is niet gevonden.</string>
@@ -84,6 +84,7 @@
   <string name="actionbar_button_overflow_cd">Meer\u2026</string>
   <string name="actionbar_button_storage_cd">Opslagvolumes</string>
   <string name="actionbar_button_save_cd">Opslaan</string>
+  <string name="actionbar_button_print_cd">Afdrukken</string>
   <string name="sort_by_name_asc">Op naam ▲</string>
   <string name="sort_by_name_desc">Op naam ▼</string>
   <string name="sort_by_date_asc">Op datum ▲</string>
@@ -109,6 +110,7 @@
   <string name="filesystem_info_dialog_type">Type:</string>
   <string name="filesystem_info_dialog_options">Opties:</string>
   <string name="filesystem_info_dialog_dump_pass">Dump / Pass:</string>
+  <string name="filesystem_info_dialog_virtual">Virtueel:</string>
   <string name="filesystem_info_dialog_total_disk_usage">Totaal:</string>
   <string name="filesystem_info_dialog_used_disk_usage">Gebruikt:</string>
   <string name="filesystem_info_dialog_free_disk_usage">Beschikbaar:</string>
@@ -169,6 +171,8 @@
   <string name="bookmarks_home">Thuis</string>
   <string name="bookmarks_root_folder">Hoofdmap</string>
   <string name="bookmarks_system_folder">Systeemmap</string>
+  <string name="bookmarks_secure">Beveiligde opslag</string>
+  <string name="bookmarks_remote">Externe opslag</string>
   <string name="bookmarks_button_config_cd">Kies de beginmap.</string>
   <string name="bookmarks_button_remove_bookmark_cd">Favoriet verwijderen.</string>
   <string name="bookmarks_msgs_add_success">Favoriet succesvol aangemaakt.</string>
@@ -228,6 +232,7 @@
   <string name="actions_menu_open_parent_folder">Bovenliggende map openen</string>
   <string name="actions_menu_compute_checksum">Checksum berekenen</string>
   <string name="actions_menu_print">Afdrukken</string>
+  <string name="actions_menu_set_as_home">Als start instellen</string>
   <string name="actions_ask_undone_operation_msg">Deze actie kan niet ongedaan worden gemaakt. Weet u zeker dat u door wilt gaan?</string>
   <string name="input_name_dialog_label">Naam:</string>
   <string name="input_name_dialog_message_empty_name">De naam kan niet leeg zijn.</string>
@@ -258,6 +263,21 @@
   <string name="filetime_format_mode_MMddyyyy_HHmmss">mm/dd/yyyy hh:mm:ss</string>
   <string name="filetime_format_mode_yyyyMMdd_HHmmss">yyyy-mm-dd hh:mm:ss</string>
   <string name="selection_folders_and_files"><xliff:g id="folders">%1$s</xliff:g> en <xliff:g id="files">%2$s</xliff:g> geselecteerd.</string>
+  <string name="category_system">SYSTEEM</string>
+  <string name="category_app">APP</string>
+  <string name="category_binary">BINAIR</string>
+  <string name="category_text">TEKST</string>
+  <string name="category_document">DOCUMENT</string>
+  <string name="category_ebook">E-BOOK</string>
+  <string name="category_mail">E-MAIL</string>
+  <string name="category_compress">GECOMPRIMEERD</string>
+  <string name="category_exec">EXECUTABLE</string>
+  <string name="category_database">DATABASE</string>
+  <string name="category_font">LETTERTYPE</string>
+  <string name="category_image">AFBEELDING</string>
+  <string name="category_audio">GELUID</string>
+  <string name="category_video">VIDEO</string>
+  <string name="category_security">BEVEILIGING</string>
   <string name="compression_mode_title">Comprimeermodus</string>
   <string name="shortcut_failed_msg">Snelkoppeling behandelen mislukt.</string>
   <string name="shortcut_creation_success_msg">Snelkoppeling succesvol aangemaakt.</string>
@@ -265,10 +285,11 @@
   <string name="pref">Instellingen</string>
   <string name="pref_general">Algemeen</string>
   <string name="pref_search">Zoeken</string>
+  <string name="pref_storage">Opslag</string>
   <string name="pref_editor">Bewerker</string>
   <string name="pref_themes">Thema\'s</string>
   <string name="pref_about">Over</string>
-  <string name="pref_about_summary">Bestandsbeheerder v<xliff:g id="version">%1$s</xliff:g>\nCopyright \u00A9 2012-2014 The CyanogenMod Project</string>
+  <string name="pref_about_summary">Bestanden v<xliff:g id="version">%1$s</xliff:g>\nCopyright \u00A9 2012–2014 The CyanogenMod Project</string>
   <string name="pref_general_behaviour_category">Algemeen</string>
   <string name="pref_case_sensitive_sort">Hoofdlettergevoelig</string>
   <string name="pref_case_sensitive_sort_summary">Inhoud en zoekresultaten hoofdlettergevoelig sorteren</string>
@@ -304,7 +325,12 @@
   <string name="pref_save_search_terms_off">Zoektermen worden niet opgeslagen</string>
   <string name="pref_remove_saved_search_terms">Opgeslagen zoektermen verwijderen</string>
   <string name="pref_remove_saved_search_terms_summary">Tik om alle opgeslagen zoektermen te verwijderen</string>
-  <string name="pref_remove_saved_search_terms_msg">Alle opgeslagen zoektermen zijn verwijderd.</string>
+  <string name="pref_remove_saved_search_terms_msg">Alle opgeslagen zoektermen zijn verwijderd</string>
+  <string name="pref_secure_storage_category">Beveiligde opslag</string>
+  <string name="pref_secure_storage_delayed_sync_title">Vertraagde synchronisatie</string>
+  <string name="pref_secure_storage_delayed_sync_summary">Synchronisatie van beveiligde opslagsystemen kan een grote impact hebben op het systeem. Door deze optie in te schakelen krijgt u snellere responstijden, doordat het bestandssysteem pas gesynchroniseerd wordt wanneer het niet in gebruik is, maar kunnen gegevens verloren gaan wanneer de app crasht voordat synchronisatie heeft plaatsgevonden.</string>
+  <string name="pref_secure_storage_reset_password_title">Wachtwoord opnieuw instellen</string>
+  <string name="pref_secure_storage_delete_storage_title">Opslag verwijderen</string>
   <string name="pref_editor_behaviour_category">Gedrag</string>
   <string name="pref_no_suggestions">Geen suggesties</string>
   <string name="pref_no_suggestions_desc">Woordenboeksuggesties verbergen tijdens het bewerken van een bestand</string>
@@ -341,6 +367,25 @@
   <string name="ash_keyword">Sleutelwoord</string>
   <string name="ash_quoted_string">Quoted string</string>
   <string name="ash_variable">Variabele</string>
+  <string name="secure_storage_unlock_title">Opslag ontgrendelen</string>
+  <string name="secure_storage_create_title">Opslag aanmaken</string>
+  <string name="secure_storage_reset_title">Wachtwoord opnieuw instellen</string>
+  <string name="secure_storage_delete_title">Opslag verwijderen</string>
+  <string name="secure_storage_unlock_key_prompt_msg">Typ het wachtwoord om het beveiligde opslagsysteem te ontgrendelen.</string>
+  <string name="secure_storage_unlock_key_new_msg">Typ een wachtwoord om het beveiligde opslagsysteem te beschermen.</string>
+  <string name="secure_storage_unlock_key_reset_msg">Typ het huidige en nieuwe wachtwoord om het beveiligde opslagsysteem opnieuw in te stellen.</string>
+  <string name="secure_storage_unlock_key_delete_msg">Typ het huidige wachtwoord om het beveiligde opslagsysteem te verwijderen.</string>
+  <string name="secure_storage_unlock_old_key_title">Oud wachtwoord:</string>
+  <string name="secure_storage_unlock_new_key_title">Nieuw wachtwoord:</string>
+  <string name="secure_storage_unlock_key_title">Wachtwoord:</string>
+  <string name="secure_storage_unlock_repeat_title">Wachtwoord herhalen:</string>
+  <string name="secure_storage_create_button">Aanmaken</string>
+  <string name="secure_storage_unlock_button">Ontgrendelen</string>
+  <string name="secure_storage_reset_button">Opnieuw instellen</string>
+  <string name="secure_storage_delete_button">Verwijderen</string>
+  <string name="secure_storage_unlock_failed">Kan opslag niet ontgrendelen</string>
+  <string name="secure_storage_unlock_validation_length">Password moeten minstens <xliff:g id="characters">%1$d</xliff:g> tekens lang zijn.</string>
+  <string name="secure_storage_unlock_validation_equals">Wachtwoorden komen niet overeen.</string>
   <string name="print_unsupported_document">Niet-ondersteunde documentindeling</string>
   <string name="print_unsupported_image">Niet-ondersteunde afbeeldingsindeling</string>
   <string name="print_document_header">Document: <xliff:g id="document_name">%1$s</xliff:g></string>

@@ -53,9 +53,11 @@
   <string name="msgs_settings_save_failure">נכשל בהחלת ההגדרה או שמירתה.</string>
   <string name="msgs_settings_invalid_initial_directory">התיקייה ההתחלתית
     \"<xliff:g id="initial_dir">%1$s</xliff:g>\" שגויה. עובר לתיקיית השורש.</string>
+  <string name="root_not_available_msg">גישת Root אינה זמינה במכשיר זה. אין אפשרות לבצע פעולה זאת.</string>
   <string name="msgs_success">הפעולה הושלמה בהצלחה.</string>
   <string name="msgs_unknown">התגלתה שגיאה. הפעולה נכשלה.</string>
   <string name="msgs_insufficient_permissions">פעולה זו דורשת הרשאות גבוהות. נסה לשנות למצב גישת Root.</string>
+  <string name="msgs_no_disk_space">הפעולה נכשלה מכיוון שלא נותר זיכרון פנוי במכשיר.</string>
   <string name="msgs_file_not_found">הקובץ או התיקייה לא נמצאו.</string>
   <string name="msgs_command_not_found">הפקודה לפעולה לא נמצאה או בעלת הגדרה שגויה.</string>
   <string name="msgs_io_failed">כשלון בקריאה/כתיבה.</string>
@@ -85,10 +87,15 @@
   <string name="actionbar_button_overflow_cd">אפשרויות נוספות</string>
   <string name="actionbar_button_storage_cd">מחיצות אחסון</string>
   <string name="actionbar_button_save_cd">שמור</string>
+  <string name="actionbar_button_print_cd">הדפס</string>
   <string name="sort_by_name_asc">לפי שם ▲</string>
   <string name="sort_by_name_desc">לפי שם ▼</string>
   <string name="sort_by_date_asc">לפי תאריך ▲</string>
   <string name="sort_by_date_desc">לפי תאריך ▼</string>
+  <string name="sort_by_size_asc">לפי גודל \u25B2</string>
+  <string name="sort_by_size_desc">לפי גודל \u25B2</string>
+  <string name="sort_by_type_asc">לפי סוג \u25B2</string>
+  <string name="sort_by_type_desc">לפי סוג \u25B2</string>
   <string name="layout_icons">סמלים</string>
   <string name="layout_simple">פשוט</string>
   <string name="layout_details">פרטים</string>
@@ -110,6 +117,7 @@
   <string name="filesystem_info_dialog_type">סוג:</string>
   <string name="filesystem_info_dialog_options">אפשרויות:</string>
   <string name="filesystem_info_dialog_dump_pass">לזרוק / להעביר:</string>
+  <string name="filesystem_info_dialog_virtual">וירטואלי:</string>
   <string name="filesystem_info_dialog_total_disk_usage">סה\"כ:</string>
   <string name="filesystem_info_dialog_used_disk_usage">תפוס:</string>
   <string name="filesystem_info_dialog_free_disk_usage">פנוי:</string>
@@ -170,6 +178,8 @@
   <string name="bookmarks_home">בית</string>
   <string name="bookmarks_root_folder">תיקיית השורש</string>
   <string name="bookmarks_system_folder">תיקיית המערכת</string>
+  <string name="bookmarks_secure">אחסון מאובטח</string>
+  <string name="bookmarks_remote">אחסון מרוחק</string>
   <string name="bookmarks_button_config_cd">הגדר את התיקייה ההתחלתית.</string>
   <string name="bookmarks_button_remove_bookmark_cd">מחק ממועדפים.</string>
   <string name="bookmarks_msgs_add_success">נוסף בהצלחה למועדפים.</string>
@@ -240,6 +250,7 @@
   <string name="actions_menu_open_parent_folder">פתח תיקיית הורה</string>
   <string name="actions_menu_compute_checksum">מחשב חתימה</string>
   <string name="actions_menu_print">הדפס</string>
+  <string name="actions_menu_set_as_home">הגדר כדף הבית</string>
   <string name="actions_ask_undone_operation_msg">לא ניתן לבטל פעולה זו. האם ברצונך להמשיך?</string>
   <string name="input_name_dialog_label">שם:</string>
   <string name="input_name_dialog_message_empty_name">השם אינו יכול להשאר ריק.</string>
@@ -272,6 +283,22 @@
   <string name="filetime_format_mode_MMddyyyy_HHmmss">mm/dd/yyyy hh:mm:ss</string>
   <string name="filetime_format_mode_yyyyMMdd_HHmmss">yyyy-mm-dd hh:mm:ss</string>
   <string name="selection_folders_and_files"><xliff:g id="folders">%1$s</xliff:g> ו-<xliff:g id="files">%2$s</xliff:g> נבחרו.</string>
+  <string name="category_system">מערכת</string>
+  <string name="category_app">יישום</string>
+  <string name="category_binary">בינארי</string>
+  <string name="category_text">טקסט</string>
+  <string name="category_document">מסמך</string>
+  <string name="category_ebook">ספר אלקטרוני</string>
+  <string name="category_mail">דוא\"ל</string>
+  <string name="category_compress">דחוס</string>
+  <string name="category_exec">ניתן להרצה</string>
+  <string name="category_database">בסיס נתונים</string>
+  <string name="category_font">גופן</string>
+  <string name="category_image">תמונה</string>
+  <string name="category_audio">אודיו</string>
+  <string name="category_video">וידאו</string>
+  <string name="category_security">אבטחה</string>
+  <string name="category_all">הכל</string>
   <string name="compression_mode_title">מצב דחיסה</string>
   <string name="shortcut_failed_msg">נכשל בניהול קיצור הדרך.</string>
   <string name="shortcut_creation_success_msg">קיצור הדרך נוצר בהצלחה.</string>
@@ -279,6 +306,7 @@
   <string name="pref">הגדרות</string>
   <string name="pref_general">הגדרות כלליות</string>
   <string name="pref_search">אפשרויות חיפוש</string>
+  <string name="pref_storage">אפשרויות אחסון</string>
   <string name="pref_editor">אפשרויות עורך</string>
   <string name="pref_themes">ערכות נושא</string>
   <string name="pref_about">אודות</string>
@@ -318,7 +346,12 @@
   <string name="pref_save_search_terms_off">תנאי החיפוש לא ישמרו</string>
   <string name="pref_remove_saved_search_terms">הסר תנאי חיפוש שמורים</string>
   <string name="pref_remove_saved_search_terms_summary">לחץ כדי להסיר את כל תנאי החיפוש השמורים</string>
-  <string name="pref_remove_saved_search_terms_msg">כל תנאי החיפוש השמורים הוסרו.</string>
+  <string name="pref_remove_saved_search_terms_msg">כל מונחי החיפוש השמורים הוסרו</string>
+  <string name="pref_secure_storage_category">אחסון מאובטח</string>
+  <string name="pref_secure_storage_delayed_sync_title">סנכרון מושהה</string>
+  <string name="pref_secure_storage_delayed_sync_summary">סינכרון של מערכות קבצים מאובטחות הוא פעולה יקרה. הפעל אפשרות זו כדי לאפשר תגובות מהירות יותר לאחר כל פעולה, כך שיתבצע סינכרון כאשר מערכת הקבצים איננה נמצאת בשימוש, אבל על חשבון איבוד המידע הממתין שלא הסתנכרן במידה והאפליקציה תקרוס.</string>
+  <string name="pref_secure_storage_reset_password_title">איפוס סיסמה</string>
+  <string name="pref_secure_storage_delete_storage_title">מחיקת אחסון</string>
   <string name="pref_editor_behaviour_category">התנהגות</string>
   <string name="pref_no_suggestions">אין הצעות</string>
   <string name="pref_no_suggestions_desc">אל תציג הצעות מילון בעת עריכת קובץ</string>
@@ -355,6 +388,25 @@
   <string name="ash_keyword">מילת מפתח</string>
   <string name="ash_quoted_string">מחרוזת מצוטטת</string>
   <string name="ash_variable">משתנה</string>
+  <string name="secure_storage_unlock_title">בטל נעילת אחסון</string>
+  <string name="secure_storage_create_title">צור אחסון</string>
+  <string name="secure_storage_reset_title">איפוס סיסמא</string>
+  <string name="secure_storage_delete_title">מחק אחסון</string>
+  <string name="secure_storage_unlock_key_prompt_msg">הקלד את הסיסמה כדי לבטל את נעילת מערכת האחסון המאובטחת.</string>
+  <string name="secure_storage_unlock_key_new_msg">הקלד את הסיסמה כדי לנעול את מערכת האחסון המאובטחת.</string>
+  <string name="secure_storage_unlock_key_reset_msg">הקלד את העכשוית וסיסמה חדשה כדי לאפס את נעילת מערכת האחסון המאובטחת.</string>
+  <string name="secure_storage_unlock_key_delete_msg">הקלד את הסיסמה הנוכחית על מנת להסיר את הגנת הקבצים המאובטחת.</string>
+  <string name="secure_storage_unlock_old_key_title">סיסמה ישנה:</string>
+  <string name="secure_storage_unlock_new_key_title">סיסמה חדשה:</string>
+  <string name="secure_storage_unlock_key_title">סיסמה:</string>
+  <string name="secure_storage_unlock_repeat_title">הקלד סיסמה בשנית:</string>
+  <string name="secure_storage_create_button">צור</string>
+  <string name="secure_storage_unlock_button">פתח</string>
+  <string name="secure_storage_reset_button">אתחל</string>
+  <string name="secure_storage_delete_button">מחק</string>
+  <string name="secure_storage_unlock_failed">לא יכול לפתוח את אמצעי האחסון</string>
+  <string name="secure_storage_unlock_validation_length">הסיסמה חייבת להכיל לפחות <xliff:g id="characters">%1$d</xliff:g> תווים.</string>
+  <string name="secure_storage_unlock_validation_equals">הסיסמאות אינן תאומות.</string>
   <string name="print_unsupported_document">פורמט מסמך לא נתמך</string>
   <string name="print_unsupported_image">פורמט תמונה לא נתמך</string>
   <string name="print_document_header">מסמך: <xliff:g id="document_name">%1$s</xliff:g></string>

@@ -84,6 +84,7 @@
   <string name="actionbar_button_overflow_cd">තවත් විකල්ප</string>
   <string name="actionbar_button_storage_cd">ආචයන කලාප</string>
   <string name="actionbar_button_save_cd">සුරකින්න</string>
+  <string name="actionbar_button_print_cd">මුද්‍රණය</string>
   <string name="sort_by_name_asc">නමින් \u25B2</string>
   <string name="sort_by_name_desc">නමින් \u25BC</string>
   <string name="sort_by_date_asc">දිනයෙන් \u25B2</string>
@@ -109,6 +110,7 @@
   <string name="filesystem_info_dialog_type">ආකාරය:</string>
   <string name="filesystem_info_dialog_options">විකල්ප:</string>
   <string name="filesystem_info_dialog_dump_pass">නික්ෂේප / අත්හළ:</string>
+  <string name="filesystem_info_dialog_virtual">අතථ්‍ය:</string>
   <string name="filesystem_info_dialog_total_disk_usage">එකතුව:</string>
   <string name="filesystem_info_dialog_used_disk_usage">භාවිතාවූ:</string>
   <string name="filesystem_info_dialog_free_disk_usage">නිදහස්:</string>
@@ -169,6 +171,8 @@
   <string name="bookmarks_home">නිවස</string>
   <string name="bookmarks_root_folder">මූල ෆෝල්ඩරය</string>
   <string name="bookmarks_system_folder">පද්ධති ෆෝල්ඩරය</string>
+  <string name="bookmarks_secure">සුරක්ෂිත ගබඩාව</string>
+  <string name="bookmarks_remote">දුරස්ථ ගබඩාව</string>
   <string name="bookmarks_button_config_cd">ඇරඹුම් ෆෝල්ඩරය සකසන්න.</string>
   <string name="bookmarks_button_remove_bookmark_cd">පොත්සලකුණ ඉවත්කරන්න.</string>
   <string name="bookmarks_msgs_add_success">පොත්සලකුණ සාර්ථක ලෙස එක් කෙරුණි.</string>
@@ -228,6 +232,7 @@
   <string name="actions_menu_open_parent_folder">මව්පියා විවෘත කරන්න</string>
   <string name="actions_menu_compute_checksum">පිරික්සුම් එකතුව ගණනය කරන්න</string>
   <string name="actions_menu_print">මුද්‍රණය</string>
+  <string name="actions_menu_set_as_home">නිවස ලෙස සකසන්න</string>
   <string name="actions_ask_undone_operation_msg">මෙම ක්‍රියාව ආපසු කල නොහැක. ඔබට ඉදිරියට යාමට අවශ්‍යද?</string>
   <string name="input_name_dialog_label">නම:</string>
   <string name="input_name_dialog_message_empty_name">නම හිස් විය නොහැක.</string>
@@ -258,6 +263,21 @@
   <string name="filetime_format_mode_MMddyyyy_HHmmss">mm/dd/yyyy hh:mm:ss</string>
   <string name="filetime_format_mode_yyyyMMdd_HHmmss">yyyy-mm-dd hh:mm:ss</string>
   <string name="selection_folders_and_files"><xliff:g id="folders">%1$s</xliff:g> සහ <xliff:g id="files">%2$s</xliff:g> තෝරාගැනුනි.</string>
+  <string name="category_system">පද්ධතිය</string>
+  <string name="category_app">යෙදුම</string>
+  <string name="category_binary">ද්ව්‍යංගී</string>
+  <string name="category_text">පෙළ</string>
+  <string name="category_document">ලේඛනය</string>
+  <string name="category_ebook">ඊ-පොත</string>
+  <string name="category_mail">තැපෑල</string>
+  <string name="category_compress">හකුළන්න</string>
+  <string name="category_exec">ඉෂ්ට කරකය</string>
+  <string name="category_database">දත්ත ගබඩාව</string>
+  <string name="category_font">ෆොන්ටය</string>
+  <string name="category_image">අනුරුව</string>
+  <string name="category_audio">ශ්‍රව්‍ය</string>
+  <string name="category_video">වීඩියෝ</string>
+  <string name="category_security">ආරක්ෂාව</string>
   <string name="compression_mode_title">හැකිළීම් ප්‍රකාරය</string>
   <string name="shortcut_failed_msg">කෙටි මග හැසිරවීමට අසමත්විය.</string>
   <string name="shortcut_creation_success_msg">කෙටි මග සාර්ථක ලෙස සෑදුනි.</string>
@@ -265,6 +285,7 @@
   <string name="pref">සැකසීම්</string>
   <string name="pref_general">පොදු සැකසීම්</string>
   <string name="pref_search">සෙවීම් විකල්ප</string>
+  <string name="pref_storage">ගබඩා විකල්ප</string>
   <string name="pref_editor">සංස්කාරක විකල්ප</string>
   <string name="pref_themes">තේමා</string>
   <string name="pref_about">පිලිබඳ</string>
@@ -304,7 +325,12 @@
   <string name="pref_save_search_terms_off">සෙවීමේ වචන සුරකින්නේ නැත</string>
   <string name="pref_remove_saved_search_terms">සුරැකු සෙවීමේ වචන ඉවත්කරන්න</string>
   <string name="pref_remove_saved_search_terms_summary">සියලුම සුරැකු සෙවීමේ වචන ඉවත්කිරීමට තට්ටු කරන්න</string>
-  <string name="pref_remove_saved_search_terms_msg">සියලුම සුරැකු සෙවීමේ වචන ඉවත්කෙරුණි.</string>
+  <string name="pref_remove_saved_search_terms_msg">සුරැකු සෙවීමේ වචන සියල්ල ඉවත් කෙරිණි</string>
+  <string name="pref_secure_storage_category">සුරක්ෂිත ගබඩාව</string>
+  <string name="pref_secure_storage_delayed_sync_title">ප්‍රමාදිත සමමුහුකරණය</string>
+  <string name="pref_secure_storage_delayed_sync_summary">සුරක්‍ෂිත ගොනු පද්ධති සමමුහුර්තකරණය යනු මිල අධික වූ මෙහෙයුමකි. යෙදුම බිඳ වැටුණහොත් පොරොත්තු තොරතුරු සමමුහුර්ත නොවී නැති වී යාමේ වියදමක් ඇතුව ගොනු පද්ධතිය භාවිත නොවන තත්ත්වයේ පවතින විට සමමුහුර්තකරණය සිදු කිරීමට, සෑම මෙහෙයුමක් ම අවසානයේදී වේගවත් ප්‍රතිචාරවලට ඉඩ දීමට මෙම විකල්පය සබල කරන්න.</string>
+  <string name="pref_secure_storage_reset_password_title">මුරපදය යළි සකසන්න</string>
+  <string name="pref_secure_storage_delete_storage_title">ගබඩාව මකන්න</string>
   <string name="pref_editor_behaviour_category">හැසිරීම</string>
   <string name="pref_no_suggestions">යෝජනා එපා</string>
   <string name="pref_no_suggestions_desc">ගොනුව සකසන අතරතුර ශබ්දකෝෂ යෝජනා නොපෙන්වන්න</string>
@@ -341,6 +367,25 @@
   <string name="ash_keyword">යතුරුපදය</string>
   <string name="ash_quoted_string">උධෘත අනුලකුණු වැල</string>
   <string name="ash_variable">විචල්‍යය</string>
+  <string name="secure_storage_unlock_title">ගබඩාව අගුළු අරින්න</string>
+  <string name="secure_storage_create_title">ගබඩාව තනන්න</string>
+  <string name="secure_storage_reset_title">මුරපදය යළි සකසන්න</string>
+  <string name="secure_storage_delete_title">ගබඩාව මකන්න</string>
+  <string name="secure_storage_unlock_key_prompt_msg">සුරක්ෂිත ගබඩා ගොනු පද්ධතිය අගුළු ඇරීමට මුරපදය ටයිප් කරන්න.</string>
+  <string name="secure_storage_unlock_key_new_msg">සුරක්ෂිත ගබඩා ගොනු පද්ධතිය ආරක්ෂා කිරීමට මුරපදයක් ටයිප් කරන්න.</string>
+  <string name="secure_storage_unlock_key_reset_msg">සුරක්ෂිත ගබඩා ගොනු පද්ධතිය යළි පිහිටුවීමට පවත්නා සහ අලුත් මුරපද ටයිප් කරන්න.</string>
+  <string name="secure_storage_unlock_key_delete_msg">සුරක්ෂිත ගබඩා ගොනු පද්ධතිය මැකීමට පවත්නා මුරපදය ටයිප් කරන්න.</string>
+  <string name="secure_storage_unlock_old_key_title">පැරණි මුරපදය:</string>
+  <string name="secure_storage_unlock_new_key_title">නව මුරපදය:</string>
+  <string name="secure_storage_unlock_key_title">මුරපදය:</string>
+  <string name="secure_storage_unlock_repeat_title">මුරපදය යළි යොදන්න:</string>
+  <string name="secure_storage_create_button">තනන්න</string>
+  <string name="secure_storage_unlock_button">අගුළු අරින්න</string>
+  <string name="secure_storage_reset_button">යළි පිහිටුවන්න</string>
+  <string name="secure_storage_delete_button">මකන්න</string>
+  <string name="secure_storage_unlock_failed">ගබඩාව අගුළු හැරිය නොහැක</string>
+  <string name="secure_storage_unlock_validation_length">මුරපදයෙහි අවම වශයෙන් අක්ෂර <xliff:g id="characters">%1$d</xliff:g> ක් තිබිය යුතුය.</string>
+  <string name="secure_storage_unlock_validation_equals">මුරපද නොගැලපේ.</string>
   <string name="print_unsupported_document">සහාය නොදක්වන ලේඛන ආකෘතියකි</string>
   <string name="print_unsupported_image">සහාය නොදක්වන පින්තූර ආකෘතියකි</string>
   <string name="print_document_header">ලේඛනය: <xliff:g id="document_name">%1$s</xliff:g></string>

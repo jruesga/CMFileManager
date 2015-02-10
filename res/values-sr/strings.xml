@@ -52,9 +52,11 @@
   <string name="msgs_privileged_console_alloc_failed">Није могуће покретање у режиму Root-а.        Мењам у сигуран режим.</string>
   <string name="msgs_settings_save_failure">Подешавање није било могуће применити или сачувати.</string>
   <string name="msgs_settings_invalid_initial_directory">Почетни фолдер \"<xliff:g id="initial_dir">%1$s</xliff:g>\" није валидан. Мењам у root фолдер.</string>
+  <string name="root_not_available_msg">Root није доступан у овом уређају. Не могу обављати ову операцију.</string>
   <string name="msgs_success">Операција је успешно завршена.</string>
   <string name="msgs_unknown">Откривена је грешка. Операција је била неуспешна.</string>
   <string name="msgs_insufficient_permissions">Ова операција захтева додатне дозволе. Покушај да промениш у режим Root-а.</string>
+  <string name="msgs_no_disk_space">Ова операција није успела јер нема преосталог простора на уређају.</string>
   <string name="msgs_file_not_found">Фајл или фолдер није нађен.</string>
   <string name="msgs_command_not_found">Команда операције није нађена или је погрешно дефинисана.</string>
   <string name="msgs_io_failed">Грешка читања/писања.</string>
@@ -84,10 +86,15 @@
   <string name="actionbar_button_overflow_cd">Више опција</string>
   <string name="actionbar_button_storage_cd">Складишта</string>
   <string name="actionbar_button_save_cd">Сачувај</string>
+  <string name="actionbar_button_print_cd">Штампај</string>
   <string name="sort_by_name_asc">По имену ▲</string>
   <string name="sort_by_name_desc">По имену ▼</string>
   <string name="sort_by_date_asc">По датуму ▲</string>
   <string name="sort_by_date_desc">По датуму ▼</string>
+  <string name="sort_by_size_asc">По величини \u25B2</string>
+  <string name="sort_by_size_desc">По величини \u25BC</string>
+  <string name="sort_by_type_asc">По типу \u25B2</string>
+  <string name="sort_by_type_desc">По типу \u25BC</string>
   <string name="layout_icons">Иконе</string>
   <string name="layout_simple">Једноставно</string>
   <string name="layout_details">Детаљи</string>
@@ -109,6 +116,7 @@
   <string name="filesystem_info_dialog_type">Тип:</string>
   <string name="filesystem_info_dialog_options">Опције:</string>
   <string name="filesystem_info_dialog_dump_pass">Одбаци / прођи:</string>
+  <string name="filesystem_info_dialog_virtual">Виртуалан:</string>
   <string name="filesystem_info_dialog_total_disk_usage">Укупно:</string>
   <string name="filesystem_info_dialog_used_disk_usage">Искоришћено:</string>
   <string name="filesystem_info_dialog_free_disk_usage">Слободно:</string>
@@ -169,6 +177,8 @@
   <string name="bookmarks_home">Почетак</string>
   <string name="bookmarks_root_folder">Корени фолдер</string>
   <string name="bookmarks_system_folder">Системски фолдер</string>
+  <string name="bookmarks_secure">Безбедно складиште</string>
+  <string name="bookmarks_remote">Удаљено складиште</string>
   <string name="bookmarks_button_config_cd">Подеси почетни фолдер.</string>
   <string name="bookmarks_button_remove_bookmark_cd">Избриши обележивач.</string>
   <string name="bookmarks_msgs_add_success">Обележивач је успешно додат.</string>
@@ -230,6 +240,7 @@
   <string name="actions_menu_open_parent_folder">Отвори родитеља</string>
   <string name="actions_menu_compute_checksum">Израчунавање збира</string>
   <string name="actions_menu_print">Штампај</string>
+  <string name="actions_menu_set_as_home">Постави као почетно</string>
   <string name="actions_ask_undone_operation_msg">Ова акција не може да се откаже. Желиш ли да наставиш?</string>
   <string name="input_name_dialog_label">Име:</string>
   <string name="input_name_dialog_message_empty_name">Име не може да буде празно.</string>
@@ -260,6 +271,22 @@
   <string name="filetime_format_mode_MMddyyyy_HHmmss">мм/дд/гггг чч:мм:сс</string>
   <string name="filetime_format_mode_yyyyMMdd_HHmmss">гггг-мм-дд чч:мм:сс</string>
   <string name="selection_folders_and_files"><xliff:g id="folders">%1$s</xliff:g> и <xliff:g id="files">%2$s</xliff:g> изабрано.</string>
+  <string name="category_system">СИСТЕМ</string>
+  <string name="category_app">АПЛИКАЦИЈА</string>
+  <string name="category_binary">БИНАРНО</string>
+  <string name="category_text">ТЕКСТ</string>
+  <string name="category_document">ДОКУМЕНТ</string>
+  <string name="category_ebook">ЕЛ. КЊИГА</string>
+  <string name="category_mail">ПОШТА</string>
+  <string name="category_compress">АРХИВА</string>
+  <string name="category_exec">ИЗВРШНИ</string>
+  <string name="category_database">БАЗА ПОДАТАКА</string>
+  <string name="category_font">ФОНТ</string>
+  <string name="category_image">СЛИКА</string>
+  <string name="category_audio">АУДИО</string>
+  <string name="category_video">ВИДЕО</string>
+  <string name="category_security">ЗАШТИТА</string>
+  <string name="category_all">СВЕ</string>
   <string name="compression_mode_title">Режим компресије</string>
   <string name="shortcut_failed_msg">Неуспело обрађивање пречице.</string>
   <string name="shortcut_creation_success_msg">Пречица успешно направљена.</string>
@@ -267,6 +294,7 @@
   <string name="pref">Подешавања</string>
   <string name="pref_general">Општа подешавања</string>
   <string name="pref_search">Опције претраге</string>
+  <string name="pref_storage">Опције складишта</string>
   <string name="pref_editor">Опције уређивача</string>
   <string name="pref_themes">Теме</string>
   <string name="pref_about">О програму</string>
@@ -311,7 +339,12 @@
   <string name="pref_remove_saved_search_terms">Избриши сачуване услове претраге</string>
   <string name="pref_remove_saved_search_terms_summary">Додирни да избришеш све сачуване услове претраге
   </string>
-  <string name="pref_remove_saved_search_terms_msg">Сви сачувани услови претраге су избрисани.</string>
+  <string name="pref_remove_saved_search_terms_msg">Сви сачувани услови претраге су уклоњени</string>
+  <string name="pref_secure_storage_category">Безбедно складиште</string>
+  <string name="pref_secure_storage_delayed_sync_title">Одложена синхронизација</string>
+  <string name="pref_secure_storage_delayed_sync_summary">Синхронизација безбедног фајл система је скуп операција. Омогућите ову опцију да дозволите бржи одзив после сваке операције, обављање синхронизације када је фајл систем у стању неискоришћеног, али на уштрб губитка несинхронизоване информације на чекању ако апликација пукне.</string>
+  <string name="pref_secure_storage_reset_password_title">Ресетујте лозинку</string>
+  <string name="pref_secure_storage_delete_storage_title">Обриши складиште</string>
   <string name="pref_editor_behaviour_category">Понашање</string>
   <string name="pref_no_suggestions">Нема предлога</string>
   <string name="pref_no_suggestions_desc">Не приказуј предлоге речника приликом уређивања датотеке</string>
@@ -348,6 +381,25 @@
   <string name="ash_keyword">Кључна реч</string>
   <string name="ash_quoted_string">Цитирани стринг</string>
   <string name="ash_variable">Варијабла</string>
+  <string name="secure_storage_unlock_title">Откључај складиште</string>
+  <string name="secure_storage_create_title">Направи складиште</string>
+  <string name="secure_storage_reset_title">Ресетујте лозинку</string>
+  <string name="secure_storage_delete_title">Обриши складиште</string>
+  <string name="secure_storage_unlock_key_prompt_msg">Укуцајте лозинку за откључавање безбедног складишта фајл система.</string>
+  <string name="secure_storage_unlock_key_new_msg">Укуцајте лозинку за заштиту фајл система безбедног складишта.</string>
+  <string name="secure_storage_unlock_key_reset_msg">Укуцајте тренутну и нову лозинку за ресетовање фајл система безбедног складишта.</string>
+  <string name="secure_storage_unlock_key_delete_msg">Укуцајте тренутну лозинку за брисање фајл система безбедног складишта.</string>
+  <string name="secure_storage_unlock_old_key_title">Стара лозинка:</string>
+  <string name="secure_storage_unlock_new_key_title">Нова лозинка:</string>
+  <string name="secure_storage_unlock_key_title">Лозинка:</string>
+  <string name="secure_storage_unlock_repeat_title">Поновите лозинку:</string>
+  <string name="secure_storage_create_button">Направи</string>
+  <string name="secure_storage_unlock_button">Откључај</string>
+  <string name="secure_storage_reset_button">Ресетуј</string>
+  <string name="secure_storage_delete_button">Избриши</string>
+  <string name="secure_storage_unlock_failed">Не могу откључати складиште</string>
+  <string name="secure_storage_unlock_validation_length">Лозинка мора имати најмање <xliff:g id="characters">%1$d</xliff:g> карактера.</string>
+  <string name="secure_storage_unlock_validation_equals">Лозинке се не поклапају.</string>
   <string name="print_unsupported_document">Неподржан формат документа</string>
   <string name="print_unsupported_image">Неподржан формат слике</string>
   <string name="print_document_header">Документ: <xliff:g id="document_name">%1$s</xliff:g></string>

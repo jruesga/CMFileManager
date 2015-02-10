@@ -263,7 +263,6 @@
   <string name="pref_editor">خيارات المحرر</string>
   <string name="pref_themes">الثيمات</string>
   <string name="pref_about">حول</string>
-  <string name="pref_about_summary">مدير ملفات v<xliff:g id="version">%1$s</xliff:g>\nنسخة \u00A9 2012-2014 مشروع CyanogenMod</string>
   <string name="pref_general_behaviour_category">اعدادات عامة</string>
   <string name="pref_case_sensitive_sort">حساسية حالة الأحرف</string>
   <string name="pref_case_sensitive_sort_summary">النظر في القضية عند التنقل أو فرز نتائج البحث</string>
@@ -299,7 +298,6 @@
   <string name="pref_save_search_terms_off">لن يتم حفظ مصطلحات البحث</string>
   <string name="pref_remove_saved_search_terms">إزالة حفظ مصطلحات البحث</string>
   <string name="pref_remove_saved_search_terms_summary">انقر لإزالة كافة مصطلحات البحث المحفوظ</string>
-  <string name="pref_remove_saved_search_terms_msg">تم إزالة كافة مصطلحات البحث المحفوظة.</string>
   <string name="pref_editor_behaviour_category">سلوك</string>
   <string name="pref_no_suggestions">لا اقتراحات</string>
   <string name="pref_no_suggestions_desc">لا يتم عرض اقتراحات قاموس أثناء تحرير الملف</string>

@@ -52,9 +52,11 @@
   <string name="msgs_privileged_console_alloc_failed">Tidak dapat menjalankan dalam modus Akses Root. Berganti ke modus Aman.</string>
   <string name="msgs_settings_save_failure">Pengaturan yang tidak dapat diterapkan atau disimpan.</string>
   <string name="msgs_settings_invalid_initial_directory">Folder awal \'<xliff:g id="initial_dir">%1$s</xliff:g>\' tidak valid. Berganti ke folder root.</string>
+  <string name="root_not_available_msg">Root tidak tersedia dalam perangkat ini. Tidak dapat melakukan operasi ini.</string>
   <string name="msgs_success">Operasi selesai dengan sukses.</string>
   <string name="msgs_unknown">Kesalahan terdeteksi. Operasi tidak berhasil.</string>
   <string name="msgs_insufficient_permissions">Operasi ini memerlukan izin lebih tinggi. Cobalah ubah ke modus Akses Root.</string>
+  <string name="msgs_no_disk_space">Operasi ini gagal karena ada tidak ada ruang yang tersisa pada perangkat.</string>
   <string name="msgs_file_not_found">Berkas atau folder tidak ditemukan.</string>
   <string name="msgs_command_not_found">Perintah operasi tidak ditemukan atau memiliki definisi yang tidak valid.</string>
   <string name="msgs_io_failed">Kegagalan baca/tulis.</string>
@@ -84,10 +86,15 @@
   <string name="actionbar_button_overflow_cd">Pilihan lebih</string>
   <string name="actionbar_button_storage_cd">Volume penyimpanan</string>
   <string name="actionbar_button_save_cd">Simpan</string>
+  <string name="actionbar_button_print_cd">Cetak</string>
   <string name="sort_by_name_asc">Sesuai nama \u25B2</string>
   <string name="sort_by_name_desc">Sesuai nama \u25BC</string>
   <string name="sort_by_date_asc">Sesuai tanggal \u25B2</string>
   <string name="sort_by_date_desc">Sesuai tanggal \u25BC</string>
+  <string name="sort_by_size_asc">Dengan ukuran \u25B2</string>
+  <string name="sort_by_size_desc">Dengan ukuran \u25B2</string>
+  <string name="sort_by_type_asc">Dengan jenis \u25B2</string>
+  <string name="sort_by_type_desc">Dengan jenis \u25B2</string>
   <string name="layout_icons">Ikon</string>
   <string name="layout_simple">Sederhana</string>
   <string name="layout_details">Terinci</string>
@@ -109,6 +116,7 @@
   <string name="filesystem_info_dialog_type">Jenis:</string>
   <string name="filesystem_info_dialog_options">Pilihan:</string>
   <string name="filesystem_info_dialog_dump_pass">Dump / Pass:</string>
+  <string name="filesystem_info_dialog_virtual">Virtual:</string>
   <string name="filesystem_info_dialog_total_disk_usage">Total:</string>
   <string name="filesystem_info_dialog_used_disk_usage">Terpakai:</string>
   <string name="filesystem_info_dialog_free_disk_usage">Bebas:</string>
@@ -169,6 +177,8 @@
   <string name="bookmarks_home">Home</string>
   <string name="bookmarks_root_folder">Folder root</string>
   <string name="bookmarks_system_folder">Folder sistem</string>
+  <string name="bookmarks_secure">Penyimpanan yang aman</string>
+  <string name="bookmarks_remote">Penyimpanan jarak jauh</string>
   <string name="bookmarks_button_config_cd">Atur folder awal.</string>
   <string name="bookmarks_button_remove_bookmark_cd">Hapus bookmark.</string>
   <string name="bookmarks_msgs_add_success">Bookmark berhasil ditambahkan.</string>
@@ -228,6 +238,7 @@
   <string name="actions_menu_open_parent_folder">Buka induk</string>
   <string name="actions_menu_compute_checksum">Hitung checksum</string>
   <string name="actions_menu_print">Cetak</string>
+  <string name="actions_menu_set_as_home">Atur sebagai beranda</string>
   <string name="actions_ask_undone_operation_msg">Tindakan ini tidak dapat dikembalikan. Apakah Anda ingin melanjutkan?</string>
   <string name="input_name_dialog_label">Nama:</string>
   <string name="input_name_dialog_message_empty_name">Nama tak boleh kosong.</string>
@@ -258,6 +269,22 @@
   <string name="filetime_format_mode_MMddyyyy_HHmmss">mm/dd/yyyy hh:mm:ss</string>
   <string name="filetime_format_mode_yyyyMMdd_HHmmss">yyyy-mm-dd hh:mm:ss</string>
   <string name="selection_folders_and_files"><xliff:g id="folders">%1$s</xliff:g> dan <xliff:g id="files">%2$s</xliff:g> terpilih.</string>
+  <string name="category_system">SISTEM</string>
+  <string name="category_app">APL</string>
+  <string name="category_binary">BINARI</string>
+  <string name="category_text">TEKS</string>
+  <string name="category_document">DOKUMEN</string>
+  <string name="category_ebook">EBOOK</string>
+  <string name="category_mail">SURAT</string>
+  <string name="category_compress">KOMPRES</string>
+  <string name="category_exec">EXECUTABLE</string>
+  <string name="category_database">DATABASE</string>
+  <string name="category_font">HURUF</string>
+  <string name="category_image">GAMBAR</string>
+  <string name="category_audio">AUDIO</string>
+  <string name="category_video">VIDEO</string>
+  <string name="category_security">KEAMANAN</string>
+  <string name="category_all">SEMUA</string>
   <string name="compression_mode_title">Modus kompresi</string>
   <string name="shortcut_failed_msg">Gagal untuk menangani pintasan.</string>
   <string name="shortcut_creation_success_msg">Pintasan dibuat dengan sukses.</string>
@@ -265,6 +292,7 @@
   <string name="pref">Pengaturan</string>
   <string name="pref_general">Pengaturan umum</string>
   <string name="pref_search">Pilihan pencarian</string>
+  <string name="pref_storage">Opsi penyimpanan</string>
   <string name="pref_editor">Pilihan editor</string>
   <string name="pref_themes">Tema</string>
   <string name="pref_about">Tentang</string>
@@ -304,7 +332,12 @@
   <string name="pref_save_search_terms_off">Istilah pencarian tidak akan disimpan</string>
   <string name="pref_remove_saved_search_terms">Hapus istilah pencarian yang tersimpan</string>
   <string name="pref_remove_saved_search_terms_summary">Tap untuk menghapus semua istilah pencarian tersimpan</string>
-  <string name="pref_remove_saved_search_terms_msg">Semua istilah pencarian tersimpan telah dihapus.</string>
+  <string name="pref_remove_saved_search_terms_msg">Semua istilah pencarian tersimpan telah dihapus</string>
+  <string name="pref_secure_storage_category">Penyimpanan yang aman</string>
+  <string name="pref_secure_storage_delayed_sync_title">Sinkronisasi tertunda</string>
+  <string name="pref_secure_storage_delayed_sync_summary">Sinkronisasi sistem file aman adalah operasi yang mahal. Mengaktifkan opsi ini untuk mengizinkan respon lebih cepat setelah setiap operasi, melakukan sinkronisasi ketika filesystem dalam keadaan tidak digunakan, tetapi dengan mengorbankan kehilangan informasi yang tertunda tidak disinkronisasikan jika aplikasi crash.</string>
+  <string name="pref_secure_storage_reset_password_title">Atur ulang kata sandi</string>
+  <string name="pref_secure_storage_delete_storage_title">Hapus Penyimpanan</string>
   <string name="pref_editor_behaviour_category">Perilaku</string>
   <string name="pref_no_suggestions">Tidak ada saran</string>
   <string name="pref_no_suggestions_desc">Jangan tampilkan kamus saran ketika mengubah berkas</string>
@@ -341,6 +374,25 @@
   <string name="ash_keyword">Kata kunci</string>
   <string name="ash_quoted_string">Teks dikutip</string>
   <string name="ash_variable">Variabel</string>
+  <string name="secure_storage_unlock_title">Buka Penyimpanan</string>
+  <string name="secure_storage_create_title">Buat Penyimpanan</string>
+  <string name="secure_storage_reset_title">Atur ulang kata sandi</string>
+  <string name="secure_storage_delete_title">Hapus Penyimpanan</string>
+  <string name="secure_storage_unlock_key_prompt_msg">Ketik kata sandi untuk membuka penyimpanan sistem file yang aman.</string>
+  <string name="secure_storage_unlock_key_new_msg">Ketik kata sandi untuk melindungi penyimpanan sistem file yang aman.</string>
+  <string name="secure_storage_unlock_key_reset_msg">Ketik kata sandi saat ini dan yang baru untuk menyetel ulang penyimpanan sistem file yang aman.</string>
+  <string name="secure_storage_unlock_key_delete_msg">Ketik kata sandi saat ini untuk menghapus penyimpanan sistem file yang aman.</string>
+  <string name="secure_storage_unlock_old_key_title">Kata Sandi lama:</string>
+  <string name="secure_storage_unlock_new_key_title">Kata Sandi baru:</string>
+  <string name="secure_storage_unlock_key_title">Kata Sandi:</string>
+  <string name="secure_storage_unlock_repeat_title">Ulangi kata sandi:</string>
+  <string name="secure_storage_create_button">Buat</string>
+  <string name="secure_storage_unlock_button">Buka kunci</string>
+  <string name="secure_storage_reset_button">Atur Ulang</string>
+  <string name="secure_storage_delete_button">Hapus</string>
+  <string name="secure_storage_unlock_failed">Tidak dapat membuka kunci penyimpanan</string>
+  <string name="secure_storage_unlock_validation_length">Kata Sandi harus memiliki setidaknya <xliff:g id="characters">%1$d</xliff:g> karakter.</string>
+  <string name="secure_storage_unlock_validation_equals">Kata sandi tidak cocok.</string>
   <string name="print_unsupported_document">Format dokumen tidak didukung</string>
   <string name="print_unsupported_image">Format gambar tidak didukung</string>
   <string name="print_document_header">Dokumen: <xliff:g id="document_name">%1$s</xliff:g></string>

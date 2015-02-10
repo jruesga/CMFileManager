@@ -84,6 +84,7 @@
   <string name="actionbar_button_overflow_cd">Więcej opcji</string>
   <string name="actionbar_button_storage_cd">Woluminy pamięci</string>
   <string name="actionbar_button_save_cd">Zapisz</string>
+  <string name="actionbar_button_print_cd">Drukuj</string>
   <string name="sort_by_name_asc">Wg nazwy ▲</string>
   <string name="sort_by_name_desc">Wg nazwy ▼</string>
   <string name="sort_by_date_asc">Wg daty ▲</string>
@@ -109,6 +110,7 @@
   <string name="filesystem_info_dialog_type">Typ:</string>
   <string name="filesystem_info_dialog_options">Opcje:</string>
   <string name="filesystem_info_dialog_dump_pass">Luka / przejście:</string>
+  <string name="filesystem_info_dialog_virtual">Wirtualny:</string>
   <string name="filesystem_info_dialog_total_disk_usage">Łącznie:</string>
   <string name="filesystem_info_dialog_used_disk_usage">Zajęte:</string>
   <string name="filesystem_info_dialog_free_disk_usage">Wolne:</string>
@@ -169,6 +171,8 @@
   <string name="bookmarks_home">Folder domowy</string>
   <string name="bookmarks_root_folder">Folder główny</string>
   <string name="bookmarks_system_folder">Folder systemowy</string>
+  <string name="bookmarks_secure">Bezpieczna pamięć</string>
+  <string name="bookmarks_remote">Przenośna pamięć</string>
   <string name="bookmarks_button_config_cd">Ustaw folder początkowy.</string>
   <string name="bookmarks_button_remove_bookmark_cd">Usuń zakładkę.</string>
   <string name="bookmarks_msgs_add_success">Zakładka została dodana pomyślnie.</string>
@@ -237,6 +241,7 @@
   <string name="actions_menu_open_parent_folder">Otwórz folder nadrzędny</string>
   <string name="actions_menu_compute_checksum">Oblicz sumę kontrolną</string>
   <string name="actions_menu_print">Drukuj</string>
+  <string name="actions_menu_set_as_home">Ustaw jako dom</string>
   <string name="actions_ask_undone_operation_msg">Ta czynność nie może zostać cofnięta. Czy chcesz kontynuować?</string>
   <string name="input_name_dialog_label">Nazwa:</string>
   <string name="input_name_dialog_message_empty_name">Nazwa nie może być pusta.</string>
@@ -267,6 +272,22 @@
   <string name="filetime_format_mode_MMddyyyy_HHmmss">mm/dd/rrrr gg:mm:ss</string>
   <string name="filetime_format_mode_yyyyMMdd_HHmmss">rrrr-mm-dd gg:mm:ss</string>
   <string name="selection_folders_and_files">Zaznaczono <xliff:g id="folders">%1$s</xliff:g> i <xliff:g id="files">%2$s</xliff:g>.</string>
+  <string name="category_system">SYSTEM</string>
+  <string name="category_app">APLIKACJE</string>
+  <string name="category_binary">PLIKI BINARNE</string>
+  <string name="category_text">TEKST</string>
+  <string name="category_document">DOKUMENT</string>
+  <string name="category_ebook">EBOOK</string>
+  <string name="category_mail">POCZTA</string>
+  <string name="category_compress">ARCHIWA</string>
+  <string name="category_exec">WYKONYWALNE</string>
+  <string name="category_database">BAZY DANYCH</string>
+  <string name="category_font">CZCIONKI</string>
+  <string name="category_image">OBRAZY</string>
+  <string name="category_audio">PLIKI AUDIO</string>
+  <string name="category_video">PLIKI WIDEO</string>
+  <string name="category_security">BEZPIECZEŃSTWO</string>
+  <string name="category_all">WSZYSTKIE</string>
   <string name="compression_mode_title">Tryb kompresji</string>
   <string name="shortcut_failed_msg">Nie udało się wykonać skrótu.</string>
   <string name="shortcut_creation_success_msg">Skrót utworzony pomyślnie.</string>
@@ -274,11 +295,11 @@
   <string name="pref">Ustawienia</string>
   <string name="pref_general">Główne ustawienia</string>
   <string name="pref_search">Opcje wyszukiwania</string>
+  <string name="pref_storage">Opcje pamięci masowej</string>
   <string name="pref_editor">Opcje edytora</string>
   <string name="pref_themes">Motywy</string>
   <string name="pref_about">O aplikacji</string>
-  <string name="pref_about_summary">Menedżer plików v<xliff:g id="version">%1$s</xliff:g>
-Copyright \u00A9 2013 Projekt CyanogenMod</string>
+  <string name="pref_about_summary">Menedżer plików v<xliff:g id="version">%1$s</xliff:g>\nCopyright \u00A9 2012–2014 The CyanogenMod Project</string>
   <string name="pref_general_behaviour_category">Generalne</string>
   <string name="pref_case_sensitive_sort">Uwzględnianie wielkości liter</string>
   <string name="pref_case_sensitive_sort_summary">Uwzględniaj wielkość liter w trakcie nawigacji i sortowania wyników wyszukiwania</string>
@@ -314,7 +335,12 @@ Copyright \u00A9 2013 Projekt CyanogenMod</string>
   <string name="pref_save_search_terms_off">Wyszukiwane frazy nie będą zapisywane</string>
   <string name="pref_remove_saved_search_terms">Usuń zapisane wyszukiwane frazy</string>
   <string name="pref_remove_saved_search_terms_summary">Wybierz by usunąć wszystkie zapisane wyszukiwane frazy</string>
-  <string name="pref_remove_saved_search_terms_msg">Wszystkie zapisane wyszukiwane frazy zostały usunięte.</string>
+  <string name="pref_remove_saved_search_terms_msg">Wszystkie zapisane wyszukiwane frazy zostały usunięte</string>
+  <string name="pref_secure_storage_category">Bezpieczna pamięć</string>
+  <string name="pref_secure_storage_delayed_sync_title">Opóźnienie synchronizacji</string>
+  <string name="pref_secure_storage_delayed_sync_summary">Synchronizacja zabezpieczonych plików jest kosztowną operacją. Włącz tę opcję, aby umożliwić lepsze czasy odpowiedzi po każdej operacji. Wykonywana jest, gdy system plików jest w nieużywany, kosztem niezsynchronizowania informacji, jeśli aplikacja ulegnie awarii.</string>
+  <string name="pref_secure_storage_reset_password_title">Resetowanie hasła</string>
+  <string name="pref_secure_storage_delete_storage_title">Usuń pamięć</string>
   <string name="pref_editor_behaviour_category">Zachowanie</string>
   <string name="pref_no_suggestions">Brak podpowiedzi</string>
   <string name="pref_no_suggestions_desc">Nie wyświetlaj podpowiedzi w trakcie edycji pliku</string>
@@ -351,6 +377,25 @@ Copyright \u00A9 2013 Projekt CyanogenMod</string>
   <string name="ash_keyword">Słowo kluczowe</string>
   <string name="ash_quoted_string">Fraza w cudzysłowie</string>
   <string name="ash_variable">Zmienna</string>
+  <string name="secure_storage_unlock_title">Odblokuj pamięć</string>
+  <string name="secure_storage_create_title">Utwórz pamięć</string>
+  <string name="secure_storage_reset_title">Resetuj hasło</string>
+  <string name="secure_storage_delete_title">Usuń pamięć</string>
+  <string name="secure_storage_unlock_key_prompt_msg">Wpisz hasło, aby bezpiecznie odblokować przechowywane pliki.</string>
+  <string name="secure_storage_unlock_key_new_msg">Wpisz hasło, aby chronić przechowywane pliki.</string>
+  <string name="secure_storage_unlock_key_reset_msg">Podaj obecne i nowe hasło, aby zresetować chroniony system plików.</string>
+  <string name="secure_storage_unlock_key_delete_msg">Wpisz aktualne hasło, aby usunąć bezpieczne przechowywanie plików.</string>
+  <string name="secure_storage_unlock_old_key_title">Stare hasło:</string>
+  <string name="secure_storage_unlock_new_key_title">Nowe hasło:</string>
+  <string name="secure_storage_unlock_key_title">Hasło:</string>
+  <string name="secure_storage_unlock_repeat_title">Powtórz hasło:</string>
+  <string name="secure_storage_create_button">Utwórz</string>
+  <string name="secure_storage_unlock_button">Odblokuj</string>
+  <string name="secure_storage_reset_button">Przywróć domyślne</string>
+  <string name="secure_storage_delete_button">Usuń</string>
+  <string name="secure_storage_unlock_failed">Nie można odblokować pamięci</string>
+  <string name="secure_storage_unlock_validation_length">Hasło musi mieć co najmniej <xliff:g id="characters"> %1$d </xliff:g> znaków.</string>
+  <string name="secure_storage_unlock_validation_equals">Podane hasła różnią się.</string>
   <string name="print_unsupported_document">Nieobsługiwany format dokumentu</string>
   <string name="print_unsupported_image">Nieobsługiwany format obrazu</string>
   <string name="print_document_header">Dokument: <xliff:g id="document_name">%1$s</xliff:g></string>

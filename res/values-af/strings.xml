@@ -85,6 +85,7 @@
   <string name="actionbar_button_overflow_cd">Meer opsies</string>
   <string name="actionbar_button_storage_cd">Skyf volumes</string>
   <string name="actionbar_button_save_cd">Stoor</string>
+  <string name="actionbar_button_print_cd">Druk</string>
   <string name="sort_by_name_asc">Volgens naam ▲</string>
   <string name="sort_by_name_desc">Volgens naam ▼</string>
   <string name="sort_by_date_asc">Volgens datum ▲</string>
@@ -110,6 +111,7 @@
   <string name="filesystem_info_dialog_type">Tipe:</string>
   <string name="filesystem_info_dialog_options">Opsies:</string>
   <string name="filesystem_info_dialog_dump_pass">Stort/Slaag:</string>
+  <string name="filesystem_info_dialog_virtual">Virtuele:</string>
   <string name="filesystem_info_dialog_total_disk_usage">Totaal:</string>
   <string name="filesystem_info_dialog_used_disk_usage">Gebruik:</string>
   <string name="filesystem_info_dialog_free_disk_usage">Gratis:</string>
@@ -172,6 +174,8 @@
   <string name="bookmarks_home">Tuis</string>
   <string name="bookmarks_root_folder">\'root\' vouergids</string>
   <string name="bookmarks_system_folder">Stelsel vouergids</string>
+  <string name="bookmarks_secure">Veilige berging</string>
+  <string name="bookmarks_remote">Afgeleë berging</string>
   <string name="bookmarks_button_config_cd">Stoor die aanvanklike vouergids.</string>
   <string name="bookmarks_button_remove_bookmark_cd">Verwyder boekmerk</string>
   <string name="bookmarks_msgs_add_success">Die boekmerk was bygevoeg.</string>
@@ -244,6 +248,7 @@
   <string name="actions_menu_open_parent_folder">Maak vouer oop</string>
   <string name="actions_menu_compute_checksum">Bereken kontrolesom</string>
   <string name="actions_menu_print">Druk</string>
+  <string name="actions_menu_set_as_home">Stel as tuis</string>
   <string name="actions_ask_undone_operation_msg">Hierdie aksie kan nie teruggestel word nie. Wil jy voortgaan?</string>
   <string name="input_name_dialog_label">Naam:</string>
   <string name="input_name_dialog_message_empty_name">Die naam kan nie leeg wees nie.</string>
@@ -277,6 +282,21 @@
   <string name="filetime_format_mode_MMddyyyy_HHmmss">mm/dd/yyyy hh:mm:ss</string>
   <string name="filetime_format_mode_yyyyMMdd_HHmmss">yyyy-mm-dd hh:mm:ss</string>
   <string name="selection_folders_and_files"><xliff:g id="folders">%1$s</xliff:g> en <xliff:g id="files">%2$s</xliff:g> geselekteer.</string>
+  <string name="category_system">STELSEL</string>
+  <string name="category_app">PROGRAM</string>
+  <string name="category_binary">BINÊRE</string>
+  <string name="category_text">TEKS</string>
+  <string name="category_document">DOKUMENT</string>
+  <string name="category_ebook">EBOEK</string>
+  <string name="category_mail">POS</string>
+  <string name="category_compress">VERKLEIN</string>
+  <string name="category_exec">UITVOERBAAR</string>
+  <string name="category_database">DATABASIS</string>
+  <string name="category_font">LETTER TIPE</string>
+  <string name="category_image">BEELD</string>
+  <string name="category_audio">OUDIO</string>
+  <string name="category_video">VIDEO</string>
+  <string name="category_security">SEKURITEIT</string>
   <string name="compression_mode_title">Verkleinings metode</string>
   <string name="shortcut_failed_msg">Kon nie van die loodskortpad gebruik maak nie.</string>
   <string name="shortcut_creation_success_msg">Loodskortpad suksesvol geskep.</string>
@@ -284,11 +304,12 @@
   <string name="pref">Instellings</string>
   <string name="pref_general">Algemeen</string>
   <string name="pref_search">Soek opsies</string>
+  <string name="pref_storage">Stoor opsies</string>
   <string name="pref_editor">Redigeerder opsies</string>
   <string name="pref_themes">Temas</string>
   <string name="pref_about">Aangaande</string>
   <string name="pref_about_summary">Lêer-verkenner v<xliff:g id="version">%1$s</xliff:g>
-    \nKopiereg \u00A9 2013 Die CyanogenMod Projek</string>
+    \nKopiereg \u00A9 2012-2015 Die CyanogenMod Projek</string>
   <string name="pref_general_behaviour_category">Algemeen</string>
   <string name="pref_case_sensitive_sort">Gebruik letter-sensitiewe sortering</string>
   <string name="pref_case_sensitive_sort_summary">Oorweeg letter-sensitiewe navigasie en sortering van soek resultate</string>
@@ -326,7 +347,12 @@
   <string name="pref_save_search_terms_off">Soekterme sal nie gestoor word nie</string>
   <string name="pref_remove_saved_search_terms">Vee soekterme uit</string>
   <string name="pref_remove_saved_search_terms_summary">Raak om al die gestoorde soekterme uit te vee</string>
-  <string name="pref_remove_saved_search_terms_msg">Alle gestoorde soekterme is uitgevee.</string>
+  <string name="pref_remove_saved_search_terms_msg">Alle gestoorde soekterme is uitgevee</string>
+  <string name="pref_secure_storage_category">Veilige berging</string>
+  <string name="pref_secure_storage_delayed_sync_title">Vertraagde sinchronisasie</string>
+  <string name="pref_secure_storage_delayed_sync_summary">Sinchronisasie van veilige lêer stelsels is \'n stadige operasie. Aktiveer hierdie opsie om vinniger reaksies toe te laat na elke operasie, die uitvoering van die sinchronisasie wanneer die lêerstelsel in \'n ongebruikte staat is, maar data verlies kan voorkom indien die program ineenstort.</string>
+  <string name="pref_secure_storage_reset_password_title">Herstel wagwoord</string>
+  <string name="pref_secure_storage_delete_storage_title">Verwyder berging</string>
   <string name="pref_editor_behaviour_category">Gedrag</string>
   <string name="pref_no_suggestions">Geen voorstelle</string>
   <string name="pref_no_suggestions_desc">Moet nie woordeboek items voorstel tydens verandering van \'n lêer nie</string>
@@ -363,6 +389,25 @@
   <string name="ash_keyword">Sleutelwoord</string>
   <string name="ash_quoted_string">Aangehaalde teks</string>
   <string name="ash_variable">Veranderlike</string>
+  <string name="secure_storage_unlock_title">Ontsluit berging</string>
+  <string name="secure_storage_create_title">Skep berging</string>
+  <string name="secure_storage_reset_title">Herstel wagwoord</string>
+  <string name="secure_storage_delete_title">Verwyder berging</string>
+  <string name="secure_storage_unlock_key_prompt_msg">Tik die wagwoord in om die veilige berging lêerstelsel te ontsluit.</string>
+  <string name="secure_storage_unlock_key_new_msg">Tik \'n wagwoord om die veilige berging lêerstelsel te beskerm.</string>
+  <string name="secure_storage_unlock_key_reset_msg">Tik die huidige en nuwe wagwoorde in om die veilige berging lêerstelsel te herstel.</string>
+  <string name="secure_storage_unlock_key_delete_msg">Tik die huidige wagwoord in om die veilige berging lêerstelsel te verwyder.</string>
+  <string name="secure_storage_unlock_old_key_title">Vorige Wagwoord:</string>
+  <string name="secure_storage_unlock_new_key_title">Nuwe Wagwoord:</string>
+  <string name="secure_storage_unlock_key_title">Wagwoord:</string>
+  <string name="secure_storage_unlock_repeat_title">Herhaal wagwoord:</string>
+  <string name="secure_storage_create_button">Skep</string>
+  <string name="secure_storage_unlock_button">Ontsluit</string>
+  <string name="secure_storage_reset_button">Stel terug</string>
+  <string name="secure_storage_delete_button">Verwyder</string>
+  <string name="secure_storage_unlock_failed">Kan nie die stoor spasie ontsluit</string>
+  <string name="secure_storage_unlock_validation_length">Wagwoord moet ten minste <xliff:g id="characters">%1$d</xliff:g> karakters hê.</string>
+  <string name="secure_storage_unlock_validation_equals">Wagwoorde stem nie ooreen nie.</string>
   <string name="print_unsupported_document">Nie-ondersteunde dokument formaat</string>
   <string name="print_unsupported_image">Nie-ondersteunde foto-formaat</string>
   <string name="print_document_header">Dokument: <xliff:g id="document_name">%1$s</xliff:g></string>

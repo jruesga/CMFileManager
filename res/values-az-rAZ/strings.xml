@@ -56,7 +56,10 @@
   <string name="msgs_file_not_found">Fayl və ya qovluq tapılmadı.</string>
   <string name="msgs_command_not_found">Bu əməliyyatın əmri tapılmadı və ya tərifi etibarsızdır.</string>
   <string name="msgs_io_failed">Oxuma/yazma xətası.</string>
+  <string name="msgs_operation_timeout">Əməliyyat müddəti aşdı.</string>
+  <string name="msgs_operation_failure">Əməliyyat baş tutmadı.</string>
   <string name="msgs_push_again_to_exit">Çıxmaq üçün təkrar basın.</string>
+  <string name="parent_dir">Üst qovluq</string>
   <string name="external_storage">Xarici yaddaş</string>
   <string name="usb_storage">USB yaddaş</string>
   <string name="actionbar_button_filesystem_cd">Fayl sistemi məlumatı</string>
@@ -89,6 +92,7 @@
   <string name="filesystem_info_dialog_total_disk_usage">Cəmi:</string>
   <string name="filesystem_info_dialog_used_disk_usage">İşlədilən:</string>
   <string name="filesystem_info_dialog_free_disk_usage">Boş:</string>
+  <string name="fso_properties_dialog_title">Xüsusiyyətlər</string>
   <string name="fso_properties_dialog_tab_info">Məlumat</string>
   <string name="fso_properties_dialog_name">Ad:</string>
   <string name="fso_properties_dialog_type">Növü:</string>
@@ -102,7 +106,22 @@
   <string name="fso_properties_dialog_group">Qrup:</string>
   <string name="fso_properties_dialog_others">Digərləri:</string>
   <string name="fso_properties_dialog_include_in_media_scan">Media axtarışını burax:</string>
+  <string name="search">Axtarış nəticələri</string>
+  <string name="search_hint">Axtardığınızı yazın</string>
+  <string name="search_found_items_in_directory"><xliff:g id="items">%1$s</xliff:g> in <xliff:g id="path">%2$s</xliff:g></string>
+  <string name="searching">Zəhmət olmasa gözləyin\u2026</string>
+  <string name="bookmarks">Əlfəcinlər</string>
+  <string name="bookmarks_home">Əsas</string>
   <string name="bookmarks_system_folder">Sistem qovluğu</string>
+  <string name="menu_search">Axtar</string>
+  <string name="menu_settings">Tənzimləmələr</string>
+  <string name="menu_clear_history">Keçmişi təmizlə</string>
+  <string name="create_new_compress_file_regexp"><xliff:g id="name">%1$s</xliff:g> - yeni<xliff:g id="extension">%2$s</xliff:g></string>
+  <string name="waiting_dialog_moving_title">Köçürülür\u2026</string>
+  <string name="waiting_dialog_deleting_title">Silinir\u2026</string>
+  <string name="waiting_dialog_deleting_msg"><![CDATA[<b>Fayl</b>]]> <xliff:g id="file">%1$s</xliff:g></string>
+  <string name="waiting_dialog_compressing_title">Sıxışdırılır\u2026</string>
+  <string name="waiting_dialog_compressing_msg"><![CDATA[<b>Fayl</b>]]> <xliff:g id="file">%1$s</xliff:g></string>
   <string name="actions_menu_properties_current_folder">Xüsusiyyətlər</string>
   <string name="actions_menu_refresh">Yenilə</string>
   <string name="actions_menu_new_directory">Yeni qovluq</string>
@@ -119,11 +138,19 @@
   <string name="actions_menu_delete">Sil</string>
   <string name="actions_menu_rename">Yenidən adlandır</string>
   <string name="actions_menu_properties">Xüsusiyyətlər</string>
+  <string name="actions_menu_add_to_bookmarks">Əlfəcinlərə əlavə et</string>
   <string name="input_name_dialog_label">Ad:</string>
+  <string name="execution_console_script_execution_time_label">Zaman:</string>
+  <string name="execution_console_script_exitcode_label">Çıxış kodu:</string>
+  <string name="compute_checksum_filename_label">Fayl:</string>
+  <string name="mime_folder">Qovluq</string>
   <string name="filetime_format_mode_ddMMyyyy_HHmmss">gg/aa/iiii ss:dd:ss</string>
+  <string name="selection_folders_and_files"><xliff:g id="folders">%1$s</xliff:g> və <xliff:g id="files">%2$s</xliff:g> seçilib.</string>
+  <string name="compression_mode_title">Sıxışdırma rejimi</string>
+  <string name="pref">Tənzimləmələr</string>
+  <string name="pref_general">Ümumi tənzimləmələr</string>
   <string name="pref_themes">Temalar</string>
   <string name="pref_about">Haqqında</string>
-  <string name="pref_about_summary">Fayl Meneceri v<xliff:g id="version">%1$s</xliff:g>\nMüəllif Hüquqları \u00A9 2012-2014 CyanogenMod Layihəsi</string>
   <string name="pref_general_behaviour_category">Ümumi</string>
   <string name="pref_filetime_format_mode">Tarix/saat formatı</string>
   <string name="pref_display_thumbs">Önizləmə</string>
@@ -131,6 +158,7 @@
   <string name="pref_access_mode_root">Root Girişi rejimi</string>
   <string name="pref_search_results_category">Nəticələr</string>
   <string name="pref_sort_search_results_mode_name">Ada görə</string>
+  <string name="pref_syntax_highlight_color_scheme">Rəng sxemi</string>
   <string name="pref_editor_sh_item_category">Elementlər</string>
   <string name="pref_themes_selection_category">Temalar</string>
   <string name="pref_themes_set_theme">Temanı tənzimlə</string>
@@ -143,6 +171,7 @@
   <string name="color_picker_current_text">Hazırki:</string>
   <string name="color_picker_new_text">Yeni:</string>
   <string name="color_picker_color">Rəng:</string>
+  <string name="ash_text">Mətn</string>
   <string name="ash_keyword">Açar söz</string>
   <string name="print_unsupported_document">Dəstəklənməyən sənəd formatı</string>
   <string name="print_unsupported_image">Dəstəklənməyən şəkil formatı</string>

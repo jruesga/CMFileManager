@@ -53,9 +53,11 @@
   <string name="msgs_settings_save_failure">A definição não pode ser aplicada ou gravada.</string>
   <string name="msgs_settings_invalid_initial_directory">A pasta inicial
     \"<xliff:g id="initial_dir">%1$s</xliff:g>\" é invalida. Mudando para a pasta root.</string>
+  <string name="root_not_available_msg">Root não está disponível neste dispositivo. Não é possível executar esta operação.</string>
   <string name="msgs_success">A operação foi concluída com sucesso.</string>
   <string name="msgs_unknown">Foi encontrado um erro. A operação falhou.</string>
   <string name="msgs_insufficient_permissions">Esta operação necessita permissões elevadas. Tente mudar para o modo de Acesso Root.</string>
+  <string name="msgs_no_disk_space">Esta operação falhou porque não há nenhum espaço no dispositivo.</string>
   <string name="msgs_file_not_found">O ficheiro ou pasta não foi encontrado.</string>
   <string name="msgs_command_not_found">O comando da operação não foi encontrado ou tem uma definição inválida.</string>
   <string name="msgs_io_failed">Erro de leitura/escrita.</string>
@@ -85,10 +87,15 @@
   <string name="actionbar_button_overflow_cd">Mais opções</string>
   <string name="actionbar_button_storage_cd">Volumes de armazenamento</string>
   <string name="actionbar_button_save_cd">Gravar</string>
+  <string name="actionbar_button_print_cd">Imprimir</string>
   <string name="sort_by_name_asc">Por nome \u25B2</string>
   <string name="sort_by_name_desc">Por nome \u25BC</string>
   <string name="sort_by_date_asc">Por data \u25B2</string>
   <string name="sort_by_date_desc">Por data \u25BC</string>
+  <string name="sort_by_size_asc">Por tamanho \u25B2</string>
+  <string name="sort_by_size_desc">Por tamanho \u25BC</string>
+  <string name="sort_by_type_asc">Por tipo \u25B2</string>
+  <string name="sort_by_type_desc">Por tipo \u25BC</string>
   <string name="layout_icons">Ícones</string>
   <string name="layout_simple">Simples</string>
   <string name="layout_details">Detalhes</string>
@@ -110,6 +117,7 @@
   <string name="filesystem_info_dialog_type">Tipo:</string>
   <string name="filesystem_info_dialog_options">Opções:</string>
   <string name="filesystem_info_dialog_dump_pass">Lixeira / Aprovado:</string>
+  <string name="filesystem_info_dialog_virtual">Virtual:</string>
   <string name="filesystem_info_dialog_total_disk_usage">Total:</string>
   <string name="filesystem_info_dialog_used_disk_usage">Usado:</string>
   <string name="filesystem_info_dialog_free_disk_usage">Disponível:</string>
@@ -175,6 +183,8 @@
   <string name="bookmarks_home">Início</string>
   <string name="bookmarks_root_folder">Pasta Root</string>
   <string name="bookmarks_system_folder">Pasta de Sistema</string>
+  <string name="bookmarks_secure">Armazenamento seguro</string>
+  <string name="bookmarks_remote">Armazenamento remoto</string>
   <string name="bookmarks_button_config_cd">Escolha a pasta inicial:</string>
   <string name="bookmarks_button_remove_bookmark_cd">Remover o favorito.</string>
   <string name="bookmarks_msgs_add_success">O marcador foi adicionado com sucesso.</string>
@@ -240,6 +250,7 @@
   <string name="actions_menu_open_parent_folder">Abrir pasta mãe</string>
   <string name="actions_menu_compute_checksum">Calcular verificação</string>
   <string name="actions_menu_print">Imprimir</string>
+  <string name="actions_menu_set_as_home">Definir como pasta inicial</string>
   <string name="actions_ask_undone_operation_msg">
     Esta operação não poderá ser desfeita. Deseja continuar?</string>
   <string name="input_name_dialog_label">Nome:</string>
@@ -274,6 +285,22 @@
   <string name="filetime_format_mode_MMddyyyy_HHmmss">mm/dd/aaaa hh:mm:ss</string>
   <string name="filetime_format_mode_yyyyMMdd_HHmmss">aaaa-mm-dd hh:mm:ss</string>
   <string name="selection_folders_and_files"><xliff:g id="folders">%1$s</xliff:g> e <xliff:g id="files">%2$s</xliff:g> selecionado.</string>
+  <string name="category_system">SISTEMA</string>
+  <string name="category_app">APLICAÇÃO</string>
+  <string name="category_binary">BINÁRIO</string>
+  <string name="category_text">TEXTO</string>
+  <string name="category_document">DOCUMENTO</string>
+  <string name="category_ebook">EBOOK</string>
+  <string name="category_mail">CORREIO</string>
+  <string name="category_compress">COMPRIMIR</string>
+  <string name="category_exec">EXECUTÁVEL</string>
+  <string name="category_database">BASE DE DADOS</string>
+  <string name="category_font">TIPO DE LETRA</string>
+  <string name="category_image">IMAGEM</string>
+  <string name="category_audio">ÁUDIO</string>
+  <string name="category_video">VÍDEO</string>
+  <string name="category_security">SEGURANÇA</string>
+  <string name="category_all">TUDO</string>
   <string name="compression_mode_title">Modo de compressão</string>
   <string name="shortcut_failed_msg">Falha ao lidar com o atalho.</string>
   <string name="shortcut_creation_success_msg">Atalho criado com sucesso.</string>
@@ -281,6 +308,7 @@
   <string name="pref">Definições</string>
   <string name="pref_general">Definições gerais</string>
   <string name="pref_search">Opções de pesquisa</string>
+  <string name="pref_storage">Opções de armazenamento</string>
   <string name="pref_editor">Opções do editor</string>
   <string name="pref_themes">Temas</string>
   <string name="pref_about">Sobre</string>
@@ -326,7 +354,12 @@
   <string name="pref_save_search_terms_off">Os termos de procura não serão guardados</string>
   <string name="pref_remove_saved_search_terms">Limpar pesquisas guardadas</string>
   <string name="pref_remove_saved_search_terms_summary">Toque para remover todos os termos de procura guardados</string>
-  <string name="pref_remove_saved_search_terms_msg">Todos os termos de procura guardados foram removidos.</string>
+  <string name="pref_remove_saved_search_terms_msg">Todos os termos de procura guardados foram removidos</string>
+  <string name="pref_secure_storage_category">Armazenamento seguro</string>
+  <string name="pref_secure_storage_delayed_sync_title">Sincronização atrasada</string>
+  <string name="pref_secure_storage_delayed_sync_summary">A sincronização de sistemas de ficheiros seguros é uma operação demorada. Ativar esta opção para permitir melhor resposta de tempo após cada operação, executar a sincronização quando o sistema de ficheiros está no estado de não utilizacão, mas à custa de perder as informações pendentes não sincronizadas, se a aplicacão falhar.</string>
+  <string name="pref_secure_storage_reset_password_title">Redefinir senha</string>
+  <string name="pref_secure_storage_delete_storage_title">Eliminar o armazenamento</string>
   <string name="pref_editor_behaviour_category">Comportamento</string>
   <string name="pref_no_suggestions">Sem sugestões</string>
   <string name="pref_no_suggestions_desc">Não mostrar sugestões do dicionário ao editar o ficheiro</string>
@@ -365,6 +398,25 @@
   <string name="ash_keyword">Palavra-chave</string>
   <string name="ash_quoted_string">frase mencionada</string>
   <string name="ash_variable">Variável</string>
+  <string name="secure_storage_unlock_title">Desbloquear o armazenamento</string>
+  <string name="secure_storage_create_title">Criar o armazenamento</string>
+  <string name="secure_storage_reset_title">Redefinir senha</string>
+  <string name="secure_storage_delete_title">Eliminar o armazenamento</string>
+  <string name="secure_storage_unlock_key_prompt_msg">Digite a senha para desbloquear o sistema de ficheiros do armazenamento seguro.</string>
+  <string name="secure_storage_unlock_key_new_msg">Digite uma senha para proteger o sistema de ficheiros do armazenamento seguro.</string>
+  <string name="secure_storage_unlock_key_reset_msg">Introduza a senha atual e a nova senha para redefinir o sistema de ficheiros de armazenamento seguro.</string>
+  <string name="secure_storage_unlock_key_delete_msg">Digite a senha atual para eliminar o sistema de ficheiros de armazenamento seguro.</string>
+  <string name="secure_storage_unlock_old_key_title">Senha antiga:</string>
+  <string name="secure_storage_unlock_new_key_title">Nova senha:</string>
+  <string name="secure_storage_unlock_key_title">Senha:</string>
+  <string name="secure_storage_unlock_repeat_title">Repetir a senha:</string>
+  <string name="secure_storage_create_button">Criar</string>
+  <string name="secure_storage_unlock_button">Desbloquear</string>
+  <string name="secure_storage_reset_button">Redefinir</string>
+  <string name="secure_storage_delete_button">Eliminar</string>
+  <string name="secure_storage_unlock_failed">Não é possível desbloquear o armazenamento</string>
+  <string name="secure_storage_unlock_validation_length">A senha deve ter no mínimo <xliff:g id="characters">%1$d</xliff:g> caracteres.</string>
+  <string name="secure_storage_unlock_validation_equals">As senhas não coincidem.</string>
   <string name="print_unsupported_document">Formato de documento não suportado</string>
   <string name="print_unsupported_image">Formato de imagem não suportado</string>
   <string name="print_document_header">Documento: <xliff:g id="document_name">%1$s</xliff:g></string>

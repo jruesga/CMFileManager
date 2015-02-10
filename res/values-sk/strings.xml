@@ -52,9 +52,11 @@
   <string name="msgs_privileged_console_alloc_failed">Nemožno spustiť v režime bez obmedzenia.Prebieha zmena na bezpečný režim.</string>
   <string name="msgs_settings_save_failure">Nastavenie nemohlo byť použité alebo uložené.</string>
   <string name="msgs_settings_invalid_initial_directory">Počiatočný priečinok \"<xliff:g Id="initial_dir">%1$s</xliff:g>\" je neplatný. Prebieha zmena na koreňový priečinok.</string>
+  <string name="root_not_available_msg">Root nie je k dispozícii v tomto zariadení. Táto operácia sa nedá vykonať.</string>
   <string name="msgs_success">Operácia bola úspešne dokončená.</string>
   <string name="msgs_unknown">Vyskytla sa chyba. Operácia nebola úspešne dokončená.</string>
   <string name="msgs_insufficient_permissions">Táto operácia vyžaduje väčšie oprávnenie. Skúste zmeniť na režim bez obmedzenia.</string>
+  <string name="msgs_no_disk_space">Táto operácia zlyhala kvôli nedostatku miesta v zariadení.</string>
   <string name="msgs_file_not_found">Súbor alebo priečinok sa nenašiel.</string>
   <string name="msgs_command_not_found">Príkaz operácie nebol nájdený alebo má neplatnú definíciu.</string>
   <string name="msgs_io_failed">Chyba pri čítaní/zápise.</string>
@@ -75,7 +77,7 @@
   <string name="external_storage">Externé úložisko</string>
   <string name="usb_storage">USB úložisko</string>
   <string name="actionbar_button_filesystem_cd">Informácie o súborovom systéme</string>
-  <string name="actionbar_button_sort_mode_cd">Režim radenia</string>
+  <string name="actionbar_button_sort_mode_cd">Zoradiť podľa</string>
   <string name="actionbar_button_layout_mode_cd">Režim rozloženia</string>
   <string name="actionbar_button_other_view_options_cd">Ďalšie možnosti zobrazenia</string>
   <string name="actionbar_button_selection_done_cd">Hotovo</string>
@@ -84,10 +86,15 @@
   <string name="actionbar_button_overflow_cd">Viac možností</string>
   <string name="actionbar_button_storage_cd">Zväzky úložiska</string>
   <string name="actionbar_button_save_cd">Uložiť</string>
+  <string name="actionbar_button_print_cd">Tlačiť</string>
   <string name="sort_by_name_asc">Podľa názvu ▲</string>
   <string name="sort_by_name_desc">Podľa názvu ▼</string>
   <string name="sort_by_date_asc">Podľa dátumu ▲</string>
   <string name="sort_by_date_desc">Podľa dátumu ▼;</string>
+  <string name="sort_by_size_asc">Podľa veľkosti \u25B2</string>
+  <string name="sort_by_size_desc">Podľa veľkosti \u25BC</string>
+  <string name="sort_by_type_asc">Podľa typu \u25B2</string>
+  <string name="sort_by_type_desc">Podľa typu \u25BC</string>
   <string name="layout_icons">Ikony</string>
   <string name="layout_simple">Jednoduché</string>
   <string name="layout_details">Podrobnosti</string>
@@ -104,11 +111,12 @@
   <string name="filesystem_info_dialog_tab_info">Informácie</string>
   <string name="filesystem_info_dialog_tab_disk_usage">Využitie disku</string>
   <string name="filesystem_info_dialog_status">Stav:</string>
-  <string name="filesystem_info_dialog_mount_point">Prípojný bod:</string>
+  <string name="filesystem_info_dialog_mount_point">Bod pripojenia:</string>
   <string name="filesystem_info_dialog_device">Zariadenie:</string>
   <string name="filesystem_info_dialog_type">Typ:</string>
   <string name="filesystem_info_dialog_options">Voľby:</string>
   <string name="filesystem_info_dialog_dump_pass">Dump/Pass:</string>
+  <string name="filesystem_info_dialog_virtual">Virtuálna:</string>
   <string name="filesystem_info_dialog_total_disk_usage">Celkom:</string>
   <string name="filesystem_info_dialog_used_disk_usage">Použité:</string>
   <string name="filesystem_info_dialog_free_disk_usage">Voľné:</string>
@@ -131,7 +139,7 @@
   <string name="fso_properties_dialog_last_changed_date">Zmenené:</string>
   <string name="fso_properties_dialog_owner">Vlastník:</string>
   <string name="fso_properties_dialog_group">Skupina:</string>
-  <string name="fso_properties_dialog_others">Ostatné:</string>
+  <string name="fso_properties_dialog_others">Ostatní:</string>
   <string name="fso_properties_dialog_include_in_media_scan">Vynechať prieskum médií:</string>
   <string name="fso_failed_to_allow_media_scan">Zlyhalo povolenie prieskumu médií</string>
   <string name="fso_failed_to_prevent_media_scan">Zlyhalo zabránenie prieskumu médií</string>
@@ -169,6 +177,8 @@
   <string name="bookmarks_home">Domov</string>
   <string name="bookmarks_root_folder">Koreňový priečinok</string>
   <string name="bookmarks_system_folder">Systémový priečinok</string>
+  <string name="bookmarks_secure">Zabezpečené úložisko</string>
+  <string name="bookmarks_remote">Vzdialené úložisko</string>
   <string name="bookmarks_button_config_cd">Nastavte počiatočný priečinok.</string>
   <string name="bookmarks_button_remove_bookmark_cd">Odstrániť zo záložiek.</string>
   <string name="bookmarks_msgs_add_success">Záložka bola úspešne pridaná.</string>
@@ -235,6 +245,7 @@
   <string name="actions_menu_open_parent_folder">Otvoriť nadradený</string>
   <string name="actions_menu_compute_checksum">Vypočítať kontrolny súčet</string>
   <string name="actions_menu_print">Vytlačiť</string>
+  <string name="actions_menu_set_as_home">Nastaviť ako domov</string>
   <string name="actions_ask_undone_operation_msg">Túto akciu nemožno vrátiť späť. Chcete pokračovať?</string>
   <string name="input_name_dialog_label">Názov:</string>
   <string name="input_name_dialog_message_empty_name">Názov nesmie byť prázdny.</string>
@@ -264,7 +275,23 @@
   <string name="filetime_format_mode_ddMMyyyy_HHmmss">dd/mm/yyyy hh:mm:ss</string>
   <string name="filetime_format_mode_MMddyyyy_HHmmss">mm/dd/yyyy hh:mm:ss</string>
   <string name="filetime_format_mode_yyyyMMdd_HHmmss">yyyy-mm-dd hh:mm:ss</string>
-  <string name="selection_folders_and_files"><xliff:g id="folders">%1$s</xliff:g> a <xliff:g id="files">%2$s</xliff:g> vybraných.</string>
+  <string name="selection_folders_and_files"><xliff:g id="folders">%1$s</xliff:g> a <xliff:g id="files">%2$s</xliff:g> vybratých.</string>
+  <string name="category_system">SYSTÉM</string>
+  <string name="category_app">APLIKÁCIA</string>
+  <string name="category_binary">BINÁRNE</string>
+  <string name="category_text">TEXT</string>
+  <string name="category_document">DOKUMENT</string>
+  <string name="category_ebook">E-KNIHA</string>
+  <string name="category_mail">POŠTA</string>
+  <string name="category_compress">KOMPRIMOVANÝ</string>
+  <string name="category_exec">SPUSTITEĽNÝ</string>
+  <string name="category_database">DATABÁZA</string>
+  <string name="category_font">PÍSMO</string>
+  <string name="category_image">OBRÁZOK</string>
+  <string name="category_audio">AUDIO</string>
+  <string name="category_video">VIDEO</string>
+  <string name="category_security">BEZPEČNOSŤ</string>
+  <string name="category_all">VŠETKO</string>
   <string name="compression_mode_title">Režim kompresie</string>
   <string name="shortcut_failed_msg">Chyba pri spracovaní skratky.</string>
   <string name="shortcut_creation_success_msg">Skratka bola úspešne vytvorená.</string>
@@ -272,11 +299,11 @@
   <string name="pref">Nastavenia</string>
   <string name="pref_general">Všeobecné nastavenia</string>
   <string name="pref_search">Nastavenie vyhľadávania</string>
+  <string name="pref_storage">Možnosti úložiska</string>
   <string name="pref_editor">Voľby editora</string>
   <string name="pref_themes">Témy</string>
   <string name="pref_about">O aplikácii</string>
-  <string name="pref_about_summary">Správca súborov ver.<xliff:g id="version">%1$s</xliff:g>
-Autorské práva © 2012 The CyanogenMod Project</string>
+  <string name="pref_about_summary">Správca súborov v<xliff:g id="version">%1$s</xliff:g>\nAutorské práva © 2012-2014 Projekt CyanogenMod</string>
   <string name="pref_general_behaviour_category">Všeobecné</string>
   <string name="pref_case_sensitive_sort">Rozlišovať veľké a malé písmená pri triedení</string>
   <string name="pref_case_sensitive_sort_summary">Zvážiť veľké a malé písmená pri prechádzaní alebo usporiadaní výsledkov hľadania</string>
@@ -300,19 +327,24 @@ Autorské práva © 2012 The CyanogenMod Project</string>
   <string name="pref_restrict_secondary_users_access_title">Obmedzenie prístupu užívateľov</string>
   <string name="pref_restrict_secondary_users_access_summary">Obmedziť prístup k celému systému sekundárnym užívateľom</string>
   <string name="pref_search_results_category">Výsledky</string>
-  <string name="pref_show_relevance_widget">Zobraziť widget relevancie</string>
+  <string name="pref_show_relevance_widget">Zobraziť miniaplikáciu relevantnosti</string>
   <string name="pref_highlight_terms">Zvýrazniť hľadaný výraz</string>
-  <string name="pref_sort_search_results_mode">Režim triedenia</string>
+  <string name="pref_sort_search_results_mode">Režim triedenia výsledkov</string>
   <string name="pref_sort_search_results_mode_none">Netriediť</string>
   <string name="pref_sort_search_results_mode_name">Podľa názvu</string>
-  <string name="pref_sort_search_results_mode_relevance">Podľa významu</string>
+  <string name="pref_sort_search_results_mode_relevance">Podľa relevantnosti</string>
   <string name="pref_search_privacity_category">Súkromie</string>
   <string name="pref_save_search_terms">Uložiť hľadaný výraz</string>
   <string name="pref_save_search_terms_on">Hľadané výrazy budú uložené a použité ako návrhy pre nasledujúce hľadanie.</string>
   <string name="pref_save_search_terms_off">Hľadané výrazy nebudú uložené</string>
   <string name="pref_remove_saved_search_terms">Vymazať uložené hľadané výrazy</string>
   <string name="pref_remove_saved_search_terms_summary">Dotykom vymažete všetky uložené hľadané výrazy</string>
-  <string name="pref_remove_saved_search_terms_msg">Všetky hľadané výrazy boli vymazané.</string>
+  <string name="pref_remove_saved_search_terms_msg">Všetky hľadané výrazy boli vymazané</string>
+  <string name="pref_secure_storage_category">Zabezpečené úložisko</string>
+  <string name="pref_secure_storage_delayed_sync_title">Oneskorená synchronizácia</string>
+  <string name="pref_secure_storage_delayed_sync_summary">Synchronizácia zabezpečených súborových systémov je náročná operácia. Povoľte túto možnosť pre rýchlejšiu odozvu po každej operácii, vykonaním synchronizácie v čase, keď je súborový systém v nepoužívanom stave, ale na úkor straty čakajúcich informácií, ktoré nebudú synchronizované, ak aplikácia zlyhá.</string>
+  <string name="pref_secure_storage_reset_password_title">Obnoviť heslo</string>
+  <string name="pref_secure_storage_delete_storage_title">Odstrániť úložisko</string>
   <string name="pref_editor_behaviour_category">Správanie</string>
   <string name="pref_no_suggestions">Žiadne návrhy</string>
   <string name="pref_no_suggestions_desc">Počas úprav súboru sa nezobrazia návrhy zo slovníka</string>
@@ -349,6 +381,25 @@ Autorské práva © 2012 The CyanogenMod Project</string>
   <string name="ash_keyword">Kľúčové slovo</string>
   <string name="ash_quoted_string">Reťazec v úvodzovkách</string>
   <string name="ash_variable">Premenná</string>
+  <string name="secure_storage_unlock_title">Odomknúť úložisko</string>
+  <string name="secure_storage_create_title">Vytvoriť úložisko</string>
+  <string name="secure_storage_reset_title">Obnoviť heslo</string>
+  <string name="secure_storage_delete_title">Odstrániť úložisko</string>
+  <string name="secure_storage_unlock_key_prompt_msg">Zadajte heslo na odomknutie zabezpečeného úložiska súborového systému.</string>
+  <string name="secure_storage_unlock_key_new_msg">Zadajte heslo na ochránenie zabezpečeného úložiska súborového systému.</string>
+  <string name="secure_storage_unlock_key_reset_msg">Zadajte aktuálne a nové heslo pre obnovenie zabezpečeného úložiska súborového systému.</string>
+  <string name="secure_storage_unlock_key_delete_msg">Zadajte aktuálne heslo na odstránenie zabezpečeného úložiska súborového systému.</string>
+  <string name="secure_storage_unlock_old_key_title">Staré heslo:</string>
+  <string name="secure_storage_unlock_new_key_title">Nové heslo:</string>
+  <string name="secure_storage_unlock_key_title">Heslo:</string>
+  <string name="secure_storage_unlock_repeat_title">Zopakovať heslo:</string>
+  <string name="secure_storage_create_button">Vytvoriť</string>
+  <string name="secure_storage_unlock_button">Odomknúť</string>
+  <string name="secure_storage_reset_button">Obnoviť</string>
+  <string name="secure_storage_delete_button">Odstrániť</string>
+  <string name="secure_storage_unlock_failed">Nie je možné odomknúť úložisko</string>
+  <string name="secure_storage_unlock_validation_length">Heslo musí obsahovať minimálne <xliff:g id="characters">%1$d</xliff:g> znakov.</string>
+  <string name="secure_storage_unlock_validation_equals">Heslá se nezhodujú.</string>
   <string name="print_unsupported_document">Nepodporované formát dokumentu</string>
   <string name="print_unsupported_image">Nepodporovaný formát obrázku</string>
   <string name="print_document_header">Dokument: <xliff:g id="document_name">%1$s</xliff:g></string>

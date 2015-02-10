@@ -241,6 +241,7 @@ public class SearchActivity extends Activity
                 @Override
                 public void run() {
                     try {
+                        mExecutable = null;
                         mAdapter.stopStreaming();
                         int resultsSize = mAdapter.resultsSize();
                         mStreamingSearchProgress.setVisibility(View.INVISIBLE);
@@ -481,7 +482,7 @@ public class SearchActivity extends Activity
         super.onPause();
         // stop search if the activity moves out of the foreground
         if (mExecutable != null) {
-            mExecutable.cancel();
+            mExecutable.end();
         }
     }
 
@@ -973,7 +974,7 @@ public class SearchActivity extends Activity
             case KeyEvent.KEYCODE_BACK:
                 // release Console lock held by the async search task
                 if (mExecutable != null) {
-                    mExecutable.cancel();
+                    mExecutable.end();
                 }
                 back(true, null, false);
                 return true;
@@ -991,7 +992,7 @@ public class SearchActivity extends Activity
           case android.R.id.home:
               // release Console lock held by the async search task
               if (mExecutable != null) {
-                  mExecutable.cancel();
+                  mExecutable.end();
               }
               back(true, null, false);
               return true;
@@ -1008,7 +1009,7 @@ public class SearchActivity extends Activity
         // cancel search query if in progress
         // *need* to do this as the async query holds a lock on the Console and we need the Console
         // to gather additional file info in order to process the click event
-        if (mSearchInProgress) mExecutable.cancel();
+        if (mSearchInProgress) mExecutable.end();
 
         try {
             SearchResult result = ((SearchResultAdapter)parent.getAdapter()).getItem(position);

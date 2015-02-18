@@ -49,6 +49,7 @@ import com.cyanogenmod.filemanager.util.SearchHelper;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
@@ -233,6 +234,7 @@ public class SearchResultAdapter extends ArrayAdapter<SearchResult> {
         addAll(mNewItems);
         sort(mSearchResultComparator);
         mOriginalList.addAll(mNewItems);    // cache files so enable mime type filtering later on
+        Collections.sort(mOriginalList, mSearchResultComparator);
 
         // reset buffer
         mNewItems.clear();

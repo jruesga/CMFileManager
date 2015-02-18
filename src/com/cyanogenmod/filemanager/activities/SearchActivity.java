@@ -20,6 +20,7 @@ import android.app.ActionBar;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.SearchManager;
+import android.content.ActivityNotFoundException;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -28,6 +29,7 @@ import android.content.IntentFilter;
 import android.content.res.Configuration;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.preference.PreferenceActivity;
@@ -1026,12 +1028,67 @@ public class SearchActivity extends Activity
                 fso = symlink.getLinkRef();
             }
 
-            // Open the file with the preferred registered app
+            // special treatment for video files
+            // all of the video files in the current search will also be sent as an extra in the
+            // intent along with the item that was clicked
+            MimeTypeCategory fileCategory = MimeTypeHelper.getCategoryFromExt(this,
+                    FileHelper.getExtension(fso));
+            if (fileCategory == MimeTypeCategory.VIDEO) {
+
+                ArrayList<FileSystemObject> filteredList = filterSearchResults(fileCategory);
+                ArrayList<Uri> uris = new ArrayList<Uri>(filteredList.size());
+
+                for (FileSystemObject f : filteredList) {
+                    uris.add(f.getFileUri());
+                }
+
+                Intent intent = new Intent();
+                intent.setAction(Intent.ACTION_VIEW);
+                intent.setDataAndType(fso.getFileUri(), MimeTypeHelper.getMimeType(this, fso));
+                if (filteredList.size() > 1) {
+                    intent.putParcelableArrayListExtra("EXTRA_FILE_LIST", uris);
+                }
+
+                if (DEBUG) {
+                    Log.i(TAG, "video intent : " + intent);
+                }
+
+                try {
+                    startActivity(intent);
+                } catch(ActivityNotFoundException e) {
+                    Log.e(TAG, "ActivityNotFoundException when opening a video file");
+                    Toast.makeText(this, R.string.activity_not_found_exception, Toast.LENGTH_SHORT);
+                }
+
+                return;
+            }
+
+            // for other files, open them with their preferred registered app
             back(false, fso, false);
 
         } catch (Throwable ex) {
             ExceptionUtil.translateException(this.mSearchListView.getContext(), ex);
         }
+    }
+
+    /**
+     * Returns a subset of the search results falling into the given category
+     * @param category MimeTypeCategory
+     * @return list of FileSystemObjects that
+     */
+    private ArrayList<FileSystemObject> filterSearchResults(MimeTypeCategory category) {
+        ArrayList<FileSystemObject> filteredList = new ArrayList<FileSystemObject>();
+
+        if (mAdapter.getCount() < 1) return filteredList;
+
+        for (FileSystemObject fso : mAdapter.getFiles()) {
+            if (MimeTypeHelper.getCategoryFromExt(this, FileHelper.getExtension(fso))
+                    == category) {
+                filteredList.add(fso);
+            }
+        }
+
+        return filteredList;
     }
 
     /**

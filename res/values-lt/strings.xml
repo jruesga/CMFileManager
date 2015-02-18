@@ -184,7 +184,7 @@
   <string name="bookmarks_msgs_add_success">Žymė sėkmingai pridėta.</string>
   <string name="initial_directory_dialog_title">Pagrindinis aplankas</string>
   <string name="initial_directory_label">Pasirinkite pradinį aplanką:</string>
-  <string name="initial_directory_relative_msg">Susiję takai neleidžiami.</string>
+  <string name="initial_directory_relative_msg">Susiję keliai neleidžiami.</string>
   <string name="initial_directory_error_msg">Įvyko klaida išsaugant pradinį aplanką.</string>
   <string name="menu_search">Paieška</string>
   <string name="menu_settings">Nustatymai</string>

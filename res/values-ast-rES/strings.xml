@@ -52,9 +52,11 @@
   <string name="msgs_privileged_console_alloc_failed">Imposible executar en mou superusuariu. Camudando a mou seguru.</string>
   <string name="msgs_settings_save_failure">L\'axuste nun pudo nin guardase nin aplicase.</string>
   <string name="msgs_settings_invalid_initial_directory">La carpeta inicial \"<xliff:g id="initial_dir">%1$s</xliff:g>\" ye inválida. Camudando a la carpeta raíz.</string>
+  <string name="root_not_available_msg">El permisu alministrativu nun ta disponible nesti preséu. Nun pue facese la operación.</string>
   <string name="msgs_success">Completóse la operación.</string>
   <string name="msgs_unknown">Hebo un fallu. La operación nun se completó.</string>
   <string name="msgs_insufficient_permissions">Esta operación rique permisos de superusuariu. Intenta camudar a mou superusuariu.</string>
+  <string name="msgs_no_disk_space">La operación falló porque nun hai bastante espaciu nel preséu.</string>
   <string name="msgs_file_not_found">La carpeta o ficheru nun esiste.</string>
   <string name="msgs_command_not_found">El comando pa completar la operación nun s\'atopó o ye erroneu.</string>
   <string name="msgs_io_failed">Fallu de llectura/escritura.</string>
@@ -89,6 +91,10 @@
   <string name="sort_by_name_desc">Por nome \u25BC</string>
   <string name="sort_by_date_asc">Por data \u25B2</string>
   <string name="sort_by_date_desc">Por data \u25BC</string>
+  <string name="sort_by_size_asc">Por tamañu \u25B2</string>
+  <string name="sort_by_size_desc">Por tamañu \u25BC</string>
+  <string name="sort_by_type_asc">Por tipu \u25B2</string>
+  <string name="sort_by_type_desc">Por tipu \u25B2</string>
   <string name="layout_icons">Iconos</string>
   <string name="layout_simple">Simple</string>
   <string name="layout_details">Detalláu</string>
@@ -283,6 +289,7 @@
   <string name="category_audio">AUDIU</string>
   <string name="category_video">VÍDEU</string>
   <string name="category_security">SEGURIDÁ</string>
+  <string name="category_all">TOO</string>
   <string name="compression_mode_title">Mou de compresión</string>
   <string name="shortcut_failed_msg">Fallu al abrir l\'accesu direutu.</string>
   <string name="shortcut_creation_success_msg">Accesu direutu creáu.</string>

@@ -52,9 +52,11 @@
   <string name="msgs_privileged_console_alloc_failed">Kan geen roottoegang verkrijgen. Schakelen naar veilige modus.</string>
   <string name="msgs_settings_save_failure">Kan de instellingen niet toepassen/opslaan.</string>
   <string name="msgs_settings_invalid_initial_directory">De eerste map \'<xliff:g id="initial_dir">%1$s</xliff:g>\' is ongeldig. Veranderen naar hoofdmap.</string>
+  <string name="root_not_available_msg">Root is niet beschikbaar op dit apparaat. Kan deze bewerking niet uitvoeren.</string>
   <string name="msgs_success">Bewerking is voltooid</string>
   <string name="msgs_unknown">Er is een fout opgetreden. De bewerking is mislukt.</string>
   <string name="msgs_insufficient_permissions">Deze bewerking heeft verhoogde machtigingen nodig. Probeer naar roottoegangsmodus te schakelen.</string>
+  <string name="msgs_no_disk_space">Deze bewerking is mislukt omdat er geen ruimte meer is op het apparaat.</string>
   <string name="msgs_file_not_found">Het bestand of de map is niet gevonden.</string>
   <string name="msgs_command_not_found">Het bewerkingscommando is niet gevonden of is ongeldig.</string>
   <string name="msgs_io_failed">Lees-/schrijffout.</string>
@@ -89,6 +91,10 @@
   <string name="sort_by_name_desc">Op naam ▼</string>
   <string name="sort_by_date_asc">Op datum ▲</string>
   <string name="sort_by_date_desc">Op datum ▼</string>
+  <string name="sort_by_size_asc">Op grootte \u25B2</string>
+  <string name="sort_by_size_desc">Op grootte \u25BC</string>
+  <string name="sort_by_type_asc">Op type \u25B2</string>
+  <string name="sort_by_type_desc">Op type \u25BC</string>
   <string name="layout_icons">Pictogrammen</string>
   <string name="layout_simple">Eenvoudig</string>
   <string name="layout_details">Uitgebreid</string>
@@ -278,6 +284,7 @@
   <string name="category_audio">GELUID</string>
   <string name="category_video">VIDEO</string>
   <string name="category_security">BEVEILIGING</string>
+  <string name="category_all">ALLES</string>
   <string name="compression_mode_title">Comprimeermodus</string>
   <string name="shortcut_failed_msg">Snelkoppeling behandelen mislukt.</string>
   <string name="shortcut_creation_success_msg">Snelkoppeling succesvol aangemaakt.</string>

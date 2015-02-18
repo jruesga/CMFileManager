@@ -228,7 +228,7 @@
   <string name="actions_menu_move_selection">Presunúť vybrané</string>
   <string name="actions_menu_delete_selection">Odstrániť vybrané</string>
   <string name="actions_menu_compress_selection">Komprimovať vybrané</string>
-  <string name="actions_menu_create_link">Vytvor odkaz</string>
+  <string name="actions_menu_create_link">Vytvoriť odkaz</string>
   <string name="actions_menu_open">Otvoriť</string>
   <string name="actions_menu_open_with">Otvoriť s</string>
   <string name="actions_menu_execute">Spustiť</string>

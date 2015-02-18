@@ -52,9 +52,11 @@
   <string name="msgs_privileged_console_alloc_failed">Imposible ejecutar en modo superusuario. Cambiando a modo seguro.</string>
   <string name="msgs_settings_save_failure">El ajuste no pudo ser aplicado ni guardado.</string>
   <string name="msgs_settings_invalid_initial_directory">La carpeta inicial \"<xliff:g id="initial_dir">%1$s</xliff:g>\" es inválida. Cambiando a la carpeta raíz.</string>
+  <string name="root_not_available_msg">El permiso administrativo no está disponible en este dispositivo. No se puede realizar la operación.</string>
   <string name="msgs_success">La operación ha sido completada.</string>
   <string name="msgs_unknown">Ocurrió un error. La operación no se completó.</string>
   <string name="msgs_insufficient_permissions">Esta operación requiere permisos de superusuario. Intenta cambiar a modo superusuario.</string>
+  <string name="msgs_no_disk_space">La operación falló porque no hay suficiente espacio en el dispositivo.</string>
   <string name="msgs_file_not_found">La carpeta o archivo no existe.</string>
   <string name="msgs_command_not_found">El comando para completar la operación no se ha encontrado o es erróneo.</string>
   <string name="msgs_io_failed">Error de lectura/escritura.</string>
@@ -89,6 +91,10 @@
   <string name="sort_by_name_desc">Por nombre \u25BC</string>
   <string name="sort_by_date_asc">Por fecha \u25B2</string>
   <string name="sort_by_date_desc">Por fecha \u25BC</string>
+  <string name="sort_by_size_asc">Por tamaño \u25B2</string>
+  <string name="sort_by_size_desc">Por tamaño \u25BC</string>
+  <string name="sort_by_type_asc">Por tipo \u25B2</string>
+  <string name="sort_by_type_desc">Por tipo \u25B2</string>
   <string name="layout_icons">Iconos</string>
   <string name="layout_simple">Simple</string>
   <string name="layout_details">Detallado</string>
@@ -282,6 +288,7 @@
   <string name="category_audio">AUDIO</string>
   <string name="category_video">VÍDEO</string>
   <string name="category_security">SEGURIDAD</string>
+  <string name="category_all">TODOS</string>
   <string name="compression_mode_title">Modo de compresión</string>
   <string name="shortcut_failed_msg">Error al abrir el acceso directo.</string>
   <string name="shortcut_creation_success_msg">Acceso directo creado.</string>

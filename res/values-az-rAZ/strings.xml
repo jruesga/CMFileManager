@@ -56,7 +56,7 @@
   <string name="msgs_file_not_found">Fayl və ya qovluq tapılmadı.</string>
   <string name="msgs_command_not_found">Bu əməliyyatın əmri tapılmadı və ya tərifi etibarsızdır.</string>
   <string name="msgs_io_failed">Oxuma/yazma xətası.</string>
-  <string name="msgs_operation_timeout">Əməliyyat müddəti aşdı.</string>
+  <string name="msgs_operation_timeout">Əməliyyata qoyulan vaxt bitdi.</string>
   <string name="msgs_operation_failure">Əməliyyat baş tutmadı.</string>
   <string name="msgs_push_again_to_exit">Çıxmaq üçün təkrar basın.</string>
   <string name="parent_dir">Üst qovluq</string>

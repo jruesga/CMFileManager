@@ -89,6 +89,10 @@
   <string name="sort_by_name_desc">După nume ▼</string>
   <string name="sort_by_date_asc">După dată ▲</string>
   <string name="sort_by_date_desc">După dată ▼</string>
+  <string name="sort_by_size_asc">După dimensiune \u25B2</string>
+  <string name="sort_by_size_desc">După dimensiune \u25BC</string>
+  <string name="sort_by_type_asc">După tip \u25B2</string>
+  <string name="sort_by_type_desc">După tip \u25BC</string>
   <string name="layout_icons">Pictograme</string>
   <string name="layout_simple">Simplu</string>
   <string name="layout_details">Detaliat</string>
@@ -278,6 +282,7 @@
   <string name="category_audio">AUDIO</string>
   <string name="category_video">VIDEO</string>
   <string name="category_security">SECURITATE</string>
+  <string name="category_all">TOATE</string>
   <string name="compression_mode_title">Mod comrimare</string>
   <string name="shortcut_failed_msg">Eșuat.</string>
   <string name="shortcut_creation_success_msg">Comandă rapidă creată cu succes.</string>

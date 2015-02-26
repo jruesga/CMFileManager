@@ -21,7 +21,6 @@ import android.app.AlertDialog;
 import android.content.ActivityNotFoundException;
 import android.content.BroadcastReceiver;
 import android.content.ComponentName;
-import android.content.ContentResolver;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnCancelListener;
@@ -209,6 +208,7 @@ public class PickerActivity extends Activity
         }
 
         // Display restrictions
+        Bundle extras = getIntent().getExtras();
         Map<DisplayRestrictions, Object> restrictions = new HashMap<DisplayRestrictions, Object>();
         //- Mime/Type restriction
         String mimeType = getIntent().getType();
@@ -221,9 +221,13 @@ public class PickerActivity extends Activity
                 mimeType = MimeTypeHelper.ALL_MIME_TYPES;
             }
             restrictions.put(DisplayRestrictions.MIME_TYPE_RESTRICTION, mimeType);
+        } else {
+            String[] mimeTypes = getIntent().getStringArrayExtra(Intent.EXTRA_MIME_TYPES);
+            if (mimeTypes != null && mimeTypes.length > 0) {
+                restrictions.put(DisplayRestrictions.MIME_TYPE_RESTRICTION, mimeTypes);
+            }
         }
         // Other restrictions
-        Bundle extras = getIntent().getExtras();
         Log.d(TAG, "PickerActivity. extras: " + String.valueOf(extras)); //$NON-NLS-1$
         if (extras != null) {
             //-- File size

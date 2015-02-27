@@ -115,11 +115,6 @@ public class PickerActivity extends Activity
     // String extra for folder selection
     private static final String EXTRA_FOLDER_PATH = "def_file_manager_result_dir";
 
-    // Scheme for file and directory picking
-    private static final String FILE_URI_SCHEME = "file"; //$NON-NLS-1$
-    private static final String FOLDER_URI_SCHEME = "folder"; //$NON-NLS-1$
-    private static final String DIRECTORY_URI_SCHEME = "directory"; //$NON-NLS-1$
-
     FileSystemObject mFso;  // The picked item
     FileSystemObject mCurrentDirectory;
     private AlertDialog mDialog;
@@ -470,7 +465,7 @@ public class PickerActivity extends Activity
         }
         if (Intent.ACTION_PICK.equals(action)) {
             final Uri data = intent.getData();
-            if (data != null && FILE_URI_SCHEME.equals(data.getScheme())) {
+            if (data != null && FileHelper.FILE_URI_SCHEME.equals(data.getScheme())) {
                 return true;
             }
         }
@@ -485,7 +480,8 @@ public class PickerActivity extends Activity
 
         if (Intent.ACTION_PICK.equals(intent.getAction()) && intent.getData() != null) {
             String scheme = intent.getData().getScheme();
-            if (FOLDER_URI_SCHEME.equals(scheme) || DIRECTORY_URI_SCHEME.equals(scheme)) {
+            if (FileHelper.FOLDER_URI_SCHEME.equals(scheme)
+                    || FileHelper.DIRECTORY_URI_SCHEME.equals(scheme)) {
                 return true;
             }
         }

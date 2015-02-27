@@ -78,6 +78,11 @@ public final class FileHelper {
 
     private static final String TAG = "FileHelper"; //$NON-NLS-1$
 
+    // Scheme for file and directory picking
+    public static final String FILE_URI_SCHEME = "file"; //$NON-NLS-1$
+    public static final String FOLDER_URI_SCHEME = "folder"; //$NON-NLS-1$
+    public static final String DIRECTORY_URI_SCHEME = "directory"; //$NON-NLS-1$
+
     /**
      * Special extension for compressed tar files
      */

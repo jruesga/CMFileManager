@@ -16,7 +16,6 @@
 
 package com.cyanogenmod.filemanager.activities;
 
-import android.app.ActionBar;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.SearchManager;
@@ -26,7 +25,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.res.Configuration;
-import android.content.res.Resources;
 import android.content.res.XmlResourceParser;
 import android.database.Cursor;
 import android.graphics.Color;
@@ -39,7 +37,6 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
 import android.os.Parcelable;
-import android.os.storage.StorageManager;
 import android.os.storage.StorageVolume;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.widget.DrawerLayout;
@@ -47,8 +44,6 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.KeyEvent;
-import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -61,20 +56,17 @@ import android.widget.LinearLayout;
 import android.widget.ListPopupWindow;
 import android.widget.ListView;
 import android.widget.PopupWindow;
-import android.widget.ScrollView;
 import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import android.widget.Toolbar;
 import android.widget.ArrayAdapter;
+
 import com.android.internal.util.XmlUtils;
 import com.cyanogenmod.filemanager.FileManagerApplication;
 import com.cyanogenmod.filemanager.R;
 import com.cyanogenmod.filemanager.activities.preferences.SettingsPreferences;
-import com.cyanogenmod.filemanager.adapters.HighlightedSimpleMenuListAdapter;
 import com.cyanogenmod.filemanager.adapters.MenuSettingsAdapter;
-import com.cyanogenmod.filemanager.adapters.SimpleMenuListAdapter;
 import com.cyanogenmod.filemanager.console.Console;
 import com.cyanogenmod.filemanager.console.ConsoleAllocException;
 import com.cyanogenmod.filemanager.console.ConsoleBuilder;
@@ -1543,6 +1535,16 @@ public class NavigationActivity extends Activity
         String navigateTo = intent.getStringExtra(EXTRA_NAVIGATE_TO);
         if (navigateTo != null && navigateTo.length() > 0) {
             initialDir = navigateTo;
+        } else if (intent.getAction().equals(Intent.ACTION_VIEW)) {
+            Uri data = intent.getData();
+            if (data != null && (FileHelper.FILE_URI_SCHEME.equals(data.getScheme())
+                    || FileHelper.FOLDER_URI_SCHEME.equals(data.getScheme())
+                    || FileHelper.DIRECTORY_URI_SCHEME.equals(data.getScheme()))) {
+                File path = new File(data.getPath());
+                if (path.isDirectory()) {
+                    initialDir = path.getAbsolutePath();
+                }
+            }
         }
 
         // Add to history

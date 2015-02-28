@@ -402,4 +402,5 @@
   <string name="changelog_title">更新履歴</string>
   <string name="welcome_title">ようこそ</string>
   <string name="welcome_msg">CyanogenModファイルマネージャーへようこそ。\n\nこのアプリはシステムファイルの操作や端末を破壊する可能性のある操作を許可します。損害を防ぐために、アプリは安全で低い権限を持つモードで開始します。\n\nすべての権限を持つ上級者向けのモードは設定からアクセスできます。操作がシステムを破壊しないことを確認するのは個人の責任です。\n\nCyanogenModチーム</string>
+  <string name="activity_not_found_exception">このファイルを開くためのアプリが見つかりませんでした</string>
 </resources>

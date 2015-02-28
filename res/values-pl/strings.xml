@@ -52,9 +52,11 @@
   <string name="msgs_privileged_console_alloc_failed">Nie można uruchomić w trybie dostępu do roota. Aktywowany zostanie tryb bezpieczny.</string>
   <string name="msgs_settings_save_failure">Ustawienie nie może zostać aktywowane lub zachowane.</string>
   <string name="msgs_settings_invalid_initial_directory">Początkowy folder \"<xliff:g id="initial_dir">%1$s</xliff:g>\" jest nieprawidłowy. Zmieniono na folder główny.</string>
+  <string name="root_not_available_msg">Root jest niedostępny na tym urządzeniu. Nie można wykonać tej operacji.</string>
   <string name="msgs_success">Operacja zakończyła się sukcesem.</string>
   <string name="msgs_unknown">Napotkano błąd. Operacja się nie powiodła.</string>
   <string name="msgs_insufficient_permissions">Ta operacja wymaga podwyższonych uprawnień. Spróbuj po aktywacji trybu dostępu do roota.</string>
+  <string name="msgs_no_disk_space">Ta operacja nie powiodła się, ponieważ na urządzeniu nie ma wolnego miejsca.</string>
   <string name="msgs_file_not_found">Nie znaleziono pliku lub folderu.</string>
   <string name="msgs_command_not_found">Nie znaleziono polecenia operacji lub ma ono nieprawidłową definicję.</string>
   <string name="msgs_io_failed">Niepowodzenie zapisu/odczytu.</string>
@@ -89,6 +91,10 @@
   <string name="sort_by_name_desc">Wg nazwy ▼</string>
   <string name="sort_by_date_asc">Wg daty ▲</string>
   <string name="sort_by_date_desc">Wg daty ▼</string>
+  <string name="sort_by_size_asc">Wg rozmiaru \u25B2</string>
+  <string name="sort_by_size_desc">Wg rozmiaru \u25BC</string>
+  <string name="sort_by_type_asc">Wg typu \u25B2</string>
+  <string name="sort_by_type_desc">Wg typu \u25BC</string>
   <string name="layout_icons">Ikony</string>
   <string name="layout_simple">Prosty</string>
   <string name="layout_details">Szczegółowy</string>
@@ -404,4 +410,5 @@
   <string name="changelog_title">Lista zmian</string>
   <string name="welcome_title">Witaj</string>
   <string name="welcome_msg">\n    Witaj w Menedżerze plików CyanogenMod.\n    \n\nAplikacja ta pozwala Ci przeglądać pliki systemowe i wykonywać czynności, które mogą uszkodzić urządzenie. Aby zapobiec ewentualnym szkodom, aplikacja zostanie uruchomiona w bezpiecznym trybie bez podwyższonych uprawnień.\n    \n\nTryb z pełnymi uprawnieniami możesz aktywować w ustawieniach aplikacji. Ponosisz odpowiedzialność za to, by swoimi działaniami nie doprowadzić do uszkodzenia systemu.\n    \n\nZespół CyanogenMod.\n</string>
+  <string name="activity_not_found_exception">Nie znaleziono aplikacji do otwarcia tego pliku</string>
 </resources>

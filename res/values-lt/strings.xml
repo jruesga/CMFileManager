@@ -103,7 +103,7 @@
   <string name="cm_filemanager_show_system">Rodyti sistemos failus</string>
   <string name="cm_filemanager_show_symlinks">Rodyti simbolines nuorodas</string>
   <string name="filesystem_info_warning_title">Nėra informacijos</string>
-  <string name="filesystem_info_warning_msg">Failų sistemos informacija nėra prieinama.</string>
+  <string name="filesystem_info_warning_msg">Nėra pasiekiamos failų sistemos informacijos.</string>
   <string name="filesystem_info_cant_be_mounted_msg">Failų sistema negali būti prijungiama / atjungiama.</string>
   <string name="filesystem_info_mount_not_allowed_msg">Failų sistemos prijungimo veiksmai neleidžiami saugiame režime. Bakstelėkite, kad pakeistumėte į „Root“ prieigos režimą.</string>
   <string name="filesystem_info_mount_failed_msg">Failų sistemos prijungimo veiksmas nepavyko. Kai kurios failų sistemos, pavyzdžiui, SD kortelių, negali būti prijungiamos / atjungiamos, nes jos yra įtaisytos ir naudojamos tik failų sistemos skaitymui.</string>
@@ -234,7 +234,7 @@
   <string name="actions_menu_create_copy">Sukurti kopiją</string>
   <string name="actions_menu_properties">Savybės</string>
   <string name="actions_menu_add_to_bookmarks">Pridėti į užrašus</string>
-  <string name="actions_menu_add_shortcut">Pridėti nuorodą</string>
+  <string name="actions_menu_add_shortcut">Pridėti spartujį klavišą</string>
   <string name="actions_menu_open_parent_folder">Atidaryti aplanką su failu</string>
   <string name="actions_menu_compute_checksum">Apskaičiuoti kontrolinę sumą</string>
   <string name="actions_menu_print">Spausdinti</string>
@@ -286,9 +286,9 @@
   <string name="category_security">SAUGUMAS</string>
   <string name="category_all">VISKAS</string>
   <string name="compression_mode_title">Suglaudinimo režimas</string>
-  <string name="shortcut_failed_msg">Nepavyko apdoroti nuorodos.</string>
-  <string name="shortcut_creation_success_msg">Nuoroda sukurta sėkmingai.</string>
-  <string name="shortcut_creation_failed_msg">Nuorodos sukurti nepavyko.</string>
+  <string name="shortcut_failed_msg">Nepavyko apdoroti sparčiojo klavišo.</string>
+  <string name="shortcut_creation_success_msg">Spartusis klavišas sukurtas sėkmingai.</string>
+  <string name="shortcut_creation_failed_msg">Sparčiojo klavišo sukurti nepavyko.</string>
   <string name="pref">Nustatymai</string>
   <string name="pref_general">Bendrieji nustatymai</string>
   <string name="pref_search">Paieškos parinktys</string>
@@ -335,8 +335,8 @@
   <string name="pref_remove_saved_search_terms_msg">Visi išsaugoti paieškos terminai buvo pašalinti</string>
   <string name="pref_secure_storage_category">Saugi saugykla</string>
   <string name="pref_secure_storage_delayed_sync_title">Uždelstas sinchronizavimas</string>
-  <string name="pref_secure_storage_delayed_sync_summary">Saugių sistemų failų sinchronizavimas yra reikalaujanti daug laiko operacija. Įjunkite šią parinktį, kad leistumėte greitesnį atsaką po kiekvienos operacijos, atlikti sinchronizavimą kai sistemos failai yra nenaudojami, tačiau rizikuojate prarasti nesinchronizuotą informaciją po netikėto programos sustojimo.</string>
-  <string name="pref_secure_storage_reset_password_title">Atkurti slaptažodį</string>
+  <string name="pref_secure_storage_delayed_sync_summary">Saugių sistemų failų sinchronizavimas yra reikalaujanti daug laiko operacija. Įgalinkite šią parinktį, kad leistumėte greitesnį atsaką po kiekvienos operacijos, atlikti sinchronizavimą kai sistemos failai yra nenaudojami, tačiau rizikuojate prarasti nesinchronizuotą informaciją po netikėto programos sustojimo.</string>
+  <string name="pref_secure_storage_reset_password_title">Nustatyti iš naujo slaptažodį</string>
   <string name="pref_secure_storage_delete_storage_title">Ištrinti saugyklą</string>
   <string name="pref_editor_behaviour_category">Elgsena</string>
   <string name="pref_no_suggestions">Jokių pasiūlymų</string>
@@ -346,7 +346,7 @@
   <string name="pref_hexdump_desc">Rodyti dvejetainių failų turinį šešioliktainiu formatu</string>
   <string name="pref_editor_syntax_highlight_category">Sintaksės išryškinimas</string>
   <string name="pref_syntax_highlight">Sintaksės išryškinimas</string>
-  <string name="pref_syntax_highlight_desc">Jei įmanoma, įjungti sintaksės išryškinimą</string>
+  <string name="pref_syntax_highlight_desc">Išryškinti sintaksę (tik tada, kai sintaksės išryškinimo procesorius yra pasiekiamas failo tipui.)</string>
   <string name="pref_syntax_highlight_color_scheme">Spalvų schema</string>
   <string name="pref_syntax_highlight_color_scheme_desc">Pasirinkite sintaksės paryškinimo spalvų schemą</string>
   <string name="pref_syntax_sh_use_theme_default">Naudoti numatytąją temą</string>
@@ -376,11 +376,11 @@
   <string name="ash_variable">Kintamasis</string>
   <string name="secure_storage_unlock_title">Atrakinti saugyklą</string>
   <string name="secure_storage_create_title">Sukurti saugyklą</string>
-  <string name="secure_storage_reset_title">Atkurti slaptažodį</string>
+  <string name="secure_storage_reset_title">Nustatyti iš naujo slaptažodį</string>
   <string name="secure_storage_delete_title">Ištrinti saugyklą</string>
   <string name="secure_storage_unlock_key_prompt_msg">Įveskite slaptažodį, kad atrakintumėte saugią failų sistemą.</string>
   <string name="secure_storage_unlock_key_new_msg">Įveskite slaptažodį, kad apsaugotumėte failų sistemą.</string>
-  <string name="secure_storage_unlock_key_reset_msg">Įrašykite esamą ir naują slaptažodžius, kad atkurtumėte saugią failų sistemą.</string>
+  <string name="secure_storage_unlock_key_reset_msg">Įrašykite esamą ir naują slaptažodžius, kad nustatytumėte iš naujo saugią failų sistemą.</string>
   <string name="secure_storage_unlock_key_delete_msg">Įrašykite esamą slaptažodį, kad ištrintumėte saugią failų sistemą.</string>
   <string name="secure_storage_unlock_old_key_title">Senas slaptažodis:</string>
   <string name="secure_storage_unlock_new_key_title">Naujas slaptažodis:</string>
@@ -388,7 +388,7 @@
   <string name="secure_storage_unlock_repeat_title">Pakartokite slaptažodį:</string>
   <string name="secure_storage_create_button">Sukurti</string>
   <string name="secure_storage_unlock_button">Atrakinti</string>
-  <string name="secure_storage_reset_button">Atkurti</string>
+  <string name="secure_storage_reset_button">Atstatyti</string>
   <string name="secure_storage_delete_button">Ištrinti</string>
   <string name="secure_storage_unlock_failed">Nepavyko atrakinti saugyklos</string>
   <string name="secure_storage_unlock_validation_length">Slaptažodyje turi būti mažiausiai <xliff:g id="characters">%1$d</xliff:g> simboliai.</string>
@@ -401,4 +401,5 @@
   <string name="changelog_title">Pakeitimų sąrašas</string>
   <string name="welcome_title">Sveiki</string>
   <string name="welcome_msg">Sveiki atvykę į „CyanogenMod“ failų tvarkyklę.\n\nŠi programa leidžia ieškoti sistemos failų ir daryti veiksmus kurie gali pažeisti jūsų įrenginį. Kad išvengtumėte galymos žalos, programa startuos saugiame, mažo privilegijuotumo režime.\n\nNaudodamiesi nustatymais jūs galite prisijungti prie pažangaus, pilnai priveligijuoto režimo. Jūsų atsakomybė yra užtikrinti, kad savo veiksmais nepažeisite sistemos.\n\n„CyanogenMod“ komanda</string>
+  <string name="activity_not_found_exception">Nepavyko rasti programos, kad atidaryti šį failą</string>
 </resources>

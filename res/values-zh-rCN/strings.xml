@@ -426,4 +426,5 @@
   <string name="changelog_title">更改记录</string>
   <string name="welcome_title">欢迎</string>
   <string name="welcome_msg">欢迎您使用 CyanogenMod 文件管理器。 \n\n本应用允许您浏览设备的文件系统并做出可能导致损伤的操作。为了避免损伤，此程序默认将会在低权限与安全的模式下开始运行。\n\n您可以通过设置切换到高级并拥有完全控制的模式。确保操作不会损坏系统与它的安全性将是您的责任。\n\nCyanogenMod 团队</string>
+  <string name="activity_not_found_exception">无可用于打开此文件的应用</string>
 </resources>

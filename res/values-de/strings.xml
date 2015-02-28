@@ -401,4 +401,5 @@
   <string name="changelog_title">Changelog</string>
   <string name="welcome_title">Willkommen</string>
   <string name="welcome_msg">Willkommen im CyanogenMod-Dateimanager.\n\nDiese App erlaubt das Navigieren durch das Dateisystem des Gerätes. Dabei können Aktionen ausgeführt werden, die das Gerät beschädigen können. Um Schäden zu vermeiden, startet die App im sicheren Modus mit eingeschränkten Berechtigungen.\n\nErweiterte Modi, mit vollen Berechtigungen, können in den Einstellungen aktiviert werden.\n\nDas CyanogenMod-Team</string>
+  <string name="activity_not_found_exception">Es konnte keine App gefunden werden, um diese Datei zu öffnen</string>
 </resources>

@@ -434,4 +434,5 @@
     \n\nPode aceder às definições mais avançadas via Definições. É sua a responsabilidade de garantir
     que uma operação não afete a estabilidade do seu sistema.
     \n\nA Equipa CyanogenMod.\n</string>
+  <string name="activity_not_found_exception">Não consegui encontrar uma aplicação para abrir este ficheiro</string>
 </resources>

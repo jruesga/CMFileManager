@@ -408,4 +408,5 @@
   <string name="changelog_title">Endringslogg</string>
   <string name="welcome_title">Velkommen</string>
   <string name="welcome_msg">Velkommen til CyanogenMod filbehandler.\n\nDenne appen lar deg utforske filsystemet og å gjøre operasjoner som kan ødelegge enheten. For å unngå skader vil appen starte med trygg og lav-priviligert tilgang.\n\nDu får tilgang til den avanserte, full-priviligerte modusen via Innstillingene. Det er ditt ansvar å sørge for at en operasjon ikke ødelegger systemet.\n\nThe CyanogenMod Team.\n</string>
+  <string name="activity_not_found_exception">Kunne ikke finne en app for å åpne denne filen</string>
 </resources>

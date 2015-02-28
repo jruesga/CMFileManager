@@ -401,4 +401,5 @@
   <string name="changelog_title">Muutosloki</string>
   <string name="welcome_title">Tervetuloa</string>
   <string name="welcome_msg">Tervetuloa CyanogenModin tiedostonhallintaan.\n\nTällä sovelluksella voit selata tiedostojärjestelmää ja tehdä muutoksia jotka voivat rikkoa laitteesi. Ehkäistäksemme rikkoutumisia, sovellus käynnistyy turvallisessa tilassa jossa ei ole kaikkia oikeuksia.\n\nSaat täydet oikeudet käyttöön asetuksista. Teet kaikki muutokset omalla vastuullasi.\n\nCyanogenMod-tiimi.\n</string>
+  <string name="activity_not_found_exception">Tiedoston avaamiseen sopivaa sovellusta ei löydy</string>
 </resources>

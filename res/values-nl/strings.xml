@@ -56,7 +56,7 @@
   <string name="msgs_success">Bewerking is voltooid</string>
   <string name="msgs_unknown">Er is een fout opgetreden. De bewerking is mislukt.</string>
   <string name="msgs_insufficient_permissions">Deze bewerking heeft verhoogde machtigingen nodig. Probeer naar roottoegangsmodus te schakelen.</string>
-  <string name="msgs_no_disk_space">Deze bewerking is mislukt omdat er geen ruimte meer is op het apparaat.</string>
+  <string name="msgs_no_disk_space">Bewerking mislukt, er is geen ruimte meer op het apparaat.</string>
   <string name="msgs_file_not_found">Het bestand of de map is niet gevonden.</string>
   <string name="msgs_command_not_found">Het bewerkingscommando is niet gevonden of is ongeldig.</string>
   <string name="msgs_io_failed">Lees-/schrijffout.</string>

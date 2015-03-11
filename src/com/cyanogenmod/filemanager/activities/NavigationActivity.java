@@ -1710,16 +1710,18 @@ public class NavigationActivity extends Activity
             }
             return true;
         }
-        if (keyCode == KeyEvent.KEYCODE_BACK) {
-            if (checkBackAction()) {
-                performHideEasyMode();
-                return true;
-            }
-
-            // An exit event has occurred, force the destroy the consoles
-            exit();
-        }
         return super.onKeyUp(keyCode, event);
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (checkBackAction()) {
+            performHideEasyMode();
+            return;
+        }
+
+        // An exit event has occurred, force the destroy the consoles
+        exit();
     }
 
     /**

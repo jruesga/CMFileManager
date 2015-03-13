@@ -1624,10 +1624,12 @@ public class NavigationActivity extends Activity
         }
 
         boolean needsEasyMode = false;
-        for (Bookmark bookmark :mSdBookmarks) {
-            if (bookmark.mPath.equalsIgnoreCase(initialDir)) {
-                needsEasyMode = true;
-                break;
+        if (mSdBookmarks != null ) {
+            for (Bookmark bookmark :mSdBookmarks) {
+                if (bookmark.mPath.equalsIgnoreCase(initialDir)) {
+                    needsEasyMode = true;
+                    break;
+                }
             }
         }
 

@@ -42,7 +42,7 @@
   <string name="copy_text_cd">Додирни да копираш текст у привремену меморију</string>
   <string name="copy_text_msg">Текст је копиран у привремену меморију</string>
   <string name="warning_title">Упозорење</string>
-  <string name="error_title">Пронађена грешка</string>
+  <string name="error_title">Грешка</string>
   <string name="confirm_operation">Потврди операцију</string>
   <string name="confirm_overwrite">Потврди преписивање</string>
   <string name="confirm_deletion">Потврди брисање</string>
@@ -67,7 +67,7 @@
   <string name="msgs_read_only_filesystem">Систем фајлова је само за читање. Покушај да га монтираш за читање и писање пре него што покушаш ову операцију.</string>
   <string name="msgs_illegal_argument">Нелегалан аргумент. Позив није успео.</string>
   <string name="msgs_unresolved_inconsistencies">Операција није дозвољена јер би довела до неконзистенција.</string>
-  <string name="msgs_operation_not_allowed_in_current_directory">Операција није дозвољена у текућем фолдеру.\n\nЦиљни фолдер не може бити подфолдер изворног или исти као изворни.</string>
+  <string name="msgs_operation_not_allowed_in_current_directory">Одредишни фолдер неможе бити подфолдер извора или бити исти као и извор.</string>
   <string name="msgs_push_again_to_exit">Притисни опет за излаз.</string>
   <string name="msgs_not_registered_app">Нема регистроване апликације за обраду типа изабраног фајла.</string>
   <string name="msgs_overwrite_files">Неки фајлови већ постоје у циљном фолдеру.\n\nПрепиши их?</string>

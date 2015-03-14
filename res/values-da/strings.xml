@@ -42,7 +42,6 @@
   <string name="copy_text_cd">Tryk for at kopiere tekst til udklipsholder</string>
   <string name="copy_text_msg">Tekst kopieret til udklipsholder</string>
   <string name="warning_title">Advarsel</string>
-  <string name="error_title">Fejl fundet</string>
   <string name="confirm_operation">Bekræft handling</string>
   <string name="confirm_overwrite">Bekræft overskrivning</string>
   <string name="confirm_deletion">Bekræft sletning</string>
@@ -52,7 +51,6 @@
   <string name="msgs_privileged_console_alloc_failed">Kan ikke køre i tilstanden Root-adgang. Skifter til Sikker tilstand.</string>
   <string name="msgs_settings_save_failure">Indstillingen kunne ikke anvendes eller gemmes.</string>
   <string name="msgs_settings_invalid_initial_directory">Opstartsmappen \"<xliff:g id="initial_dir">%1$s</xliff:g>\" er ugyldig. Skifter til rodmappe.</string>
-  <string name="root_not_available_msg">Root-adgang er ikke tilgængelig på denne enhed. Handling kan ikke udføres.</string>
   <string name="msgs_success">Handlingen blev gennemført med succes.</string>
   <string name="msgs_unknown">Der blev fundet en fejl. Handlingen mislykkedes</string>
   <string name="msgs_insufficient_permissions">Denne handling kræver forøgede rettigheder. Prøver at skifte til tilstanden Root-adgang.</string>
@@ -67,7 +65,6 @@
   <string name="msgs_read_only_filesystem">Filsystemet er skrivebeskyttet. Prøver at montere filsystemet som læs/skriv, før handlingen forsøges..</string>
   <string name="msgs_illegal_argument">Ugyldigt argument. Aktivering mislykkedes.</string>
   <string name="msgs_unresolved_inconsistencies">Handlingen er ikke tilladt, da den vil skabe uoverensstemmelser.</string>
-  <string name="msgs_operation_not_allowed_in_current_directory">Handlingen er ikke tilladt i denne mappe.</string>
   <string name="msgs_push_again_to_exit">Tryk igen for at afslutte.</string>
   <string name="msgs_not_registered_app">Der er ikke registreret noget program til at håndtere den valgte filtype.</string>
   <string name="msgs_overwrite_files">Nogle af filerne findes allerede i destinationsmappen.\n\nOverskriv?</string>

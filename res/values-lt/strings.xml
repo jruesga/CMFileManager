@@ -42,7 +42,7 @@
   <string name="copy_text_cd">Bakstelėkite, kad nukopijuotumėte tekstą į iškarpinę</string>
   <string name="copy_text_msg">Tekstas nukopijuotas į iškarpinę</string>
   <string name="warning_title">Įspėjimas</string>
-  <string name="error_title">Aptikta klaida</string>
+  <string name="error_title">Klaida</string>
   <string name="confirm_operation">Patvirtinkite veiksmą</string>
   <string name="confirm_overwrite">Patvirtinkite perrašymą</string>
   <string name="confirm_deletion">Patvirtinkite trynimą</string>
@@ -67,7 +67,7 @@
   <string name="msgs_read_only_filesystem">Failai sistemos yra tik skaitomi. Pabandykite prijungti failų sistemą kaip skaitomą ir rašomą, prieš pradedant veiksmą.</string>
   <string name="msgs_illegal_argument">Neteisingas argumentas. Kreipimasis nepavyko.</string>
   <string name="msgs_unresolved_inconsistencies">Šis veiksmas neleidžiamas, nes tai sukels neatitikimų.</string>
-  <string name="msgs_operation_not_allowed_in_current_directory">Veiksmas neleistinas dabartiniame aplanke.\n\nPaskirties vieta negali būti ta pati kaip šaltinio arba šaltinio poaplankio.</string>
+  <string name="msgs_operation_not_allowed_in_current_directory">Paskirties aplankas negali būti šaltinio aplankas arba būti toks pat kaip šaltinis.</string>
   <string name="msgs_push_again_to_exit">Paspauskite dar kartą, kad išeitumėte.</string>
   <string name="msgs_not_registered_app">Nėra registruotos programos kuri tvarkytu pasirinktą failo tipą.</string>
   <string name="msgs_overwrite_files">Kai kurie failai jau egzistuoja aplanke.\n\nPerrašyti?</string>

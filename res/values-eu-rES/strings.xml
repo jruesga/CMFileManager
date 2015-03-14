@@ -42,7 +42,6 @@
   <string name="copy_text_cd">Sakatu testua paper-zorrora kopiatzeko</string>
   <string name="copy_text_msg">Testua paper-zorrora kopiatu da</string>
   <string name="warning_title">Kontuz</string>
-  <string name="error_title">Akats bat somatu da</string>
   <string name="confirm_operation">Operazioa berretsi</string>
   <string name="confirm_overwrite">Gainidazketa berretsi</string>
   <string name="confirm_deletion">Ezabaketa berretsi</string>
@@ -65,7 +64,6 @@
   <string name="msgs_read_only_filesystem">Fitxategi sistema irakurtzeko soilik da. Saiatu Irakurtze-idazte bezala muntatzen eragiketa errepikatu aurretik.</string>
   <string name="msgs_illegal_argument">Lege kontrako argumentua. Inbokazioak huts egin du.</string>
   <string name="msgs_unresolved_inconsistencies">Funtsik eza sor dezakenez operazioa ez dago baimenduta.</string>
-  <string name="msgs_operation_not_allowed_in_current_directory">Operazioa ez dago uneko karpetan baimenduta.\n\nHelmuga karpeta ezin da unekoaren berdina edo honen azpikarpeta bat izan.</string>
   <string name="msgs_push_again_to_exit">Berriro sakatu irtetzeko.</string>
   <string name="msgs_not_registered_app">Ez dago aukeratutako fitxategia irekitzeko aplikaziorik erregistratuta.</string>
   <string name="msgs_overwrite_files">Fitxategiren bat helmugako karpetan existitzen da jada.\n\n Gainidatzi?</string>

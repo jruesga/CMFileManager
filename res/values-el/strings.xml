@@ -42,7 +42,7 @@
   <string name="copy_text_cd">Πιέστε για αντιγραφή του κειμένου στο πρόχειρο</string>
   <string name="copy_text_msg">Το κείμενο έχει αντιγραφεί στο πρόχειρο</string>
   <string name="warning_title">Προσοχή</string>
-  <string name="error_title">Εντοπίστηκε σφάλμα</string>
+  <string name="error_title">Σφάλμα</string>
   <string name="confirm_operation">Επιβεβαίωση δραστηριότητας</string>
   <string name="confirm_overwrite">Επιβεβαίωση αντικατάστασης</string>
   <string name="confirm_deletion">Επιβεβαίωση διαγραφής</string>
@@ -67,7 +67,7 @@
   <string name="msgs_read_only_filesystem">Το σύστημα αρχείων είναι μόνο για ανάγνωση. Προσπαθήστε να προσαρτήσετε το σύστημα αρχείων για ανάγνωση/εγγραφή πριν εκτελέσετε τη λειτουργία.</string>
   <string name="msgs_illegal_argument">Μη έγκυρο επιχείρημα. Αποτυχία επίκλησης λειτουργίας.</string>
   <string name="msgs_unresolved_inconsistencies">Η λειτουργία δεν επιτρέπεται, διότι θα δημιουργούσε προβλήματα ασυνέπειας.</string>
-  <string name="msgs_operation_not_allowed_in_current_directory">Η λειτουργία δεν επιτρέπεται στον τρέχοντα φάκελο.\n\nΟ φάκελος προορισμού δεν μπορεί να είναι υποφάκελος του αρχικού ή ο ίδιος ο αρχικός.</string>
+  <string name="msgs_operation_not_allowed_in_current_directory">Ο φάκελος προορισμού δεν μπορεί να είναι υποφάκελος της πηγής ή να είναι ίδιος με την πηγή.</string>
   <string name="msgs_push_again_to_exit">Πιέστε ξανά για έξοδο.</string>
   <string name="msgs_not_registered_app">Δεν υπάρχει καμία εφαρμογή για να χειριστεί τον τύπο του αρχείου που έχετε επιλέξει.</string>
   <string name="msgs_overwrite_files">Μερικά από τα αρχεία υπάρχουν ήδη στο φάκελο προορισμού.\n\nΑντικατάσταση;</string>

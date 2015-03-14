@@ -42,7 +42,6 @@
   <string name="copy_text_cd">Atingeți pentru a copia textul în clipboard</string>
   <string name="copy_text_msg">Textul s-a copiat în clipboard</string>
   <string name="warning_title">Avertizare</string>
-  <string name="error_title">Eroare detectată</string>
   <string name="confirm_operation">Confirmați operațiunea</string>
   <string name="confirm_overwrite">Confirmați suprascrierea</string>
   <string name="confirm_deletion">Confirmați ștergerea</string>
@@ -65,7 +64,6 @@
   <string name="msgs_read_only_filesystem">Sistemul de fișiere este doar în citire. Încercați montarea sistemului de fișiere ca citire-scriere înainte de a încerca operațiunea.</string>
   <string name="msgs_illegal_argument">Argument ilegal. Invocarea nu a reușit.</string>
   <string name="msgs_unresolved_inconsistencies">Operațiunea nu este permisă pentru că ar crea incoerențe.</string>
-  <string name="msgs_operation_not_allowed_in_current_directory">Operațiunea nu este permisă în dosarul curent.</string>
   <string name="msgs_push_again_to_exit">Apăsați din nou pentru a ieși.</string>
   <string name="msgs_not_registered_app">Nu există nicio aplicație înregistrată care ar deschide tipul de fișier selectat.</string>
   <string name="msgs_overwrite_files">Unele dintre fișiere există deja în dosarul destinație.\n\nSuprascrieți?</string>

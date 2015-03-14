@@ -42,7 +42,6 @@
   <string name="copy_text_cd">Dotykem zkopírujete text do schránky</string>
   <string name="copy_text_msg">Text zkopírován do schránky</string>
   <string name="warning_title">Varování</string>
-  <string name="error_title">Zjištěna chyba</string>
   <string name="confirm_operation">Potvrdit operaci</string>
   <string name="confirm_overwrite">Potvrdit přepsání</string>
   <string name="confirm_deletion">Potvrdit smazání</string>
@@ -52,7 +51,6 @@
   <string name="msgs_privileged_console_alloc_failed">Nelze spustit Režim bez omezení. Bude ponechán Bezpečný režim.</string>
   <string name="msgs_settings_save_failure">Nastavení nemohlo být aplikováno nebo uloženo.</string>
   <string name="msgs_settings_invalid_initial_directory">Výchozí složka \"<xliff:g id="initial_dir">%1$s</xliff:g>\" je neplatná. Bude použita kořenová složka.</string>
-  <string name="root_not_available_msg">Na zařízení není k dispozici přístup root. Operaci nelze provést.</string>
   <string name="msgs_success">Operace proběhla úspěšně.</string>
   <string name="msgs_unknown">Vyskytla se chyba. Operace byla neúspěšná.</string>
   <string name="msgs_insufficient_permissions">Tato operace vyžaduje vyšší oprávnění. Zkuste přepnout do Režimu bez omezení.</string>
@@ -67,7 +65,6 @@
   <string name="msgs_read_only_filesystem">Souborový systém je v režimu pouze ke čtení. Před provedením příkazu připojte souborový systém pro zápis.</string>
   <string name="msgs_illegal_argument">Neplatný argument. Provádění operace zrušeno.</string>
   <string name="msgs_unresolved_inconsistencies">Operace není povolena, protože by mohla způsobit poškození systému.</string>
-  <string name="msgs_operation_not_allowed_in_current_directory">Tato operace není pro tuto složku povolena.</string>
   <string name="msgs_push_again_to_exit">Pro ukončení stiskněte znovu.</string>
   <string name="msgs_not_registered_app">K tomuto typu souborů není přiřazena žádná aplikace.</string>
   <string name="msgs_overwrite_files">Některý ze souborů již ve složce existuje.\n\nChcete tyto soubory přepsat?</string>

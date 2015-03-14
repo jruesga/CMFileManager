@@ -17,10 +17,10 @@
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
   <string name="app_name">מנהל קבצים</string>
-  <string name="app_description">מנהל הקבצים של CyanogenMod.</string>
+  <string name="app_description">מנהל הקבצים של CyanogenMod</string>
   <string name="size_bytes">בייט</string>
-  <string name="size_kilobytes">קילו בייט</string>
-  <string name="size_megabytes">מגה בייט</string>
+  <string name="size_kilobytes">קילו-בייט</string>
+  <string name="size_megabytes">מגה-בייט</string>
   <string name="size_gigabytes">ג\'יגה-בייט</string>
   <string name="datetime_format_order">%1$s %2$s</string>
   <string name="device_blockdevice">התקן בלוקים</string>
@@ -42,7 +42,6 @@
   <string name="copy_text_cd">הקש כדי להעתיק טקסט ללוח</string>
   <string name="copy_text_msg">הטקסט הועתק ללוח</string>
   <string name="warning_title">אזהרה</string>
-  <string name="error_title">התגלתה שגיאה</string>
   <string name="confirm_operation">אישור פעולה</string>
   <string name="confirm_overwrite">אישור החלפה</string>
   <string name="confirm_deletion">אישור מחיקה</string>
@@ -53,7 +52,6 @@
   <string name="msgs_settings_save_failure">נכשל בהחלת ההגדרה או שמירתה.</string>
   <string name="msgs_settings_invalid_initial_directory">התיקייה ההתחלתית
     \"<xliff:g id="initial_dir">%1$s</xliff:g>\" שגויה. עובר לתיקיית השורש.</string>
-  <string name="root_not_available_msg">גישת Root אינה זמינה במכשיר זה. אין אפשרות לבצע פעולה זאת.</string>
   <string name="msgs_success">הפעולה הושלמה בהצלחה.</string>
   <string name="msgs_unknown">התגלתה שגיאה. הפעולה נכשלה.</string>
   <string name="msgs_insufficient_permissions">פעולה זו דורשת הרשאות גבוהות. נסה לשנות למצב גישת Root.</string>
@@ -68,7 +66,6 @@
   <string name="msgs_read_only_filesystem">מערכת הקבצים היא לקריאה בלבד. נסה לעגן אותה כ\"קריאה/כתיבה\" לפני ביצוע הפעולה.</string>
   <string name="msgs_illegal_argument">טיעון בלתי חוקי. ההפעלה נכשלה.</string>
   <string name="msgs_unresolved_inconsistencies">הפעולה אסורה, היא תגרום לחוסר עקביות.</string>
-  <string name="msgs_operation_not_allowed_in_current_directory">הפעולה אסורה בתיקייה הנוכחית.\n\nתיקיית היעד אינה יכולה להיות תת-תיקייה של תיקיית המקור או זהה למקור.</string>
   <string name="msgs_push_again_to_exit">לחץ שוב ליציאה.</string>
   <string name="msgs_not_registered_app">אין יישום הרשום לטיפול בסוג קובץ זה.</string>
   <string name="msgs_overwrite_files">חלק מהקבצים כבר קיימים בתיקיית היעד. \n\n להחליף?</string>
@@ -88,10 +85,10 @@
   <string name="actionbar_button_storage_cd">מחיצות אחסון</string>
   <string name="actionbar_button_save_cd">שמור</string>
   <string name="actionbar_button_print_cd">הדפס</string>
-  <string name="sort_by_name_asc">לפי שם ▲</string>
-  <string name="sort_by_name_desc">לפי שם ▼</string>
-  <string name="sort_by_date_asc">לפי תאריך ▲</string>
-  <string name="sort_by_date_desc">לפי תאריך ▼</string>
+  <string name="sort_by_name_asc">לפי שם \u25B2</string>
+  <string name="sort_by_name_desc">לפי שם \u25BC</string>
+  <string name="sort_by_date_asc">לפי תאריך \u25B2</string>
+  <string name="sort_by_date_desc">לפי תאריך \u25BC</string>
   <string name="sort_by_size_asc">לפי גודל \u25B2</string>
   <string name="sort_by_size_desc">לפי גודל \u25B2</string>
   <string name="sort_by_type_asc">לפי סוג \u25B2</string>

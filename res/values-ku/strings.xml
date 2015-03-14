@@ -42,7 +42,6 @@
   <string name="copy_text_cd">پەنجەی پێدا بنێ بۆ لەبەرگرتنەوەی دەق بۆ فۆڵدەری کاتی</string>
   <string name="copy_text_msg">دەق لەبەریگیرایەوە بۆ فۆڵدەری کاتی</string>
   <string name="warning_title">ئاگادارکردنەوە</string>
-  <string name="error_title">هەڵە ڕوویدا</string>
   <string name="confirm_operation">دڵنیاکردنەوەی فرمان</string>
   <string name="confirm_overwrite">دڵنیاکردنەوە لە گۆڕین</string>
   <string name="confirm_deletion">دڵنیاکردنەوی سڕینەوە</string>
@@ -65,7 +64,6 @@
   <string name="msgs_read_only_filesystem">پەڕگەی سیستەم تەنها-خوێندەوەیە. پێش لە هەوڵدانەوە بۆ کردارەکە پەڕگەی سیستەم وەکوو خوێندنەوە-نووسین جێگیر بکە.</string>
   <string name="msgs_illegal_argument">گفت و گۆی نایاسایی.داواکردن سه‌رکه‌وتوونه‌بوو.</string>
   <string name="msgs_unresolved_inconsistencies">کارپێکردن ڕێپێنادرێت له‌به‌ر دروستکردنی جیاوازی.</string>
-  <string name="msgs_operation_not_allowed_in_current_directory">کارپێکردن ڕێپێنادرێت له‌م بوخچه‌یه‌دا.\n\nبوخچه‌ی لادان ناتوانرێت ببێ به‌ نیمچه‌-بوخچه‌ له‌ سه‌رچاوه‌ یان هه‌مان سه‌رچاوه‌.</string>
   <string name="msgs_push_again_to_exit">دووبارە پەنجەی پێدا بنێ بۆ دەرچوون.</string>
   <string name="msgs_not_registered_app">هیچ به‌رنامه‌یه‌ک نییه‌ تۆمارکرابیت بۆ سه‌رپه‌رشتی کردنی جۆری ئه‌م په‌ڕگه‌یه‌.</string>
   <string name="msgs_overwrite_files">هه‌ندێک له‌ فایله‌کان پێشتر هه‌ن له‌ بوخچه‌ی مه‌به‌ست.\n\nجێگه‌بگرنه‌وه‌؟</string>

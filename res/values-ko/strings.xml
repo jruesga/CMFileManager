@@ -42,7 +42,7 @@
   <string name="copy_text_cd">탭하여 텍스트를 클립보드로 복사</string>
   <string name="copy_text_msg">텍스트가 클립보드에 복사되었습니다.</string>
   <string name="warning_title">경고</string>
-  <string name="error_title">오류 발생</string>
+  <string name="error_title">오류</string>
   <string name="confirm_operation">작업 확인</string>
   <string name="confirm_overwrite">덮어쓰기 확인</string>
   <string name="confirm_deletion">삭제 확인</string>
@@ -67,7 +67,7 @@
   <string name="msgs_read_only_filesystem">이 파일 시스템은 읽기 전용입니다. 작업을 시도하기 전에 파일 시스템을 읽기-쓰기로 마운트해보십시오.</string>
   <string name="msgs_illegal_argument">잘못된 인수입니다. 호출에 실패했습니다.</string>
   <string name="msgs_unresolved_inconsistencies">해당 작업은 불일치성을 만들 수 있으므로 금지되었습니다.</string>
-  <string name="msgs_operation_not_allowed_in_current_directory">이 작업은 현재 폴더에서 허용되지 않습니다.\n\n작업 목적 폴더는 원본 경로와 같거나 그 하위 경로일 수 없습니다.</string>
+  <string name="msgs_operation_not_allowed_in_current_directory">대상 폴더는 하위 폴더나 원본 폴더가 될 수 없습니다.</string>
   <string name="msgs_push_again_to_exit">한 번 더 누르면 종료됩니다.</string>
   <string name="msgs_not_registered_app">선택된 파일을 실행할 수 있는 앱이 없습니다.</string>
   <string name="msgs_overwrite_files">대상 폴더에 해당 파일이 이미 존재합니다.\n\n덮어쓸까요?</string>

@@ -42,7 +42,6 @@
   <string name="copy_text_cd">Piesitiet, lai kopētu tekstu starpliktuvē</string>
   <string name="copy_text_msg">Teksts iekopēts starpliktuvē</string>
   <string name="warning_title">Brīdinājums</string>
-  <string name="error_title">Radās kļūda</string>
   <string name="confirm_operation">Apstipriniet darbību</string>
   <string name="confirm_overwrite">Apstipriniet pārrakstīšanu</string>
   <string name="confirm_deletion">Apstipriniet dzēšanu</string>
@@ -52,7 +51,6 @@
   <string name="msgs_privileged_console_alloc_failed">Neizdevās palaist Root pieejas režīmā. Mainu uz Drošo režīmu.</string>
   <string name="msgs_settings_save_failure">Iestatījumu neizdevās pielietot vai saglabāt.</string>
   <string name="msgs_settings_invalid_initial_directory">Sākotnējā mape \'<xliff:g id="initial_dir"> %1$s</xliff:g>\' ir nepareiza. Mainu uz saknes mapi.</string>
-  <string name="root_not_available_msg">Šajā iekārtā Root nav pieejams. Šo darību nevar veikt.</string>
   <string name="msgs_success">Darbība tika veiksmīgi pabeigta.</string>
   <string name="msgs_unknown">Tika atrasta kļūda. Darbība bija neveiksmīga.</string>
   <string name="msgs_insufficient_permissions">Šai darbībai ir nepieciešamas paaugstinātas tiesības. Mēģiniet nomainīt uz Root pieejas režīmu.</string>
@@ -67,7 +65,6 @@
   <string name="msgs_read_only_filesystem">Failu sistēma ir tikai lasāma. Pirms mēģināt veikt šo darbību, mēģiniet uzmontēt failu sistēmu kā rakstāmu.</string>
   <string name="msgs_illegal_argument">Nepareizs arguments. Izsaukums neizdevās.</string>
   <string name="msgs_unresolved_inconsistencies">Darbība nav atļauta, jo tā varētu radīt nesaskaņas.</string>
-  <string name="msgs_operation_not_allowed_in_current_directory">Darbība pašreizējā mapē nav atļauta.\n\nMērķa mape nevar būt avota mape, vai avota mapes apakšmape.</string>
   <string name="msgs_push_again_to_exit">Lai izietu, nospiediet vēlreiz.</string>
   <string name="msgs_not_registered_app">Nav reģistrēta lietotne, kura varētu apstrādāt izvēlēto faila veidu.</string>
   <string name="msgs_overwrite_files">Daži faili mērķa mapē jau pastāv.\n\nPārrakstīt?</string>

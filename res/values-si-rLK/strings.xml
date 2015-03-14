@@ -42,7 +42,6 @@
   <string name="copy_text_cd">පෙළ පසුරු පුවරුවට පිටපත් කිරීමට තට්ටු කරන්න</string>
   <string name="copy_text_msg">පෙළ පසුරු පුවරුවට පිටපත් කෙරුණි</string>
   <string name="warning_title">අවවාදයයි</string>
-  <string name="error_title">දෝෂයක් අනාවරණය කෙරුණි</string>
   <string name="confirm_operation">ක්‍රියාකරණය තහවුරු කරන්න</string>
   <string name="confirm_overwrite">උඩින්ලිවීම තහවුරු කරන්න</string>
   <string name="confirm_deletion">මකා දැමීම තහවුරු කරන්න</string>
@@ -65,7 +64,6 @@
   <string name="msgs_read_only_filesystem">ගොනු පද්ධතිය කියවීම-පමණය. ක්‍රියාකරණය ඇරඹීමට පෙර ගොනු පද්ධතිය කියවීම් සහ ලිවීම් ලෙස ආරූඩ කිරීමට උත්සාහ කරන්න.</string>
   <string name="msgs_illegal_argument">අයුතු විස්තාරකයකි. ආයාචනය අසමත්විය.</string>
   <string name="msgs_unresolved_inconsistencies">නොගැළපීමක් ඇතිවිය හැකි බැවින් ක්‍රියාකරණයට අවසර නොමැත.</string>
-  <string name="msgs_operation_not_allowed_in_current_directory">ක්‍රියාකරණයට වත්මන් ෆෝල්ඩරය තුල අවසර නොමැත.\n\nඉලක්කවූ ෆෝල්ඩරය ප්‍රභවයම හෝ එහි අනු ෆෝල්ඩරයක් විය නොහැක.</string>
   <string name="msgs_push_again_to_exit">පිටවීමට නැවත ඔබන්න.</string>
   <string name="msgs_not_registered_app">තෝරාගත් ගොනු වර්ගය හැසිරවීමට යෙදුමක් ලියාපදිංචි කර නොමැත.</string>
   <string name="msgs_overwrite_files">සමහර ගොනු දැනටමත් ඉලක්කවූ ෆෝල්ඩරයෙහි ඇත.\n\nඋඩින් ලියන්නද?</string>

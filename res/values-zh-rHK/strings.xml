@@ -41,7 +41,6 @@
   <string name="copy_text_cd">輕按以複製文字到剪貼簿</string>
   <string name="copy_text_msg">文字已複製到剪貼簿</string>
   <string name="warning_title">警告</string>
-  <string name="error_title">偵測到錯誤</string>
   <string name="confirm_operation">確認操作</string>
   <string name="confirm_overwrite">確認覆寫</string>
   <string name="confirm_deletion">確認刪除</string>
@@ -64,7 +63,6 @@
   <string name="msgs_read_only_filesystem">檔案系統正是唯讀。嘗試使用讀寫模式掛載檔案系統後，再次執行操作。</string>
   <string name="msgs_illegal_argument">無效參數。調用失敗。</string>
   <string name="msgs_unresolved_inconsistencies">此操作不被允許，因爲它會產生不一致性。</string>
-  <string name="msgs_operation_not_allowed_in_current_directory">此操作在目前所在的資料夾是不被允許的。\n\n目標資料夾不能爲源本的資料夾或與源本的子資料夾相同。</string>
   <string name="msgs_push_again_to_exit">再次按下即可退出。</string>
   <string name="msgs_not_registered_app">沒有應用程式註冊來為已選的檔案類型進行處理。</string>
   <string name="msgs_overwrite_files">有些檔案已存在於目標資料夾內。\n\n是否覆寫？</string>

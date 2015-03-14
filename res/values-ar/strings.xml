@@ -42,7 +42,6 @@
   <string name="copy_text_cd">اضغط لنسخ النص إلى \"الحافظة\"</string>
   <string name="copy_text_msg">النص نسخ إلى الحافظة</string>
   <string name="warning_title">تحذير</string>
-  <string name="error_title">تم الكشف عن خطأ</string>
   <string name="confirm_operation">تأكيد عملية</string>
   <string name="confirm_overwrite">تأكيد الكتابة فوق</string>
   <string name="confirm_deletion">تأكيد الحذف</string>
@@ -65,7 +64,6 @@
   <string name="msgs_read_only_filesystem">ملفات النظام للقراءة فقط. محاولة تحويل نظام الملفات الى القراءة والكتابة قبل محاولة تنفيذ العملية.</string>
   <string name="msgs_illegal_argument">البرهان غير المشروعة. فشل استدعاء.</string>
   <string name="msgs_unresolved_inconsistencies">غير مسموح العملية نظراً لأن من شأنه أن يسبب تناقضات.</string>
-  <string name="msgs_operation_not_allowed_in_current_directory">غير مسموح للعملية في المجلد. \n\n مكان المجلد الحالي يتعذر متابعة مصدر أو شبيه المصدر.</string>
   <string name="msgs_push_again_to_exit">اضغط الزر مرة أخرى للخروج.</string>
   <string name="msgs_not_registered_app">لا يوجدالتطبيق مسجل للتعامل مع نوع الملف المحدد.</string>
   <string name="msgs_overwrite_files">بعض الملفات موجودة بالفعل في مسار المجلد \n\n كتابة؟</string>

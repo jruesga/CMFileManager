@@ -42,7 +42,7 @@
   <string name="copy_text_cd">Нажмите, чтобы скопировать текст в буфер обмена</string>
   <string name="copy_text_msg">Текст скопирован в буфер обмена</string>
   <string name="warning_title">Внимание</string>
-  <string name="error_title">Обнаружена ошибка</string>
+  <string name="error_title">Ошибка</string>
   <string name="confirm_operation">Подтвердите операцию</string>
   <string name="confirm_overwrite">Подтвердите замену</string>
   <string name="confirm_deletion">Подтвердите удаление</string>
@@ -67,7 +67,7 @@
   <string name="msgs_read_only_filesystem">Файловая система доступна только для чтения. Попробуйте смонтировать файловую систему для чтения/записи</string>
   <string name="msgs_illegal_argument">Недопустимый аргумент. Вызов не удался</string>
   <string name="msgs_unresolved_inconsistencies">Невозможно выполнить операцию.\n\nЭто приведёт к созданию несоответствий файловой системы.</string>
-  <string name="msgs_operation_not_allowed_in_current_directory">Невозможно выполнить операцию.\n\nНельзя переместить папку саму в себя.</string>
+  <string name="msgs_operation_not_allowed_in_current_directory">Невозможно перенести папку саму в себя.</string>
   <string name="msgs_push_again_to_exit">Нажмите ещё раз для выхода</string>
   <string name="msgs_not_registered_app">Не найдено приложений для открытия файлов данного типа</string>
   <string name="msgs_overwrite_files">Некоторые файлы уже существуют в папке назначения.\n\nЗаменить?</string>

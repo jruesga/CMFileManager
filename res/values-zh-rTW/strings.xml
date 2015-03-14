@@ -42,7 +42,6 @@
   <string name="copy_text_cd">輕觸即可複製文字至剪貼簿</string>
   <string name="copy_text_msg">文字已複製至剪貼簿</string>
   <string name="warning_title">警告</string>
-  <string name="error_title">偵測到錯誤</string>
   <string name="confirm_operation">確認操作</string>
   <string name="confirm_overwrite">確認覆寫</string>
   <string name="confirm_deletion">確認刪除</string>
@@ -52,7 +51,6 @@
   <string name="msgs_privileged_console_alloc_failed">無法在 Root 存取模式下執行，正在切換至安全模式。</string>
   <string name="msgs_settings_save_failure">無法套用或儲存設定。</string>
   <string name="msgs_settings_invalid_initial_directory">初始資料夾「<xliff:g id="initial_dir">%1$s</xliff:g>」無效。切換至根資料夾。</string>
-  <string name="root_not_available_msg">Root 在此裝置上不可用。無法執行此操作。</string>
   <string name="msgs_success">操作已成功完成。</string>
   <string name="msgs_unknown">檢測到錯誤，此操作未能成功完成。</string>
   <string name="msgs_insufficient_permissions">此操作需要更高的權限。請嘗試切換到 Root 存取模式。</string>
@@ -67,7 +65,6 @@
   <string name="msgs_read_only_filesystem">只讀檔案系統。請在使用讀寫模式掛載檔案系統後再試。</string>
   <string name="msgs_illegal_argument">無效參數。調用失敗。</string>
   <string name="msgs_unresolved_inconsistencies">此操作被拒絕，因爲它會產生不一致。</string>
-  <string name="msgs_operation_not_allowed_in_current_directory">此操作在目前所在的資料夾被拒絕。\n\n目標資料夾不能爲來源資料夾或來源的子資料夾</string>
   <string name="msgs_push_again_to_exit">再按一次即可退出。</string>
   <string name="msgs_not_registered_app">沒有任何應用程式與此類檔案關聯。</string>
   <string name="msgs_overwrite_files">有些檔案已存在於目標資料夾內。\n\n是否覆寫？</string>

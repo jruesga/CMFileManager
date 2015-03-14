@@ -42,7 +42,7 @@
   <string name="copy_text_cd">Metni panoya kopyalamak için dokunun</string>
   <string name="copy_text_msg">Metin panoya kopyalandı</string>
   <string name="warning_title">Uyarı</string>
-  <string name="error_title">Hata algılandı</string>
+  <string name="error_title">Hata</string>
   <string name="confirm_operation">İşlemi onayla</string>
   <string name="confirm_overwrite">Değiştirmeyi onayla</string>
   <string name="confirm_deletion">Silmeyi onayla</string>
@@ -67,7 +67,7 @@
   <string name="msgs_read_only_filesystem">Dosya sistemi salt okunur. İşlemi gerçekleştirmeden önce dosya sistemini okunur-yazılır olarak bağlamayı deneyin.</string>
   <string name="msgs_illegal_argument">Kural dışı ifade. İşlem başarısız.</string>
   <string name="msgs_unresolved_inconsistencies">Kararsızlıklara yol açacağından işleme izin verilmiyor.</string>
-  <string name="msgs_operation_not_allowed_in_current_directory">Şimdiki klasörde işleme izin verilemiyor.\n\nHedef klasör kaynağın alt klasörü ya da kaynakla aynı klasör olamaz.</string>
+  <string name="msgs_operation_not_allowed_in_current_directory">Hedef klasör kaynak klasörün aynısı veya alt klasörü olamaz.</string>
   <string name="msgs_push_again_to_exit">Çıkmak için tekrar basın.</string>
   <string name="msgs_not_registered_app">Seçilen türde dosyayı işleyecek uygulama belirlenmedi.</string>
   <string name="msgs_overwrite_files">Bazı dosyalar hedef klasörde zaten var.\n\nÜzerine yazılsın mı?</string>

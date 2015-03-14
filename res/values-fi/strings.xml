@@ -42,7 +42,7 @@
   <string name="copy_text_cd">Napauta kopioidaksesi tekstin leikepöydälle</string>
   <string name="copy_text_msg">Teksti kopioitu leikepöydälle</string>
   <string name="warning_title">Varoitus</string>
-  <string name="error_title">Virhe löydetty</string>
+  <string name="error_title">Virhe</string>
   <string name="confirm_operation">Varmista tehtävä</string>
   <string name="confirm_overwrite">Varmista ylikirjoitus</string>
   <string name="confirm_deletion">Varmista poistaminen</string>
@@ -67,7 +67,7 @@
   <string name="msgs_read_only_filesystem">Tiedostojärjestelmä on \"vain luku\"-tilassa. Kokeile vaihtaa tiedostojärjestelmä luku/kirjoitustilaan ennen toimintoa.</string>
   <string name="msgs_illegal_argument">Väite virheellinen. Komento epäonnistui.</string>
   <string name="msgs_unresolved_inconsistencies">Komentoa ei suoritettu koska se loisi ristiriitoja.</string>
-  <string name="msgs_operation_not_allowed_in_current_directory">Komentoa ei voi suorittaa nykyisessä kansiossa.\n\nKohdekansio ei voi olla lähdekansion alikansio.</string>
+  <string name="msgs_operation_not_allowed_in_current_directory">Kohdekansio ei voi olla lähteen alikansio tai sama kuin lähde.</string>
   <string name="msgs_push_again_to_exit">Paina uudestaan poistuaksesi.</string>
   <string name="msgs_not_registered_app">Mitään sovellusta ei ole rekisteröity avaamaan tätä tiedostotyyppiä.</string>
   <string name="msgs_overwrite_files">Osa tiedostoista on jo kohdekansiossa.\n\nKorvataanko?</string>

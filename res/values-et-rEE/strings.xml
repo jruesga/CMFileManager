@@ -38,7 +38,6 @@
   <string name="copy_text_cd">Koputa teksti lõikelauale kopeerimiseks</string>
   <string name="copy_text_msg">Tekst on kleebitud lõikelauale</string>
   <string name="warning_title">Hoiatus</string>
-  <string name="error_title">Tõrge tuvastatud</string>
   <string name="confirm_operation">Kinnita toiming</string>
   <string name="confirm_overwrite">Kinnita ülekirjutus</string>
   <string name="confirm_deletion">Kinnita kustutus</string>

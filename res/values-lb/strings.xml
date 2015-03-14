@@ -42,7 +42,6 @@
   <string name="copy_text_cd">Dréck fir den Text an d\'Tëschenoflag ze kopéieren</string>
   <string name="copy_text_msg">Text an d\'Tëschenoflag kopéiert</string>
   <string name="warning_title">Warnung</string>
-  <string name="error_title">Feeler detektéiert</string>
   <string name="confirm_operation">Operatioun bestätegen</string>
   <string name="confirm_overwrite">Iwwerschreiwe bestätegen</string>
   <string name="confirm_deletion">Läsche bestätegen</string>
@@ -52,7 +51,6 @@
   <string name="msgs_privileged_console_alloc_failed">Konnt kee Root-Zougrëff kréien. Et gëtt zréck an de séchere Modus gewiesselt.</string>
   <string name="msgs_settings_save_failure">D\'Astellung konnt net applizéiert oder gespäichert ginn.</string>
   <string name="msgs_settings_invalid_initial_directory">De Standarddossier \"<xliff:g id="initial_dir">%1$s</xliff:g>\" ass ongëlteg. Wiesselen zréck op de Wuerzeldossier.</string>
-  <string name="root_not_available_msg">Root ass op dësem Apparat net disponibel. Kann d\'Operatioun net duerchféieren.</string>
   <string name="msgs_success">D\'Operatioun gouf erfollegräich ausgefouert.</string>
   <string name="msgs_unknown">Et ass e Feeler opgetrueden. D\'Operatioun war net erfollegräich.</string>
   <string name="msgs_insufficient_permissions">Dës Operatioun brauch méi héich Berechtegungen. Versichen an de Root-Zougrëffsmodus ze wiesselen.</string>
@@ -67,7 +65,6 @@
   <string name="msgs_read_only_filesystem">De Fichierssystem ass schreifgeschützt. Probéier de Fichiersystem mat Schreifrechter anzebannen ier s de dës Operatioun probéiers.</string>
   <string name="msgs_illegal_argument">Ongëltegt Argument. Opruff feelgeschloen.</string>
   <string name="msgs_unresolved_inconsistencies">Dës Operatioun ass net erlaabert well se Inkonsistenze géif verursaachen.</string>
-  <string name="msgs_operation_not_allowed_in_current_directory">Dës Operatioun ass am aktuellen Dossier net erlaabt.\n\nDen Zildossier kann net de selweschte si wéi den Ausganksdossier, an och keen Ënnerdossier dovun.</string>
   <string name="msgs_push_again_to_exit">Nach eemol drécke fir zouzemaachen.</string>
   <string name="msgs_not_registered_app">Fir den ausgewielte Fichierstyp ass keng App registréiert.</string>
   <string name="msgs_overwrite_files">Verschidde Fichieren existéiere schonn am Zildossier.\n\nIwwerschreiwen?</string>

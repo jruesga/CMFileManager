@@ -16,6 +16,6 @@
      limitations under the License.
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-  <string name="dark_theme_name">Tema escuro</string>
-  <string name="dark_theme_desc">Um tema escuro para o gestor de ficheiros CyanogenMod.</string>
+  <string name="dark_theme_name">Dark Theme</string>
+  <string name="dark_theme_desc">A dark theme for CyanogenMod File Manager.</string>
 </resources>

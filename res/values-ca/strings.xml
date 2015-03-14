@@ -42,7 +42,7 @@
   <string name="copy_text_cd">Pica per copiar el text al portapapers</string>
   <string name="copy_text_msg">Text copiat al portapapers</string>
   <string name="warning_title">Alerta</string>
-  <string name="error_title">Error detectat</string>
+  <string name="error_title">Error</string>
   <string name="confirm_operation">Confirma operació</string>
   <string name="confirm_overwrite">Confirma sobreescriptura</string>
   <string name="confirm_deletion">Confirma esborrat</string>
@@ -67,11 +67,11 @@
   <string name="msgs_read_only_filesystem">El sistema d\'arxius és de només lectura. Intenta muntar el sistema d\'arxius com a lectura-escriptura abans d\'intentar l\'operació.</string>
   <string name="msgs_illegal_argument">Argument il·legal. Ha fallat l\'invocació.</string>
   <string name="msgs_unresolved_inconsistencies">L\'operació no està permesa perquè crearia inconsistències.</string>
-  <string name="msgs_operation_not_allowed_in_current_directory">L\'operació no està permesa en la carpeta actual.\n\nLa carpeta de destí no pot ser una subcarpeta de l\'origen o la mateixa que l\'origen.</string>
+  <string name="msgs_operation_not_allowed_in_current_directory">La carpeta de destí no pot ser una subcarpeta de l\'origen o la mateixa que l\'origen.</string>
   <string name="msgs_push_again_to_exit">Apreta un altre cop per sortir.</string>
-  <string name="msgs_not_registered_app">No hi ha cap app registrada per gestionar el tipus d\'arxiu seleccionat.</string>
+  <string name="msgs_not_registered_app">No hi ha cap aplicació registrada per gestionar el tipus d\'arxiu seleccionat.</string>
   <string name="msgs_overwrite_files">Alguns dels arxius ja existeixen a la carpeta de destí.\n\nSobreescriurel\'s?</string>
-  <string name="msgs_action_association_failed">L\'associació d\'aquesta acció a l\'app ha fallat.</string>
+  <string name="msgs_action_association_failed">L\'associació d\'aquesta acció a l\'aplicació ha fallat.</string>
   <string name="advise_insufficient_permissions">L\'operació necessita més privilegis.\n\nVols canviar al mode d\'accés de superusuari?</string>
   <string name="parent_dir">Carpeta pare</string>
   <string name="external_storage">Emmagatzematge extern</string>
@@ -301,7 +301,7 @@
   <string name="pref_general_behaviour_category">General</string>
   <string name="pref_case_sensitive_sort">Minúscules/Majúscules</string>
   <string name="pref_case_sensitive_sort_summary">Considerar Minúscules/Majúscules quan es navegui o s\'ordenin els resultats de la cerca</string>
-  <string name="pref_filetime_format_mode">Format Data/hora</string>
+  <string name="pref_filetime_format_mode">Format data/hora</string>
   <string name="pref_disk_usage_warning_level">Alerta d\'utilització del disc</string>
   <string name="pref_disk_usage_warning_level_summary" formatted="false">Mostra un color diferent en el widget d\'utilització del disc quan s\'arribi al <xliff:g id="level">%1$s</xliff:g> percent d\'espai lliure</string>
   <string name="pref_compute_folder_statistics">Calcula estadístiques de la carpeta</string>

@@ -42,7 +42,6 @@
   <string name="copy_text_cd">Tryck för att kopiera till urklipp</string>
   <string name="copy_text_msg">Text kopierad till urklipp</string>
   <string name="warning_title">Varning</string>
-  <string name="error_title">Fel upptäckt</string>
   <string name="confirm_operation">Bekräfta åtgärd</string>
   <string name="confirm_overwrite">Bekräfta överskrivning</string>
   <string name="confirm_deletion">Bekräfta radering</string>
@@ -65,7 +64,6 @@
   <string name="msgs_read_only_filesystem">Filsystemet är read-only. Försök att montera filsystemet som read-write innan du försöker genomföra åtgärden.</string>
   <string name="msgs_illegal_argument">Illegalt argument. Invokationen misslyckades.</string>
   <string name="msgs_unresolved_inconsistencies">Åtgärden är inte tillåten eftersom den skulle skapa motsägelser.</string>
-  <string name="msgs_operation_not_allowed_in_current_directory">Åtgärden är inte tillåten i den nuvarande mappen.\n\nDestinationsmappen kan inte vara undermapp till källan eller samma som källan.</string>
   <string name="msgs_push_again_to_exit">Tryck igen för att avsluta.</string>
   <string name="msgs_not_registered_app">Det finns ingen app registrerad för att hantera vald filtyp.</string>
   <string name="msgs_overwrite_files">Några av filerna finns redan i destinationsmappen.\n\nSkriva över?</string>

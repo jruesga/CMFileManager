@@ -40,7 +40,6 @@
   <string name="cancelled_message">Ləğv edildi.</string>
   <string name="error_message">Xəta.</string>
   <string name="warning_title">Xəbərdarlıq</string>
-  <string name="error_title">Xəta aşkarlandı</string>
   <string name="confirm_operation">Əməliyyatı təsdiq edin</string>
   <string name="confirm_overwrite">Dəyişikliyi təsdiq edin</string>
   <string name="confirm_deletion">Silməni təsdiq edin</string>

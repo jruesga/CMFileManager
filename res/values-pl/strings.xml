@@ -42,7 +42,7 @@
   <string name="copy_text_cd">Wybierz, aby skopiować tekst do schowka</string>
   <string name="copy_text_msg">Skopiowano tekst do schowka</string>
   <string name="warning_title">Uwaga</string>
-  <string name="error_title">Napotkano błąd</string>
+  <string name="error_title">Błąd</string>
   <string name="confirm_operation">Potwierdź operację</string>
   <string name="confirm_overwrite">Potwierdź nadpisanie</string>
   <string name="confirm_deletion">Potwierdź usunięcie</string>
@@ -52,7 +52,7 @@
   <string name="msgs_privileged_console_alloc_failed">Nie można uruchomić w trybie dostępu do roota. Aktywowany zostanie tryb bezpieczny.</string>
   <string name="msgs_settings_save_failure">Ustawienie nie może zostać aktywowane lub zachowane.</string>
   <string name="msgs_settings_invalid_initial_directory">Początkowy folder \"<xliff:g id="initial_dir">%1$s</xliff:g>\" jest nieprawidłowy. Zmieniono na folder główny.</string>
-  <string name="root_not_available_msg">Root jest niedostępny na tym urządzeniu. Nie można wykonać tej operacji.</string>
+  <string name="root_not_available_msg">Root nie jest dostępny na tym urządzeniu. Nie można wykonać tej operacji.</string>
   <string name="msgs_success">Operacja zakończyła się sukcesem.</string>
   <string name="msgs_unknown">Napotkano błąd. Operacja się nie powiodła.</string>
   <string name="msgs_insufficient_permissions">Ta operacja wymaga podwyższonych uprawnień. Spróbuj po aktywacji trybu dostępu do roota.</string>
@@ -67,7 +67,7 @@
   <string name="msgs_read_only_filesystem">System plików jest dostępny tylko do odczytu. Przed ponowieniem operacji spróbuj zamontować system plików w trybie zapisu.</string>
   <string name="msgs_illegal_argument">Niedozwolony argument. Wywołanie nie powiodło się.</string>
   <string name="msgs_unresolved_inconsistencies">Operacja nie jest możliwa, ponieważ spowodowałaby niespójności.</string>
-  <string name="msgs_operation_not_allowed_in_current_directory">Operacja nie jest dozwolona w bieżącym folderze.\n\nDocelowy folder nie może być podfolderem źródła lub taki sam jak źródło.</string>
+  <string name="msgs_operation_not_allowed_in_current_directory">Folder docelowy nie może być podfolderem źródła lub być taki sam jak źródło.</string>
   <string name="msgs_push_again_to_exit">Naciśnij ponownie, aby wyjść.</string>
   <string name="msgs_not_registered_app">Nie znaleziono żadnej aplikacji zdolnej do uruchomienia wskazanego typu pliku.</string>
   <string name="msgs_overwrite_files">Niektóre pliki już istnieją w folderze docelowym.\n\nNadpisać?</string>

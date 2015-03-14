@@ -42,7 +42,6 @@
   <string name="copy_text_cd">Tocar pa copiar testu al cartafueyu</string>
   <string name="copy_text_msg">Testu copiáu al cartafueyu</string>
   <string name="warning_title">Avisu</string>
-  <string name="error_title">Fallu deteutáu</string>
   <string name="confirm_operation">Confirmar operación</string>
   <string name="confirm_overwrite">Confirmar sobrescritura</string>
   <string name="confirm_deletion">Confirmar borráu</string>
@@ -52,7 +51,6 @@
   <string name="msgs_privileged_console_alloc_failed">Imposible executar en mou superusuariu. Camudando a mou seguru.</string>
   <string name="msgs_settings_save_failure">L\'axuste nun pudo nin guardase nin aplicase.</string>
   <string name="msgs_settings_invalid_initial_directory">La carpeta inicial \"<xliff:g id="initial_dir">%1$s</xliff:g>\" ye inválida. Camudando a la carpeta raíz.</string>
-  <string name="root_not_available_msg">El permisu alministrativu nun ta disponible nesti preséu. Nun pue facese la operación.</string>
   <string name="msgs_success">Completóse la operación.</string>
   <string name="msgs_unknown">Hebo un fallu. La operación nun se completó.</string>
   <string name="msgs_insufficient_permissions">Esta operación rique permisos de superusuariu. Intenta camudar a mou superusuariu.</string>
@@ -67,7 +65,6 @@
   <string name="msgs_read_only_filesystem">El sistema de ficheros ye de namái-llectura. Intenta montalu como llectura-escritura enantes de repitir la operación.</string>
   <string name="msgs_illegal_argument">Argumentu illegal. Invocación fallida.</string>
   <string name="msgs_unresolved_inconsistencies">La operación nun ta permitida porque podría crear inconsistencies.</string>
-  <string name="msgs_operation_not_allowed_in_current_directory">La operación nun ta permitida na carpeta actual.\n\nLa carpeta de destín nun pue ser una subcarpeta de l\'actual o ser la mesma que l\'actual.</string>
   <string name="msgs_push_again_to_exit">Calca pa salir.</string>
   <string name="msgs_not_registered_app">Nun hai nenguna aplicación rexistrada p\'abrir la triba de ficheru esbilláu.</string>
   <string name="msgs_overwrite_files">Dalgún de los ficheros esiste na carpeta de destín. \n\n¿Sobrescribir?</string>

@@ -42,7 +42,7 @@
   <string name="copy_text_cd">タップしてテキストをクリップボードにコピー</string>
   <string name="copy_text_msg">テキストをクリップボードにコピーしました</string>
   <string name="warning_title">警告</string>
-  <string name="error_title">エラーを検出しました</string>
+  <string name="error_title">エラー</string>
   <string name="confirm_operation">操作の確認</string>
   <string name="confirm_overwrite">上書きの確認</string>
   <string name="confirm_deletion">削除の確認</string>
@@ -67,7 +67,7 @@
   <string name="msgs_read_only_filesystem">ファイルシステムは読み取り専用です。この操作を試みる前にファイルシステムを読み書き可能な状態でマウントしてください。</string>
   <string name="msgs_illegal_argument">不正な引数です。呼び出しを完了できませんでした。</string>
   <string name="msgs_unresolved_inconsistencies">矛盾が生じるため、その操作は許可されません。</string>
-  <string name="msgs_operation_not_allowed_in_current_directory">現在のフォルダではその操作は許可されていません。\n\n宛先のフォルダはソースのサブフォルダまたはソースと同じにはできません。</string>
+  <string name="msgs_operation_not_allowed_in_current_directory">宛先のフォルダは元のフォルダのサブフォルダまたは元のフォルダと同じフォルダにはできません。</string>
   <string name="msgs_push_again_to_exit">もう一度押すと終了します。</string>
   <string name="msgs_not_registered_app">選択されたファイル形式を扱うためのアプリが登録されていません。</string>
   <string name="msgs_overwrite_files">一部のファイルは既に宛先のフォルダに存在しています。\n\n上書きしますか？</string>

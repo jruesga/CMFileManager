@@ -42,7 +42,6 @@
   <string name="copy_text_cd">Ketuk untuk menyalin ke clipboard</string>
   <string name="copy_text_msg">Teks disalin ke clipboard</string>
   <string name="warning_title">Peringatan</string>
-  <string name="error_title">Terdeteksi kesalahan</string>
   <string name="confirm_operation">Konfirmasi operasi</string>
   <string name="confirm_overwrite">Konfirmasi timpa</string>
   <string name="confirm_deletion">Konfirmasi penghapusan</string>
@@ -52,7 +51,6 @@
   <string name="msgs_privileged_console_alloc_failed">Tidak dapat menjalankan dalam modus Akses Root. Berganti ke modus Aman.</string>
   <string name="msgs_settings_save_failure">Pengaturan yang tidak dapat diterapkan atau disimpan.</string>
   <string name="msgs_settings_invalid_initial_directory">Folder awal \'<xliff:g id="initial_dir">%1$s</xliff:g>\' tidak valid. Berganti ke folder root.</string>
-  <string name="root_not_available_msg">Root tidak tersedia dalam perangkat ini. Tidak dapat melakukan operasi ini.</string>
   <string name="msgs_success">Operasi selesai dengan sukses.</string>
   <string name="msgs_unknown">Kesalahan terdeteksi. Operasi tidak berhasil.</string>
   <string name="msgs_insufficient_permissions">Operasi ini memerlukan izin lebih tinggi. Cobalah ubah ke modus Akses Root.</string>
@@ -67,7 +65,6 @@
   <string name="msgs_read_only_filesystem">Sistem berkas baca-saja. Coba untuk memasang sistem berkas sebagai baca-tulis sebelum melakukan operasi.</string>
   <string name="msgs_illegal_argument">Argumen ilegal. Permintaan gagal.</string>
   <string name="msgs_unresolved_inconsistencies">Operasi tidak dibenarkan karena akan membuat inkonsistensi.</string>
-  <string name="msgs_operation_not_allowed_in_current_directory">Operasi tidak diperbolehkan di folder sekarang.\n\nFolder tujuan tidak boleh sub folder dari sumber atau sama dengan sumber.</string>
   <string name="msgs_push_again_to_exit">Tekan lagi untuk keluar.</string>
   <string name="msgs_not_registered_app">Tidak ada aplikasi yang terdaftar untuk menangani jenis berkas yang terpilih.</string>
   <string name="msgs_overwrite_files">Beberapa berkas sudah ada di folder tujuan.\n\nTimpa?</string>

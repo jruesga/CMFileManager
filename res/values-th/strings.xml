@@ -42,7 +42,6 @@
   <string name="copy_text_cd">แตะเพื่อคัดลอกข้อควมไปยังคลิปบอร์ด</string>
   <string name="copy_text_msg">คัดลอกข้อความไปยังคลิปบอร์ดแล้ว</string>
   <string name="warning_title">คำเตือน</string>
-  <string name="error_title">พบข้อผิดพลาด</string>
   <string name="confirm_operation">ยืนยันการกระทำ</string>
   <string name="confirm_overwrite">ยืนยันการเขียนทับ</string>
   <string name="confirm_deletion">ยืนยันการลบ</string>
@@ -65,7 +64,6 @@
   <string name="msgs_read_only_filesystem">ไฟล์ระบบนี้เป็นแบบ อ่านอย่างเดียว ลองสลับเป็น อ่านและเขียน ก่อนดำเนินอีกครั้ง</string>
   <string name="msgs_illegal_argument">อาร์กิวเมนต์ผิดพลาดไม่สามารถทำงานได้</string>
   <string name="msgs_unresolved_inconsistencies">ไม่สามารถทำงานนี้ได้เพราะมันไม่สอดคล้องกัน</string>
-  <string name="msgs_operation_not_allowed_in_current_directory">ไม่สามารถทำงานนี้ได้ในโฟลเดอร์ปัจจุบัน</string>
   <string name="msgs_push_again_to_exit">แตะอีกครั้งเพื่ออก</string>
   <string name="msgs_not_registered_app">ไม่มีแอปที่ลงทะเบียนไว้เพื่อเปิดไฟล์ประเภทนี้</string>
   <string name="msgs_overwrite_files">บางส่วนของไฟล์ที่มีอยู่แล้วในโฟลเดอร์ปลายทาง\n\nเขียนทับ?</string>

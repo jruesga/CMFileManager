@@ -42,7 +42,7 @@
   <string name="copy_text_cd">Tocar para copiar texto al portapapeles</string>
   <string name="copy_text_msg">Texto copiado al portapapeles</string>
   <string name="warning_title">Aviso</string>
-  <string name="error_title">Error detectado</string>
+  <string name="error_title">Error</string>
   <string name="confirm_operation">Confirmar operación</string>
   <string name="confirm_overwrite">Confirmar sobrescritura</string>
   <string name="confirm_deletion">Confirmar borrado</string>
@@ -67,7 +67,7 @@
   <string name="msgs_read_only_filesystem">El sistema de archivos es de solo-lectura. Intenta montarlo como lectura-escritura antes de repetir la operación.</string>
   <string name="msgs_illegal_argument">Argumento ilegal. Invocación fallida.</string>
   <string name="msgs_unresolved_inconsistencies">La operación no está permitida porque podría crear inconsistencias.</string>
-  <string name="msgs_operation_not_allowed_in_current_directory">La operación no está permitida en la carpeta actual.\n\nLa carpeta de destino no puede ser una subcarpeta de la actual o ser la misma que la actual.</string>
+  <string name="msgs_operation_not_allowed_in_current_directory">La carpeta de destino no puede ser una subcarpeta de la de origen o ser la misma.</string>
   <string name="msgs_push_again_to_exit">Pulsa de nuevo para salir.</string>
   <string name="msgs_not_registered_app">No hay ninguna aplicación registrada para abrir el tipo de archivo seleccionado.</string>
   <string name="msgs_overwrite_files">Alguno de los archivos existe en la carpeta de destino.\n\n¿Sobrescribir?</string>

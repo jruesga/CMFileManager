@@ -42,7 +42,6 @@
   <string name="copy_text_cd">Berühren, um Text in die Zwischenablage zu kopieren</string>
   <string name="copy_text_msg">Text wurde in die Zwischenablage kopiert</string>
   <string name="warning_title">Warnung</string>
-  <string name="error_title">Fehler festgestellt</string>
   <string name="confirm_operation">Aktion bestätigen</string>
   <string name="confirm_overwrite">Überschreiben bestätigen</string>
   <string name="confirm_deletion">Löschen bestätigen</string>
@@ -52,7 +51,6 @@
   <string name="msgs_privileged_console_alloc_failed">Root-Zugriff konnte nicht erlangt werden. Es wird in den sicheren Modus gewechselt.</string>
   <string name="msgs_settings_save_failure">Diese Einstellung konnte nicht angewendet werden.</string>
   <string name="msgs_settings_invalid_initial_directory">Das Standardverzeichnis \"<xliff:g id="initial_dir">%1$s</xliff:g>\" ist ungültig. Wechsle zum Wurzelverzeichnis.</string>
-  <string name="root_not_available_msg">Auf diesem Gerät ist kein Root verfügbar. Dieser Vorgang kann nicht ausgeführt werden.</string>
   <string name="msgs_success">Die Aktion wurde erfolgreich ausgeführt.</string>
   <string name="msgs_unknown">Ein Fehler ist aufgetreten. Die Vorgang konnte nicht ausgeführt werden.</string>
   <string name="msgs_insufficient_permissions">Dieser Vorgang benötigt höhere Berechtigungen. Versuche in den Root-Zugriffsmodus zu wechseln.</string>
@@ -67,7 +65,6 @@
   <string name="msgs_read_only_filesystem">Auf dem Dateisystem bestehen nur Leserechte. Versuchen Sie das Dateisystem mit Lese- und Schreibrechten zu mounten, bevor Sie die Operation ausführen.</string>
   <string name="msgs_illegal_argument">Ungültiges Argument. Aufruf fehlgeschlagen.</string>
   <string name="msgs_unresolved_inconsistencies">Die Aktion ist nicht gestattet, da sie Inkonsistenzen verursacht.</string>
-  <string name="msgs_operation_not_allowed_in_current_directory">Diese Aktion ist im aktuellen Verzeichnis nicht erlaubt.\n\nDas Zielverzeichnis darf nicht die Quelle oder deren Unterverzeichnis sein.</string>
   <string name="msgs_push_again_to_exit">Erneut drücken zum Verlassen.</string>
   <string name="msgs_not_registered_app">Für diesen Dateityp ist keine Standardanwendung definiert.</string>
   <string name="msgs_overwrite_files">Einige der Dateien existieren bereits im Zielverzeichnis.\n\nDateien überschreiben?</string>

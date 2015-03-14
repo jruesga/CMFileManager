@@ -16,6 +16,5 @@
      limitations under the License.
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-  <string name="dark_theme_name">Tema escuro</string>
-  <string name="dark_theme_desc">Um tema escuro para o gestor de ficheiros CyanogenMod.</string>
+  <string name="fso_delete_nomedia_non_empty_body">بۇ مۇندەرىجىدە بوش بولمىغان .nomedia ھۆججەت بار.\n\nئۇنى  ئۆچۈرەمسىز؟</string>
 </resources>

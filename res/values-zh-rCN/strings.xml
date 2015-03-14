@@ -42,7 +42,7 @@
   <string name="copy_text_cd">点击将文本复制到剪贴板</string>
   <string name="copy_text_msg">文本已复制到剪贴板</string>
   <string name="warning_title">警告</string>
-  <string name="error_title">检测到错误</string>
+  <string name="error_title">错误</string>
   <string name="confirm_operation">确认此操作</string>
   <string name="confirm_overwrite">确认覆盖</string>
   <string name="confirm_deletion">确认删除</string>
@@ -53,7 +53,7 @@
   <string name="msgs_privileged_console_alloc_failed">无法在 Root 访问模式下运行. 正在切换至安全模式.</string>
   <string name="msgs_settings_save_failure">设置无法被应用与保存.</string>
   <string name="msgs_settings_invalid_initial_directory">初始文件夹 \"<xliff:g id="initial_dir">%1$s</xliff:g>\" 是无效的. 切换至 Root 文件夹.</string>
-  <string name="root_not_available_msg">此设备中没有 Root 权限，不能执行此操作。</string>
+  <string name="root_not_available_msg">此设备的 root 不可用 ，无法执行此操作。</string>
   <string name="msgs_success">操作已成功的完成.</string>
   <string name="msgs_unknown">检测到了一个错误. 此操作未能成功完成.</string>
   <string name="msgs_insufficient_permissions">此操作需要更高的权限. 请尝试切换到 Root 访问模式.</string>
@@ -68,7 +68,7 @@
   <string name="msgs_read_only_filesystem">只读文件系统. 请在再次尝试操作之前使用读写模式挂载文件系统.</string>
   <string name="msgs_illegal_argument">非法参数. 调用失败.</string>
   <string name="msgs_unresolved_inconsistencies">此操作不被允许，因为它会产生不一致性.</string>
-  <string name="msgs_operation_not_allowed_in_current_directory">当前文件夹不允许此操作。 \n\n目标文件夹不能为源文件夹的子文件夹或与源文件夹相同。</string>
+  <string name="msgs_operation_not_allowed_in_current_directory">目标文件夹不能是源文件夹的子文件夹，或者与源文件夹相同。</string>
   <string name="msgs_push_again_to_exit">再次点击即可退出.</string>
   <string name="msgs_not_registered_app">没有任何与此类型文件关联的应用。</string>
   <string name="msgs_overwrite_files">

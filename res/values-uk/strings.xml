@@ -42,7 +42,6 @@
   <string name="copy_text_cd">Натисніть, щоб скопіювати текст в буфер</string>
   <string name="copy_text_msg">Текст скопійовано у буфер</string>
   <string name="warning_title">Увага</string>
-  <string name="error_title">Помилка</string>
   <string name="confirm_operation">Підтвердіть операцію</string>
   <string name="confirm_overwrite">Підтвердіть заміну</string>
   <string name="confirm_deletion">Підтвердіть видалення</string>
@@ -52,7 +51,6 @@
   <string name="msgs_privileged_console_alloc_failed">Неможливо запустити з Root правами. Переключення в безпечний режим.</string>
   <string name="msgs_settings_save_failure">Налаштування не може бути застосоване або збережене.</string>
   <string name="msgs_settings_invalid_initial_directory">Початкова папка \'<xliff:g id="initial_dir">%1$s</xliff:g>\' недоступна. Перехід в кореневу папку.</string>
-  <string name="root_not_available_msg">Root-доступ недоступний на пристрої. Не вдалося виконати цю операцію.</string>
   <string name="msgs_success">Операція пройшла успішно</string>
   <string name="msgs_unknown">Було виявлено помилки. Операція завершилась невдало.</string>
   <string name="msgs_insufficient_permissions">Ця операція вимагає підвищених привілеїв. Спробуйте змінити Root-режим.</string>
@@ -67,7 +65,6 @@
   <string name="msgs_read_only_filesystem">Файлова система доступна тільки для читання. Спробуйте змонтувати файлову систему для читання/запису.</string>
   <string name="msgs_illegal_argument">Неприпустимий аргумент. Виклик не вдався.</string>
   <string name="msgs_unresolved_inconsistencies">Операція не допускається, оскільки це створить невідповідності.</string>
-  <string name="msgs_operation_not_allowed_in_current_directory">Операція не допускається в поточній папці.\n\nПапка призначення не може бути вкладеною папкою джерела або самим джерелом.</string>
   <string name="msgs_push_again_to_exit">Натисніть ще раз для виходу</string>
   <string name="msgs_not_registered_app">Не знайдено застосунків для відкриття файлів даного типу</string>
   <string name="msgs_overwrite_files">Деякі файли вже існують в папці призначення.\n\nЗамінити?</string>

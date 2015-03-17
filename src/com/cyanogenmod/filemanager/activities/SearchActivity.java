@@ -971,18 +971,11 @@ public class SearchActivity extends Activity
      * {@inheritDoc}
      */
     @Override
-    public boolean onKeyUp(int keyCode, KeyEvent event) {
-        switch (keyCode) {
-            case KeyEvent.KEYCODE_BACK:
-                // release Console lock held by the async search task
-                if (mExecutable != null) {
-                    mExecutable.end();
-                }
-                back(true, null, false);
-                return true;
-            default:
-                return super.onKeyUp(keyCode, event);
-        }
+    public void onBackPressed() {
+       if (mExecutable != null) {
+            mExecutable.end();
+       }
+       back(true, null, false);
     }
 
     /**

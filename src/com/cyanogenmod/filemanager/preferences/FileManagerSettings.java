@@ -103,7 +103,7 @@ public enum FileManagerSettings {
      * @hide
      */
     SETTINGS_COMPUTE_FOLDER_STATISTICS(
-            "cm_filemanager_compute_folder_statistics", Boolean.FALSE), //$NON-NLS-1$
+            "cm_filemanager_compute_folder_statistics", Boolean.TRUE), //$NON-NLS-1$
     /**
      * When to display thumbs of pictures, videos, ...
      * @hide

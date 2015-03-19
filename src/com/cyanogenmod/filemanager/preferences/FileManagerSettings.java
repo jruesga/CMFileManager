@@ -185,13 +185,6 @@ public enum FileManagerSettings {
      * When to editor should use the default color scheme of the theme for syntax highlight
      * @hide
      */
-    SETTINGS_EDITOR_SH_USE_THEME_DEFAULT(
-            "cm_filemanager_editor_sh_use_theme_default", Boolean.TRUE), //$NON-NLS-1$
-
-    /**
-     * When to editor should use the default color scheme of the theme for syntax highlight
-     * @hide
-     */
     SETTINGS_EDITOR_SH_COLOR_SCHEME(
             "cm_filemanager_editor_sh_color_scheme", ""), //$NON-NLS-1$ //$NON-NLS-2$
 

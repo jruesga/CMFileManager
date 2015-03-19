@@ -207,17 +207,6 @@
     </activity>
 
     <activity
-      android:name=".themes.ThemeActivity"
-      android:label="@string/app_name"
-      android:permission="com.cyanogenmod.filemanager.permissions.READ_THEME"
-      android:exported="true">
-      <intent-filter>
-        <action android:name="com.cyanogenmod.filemanager.actions.MAIN_THEME" />
-        <category android:name="com.cyanogenmod.filemanager.categories.THEME" />
-      </intent-filter>
-    </activity>
-
-    <activity
       android:name=".console.secure.SecureStorageKeyPromptDialog$SecureStorageKeyPromptActivity"
       android:label="@string/app_name"
       android:uiOptions="none"

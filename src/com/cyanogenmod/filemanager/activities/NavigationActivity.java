@@ -994,7 +994,7 @@ public class NavigationActivity extends Activity
         Drawable action = null;
         String actionCd = null;
         if (bookmark.mType.compareTo(BOOKMARK_TYPE.HOME) == 0) {
-            action = iconholder.getDrawable("ic_config_drawable"); //$NON-NLS-1$
+            action = iconholder.getDrawable("ic_edit_home_bookmark_drawable"); //$NON-NLS-1$
             actionCd = getApplicationContext().getString(
                     R.string.bookmarks_button_config_cd);
         }

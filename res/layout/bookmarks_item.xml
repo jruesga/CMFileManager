@@ -54,7 +54,7 @@
             android:textAppearance="@style/secondary_text_appearance" />
     </LinearLayout>
 
-    <com.cyanogenmod.filemanager.ui.widgets.NonFocusableButtonItem
+    <com.cyanogenmod.filemanager.ui.widgets.ButtonItem
         android:id="@+id/bookmarks_item_action"
         android:layout_width="@dimen/default_buttom_width"
         android:layout_height="match_parent"

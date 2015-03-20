@@ -18,13 +18,17 @@
   android:id="@+id/search_item"
   android:layout_width="match_parent"
   android:layout_height="@dimen/default_row_height"
-  android:background="@drawable/material_selector" >
+  android:background="@drawable/material_selector"
+  android:paddingLeft="@dimen/extra_margin"
+  android:paddingRight="@dimen/extra_margin">
 
-  <ImageView
+  <com.cyanogenmod.filemanager.ui.widgets.FixedSizeImageView
     android:id="@+id/search_item_icon"
-    android:layout_width="wrap_content"
-    android:layout_height="match_parent"
+    android:layout_width="@dimen/default_row_height"
+    android:layout_height="@dimen/default_row_height"
     android:layout_alignParentLeft="true"
+    android:layout_gravity="center_vertical"
+    android:scaleType="centerCrop"
     android:contentDescription="@null"
     android:src="@null" />
 
@@ -32,8 +36,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_alignParentRight="true"
-    android:layout_toRightOf="@id/search_item_icon"
-    android:layout_marginRight="@dimen/extra_margin" >
+    android:layout_toRightOf="@id/search_item_icon">
 
     <TextView
       android:id="@+id/search_item_name"

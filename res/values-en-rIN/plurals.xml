@@ -17,18 +17,23 @@
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
   <plurals name="n_folders">
-    <item quantity="other"><xliff:g id="folders">%1$d</xliff:g>個のフォルダ</item>
+    <item quantity="one"><xliff:g id="folders">%1$d</xliff:g> folder</item>
+    <item quantity="other"><xliff:g id="folders">%1$d</xliff:g> folders</item>
   </plurals>
   <plurals name="n_files">
-    <item quantity="other"><xliff:g id="files">%1$d</xliff:g>個のファイル</item>
+    <item quantity="one"><xliff:g id="files">%1$d</xliff:g> file</item>
+    <item quantity="other"><xliff:g id="files">%1$d</xliff:g> files</item>
   </plurals>
   <plurals name="search_found_items">
-    <item quantity="other"><xliff:g id="count">%d</xliff:g>個のアイテムが見つかりました</item>
+    <item quantity="one"><xliff:g id="count">%1$d</xliff:g> item found</item>
+    <item quantity="other"><xliff:g id="count">%d</xliff:g> items found</item>
   </plurals>
   <plurals name="selection_folders">
-    <item quantity="other"><xliff:g id="folders">%1$d</xliff:g>個のフォルダを選択しています。</item>
+    <item quantity="one"><xliff:g id="folders">%1$d</xliff:g> folder selected.</item>
+    <item quantity="other"><xliff:g id="folders">%1$d</xliff:g> folders selected.</item>
   </plurals>
   <plurals name="selection_files">
-    <item quantity="other"><xliff:g id="files">%1$d</xliff:g>個のファイルを選択しています。</item>
+    <item quantity="one"><xliff:g id="files">%1$d</xliff:g> file selected.</item>
+    <item quantity="other"><xliff:g id="files">%1$d</xliff:g> files selected.</item>
   </plurals>
 </resources>

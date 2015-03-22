@@ -42,6 +42,7 @@
   <string name="copy_text_cd">Clicca per copiare il testo negli appunti</string>
   <string name="copy_text_msg">Testo copiato negli appunti</string>
   <string name="warning_title">Avviso</string>
+  <string name="error_title">Errore</string>
   <string name="confirm_operation">Conferma</string>
   <string name="confirm_overwrite">Conferma sovrascrittura</string>
   <string name="confirm_deletion">Conferma l\'eliminazione</string>
@@ -51,6 +52,7 @@
   <string name="msgs_privileged_console_alloc_failed">Impossibile eseguire in modalità Root. Passaggio a modalità Safe.</string>
   <string name="msgs_settings_save_failure">Impossibile salvare l\'impostazione.</string>
   <string name="msgs_settings_invalid_initial_directory">La cartella iniziale \"<xliff:g id="initial_dir">%1$s</xliff:g>\" non è valida ed è stata sostituita con la cartella radice.</string>
+  <string name="root_not_available_msg">Accesso root non disponibile su questo dispositivo. Impossibile eseguire questa operazione.</string>
   <string name="msgs_success">Operazione completata con successo.</string>
   <string name="msgs_unknown">Operazione non completata a causa di un errore.</string>
   <string name="msgs_insufficient_permissions">Questa operazione richiede privilegi più elevati. Riprovare con modalità Root attivata.</string>
@@ -65,6 +67,7 @@
   <string name="msgs_read_only_filesystem">Il file system è in sola lettura. Prima di procedere è necessario montarlo in lettura/scrittura.</string>
   <string name="msgs_illegal_argument">Argomento non valido. Chiamata al comando fallita.</string>
   <string name="msgs_unresolved_inconsistencies">Operazione non permessa, in quanto potrebbe produrre inconsistenze.</string>
+  <string name="msgs_operation_not_allowed_in_current_directory">La cartella di destinazione non può essere una sottocartella d\'origine o essere la stessa dell\'origine.</string>
   <string name="msgs_push_again_to_exit">Premere ancora per uscire.</string>
   <string name="msgs_not_registered_app">Nessuna app registrata per gestire il tipo di file selezionato.</string>
   <string name="msgs_overwrite_files">Alcuni file esistono già nella cartella destinazione.\n\nSovrascrivere?</string>

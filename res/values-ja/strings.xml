@@ -149,7 +149,7 @@
   <string name="fso_delete_nomedia_non_empty_body">このディレクトリは空でない.nomediaファイルを含んでいます。\n\n削除しますか？</string>
   <string name="history">履歴</string>
   <string name="msgs_history_empty">履歴はありません。</string>
-  <string name="msgs_history_unknown">不明な履歴項目です。</string>
+  <string name="msgs_history_unknown">不明な履歴アイテムです。</string>
   <string name="search">検索結果</string>
   <string name="search_hint">検索を入力</string>
   <string name="search_voice_hint">お話しください</string>
@@ -352,7 +352,7 @@
   <string name="pref_syntax_highlight_color_scheme_desc">シンタックスハイライトの配色を選択する</string>
   <string name="pref_syntax_sh_use_theme_default">テーマのデフォルトを使用</string>
   <string name="pref_syntax_sh_use_theme_default_desc">現在のテーマのデフォルトのシンタックスハイライトを使用する</string>
-  <string name="pref_editor_sh_item_category">項目</string>
+  <string name="pref_editor_sh_item_category">アイテム</string>
   <string name="pref_themes_selection_category">テーマ</string>
   <string name="pref_themes_set_theme">テーマを設定</string>
   <string name="pref_themes_confirmation">テーマの適用が完了しました。</string>

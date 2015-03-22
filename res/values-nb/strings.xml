@@ -42,6 +42,7 @@
   <string name="copy_text_cd">Trykk for å kopiere tekst til utklippstavlen</string>
   <string name="copy_text_msg">Tekst kopiert til utklippstavlen</string>
   <string name="warning_title">Advarsel</string>
+  <string name="error_title">Feil</string>
   <string name="confirm_operation">Bekreft operasjon</string>
   <string name="confirm_overwrite">Bekreft overskriving</string>
   <string name="confirm_deletion">Bekreft sletting</string>
@@ -51,6 +52,7 @@
   <string name="msgs_privileged_console_alloc_failed">Klarer ikke kjøre med Root-tilgang. Bytter til sikker tilgang.</string>
   <string name="msgs_settings_save_failure">Innstillingen kan ikke brukes eller lagres.</string>
   <string name="msgs_settings_invalid_initial_directory">Oppstartsmappen \"<xliff:g id="initial_dir">%1$s</xliff:g>\" er ugyldig. Bytter til rotmappen.</string>
+  <string name="root_not_available_msg">Root er ikke tilgjengelig på denne enheten. Kan ikke utføre denne operasjonen.</string>
   <string name="msgs_success">Operasjonen var vellykket.</string>
   <string name="msgs_unknown">En feil ble oppdaget. Operasjonen var mislykket.</string>
   <string name="msgs_insufficient_permissions">Denne operasjonen krever avanserte tillatelser. Prøv å bytt til root-tilgang.</string>
@@ -65,6 +67,7 @@
   <string name="msgs_read_only_filesystem">Filsystemet er skrivebeskyttet. Prøv å montere filsystemet som lese-skrive før du prøver operasjonen.</string>
   <string name="msgs_illegal_argument">Ulovlig argument. Påkalling mislyktes.</string>
   <string name="msgs_unresolved_inconsistencies">Operasjonen er ikke tillatt fordi den ville skapt uoverensstemmelser.</string>
+  <string name="msgs_operation_not_allowed_in_current_directory">Målmappen kan ikke være undermappe for kilde eller være det samme som kilde.</string>
   <string name="msgs_push_again_to_exit">Trykk igjen for å avslutte.</string>
   <string name="msgs_not_registered_app">Det er ikke noe program registrert som kan håndtere den valgte filtypen.</string>
   <string name="msgs_overwrite_files">Noen av filene finnes allerede.\n\nOverskriv?</string>

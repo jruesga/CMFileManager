@@ -42,6 +42,7 @@
   <string name="copy_text_cd">Raak om teks te kopieer na knipbord</string>
   <string name="copy_text_msg">Teks gekopieer na die knipbord</string>
   <string name="warning_title">Pasop</string>
+  <string name="error_title">Fout</string>
   <string name="confirm_operation">Bevestig werking</string>
   <string name="confirm_overwrite">Bevestig oorskrywing</string>
   <string name="confirm_deletion">Bevestig verwydering</string>
@@ -51,6 +52,7 @@
   <string name="msgs_privileged_console_alloc_failed">Kry nie \'root\' toegang nie. Het verander na veilige modus.</string>
   <string name="msgs_settings_save_failure">Die instelling kan nie toegepas of gestoor word nie.</string>
   <string name="msgs_settings_invalid_initial_directory">Die aanvanklike vouergids\"<xliff:g id="initial_dir">%1$s</xliff:g>\" is ongeldig. Verander na \'root\' vouergids.</string>
+  <string name="root_not_available_msg">Root is nie beskikbaar in hierdie toestel. Kan nie die operasie voltooi nie.</string>
   <string name="msgs_success">Die aksie was suksesvol voltooi.</string>
   <string name="msgs_unknown">\'n Fout het voorgekom. Die aksie was onsuksesvol.</string>
   <string name="msgs_insufficient_permissions">Hierdie aksie vereis verhoogde regte. Probeer \'root\' toegang.</string>
@@ -65,6 +67,7 @@
   <string name="msgs_read_only_filesystem">Die lêerstelsel is slegs leesbaar. Probeer om die lêerstelsel as lees-en-skryf aan te heg.</string>
   <string name="msgs_illegal_argument">Onwettige argument. Aktivering het misluk.</string>
   <string name="msgs_unresolved_inconsistencies">Die werking word nie toegelaat nie want dit skep teenstrydighede.</string>
+  <string name="msgs_operation_not_allowed_in_current_directory">Bestemming vouer kan nie \'n subvouer van die bron wees nie of dieselfde as bron wees nie.</string>
   <string name="msgs_push_again_to_exit">Raak weer om te beeindig.</string>
   <string name="msgs_not_registered_app">Daar is geen program geregistreer om die tipe lêer oop te maak nie.</string>
   <string name="msgs_overwrite_files">Sommige van die lêers bestaan reeds in die teiken vouergids.\n\nOorskryf??</string>

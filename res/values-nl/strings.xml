@@ -42,6 +42,7 @@
   <string name="copy_text_cd">Tik om tekst te kopiëren naar klembord</string>
   <string name="copy_text_msg">Tekst gekopieerd naar klembord</string>
   <string name="warning_title">Let op</string>
+  <string name="error_title">Fout</string>
   <string name="confirm_operation">Bewerken bevestigen</string>
   <string name="confirm_overwrite">Overschrijven bevestigen</string>
   <string name="confirm_deletion">Verwijderen bevestigen</string>
@@ -51,6 +52,7 @@
   <string name="msgs_privileged_console_alloc_failed">Kan geen roottoegang verkrijgen. Schakelen naar veilige modus.</string>
   <string name="msgs_settings_save_failure">Kan de instellingen niet toepassen/opslaan.</string>
   <string name="msgs_settings_invalid_initial_directory">De eerste map \'<xliff:g id="initial_dir">%1$s</xliff:g>\' is ongeldig. Veranderen naar hoofdmap.</string>
+  <string name="root_not_available_msg">Root is niet beschikbaar op dit apparaat. Kan deze bewerking niet uitvoeren.</string>
   <string name="msgs_success">Bewerking is voltooid</string>
   <string name="msgs_unknown">Er is een fout opgetreden. De bewerking is mislukt.</string>
   <string name="msgs_insufficient_permissions">Deze bewerking heeft verhoogde machtigingen nodig. Probeer naar roottoegangsmodus te schakelen.</string>
@@ -65,6 +67,7 @@
   <string name="msgs_read_only_filesystem">Het bestandssysteem is gekoppeld als alleen-lezen. Probeer het bestandssysteem als beschrijfbaar te koppelen alvorens de bewerking uit te voeren.</string>
   <string name="msgs_illegal_argument">Ongeldig argument. Activering mislukt.</string>
   <string name="msgs_unresolved_inconsistencies">Deze bewerking is niet toegestaan omdat het inconsistenties zal veroorzaken.</string>
+  <string name="msgs_operation_not_allowed_in_current_directory">Doelmap kan niet hetzelfde zijn als de bron of een submap zijn van de bron.</string>
   <string name="msgs_push_again_to_exit">Tik nogmaals om af te sluiten.</string>
   <string name="msgs_not_registered_app">Er is geen app geïnstalleerd om het geselecteerde bestandstype te openen.</string>
   <string name="msgs_overwrite_files">Een aantal bestanden bestaat al in de doelmap.\n\nOverschrijven?</string>

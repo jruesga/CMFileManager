@@ -42,6 +42,7 @@
   <string name="copy_text_cd">Atingeți pentru a copia textul în clipboard</string>
   <string name="copy_text_msg">Textul s-a copiat în clipboard</string>
   <string name="warning_title">Avertizare</string>
+  <string name="error_title">Eroare</string>
   <string name="confirm_operation">Confirmați operațiunea</string>
   <string name="confirm_overwrite">Confirmați suprascrierea</string>
   <string name="confirm_deletion">Confirmați ștergerea</string>

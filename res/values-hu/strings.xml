@@ -42,6 +42,7 @@
   <string name="copy_text_cd">Érintse meg a szöveg vágólapra másolásához</string>
   <string name="copy_text_msg">Szöveg vágólapra másolva</string>
   <string name="warning_title">Figyelmeztetés</string>
+  <string name="error_title">Hiba</string>
   <string name="confirm_operation">Művelet megerősítése</string>
   <string name="confirm_overwrite">Felülírás megerősítése</string>
   <string name="confirm_deletion">Törlés megerősítése</string>
@@ -51,6 +52,7 @@
   <string name="msgs_privileged_console_alloc_failed">Nem lehet futtatni rendszergazda módban. Váltás biztonságos módba.</string>
   <string name="msgs_settings_save_failure">A beállítást nem lehet alkalmazni, vagy elmenteni.</string>
   <string name="msgs_settings_invalid_initial_directory">A kezdő könyvtár \"<xliff:g id="initial_dir">%1$s</xliff:g>\" érvénytelen. Váltás a gyökérkönyvtárra.</string>
+  <string name="root_not_available_msg">Rendszergazdai jogosultság nem érhető el ezen az eszközön. A művelet nem hajtható végre.</string>
   <string name="msgs_success">A művelet sikeresen befejeződött.</string>
   <string name="msgs_unknown">A művelet sikertelen, hiba történt.</string>
   <string name="msgs_insufficient_permissions">Ehhez a művelethez nincs jogosultsága.</string>
@@ -65,6 +67,7 @@
   <string name="msgs_read_only_filesystem">A fájlrendszer csak olvasható. Próbálja meg írhatóként újracsatlakoztatni a művelet előtt.</string>
   <string name="msgs_illegal_argument">Érvénytelen paraméter, sikertelen futtatás.</string>
   <string name="msgs_unresolved_inconsistencies">A művelet nem engedélyezett, mert következetlenséget okozna.</string>
+  <string name="msgs_operation_not_allowed_in_current_directory">Célmappa nem lehet a forrás almappája, vagy ugyanaz, mint a forrás.</string>
   <string name="msgs_push_again_to_exit">Nyomja meg mégegyszer a kilépéshez.</string>
   <string name="msgs_not_registered_app">A kijelölt fájltípushoz nincs alkalmazás társítva.</string>
   <string name="msgs_overwrite_files">Néhány fájl már létezik a célkönyvtárban.\n\nFelülírja?</string>

@@ -108,6 +108,7 @@
   <string name="search">Axtarış nəticələri</string>
   <string name="search_hint">Axtardığınızı yazın</string>
   <string name="search_found_items_in_directory"><xliff:g id="items">%1$s</xliff:g> in <xliff:g id="path">%2$s</xliff:g></string>
+  <string name="search_terms"><![CDATA[<b>Şərtlər:</b>]]> <xliff:g id="terms">%1$s</xliff:g></string>
   <string name="searching">Zəhmət olmasa gözləyin\u2026</string>
   <string name="bookmarks">Əlfəcinlər</string>
   <string name="bookmarks_home">Əsas</string>
@@ -116,9 +117,12 @@
   <string name="menu_settings">Tənzimləmələr</string>
   <string name="menu_clear_history">Keçmişi təmizlə</string>
   <string name="create_new_compress_file_regexp"><xliff:g id="name">%1$s</xliff:g> - yeni<xliff:g id="extension">%2$s</xliff:g></string>
+  <string name="waiting_dialog_copying_msg"><![CDATA[<b>Buradan</b>]]> <xliff:g id="from">%1$s</xliff:g><![CDATA[<br/><b>Buraya</b>]]> <xliff:g id="to">%2$s</xliff:g></string>
   <string name="waiting_dialog_moving_title">Köçürülür\u2026</string>
+  <string name="waiting_dialog_moving_msg"><![CDATA[<b>Buradan</b>]]> <xliff:g id="from">%1$s</xliff:g><![CDATA[<br/><b>Buraya</b>]]> <xliff:g id="to">%2$s</xliff:g></string>
   <string name="waiting_dialog_deleting_title">Silinir\u2026</string>
   <string name="waiting_dialog_deleting_msg"><![CDATA[<b>Fayl</b>]]> <xliff:g id="file">%1$s</xliff:g></string>
+  <string name="waiting_dialog_extracting_msg"><![CDATA[<b>Fayl</b>]]> <xliff:g id="file">%1$s</xliff:g></string>
   <string name="waiting_dialog_compressing_title">Sıxışdırılır\u2026</string>
   <string name="waiting_dialog_compressing_msg"><![CDATA[<b>Fayl</b>]]> <xliff:g id="file">%1$s</xliff:g></string>
   <string name="actions_menu_properties_current_folder">Xüsusiyyətlər</string>

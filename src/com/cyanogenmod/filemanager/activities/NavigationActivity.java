@@ -1533,9 +1533,10 @@ public class NavigationActivity extends Activity
         // Check if request navigation to directory (use as default), and
         // ensure chrooted and absolute path
         String navigateTo = intent.getStringExtra(EXTRA_NAVIGATE_TO);
+        String intentAction = intent.getAction();
         if (navigateTo != null && navigateTo.length() > 0) {
             initialDir = navigateTo;
-        } else if (intent.getAction().equals(Intent.ACTION_VIEW)) {
+        } else if (intentAction != null && intentAction.equals(Intent.ACTION_VIEW)) {
             Uri data = intent.getData();
             if (data != null && (FileHelper.FILE_URI_SCHEME.equals(data.getScheme())
                     || FileHelper.FOLDER_URI_SCHEME.equals(data.getScheme())
@@ -1550,7 +1551,7 @@ public class NavigationActivity extends Activity
         // Add to history
         final boolean addToHistory = intent.getBooleanExtra(EXTRA_ADD_TO_HISTORY, true);
 
-        // We cannot navigate to a secure console if is unmount, go to root in that case
+        // We cannot navigate to a secure console if it is unmounted. So go to root in that case
         VirtualConsole vc = VirtualMountPointConsole.getVirtualConsoleForPath(initialDir);
         if (vc != null && vc instanceof SecureConsole && !((SecureConsole) vc).isMounted()) {
             initialDir = FileHelper.ROOT_DIRECTORY;

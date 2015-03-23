@@ -303,7 +303,6 @@
   <string name="pref_editor">Voľby editora</string>
   <string name="pref_themes">Témy</string>
   <string name="pref_about">O aplikácii</string>
-  <string name="pref_about_summary">Správca súborov v<xliff:g id="version">%1$s</xliff:g>\nAutorské práva © 2012-2014 Projekt CyanogenMod</string>
   <string name="pref_general_behaviour_category">Všeobecné</string>
   <string name="pref_case_sensitive_sort">Rozlišovať veľké a malé písmená pri triedení</string>
   <string name="pref_case_sensitive_sort_summary">Zvážiť veľké a malé písmená pri prechádzaní alebo usporiadaní výsledkov hľadania</string>

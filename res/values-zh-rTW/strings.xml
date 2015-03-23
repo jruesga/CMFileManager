@@ -293,7 +293,6 @@
   <string name="pref_editor">編輯器選項</string>
   <string name="pref_themes">主題</string>
   <string name="pref_about">關於</string>
-  <string name="pref_about_summary">檔案管理器 v<xliff:g id="version">%1$s</xliff:g>\n版權所有 \u00A9 2012-2014 CyanogenMod 計畫</string>
   <string name="pref_general_behaviour_category">一般</string>
   <string name="pref_case_sensitive_sort">排列時區分大小寫</string>
   <string name="pref_case_sensitive_sort_summary">導覽或排列搜尋結果時區分大小寫</string>

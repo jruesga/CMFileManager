@@ -296,7 +296,6 @@
   <string name="pref_editor">Επιλογές επεξεργασίας</string>
   <string name="pref_themes">Θέματα</string>
   <string name="pref_about">Σχετικά</string>
-  <string name="pref_about_summary">Διαχείριση αρχείων v<xliff:g id="version">%1$s</xliff:g>\nCopyright \u00A9 2012-2014 The CyanogenMod Project</string>
   <string name="pref_general_behaviour_category">Γενικά</string>
   <string name="pref_case_sensitive_sort">Πεζά-κεφαλαία</string>
   <string name="pref_case_sensitive_sort_summary">Ταξινόμηση με βάση πεζά-κεφαλαία κατά την πλοήγηση ή την εμφάνιση αποτελεσμάτων αναζήτησης</string>

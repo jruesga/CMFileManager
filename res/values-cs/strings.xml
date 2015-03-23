@@ -296,7 +296,6 @@
   <string name="pref_editor">Nastavení editoru</string>
   <string name="pref_themes">Motivy</string>
   <string name="pref_about">O programu\u2026</string>
-  <string name="pref_about_summary">Správce souborů v<xliff:g id="version">%1$s</xliff:g>\nCopyright \u00A9 2012–2014 The CyanogenMod Project</string>
   <string name="pref_general_behaviour_category">Obecné</string>
   <string name="pref_case_sensitive_sort">Rozlišit velká a malá písmena při hledání.</string>
   <string name="pref_case_sensitive_sort_summary">Brát v potaz velikost písmen při prohlížení nebo třídění vyhledaných položek</string>

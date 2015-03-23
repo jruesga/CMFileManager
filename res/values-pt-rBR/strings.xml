@@ -296,7 +296,6 @@
   <string name="pref_editor">Opções do editor</string>
   <string name="pref_themes">Temas</string>
   <string name="pref_about">Sobre</string>
-  <string name="pref_about_summary">Gerenciador de Arquivos v<xliff:g id="version">%1$s</xliff:g>\nCopyright \u00A9 2012-2014 The CyanogenMod Project</string>
   <string name="pref_general_behaviour_category">Geral</string>
   <string name="pref_case_sensitive_sort">Maiúsculas/minúsculas</string>
   <string name="pref_case_sensitive_sort_summary">Considerar maiúsculas/minúsculas quando navegando ou ordenando resultados de buscas</string>

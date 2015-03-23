@@ -314,8 +314,6 @@
   <string name="pref_editor">Redigeerder opsies</string>
   <string name="pref_themes">Temas</string>
   <string name="pref_about">Aangaande</string>
-  <string name="pref_about_summary">Lêer-verkenner v<xliff:g id="version">%1$s</xliff:g>
-    \nKopiereg \u00A9 2012-2015 Die CyanogenMod Projek</string>
   <string name="pref_general_behaviour_category">Algemeen</string>
   <string name="pref_case_sensitive_sort">Gebruik letter-sensitiewe sortering</string>
   <string name="pref_case_sensitive_sort_summary">Oorweeg letter-sensitiewe navigasie en sortering van soek resultate</string>

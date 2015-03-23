@@ -296,7 +296,6 @@
   <string name="pref_editor">Redaktoriaus parinktys</string>
   <string name="pref_themes">Temos</string>
   <string name="pref_about">Apie</string>
-  <string name="pref_about_summary">Failų tvarkyklė v<xliff:g id="version">%1$s</xliff:g>\nAutorinės teisės \u00A9 2012-2014 „CyanogenMod“ projektas</string>
   <string name="pref_general_behaviour_category">Bendra</string>
   <string name="pref_case_sensitive_sort">Didžiosios ir mažosios raidės</string>
   <string name="pref_case_sensitive_sort_summary">Turinio ir paieškos rezultatų nejautrus rūšiavimas</string>

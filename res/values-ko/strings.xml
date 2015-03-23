@@ -296,7 +296,6 @@
   <string name="pref_editor">편집기 설정</string>
   <string name="pref_themes">테마</string>
   <string name="pref_about">정보</string>
-  <string name="pref_about_summary">파일 관리자 v<xliff:g id="version">%1$s</xliff:g>\nCopyright \u00A9 2012–2014 CyanogenMod Project</string>
   <string name="pref_general_behaviour_category">일반</string>
   <string name="pref_case_sensitive_sort">대소문자 구분</string>
   <string name="pref_case_sensitive_sort_summary">검색 결과를 정렬하거나 탐색할 때 대소문자를 구별합니다</string>

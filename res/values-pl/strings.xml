@@ -305,7 +305,6 @@
   <string name="pref_editor">Opcje edytora</string>
   <string name="pref_themes">Motywy</string>
   <string name="pref_about">O aplikacji</string>
-  <string name="pref_about_summary">Menedżer plików v<xliff:g id="version">%1$s</xliff:g>\nCopyright \u00A9 2012–2014 The CyanogenMod Project</string>
   <string name="pref_general_behaviour_category">Generalne</string>
   <string name="pref_case_sensitive_sort">Uwzględnianie wielkości liter</string>
   <string name="pref_case_sensitive_sort_summary">Uwzględniaj wielkość liter w trakcie nawigacji i sortowania wyników wyszukiwania</string>

@@ -296,7 +296,6 @@
   <string name="pref_editor">Editoreinstellungen</string>
   <string name="pref_themes">Designs</string>
   <string name="pref_about">Über</string>
-  <string name="pref_about_summary">Dateimanager v<xliff:g id="version">%1$s</xliff:g>\nCopyright \u00A9 2012-2014 The CyanogenMod Project</string>
   <string name="pref_general_behaviour_category">Allgemein</string>
   <string name="pref_case_sensitive_sort">Groß- und Kleinschreibung</string>
   <string name="pref_case_sensitive_sort_summary">Beim Navigieren und Sortieren Groß- und Kleinschreibung berücksichtigen</string>

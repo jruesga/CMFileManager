@@ -293,7 +293,6 @@
   <string name="pref_editor">Editorastellungen</string>
   <string name="pref_themes">Designen</string>
   <string name="pref_about">Iwwer</string>
-  <string name="pref_about_summary">Fichiersmanager v<xliff:g id="version">%1$s</xliff:g>\nCopyright \u00A9 2012–2014 The CyanogenMod Project</string>
   <string name="pref_general_behaviour_category">Allgemeng</string>
   <string name="pref_case_sensitive_sort">Grouss-/Klengschreiwung respektéieren</string>
   <string name="pref_case_sensitive_sort_summary">Grouss-/Klengschreiwung respektéiere beim Navigéieren oder Zortéiere vu Sichresultater</string>

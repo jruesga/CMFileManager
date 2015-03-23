@@ -310,7 +310,6 @@
   <string name="pref_editor">אפשרויות עורך</string>
   <string name="pref_themes">ערכות נושא</string>
   <string name="pref_about">אודות</string>
-  <string name="pref_about_summary">מנהל הקבצים v<xliff:g id="version">%1$s</xliff:g>\nזכויות יוצרים \u00A9 2012-2014 פרויקט ה-CyanogenMod</string>
   <string name="pref_general_behaviour_category">כללי</string>
   <string name="pref_case_sensitive_sort">מיין לפי אותיות גדולות וקטנות</string>
   <string name="pref_case_sensitive_sort_summary">שקול מקרה כאשר מנווטים או ממיינים תוצאות חיפוש</string>

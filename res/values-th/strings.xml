@@ -289,7 +289,6 @@
   <string name="pref_editor">ทางเลือกการแก้ไขไฟล์</string>
   <string name="pref_themes">ธีม</string>
   <string name="pref_about">เกี่ยวกับ</string>
-  <string name="pref_about_summary">ตัวจัดการไฟล์ รุ่น<xliff:g id="version">%1$s</xliff:g>\nสงวนลิขสิทธิ์ \u00A9 2012-2014 The CyanogenMod Project</string>
   <string name="pref_general_behaviour_category">ทั่วไป</string>
   <string name="pref_case_sensitive_sort">มีผลต่อตัวพิมพ์ใหญ่-เล็ก</string>
   <string name="pref_case_sensitive_sort_summary">คำนึงถึงตัวอักษรใหญ่เล็กเมื่อเรียงสิ่งที่แสดงผล</string>

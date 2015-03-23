@@ -287,7 +287,6 @@
   <string name="pref_editor">هەڵبژاردنەکانی دەستکاریکەر</string>
   <string name="pref_themes">ڕووکارەکان</string>
   <string name="pref_about">دەربارەی</string>
-  <string name="pref_about_summary">بەڕێوەبەری فایل وەشانی<xliff:g id="version">%1$s</xliff:g>\nمافی لەبەرگرتنەوەی پارێزراوە بۆ \u00A9 2012-2014 پڕۆژەی سیانۆجین مۆد</string>
   <string name="pref_general_behaviour_category">گشتی</string>
   <string name="pref_case_sensitive_sort">شێوازی هەستیاری</string>
   <string name="pref_case_sensitive_sort_summary">ڕه‌چاوکردنی به‌رگ کاتێک ئاڕاسته‌ده‌کات یان ئه‌نجامی گه‌ڕان ڕیز ده‌کات</string>

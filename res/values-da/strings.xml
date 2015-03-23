@@ -308,7 +308,6 @@
   <string name="pref_editor">Redigeringsmuligheder</string>
   <string name="pref_themes">Temaer</string>
   <string name="pref_about">Om</string>
-  <string name="pref_about_summary">Filhåndtering v<xliff:g id="version">%1$s</xliff:g>\nOphavsret \u00A9 2012–2014 The CyanogenMod Project</string>
   <string name="pref_general_behaviour_category">Generelt</string>
   <string name="pref_case_sensitive_sort">Brug case-sensitiv sortering</string>
   <string name="pref_case_sensitive_sort_summary">Forskel på store/små bogstaver ved navigering eller sortering af søgeresultater</string>

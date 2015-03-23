@@ -293,7 +293,6 @@
   <string name="pref_editor">Налаштування редактора</string>
   <string name="pref_themes">Теми</string>
   <string name="pref_about">Про програму</string>
-  <string name="pref_about_summary">Файловий менеджер v<xliff:g id="version">%1$s</xliff:g>\nCopyright \u00A9 2012-2014 The CyanogenMod Project</string>
   <string name="pref_general_behaviour_category">Основні</string>
   <string name="pref_case_sensitive_sort">Враховувати регістр</string>
   <string name="pref_case_sensitive_sort_summary">Враховувати регістр при навігації чи сортуванні пошукових результатів</string>

@@ -298,7 +298,6 @@
   <string name="pref_editor">Redigerarinställningar</string>
   <string name="pref_themes">Teman</string>
   <string name="pref_about">Om</string>
-  <string name="pref_about_summary">Filhanterare v<xliff:g id="version">%1$s</xliff:g>\nCopyright \u00A9 2012-2014 The CyanogenMod Project</string>
   <string name="pref_general_behaviour_category">Allmänt</string>
   <string name="pref_case_sensitive_sort">Skriftlägeskänslig</string>
   <string name="pref_case_sensitive_sort_summary">Överväger skriftläge vid navigering eller sortering av sökresultat</string>

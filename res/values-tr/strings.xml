@@ -296,7 +296,6 @@
   <string name="pref_editor">Düzenleyici ayarları</string>
   <string name="pref_themes">Temalar</string>
   <string name="pref_about">Hakkında</string>
-  <string name="pref_about_summary">Dosya Yöneticisi v<xliff:g id="version">%1$s</xliff:g>\nTelif Hakkı \u00A9 2012–2014 CyanogenMod Projesi</string>
   <string name="pref_general_behaviour_category">Genel</string>
   <string name="pref_case_sensitive_sort">Büyük/küçük harf duyarlı</string>
   <string name="pref_case_sensitive_sort_summary">Arama sonuçlarında dolaşırken ve sıralarken büyük/küçük ayrımını gözetin</string>

@@ -298,7 +298,6 @@
   <string name="pref_editor">Опције уређивача</string>
   <string name="pref_themes">Теме</string>
   <string name="pref_about">О програму</string>
-  <string name="pref_about_summary">Менаџер фајлова v<xliff:g id="version">%1$s</xliff:g>\nАуторско право \u00A9 2012-2014 CyanogenMod Пројекат</string>
   <string name="pref_general_behaviour_category">Опште</string>
   <string name="pref_case_sensitive_sort">Разликуј мала и велика слова код сортирања</string>
   <string name="pref_case_sensitive_sort_summary">Размислите о случају приликом навигације или сортирања резултата претраге</string>

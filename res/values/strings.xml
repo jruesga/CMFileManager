@@ -224,7 +224,7 @@
     <!-- Filesystem Info Dialog - Tab - Disk Usage -->
     <string name="filesystem_info_dialog_tab_disk_usage">Disk usage</string>
     <!-- Filesystem Info Dialog - Status Label -->
-    <string name="filesystem_info_dialog_status">Status:</string>
+    <string name="filesystem_info_dialog_status">Mounted:</string>
     <!-- Filesystem Info Dialog - Mount Point Label -->
     <string name="filesystem_info_dialog_mount_point">Mount point:</string>
     <!-- Filesystem Info Dialog - Device Label -->

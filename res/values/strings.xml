@@ -214,7 +214,7 @@
     <!-- Filesystem Info - Filesystem couldn't be mounted -->
     <string name="filesystem_info_cant_be_mounted_msg">The file system cannot be mounted/unmounted.</string>
     <!-- Filesystem Info - Not allowed message -->
-    <string name="filesystem_info_mount_not_allowed_msg">File system mounting operations are not allowedin Safe mode. Tap to change to Root Access mode.</string>
+    <string name="filesystem_info_mount_not_allowed_msg">File system mounting operations are not allowed in Safe mode. Tap to change to Root Access mode.</string>
     <!-- Filesystem Info - Mount failed -->
     <string name="filesystem_info_mount_failed_msg">File system mounting operation failed. Some file systems, like SD cards, cannot be mounted/unmounted because they are built-in as read-only file systems.</string>
     <!-- Filesystem Info Dialog - Title -->

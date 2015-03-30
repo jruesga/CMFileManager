@@ -102,12 +102,10 @@
   <string name="filesystem_info_warning_title">Ensin información</string>
   <string name="filesystem_info_warning_msg">Nun hai información disponible pal sistema de ficheros.</string>
   <string name="filesystem_info_cant_be_mounted_msg">El sistema de ficheros nun pue montase/desmontase.</string>
-  <string name="filesystem_info_mount_not_allowed_msg">El montaxe del sistema de ficheros nun ta permitíu en mou seguru. Tocar equí pa camudar a mou superusuariu.</string>
   <string name="filesystem_info_mount_failed_msg">El montaxe del sistema de ficheros falló. Dalgunos sistemes de ficheros, como les tarxetes SD, nun puen montase o desmontase porque tán diseñaos como sistemes de namái-llectura.</string>
   <string name="filesystem_info_dialog_title">Información del sistema de ficheros</string>
   <string name="filesystem_info_dialog_tab_info">Información</string>
   <string name="filesystem_info_dialog_tab_disk_usage">Usu</string>
-  <string name="filesystem_info_dialog_status">Estáu:</string>
   <string name="filesystem_info_dialog_mount_point">Montáu en:</string>
   <string name="filesystem_info_dialog_device">Preséu:</string>
   <string name="filesystem_info_dialog_type">Triba:</string>
@@ -337,7 +335,6 @@
   <string name="pref_secure_storage_category">Almacenamientu seguru</string>
   <string name="pref_secure_storage_delayed_sync_title">Sincronización retrasada</string>
   <string name="pref_secure_storage_delayed_sync_summary">La sincronización de sistemes de ficheros ye una operación costosa. Habilita esta opción pa consiguir meyores tiempos de rempuesta dempués de cada operación, demorando la sincronización hasta que\'l sistema de ficheros nun tea n\'usu, pero a espenses de perder la información non sincronizada si l\'aplicación tien un zarru inesperáu.</string>
-  <string name="pref_secure_storage_reset_password_title">Restablecer contraseña</string>
   <string name="pref_secure_storage_delete_storage_title">Desaniciar almacenamientu</string>
   <string name="pref_editor_behaviour_category">Comportamientu</string>
   <string name="pref_no_suggestions">Ensin suxerencies</string>
@@ -345,9 +342,7 @@
   <string name="pref_word_wrap">Axuste de llinia</string>
   <string name="pref_hexdump">Volcáu hexadecimal</string>
   <string name="pref_hexdump_desc">Al abrir un ficheru binariu, xenerar un volcáu hexadecimal y amosalu na pantalla</string>
-  <string name="pref_editor_syntax_highlight_category">Sintaxis</string>
   <string name="pref_syntax_highlight">Resaltar sintaxis</string>
-  <string name="pref_syntax_highlight_desc">Resaltar la sintaxis del ficheru amosáu (aplicable cuando esista un intérprete disponible pa esta triba de ficheru)</string>
   <string name="pref_syntax_highlight_color_scheme">Esquema de color</string>
   <string name="pref_syntax_highlight_color_scheme_desc">Seleicionar l\'esquema de color pal resaltáu de sintaxis</string>
   <string name="pref_syntax_sh_use_theme_default">Tema por defeutu</string>

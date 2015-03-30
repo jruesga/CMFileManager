@@ -110,7 +110,7 @@
   <string name="filesystem_info_dialog_title">Informácie o súborovom systéme</string>
   <string name="filesystem_info_dialog_tab_info">Informácie</string>
   <string name="filesystem_info_dialog_tab_disk_usage">Využitie disku</string>
-  <string name="filesystem_info_dialog_status">Stav:</string>
+  <string name="filesystem_info_dialog_status">Pripojené:</string>
   <string name="filesystem_info_dialog_mount_point">Bod pripojenia:</string>
   <string name="filesystem_info_dialog_device">Zariadenie:</string>
   <string name="filesystem_info_dialog_type">Typ:</string>
@@ -342,7 +342,7 @@
   <string name="pref_secure_storage_category">Zabezpečené úložisko</string>
   <string name="pref_secure_storage_delayed_sync_title">Oneskorená synchronizácia</string>
   <string name="pref_secure_storage_delayed_sync_summary">Synchronizácia zabezpečených súborových systémov je náročná operácia. Povoľte túto možnosť pre rýchlejšiu odozvu po každej operácii, vykonaním synchronizácie v čase, keď je súborový systém v nepoužívanom stave, ale na úkor straty čakajúcich informácií, ktoré nebudú synchronizované, ak aplikácia zlyhá.</string>
-  <string name="pref_secure_storage_reset_password_title">Obnoviť heslo</string>
+  <string name="pref_secure_storage_reset_password_title">Zmeniť heslo</string>
   <string name="pref_secure_storage_delete_storage_title">Odstrániť úložisko</string>
   <string name="pref_editor_behaviour_category">Správanie</string>
   <string name="pref_no_suggestions">Žiadne návrhy</string>
@@ -350,9 +350,9 @@
   <string name="pref_word_wrap">Zalamovať slová</string>
   <string name="pref_hexdump">Binárne súbory hexadecimálneho výpisu</string>
   <string name="pref_hexdump_desc">Pri otvorení binárneho súboru sa vygeneruje hexadecimálny výpis súboru a otvorí sa v hexadecimálnom prehliadači</string>
-  <string name="pref_editor_syntax_highlight_category">Zvýrazniť syntax</string>
+  <string name="pref_editor_syntax_highlight_category">Zvýrazňovanie syntaxe</string>
   <string name="pref_syntax_highlight">Zvýrazniť syntax</string>
-  <string name="pref_syntax_highlight_desc"> Bude zvýraznená syntax súboru zobrazeného v editore (iba keď je dostupný procesor zvýraznenia syntaxe pre daný typ súboru)</string>
+  <string name="pref_syntax_highlight_desc">Zvýrazniť syntax súboru zobrazeného v editore (iba ak je dostupný procesor na zvýrazňovanie syntaxe pre daný typ súboru)</string>
   <string name="pref_syntax_highlight_color_scheme">Farebná schéma</string>
   <string name="pref_syntax_highlight_color_scheme_desc">Vybrať farebnej schémy zvýraznenia syntaxe</string>
   <string name="pref_syntax_sh_use_theme_default">Použiť predvolenú tému</string>

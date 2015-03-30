@@ -102,12 +102,10 @@
   <string name="filesystem_info_warning_title">Nav informācijas</string>
   <string name="filesystem_info_warning_msg">Par failu sistēmu nav pieejama nekāda informācija.</string>
   <string name="filesystem_info_cant_be_mounted_msg">Failu sistēmu nevar uzmontēt/nomontēt.</string>
-  <string name="filesystem_info_mount_not_allowed_msg">Failu sistēmas montēšana drošajā režīmā nav atļauta. Piesitiet lai pārietu uz Root pieejas režīmu.</string>
   <string name="filesystem_info_mount_failed_msg">Failu sistēmas montēšana neizdevās. Dažas failu sistēmas, piemēram, SD kartes, nevar montēt/nomontēt, jo tās ir izveidotas kā tikai lasāmas failu sistēmas.</string>
   <string name="filesystem_info_dialog_title">Informācija par failu sistēmu</string>
   <string name="filesystem_info_dialog_tab_info">Informācija</string>
   <string name="filesystem_info_dialog_tab_disk_usage">Diska lietojums</string>
-  <string name="filesystem_info_dialog_status">Statuss:</string>
   <string name="filesystem_info_dialog_mount_point">Montēšanas punkts:</string>
   <string name="filesystem_info_dialog_device">Iekārta:</string>
   <string name="filesystem_info_dialog_type">Veids:</string>
@@ -332,7 +330,6 @@
   <string name="pref_secure_storage_category">Drošā krātuve</string>
   <string name="pref_secure_storage_delayed_sync_title">Aizkavēta sinhronizācija</string>
   <string name="pref_secure_storage_delayed_sync_summary">Droša failu sistēmas sinhronizācija ir \"dārga\" darbība. Ieslēdzot šo opciju, katras darbības pabeigšana notiek ātrāk, jo darbības ar failu sistēmu veic laikā, kad sistēmu izmanto mazāk. Tomēr jārēķinās, ka šādi var pazaudēt datus, ja lietotne salūzt laikā, kad visas failu darbības nav pabeigtas.</string>
-  <string name="pref_secure_storage_reset_password_title">Atstatīt paroli</string>
   <string name="pref_secure_storage_delete_storage_title">Dzēst krātuvi</string>
   <string name="pref_editor_behaviour_category">Uzvedība</string>
   <string name="pref_no_suggestions">Nav ieteikumu</string>
@@ -340,9 +337,7 @@
   <string name="pref_word_wrap">Teksta aplaušana</string>
   <string name="pref_hexdump">Bināros failus kā heksadecimālo izmeti</string>
   <string name="pref_hexdump_desc">Atverot bināru failu, izveidot heksadecimālo izmeti failu un rādīt to hex skatītājā</string>
-  <string name="pref_editor_syntax_highlight_category">Sintakses izcelšana</string>
   <string name="pref_syntax_highlight">Sintakses izcelšana</string>
-  <string name="pref_syntax_highlight_desc">Redaktorā attēlotajā failā izgaismot sintaksi (tikai tad, ja attiecīgajam faila veidam ir zināmi sintakses izcēluma likumi)</string>
   <string name="pref_syntax_highlight_color_scheme">Krāsu shēma</string>
   <string name="pref_syntax_highlight_color_scheme_desc">Izvēlieties sintakses izcēlumu krāsu shēmu</string>
   <string name="pref_syntax_sh_use_theme_default">Izmantot noklusēto tēmu</string>

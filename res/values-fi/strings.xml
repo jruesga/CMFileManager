@@ -105,12 +105,12 @@
   <string name="filesystem_info_warning_title">Ei tietoja</string>
   <string name="filesystem_info_warning_msg">Tietoja tiedostojärjestelmästä ei ole saatavilla.</string>
   <string name="filesystem_info_cant_be_mounted_msg">Tiedostojärjestelmää ei voida kiinnittää/poistaa kiinnitystä.</string>
-  <string name="filesystem_info_mount_not_allowed_msg">Tiedostojärjestelmän kiinnitystoiminnot ei ole sallittuja turvallisessa tilassa. Vaihta tästä Root-tilaan.</string>
+  <string name="filesystem_info_mount_not_allowed_msg">Tiedostojärjestelmän kiinnitystoiminnot ei ole sallittuja turvallisessa tilassa. Vaihda tästä Root-tilaan.</string>
   <string name="filesystem_info_mount_failed_msg">Tiedostojärjestelmän kiinnitystoiminto epäonnistui. Joitakin tiedostojärjestelmiä, kuten SD-kortteja, ei voi kiinnittää/poistaa kiinnitystä koska ne on suunniteltu vain-luku tiedostojärjestelmiksi.</string>
   <string name="filesystem_info_dialog_title">Tiedostojärjestelmän tiedost</string>
   <string name="filesystem_info_dialog_tab_info">Tiedot</string>
   <string name="filesystem_info_dialog_tab_disk_usage">Levyn käyttö</string>
-  <string name="filesystem_info_dialog_status">Tila:</string>
+  <string name="filesystem_info_dialog_status">Kiinnitetty:</string>
   <string name="filesystem_info_dialog_mount_point">Kiinnityspaikka:</string>
   <string name="filesystem_info_dialog_device">Laite:</string>
   <string name="filesystem_info_dialog_type">Tyyppi:</string>
@@ -335,7 +335,7 @@
   <string name="pref_secure_storage_category">Turvallinen tallennustila</string>
   <string name="pref_secure_storage_delayed_sync_title">Viivästetty synkronointi</string>
   <string name="pref_secure_storage_delayed_sync_summary">Turvallisten tiedostojärjestelmien synkronointi vaatii paljon resursseja. Ottamalla tämän käyttöön, toiminnot vastaavat nopeammin, ja synkronointi suoritetaan kun tiedostojärjestelmää ei käytetä, mutta sovelluksen kaatuessa menetät odottavat tiedot.</string>
-  <string name="pref_secure_storage_reset_password_title">Nollaa salasana</string>
+  <string name="pref_secure_storage_reset_password_title">Vaihda salasana</string>
   <string name="pref_secure_storage_delete_storage_title">Poista tallennustila</string>
   <string name="pref_editor_behaviour_category">Käyttäytyminen</string>
   <string name="pref_no_suggestions">Ei ehdotuksia</string>
@@ -343,9 +343,9 @@
   <string name="pref_word_wrap">Rivitys</string>
   <string name="pref_hexdump">Hex dump-binääritiedostot</string>
   <string name="pref_hexdump_desc">Avattaessa binääritiedostoa, luo hex dump tiedostosta ja avaa se heksadesimaalieditorissa</string>
-  <string name="pref_editor_syntax_highlight_category">Syntaksinkorostus</string>
+  <string name="pref_editor_syntax_highlight_category">Syntaksin korostus</string>
   <string name="pref_syntax_highlight">Syntaksinkorostus</string>
-  <string name="pref_syntax_highlight_desc">Korota syntaksit kun tiedosto näytetään editorissa (vain kun tiedostotyyppi tukee sitä)</string>
+  <string name="pref_syntax_highlight_desc">Korosta tiedoston syntaksi editorissa (vain jos syntaksin korostus tukee tiedostomuotoa)</string>
   <string name="pref_syntax_highlight_color_scheme">Väriteema</string>
   <string name="pref_syntax_highlight_color_scheme_desc">Valitse syntaksin korostuksen värisävy</string>
   <string name="pref_syntax_sh_use_theme_default">Käytä teeman oletusta</string>

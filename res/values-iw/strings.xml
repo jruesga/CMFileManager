@@ -111,7 +111,7 @@
   <string name="filesystem_info_dialog_title">מידע על מערכת קבצים</string>
   <string name="filesystem_info_dialog_tab_info">מידע</string>
   <string name="filesystem_info_dialog_tab_disk_usage">שימוש בדיסק</string>
-  <string name="filesystem_info_dialog_status">מצב:</string>
+  <string name="filesystem_info_dialog_status">מעוגן:</string>
   <string name="filesystem_info_dialog_mount_point">נקודת עיגון:</string>
   <string name="filesystem_info_dialog_device">מכשיר:</string>
   <string name="filesystem_info_dialog_type">סוג:</string>
@@ -349,7 +349,7 @@
   <string name="pref_secure_storage_category">אחסון מאובטח</string>
   <string name="pref_secure_storage_delayed_sync_title">סנכרון מושהה</string>
   <string name="pref_secure_storage_delayed_sync_summary">סינכרון של מערכות קבצים מאובטחות הוא פעולה יקרה. הפעל אפשרות זו כדי לאפשר תגובות מהירות יותר לאחר כל פעולה, כך שיתבצע סינכרון כאשר מערכת הקבצים איננה נמצאת בשימוש, אבל על חשבון איבוד המידע הממתין שלא הסתנכרן במידה והאפליקציה תקרוס.</string>
-  <string name="pref_secure_storage_reset_password_title">איפוס סיסמה</string>
+  <string name="pref_secure_storage_reset_password_title">שנה סיסמה</string>
   <string name="pref_secure_storage_delete_storage_title">מחיקת אחסון</string>
   <string name="pref_editor_behaviour_category">התנהגות</string>
   <string name="pref_no_suggestions">אין הצעות</string>
@@ -357,9 +357,9 @@
   <string name="pref_word_wrap">גלישת מילים</string>
   <string name="pref_hexdump">קבצים בינארים של Hexdump</string>
   <string name="pref_hexdump_desc">כאשר פותחים קובץ בינארי, צור hexdump של הקובץ ופתח אותו באמצעות hex viewer</string>
-  <string name="pref_editor_syntax_highlight_category">הבלט תחביר</string>
+  <string name="pref_editor_syntax_highlight_category">סימון תחביר</string>
   <string name="pref_syntax_highlight">הבלט תחביר</string>
-  <string name="pref_syntax_highlight_desc">סמן את התחביר של הקובץ מוצג בעורך (יעבד סימון תחביר רק עבור קבצים עם מבנה זמין)</string>
+  <string name="pref_syntax_highlight_desc">סמן את התחביר של הקובץ המוצג בעורך (רק כאשר מעבד סימון תחביר עבור סוג קובץ זה זמין)</string>
   <string name="pref_syntax_highlight_color_scheme">ערכת צבעים</string>
   <string name="pref_syntax_highlight_color_scheme_desc">בחר את ערכת הצבעים של סימון תחביר</string>
   <string name="pref_syntax_sh_use_theme_default">השתמש בערכת הנושא המוגדרת כברירת מחדל</string>

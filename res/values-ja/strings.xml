@@ -105,12 +105,12 @@
   <string name="filesystem_info_warning_title">情報がありません</string>
   <string name="filesystem_info_warning_msg">このファイルシステムには利用可能な情報がありません。</string>
   <string name="filesystem_info_cant_be_mounted_msg">このファイルシステムはマウント/マウント解除できません。</string>
-  <string name="filesystem_info_mount_not_allowed_msg">ファイルシステムのマウント操作はセーフモードでは許可されていません。タップするとルートアクセスモードに変更します。</string>
+  <string name="filesystem_info_mount_not_allowed_msg">セーフモードではファイルシステムのマウント操作は許可されません。タップしてルートアクセスモードに変更します。</string>
   <string name="filesystem_info_mount_failed_msg">ファイルシステムのマウント操作ができませんでした。SDカードのような一部のファイルシステムは読み取り専用のファイルシステムとして内蔵されているため、マウント/マウント解除することはできません。</string>
   <string name="filesystem_info_dialog_title">ファイルシステム情報</string>
   <string name="filesystem_info_dialog_tab_info">情報</string>
   <string name="filesystem_info_dialog_tab_disk_usage">ディスク使用量</string>
-  <string name="filesystem_info_dialog_status">状態:</string>
+  <string name="filesystem_info_dialog_status">マウント済み:</string>
   <string name="filesystem_info_dialog_mount_point">マウントポイント:</string>
   <string name="filesystem_info_dialog_device">端末:</string>
   <string name="filesystem_info_dialog_type">形式:</string>
@@ -336,7 +336,7 @@
   <string name="pref_secure_storage_category">セキュアストレージ</string>
   <string name="pref_secure_storage_delayed_sync_title">遅延同期</string>
   <string name="pref_secure_storage_delayed_sync_summary">セキュアファイルシステムの同期は負荷の高い動作です。このオプションを有効にすると、ファイルシステムが未使用の状態のときに同期を実行することによってあらゆる操作の後の反応を高速化できますが、アプリがクラッシュした場合に同期されていない保留中の情報が失われることを犠牲にします。</string>
-  <string name="pref_secure_storage_reset_password_title">パスワードをリセット</string>
+  <string name="pref_secure_storage_reset_password_title">パスワードを変更</string>
   <string name="pref_secure_storage_delete_storage_title">ストレージを削除</string>
   <string name="pref_editor_behaviour_category">動作</string>
   <string name="pref_no_suggestions">変換候補を表示しない</string>
@@ -346,7 +346,7 @@
   <string name="pref_hexdump_desc">バイナリファイルは16進ダンプを生成して16進ビューアで開く</string>
   <string name="pref_editor_syntax_highlight_category">シンタックスハイライト</string>
   <string name="pref_syntax_highlight">シンタックスハイライト</string>
-  <string name="pref_syntax_highlight_desc">エディタに表示されているファイルの構文をハイライト表示する（シンタックスハイライトプロセッサが利用可能なファイルタイプのみ）</string>
+  <string name="pref_syntax_highlight_desc">エディタに表示するファイルの構文をハイライト表示する（そのファイル形式に対応しているシンタックスハイライトプロセッサが利用可能な場合のみ）</string>
   <string name="pref_syntax_highlight_color_scheme">配色</string>
   <string name="pref_syntax_highlight_color_scheme_desc">シンタックスハイライトの配色を選択する</string>
   <string name="pref_syntax_sh_use_theme_default">テーマのデフォルトを使用</string>

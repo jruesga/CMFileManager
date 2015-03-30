@@ -92,12 +92,10 @@
   <string name="filesystem_info_warning_title">Informaziorik ez</string>
   <string name="filesystem_info_warning_msg">Ez dago informaziorik eskuragarri fitxategi sistemarako.</string>
   <string name="filesystem_info_cant_be_mounted_msg">Fitxategi sistema ezin da muntatu/desmuntatu.</string>
-  <string name="filesystem_info_mount_not_allowed_msg">Fitxategi sistemaren muntaketa ez dago baliagarri modu babestuan. Sakatu hemen Supererabiltzaile modura aldatzeko.</string>
   <string name="filesystem_info_mount_failed_msg">Fitxategi sistemaren muntaketak huts egin du. Fitxategi sistema batzuk, SD txartelak kasu, ezin dira muntatuak edo desmuntatuak izan irakurtzea soilik bezala diseinatuta daudelako.</string>
   <string name="filesystem_info_dialog_title">Fitxategi sistemari buruzko informazioa</string>
   <string name="filesystem_info_dialog_tab_info">Informazioa</string>
   <string name="filesystem_info_dialog_tab_disk_usage">Diskoaren erabilpena</string>
-  <string name="filesystem_info_dialog_status">Egoera:</string>
   <string name="filesystem_info_dialog_mount_point">Muntatze puntua:</string>
   <string name="filesystem_info_dialog_device">Gailua:</string>
   <string name="filesystem_info_dialog_type">Mota:</string>
@@ -302,9 +300,7 @@
   <string name="pref_word_wrap">Lerro doikuntza</string>
   <string name="pref_hexdump">Iraulketa hexadezimala</string>
   <string name="pref_hexdump_desc">Fitxategi binario bat irakurtzean, iraulketa hexadezimal bat sortu eta pantailatik erakutsi</string>
-  <string name="pref_editor_syntax_highlight_category">Sintaxia</string>
   <string name="pref_syntax_highlight">Sintaxia nabarmendu</string>
-  <string name="pref_syntax_highlight_desc">Erakutsitako fitxategiaren sintaxia nabarmendu (fitxategi motarako interprete bat existitzen denean baliagarria)</string>
   <string name="pref_syntax_highlight_color_scheme">Kolore eskema</string>
   <string name="pref_syntax_highlight_color_scheme_desc">Sintaxiaren nabarmentzerako kolore eskema aukeratu</string>
   <string name="pref_syntax_sh_use_theme_default">Lehenetsitako gaia</string>

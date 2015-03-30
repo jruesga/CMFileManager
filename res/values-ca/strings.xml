@@ -110,7 +110,7 @@
   <string name="filesystem_info_dialog_title">Informació del sistema d\'arxius</string>
   <string name="filesystem_info_dialog_tab_info">Info</string>
   <string name="filesystem_info_dialog_tab_disk_usage">Ús del disc</string>
-  <string name="filesystem_info_dialog_status">Estat:</string>
+  <string name="filesystem_info_dialog_status">Muntat:</string>
   <string name="filesystem_info_dialog_mount_point">Punt de muntatge:</string>
   <string name="filesystem_info_dialog_device">Dispositiu:</string>
   <string name="filesystem_info_dialog_type">Tipus:</string>
@@ -336,7 +336,7 @@
   <string name="pref_secure_storage_category">Emmagatzematge segur</string>
   <string name="pref_secure_storage_delayed_sync_title">Retard de sincronització</string>
   <string name="pref_secure_storage_delayed_sync_summary">La sincronització de sistemes de fitxers segurs és una operació costosa. Habilita aquesta opció per aconseguir millors temps de resposta després de cada operació, realitzant la sincronització quan el sistema de fitxers està en un estat sense ús, però a costa de perdre informació pendent de ser sincronitzada si l\'app es penja.</string>
-  <string name="pref_secure_storage_reset_password_title">Restableix contrasenya</string>
+  <string name="pref_secure_storage_reset_password_title">Canvia la contrasenya</string>
   <string name="pref_secure_storage_delete_storage_title">Esborra emmagatzematge</string>
   <string name="pref_editor_behaviour_category">Comportament</string>
   <string name="pref_no_suggestions">Sense sugerències</string>
@@ -346,7 +346,7 @@
   <string name="pref_hexdump_desc">Quan s\'obri un arxiu binari, genera un volcat hexadecimal de l\'arxiu i l\'obre\'l al visor hexadecimal</string>
   <string name="pref_editor_syntax_highlight_category">Realçament de sintaxis</string>
   <string name="pref_syntax_highlight">Realça la sintaxis</string>
-  <string name="pref_syntax_highlight_desc">Realça la sintaxis de l\'arxiu mostrat a l\'editor (només quan un processador de realçament de sintaxis està disponible pel tipus d\'arxiu)</string>
+  <string name="pref_syntax_highlight_desc">Realça la sintaxis de l\'arxiu mostrat en l\'editor (només quan està disponible un processador de realçament de sintaxis per al tipus d\'arxiu)</string>
   <string name="pref_syntax_highlight_color_scheme">Esquema de colors</string>
   <string name="pref_syntax_highlight_color_scheme_desc">Selecciona la combinació de colors del realçament de sintaxis</string>
   <string name="pref_syntax_sh_use_theme_default">Utilitza el tema predeterminat</string>

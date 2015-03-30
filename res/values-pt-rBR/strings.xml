@@ -105,12 +105,12 @@
   <string name="filesystem_info_warning_title">Sem informação</string>
   <string name="filesystem_info_warning_msg">Não há informação disponível para o sistema de arquivo</string>
   <string name="filesystem_info_cant_be_mounted_msg">O sistema de arquivo não pode ser montado/desmontado</string>
-  <string name="filesystem_info_mount_not_allowed_msg">Operações de montagem do sistema de arquivo não é permitida no modo Seguro. Pressione para trocar para o modo de Acesso Superusuário.</string>
+  <string name="filesystem_info_mount_not_allowed_msg">Operações de montagem do sistema de arquivo não é permitida no Modo Seguro. Pressione para trocar para o modo de Acesso Super Usuário.</string>
   <string name="filesystem_info_mount_failed_msg">Falha ao montar o sistema de arquivo. Alguns sistemas de arquivos, como cartões SD, não podem ser montados/desmontados porque eles estão como sistemas de arquivo de somente leitura</string>
   <string name="filesystem_info_dialog_title">Informação do sistema de arquivo</string>
   <string name="filesystem_info_dialog_tab_info">Informação</string>
   <string name="filesystem_info_dialog_tab_disk_usage">Uso de disco</string>
-  <string name="filesystem_info_dialog_status">Estado:</string>
+  <string name="filesystem_info_dialog_status">Montado:</string>
   <string name="filesystem_info_dialog_mount_point">Ponto de montagem:</string>
   <string name="filesystem_info_dialog_device">Dispositivo:</string>
   <string name="filesystem_info_dialog_type">Tipo:</string>
@@ -335,7 +335,7 @@
   <string name="pref_secure_storage_category">Armazenamento seguro</string>
   <string name="pref_secure_storage_delayed_sync_title">Sincronização atrasada</string>
   <string name="pref_secure_storage_delayed_sync_summary">Sincronização de sistemas de arquivos seguros é uma operação dispendiosa. Habilite esta opção para permitir melhor tempo de resposta após cada operação, executando a sincronização quando o sistema de arquivos não estiver sendo utilizado. Mas se o aplicativo falhar, pode perder as informações pendentes não sincronizadas.</string>
-  <string name="pref_secure_storage_reset_password_title">Redefinir a senha</string>
+  <string name="pref_secure_storage_reset_password_title">Alterar senha</string>
   <string name="pref_secure_storage_delete_storage_title">Excluir armazenamento</string>
   <string name="pref_editor_behaviour_category">Comportamento</string>
   <string name="pref_no_suggestions">Sem sugestões</string>
@@ -343,9 +343,9 @@
   <string name="pref_word_wrap">Quebra palavra</string>
   <string name="pref_hexdump">Gerar hex de arq. binários</string>
   <string name="pref_hexdump_desc">Ao abrir um arquivo binário, gerar hexadecimal do arquivo e abrí-lo no visualizador hexadecimal</string>
-  <string name="pref_editor_syntax_highlight_category">Destacar sintaxe</string>
+  <string name="pref_editor_syntax_highlight_category">Realçar a sintaxe</string>
   <string name="pref_syntax_highlight">Destacar sintaxe</string>
-  <string name="pref_syntax_highlight_desc">Destacar a sintaxe do arquivo exibido no editor (somente quando um analisador de sintaxe estiver disponível para o tipo de arquivo)</string>
+  <string name="pref_syntax_highlight_desc">Realce a sintaxe do arquivo exibido no editor (somente quando a sintaxe para o tipo de arquivo estiver disponível)</string>
   <string name="pref_syntax_highlight_color_scheme">Esquema de cor</string>
   <string name="pref_syntax_highlight_color_scheme_desc">Selecione o esquema de cores de realce de sintaxe</string>
   <string name="pref_syntax_sh_use_theme_default">Usar tema padrão</string>

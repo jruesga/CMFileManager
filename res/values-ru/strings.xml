@@ -105,12 +105,12 @@
   <string name="filesystem_info_warning_title">Нет информации</string>
   <string name="filesystem_info_warning_msg">Нет доступной информации о файловой системе</string>
   <string name="filesystem_info_cant_be_mounted_msg">Файловая система не может быть смонтирована/отмонтирована</string>
-  <string name="filesystem_info_mount_not_allowed_msg">Перемонтирование файловой системы в безопасном режиме невозможно. Нажмите для переключения в режим суперпользователя.</string>
+  <string name="filesystem_info_mount_not_allowed_msg">Монтирование файловой системы невозможно в безопасном режиме. Нажмите для переключения в режим суперпользователя.</string>
   <string name="filesystem_info_mount_failed_msg">Не удалось смонтировать файловую систему. Некоторые файловые системы, такие как SD-карты, не могут быть смонтированы/отмонтированы, потому что они имеют встроенную файловую систему только для чтения</string>
   <string name="filesystem_info_dialog_title">Информация о файловой системе</string>
   <string name="filesystem_info_dialog_tab_info">Информация</string>
   <string name="filesystem_info_dialog_tab_disk_usage">Диск</string>
-  <string name="filesystem_info_dialog_status">Статус:</string>
+  <string name="filesystem_info_dialog_status">Подключены:</string>
   <string name="filesystem_info_dialog_mount_point">Точка монт.:</string>
   <string name="filesystem_info_dialog_device">Устройство:</string>
   <string name="filesystem_info_dialog_type">Тип ФС:</string>
@@ -342,7 +342,7 @@
   <string name="pref_secure_storage_category">Защищённое хранилище</string>
   <string name="pref_secure_storage_delayed_sync_title">Отложенная синхронизация</string>
   <string name="pref_secure_storage_delayed_sync_summary">Синхронизация защищённых ФС требует дополнительного времени. Включение этой опции позволит увеличить производительность за счёт выполнения синхронизации только при отсутствии файловой активности, однако в этом случае при падении приложения могут быть утеряны данные.</string>
-  <string name="pref_secure_storage_reset_password_title">Изменить пароль</string>
+  <string name="pref_secure_storage_reset_password_title">Смена пароля</string>
   <string name="pref_secure_storage_delete_storage_title">Удалить хранилище</string>
   <string name="pref_editor_behaviour_category">Поведение</string>
   <string name="pref_no_suggestions">Не предлагать исправления</string>
@@ -352,7 +352,7 @@
   <string name="pref_hexdump_desc">Вывод содержимого бинарных файлов в шестнадцатеричном формате</string>
   <string name="pref_editor_syntax_highlight_category">Подсветка синтаксиса</string>
   <string name="pref_syntax_highlight">Включить подсветку синтаксиса</string>
-  <string name="pref_syntax_highlight_desc">Подсвечивать синтаксис редактируемого файла (для поддерживаемых редактором типов файлов)</string>
+  <string name="pref_syntax_highlight_desc">Подсвечивать синтаксис редактируемого файла (только для поддерживаемых редактором типов файлов)</string>
   <string name="pref_syntax_highlight_color_scheme">Цветовая схема</string>
   <string name="pref_syntax_highlight_color_scheme_desc">Выбор цветовой схемы подсветки синтаксиса</string>
   <string name="pref_syntax_sh_use_theme_default">Схема по умолчанию</string>

@@ -105,12 +105,12 @@
   <string name="filesystem_info_warning_title">Bilgi yok</string>
   <string name="filesystem_info_warning_msg">Dosya sistemi için bilgi bulunamadı.</string>
   <string name="filesystem_info_cant_be_mounted_msg">Dosya sistemi bağlanamadı/çıkarılamadı.</string>
-  <string name="filesystem_info_mount_not_allowed_msg">Dosya sistemi bağlama işlemlerine Güvenli modda izin verilmiyor. Root Erişimi moduna geçmek için dokunun.</string>
+  <string name="filesystem_info_mount_not_allowed_msg">Güvenli modda dosya sistemi bağlama işlemlerine izin verilmiyor. Root Erişim moduna geçmek için dokunun.</string>
   <string name="filesystem_info_mount_failed_msg">Dosya sistemi bağlama başarısız oldu. SD kartlar gibi bazı dosya sistemleri bağlanamaz/çıkarılamaz çünkü sadece okunabilir dosya sistemi olarak dahil edilmişlerdir.</string>
   <string name="filesystem_info_dialog_title">Dosya sistemi bilgisi</string>
   <string name="filesystem_info_dialog_tab_info">Bilgi</string>
   <string name="filesystem_info_dialog_tab_disk_usage">Disk kullanımı</string>
-  <string name="filesystem_info_dialog_status">Durum:</string>
+  <string name="filesystem_info_dialog_status">Bağlı:</string>
   <string name="filesystem_info_dialog_mount_point">Bağlama noktası:</string>
   <string name="filesystem_info_dialog_device">Cihaz:</string>
   <string name="filesystem_info_dialog_type">Tipi:</string>
@@ -335,7 +335,7 @@
   <string name="pref_secure_storage_category">Güvenli depolama</string>
   <string name="pref_secure_storage_delayed_sync_title">Gecikmiş eşitleme</string>
   <string name="pref_secure_storage_delayed_sync_summary">Güvenli dosya sistemlerinin eşitlenmesi riskli bir işlemdir.Her işlemden sonra daha hızlı süreler için bu seçeneği etkinleştirin. Eşitleme dosya sistemi kullanılmazken yapılır. Ancak eğer uygulama çökerse eşitlenmeyi bekleyen bilgiler kaybolabilir.</string>
-  <string name="pref_secure_storage_reset_password_title">Parolayı sıfırla</string>
+  <string name="pref_secure_storage_reset_password_title">Şifreyi değiştir</string>
   <string name="pref_secure_storage_delete_storage_title">Depolamayı sil</string>
   <string name="pref_editor_behaviour_category">Davranış</string>
   <string name="pref_no_suggestions">Öneri yok</string>
@@ -343,9 +343,9 @@
   <string name="pref_word_wrap">Sözcük kaydırma</string>
   <string name="pref_hexdump">İkili dosyaları hexdumpla</string>
   <string name="pref_hexdump_desc">İkili dosyaları açarken bir hexdump oluştur ve onaltılık görüntüleyicide göster</string>
-  <string name="pref_editor_syntax_highlight_category">Sözdizimi vurgulama</string>
+  <string name="pref_editor_syntax_highlight_category">Söz dizimi vurgulama</string>
   <string name="pref_syntax_highlight">Sözdizimi vurgulama</string>
-  <string name="pref_syntax_highlight_desc">Düzenleyicide görüntülünen dosyanın sözdizimini vurgula (sadece ilgili dosya türü için sözdizimi vurgulama kullanılabilirse)</string>
+  <string name="pref_syntax_highlight_desc">Düzenleyicide gösterilen dosyanın sözdizimini vurgular ( sadece dosya türü için söz dizimi vurgulama işlemcisi olduğunda)</string>
   <string name="pref_syntax_highlight_color_scheme">Renk planı</string>
   <string name="pref_syntax_highlight_color_scheme_desc">Sözdizimi vurgulama renk düzenini seç</string>
   <string name="pref_syntax_sh_use_theme_default">Varsayılan temayı kullan</string>

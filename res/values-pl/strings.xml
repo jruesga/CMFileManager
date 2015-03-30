@@ -105,12 +105,10 @@
   <string name="filesystem_info_warning_title">Brak informacji</string>
   <string name="filesystem_info_warning_msg">Nie ma żadnych informacji na temat systemu plików</string>
   <string name="filesystem_info_cant_be_mounted_msg">System plików nie może zostać zamontowany/odmontowany.</string>
-  <string name="filesystem_info_mount_not_allowed_msg">Montowanie systemu plików jest niemożliwe w trybie bezpiecznym. Aktywuj tryb dostępu do roota.</string>
   <string name="filesystem_info_mount_failed_msg">Montowanie systemu plików nie powiodło się. Niektóre systemy plików, jak karty pamięci, mogą nie umożliwiać montowania, ponieważ są zbudowane w trybie tylko do odczytu.</string>
   <string name="filesystem_info_dialog_title">Informacje o systemie plików</string>
   <string name="filesystem_info_dialog_tab_info">Informacje</string>
   <string name="filesystem_info_dialog_tab_disk_usage">Użycie dysku</string>
-  <string name="filesystem_info_dialog_status">Status:</string>
   <string name="filesystem_info_dialog_mount_point">Punkt montowania:</string>
   <string name="filesystem_info_dialog_device">Urządzenie:</string>
   <string name="filesystem_info_dialog_type">Typ:</string>
@@ -344,7 +342,6 @@
   <string name="pref_secure_storage_category">Bezpieczna pamięć</string>
   <string name="pref_secure_storage_delayed_sync_title">Opóźnienie synchronizacji</string>
   <string name="pref_secure_storage_delayed_sync_summary">Synchronizacja zabezpieczonych plików jest kosztowną operacją. Włącz tę opcję, aby umożliwić lepsze czasy odpowiedzi po każdej operacji. Wykonywana jest, gdy system plików jest w nieużywany, kosztem niezsynchronizowania informacji, jeśli aplikacja ulegnie awarii.</string>
-  <string name="pref_secure_storage_reset_password_title">Resetowanie hasła</string>
   <string name="pref_secure_storage_delete_storage_title">Usuń pamięć</string>
   <string name="pref_editor_behaviour_category">Zachowanie</string>
   <string name="pref_no_suggestions">Brak podpowiedzi</string>
@@ -352,9 +349,7 @@
   <string name="pref_word_wrap">Zawijanie wierszy</string>
   <string name="pref_hexdump">Heksadecymalny zrzut plików binarnych</string>
   <string name="pref_hexdump_desc">Gdy otwierasz plik binarny generuj heksadecymalny zrzut pliku i otwórz go w przeglądarce plików heksadecymalnych</string>
-  <string name="pref_editor_syntax_highlight_category">Podświetlanie składni</string>
   <string name="pref_syntax_highlight">Podświetlanie składni</string>
-  <string name="pref_syntax_highlight_desc">Podświetlaj składnię plików otwartych w edytorze (tylko, jeśli dany typ pliku jest obsługiwany przez moduł podświetlania)</string>
   <string name="pref_syntax_highlight_color_scheme">Schemat kolorów</string>
   <string name="pref_syntax_highlight_color_scheme_desc">Wybierz schemat kolorów podświetlenia składni</string>
   <string name="pref_syntax_sh_use_theme_default">Użyj domyślnego</string>

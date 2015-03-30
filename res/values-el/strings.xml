@@ -110,7 +110,7 @@
   <string name="filesystem_info_dialog_title">Πληροφορίες συστήματος αρχείων</string>
   <string name="filesystem_info_dialog_tab_info">Πληροφορίες</string>
   <string name="filesystem_info_dialog_tab_disk_usage">Χρήση δίσκου</string>
-  <string name="filesystem_info_dialog_status">Κατάσταση:</string>
+  <string name="filesystem_info_dialog_status">Προσαρτήθηκε:</string>
   <string name="filesystem_info_dialog_mount_point">Σημ. προσάρτησης:</string>
   <string name="filesystem_info_dialog_device">Συσκευή:</string>
   <string name="filesystem_info_dialog_type">Τύπος:</string>
@@ -335,7 +335,7 @@
   <string name="pref_secure_storage_category">Ασφαλής αποθ. χώρος</string>
   <string name="pref_secure_storage_delayed_sync_title">Καθυστερημένη συγχρονισμού</string>
   <string name="pref_secure_storage_delayed_sync_summary">Ο συγχρονισμός των ασφαλών συστημάτων αρχείων είναι μια δαπανηρή διαδικασία. Ενεργοποιήστε αυτή την επιλογή για να επιτρέψετε ταχύτερη ανταπόκριση μετά από κάθε λειτουργία, εκτελώντας τον συγχρονισμό όταν το σύστημα αρχείων δεν χρησιμοποιείται, ρισκάροντας όμως την απώλεια των δεδομένων που δεν έχουν αποθηκευθεί ακόμη εάν η εφαρμογή παρουσιάσει σφάλμα.</string>
-  <string name="pref_secure_storage_reset_password_title">Επαναφορά κωδικού πρόσβασης</string>
+  <string name="pref_secure_storage_reset_password_title">Αλλαγή κωδικού πρόσβασης</string>
   <string name="pref_secure_storage_delete_storage_title">Διαγραφή αποθ. χώρου</string>
   <string name="pref_editor_behaviour_category">Συμπεριφορά</string>
   <string name="pref_no_suggestions">Απενεργοποίηση προτάσεων</string>

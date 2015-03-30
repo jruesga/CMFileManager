@@ -96,14 +96,12 @@
   <string name="filesystem_info_warning_title">Ingen information</string>
   <string name="filesystem_info_warning_msg">Det finns ingen information tillgänglig om filsystemet.</string>
   <string name="filesystem_info_cant_be_mounted_msg">Filsystemet kan inte monteras/avmonteras.</string>
-  <string name="filesystem_info_mount_not_allowed_msg">Filsystemsmontering är inte tillåtet i Säkert läge. Tryck för att växla till Rootläge.</string>
   <string name="filesystem_info_mount_failed_msg">Filsystemsmonteringen misslyckades.
     Vissa filsystem, som SD-kort, kan inte monteras/avmonteras för att
     de är inbyggda som read-only.</string>
   <string name="filesystem_info_dialog_title">Filsystemsinformation</string>
   <string name="filesystem_info_dialog_tab_info">Information</string>
   <string name="filesystem_info_dialog_tab_disk_usage">Diskanvändning</string>
-  <string name="filesystem_info_dialog_status">Status:</string>
   <string name="filesystem_info_dialog_mount_point">Monteringspunkt:</string>
   <string name="filesystem_info_dialog_device">Enhet:</string>
   <string name="filesystem_info_dialog_type">Typ:</string>
@@ -337,7 +335,6 @@
   <string name="pref_remove_saved_search_terms_msg">Alla sparade söktermer togs bort</string>
   <string name="pref_secure_storage_category">Skyddad lagring</string>
   <string name="pref_secure_storage_delayed_sync_title">Fördröjd synkronisering</string>
-  <string name="pref_secure_storage_reset_password_title">Återställ lösenord</string>
   <string name="pref_secure_storage_delete_storage_title">Ta bort lagringsenhet</string>
   <string name="pref_editor_behaviour_category">Beteende</string>
   <string name="pref_no_suggestions">Inga förslag</string>
@@ -345,9 +342,7 @@
   <string name="pref_word_wrap">Radbrytning</string>
   <string name="pref_hexdump">Hexdumpbinärfiler</string>
   <string name="pref_hexdump_desc">Vid öppning av en binärfil genereras en hexdump av filen som sedan öppnas i hexläsaren</string>
-  <string name="pref_editor_syntax_highlight_category">Markera syntax</string>
   <string name="pref_syntax_highlight">Markera syntax</string>
-  <string name="pref_syntax_highlight_desc">Markera filens syntax vid visning i redigeraren (endast när en behandlare för syntaxmarkering finns tillgänglig för filtypen)</string>
   <string name="pref_syntax_highlight_color_scheme">Färgschema</string>
   <string name="pref_syntax_highlight_color_scheme_desc">Välj färgschema för syntaxmarkering</string>
   <string name="pref_syntax_sh_use_theme_default">Använd standardtema</string>

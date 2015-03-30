@@ -105,12 +105,12 @@
   <string name="filesystem_info_warning_title">Žádné informace</string>
   <string name="filesystem_info_warning_msg">Nejsou dostupné žádné informace o systému souborů</string>
   <string name="filesystem_info_cant_be_mounted_msg">Souborový systém nemohl být připojen/odpojen.</string>
-  <string name="filesystem_info_mount_not_allowed_msg">Připojování souborových systému není povoleno v bezpečném režimu. Klepnutím se přepnete do Režimu bez omezení.</string>
+  <string name="filesystem_info_mount_not_allowed_msg">Připojování systémových složek není povoleno v Bezpečném režimu. Klepnutím se přepnete do Režimu bez omezení.</string>
   <string name="filesystem_info_mount_failed_msg">Připojení souborového systému se nezdařilo. Některé souborové systémy (např. SD karty), nemohou být připojeny/odpojeny, protože mohou být přepnuty do režimu pouze ke čtení.</string>
   <string name="filesystem_info_dialog_title">Informace o souborovém systému</string>
   <string name="filesystem_info_dialog_tab_info">Informace</string>
   <string name="filesystem_info_dialog_tab_disk_usage">Využití disku</string>
-  <string name="filesystem_info_dialog_status">Stav:</string>
+  <string name="filesystem_info_dialog_status">Připojeno:</string>
   <string name="filesystem_info_dialog_mount_point">Přípojný bod:</string>
   <string name="filesystem_info_dialog_device">Zařízení:</string>
   <string name="filesystem_info_dialog_type">Typ:</string>
@@ -335,7 +335,7 @@
   <string name="pref_secure_storage_category">Bezpečné úložiště</string>
   <string name="pref_secure_storage_delayed_sync_title">Zpožděná synchronizace</string>
   <string name="pref_secure_storage_delayed_sync_summary">Synchronizace zabezpečeného souborového systému je náročná operace. Povolením této možnosti docílíte lepší odezvu po každé operaci, po které se provede synchronizace pokud se souborový systém právě nepoužívá (žádná aktivita). Na druhou stranu, pokud není systém po každé operaci synchronizován, může dojít ke ztrátě dat, která ještě nejsou zapsána při pádu aplikace.</string>
-  <string name="pref_secure_storage_reset_password_title">Obnovit heslo</string>
+  <string name="pref_secure_storage_reset_password_title">Změnit heslo</string>
   <string name="pref_secure_storage_delete_storage_title">Smazat úložiště</string>
   <string name="pref_editor_behaviour_category">Chování</string>
   <string name="pref_no_suggestions">Žádné návrhy</string>
@@ -345,7 +345,7 @@
   <string name="pref_hexdump_desc">Při otevření binárního souboru vytvořit jeho šestnáctkovou podobu a tu otevřít v prohlížečí</string>
   <string name="pref_editor_syntax_highlight_category">Zvýraznění syntaxe</string>
   <string name="pref_syntax_highlight">Zvýraznění syntaxe</string>
-  <string name="pref_syntax_highlight_desc">Zvýraznit syntaxi souboru v editoru (pouze v případě, pokud je pro tento typ souboru dostupný zvýrazňovací filtr)</string>
+  <string name="pref_syntax_highlight_desc">Zvýrazňovat syntaxi souboru zobrazeného v editoru (jen tehdy, když je zvýraznění syntaxe pro tento formát souboru k dispozici)</string>
   <string name="pref_syntax_highlight_color_scheme">Barevné schéma</string>
   <string name="pref_syntax_highlight_color_scheme_desc">Zvolte barevné schéma zvýraznění syntaxe</string>
   <string name="pref_syntax_sh_use_theme_default">Použít výchozí motiv</string>

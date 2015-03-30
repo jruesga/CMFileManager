@@ -105,12 +105,10 @@
   <string name="filesystem_info_warning_title">Ingen informasjon</string>
   <string name="filesystem_info_warning_msg">Det er ingen tilgjengelig informasjon for filsystemet.</string>
   <string name="filesystem_info_cant_be_mounted_msg">Filsystemet kan ikke monteres/avmonteres.</string>
-  <string name="filesystem_info_mount_not_allowed_msg">Montering av filsystemer er ikke tillatt med sikker tilgang. Trykk for å endre til Root-tilgang.</string>
   <string name="filesystem_info_mount_failed_msg">Montering av filsystem feilet. Noen filsystemer, f.eks. SD-kort, kan ikke monteres/avmonteres fordi de er skrivebeskyttet.</string>
   <string name="filesystem_info_dialog_title">Informasjon on filsystem</string>
   <string name="filesystem_info_dialog_tab_info">Info</string>
   <string name="filesystem_info_dialog_tab_disk_usage">Bruk av diskplass</string>
-  <string name="filesystem_info_dialog_status">Status:</string>
   <string name="filesystem_info_dialog_mount_point">Monteringspunkt:</string>
   <string name="filesystem_info_dialog_device">Enhet:</string>
   <string name="filesystem_info_dialog_type">Type:</string>
@@ -342,7 +340,6 @@
   <string name="pref_secure_storage_category">Sikker lagring</string>
   <string name="pref_secure_storage_delayed_sync_title">Forsinket synkronisering</string>
   <string name="pref_secure_storage_delayed_sync_summary">Synkronisering av sikre filsystemer er en kostbar operasjon. Aktiver dette alternativet for å få en raskere svartid etter hver operasjon, utføre synkronisering når filsystemet er i ubrukt tilstand, men på bekostning av tapt ventende informasjon som ikke synkroniserer hvis app\'en krasjer.</string>
-  <string name="pref_secure_storage_reset_password_title">Tilbakestill Passord</string>
   <string name="pref_secure_storage_delete_storage_title">Slett lagring</string>
   <string name="pref_editor_behaviour_category">Oppførsel</string>
   <string name="pref_no_suggestions">Ingen forslag</string>
@@ -350,9 +347,7 @@
   <string name="pref_word_wrap">Tekstbryting</string>
   <string name="pref_hexdump">Hexdump av binære filer</string>
   <string name="pref_hexdump_desc">Generer en hex-dump av den binære filen og åpne den i en hex-editor</string>
-  <string name="pref_editor_syntax_highlight_category">Fremheving av syntaks</string>
   <string name="pref_syntax_highlight">Fremheving av syntaks</string>
-  <string name="pref_syntax_highlight_desc">Fremhev syntaksen i filen når den åpnes i editoren (Kun når editoren støtter det)</string>
   <string name="pref_syntax_highlight_color_scheme">Fargevalg</string>
   <string name="pref_syntax_highlight_color_scheme_desc">Fargevalg til syntaks utheving</string>
   <string name="pref_syntax_sh_use_theme_default">Bruk standard</string>

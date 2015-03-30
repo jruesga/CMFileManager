@@ -105,12 +105,10 @@
   <string name="filesystem_info_warning_title">Nincs információ</string>
   <string name="filesystem_info_warning_msg">Nincs elérhető információ a fájlrendszerről.</string>
   <string name="filesystem_info_cant_be_mounted_msg">A fájlrendszer nem csatolható.</string>
-  <string name="filesystem_info_mount_not_allowed_msg">Fájlrendszer-csatolási műveletek nincsenek engedélyezve a biztonságos módban. Érintse meg a rendszergazda módba való váltáshoz.</string>
   <string name="filesystem_info_mount_failed_msg">Fájlrendszer-csatolási művelet sikertelen. Néhány fájlrendszer, mint bizonyos SD-kártyák fizikailag nem írhatóak.</string>
   <string name="filesystem_info_dialog_title">Fájlrendszer-információ</string>
   <string name="filesystem_info_dialog_tab_info">Információ</string>
   <string name="filesystem_info_dialog_tab_disk_usage">Tárhelyhasználat</string>
-  <string name="filesystem_info_dialog_status">Státusz:</string>
   <string name="filesystem_info_dialog_mount_point">Csatolási pont:</string>
   <string name="filesystem_info_dialog_device">Eszköz:</string>
   <string name="filesystem_info_dialog_type">Típus:</string>
@@ -335,7 +333,6 @@
   <string name="pref_secure_storage_category">Biztonsági tároló</string>
   <string name="pref_secure_storage_delayed_sync_title">Késleltetett szinkronizálás</string>
   <string name="pref_secure_storage_delayed_sync_summary">A biztonsági fájlrendszer szinkronizálása költséges művelet. Engedélyezve ezt a beállítást jobb válaszidőt kap minden művelet után, a szinkronizálás elvégzése a fájlrendszer nem használt állapotában történik, annak rovására, hogy a függőben lévő információk nem kerülnek szinkronizálásra, ha az alkalmazás összeomlik.</string>
-  <string name="pref_secure_storage_reset_password_title">Jelszó visszaállítása</string>
   <string name="pref_secure_storage_delete_storage_title">Tároló törlése</string>
   <string name="pref_editor_behaviour_category">Viselkedés</string>
   <string name="pref_no_suggestions">Nincs javaslat</string>
@@ -343,9 +340,7 @@
   <string name="pref_word_wrap">Sortörés</string>
   <string name="pref_hexdump">Hexadecimális nézet</string>
   <string name="pref_hexdump_desc">Bináris fájlt hexadecimális nézetben jelenítsen meg</string>
-  <string name="pref_editor_syntax_highlight_category">Szintaxis kiemelés</string>
   <string name="pref_syntax_highlight">Szintaxis kiemelés</string>
-  <string name="pref_syntax_highlight_desc">Szintaxis kiemelés a megjelenített fájlban (ha elérhető szintaxis feldolgozó az adott fájltípushoz)</string>
   <string name="pref_syntax_highlight_color_scheme">Színséma</string>
   <string name="pref_syntax_highlight_color_scheme_desc">Szintaxis-kiemelés színsémájának kiválasztása</string>
   <string name="pref_syntax_sh_use_theme_default">Téma alapértelmezése</string>

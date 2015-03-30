@@ -108,13 +108,13 @@
   <string name="filesystem_info_warning_title">无信息</string>
   <string name="filesystem_info_warning_msg">没有关于此文件系统可用的信息.</string>
   <string name="filesystem_info_cant_be_mounted_msg">无法挂载或卸载文件系统.</string>
-  <string name="filesystem_info_mount_not_allowed_msg">在安全模式下不允许挂载文件系统的操作. 点击切换至超级用户访问模式.</string>
+  <string name="filesystem_info_mount_not_allowed_msg">在安全模式下不允许挂载文件系统的操作。点击切换至超级用户访问模式。</string>
   <string name="filesystem_info_mount_failed_msg">文件系统挂载失败.
     有些文件系统 (例如 SD 存储卡) 是被设计为只读文件系统的, 所以不能被挂载或卸载.</string>
   <string name="filesystem_info_dialog_title">文件系统信息</string>
   <string name="filesystem_info_dialog_tab_info">信息</string>
   <string name="filesystem_info_dialog_tab_disk_usage">磁盘使用情况</string>
-  <string name="filesystem_info_dialog_status">状态:</string>
+  <string name="filesystem_info_dialog_status">已挂载：</string>
   <string name="filesystem_info_dialog_mount_point">挂载点:</string>
   <string name="filesystem_info_dialog_device">设备:</string>
   <string name="filesystem_info_dialog_type">类型:</string>
@@ -358,7 +358,7 @@
   <string name="pref_secure_storage_category">安全存储</string>
   <string name="pref_secure_storage_delayed_sync_title">延迟同步</string>
   <string name="pref_secure_storage_delayed_sync_summary">安全文件系统同步是代价很高的操作。要在每次操作后得到更快的响应，以及在文件系统处于未使用状态时执行同步，请开启此选项；但这样做的代价是，如果应用崩溃，挂起的未同步的信息将会丢失。</string>
-  <string name="pref_secure_storage_reset_password_title">重置密码</string>
+  <string name="pref_secure_storage_reset_password_title">更改密码</string>
   <string name="pref_secure_storage_delete_storage_title">删除存储</string>
   <string name="pref_editor_behaviour_category">行为</string>
   <string name="pref_no_suggestions">不显示建议</string>
@@ -366,9 +366,10 @@
   <string name="pref_word_wrap">自动换行</string>
   <string name="pref_hexdump">二进制文件十六进制转储</string>
   <string name="pref_hexdump_desc">打开二进制文件时，生成文件的十六进制转储并在十六进制查看器中打开。</string>
-  <string name="pref_editor_syntax_highlight_category">语法高亮</string>
+  <string name="pref_editor_syntax_highlight_category">语法高亮显示</string>
   <string name="pref_syntax_highlight">高亮语法</string>
-  <string name="pref_syntax_highlight_desc">高亮在编辑器内显示的文件的语法 (仅在能够处理文件类型的语法高亮处理器存在时)</string>
+  <string name="pref_syntax_highlight_desc">在编辑器中高亮显示语法（仅在为当前文件类型的语法高亮处理有效时）
+</string>
   <string name="pref_syntax_highlight_color_scheme">配色方案</string>
   <string name="pref_syntax_highlight_color_scheme_desc">选择语法高亮的颜色方案</string>
   <string name="pref_syntax_sh_use_theme_default">使用主题默认值</string>

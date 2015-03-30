@@ -102,12 +102,10 @@
   <string name="filesystem_info_warning_title">無資訊</string>
   <string name="filesystem_info_warning_msg">沒有關於此檔案系統可用的資訊。</string>
   <string name="filesystem_info_cant_be_mounted_msg">無法掛載或卸載檔案系統。</string>
-  <string name="filesystem_info_mount_not_allowed_msg">在安全模式下不允許掛載檔案系統。輕按以切換至超級使用者存取模式。</string>
   <string name="filesystem_info_mount_failed_msg">檔案系統掛載失敗。有些檔案系統 (例如 SD 卡) 是被設計爲唯讀檔案系統的。所以不能被掛載或卸載。</string>
   <string name="filesystem_info_dialog_title">檔案系統資訊</string>
   <string name="filesystem_info_dialog_tab_info">資訊</string>
   <string name="filesystem_info_dialog_tab_disk_usage">磁碟使用情況</string>
-  <string name="filesystem_info_dialog_status">狀態：</string>
   <string name="filesystem_info_dialog_mount_point">掛載點：</string>
   <string name="filesystem_info_dialog_device">裝置：</string>
   <string name="filesystem_info_dialog_type">類型：</string>
@@ -332,7 +330,6 @@
   <string name="pref_secure_storage_category">安全儲存</string>
   <string name="pref_secure_storage_delayed_sync_title">延遲同步</string>
   <string name="pref_secure_storage_delayed_sync_summary">安全檔案系統同步是一個費時的操作。啟用此選項可以在每次操作後有更好的反應，在檔案系統處於閒置狀態時執行同步，但如果當有應用程序故障，會有機會失去未同步的信息。</string>
-  <string name="pref_secure_storage_reset_password_title">重設密碼</string>
   <string name="pref_secure_storage_delete_storage_title">刪除儲存</string>
   <string name="pref_editor_behaviour_category">行爲</string>
   <string name="pref_no_suggestions">不顯示建議</string>
@@ -340,9 +337,7 @@
   <string name="pref_word_wrap">自動換行</string>
   <string name="pref_hexdump">Hexdump 二進位檔</string>
   <string name="pref_hexdump_desc">開啟二進位檔時，產生此檔案的 hexdump 並在十六進制檢視器內開啟。</string>
-  <string name="pref_editor_syntax_highlight_category">醒目提示語法</string>
   <string name="pref_syntax_highlight">醒目提示語法</string>
-  <string name="pref_syntax_highlight_desc">高亮在編輯器內顯示的檔案的語法（僅在能夠處理檔案類型的語法高亮處理器存在時）</string>
   <string name="pref_syntax_highlight_color_scheme">色彩配置</string>
   <string name="pref_syntax_highlight_color_scheme_desc">選擇語法醒目提示的色彩配置</string>
   <string name="pref_syntax_sh_use_theme_default">使用預設值</string>

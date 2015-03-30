@@ -110,7 +110,7 @@
   <string name="filesystem_info_dialog_title">Dateisystem-Information</string>
   <string name="filesystem_info_dialog_tab_info">Informationen</string>
   <string name="filesystem_info_dialog_tab_disk_usage">Speichernutzung</string>
-  <string name="filesystem_info_dialog_status">Status:</string>
+  <string name="filesystem_info_dialog_status">Eingebunden:</string>
   <string name="filesystem_info_dialog_mount_point">Mountpunkt:</string>
   <string name="filesystem_info_dialog_device">Gerät:</string>
   <string name="filesystem_info_dialog_type">Typ:</string>
@@ -335,7 +335,7 @@
   <string name="pref_secure_storage_category">Sicherer Speicher</string>
   <string name="pref_secure_storage_delayed_sync_title">Verzögerte Synchronisierung</string>
   <string name="pref_secure_storage_delayed_sync_summary">Die Synchronisation eines sicheren Dateisystems ist ein aufwendiger Vorgang. Aktivieren Sie diese Option, um die Reaktionszeit nach jeder Operation zu verbessern, in dem die Synchronisation des Dateisystems erst erfolgt, wenn es gerade nicht verwendet wird, aber mit dem Risiko, dass Informationen die noch nicht synchronisiert sind bei einem Absturz der App verloren gehen.</string>
-  <string name="pref_secure_storage_reset_password_title">Passwort zurücksetzen</string>
+  <string name="pref_secure_storage_reset_password_title">Passwort ändern</string>
   <string name="pref_secure_storage_delete_storage_title">Speicher löschen</string>
   <string name="pref_editor_behaviour_category">Verhalten</string>
   <string name="pref_no_suggestions">Keine Vorschläge</string>
@@ -343,9 +343,9 @@
   <string name="pref_word_wrap">Zeilenumbruch</string>
   <string name="pref_hexdump">Hexdump von Binärdateien generieren</string>
   <string name="pref_hexdump_desc">Beim Öffnen einer Binärdatei den Hexdump der Datei generieren und im Hex-Editor anzeigen</string>
-  <string name="pref_editor_syntax_highlight_category">Syntaxhervorhebung</string>
+  <string name="pref_editor_syntax_highlight_category">Syntax-Hervorhebung</string>
   <string name="pref_syntax_highlight">Syntaxhervorhebung</string>
-  <string name="pref_syntax_highlight_desc">Die Syntax einer Datei beim Anzeigen hervorheben (nicht bei allen Dateitypen verfügbar)</string>
+  <string name="pref_syntax_highlight_desc">Syntax-Hervorhebung für die im Editor dargestellte Datei (Nur wenn für den Dateityp ein Syntaxprozessor vorhanden ist)</string>
   <string name="pref_syntax_highlight_color_scheme">Farbschema</string>
   <string name="pref_syntax_highlight_color_scheme_desc">Wählen Sie das Farbschema der Syntaxhervorhebung</string>
   <string name="pref_syntax_sh_use_theme_default">Designvorgaben verwenden</string>

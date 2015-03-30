@@ -92,12 +92,10 @@
   <string name="filesystem_info_warning_title">لا توجد معلومات</string>
   <string name="filesystem_info_warning_msg">لا تتوفر أي معلومات عن نظام الملفات.</string>
   <string name="filesystem_info_cant_be_mounted_msg">نظام الملفات لا يمكن أن تكون محملة/غير محملة .</string>
-  <string name="filesystem_info_mount_not_allowed_msg">عمليات تركيب نظام الملفات لا تسمح للوضع الأمن. اضغط لتغيير إلى وضع صلاحيات الجذر.</string>
   <string name="filesystem_info_mount_failed_msg">فشل نظام ملف تصاعد العملية. لا يمكن بعض أنظمة الملفات، مثل بطاقات SD، شنت مكوم لأنهم المدمج كأنظمة ملف للقراءة فقط.</string>
   <string name="filesystem_info_dialog_title">معلومات ملف النظام</string>
   <string name="filesystem_info_dialog_tab_info">معلومات</string>
   <string name="filesystem_info_dialog_tab_disk_usage">استخدام القرص</string>
-  <string name="filesystem_info_dialog_status">الحالة:</string>
   <string name="filesystem_info_dialog_mount_point">نقطة تحميل:</string>
   <string name="filesystem_info_dialog_device">الجهاز:</string>
   <string name="filesystem_info_dialog_type">النوع:</string>
@@ -302,9 +300,7 @@
   <string name="pref_word_wrap">اللتفاف النص</string>
   <string name="pref_hexdump">الملفات الثنائية Hexdump</string>
   <string name="pref_hexdump_desc">عند فتح ملف ثنائي، تولد Hexdump الملف وفتحه في عارض سداسي عشري</string>
-  <string name="pref_editor_syntax_highlight_category">تسليط الضوء على بناء الجملة</string>
   <string name="pref_syntax_highlight">تسليط الضوء على بناء الجملة</string>
-  <string name="pref_syntax_highlight_desc">تسليط الضوء على بناء الجملة للملف المعروض في المحرر (فقط عندما يتوفر معالج تسليط الضوء على بناء جملة لنوع الملف)</string>
   <string name="pref_syntax_highlight_color_scheme">نظام الألوان</string>
   <string name="pref_syntax_highlight_color_scheme_desc">حدد نظام الألوان تسليط الضوء على بناء الجملة</string>
   <string name="pref_syntax_sh_use_theme_default">استخدام السمة الافتراضية</string>

@@ -51,7 +51,6 @@
   <string name="sort_by_date_desc">Kuupäeva järgi \u25BC</string>
   <string name="filesystem_info_warning_title">Info puudub</string>
   <string name="filesystem_info_dialog_tab_disk_usage">Ruumi kasutus</string>
-  <string name="filesystem_info_dialog_status">Olek:</string>
   <string name="filesystem_info_dialog_mount_point">Paigalduskoht:</string>
   <string name="filesystem_info_dialog_device">Seade:</string>
   <string name="filesystem_info_dialog_type">Tüüp:</string>
@@ -87,9 +86,7 @@
   <string name="pref_no_suggestions">Keela korrektor</string>
   <string name="pref_no_suggestions_desc">Ära näita korrigeerivaid ettepanekuid faili muutmisel</string>
   <string name="pref_word_wrap">Murra ridu</string>
-  <string name="pref_editor_syntax_highlight_category">Programmeerimissüntaksi sätted</string>
   <string name="pref_syntax_highlight">Süntaksi esiletoomine</string>
-  <string name="pref_syntax_highlight_desc">Tõsta esile ja värvi tekstiredaktoris süntaksit (juhul kui süntaks tuntakse ära ja on olemas sellele faililaiendile)</string>
   <string name="pref_syntax_highlight_color_scheme">Värviskeem</string>
   <string name="pref_syntax_highlight_color_scheme_desc">Valige süntaksi värviskeem</string>
   <string name="pref_syntax_sh_use_theme_default">Kasuta kujunduse vaikesätteid</string>

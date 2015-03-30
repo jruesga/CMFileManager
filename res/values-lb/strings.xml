@@ -100,14 +100,12 @@
   <string name="cm_filemanager_show_system">Systemfichieren uweisen</string>
   <string name="cm_filemanager_show_symlinks">Symbolech Ofkierzungen uweisen</string>
   <string name="filesystem_info_warning_title">Keng Informatiounen</string>
-  <string name="filesystem_info_warning_msg">Et si keng Informatiounen iwwer den Fichierssystem disponibel.</string>
+  <string name="filesystem_info_warning_msg">Et si keng Informatiounen iwwer de Fichierssystem disponibel.</string>
   <string name="filesystem_info_cant_be_mounted_msg">De Fichiersystem kann net agebonnen/getrennt ginn.</string>
-  <string name="filesystem_info_mount_not_allowed_msg">Abannen/Trenne vu Fichierssystemen ass am séchere Modus net erlaabt. Dréck fir op de Root-Zougrëffsmodus ze wiesselen.</string>
   <string name="filesystem_info_mount_failed_msg">Abannen/Trenne vum Fichierssystem ass feelgeschloen. Op verschidde Fichierssystemer, wéi SD-Kaarten, kënnen dës Operatiounen net ausgefouert gi well se schreifgeschützt an de System agebaut sinn.</string>
   <string name="filesystem_info_dialog_title">Informatiounen zum Fichierssystem</string>
   <string name="filesystem_info_dialog_tab_info">Informatiounen</string>
   <string name="filesystem_info_dialog_tab_disk_usage">Späichernotzung</string>
-  <string name="filesystem_info_dialog_status">Status:</string>
   <string name="filesystem_info_dialog_mount_point">Abannungspunkt:</string>
   <string name="filesystem_info_dialog_device">Apparat:</string>
   <string name="filesystem_info_dialog_type">Typ:</string>
@@ -332,7 +330,6 @@
   <string name="pref_secure_storage_category">Séchere Späicher</string>
   <string name="pref_secure_storage_delayed_sync_title">Verzögert Synchroniséierung</string>
   <string name="pref_secure_storage_delayed_sync_summary">D\'Synchroniséierung vun engem séchere Fichierssystem ass en opwännege Virgank. Aktivéier dës Optioun, fir d\'Reaktiounszäit no all Operatioun ze verbesseren, andeem d\'Synchronisatioun vum Fichierssystem eréischt da gemaach gëtt, wann de System net méi benotzt gëtt. Doduerch besteet awer de Risiko, datt Informatiounen déi nach net synchroniséiert sinn, bei engem Ofstuerz vun der App verluer ginn.</string>
-  <string name="pref_secure_storage_reset_password_title">Passwuert zrécksetzen</string>
   <string name="pref_secure_storage_delete_storage_title">Späicher läschen</string>
   <string name="pref_editor_behaviour_category">Behuelen</string>
   <string name="pref_no_suggestions">Keng Virschléi</string>
@@ -340,9 +337,7 @@
   <string name="pref_word_wrap">Zeilenëmbroch</string>
   <string name="pref_hexdump">Hexdump-Binärfichieren</string>
   <string name="pref_hexdump_desc">Beim Opmaache vun engem Binärfichier en Hexdump vum Fichier generéieren an am Hex-Editor uweisen</string>
-  <string name="pref_editor_syntax_highlight_category">Syntaxervirhiewung</string>
   <string name="pref_syntax_highlight">Syntaxervirhiewung</string>
-  <string name="pref_syntax_highlight_desc">Syntax vun engem Fichier beim Uweisen ervirhiewen (net fir all Fichierstypen disponibel)</string>
   <string name="pref_syntax_highlight_color_scheme">Faarfschema</string>
   <string name="pref_syntax_highlight_color_scheme_desc">Faarfschema fir d\'Syntaxervirhiewung auswielen</string>
   <string name="pref_syntax_sh_use_theme_default">Standard-Design benotzen</string>

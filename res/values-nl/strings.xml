@@ -110,7 +110,7 @@
   <string name="filesystem_info_dialog_title">Bestandssysteeminfo</string>
   <string name="filesystem_info_dialog_tab_info">Informatie</string>
   <string name="filesystem_info_dialog_tab_disk_usage">Schijfgebruik</string>
-  <string name="filesystem_info_dialog_status">Status:</string>
+  <string name="filesystem_info_dialog_status">Gekoppeld:</string>
   <string name="filesystem_info_dialog_mount_point">Aankoppelingspad:</string>
   <string name="filesystem_info_dialog_device">Apparaat:</string>
   <string name="filesystem_info_dialog_type">Type:</string>
@@ -335,7 +335,7 @@
   <string name="pref_secure_storage_category">Beveiligde opslag</string>
   <string name="pref_secure_storage_delayed_sync_title">Vertraagde synchronisatie</string>
   <string name="pref_secure_storage_delayed_sync_summary">Synchronisatie van beveiligde opslagsystemen kan een grote impact hebben op het systeem. Door deze optie in te schakelen krijgt u snellere responstijden, doordat het bestandssysteem pas gesynchroniseerd wordt wanneer het niet in gebruik is, maar kunnen gegevens verloren gaan wanneer de app crasht voordat synchronisatie heeft plaatsgevonden.</string>
-  <string name="pref_secure_storage_reset_password_title">Wachtwoord opnieuw instellen</string>
+  <string name="pref_secure_storage_reset_password_title">Wachtwoord wijzigen</string>
   <string name="pref_secure_storage_delete_storage_title">Opslag verwijderen</string>
   <string name="pref_editor_behaviour_category">Gedrag</string>
   <string name="pref_no_suggestions">Geen suggesties</string>

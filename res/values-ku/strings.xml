@@ -97,12 +97,10 @@
   <string name="filesystem_info_warning_title">زانیاری نیە</string>
   <string name="filesystem_info_warning_msg">هیچ زانیارییەک لەبەردەستدا نیە بۆ فایلی سیستەم.</string>
   <string name="filesystem_info_cant_be_mounted_msg">په‌ڕگه‌ی سیسته‌م ناتوانرێ ده‌ربکرێ/پێوه‌بکرێ.</string>
-  <string name="filesystem_info_mount_not_allowed_msg">لێکردنه‌وه‌ی په‌ڕگه‌ی سیسته‌م ڕێگه‌پێنه‌دراوه‌ له‌ باری سه‌لامه‌تیدا. ته‌پ بکه‌ بۆ گۆڕینی ده‌سته‌ڵاتی ڕووت.</string>
   <string name="filesystem_info_mount_failed_msg">لێکردنه‌وه‌ی په‌ڕگه‌ی سیسته‌م سه‌رکه‌وتوونه‌بوو.هه‌ندێ په‌ڕگه‌ی سیسته‌م، وه‌ک بیرگه‌ی ناوه‌کی. ناتوانرێ لێبکرێته‌وه‌/]ێوه‌بکرێ له‌به‌ر ئه‌وه‌ی ئه‌وان ته‌نیا له‌ باری خوێندنه‌وه‌دان.</string>
   <string name="filesystem_info_dialog_title">زانیاری په‌ڕگه‌ی سیسته‌م</string>
   <string name="filesystem_info_dialog_tab_info">زانیاری</string>
   <string name="filesystem_info_dialog_tab_disk_usage">یادگەی بەکارهاتوو</string>
-  <string name="filesystem_info_dialog_status">دۆخ:</string>
   <string name="filesystem_info_dialog_mount_point">خاڵی به‌ستن:</string>
   <string name="filesystem_info_dialog_device">ئامێر:</string>
   <string name="filesystem_info_dialog_type">جۆر:</string>
@@ -326,7 +324,6 @@
   <string name="pref_secure_storage_category">پارێزگاری بیرگە</string>
   <string name="pref_secure_storage_delayed_sync_title">دواین هاوکاتکراو</string>
   <string name="pref_secure_storage_delayed_sync_summary">هاوکاتسازیی پەڕگە پارێزراوەکانی سیستەم کردارێکی بەنرخە. ئەم بژاردەیە چالاک بکە بۆ خێراترکردنی کاردانەوەی هەر یەک لە کردارەکان و هەروەها جێبەجێکردنی هاوکاتگەری کاتێک پەڕگەی سیستەم لە دۆخێکی ناکارادایە بەڵام ئەگەر بەرنامەکە کەوتە تێکشکانەوە، ئەو زانیارییانەی کە ماونەتەوە بە بەهای لەدەستدانیان هاوکاتگەری ناکرێن.</string>
-  <string name="pref_secure_storage_reset_password_title">ڕێکخستنەوەی تێپەڕە ووشە</string>
   <string name="pref_secure_storage_delete_storage_title">سڕینەوەی بیرگە</string>
   <string name="pref_editor_behaviour_category">ڕه‌وشت</string>
   <string name="pref_no_suggestions">پێشنیار نەکراوە</string>
@@ -334,9 +331,7 @@
   <string name="pref_word_wrap">پێچانی ده‌ق</string>
   <string name="pref_hexdump">ده‌مپی هێکس و په‌ڕگه‌ی باینه‌ری</string>
   <string name="pref_hexdump_desc">کاتێک کار له‌سه‌ر په‌ڕگه‌یه‌کی باینه‌ری ده‌که‌یت، ده‌مپی هێکس بکه‌ بۆ په‌ڕگه‌که‌ و به‌ بینه‌ری هێکس بیکه‌ره‌وه‌</string>
-  <string name="pref_editor_syntax_highlight_category">ڕێزمانی به‌رچاو</string>
   <string name="pref_syntax_highlight">ڕێزمانی به‌رچاو</string>
-  <string name="pref_syntax_highlight_desc">به‌رچاوکردنی ڕێزمانی په‌ڕگه‌ی نیشانراو له‌ ده‌ستکاریکه‌ر (ته‌نیا کاتێک که‌ ڕێزمان به‌رچاوبێت له‌ پرۆسه‌ی ئاماده‌ی جۆری په‌ڕگه‌)</string>
   <string name="pref_syntax_highlight_color_scheme">ڕەنگی ڕووکار</string>
   <string name="pref_syntax_highlight_color_scheme_desc">ڕێزمانی به‌رچاوی پلانی ڕه‌نگ هه‌ڵبژێره‌</string>
   <string name="pref_syntax_sh_use_theme_default">بەکارهێنانی ڕووکاری سەرەکی</string>

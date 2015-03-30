@@ -97,12 +97,10 @@
   <string name="filesystem_info_warning_title">ไม่มีข้อมูล</string>
   <string name="filesystem_info_warning_msg">ไม่มีข้อมูลสำหรับไฟล์ระบบ</string>
   <string name="filesystem_info_cant_be_mounted_msg">ไฟล์ระบบไม่สามารถ mount/unmount ได้</string>
-  <string name="filesystem_info_mount_not_allowed_msg">การ mount ไม่สามารถทำได้บนรูปแบบปลอดภัย แตะเพื่อเปลี่ยนเป็นรูปแบบผู้ดูแลระบบ</string>
   <string name="filesystem_info_mount_failed_msg">การ mount ล้มเหลว บางไฟล์ระบบ เช่น SD card ไม่สามารถ mount/unmount การเชื่อมต่อได้เพราะเป็นรูปแบบไฟล์อ่านเท่านั้น</string>
   <string name="filesystem_info_dialog_title">ข้อมูลระบบไฟล์</string>
   <string name="filesystem_info_dialog_tab_info">ข้อมูล</string>
   <string name="filesystem_info_dialog_tab_disk_usage">การใช้ดิสก์</string>
-  <string name="filesystem_info_dialog_status">สถานะ:</string>
   <string name="filesystem_info_dialog_mount_point">จุด Mount:</string>
   <string name="filesystem_info_dialog_device">อุปกรณ์:</string>
   <string name="filesystem_info_dialog_type">ประเภท:</string>
@@ -328,7 +326,6 @@
   <string name="pref_secure_storage_category">ที่เก็บปลอดภัย</string>
   <string name="pref_secure_storage_delayed_sync_title">ซิงค์ล่าช้า</string>
   <string name="pref_secure_storage_delayed_sync_summary">การซิงค์ที่เก็บข้อมูลที่ปลอดภัยมีทั้งผลดีและผลเสีย การเปิดใช้งานช่วยให้ให้ระยะเวลาตอบสนองของระบบลดน้อยลง และระบบจะซิงค์ระบบไฟล์ในช่วงที่ไม่มีการใช้งานเท่านั้น แต่อาจมีความเสี่ยงจากการที่ข้อมูลสูญหายอันเนื่องมาจากแอปทำงานผิดพลาดได้</string>
-  <string name="pref_secure_storage_reset_password_title">รีเซ็ตรหัสผ่าน</string>
   <string name="pref_secure_storage_delete_storage_title">ลบที่เก็บข้อมูล</string>
   <string name="pref_editor_behaviour_category">พฤติกรรม</string>
   <string name="pref_no_suggestions">ไม่มีคำแนะนำ</string>
@@ -336,9 +333,7 @@
   <string name="pref_word_wrap">ตัดคำขึ้นบรรทัดใหม่</string>
   <string name="pref_hexdump">ไฟล์ไบนารี่ Hexdump</string>
   <string name="pref_hexdump_desc">เมื่อเปิดไบนารี่ไฟล์, จะสร้าง hexdump ของไฟล์และเปิดในตัวดู hex</string>
-  <string name="pref_editor_syntax_highlight_category">เน้น Syntax</string>
   <string name="pref_syntax_highlight">เน้น Syntax</string>
-  <string name="pref_syntax_highlight_desc">เน้น syntax ของไฟล์ที่แสดงในตัวแก้ไขไฟล์(เฉพาะเมื่อ syntax highlight processor รองรับไฟล์ประเภทนี้)</string>
   <string name="pref_syntax_highlight_color_scheme">เฉดสี</string>
   <string name="pref_syntax_highlight_color_scheme_desc">เลือกโทนสี Syntax highlight</string>
   <string name="pref_syntax_sh_use_theme_default">ใช้ธีมเริ่มต้น</string>

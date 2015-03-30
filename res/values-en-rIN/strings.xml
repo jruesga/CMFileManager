@@ -105,12 +105,12 @@
   <string name="filesystem_info_warning_title">No information</string>
   <string name="filesystem_info_warning_msg">There is no information available for the file system.</string>
   <string name="filesystem_info_cant_be_mounted_msg">The file system cannot be mounted/unmounted.</string>
-  <string name="filesystem_info_mount_not_allowed_msg">File system mounting operations are not allowedin Safe mode. Tap to change to Root Access mode.</string>
+  <string name="filesystem_info_mount_not_allowed_msg">File system mounting operations are not allowed in Safe mode. Tap to change to Root Access mode.</string>
   <string name="filesystem_info_mount_failed_msg">File system mounting operation failed. Some file systems, like SD cards, cannot be mounted/unmounted because they are built-in as read-only file systems.</string>
   <string name="filesystem_info_dialog_title">File system information</string>
   <string name="filesystem_info_dialog_tab_info">Info</string>
   <string name="filesystem_info_dialog_tab_disk_usage">Disk usage</string>
-  <string name="filesystem_info_dialog_status">Status:</string>
+  <string name="filesystem_info_dialog_status">Mounted:</string>
   <string name="filesystem_info_dialog_mount_point">Mount point:</string>
   <string name="filesystem_info_dialog_device">Device:</string>
   <string name="filesystem_info_dialog_type">Type:</string>
@@ -335,7 +335,7 @@
   <string name="pref_secure_storage_category">Secure storage</string>
   <string name="pref_secure_storage_delayed_sync_title">Delayed synchronization</string>
   <string name="pref_secure_storage_delayed_sync_summary">Synchronization of secure file systems is a costly operation. Enable this option to allow faster responses after every operation, performing the synchronization when the filesystem is in unused state, but at the expense of losing the pending information not synced if the app crashes.</string>
-  <string name="pref_secure_storage_reset_password_title">Reset password</string>
+  <string name="pref_secure_storage_reset_password_title">Change password</string>
   <string name="pref_secure_storage_delete_storage_title">Delete storage</string>
   <string name="pref_editor_behaviour_category">Behaviour</string>
   <string name="pref_no_suggestions">No suggestions</string>
@@ -343,9 +343,9 @@
   <string name="pref_word_wrap">Word wrap</string>
   <string name="pref_hexdump">Hex dump binary files</string>
   <string name="pref_hexdump_desc">When opening a binary file, generate a hex dump of the file and open it in the hex viewer</string>
-  <string name="pref_editor_syntax_highlight_category">Syntax highlight</string>
+  <string name="pref_editor_syntax_highlight_category">Syntax highlighting</string>
   <string name="pref_syntax_highlight">Syntax highlight</string>
-  <string name="pref_syntax_highlight_desc">Highlight the syntax of the file displayed in the editor (only when a syntax highlight processor is available for the type of file)</string>
+  <string name="pref_syntax_highlight_desc">Highlight the syntax of the file displayed in the editor (only when a syntax highlighting processor for the file type is available)</string>
   <string name="pref_syntax_highlight_color_scheme">Color scheme</string>
   <string name="pref_syntax_highlight_color_scheme_desc">Select the syntax highlight color scheme</string>
   <string name="pref_syntax_sh_use_theme_default">Use theme default</string>

@@ -42,6 +42,7 @@
   <string name="copy_text_cd">Ketuk untuk menyalin ke clipboard</string>
   <string name="copy_text_msg">Teks disalin ke clipboard</string>
   <string name="warning_title">Peringatan</string>
+  <string name="error_title">Kesalahan</string>
   <string name="confirm_operation">Konfirmasi operasi</string>
   <string name="confirm_overwrite">Konfirmasi timpa</string>
   <string name="confirm_deletion">Konfirmasi penghapusan</string>
@@ -102,12 +103,10 @@
   <string name="filesystem_info_warning_title">Tidak ada informasi</string>
   <string name="filesystem_info_warning_msg">Ada tidak ada informasi yang tersedia untuk sistem berkas.</string>
   <string name="filesystem_info_cant_be_mounted_msg">Sistem berkas tidak dapat dipasang/dilepas.</string>
-  <string name="filesystem_info_mount_not_allowed_msg">Operasi pemasangan sistem berkas tidak diperbolehkan pada modus Aman. Ketuk untuk mengubah ke modus Akses Root.</string>
   <string name="filesystem_info_mount_failed_msg">Operasi pemasangan sistem berkas gagal. Beberapa sistem berkas, seperti kartu SD, tidak dapat dipasang/dilepas karena mereka dibangun sebagai sistem berkas baca-saja.</string>
   <string name="filesystem_info_dialog_title">Informasi sistem berkas</string>
   <string name="filesystem_info_dialog_tab_info">Info</string>
   <string name="filesystem_info_dialog_tab_disk_usage">Penggunaan disk</string>
-  <string name="filesystem_info_dialog_status">Status:</string>
   <string name="filesystem_info_dialog_mount_point">Titik pasang:</string>
   <string name="filesystem_info_dialog_device">Device:</string>
   <string name="filesystem_info_dialog_type">Jenis:</string>
@@ -332,7 +331,6 @@
   <string name="pref_secure_storage_category">Penyimpanan yang aman</string>
   <string name="pref_secure_storage_delayed_sync_title">Sinkronisasi tertunda</string>
   <string name="pref_secure_storage_delayed_sync_summary">Sinkronisasi sistem file aman adalah operasi yang mahal. Mengaktifkan opsi ini untuk mengizinkan respon lebih cepat setelah setiap operasi, melakukan sinkronisasi ketika filesystem dalam keadaan tidak digunakan, tetapi dengan mengorbankan kehilangan informasi yang tertunda tidak disinkronisasikan jika aplikasi crash.</string>
-  <string name="pref_secure_storage_reset_password_title">Atur ulang kata sandi</string>
   <string name="pref_secure_storage_delete_storage_title">Hapus Penyimpanan</string>
   <string name="pref_editor_behaviour_category">Perilaku</string>
   <string name="pref_no_suggestions">Tidak ada saran</string>
@@ -340,9 +338,7 @@
   <string name="pref_word_wrap">Penggal kata</string>
   <string name="pref_hexdump">Berkas binari Hex dump</string>
   <string name="pref_hexdump_desc">Ketika membuka berkas binari, buat hex dump berkas dan buka dengan penampil hex</string>
-  <string name="pref_editor_syntax_highlight_category">Sorot sintaks</string>
   <string name="pref_syntax_highlight">Sorot sintaks</string>
-  <string name="pref_syntax_highlight_desc">Sorot sintaks berkas yang ditampilkan dalam editor (hanya saat prosesor sorot sintaks tersedia untuk jenis berkas tersebut)</string>
   <string name="pref_syntax_highlight_color_scheme">Skema warna</string>
   <string name="pref_syntax_highlight_color_scheme_desc">Pilih skema warna highlight sintaks</string>
   <string name="pref_syntax_sh_use_theme_default">Gunakan tema default</string>

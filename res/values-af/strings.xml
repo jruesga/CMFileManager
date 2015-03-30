@@ -105,12 +105,10 @@
   <string name="filesystem_info_warning_title">Geen inligting</string>
   <string name="filesystem_info_warning_msg">Daar is geen inligting beskikbaar vir die lêerstelsel nie.</string>
   <string name="filesystem_info_cant_be_mounted_msg">Die lêerstelsel kan nie geheg/ontheg word nie.</string>
-  <string name="filesystem_info_mount_not_allowed_msg">Lêerstelsel hegging word nie toegelaat in die veilige modus nie. Raak om toegang na \'root\' modus te verander.</string>
   <string name="filesystem_info_mount_failed_msg">Die lêerstelsel hegging het misluk. Sommige lêerstelsels, soos SD kaarte, kan nie geheg/ontheg word nie aangesien hulle leesalleen lêerstelsels is.</string>
   <string name="filesystem_info_dialog_title">Lêerstelsel inligting</string>
   <string name="filesystem_info_dialog_tab_info">Inligting</string>
   <string name="filesystem_info_dialog_tab_disk_usage">Bergingspasie</string>
-  <string name="filesystem_info_dialog_status">Status:</string>
   <string name="filesystem_info_dialog_mount_point">Aanheggingspunt:</string>
   <string name="filesystem_info_dialog_device">Toestel:</string>
   <string name="filesystem_info_dialog_type">Tipe:</string>
@@ -355,7 +353,6 @@
   <string name="pref_secure_storage_category">Veilige berging</string>
   <string name="pref_secure_storage_delayed_sync_title">Vertraagde sinchronisasie</string>
   <string name="pref_secure_storage_delayed_sync_summary">Sinchronisasie van veilige lêer stelsels is \'n stadige operasie. Aktiveer hierdie opsie om vinniger reaksies toe te laat na elke operasie, die uitvoering van die sinchronisasie wanneer die lêerstelsel in \'n ongebruikte staat is, maar data verlies kan voorkom indien die program ineenstort.</string>
-  <string name="pref_secure_storage_reset_password_title">Herstel wagwoord</string>
   <string name="pref_secure_storage_delete_storage_title">Verwyder berging</string>
   <string name="pref_editor_behaviour_category">Gedrag</string>
   <string name="pref_no_suggestions">Geen voorstelle</string>
@@ -363,9 +360,7 @@
   <string name="pref_word_wrap">Woord oorvloei</string>
   <string name="pref_hexdump">\'Hexdump\' binêre lêers</string>
   <string name="pref_hexdump_desc">Met die opening van \'n binêre lêer, genereer \'n \'hexdump\' van die lêer en maak dit oop in die \'hex-viewer\'</string>
-  <string name="pref_editor_syntax_highlight_category">Sintaks beklemtoning</string>
   <string name="pref_syntax_highlight">Sintaks beklemtoon</string>
-  <string name="pref_syntax_highlight_desc">Beklemtoon die sintaks van die lêer wat vertoon word in die redigeerder (slegs wanneer \'n sintaks beklemtoning verwerker beskikbaar is vir die tipe lêer)</string>
   <string name="pref_syntax_highlight_color_scheme">Kleur skema</string>
   <string name="pref_syntax_highlight_color_scheme_desc">Kies die sintaks verlig kleurskema</string>
   <string name="pref_syntax_sh_use_theme_default">Gebruik standaard tema</string>

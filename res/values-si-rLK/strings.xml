@@ -97,12 +97,10 @@
   <string name="filesystem_info_warning_title">තොරතුරු නැත</string>
   <string name="filesystem_info_warning_msg">ගොනු පද්ධතිය සඳහා කිසිඳු තොරතුරක් ලබාගත නොහැක.</string>
   <string name="filesystem_info_cant_be_mounted_msg">ගොනු පද්ධතිය ආරූඩ/අනාරූඩ කල නොහැක.</string>
-  <string name="filesystem_info_mount_not_allowed_msg">සුරක්ෂිත ප්‍රකාරයේදී ගොනු පද්ධතිය ආරූඩ කිරීමේ ක්‍රියාකරණ සඳහා අවසර නැත. මූල ප්‍රවේශ ප්‍රකාරය වෙත වෙනස් කිරීමට තට්ටු කරන්න.</string>
   <string name="filesystem_info_mount_failed_msg">ගොනු පද්ධතිය ආරූඩ කිරීමේ ක්‍රියාකරණය අසමත්විය. SD කාඩ්පත් වැනි සමහර ගොනු පද්ධති කියවීම-පමණයි ලෙස තිළැලි බැවින් ආරූඩ/අනාරූඩ කලනොහැක.</string>
   <string name="filesystem_info_dialog_title">ගොනු පද්ධතියේ තොරතුරු</string>
   <string name="filesystem_info_dialog_tab_info">තොරතුරු</string>
   <string name="filesystem_info_dialog_tab_disk_usage">ඩිස්කයේ භාවිතය</string>
-  <string name="filesystem_info_dialog_status">තත්වය:</string>
   <string name="filesystem_info_dialog_mount_point">ආරූඩ ලක්ෂ්‍යය:</string>
   <string name="filesystem_info_dialog_device">උපාංගය:</string>
   <string name="filesystem_info_dialog_type">ආකාරය:</string>
@@ -326,7 +324,6 @@
   <string name="pref_secure_storage_category">සුරක්ෂිත ගබඩාව</string>
   <string name="pref_secure_storage_delayed_sync_title">ප්‍රමාදිත සමමුහුකරණය</string>
   <string name="pref_secure_storage_delayed_sync_summary">සුරක්‍ෂිත ගොනු පද්ධති සමමුහුර්තකරණය යනු මිල අධික වූ මෙහෙයුමකි. යෙදුම බිඳ වැටුණහොත් පොරොත්තු තොරතුරු සමමුහුර්ත නොවී නැති වී යාමේ වියදමක් ඇතුව ගොනු පද්ධතිය භාවිත නොවන තත්ත්වයේ පවතින විට සමමුහුර්තකරණය සිදු කිරීමට, සෑම මෙහෙයුමක් ම අවසානයේදී වේගවත් ප්‍රතිචාරවලට ඉඩ දීමට මෙම විකල්පය සබල කරන්න.</string>
-  <string name="pref_secure_storage_reset_password_title">මුරපදය යළි සකසන්න</string>
   <string name="pref_secure_storage_delete_storage_title">ගබඩාව මකන්න</string>
   <string name="pref_editor_behaviour_category">හැසිරීම</string>
   <string name="pref_no_suggestions">යෝජනා එපා</string>
@@ -334,9 +331,7 @@
   <string name="pref_word_wrap">පද එතුම</string>
   <string name="pref_hexdump">ද්ව්‍යංගී ගොනු hex නික්ෂේපය</string>
   <string name="pref_hexdump_desc">ද්ව්‍යංගී ගොනුවක් විවෘත කිරීමේදී, ගොනුවේ hex නික්ෂේපයක් සාදා එය hex පෙන්වනයේ විවෘත කරන්න</string>
-  <string name="pref_editor_syntax_highlight_category">වාග් රීති ඉස්මතු කිරීම</string>
   <string name="pref_syntax_highlight">වාග් රීති ඉස්මතු කිරීම</string>
-  <string name="pref_syntax_highlight_desc">සංස්කාරකයේ සංදර්ශනය වන ගොනුවේ වාග් රීති ඉස්මතු කරන්න (ගොනු වර්ගය සඳහා වාග් රීති ඉස්මතු කිරීම් සකසනයක් ඇතිවිට පමණි)</string>
   <string name="pref_syntax_highlight_color_scheme">වර්ණ ක්‍රමානුරූපය</string>
   <string name="pref_syntax_highlight_color_scheme_desc">වාග් රීති ඉස්මතු කිරීමේ වර්ණ ක්‍රමානුරූපය තෝරන්න</string>
   <string name="pref_syntax_sh_use_theme_default">තේමා පෙරනිමි භාවිතාකරන්න</string>

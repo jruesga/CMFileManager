@@ -276,7 +276,7 @@ public class SecureStorageKeyPromptDialog
                     "text_color");
             theme.setTextColor(ctx, mValidationMsg, "text_color");
             mValidationMsg.setCompoundDrawablesWithIntrinsicBounds(
-                    theme.getDrawable(ctx, "filesystem_warning_drawable"), //$NON-NLS-1$
+                    theme.getDrawable(ctx, "filesystem_dialog_warning_drawable"), //$NON-NLS-1$
                     null, null, null);
         }
     }

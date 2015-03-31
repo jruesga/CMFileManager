@@ -127,7 +127,8 @@ public class InputNameDialog
         theme.setTextColor(context, title, "text_color"); //$NON-NLS-1$
         theme.setTextColor(context, this.mMsg, "text_color"); //$NON-NLS-1$
         this.mMsg.setCompoundDrawablesWithIntrinsicBounds(
-                theme.getDrawable(this.mContext, "filesystem_warning_drawable"), //$NON-NLS-1$
+                theme.getDrawable(this.mContext,
+                        "filesystem_dialog_warning_drawable"), //$NON-NLS-1$
                 null, null, null);
 
         //Create the dialog

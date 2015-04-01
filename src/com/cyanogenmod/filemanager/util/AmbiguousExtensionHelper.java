@@ -17,6 +17,8 @@
 package com.cyanogenmod.filemanager.util;
 
 import android.media.MediaMetadataRetriever;
+import android.util.Log;
+
 import java.util.HashMap;
 
 /**
@@ -50,6 +52,7 @@ public abstract class AmbiguousExtensionHelper {
      * on the content of the file.
      */
     public static class ThreeGPExtensionHelper extends AmbiguousExtensionHelper {
+        private static final String TAG = "ThreeGPExtensionHelper";
         private static final String[] sSupportedExtensions = {"3gp", "3gpp", "3g2", "3gpp2"};
         public static final String VIDEO_3GPP_MIME_TYPE = "video/3gpp";
         public static final String AUDIO_3GPP_MIME_TYPE = "audio/3gpp";
@@ -59,15 +62,22 @@ public abstract class AmbiguousExtensionHelper {
         @Override
         public String getMimeType(String absolutePath, String extension) {
             MediaMetadataRetriever retriever = new MediaMetadataRetriever();
-            retriever.setDataSource(absolutePath);
-            boolean hasVideo =
-                    retriever.extractMetadata(MediaMetadataRetriever.METADATA_KEY_HAS_VIDEO) != null;
-            if (is3GPP(extension)) {
-                return hasVideo ? VIDEO_3GPP_MIME_TYPE : AUDIO_3GPP_MIME_TYPE;
-            } else if (is3GPP2(extension)) {
-                return hasVideo ? VIDEO_3GPP2_MIME_TYPE : AUDIO_3GPP2_MIME_TYPE;
+            try {
+                retriever.setDataSource(absolutePath);
+                boolean hasVideo =
+                        retriever.extractMetadata(MediaMetadataRetriever.METADATA_KEY_HAS_VIDEO) !=
+                        null;
+                if (is3GPP(extension)) {
+                    return hasVideo ? VIDEO_3GPP_MIME_TYPE : AUDIO_3GPP_MIME_TYPE;
+                } else if (is3GPP2(extension)) {
+                    return hasVideo ? VIDEO_3GPP2_MIME_TYPE : AUDIO_3GPP2_MIME_TYPE;
+                }
+            } catch (RuntimeException e) {
+                Log.e(TAG, "Unable to open 3GP file to determine mimetype");
             }
-            return null;
+            // Default to video 3gp if the file is unreadable as this was the default before
+            // ambiguous resolution support was added.
+            return VIDEO_3GPP_MIME_TYPE;
         }
 
         @Override

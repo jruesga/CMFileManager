@@ -43,6 +43,7 @@
     android:imeOptions="actionDone|flagNoFullscreen"
     android:scrollHorizontally="true"
     android:selectAllOnFocus="true"
+    android:maxLength="255"
     android:inputType="textNoSuggestions">
     <requestFocus />
   </EditText>

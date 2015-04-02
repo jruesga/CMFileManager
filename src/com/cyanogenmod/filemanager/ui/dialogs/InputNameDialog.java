@@ -20,6 +20,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.text.Editable;
+import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -42,6 +43,8 @@ import java.util.List;
  */
 public class InputNameDialog
     implements TextWatcher, DialogInterface.OnCancelListener, DialogInterface.OnDismissListener {
+
+    private static final int FILENAME_CHAR_LIMIT = 255;
 
     private final Context mContext;
     /**
@@ -249,21 +252,31 @@ public class InputNameDialog
      * @hide
      */
     void checkName(String name) {
+
         //The name is empty
-        if (name.length() == 0) {
+        if (TextUtils.isEmpty(name)) {
             setMsg(
                 InputNameDialog.this.mContext.getString(
                       R.string.input_name_dialog_message_empty_name), false);
             return;
         }
+
+        // Too long
+        if (name.length() > FILENAME_CHAR_LIMIT) {
+            setMsg(InputNameDialog.this.mContext.getString(
+                    R.string.input_name_dialog_message_invalid_name_length), false);
+            return;
+        }
+
         // The path is invalid
-        if (name.indexOf(File.separator) != -1) {
+        if (name.contains(File.separator)) {
             setMsg(
                 InputNameDialog.this.mContext.getString(
                       R.string.input_name_dialog_message_invalid_path_name,
                       File.separator), false);
             return;
         }
+
         // No allow . or ..
         if (name.compareTo(FileHelper.CURRENT_DIRECTORY) == 0 ||
                 name.compareTo(FileHelper.PARENT_DIRECTORY) == 0) {
@@ -272,11 +285,13 @@ public class InputNameDialog
                         R.string.input_name_dialog_message_invalid_name), false);
             return;
         }
+
         // The same name
         if (this.mFso != null && !this.mAllowFsoName && name.compareTo(this.mFso.getName()) == 0) {
             setMsg(null, false);
             return;
         }
+
         // Name exists
         if (FileHelper.isNameExists(this.mFiles, name)) {
             setMsg(
@@ -287,6 +302,7 @@ public class InputNameDialog
 
         //Valid name
         setMsg(null, true);
+
     }
 
     /**

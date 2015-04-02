@@ -596,7 +596,7 @@ public class PickerActivity extends Activity
      */
     private void showStorageVolumesPopUp(View anchor) {
         // Create a list (but not checkable)
-        final StorageVolume[] volumes = StorageHelper.getStorageVolumes(PickerActivity.this);
+        final StorageVolume[] volumes = StorageHelper.getStorageVolumes(PickerActivity.this, false);
         List<CheckableItem> descriptions = new ArrayList<CheckableItem>();
         if (volumes != null) {
             int cc = volumes.length;

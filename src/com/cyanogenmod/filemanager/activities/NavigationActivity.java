@@ -21,6 +21,7 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.SearchManager;
 import android.content.BroadcastReceiver;
+import android.content.ContentResolver;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -319,11 +320,9 @@ public class NavigationActivity extends Activity
                         NavigationActivity.this.getCurrentNavigationView().refresh();
                     }
                 } else if (intent.getAction().compareTo(
-                        FileManagerSettings.INTENT_MOUNT_STATUS_CHANGED) == 0) {
-                    onRequestBookmarksRefresh();
-                    removeUnmountedHistory();
-                    removeUnmountedSelection();
-                } else if(intent.getAction().equals(Intent.ACTION_MEDIA_MOUNTED)) {
+                        FileManagerSettings.INTENT_MOUNT_STATUS_CHANGED) == 0 ||
+                            intent.getAction().equals(Intent.ACTION_MEDIA_MOUNTED) ||
+                            intent.getAction().equals(Intent.ACTION_MEDIA_UNMOUNTED)) {
                     onRequestBookmarksRefresh();
                     removeUnmountedHistory();
                     removeUnmountedSelection();
@@ -502,8 +501,14 @@ public class NavigationActivity extends Activity
         filter.addAction(Intent.ACTION_TIME_CHANGED);
         filter.addAction(Intent.ACTION_TIMEZONE_CHANGED);
         filter.addAction(FileManagerSettings.INTENT_MOUNT_STATUS_CHANGED);
-        filter.addAction(Intent.ACTION_MEDIA_MOUNTED);
         registerReceiver(this.mNotificationReceiver, filter);
+
+        // This filter needs the file data scheme, so it must be defined separately.
+        IntentFilter newFilter = new IntentFilter();
+        newFilter.addAction(Intent.ACTION_MEDIA_MOUNTED);
+        newFilter.addAction(Intent.ACTION_MEDIA_UNMOUNTED);
+        newFilter.addDataScheme(ContentResolver.SCHEME_FILE);
+        registerReceiver(mNotificationReceiver, newFilter);
 
         // Set the theme before setContentView
         Theme theme = ThemeManager.getCurrentTheme(this);
@@ -1300,7 +1305,7 @@ public class NavigationActivity extends Activity
         try {
             // Recovery sdcards from storage manager
             StorageVolume[] volumes = StorageHelper
-                    .getStorageVolumes(getApplication());
+                    .getStorageVolumes(getApplication(), true);
             for (StorageVolume volume: volumes) {
                 if (volume != null) {
                     String mountedState = volume.getState();
@@ -1568,7 +1573,7 @@ public class NavigationActivity extends Activity
             // Initial directory is the first external sdcard (sdcard, emmc, usb, ...)
             if (!StorageHelper.isPathInStorageVolume(initialDir)) {
                 StorageVolume[] volumes =
-                        StorageHelper.getStorageVolumes(this);
+                        StorageHelper.getStorageVolumes(this, false);
                 if (volumes != null && volumes.length > 0) {
                     initialDir = volumes[0].getPath();
                     //Ensure that initial directory is an absolute directory

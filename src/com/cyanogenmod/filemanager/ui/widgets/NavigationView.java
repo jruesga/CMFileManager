@@ -1372,7 +1372,7 @@ BreadcrumbListener, OnSelectionChangedListener, OnSelectionListener, OnRequestRe
 
         //Change to first storage volume
         StorageVolume[] volumes =
-                StorageHelper.getStorageVolumes(getContext());
+                StorageHelper.getStorageVolumes(getContext(), false);
         if (volumes != null && volumes.length > 0) {
             changeCurrentDir(volumes[0].getPath(), false, true, false, null, null);
         }
@@ -1403,7 +1403,7 @@ BreadcrumbListener, OnSelectionChangedListener, OnSelectionListener, OnRequestRe
 
         // Check if the path is owned by one of the storage volumes
         if (!StorageHelper.isPathInStorageVolume(newDir)) {
-            StorageVolume[] volumes = StorageHelper.getStorageVolumes(getContext());
+            StorageVolume[] volumes = StorageHelper.getStorageVolumes(getContext(), false);
             if (volumes != null && volumes.length > 0) {
                 return volumes[0].getPath();
             }

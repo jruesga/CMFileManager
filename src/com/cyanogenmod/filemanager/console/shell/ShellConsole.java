@@ -1252,8 +1252,13 @@ public abstract class ShellConsole extends Console implements Program.ProgramLis
                     }
                 } catch (Throwable ex) {
                     Log.w(TAG,
-                            String.format("Unable to kill current program: %s", //$NON-NLS-1$
-                                    this.mActiveCommand.getCommand()), ex);
+                            String.format("Unable to kill current program: %s",
+                                    (
+                                            (this.mActiveCommand == null) ?
+                                                    "" :
+                                                    this.mActiveCommand.getCommand()
+                                    )
+                            ), ex);
                 }
             }
         }

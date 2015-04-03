@@ -2012,7 +2012,7 @@ public final class CommandHelper {
      * @throws IOException If initial directory couldn't be checked
      * @throws FileNotFoundException If the initial directory not exists
      */
-    private static Console ensureConsoleForFile(Context context, Console console, String src)
+    public static Console ensureConsoleForFile(Context context, Console console, String src)
             throws FileNotFoundException, IOException, InvalidCommandDefinitionException,
             ConsoleAllocException, InsufficientPermissionsException {
 

@@ -26,7 +26,9 @@ import android.util.Log;
 import com.cyanogenmod.filemanager.FileManagerApplication;
 import com.cyanogenmod.filemanager.R;
 import com.cyanogenmod.filemanager.commands.SyncResultExecutable;
+import com.cyanogenmod.filemanager.commands.java.Program;
 import com.cyanogenmod.filemanager.commands.shell.ResolveLinkCommand;
+import com.cyanogenmod.filemanager.console.CancelledOperationException;
 import com.cyanogenmod.filemanager.console.Console;
 import com.cyanogenmod.filemanager.console.ExecutionException;
 import com.cyanogenmod.filemanager.console.InsufficientPermissionsException;
@@ -1105,7 +1107,8 @@ public final class FileHelper {
      * @throws ExecutionException If a problem was detected in the operation
      */
     public static boolean copyRecursive(
-            final File src, final File dst, int bufferSize) throws ExecutionException {
+            final File src, final File dst, int bufferSize, Program program)
+                throws ExecutionException, CancelledOperationException {
         if (src.isDirectory()) {
             // Create the directory
             if (dst.exists() && !dst.isDirectory()) {
@@ -1122,14 +1125,20 @@ public final class FileHelper {
             File[] files = src.listFiles();
             if (files != null) {
                 for (int i = 0; i < files.length; i++) {
-                    if (!copyRecursive(files[i], new File(dst, files[i].getName()), bufferSize)) {
+                    // Short circuit if we've been cancelled. Show's over :(
+                    if (program.isCancelled()) {
+                        throw new CancelledOperationException();
+                    }
+
+                    if (!copyRecursive(files[i], new File(dst, files[i].getName()), bufferSize,
+                                       program)) {
                         return false;
                     }
                 }
             }
         } else {
             // Copy the directory
-            if (!bufferedCopy(src, dst,bufferSize)) {
+            if (!bufferedCopy(src, dst,bufferSize, program)) {
                 return false;
             }
         }
@@ -1145,7 +1154,8 @@ public final class FileHelper {
      * @return boolean If the operation complete successfully
      */
     public static boolean bufferedCopy(final File src, final File dst,
-        int bufferSize) throws ExecutionException {
+        int bufferSize, Program program)
+            throws ExecutionException, CancelledOperationException {
         BufferedInputStream bis = null;
         BufferedOutputStream bos = null;
         try {
@@ -1154,6 +1164,10 @@ public final class FileHelper {
             int read = 0;
             byte[] data = new byte[bufferSize];
             while ((read = bis.read(data, 0, bufferSize)) != -1) {
+                // Short circuit if we've been cancelled. Show's over :(
+                if (program.isCancelled()) {
+                    throw new CancelledOperationException();
+                }
                 bos.write(data, 0, read);
             }
             return true;
@@ -1167,6 +1181,9 @@ public final class FileHelper {
             if (e.getCause() instanceof ErrnoException
                         && ((ErrnoException)e.getCause()).errno == OsConstants.ENOSPC) {
                 throw new ExecutionException(R.string.msgs_no_disk_space);
+            } if (e instanceof CancelledOperationException) {
+                // If the user cancelled this operation, let it through.
+                throw (CancelledOperationException)e;
             }
 
             return false;

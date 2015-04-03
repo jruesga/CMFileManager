@@ -19,10 +19,13 @@ package com.cyanogenmod.filemanager.ui.policy;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.DialogInterface.OnCancelListener;
 import android.text.Html;
 import android.text.Spanned;
 
 import com.cyanogenmod.filemanager.R;
+import com.cyanogenmod.filemanager.console.CancelledOperationException;
+import com.cyanogenmod.filemanager.console.Console;
 import com.cyanogenmod.filemanager.console.NoSuchFileOrDirectory;
 import com.cyanogenmod.filemanager.console.RelaunchableException;
 import com.cyanogenmod.filemanager.listeners.OnRequestRefreshListener;
@@ -280,7 +283,7 @@ public final class CopyMoveActionPolicy extends ActionsPolicy {
             }
             @Override
             public boolean isDialogCancellable() {
-                return false;
+                return true;
             }
 
             @Override
@@ -301,8 +304,7 @@ public final class CopyMoveActionPolicy extends ActionsPolicy {
                 return Html.fromHtml(progress);
             }
 
-            @Override
-            public void onSuccess() {
+            private void refreshUIAfterCompletion() {
                 // Remove orphan bookmark paths
                 if (files != null) {
                     for (LinkedResource linkedFiles : files) {
@@ -315,6 +317,11 @@ public final class CopyMoveActionPolicy extends ActionsPolicy {
                   // The reference is not the same, so refresh the complete navigation view
                   this.mOnRequestRefreshListener.onRequestRefresh(null, true);
                 }
+            }
+
+            @Override
+            public void onSuccess() {
+                refreshUIAfterCompletion();
                 ActionsPolicy.showOperationSuccessMsg(ctx);
             }
 
@@ -341,6 +348,21 @@ public final class CopyMoveActionPolicy extends ActionsPolicy {
                 }
             }
 
+            @Override
+            public void onCancel() {
+                if (mSrcConsole != null) {
+                    mSrcConsole.onCancel();
+                }
+                if (mDstConsole != null) {
+                    mDstConsole.onCancel();
+                }
+                refreshUIAfterCompletion();
+            }
+
+            // Handles required for issuing command death to the consoles
+            private Console mSrcConsole;
+            private Console mDstConsole;
+
             /**
              * Method that copy or move the file to another location
              *
@@ -360,6 +382,21 @@ public final class CopyMoveActionPolicy extends ActionsPolicy {
                     // under using absolute paths) Issue: CYAN-2791
                     String source = src.getAbsolutePath() +
                             (src.isDirectory() ? File.separator : "");
+                    String dest = dst.getAbsolutePath() +
+                            (dst.isDirectory() ? File.separator : "");
+
+                    /*
+                        There is a possibility that the src and dst can have different consoles.
+                        A possible case:
+                          - src is from sd card and dst is secure storage
+                        This could happen with anything that goes from a real console to a virtual
+                        console or visa versa.  Here we grab a handle on the console such that we
+                        may explicitly kill the actions happening in both consoles.
+                     */
+                    // Need to derive the console for the source
+                    mSrcConsole = CommandHelper.ensureConsoleForFile(ctx, null, source);
+                    // Need to derive the console for the destination
+                    mDstConsole = CommandHelper.ensureConsoleForFile(ctx, null, dest);
 
                     // Copy or move?
                     if (operation.compareTo(COPY_MOVE_OPERATION.MOVE) == 0 ||
@@ -368,13 +405,13 @@ public final class CopyMoveActionPolicy extends ActionsPolicy {
                                 ctx,
                                 source,
                                 dst.getAbsolutePath(),
-                                null);
+                                mSrcConsole);
                     } else {
                         CommandHelper.copy(
                                 ctx,
                                 source,
                                 dst.getAbsolutePath(),
-                                null);
+                                mSrcConsole);
                     }
                 } catch (Exception e) {
                     // Need to be relaunched?

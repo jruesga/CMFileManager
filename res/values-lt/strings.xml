@@ -105,7 +105,7 @@
   <string name="filesystem_info_warning_title">Nėra informacijos</string>
   <string name="filesystem_info_warning_msg">Nėra pasiekiamos failų sistemos informacijos.</string>
   <string name="filesystem_info_cant_be_mounted_msg">Failų sistema negali būti prijungiama / atjungiama.</string>
-  <string name="filesystem_info_mount_not_allowed_msg">Failų sistemos pridėjimo veiksmas neleidžiamas saugiame režime. Bakstelėkite, kad pakeistumėte į „Root“ prieigos režimą.</string>
+  <string name="filesystem_info_mount_not_allowed_msg">Failų sistemos prijungimo veiksmas neleidžiamas saugiame režime. Bakstelėkite, kad pakeistumėte į „Root“ prieigos režimą.</string>
   <string name="filesystem_info_mount_failed_msg">Failų sistemos prijungimo veiksmas nepavyko. Kai kurios failų sistemos, pavyzdžiui, SD kortelių, negali būti prijungiamos / atjungiamos, nes jos yra įtaisytos ir naudojamos tik failų sistemos skaitymui.</string>
   <string name="filesystem_info_dialog_title">Failų sistemos informacija</string>
   <string name="filesystem_info_dialog_tab_info">Informacija</string>
@@ -192,7 +192,7 @@
   <string name="menu_no_suggestions">Jokių pasiūlymų</string>
   <string name="menu_word_wrap">Žodžių laužymas</string>
   <string name="menu_syntax_highlight">Sintaksės išryškinimas</string>
-  <string name="create_copy_regexp"><xliff:g id="name">%1$s</xliff:g> - kopijuoti<xliff:g id="extension">%2$s</xliff:g></string>
+  <string name="create_copy_regexp"><xliff:g id="name">%1$s</xliff:g> - kopija<xliff:g id="extension">%2$s</xliff:g></string>
   <string name="create_new_compress_file_regexp"><xliff:g id="name">%1$s</xliff:g> - naujas<xliff:g id="extension">%2$s</xliff:g></string>
   <string name="waiting_dialog_msg">Atliekamas veiksmas\u2026</string>
   <string name="waiting_dialog_copying_title">Kopijuojama\u2026</string>
@@ -345,7 +345,7 @@
   <string name="pref_hexdump_desc">Rodyti dvejetainių failų turinį šešioliktainiu formatu</string>
   <string name="pref_editor_syntax_highlight_category">Sintaksės išryškinimas</string>
   <string name="pref_syntax_highlight">Sintaksės išryškinimas</string>
-  <string name="pref_syntax_highlight_desc">išryškinti redaktoriuje rodomojo failo sintaksę (tik tada, kai sintaksės išryškinimo procesorius yra pasiekiamas failo tipui)</string>
+  <string name="pref_syntax_highlight_desc">Išryškinti redaktoriuje rodomojo failo sintaksę (tik tada, kai sintaksės išryškinimo procesorius yra pasiekiamas failo tipui)</string>
   <string name="pref_syntax_highlight_color_scheme">Spalvų schema</string>
   <string name="pref_syntax_highlight_color_scheme_desc">Pasirinkti sintaksės išryškinimo spalvų schemą</string>
   <string name="pref_syntax_sh_use_theme_default">Naudoti numatytąją temą</string>

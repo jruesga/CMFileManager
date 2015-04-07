@@ -68,7 +68,12 @@ import com.cyanogenmod.filemanager.ash.SyntaxHighlightFactory;
 import com.cyanogenmod.filemanager.ash.SyntaxHighlightProcessor;
 import com.cyanogenmod.filemanager.commands.AsyncResultListener;
 import com.cyanogenmod.filemanager.commands.WriteExecutable;
+import com.cyanogenmod.filemanager.commands.shell.InvalidCommandDefinitionException;
+import com.cyanogenmod.filemanager.console.Console;
+import com.cyanogenmod.filemanager.console.ConsoleAllocException;
 import com.cyanogenmod.filemanager.console.ConsoleBuilder;
+import com.cyanogenmod.filemanager.console.InsufficientPermissionsException;
+import com.cyanogenmod.filemanager.console.java.JavaConsole;
 import com.cyanogenmod.filemanager.model.FileSystemObject;
 import com.cyanogenmod.filemanager.preferences.FileManagerSettings;
 import com.cyanogenmod.filemanager.preferences.Preferences;
@@ -85,11 +90,13 @@ import com.cyanogenmod.filemanager.util.FileHelper;
 import com.cyanogenmod.filemanager.util.MediaHelper;
 import com.cyanogenmod.filemanager.util.ResourcesHelper;
 import com.cyanogenmod.filemanager.util.StringHelper;
+import org.mozilla.universalchardet.UniversalDetector;
 
 import java.io.BufferedReader;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.IOException;
 import java.io.OutputStream;
 import java.io.StringReader;
 import java.util.ArrayList;
@@ -273,12 +280,19 @@ public class EditorActivity extends Activity implements TextWatcher {
         long mSize;
         FileSystemObject mReadFso;
         OnProgressListener mListener;
+        boolean mDetectEncoding = false;
+        UniversalDetector mDetector;
+        String mDetectedEncoding;
 
         /**
          * Constructor of <code>AsyncReader</code>. For enclosing access.
          */
-        public AsyncReader() {
+        public AsyncReader(boolean detectEncoding) {
             super();
+            mDetectEncoding = detectEncoding;
+            if (mDetectEncoding) {
+                mDetector = new UniversalDetector(null);
+            }
         }
 
         /**
@@ -298,6 +312,9 @@ public class EditorActivity extends Activity implements TextWatcher {
             if (!cancelled && StringHelper.isBinaryData(mByteBuffer.toByteArray())) {
                 EditorActivity.this.mBinary = true;
                 EditorActivity.this.mReadOnly = true;
+            } else if (mDetector != null) {
+                mDetector.dataEnd();
+                mDetectedEncoding = mDetector.getDetectedCharset();
             }
         }
 
@@ -319,6 +336,9 @@ public class EditorActivity extends Activity implements TextWatcher {
             try {
                 if (result == null) return;
                 byte[] partial = (byte[]) result;
+                if (mDetectEncoding) {
+                    mDetector.handleData(partial, 0, partial.length);
+                }
                 this.mByteBuffer.write(partial, 0, partial.length);
                 this.mSize += partial.length;
                 if (this.mListener != null && this.mReadFso != null) {
@@ -1087,7 +1107,7 @@ public class EditorActivity extends Activity implements TextWatcher {
                 try {
                     while (true) {
                         // Configure the reader
-                        this.mReader = new AsyncReader();
+                        this.mReader = new AsyncReader(true);
                         this.mReader.mReadFso = fso;
                         this.mReader.mListener = new OnProgressListener() {
                             @Override
@@ -1098,7 +1118,8 @@ public class EditorActivity extends Activity implements TextWatcher {
                         };
 
                         // Execute the command (read the file)
-                        CommandHelper.read(activity, fso.getFullPath(), this.mReader, null);
+                        CommandHelper.read(activity, fso.getFullPath(), this.mReader,
+                                           null);
 
                         // Wait for
                         synchronized (this.mReader.mSync) {
@@ -1132,7 +1153,13 @@ public class EditorActivity extends Activity implements TextWatcher {
                         }
                         Log.i(TAG, "Bytes read: " + data.length()); //$NON-NLS-1$
                     } else {
-                        final String data = new String(this.mReader.mByteBuffer.toByteArray());
+                        String data;
+                        if (this.mReader.mDetectedEncoding != null) {
+                            data = new String(this.mReader.mByteBuffer.toByteArray(),
+                                              this.mReader.mDetectedEncoding);
+                        } else {
+                            data = new String(this.mReader.mByteBuffer.toByteArray());
+                        }
                         this.mReader.mBuffer = new SpannableStringBuilder(data);
                         Log.i(TAG, "Bytes read: " + data.getBytes().length); //$NON-NLS-1$
                     }

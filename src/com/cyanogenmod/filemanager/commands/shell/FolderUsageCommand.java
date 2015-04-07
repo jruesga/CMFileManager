@@ -90,7 +90,8 @@ public class FolderUsageCommand extends AsyncResultProgram implements FolderUsag
      * {@inheritDoc}
      */
     @Override
-    public void onParsePartialResult(final String partialIn) {
+    public void onParsePartialResult(byte[] in) {
+        String partialIn = new String(in);
 
         // Check the in buffer to extract information
         BufferedReader br = null;
@@ -224,7 +225,7 @@ public class FolderUsageCommand extends AsyncResultProgram implements FolderUsag
      * {@inheritDoc}
      */
     @Override
-    public void onParseErrorPartialResult(String partialErr) {/**NON BLOCK**/}
+    public void onParseErrorPartialResult(byte[] partialErr) {/**NON BLOCK**/}
 
     /**
      * {@inheritDoc}

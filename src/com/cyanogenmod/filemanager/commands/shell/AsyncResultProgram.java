@@ -53,10 +53,6 @@ public abstract class AsyncResultProgram
      */
     final List<Byte> mPartialDataType;
     final Object mSync = new Object();
-    /**
-     * @hide
-     */
-    final Object mTerminateSync = new Object();
 
     private boolean mCancelled;
     private OnCancelListener mOnCancelListener;
@@ -134,14 +130,11 @@ public abstract class AsyncResultProgram
             this.mWorkerThread.mAlive = false;
             this.mSync.notify();
         }
-        synchronized (this.mTerminateSync) {
-            if (this.mWorkerThread.isAlive()) {
-                try {
-                    this.mTerminateSync.wait();
-                } catch (Exception e) {
-                    /**NON BLOCK**/
-                }
-            }
+
+        try {
+            this.mWorkerThread.join();
+        } catch (InterruptedException e) {
+            // Ignore this.
         }
 
         //Notify end to command class
@@ -395,12 +388,6 @@ public abstract class AsyncResultProgram
                 }
             } catch (Exception e) {
                 /**NON BLOCK**/
-
-            } finally {
-                this.mAlive = false;
-                synchronized (AsyncResultProgram.this.mTerminateSync) {
-                    AsyncResultProgram.this.mTerminateSync.notify();
-                }
             }
         }
     }

@@ -1576,6 +1576,14 @@ public class NavigationActivity extends Activity
                         StorageHelper.getStorageVolumes(this, false);
                 if (volumes != null && volumes.length > 0) {
                     initialDir = volumes[0].getPath();
+                    int count = volumes.length;
+                    for (int i = 0; i < count; i++) {
+                        StorageVolume volume = volumes[i];
+                        if (Environment.MEDIA_MOUNTED.equalsIgnoreCase(volume.getState())) {
+                            initialDir = volume.getPath();
+                            break;
+                        }
+                    }
                     //Ensure that initial directory is an absolute directory
                     initialDir = FileHelper.getAbsPath(initialDir);
                 } else {

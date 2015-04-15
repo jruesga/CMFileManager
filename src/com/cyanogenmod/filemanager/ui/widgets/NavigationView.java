@@ -1266,6 +1266,11 @@ BreadcrumbListener, OnSelectionChangedListener, OnSelectionListener, OnRequestRe
         // Ignored
     }
 
+    @Override
+    public void onCancel() {
+        // nop
+    }
+
     /**
      * {@inheritDoc}
      */

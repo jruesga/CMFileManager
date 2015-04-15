@@ -19,12 +19,10 @@ package com.cyanogenmod.filemanager.ui.policy;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.DialogInterface.OnCancelListener;
 import android.text.Html;
 import android.text.Spanned;
 
 import com.cyanogenmod.filemanager.R;
-import com.cyanogenmod.filemanager.console.CancelledOperationException;
 import com.cyanogenmod.filemanager.console.Console;
 import com.cyanogenmod.filemanager.console.NoSuchFileOrDirectory;
 import com.cyanogenmod.filemanager.console.RelaunchableException;
@@ -355,6 +353,9 @@ public final class CopyMoveActionPolicy extends ActionsPolicy {
                 }
                 if (mDstConsole != null) {
                     mDstConsole.onCancel();
+                }
+                if (mOnRequestRefreshListener != null) {
+                    mOnRequestRefreshListener.onCancel();
                 }
                 refreshUIAfterCompletion();
             }

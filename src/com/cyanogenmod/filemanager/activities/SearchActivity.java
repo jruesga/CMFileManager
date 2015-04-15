@@ -877,6 +877,8 @@ public class SearchActivity extends Activity
                     SearchActivity.this.mQuery = query;
                     SearchActivity.this.mSearchDirectory = mRestoreState.getSearchDirectory();
 
+                    mStreamingSearchProgress.setVisibility(View.INVISIBLE);
+
                 } catch (Throwable ex) {
                     //Capture the exception
                     ExceptionUtil.translateException(SearchActivity.this, ex);

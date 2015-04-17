@@ -42,7 +42,6 @@
   <string name="copy_text_cd">Sakatu testua paper-zorrora kopiatzeko</string>
   <string name="copy_text_msg">Testua paper-zorrora kopiatu da</string>
   <string name="warning_title">Kontuz</string>
-  <string name="confirm_operation">Operazioa berretsi</string>
   <string name="confirm_overwrite">Gainidazketa berretsi</string>
   <string name="confirm_deletion">Ezabaketa berretsi</string>
   <string name="msgs_change_to_prompt_access_mode_title">Aldaketa berretsi</string>
@@ -51,16 +50,9 @@
   <string name="msgs_privileged_console_alloc_failed">Ezinezkoa da Supererabiltzaile moduan exekutatzea. Modu babestura aldatzen.</string>
   <string name="msgs_settings_save_failure">Ezarpena ezin izan da ez aplikatu ezta gorde ere.</string>
   <string name="msgs_settings_invalid_initial_directory"><xliff:g id="initial_dir">%1$s</xliff:g> hasierako karpeta okerra da. Sustrai karpetara aldatzen.</string>
-  <string name="msgs_success">Operazioa arrakastaz burutu da.</string>
-  <string name="msgs_unknown">Akats bat egon da. Operazioa ez da burutu.</string>
-  <string name="msgs_insufficient_permissions">Operazioak supererabiltzaile baimenak behar ditu. Saia saitez Supererabiltzaile modura aldatzen.</string>
   <string name="msgs_file_not_found">Fitxategi edo karpeta ez da existitzen.</string>
-  <string name="msgs_command_not_found">Operazioa burutzeko komandoa ez da aurkitu edo okerra da.</string>
   <string name="msgs_io_failed">Irakurtze/idazte akatsa.</string>
-  <string name="msgs_operation_timeout">Operaziorako denbora muga gainditu da.</string>
-  <string name="msgs_operation_failure">Operazioak huts egin du.</string>
   <string name="msgs_console_alloc_failure">Barne akats bat egon da.</string>
-  <string name="msgs_operation_can_not_be_cancelled">Operazioa ezin da ezeztu.</string>
   <string name="msgs_read_only_filesystem">Fitxategi sistema irakurtzeko soilik da. Saiatu Irakurtze-idazte bezala muntatzen eragiketa errepikatu aurretik.</string>
   <string name="msgs_illegal_argument">Lege kontrako argumentua. Inbokazioak huts egin du.</string>
   <string name="msgs_unresolved_inconsistencies">Funtsik eza sor dezakenez operazioa ez dago baimenduta.</string>
@@ -166,7 +158,6 @@
   <string name="bookmarks_msgs_add_success">Laster marka arrakastaz gehitu da.</string>
   <string name="initial_directory_dialog_title">Hasierako karpeta</string>
   <string name="initial_directory_label">Hasierako karpeta aukeratu:</string>
-  <string name="initial_directory_relative_msg">Ibilbide erlatiboak ez daude onartuta.</string>
   <string name="initial_directory_error_msg">Hasierako karpeta berrezartzean akats bat egon da.</string>
   <string name="menu_search">Bilaketa</string>
   <string name="menu_settings">Ezarpenak</string>
@@ -222,8 +213,6 @@
   <string name="actions_ask_undone_operation_msg">Eragiketa hau ezin da desegin. Jarraitu?</string>
   <string name="input_name_dialog_label">Izena:</string>
   <string name="input_name_dialog_message_empty_name">Izena ezin da hutsik geratu.</string>
-  <string name="input_name_dialog_message_invalid_path_name">Izen ez baliogarria. \'<xliff:g id="invalid_characters">%1$s</xliff:g>\' karaktereak ez daude onartuta.</string>
-  <string name="input_name_dialog_message_invalid_name">Izen baliogabea. \u00AB.\u00BB eta \u00AB..\u00BB izenak ez daude onartuta.</string>
   <string name="input_name_dialog_message_name_exists">Izena jada existitzen da.</string>
   <string name="associations_dialog_title">Elkarketak</string>
   <string name="associations_dialog_remember">Aukeraketa gogoratu</string>
@@ -278,7 +267,6 @@
   <string name="pref_access_mode_prompt">Berrespen modua</string>
   <string name="pref_access_mode_prompt_summary">Berrespen modua\n\nAplikazioak fitxategi sistemarako sarbide osoa du, baina Supererabiltzaile ekintzak burutu aurretik galdetu egingo da</string>
   <string name="pref_access_mode_root">Supererabiltzaile modua</string>
-  <string name="pref_access_mode_root_summary">Supererabiltzaile modua\n\nKontuz! Modu honek gailua lokatu ditzaketen operazioak baimentzen ditu. Zure ardura izango da operazioa kaltegarria ez dela ziurtatzea</string>
   <string name="pref_restrict_secondary_users_access_title">Sarbidea mugatu</string>
   <string name="pref_restrict_secondary_users_access_summary">Sistema osorako sarbidea bigarren mailako erabiltzaileei mugatu</string>
   <string name="pref_search_results_category">Emaitzak</string>
@@ -303,7 +291,6 @@
   <string name="pref_syntax_highlight">Sintaxia nabarmendu</string>
   <string name="pref_syntax_highlight_color_scheme">Kolore eskema</string>
   <string name="pref_syntax_highlight_color_scheme_desc">Sintaxiaren nabarmentzerako kolore eskema aukeratu</string>
-  <string name="pref_syntax_sh_use_theme_default">Lehenetsitako gaia</string>
   <string name="pref_syntax_sh_use_theme_default_desc">Uneko gaiaren sintaxi nabarmentze lehenetsia erabili</string>
   <string name="pref_editor_sh_item_category">Elementuak</string>
   <string name="pref_themes_selection_category">Gaiak</string>
@@ -320,7 +307,6 @@
   <string name="color_picker_current_text">Unekoa:</string>
   <string name="color_picker_new_text">Berria:</string>
   <string name="color_picker_color">Kolorea:</string>
-  <string name="ash_reset_color_scheme">Lehenetsitako kolore eskema berrezarri</string>
   <string name="ash_text">Testua</string>
   <string name="ash_assignment">Esleipena</string>
   <string name="ash_singleline_comment">Iruzkin sinplea</string>
@@ -331,5 +317,4 @@
   <string name="security_warning_extract">Kontuz!\n\nIbilbide absolutu edo erlatiboak dituzten fitxategiak erauztea gailuan kalteak sor ditzake sistemaren fitxategiak gainidatzi ditzaketelako.\n\nJarraitu?</string>
   <string name="changelog_title">Aldaketa erregistroa</string>
   <string name="welcome_title">Ongi Etorri</string>
-  <string name="welcome_msg">Ongi etorri CyanogenMod-en fitxategi kudeatzailera.\n\nAplikazio honen bidez fitxategi sistema kudeatu dezakezu eta, honela, zure gailua lokatu ditzaketen operazioak burutu. Hau ekiditeko, aplikazioa modu babestuan abiatuko da.\n\nSupererabiltzaile modu aurreratuan sar saitezke ezarpen menuan hala ezarriz, baina zure ardura izango da operazioren batek zure gailua kaltetzea ekiditea.\n\nCyanogenMod taldea.\n</string>
 </resources>

@@ -244,6 +244,7 @@
   <string name="input_name_dialog_label">名前:</string>
   <string name="input_name_dialog_message_empty_name">名前は空にできません。</string>
   <string name="input_name_dialog_message_invalid_path_name">無効な名前です。｢<xliff:g id="invalid_characters">%1$s</xliff:g>｣の文字は使用できません。</string>
+  <string name="input_name_dialog_message_invalid_name_length">ファイル名が長すぎます、255文字以下の名前にしてください。</string>
   <string name="input_name_dialog_message_invalid_name">無効な名前です。｢.｣と｢..｣の名前は使用できません。</string>
   <string name="input_name_dialog_message_name_exists">この名前は既に存在しています。</string>
   <string name="associations_dialog_title">連携</string>

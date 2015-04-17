@@ -246,6 +246,7 @@
   <string name="input_name_dialog_label">שם:</string>
   <string name="input_name_dialog_message_empty_name">השם אינו יכול להשאר ריק.</string>
   <string name="input_name_dialog_message_invalid_path_name">שם לא חוקי. התווים \"<xliff:g id="invalid_characters">%1$s</xliff:g>\" אסורים.</string>
+  <string name="input_name_dialog_message_invalid_name_length">שם הקובץ ארוך מדי, אנא בחר שם בעל 255 תווים או פחות.</string>
   <string name="input_name_dialog_message_invalid_name">שם לא חוקי. השמות \".\" ו-\"..\" אסורים.</string>
   <string name="input_name_dialog_message_name_exists">השם כבר קיים.</string>
   <string name="associations_dialog_title">שיוכים</string>

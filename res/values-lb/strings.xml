@@ -42,6 +42,7 @@
   <string name="copy_text_cd">Dréck fir den Text an d\'Tëschenoflag ze kopéieren</string>
   <string name="copy_text_msg">Text an d\'Tëschenoflag kopéiert</string>
   <string name="warning_title">Warnung</string>
+  <string name="error_title">Feeler</string>
   <string name="confirm_operation">Operatioun bestätegen</string>
   <string name="confirm_overwrite">Iwwerschreiwe bestätegen</string>
   <string name="confirm_deletion">Läsche bestätegen</string>
@@ -51,6 +52,7 @@
   <string name="msgs_privileged_console_alloc_failed">Konnt kee Root-Zougrëff kréien. Et gëtt zréck an de séchere Modus gewiesselt.</string>
   <string name="msgs_settings_save_failure">D\'Astellung konnt net applizéiert oder gespäichert ginn.</string>
   <string name="msgs_settings_invalid_initial_directory">De Standarddossier \"<xliff:g id="initial_dir">%1$s</xliff:g>\" ass ongëlteg. Wiesselen zréck op de Wuerzeldossier.</string>
+  <string name="root_not_available_msg">Root ass op dësem Apparat net disponibel. Kann d\'Operatioun net duerchféieren.</string>
   <string name="msgs_success">D\'Operatioun gouf erfollegräich ausgefouert.</string>
   <string name="msgs_unknown">Et ass e Feeler opgetrueden. D\'Operatioun war net erfollegräich.</string>
   <string name="msgs_insufficient_permissions">Dës Operatioun brauch méi héich Berechtegungen. Versichen an de Root-Zougrëffsmodus ze wiesselen.</string>
@@ -65,6 +67,7 @@
   <string name="msgs_read_only_filesystem">De Fichierssystem ass schreifgeschützt. Probéier de Fichiersystem mat Schreifrechter anzebannen ier s de dës Operatioun probéiers.</string>
   <string name="msgs_illegal_argument">Ongëltegt Argument. Opruff feelgeschloen.</string>
   <string name="msgs_unresolved_inconsistencies">Dës Operatioun ass net erlaabert well se Inkonsistenze géif verursaachen.</string>
+  <string name="msgs_operation_not_allowed_in_current_directory">Den Destinatiounsdossier ka keen Ënnerdossier vun der Source oder identesch mat der Source sinn.</string>
   <string name="msgs_push_again_to_exit">Nach eemol drécke fir zouzemaachen.</string>
   <string name="msgs_not_registered_app">Fir den ausgewielte Fichierstyp ass keng App registréiert.</string>
   <string name="msgs_overwrite_files">Verschidde Fichieren existéiere schonn am Zildossier.\n\nIwwerschreiwen?</string>
@@ -102,6 +105,7 @@
   <string name="filesystem_info_warning_title">Keng Informatiounen</string>
   <string name="filesystem_info_warning_msg">Et si keng Informatiounen iwwer de Fichierssystem disponibel.</string>
   <string name="filesystem_info_cant_be_mounted_msg">De Fichiersystem kann net agebonnen/getrennt ginn.</string>
+  <string name="filesystem_info_mount_not_allowed_msg">Abannen/Trenne vu Fichierssystemen ass am séchere Modus net erlaabt. Dréck fir op de Root-Zougrëffsmodus ze wiesselen.</string>
   <string name="filesystem_info_mount_failed_msg">Abannen/Trenne vum Fichierssystem ass feelgeschloen. Op verschidde Fichierssystemer, wéi SD-Kaarten, kënnen dës Operatiounen net ausgefouert gi well se schreifgeschützt an de System agebaut sinn.</string>
   <string name="filesystem_info_dialog_title">Informatiounen zum Fichierssystem</string>
   <string name="filesystem_info_dialog_tab_info">Informatiounen</string>
@@ -330,6 +334,7 @@
   <string name="pref_secure_storage_category">Séchere Späicher</string>
   <string name="pref_secure_storage_delayed_sync_title">Verzögert Synchroniséierung</string>
   <string name="pref_secure_storage_delayed_sync_summary">D\'Synchroniséierung vun engem séchere Fichierssystem ass en opwännege Virgank. Aktivéier dës Optioun, fir d\'Reaktiounszäit no all Operatioun ze verbesseren, andeem d\'Synchronisatioun vum Fichierssystem eréischt da gemaach gëtt, wann de System net méi benotzt gëtt. Doduerch besteet awer de Risiko, datt Informatiounen déi nach net synchroniséiert sinn, bei engem Ofstuerz vun der App verluer ginn.</string>
+  <string name="pref_secure_storage_reset_password_title">Passwuert änneren</string>
   <string name="pref_secure_storage_delete_storage_title">Späicher läschen</string>
   <string name="pref_editor_behaviour_category">Behuelen</string>
   <string name="pref_no_suggestions">Keng Virschléi</string>
@@ -337,6 +342,7 @@
   <string name="pref_word_wrap">Zeilenëmbroch</string>
   <string name="pref_hexdump">Hexdump-Binärfichieren</string>
   <string name="pref_hexdump_desc">Beim Opmaache vun engem Binärfichier en Hexdump vum Fichier generéieren an am Hex-Editor uweisen</string>
+  <string name="pref_editor_syntax_highlight_category">Afierwung vun der Syntax</string>
   <string name="pref_syntax_highlight">Syntaxervirhiewung</string>
   <string name="pref_syntax_highlight_color_scheme">Faarfschema</string>
   <string name="pref_syntax_highlight_color_scheme_desc">Faarfschema fir d\'Syntaxervirhiewung auswielen</string>
@@ -392,4 +398,5 @@
   <string name="changelog_title">Ännerungshiwäiser</string>
   <string name="welcome_title">Wëllkomm</string>
   <string name="welcome_msg">Wëllkomm am Fichiersmanager vu CyanogenMod.\n\nDës App erméiglecht der de Fichierssystem ze duerchsichen an Operatiounen drop auszeféieren déi den Apparat kéinte stéieren. Fir Schied ze vermeide start d\'App am séchere Modus mat manner Privilegien.\n\nIwwer d\'Astellunge kanns du den erweiderten, voll-privilegéierten, Modus aktivéieren. Et ass deng eege Responsabilitéit, sécherzestellen datt keng vun den Operatiounen däi System zerstéiert.\n\nD\'Equipe vu CyanogenMod</string>
+  <string name="activity_not_found_exception">Konnt keng App fanne fir dëse Fichier opzemaachen</string>
 </resources>

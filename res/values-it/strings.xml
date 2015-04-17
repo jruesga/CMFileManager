@@ -243,6 +243,7 @@
   <string name="input_name_dialog_label">Nome:</string>
   <string name="input_name_dialog_message_empty_name">Il nome non può essere vuoto.</string>
   <string name="input_name_dialog_message_invalid_path_name">Nome non valido. I caratteri \'<xliff:g id="invalid_characters">%1$s</xliff:g>\' non sono consentiti.</string>
+  <string name="input_name_dialog_message_invalid_name_length">Nome del file troppo lungo, si prega di considerare qualcosa di 255 caratteri o meno.</string>
   <string name="input_name_dialog_message_invalid_name">Nome non valido. I nomi \'.\' e \'..\' non sono consentiti.</string>
   <string name="input_name_dialog_message_name_exists">Il nome è già esistente.</string>
   <string name="associations_dialog_title">Associazioni</string>

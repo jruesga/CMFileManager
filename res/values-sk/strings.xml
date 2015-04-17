@@ -250,6 +250,7 @@
   <string name="input_name_dialog_label">Názov:</string>
   <string name="input_name_dialog_message_empty_name">Názov nesmie byť prázdny.</string>
   <string name="input_name_dialog_message_invalid_path_name">Neplatný názov. Znaky \'&lt;xliff:g id=\"invalid_characters\"&gt;%1$s&lt;/xliff:g&gt;\' nie sú povolené.</string>
+  <string name="input_name_dialog_message_invalid_name_length">Názov súboru je príliš dlhý. Prosím, použite iný názov s dĺžkou 255 znakov alebo menšou.</string>
   <string name="input_name_dialog_message_invalid_name">Neplatný názovo. Názvy \'.\' a \'..\' nie sú povolené.</string>
   <string name="input_name_dialog_message_name_exists">Názov už existuje.</string>
   <string name="associations_dialog_title">Priradenia</string>

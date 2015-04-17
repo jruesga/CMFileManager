@@ -243,6 +243,7 @@
   <string name="input_name_dialog_label">Název:</string>
   <string name="input_name_dialog_message_empty_name">Název nemůže být prázdný.</string>
   <string name="input_name_dialog_message_invalid_path_name">Chybné jméno. Znaky \u201a<xliff:g id="invalid_characters">%1$s</xliff:g>\u2018 nejsou povoleny.</string>
+  <string name="input_name_dialog_message_invalid_name_length">Název souboru je příliš dlouhý, musí být kratší než 255 znaků.</string>
   <string name="input_name_dialog_message_invalid_name">Chybné jméno. Jména \u201a.\u2018 a \u201a..\u2018 nejsou povolena.</string>
   <string name="input_name_dialog_message_name_exists">Tento název už existuje.</string>
   <string name="associations_dialog_title">Asociace</string>

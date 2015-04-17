@@ -243,6 +243,7 @@
   <string name="input_name_dialog_label">Naam:</string>
   <string name="input_name_dialog_message_empty_name">De naam kan niet leeg zijn.</string>
   <string name="input_name_dialog_message_invalid_path_name">Ongeldige naam. De karakters \'<xliff:g id="invalid_characters">%1$s</xliff:g>\' zijn niet toegestaan.</string>
+  <string name="input_name_dialog_message_invalid_name_length">Bestandsnaam te lang, gebruik niet meer dan 255 tekens.</string>
   <string name="input_name_dialog_message_invalid_name">Ongeldige naam. De namen \'.\' en \'..\' zijn niet toegestaan.</string>
   <string name="input_name_dialog_message_name_exists">Deze naam bestaat al.</string>
   <string name="associations_dialog_title">Gekoppelde apps</string>

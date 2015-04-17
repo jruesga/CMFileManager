@@ -42,6 +42,7 @@
   <string name="copy_text_cd">Tocar pa copiar testu al cartafueyu</string>
   <string name="copy_text_msg">Testu copiáu al cartafueyu</string>
   <string name="warning_title">Avisu</string>
+  <string name="error_title">Fallu</string>
   <string name="confirm_operation">Confirmar operación</string>
   <string name="confirm_overwrite">Confirmar sobrescritura</string>
   <string name="confirm_deletion">Confirmar borráu</string>
@@ -51,6 +52,7 @@
   <string name="msgs_privileged_console_alloc_failed">Imposible executar en mou superusuariu. Camudando a mou seguru.</string>
   <string name="msgs_settings_save_failure">L\'axuste nun pudo nin guardase nin aplicase.</string>
   <string name="msgs_settings_invalid_initial_directory">La carpeta inicial \"<xliff:g id="initial_dir">%1$s</xliff:g>\" ye inválida. Camudando a la carpeta raíz.</string>
+  <string name="root_not_available_msg">El permisu alministrativu nun ta disponible nesti preséu. Nun pue facese la operación.</string>
   <string name="msgs_success">Completóse la operación.</string>
   <string name="msgs_unknown">Hebo un fallu. La operación nun se completó.</string>
   <string name="msgs_insufficient_permissions">Esta operación rique permisos de superusuariu. Intenta camudar a mou superusuariu.</string>
@@ -65,6 +67,7 @@
   <string name="msgs_read_only_filesystem">El sistema de ficheros ye de namái-llectura. Intenta montalu como llectura-escritura enantes de repitir la operación.</string>
   <string name="msgs_illegal_argument">Argumentu illegal. Invocación fallida.</string>
   <string name="msgs_unresolved_inconsistencies">La operación nun ta permitida porque podría crear inconsistencies.</string>
+  <string name="msgs_operation_not_allowed_in_current_directory">La carpeta de destín nun pue ser una socarpeta de la d\'orixe o ser la mesma.</string>
   <string name="msgs_push_again_to_exit">Calca pa salir.</string>
   <string name="msgs_not_registered_app">Nun hai nenguna aplicación rexistrada p\'abrir la triba de ficheru esbilláu.</string>
   <string name="msgs_overwrite_files">Dalgún de los ficheros esiste na carpeta de destín. \n\n¿Sobrescribir?</string>
@@ -102,10 +105,12 @@
   <string name="filesystem_info_warning_title">Ensin información</string>
   <string name="filesystem_info_warning_msg">Nun hai información disponible pal sistema de ficheros.</string>
   <string name="filesystem_info_cant_be_mounted_msg">El sistema de ficheros nun pue montase/desmontase.</string>
+  <string name="filesystem_info_mount_not_allowed_msg">La operación de montaxe del sistema de ficheros nun ta permitida en mou seguru. Toca pa camudar a mou superusuariu.</string>
   <string name="filesystem_info_mount_failed_msg">El montaxe del sistema de ficheros falló. Dalgunos sistemes de ficheros, como les tarxetes SD, nun puen montase o desmontase porque tán diseñaos como sistemes de namái-llectura.</string>
   <string name="filesystem_info_dialog_title">Información del sistema de ficheros</string>
   <string name="filesystem_info_dialog_tab_info">Información</string>
   <string name="filesystem_info_dialog_tab_disk_usage">Usu</string>
+  <string name="filesystem_info_dialog_status">Montáu:</string>
   <string name="filesystem_info_dialog_mount_point">Montáu en:</string>
   <string name="filesystem_info_dialog_device">Preséu:</string>
   <string name="filesystem_info_dialog_type">Triba:</string>
@@ -243,6 +248,7 @@
   <string name="input_name_dialog_label">Nome:</string>
   <string name="input_name_dialog_message_empty_name">El nome nun pue quedar baleru.</string>
   <string name="input_name_dialog_message_invalid_path_name">Nome inválidu. Los caráuteres\u00AB<xliff:g id="invalid_characters">%1$s</xliff:g>\u00BB nun tán permitíos.</string>
+  <string name="input_name_dialog_message_invalid_name_length">El nome del ficheru ye enforma llargu. Por favor, usa 255 caráuteres o menos.</string>
   <string name="input_name_dialog_message_invalid_name">Nome inválidu. Los nomes \u00AB.\u00BB y \u00AB..\u00BB nun tán permitíos.</string>
   <string name="input_name_dialog_message_name_exists">El nome yá esiste.</string>
   <string name="associations_dialog_title">Asociaciones</string>
@@ -335,6 +341,7 @@
   <string name="pref_secure_storage_category">Almacenamientu seguru</string>
   <string name="pref_secure_storage_delayed_sync_title">Sincronización retrasada</string>
   <string name="pref_secure_storage_delayed_sync_summary">La sincronización de sistemes de ficheros ye una operación costosa. Habilita esta opción pa consiguir meyores tiempos de rempuesta dempués de cada operación, demorando la sincronización hasta que\'l sistema de ficheros nun tea n\'usu, pero a espenses de perder la información non sincronizada si l\'aplicación tien un zarru inesperáu.</string>
+  <string name="pref_secure_storage_reset_password_title">Camudar contraseña</string>
   <string name="pref_secure_storage_delete_storage_title">Desaniciar almacenamientu</string>
   <string name="pref_editor_behaviour_category">Comportamientu</string>
   <string name="pref_no_suggestions">Ensin suxerencies</string>
@@ -342,7 +349,9 @@
   <string name="pref_word_wrap">Axuste de llinia</string>
   <string name="pref_hexdump">Volcáu hexadecimal</string>
   <string name="pref_hexdump_desc">Al abrir un ficheru binariu, xenerar un volcáu hexadecimal y amosalu na pantalla</string>
+  <string name="pref_editor_syntax_highlight_category">Resaltáu de sintaxis</string>
   <string name="pref_syntax_highlight">Resaltar sintaxis</string>
+  <string name="pref_syntax_highlight_desc">Resaltar la sintaxis del ficheru n\'edición (namái cuando heba un procesador de resaltáu de sintaxis disponible pal tipu de ficheru)</string>
   <string name="pref_syntax_highlight_color_scheme">Esquema de color</string>
   <string name="pref_syntax_highlight_color_scheme_desc">Seleicionar l\'esquema de color pal resaltáu de sintaxis</string>
   <string name="pref_syntax_sh_use_theme_default">Tema por defeutu</string>
@@ -397,4 +406,5 @@
   <string name="changelog_title">Registru de cambeos</string>
   <string name="welcome_title">Bienllegáu</string>
   <string name="welcome_msg">Bienllegáu al esplorador de ficheros de CyanogenMod.\n\nEsta aplicación dexa esplorar el sistema de ficheros y con ello, facer aiciones que puen llegar a bloquiar el preséu. Pa evitalo, l\'aplicación va aniciase en mou seguru.\n\nVas poder acceder al mou avanzáu de superusuariu per aciu del menú Axustes, pero va ser baxo la to responsabilidá l\'evitar qu\'una operación frañe\'l preséu.\n\nL\'equipu de CyanogenMod.\n</string>
+  <string name="activity_not_found_exception">Nun pudo atopase una app p\'abrir esti ficheru</string>
 </resources>

@@ -243,6 +243,7 @@
   <string name="input_name_dialog_label">Όνομα:</string>
   <string name="input_name_dialog_message_empty_name">Το όνομα δεν μπορεί να είναι κενό.</string>
   <string name="input_name_dialog_message_invalid_path_name">Μη έγκυρο όνομα. Οι χαρακτήρες \'<xliff:g id="invalid_characters">%1$s</xliff:g>\' δεν επιτρέπονται.</string>
+  <string name="input_name_dialog_message_invalid_name_length">Το όνομα αρχείου είναι υπερβολικά μεγάλο, παρακαλώ εισάγετε το πολύ 255 χαρακτήρες.</string>
   <string name="input_name_dialog_message_invalid_name">Μη έγκυρο όνομα. Τα ονόματα \'.\' και \'..\' δεν επιτρέπονται.</string>
   <string name="input_name_dialog_message_name_exists">Το όνομα υπάρχει ήδη.</string>
   <string name="associations_dialog_title">Συσχετισμοί</string>

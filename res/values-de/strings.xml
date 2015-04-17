@@ -54,7 +54,7 @@
   <string name="msgs_settings_invalid_initial_directory">Das Standardverzeichnis \"<xliff:g id="initial_dir">%1$s</xliff:g>\" ist ungültig. Wechsle zum Wurzelverzeichnis.</string>
   <string name="root_not_available_msg">Auf diesem Gerät ist kein Root verfügbar. Dieser Vorgang kann nicht ausgeführt werden.</string>
   <string name="msgs_success">Die Aktion wurde erfolgreich ausgeführt.</string>
-  <string name="msgs_unknown">Ein Fehler ist aufgetreten. Die Vorgang konnte nicht ausgeführt werden.</string>
+  <string name="msgs_unknown">Ein Fehler ist aufgetreten. Der Vorgang konnte nicht ausgeführt werden.</string>
   <string name="msgs_insufficient_permissions">Dieser Vorgang benötigt höhere Berechtigungen. Versuche in den Root-Zugriffsmodus zu wechseln.</string>
   <string name="msgs_no_disk_space">Dieser Vorgang ist fehlgeschlagen, da kein Speicherplatz mehr auf dem Gerät vorhanden ist.</string>
   <string name="msgs_file_not_found">Die Datei oder der Ordner wurde nicht gefunden.</string>
@@ -243,6 +243,7 @@
   <string name="input_name_dialog_label">Name:</string>
   <string name="input_name_dialog_message_empty_name">Der Name darf nicht leer sein.</string>
   <string name="input_name_dialog_message_invalid_path_name">Ungültiger Name. Die Zeichen \'<xliff:g id="invalid_characters">%1$s</xliff:g>\' sind nicht erlaubt.</string>
+  <string name="input_name_dialog_message_invalid_name_length">Dateiname zu lang. Bitte wählen Sie einen Namen mit 255 oder weniger Zeichen.</string>
   <string name="input_name_dialog_message_invalid_name">Ungültiger Name. Die Namen \'.\' und \'..\' sind nicht erlaubt.</string>
   <string name="input_name_dialog_message_name_exists">Dieser Name existiert bereits.</string>
   <string name="associations_dialog_title">Verbindungen</string>

@@ -252,6 +252,7 @@
   <string name="input_name_dialog_label">Nazwa:</string>
   <string name="input_name_dialog_message_empty_name">Nazwa nie może być pusta.</string>
   <string name="input_name_dialog_message_invalid_path_name">Nieprawidłowa nazwa. Znaki \'<xliff:g id="invalid_characters">%1$s</xliff:g>\' są niedozwolone.</string>
+  <string name="input_name_dialog_message_invalid_name_length">Nazwa pliku jest za długa, może zawierać 255 znaków lub mniej.</string>
   <string name="input_name_dialog_message_invalid_name">Nieprawidłowa nazwa. Nazwy \'.\' and \'..\' są niedozwolone.</string>
   <string name="input_name_dialog_message_name_exists">Nazwa już istnieje.</string>
   <string name="associations_dialog_title">Skojarzenia</string>
@@ -354,6 +355,7 @@
   <string name="pref_hexdump_desc">Gdy otwierasz plik binarny generuj heksadecymalny zrzut pliku i otwórz go w przeglądarce plików heksadecymalnych</string>
   <string name="pref_editor_syntax_highlight_category">Podświetlanie składni</string>
   <string name="pref_syntax_highlight">Podświetlanie składni</string>
+  <string name="pref_syntax_highlight_desc">Podświetlanie składni pliku wyświetlane w edytorze (tylko wtedy, gdy procesor podświetlania składni jest dostępny dla danego typu pliku)</string>
   <string name="pref_syntax_highlight_color_scheme">Schemat kolorów</string>
   <string name="pref_syntax_highlight_color_scheme_desc">Wybierz schemat kolorów podświetlenia składni</string>
   <string name="pref_syntax_sh_use_theme_default">Użyj domyślnego</string>

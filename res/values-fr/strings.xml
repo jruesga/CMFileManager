@@ -109,6 +109,7 @@
   <string name="filesystem_info_dialog_title">Information du système de fichiers</string>
   <string name="filesystem_info_dialog_tab_info">Infos</string>
   <string name="filesystem_info_dialog_tab_disk_usage">Utilisation du disque</string>
+  <string name="filesystem_info_dialog_status">Monté :</string>
   <string name="filesystem_info_dialog_mount_point">Point de montage\u00A0:</string>
   <string name="filesystem_info_dialog_device">Appareil\u00A0:</string>
   <string name="filesystem_info_dialog_type">Type\u00A0:</string>
@@ -342,6 +343,7 @@
   <string name="pref_secure_storage_category">Stockage sécurisé</string>
   <string name="pref_secure_storage_delayed_sync_title">Synchronisation retardée</string>
   <string name="pref_secure_storage_delayed_sync_summary">La synchronisation des fichiers système sécurisés est une tâche lourde. Activer cette option permettra d\'obtenir des temps de réponse plus courts pour chaque opération, en effectuant la synchronisation quand le système n\'est pas sollicité. En contrepartie, les données en attente de synchronisation seront perdues en cas de plantage de l\'application.</string>
+  <string name="pref_secure_storage_reset_password_title">Changer le mot de passe</string>
   <string name="pref_secure_storage_delete_storage_title">Supprimer le stockage</string>
   <string name="pref_editor_behaviour_category">Comportement</string>
   <string name="pref_no_suggestions">Aucune suggestion</string>
@@ -349,6 +351,7 @@
   <string name="pref_word_wrap">Retour à la ligne</string>
   <string name="pref_hexdump">Fichier binaire</string>
   <string name="pref_hexdump_desc">Générer une conversion hexadécimale lors de l\'ouverture d\'un fichier binaire et l\'ouvrir dans la visionneuse hexadécimale</string>
+  <string name="pref_editor_syntax_highlight_category">Coloration syntaxique</string>
   <string name="pref_syntax_highlight">Coloration syntaxique</string>
   <string name="pref_syntax_highlight_color_scheme">Couleur</string>
   <string name="pref_syntax_highlight_color_scheme_desc">Sélectionner le jeu de couleurs de la coloration synthaxique</string>

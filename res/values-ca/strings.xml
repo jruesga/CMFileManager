@@ -244,6 +244,7 @@
   <string name="input_name_dialog_label">Nom:</string>
   <string name="input_name_dialog_message_empty_name">El nom no pot estar buit.</string>
   <string name="input_name_dialog_message_invalid_path_name">Nom invàlid. Els caràcters \'<xliff:g id="invalid_characters">%1$s</xliff:g>\' no estan permesos.</string>
+  <string name="input_name_dialog_message_invalid_name_length">El nom del fitxer és massa llarg, si us plau considera alguna cosa de 255 caràcters o menys.</string>
   <string name="input_name_dialog_message_invalid_name">Nom invàlid. Els noms \'.\' i \'..\' no estan permesos.</string>
   <string name="input_name_dialog_message_name_exists">El nom ja existeix.</string>
   <string name="associations_dialog_title">Associacions</string>

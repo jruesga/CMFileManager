@@ -243,6 +243,7 @@
   <string name="input_name_dialog_label">İsim:</string>
   <string name="input_name_dialog_message_empty_name">İsim boş olamaz.</string>
   <string name="input_name_dialog_message_invalid_path_name">Geçersiz isim. \'<xliff:g id="invalid_characters">%1$s</xliff:g>\' karakterlerine izin verilmiyor.</string>
+  <string name="input_name_dialog_message_invalid_name_length">Dosya adı çok uzun, lütfen 255 karakterli ya da daha kısa bir isim düşünün.</string>
   <string name="input_name_dialog_message_invalid_name">Geçersiz isim. \'.\' ve \'..\' ya izin verilmiyor.</string>
   <string name="input_name_dialog_message_name_exists">İsim zaten mevcut.</string>
   <string name="associations_dialog_title">İlişkilendirmeler</string>

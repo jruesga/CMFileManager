@@ -338,6 +338,7 @@
   <string name="pref_word_wrap">Încadrare text</string>
   <string name="pref_hexdump">Fișiere binare hexdump</string>
   <string name="pref_hexdump_desc">Când deschid un fișier binar, generează un hexdump pentru fișier și deschide-l în vizualizatorul hex</string>
+  <string name="pref_editor_syntax_highlight_category">Evidențiere sintaxă</string>
   <string name="pref_syntax_highlight">Evidențiere sintaxă</string>
   <string name="pref_syntax_highlight_color_scheme">Schema de culoare</string>
   <string name="pref_syntax_highlight_color_scheme_desc">Selectează schema de culoare a evidențierii sintaxei</string>

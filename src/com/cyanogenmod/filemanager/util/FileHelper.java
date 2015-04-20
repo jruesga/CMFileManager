@@ -1198,6 +1198,11 @@ public final class FileHelper {
                     bos.close();
                 }
             } catch (Throwable e) {/**NON BLOCK**/}
+            if (program.isCancelled()) {
+                if (!dst.delete()) {
+                    Log.e(TAG, "Failed to delete the dest file: " + dst);
+                }
+            }
         }
     }
 

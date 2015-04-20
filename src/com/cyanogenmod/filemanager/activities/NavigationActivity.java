@@ -313,7 +313,8 @@ public class NavigationActivity extends Activity
 
                 } else if (intent.getAction().compareTo(Intent.ACTION_TIME_CHANGED) == 0 ||
                            intent.getAction().compareTo(Intent.ACTION_DATE_CHANGED) == 0 ||
-                           intent.getAction().compareTo(Intent.ACTION_TIMEZONE_CHANGED) == 0) {
+                           intent.getAction().compareTo(Intent.ACTION_TIMEZONE_CHANGED) == 0 ||
+                           intent.getAction().compareTo(Intent.ACTION_LOCALE_CHANGED) == 0) {
                     // Refresh the data
                     synchronized (FileHelper.DATETIME_SYNC) {
                         FileHelper.sReloadDateTimeFormats = true;
@@ -500,6 +501,7 @@ public class NavigationActivity extends Activity
         filter.addAction(Intent.ACTION_DATE_CHANGED);
         filter.addAction(Intent.ACTION_TIME_CHANGED);
         filter.addAction(Intent.ACTION_TIMEZONE_CHANGED);
+        filter.addAction(Intent.ACTION_LOCALE_CHANGED);
         filter.addAction(FileManagerSettings.INTENT_MOUNT_STATUS_CHANGED);
         registerReceiver(this.mNotificationReceiver, filter);
 

@@ -816,9 +816,7 @@
     <!-- Secure Storage unlock validation, equal -->
     <string name="secure_storage_unlock_validation_equals">Passwords do not match.</string>
     <!-- Secure storage open file warning -->
-    <string name="secure_storage_open_file_warning">This will copy the file out to a temporary
-        unencrypted location.  This will be cleared after 1 hour.</string>
-
+    <string name="secure_storage_open_file_warning">This will copy the file out to a temporary unencrypted location. This will be cleared after 1 hour.</string>
 
     <!-- Print messages -->
     <!-- Unsupported document format -->

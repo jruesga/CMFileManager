@@ -248,7 +248,6 @@
   <string name="input_name_dialog_label">Nome:</string>
   <string name="input_name_dialog_message_empty_name">El nome nun pue quedar baleru.</string>
   <string name="input_name_dialog_message_invalid_path_name">Nome inválidu. Los caráuteres\u00AB<xliff:g id="invalid_characters">%1$s</xliff:g>\u00BB nun tán permitíos.</string>
-  <string name="input_name_dialog_message_invalid_name_length">El nome del ficheru ye enforma llargu. Por favor, usa 255 caráuteres o menos.</string>
   <string name="input_name_dialog_message_invalid_name">Nome inválidu. Los nomes \u00AB.\u00BB y \u00AB..\u00BB nun tán permitíos.</string>
   <string name="input_name_dialog_message_name_exists">El nome yá esiste.</string>
   <string name="associations_dialog_title">Asociaciones</string>

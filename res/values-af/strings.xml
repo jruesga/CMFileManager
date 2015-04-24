@@ -259,7 +259,6 @@
   <string name="input_name_dialog_message_empty_name">Die naam kan nie leeg wees nie.</string>
   <string name="input_name_dialog_message_invalid_path_name">Ongeldige naam. Die karakters
     \'<xliff:g id="invalid_characters">%1$s</xliff:g>\' word nie toegelaat nie.</string>
-  <string name="input_name_dialog_message_invalid_name_length">Lêer naam is te lank, oorweeg asseblief 255 karakters of minder.</string>
   <string name="input_name_dialog_message_invalid_name">Ongeldige naam. Die karakter \'.\' en
     \'..\' word nie toegelaat nie.</string>
   <string name="input_name_dialog_message_name_exists">Die naam bestaan alreeds.</string>

@@ -243,7 +243,7 @@
   <string name="input_name_dialog_label">Name:</string>
   <string name="input_name_dialog_message_empty_name">Der Name darf nicht leer sein.</string>
   <string name="input_name_dialog_message_invalid_path_name">Ungültiger Name. Die Zeichen \'<xliff:g id="invalid_characters">%1$s</xliff:g>\' sind nicht erlaubt.</string>
-  <string name="input_name_dialog_message_invalid_name_length">Dateiname zu lang. Bitte wählen Sie einen Namen mit 255 oder weniger Zeichen.</string>
+  <string name="input_name_dialog_message_invalid_name_length">Maximale Zeichenanzahl erreicht.</string>
   <string name="input_name_dialog_message_invalid_name">Ungültiger Name. Die Namen \'.\' und \'..\' sind nicht erlaubt.</string>
   <string name="input_name_dialog_message_name_exists">Dieser Name existiert bereits.</string>
   <string name="associations_dialog_title">Verbindungen</string>
@@ -393,6 +393,7 @@
   <string name="secure_storage_unlock_failed">Speicher kann nicht entsperrt werden</string>
   <string name="secure_storage_unlock_validation_length">Das Passwort muss mindestens <xliff:g id="characters">%1$d</xliff:g> Zeichen lang sein.</string>
   <string name="secure_storage_unlock_validation_equals">Passwörter stimmen nicht überein.</string>
+  <string name="secure_storage_open_file_warning">Dies wird die Datei temporär an einen unverschlüsselten Speicherort kopieren. Dieser wird nach einer Stunde gelöscht.</string>
   <string name="print_unsupported_document">Nicht unterstütztes Dokumentformat</string>
   <string name="print_unsupported_image">Nicht unterstütztes Bildformat</string>
   <string name="print_document_header">Dokument: <xliff:g id="document_name">%1$s</xliff:g></string>

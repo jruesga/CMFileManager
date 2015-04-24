@@ -247,7 +247,7 @@
   <string name="input_name_dialog_label">Nombre:</string>
   <string name="input_name_dialog_message_empty_name">El nombre no puede quedar en blanco.</string>
   <string name="input_name_dialog_message_invalid_path_name">Nombre inválido. Los caracteres\u00AB<xliff:g id="invalid_characters">%1$s</xliff:g>\u00BB no están permitidos.</string>
-  <string name="input_name_dialog_message_invalid_name_length">El nombre del archivo es demasiado largo. Por favor, utiliza 255 caracteres o menos.</string>
+  <string name="input_name_dialog_message_invalid_name_length">Límite máximo de caracteres alcanzado.</string>
   <string name="input_name_dialog_message_invalid_name">Nombre inválido. Los nombres \u00AB.\u00BB y \u00AB..\u00BB no están permitidos.</string>
   <string name="input_name_dialog_message_name_exists">El nombre ya existe.</string>
   <string name="associations_dialog_title">Asociaciones</string>
@@ -397,6 +397,7 @@
   <string name="secure_storage_unlock_failed">No se puede desbloquear el almacenamiento</string>
   <string name="secure_storage_unlock_validation_length">La contraseña tiene que tener al menos <xliff:g id="characters">%1$d</xliff:g> caracteres.</string>
   <string name="secure_storage_unlock_validation_equals">Las contraseñas no coinciden.</string>
+  <string name="secure_storage_open_file_warning">Esto copiará el archivo a una ubicación sin cifrar y será eliminado en una hora.</string>
   <string name="print_unsupported_document">Formato de documento no soportado</string>
   <string name="print_unsupported_image">Formato de imagen no soportado</string>
   <string name="print_document_header">Documento: <xliff:g id="document_name">%1$s</xliff:g></string>

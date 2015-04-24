@@ -243,7 +243,7 @@
   <string name="input_name_dialog_label">Pavadinimas:</string>
   <string name="input_name_dialog_message_empty_name">Pavadinimas negali būti tuščias.</string>
   <string name="input_name_dialog_message_invalid_path_name">Neteisingas pavadinimas. Simboliai „<xliff:g id="invalid_characters">%1$s</xliff:g>“ neleidžiami.</string>
-  <string name="input_name_dialog_message_invalid_name_length">Failo pavadinimas per ilgas, prašome naudoti maždaug 255 simbolius arba mažiau.</string>
+  <string name="input_name_dialog_message_invalid_name_length">Pasiektas maksimalus simbolių limitas.</string>
   <string name="input_name_dialog_message_invalid_name">Neteisingas pavadinimas. Pavadinimai su „.“ ir „..“ neleidžiami.</string>
   <string name="input_name_dialog_message_name_exists">Pavadinimas jau egzistuoja.</string>
   <string name="associations_dialog_title">Asociacijos</string>
@@ -281,7 +281,7 @@
   <string name="category_exec">VYKDOMAS</string>
   <string name="category_database">DUOMENŲ BAZĖ</string>
   <string name="category_font">ŠRIFTAS</string>
-  <string name="category_image">ATVAIZDAS</string>
+  <string name="category_image">VAIZDAS</string>
   <string name="category_audio">GARSAS</string>
   <string name="category_video">VAIZDAS</string>
   <string name="category_security">SAUGA</string>
@@ -306,7 +306,7 @@
   <string name="pref_compute_folder_statistics">Apskaičiuoti aplanko statistiką</string>
   <string name="pref_compute_folder_statistics_on">Įspėjimas! aplanko statistikos skaičiavimas užima daug laiko ir sistemos išteklių</string>
   <string name="pref_display_thumbs">Peržiūra</string>
-  <string name="pref_display_thumbs_summary">Rodyti programų atvaizdų, muzikos failų, nuotraukų ir vaizdo įrašų peržiūrą</string>
+  <string name="pref_display_thumbs_summary">Rodyti programų vaizdų, muzikos failų, nuotraukų ir vaizdo įrašų peržiūrą</string>
   <string name="pref_use_flinger">Naudoti braukiamuosius gestus</string>
   <string name="pref_use_flinger_summary">Naudoti braukimą iš kairės į dešinę, kad ištrinti failus ar aplankus</string>
   <string name="pref_general_advanced_settings_category">Papildoma</string>
@@ -393,8 +393,9 @@
   <string name="secure_storage_unlock_failed">Nepavyko atrakinti saugyklos</string>
   <string name="secure_storage_unlock_validation_length">Slaptažodyje turi būti mažiausiai <xliff:g id="characters">%1$d</xliff:g> simboliai.</string>
   <string name="secure_storage_unlock_validation_equals">Slaptažodžiai nesutampa.</string>
+  <string name="secure_storage_open_file_warning">Bus nukopijuotas failas iš laikinos neužšifruotos vietos. Bus pašalintas po 1 valandos.</string>
   <string name="print_unsupported_document">Nepalaikomas dokumento formatas</string>
-  <string name="print_unsupported_image">Nepalaikomas atvaizdo formatas</string>
+  <string name="print_unsupported_image">Nepalaikomas vaizdo formatas</string>
   <string name="print_document_header">Dokumentas: <xliff:g id="document_name">%1$s</xliff:g></string>
   <string name="print_document_footer">Puslapis <xliff:g id="page_number">%1$s</xliff:g></string>
   <string name="security_warning_extract">Įspėjimas!\n\nIšpakuojant archyvo failą su susijusiu arba absoliučiu keliu gali pakenkti jūsų įrenginiui perrašant sistemos failus.\n\nAr norite tęsti?</string>

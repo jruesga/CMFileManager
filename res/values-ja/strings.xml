@@ -244,7 +244,7 @@
   <string name="input_name_dialog_label">名前:</string>
   <string name="input_name_dialog_message_empty_name">名前は空にできません。</string>
   <string name="input_name_dialog_message_invalid_path_name">無効な名前です。｢<xliff:g id="invalid_characters">%1$s</xliff:g>｣の文字は使用できません。</string>
-  <string name="input_name_dialog_message_invalid_name_length">ファイル名が長すぎます、255文字以下の名前にしてください。</string>
+  <string name="input_name_dialog_message_invalid_name_length">文字数の上限に達しました。</string>
   <string name="input_name_dialog_message_invalid_name">無効な名前です。｢.｣と｢..｣の名前は使用できません。</string>
   <string name="input_name_dialog_message_name_exists">この名前は既に存在しています。</string>
   <string name="associations_dialog_title">連携</string>
@@ -394,6 +394,7 @@
   <string name="secure_storage_unlock_failed">ストレージのロックを解除できません</string>
   <string name="secure_storage_unlock_validation_length">パスワードは最低<xliff:g id="characters">%1$d</xliff:g>文字以上である必要があります。</string>
   <string name="secure_storage_unlock_validation_equals">パスワードが一致しません。</string>
+  <string name="secure_storage_open_file_warning">ファイルを一時的に暗号化されていない場所にコピーします。1時間後に消去されます。</string>
   <string name="print_unsupported_document">サポートされていないドキュメント形式</string>
   <string name="print_unsupported_image">サポートされていない画像形式</string>
   <string name="print_document_header">ドキュメント: <xliff:g id="document_name">%1$s</xliff:g></string>

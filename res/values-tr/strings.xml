@@ -243,7 +243,7 @@
   <string name="input_name_dialog_label">İsim:</string>
   <string name="input_name_dialog_message_empty_name">İsim boş olamaz.</string>
   <string name="input_name_dialog_message_invalid_path_name">Geçersiz isim. \'<xliff:g id="invalid_characters">%1$s</xliff:g>\' karakterlerine izin verilmiyor.</string>
-  <string name="input_name_dialog_message_invalid_name_length">Dosya adı çok uzun, lütfen 255 karakterli ya da daha kısa bir isim düşünün.</string>
+  <string name="input_name_dialog_message_invalid_name_length">Azami karakter sınırına ulaşıldı.</string>
   <string name="input_name_dialog_message_invalid_name">Geçersiz isim. \'.\' ve \'..\' ya izin verilmiyor.</string>
   <string name="input_name_dialog_message_name_exists">İsim zaten mevcut.</string>
   <string name="associations_dialog_title">İlişkilendirmeler</string>
@@ -393,6 +393,7 @@
   <string name="secure_storage_unlock_failed">Depolama kilidi açılamıyor</string>
   <string name="secure_storage_unlock_validation_length">Şifre en az <xliff:g id="characters">%1$d</xliff:g> karakter olmalı.</string>
   <string name="secure_storage_unlock_validation_equals">Parolalar uyuşmuyor.</string>
+  <string name="secure_storage_open_file_warning">Bu, dosyayı şifresiz geçici bir konuma kopyalayacak. 1 saat sonra temizlenecektir.</string>
   <string name="print_unsupported_document">Desteklenmeyen belge biçimi</string>
   <string name="print_unsupported_image">Desteklenmeyen resim biçimi</string>
   <string name="print_document_header">Belge: <xliff:g id="document_name">%1$s</xliff:g></string>

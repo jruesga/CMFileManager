@@ -243,6 +243,7 @@
   <string name="input_name_dialog_label">Név:</string>
   <string name="input_name_dialog_message_empty_name">A név mező nem lehet üres.</string>
   <string name="input_name_dialog_message_invalid_path_name">Helytelen név. A \"<xliff:g id="invalid_characters">%1$s</xliff:g>\" karakterek nem megengedettek.</string>
+  <string name="input_name_dialog_message_invalid_name_length">Elérte a maximális karakterek számát.</string>
   <string name="input_name_dialog_message_invalid_name">Helytelen név. A \'.\' és a \'..\' nem megengedett.</string>
   <string name="input_name_dialog_message_name_exists">A név már létezik.</string>
   <string name="associations_dialog_title">Társítások</string>
@@ -392,6 +393,7 @@
   <string name="secure_storage_unlock_failed">Tároló feloldása nem sikerült</string>
   <string name="secure_storage_unlock_validation_length">Jelszó legalább <xliff:g id="characters">%1$d</xliff:g> karakter kell legyen.</string>
   <string name="secure_storage_unlock_validation_equals">A megadott jelszavak nem egyeznek.</string>
+  <string name="secure_storage_open_file_warning">Ezzel ideiglenesen a fájlt egy titkosítatlan helyre másolja. 1 óra után törlődni fog.</string>
   <string name="print_unsupported_document">Nem támogatott dokumentum formátum</string>
   <string name="print_unsupported_image">Nem támogatott kép formátum</string>
   <string name="print_document_header">Dokumentum: <xliff:g id="document_name">%1$s</xliff:g></string>

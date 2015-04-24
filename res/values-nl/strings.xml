@@ -243,7 +243,7 @@
   <string name="input_name_dialog_label">Naam:</string>
   <string name="input_name_dialog_message_empty_name">De naam kan niet leeg zijn.</string>
   <string name="input_name_dialog_message_invalid_path_name">Ongeldige naam. De karakters \'<xliff:g id="invalid_characters">%1$s</xliff:g>\' zijn niet toegestaan.</string>
-  <string name="input_name_dialog_message_invalid_name_length">Bestandsnaam te lang, gebruik niet meer dan 255 tekens.</string>
+  <string name="input_name_dialog_message_invalid_name_length">Maximale tekenlimiet bereikt.</string>
   <string name="input_name_dialog_message_invalid_name">Ongeldige naam. De namen \'.\' en \'..\' zijn niet toegestaan.</string>
   <string name="input_name_dialog_message_name_exists">Deze naam bestaat al.</string>
   <string name="associations_dialog_title">Gekoppelde apps</string>
@@ -393,6 +393,7 @@
   <string name="secure_storage_unlock_failed">Kan opslag niet ontgrendelen</string>
   <string name="secure_storage_unlock_validation_length">Password moeten minstens <xliff:g id="characters">%1$d</xliff:g> tekens lang zijn.</string>
   <string name="secure_storage_unlock_validation_equals">Wachtwoorden komen niet overeen.</string>
+  <string name="secure_storage_open_file_warning">Het bestand wordt gekopieerd naar een tijdelijke onversleutelde locatie. Deze wordt na een uur gewist.</string>
   <string name="print_unsupported_document">Niet-ondersteunde documentindeling</string>
   <string name="print_unsupported_image">Niet-ondersteunde afbeeldingsindeling</string>
   <string name="print_document_header">Document: <xliff:g id="document_name">%1$s</xliff:g></string>

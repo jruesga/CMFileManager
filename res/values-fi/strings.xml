@@ -243,7 +243,7 @@
   <string name="input_name_dialog_label">Nimi:</string>
   <string name="input_name_dialog_message_empty_name">Nimi ei voi olla tyhjä.</string>
   <string name="input_name_dialog_message_invalid_path_name">Virheellinen nimi. Seuraavat merkit ei ole sallittuja: \'<xliff:g id="invalid_characters">%1$s</xliff:g>\'</string>
-  <string name="input_name_dialog_message_invalid_name_length">Tiedostonimi on liian pitkä, käytä enintään 255 merkkiä.</string>
+  <string name="input_name_dialog_message_invalid_name_length">Merkkien enimmäismäärä saavutettu.</string>
   <string name="input_name_dialog_message_invalid_name">Virheellinen nimi. Nimet \'.\' ja \'..\' ei ole sallittuja.</string>
   <string name="input_name_dialog_message_name_exists">Nimi on jo käytössä.</string>
   <string name="associations_dialog_title">Yhdistykset</string>
@@ -393,6 +393,7 @@
   <string name="secure_storage_unlock_failed">Ei voida avata tallennustilaa</string>
   <string name="secure_storage_unlock_validation_length">Salasanassa on oltava vähintään <xliff:g id="characters">%1$d</xliff:g> merkkiä.</string>
   <string name="secure_storage_unlock_validation_equals">Salasanat eivät täsmää.</string>
+  <string name="secure_storage_open_file_warning">Tämä kopioi tiedostot väliaikaisesti salaamattomaan kansioon. Väliaikaiset tiedostot poistetaan tunnin kuluttua.</string>
   <string name="print_unsupported_document">Asiakirjamuotoa ei tueta</string>
   <string name="print_unsupported_image">Kuvamuotoa ei tueta</string>
   <string name="print_document_header">Asiakirja: <xliff:g id="document_name">%1$s</xliff:g></string>

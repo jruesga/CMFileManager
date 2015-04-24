@@ -250,7 +250,7 @@
   <string name="input_name_dialog_label">Имя:</string>
   <string name="input_name_dialog_message_empty_name">Имя не может быть пустым</string>
   <string name="input_name_dialog_message_invalid_path_name">Недопустимое имя. Нельзя использовать символы: <xliff:g id="invalid_characters">%1$s</xliff:g></string>
-  <string name="input_name_dialog_message_invalid_name_length">Слишком длинное имя файла, переименуйте его во что-то короче 255 символов.</string>
+  <string name="input_name_dialog_message_invalid_name_length">Достигнуто максимальное число знаков.</string>
   <string name="input_name_dialog_message_invalid_name">Недопустимое имя. Имена «.» и «..» не разрешены</string>
   <string name="input_name_dialog_message_name_exists">Имя уже используется в этой папке</string>
   <string name="associations_dialog_title">Ассоциации</string>
@@ -400,6 +400,7 @@
   <string name="secure_storage_unlock_failed">Не удалось разблокировать хранилище</string>
   <string name="secure_storage_unlock_validation_length">Пароль должен содержать минимум <xliff:g id="characters">%1$d</xliff:g> символов.</string>
   <string name="secure_storage_unlock_validation_equals">Пароли не совпадают.</string>
+  <string name="secure_storage_open_file_warning">Файл будет скопирован во временную незашифрованную область. Она будет очищена через час.</string>
   <string name="print_unsupported_document">Формат документа не поддерживается</string>
   <string name="print_unsupported_image">Формат изображения не поддерживается</string>
   <string name="print_document_header">Документ: <xliff:g id="document_name">%1$s</xliff:g></string>

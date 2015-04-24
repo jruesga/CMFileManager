@@ -246,7 +246,7 @@
   <string name="input_name_dialog_label">שם:</string>
   <string name="input_name_dialog_message_empty_name">השם אינו יכול להשאר ריק.</string>
   <string name="input_name_dialog_message_invalid_path_name">שם לא חוקי. התווים \"<xliff:g id="invalid_characters">%1$s</xliff:g>\" אסורים.</string>
-  <string name="input_name_dialog_message_invalid_name_length">שם הקובץ ארוך מדי, אנא בחר שם בעל 255 תווים או פחות.</string>
+  <string name="input_name_dialog_message_invalid_name_length">הגעת למגבלת התווים המרבית.</string>
   <string name="input_name_dialog_message_invalid_name">שם לא חוקי. השמות \".\" ו-\"..\" אסורים.</string>
   <string name="input_name_dialog_message_name_exists">השם כבר קיים.</string>
   <string name="associations_dialog_title">שיוכים</string>
@@ -396,6 +396,7 @@
   <string name="secure_storage_unlock_failed">לא יכול לבטל את נעילת אמצעי האחסון</string>
   <string name="secure_storage_unlock_validation_length">הסיסמה חייבת להכיל לפחות <xliff:g id="characters">%1$d</xliff:g> תווים.</string>
   <string name="secure_storage_unlock_validation_equals">הסיסמאות אינן תאומות.</string>
+  <string name="secure_storage_open_file_warning">פעולה זו תעתיק את הקובץ למיקום זמני לא מוצפן. הקובץ הזמני ינוקה לאחר שעה.</string>
   <string name="print_unsupported_document">פורמט מסמך לא נתמך</string>
   <string name="print_unsupported_image">פורמט תמונה לא נתמך</string>
   <string name="print_document_header">מסמך: <xliff:g id="document_name">%1$s</xliff:g></string>

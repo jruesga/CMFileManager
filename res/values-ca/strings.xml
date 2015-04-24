@@ -244,7 +244,7 @@
   <string name="input_name_dialog_label">Nom:</string>
   <string name="input_name_dialog_message_empty_name">El nom no pot estar buit.</string>
   <string name="input_name_dialog_message_invalid_path_name">Nom invàlid. Els caràcters \'<xliff:g id="invalid_characters">%1$s</xliff:g>\' no estan permesos.</string>
-  <string name="input_name_dialog_message_invalid_name_length">El nom del fitxer és massa llarg, si us plau considera alguna cosa de 255 caràcters o menys.</string>
+  <string name="input_name_dialog_message_invalid_name_length">Límit de caràcters màxim assolit.</string>
   <string name="input_name_dialog_message_invalid_name">Nom invàlid. Els noms \'.\' i \'..\' no estan permesos.</string>
   <string name="input_name_dialog_message_name_exists">El nom ja existeix.</string>
   <string name="associations_dialog_title">Associacions</string>
@@ -394,6 +394,7 @@
   <string name="secure_storage_unlock_failed">No s\'ha pogut desbloquejar l\'emmagatzematge</string>
   <string name="secure_storage_unlock_validation_length">La contrasenya ha de tenir almenys <xliff:g id="characters">%1$d</xliff:g> caràcters.</string>
   <string name="secure_storage_unlock_validation_equals">Les contrasenyes no coincideixen.</string>
+  <string name="secure_storage_open_file_warning">Es copiarà el fitxer en una ubicació temporal sense xifrar. Això serà esborrat en 1 hora.</string>
   <string name="print_unsupported_document">Format de document no suportat</string>
   <string name="print_unsupported_image">Format d\'imatge no suportat</string>
   <string name="print_document_header">Document: <xliff:g id="document_name">%1$s</xliff:g></string>

@@ -264,7 +264,7 @@
   <string name="input_name_dialog_label">名称:</string>
   <string name="input_name_dialog_message_empty_name">名称不能为空.</string>
   <string name="input_name_dialog_message_invalid_path_name">无效的名称. 名称中不能包涵以下字符: \'<xliff:g id="invalid_characters">%1$s</xliff:g>\'.</string>
-  <string name="input_name_dialog_message_invalid_name_length">文件名太长，请考虑减少到 255 个字符或更少。</string>
+  <string name="input_name_dialog_message_invalid_name_length">已达到最大字符限制。</string>
   <string name="input_name_dialog_message_invalid_name">无效的名称. 名称中不能包涵 \'.\' 与
     \'..\' .</string>
   <string name="input_name_dialog_message_name_exists">此名称已存在.</string>
@@ -417,6 +417,7 @@
   <string name="secure_storage_unlock_failed">无法解锁存储</string>
   <string name="secure_storage_unlock_validation_length">密码必须有至少 <xliff:g id="characters"> %1$d </xliff:g> 个字符。</string>
   <string name="secure_storage_unlock_validation_equals">密码不匹配。</string>
+  <string name="secure_storage_open_file_warning">这将复制文件到临时的未加密路径。将会在一小时后被清除。</string>
   <string name="print_unsupported_document">不受支持的文档格式</string>
   <string name="print_unsupported_image">不受支持的图像格式</string>
   <string name="print_document_header">文档: <xliff:g id="document_name">%1$s</xliff:g></string>

@@ -243,7 +243,7 @@
   <string name="input_name_dialog_label">Όνομα:</string>
   <string name="input_name_dialog_message_empty_name">Το όνομα δεν μπορεί να είναι κενό.</string>
   <string name="input_name_dialog_message_invalid_path_name">Μη έγκυρο όνομα. Οι χαρακτήρες \'<xliff:g id="invalid_characters">%1$s</xliff:g>\' δεν επιτρέπονται.</string>
-  <string name="input_name_dialog_message_invalid_name_length">Το όνομα αρχείου είναι υπερβολικά μεγάλο, παρακαλώ εισάγετε το πολύ 255 χαρακτήρες.</string>
+  <string name="input_name_dialog_message_invalid_name_length">Μέγιστο όριο χαρακτήρων.</string>
   <string name="input_name_dialog_message_invalid_name">Μη έγκυρο όνομα. Τα ονόματα \'.\' και \'..\' δεν επιτρέπονται.</string>
   <string name="input_name_dialog_message_name_exists">Το όνομα υπάρχει ήδη.</string>
   <string name="associations_dialog_title">Συσχετισμοί</string>
@@ -393,6 +393,7 @@
   <string name="secure_storage_unlock_failed">Δεν είναι δυνατό το ξεκλείδωμα του αποθ. χώρου</string>
   <string name="secure_storage_unlock_validation_length">Ο κωδικός πρόσβασης πρέπει να αποτελείται από τουλάχιστον <xliff:g id="characters">%1$d</xliff:g> χαρακτήρες.</string>
   <string name="secure_storage_unlock_validation_equals">Οι κωδικοί δεν ταιριάζουν.</string>
+  <string name="secure_storage_open_file_warning">Το αρχείο θα αντιγραφεί σε μια προσωρινή θέση χωρίς κρυπτογράφηση. Θα διαγραφεί μετά από 1 ώρα.</string>
   <string name="print_unsupported_document">Μη υποστηριζόμενη μορφή εγγράφου</string>
   <string name="print_unsupported_image">Μη υποστηριζόμενη μορφή εικόνας</string>
   <string name="print_document_header">Έγγραφο: <xliff:g id="document_name">%1$s</xliff:g></string>

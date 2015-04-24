@@ -246,7 +246,6 @@
   <string name="input_name_dialog_label">Име:</string>
   <string name="input_name_dialog_message_empty_name">Име не може да буде празно.</string>
   <string name="input_name_dialog_message_invalid_path_name">Лоше име. Карактери \'<xliff:g id="invalid_characters">%1$s</xliff:g>\' нису дозвољени.</string>
-  <string name="input_name_dialog_message_invalid_name_length">Име фајла је предуго, размислите о нечему од 255 карактера или мање.</string>
   <string name="input_name_dialog_message_invalid_name">Лоше име. Имена \'.\' и \'..\' нису дозвољена.</string>
   <string name="input_name_dialog_message_name_exists">Име већ постоји.</string>
   <string name="associations_dialog_title">Придруживања</string>

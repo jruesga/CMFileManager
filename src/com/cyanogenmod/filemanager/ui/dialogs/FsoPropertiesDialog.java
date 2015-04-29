@@ -367,7 +367,7 @@ public class FsoPropertiesDialog
 
         // Check if we should show "Skip media scan" toggle
         if (!FileHelper.isDirectory(this.mFso) ||
-            !StorageHelper.isPathInStorageVolume(this.mFso.getFullPath())) {
+            !StorageHelper.isPathInStorageVolume(this.mFso.getFullPath()) || this.mFso.isSecure()) {
             LinearLayout fsoSkipMediaScanView =
                     (LinearLayout)contentView.findViewById(R.id.fso_skip_media_scan_view);
             fsoSkipMediaScanView.setVisibility(View.GONE);

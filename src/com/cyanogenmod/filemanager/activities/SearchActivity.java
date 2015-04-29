@@ -247,7 +247,7 @@ public class SearchActivity extends Activity
                         mAdapter.stopStreaming();
                         int resultsSize = mAdapter.resultsSize();
                         mStreamingSearchProgress.setVisibility(View.INVISIBLE);
-                        if (mMimeTypeCategories.size() > 1) {
+                        if (mMimeTypeCategories != null && mMimeTypeCategories.size() > 1) {
                             mMimeTypeSpinner.setVisibility(View.VISIBLE);
                         }
                         mSearchListView.setVisibility(resultsSize > 0 ? View.VISIBLE : View.GONE);
@@ -645,7 +645,7 @@ public class SearchActivity extends Activity
         if (!TextUtils.isEmpty(searchDirectory)) {
             this.mSearchDirectory = searchDirectory;
         }
-
+        setFoundItems(0, mSearchDirectory);
         //Retrieve the query ¿from voice recognizer?
         boolean voiceQuery = true;
         List<String> userQueries =

@@ -246,6 +246,7 @@
   <string name="input_name_dialog_label">Име:</string>
   <string name="input_name_dialog_message_empty_name">Име не може да буде празно.</string>
   <string name="input_name_dialog_message_invalid_path_name">Лоше име. Карактери \'<xliff:g id="invalid_characters">%1$s</xliff:g>\' нису дозвољени.</string>
+  <string name="input_name_dialog_message_invalid_name_length">Максималан број карактера је достигнут.</string>
   <string name="input_name_dialog_message_invalid_name">Лоше име. Имена \'.\' и \'..\' нису дозвољена.</string>
   <string name="input_name_dialog_message_name_exists">Име већ постоји.</string>
   <string name="associations_dialog_title">Придруживања</string>
@@ -400,6 +401,7 @@
   <string name="secure_storage_unlock_failed">Не могу откључати складиште</string>
   <string name="secure_storage_unlock_validation_length">Лозинка мора имати најмање <xliff:g id="characters">%1$d</xliff:g> карактера.</string>
   <string name="secure_storage_unlock_validation_equals">Лозинке се не поклапају.</string>
+  <string name="secure_storage_open_file_warning">Ово ће копирати фајл у привремену некодирану локацију. Биће обрисано после сат времена.</string>
   <string name="print_unsupported_document">Неподржан формат документа</string>
   <string name="print_unsupported_image">Неподржан формат слике</string>
   <string name="print_document_header">Документ: <xliff:g id="document_name">%1$s</xliff:g></string>

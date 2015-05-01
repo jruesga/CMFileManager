@@ -258,6 +258,7 @@
   <string name="input_name_dialog_message_empty_name">O nome não pode estar vazio.</string>
   <string name="input_name_dialog_message_invalid_path_name">Nome inválido. Os caracteres
     \'<xliff:g id="invalid_characters">%1$s</xliff:g>\' não são permitidos.</string>
+  <string name="input_name_dialog_message_invalid_name_length">Limite máximo de caracteres atingido.</string>
   <string name="input_name_dialog_message_invalid_name">Nome inválido. Os nomes \'.\' e
     \'..\' não são permitidos.</string>
   <string name="input_name_dialog_message_name_exists">O nome já existe.</string>
@@ -416,6 +417,7 @@
   <string name="secure_storage_unlock_failed">Não é possível desbloquear o armazenamento</string>
   <string name="secure_storage_unlock_validation_length">A palavra-passe deve ter pelo menos <xliff:g id="characters">%1$d</xliff:g> caracteres.</string>
   <string name="secure_storage_unlock_validation_equals">As palavras-passe não correspondem.</string>
+  <string name="secure_storage_open_file_warning">Isto irá copiar o ficheiro para um local temporário não encriptado. Será limpo após 1 hora.</string>
   <string name="print_unsupported_document">Formato de documento não suportado</string>
   <string name="print_unsupported_image">Formato de imagem não suportado</string>
   <string name="print_document_header">Documento: <xliff:g id="document_name">%1$s</xliff:g></string>

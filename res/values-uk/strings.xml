@@ -105,10 +105,12 @@
   <string name="filesystem_info_warning_title">Немає інформації</string>
   <string name="filesystem_info_warning_msg">Немає доступної інформації про файлову систему.</string>
   <string name="filesystem_info_cant_be_mounted_msg">Файлова система не може бути змонтована/розмонтована.</string>
+  <string name="filesystem_info_mount_not_allowed_msg">Операція підключення файлових систем не дозволена в безпечному режимі. Натисніть для переходу в режим root.</string>
   <string name="filesystem_info_mount_failed_msg">Не вдалося змонтувати файлову систему. Деякі файлові системи, такі як SD-карти, не можуть бути змонтовані/розмонтовані, тому що вони мають вбудовану файлову систему тільки для читання.</string>
   <string name="filesystem_info_dialog_title">Інформація про файлову систему</string>
   <string name="filesystem_info_dialog_tab_info">Інформація</string>
   <string name="filesystem_info_dialog_tab_disk_usage">Диск</string>
+  <string name="filesystem_info_dialog_status">Підключено:</string>
   <string name="filesystem_info_dialog_mount_point">Точка монтування:</string>
   <string name="filesystem_info_dialog_device">Пристрій:</string>
   <string name="filesystem_info_dialog_type">Тип:</string>
@@ -241,6 +243,7 @@
   <string name="input_name_dialog_label">Ім`я:</string>
   <string name="input_name_dialog_message_empty_name">Ім`я не може бути пустим</string>
   <string name="input_name_dialog_message_invalid_path_name">Неприпустиме ім’я. Не можна використовувати символи: \'<xliff:g id="invalid_characters">%1$s</xliff:g>\'</string>
+  <string name="input_name_dialog_message_invalid_name_length">Досягнуто граничної кількості символів.</string>
   <string name="input_name_dialog_message_invalid_name">Неприпустиме ім’я. Імена \'.\' і \'..\' не дозволяються</string>
   <string name="input_name_dialog_message_name_exists">Таке ім’я вже існує</string>
   <string name="associations_dialog_title">Асоціації</string>
@@ -333,6 +336,7 @@
   <string name="pref_secure_storage_category">Безпечне сховище</string>
   <string name="pref_secure_storage_delayed_sync_title">Відкладена синхронізація</string>
   <string name="pref_secure_storage_delayed_sync_summary">Синхронізація безпечної файлової системи може займати більше часу. Увімкніть цей параметр, для швидшої відповіді після кожної операції, синхронізація виконується коли файлова система невикористовується. За рахунок можливої втрати інформації синхронізація не відбувається, якщо програма припиняє роботу.</string>
+  <string name="pref_secure_storage_reset_password_title">Змінити пароль</string>
   <string name="pref_secure_storage_delete_storage_title">Видалити сховище</string>
   <string name="pref_editor_behaviour_category">Поведінка</string>
   <string name="pref_no_suggestions">Без припущень</string>
@@ -340,7 +344,9 @@
   <string name="pref_word_wrap">Перенесення слів</string>
   <string name="pref_hexdump">Двійкові файли у HEX</string>
   <string name="pref_hexdump_desc">При відкритті двійкового файлу показувати шістнадцятковий дамп</string>
+  <string name="pref_editor_syntax_highlight_category">Підсвічування синтаксису</string>
   <string name="pref_syntax_highlight">Підсвітка синтаксису</string>
+  <string name="pref_syntax_highlight_desc">Підсвічування синтаксису файлу під час редагування (тільки для типів файлів, які підтримуються редактором)</string>
   <string name="pref_syntax_highlight_color_scheme">Кольорова тема</string>
   <string name="pref_syntax_highlight_color_scheme_desc">Оберіть колірну схему підсвічування синтаксису</string>
   <string name="pref_syntax_sh_use_theme_default">Використовувати типову тему</string>
@@ -387,6 +393,7 @@
   <string name="secure_storage_unlock_failed">Не вдається розблокувати сховище</string>
   <string name="secure_storage_unlock_validation_length">Пароль повинен мати принаймні <xliff:g id="characters">%1$d</xliff:g> символів.</string>
   <string name="secure_storage_unlock_validation_equals">Паролі не співпадають.</string>
+  <string name="secure_storage_open_file_warning">Файл буде скопійовано до тимчасового не шифрованого сховища. Яке буде очищено через годину.</string>
   <string name="print_unsupported_document">Формат документа не підтримується</string>
   <string name="print_unsupported_image">Формат зображення не підтримується</string>
   <string name="print_document_header">Документ: <xliff:g id="document_name">%1$s</xliff:g></string>

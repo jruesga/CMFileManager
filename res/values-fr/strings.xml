@@ -23,10 +23,10 @@
   <string name="size_megabytes">Mo</string>
   <string name="size_gigabytes">Go</string>
   <string name="datetime_format_order">%1$s %2$s</string>
-  <string name="device_blockdevice">Block device</string>
+  <string name="device_blockdevice">Bloquer l\'appareil</string>
   <string name="device_characterdevice">Caractère de l\'appareil</string>
   <string name="device_namedpipe">Canal nommé</string>
-  <string name="device_domainsocket">Domain socket</string>
+  <string name="device_domainsocket">Socket du domaine</string>
   <string name="mount_point_readonly">RO</string>
   <string name="mount_point_readwrite">RW</string>
   <string name="yes">Oui</string>

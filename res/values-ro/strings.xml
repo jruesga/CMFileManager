@@ -52,9 +52,11 @@
   <string name="msgs_privileged_console_alloc_failed">Imposibil de executat în modul Acces Root. Schimbare la modul Sigur.</string>
   <string name="msgs_settings_save_failure">Setarea nu poate fi aplicată sau stocată.</string>
   <string name="msgs_settings_invalid_initial_directory">Dosarul inițial \"<xliff:g id="initial_dir">%1$s</xliff:g>\" nu este corect. Schimbare la dosarul rădăcină.</string>
+  <string name="root_not_available_msg">Accesul Root nu este disponibil pentru acest dispozitiv. Imposibil de efectuat această operațiune.</string>
   <string name="msgs_success">Operațiunea a fost finalizată cu succes.</string>
   <string name="msgs_unknown">A fost detectată o eroare. Operațiunea nu a reușit.</string>
   <string name="msgs_insufficient_permissions">Această operațiune necesită permisiuni ridicate. Încercați să schimbați la modul de Acces Root.</string>
+  <string name="msgs_no_disk_space">Operația nu a reușit deoarece nu există spaţiu liber rămas pe dispozitiv.</string>
   <string name="msgs_file_not_found">Fișierul sau dosarul nu a fost găsit.</string>
   <string name="msgs_command_not_found">Comanda operațiunii nu a fost găsită sau are o definiție incorectă.</string>
   <string name="msgs_io_failed">Eroare citire/scriere.</string>
@@ -65,6 +67,7 @@
   <string name="msgs_read_only_filesystem">Sistemul de fișiere este doar în citire. Încercați montarea sistemului de fișiere ca citire-scriere înainte de a încerca operațiunea.</string>
   <string name="msgs_illegal_argument">Argument ilegal. Invocarea nu a reușit.</string>
   <string name="msgs_unresolved_inconsistencies">Operațiunea nu este permisă pentru că ar crea incoerențe.</string>
+  <string name="msgs_operation_not_allowed_in_current_directory">Folderul destinaţie nu poate fi un subfolder de sursă sau să fie la fel ca sursa.</string>
   <string name="msgs_push_again_to_exit">Apăsați din nou pentru a ieși.</string>
   <string name="msgs_not_registered_app">Nu există nicio aplicație înregistrată care ar deschide tipul de fișier selectat.</string>
   <string name="msgs_overwrite_files">Unele dintre fișiere există deja în dosarul destinație.\n\nSuprascrieți?</string>
@@ -102,6 +105,7 @@
   <string name="filesystem_info_warning_title">Nu există informații</string>
   <string name="filesystem_info_warning_msg">Nu există informații disponibile pentru fișierele de sistem.</string>
   <string name="filesystem_info_cant_be_mounted_msg">Fișierele de sistem nu pot fi montate/demontate.</string>
+  <string name="filesystem_info_mount_not_allowed_msg">Operațiunile de montare a fişierelor de sistem nu sunt permise modul Sigur. Atingeţi pentru a schimba modul de acces Root.</string>
   <string name="filesystem_info_mount_failed_msg">Operațiunea de montare a fișierelor de sistemul nu a reușit. Unele sisteme de fișier, ca de ex. cardurile SD, nu pot fi montate/demontate deoarece ele sunt încorporate ca sisteme de fișiere doar în citire.</string>
   <string name="filesystem_info_dialog_title">Informație despre sistemul de fișiere</string>
   <string name="filesystem_info_dialog_tab_info">Info</string>
@@ -239,6 +243,7 @@
   <string name="input_name_dialog_label">Nume:</string>
   <string name="input_name_dialog_message_empty_name">Numele nu poate fi gol.</string>
   <string name="input_name_dialog_message_invalid_path_name">Nume incorect. Caracterele \"<xliff:g id="invalid_characters">%1$s</xliff:g>\" nu sunt admise.</string>
+  <string name="input_name_dialog_message_invalid_name_length">Limita maximă de caractere atinsă.</string>
   <string name="input_name_dialog_message_invalid_name">Nume incorect. Numele \".\" și \"..\" nu sunt admise.</string>
   <string name="input_name_dialog_message_name_exists">Numele există deja.</string>
   <string name="associations_dialog_title">Asociații</string>
@@ -331,6 +336,7 @@
   <string name="pref_secure_storage_category">Stocare securizată</string>
   <string name="pref_secure_storage_delayed_sync_title">Sincronizare întârziată</string>
   <string name="pref_secure_storage_delayed_sync_summary">Sincronizarea unor sisteme cu fişiere sigure este o operaţie costisitoare. Activaţi această opţiune pentru a permite răspunsuri în timp mai bune după fiecare operațiune, efectuând sincronizări atunci când sistemul de fişiere este în stare nefolosită, dar în detrimentul pierderii de informaţii în aşteptare de sincronizate în cazul unei erori a aplicației.</string>
+  <string name="pref_secure_storage_reset_password_title">Schimbă parola</string>
   <string name="pref_secure_storage_delete_storage_title">Ştergeţi stocarea</string>
   <string name="pref_editor_behaviour_category">Comportament</string>
   <string name="pref_no_suggestions">Fără sugestii</string>
@@ -340,6 +346,7 @@
   <string name="pref_hexdump_desc">Când deschid un fișier binar, generează un hexdump pentru fișier și deschide-l în vizualizatorul hex</string>
   <string name="pref_editor_syntax_highlight_category">Evidențiere sintaxă</string>
   <string name="pref_syntax_highlight">Evidențiere sintaxă</string>
+  <string name="pref_syntax_highlight_desc">Evidenţiază sintaxa fişierului afişate în editor (numai atunci când un procesor de sintaxă evidenţierea pentru tipul de fişier este disponibil)</string>
   <string name="pref_syntax_highlight_color_scheme">Schema de culoare</string>
   <string name="pref_syntax_highlight_color_scheme_desc">Selectează schema de culoare a evidențierii sintaxei</string>
   <string name="pref_syntax_sh_use_theme_default">Utilizează temă implicită</string>
@@ -386,6 +393,7 @@
   <string name="secure_storage_unlock_failed">Nu s-a pot debloca stocarea</string>
   <string name="secure_storage_unlock_validation_length">Parola trebuie să aibă cel puțin <xliff:g id="characters">%1$d</xliff:g> caractere.</string>
   <string name="secure_storage_unlock_validation_equals">Parolele nu se potrivesc.</string>
+  <string name="secure_storage_open_file_warning">Aceasta va copia fişierul într-un loc temporar necriptat. Acesta va fi șters după 1 oră.</string>
   <string name="print_unsupported_document">Formatul documentului neacceptat</string>
   <string name="print_unsupported_image">Format de imagine neacceptat</string>
   <string name="print_document_header">Document: <xliff:g id="document_name">%1$s</xliff:g></string>
@@ -394,4 +402,5 @@
   <string name="changelog_title">Istoria schimbărilor</string>
   <string name="welcome_title">Bun venit</string>
   <string name="welcome_msg">Bine ați venit la managerul de fișiere CyanogenMod.\n\nAceastă aplicație vă permite să explorați sistemul de fișiere și să efectuați operații care ar putea deteriora dispozitivul dvs. Pentru a preveni stricăciunile, aplicația pornește în modul sigur, un mod cu privilegii reduse.\n\nPuteți accesa modul avansat, cu privilegii complete via Setări. Este responsabilitatea dvs să vă asigurați că operațile făcute de dvs nu distrug dispozitivul.\n\nEchipa CyanogenMod</string>
+  <string name="activity_not_found_exception">Nu s-a găsit un app pentru a deschide acest fişier</string>
 </resources>

@@ -254,6 +254,7 @@
   <string name="input_name_dialog_label">Navn:</string>
   <string name="input_name_dialog_message_empty_name">Navnet kan ikke være tomt.</string>
   <string name="input_name_dialog_message_invalid_path_name">Ugyldigt navn. Tegnene \'<xliff:g id="invalid_characters">%1$s</xliff:g>\' er ikke tilladte.</string>
+  <string name="input_name_dialog_message_invalid_name_length">Maksimale tegngrænse nået.</string>
   <string name="input_name_dialog_message_invalid_name">Ugyldigt navn. Navnene \'.\' og
     \'..\' er ikke tilladt.</string>
   <string name="input_name_dialog_message_name_exists">Navnet findes allerede.</string>
@@ -404,6 +405,7 @@
   <string name="secure_storage_unlock_failed">Kan ikke låse lager op</string>
   <string name="secure_storage_unlock_validation_length">Adgangskoden skal mindst indholde <xliff:g id="characters">%1$d</xliff:g> tegn.</string>
   <string name="secure_storage_unlock_validation_equals">Adgangskoderne er ikke ens.</string>
+  <string name="secure_storage_open_file_warning">Dette vil kopiere filen til en midlertidig ukrypteret placering. Dette vil blive fjernet efter 1 time.</string>
   <string name="print_unsupported_document">Dokumentformatet understøttes ikke</string>
   <string name="print_unsupported_image">Billedformatet understøttes ikke</string>
   <string name="print_document_header">Dokument: <xliff:g id="document_name">%1$s</xliff:g></string>

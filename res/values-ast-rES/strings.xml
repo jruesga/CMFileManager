@@ -248,6 +248,7 @@
   <string name="input_name_dialog_label">Nome:</string>
   <string name="input_name_dialog_message_empty_name">El nome nun pue quedar baleru.</string>
   <string name="input_name_dialog_message_invalid_path_name">Nome inválidu. Los caráuteres\u00AB<xliff:g id="invalid_characters">%1$s</xliff:g>\u00BB nun tán permitíos.</string>
+  <string name="input_name_dialog_message_invalid_name_length">Algamóse la llende máxima de caráuteres.</string>
   <string name="input_name_dialog_message_invalid_name">Nome inválidu. Los nomes \u00AB.\u00BB y \u00AB..\u00BB nun tán permitíos.</string>
   <string name="input_name_dialog_message_name_exists">El nome yá esiste.</string>
   <string name="associations_dialog_title">Asociaciones</string>
@@ -397,6 +398,7 @@
   <string name="secure_storage_unlock_failed">Nun pue desbloquiase l\'almacenamientu</string>
   <string name="secure_storage_unlock_validation_length">La contraseña tien de tener a lo menos <xliff:g id="characters">%1$d</xliff:g> caráuteres.</string>
   <string name="secure_storage_unlock_validation_equals">Les contraseñes nun concasen.</string>
+  <string name="secure_storage_open_file_warning">Esto va copiar el ficheru a un allugamientu ensin cifrar y va desaniciase nuna hora.</string>
   <string name="print_unsupported_document">Formatu de documentu non sofitáu</string>
   <string name="print_unsupported_image">Formatu d\'imaxe non sofitáu</string>
   <string name="print_document_header">Documentu: <xliff:g id="document_name">%1$s</xliff:g></string>

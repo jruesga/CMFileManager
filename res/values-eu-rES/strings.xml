@@ -119,10 +119,10 @@
   <string name="fso_properties_dialog_include_in_media_scan">Euskarriaren eskaneatzea baztertu:</string>
   <string name="fso_failed_to_allow_media_scan">Euskarriaren eskaneatzea baimentzerakoan akatsa egon da</string>
   <string name="fso_failed_to_prevent_media_scan">Euskarrien eskaneatzea ekiditean akatsa egon da</string>
-  <string name="fso_delete_nomedia_dir_title">\u00AB.nomedia\u00BB karpeta ezabatu</string>
-  <string name="fso_delete_nomedia_dir_body">Karpeta honek \u00AB.nomedia\u00BB karpeta bat du.\n\nKarpeta eta edukin guztak ezabatu?</string>
-  <string name="fso_delete_nomedia_non_empty_title">\u00AB.nomedia\u00BB fitxategia ezabatu</string>
-  <string name="fso_delete_nomedia_non_empty_body">Karpeta honek \u00AB.nomedia\u00BB fitxategi ez huts bat dauka.\n\nEzabatu nahi duzu?</string>
+  <string name="fso_delete_nomedia_dir_title">Ezabatu .nomedia direktorioa</string>
+  <string name="fso_delete_nomedia_dir_body">Direktorio honek .nomedia direktorio bat du.\n\n Berau eta bere eta eduki guztiak ezabatu nahi dituzu?</string>
+  <string name="fso_delete_nomedia_non_empty_title">ezabatu .nomedia fitxategia</string>
+  <string name="fso_delete_nomedia_non_empty_body">Direktorio honek hutsik ez dagoen .nomedia fitxategi bat du.\n\nEzabatu nahi duzu?</string>
   <string name="history">Historia</string>
   <string name="msgs_history_empty">Historia hutsik dago.</string>
   <string name="msgs_history_unknown">Gai ezezaguna historian.</string>
@@ -191,8 +191,8 @@
   <string name="actions_menu_select">Aukeratu</string>
   <string name="actions_menu_deselect">Aukeraketa kendu</string>
   <string name="actions_menu_paste_selection">Hemen itsatsi</string>
-  <string name="actions_menu_move_selection">Hona mugitu</string>
-  <string name="actions_menu_delete_selection">Aukeraketa ezabatu</string>
+  <string name="actions_menu_move_selection">Mugitu aukera hona</string>
+  <string name="actions_menu_delete_selection">Ezabatu aukeraketa</string>
   <string name="actions_menu_compress_selection">Aukeraketa konprimatu</string>
   <string name="actions_menu_create_link">Esteka sortu</string>
   <string name="actions_menu_open">Ireki</string>
@@ -210,6 +210,7 @@
   <string name="actions_menu_add_shortcut">Lasterbidea</string>
   <string name="actions_menu_open_parent_folder">Karpeta ireki</string>
   <string name="actions_menu_compute_checksum">Checksum</string>
+  <string name="actions_menu_set_as_home">Ezarri hasiera gisa</string>
   <string name="actions_ask_undone_operation_msg">Eragiketa hau ezin da desegin. Jarraitu?</string>
   <string name="input_name_dialog_label">Izena:</string>
   <string name="input_name_dialog_message_empty_name">Izena ezin da hutsik geratu.</string>
@@ -253,7 +254,7 @@
   <string name="pref_case_sensitive_sort_summary">Bilaketa emaitzetan edo nabigatzean maiuskulak/minuskulak kontuan izan</string>
   <string name="pref_filetime_format_mode">Data/ordua formatua</string>
   <string name="pref_disk_usage_warning_level">Disko erabileraren abisua</string>
-  <string name="pref_disk_usage_warning_level_summary" formatted="false">Disko erabileraren widget-entzat kolore ezberdin bat ezarri, okupaturiko espazio totalaren ehuneko <xliff:g id="level">%1$s</xliff:g> -a gainditzean</string>
+  <string name="pref_disk_usage_warning_level_summary" formatted="false">Ezarri kolore desberdin bat disko erabileraren trepetan kolore, okupaturiko espazio totalaren ehuneko <xliff:g id="level">%1$s</xliff:g>a gainditzean</string>
   <string name="pref_compute_folder_statistics">Karpeten estatistikak</string>
   <string name="pref_compute_folder_statistics_on">Kontuz! karpeten estatistiken kalkuluak denbora eta sistema baliabide gehiago beharko ditu</string>
   <string name="pref_display_thumbs">Aurrebista</string>
@@ -280,8 +281,9 @@
   <string name="pref_save_search_terms">Bilaketa baldintzak gorde</string>
   <string name="pref_save_search_terms_on">Bilaketa baldintzak hurrengo bilaketentzako iradokizun bezala gordeko dira</string>
   <string name="pref_save_search_terms_off">Bilaketa baldintzak ez dira gordeko</string>
-  <string name="pref_remove_saved_search_terms">Bilaketa baldintzak ezabatu</string>
+  <string name="pref_remove_saved_search_terms">Ezabatu gordetako bilaketa baldintzak</string>
   <string name="pref_remove_saved_search_terms_summary">Sakatu gordetako bilaketa baldintza guztiak ezabatzeko</string>
+  <string name="pref_remove_saved_search_terms_msg">Gordetako bilaketa baldintza guztiak ezabatu dira</string>
   <string name="pref_editor_behaviour_category">Izaera</string>
   <string name="pref_no_suggestions">Iradokizunik gabe</string>
   <string name="pref_no_suggestions_desc">Ez erakutsi hiztegiaren iradokizunik fitxategiak editatzerakoan</string>

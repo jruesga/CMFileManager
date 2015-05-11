@@ -105,6 +105,7 @@
   <string name="filesystem_info_warning_title">Aucune information</string>
   <string name="filesystem_info_warning_msg">Aucune information disponible pour le système de fichiers</string>
   <string name="filesystem_info_cant_be_mounted_msg">Impossible de monter/démonter le système de fichiers</string>
+  <string name="filesystem_info_mount_not_allowed_msg">Les opérations de montage du système de fichiers ne sont pas autorisées en mode sécurisé. Appuyez pour passer en mode Root.</string>
   <string name="filesystem_info_mount_failed_msg">Opération de montage du système de fichiers échouée. Certains systèmes de fichiers, comme les cartes SD, ne peuvent pas être monté car ils intègrent un système de fichier en lecture seul.</string>
   <string name="filesystem_info_dialog_title">Information du système de fichiers</string>
   <string name="filesystem_info_dialog_tab_info">Infos</string>
@@ -251,6 +252,7 @@
   <string name="input_name_dialog_label">Nom\u00A0:</string>
   <string name="input_name_dialog_message_empty_name">Nom requis</string>
   <string name="input_name_dialog_message_invalid_path_name">Nom incorrect. Les caractères « <xliff:g id="invalid_characters">%1$s</xliff:g> » ne sont pas autorisés.</string>
+  <string name="input_name_dialog_message_invalid_name_length">Limite maximale de caractères atteinte.</string>
   <string name="input_name_dialog_message_invalid_name">Nom incorrect. Les noms « . » et « .. » ne sont pas autorisés.</string>
   <string name="input_name_dialog_message_name_exists">Nom déjà attribué</string>
   <string name="associations_dialog_title">Associations</string>
@@ -353,6 +355,7 @@
   <string name="pref_hexdump_desc">Générer une conversion hexadécimale lors de l\'ouverture d\'un fichier binaire et l\'ouvrir dans la visionneuse hexadécimale</string>
   <string name="pref_editor_syntax_highlight_category">Coloration syntaxique</string>
   <string name="pref_syntax_highlight">Coloration syntaxique</string>
+  <string name="pref_syntax_highlight_desc">Utiliser la coloration syntaxique du fichier affiché dans l\'éditeur (uniquement lorsque le type de fichier le permet)</string>
   <string name="pref_syntax_highlight_color_scheme">Couleur</string>
   <string name="pref_syntax_highlight_color_scheme_desc">Sélectionner le jeu de couleurs de la coloration synthaxique</string>
   <string name="pref_syntax_sh_use_theme_default">Utiliser le thème par défaut</string>
@@ -399,6 +402,7 @@
   <string name="secure_storage_unlock_failed">Impossible de déverrouiller le stockage</string>
   <string name="secure_storage_unlock_validation_length">Le mot de passe doit comporter au moins <xliff:g id="characters">%1$d</xliff:g> caractères.</string>
   <string name="secure_storage_unlock_validation_equals">Les mots de passe ne correspondent pas.</string>
+  <string name="secure_storage_open_file_warning">Le fichier sera copié vers un emplacement temporaire non chiffré. Cette copie sera effacée 1 heure après.</string>
   <string name="print_unsupported_document">Format de document non pris en charge</string>
   <string name="print_unsupported_image">Format d\'image non pris en charge</string>
   <string name="print_document_header">Document : <xliff:g id="document_name">%1$s</xliff:g></string>

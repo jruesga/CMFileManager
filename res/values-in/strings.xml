@@ -52,6 +52,7 @@
   <string name="msgs_privileged_console_alloc_failed">Tidak dapat menjalankan dalam modus Akses Root. Berganti ke modus Aman.</string>
   <string name="msgs_settings_save_failure">Pengaturan yang tidak dapat diterapkan atau disimpan.</string>
   <string name="msgs_settings_invalid_initial_directory">Folder awal \'<xliff:g id="initial_dir">%1$s</xliff:g>\' tidak valid. Berganti ke folder root.</string>
+  <string name="root_not_available_msg">Root tidak tersedia dalam perangkat ini. Tidak dapat melakukan operasi ini.</string>
   <string name="msgs_success">Operasi selesai dengan sukses.</string>
   <string name="msgs_unknown">Kesalahan terdeteksi. Operasi tidak berhasil.</string>
   <string name="msgs_insufficient_permissions">Operasi ini memerlukan izin lebih tinggi. Cobalah ubah ke modus Akses Root.</string>
@@ -66,6 +67,7 @@
   <string name="msgs_read_only_filesystem">Sistem berkas baca-saja. Coba untuk memasang sistem berkas sebagai baca-tulis sebelum melakukan operasi.</string>
   <string name="msgs_illegal_argument">Argumen ilegal. Permintaan gagal.</string>
   <string name="msgs_unresolved_inconsistencies">Operasi tidak dibenarkan karena akan membuat inkonsistensi.</string>
+  <string name="msgs_operation_not_allowed_in_current_directory">Folder tujuan tidak boleh subfolder dari sumber atau sama dengan sumber.</string>
   <string name="msgs_push_again_to_exit">Tekan lagi untuk keluar.</string>
   <string name="msgs_not_registered_app">Tidak ada aplikasi yang terdaftar untuk menangani jenis berkas yang terpilih.</string>
   <string name="msgs_overwrite_files">Beberapa berkas sudah ada di folder tujuan.\n\nTimpa?</string>
@@ -103,10 +105,12 @@
   <string name="filesystem_info_warning_title">Tidak ada informasi</string>
   <string name="filesystem_info_warning_msg">Ada tidak ada informasi yang tersedia untuk sistem berkas.</string>
   <string name="filesystem_info_cant_be_mounted_msg">Sistem berkas tidak dapat dipasang/dilepas.</string>
+  <string name="filesystem_info_mount_not_allowed_msg">Operasi pemasangan filesistem tidak diperbolehkan pada modus Aman. Ketuk untuk mengubah ke modus Akses Root.</string>
   <string name="filesystem_info_mount_failed_msg">Operasi pemasangan sistem berkas gagal. Beberapa sistem berkas, seperti kartu SD, tidak dapat dipasang/dilepas karena mereka dibangun sebagai sistem berkas baca-saja.</string>
   <string name="filesystem_info_dialog_title">Informasi sistem berkas</string>
   <string name="filesystem_info_dialog_tab_info">Info</string>
   <string name="filesystem_info_dialog_tab_disk_usage">Penggunaan disk</string>
+  <string name="filesystem_info_dialog_status">Dipasang:</string>
   <string name="filesystem_info_dialog_mount_point">Titik pasang:</string>
   <string name="filesystem_info_dialog_device">Device:</string>
   <string name="filesystem_info_dialog_type">Jenis:</string>
@@ -239,6 +243,7 @@
   <string name="input_name_dialog_label">Nama:</string>
   <string name="input_name_dialog_message_empty_name">Nama tak boleh kosong.</string>
   <string name="input_name_dialog_message_invalid_path_name">Nama tidak valid. Karakter \'<xliff:g id="invalid_characters">%1$s</xliff:g>\' tidak diperbolehkan.</string>
+  <string name="input_name_dialog_message_invalid_name_length">Batas karakter maksimum tercapai.</string>
   <string name="input_name_dialog_message_invalid_name">Nama tidak valid. Nama \'.\' dan \'..\' tidak diperbolehkan.</string>
   <string name="input_name_dialog_message_name_exists">Nama sudah ada.</string>
   <string name="associations_dialog_title">Asosiasi</string>
@@ -331,6 +336,7 @@
   <string name="pref_secure_storage_category">Penyimpanan yang aman</string>
   <string name="pref_secure_storage_delayed_sync_title">Sinkronisasi tertunda</string>
   <string name="pref_secure_storage_delayed_sync_summary">Sinkronisasi sistem file aman adalah operasi yang mahal. Mengaktifkan opsi ini untuk mengizinkan respon lebih cepat setelah setiap operasi, melakukan sinkronisasi ketika filesystem dalam keadaan tidak digunakan, tetapi dengan mengorbankan kehilangan informasi yang tertunda tidak disinkronisasikan jika aplikasi crash.</string>
+  <string name="pref_secure_storage_reset_password_title">Ubah kata sandi</string>
   <string name="pref_secure_storage_delete_storage_title">Hapus Penyimpanan</string>
   <string name="pref_editor_behaviour_category">Perilaku</string>
   <string name="pref_no_suggestions">Tidak ada saran</string>
@@ -338,7 +344,9 @@
   <string name="pref_word_wrap">Penggal kata</string>
   <string name="pref_hexdump">Berkas binari Hex dump</string>
   <string name="pref_hexdump_desc">Ketika membuka berkas binari, buat hex dump berkas dan buka dengan penampil hex</string>
+  <string name="pref_editor_syntax_highlight_category">Penyorotan sintaks</string>
   <string name="pref_syntax_highlight">Sorot sintaks</string>
+  <string name="pref_syntax_highlight_desc">Menyorot sintaks dari file yang ditampilkan dalam editor (hanya ketika prosesor menyoroti sintaks untuk jenis file tersedia)</string>
   <string name="pref_syntax_highlight_color_scheme">Skema warna</string>
   <string name="pref_syntax_highlight_color_scheme_desc">Pilih skema warna highlight sintaks</string>
   <string name="pref_syntax_sh_use_theme_default">Gunakan tema default</string>
@@ -385,6 +393,7 @@
   <string name="secure_storage_unlock_failed">Tidak dapat membuka kunci penyimpanan</string>
   <string name="secure_storage_unlock_validation_length">Kata Sandi harus memiliki setidaknya <xliff:g id="characters">%1$d</xliff:g> karakter.</string>
   <string name="secure_storage_unlock_validation_equals">Kata sandi tidak cocok.</string>
+  <string name="secure_storage_open_file_warning">Ini akan menyalin berkas ke lokasi sementara yang tidak terenkripsi. Ini akan dihapus setelah 1 jam.</string>
   <string name="print_unsupported_document">Format dokumen tidak didukung</string>
   <string name="print_unsupported_image">Format gambar tidak didukung</string>
   <string name="print_document_header">Dokumen: <xliff:g id="document_name">%1$s</xliff:g></string>
@@ -393,4 +402,5 @@
   <string name="changelog_title">Daftar perubahan</string>
   <string name="welcome_title">Selamat datang</string>
   <string name="welcome_msg">Selamat datang di manager berkas CyanogenMod.\n\nAplikasi ini memungkinkan anda untuk menjelajahi sistem berkas dan melakukan operasi yang dapat merusak perangkat anda. Untuk mencegah kerusakan, aplikasi akan mulai dengan aman, modus hak-istimewa-rendah.\n\nAnda dapat mengakses modus lanjutan, modus hak-istimewa-penuh melalui Pengaturan. Anda bertanggung jawab untuk memastikan bahwa operasi tidak merusak sistem anda.\n\nTim CyanogenMod</string>
+  <string name="activity_not_found_exception">Tidak dapat menemukan sebuah aplikasi untuk membuka file ini</string>
 </resources>

@@ -164,6 +164,12 @@ BreadcrumbListener, OnSelectionChangedListener, OnSelectionListener, OnRequestRe
             try {
                 // Response if the item can be removed
                 FileSystemObjectAdapter adapter = (FileSystemObjectAdapter)parent.getAdapter();
+
+                // Short circuit to protect OOBE
+                if (position < 0 || position >= adapter.getCount()) {
+                    return false;
+                }
+
                 FileSystemObject fso = adapter.getItem(position);
                 if (fso != null) {
                     if (fso instanceof ParentDirectory) {

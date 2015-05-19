@@ -188,6 +188,7 @@
         <category android:name="com.cyanogenmod.filemanager.category.INTERNAL_VIEWER" />
         <category android:name="com.cyanogenmod.filemanager.category.EDITOR" />
 
+        <data android:scheme="content" />
         <data android:scheme="file" />
         <data android:mimeType="text/*" />
         <data android:mimeType="application/javascript" />

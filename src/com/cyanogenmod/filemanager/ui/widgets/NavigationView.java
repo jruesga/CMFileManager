@@ -1145,6 +1145,9 @@ BreadcrumbListener, OnSelectionChangedListener, OnSelectionListener, OnRequestRe
 
         // Get the adapter and the fso
         FileSystemObjectAdapter adapter = ((FileSystemObjectAdapter)parent.getAdapter());
+        if (adapter == null || position < 0 || (position >= adapter.getCount())) {
+            return false;
+        }
         FileSystemObject fso = adapter.getItem(position);
 
         // Parent directory hasn't actions

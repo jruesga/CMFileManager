@@ -450,6 +450,7 @@ public class SearchActivity extends Activity
         } catch (Throwable ex) {
             /**NON BLOCK**/
         }
+        recycle();
 
         //All destroy. Continue
         super.onDestroy();
@@ -1288,10 +1289,13 @@ public class SearchActivity extends Activity
      * Method invoked when the activity needs to exit
      */
     private void exit() {
+        finish();
+    }
+
+    private void recycle() {
         if (this.mSearchListView.getAdapter() != null) {
             ((SearchResultAdapter)this.mSearchListView.getAdapter()).dispose();
         }
-        finish();
     }
 
     /**

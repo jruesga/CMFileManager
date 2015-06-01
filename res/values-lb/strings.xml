@@ -66,7 +66,7 @@
   <string name="msgs_operation_can_not_be_cancelled">Dës Operatioun kann net ofgebrach ginn.</string>
   <string name="msgs_read_only_filesystem">De Fichierssystem ass schreifgeschützt. Probéier de Fichiersystem mat Schreifrechter anzebannen ier s de dës Operatioun probéiers.</string>
   <string name="msgs_illegal_argument">Ongëltegt Argument. Opruff feelgeschloen.</string>
-  <string name="msgs_unresolved_inconsistencies">Dës Operatioun ass net erlaabert well se Inkonsistenze géif verursaachen.</string>
+  <string name="msgs_unresolved_inconsistencies">Dës Operatioun ass net erlaabt well s\'Inkonsistenze géif verursaachen.</string>
   <string name="msgs_operation_not_allowed_in_current_directory">Den Destinatiounsdossier ka keen Ënnerdossier vun der Source oder identesch mat der Source sinn.</string>
   <string name="msgs_push_again_to_exit">Nach eemol drécke fir zouzemaachen.</string>
   <string name="msgs_not_registered_app">Fir den ausgewielte Fichierstyp ass keng App registréiert.</string>
@@ -109,7 +109,7 @@
   <string name="filesystem_info_mount_failed_msg">Abannen/Trenne vum Fichierssystem ass feelgeschloen. Op verschidde Fichierssystemer, wéi SD-Kaarten, kënnen dës Operatiounen net ausgefouert gi well se schreifgeschützt an de System agebaut sinn.</string>
   <string name="filesystem_info_dialog_title">Informatiounen zum Fichierssystem</string>
   <string name="filesystem_info_dialog_tab_info">Informatiounen</string>
-  <string name="filesystem_info_dialog_tab_disk_usage">Späichernotzung</string>
+  <string name="filesystem_info_dialog_tab_disk_usage">Späicherbenotzung</string>
   <string name="filesystem_info_dialog_mount_point">Abannungspunkt:</string>
   <string name="filesystem_info_dialog_device">Apparat:</string>
   <string name="filesystem_info_dialog_type">Typ:</string>
@@ -299,7 +299,7 @@
   <string name="pref_case_sensitive_sort">Grouss-/Klengschreiwung respektéieren</string>
   <string name="pref_case_sensitive_sort_summary">Grouss-/Klengschreiwung respektéiere beim Navigéieren oder Zortéiere vu Sichresultater</string>
   <string name="pref_filetime_format_mode">Datums- an Zäitformat</string>
-  <string name="pref_disk_usage_warning_level">Späichernotzungswarnung</string>
+  <string name="pref_disk_usage_warning_level">Späicherbenotzungswarnung</string>
   <string name="pref_disk_usage_warning_level_summary" formatted="false">Aner Faarf uweise, wa méi wéI <xliff:g id="level">%1$s</xliff:g> Prozent vun der Späicherplaz beluecht sinn</string>
   <string name="pref_compute_folder_statistics">Dossiersstatistike berechnen</string>
   <string name="pref_compute_folder_statistics_on">Warnung! D\'Berechnung vun den Dossiersstatistiken ass Zäit- a Ressourcen-opwänneg</string>

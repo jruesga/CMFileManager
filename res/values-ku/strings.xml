@@ -42,6 +42,7 @@
   <string name="copy_text_cd">پەنجەی پێدا بنێ بۆ لەبەرگرتنەوەی دەق بۆ فۆڵدەری کاتی</string>
   <string name="copy_text_msg">دەق لەبەریگیرایەوە بۆ فۆڵدەری کاتی</string>
   <string name="warning_title">ئاگادارکردنەوە</string>
+  <string name="error_title">هەڵە</string>
   <string name="confirm_operation">دڵنیاکردنەوەی فرمان</string>
   <string name="confirm_overwrite">دڵنیاکردنەوە لە گۆڕین</string>
   <string name="confirm_deletion">دڵنیاکردنەوی سڕینەوە</string>
@@ -51,9 +52,11 @@
   <string name="msgs_privileged_console_alloc_failed">نەیتوانی دەست پێبکات لە دۆخی بەر دەست بوونی  ڕووت.</string>
   <string name="msgs_settings_save_failure">ئەم ڕێکبەندە نەتوانرا پاشەکەوت بکرێت.</string>
   <string name="msgs_settings_invalid_initial_directory">فۆڵدەری سەرەکی \'<xliff:g id="initial_dir">%1$s</xliff:g>\' ناڕاستە. گۆڕین بۆ فۆڵدەری ڕووت.</string>
+  <string name="root_not_available_msg">ڕووت لە کارە نیە لەسەر ئامێرەکەت. ناتوانرێت ئەم کارە ئەنجام بدرێت.</string>
   <string name="msgs_success">ئەم کردارە بەسەرکەوتوویی تەواو بوو.</string>
   <string name="msgs_unknown">هەڵەیەک ڕوویدا. کردارەکە سەرکەوتوو نەبوو.</string>
   <string name="msgs_insufficient_permissions">ئەم کردارە پێویستی بە ڕێگەپێدانە تاییبەتەکانە. هەوڵ بە بۆ گۆڕین بۆ دۆخی دەست پێگەیشتنی ڕووت.</string>
+  <string name="msgs_no_disk_space">ئەم کردارە پوچکرایەوە لەبەر ئەوە هیچ شوێنێک نیە لەسەر ئامێرەکە.</string>
   <string name="msgs_file_not_found">فایل یان فۆڵدەر نەدۆزرانەوە.</string>
   <string name="msgs_command_not_found">فەرمانی ئەم کردارە نەدۆزرایەوە یان پێناسەیەکی ناڕاستی هەیە.</string>
   <string name="msgs_io_failed">خوێندنەوە\نووسین سەرکەوتوو نەبوو.</string>
@@ -274,6 +277,7 @@
   <string name="category_audio">دەنگ</string>
   <string name="category_video">ڤیدیۆ</string>
   <string name="category_security">پارێزگاری</string>
+  <string name="category_all">هەموو</string>
   <string name="compression_mode_title">شێوازی پەستاندن</string>
   <string name="shortcut_failed_msg">سه‌رکه‌وتوو نه‌بوو له‌ ڕێکخستنی کورته‌وێنۆچکه‌.</string>
   <string name="shortcut_creation_success_msg">کورتە وێنۆچکه‌ بەسەرکەوتوویی دروستکرا.</string>
@@ -324,6 +328,7 @@
   <string name="pref_secure_storage_category">پارێزگاری بیرگە</string>
   <string name="pref_secure_storage_delayed_sync_title">دواین هاوکاتکراو</string>
   <string name="pref_secure_storage_delayed_sync_summary">هاوکاتسازیی پەڕگە پارێزراوەکانی سیستەم کردارێکی بەنرخە. ئەم بژاردەیە چالاک بکە بۆ خێراترکردنی کاردانەوەی هەر یەک لە کردارەکان و هەروەها جێبەجێکردنی هاوکاتگەری کاتێک پەڕگەی سیستەم لە دۆخێکی ناکارادایە بەڵام ئەگەر بەرنامەکە کەوتە تێکشکانەوە، ئەو زانیارییانەی کە ماونەتەوە بە بەهای لەدەستدانیان هاوکاتگەری ناکرێن.</string>
+  <string name="pref_secure_storage_reset_password_title">وشەتێپەڕ گۆڕین</string>
   <string name="pref_secure_storage_delete_storage_title">سڕینەوەی بیرگە</string>
   <string name="pref_editor_behaviour_category">ڕه‌وشت</string>
   <string name="pref_no_suggestions">پێشنیار نەکراوە</string>

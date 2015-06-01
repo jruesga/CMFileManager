@@ -25,15 +25,15 @@
     <item quantity="other"><xliff:g id="files">%1$d</xliff:g> fitxategi</item>
   </plurals>
   <plurals name="search_found_items">
-    <item quantity="one">Elementu 1 aurkitu da</item>
+    <item quantity="one">Elementu <xliff:g id="count">%1$d</xliff:g> aurkitu da</item>
     <item quantity="other"><xliff:g id="count">%d</xliff:g> elementu aurkitu dira</item>
   </plurals>
   <plurals name="selection_folders">
-    <item quantity="one">Karpeta 1 aukeratuta</item>
-    <item quantity="other"><xliff:g id="folders">%1$d</xliff:g> karpeta aukeratuta.</item>
+    <item quantity="one">Karpeta <xliff:g id="folders">%1$d</xliff:g> hautatuta.</item>
+    <item quantity="other"><xliff:g id="folders">%1$d</xliff:g> karpeta hautatuta.</item>
   </plurals>
   <plurals name="selection_files">
-    <item quantity="one">Fitxategi 1 aukeratuta.</item>
-    <item quantity="other"><xliff:g id="files">%1$d</xliff:g> fitxategi aukeratuta.</item>
+    <item quantity="one">Fitxategi <xliff:g id="files">%1$d</xliff:g> hautatuta.</item>
+    <item quantity="other"><xliff:g id="files">%1$d</xliff:g> fitxategi hautatuta.</item>
   </plurals>
 </resources>

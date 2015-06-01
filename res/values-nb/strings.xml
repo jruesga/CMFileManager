@@ -105,10 +105,12 @@
   <string name="filesystem_info_warning_title">Ingen informasjon</string>
   <string name="filesystem_info_warning_msg">Det er ingen tilgjengelig informasjon for filsystemet.</string>
   <string name="filesystem_info_cant_be_mounted_msg">Filsystemet kan ikke monteres/avmonteres.</string>
+  <string name="filesystem_info_mount_not_allowed_msg">Montering av filsystemer er ikke tillatt i sikker tilgang-modus. Trykk for å endre til Root-tilgangs modus.</string>
   <string name="filesystem_info_mount_failed_msg">Montering av filsystem feilet. Noen filsystemer, f.eks. SD-kort, kan ikke monteres/avmonteres fordi de er skrivebeskyttet.</string>
   <string name="filesystem_info_dialog_title">Informasjon on filsystem</string>
   <string name="filesystem_info_dialog_tab_info">Info</string>
   <string name="filesystem_info_dialog_tab_disk_usage">Bruk av diskplass</string>
+  <string name="filesystem_info_dialog_status">Montert:</string>
   <string name="filesystem_info_dialog_mount_point">Monteringspunkt:</string>
   <string name="filesystem_info_dialog_device">Enhet:</string>
   <string name="filesystem_info_dialog_type">Type:</string>
@@ -248,6 +250,7 @@
   <string name="input_name_dialog_label">Navn:</string>
   <string name="input_name_dialog_message_empty_name">Navnet kan ikke være tomt.</string>
   <string name="input_name_dialog_message_invalid_path_name">Ugyldig navn. Tegnene \'<xliff:g id="invalid_characters">%1$s</xliff:g>\' er ikke tillatte.</string>
+  <string name="input_name_dialog_message_invalid_name_length">Maksimalt antall tegn er nådd.</string>
   <string name="input_name_dialog_message_invalid_name">Ugyldig navn. Navnene \'.\' og \'..\' er ikke tillatte.</string>
   <string name="input_name_dialog_message_name_exists">Navnet finnes alerede.</string>
   <string name="associations_dialog_title">Tilknytning</string>
@@ -340,6 +343,7 @@
   <string name="pref_secure_storage_category">Sikker lagring</string>
   <string name="pref_secure_storage_delayed_sync_title">Forsinket synkronisering</string>
   <string name="pref_secure_storage_delayed_sync_summary">Synkronisering av sikre filsystemer er en kostbar operasjon. Aktiver dette alternativet for å få en raskere svartid etter hver operasjon, utføre synkronisering når filsystemet er i ubrukt tilstand, men på bekostning av tapt ventende informasjon som ikke synkroniserer hvis app\'en krasjer.</string>
+  <string name="pref_secure_storage_reset_password_title">Endre passord</string>
   <string name="pref_secure_storage_delete_storage_title">Slett lagring</string>
   <string name="pref_editor_behaviour_category">Oppførsel</string>
   <string name="pref_no_suggestions">Ingen forslag</string>
@@ -347,7 +351,9 @@
   <string name="pref_word_wrap">Tekstbryting</string>
   <string name="pref_hexdump">Hexdump av binære filer</string>
   <string name="pref_hexdump_desc">Generer en hex-dump av den binære filen og åpne den i en hex-editor</string>
+  <string name="pref_editor_syntax_highlight_category">Syntaks utheving</string>
   <string name="pref_syntax_highlight">Fremheving av syntaks</string>
+  <string name="pref_syntax_highlight_desc">Markering av syntaksen i filen vist i redigeringen (kun når syntaks uthevningsprosess for denne filtypen er tilgjengelig)</string>
   <string name="pref_syntax_highlight_color_scheme">Fargevalg</string>
   <string name="pref_syntax_highlight_color_scheme_desc">Fargevalg til syntaks utheving</string>
   <string name="pref_syntax_sh_use_theme_default">Bruk standard</string>
@@ -394,6 +400,7 @@
   <string name="secure_storage_unlock_failed">Kan ikke låse opp lagring</string>
   <string name="secure_storage_unlock_validation_length">Passord må ha minst <xliff:g id="characters"> %1$d </xliff:g> tegn.</string>
   <string name="secure_storage_unlock_validation_equals">Passordene samsvarer ikke.</string>
+  <string name="secure_storage_open_file_warning">Dette kopierer filen til en midlertidig ukryptert plassering. Dette vil bli slettet etter 1 time.</string>
   <string name="print_unsupported_document">Ustøttet dokumentformat</string>
   <string name="print_unsupported_image">Ustøttet bildeformat</string>
   <string name="print_document_header">Dokument: <xliff:g id="document_name">%1$s</xliff:g></string>

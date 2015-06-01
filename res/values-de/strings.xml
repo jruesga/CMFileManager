@@ -217,8 +217,8 @@
   <string name="actions_menu_deselect_all">Alle abwählen</string>
   <string name="actions_menu_select">Auswählen</string>
   <string name="actions_menu_deselect">Abwählen</string>
-  <string name="actions_menu_paste_selection">Auswahl hier einfügen</string>
-  <string name="actions_menu_move_selection">Auswahl hierher verschieben</string>
+  <string name="actions_menu_paste_selection">Hierher kopieren</string>
+  <string name="actions_menu_move_selection">Hierher verschieben</string>
   <string name="actions_menu_delete_selection">Auswahl löschen</string>
   <string name="actions_menu_compress_selection">Auswahl komprimieren</string>
   <string name="actions_menu_create_link">Verknüpfung anlegen</string>

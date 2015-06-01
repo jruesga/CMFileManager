@@ -259,6 +259,7 @@
   <string name="input_name_dialog_message_empty_name">Die naam kan nie leeg wees nie.</string>
   <string name="input_name_dialog_message_invalid_path_name">Ongeldige naam. Die karakters
     \'<xliff:g id="invalid_characters">%1$s</xliff:g>\' word nie toegelaat nie.</string>
+  <string name="input_name_dialog_message_invalid_name_length">Maksimum karakter limiet is bereik.</string>
   <string name="input_name_dialog_message_invalid_name">Ongeldige naam. Die karakter \'.\' en
     \'..\' word nie toegelaat nie.</string>
   <string name="input_name_dialog_message_name_exists">Die naam bestaan alreeds.</string>
@@ -412,6 +413,7 @@
   <string name="secure_storage_unlock_failed">Kan nie die stoor spasie ontsluit</string>
   <string name="secure_storage_unlock_validation_length">Wagwoord moet ten minste <xliff:g id="characters">%1$d</xliff:g> karakters hê.</string>
   <string name="secure_storage_unlock_validation_equals">Wagwoorde stem nie ooreen nie.</string>
+  <string name="secure_storage_open_file_warning">Dit sal die lêer uit kopieer na \'n tydelike ongeënkripteerde plek. Dit sal na 1 uur verwyder word.</string>
   <string name="print_unsupported_document">Nie-ondersteunde dokument formaat</string>
   <string name="print_unsupported_image">Nie-ondersteunde foto-formaat</string>
   <string name="print_document_header">Dokument: <xliff:g id="document_name">%1$s</xliff:g></string>

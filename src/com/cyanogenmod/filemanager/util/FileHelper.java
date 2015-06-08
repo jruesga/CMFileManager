@@ -202,16 +202,20 @@ public final class FileHelper {
                                  R.string.size_gigabytes
                                 };
 
-        long aux = size;
+        double aux = size;
         int cc = magnitude.length;
         for (int i = 0; i < cc; i++) {
-            long s = aux / 1024;
             if (aux < 1024) {
-                return Long.toString(aux) + " " + res.getString(magnitude[i]); //$NON-NLS-1$
+                double cleanSize = Math.round(aux * 100);
+                return Double.toString(cleanSize / 100) +
+                        " " + res.getString(magnitude[i]); //$NON-NLS-1$
+            } else {
+                aux = aux / 1024;
             }
-            aux = s;
         }
-        return Long.toString(aux) + " " + res.getString(magnitude[cc - 1]); //$NON-NLS-1$
+        double cleanSize = Math.round(aux * 100);
+        return Double.toString(cleanSize / 100) +
+                " " + res.getString(magnitude[cc - 1]); //$NON-NLS-1$
     }
 
     /**

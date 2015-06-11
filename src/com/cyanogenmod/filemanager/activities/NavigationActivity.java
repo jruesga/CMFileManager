@@ -635,6 +635,7 @@ public class NavigationActivity extends Activity
         if (curDir != null) {
             VirtualMountPointConsole vc = VirtualMountPointConsole.getVirtualConsoleForPath(
                     mNavigationViews[mCurrentNavigationView].getCurrentDir());
+            getCurrentNavigationView().refresh();
             if (vc != null && !vc.isMounted()) {
                 onRequestBookmarksRefresh();
                 removeUnmountedHistory();

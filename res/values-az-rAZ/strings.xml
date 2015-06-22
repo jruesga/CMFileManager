@@ -243,6 +243,7 @@
   <string name="input_name_dialog_label">Ad:</string>
   <string name="input_name_dialog_message_empty_name">Ad boş buraxıla bilməz.</string>
   <string name="input_name_dialog_message_invalid_path_name">Etibarsız ad. \'<xliff:g id="invalid_characters">%1$s</xliff:g>\' simvollarına icazə verilmir.</string>
+  <string name="input_name_dialog_message_invalid_name_length">Maksimum simvol həddinə çatdı.</string>
   <string name="input_name_dialog_message_invalid_name">Etibarsız ad. \'.\' və \'..\' yə icazə verilmir.</string>
   <string name="input_name_dialog_message_name_exists">Ad artıq mövcuddur.</string>
   <string name="associations_dialog_title">Əlaqələndirmələr</string>
@@ -392,6 +393,7 @@
   <string name="secure_storage_unlock_failed">Saxlama kilidi açıla bilmir</string>
   <string name="secure_storage_unlock_validation_length">Şifrədə ən az <xliff:g id="characters">%1$d</xliff:g> simvol olmalıdır.</string>
   <string name="secure_storage_unlock_validation_equals">Şifrələr uyğunlaşmır.</string>
+  <string name="secure_storage_open_file_warning">Bu, faylı müvəqqəti şifrəsiz bir yerə kopyalayacaq. 1 saat sonra təmizlənəcək.</string>
   <string name="print_unsupported_document">Dəstəklənməyən sənəd formatı</string>
   <string name="print_unsupported_image">Dəstəklənməyən şəkil formatı</string>
   <string name="print_document_header">Sənəd: <xliff:g id="document_name">%1$s</xliff:g></string>

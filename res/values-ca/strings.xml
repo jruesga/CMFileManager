@@ -272,7 +272,7 @@
   <string name="filetime_format_mode_yyyyMMdd_HHmmss">yyyy-mm-dd hh:mm:ss</string>
   <string name="selection_folders_and_files"><xliff:g id="folders">%1$s</xliff:g> i <xliff:g id="files">%2$s</xliff:g> seleccionats.</string>
   <string name="category_system">SISTEMA</string>
-  <string name="category_app">APP</string>
+  <string name="category_app">APLICACIÓ</string>
   <string name="category_binary">BINARI</string>
   <string name="category_text">TEXT</string>
   <string name="category_document">DOCUMENT</string>
@@ -307,7 +307,7 @@
   <string name="pref_compute_folder_statistics">Calcula estadístiques de la carpeta</string>
   <string name="pref_compute_folder_statistics_on">Alerta! El càlcul d\'estadístiques de la carpeta tarda temps i necessita força recursos del sistema</string>
   <string name="pref_display_thumbs">Previsualització</string>
-  <string name="pref_display_thumbs_summary">Mostra una imatge de previsualització per les apps, arxius de música, fotografies i vídeos</string>
+  <string name="pref_display_thumbs_summary">Mostra una imatge de previsualització per les aplicacions, arxius de música, fotografies i vídeos</string>
   <string name="pref_use_flinger">Utilitza gestos de lliscament</string>
   <string name="pref_use_flinger_summary">Utilitza la detecció de gestos lliscar d\'esquerra a dreta per esborrar arxius o carpetes</string>
   <string name="pref_general_advanced_settings_category">Avançat</string>

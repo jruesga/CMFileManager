@@ -78,7 +78,7 @@
   <string name="usb_storage">USB biltegiratzea</string>
   <string name="actionbar_button_filesystem_cd">Fitxategi sistema</string>
   <string name="actionbar_button_sort_mode_cd">Ordenatze modua</string>
-  <string name="actionbar_button_layout_mode_cd">Ikuspegi modua</string>
+  <string name="actionbar_button_layout_mode_cd">Diseinu modua</string>
   <string name="actionbar_button_other_view_options_cd">Beste ikuspegi aukerak</string>
   <string name="actionbar_button_selection_done_cd">Eginda</string>
   <string name="actionbar_button_actions_cd">Ekintzak</string>
@@ -142,7 +142,7 @@
   <string name="fso_properties_dialog_others">Besteak:</string>
   <string name="fso_properties_dialog_include_in_media_scan">Saltatu euskarria eskaneatzea:</string>
   <string name="fso_failed_to_allow_media_scan">Ezin izan da baimendu euskarria eskaneatzea</string>
-  <string name="fso_failed_to_prevent_media_scan">Euskarrien eskaneatzea ekiditean akatsa egon da</string>
+  <string name="fso_failed_to_prevent_media_scan">Ezin izan da euskarrien eskaneatzea ekidin</string>
   <string name="fso_delete_nomedia_dir_title">Ezabatu .nomedia direktorioa</string>
   <string name="fso_delete_nomedia_dir_body">Direktorio honek .nomedia direktorio bat du.\n\n Berau eta bere eta eduki guztiak ezabatu nahi dituzu?</string>
   <string name="fso_delete_nomedia_non_empty_title">ezabatu .nomedia fitxategia</string>
@@ -156,9 +156,9 @@
   <string name="search_error_msg">Akats bat egon da bilaketan zehar. Ez da emaitzarik aurkitu.</string>
   <string name="search_no_results_msg">Ez da emaitzarik aurkitu.</string>
   <string name="search_found_items_in_directory"><xliff:g id="path">%2$s</xliff:g>  <xliff:g id="items">%1$s</xliff:g>-en</string>
-  <string name="search_terms"><![CDATA[<b>Baldintzak:</b>]]> <xliff:g id="terms">%1$s</xliff:g></string>
+  <string name="search_terms"><![CDATA[<b>Terminoak:</b>]]> <xliff:g id="terms">%1$s</xliff:g></string>
   <string name="search_few_characters_title">Berretsi bilaketa</string>
-  <string name="search_few_characters_msg">Bilatuko den elementuren bat oso laburra da eta eragiketak normalean baino denbora eta sistemaren baliabide gehiago beharko ditu.\n\nJarraitu?</string>
+  <string name="search_few_characters_msg">Bilaketa-terminoren bat oso laburra da eta eragiketak denbora eta sistemaren baliabide asko beharko du.\n\nJarraitu?</string>
   <string name="searching">Itxaron, mesedez\u2026</string>
   <string name="searching_action_label">Bilaketa martxan</string>
   <string name="picker_title">Hautatu fitxategi bat</string>
@@ -180,7 +180,7 @@
   <string name="bookmarks_secure">Biltegiratze segurua</string>
   <string name="bookmarks_remote">Urruneko biltegiratzea</string>
   <string name="bookmarks_button_config_cd">Hasierako karpeta ezarri.</string>
-  <string name="bookmarks_button_remove_bookmark_cd">Laster marka ezabatu.</string>
+  <string name="bookmarks_button_remove_bookmark_cd">Ezabatu laster-marka.</string>
   <string name="bookmarks_msgs_add_success">Laster marka ondo gehitu da.</string>
   <string name="initial_directory_dialog_title">Hasierako karpeta</string>
   <string name="initial_directory_label">Hasierako karpeta hautatu:</string>
@@ -191,7 +191,7 @@
   <string name="menu_clear_history">Garbitu historia</string>
   <string name="menu_no_suggestions">Iradokizunik gabe</string>
   <string name="menu_word_wrap">Lerro doikuntza</string>
-  <string name="menu_syntax_highlight">Sintaxia nabarmendu</string>
+  <string name="menu_syntax_highlight">Nabarmendu sintaxia</string>
   <string name="create_copy_regexp"><xliff:g id="name">%1$s</xliff:g> - kopia<xliff:g id="extension">%2$s</xliff:g></string>
   <string name="create_new_compress_file_regexp"><xliff:g id="name">%1$s</xliff:g> - berria<xliff:g id="extension">%2$s</xliff:g></string>
   <string name="waiting_dialog_msg">Eragiketa burutzen\u2026</string>
@@ -213,7 +213,7 @@
   <string name="actions_menu_refresh">Berritu</string>
   <string name="actions_menu_new_directory">Karpeta berria</string>
   <string name="actions_menu_new_file">Fitxategi berria</string>
-  <string name="actions_menu_select_all">Dena hautatu</string>
+  <string name="actions_menu_select_all">Hautatu guztiak</string>
   <string name="actions_menu_deselect_all">Desautatu guztiak</string>
   <string name="actions_menu_select">Hautatu</string>
   <string name="actions_menu_deselect">Desautatu</string>
@@ -294,7 +294,7 @@
   <string name="pref_general">Ezarpen orokorrak</string>
   <string name="pref_search">Bilaketa aukerak</string>
   <string name="pref_storage">Biltegiratze aukerak</string>
-  <string name="pref_editor">Editore aukerak</string>
+  <string name="pref_editor">Editorearen aukerak</string>
   <string name="pref_themes">Gaiak</string>
   <string name="pref_about">Honi buruz</string>
   <string name="pref_general_behaviour_category">Orokorra</string>
@@ -302,7 +302,7 @@
   <string name="pref_case_sensitive_sort_summary">Bilaketa emaitzetan edo nabigatzean maiuskulak/minuskulak kontuan izan</string>
   <string name="pref_filetime_format_mode">Data/ordua formatua</string>
   <string name="pref_disk_usage_warning_level">Disko erabileraren abisua</string>
-  <string name="pref_disk_usage_warning_level_summary" formatted="false">Ezarri kolore desberdin bat disko erabileraren trepetan kolore, okupaturiko espazio totalaren ehuneko <xliff:g id="level">%1$s</xliff:g>a gainditzean</string>
+  <string name="pref_disk_usage_warning_level_summary" formatted="false">Ezarri kolore desberdin bat disko erabileraren trepetan erabilitako espazioa %<xliff:g id="level">%1$s</xliff:g>a gainditzean</string>
   <string name="pref_compute_folder_statistics">Karpeten estatistikak</string>
   <string name="pref_compute_folder_statistics_on">Kontuz! karpeten estatistiken kalkuluak denbora eta sistema baliabide gehiago beharko ditu</string>
   <string name="pref_display_thumbs">Aurrebista</string>
@@ -312,27 +312,27 @@
   <string name="pref_general_advanced_settings_category">Aurreratua</string>
   <string name="pref_access_mode">Sarbide modua</string>
   <string name="pref_access_mode_safe">Modu segurua</string>
-  <string name="pref_access_mode_safe_summary">Modu segurua\n\nAplikazioa baimenik gabe abiatu da atzitu ditzakeen fitxategi sistema bakarrak biltegiratze bolumenak dira (SD txartelak eta USB)</string>
+  <string name="pref_access_mode_safe_summary">Modu segurua\n\nAplikazioa baimenik gabe abiatu da eta atzitu ditzakeen fitxategi sistema bakarrak biltegiratze bolumenak dira (SD txartelak eta USB)</string>
   <string name="pref_access_mode_prompt">Berrespen modua</string>
   <string name="pref_access_mode_prompt_summary">Berrespen modua\n\nAplikazioak fitxategi sistemarako sarbide osoa du, baina Supererabiltzaile ekintzak burutu aurretik galdetu egingo da</string>
   <string name="pref_access_mode_root">Root sarbide modua</string>
   <string name="pref_access_mode_root_summary">Root sarbide modua\n\nKontuz! Modu honek gailua izorratu ditzaketen eragiketak baimentzen ditu. Zure ardura da eragiketa bat segurua den ziurtatzea</string>
-  <string name="pref_restrict_secondary_users_access_title">Sarbidea mugatu</string>
-  <string name="pref_restrict_secondary_users_access_summary">Sistema osorako sarbidea bigarren mailako erabiltzaileei mugatu</string>
+  <string name="pref_restrict_secondary_users_access_title">Mugatu erabiltzailearen sarbidea</string>
+  <string name="pref_restrict_secondary_users_access_summary">Mugatu sistema osorako sarbidea bigarren mailako erabiltzaileei</string>
   <string name="pref_search_results_category">Emaitzak</string>
   <string name="pref_show_relevance_widget">Erakutsi egokitasun trepeta</string>
-  <string name="pref_highlight_terms">Nabarmendu bilaketa baldintzak</string>
+  <string name="pref_highlight_terms">Nabarmendu bilaketa-terminoak</string>
   <string name="pref_sort_search_results_mode">Emaitzen ordenazioa</string>
   <string name="pref_sort_search_results_mode_none">Ordenatu barik</string>
   <string name="pref_sort_search_results_mode_name">Izenaren bidez</string>
   <string name="pref_sort_search_results_mode_relevance">Lehentasunaren bidez</string>
   <string name="pref_search_privacity_category">Pribatutasuna</string>
-  <string name="pref_save_search_terms">Gorde bilaketa baldintzak</string>
-  <string name="pref_save_search_terms_on">Bilaketa baldintzak hurrengo bilaketentzako iradokizun bezala gordeko dira</string>
-  <string name="pref_save_search_terms_off">Bilaketa baldintzak ez dira gordeko</string>
-  <string name="pref_remove_saved_search_terms">Ezabatu gordetako bilaketa baldintzak</string>
-  <string name="pref_remove_saved_search_terms_summary">Sakatu gordetako bilaketa baldintza guztiak ezabatzeko</string>
-  <string name="pref_remove_saved_search_terms_msg">Gordetako bilaketa baldintza guztiak ezabatu dira</string>
+  <string name="pref_save_search_terms">Gorde bilaketa-terminoak</string>
+  <string name="pref_save_search_terms_on">Bilaketa-terminoak gordeko dira hurrengo bilaketetan iradokizun bezala erabiltzeko</string>
+  <string name="pref_save_search_terms_off">Bilaketa-terminoak ez dira gordeko</string>
+  <string name="pref_remove_saved_search_terms">Ezabatu gordetako bilaketa-terminoak</string>
+  <string name="pref_remove_saved_search_terms_summary">Sakatu gordetako bilaketa-termino guztiak ezabatzeko</string>
+  <string name="pref_remove_saved_search_terms_msg">Gordetako bilaketa-termino guztiak ezabatu dira</string>
   <string name="pref_secure_storage_category">Biltegiratze segurua</string>
   <string name="pref_secure_storage_delayed_sync_title">Sinkronizazio atzeratua</string>
   <string name="pref_secure_storage_delayed_sync_summary">Fitxategi sistema seguruen sinkronizazioa neketsua da. Gaitu aukera hau eragiketa bakoitzaren ostean erantzun azkarragoak baimentzeko, sinkronizazioa fitxategi sistema erabili gabe dagoenerako utziz, baina aplikazioa bat-batean itxiko balitz sinkronizatu gabeko informazioa galtzeko arriskua hartuz.</string>
@@ -345,7 +345,7 @@
   <string name="pref_hexdump">fitxategi bitarren iraulketa hexadezimala</string>
   <string name="pref_hexdump_desc">Fitxategi bitar bat irekitzean, iraulketa hexadezimal bat sortu eta ireki hau hex ikuskatzailearekin</string>
   <string name="pref_editor_syntax_highlight_category">Sintaxia nabarmentzea</string>
-  <string name="pref_syntax_highlight">Sintaxia nabarmendu</string>
+  <string name="pref_syntax_highlight">Nabarmendu sintaxia</string>
   <string name="pref_syntax_highlight_desc">Nabarmendu bistaratutako fitxategiaren sintaxia editorean (sintaxi nabarmentze prozesagailu bat eskuragarri dagoenean fitxategi mota horrentzat)</string>
   <string name="pref_syntax_highlight_color_scheme">Kolore eskema</string>
   <string name="pref_syntax_highlight_color_scheme_desc">Sintaxiaren nabarmentzerako kolore eskema hautatu</string>

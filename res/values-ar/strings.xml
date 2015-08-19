@@ -42,6 +42,7 @@
   <string name="copy_text_cd">اضغط لنسخ النص إلى \"الحافظة\"</string>
   <string name="copy_text_msg">النص نسخ إلى الحافظة</string>
   <string name="warning_title">تحذير</string>
+  <string name="error_title">خطأ</string>
   <string name="confirm_operation">تأكيد عملية</string>
   <string name="confirm_overwrite">تأكيد الكتابة فوق</string>
   <string name="confirm_deletion">تأكيد الحذف</string>
@@ -51,9 +52,11 @@
   <string name="msgs_privileged_console_alloc_failed">غير قادر على تشغيل صلاحيات الجذر. التغيير إلى الوضع الأمن.</string>
   <string name="msgs_settings_save_failure">لا يمكن تطبيق الإعداد أو تخزينها.</string>
   <string name="msgs_settings_invalid_initial_directory">المجلد \'<xliff:g id="initial_dir">%1$s</xliff:g>\' الأولية غير صحيح. تغيير إلى المجلد الجذر.</string>
+  <string name="root_not_available_msg">الجذر غير متوفر على هذا الجهاز. لا يمكن تنفيذ هذه العملية.</string>
   <string name="msgs_success">تم إكمال العملية بنجاح.</string>
   <string name="msgs_unknown">تم الكشف عن خطأ. العملية غير ناجحة.</string>
   <string name="msgs_insufficient_permissions">هذه العملية يتطلب أذونات نشطة. حاول تغيير إلى صلاحيات الجذور.</string>
+  <string name="msgs_no_disk_space">فشلت هذه العملية لأنه لا توجد مساحة على الجهاز.</string>
   <string name="msgs_file_not_found">لم يتم العثور على الملف أو المجلد.</string>
   <string name="msgs_command_not_found">لم يتم العثور على أمر هذه العملية أو قد تعريف غير صالحة.</string>
   <string name="msgs_io_failed">فشل في القراءة/الكتابة.</string>
@@ -64,6 +67,7 @@
   <string name="msgs_read_only_filesystem">ملفات النظام للقراءة فقط. محاولة تحويل نظام الملفات الى القراءة والكتابة قبل محاولة تنفيذ العملية.</string>
   <string name="msgs_illegal_argument">البرهان غير المشروعة. فشل استدعاء.</string>
   <string name="msgs_unresolved_inconsistencies">غير مسموح العملية نظراً لأن من شأنه أن يسبب تناقضات.</string>
+  <string name="msgs_operation_not_allowed_in_current_directory">المجلد الوجهة لا يمكن أن يكون مجلداً فرعياً ولا  نفس مجلد المصدر.</string>
   <string name="msgs_push_again_to_exit">اضغط الزر مرة أخرى للخروج.</string>
   <string name="msgs_not_registered_app">لا يوجدالتطبيق مسجل للتعامل مع نوع الملف المحدد.</string>
   <string name="msgs_overwrite_files">بعض الملفات موجودة بالفعل في مسار المجلد \n\n كتابة؟</string>
@@ -82,25 +86,37 @@
   <string name="actionbar_button_overflow_cd">المزيد من الخيارات</string>
   <string name="actionbar_button_storage_cd">وحدات التخزين</string>
   <string name="actionbar_button_save_cd">حفظ</string>
+  <string name="actionbar_button_print_cd">طباعة</string>
   <string name="sort_by_name_asc">بالإسم \u25B2</string>
   <string name="sort_by_name_desc">بلإسم \u25BC</string>
   <string name="sort_by_date_asc">بتاريخ \u25B2</string>
   <string name="sort_by_date_desc">بتاريخ \u25BC</string>
+  <string name="sort_by_size_asc">بالحجم \u25B2</string>
+  <string name="sort_by_size_desc">بالحجم \u25B2</string>
+  <string name="sort_by_type_asc">بالنوع \u25B2</string>
+  <string name="sort_by_type_desc">بالنوع \u25BC</string>
   <string name="layout_icons">أيقونات</string>
   <string name="layout_simple">بسيط</string>
   <string name="layout_details">التفاصيل</string>
+  <string name="cm_filemanager_show_dirs_first">إظهار المجلدات أولاً</string>
+  <string name="cm_filemanager_show_hidden">إظهار المجلدات المخفية</string>
+  <string name="cm_filemanager_show_system">إظهار ملفات النظام</string>
+  <string name="cm_filemanager_show_symlinks">إظهار روابط الرمزية</string>
   <string name="filesystem_info_warning_title">لا توجد معلومات</string>
   <string name="filesystem_info_warning_msg">لا تتوفر أي معلومات عن نظام الملفات.</string>
   <string name="filesystem_info_cant_be_mounted_msg">نظام الملفات لا يمكن أن تكون محملة/غير محملة .</string>
+  <string name="filesystem_info_mount_not_allowed_msg">غير مسموح بعمليات تحميل نظام الملفات في الوضع الآمن. انقر للتحول إلى وضع \"الوصول إلى root\".</string>
   <string name="filesystem_info_mount_failed_msg">فشل نظام ملف تصاعد العملية. لا يمكن بعض أنظمة الملفات، مثل بطاقات SD، شنت مكوم لأنهم المدمج كأنظمة ملف للقراءة فقط.</string>
   <string name="filesystem_info_dialog_title">معلومات ملف النظام</string>
   <string name="filesystem_info_dialog_tab_info">معلومات</string>
   <string name="filesystem_info_dialog_tab_disk_usage">استخدام القرص</string>
+  <string name="filesystem_info_dialog_status">محمل:</string>
   <string name="filesystem_info_dialog_mount_point">نقطة تحميل:</string>
   <string name="filesystem_info_dialog_device">الجهاز:</string>
   <string name="filesystem_info_dialog_type">النوع:</string>
   <string name="filesystem_info_dialog_options">الخيارات:</string>
   <string name="filesystem_info_dialog_dump_pass">تفريغ/تمرير:</string>
+  <string name="filesystem_info_dialog_virtual">افتراضي:</string>
   <string name="filesystem_info_dialog_total_disk_usage">الإجمالي:</string>
   <string name="filesystem_info_dialog_used_disk_usage">المستخدمة:</string>
   <string name="filesystem_info_dialog_free_disk_usage">حر:</string>
@@ -161,6 +177,8 @@
   <string name="bookmarks_home">الصفحة الرئيسية</string>
   <string name="bookmarks_root_folder">مجلد الجذر</string>
   <string name="bookmarks_system_folder">مجلد النظام</string>
+  <string name="bookmarks_secure">تخزين آمن</string>
+  <string name="bookmarks_remote">التخزين عن بعد</string>
   <string name="bookmarks_button_config_cd">تعيين المجلد الأولية.</string>
   <string name="bookmarks_button_remove_bookmark_cd">إزالة من الإشارة المرجعية.</string>
   <string name="bookmarks_msgs_add_success">تمت إضافة الى الإشارة المرجعية بنجاح.</string>
@@ -219,10 +237,13 @@
   <string name="actions_menu_add_shortcut">إضافة اختصار</string>
   <string name="actions_menu_open_parent_folder">فتح الأصل</string>
   <string name="actions_menu_compute_checksum">حساب المجموع الاختباري</string>
+  <string name="actions_menu_print">طباعة</string>
+  <string name="actions_menu_set_as_home">تعيين كصفحة رئيسية</string>
   <string name="actions_ask_undone_operation_msg">لا يمكن التراجع عن هذا الإجراء. هل تريد الاستمرار؟</string>
   <string name="input_name_dialog_label">الاسم:</string>
   <string name="input_name_dialog_message_empty_name">الاسم لا يمكن أن يكون فارغاً.</string>
   <string name="input_name_dialog_message_invalid_path_name">اسم غير صالح. غير مسموح للىموز \'<xliff:g id="invalid_characters"> %1$s </xliff:g>\'.</string>
+  <string name="input_name_dialog_message_invalid_name_length">وصلت إلى الحد الأقصى لعدد الأحرف.</string>
   <string name="input_name_dialog_message_invalid_name">اسم غير صالح. الأسماء \'.\' و \'..\' غير مسموح بها.</string>
   <string name="input_name_dialog_message_name_exists">هذا الاسم موجود بالفعل.</string>
   <string name="associations_dialog_title">الجمعيات</string>
@@ -249,6 +270,22 @@
   <string name="filetime_format_mode_MMddyyyy_HHmmss">mm/dd/yyyy hh:mm:ss</string>
   <string name="filetime_format_mode_yyyyMMdd_HHmmss">yyyy-mm-dd hh:mm:ss</string>
   <string name="selection_folders_and_files"><xliff:g id="folders">%1$s</xliff:g> و <xliff:g id="files">%2$s</xliff:g> أختير.</string>
+  <string name="category_system">نظام</string>
+  <string name="category_app">التطبيق</string>
+  <string name="category_binary">ثنائي</string>
+  <string name="category_text">نص</string>
+  <string name="category_document">وثيقة</string>
+  <string name="category_ebook">كتاب إلكتروني</string>
+  <string name="category_mail">البريد</string>
+  <string name="category_compress">ضغط</string>
+  <string name="category_exec">الملف القابل للتنفيذ</string>
+  <string name="category_database">قاعدة بيانات</string>
+  <string name="category_font">الخط</string>
+  <string name="category_image">الصورة</string>
+  <string name="category_audio">الصوت</string>
+  <string name="category_video">فيديو</string>
+  <string name="category_security">الأمن</string>
+  <string name="category_all">الكل</string>
   <string name="compression_mode_title">وضع الضغط</string>
   <string name="shortcut_failed_msg">فشل في التعامل مع الاختصار.</string>
   <string name="shortcut_creation_success_msg">تم بنجاح إنشاء الاختصار.</string>
@@ -256,6 +293,7 @@
   <string name="pref">إعدادات</string>
   <string name="pref_general">الإعدادات العامة</string>
   <string name="pref_search">خيارات البحث</string>
+  <string name="pref_storage">خيارات التخزين</string>
   <string name="pref_editor">خيارات المحرر</string>
   <string name="pref_themes">الثيمات</string>
   <string name="pref_about">حول</string>
@@ -294,13 +332,21 @@
   <string name="pref_save_search_terms_off">لن يتم حفظ مصطلحات البحث</string>
   <string name="pref_remove_saved_search_terms">إزالة حفظ مصطلحات البحث</string>
   <string name="pref_remove_saved_search_terms_summary">انقر لإزالة كافة مصطلحات البحث المحفوظ</string>
+  <string name="pref_remove_saved_search_terms_msg">تم إزالة كافة مصطلحات البحث المحفوظة</string>
+  <string name="pref_secure_storage_category">تخزين آمن</string>
+  <string name="pref_secure_storage_delayed_sync_title">مزامنه متأخرة</string>
+  <string name="pref_secure_storage_delayed_sync_summary">مزامنة نظام الملفات الآمن عمليه مكلفة.  إختيار هذا الخيار يسرع الإستجابة لكل العمليات، وتنفيذ المزامنة في وقت يكن فيه نظام الملفات غير مستعمل ، لكن على حساب فقدان المعلومات المعلقة الغير مزامنة في حالة تعطل التطبيق.</string>
+  <string name="pref_secure_storage_reset_password_title">تغيير كلمة المرور</string>
+  <string name="pref_secure_storage_delete_storage_title">حذف التخزين</string>
   <string name="pref_editor_behaviour_category">سلوك</string>
   <string name="pref_no_suggestions">لا اقتراحات</string>
   <string name="pref_no_suggestions_desc">لا يتم عرض اقتراحات قاموس أثناء تحرير الملف</string>
   <string name="pref_word_wrap">اللتفاف النص</string>
   <string name="pref_hexdump">الملفات الثنائية Hexdump</string>
   <string name="pref_hexdump_desc">عند فتح ملف ثنائي، تولد Hexdump الملف وفتحه في عارض سداسي عشري</string>
+  <string name="pref_editor_syntax_highlight_category">تسليط الضوء على بناء الجملة</string>
   <string name="pref_syntax_highlight">تسليط الضوء على بناء الجملة</string>
+  <string name="pref_syntax_highlight_desc">تسليط الضوء على بناء الجمل للملف المعروض في المحرر (فقط عندما يتوفر معالج تسليط الضوء على بناء الجمل لنوع الملف)</string>
   <string name="pref_syntax_highlight_color_scheme">نظام الألوان</string>
   <string name="pref_syntax_highlight_color_scheme_desc">حدد نظام الألوان تسليط الضوء على بناء الجملة</string>
   <string name="pref_syntax_sh_use_theme_default">استخدام السمة الافتراضية</string>
@@ -328,8 +374,33 @@
   <string name="ash_keyword">الكلمات المفاتيح</string>
   <string name="ash_quoted_string">سلسلة مقتبسة</string>
   <string name="ash_variable">متغير</string>
+  <string name="secure_storage_unlock_title">فتح التخزين</string>
+  <string name="secure_storage_create_title">إنشاء تخزين</string>
+  <string name="secure_storage_reset_title">إعادة تعيين كلمة السر</string>
+  <string name="secure_storage_delete_title">حذف التخزين</string>
+  <string name="secure_storage_unlock_key_prompt_msg">اكتب كلمة المرور الحالية لإلغاء تأمين نظام تخزين الملفات الآمن.</string>
+  <string name="secure_storage_unlock_key_new_msg">اكتب كلمة المرور لحماية نظام تخزين الملفات الآمن.</string>
+  <string name="secure_storage_unlock_key_reset_msg">اكتب كلمات المرور الحالية والجديدة لإعادة تعيين نظام تخزين الملفات الآمن.</string>
+  <string name="secure_storage_unlock_key_delete_msg">اكتب كلمة المرور الحالية لحذف نظام تخزين الملفات الآمن.</string>
+  <string name="secure_storage_unlock_old_key_title">كلمة السر القديمة:</string>
+  <string name="secure_storage_unlock_new_key_title">كلمة السرّ الجديدة:</string>
+  <string name="secure_storage_unlock_key_title">كلمة السر:</string>
+  <string name="secure_storage_unlock_repeat_title">تأكيد كلمة السر:</string>
+  <string name="secure_storage_create_button">إنشاء</string>
+  <string name="secure_storage_unlock_button">فتح القفل</string>
+  <string name="secure_storage_reset_button">إعادة تعيين</string>
+  <string name="secure_storage_delete_button">حذف</string>
+  <string name="secure_storage_unlock_failed">لا يمكن فتح التخزين</string>
+  <string name="secure_storage_unlock_validation_length">كلمة السر يجب أن تتكون من <xliff:g id="characters">%1$d</xliff:g> أحرف على الأقل. </string>
+  <string name="secure_storage_unlock_validation_equals">كلمتا السر لا تتطابقان.</string>
+  <string name="secure_storage_open_file_warning"> سيتم نسخ الملف إلى موقع مؤقت غير مشفرة. وسيتم مسحه بعد ساعة واحدة.</string>
+  <string name="print_unsupported_document">صيغة المستند غير معتمدة</string>
+  <string name="print_unsupported_image">صيغة الصورة غير مدعومة</string>
+  <string name="print_document_header">الوثيقة: <xliff:g id="document_name">%1$s </xliff:g></string>
+  <string name="print_document_footer">الصفحة <xliff:g id="page_number">%1$s </xliff:g></string>
   <string name="security_warning_extract">تحذير!\n\n استخراج ملف أرشيف مع مسارات نسبية أو مطلقة قد يؤدي إلى إلحاق الضرر بالجهاز عن طريق الكتابة فوق ملفات النظام \n\n هل تريد المواصلة؟</string>
   <string name="changelog_title">سِجل التغييرات</string>
   <string name="welcome_title">مرحبا</string>
   <string name="welcome_msg">مرحبا بكم في التطبيق مدير. الملف CyanogenMod \n\n.يسمح لك استكشاف نظام الملفات والقيام بالعمليات التي يمكن أن تكسر الجهاز الخاص بك. لمنع الضرر، سيتم بدء التطبيق في وضع الأمن، وضع.انت المميز منخفضة\n\n يمكن الوصول إلى الوضع المتقدم، وكامل المميز عن طريق الإعدادات. أنها مسؤوليتكم لضمان أن عملية لا تكسر النظام الخاص بك. فريق\n\n CyanogenMod</string>
+  <string name="activity_not_found_exception">تعذر العثور على تطبيق لفتح هذا الملف</string>
 </resources>

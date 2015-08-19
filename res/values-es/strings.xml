@@ -16,7 +16,7 @@
      limitations under the License.
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-  <string name="app_name">File Manager</string>
+  <string name="app_name">Administrador de Archivos</string>
   <string name="app_description">Un explorador de archivos de CyanogenMod</string>
   <string name="size_bytes">B</string>
   <string name="size_kilobytes">KB</string>

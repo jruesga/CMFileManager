@@ -360,8 +360,7 @@
   <string name="theme_default_name">Açıq Rəngli Tema</string>
   <string name="theme_default_description">CyanogenMod Fayl İdarəçisi üçün açıq rəngli tema.</string>
   <string name="themes_author">CyanogenMod</string>
-  <string name="drawer_open">Naviqasiya panelini aç</string>
-  <string name="drawer_close">Naviqasiya panelini bağla</string>
+  <string name="drawer_open">Hərəkət panelini aç</string>
   <string name="color_picker_alpha_slider_text">Alfa</string>
   <string name="color_picker_current_text">Hazırki:</string>
   <string name="color_picker_new_text">Yeni:</string>

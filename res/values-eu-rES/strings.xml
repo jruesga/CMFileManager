@@ -73,7 +73,7 @@
   <string name="msgs_overwrite_files">Fitxategiren bat helmugako karpetan existitzen da jada.\n\n Gainidatzi?</string>
   <string name="msgs_action_association_failed">Ekintza aplikazioari lotzeak huts egin du.</string>
   <string name="advise_insufficient_permissions">Eragiketa honek super-erabiltzaile baimenak behar ditu. \n\nRoot sarbide modura aldatu nahi duzu?</string>
-  <string name="parent_dir">Guraso karpeta</string>
+  <string name="parent_dir">Karpeta gurasoa</string>
   <string name="external_storage">Kanpo biltegiratzea</string>
   <string name="usb_storage">USB biltegiratzea</string>
   <string name="actionbar_button_filesystem_cd">Fitxategi sistema</string>
@@ -236,7 +236,7 @@
   <string name="actions_menu_add_to_bookmarks">Gehitu laster-marketara</string>
   <string name="actions_menu_add_shortcut">Gehitu lasterbidea</string>
   <string name="actions_menu_open_parent_folder">Karpeta ireki</string>
-  <string name="actions_menu_compute_checksum">Checksum</string>
+  <string name="actions_menu_compute_checksum">Kalkulatu kontrol-batura</string>
   <string name="actions_menu_print">Inprimatu</string>
   <string name="actions_menu_set_as_home">Ezarri hasiera gisa</string>
   <string name="actions_ask_undone_operation_msg">Eragiketa hau ezin da desegin. Jarraitu?</string>
@@ -258,9 +258,9 @@
   <string name="execution_console_script_execution_time_label">Denbora:</string>
   <string name="execution_console_script_exitcode_label">Irteerako kodea:</string>
   <string name="execution_console_script_execution_time_text"><xliff:g id="seconds">%1$s</xliff:g> seg.</string>
-  <string name="compute_checksum_title">Checksum</string>
+  <string name="compute_checksum_title">Kalkulatu kontrol-batura</string>
   <string name="compute_checksum_filename_label">Fitxategia:</string>
-  <string name="compute_checksum_computing_checksum_msg">Checksum-a kalkulatzen\u2026</string>
+  <string name="compute_checksum_computing_checksum_msg">Kontrol-batura kalkulatzen\u2026</string>
   <string name="mime_folder">Karpeta</string>
   <string name="mime_symlink">Lasterbidea</string>
   <string name="mime_unknown">Ezezaguna</string>

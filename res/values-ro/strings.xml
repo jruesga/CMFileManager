@@ -105,7 +105,7 @@
   <string name="filesystem_info_warning_title">Nu există informații</string>
   <string name="filesystem_info_warning_msg">Nu există informații disponibile pentru fișierele de sistem.</string>
   <string name="filesystem_info_cant_be_mounted_msg">Fișierele de sistem nu pot fi montate/demontate.</string>
-  <string name="filesystem_info_mount_not_allowed_msg">Operațiunile de montare a fişierelor de sistem nu sunt permise modul Sigur. Atingeţi pentru a schimba modul de acces Root.</string>
+  <string name="filesystem_info_mount_not_allowed_msg">Operațiunile de montare a fișierelor de sistem nu sunt permise în modul Sigur. Atingeți pentru a schimba modul de acces Root.</string>
   <string name="filesystem_info_mount_failed_msg">Operațiunea de montare a fișierelor de sistemul nu a reușit. Unele sisteme de fișier, ca de ex. cardurile SD, nu pot fi montate/demontate deoarece ele sunt încorporate ca sisteme de fișiere doar în citire.</string>
   <string name="filesystem_info_dialog_title">Informație despre sistemul de fișiere</string>
   <string name="filesystem_info_dialog_tab_info">Info</string>

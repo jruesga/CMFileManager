@@ -295,7 +295,7 @@
   <string name="pref_search">گزینه‌های جستجو</string>
   <string name="pref_storage">گزینه‌های ذخیره‌سازی</string>
   <string name="pref_editor">گزینه‌های ویرایشگر</string>
-  <string name="pref_themes">مضامین</string>
+  <string name="pref_themes">تم‌ها</string>
   <string name="pref_about">درباره</string>
   <string name="pref_general_behaviour_category">عمومي</string>
   <string name="pref_case_sensitive_sort">حساس به حالت</string>
@@ -315,12 +315,12 @@
   <string name="pref_access_mode_safe_summary">حالت ایمن\n\nاین برنامه بدون دسترسی در حال اجراست و تنها سیستم فایل‌های قابل دسترسی، دستگاه‌های ذخیره‌سازی (کارت‌های SD و USB) هستند</string>
   <string name="pref_access_mode_prompt">حالت همراه با راهنمای کاربر</string>
   <string name="pref_access_mode_prompt_summary">حالت همراه با راهنمای کاربر\n\nاین برنامه با دسترسی کامل به سیستم فایل در حال اجراست اما قبل از اجرای عملیات‌های دسترسی از شما اجازه می‌گیرد</string>
-  <string name="pref_access_mode_root">حالت دسترسی به روت</string>
-  <string name="pref_access_mode_root_summary">حالت دسترسی به روت\n\nهشدار! این حالت عملیات‌هایی با امکان تخریب تلفن همراه شما را مجاز می‌داند. مسئولیت شما حصول اطمینان از ایمن بودن این عملیات‌ها می‌باشد</string>
+  <string name="pref_access_mode_root">حالت دسترسی روت</string>
+  <string name="pref_access_mode_root_summary">حالت دسترسی روت\n\nهشدار! این حالت عملیات‌هایی با امکان تخریب تلفن همراه شما را مجاز می‌داند. مسئولیت شما حصول اطمینان از ایمن بودن این عملیات‌ها می‌باشد</string>
   <string name="pref_restrict_secondary_users_access_title">دسترسی محدود کاربر</string>
   <string name="pref_restrict_secondary_users_access_summary">دسترسی محدود به کل سیستم برای کاربران ثانویه</string>
   <string name="pref_search_results_category">نتایج</string>
-  <string name="pref_show_relevance_widget">نمایش ویجت مرتبط</string>
+  <string name="pref_show_relevance_widget">نمایش ابزارک مرتبط</string>
   <string name="pref_highlight_terms">نمایش رنگی واژه‌های جستجو</string>
   <string name="pref_sort_search_results_mode">حالت دسته‌بندی نتایج</string>
   <string name="pref_sort_search_results_mode_none">بدون دسته‌بندی</string>

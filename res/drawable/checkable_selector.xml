@@ -16,10 +16,8 @@
 
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
 
-  <item
-    android:drawable="@drawable/btn_holo_light_check_on_normal_inverted"
-    android:state_selected="true"/>
-  <item
-    android:drawable="@drawable/btn_holo_light_check_off_normal"/>
+  <item android:drawable="@drawable/btn_material_light_check_on_normal"
+        android:state_selected="true"/>
+  <item android:drawable="@drawable/btn_material_light_check_off_normal"/>
 
 </selector>

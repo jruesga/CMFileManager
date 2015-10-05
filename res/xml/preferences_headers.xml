@@ -16,14 +16,17 @@
 
 <preference-headers xmlns:android="http://schemas.android.com/apk/res/android">
     <header
-      android:fragment="com.cyanogenmod.filemanager.activities.preferences.SettingsPreferences$GeneralPreferenceFragment"
+      android:fragment="com.cyanogenmod.filemanager.activities.preferences.GeneralPreferenceFragment"
       android:title="@string/pref_general" />
     <header
-      android:fragment="com.cyanogenmod.filemanager.activities.preferences.SettingsPreferences$SearchPreferenceFragment"
+      android:fragment="com.cyanogenmod.filemanager.activities.preferences.SearchPreferenceFragment"
       android:title="@string/pref_search" />
     <header
-      android:fragment="com.cyanogenmod.filemanager.activities.preferences.SettingsPreferences$ThemesPreferenceFragment"
-      android:title="@string/pref_themes" />
+      android:fragment="com.cyanogenmod.filemanager.activities.preferences.StoragePreferenceFragment"
+      android:title="@string/pref_storage" />
+    <header
+      android:fragment="com.cyanogenmod.filemanager.activities.preferences.EditorPreferenceFragment"
+      android:title="@string/pref_editor" />
     <header
       android:title="@string/pref_about"
       android:summary="@null" />

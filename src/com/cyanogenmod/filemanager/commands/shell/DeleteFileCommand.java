@@ -91,4 +91,12 @@ public class DeleteFileCommand extends SyncResultProgram implements DeleteFileEx
     public MountPoint getDstWritableMountPoint() {
         return MountPointHelper.getMountPointFromDirectory(this.mFileName);
     }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public boolean isIndefinitelyWait() {
+        return true;
+    }
 }

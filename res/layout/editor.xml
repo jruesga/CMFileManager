@@ -16,7 +16,7 @@
 
 <RelativeLayout  xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/editor_layout"
-    android:layout_width="match_parent"
+    android:layout_width="wrap_content"
     android:layout_height="match_parent">
 
   <!-- Dummy item to prevent Editor from receiving focus -->
@@ -26,33 +26,60 @@
       android:focusable="true"
       android:focusableInTouchMode="true" />
 
+  <!-- word wrap layout -->
   <ScrollView
+      android:id="@+id/editor_word_wrap_view"
       android:layout_width="match_parent"
       android:layout_height="match_parent"
-      android:layout_alignParentLeft="true"
-      android:layout_alignParentTop="true"
-      android:layout_alignParentRight="true"
-      android:layout_alignParentBottom="true"
-      android:layout_margin="@dimen/default_margin"
+      android:padding="@dimen/default_margin"
       android:scrollbars="vertical"
-      android:fillViewport="true">
-
+      android:scrollbarStyle="outsideOverlay"
+      android:fillViewport="true"
+      android:visibility="gone">
     <EditText
       android:id="@+id/editor"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
       android:singleLine="false"
       android:maxLength="@integer/editor_max_file_size"
-      android:gravity="top|left"
+      android:gravity="top|start"
       android:cursorVisible="true"
       android:background="@null"
       android:imeOptions="actionDone|flagNoFullscreen"
       android:inputType="textMultiLine|textImeMultiLine"
       android:text="@null"
       android:textAppearance="@style/secondary_text_appearance" />
-
   </ScrollView>
 
+  <!-- no word wrap layout -->
+  <HorizontalScrollView
+      android:id="@+id/editor_no_word_wrap_view"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:padding="@dimen/default_margin"
+      android:fillViewport="false"
+      android:visibility="gone">
+    <ScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:scrollbars="vertical">
+        <!-- Editor is placed here in no word wrap mode -->
+    </ScrollView>
+  </HorizontalScrollView>
+
+  <!-- editor in a listview (binary) -->
+  <ListView
+      android:id="@+id/editor_binary"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:padding="@dimen/default_margin"
+      android:scrollbars="vertical"
+      android:scrollbarStyle="outsideOverlay"
+      android:fillViewport="true"
+      android:dividerHeight="0dp"
+      android:divider="@null"
+      android:listSelector="@android:color/transparent"
+      android:visibility="gone" />
 
   <RelativeLayout
     android:id="@+id/editor_progress"
@@ -64,22 +91,31 @@
     android:layout_alignParentBottom="true"
     android:visibility="gone">
 
-    <ProgressBar
-      android:id="@+id/editor_progress_bar"
-      android:layout_width="match_parent"
-      android:layout_height="match_parent"
-      style="@android:style/Widget.ProgressBar.Horizontal"
-      android:indeterminate="false" />
-
     <TextView
       android:id="@+id/editor_progress_msg"
       android:layout_width="match_parent"
-      android:layout_height="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_alignParentBottom="true"
       android:textAppearance="@style/primary_text_appearance"
       android:text="@string/loading_message"
       android:gravity="center_vertical|center_horizontal"
       android:contentDescription="@null" />
 
+    <ProgressBar
+      android:id="@+id/editor_progress_bar"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      style="@android:style/Widget.ProgressBar.Horizontal"
+      android:layout_above="@id/editor_progress_msg"
+      android:indeterminate="false" />
+
   </RelativeLayout>
+
+  <View
+    android:id="@+id/editor_status"
+    android:layout_width="match_parent"
+    android:layout_height="1dp"
+    android:layout_alignParentBottom="true"
+    android:visibility="invisible"/>
 
 </RelativeLayout>

@@ -22,25 +22,31 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.ApplicationInfo;
+import android.os.Environment;
 import android.util.Log;
 
 import com.cyanogenmod.filemanager.console.Console;
 import com.cyanogenmod.filemanager.console.ConsoleAllocException;
 import com.cyanogenmod.filemanager.console.ConsoleBuilder;
 import com.cyanogenmod.filemanager.console.ConsoleHolder;
+import com.cyanogenmod.filemanager.console.VirtualMountPointConsole;
 import com.cyanogenmod.filemanager.console.shell.PrivilegedConsole;
 import com.cyanogenmod.filemanager.preferences.AccessMode;
 import com.cyanogenmod.filemanager.preferences.FileManagerSettings;
 import com.cyanogenmod.filemanager.preferences.ObjectStringIdentifier;
 import com.cyanogenmod.filemanager.preferences.Preferences;
+import com.cyanogenmod.filemanager.providers.secure.SecureCacheCleanupService;
+import com.cyanogenmod.filemanager.service.MimeTypeIndexService;
 import com.cyanogenmod.filemanager.ui.ThemeManager;
 import com.cyanogenmod.filemanager.ui.ThemeManager.Theme;
 import com.cyanogenmod.filemanager.util.AIDHelper;
-import com.cyanogenmod.filemanager.util.FileHelper;
+import com.cyanogenmod.filemanager.util.AndroidHelper;
 import com.cyanogenmod.filemanager.util.MimeTypeHelper;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Properties;
 
 /**
@@ -55,6 +61,8 @@ public final class FileManagerApplication extends Application {
     private static boolean DEBUG = false;
     private static Properties sSystemProperties;
 
+    private static Map<String, Boolean> sOptionalCommandsMap;
+
     /**
      * A constant that contains the main process name.
      * @hide
@@ -66,6 +74,7 @@ public final class FileManagerApplication extends Application {
     private static ConsoleHolder sBackgroundConsole;
 
     private static boolean sIsDebuggable = false;
+    private static boolean sHasShellCommands = false;
     private static boolean sIsDeviceRooted = false;
 
     private final BroadcastReceiver mNotificationReceiver = new BroadcastReceiver() {
@@ -168,6 +177,16 @@ public final class FileManagerApplication extends Application {
         }
         init();
         register();
+
+        // Kick off usage by mime type indexing for external storage; most likely use case for
+        // file manager
+        File externalStorage = Environment.getExternalStorageDirectory();
+        MimeTypeIndexService.indexFileRoot(this, externalStorage.getAbsolutePath());
+        MimeTypeIndexService.indexFileRoot(this, Environment.getRootDirectory().getAbsolutePath());
+
+        // Schedule in case not scheduled (i.e. never booted with this app on device
+        SecureCacheCleanupService.scheduleCleanup(getApplicationContext());
+
     }
 
     /**
@@ -230,10 +249,14 @@ public final class FileManagerApplication extends Application {
         readSystemProperties();
 
         // Check if the application is debuggable
-        sIsDebuggable = (0 != (getApplicationInfo().flags &= ApplicationInfo.FLAG_DEBUGGABLE));
+        sIsDebuggable = (0 != (getApplicationInfo().flags & ApplicationInfo.FLAG_DEBUGGABLE));
 
-        // Check if the device is rooted
-        sIsDeviceRooted = areShellCommandsPresent();
+        // Check if the device has shell commands and if is rooted
+        sHasShellCommands = areShellCommandsPresent();
+        sIsDeviceRooted = isRootPresent();
+
+        // Check optional commands
+        loadOptionalCommands();
 
         //Sets the default preferences if no value is set yet
         Preferences.loadDefaults();
@@ -262,7 +285,9 @@ public final class FileManagerApplication extends Application {
         Theme theme = ThemeManager.getCurrentTheme(getApplicationContext());
         theme.setBaseTheme(getApplicationContext(), false);
 
-        //Create a console for background tasks
+        //Create a console for background tasks. Register the virtual console prior to
+        // the real console so mount point can be listed properly
+        VirtualMountPointConsole.registerVirtualConsoles(getApplicationContext());
         allocBackgroundConsole(getApplicationContext());
 
         //Force the load of mime types
@@ -299,6 +324,28 @@ public final class FileManagerApplication extends Application {
      */
     public static boolean isDeviceRooted() {
         return sIsDeviceRooted;
+    }
+
+    /**
+     * Method that returns if the device has all the required shell commands
+     *
+     * @return boolean If the device has all the required shell commands
+     */
+    public static boolean hasShellCommands() {
+        return sHasShellCommands;
+    }
+
+    /**
+     * Method that returns if a command is present in the system
+     *
+     * @param commandId The command key
+     * @return boolean If the command is present
+     */
+    public static boolean hasOptionalCommand(String commandId) {
+        if (!sOptionalCommandsMap.containsKey(commandId)) {
+            return false;
+        }
+        return sOptionalCommandsMap.get(commandId).booleanValue();
     }
 
     /**
@@ -354,13 +401,11 @@ public final class FileManagerApplication extends Application {
             if (ConsoleBuilder.isPrivileged()) {
                 sBackgroundConsole =
                         new ConsoleHolder(
-                                ConsoleBuilder.createPrivilegedConsole(
-                                        ctx, FileHelper.ROOT_DIRECTORY));
+                                ConsoleBuilder.createPrivilegedConsole(ctx));
             } else {
                 sBackgroundConsole =
                         new ConsoleHolder(
-                                ConsoleBuilder.createNonPrivilegedConsole(
-                                        ctx, FileHelper.ROOT_DIRECTORY));
+                                ConsoleBuilder.createNonPrivilegedConsole(ctx));
             }
         } catch (Exception e) {
             Log.e(TAG,
@@ -389,8 +434,7 @@ public final class FileManagerApplication extends Application {
                 sBackgroundConsole =
                         new ConsoleHolder(
                                 ConsoleBuilder.createPrivilegedConsole(
-                                        getInstance().getApplicationContext(),
-                                        FileHelper.ROOT_DIRECTORY));
+                                        getInstance().getApplicationContext()));
             } catch (Exception e) {
                 try {
                     if (sBackgroundConsole != null) {
@@ -410,6 +454,9 @@ public final class FileManagerApplication extends Application {
      * @return boolean If the access mode of the application
      */
     public static AccessMode getAccessMode() {
+        if (!sHasShellCommands) {
+            return AccessMode.SAFE;
+        }
         String defaultValue =
                 ((ObjectStringIdentifier)FileManagerSettings.
                             SETTINGS_ACCESS_MODE.getDefaultValue()).getId();
@@ -417,6 +464,41 @@ public final class FileManagerApplication extends Application {
         AccessMode mode =
                 AccessMode.fromId(Preferences.getSharedPreferences().getString(id, defaultValue));
         return mode;
+    }
+
+    public static boolean isRestrictSecondaryUsersAccess(Context context) {
+        String value = Preferences.getWorldReadableProperties(
+                context, FileManagerSettings.SETTINGS_RESTRICT_SECONDARY_USERS_ACCESS.getId());
+        if (value == null) {
+            value = String.valueOf(FileManagerSettings.SETTINGS_RESTRICT_SECONDARY_USERS_ACCESS.
+                    getDefaultValue());
+        }
+        return Boolean.parseBoolean(value);
+    }
+
+    public static boolean checkRestrictSecondaryUsersAccess(Context context, boolean isChroot) {
+        if (!AndroidHelper.isSecondaryUser(context)) {
+            return true;
+        }
+        boolean needChroot = !isChroot && isRestrictSecondaryUsersAccess(context);
+        if (!needChroot) {
+            return true;
+        }
+
+        try {
+            Preferences.savePreference(
+                    FileManagerSettings.SETTINGS_ACCESS_MODE, AccessMode.SAFE, true);
+        } catch (Throwable ex) {
+            Log.w(TAG, "can't save console preference", ex); //$NON-NLS-1$
+        }
+        ConsoleBuilder.changeToNonPrivilegedConsole(context);
+
+        // Notify the change
+        Intent intent = new Intent(FileManagerSettings.INTENT_SETTING_CHANGED);
+        intent.putExtra(FileManagerSettings.EXTRA_SETTING_CHANGED_KEY,
+                FileManagerSettings.SETTINGS_ACCESS_MODE.getId());
+        context.sendBroadcast(intent);
+        return false;
     }
 
     /**
@@ -471,5 +553,64 @@ public final class FileManagerApplication extends Application {
                     "Failed to read shell commands.", e); //$NON-NLS-1$
         }
         return false;
+    }
+
+    /**
+     * Method that check if root command are present in the device
+     *
+     * @return boolean True if root command is present
+     */
+    private boolean isRootPresent() {
+        try {
+            String rootCommand = getString(R.string.root_command);
+            File cmd = new File(rootCommand);
+            if (!cmd.exists() || !cmd.isFile()) {
+                Log.w(TAG,
+                        String.format(
+                                "Command %s not found. Exists: %s; IsFile: %s.", //$NON-NLS-1$
+                                rootCommand,
+                                String.valueOf(cmd.exists()),
+                                String.valueOf(cmd.isFile())));
+                return false;
+            }
+            return true;
+        } catch (Exception e) {
+            Log.e(TAG,
+                    "Failed to read root command.", e); //$NON-NLS-1$
+        }
+        return false;
+    }
+
+    @SuppressWarnings("boxing")
+    private void loadOptionalCommands() {
+        try {
+            sOptionalCommandsMap = new HashMap<String, Boolean>();
+
+            String shellCommands = getString(R.string.shell_optional_commands);
+            String[] commands = shellCommands.split(","); //$NON-NLS-1$
+            int cc = commands.length;
+            if (cc == 0) {
+                Log.w(TAG, "No optional commands."); //$NON-NLS-1$
+                return;
+            }
+            for (int i = 0; i < cc; i++) {
+                String c = commands[i].trim();
+                String key = c.substring(0, c.indexOf("=")).trim(); //$NON-NLS-1$
+                c = c.substring(c.indexOf("=")+1).trim(); //$NON-NLS-1$
+                if (c.length() == 0) continue;
+                File cmd = new File(c);
+                Boolean found = Boolean.valueOf(cmd.exists() && cmd.isFile());
+                sOptionalCommandsMap.put(key, found);
+                if (DEBUG) {
+                    Log.w(TAG,
+                            String.format(
+                                    "Optional command %s %s.", //$NON-NLS-1$
+                                    c, found ? "found" : "not found")); //$NON-NLS-1$ //$NON-NLS-2$
+                }
+            }
+        } catch (Exception e) {
+            Log.e(TAG,
+                    "Failed to read optional shell commands.", e); //$NON-NLS-1$
+        }
     }
 }

@@ -69,6 +69,7 @@ public class ChangeLogActivity extends Activity implements OnCancelListener, OnD
         IntentFilter filter = new IntentFilter();
         filter.addAction(FileManagerSettings.INTENT_THEME_CHANGED);
         registerReceiver(this.mNotificationReceiver, filter);
+        applyTheme();
 
         //Save state
         super.onCreate(state);
@@ -119,7 +120,7 @@ public class ChangeLogActivity extends Activity implements OnCancelListener, OnD
 
             // Show a dialog
             AlertDialog dialog = DialogHelper.createAlertDialog(
-                this, R.drawable.ic_launcher,
+                this, R.mipmap.ic_launcher_filemanager,
                 R.string.changelog_title, sb.toString(), false);
             dialog.setOnCancelListener(this);
             dialog.setOnDismissListener(this);

@@ -16,6 +16,8 @@
 
 package com.cyanogenmod.filemanager.commands;
 
+import java.util.List;
+
 /**
  * An interface that represents an executable for retrieve the process identifier
  * of a program.
@@ -26,5 +28,5 @@ public interface ProcessIdExecutable extends SyncResultExecutable {
      * {@inheritDoc}
      */
     @Override
-    Integer getResult();
+    List<Integer> getResult();
 }

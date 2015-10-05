@@ -17,6 +17,7 @@
 package com.cyanogenmod.filemanager.ui.widgets;
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup;
@@ -124,33 +125,19 @@ public class SelectionView extends LinearLayout {
         }
 
         // Get the string
-        if (folders == 1 && files == 0) {
-            return getContext().getString(R.string.selection_one_folder, Integer.valueOf(folders));
+        final Resources res = getContext().getResources();
+
+        if (files == 0) {
+            return res.getQuantityString(R.plurals.selection_folders, folders, folders);
         }
-        if (folders > 1 && files == 0) {
-            return getContext().getString(
-                    R.string.selection_other_folders, Integer.valueOf(folders));
+
+        if (folders == 0) {
+            return res.getQuantityString(R.plurals.selection_files, files, files);
         }
-        if (folders == 0 && files == 1) {
-            return getContext().getString(R.string.selection_one_file, Integer.valueOf(files));
-        }
-        if (folders == 0 && files >= 1) {
-            return getContext().getString(
-                    R.string.selection_other_files, Integer.valueOf(files));
-        }
-        if (folders > 1 && files == 1) {
-            return getContext().getString(
-                    R.string.selection_other_folders_one_file,
-                    Integer.valueOf(folders), Integer.valueOf(files));
-        }
-        if (folders == 1 && files >= 1) {
-            return getContext().getString(
-                    R.string.selection_one_folder_other_files,
-                    Integer.valueOf(folders), Integer.valueOf(files));
-        }
-        return getContext().getString(
-                R.string.selection_other_folders_other_files,
-                Integer.valueOf(folders), Integer.valueOf(files));
+
+        String nFoldersString = res.getQuantityString(R.plurals.n_folders, folders, folders);
+        String nFilesString = res.getQuantityString(R.plurals.n_files, files, files);
+        return res.getString(R.string.selection_folders_and_files, nFoldersString, nFilesString);
     }
 
     /**

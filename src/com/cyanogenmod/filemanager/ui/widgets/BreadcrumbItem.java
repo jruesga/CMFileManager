@@ -77,7 +77,7 @@ public class BreadcrumbItem extends TextView implements OnLongClickListener {
         setOnLongClickListener(this);
 
         //Set the default resource background effect
-        setBackgroundResource(R.drawable.holo_selector);
+        setBackgroundResource(R.drawable.material_unbound_selector);
     }
 
     /**

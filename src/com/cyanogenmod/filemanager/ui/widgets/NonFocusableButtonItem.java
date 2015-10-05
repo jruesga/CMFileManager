@@ -67,7 +67,7 @@ public class NonFocusableButtonItem extends ButtonItem {
      */
     private void init() {
         //Remove focus
-        setBackgroundResource(R.drawable.holo_selector_nonfocusable);
+        setBackgroundResource(R.drawable.material_selector_nonfocusable);
         setFocusable(false);
         setFocusableInTouchMode(false);
     }

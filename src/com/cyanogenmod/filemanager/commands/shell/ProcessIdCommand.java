@@ -25,6 +25,8 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.StringReader;
 import java.text.ParseException;
+import java.util.ArrayList;
+import java.util.List;
 
 
 /**
@@ -35,8 +37,9 @@ import java.text.ParseException;
 public class ProcessIdCommand extends SyncResultProgram implements ProcessIdExecutable {
 
     private static final String ID_SHELL = "pid_shell";  //$NON-NLS-1$
+    private static final String ID_SHELL_CMDS = "pid_shell_cmds";  //$NON-NLS-1$
     private static final String ID_CMD = "pid_cmd";  //$NON-NLS-1$
-    private Integer mPID;
+    private List<Integer> mPIDs;
 
     /**
      * Constructor of <code>ProcessIdCommand</code>.<br/>
@@ -46,6 +49,17 @@ public class ProcessIdCommand extends SyncResultProgram implements ProcessIdExec
      */
     public ProcessIdCommand() throws InvalidCommandDefinitionException {
         super(ID_SHELL);
+    }
+
+    /**
+     * Constructor of <code>ProcessIdCommand</code>.<br/>
+     * Use this to retrieve all PIDs running on a shell.
+     *
+     * @param pid The process identifier of the shell when the process is running
+     * @throws InvalidCommandDefinitionException If the command has an invalid definition
+     */
+    public ProcessIdCommand(int pid) throws InvalidCommandDefinitionException {
+        super(ID_SHELL_CMDS, new String[]{String.valueOf(pid)});
     }
 
     /**
@@ -66,7 +80,7 @@ public class ProcessIdCommand extends SyncResultProgram implements ProcessIdExec
     @Override
     public void parse(String in, String err) throws ParseException {
         //Release the return object
-        this.mPID = null;
+        this.mPIDs = new ArrayList<Integer>();
 
         // Check the in buffer to extract information
         BufferedReader br = null;
@@ -76,9 +90,13 @@ public class ProcessIdCommand extends SyncResultProgram implements ProcessIdExec
             if (szLine == null) {
                 throw new ParseException("no information", 0); //$NON-NLS-1$
             }
+            do {
+                // Add every PID
+                this.mPIDs.add(Integer.valueOf(szLine.trim()));
 
-            //Get the PID
-            this.mPID = Integer.valueOf(szLine.trim());
+                // Next line
+                szLine = br.readLine();
+            } while (szLine != null);
 
         } catch (IOException ioEx) {
             throw new ParseException(ioEx.getMessage(), 0);
@@ -104,8 +122,8 @@ public class ProcessIdCommand extends SyncResultProgram implements ProcessIdExec
      * {@inheritDoc}
      */
     @Override
-    public Integer getResult() {
-        return this.mPID;
+    public List<Integer> getResult() {
+        return this.mPIDs;
     }
 
     /**

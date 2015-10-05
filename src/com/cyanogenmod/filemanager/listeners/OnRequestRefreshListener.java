@@ -30,6 +30,11 @@ public interface OnRequestRefreshListener {
     void onRequestRefresh(Object o, boolean clearSelection);
 
     /**
+     * Invoked when bookmarks need a refresh
+     */
+    void onRequestBookmarksRefresh();
+
+    /**
      * Invoked when the object was removed.
      *
      * @param o The object that was removed
@@ -43,4 +48,9 @@ public interface OnRequestRefreshListener {
      * @param o The object where to navigate to
      */
     void onNavigateTo(Object o);
+
+    /**
+     * Invoked on action cancel
+     */
+    void onCancel();
 }

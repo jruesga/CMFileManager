@@ -23,6 +23,8 @@ public class ExecutionException extends Exception {
 
     private static final long serialVersionUID = 5900809383615958749L;
 
+    private int mDetailMessageResId = 0;
+
     /**
      * Constructor of <code>ExecutionException</code>.
      *
@@ -35,6 +37,16 @@ public class ExecutionException extends Exception {
     /**
      * Constructor of <code>ExecutionException</code>.
      *
+     * @param detailMessageResId Res ID for Message associated to the exception
+     */
+    public ExecutionException(int detailMessageResId) {
+        super();
+        mDetailMessageResId = detailMessageResId;
+    }
+
+    /**
+     * Constructor of <code>ExecutionException</code>.
+     *
      * @param detailMessage Message associated to the exception
      * @param throwable The cause of the exception
      */
@@ -42,4 +54,11 @@ public class ExecutionException extends Exception {
         super(detailMessage, throwable);
     }
 
+    /**
+     * Returns the res ID that has been set to represent this error's message. Used for translation.
+     * @return The string resource id of this Exception's message.
+     */
+    public int getDetailMessageResId() {
+        return mDetailMessageResId;
+    }
 }

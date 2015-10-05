@@ -36,6 +36,13 @@ public enum FileManagerSettings {
     SETTINGS_ACCESS_MODE("cm_filemanager_access_mode", AccessMode.SAFE), //$NON-NLS-1$
 
     /**
+     * When secondary users will have a chrooted console
+     * @hide
+     */
+    SETTINGS_RESTRICT_SECONDARY_USERS_ACCESS("cm_filemanager_restrict_secondary_users_access",
+            Boolean.TRUE), //$NON-NLS-1$
+
+    /**
      * The initial directory to be used.
      * @hide
      */
@@ -61,23 +68,29 @@ public enum FileManagerSettings {
      * When to show the hidden files.
      * @hide
      */
-    SETTINGS_SHOW_HIDDEN("cm_filemanager_show_hidden", Boolean.FALSE), //$NON-NLS-1$
+    SETTINGS_SHOW_HIDDEN("cm_filemanager_show_hidden", Boolean.TRUE), //$NON-NLS-1$
     /**
      * When to show the system files.
      * @hide
      */
-    SETTINGS_SHOW_SYSTEM("cm_filemanager_show_system", Boolean.FALSE), //$NON-NLS-1$
+    SETTINGS_SHOW_SYSTEM("cm_filemanager_show_system", Boolean.TRUE), //$NON-NLS-1$
     /**
      * When to show the symlinks files.
      * @hide
      */
-    SETTINGS_SHOW_SYMLINKS("cm_filemanager_show_symlinks", Boolean.FALSE), //$NON-NLS-1$
+    SETTINGS_SHOW_SYMLINKS("cm_filemanager_show_symlinks", Boolean.TRUE), //$NON-NLS-1$
 
     /**
      * When to use case sensitive comparison in sorting of files
      * @hide
      */
     SETTINGS_CASE_SENSITIVE_SORT("cm_filemanager_case_sensitive_sort", Boolean.FALSE), //$NON-NLS-1$
+    /**
+     * Defines the filetime format mode to use
+     * @hide
+     */
+    SETTINGS_FILETIME_FORMAT_MODE(
+            "cm_filemanager_filetime_format_mode", FileTimeFormatMode.LOCALE), //$NON-NLS-1$
     /**
      * When display a warning in free disk widget
      * @hide
@@ -90,7 +103,13 @@ public enum FileManagerSettings {
      * @hide
      */
     SETTINGS_COMPUTE_FOLDER_STATISTICS(
-            "cm_filemanager_compute_folder_statistics", Boolean.FALSE), //$NON-NLS-1$
+            "cm_filemanager_compute_folder_statistics", Boolean.TRUE), //$NON-NLS-1$
+    /**
+     * When to display thumbs of pictures, videos, ...
+     * @hide
+     */
+    SETTINGS_DISPLAY_THUMBS(
+            "cm_filemanager_show_thumbs", Boolean.TRUE), //$NON-NLS-1$
     /**
      * Whether use flinger to remove items
      * @hide
@@ -124,17 +143,66 @@ public enum FileManagerSettings {
     SETTINGS_SAVE_SEARCH_TERMS("cm_filemanager_save_search_terms", Boolean.TRUE), //$NON-NLS-1$
 
     /**
+     * When to delayed filesystem synchronization in secure storages
+     * @hide
+     */
+    SETTINGS_SECURE_STORAGE_DELAYED_SYNC("cm_filemanager_secure_storage_delayed_sync",
+            Boolean.TRUE), //$NON-NLS-1$
+
+    /**
      * When to show debug traces
      * @hide
      */
     SETTINGS_SHOW_TRACES("cm_filemanager_show_debug_traces", Boolean.FALSE), //$NON-NLS-1$
 
     /**
+     * When to editor should display suggestions
+     * @hide
+     */
+    SETTINGS_EDITOR_NO_SUGGESTIONS(
+            "cm_filemanager_editor_no_suggestions", Boolean.FALSE), //$NON-NLS-1$
+
+    /**
+     * When to editor should use word wrap
+     * @hide
+     */
+    SETTINGS_EDITOR_WORD_WRAP("cm_filemanager_editor_word_wrap", Boolean.TRUE), //$NON-NLS-1$
+
+    /**
+     * When to editor should open a binary file in a hex viewer
+     * @hide
+     */
+    SETTINGS_EDITOR_HEXDUMP("cm_filemanager_editor_hexdump", Boolean.TRUE), //$NON-NLS-1$
+
+    /**
+     * When to editor should use the syntax highlight
+     * @hide
+     */
+    SETTINGS_EDITOR_SYNTAX_HIGHLIGHT(
+            "cm_filemanager_editor_syntax_highlight", Boolean.TRUE), //$NON-NLS-1$
+
+    /**
+     * When to editor should use the default color scheme of the theme for syntax highlight
+     * @hide
+     */
+    SETTINGS_EDITOR_SH_COLOR_SCHEME(
+            "cm_filemanager_editor_sh_color_scheme", ""), //$NON-NLS-1$ //$NON-NLS-2$
+
+    /**
      * The current theme to use in the app
      * @hide
      */
     SETTINGS_THEME("cm_filemanager_theme", //$NON-NLS-1$
-                        "com.cyanogenmod.filemanager:light"); //$NON-NLS-1$
+                        "com.cyanogenmod.filemanager:light"),
+
+    /**
+     * The current theme to use in the app
+     * @hide
+     */
+    USER_PREF_LAST_DRAWER_TAB("last_drawer_tab", //$NON-NLS-1$
+                        Integer.valueOf(0));
+
+
 
     /**
      * A broadcast intent that is sent when a setting was changed
@@ -147,6 +215,12 @@ public enum FileManagerSettings {
      */
     public final static String INTENT_THEME_CHANGED =
                         "com.cyanogenmod.filemanager.INTENT_THEME_CHANGED"; //$NON-NLS-1$
+
+    /**
+     * A broadcast intent that is sent when a setting was changed
+     */
+    public final static String INTENT_MOUNT_STATUS_CHANGED =
+                        "com.cyanogenmod.filemanager.INTENT_MOUNT_STATUS_CHANGED"; //$NON-NLS-1$
 
     /**
      * A broadcast intent that is sent when a file was changed
@@ -173,6 +247,16 @@ public enum FileManagerSettings {
      * The extra key with the identifier of theme that was changed
      */
     public final static String EXTRA_THEME_ID = "id"; //$NON-NLS-1$
+
+    /**
+     * The extra key with the identifier a mountpoint event
+     */
+    public final static String EXTRA_MOUNTPOINT = "mount_point"; //$NON-NLS-1$
+
+    /**
+     * The extra key with the notify the status of an object
+     */
+    public final static String EXTRA_STATUS = "status"; //$NON-NLS-1$
 
 
 

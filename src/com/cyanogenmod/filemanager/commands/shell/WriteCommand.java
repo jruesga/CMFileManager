@@ -44,7 +44,7 @@ public class WriteCommand extends AsyncResultProgram implements WriteExecutable 
     /**
      * @hide
      */
-    final Object mSync = new Object();
+    final Object mWriteSync = new Object();
     private boolean mReady;
     /**
      * @hide
@@ -81,10 +81,10 @@ public class WriteCommand extends AsyncResultProgram implements WriteExecutable 
     public OutputStream createOutputStream() throws IOException {
 
         // Wait until command is ready
-        synchronized (this.mSync) {
+        synchronized (this.mWriteSync) {
             if (!this.mReady) {
                 try {
-                    this.mSync.wait(TIMEOUT);
+                    this.mWriteSync.wait(TIMEOUT);
                 } catch (Exception e) {/**NON BLOCK**/}
             }
         }
@@ -96,9 +96,9 @@ public class WriteCommand extends AsyncResultProgram implements WriteExecutable 
      */
     @Override
     public void onStartParsePartialResult() {
-        synchronized (this.mSync) {
+        synchronized (this.mWriteSync) {
             this.mReady = true;
-            this.mSync.notify();
+            this.mWriteSync.notify();
         }
     }
 
@@ -128,13 +128,13 @@ public class WriteCommand extends AsyncResultProgram implements WriteExecutable 
      * {@inheritDoc}
      */
     @Override
-    public void onParsePartialResult(final String partialIn) {/**NON BLOCK**/}
+    public void onParsePartialResult(final byte[] partialIn) {/**NON BLOCK**/}
 
     /**
      * {@inheritDoc}
      */
     @Override
-    public void onParseErrorPartialResult(String partialErr) {/**NON BLOCK**/}
+    public void onParseErrorPartialResult(byte[] partialErr) {/**NON BLOCK**/}
 
     /**
      * {@inheritDoc}

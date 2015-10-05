@@ -21,6 +21,7 @@ import com.cyanogenmod.filemanager.console.CommandNotFoundException;
 import com.cyanogenmod.filemanager.console.ExecutionException;
 import com.cyanogenmod.filemanager.console.InsufficientPermissionsException;
 import com.cyanogenmod.filemanager.console.NoSuchFileOrDirectory;
+import com.cyanogenmod.filemanager.console.OperationTimeoutException;
 
 import java.io.OutputStream;
 
@@ -57,6 +58,10 @@ public abstract class Program extends Command implements Executable {
     // The listener for the program
     private ProgramListener mProgramListener;
 
+    // Indicate if the program expect some output to stderr. If something is received
+    // in the stderr the program should be killed
+    private boolean mExitOnStdErrOutput;
+
     /**
      * @Constructor of <code>Program</code>
      *
@@ -67,6 +72,7 @@ public abstract class Program extends Command implements Executable {
      */
     public Program(String id, String... args) throws InvalidCommandDefinitionException {
         super(id, args);
+        this.mExitOnStdErrOutput = false;
     }
 
     /**
@@ -81,6 +87,7 @@ public abstract class Program extends Command implements Executable {
     public Program(String id, boolean prepare, String... args)
             throws InvalidCommandDefinitionException {
         super(id, prepare, args);
+        this.mExitOnStdErrOutput = false;
     }
 
     /**
@@ -99,6 +106,50 @@ public abstract class Program extends Command implements Executable {
      */
     public void setProgramListener(ProgramListener programListener) {
         this.mProgramListener = programListener;
+    }
+
+    /**
+     * Method that returns if the program should be killed if some output is received in
+     * the standard error buffer.
+     *
+     * @return boolean If the program should be killed
+     */
+    public boolean isExitOnStdErrOutput() {
+        return this.mExitOnStdErrOutput;
+    }
+
+    /**
+     * Method that sets if the program should be killed if some output is received in
+     * the standard error buffer.
+     *
+     * @param exitOnStdErrOutput If the program should be killed
+     */
+    public void setExitOnStdErrOutput(boolean exitOnStdErrOutput) {
+        this.mExitOnStdErrOutput = exitOnStdErrOutput;
+    }
+
+    /**
+     * Returns whether the shell should wait indefinitely for the end of the command.
+     *
+     * @return boolean If shell should wait indefinitely for the end of the command
+     * @hide
+     */
+    @SuppressWarnings("static-method")
+    public boolean isIndefinitelyWait() {
+        return false;
+    }
+
+    /**
+     * Returns whether the shell shouldn't raise a {@link OperationTimeoutException} when
+     * the program didn't exited but new data was received.
+     *
+     * @return boolean If shell shouldn't raise a {@link OperationTimeoutException} if new
+     * data was received
+     * @hide
+     */
+    @SuppressWarnings("static-method")
+    public boolean isWaitOnNewDataReceipt() {
+        return false;
     }
 
     /**
@@ -126,7 +177,6 @@ public abstract class Program extends Command implements Executable {
      * @throws ExecutionException If the another exception is detected in the standard error
      * @hide
      */
-    @SuppressWarnings("unused")
     public void checkStdErr(int exitCode, String err)
             throws InsufficientPermissionsException, NoSuchFileOrDirectory,
             CommandNotFoundException, ExecutionException {

@@ -18,6 +18,7 @@ package com.cyanogenmod.filemanager.commands.shell;
 
 import com.cyanogenmod.filemanager.commands.AsyncResultExecutable;
 import com.cyanogenmod.filemanager.commands.AsyncResultListener;
+import com.cyanogenmod.filemanager.commands.ConcurrentAsyncResultListener;
 import com.cyanogenmod.filemanager.commands.SIGNAL;
 import com.cyanogenmod.filemanager.util.FileHelper;
 
@@ -46,16 +47,12 @@ public abstract class AsyncResultProgram
     /**
      * @hide
      */
-    final List<String> mPartialData;
+    final List<byte[]> mPartialData;
     /**
      * @hide
      */
     final List<Byte> mPartialDataType;
-    private final Object mSync = new Object();
-    /**
-     * @hide
-     */
-    final Object mTerminateSync = new Object();
+    final Object mSync = new Object();
 
     private boolean mCancelled;
     private OnCancelListener mOnCancelListener;
@@ -93,7 +90,10 @@ public abstract class AsyncResultProgram
             throws InvalidCommandDefinitionException {
         super(id, prepare, args);
         this.mAsyncResultListener = asyncResultListener;
-        this.mPartialData = Collections.synchronizedList(new ArrayList<String>());
+        if (mAsyncResultListener instanceof ConcurrentAsyncResultListener) {
+            ((ConcurrentAsyncResultListener) mAsyncResultListener).onRegister();
+        }
+        this.mPartialData = Collections.synchronizedList(new ArrayList<byte[]>());
         this.mPartialDataType = Collections.synchronizedList(new ArrayList<Byte>());
         this.mTempBuffer = new StringBuffer();
         this.mOnCancelListener = null;
@@ -106,7 +106,7 @@ public abstract class AsyncResultProgram
      * @hide
      */
     public final void onRequestStartParsePartialResult() {
-        this.mWorkerThread = new AsyncResultProgramThread(this.mSync);
+        this.mWorkerThread = new AsyncResultProgramThread();
         this.mWorkerThread.start();
 
         //Notify start to command class
@@ -130,19 +130,11 @@ public abstract class AsyncResultProgram
             this.mWorkerThread.mAlive = false;
             this.mSync.notify();
         }
-        synchronized (this.mTerminateSync) {
-            try {
-                this.mSync.wait();
-            } catch (Exception e) {
-                /**NON BLOCK**/
-            }
-            try {
-                if (this.mWorkerThread.isAlive()) {
-                    this.mWorkerThread.interrupt();
-                }
-            } catch (Exception e) {
-                /**NON BLOCK**/
-            }
+
+        try {
+            this.mWorkerThread.join();
+        } catch (InterruptedException e) {
+            // Ignore this.
         }
 
         //Notify end to command class
@@ -170,12 +162,12 @@ public abstract class AsyncResultProgram
     /**
      * Method that parse the result of a program invocation.
      *
-     * @param partialIn A partial standard input buffer (incremental buffer)
+     * @param input A partial standard input buffer (incremental buffer)
      * @hide
      */
-    public final void onRequestParsePartialResult(String partialIn) {
+    public final void onRequestParsePartialResult(byte[] input) {
+        String partialIn = new String(input);
         synchronized (this.mSync) {
-            String data = partialIn;
             String rest = ""; //$NON-NLS-1$
             if (parseOnlyCompleteLines()) {
                 int pos = partialIn.lastIndexOf(FileHelper.NEWLINE);
@@ -186,12 +178,11 @@ public abstract class AsyncResultProgram
                 }
 
                 //Retrieve the data
-                data = this.mTempBuffer.append(partialIn.substring(0, pos + 1)).toString();
                 rest = partialIn.substring(pos + 1);
             }
 
             this.mPartialDataType.add(STDIN);
-            this.mPartialData.add(data);
+            this.mPartialData.add(input);
             this.mTempBuffer = new StringBuffer(rest);
             this.mSync.notify();
         }
@@ -221,7 +212,7 @@ public abstract class AsyncResultProgram
             }
 
             this.mPartialDataType.add(STDERR);
-            this.mPartialData.add(data);
+            this.mPartialData.add(data.getBytes());
             this.mTempBuffer = new StringBuffer(rest);
             this.mSync.notify();
         }
@@ -331,6 +322,15 @@ public abstract class AsyncResultProgram
      * {@inheritDoc}
      */
     @Override
+    public final boolean isIndefinitelyWait() {
+        // Asynchronous programs should wait indefinitely for its nature
+        return true;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public boolean isCancellable() {
         //By defect an asynchronous command is cancellable
         return true;
@@ -353,16 +353,12 @@ public abstract class AsyncResultProgram
      */
     private class AsyncResultProgramThread extends Thread {
         boolean mAlive = true;
-        private final Object mSyncObj;
 
         /**
          * Constructor of <code>AsyncResultProgramThread</code>.
-         *
-         * @param sync The synchronized object
          */
-        AsyncResultProgramThread(Object sync) {
+        AsyncResultProgramThread() {
             super();
-            this.mSyncObj = sync;
         }
 
         /**
@@ -373,14 +369,11 @@ public abstract class AsyncResultProgram
             try {
                 this.mAlive = true;
                 while (this.mAlive) {
-                   synchronized (this.mSyncObj) {
-                       this.mSyncObj.wait();
+                   synchronized (AsyncResultProgram.this.mSync) {
+                       AsyncResultProgram.this.mSync.wait();
                        while (AsyncResultProgram.this.mPartialData.size() > 0) {
-                           if (!this.mAlive) {
-                               return;
-                           }
                            Byte type = AsyncResultProgram.this.mPartialDataType.remove(0);
-                           String data = AsyncResultProgram.this.mPartialData.remove(0);
+                           byte[] data = AsyncResultProgram.this.mPartialData.remove(0);
                            try {
                                if (type.compareTo(STDIN) == 0) {
                                    AsyncResultProgram.this.onParsePartialResult(data);
@@ -395,12 +388,6 @@ public abstract class AsyncResultProgram
                 }
             } catch (Exception e) {
                 /**NON BLOCK**/
-
-            } finally {
-                this.mAlive = false;
-                synchronized (AsyncResultProgram.this.mTerminateSync) {
-                    AsyncResultProgram.this.mTerminateSync.notify();
-                }
             }
         }
     }

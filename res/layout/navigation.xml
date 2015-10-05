@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Copyright (C) 2012 The CyanogenMod Project
+<!--
+     Copyright (C) 2012 The CyanogenMod Project
 
      Licensed under the Apache License, Version 2.0 (the "License");
      you may not use this file except in compliance with the License.
@@ -12,33 +13,71 @@
      WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
      See the License for the specific language governing permissions and
      limitations under the License.
- -->
+-->
 
-<LinearLayout
-  xmlns:android="http://schemas.android.com/apk/res/android"
-  xmlns:filemanager="http://schemas.android.com/apk/res/com.cyanogenmod.filemanager"
-  android:id="@+id/navigation_layout"
-  android:layout_width="match_parent"
-  android:layout_height="match_parent"
-  android:orientation="vertical">
-
-  <!-- Navigation View -->
-  <com.cyanogenmod.filemanager.ui.widgets.NavigationView
-    android:id="@+id/navigation_view"
+<android.support.v4.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:filemanager="http://schemas.android.com/apk/res/com.cyanogenmod.filemanager"
+    android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
-    android:layout_height="0dp"
-    android:layout_weight="1"
-    filemanager:navigation="browsable" />
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true">
 
-  <!-- SelectionBar -->
-  <com.cyanogenmod.filemanager.ui.widgets.SelectionView
-    android:id="@+id/navigation_selectionbar"
-    android:layout_width="match_parent"
-    android:layout_height="@dimen/small_row_height"
-    android:background="@drawable/bg_holo_selectionbar"
-    android:visibility="invisible" />
+    <com.cyanogenmod.filemanager.ui.widgets.ScrimInsetsFrameLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/scrimInsetsFrameLayoutNavigation"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fitsSystemWindows="true"
+            app:insetForeground="@color/material_palette_blue_primary_dark">
+        <!-- The main content view -->
+        <LinearLayout
+                android:id="@+id/navigation_layout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="25dp"
+                android:orientation="vertical">
 
-  <!-- StatusBar -->
-  <include layout="@layout/navigation_view_statusbar" />
+            <!-- We use a Toolbar so that our drawer can be displayed in front of the action bar -->
+            <android.widget.Toolbar
+                    android:id="@+id/material_toolbar"
+                    android:fitsSystemWindows="true"
+                    android:layout_height="?android:attr/actionBarSize"
+                    android:layout_width="match_parent"
+                    android:minHeight="?android:attr/actionBarSize"
+                    android:background="?android:attr/colorPrimary"
+                    android:theme="@style/FileManager.NavigationActionBar"/>
 
-</LinearLayout>
+            <!-- Navigation View -->
+            <com.cyanogenmod.filemanager.ui.widgets.NavigationView
+                    android:id="@+id/navigation_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    filemanager:navigation="browsable"/>
+
+            <ListView
+                android:background="@android:color/white"
+                android:id="@+id/lv_easy_mode"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:visibility="gone"/>
+
+            <!-- SelectionBar -->
+            <com.cyanogenmod.filemanager.ui.widgets.SelectionView
+                    android:id="@+id/navigation_selectionbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/small_row_height"
+                    android:background="@drawable/bg_material_selectionbar"
+                    android:visibility="invisible"/>
+
+            <!-- StatusBar -->
+            <include layout="@layout/navigation_view_statusbar"/>
+        </LinearLayout>
+    </com.cyanogenmod.filemanager.ui.widgets.ScrimInsetsFrameLayout>
+
+    <!-- The navigation drawer -->
+    <include layout="@layout/navigation_drawer" />
+
+</android.support.v4.widget.DrawerLayout>

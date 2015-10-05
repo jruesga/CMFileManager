@@ -23,11 +23,21 @@
       android:title="@string/pref_general_behaviour_category">
 
       <!-- Case sensitive order -->
-      <CheckBoxPreference
+      <SwitchPreference
         android:key="cm_filemanager_case_sensitive_sort"
         android:title="@string/pref_case_sensitive_sort"
+        android:summary="@string/pref_case_sensitive_sort_summary"
         android:persistent="true"
         android:defaultValue="false" />
+
+      <!-- Filetime format -->
+      <ListPreference
+        android:key="cm_filemanager_filetime_format_mode"
+        android:title="@string/pref_filetime_format_mode"
+        android:entries="@array/filetime_format_mode_labels"
+        android:entryValues="@array/filetime_format_mode_values"
+        android:defaultValue="1"
+        android:persistent="true" />
 
       <!-- Disk usage warning level -->
       <ListPreference
@@ -39,22 +49,28 @@
         android:persistent="true" />
 
       <!-- Compute folder statistics -->
-      <CheckBoxPreference
+      <SwitchPreference
         android:key="cm_filemanager_compute_folder_statistics"
         android:title="@string/pref_compute_folder_statistics"
         android:summaryOn="@string/pref_compute_folder_statistics_on"
         android:persistent="true"
         android:defaultValue="false" />
 
+      <!-- Thumbs -->
+      <SwitchPreference
+        android:key="cm_filemanager_show_thumbs"
+        android:title="@string/pref_display_thumbs"
+        android:summary="@string/pref_display_thumbs_summary"
+        android:persistent="true"
+        android:defaultValue="false" />
+
       <!-- Use flinger -->
-      <!--
-      <CheckBoxPreference
+      <SwitchPreference
         android:key="cm_filemanager_use_flinger"
         android:title="@string/pref_use_flinger"
         android:summary="@string/pref_use_flinger_summary"
         android:persistent="true"
-        android:defaultValue="true" />
-       -->
+        android:defaultValue="false" />
 
     </PreferenceCategory>
 
@@ -72,8 +88,16 @@
         android:defaultValue="0"
         android:persistent="true" />
 
+      <!-- Restrict secondary users access -->
+      <SwitchPreference
+        android:key="cm_filemanager_restrict_secondary_users_access"
+        android:title="@string/pref_restrict_secondary_users_access_title"
+        android:summary="@string/pref_restrict_secondary_users_access_summary"
+        android:persistent="false"
+        android:defaultValue="false" />
+
       <!-- Capture debug traces -->
-      <CheckBoxPreference
+      <SwitchPreference
         android:key="cm_filemanager_show_debug_traces"
         android:title="@string/pref_debug_traces"
         android:persistent="true"

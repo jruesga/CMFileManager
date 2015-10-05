@@ -204,4 +204,12 @@ public class ListCommand extends SyncResultProgram implements ListExecutable {
             throw new ExecutionException("exitcode != 0 && != 1 && != 123"); //$NON-NLS-1$
         }
     }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public boolean isWaitOnNewDataReceipt() {
+        return true;
+    }
 }

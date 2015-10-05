@@ -19,10 +19,16 @@ package com.cyanogenmod.filemanager.preferences;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
+import android.os.UserHandle;
 import android.util.Log;
 
 import com.cyanogenmod.filemanager.FileManagerApplication;
+import com.cyanogenmod.filemanager.util.AndroidHelper;
 
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.io.InvalidClassException;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -30,6 +36,8 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Properties;
+import java.util.Set;
 
 /**
  * A helper class for access and manage the preferences of the application.
@@ -48,6 +56,11 @@ public final class Preferences {
      * @hide
      */
     public static final String SETTINGS_FILENAME = "com.cyanogenmod.filemanager"; //$NON-NLS-1$
+    /**
+     * The name of the file manager public readable shared properties file.
+     * @hide
+     */
+    public static final String SHARED_PROPERTIES_FILENAME = "shared.properties";
 
     /**
      * The list of configuration listeners.
@@ -129,6 +142,84 @@ public final class Preferences {
                 SETTINGS_FILENAME, Context.MODE_PRIVATE);
     }
 
+    private static File getWorldReadablePropertiesFile(Context context) {
+        String dataDir = context.getApplicationInfo().dataDir;
+        if (AndroidHelper.isSecondaryUser(context)) {
+            dataDir = dataDir.replace(String.valueOf(UserHandle.myUserId()),
+                    String.valueOf(UserHandle.USER_OWNER));
+        }
+        return new File(dataDir, SHARED_PROPERTIES_FILENAME);
+    }
+
+    public static String getWorldReadableProperties(Context context, String key) {
+        Properties props = new Properties();
+        FileReader reader = null;
+        try {
+            reader = new FileReader(getWorldReadablePropertiesFile(context));
+            props.load(reader);
+        } catch (IOException ex) {
+            // Ignore
+        } finally {
+            if (reader != null) {
+                try {
+                    reader.close();
+                } catch (IOException ex) {
+                    // Ignore
+                }
+            }
+        }
+        return props.getProperty(key);
+    }
+
+    public static boolean writeWorldReadableProperty(Context context, String key, String value) {
+        if (AndroidHelper.isSecondaryUser(context)) {
+            // Not allowed
+            return false;
+        }
+        Properties props = new Properties();
+        FileReader reader = null;
+        FileWriter writer = null;
+        try {
+            File dst = getWorldReadablePropertiesFile(context);
+            if (!dst.exists()) {
+                dst.createNewFile();
+                dst.setWritable(true, true);
+                dst.setReadable(true, false);
+                dst.setExecutable(false);
+            }
+            reader = new FileReader(dst);
+            props.load(reader);
+            try {
+                props.load(new FileReader(dst));
+            } catch (IOException ex) {
+                return false;
+            }
+            props.put(key, value);
+            writer = new FileWriter(dst);
+            props.store(writer, null);
+            return true;
+
+        } catch (IOException ex) {
+            // Ignore
+        } finally {
+            if (reader != null) {
+                try {
+                    reader.close();
+                } catch (IOException ex) {
+                    // Ignore
+                }
+            }
+            if (writer != null) {
+                try {
+                    writer.close();
+                } catch (IOException ex) {
+                    // Ignore
+                }
+            }
+        }
+        return false;
+    }
+
     /**
      * Method that saves a preference.
      *
@@ -168,6 +259,7 @@ public final class Preferences {
      * @throws InvalidClassException If the value of a preference is not of the
      * type of the preference
      */
+    @SuppressWarnings("unchecked")
     private static void savePreferences(
             Map<FileManagerSettings, Object> prefs, boolean noSaveIfExists, boolean applied)
             throws InvalidClassException {
@@ -190,6 +282,10 @@ public final class Preferences {
                 editor.putBoolean(pref.getId(), ((Boolean)value).booleanValue());
             } else if (value instanceof String && pref.getDefaultValue() instanceof String) {
                 editor.putString(pref.getId(), (String)value);
+            } else if (value instanceof Integer && pref.getDefaultValue() instanceof Integer) {
+                editor.putInt(pref.getId(), (Integer)value);
+            } else if (value instanceof Set && pref.getDefaultValue() instanceof Set) {
+                editor.putStringSet(pref.getId(), (Set<String>)value);
             } else if (value instanceof ObjectIdentifier
                     && pref.getDefaultValue() instanceof ObjectIdentifier) {
                 editor.putInt(pref.getId(), ((ObjectIdentifier)value).getId());

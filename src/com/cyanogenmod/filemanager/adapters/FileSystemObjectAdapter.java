@@ -19,6 +19,7 @@ package com.cyanogenmod.filemanager.adapters;
 import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -31,13 +32,14 @@ import android.widget.TextView;
 import com.cyanogenmod.filemanager.R;
 import com.cyanogenmod.filemanager.model.FileSystemObject;
 import com.cyanogenmod.filemanager.model.ParentDirectory;
+import com.cyanogenmod.filemanager.preferences.FileManagerSettings;
+import com.cyanogenmod.filemanager.preferences.Preferences;
 import com.cyanogenmod.filemanager.ui.IconHolder;
 import com.cyanogenmod.filemanager.ui.ThemeManager;
 import com.cyanogenmod.filemanager.ui.ThemeManager.Theme;
 import com.cyanogenmod.filemanager.util.FileHelper;
 import com.cyanogenmod.filemanager.util.MimeTypeHelper;
 
-import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -75,6 +77,7 @@ public class FileSystemObjectAdapter
         TextView mTvName;
         TextView mTvSummary;
         TextView mTvSize;
+        Boolean mHasSelectedBg;
     }
 
     /**
@@ -95,7 +98,6 @@ public class FileSystemObjectAdapter
         String mSize;
     }
 
-
     private DataHolder[] mData;
     private IconHolder mIconHolder;
     private final int mItemViewResourceId;
@@ -103,6 +105,8 @@ public class FileSystemObjectAdapter
     private final boolean mPickable;
 
     private OnSelectionChangedListener mOnSelectionChangedListener;
+
+    private boolean mDisposed;
 
     //The resource of the item check
     private static final int RESOURCE_ITEM_CHECK = R.id.navigation_view_item_check;
@@ -128,14 +132,13 @@ public class FileSystemObjectAdapter
             Context context, List<FileSystemObject> files,
             int itemViewResourceId, boolean pickable) {
         super(context, RESOURCE_ITEM_NAME, files);
-        this.mIconHolder = new IconHolder();
+        this.mDisposed  = false;
         this.mItemViewResourceId = itemViewResourceId;
         this.mSelectedItems = new ArrayList<FileSystemObject>();
         this.mPickable = pickable;
+        notifyThemeChanged(); // Reload icons
 
-        //Do cache of the data for better performance
-        loadDefaultIcons();
-        processData(files);
+        processData();
     }
 
     /**
@@ -152,8 +155,8 @@ public class FileSystemObjectAdapter
      * Method that loads the default icons (known icons and more common icons).
      */
     private void loadDefaultIcons() {
-        this.mIconHolder.getDrawable(getContext(), "ic_fso_folder_drawable"); //$NON-NLS-1$
-        this.mIconHolder.getDrawable(getContext(), "ic_fso_default_drawable"); //$NON-NLS-1$
+        this.mIconHolder.getDrawable("ic_fso_folder_drawable"); //$NON-NLS-1$
+        this.mIconHolder.getDrawable("ic_fso_default_drawable"); //$NON-NLS-1$
     }
 
     /**
@@ -161,7 +164,10 @@ public class FileSystemObjectAdapter
      */
     @Override
     public void notifyDataSetChanged() {
-        processData(null);
+        if (this.mDisposed) {
+            return;
+        }
+        processData();
         super.notifyDataSetChanged();
     }
 
@@ -169,9 +175,13 @@ public class FileSystemObjectAdapter
      * Method that dispose the elements of the adapter.
      */
     public void dispose() {
+        this.mDisposed = true;
         clear();
         this.mData = null;
-        this.mIconHolder = null;
+        if (mIconHolder != null) {
+            mIconHolder.cleanup();
+            mIconHolder = null;
+        }
         this.mSelectedItems.clear();
     }
 
@@ -195,25 +205,26 @@ public class FileSystemObjectAdapter
 
     /**
      * Method that process the data before use {@link #getView} method.
-     *
-     * @param files The list of files (to better performance) or null.
      */
-    private void processData(List<FileSystemObject> files) {
+    private void processData() {
         Theme theme = ThemeManager.getCurrentTheme(getContext());
         Resources res = getContext().getResources();
-        DateFormat df = DateFormat.getDateTimeInstance(DateFormat.SHORT, DateFormat.SHORT);
-        this.mData = new DataHolder[getCount()];
-        int cc = (files == null) ? getCount() : files.size();
+        int cc = getCount();
+
+        this.mData = new DataHolder[cc];
+
         for (int i = 0; i < cc; i++) {
             //File system object info
-            FileSystemObject fso = (files == null) ? getItem(i) : files.get(i);
+            FileSystemObject fso = getItem(i);
 
             //Parse the last modification time and permissions
             StringBuilder sbSummary = new StringBuilder();
             if (fso instanceof ParentDirectory) {
                 sbSummary.append(res.getString(R.string.parent_dir));
             } else {
-                sbSummary.append(df.format(fso.getLastModifiedTime()));
+                sbSummary.append(
+                        FileHelper.formatFileTime(
+                                getContext(), fso.getLastModifiedTime()));
                 sbSummary.append("   "); //$NON-NLS-1$
                 sbSummary.append(fso.toRawPermissionString());
             }
@@ -231,12 +242,10 @@ public class FileSystemObjectAdapter
                                 getContext(), "checkbox_deselected_drawable"); //$NON-NLS-1$
             }
             this.mData[i].mDwIcon = this.mIconHolder.getDrawable(
-                    getContext(),
                     MimeTypeHelper.getIcon(getContext(), fso));
             this.mData[i].mName = fso.getName();
             this.mData[i].mSummary = sbSummary.toString();
             this.mData[i].mSize = FileHelper.getHumanReadableSize(fso);
-
         }
     }
 
@@ -247,6 +256,8 @@ public class FileSystemObjectAdapter
     public View getView(int position, View convertView, ViewGroup parent) {
         //Check to reuse view
         View v = convertView;
+        Theme theme = ThemeManager.getCurrentTheme(getContext());
+
         if (v == null) {
             //Create the view holder
             LayoutInflater li =
@@ -268,49 +279,50 @@ public class FileSystemObjectAdapter
         }
 
         //Retrieve data holder
+        if (mData == null || this.mData[position] == null) {
+            return v;
+        }
         final DataHolder dataHolder = this.mData[position];
 
         //Retrieve the view holder
         ViewHolder viewHolder = (ViewHolder)v.getTag();
-
-        // Apply the current theme
-        Theme theme = ThemeManager.getCurrentTheme(getContext());
-        theme.setBackgroundDrawable(
-                getContext(), v, "background_drawable"); //$NON-NLS-1$
-        theme.setTextColor(
-                getContext(), viewHolder.mTvName, "text_color"); //$NON-NLS-1$
-        if (viewHolder.mTvSummary != null) {
-            theme.setTextColor(
-                    getContext(), viewHolder.mTvSummary, "text_color"); //$NON-NLS-1$
-        }
-        if (viewHolder.mTvSize != null) {
-            theme.setTextColor(
-                    getContext(), viewHolder.mTvSize, "text_color"); //$NON-NLS-1$
+        if (this.mPickable) {
+            theme.setBackgroundDrawable(getContext(), v, "background_drawable"); //$NON-NLS-1$
         }
 
         //Set the data
-        viewHolder.mIvIcon.setImageDrawable(dataHolder.mDwIcon);
+        if (convertView != null) {
+            // Cancel load for previous usage
+            mIconHolder.cancelLoad(viewHolder.mIvIcon);
+        }
+        mIconHolder.loadDrawable(viewHolder.mIvIcon, getItem(position), dataHolder.mDwIcon);
+
         viewHolder.mTvName.setText(dataHolder.mName);
+        theme.setTextColor(getContext(), viewHolder.mTvName, "text_color"); //$NON-NLS-1$
         if (viewHolder.mTvSummary != null) {
             viewHolder.mTvSummary.setText(dataHolder.mSummary);
+            theme.setTextColor(getContext(), viewHolder.mTvSummary, "text_color"); //$NON-NLS-1$
         }
         if (viewHolder.mTvSize != null) {
             viewHolder.mTvSize.setText(dataHolder.mSize);
+            theme.setTextColor(getContext(), viewHolder.mTvSize, "text_color"); //$NON-NLS-1$
         }
         if (!this.mPickable) {
             viewHolder.mBtCheck.setVisibility(
-                    dataHolder.mName.compareTo(
-                            FileHelper.PARENT_DIRECTORY) == 0 ? View.INVISIBLE : View.VISIBLE);
+                    TextUtils.equals(dataHolder.mName, FileHelper.PARENT_DIRECTORY) ?
+                            View.INVISIBLE : View.VISIBLE);
+
             viewHolder.mBtCheck.setImageDrawable(dataHolder.mDwCheck);
             viewHolder.mBtCheck.setTag(Integer.valueOf(position));
 
-            // Apply theme
-            if (dataHolder.mSelected) {
-                theme.setBackgroundDrawable(
-                        getContext(), v, "selectors_selected_drawable"); //$NON-NLS-1$
-            } else {
-                theme.setBackgroundDrawable(
-                        getContext(), v, "selectors_deselected_drawable"); //$NON-NLS-1$
+            if (viewHolder.mHasSelectedBg == null
+                    || viewHolder.mHasSelectedBg != dataHolder.mSelected) {
+                String drawableId = dataHolder.mSelected
+                        ? "selectors_selected_drawable" //$NON-NLS-1$
+                        : "selectors_deselected_drawable"; //$NON-NLS-1$
+
+                theme.setBackgroundDrawable(getContext(), v, drawableId);
+                viewHolder.mHasSelectedBg = dataHolder.mSelected;
             }
         }
 
@@ -326,16 +338,6 @@ public class FileSystemObjectAdapter
      */
     public boolean isSelected(int position) {
         return this.mData[position].mSelected;
-    }
-
-    /**
-     * Method that selects in the {@link ArrayAdapter} the passed item.
-     *
-     * @param item The view to select
-     */
-    public void toggleSelection(View item) {
-        ImageButton view = (ImageButton)item.findViewById(RESOURCE_ITEM_CHECK);
-        onClick(view);
     }
 
     /**
@@ -375,35 +377,29 @@ public class FileSystemObjectAdapter
                                         getContext(),
                                             "checkbox_deselected_drawable"); //$NON-NLS-1$
                     }
-                    if (v != null) {
-                        ((ImageView)v).setImageDrawable(data.mDwCheck);
-                        if (data.mSelected) {
-                            theme.setBackgroundDrawable(
-                                    getContext(),
-                                    (View)v.getParent(),
-                                    "selectors_selected_drawable"); //$NON-NLS-1$
-                        } else {
-                            theme.setBackgroundDrawable(
-                                    getContext(),
-                                    (View)v.getParent(),
-                                    "selectors_deselected_drawable"); //$NON-NLS-1$
-                        }
-                    }
 
                     //Add or remove from the global selected items
+                    final List<FileSystemObject> selectedItems =
+                            FileSystemObjectAdapter.this.mSelectedItems;
                     if (data.mSelected) {
-                        FileSystemObjectAdapter.this.mSelectedItems.add(fso);
+                        if (!selectedItems.contains(fso)) {
+                            selectedItems.add(fso);
+                        }
                     } else {
-                        FileSystemObjectAdapter.this.mSelectedItems.remove(fso);
+                        if (selectedItems.contains(fso)) {
+                            selectedItems.remove(fso);
+                        }
                     }
 
                     //Communicate event
                     if (this.mOnSelectionChangedListener != null) {
                         List<FileSystemObject> selection =
-                                new ArrayList<FileSystemObject>(
-                                        FileSystemObjectAdapter.this.mSelectedItems);
+                                new ArrayList<FileSystemObject>(selectedItems);
                         this.mOnSelectionChangedListener.onSelectionChanged(selection);
                     }
+
+                    // The internal structure was update, only super adapter need to be notified
+                    super.notifyDataSetChanged();
 
                     //Found
                     return;
@@ -462,11 +458,15 @@ public class FileSystemObjectAdapter
 
                 //Add or remove from the global selected items
                 FileSystemObject fso = getItem(i);
+                final List<FileSystemObject> selectedItems =
+                        FileSystemObjectAdapter.this.mSelectedItems;
                 if (data.mSelected) {
-                    FileSystemObjectAdapter.this.mSelectedItems.add(fso);
+                    if (!selectedItems.contains(fso)) {
+                        selectedItems.add(fso);
+                    }
                 } else {
-                    if (FileSystemObjectAdapter.this.mSelectedItems.contains(fso)) {
-                        FileSystemObjectAdapter.this.mSelectedItems.remove(fso);
+                    if (selectedItems.contains(fso)) {
+                        selectedItems.remove(fso);
                     }
                 }
             }
@@ -511,6 +511,10 @@ public class FileSystemObjectAdapter
         //Select or deselect the item
         int pos = ((Integer)v.getTag()).intValue();
 
+        if (pos >= getCount() || pos < 0) {
+            return;
+        }
+
         //Retrieve data holder
         final FileSystemObject fso = getItem(pos);
 
@@ -530,7 +534,14 @@ public class FileSystemObjectAdapter
      */
     public void notifyThemeChanged() {
         // Empty icon holder
-        this.mIconHolder = new IconHolder();
+        if (this.mIconHolder != null) {
+            this.mIconHolder.cleanup();
+        }
+        final boolean displayThumbs = Preferences.getSharedPreferences().getBoolean(
+                FileManagerSettings.SETTINGS_DISPLAY_THUMBS.getId(),
+                ((Boolean)FileManagerSettings.SETTINGS_DISPLAY_THUMBS.getDefaultValue()).booleanValue());
+        this.mIconHolder = new IconHolder(getContext(), displayThumbs);
+        loadDefaultIcons();
     }
 
 }

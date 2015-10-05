@@ -16,6 +16,8 @@
 
 package com.cyanogenmod.filemanager.model;
 
+import android.content.ContentResolver;
+import android.net.Uri;
 import com.cyanogenmod.filemanager.R;
 import com.cyanogenmod.filemanager.util.FileHelper;
 
@@ -33,7 +35,7 @@ import java.util.Date;
  */
 public abstract class FileSystemObject implements Serializable, Comparable<FileSystemObject> {
 
-    private static final long serialVersionUID = 5877049750925761305L;
+    private static final long serialVersionUID = -571144166609728391L;
 
     //Resource identifier for default icon
     private static final int RESOURCE_ICON_DEFAULT = R.drawable.ic_fso_default;
@@ -48,7 +50,8 @@ public abstract class FileSystemObject implements Serializable, Comparable<FileS
     private Date mLastAccessedTime;
     private Date mLastModifiedTime;
     private Date mLastChangedTime;
-
+    private boolean mIsSecure;
+    private boolean mIsRemote;
 
     /**
      * Constructor of <code>FileSystemObject</code>.
@@ -77,6 +80,8 @@ public abstract class FileSystemObject implements Serializable, Comparable<FileS
         this.mLastModifiedTime = lastModifiedTime;
         this.mLastChangedTime = lastChangedTime;
         this.mResourceIconId = RESOURCE_ICON_DEFAULT;
+        this.mIsSecure = false;
+        this.mIsRemote = false;
     }
 
     /**
@@ -249,12 +254,48 @@ public abstract class FileSystemObject implements Serializable, Comparable<FileS
     }
 
     /**
-     * Method that returns of the object is hidden object.
+     * Method that returns if the object is hidden object.
      *
      * @return boolean If the object is hidden object
      */
     public boolean isHidden() {
         return this.mName.startsWith("."); //$NON-NLS-1$
+    }
+
+    /**
+     * Method that returns if the object is secure
+     *
+     * @return boolean If the object is secure
+     */
+    public boolean isSecure() {
+        return mIsSecure;
+    }
+
+    /**
+     * Mehtod that sets if the object is secure
+     *
+     * @param secure if the object is secure
+     */
+    public void setSecure(boolean secure) {
+        mIsSecure = secure;
+    }
+
+    /**
+     * Method that returns if the object is remote
+     *
+     * @return boolean If the object is remote
+     */
+    public boolean isRemote() {
+        return mIsRemote;
+    }
+
+    /**
+     * Mehtod that sets if the object is remote
+     *
+     * @param remote if the object is remote
+     */
+    public void setRemote(boolean remote) {
+        mIsRemote = remote;
     }
 
     /**
@@ -294,6 +335,19 @@ public abstract class FileSystemObject implements Serializable, Comparable<FileS
             return this.mParent + this.mName;
         }
         return this.mParent + File.separator + this.mName;
+    }
+
+    /**
+     * creates a file uri that references this FileSystemObject
+     * @return a file uri
+     */
+    public Uri getFileUri() {
+        Uri uri = new Uri.Builder()
+                .scheme(ContentResolver.SCHEME_FILE)
+                .path(getFullPath())
+                .build();
+
+        return uri;
     }
 
     /**
@@ -348,9 +402,8 @@ public abstract class FileSystemObject implements Serializable, Comparable<FileS
      * @return String The string representation
      */
     public String toRawPermissionString() {
-        return String.format("%s%s", //$NON-NLS-1$
-                String.valueOf(getUnixIdentifier()),
-                getPermissions().toRawString());
+        return Character.toString(getUnixIdentifier())
+                + getPermissions().toRawString();
     }
 
     /**
@@ -366,6 +419,8 @@ public abstract class FileSystemObject implements Serializable, Comparable<FileS
                 + ", mLastAccessedTime=" + this.mLastAccessedTime //$NON-NLS-1$
                 + ", mLastModifiedTime=" + this.mLastModifiedTime //$NON-NLS-1$
                 + ", mLastChangedTime=" + this.mLastChangedTime //$NON-NLS-1$
+                + ", mIsSecure=" + mIsSecure //$NON-NLS-1$
+                + ", mIsRemote=" + mIsRemote //$NON-NLS-1$
                 + "]"; //$NON-NLS-1$
     }
 

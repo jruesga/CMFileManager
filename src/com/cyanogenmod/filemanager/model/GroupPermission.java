@@ -77,6 +77,7 @@ public class GroupPermission extends Permission {
      */
     public void setSetGID(boolean setgid) {
         this.mSetGid = setgid;
+        invalidateRawString();
     }
 
     /**
@@ -124,7 +125,7 @@ public class GroupPermission extends Permission {
      * {@inheritDoc}
      */
     @Override
-    public String toRawString() {
+    protected String getRawString() {
         StringBuilder p = new StringBuilder();
         p.append(isRead() ? READ : UNASIGNED);
         p.append(isWrite() ? WRITE : UNASIGNED);

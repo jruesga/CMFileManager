@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Copyright (C) 2012 The CyanogenMod Project
+<!--
+     Copyright (C) 2012-2013 The CyanogenMod Project
 
      Licensed under the Apache License, Version 2.0 (the "License");
      you may not use this file except in compliance with the License.
@@ -12,34 +13,37 @@
      WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
      See the License for the specific language governing permissions and
      limitations under the License.
- -->
-<resources xmlns:android="http://schemas.android.com/apk/res/android">
+-->
 
-  <!-- Command definition -->
-  <declare-styleable name="Command">
-    <!-- Unique identifier of the commmand -->
-    <attr name="commandId" format="string" />
-    <!-- The full qualified path to the executable -->
-    <attr name="commandPath" format="string" />
-    <!-- The arguments to be passed to the executable -->
-    <attr name="commandArgs" format="string" />
-  </declare-styleable>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <!-- Command definition -->
+    <declare-styleable name="Command">
+        <!-- Unique identifier of the commmand -->
+        <attr name="commandId" format="string" />
+        <!-- The full qualified path to the executable -->
+        <attr name="commandPath" format="string" />
+        <!-- The arguments to be passed to the executable -->
+        <attr name="commandArgs" format="string" />
+    </declare-styleable>
 
-  <!-- Bookmark definition -->
-  <declare-styleable name="Bookmark">
-    <!-- The name of the bookmark -->
-    <attr name="name" format="string" />
-    <!-- The folder which the bookmark point to -->
-    <attr name="directory" format="string" />
-  </declare-styleable>
+    <!-- Bookmark definition -->
+    <declare-styleable name="Bookmark">
+        <!-- The name of the bookmark -->
+        <attr name="name" format="string" />
+        <!-- The folder which the bookmark point to -->
+        <attr name="directory" format="string" />
+    </declare-styleable>
 
-  <!-- Navigable definition -->
-  <declare-styleable name="Navigable">
-    <!-- The type of navigation -->
-    <attr name="navigation" format="integer">
-      <enum name="browsable" value="0" />
-      <enum name="pickable" value="1" />
-    </attr>
-  </declare-styleable>
+    <!-- Navigable definition -->
+    <declare-styleable name="Navigable">
+        <!-- The type of navigation -->
+        <attr name="navigation" format="integer">
+            <enum name="browsable" value="0" />
+            <enum name="pickable" value="1" />
+        </attr>
+    </declare-styleable>
 
+    <declare-styleable name="ScrimInsetsView">
+        <attr name="insetForeground" format="reference|color" />
+    </declare-styleable>
 </resources>

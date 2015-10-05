@@ -38,7 +38,9 @@ import com.cyanogenmod.filemanager.FileManagerApplication;
 import com.cyanogenmod.filemanager.R;
 import com.cyanogenmod.filemanager.adapters.FileSystemObjectAdapter;
 import com.cyanogenmod.filemanager.adapters.FileSystemObjectAdapter.OnSelectionChangedListener;
+import com.cyanogenmod.filemanager.console.CancelledOperationException;
 import com.cyanogenmod.filemanager.console.ConsoleAllocException;
+import com.cyanogenmod.filemanager.console.VirtualMountPointConsole;
 import com.cyanogenmod.filemanager.listeners.OnHistoryListener;
 import com.cyanogenmod.filemanager.listeners.OnRequestRefreshListener;
 import com.cyanogenmod.filemanager.listeners.OnSelectionListener;
@@ -63,9 +65,11 @@ import com.cyanogenmod.filemanager.ui.widgets.FlingerListView.OnItemFlingerRespo
 import com.cyanogenmod.filemanager.util.CommandHelper;
 import com.cyanogenmod.filemanager.util.DialogHelper;
 import com.cyanogenmod.filemanager.util.ExceptionUtil;
+import com.cyanogenmod.filemanager.util.ExceptionUtil.OnRelaunchCommandResult;
 import com.cyanogenmod.filemanager.util.FileHelper;
 import com.cyanogenmod.filemanager.util.StorageHelper;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -77,8 +81,8 @@ import java.util.Map;
  * navigate, ...).
  */
 public class NavigationView extends RelativeLayout implements
-    AdapterView.OnItemClickListener, AdapterView.OnItemLongClickListener,
-    BreadcrumbListener, OnSelectionChangedListener, OnSelectionListener, OnRequestRefreshListener {
+AdapterView.OnItemClickListener, AdapterView.OnItemLongClickListener,
+BreadcrumbListener, OnSelectionChangedListener, OnSelectionListener, OnRequestRefreshListener {
 
     private static final String TAG = "NavigationView"; //$NON-NLS-1$
 
@@ -123,6 +127,18 @@ public class NavigationView extends RelativeLayout implements
     }
 
     /**
+     * An interface to communicate a change of the current directory
+     */
+    public interface OnDirectoryChangedListener {
+        /**
+         * Method invoked when the current directory changes
+         *
+         * @param item The newly active directory
+         */
+        void onDirectoryChanged(FileSystemObject item);
+    }
+
+    /**
      * The navigation view mode
      * @hide
      */
@@ -148,6 +164,12 @@ public class NavigationView extends RelativeLayout implements
             try {
                 // Response if the item can be removed
                 FileSystemObjectAdapter adapter = (FileSystemObjectAdapter)parent.getAdapter();
+
+                // Short circuit to protect OOBE
+                if (position < 0 || position >= adapter.getCount()) {
+                    return false;
+                }
+
                 FileSystemObject fso = adapter.getItem(position);
                 if (fso != null) {
                     if (fso instanceof ParentDirectory) {
@@ -189,6 +211,201 @@ public class NavigationView extends RelativeLayout implements
         }
     };
 
+    private class NavigationTask extends AsyncTask<String, Integer, List<FileSystemObject>> {
+        private final boolean mUseCurrent;
+        private final boolean mAddToHistory;
+        private final boolean mReload;
+        private boolean mHasChanged;
+        private boolean mIsNewHistory;
+        private String mNewDirChecked;
+        private final SearchInfoParcelable mSearchInfo;
+        private final FileSystemObject mScrollTo;
+
+        public NavigationTask(boolean useCurrent, boolean addToHistory, boolean reload,
+                SearchInfoParcelable searchInfo, FileSystemObject scrollTo) {
+            super();
+            this.mUseCurrent = useCurrent;
+            this.mAddToHistory = addToHistory;
+            this.mSearchInfo = searchInfo;
+            this.mReload = reload;
+            this.mScrollTo = scrollTo;
+        }
+
+        /**
+         * {@inheritDoc}
+         */
+        @Override
+        protected List<FileSystemObject> doInBackground(String... params) {
+            // Check navigation security (don't allow to go outside the ChRooted environment if one
+            // is created)
+            mNewDirChecked = checkChRootedNavigation(params[0]);
+
+            //Check that it is really necessary change the directory
+            if (!mReload && NavigationView.this.mCurrentDir != null &&
+                    NavigationView.this.mCurrentDir.compareTo(mNewDirChecked) == 0) {
+                return null;
+            }
+
+            mHasChanged = !(NavigationView.this.mCurrentDir != null &&
+                    NavigationView.this.mCurrentDir.compareTo(mNewDirChecked) == 0);
+            mIsNewHistory = (NavigationView.this.mCurrentDir != null);
+
+            try {
+                //Reset the custom title view and returns to breadcrumb
+                if (NavigationView.this.mTitle != null) {
+                    NavigationView.this.mTitle.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            try {
+                                NavigationView.this.mTitle.restoreView();
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    });
+                }
+
+
+                //Start of loading data
+                if (NavigationView.this.mBreadcrumb != null) {
+                    try {
+                        NavigationView.this.mBreadcrumb.startLoading();
+                    } catch (Throwable ex) {
+                        /**NON BLOCK**/
+                    }
+                }
+
+                //Get the files, resolve links and apply configuration
+                //(sort, hidden, ...)
+                List<FileSystemObject> files = NavigationView.this.mFiles;
+                if (!mUseCurrent) {
+                    files = CommandHelper.listFiles(getContext(), mNewDirChecked, null);
+                }
+                return files;
+
+            } catch (final ConsoleAllocException e) {
+                //Show exception and exists
+                NavigationView.this.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        Context ctx = getContext();
+                        Log.e(TAG, ctx.getString(
+                                R.string.msgs_cant_create_console), e);
+                        DialogHelper.showToast(ctx,
+                                R.string.msgs_cant_create_console,
+                                Toast.LENGTH_LONG);
+                        ((Activity)ctx).finish();
+                    }
+                });
+
+            } catch (Exception ex) {
+                //End of loading data
+                if (NavigationView.this.mBreadcrumb != null) {
+                    try {
+                        NavigationView.this.mBreadcrumb.endLoading();
+                    } catch (Throwable ex2) {
+                        /**NON BLOCK**/
+                    }
+                }
+                if (ex instanceof CancelledOperationException) {
+                    return null;
+                }
+
+                //Capture exception (attach task, and use listener to do the anim)
+                ExceptionUtil.attachAsyncTask(
+                        ex,
+                        new AsyncTask<Object, Integer, Boolean>() {
+                            private List<FileSystemObject> mTaskFiles = null;
+                            @Override
+                            @SuppressWarnings({
+                                "unchecked", "unqualified-field-access"
+                            })
+                            protected Boolean doInBackground(Object... taskParams) {
+                                mTaskFiles = (List<FileSystemObject>)taskParams[0];
+                                return Boolean.TRUE;
+                            }
+
+                            @Override
+                            @SuppressWarnings("unqualified-field-access")
+                            protected void onPostExecute(Boolean result) {
+                                if (!result.booleanValue()) {
+                                    return;
+                                }
+                                onPostExecuteTask(
+                                        mTaskFiles, mAddToHistory, mIsNewHistory, mHasChanged,
+                                        mSearchInfo, mNewDirChecked, mScrollTo);
+                            }
+                        });
+                final OnRelaunchCommandResult exListener =
+                        new OnRelaunchCommandResult() {
+                    @Override
+                    public void onSuccess() {
+                        done();
+                    }
+                    @Override
+                    public void onFailed(Throwable cause) {
+                        done();
+                    }
+                    @Override
+                    public void onCancelled() {
+                        done();
+                    }
+                    private void done() {
+                        // Do animation
+                        fadeEfect(false);
+                    }
+                };
+                ExceptionUtil.translateException(
+                        getContext(), ex, false, true, exListener);
+            }
+            return null;
+        }
+
+        /**
+         * {@inheritDoc}
+         */
+        @Override
+        protected void onCancelled(List<FileSystemObject> result) {
+            onCancelled();
+        }
+
+        /**
+         * {@inheritDoc}
+         */
+        @Override
+        protected void onPostExecute(List<FileSystemObject> files) {
+            // This means an exception. This method will be recalled then
+            if (files != null) {
+                onPostExecuteTask(files, mAddToHistory, mIsNewHistory, mHasChanged,
+                        mSearchInfo, mNewDirChecked, mScrollTo);
+
+                // Do animation
+                fadeEfect(false);
+            }
+        }
+
+        /**
+         * Method that performs a fade animation.
+         *
+         * @param out Fade out (true); Fade in (false)
+         */
+        void fadeEfect(final boolean out) {
+            Activity activity = (Activity)getContext();
+            activity.runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    Animation fadeAnim = out ?
+                            new AlphaAnimation(1, 0) :
+                                new AlphaAnimation(0, 1);
+                            fadeAnim.setDuration(50L);
+                            fadeAnim.setFillAfter(true);
+                            fadeAnim.setInterpolator(new AccelerateInterpolator());
+                            NavigationView.this.startAnimation(fadeAnim);
+                }
+            });
+        }
+    };
+
     private int mId;
     private String mCurrentDir;
     private NavigationLayoutMode mCurrentMode;
@@ -198,12 +415,11 @@ public class NavigationView extends RelativeLayout implements
     List<FileSystemObject> mFiles;
     private FileSystemObjectAdapter mAdapter;
 
-    private final Object mSync = new Object();
-
     private OnHistoryListener mOnHistoryListener;
     private OnNavigationSelectionChangedListener mOnNavigationSelectionChangedListener;
     private OnNavigationRequestMenuListener mOnNavigationRequestMenuListener;
     private OnFilePickedListener mOnFilePickedListener;
+    private OnDirectoryChangedListener mOnDirectoryChangedListener;
 
     private boolean mChRooted;
 
@@ -288,6 +504,14 @@ public class NavigationView extends RelativeLayout implements
         parcel.setChRooted(this.mChRooted);
         parcel.setSelectedFiles(this.mAdapter.getSelectedItems());
         parcel.setFiles(this.mFiles);
+
+        int firstVisiblePosition = mAdapterView.getFirstVisiblePosition();
+        if (firstVisiblePosition >= 0 && firstVisiblePosition < mAdapter.getCount()) {
+            FileSystemObject firstVisible = mAdapter
+                    .getItem(firstVisiblePosition);
+            parcel.setFirstVisible(firstVisible);
+        }
+
         return parcel;
     }
 
@@ -295,8 +519,9 @@ public class NavigationView extends RelativeLayout implements
      * Invoked when the instance need to be restored.
      *
      * @param info The serialized info
+     * @return boolean If can restore
      */
-    public void onRestoreState(NavigationViewInfoParcelable info) {
+    public boolean onRestoreState(NavigationViewInfoParcelable info) {
         //Restore the data
         this.mId = info.getId();
         this.mCurrentDir = info.getCurrentDir();
@@ -304,8 +529,11 @@ public class NavigationView extends RelativeLayout implements
         this.mFiles = info.getFiles();
         this.mAdapter.setSelectedItems(info.getSelectedFiles());
 
+        final FileSystemObject firstVisible = info.getFirstVisible();
+
         //Update the views
-        refresh();
+        refresh(firstVisible);
+        return true;
     }
 
     /**
@@ -318,8 +546,8 @@ public class NavigationView extends RelativeLayout implements
         // Retrieve the mode
         this.mNavigationMode = NAVIGATION_MODE.BROWSABLE;
         int mode = tarray.getInteger(
-                                R.styleable.Navigable_navigation,
-                                NAVIGATION_MODE.BROWSABLE.ordinal());
+                R.styleable.Navigable_navigation,
+                NAVIGATION_MODE.BROWSABLE.ordinal());
         if (mode >= 0 && mode < NAVIGATION_MODE.values().length) {
             this.mNavigationMode = NAVIGATION_MODE.values()[mode];
         }
@@ -478,6 +706,16 @@ public class NavigationView extends RelativeLayout implements
     }
 
     /**
+     * Method that sets the listener for directory changes
+     *
+     * @param onDirectoryChangedListener The listener reference
+     */
+    public void setOnDirectoryChangedListener(
+            OnDirectoryChangedListener onDirectoryChangedListener) {
+        this.mOnDirectoryChangedListener = onDirectoryChangedListener;
+    }
+
+    /**
      * Method that sets if the view should use flinger gesture detection.
      *
      * @param useFlinger If the view should use flinger gesture detection
@@ -492,7 +730,7 @@ public class NavigationView extends RelativeLayout implements
             if (this.mAdapterView instanceof FlingerListView) {
                 if (useFlinger) {
                     ((FlingerListView)this.mAdapterView).
-                        setOnItemFlingerListener(this.mOnItemFlingerListener);
+                    setOnItemFlingerListener(this.mOnItemFlingerListener);
                 } else {
                     ((FlingerListView)this.mAdapterView).setOnItemFlingerListener(null);
                 }
@@ -505,17 +743,32 @@ public class NavigationView extends RelativeLayout implements
      *
      * @param fso The file system object
      */
-    public void scrollTo(FileSystemObject fso) {
-        if (fso != null) {
-            try {
-                int position = this.mAdapter.getPosition(fso);
-                this.mAdapterView.setSelection(position);
-            } catch (Exception e) {
-                this.mAdapterView.setSelection(0);
+    public void scrollTo(final FileSystemObject fso) {
+
+        this.mAdapterView.post(new Runnable() {
+
+            @Override
+            public void run() {
+                if (fso != null) {
+                    try {
+                        int position = mAdapter.getPosition(fso);
+                        mAdapterView.setSelection(position);
+
+                        // Make the scrollbar appear
+                        if (position > 0) {
+                            mAdapterView.scrollBy(0, 1);
+                            mAdapterView.scrollBy(0, -1);
+                        }
+
+                    } catch (Exception e) {
+                        mAdapterView.setSelection(0);
+                    }
+                } else {
+                    mAdapterView.setSelection(0);
+                }
             }
-        } else {
-            this.mAdapterView.setSelection(0);
-        }
+        });
+
     }
 
     /**
@@ -560,113 +813,119 @@ public class NavigationView extends RelativeLayout implements
     }
 
     /**
+     * Method that recycles this object
+     */
+    public void recycle() {
+        if (this.mAdapter != null) {
+            this.mAdapter.dispose();
+        }
+    }
+
+    /**
      * Method that change the view mode.
      *
      * @param newMode The new mode
      */
-    @SuppressWarnings({ "unchecked", "null" })
+    @SuppressWarnings("unchecked")
     public void changeViewMode(final NavigationLayoutMode newMode) {
-        synchronized (this.mSync) {
-            //Check that it is really necessary change the mode
-            if (this.mCurrentMode != null && this.mCurrentMode.compareTo(newMode) == 0) {
-                return;
-            }
+        //Check that it is really necessary change the mode
+        if (this.mCurrentMode != null && this.mCurrentMode.compareTo(newMode) == 0) {
+            return;
+        }
 
-            // If we should set the listview to response to flinger gesture detection
-            boolean useFlinger =
-                    Preferences.getSharedPreferences().getBoolean(
-                            FileManagerSettings.SETTINGS_USE_FLINGER.getId(),
-                                ((Boolean)FileManagerSettings.
-                                        SETTINGS_USE_FLINGER.
-                                            getDefaultValue()).booleanValue());
+        // If we should set the listview to response to flinger gesture detection
+        boolean useFlinger =
+                Preferences.getSharedPreferences().getBoolean(
+                        FileManagerSettings.SETTINGS_USE_FLINGER.getId(),
+                        ((Boolean)FileManagerSettings.
+                                SETTINGS_USE_FLINGER.
+                                getDefaultValue()).booleanValue());
 
-            //Creates the new layout
-            AdapterView<ListAdapter> newView = null;
-            int itemResourceId = -1;
-            if (newMode.compareTo(NavigationLayoutMode.ICONS) == 0) {
-                newView = (AdapterView<ListAdapter>)inflate(
-                        getContext(), RESOURCE_MODE_ICONS_LAYOUT, null);
-                itemResourceId = RESOURCE_MODE_ICONS_ITEM;
+        //Creates the new layout
+        AdapterView<ListAdapter> newView = null;
+        int itemResourceId = -1;
+        if (newMode.compareTo(NavigationLayoutMode.ICONS) == 0) {
+            newView = (AdapterView<ListAdapter>)inflate(
+                    getContext(), RESOURCE_MODE_ICONS_LAYOUT, null);
+            itemResourceId = RESOURCE_MODE_ICONS_ITEM;
 
-            } else if (newMode.compareTo(NavigationLayoutMode.SIMPLE) == 0) {
-                newView =  (AdapterView<ListAdapter>)inflate(
-                        getContext(), RESOURCE_MODE_SIMPLE_LAYOUT, null);
-                itemResourceId = RESOURCE_MODE_SIMPLE_ITEM;
+        } else if (newMode.compareTo(NavigationLayoutMode.SIMPLE) == 0) {
+            newView =  (AdapterView<ListAdapter>)inflate(
+                    getContext(), RESOURCE_MODE_SIMPLE_LAYOUT, null);
+            itemResourceId = RESOURCE_MODE_SIMPLE_ITEM;
 
-                // Set the flinger listener (only when navigate)
-                if (this.mNavigationMode.compareTo(NAVIGATION_MODE.BROWSABLE) == 0) {
-                    if (useFlinger && newView instanceof FlingerListView) {
-                        ((FlingerListView)newView).
-                            setOnItemFlingerListener(this.mOnItemFlingerListener);
-                    }
-                }
-
-            } else if (newMode.compareTo(NavigationLayoutMode.DETAILS) == 0) {
-                newView =  (AdapterView<ListAdapter>)inflate(
-                        getContext(), RESOURCE_MODE_DETAILS_LAYOUT, null);
-                itemResourceId = RESOURCE_MODE_DETAILS_ITEM;
-
-                // Set the flinger listener (only when navigate)
-                if (this.mNavigationMode.compareTo(NAVIGATION_MODE.BROWSABLE) == 0) {
-                    if (useFlinger && newView instanceof FlingerListView) {
-                        ((FlingerListView)newView).
-                            setOnItemFlingerListener(this.mOnItemFlingerListener);
-                    }
-                }
-            }
-
-            //Get the current adapter and its adapter list
-            List<FileSystemObject> files = new ArrayList<FileSystemObject>(this.mFiles);
-            final AdapterView<ListAdapter> current =
-                    (AdapterView<ListAdapter>)findViewById(RESOURCE_CURRENT_LAYOUT);
-            FileSystemObjectAdapter adapter =
-                    new FileSystemObjectAdapter(
-                            getContext(),
-                            new ArrayList<FileSystemObject>(),
-                            itemResourceId,
-                            this.mNavigationMode.compareTo(NAVIGATION_MODE.PICKABLE) == 0);
-            adapter.setOnSelectionChangedListener(this);
-
-            //Remove current layout
-            if (current != null) {
-                if (current.getAdapter() != null) {
-                    //Save selected items before dispose adapter
-                    FileSystemObjectAdapter currentAdapter =
-                            ((FileSystemObjectAdapter)current.getAdapter());
-                    adapter.setSelectedItems(currentAdapter.getSelectedItems());
-                    currentAdapter.dispose();
-                }
-                removeView(current);
-            }
-            this.mFiles = files;
-            adapter.addAll(files);
-            adapter.notifyDataSetChanged();
-
-            //Set the adapter
-            this.mAdapter = adapter;
-            newView.setAdapter(this.mAdapter);
-            newView.setOnItemClickListener(NavigationView.this);
-
-            //Add the new layout
-            this.mAdapterView = newView;
-            addView(newView, 0);
-            this.mCurrentMode = newMode;
-
-            // Pick mode doesn't implements the onlongclick
+            // Set the flinger listener (only when navigate)
             if (this.mNavigationMode.compareTo(NAVIGATION_MODE.BROWSABLE) == 0) {
-                this.mAdapterView.setOnItemLongClickListener(this);
-            } else {
-                this.mAdapterView.setOnItemLongClickListener(null);
+                if (useFlinger && newView instanceof FlingerListView) {
+                    ((FlingerListView)newView).
+                    setOnItemFlingerListener(this.mOnItemFlingerListener);
+                }
             }
 
-            //Save the preference (only in navigation browse mode)
+        } else if (newMode.compareTo(NavigationLayoutMode.DETAILS) == 0) {
+            newView =  (AdapterView<ListAdapter>)inflate(
+                    getContext(), RESOURCE_MODE_DETAILS_LAYOUT, null);
+            itemResourceId = RESOURCE_MODE_DETAILS_ITEM;
+
+            // Set the flinger listener (only when navigate)
             if (this.mNavigationMode.compareTo(NAVIGATION_MODE.BROWSABLE) == 0) {
-                try {
-                    Preferences.savePreference(
-                            FileManagerSettings.SETTINGS_LAYOUT_MODE, newMode, true);
-                } catch (Exception ex) {
-                    Log.e(TAG, "Save of view mode preference fails", ex); //$NON-NLS-1$
+                if (useFlinger && newView instanceof FlingerListView) {
+                    ((FlingerListView)newView).
+                    setOnItemFlingerListener(this.mOnItemFlingerListener);
                 }
+            }
+        }
+
+        //Get the current adapter and its adapter list
+        List<FileSystemObject> files = new ArrayList<FileSystemObject>(this.mFiles);
+        final AdapterView<ListAdapter> current =
+                (AdapterView<ListAdapter>)findViewById(RESOURCE_CURRENT_LAYOUT);
+        FileSystemObjectAdapter adapter =
+                new FileSystemObjectAdapter(
+                        getContext(),
+                        new ArrayList<FileSystemObject>(),
+                        itemResourceId,
+                        this.mNavigationMode.compareTo(NAVIGATION_MODE.PICKABLE) == 0);
+        adapter.setOnSelectionChangedListener(this);
+
+        //Remove current layout
+        if (current != null) {
+            if (current.getAdapter() != null) {
+                //Save selected items before dispose adapter
+                FileSystemObjectAdapter currentAdapter =
+                        ((FileSystemObjectAdapter)current.getAdapter());
+                adapter.setSelectedItems(currentAdapter.getSelectedItems());
+                currentAdapter.dispose();
+            }
+            removeView(current);
+        }
+        this.mFiles = files;
+        adapter.addAll(files);
+
+        //Set the adapter
+        this.mAdapter = adapter;
+        newView.setAdapter(this.mAdapter);
+        newView.setOnItemClickListener(NavigationView.this);
+
+        //Add the new layout
+        this.mAdapterView = newView;
+        addView(newView, 0);
+        this.mCurrentMode = newMode;
+
+        // Pick mode doesn't implements the onlongclick
+        if (this.mNavigationMode.compareTo(NAVIGATION_MODE.BROWSABLE) == 0) {
+            this.mAdapterView.setOnItemLongClickListener(this);
+        } else {
+            this.mAdapterView.setOnItemLongClickListener(null);
+        }
+
+        //Save the preference (only in navigation browse mode)
+        if (this.mNavigationMode.compareTo(NAVIGATION_MODE.BROWSABLE) == 0) {
+            try {
+                Preferences.savePreference(
+                        FileManagerSettings.SETTINGS_LAYOUT_MODE, newMode, true);
+            } catch (Exception ex) {
+                Log.e(TAG, "Save of view mode preference fails", ex); //$NON-NLS-1$
             }
         }
     }
@@ -677,7 +936,6 @@ public class NavigationView extends RelativeLayout implements
      * @param fso The file system object
      */
     public void removeItem(FileSystemObject fso) {
-        this.mAdapter.remove(fso);
         // Delete also from internal list
         if (fso != null) {
             int cc = this.mFiles.size()-1;
@@ -689,7 +947,7 @@ public class NavigationView extends RelativeLayout implements
                 }
             }
         }
-        this.mAdapter.notifyDataSetChanged();
+        this.mAdapter.remove(fso);
     }
 
     /**
@@ -701,7 +959,6 @@ public class NavigationView extends RelativeLayout implements
         FileSystemObject fso = this.mAdapter.getItem(path);
         if (fso != null) {
             this.mAdapter.remove(fso);
-            this.mAdapter.notifyDataSetChanged();
         }
     }
 
@@ -721,6 +978,16 @@ public class NavigationView extends RelativeLayout implements
      */
     public void changeCurrentDir(final String newDir) {
         changeCurrentDir(newDir, true, false, false, null, null);
+    }
+
+    /**
+     * Method that changes the current directory of the view.
+     *
+     * @param newDir The new directory location
+     * @param addToHistory Add the directory to history
+     */
+    public void changeCurrentDir(final String newDir, boolean addToHistory) {
+        changeCurrentDir(newDir, addToHistory, false, false, null, null);
     }
 
     /**
@@ -747,161 +1014,30 @@ public class NavigationView extends RelativeLayout implements
             final String newDir, final boolean addToHistory,
             final boolean reload, final boolean useCurrent,
             final SearchInfoParcelable searchInfo, final FileSystemObject scrollTo) {
+        NavigationTask task = new NavigationTask(useCurrent, addToHistory, reload,
+                searchInfo, scrollTo);
+        task.executeOnExecutor(AsyncTask.SERIAL_EXECUTOR, newDir);
+    }
 
-        // Check navigation security (don't allow to go outside the ChRooted environment if one
-        // is created)
-        final String fNewDir = checkChRootedNavigation(newDir);
-
-        synchronized (this.mSync) {
-            //Check that it is really necessary change the directory
-            if (!reload && this.mCurrentDir != null && this.mCurrentDir.compareTo(fNewDir) == 0) {
-                return;
+    /**
+     * Remove all unmounted files in the current selection
+     */
+    public void removeUnmountedSelection() {
+        List<FileSystemObject> selection = mAdapter.getSelectedItems();
+        int cc = selection.size() - 1;
+        for (int i = cc; i >= 0; i--) {
+            FileSystemObject item = selection.get(i);
+            VirtualMountPointConsole vc =
+                    VirtualMountPointConsole.getVirtualConsoleForPath(item.getFullPath());
+            if (vc != null && !vc.isMounted()) {
+                selection.remove(i);
             }
-
-            final boolean hasChanged =
-                    !(this.mCurrentDir != null && this.mCurrentDir.compareTo(fNewDir) == 0);
-            final boolean isNewHistory = (this.mCurrentDir != null);
-
-            //Execute the listing in a background process
-            AsyncTask<String, Integer, List<FileSystemObject>> task =
-                    new AsyncTask<String, Integer, List<FileSystemObject>>() {
-                        /**
-                         * {@inheritDoc}
-                         */
-                        @Override
-                        protected List<FileSystemObject> doInBackground(String... params) {
-                            try {
-                                //Reset the custom title view and returns to breadcrumb
-                                if (NavigationView.this.mTitle != null) {
-                                    NavigationView.this.mTitle.post(new Runnable() {
-                                        @Override
-                                        public void run() {
-                                            try {
-                                                NavigationView.this.mTitle.restoreView();
-                                            } catch (Exception e) {
-                                                e.printStackTrace();
-                                            }
-                                        }
-                                    });
-                                }
-
-
-                                //Start of loading data
-                                if (NavigationView.this.mBreadcrumb != null) {
-                                    try {
-                                        NavigationView.this.mBreadcrumb.startLoading();
-                                    } catch (Throwable ex) {
-                                        /**NON BLOCK**/
-                                    }
-                                }
-
-                                //Get the files, resolve links and apply configuration
-                                //(sort, hidden, ...)
-                                List<FileSystemObject> files = NavigationView.this.mFiles;
-                                if (!useCurrent) {
-                                    files = CommandHelper.listFiles(getContext(), fNewDir, null);
-                                }
-                                return files;
-                            } catch (final ConsoleAllocException e) {
-                                //Show exception and exists
-                                NavigationView.this.post(new Runnable() {
-                                    @Override
-                                    public void run() {
-                                        Context ctx = getContext();
-                                        Log.e(TAG, ctx.getString(
-                                                R.string.msgs_cant_create_console), e);
-                                        DialogHelper.showToast(ctx,
-                                                R.string.msgs_cant_create_console,
-                                                Toast.LENGTH_LONG);
-                                        ((Activity)ctx).finish();
-                                    }
-                                });
-                                return null;
-
-                            } catch (Exception ex) {
-                                //End of loading data
-                                if (NavigationView.this.mBreadcrumb != null) {
-                                    try {
-                                        NavigationView.this.mBreadcrumb.endLoading();
-                                    } catch (Throwable ex2) {
-                                        /**NON BLOCK**/
-                                    }
-                                }
-
-                                //Capture exception
-                                ExceptionUtil.attachAsyncTask(
-                                    ex,
-                                    new AsyncTask<Object, Integer, Boolean>() {
-                                        @Override
-                                        @SuppressWarnings("unchecked")
-                                        protected Boolean doInBackground(Object... taskParams) {
-                                            final List<FileSystemObject> files =
-                                                    (List<FileSystemObject>)taskParams[0];
-                                            NavigationView.this.mAdapterView.post(
-                                                new Runnable() {
-                                                    @Override
-                                                    public void run() {
-                                                        onPostExecuteTask(
-                                                                files, addToHistory,
-                                                                isNewHistory, hasChanged,
-                                                                searchInfo, fNewDir, scrollTo);
-
-                                                        // Do animation
-                                                        fadeEfect(false);
-                                                    }
-                                                });
-                                            return Boolean.TRUE;
-                                        }
-
-                                    });
-                                ExceptionUtil.translateException(getContext(), ex);
-                            }
-                            return null;
-                        }
-
-                        /**
-                         * {@inheritDoc}
-                         */
-                        @Override
-                        protected void onPreExecute() {
-                            // Do animation
-                            fadeEfect(true);
-                        }
-
-
-
-                        /**
-                         * {@inheritDoc}
-                         */
-                        @Override
-                        protected void onPostExecute(List<FileSystemObject> files) {
-                            if (files != null) {
-                                onPostExecuteTask(
-                                        files, addToHistory, isNewHistory,
-                                        hasChanged, searchInfo, fNewDir, scrollTo);
-
-                                // Do animation
-                                fadeEfect(false);
-                            }
-                        }
-
-                        /**
-                         * Method that performs a fade animation.
-                         *
-                         * @param out Fade out (true); Fade in (false)
-                         */
-                        void fadeEfect(boolean out) {
-                            Animation fadeAnim = out ?
-                                                     new AlphaAnimation(1, 0) :
-                                                     new AlphaAnimation(0, 1);
-                            fadeAnim.setDuration(50L);
-                            fadeAnim.setFillAfter(true);
-                            fadeAnim.setInterpolator(new AccelerateInterpolator());
-                            NavigationView.this.startAnimation(fadeAnim);
-                        }
-                   };
-            task.execute(fNewDir);
         }
+        mAdapter.setSelectedItems(selection);
+        mAdapter.notifyDataSetChanged();
+
+        // Do not call the selection listener. This method is supposed to be called by the
+        // listener itself
     }
 
 
@@ -938,13 +1074,6 @@ public class NavigationView extends RelativeLayout implements
                 }
             }
 
-            //Load the data
-            loadData(sortedFiles);
-            this.mFiles = sortedFiles;
-            if (searchInfo != null) {
-                searchInfo.setSuccessNavigation(true);
-            }
-
             //Add to history?
             if (addToHistory && hasChanged && isNewHistory) {
                 if (this.mOnHistoryListener != null) {
@@ -953,19 +1082,27 @@ public class NavigationView extends RelativeLayout implements
                 }
             }
 
+            //Load the data
+            loadData(sortedFiles);
+            this.mFiles = sortedFiles;
+            if (searchInfo != null) {
+                searchInfo.setSuccessNavigation(true);
+            }
+
             //Change the breadcrumb
             if (this.mBreadcrumb != null) {
                 this.mBreadcrumb.changeBreadcrumbPath(newDir, this.mChRooted);
             }
 
-            //Scroll to object?
-            if (scrollTo != null) {
-                scrollTo(scrollTo);
-            }
+            //If scrollTo is null, the position will be set to 0
+            scrollTo(scrollTo);
 
             //The current directory is now the "newDir"
             this.mCurrentDir = newDir;
-
+            if (this.mOnDirectoryChangedListener != null) {
+                FileSystemObject dir = FileHelper.createFileSystemObject(new File(newDir));
+                this.mOnDirectoryChangedListener.onDirectoryChanged(dir);
+            }
         } finally {
             //If calling activity is search, then save the search history
             if (searchInfo != null) {
@@ -993,10 +1130,10 @@ public class NavigationView extends RelativeLayout implements
         final AdapterView<ListAdapter> view =
                 (AdapterView<ListAdapter>)findViewById(RESOURCE_CURRENT_LAYOUT);
         FileSystemObjectAdapter adapter = (FileSystemObjectAdapter)view.getAdapter();
+        adapter.setNotifyOnChange(false);
         adapter.clear();
         adapter.addAll(files);
         adapter.notifyDataSetChanged();
-        view.setSelection(0);
     }
 
     /**
@@ -1008,6 +1145,9 @@ public class NavigationView extends RelativeLayout implements
 
         // Get the adapter and the fso
         FileSystemObjectAdapter adapter = ((FileSystemObjectAdapter)parent.getAdapter());
+        if (adapter == null || position < 0 || (position >= adapter.getCount())) {
+            return false;
+        }
         FileSystemObject fso = adapter.getItem(position);
 
         // Parent directory hasn't actions
@@ -1108,6 +1248,14 @@ public class NavigationView extends RelativeLayout implements
      * {@inheritDoc}
      */
     @Override
+    public void onRequestBookmarksRefresh() {
+        // Ignore
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public void onRequestRemove(Object o, boolean clearSelection) {
         if (o != null && o instanceof FileSystemObject) {
             removeItem((FileSystemObject)o);
@@ -1125,6 +1273,11 @@ public class NavigationView extends RelativeLayout implements
     @Override
     public void onNavigateTo(Object o) {
         // Ignored
+    }
+
+    @Override
+    public void onCancel() {
+        // nop
     }
 
     /**
@@ -1233,7 +1386,7 @@ public class NavigationView extends RelativeLayout implements
 
         //Change to first storage volume
         StorageVolume[] volumes =
-                StorageHelper.getStorageVolumes(getContext());
+                StorageHelper.getStorageVolumes(getContext(), false);
         if (volumes != null && volumes.length > 0) {
             changeCurrentDir(volumes[0].getPath(), false, true, false, null, null);
         }
@@ -1264,7 +1417,7 @@ public class NavigationView extends RelativeLayout implements
 
         // Check if the path is owned by one of the storage volumes
         if (!StorageHelper.isPathInStorageVolume(newDir)) {
-            StorageVolume[] volumes = StorageHelper.getStorageVolumes(getContext());
+            StorageVolume[] volumes = StorageHelper.getStorageVolumes(getContext(), false);
             if (volumes != null && volumes.length > 0) {
                 return volumes[0].getPath();
             }

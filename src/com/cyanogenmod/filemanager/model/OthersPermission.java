@@ -77,6 +77,7 @@ public class OthersPermission extends Permission {
      */
     public void setStickybit(boolean stickybit) {
         this.mStickybit = stickybit;
+        invalidateRawString();
     }
 
     /**
@@ -124,7 +125,7 @@ public class OthersPermission extends Permission {
      * {@inheritDoc}
      */
     @Override
-    public String toRawString() {
+    protected String getRawString() {
         StringBuilder p = new StringBuilder();
         p.append(isRead() ? READ : UNASIGNED);
         p.append(isWrite() ? WRITE : UNASIGNED);

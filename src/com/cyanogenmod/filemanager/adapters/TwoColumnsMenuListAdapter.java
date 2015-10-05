@@ -49,9 +49,10 @@ public class TwoColumnsMenuListAdapter extends SimpleMenuListAdapter
      *
      * @param context The current context
      * @param menuResourceId The resource identifier
+     * @param multiSelect Whether the menu allows for single or multi select
      */
-    public TwoColumnsMenuListAdapter(Context context, int menuResourceId) {
-        super(context, menuResourceId);
+    public TwoColumnsMenuListAdapter(Context context, int menuResourceId, boolean multiSelect) {
+        super(context, menuResourceId, multiSelect);
         this.mContext = context;
 
         //Separators are not support in this kind of adapter
@@ -66,10 +67,11 @@ public class TwoColumnsMenuListAdapter extends SimpleMenuListAdapter
      * @param context The current context
      * @param menuResourceId The resource identifier
      * @param menuGroupResourceId The menu group resource identifier
+     * @param multiSelect Whether the menu allows for single or multi select
      */
     public TwoColumnsMenuListAdapter(
-            Context context, int menuResourceId, int menuGroupResourceId) {
-        super(context, menuResourceId, menuGroupResourceId);
+            Context context, int menuResourceId, int menuGroupResourceId, boolean multiSelect) {
+        super(context, menuResourceId, menuGroupResourceId, multiSelect);
         this.mContext = context;
 
         //Separators are not support in this kind of adapter

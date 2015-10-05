@@ -17,16 +17,20 @@
 package com.cyanogenmod.filemanager.util;
 
 import android.content.Context;
+import android.content.Intent;
+import android.media.MediaScannerConnection;
+import android.provider.MediaStore.Files;
 
+import android.provider.MediaStore;
 import com.cyanogenmod.filemanager.commands.AsyncResultListener;
-import com.cyanogenmod.filemanager.commands.ChangeCurrentDirExecutable;
 import com.cyanogenmod.filemanager.commands.ChangeOwnerExecutable;
 import com.cyanogenmod.filemanager.commands.ChangePermissionsExecutable;
+import com.cyanogenmod.filemanager.commands.ChecksumExecutable;
 import com.cyanogenmod.filemanager.commands.CompressExecutable;
+import com.cyanogenmod.filemanager.commands.ConcurrentAsyncResultListener;
 import com.cyanogenmod.filemanager.commands.CopyExecutable;
 import com.cyanogenmod.filemanager.commands.CreateDirExecutable;
 import com.cyanogenmod.filemanager.commands.CreateFileExecutable;
-import com.cyanogenmod.filemanager.commands.CurrentDirExecutable;
 import com.cyanogenmod.filemanager.commands.DeleteDirExecutable;
 import com.cyanogenmod.filemanager.commands.DeleteFileExecutable;
 import com.cyanogenmod.filemanager.commands.DiskUsageExecutable;
@@ -54,6 +58,8 @@ import com.cyanogenmod.filemanager.commands.UncompressExecutable;
 import com.cyanogenmod.filemanager.commands.WritableExecutable;
 import com.cyanogenmod.filemanager.commands.WriteExecutable;
 import com.cyanogenmod.filemanager.commands.shell.InvalidCommandDefinitionException;
+import com.cyanogenmod.filemanager.console.AuthenticationFailedException;
+import com.cyanogenmod.filemanager.console.CancelledOperationException;
 import com.cyanogenmod.filemanager.console.CommandNotFoundException;
 import com.cyanogenmod.filemanager.console.Console;
 import com.cyanogenmod.filemanager.console.ConsoleAllocException;
@@ -63,6 +69,8 @@ import com.cyanogenmod.filemanager.console.InsufficientPermissionsException;
 import com.cyanogenmod.filemanager.console.NoSuchFileOrDirectory;
 import com.cyanogenmod.filemanager.console.OperationTimeoutException;
 import com.cyanogenmod.filemanager.console.ReadOnlyFilesystemException;
+import com.cyanogenmod.filemanager.console.VirtualMountPointConsole;
+import com.cyanogenmod.filemanager.console.secure.SecureConsole;
 import com.cyanogenmod.filemanager.model.DiskUsage;
 import com.cyanogenmod.filemanager.model.FileSystemObject;
 import com.cyanogenmod.filemanager.model.FolderUsage;
@@ -74,9 +82,13 @@ import com.cyanogenmod.filemanager.model.Query;
 import com.cyanogenmod.filemanager.model.SearchResult;
 import com.cyanogenmod.filemanager.model.User;
 import com.cyanogenmod.filemanager.preferences.CompressionMode;
+import com.cyanogenmod.filemanager.preferences.FileManagerSettings;
+import com.cyanogenmod.filemanager.util.MediaHelper;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -149,7 +161,8 @@ public final class CommandHelper {
                                             createMountExecutable(
                                                     UnmountAsyncResultListener.this.mMountPoint,
                                                     false);
-                            UnmountAsyncResultListener.this.mConsole.execute(unmountExecutable);
+                            UnmountAsyncResultListener.this.mConsole.execute(
+                                    unmountExecutable, mCtx);
                         } catch (Exception e) {
                             // Capture the exception but not show to the user
                             ExceptionUtil.translateException(
@@ -190,37 +203,6 @@ public final class CommandHelper {
     }
 
     /**
-     * Method that changes the current directory of the shell.
-     *
-     * @param context The current context (needed if console == null)
-     * @param dst The new directory
-     * @return boolean The operation result
-     * @param console The console in which execute the program. <code>null</code>
-     * to attach to the default console
-     * @throws FileNotFoundException If the initial directory not exists
-     * @throws IOException If initial directory couldn't be checked
-     * @throws InvalidCommandDefinitionException If the command has an invalid definition
-     * @throws NoSuchFileOrDirectory If the file or directory was not found
-     * @throws ConsoleAllocException If the console can't be allocated
-     * @throws InsufficientPermissionsException If an operation requires elevated permissions
-     * @throws CommandNotFoundException If the command was not found
-     * @throws OperationTimeoutException If the operation exceeded the maximum time of wait
-     * @throws ExecutionException If the operation returns a invalid exit code
-     * @see ChangeCurrentDirExecutable
-     */
-    public static boolean changeCurrentDir(Context context, String dst, Console console)
-            throws FileNotFoundException, IOException, ConsoleAllocException,
-            NoSuchFileOrDirectory, InsufficientPermissionsException,
-            CommandNotFoundException, OperationTimeoutException,
-            ExecutionException, InvalidCommandDefinitionException {
-        Console c = ensureConsole(context, console);
-        ChangeCurrentDirExecutable executable =
-                c.getExecutableFactory().newCreator().createChangeCurrentDirExecutable(dst);
-        execute(context, executable, c);
-        return executable.getResult().booleanValue();
-    }
-
-    /**
      * Method that changes the owner of a file system object.
      *
      * @param context The current context (needed if console == null)
@@ -240,14 +222,16 @@ public final class CommandHelper {
      * @throws OperationTimeoutException If the operation exceeded the maximum time of wait
      * @throws ExecutionException If the operation returns a invalid exit code
      * @throws ReadOnlyFilesystemException If the operation writes in a read-only filesystem
+     * @throws CancelledOperationException If the operation was cancelled
      * @see ChangeOwnerExecutable
      */
     public static boolean changeOwner(
             Context context, String src, User user, Group group, Console console)
             throws FileNotFoundException, IOException, ConsoleAllocException,
             NoSuchFileOrDirectory, InsufficientPermissionsException,
-            CommandNotFoundException, OperationTimeoutException,
-            ExecutionException, InvalidCommandDefinitionException, ReadOnlyFilesystemException {
+            CommandNotFoundException, OperationTimeoutException, ExecutionException,
+            InvalidCommandDefinitionException, ReadOnlyFilesystemException,
+            CancelledOperationException {
         Console c = ensureConsole(context, console);
         ChangeOwnerExecutable executable =
                 c.getExecutableFactory().
@@ -275,6 +259,7 @@ public final class CommandHelper {
      * @throws OperationTimeoutException If the operation exceeded the maximum time of wait
      * @throws ExecutionException If the operation returns a invalid exit code
      * @throws ReadOnlyFilesystemException If the operation writes in a read-only filesystem
+     * @throws CancelledOperationException If the operation was cancelled
      * @see ChangePermissionsExecutable
      */
     public static boolean changePermissions(
@@ -282,7 +267,8 @@ public final class CommandHelper {
             throws FileNotFoundException, IOException, ConsoleAllocException,
             NoSuchFileOrDirectory, InsufficientPermissionsException,
             CommandNotFoundException, OperationTimeoutException,
-            ExecutionException, InvalidCommandDefinitionException, ReadOnlyFilesystemException {
+            ExecutionException, InvalidCommandDefinitionException, ReadOnlyFilesystemException,
+            CancelledOperationException {
         Console c = ensureConsole(context, console);
         ChangePermissionsExecutable executable =
                 c.getExecutableFactory().newCreator().
@@ -309,14 +295,16 @@ public final class CommandHelper {
      * @throws OperationTimeoutException If the operation exceeded the maximum time of wait
      * @throws ExecutionException If the operation returns a invalid exit code
      * @throws ReadOnlyFilesystemException If the operation writes in a read-only filesystem
+     * @throws CancelledOperationException If the operation was cancelled
      * @see CreateDirExecutable
      */
     public static boolean createDirectory(Context context, String directory, Console console)
             throws FileNotFoundException, IOException, ConsoleAllocException,
             NoSuchFileOrDirectory, InsufficientPermissionsException,
             CommandNotFoundException, OperationTimeoutException,
-            ExecutionException, InvalidCommandDefinitionException, ReadOnlyFilesystemException {
-        Console c = ensureConsole(context, console);
+            ExecutionException, InvalidCommandDefinitionException, ReadOnlyFilesystemException,
+            CancelledOperationException {
+        Console c = ensureConsoleForFile(context, console, directory);
         CreateDirExecutable executable =
                 c.getExecutableFactory().newCreator().createCreateDirectoryExecutable(directory);
         writableExecute(context, executable, c);
@@ -341,17 +329,24 @@ public final class CommandHelper {
      * @throws OperationTimeoutException If the operation exceeded the maximum time of wait
      * @throws ExecutionException If the operation returns a invalid exit code
      * @throws ReadOnlyFilesystemException If the operation writes in a read-only filesystem
+     * @throws CancelledOperationException If the operation was cancelled
      * @see CreateFileExecutable
      */
     public static boolean createFile(Context context, String file, Console console)
             throws FileNotFoundException, IOException, ConsoleAllocException,
             NoSuchFileOrDirectory, InsufficientPermissionsException,
             CommandNotFoundException, OperationTimeoutException,
-            ExecutionException, InvalidCommandDefinitionException, ReadOnlyFilesystemException {
-        Console c = ensureConsole(context, console);
+            ExecutionException, InvalidCommandDefinitionException, ReadOnlyFilesystemException,
+            CancelledOperationException {
+        Console c = ensureConsoleForFile(context, console, file);
         CreateFileExecutable executable =
                 c.getExecutableFactory().newCreator().createCreateFileExecutable(file);
         writableExecute(context, executable, c);
+
+        // Do media scan
+        MediaScannerConnection.scanFile(context, new String[]{
+                MediaHelper.normalizeMediaPath(file)}, null, null);
+
         return executable.getResult().booleanValue();
     }
 
@@ -373,17 +368,27 @@ public final class CommandHelper {
      * @throws OperationTimeoutException If the operation exceeded the maximum time of wait
      * @throws ExecutionException If the operation returns a invalid exit code
      * @throws ReadOnlyFilesystemException If the operation writes in a read-only filesystem
+     * @throws CancelledOperationException If the operation was cancelled
      * @see DeleteDirExecutable
      */
     public static boolean deleteDirectory(Context context, String directory, Console console)
             throws FileNotFoundException, IOException, ConsoleAllocException,
             NoSuchFileOrDirectory, InsufficientPermissionsException,
             CommandNotFoundException, OperationTimeoutException,
-            ExecutionException, InvalidCommandDefinitionException, ReadOnlyFilesystemException {
-        Console c = ensureConsole(context, console);
+            ExecutionException, InvalidCommandDefinitionException, ReadOnlyFilesystemException,
+            CancelledOperationException {
+        Console c = ensureConsoleForFile(context, console, directory);
         DeleteDirExecutable executable =
                 c.getExecutableFactory().newCreator().createDeleteDirExecutable(directory);
         writableExecute(context, executable, c);
+
+        // Do media scan
+        File parent = new File(directory).getParentFile();
+        if (parent != null) {
+            MediaScannerConnection.scanFile(context, new String[]{
+                    MediaHelper.normalizeMediaPath(parent.getAbsolutePath())}, null, null);
+        }
+
         return executable.getResult().booleanValue();
     }
 
@@ -405,17 +410,23 @@ public final class CommandHelper {
      * @throws OperationTimeoutException If the operation exceeded the maximum time of wait
      * @throws ExecutionException If the operation returns a invalid exit code
      * @throws ReadOnlyFilesystemException If the operation writes in a read-only filesystem
+     * @throws CancelledOperationException If the operation was cancelled
      * @see DeleteFileExecutable
      */
     public static boolean deleteFile(Context context, String file, Console console)
             throws FileNotFoundException, IOException, ConsoleAllocException,
             NoSuchFileOrDirectory, InsufficientPermissionsException,
             CommandNotFoundException, OperationTimeoutException,
-            ExecutionException, InvalidCommandDefinitionException, ReadOnlyFilesystemException {
-        Console c = ensureConsole(context, console);
+            ExecutionException, InvalidCommandDefinitionException, ReadOnlyFilesystemException,
+            CancelledOperationException {
+        Console c = ensureConsoleForFile(context, console, file);
         DeleteFileExecutable executable =
                 c.getExecutableFactory().newCreator().createDeleteFileExecutable(file);
         writableExecute(context, executable, c);
+
+        // Remove from media scanner
+        removeFromMediaStore(context, file);
+
         return executable.getResult().booleanValue();
     }
 
@@ -436,46 +447,17 @@ public final class CommandHelper {
      * @throws CommandNotFoundException If the command was not found
      * @throws OperationTimeoutException If the operation exceeded the maximum time of wait
      * @throws ExecutionException If the operation returns a invalid exit code
+     * @throws CancelledOperationException If the operation was cancelled
      * @see ResolveLinkExecutable
      */
     public static FileSystemObject resolveSymlink(Context context, String symlink, Console console)
             throws FileNotFoundException, IOException, ConsoleAllocException,
             NoSuchFileOrDirectory, InsufficientPermissionsException,
             CommandNotFoundException, OperationTimeoutException,
-            ExecutionException, InvalidCommandDefinitionException {
+            ExecutionException, InvalidCommandDefinitionException, CancelledOperationException {
         Console c = ensureConsole(context, console);
         ResolveLinkExecutable executable =
                 c.getExecutableFactory().newCreator().createResolveLinkExecutable(symlink);
-        execute(context, executable, c);
-        return executable.getResult();
-    }
-
-    /**
-     * Method that retrieves the current directory of the shell.
-     *
-     * @param context The current context (needed if console == null)
-     * @param console The console in which execute the program. <code>null</code>
-     * to attach to the default console
-     * @return String The current directory
-     * @throws FileNotFoundException If the initial directory not exists
-     * @throws IOException If initial directory couldn't be checked
-     * @throws InvalidCommandDefinitionException If the command has an invalid definition
-     * @throws NoSuchFileOrDirectory If the file or directory was not found
-     * @throws ConsoleAllocException If the console can't be allocated
-     * @throws InsufficientPermissionsException If an operation requires elevated permissions
-     * @throws CommandNotFoundException If the command was not found
-     * @throws OperationTimeoutException If the operation exceeded the maximum time of wait
-     * @throws ExecutionException If the operation returns a invalid exit code
-     * @see CurrentDirExecutable
-     */
-    public static String getCurrentDir(Context context, Console console)
-            throws FileNotFoundException, IOException, ConsoleAllocException,
-            NoSuchFileOrDirectory, InsufficientPermissionsException,
-            CommandNotFoundException, OperationTimeoutException,
-            ExecutionException, InvalidCommandDefinitionException {
-        Console c = ensureConsole(context, console);
-        CurrentDirExecutable executable =
-                c.getExecutableFactory().newCreator().createCurrentDirExecutable();
         execute(context, executable, c);
         return executable.getResult();
     }
@@ -497,13 +479,14 @@ public final class CommandHelper {
      * @throws CommandNotFoundException If the command was not found
      * @throws OperationTimeoutException If the operation exceeded the maximum time of wait
      * @throws ExecutionException If the operation returns a invalid exit code
+     * @throws CancelledOperationException If the operation was cancelled
      * @see ListExecutable
      */
     public static FileSystemObject getFileInfo(Context context, String src, Console console)
             throws FileNotFoundException, IOException, ConsoleAllocException,
             NoSuchFileOrDirectory, InsufficientPermissionsException,
             CommandNotFoundException, OperationTimeoutException,
-            ExecutionException, InvalidCommandDefinitionException {
+            ExecutionException, InvalidCommandDefinitionException, CancelledOperationException {
         return getFileInfo(context, src, true, console);
     }
 
@@ -525,6 +508,7 @@ public final class CommandHelper {
      * @throws CommandNotFoundException If the command was not found
      * @throws OperationTimeoutException If the operation exceeded the maximum time of wait
      * @throws ExecutionException If the operation returns a invalid exit code
+     * @throws CancelledOperationException If the operation was cancelled
      * @see ListExecutable
      */
     public static FileSystemObject getFileInfo(
@@ -532,8 +516,8 @@ public final class CommandHelper {
             throws FileNotFoundException, IOException, ConsoleAllocException,
             NoSuchFileOrDirectory, InsufficientPermissionsException,
             CommandNotFoundException, OperationTimeoutException,
-            ExecutionException, InvalidCommandDefinitionException {
-        Console c = ensureConsole(context, console);
+            ExecutionException, InvalidCommandDefinitionException, CancelledOperationException {
+        Console c = ensureConsoleForFile(context, console, src);
         ListExecutable executable =
                 c.getExecutableFactory().
                     newCreator().createFileInfoExecutable(src, followSymlinks);
@@ -541,7 +525,9 @@ public final class CommandHelper {
         List<FileSystemObject> files = executable.getResult();
         if (files != null && files.size() > 0) {
             // Resolve symlinks prior to return the object
-            FileHelper.resolveSymlinks(context, files);
+            if (followSymlinks) {
+                FileHelper.resolveSymlinks(context, files);
+            }
             return files.get(0);
         }
         return null;
@@ -563,13 +549,14 @@ public final class CommandHelper {
      * @throws CommandNotFoundException If the command was not found
      * @throws OperationTimeoutException If the operation exceeded the maximum time of wait
      * @throws ExecutionException If the operation returns a invalid exit code
+     * @throws CancelledOperationException If the operation was cancelled
      * @see GroupsExecutable
      */
     public static List<Group> getGroups(Context context, Console console)
             throws FileNotFoundException, IOException, ConsoleAllocException,
             NoSuchFileOrDirectory, InsufficientPermissionsException,
             CommandNotFoundException, OperationTimeoutException,
-            ExecutionException, InvalidCommandDefinitionException {
+            ExecutionException, InvalidCommandDefinitionException, CancelledOperationException {
         Console c = ensureConsole(context, console);
         GroupsExecutable executable =
                 c.getExecutableFactory().newCreator().createGroupsExecutable();
@@ -578,28 +565,29 @@ public final class CommandHelper {
     }
 
     /**
-    * Method that retrieves the identity of the current user.
-    *
-    * @param context The current context (needed if console == null)
-    * @param console The console in which execute the program. <code>null</code>
-    * to attach to the default console
-    * @return Identity The identity of the current user
-    * @throws FileNotFoundException If the initial directory not exists
-    * @throws IOException If initial directory couldn't be checked
-    * @throws InvalidCommandDefinitionException If the command has an invalid definition
-    * @throws NoSuchFileOrDirectory If the file or directory was not found
-    * @throws ConsoleAllocException If the console can't be allocated
-    * @throws InsufficientPermissionsException If an operation requires elevated permissions
-    * @throws CommandNotFoundException If the command was not found
-    * @throws OperationTimeoutException If the operation exceeded the maximum time of wait
-    * @throws ExecutionException If the operation returns a invalid exit code
-    * @see IdentityExecutable
-    */
+     * Method that retrieves the identity of the current user.
+     *
+     * @param context The current context (needed if console == null)
+     * @param console The console in which execute the program. <code>null</code>
+     * to attach to the default console
+     * @return Identity The identity of the current user
+     * @throws FileNotFoundException If the initial directory not exists
+     * @throws IOException If initial directory couldn't be checked
+     * @throws InvalidCommandDefinitionException If the command has an invalid definition
+     * @throws NoSuchFileOrDirectory If the file or directory was not found
+     * @throws ConsoleAllocException If the console can't be allocated
+     * @throws InsufficientPermissionsException If an operation requires elevated permissions
+     * @throws CommandNotFoundException If the command was not found
+     * @throws OperationTimeoutException If the operation exceeded the maximum time of wait
+     * @throws ExecutionException If the operation returns a invalid exit code
+     * @throws CancelledOperationException If the operation was cancelled
+     * @see IdentityExecutable
+     */
    public static Identity getIdentity(Context context, Console console)
            throws FileNotFoundException, IOException, ConsoleAllocException,
            NoSuchFileOrDirectory, InsufficientPermissionsException,
            CommandNotFoundException, OperationTimeoutException,
-           ExecutionException, InvalidCommandDefinitionException {
+           ExecutionException, InvalidCommandDefinitionException, CancelledOperationException {
        Console c = ensureConsole(context, console);
        IdentityExecutable executable =
                c.getExecutableFactory().newCreator().createIdentityExecutable();
@@ -612,7 +600,7 @@ public final class CommandHelper {
     *
     * @param context The current context (needed if console == null)
     * @param src The absolute path to the source fso
-     * @param link The absolute path to the link fso
+    * @param link The absolute path to the link fso
     * @param console The console in which execute the program. <code>null</code>
     * to attach to the default console
     * @return boolean The operation result
@@ -626,13 +614,15 @@ public final class CommandHelper {
     * @throws OperationTimeoutException If the operation exceeded the maximum time of wait
     * @throws ExecutionException If the operation returns a invalid exit code
     * @throws ReadOnlyFilesystemException If the operation writes in a read-only filesystem
+    * @throws CancelledOperationException If the operation was cancelled
     * @see LinkExecutable
     */
    public static boolean createLink(Context context, String src, String link, Console console)
            throws FileNotFoundException, IOException, ConsoleAllocException,
            NoSuchFileOrDirectory, InsufficientPermissionsException,
            CommandNotFoundException, OperationTimeoutException,
-           ExecutionException, InvalidCommandDefinitionException, ReadOnlyFilesystemException {
+           ExecutionException, InvalidCommandDefinitionException, ReadOnlyFilesystemException,
+           CancelledOperationException {
        Console c = ensureConsole(context, console);
        LinkExecutable executable =
                c.getExecutableFactory().newCreator().createLinkExecutable(src, link);
@@ -657,14 +647,15 @@ public final class CommandHelper {
      * @throws CommandNotFoundException If the command was not found
      * @throws OperationTimeoutException If the operation exceeded the maximum time of wait
      * @throws ExecutionException If the operation returns a invalid exit code
+     * @throws CancelledOperationException If the operation was cancelled
      * @see ParentDirExecutable
      */
     public static String getParentDir(Context context, String src, Console console)
             throws FileNotFoundException, IOException, ConsoleAllocException,
             NoSuchFileOrDirectory, InsufficientPermissionsException,
             CommandNotFoundException, OperationTimeoutException,
-            ExecutionException, InvalidCommandDefinitionException {
-        Console c = ensureConsole(context, console);
+            ExecutionException, InvalidCommandDefinitionException, CancelledOperationException {
+        Console c = ensureConsoleForFile(context, console, src);
         ParentDirExecutable executable =
                 c.getExecutableFactory().newCreator().createParentDirExecutable(src);
         execute(context, executable, c);
@@ -689,13 +680,14 @@ public final class CommandHelper {
      * @throws CommandNotFoundException If the command was not found
      * @throws OperationTimeoutException If the operation exceeded the maximum time of wait
      * @throws ExecutionException If the operation returns a invalid exit code
+     * @throws CancelledOperationException If the operation was cancelled
      * @see EchoExecutable
      */
     public static String getVariable(Context context, String msg, Console console)
             throws FileNotFoundException, IOException, ConsoleAllocException,
             NoSuchFileOrDirectory, InsufficientPermissionsException,
             CommandNotFoundException, OperationTimeoutException,
-            ExecutionException, InvalidCommandDefinitionException {
+            ExecutionException, InvalidCommandDefinitionException, CancelledOperationException {
         Console c = ensureConsole(context, console);
         EchoExecutable executable =
                 c.getExecutableFactory().newCreator().createEchoExecutable(msg);
@@ -720,6 +712,7 @@ public final class CommandHelper {
      * @throws CommandNotFoundException If the command was not found
      * @throws OperationTimeoutException If the operation exceeded the maximum time of wait
      * @throws ExecutionException If the operation returns a invalid exit code
+     * @throws CancelledOperationException If the operation was cancelled
      * @see ListExecutable
      */
     public static List<FileSystemObject> listFiles(
@@ -727,14 +720,21 @@ public final class CommandHelper {
             throws FileNotFoundException, IOException, ConsoleAllocException,
             NoSuchFileOrDirectory, InsufficientPermissionsException,
             CommandNotFoundException, OperationTimeoutException,
-            ExecutionException, InvalidCommandDefinitionException {
-        Console c = ensureConsole(context, console);
+            ExecutionException, InvalidCommandDefinitionException, CancelledOperationException,
+            CancelledOperationException {
+        Console c = ensureConsoleForFile(context, console, directory);
         ListExecutable executable =
                 c.getExecutableFactory().newCreator().
                     createListExecutable(directory);
         execute(context, executable, c);
         List<FileSystemObject> result = executable.getResult();
         FileHelper.resolveSymlinks(context, result);
+
+        // And now we need to verify if the directory is the
+        if (VirtualMountPointConsole.isVirtualStorageDir(directory)) {
+            result.addAll(VirtualMountPointConsole.getVirtualMountableDirectories());
+        }
+
         return result;
     }
 
@@ -757,18 +757,78 @@ public final class CommandHelper {
      * @throws OperationTimeoutException If the operation exceeded the maximum time of wait
      * @throws ExecutionException If the operation returns a invalid exit code
      * @throws ReadOnlyFilesystemException If the operation writes in a read-only filesystem
+     * @throws CancelledOperationException If the operation was cancelled
      * @see MoveExecutable
      */
     public static boolean move(Context context, String src, String dst, Console console)
             throws FileNotFoundException, IOException, ConsoleAllocException,
             NoSuchFileOrDirectory, InsufficientPermissionsException,
             CommandNotFoundException, OperationTimeoutException,
-            ExecutionException, InvalidCommandDefinitionException, ReadOnlyFilesystemException {
-        Console c = ensureConsole(context, console);
-        MoveExecutable executable =
-                c.getExecutableFactory().newCreator().createMoveExecutable(src, dst);
-        writableExecute(context, executable, c);
-        return executable.getResult().booleanValue();
+            ExecutionException, InvalidCommandDefinitionException, ReadOnlyFilesystemException,
+            CancelledOperationException {
+
+        Console cSrc = ensureConsoleForFile(context, console, src);
+        Console cDst = ensureConsoleForFile(context, console, dst);
+        boolean ret = true;
+        if (cSrc.equals(cDst) && !FileHelper.isSamePath(src, dst)) {
+            // Is safe to use the same console
+            MoveExecutable executable =
+                    cSrc.getExecutableFactory().newCreator().createMoveExecutable(src, dst);
+            writableExecute(context, executable, cSrc);
+            ret = executable.getResult().booleanValue();
+        } else {
+            // We need to create a temporary file in the external filesystem to make it
+            // available to virtual consoles
+
+            // 1.- Move to a temporary file with the source console (destination
+            // is a safe location)
+            File tmp = FileHelper.createTempFilename(context, true);
+            try {
+                MoveExecutable moveExecutable =
+                        cSrc.getExecutableFactory().newCreator().createMoveExecutable(
+                                src, tmp.getAbsolutePath());
+                writableExecute(context, moveExecutable, cSrc);
+                if (!moveExecutable.getResult().booleanValue()) {
+                    ret = false;
+                }
+
+                // 2.- Move the temporary file to the final filesystem with the destination console
+                if (ret) {
+                    moveExecutable =
+                            cDst.getExecutableFactory().newCreator().createMoveExecutable(
+                                    tmp.getAbsolutePath(), dst);
+                    writableExecute(context, moveExecutable, cDst);
+                    if (!moveExecutable.getResult().booleanValue()) {
+                        ret = false;
+                    }
+                }
+
+            } finally {
+                FileHelper.deleteFileOrFolder(tmp);
+            }
+        }
+
+        // Do media scan (don't scan the file if is virtual file)
+        if (ret) {
+            File parent = new File(src).getParentFile();
+            if (parent != null) {
+                if (!VirtualMountPointConsole.isVirtualStorageResource(parent.getAbsolutePath())) {
+                    // Remove from media scanner
+                    removeFromMediaStore(context, src);
+                }
+            }
+            if (!VirtualMountPointConsole.isVirtualStorageResource(parent.getAbsolutePath())) {
+                MediaScannerConnection.scanFile(context, new String[]{
+                        MediaHelper.normalizeMediaPath(dst)}, null, null);
+            }
+        }
+
+        return ret;
+    }
+
+    private static void removeFromMediaStore(Context context, String path) {
+        context.getContentResolver().delete(Files.getContentUri(MediaHelper.EXTERNAL_VOLUME),
+            MediaStore.Files.FileColumns.DATA + "=?", new String[]{path});
     }
 
     /**
@@ -790,18 +850,66 @@ public final class CommandHelper {
      * @throws OperationTimeoutException If the operation exceeded the maximum time of wait
      * @throws ExecutionException If the operation returns a invalid exit code
      * @throws ReadOnlyFilesystemException If the operation writes in a read-only filesystem
+     * @throws CancelledOperationException If the operation was cancelled
      * @see CopyExecutable
      */
     public static boolean copy(Context context, String src, String dst, Console console)
             throws FileNotFoundException, IOException, ConsoleAllocException,
             NoSuchFileOrDirectory, InsufficientPermissionsException,
             CommandNotFoundException, OperationTimeoutException,
-            ExecutionException, InvalidCommandDefinitionException, ReadOnlyFilesystemException {
-        Console c = ensureConsole(context, console);
-        CopyExecutable executable =
-                c.getExecutableFactory().newCreator().createCopyExecutable(src, dst);
-        writableExecute(context, executable, c);
-        return executable.getResult().booleanValue();
+            ExecutionException, InvalidCommandDefinitionException, ReadOnlyFilesystemException,
+            CancelledOperationException {
+
+        Console cSrc = ensureConsoleForFile(context, console, src);
+        Console cDst = ensureConsoleForFile(context, console, dst);
+        boolean ret = true;
+        if (cSrc.equals(cDst) && !FileHelper.isSamePath(src, dst)) {
+            // Is safe to use the same console
+            CopyExecutable executable =
+                    cSrc.getExecutableFactory().newCreator().createCopyExecutable(src, dst);
+            writableExecute(context, executable, cSrc);
+            ret = executable.getResult().booleanValue();
+        } else {
+            // We need to create a temporary file in the external filesystem to make it
+            // available to virtual consoles
+
+            // 1.- Copy to a temporary file with the source console (destination
+            // is a safe location)
+            File tmp = FileHelper.createTempFilename(context, true);
+            try {
+                CopyExecutable copyExecutable =
+                        cSrc.getExecutableFactory().newCreator().createCopyExecutable(
+                                src, tmp.getAbsolutePath());
+                writableExecute(context, copyExecutable, cSrc);
+                if (!copyExecutable.getResult().booleanValue()) {
+                    ret = false;
+                }
+
+                // 2.- Move the temporary file to the final filesystem with the destination console
+                if (ret) {
+                    MoveExecutable moveExecutable =
+                            cDst.getExecutableFactory().newCreator().createMoveExecutable(
+                                    tmp.getAbsolutePath(), dst);
+                    writableExecute(context, moveExecutable, cDst);
+                    if (!moveExecutable.getResult().booleanValue()) {
+                        ret = false;
+                    }
+                }
+
+            } finally {
+                FileHelper.deleteFileOrFolder(tmp);
+            }
+        }
+
+        // Do media scan (don't scan the file if is virtual file)
+        if (ret) {
+            if (!VirtualMountPointConsole.isVirtualStorageResource(dst)) {
+                MediaScannerConnection.scanFile(context, new String[]{
+                        MediaHelper.normalizeMediaPath(dst)}, null, null);
+            }
+        }
+
+        return ret;
     }
 
     /**
@@ -822,6 +930,7 @@ public final class CommandHelper {
      * @throws CommandNotFoundException If the command was not found
      * @throws OperationTimeoutException If the operation exceeded the maximum time of wait
      * @throws ExecutionException If the operation returns a invalid exit code
+     * @throws CancelledOperationException If the operation was cancelled
      * @see ExecExecutable
      */
     public static ExecExecutable exec(
@@ -829,7 +938,7 @@ public final class CommandHelper {
             throws FileNotFoundException, IOException, ConsoleAllocException,
             NoSuchFileOrDirectory, InsufficientPermissionsException,
             CommandNotFoundException, OperationTimeoutException,
-            ExecutionException, InvalidCommandDefinitionException {
+            ExecutionException, InvalidCommandDefinitionException, CancelledOperationException {
         Console c = ensureConsole(context, console);
         ExecExecutable executable =
                 c.getExecutableFactory().newCreator().
@@ -857,22 +966,48 @@ public final class CommandHelper {
      * @throws CommandNotFoundException If the command was not found
      * @throws OperationTimeoutException If the operation exceeded the maximum time of wait
      * @throws ExecutionException If the operation returns a invalid exit code
+     * @throws CancelledOperationException If the operation was cancelled
      * @see SearchResult
      * @see FindExecutable
      */
     public static FindExecutable findFiles(
             Context context, String directory, Query search,
-            AsyncResultListener asyncResultListener, Console console)
+            ConcurrentAsyncResultListener asyncResultListener, Console console)
             throws FileNotFoundException, IOException, ConsoleAllocException,
             NoSuchFileOrDirectory, InsufficientPermissionsException,
             CommandNotFoundException, OperationTimeoutException,
-            ExecutionException, InvalidCommandDefinitionException {
-        Console c = ensureConsole(context, console);
-        FindExecutable executable =
-                c.getExecutableFactory().newCreator().
-                    createFindExecutable(directory, search, asyncResultListener);
-        execute(context, executable, c);
-        return executable;
+            ExecutionException, InvalidCommandDefinitionException, CancelledOperationException {
+        List<Console> consoles = new ArrayList<Console>();
+        List<FindExecutable> executables = new ArrayList<FindExecutable>();
+        Console c = ensureConsoleForFile(context, console, directory);
+        consoles.add(c);
+
+        // Obtain all the rest of console that will participate in the search, that aren't the
+        // current console
+        List<Console> vcs = VirtualMountPointConsole.getVirtualConsoleForSearchPath(directory);
+        for (int i = vcs.size() - 1; i >= 0; i--) {
+            Console vc = vcs.get(i);
+            if (vc.equals(c)) {
+                vcs.remove(i);
+            }
+        }
+        consoles.addAll(vcs);
+
+        // Register all the executables
+        for (Console cc : consoles) {
+            executables.add(
+                    cc.getExecutableFactory().newCreator().
+                        createFindExecutable(directory, search, asyncResultListener));
+        }
+
+        // Launch every executable
+        int count = executables.size();
+        for (int i = 0; i < count; i++) {
+            execute(context, executables.get(i), consoles.get(i));
+        }
+
+        // Return the first of the executables
+        return executables.get(0);
     }
 
     /**
@@ -893,6 +1028,7 @@ public final class CommandHelper {
      * @throws CommandNotFoundException If the command was not found
      * @throws OperationTimeoutException If the operation exceeded the maximum time of wait
      * @throws ExecutionException If the operation returns a invalid exit code
+     * @throws CancelledOperationException If the operation was cancelled
      * @see FolderUsage
      * @see FolderUsageExecutable
      */
@@ -902,8 +1038,8 @@ public final class CommandHelper {
             throws FileNotFoundException, IOException, ConsoleAllocException,
             NoSuchFileOrDirectory, InsufficientPermissionsException,
             CommandNotFoundException, OperationTimeoutException,
-            ExecutionException, InvalidCommandDefinitionException {
-        Console c = ensureConsole(context, console);
+            ExecutionException, InvalidCommandDefinitionException, CancelledOperationException {
+        Console c = ensureConsoleForFile(context, console, directory);
         FolderUsageExecutable executable =
                 c.getExecutableFactory().newCreator().
                     createFolderUsageExecutable(directory, asyncResultListener);
@@ -927,18 +1063,21 @@ public final class CommandHelper {
      * @throws CommandNotFoundException If the command was not found
      * @throws OperationTimeoutException If the operation exceeded the maximum time of wait
      * @throws ExecutionException If the operation returns a invalid exit code
+     * @throws CancelledOperationException If the operation was cancelled
      * @see DiskUsageExecutable
      */
     public static List<DiskUsage> getDiskUsage(Context context, Console console)
             throws FileNotFoundException, IOException, ConsoleAllocException,
             NoSuchFileOrDirectory, InsufficientPermissionsException,
             CommandNotFoundException, OperationTimeoutException,
-            ExecutionException, InvalidCommandDefinitionException {
+            ExecutionException, InvalidCommandDefinitionException, CancelledOperationException {
         Console c = ensureConsole(context, console);
         DiskUsageExecutable executable =
                 c.getExecutableFactory().newCreator().createDiskUsageExecutable();
         execute(context, executable, c);
-        return executable.getResult();
+        List<DiskUsage> diskUsage = executable.getResult();
+        diskUsage.addAll(VirtualMountPointConsole.getVirtualDiskUsage());
+        return diskUsage;
     }
 
     /**
@@ -958,20 +1097,31 @@ public final class CommandHelper {
      * @throws CommandNotFoundException If the command was not found
      * @throws OperationTimeoutException If the operation exceeded the maximum time of wait
      * @throws ExecutionException If the operation returns a invalid exit code
+     * @throws CancelledOperationException If the operation was cancelled
      * @see DiskUsageExecutable
      */
     public static DiskUsage getDiskUsage(Context context, String dir, Console console)
             throws FileNotFoundException, IOException, ConsoleAllocException,
             NoSuchFileOrDirectory, InsufficientPermissionsException,
             CommandNotFoundException, OperationTimeoutException,
-            ExecutionException, InvalidCommandDefinitionException {
-        Console c = ensureConsole(context, console);
-        DiskUsageExecutable executable =
-                c.getExecutableFactory().newCreator().createDiskUsageExecutable(dir);
-        execute(context, executable, c);
-        List<DiskUsage> du = executable.getResult();
-        if (du != null && du.size() > 0) {
-            return du.get(0);
+            ExecutionException, InvalidCommandDefinitionException, CancelledOperationException {
+
+        // Virtual directories don't implement a disk usage command, just return the data if
+        // the directory belongs to a virtual filesystem
+        VirtualMountPointConsole vc = VirtualMountPointConsole.getVirtualConsoleForPath(dir);
+        if (vc != null) {
+            return vc.getDiskUsage(dir);
+        } else {
+            Console c = ensureConsole(context, console);
+            DiskUsageExecutable executable =
+                    c.getExecutableFactory().newCreator().createDiskUsageExecutable(dir);
+            execute(context, executable, c);
+            List<DiskUsage> du = executable.getResult();
+            for (DiskUsage d : du) {
+                if (d.getMountPoint().equals(dir)) {
+                    return d;
+                }
+            }
         }
         return null;
     }
@@ -992,18 +1142,21 @@ public final class CommandHelper {
      * @throws CommandNotFoundException If the command was not found
      * @throws OperationTimeoutException If the operation exceeded the maximum time of wait
      * @throws ExecutionException If the operation returns a invalid exit code
+     * @throws CancelledOperationException If the operation was cancelled
      * @see MountPointInfoExecutable
      */
     public static List<MountPoint> getMountPoints(Context context, Console console)
             throws FileNotFoundException, IOException, ConsoleAllocException,
             NoSuchFileOrDirectory, InsufficientPermissionsException,
             CommandNotFoundException, OperationTimeoutException,
-            ExecutionException, InvalidCommandDefinitionException {
+            ExecutionException, InvalidCommandDefinitionException, CancelledOperationException {
         Console c = ensureConsole(context, console);
         MountPointInfoExecutable executable =
                 c.getExecutableFactory().newCreator().createMountPointInfoExecutable();
         execute(context, executable, c);
-        return executable.getResult();
+        List<MountPoint> mountPoints = executable.getResult();
+        mountPoints.addAll(VirtualMountPointConsole.getVirtualMountPoints());
+        return mountPoints;
     }
 
     /**
@@ -1024,18 +1177,43 @@ public final class CommandHelper {
      * @throws CommandNotFoundException If the command was not found
      * @throws OperationTimeoutException If the operation exceeded the maximum time of wait
      * @throws ExecutionException If the operation returns a invalid exit code
+     * @throws CancelledOperationException If the operation was cancelled
      * @see MountExecutable
      */
     public static boolean remount(Context context, MountPoint mp, boolean rw, Console console)
             throws FileNotFoundException, IOException, ConsoleAllocException,
             NoSuchFileOrDirectory, InsufficientPermissionsException,
             CommandNotFoundException, OperationTimeoutException,
-            ExecutionException, InvalidCommandDefinitionException {
-        Console c = ensureConsole(context, console);
-        MountExecutable executable =
-                c.getExecutableFactory().newCreator().createMountExecutable(mp, rw);
-        execute(context, executable, c);
-        return executable.getResult().booleanValue();
+            ExecutionException, InvalidCommandDefinitionException, CancelledOperationException {
+        boolean ret = false;
+        if (mp.isSecure()) {
+            // Unmount the secure file system
+            SecureConsole sc = (SecureConsole) ensureConsoleForFile(
+                    context, console, mp.getMountPoint());
+            if (rw) {
+                sc.mount(context);
+            } else {
+                sc.unmount();
+            }
+            ret = true;
+        } else {
+            Console c = ensureConsole(context, console);
+            MountExecutable executable =
+                    c.getExecutableFactory().newCreator().createMountExecutable(mp, rw);
+            execute(context, executable, c);
+            ret = executable.getResult().booleanValue();
+        }
+
+        if (ret) {
+            // Send an broadcast to notify that the mount state of this filesystem changed
+            Intent intent = new Intent(FileManagerSettings.INTENT_MOUNT_STATUS_CHANGED);
+            intent.putExtra(FileManagerSettings.EXTRA_MOUNTPOINT, mp.getMountPoint());
+            intent.putExtra(FileManagerSettings.EXTRA_STATUS, rw
+                    ? MountExecutable.READWRITE : MountExecutable.READONLY);
+            context.sendBroadcast(intent);
+        }
+
+        return ret;
     }
 
     /**
@@ -1055,16 +1233,51 @@ public final class CommandHelper {
      * @throws CommandNotFoundException If the command was not found
      * @throws OperationTimeoutException If the operation exceeded the maximum time of wait
      * @throws ExecutionException If the operation returns a invalid exit code
+     * @throws CancelledOperationException If the operation was cancelled
      * @see QuickFolderSearchExecutable
      */
     public static List<String> quickFolderSearch(Context context, String regexp, Console console)
             throws FileNotFoundException, IOException, ConsoleAllocException,
             NoSuchFileOrDirectory, InsufficientPermissionsException,
             CommandNotFoundException, OperationTimeoutException,
-            ExecutionException, InvalidCommandDefinitionException {
+            ExecutionException, InvalidCommandDefinitionException, CancelledOperationException {
         Console c = ensureConsole(context, console);
         QuickFolderSearchExecutable executable =
                 c.getExecutableFactory().newCreator().createQuickFolderSearchExecutable(regexp);
+        execute(context, executable, c);
+        return executable.getResult();
+    }
+
+    /**
+     * Method that retrieves the process identifier of all the processes (a program
+     * owned by the main process of this application).
+     *
+     * @param context The current context (needed if console == null)
+     * @param pid The process id of the shell where the command is running
+     * @param console The console in which execute the program. <code>null</code>
+     * to attach to the default console
+     * @return List<Integer> The processes identifiers of the program or <code>null</code> if not exists
+     * @throws FileNotFoundException If the initial directory not exists
+     * @throws IOException If initial directory couldn't be checked
+     * @throws InvalidCommandDefinitionException If the command has an invalid definition
+     * @throws NoSuchFileOrDirectory If the file or directory was not found
+     * @throws ConsoleAllocException If the console can't be allocated
+     * @throws InsufficientPermissionsException If an operation requires elevated permissions
+     * @throws CommandNotFoundException If the command was not found
+     * @throws OperationTimeoutException If the operation exceeded the maximum time of wait
+     * @throws ExecutionException If the operation returns a invalid exit code
+     * @throws CancelledOperationException If the operation was cancelled
+     * @see ProcessIdExecutable
+     */
+    public static List<Integer> getProcessesIds(
+            Context context, int pid, Console console)
+            throws FileNotFoundException, IOException, ConsoleAllocException,
+            NoSuchFileOrDirectory, InsufficientPermissionsException,
+            CommandNotFoundException, OperationTimeoutException,
+            ExecutionException, InvalidCommandDefinitionException, CancelledOperationException {
+        Console c = ensureConsole(context, console);
+        ProcessIdExecutable executable =
+                c.getExecutableFactory().newCreator().createProcessIdExecutable(pid);
         execute(context, executable, c);
         return executable.getResult();
     }
@@ -1088,6 +1301,7 @@ public final class CommandHelper {
      * @throws CommandNotFoundException If the command was not found
      * @throws OperationTimeoutException If the operation exceeded the maximum time of wait
      * @throws ExecutionException If the operation returns a invalid exit code
+     * @throws CancelledOperationException If the operation was cancelled
      * @see ProcessIdExecutable
      */
     public static Integer getProcessId(
@@ -1095,12 +1309,16 @@ public final class CommandHelper {
             throws FileNotFoundException, IOException, ConsoleAllocException,
             NoSuchFileOrDirectory, InsufficientPermissionsException,
             CommandNotFoundException, OperationTimeoutException,
-            ExecutionException, InvalidCommandDefinitionException {
+            ExecutionException, InvalidCommandDefinitionException, CancelledOperationException {
         Console c = ensureConsole(context, console);
         ProcessIdExecutable executable =
                 c.getExecutableFactory().newCreator().createProcessIdExecutable(pid, processName);
         execute(context, executable, c);
-        return executable.getResult();
+        List<Integer> pids = executable.getResult();
+        if (pids != null && pids.size() > 0) {
+            return pids.get(0);
+        }
+        return null;
     }
 
     /**
@@ -1120,6 +1338,7 @@ public final class CommandHelper {
      * @throws CommandNotFoundException If the command was not found
      * @throws OperationTimeoutException If the operation exceeded the maximum time of wait
      * @throws ExecutionException If the operation returns a invalid exit code
+     * @throws CancelledOperationException If the operation was cancelled
      * @see ProcessIdExecutable
      */
     public static void sendSignal(
@@ -1127,7 +1346,7 @@ public final class CommandHelper {
             throws FileNotFoundException, IOException, ConsoleAllocException,
             NoSuchFileOrDirectory, InsufficientPermissionsException,
             CommandNotFoundException, OperationTimeoutException,
-            ExecutionException, InvalidCommandDefinitionException {
+            ExecutionException, InvalidCommandDefinitionException, CancelledOperationException {
         Console c = ensureConsole(context, console);
         SendSignalExecutable executable =
                 c.getExecutableFactory().newCreator().createSendSignalExecutable(process, signal);
@@ -1150,6 +1369,7 @@ public final class CommandHelper {
      * @throws CommandNotFoundException If the command was not found
      * @throws OperationTimeoutException If the operation exceeded the maximum time of wait
      * @throws ExecutionException If the operation returns a invalid exit code
+     * @throws CancelledOperationException If the operation was cancelled
      * @see ProcessIdExecutable
      */
     public static void sendSignal(
@@ -1157,7 +1377,7 @@ public final class CommandHelper {
             throws FileNotFoundException, IOException, ConsoleAllocException,
             NoSuchFileOrDirectory, InsufficientPermissionsException,
             CommandNotFoundException, OperationTimeoutException,
-            ExecutionException, InvalidCommandDefinitionException {
+            ExecutionException, InvalidCommandDefinitionException, CancelledOperationException {
         Console c = ensureConsole(context, console);
         SendSignalExecutable executable =
                 c.getExecutableFactory().newCreator().createKillExecutable(process);
@@ -1182,6 +1402,7 @@ public final class CommandHelper {
      * @throws CommandNotFoundException If the command was not found
      * @throws OperationTimeoutException If the operation exceeded the maximum time of wait
      * @throws ExecutionException If the operation returns a invalid exit code
+     * @throws CancelledOperationException If the operation was cancelled
      * @see "byte[]"
      * @see ReadExecutable
      */
@@ -1191,8 +1412,8 @@ public final class CommandHelper {
             throws FileNotFoundException, IOException, ConsoleAllocException,
             NoSuchFileOrDirectory, InsufficientPermissionsException,
             CommandNotFoundException, OperationTimeoutException,
-            ExecutionException, InvalidCommandDefinitionException {
-        Console c = ensureConsole(context, console);
+            ExecutionException, InvalidCommandDefinitionException, CancelledOperationException {
+        Console c = ensureConsoleForFile(context, console, file);
         ReadExecutable executable =
                 c.getExecutableFactory().newCreator().
                     createReadExecutable(file, asyncResultListener);
@@ -1219,6 +1440,7 @@ public final class CommandHelper {
      * @throws OperationTimeoutException If the operation exceeded the maximum time of wait
      * @throws ExecutionException If the operation returns a invalid exit code
      * @throws ReadOnlyFilesystemException If the operation writes in a read-only filesystem
+     * @throws CancelledOperationException If the operation was cancelled
      * @see WriteExecutable
      */
     public static WriteExecutable write(
@@ -1227,8 +1449,9 @@ public final class CommandHelper {
             throws FileNotFoundException, IOException, ConsoleAllocException,
             NoSuchFileOrDirectory, InsufficientPermissionsException,
             CommandNotFoundException, OperationTimeoutException,
-            ExecutionException, InvalidCommandDefinitionException, ReadOnlyFilesystemException {
-        Console c = ensureConsole(context, console);
+            ExecutionException, InvalidCommandDefinitionException, ReadOnlyFilesystemException,
+            CancelledOperationException {
+        Console c = ensureConsoleForFile(context, console, file);
 
         // Create a wrapper listener, for unmount the filesystem if necessary
         UnmountAsyncResultListener wrapperListener = new UnmountAsyncResultListener();
@@ -1278,6 +1501,7 @@ public final class CommandHelper {
      * @throws OperationTimeoutException If the operation exceeded the maximum time of wait
      * @throws ExecutionException If the operation returns a invalid exit code
      * @throws ReadOnlyFilesystemException If the operation writes in a read-only filesystem
+     * @throws CancelledOperationException If the operation was cancelled
      * @see CompressExecutable
      */
     public static CompressExecutable compress(
@@ -1286,7 +1510,8 @@ public final class CommandHelper {
             throws FileNotFoundException, IOException, ConsoleAllocException,
             NoSuchFileOrDirectory, InsufficientPermissionsException,
             CommandNotFoundException, OperationTimeoutException,
-            ExecutionException, InvalidCommandDefinitionException, ReadOnlyFilesystemException {
+            ExecutionException, InvalidCommandDefinitionException, ReadOnlyFilesystemException,
+            CancelledOperationException {
         Console c = ensureConsole(context, console);
 
         // Create a wrapper listener, for unmount the filesystem if necessary
@@ -1313,9 +1538,18 @@ public final class CommandHelper {
             wrapperListener.mUnmount = unmount;
             wrapperListener.mMountPoint = executable2.getDstWritableMountPoint();
 
-            //- Compress
-            execute(context, executable1, c);
-            return executable1;
+            // Some archive modes requires a new file. Ensure that the created
+            // file doesn't exists
+            DeleteFileExecutable executable3 =
+                                c.getExecutableFactory().
+                                    newCreator().
+                                        createDeleteFileExecutable(compressOutFile);
+            writableExecute(context, executable3, c, true);
+            if (executable3.getResult().booleanValue()) {
+                //- Compress
+                execute(context, executable1, c);
+                return executable1;
+            }
         }
         throw new ExecutionException(
                 String.format("Fail to create file %s", compressOutFile)); //$NON-NLS-1$
@@ -1341,6 +1575,7 @@ public final class CommandHelper {
      * @throws OperationTimeoutException If the operation exceeded the maximum time of wait
      * @throws ExecutionException If the operation returns a invalid exit code
      * @throws ReadOnlyFilesystemException If the operation writes in a read-only filesystem
+     * @throws CancelledOperationException If the operation was cancelled
      * @see CompressExecutable
      */
     public static CompressExecutable compress(
@@ -1349,7 +1584,8 @@ public final class CommandHelper {
             throws FileNotFoundException, IOException, ConsoleAllocException,
             NoSuchFileOrDirectory, InsufficientPermissionsException,
             CommandNotFoundException, OperationTimeoutException,
-            ExecutionException, InvalidCommandDefinitionException, ReadOnlyFilesystemException {
+            ExecutionException, InvalidCommandDefinitionException, ReadOnlyFilesystemException,
+            CancelledOperationException {
         Console c = ensureConsole(context, console);
 
         // Create a wrapper listener, for unmount the filesystem if necessary
@@ -1405,6 +1641,7 @@ public final class CommandHelper {
      * @throws OperationTimeoutException If the operation exceeded the maximum time of wait
      * @throws ExecutionException If the operation returns a invalid exit code
      * @throws ReadOnlyFilesystemException If the operation writes in a read-only filesystem
+     * @throws CancelledOperationException If the operation was cancelled
      * @see CompressExecutable
      */
     public static UncompressExecutable uncompress(
@@ -1413,7 +1650,8 @@ public final class CommandHelper {
             throws FileNotFoundException, IOException, ConsoleAllocException,
             NoSuchFileOrDirectory, InsufficientPermissionsException,
             CommandNotFoundException, OperationTimeoutException,
-            ExecutionException, InvalidCommandDefinitionException, ReadOnlyFilesystemException {
+            ExecutionException, InvalidCommandDefinitionException, ReadOnlyFilesystemException,
+            CancelledOperationException {
         Console c = ensureConsole(context, console);
 
         // Create a wrapper listener, for unmount the filesystem if necessary
@@ -1452,10 +1690,50 @@ public final class CommandHelper {
 
             //- Compress
             execute(context, executable1, c);
+
+            // Do media scan
+            MediaScannerConnection.scanFile(context, new String[]{
+                    MediaHelper.normalizeMediaPath(compressOutFile)}, null, null);
+
             return executable1;
         }
         throw new ExecutionException(
                 String.format("Fail to uncompress to %s", compressOutFile)); //$NON-NLS-1$
+    }
+
+    /**
+     * Method that calculates the checksum of a file system object.
+     *
+     * @param context The current context (needed if console == null)
+     * @param src The source file
+     * @param asyncResultListener The partial result listener
+     * @param console The console in which execute the program.
+     * <code>null</code> to attach to the default console
+     * @return ChecksumExecutable The command executed in background
+     * @throws FileNotFoundException If the initial directory not exists
+     * @throws IOException If initial directory couldn't be checked
+     * @throws InvalidCommandDefinitionException If the command has an invalid definition
+     * @throws NoSuchFileOrDirectory If the file or directory was not found
+     * @throws ConsoleAllocException If the console can't be allocated
+     * @throws InsufficientPermissionsException If an operation requires elevated permissions
+     * @throws CommandNotFoundException If the command was not found
+     * @throws OperationTimeoutException If the operation exceeded the maximum time of wait
+     * @throws ExecutionException If the operation returns a invalid exit code
+     * @throws CancelledOperationException If the operation was cancelled
+     * @see ChecksumExecutable
+     */
+    public static ChecksumExecutable checksum(Context context, String src,
+            AsyncResultListener asyncResultListener, Console console)
+            throws FileNotFoundException, IOException, ConsoleAllocException,
+            NoSuchFileOrDirectory, InsufficientPermissionsException,
+            CommandNotFoundException, OperationTimeoutException,
+            ExecutionException, InvalidCommandDefinitionException, CancelledOperationException {
+        Console c = ensureConsoleForFile(context, console, src);
+        ChecksumExecutable executable =
+                c.getExecutableFactory().newCreator().
+                    createChecksumExecutable(src, asyncResultListener);
+        execute(context, executable, c);
+        return executable;
     }
 
     /**
@@ -1475,6 +1753,7 @@ public final class CommandHelper {
      * @throws ReadOnlyFilesystemException If the operation writes in a read-only filesystem
      * @throws InvalidCommandDefinitionException If the command has an invalid definition
      * @throws IOException If initial directory couldn't be checked
+     * @throws CancelledOperationException If the operation was cancelled
      * @throws FileNotFoundException If the initial directory not exists
      */
     public static Object reexecute(
@@ -1482,9 +1761,10 @@ public final class CommandHelper {
             throws ConsoleAllocException, InsufficientPermissionsException, NoSuchFileOrDirectory,
             OperationTimeoutException, ExecutionException,
             CommandNotFoundException, ReadOnlyFilesystemException,
-            FileNotFoundException, IOException, InvalidCommandDefinitionException {
+            FileNotFoundException, IOException, InvalidCommandDefinitionException,
+            CancelledOperationException {
         Console c = ensureConsole(context, console);
-        c.execute(executable);
+        c.execute(executable, context);
         return executable.getResult();
     }
 
@@ -1502,13 +1782,16 @@ public final class CommandHelper {
      * @throws CommandNotFoundException If the command was not found
      * @throws OperationTimeoutException If the operation exceeded the maximum time of wait
      * @throws ExecutionException If the operation returns a invalid exit code
+     * @throws CancelledOperationException If the operation was cancelled
+     * @throws AuthenticationFailedException If the operation failed caused by an
+     * authentication failure
      */
     private static void execute(Context context, Executable executable, Console console)
             throws ConsoleAllocException, InsufficientPermissionsException, NoSuchFileOrDirectory,
-            OperationTimeoutException, ExecutionException,
-            CommandNotFoundException {
+            OperationTimeoutException, ExecutionException, CommandNotFoundException,
+            CancelledOperationException, AuthenticationFailedException {
         try {
-            console.execute(executable);
+            console.execute(executable, context);
         } catch (ReadOnlyFilesystemException rofEx) {
             // ReadOnlyFilesystemException don't have sense if command is not writable
             // WritableExecutable must be used with "writableExecute" method
@@ -1531,12 +1814,15 @@ public final class CommandHelper {
      * @throws OperationTimeoutException If the operation exceeded the maximum time of wait
      * @throws ExecutionException If the operation returns a invalid exit code
      * @throws ReadOnlyFilesystemException If the operation writes in a read-only filesystem
+     * @throws CancelledOperationException If the operation was cancelled
+     * @throws AuthenticationFailedException If the operation failed caused by an
+     * authentication failure
      */
-    private static void writableExecute(
-            Context context, WritableExecutable executable, Console console)
-            throws ConsoleAllocException, InsufficientPermissionsException, NoSuchFileOrDirectory,
-            OperationTimeoutException, ExecutionException,
-            CommandNotFoundException, ReadOnlyFilesystemException {
+    private static void writableExecute(Context context, WritableExecutable executable,
+            Console console) throws ConsoleAllocException, InsufficientPermissionsException,
+            NoSuchFileOrDirectory, OperationTimeoutException, ExecutionException,
+            CommandNotFoundException, ReadOnlyFilesystemException, CancelledOperationException,
+            AuthenticationFailedException{
         writableExecute(context, executable, console, false);
     }
 
@@ -1558,13 +1844,15 @@ public final class CommandHelper {
      * @throws OperationTimeoutException If the operation exceeded the maximum time of wait
      * @throws ExecutionException If the operation returns a invalid exit code
      * @throws ReadOnlyFilesystemException If the operation writes in a read-only filesystem
+     * @throws CancelledOperationException If the operation was cancelled
+     * @throws AuthenticationFailedException If the operation failed caused by an
+     * authentication failure
      */
-    private static boolean writableExecute(
-            Context context, WritableExecutable executable, Console console,
-            boolean leaveDeviceMounted)
-            throws ConsoleAllocException, InsufficientPermissionsException, NoSuchFileOrDirectory,
-            OperationTimeoutException, ExecutionException,
-            CommandNotFoundException, ReadOnlyFilesystemException {
+    private static boolean writableExecute(Context context, WritableExecutable executable,
+            Console console, boolean leaveDeviceMounted) throws ConsoleAllocException,
+            InsufficientPermissionsException, NoSuchFileOrDirectory, OperationTimeoutException,
+            ExecutionException, CommandNotFoundException, ReadOnlyFilesystemException,
+            CancelledOperationException, AuthenticationFailedException {
 
         //Retrieve the mount point information to check if a remount operation is required
         //There are 2 mount points: destination and source. Check both
@@ -1635,17 +1923,17 @@ public final class CommandHelper {
         try {
             if (needMountDst) {
                 //Execute the mount command
-                console.execute(mountDstExecutable);
+                console.execute(mountDstExecutable, context);
                 mountExecutedDst = true;
             }
             if (needMountSrc) {
                 //Execute the mount command
-                console.execute(mountSrcExecutable);
+                console.execute(mountSrcExecutable, context);
                 mountExecutedSrc = true;
             }
 
             //Execute the command
-            console.execute(executable);
+            console.execute(executable, context);
 
         } catch (InsufficientPermissionsException ipEx) {
             //Configure the commands to execute
@@ -1675,11 +1963,11 @@ public final class CommandHelper {
             //and unmount operation
             if (mountExecutedDst && !leaveDeviceMounted) {
                 //Execute the unmount command
-                console.execute(unmountDstExecutable);
+                console.execute(unmountDstExecutable, context);
             }
             if (mountExecutedSrc && !leaveDeviceMounted) {
                 //Execute the unmount command
-                console.execute(unmountSrcExecutable);
+                console.execute(unmountSrcExecutable, context);
             }
         }
 
@@ -1704,6 +1992,38 @@ public final class CommandHelper {
             throws FileNotFoundException, IOException, InvalidCommandDefinitionException,
             ConsoleAllocException, InsufficientPermissionsException {
         Console c = console;
+        if (c == null) {
+            c = ConsoleBuilder.getConsole(context);
+        }
+        return c;
+    }
+
+    /**
+     * Method that ensure the console retrieve the default console if a console
+     * is not passed.
+     *
+     * @param context The current context (needed if console == null)
+     * @param console The console passed
+     * @param src The source file to check
+     * @return Console The console passed if not is null. Otherwise, the default console
+     * @throws InsufficientPermissionsException If an operation requires elevated permissions
+     * @throws ConsoleAllocException If the console can't be allocated
+     * @throws InvalidCommandDefinitionException If the command has an invalid definition
+     * @throws IOException If initial directory couldn't be checked
+     * @throws FileNotFoundException If the initial directory not exists
+     */
+    public static Console ensureConsoleForFile(Context context, Console console, String src)
+            throws FileNotFoundException, IOException, InvalidCommandDefinitionException,
+            ConsoleAllocException, InsufficientPermissionsException {
+
+        // Check if the path belongs to a virtual mount point
+        Console c = VirtualMountPointConsole.getVirtualConsoleForPath(src);
+        if (c != null) {
+            return c;
+        }
+
+        // Recover a real console
+        c = console;
         if (c == null) {
             c = ConsoleBuilder.getConsole(context);
         }

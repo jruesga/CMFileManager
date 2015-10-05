@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Copyright (C) 2012 The CyanogenMod Project
+<!--
+     Copyright (C) 2012-2013 The CyanogenMod Project
 
      Licensed under the Apache License, Version 2.0 (the "License");
      you may not use this file except in compliance with the License.
@@ -12,104 +13,125 @@
      WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
      See the License for the specific language governing permissions and
      limitations under the License.
- -->
-<resources xmlns:android="http://schemas.android.com/apk/res/android">
+-->
 
-  <!-- The primary text size -->
-  <dimen name="title_text_size">16sp</dimen>
-  <!-- The primary text size -->
-  <dimen name="primary_text_size">14sp</dimen>
-  <!-- The secondary text size -->
-  <dimen name="secondary_text_size">12sp</dimen>
-  <!-- The dialog_title text size -->
-  <dimen name="dialog_title_text_size">16sp</dimen>
-  <!-- The note text size -->
-  <dimen name="note_text_size">9sp</dimen>
-  <!-- The console text size -->
-  <dimen name="console_text_size">10sp</dimen>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <!-- The primary text size -->
+    <dimen name="title_text_size">16sp</dimen>
+    <!-- The primary text size -->
+    <dimen name="primary_text_size">14sp</dimen>
+    <!-- The secondary text size -->
+    <dimen name="secondary_text_size">12sp</dimen>
+    <!-- The dialog_title text size -->
+    <dimen name="dialog_title_text_size">16sp</dimen>
+    <!-- The note text size -->
+    <dimen name="note_text_size">9sp</dimen>
+    <!-- The console text size -->
+    <dimen name="console_text_size">10sp</dimen>
+    <!-- The hex editor text size -->
+    <dimen name="hexeditor_text_size">10sp</dimen>
 
-  <!-- The default row height -->
-  <dimen name="default_row_height">48dp</dimen>
-  <!-- An small row height -->
-  <dimen name="small_row_height">40dp</dimen>
-  <!-- An smallest row height -->
-  <dimen name="smallest_row_height">32dp</dimen>
-  <!-- The default margin -->
-  <dimen name="default_margin">5dp</dimen>
-  <!-- An extra margin -->
-  <dimen name="extra_margin">8dp</dimen>
-  <!-- An extra margin -->
-  <dimen name="extra_large_margin">16dp</dimen>
-  <!-- Double margin -->
-  <dimen name="double_margin">24dp</dimen>
-  <!-- A small margin -->
-  <dimen name="small_margin">2dp</dimen>
-  <!-- The minimal margin -->
-  <dimen name="min_margin">1dp</dimen>
+    <!-- The default row height -->
+    <dimen name="default_row_height">56dp</dimen>
+    <!-- An small row height -->
+    <dimen name="small_row_height">40dp</dimen>
+    <!-- An smallest row height -->
+    <dimen name="smallest_row_height">32dp</dimen>
+    <!-- The default margin -->
+    <dimen name="default_margin">5dp</dimen>
+    <!-- An extra margin -->
+    <dimen name="extra_margin">8dp</dimen>
+    <!-- An extra margin -->
+    <dimen name="extra_large_margin">16dp</dimen>
+    <!-- Double margin -->
+    <dimen name="double_margin">24dp</dimen>
+    <!-- A small margin -->
+    <dimen name="small_margin">2dp</dimen>
+    <!-- The minimal margin -->
+    <dimen name="min_margin">1dp</dimen>
 
-  <!-- The breadcrumb item margin space -->
-  <dimen name="breadcrumb_item_margin_space">3dp</dimen>
-  <!-- The breadcrumb item minimal size -->
-  <dimen name="breadcrumb_item_min_size">32dp</dimen>
+    <!-- The breadcrumb item margin space -->
+    <dimen name="breadcrumb_item_margin_space">3dp</dimen>
+    <!-- The breadcrumb item minimal size -->
+    <dimen name="breadcrumb_item_min_size">32dp</dimen>
 
-  <!-- The default buttom width -->
-  <dimen name="default_buttom_width">56dp</dimen>
-  <!-- An small buttom width -->
-  <dimen name="small_buttom_width">48dp</dimen>
-  <!-- An smallest buttom width -->
-  <dimen name="smallest_buttom_width">32dp</dimen>
-  <!-- The inverse default buttom width -->
-  <dimen name="default_inverse_buttom_width">-56dp</dimen>
-  <!-- The width for navigation rows (detail and simple layout) buttons -->
-  <dimen name="item_menu_row_button_width">40dp</dimen>
+    <!-- The default buttom width -->
+    <dimen name="default_buttom_width">56dp</dimen>
+    <!-- An small buttom width -->
+    <dimen name="small_buttom_width">48dp</dimen>
+    <!-- An smallest buttom width -->
+    <dimen name="smallest_buttom_width">32dp</dimen>
+    <!-- The inverse default buttom width -->
+    <dimen name="default_inverse_buttom_width">-56dp</dimen>
+    <!-- The width for navigation rows (detail and simple layout) buttons -->
+    <dimen name="item_menu_row_button_width">40dp</dimen>
 
-  <!-- The default horizontal grid spacing -->
-  <dimen name="default_horizontal_grid_spacing">0dp</dimen>
-  <!-- The default vertical grid spacing -->
-  <dimen name="default_vertical_grid_spacing">8dp</dimen>
+    <!-- The default horizontal grid spacing -->
+    <dimen name="default_horizontal_grid_spacing">0dp</dimen>
+    <!-- The default vertical grid spacing -->
+    <dimen name="default_vertical_grid_spacing">8dp</dimen>
 
-  <!-- The navigation grid width -->
-  <dimen name="navigation_grid_width">85dp</dimen>
-  <!-- The navigation grid height -->
-  <dimen name="navigation_grid_height">80dp</dimen>
-  <!-- The navigation grid item width -->
-  <dimen name="navigation_grid_item_width">25dp</dimen>
-  <!-- The navigation grid item height -->
-  <dimen name="navigation_grid_item_height">48dp</dimen>
+    <!-- The navigation grid width -->
+    <dimen name="navigation_grid_width">85dp</dimen>
+    <!-- The navigation grid height -->
+    <dimen name="navigation_grid_height">85dp</dimen>
+    <!-- The navigation grid item width -->
+    <dimen name="navigation_grid_item_width">25dp</dimen>
+    <!-- The navigation grid item height -->
+    <dimen name="navigation_grid_item_height">48dp</dimen>
 
-  <!-- The grid width -->
-  <dimen name="grid_width">96dp</dimen>
-  <!-- The grid height -->
-  <dimen name="grid_height">96dp</dimen>
-  <!-- The grid image width -->
-  <dimen name="grid_image_width">48dp</dimen>
-  <!-- The grid image height -->
-  <dimen name="grid_image_height">48dp</dimen>
+    <!-- The grid width -->
+    <dimen name="grid_width">96dp</dimen>
+    <!-- The grid height -->
+    <dimen name="grid_height">96dp</dimen>
+    <!-- The grid image width -->
+    <dimen name="grid_image_width">48dp</dimen>
+    <!-- The grid image height -->
+    <dimen name="grid_image_height">48dp</dimen>
 
-  <!-- The popup dimension width -->
-  <dimen name="popup_width">200dp</dimen>
+    <!-- The popup dimension width -->
+    <dimen name="popup_width">200dp</dimen>
 
-  <!-- The horizontal divider width -->
-  <dimen name="horizontal_divider_width">0.25dp</dimen>
-  <!-- The vertical divider height -->
-  <dimen name="vertical_divider_height">0.75dp</dimen>
+    <!-- The horizontal divider width -->
+    <dimen name="horizontal_divider_width">0.25dp</dimen>
+    <!-- The vertical divider height -->
+    <dimen name="vertical_divider_height">0.75dp</dimen>
 
-  <!-- The relevance widget width -->
-  <dimen name="relevance_item_width">16dp</dimen>
-  <!-- The relevance widget height -->
-  <dimen name="relevance_item_height">8dp</dimen>
+    <!-- The relevance widget width -->
+    <dimen name="relevance_item_width">16dp</dimen>
+    <!-- The relevance widget height -->
+    <dimen name="relevance_item_height">8dp</dimen>
 
-  <!-- The console height -->
-  <dimen name="console_height">250dp</dimen>
+    <!-- The console height -->
+    <dimen name="console_height">250dp</dimen>
 
-  <!-- The progress height -->
-  <dimen name="default_progress_height">32dp</dimen>
+    <!-- The progress height -->
+    <dimen name="default_progress_height">48dp</dimen>
+    <dimen name="default_progress_width">48dp</dimen>
 
-  <!-- Theme button min width -->
-  <dimen name="themes_min_width_button">300dp</dimen>
+    <!-- Theme button min width -->
+    <dimen name="themes_min_width_button">300dp</dimen>
 
-  <!-- Theme width/height -->
-  <dimen name="theme_max_width">300dip</dimen>
-  <dimen name="theme_max_height">600dip</dimen>
+    <!-- Theme width/height -->
+    <dimen name="theme_max_width">300dip</dimen>
+    <dimen name="theme_max_height">600dip</dimen>
+
+    <!-- Print text size -->
+    <dimen name="print_text_size">6sp</dimen>
+    <!-- Print page margins -->
+    <dimen name="print_page_margins">5dp</dimen>
+
+    <!-- Scrim layout elevation -->
+    <dimen name="scrim_layout_elevation">10dp</dimen>
+    <!-- Drawer header height -->
+    <dimen name="drawer_header_height">150dp</dimen>
+
+    <!-- usage graph stuff -->
+    <dimen name="legend_title_textSize">9sp</dimen>
+    <dimen name="legend_title_paddingStart">3dp</dimen>
+    <dimen name="legend_padding">10dp</dimen>
+
+    <dimen name="easy_mode_type_icon_wh">40dp</dimen>
+    <dimen name="easy_mode_type_icon_margin_lr">16dp</dimen>
 
 </resources>

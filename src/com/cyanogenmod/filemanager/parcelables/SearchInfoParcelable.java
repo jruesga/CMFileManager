@@ -32,18 +32,23 @@ import java.util.List;
  */
 public class SearchInfoParcelable extends HistoryNavigable {
 
-    private static final long serialVersionUID = 3051428434374087971L;
+    private static final long serialVersionUID = -124315348462060329L;
 
     private String mSearchDirectory;
     private List<SearchResult> mSearchResultList;
     private Query mSearchQuery;
+    private String mTitle;
     private boolean mSuccessNavigation = false;
 
     /**
      * Constructor of <code>SearchInfoParcelable</code>.
      */
-    public SearchInfoParcelable() {
+    public SearchInfoParcelable(String searchDirectory, List<SearchResult> searchResultList, Query searchQuery) {
         super();
+        mSearchDirectory = searchDirectory;
+        mSearchResultList = searchResultList;
+        mSearchQuery = searchQuery;
+        setTitle();
     }
 
     /**
@@ -60,11 +65,16 @@ public class SearchInfoParcelable extends HistoryNavigable {
      */
     @Override
     public String getTitle() {
-        return FileManagerApplication.getInstance().
-                    getResources().
-                        getString(
-                            R.string.search_result_name,
-                            this.mSearchQuery.getTerms());
+        return mTitle;
+    }
+
+    private void setTitle() {
+        String terms = "";
+        if (this.mSearchQuery != null) {
+            terms = this.mSearchQuery.getTerms();
+        }
+        mTitle = FileManagerApplication.getInstance().getResources().getString(
+                R.string.search_result_name, terms);
     }
 
     /**
@@ -85,15 +95,6 @@ public class SearchInfoParcelable extends HistoryNavigable {
     }
 
     /**
-     * Method that sets the directory where to search.
-     *
-     * @param searchDirectory The directory where to search
-     */
-    public void setSearchDirectory(String searchDirectory) {
-        this.mSearchDirectory = searchDirectory;
-    }
-
-    /**
      * Method that returns the search result list.
      *
      * @return List<SearchResult> The search result list
@@ -103,30 +104,12 @@ public class SearchInfoParcelable extends HistoryNavigable {
     }
 
     /**
-     * Method that sets the search result list.
-     *
-     * @param searchResultList The search result list
-     */
-    public void setSearchResultList(List<SearchResult> searchResultList) {
-        this.mSearchResultList = searchResultList;
-    }
-
-    /**
      * Method that returns the query terms of the search.
      *
      * @return Query The query terms of the search
      */
     public Query getSearchQuery() {
         return this.mSearchQuery;
-    }
-
-    /**
-     * Method that sets the query terms of the search.
-     *
-     * @param searchQuery The query terms of the search
-     */
-    public void setSearchQuery(Query searchQuery) {
-        this.mSearchQuery = searchQuery;
     }
 
     /**
@@ -173,7 +156,7 @@ public class SearchInfoParcelable extends HistoryNavigable {
         //- 2
         dest.writeInt(this.mSearchQuery == null ? 0 : 1);
         if (this.mSearchQuery != null) {
-            dest.writeSerializable(this.mSearchQuery);
+            dest.writeParcelable(this.mSearchQuery, 0);
         }
         //- 3
         dest.writeInt(this.mSuccessNavigation ? 1 : 0);
@@ -200,8 +183,10 @@ public class SearchInfoParcelable extends HistoryNavigable {
         //- 2
         int hasSearchQuery = in.readInt();
         if (hasSearchQuery == 1) {
-            this.mSearchQuery = (Query)in.readSerializable();
+            this.mSearchQuery = (Query)in.readParcelable(
+                    SearchInfoParcelable.class.getClassLoader());
         }
+        setTitle();
         //- 3
         this.mSuccessNavigation = in.readInt() != 1;
     }

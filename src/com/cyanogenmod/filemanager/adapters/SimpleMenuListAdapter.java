@@ -24,6 +24,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.android.internal.view.menu.MenuBuilder;
@@ -39,18 +40,21 @@ public class SimpleMenuListAdapter extends BaseAdapter {
     private final Context mContext;
     final LayoutInflater mInflater;
     private final Menu mMenu;
+    private boolean mMultiSelect;
 
     /**
-     * Constructor of <code>SimpleMenuListAdapter</code>.
+     * Constructor of <code>SimpleMenuListAdapteSr</code>.
      *
      * @param context The current context
      * @param menuResourceId The resource identifier
+     * @param multiSelect Whether the menu allows for single or multi select
      */
-    public SimpleMenuListAdapter(Context context, int menuResourceId) {
+    public SimpleMenuListAdapter(Context context, int menuResourceId, boolean multiSelect) {
         super();
         this.mContext = context;
         this.mMenu = new MenuBuilder(context);
         this.mInflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        this.mMultiSelect = multiSelect;
         inflateMenu(menuResourceId);
     }
 
@@ -62,9 +66,11 @@ public class SimpleMenuListAdapter extends BaseAdapter {
      * @param context The current context
      * @param menuResourceId The resource identifier
      * @param menuGroupResourceId The menu group resource identifier
+     * @param multiSelect Whether the menu allows for single or multi select
      */
-    public SimpleMenuListAdapter(Context context, int menuResourceId, int menuGroupResourceId) {
-        this(context, menuResourceId);
+    public SimpleMenuListAdapter(Context context, int menuResourceId, int menuGroupResourceId,
+                                 boolean multiSelect) {
+        this(context, menuResourceId, multiSelect);
 
         //Remove all item menus that no belongs to the group
         int cc = this.mMenu.size();
@@ -138,13 +144,26 @@ public class SimpleMenuListAdapter extends BaseAdapter {
         }
         theme.setBackgroundDrawable(
                 this.mContext, v,
-                "menu_checkable_selector_drawable"); //$NON-NLS-1$
+                "selectors_deselected_drawable"); //$NON-NLS-1$
 
         //Set the text if has title
         if (menuItem.getTitle() != null && menuItem.getTitle().length() > 0) {
             TextView tvText = (TextView)v.findViewById(R.id.menu_item_text);
             tvText.setText(menuItem.getTitle());
             theme.setTextColor(this.mContext, tvText, "text_color"); //$NON-NLS-1$
+
+            ImageView vCheck = (ImageView)v.findViewById(R.id.menu_item_check);
+            vCheck.setVisibility(menuItem.isCheckable() ? View.VISIBLE : View.GONE);
+            if (!mMultiSelect) {
+                theme.setImageDrawable(
+                        this.mContext, vCheck, "popup_checkable_selector_drawable"); //$NON-NLS-1$
+            } else {
+                theme.setImageDrawable(
+                        this.mContext, vCheck, "menu_checkable_selector_drawable"); //$NON-NLS-1$
+            }
+            if (menuItem.isCheckable()) {
+                vCheck.setSelected(menuItem.isChecked());
+            }
         }
         v.setEnabled(menuItem.isEnabled());
         v.setVisibility(menuItem.isVisible() ? View.VISIBLE : View.GONE);

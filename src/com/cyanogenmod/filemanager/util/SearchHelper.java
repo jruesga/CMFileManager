@@ -28,6 +28,7 @@ import com.cyanogenmod.filemanager.model.SearchResult;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -68,8 +69,8 @@ public final class SearchHelper {
         }
 
         //Convert the string to lower and upper
-        final String lowerCase = q.toLowerCase();
-        final String upperCase = q.toUpperCase();
+        final String lowerCase = q.toLowerCase(Locale.ROOT);
+        final String upperCase = q.toUpperCase(Locale.ROOT);
 
         //Create the regular expression filter
         StringBuffer sb = new StringBuffer();
@@ -175,11 +176,21 @@ public final class SearchHelper {
         int cc = files.size();
         for (int i = 0; i < cc; i++) {
             FileSystemObject fso = files.get(i);
-            double relevance = calculateRelevance(fso, queries);
-            SearchResult result = new SearchResult(relevance, fso);
-            results.add(result);
+            results.add( convertToResult(fso, queries) );
         }
         return results;
+    }
+
+    /**
+     * Method that converts a file system object to a search result.
+     *
+     * @param fso FileSystemObject that needs to be converted to a SearchResult
+     * @param queries The terms of the search
+     * @return SearchResult
+     */
+    public static SearchResult convertToResult(FileSystemObject fso, Query queries) {
+        double relevance = calculateRelevance(fso, queries);
+        return new SearchResult(relevance, fso);
     }
 
     /**

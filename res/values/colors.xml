@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Copyright (C) 2012 The CyanogenMod Project
+<!--
+     Copyright (C) 2012-2013 The CyanogenMod Project
 
      Licensed under the Apache License, Version 2.0 (the "License");
      you may not use this file except in compliance with the License.
@@ -12,50 +13,82 @@
      WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
      See the License for the specific language governing permissions and
      limitations under the License.
- -->
+-->
 
-<resources xmlns:android="http://schemas.android.com/apk/res/android">
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <!-- The default background color -->
+    <color name="default_background">@android:color/white</color>
+    <!-- The default dissabled background color -->
+    <color name="default_background_disabled">#f2f2f2</color>
 
-  <!-- The default background color -->
-  <color name="default_background">@android:color/white</color>
+    <!-- A black color with some transparency -->
+    <color name="black_transparent">#99000000</color>
+    <!-- A derivated blue from @color/material_palette_blue_primary with some transparency -->
+    <color name="blue_transparent">#9933b5e5</color>
 
-  <!-- A black color with some transparency -->
-  <color name="black_transparent">#99000000</color>
-  <!-- A derivated blue from @android:color/holo_blue_light with some transparency -->
-  <color name="blue_transparent">#9933b5e5</color>
+    <!-- Disk usage total color -->
+    <color name="disk_usage_total">#7ecccccc</color>
+    <!-- Disk usage used color -->
+    <color name="disk_usage_used">#7e0099cc</color>
+    <!-- Disk usage used color warning -->
+    <color name="disk_usage_used_warning">#7eff4444</color>
+    <!-- Disk usage used color filter normal -->
+    <color name="disk_usage_color_filter_normal">#ffffffff</color>
+    <!-- Disk usage used color filter warning -->
+    <color name="disk_usage_color_filter_warning">#99ff0000</color>
 
-  <!-- Disk usage total color -->
-  <color name="disk_usage_total">#7ecccccc</color>
-  <!-- Disk usage used color -->
-  <color name="disk_usage_used">#7e0099cc</color>
-  <!-- Disk usage used color warning -->
-  <color name="disk_usage_used_warning">#7eff4444</color>
-  <!-- Disk usage used color filter normal -->
-  <color name="disk_usage_color_filter_normal">#ffffffff</color>
-  <!-- Disk usage used color filter warning -->
-  <color name="disk_usage_color_filter_warning">#99ff0000</color>
+    <!-- Relevance - Border color -->
+    <color name="relevance_border">#becccccc</color>
+    <!-- Relevance - 0% ~ 50% -->
+    <color name="relevance_percentil_25">#bee89338</color>
+    <!-- Relevance - 25% ~ 50% -->
+    <color name="relevance_percentil_50">#bee8e238</color>
+    <!-- Relevance - 50% ~ 75% -->
+    <color name="relevance_percentil_75">#be45bc6c</color>
+    <!-- Relevance - 75% ~ 100% -->
+    <color name="relevance_percentil_100">#be207da4</color>
 
-  <!-- Relevance * Border color -->
-  <color name="relevance_border">#becccccc</color>
-  <!-- Relevance *  0% ~ 50% -->
-  <color name="relevance_percentil_25">#bee89338</color>
-  <!-- Relevance * 25% ~ 50% -->
-  <color name="relevance_percentil_50">#bee8e238</color>
-  <!-- Relevance * 50% ~ 75% -->
-  <color name="relevance_percentil_75">#be45bc6c</color>
-  <!-- Relevance * 75% ~ 100% -->
-  <color name="relevance_percentil_100">#be207da4</color>
+    <!-- A color for highlight text -->
+    <color name="search_highlight">#ffffff00</color>
 
-  <!-- A color for highlight text -->
-  <color name="search_highlight">#ffffff00</color>
+    <!-- Divider - Normal -->
+    <color name="divider_color">#90909090</color>
+    <!-- Divider - Light -->
+    <color name="divider_color_light">#50505050</color>
 
-  <!--  Divider. Normal -->
-  <color name="divider_color">#90909090</color>
-  <!--  Divider. Light -->
-  <color name="divider_color_light">#50505050</color>
+    <!-- Execution console -->
+    <color name="console_bg">#99000000</color>
+    <color name="console_fg">#99FFFFFF</color>
 
-  <!-- Execution console -->
-  <color name="console_bg">#99000000</color>
-  <color name="console_fg">#99FFFFFF</color>
+    <color name="material_palette_blue_accent">#77E0E0E0</color>
+    <color name="material_palette_blue_accent_dark">#77BDBDBD</color>
+    <color name="material_palette_blue_primary">#1E88E5</color>
+    <color name="material_palette_blue_primary_dark">#1976D2</color>
+    <color name="actionbar_palette_blue_primary">#1E88E5</color>
+
+
+    <!-- Disk usage blue -->
+    <color name="material_palette_blue_1">#64B5F6</color>
+    <color name="material_palette_blue_2">#2196F3</color>
+    <color name="material_palette_blue_3">#1976D2</color>
+    <color name="material_palette_blue_4">#0D47A1</color>
+
+    <!-- Disk usage green -->
+    <color name="material_palette_green_1">#DCE775</color>
+    <color name="material_palette_green_2">#CDDC39</color>
+    <color name="material_palette_green_3">#AFB42B</color>
+    <color name="material_palette_green_4">#827717</color>
+
+    <!-- Disk usage orange -->
+    <color name="material_palette_orange_1">#FFB74D</color>
+    <color name="material_palette_orange_2">#FF9800</color>
+    <color name="material_palette_orange_3">#F57C00</color>
+    <color name="material_palette_orange_4">#E65100</color>
+
+    <!-- Disk usage pink -->
+    <color name="material_palette_pink_1">#F06292</color>
+    <color name="material_palette_pink_2">#E91E63</color>
+    <color name="material_palette_pink_3">#C2185B</color>
+    <color name="material_palette_pink_4">#880E4F</color>
 
 </resources>

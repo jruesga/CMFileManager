@@ -34,12 +34,19 @@ import android.widget.Toast;
 
 import com.cyanogenmod.filemanager.FileManagerApplication;
 import com.cyanogenmod.filemanager.R;
+import com.cyanogenmod.filemanager.activities.NavigationActivity;
 import com.cyanogenmod.filemanager.adapters.TwoColumnsMenuListAdapter;
+import com.cyanogenmod.filemanager.console.VirtualMountPointConsole;
 import com.cyanogenmod.filemanager.listeners.OnRequestRefreshListener;
 import com.cyanogenmod.filemanager.listeners.OnSelectionListener;
+import com.cyanogenmod.filemanager.model.Bookmark;
+import com.cyanogenmod.filemanager.model.Directory;
 import com.cyanogenmod.filemanager.model.FileSystemObject;
+import com.cyanogenmod.filemanager.model.Symlink;
 import com.cyanogenmod.filemanager.model.SystemFile;
 import com.cyanogenmod.filemanager.preferences.AccessMode;
+import com.cyanogenmod.filemanager.preferences.FileManagerSettings;
+import com.cyanogenmod.filemanager.preferences.Preferences;
 import com.cyanogenmod.filemanager.ui.ThemeManager;
 import com.cyanogenmod.filemanager.ui.ThemeManager.Theme;
 import com.cyanogenmod.filemanager.ui.policy.BookmarksActionPolicy;
@@ -52,7 +59,9 @@ import com.cyanogenmod.filemanager.ui.policy.InfoActionPolicy;
 import com.cyanogenmod.filemanager.ui.policy.IntentsActionPolicy;
 import com.cyanogenmod.filemanager.ui.policy.NavigationActionPolicy;
 import com.cyanogenmod.filemanager.ui.policy.NewActionPolicy;
+import com.cyanogenmod.filemanager.ui.policy.PrintActionPolicy;
 import com.cyanogenmod.filemanager.util.DialogHelper;
+import com.cyanogenmod.filemanager.util.ExceptionUtil;
 import com.cyanogenmod.filemanager.util.FileHelper;
 import com.cyanogenmod.filemanager.util.MimeTypeHelper;
 import com.cyanogenmod.filemanager.util.MimeTypeHelper.MimeTypeCategory;
@@ -60,6 +69,7 @@ import com.cyanogenmod.filemanager.util.SelectionHelper;
 import com.cyanogenmod.filemanager.util.StorageHelper;
 
 import java.io.File;
+import java.io.InvalidClassException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -73,6 +83,7 @@ public class ActionsDialog implements OnItemClickListener, OnItemLongClickListen
      * @hide
      */
     final Context mContext;
+    final NavigationActivity mBackRef;
     private final boolean mGlobal;
     private final boolean mSearch;
     private final boolean mChRooted;
@@ -104,12 +115,14 @@ public class ActionsDialog implements OnItemClickListener, OnItemLongClickListen
      * @param global If the menu to display will be the global one (Global actions)
      * @param search If the call is from search activity
      */
-    public ActionsDialog(Context context, FileSystemObject fso, boolean global, boolean search) {
+    public ActionsDialog(Context context, NavigationActivity backRef, FileSystemObject fso,
+            boolean global, boolean search) {
         super();
 
         //Save the data
         this.mFso = fso;
         this.mContext = context;
+        this.mBackRef = backRef;
         this.mGlobal = global;
         this.mSearch = search;
         this.mChRooted = FileManagerApplication.getAccessMode().compareTo(AccessMode.SAFE) == 0;
@@ -127,7 +140,7 @@ public class ActionsDialog implements OnItemClickListener, OnItemLongClickListen
     private void init(Context context, int group) {
         //Create the menu adapter
         TwoColumnsMenuListAdapter adapter =
-                new TwoColumnsMenuListAdapter(context, R.menu.actions, group);
+                new TwoColumnsMenuListAdapter(context, R.menu.actions, group, false);
         adapter.setOnItemClickListener(this);
         adapter.setOnItemLongClickListener(this);
 
@@ -292,7 +305,19 @@ public class ActionsDialog implements OnItemClickListener, OnItemLongClickListen
                 IntentsActionPolicy.sendFileSystemObject(
                         this.mContext, this.mFso, null, null);
                 break;
-
+            case R.id.mnu_actions_send_selection:
+                if (this.mOnSelectionListener != null) {
+                    List<FileSystemObject> selection =
+                            this.mOnSelectionListener.onRequestSelectedFiles();
+                    if (selection.size() == 1) {
+                        IntentsActionPolicy.sendFileSystemObject(
+                                this.mContext, selection.get(0), null, null);
+                    } else {
+                        IntentsActionPolicy.sendMultipleFileSystemObject(
+                                this.mContext, selection, null, null);
+                    }
+                }
+                break;
 
             // Paste selection
             case R.id.mnu_actions_paste_selection:
@@ -373,7 +398,12 @@ public class ActionsDialog implements OnItemClickListener, OnItemLongClickListen
             //- Add to bookmarks
             case R.id.mnu_actions_add_to_bookmarks:
             case R.id.mnu_actions_add_to_bookmarks_current_folder:
-                BookmarksActionPolicy.addToBookmarks(this.mContext, this.mFso);
+                Bookmark bookmark = BookmarksActionPolicy.addToBookmarks(
+                        this.mContext, this.mFso);
+                if (mBackRef != null) {
+                    // tell NavigationActivity's drawer to add the bookmark
+                    mBackRef.addBookmark(bookmark);
+                }
                 break;
 
             //- Add shortcut
@@ -382,17 +412,48 @@ public class ActionsDialog implements OnItemClickListener, OnItemLongClickListen
                 IntentsActionPolicy.createShortcut(this.mContext, this.mFso);
                 break;
 
+            //- Compute checksum
+            case R.id.mnu_actions_compute_checksum:
+                InfoActionPolicy.showComputeChecksumDialog(this.mContext, this.mFso);
+                break;
+
+            //- Print
+            case R.id.mnu_actions_print:
+                PrintActionPolicy.printDocument(this.mContext, this.mFso);
+                break;
+
             //- Properties
             case R.id.mnu_actions_properties:
             case R.id.mnu_actions_properties_current_folder:
+                FileSystemObject fso = this.mFso;
+                if (this.mOnSelectionListener != null) {
+                    List<FileSystemObject> selection = this.mOnSelectionListener
+                            .onRequestSelectedFiles();
+                    if (selection.size() == 1) {
+                        fso = selection.get(0);
+                    }
+                }
                 InfoActionPolicy.showPropertiesDialog(
-                        this.mContext, this.mFso, this.mOnRequestRefreshListener);
+                        this.mContext, fso, this.mOnRequestRefreshListener);
                 break;
 
             //- Navigate to parent
             case R.id.mnu_actions_open_parent_folder:
                 NavigationActionPolicy.openParentFolder(
                         this.mContext, this.mFso, this.mOnRequestRefreshListener);
+                break;
+
+                // Set as home
+            case R.id.mnu_actions_set_as_home:
+            case R.id.mnu_actions_global_set_as_home:
+                try {
+                    Preferences.savePreference(
+                            FileManagerSettings.SETTINGS_INITIAL_DIR, mFso.getFullPath(), true);
+                    mOnRequestRefreshListener.onRequestBookmarksRefresh();
+                    DialogHelper.showToast(mContext, R.string.msgs_success, Toast.LENGTH_SHORT);
+                } catch (InvalidClassException e) {
+                    ExceptionUtil.translateException(mContext, e);
+                }
                 break;
 
             default:
@@ -602,12 +663,28 @@ public class ActionsDialog implements OnItemClickListener, OnItemLongClickListen
             if (category.compareTo(MimeTypeCategory.EXEC) != 0) {
                 menu.removeItem(R.id.mnu_actions_execute);
             }
+
+            //- Checksum (only supported for files)
+            if (FileHelper.isDirectory(this.mFso) || this.mFso instanceof Symlink) {
+                menu.removeItem(R.id.mnu_actions_compute_checksum);
+            }
+
+            //- Print (only for text and image categories)
+            if (!PrintActionPolicy.isPrintedAllowed(mContext, mFso)) {
+                menu.removeItem(R.id.mnu_actions_print);
+            }
         }
 
         //- Add to bookmarks -> Only directories
         if (this.mFso != null && FileHelper.isRootDirectory(this.mFso)) {
             menu.removeItem(R.id.mnu_actions_add_to_bookmarks);
             menu.removeItem(R.id.mnu_actions_add_to_bookmarks_current_folder);
+        }
+
+        //- Remove properties option if multiple files selected
+        if (selection != null && selection.size() > 1) {
+            menu.removeItem(R.id.mnu_actions_properties);
+            menu.removeItem(R.id.mnu_actions_properties_current_folder);
         }
 
         //- Paste/Move only when have a selection
@@ -621,18 +698,21 @@ public class ActionsDialog implements OnItemClickListener, OnItemLongClickListen
             }
         }
         //- Create link
-        if (this.mGlobal && (selection == null || selection.size() == 0 || selection.size() > 1)) {
+        if (this.mGlobal && (selection == null || selection.size() == 0
+                || selection.size() > 1)) {
             // Only when one item is selected
             menu.removeItem(R.id.mnu_actions_create_link_global);
         } else if (this.mGlobal  && selection != null) {
-            // Create link (not allow in storage volume)
+            // Create link (not allow in sdcard, secure or remote storage volumes)
             FileSystemObject fso = selection.get(0);
-            if (StorageHelper.isPathInStorageVolume(fso.getFullPath())) {
-                menu.removeItem(R.id.mnu_actions_create_link);
+            if (StorageHelper.isPathInStorageVolume(fso.getFullPath())
+                    || fso.isSecure() || fso.isRemote()) {
+                menu.removeItem(R.id.mnu_actions_create_link_global);
             }
         } else if (!this.mGlobal) {
-            // Create link (not allow in storage volume)
-            if (StorageHelper.isPathInStorageVolume(this.mFso.getFullPath())) {
+            // Create link (not allow in sdcard, secure or remote storage volumes)
+            if (StorageHelper.isPathInStorageVolume(this.mFso.getFullPath())
+                    || mFso.isSecure() || mFso.isRemote()) {
                 menu.removeItem(R.id.mnu_actions_create_link);
             }
         }
@@ -643,10 +723,18 @@ public class ActionsDialog implements OnItemClickListener, OnItemLongClickListen
             if (this.mGlobal) {
                 if (selection == null || selection.size() == 0) {
                     menu.removeItem(R.id.mnu_actions_compress_selection);
+                } else {
+                    for (FileSystemObject fso : selection) {
+                        // Ignore for system, secure or remote files
+                        if (fso instanceof SystemFile || fso.isSecure() || fso.isRemote()) {
+                            menu.removeItem(R.id.mnu_actions_compress_selection);
+                            break;
+                        }
+                    }
                 }
             } else {
-                // Ignore for system files
-                if (this.mFso instanceof SystemFile) {
+                // Ignore for system, secure or remote files
+                if (this.mFso instanceof SystemFile || mFso.isSecure() || mFso.isRemote()) {
                     menu.removeItem(R.id.mnu_actions_compress);
                 }
             }
@@ -654,6 +742,49 @@ public class ActionsDialog implements OnItemClickListener, OnItemLongClickListen
             if (!this.mGlobal && !FileHelper.isSupportedUncompressedFile(this.mFso)) {
                 menu.removeItem(R.id.mnu_actions_extract);
             }
+
+            // Send multiple (only regular files)
+            if (this.mGlobal) {
+                if (selection == null || selection.size() == 0) {
+                    menu.removeItem(R.id.mnu_actions_send_selection);
+                } else {
+                    boolean areAllFiles = true;
+                    int cc = selection.size();
+                    for (int i = 0; i < cc; i++) {
+                        FileSystemObject fso = selection.get(i);
+                        if (FileHelper.isDirectory(fso)) {
+                            areAllFiles = false;
+                            break;
+                        }
+                    }
+                    if (!areAllFiles) {
+                        menu.removeItem(R.id.mnu_actions_send_selection);
+                    }
+                }
+            }
+        }
+
+        // Shotcuts and Bookmarks (not available in virtual filesystems)
+        if (!mGlobal && (mFso.isSecure() || mFso.isRemote())) {
+            menu.removeItem(R.id.mnu_actions_add_shortcut);
+            menu.removeItem(R.id.mnu_actions_add_to_bookmarks);
+        } else if (mGlobal) {
+            if (selection != null && selection.size() > 0) {
+                for (FileSystemObject fso : selection) {
+                    if (fso.isSecure() || fso.isRemote()) {
+                        menu.removeItem(R.id.mnu_actions_add_shortcut_current_folder);
+                        menu.removeItem(R.id.mnu_actions_add_to_bookmarks_current_folder);
+                        break;
+                    }
+                }
+            }
+        }
+
+        // Set as home
+        if (!mGlobal && !FileHelper.isDirectory(mFso)) {
+            menu.removeItem(R.id.mnu_actions_set_as_home);
+        } else if (mGlobal && (selection != null && selection.size() > 0)) {
+            menu.removeItem(R.id.mnu_actions_global_set_as_home);
         }
 
         // Not allowed in search
@@ -661,11 +792,40 @@ public class ActionsDialog implements OnItemClickListener, OnItemLongClickListen
             menu.removeItem(R.id.mnu_actions_extract);
             menu.removeItem(R.id.mnu_actions_compress);
             menu.removeItem(R.id.mnu_actions_create_link);
+        } else {
+            // Not allowed if not in search
+            menu.removeItem(R.id.mnu_actions_open_parent_folder);
         }
 
-        // Not allowed if not in search
-        if (!this.mSearch) {
-            menu.removeItem(R.id.mnu_actions_open_parent_folder);
+        // Remove unsafe operations over virtual mountpoint directories
+        List<Directory> virtualDirs = VirtualMountPointConsole.getVirtualMountableDirectories();
+        if (!mGlobal && FileHelper.isDirectory(mFso) && virtualDirs.contains(mFso)) {
+            menu.removeItem(R.id.mnu_actions_delete);
+            menu.removeItem(R.id.mnu_actions_rename);
+            menu.removeItem(R.id.mnu_actions_compress);
+            menu.removeItem(R.id.mnu_actions_create_copy);
+            menu.removeItem(R.id.mnu_actions_create_link);
+            menu.removeItem(R.id.mnu_actions_add_shortcut);
+            menu.removeItem(R.id.mnu_actions_add_to_bookmarks);
+        } else if (mGlobal) {
+            if (selection != null && selection.size() > 0) {
+                for (FileSystemObject fso : selection) {
+                    if (FileHelper.isDirectory(fso) && virtualDirs.contains(fso)) {
+                        menu.removeItem(R.id.mnu_actions_paste_selection);
+                        menu.removeItem(R.id.mnu_actions_move_selection);
+                        menu.removeItem(R.id.mnu_actions_delete_selection);
+                        menu.removeItem(R.id.mnu_actions_compress_selection);
+                        menu.removeItem(R.id.mnu_actions_create_link_global);
+                        menu.removeItem(R.id.mnu_actions_send_selection);
+                        menu.removeItem(R.id.mnu_actions_create_link_global);
+                        menu.removeItem(R.id.mnu_actions_create_link_global);
+                        menu.removeItem(R.id.mnu_actions_create_link_global);
+                        menu.removeItem(R.id.mnu_actions_add_shortcut_current_folder);
+                        menu.removeItem(R.id.mnu_actions_add_to_bookmarks_current_folder);
+                        break;
+                    }
+                }
+            }
         }
 
         // Remove not-ChRooted actions (actions that can't be present when running in

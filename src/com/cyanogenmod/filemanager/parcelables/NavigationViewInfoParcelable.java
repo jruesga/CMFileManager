@@ -25,6 +25,7 @@ import com.cyanogenmod.filemanager.model.FileSystemObject;
 import com.cyanogenmod.filemanager.util.FileHelper;
 
 import java.io.File;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -40,6 +41,7 @@ public class NavigationViewInfoParcelable extends HistoryNavigable {
     private boolean mChRooted;
     private List<FileSystemObject> mFiles;
     private List<FileSystemObject> mSelectedFiles;
+    private FileSystemObject mFirstVisible;
 
     /**
      * Constructor of <code>NavigationViewInfoParcelable</code>.
@@ -168,6 +170,24 @@ public class NavigationViewInfoParcelable extends HistoryNavigable {
     }
 
     /**
+     * Method that returns the first visible file in the list.
+     *
+     * @return {@link FileSystemObject} The index of the first visible file
+     */
+    public FileSystemObject getFirstVisible() {
+        return mFirstVisible;
+    }
+
+    /**
+     * Method that sets the first visible file.
+     *
+     * @param {@link FileSystemObject} The index of the first visible file
+     */
+    public void setFirstVisible(FileSystemObject firstVisible) {
+        mFirstVisible = firstVisible;
+    }
+
+    /**
      * {@inheritDoc}
      */
     @Override
@@ -180,24 +200,30 @@ public class NavigationViewInfoParcelable extends HistoryNavigable {
      */
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        //- 0
+        // - 0
         dest.writeInt(this.mId);
-        //- 1
+        // - 1
         dest.writeInt(this.mCurrentDir == null ? 0 : 1);
         if (this.mCurrentDir != null) {
             dest.writeString(this.mCurrentDir);
         }
-        //- 2
+        // - 2
         dest.writeInt(this.mChRooted ? 1 : 0);
-        //- 3
+        // - 3
         dest.writeInt(this.mSelectedFiles == null ? 0 : 1);
         if (this.mSelectedFiles != null) {
             dest.writeList(this.mSelectedFiles);
         }
-        //- 4
+        // - 4
         dest.writeInt(this.mFiles == null ? 0 : 1);
         if (this.mFiles != null) {
             dest.writeList(this.mFiles);
+        }
+
+        // - 5
+        dest.writeInt(this.mFirstVisible == null ? 0 : 1);
+        if (this.mFirstVisible != null) {
+            dest.writeSerializable(mFirstVisible);
         }
     }
 
@@ -207,32 +233,41 @@ public class NavigationViewInfoParcelable extends HistoryNavigable {
      * @param in The parcel information to recreate the object
      */
     private void readFromParcel(Parcel in) {
-        //- 0
+        // - 0
         this.mId = in.readInt();
-        //- 1
+        // - 1
         int hasCurrentDir = in.readInt();
         if (hasCurrentDir == 1) {
             this.mCurrentDir = in.readString();
         }
-        //- 2
+        // - 2
         this.mChRooted = (in.readInt() == 1);
-        //- 3
+        // - 3
         int hasSelectedFiles = in.readInt();
         if (hasSelectedFiles == 1) {
             List<FileSystemObject> selectedFiles = new ArrayList<FileSystemObject>();
             in.readList(selectedFiles, NavigationViewInfoParcelable.class.getClassLoader());
             this.mSelectedFiles = new ArrayList<FileSystemObject>(selectedFiles);
         }
-        //- 4
+        // - 4
         int hasFiles = in.readInt();
         if (hasFiles == 1) {
             List<FileSystemObject> files = new ArrayList<FileSystemObject>();
             in.readList(files, NavigationViewInfoParcelable.class.getClassLoader());
             this.mFiles = new ArrayList<FileSystemObject>(files);
         }
+
+        // - 5
+        int hasFirstVisible = in.readInt();
+        if (hasFirstVisible == 1) {
+            Serializable readSerializable = in.readSerializable();
+            if (readSerializable instanceof FileSystemObject) {
+                this.mFirstVisible = (FileSystemObject) readSerializable;
+            }
+        }
     }
 
-    /**
+   /**
      * The {@link android.os.Parcelable.Creator}.
      *
      * This field is needed for Android to be able to

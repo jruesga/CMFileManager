@@ -63,7 +63,11 @@ public class CompressCommand extends AsyncResultProgram implements CompressExecu
         /**
          * Compress using Bzip algorithm
          */
-        C_BZIP(BZIP_ID, "j", CompressionMode.C_BZIP); //$NON-NLS-1$
+        C_BZIP(BZIP_ID, "j", CompressionMode.C_BZIP), //$NON-NLS-1$
+        /**
+         * Archive using Zip algorithm
+         */
+        A_ZIP(ZIP_ID, "", CompressionMode.A_ZIP); //$NON-NLS-1$
 
         final String mId;
         final String mFlag;
@@ -103,10 +107,12 @@ public class CompressCommand extends AsyncResultProgram implements CompressExecu
     private static final String TAR_ID = "tar"; //$NON-NLS-1$
     private static final String GZIP_ID = "gzip"; //$NON-NLS-1$
     private static final String BZIP_ID = "bzip"; //$NON-NLS-1$
+    private static final String ZIP_ID = "zip"; //$NON-NLS-1$
 
     private Boolean mResult;
     private String mPartial;
 
+    private final Mode mMode;
     private final String mOutFile;
 
     /**
@@ -122,8 +128,15 @@ public class CompressCommand extends AsyncResultProgram implements CompressExecu
     public CompressCommand(
             CompressionMode mode, String dst, String[] src, AsyncResultListener asyncResultListener)
             throws InvalidCommandDefinitionException {
-        super(TAR_ID, asyncResultListener,
-                new String[]{Mode.fromCompressionMode(mode).mFlag, dst});
+        super(Mode.fromCompressionMode(mode).mId,
+              asyncResultListener,
+              resolveArchiveArgs(Mode.fromCompressionMode(mode), dst));
+        this.mMode = Mode.fromCompressionMode(mode);
+
+        if (!this.mMode.mMode.mArchive) {
+            throw new InvalidCommandDefinitionException(
+                            "Unsupported archive mode"); //$NON-NLS-1$
+        }
 
         //Convert the arguments from absolute to relative
         addExpandedArguments(
@@ -145,8 +158,12 @@ public class CompressCommand extends AsyncResultProgram implements CompressExecu
     public CompressCommand(
             CompressionMode mode, String src, AsyncResultListener asyncResultListener)
             throws InvalidCommandDefinitionException {
-        super(Mode.fromCompressionMode(mode).mId, asyncResultListener, resolveArguments(mode, src));
-        if (Mode.fromCompressionMode(mode).mMode.mArchive) {
+        super(Mode.fromCompressionMode(mode).mId,
+              asyncResultListener,
+              resolveCompressArgs(mode, src));
+        this.mMode = Mode.fromCompressionMode(mode);
+
+        if (this.mMode.mMode.mArchive) {
             throw new InvalidCommandDefinitionException(
                             "Unsupported compression mode"); //$NON-NLS-1$
         }
@@ -172,7 +189,10 @@ public class CompressCommand extends AsyncResultProgram implements CompressExecu
         // Send the last partial data
         if (this.mPartial != null && this.mPartial.length() > 0) {
             if (getAsyncResultListener() != null) {
-                getAsyncResultListener().onPartialResult(this.mPartial);
+                String data = processPartialResult(this.mPartial);
+                if (data != null) {
+                    getAsyncResultListener().onPartialResult(data);
+                }
             }
         }
         this.mPartial = ""; //$NON-NLS-1$
@@ -182,7 +202,8 @@ public class CompressCommand extends AsyncResultProgram implements CompressExecu
      * {@inheritDoc}
      */
     @Override
-    public void onParsePartialResult(final String partialIn) {
+    public void onParsePartialResult(final byte[] in) {
+        String partialIn = new String(in);
         if (partialIn == null || partialIn.length() ==0) return;
         boolean endsWithNewLine = partialIn.endsWith("\n"); //$NON-NLS-1$
         String[] lines = partialIn.split("\n"); //$NON-NLS-1$
@@ -194,14 +215,20 @@ public class CompressCommand extends AsyncResultProgram implements CompressExecu
         int cc = lines.length;
         for (int i = 0; i < cc-1; i++) {
             if (getAsyncResultListener() != null) {
-                getAsyncResultListener().onPartialResult(lines[i]);
+                String data = processPartialResult(lines[i]);
+                if (data != null) {
+                    getAsyncResultListener().onPartialResult(data);
+                }
             }
         }
 
         // Return the last line?
         if (endsWithNewLine) {
             if (getAsyncResultListener() != null) {
-                getAsyncResultListener().onPartialResult(lines[lines.length-1]);
+                String data = processPartialResult(lines[lines.length-1]);
+                if (data != null) {
+                    getAsyncResultListener().onPartialResult(data);
+                }
             }
             this.mPartial = ""; //$NON-NLS-1$
         } else {
@@ -214,7 +241,7 @@ public class CompressCommand extends AsyncResultProgram implements CompressExecu
      * {@inheritDoc}
      */
     @Override
-    public void onParseErrorPartialResult(String partialErr) {/**NON BLOCK**/}
+    public void onParseErrorPartialResult(byte[] partialErr) {/**NON BLOCK**/}
 
     /**
      * {@inheritDoc}
@@ -259,11 +286,30 @@ public class CompressCommand extends AsyncResultProgram implements CompressExecu
     }
 
     /**
-     * Method that resolves the arguments for the compression
+     * Method that resolves the arguments for the archive mode
      *
      * @return String[] The arguments
      */
-    private static String[] resolveArguments(CompressionMode mode, String src) {
+    private final static String[] resolveArchiveArgs(Mode mode, String dst) {
+        if (mode.compareTo(Mode.A_ZIP) == 0) {
+            return new String[]{
+                    FileHelper.getParentDir(dst),
+                    dst
+                };
+        }
+        return new String[]{
+                FileHelper.getParentDir(dst),
+                mode.mFlag,
+                dst
+            };
+    }
+
+    /**
+     * Method that resolves the arguments for the compression mode
+     *
+     * @return String[] The arguments
+     */
+    private static String[] resolveCompressArgs(CompressionMode mode, String src) {
         switch (mode) {
             case C_GZIP:
             case C_BZIP:
@@ -271,6 +317,27 @@ public class CompressCommand extends AsyncResultProgram implements CompressExecu
             default:
                 return new String[]{};
         }
+    }
+
+    /**
+     * Method that processes a line to determine if it's a valid partial result
+     *
+     * @param line The line to process
+     * @return String The processed line
+     */
+    private String processPartialResult(String line) {
+        if (this.mMode.compareTo(Mode.A_ZIP) == 0) {
+            if (line.startsWith("  adding: ")) { //$NON-NLS-1$
+                int pos = line.lastIndexOf('(');
+                if (pos != -1) {
+                    // Remove progress
+                    return line.substring(10, pos).trim();
+                }
+                return line.substring(10).trim();
+            }
+            return null;
+        }
+        return line;
     }
 
     /**

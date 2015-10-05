@@ -39,21 +39,17 @@
   <command commandId="bash" commandPath="/system/bin/sh" commandArgs="" />
   <command commandId="su" commandPath="/system/xbin/su" commandArgs="" />
 
-  <!-- Directory -->
-  <command commandId="cd" commandPath="cd" commandArgs="%1$s" />
-  <command commandId="pwd" commandPath="/system/xbin/pwd" commandArgs="-P" />
-
   <!-- Console info -->
   <command commandId="groups" commandPath="/system/xbin/groups" commandArgs="" />
   <command commandId="id" commandPath="/system/bin/id" commandArgs="-Gn" />
 
   <!-- FileSystem -->
-  <command commandId="mount" commandPath="/system/bin/mount" commandArgs="-o %1$s,remount -t auto %2$s %3$s" />
+  <command commandId="mount" commandPath="/system/bin/mount" commandArgs="-o %1$s,remount -t %2$s %3$s" />
   <command commandId="mountpointinfo" commandPath="/system/bin/mount" commandArgs="" />
 
   <!-- List/Find/Info -->
-  <command commandId="ls" commandPath="/system/bin/ls" commandArgs="%1$s 1&gt; /dev/null &amp;&amp; /system/xbin/stat -t %1$s* 2&gt;&amp;1" />
-  <command commandId="fileinfo" commandPath="/system/xbin/stat" commandArgs="-t %1$s 2&gt;&amp;1" />
+  <command commandId="ls" commandPath="/system/bin/ls" commandArgs="%1$s 1&gt; /dev/null &amp;&amp; /system/xbin/stat -t %1$s.* %1$s* 2&gt; /dev/null" />
+  <command commandId="fileinfo" commandPath="/system/xbin/stat" commandArgs="-t %1$s" />
   <command commandId="find" commandPath="/system/xbin/find" commandArgs="%1$s \\( -name %2$s -o -name %3$s -o -name %4$s -o -name %5$s -o -name %6$s \\) -exec /system/xbin/stat -t {} 2&gt;&amp;1 \\;" />
   <command commandId="quickfoldersearch" commandPath="/system/bin/ls" commandArgs="-aFd %1$s.* %1$s* 2&gt; /dev/null | /system/xbin/grep -e '^d' -e '^ld' | /system/xbin/cut -d&quot; &quot; -f2-" />
   <command commandId="readlink" commandPath="/system/bin/ls" commandArgs="%1$s 1&gt; /dev/null &amp;&amp; /system/xbin/stat -tL %1$s 2&gt;&amp;1" />
@@ -71,7 +67,7 @@
   <!-- Usage -->
   <command commandId="diskusage" commandPath="/system/bin/df" commandArgs="%1$s" />
   <command commandId="diskusageall" commandPath="/system/bin/df" commandArgs="" />
-  <command commandId="folderusage" commandPath="/system/bin/ls" commandArgs="-alR %1$s 2&gt; /dev/null" />
+  <command commandId="folderusage" commandPath="/system/xbin/busybox" commandArgs="ls -alR %1$s 2&gt; /dev/null" />
 
   <!-- I/O -->
   <command commandId="read" commandPath="/system/bin/cat" commandArgs="%1$s" />
@@ -84,17 +80,20 @@
   <!-- Misc -->
   <command commandId="dirname" commandPath="/system/xbin/dirname" commandArgs="%1$s" />
   <command commandId="echo" commandPath="/system/xbin/echo" commandArgs="%1$s" />
+  <command commandId="checksum" commandPath="/system/xbin/md5sum" commandArgs="%1$s &amp;&amp; /system/xbin/sha1sum %1$s" />
 
   <!-- Process control and info -->
   <command commandId="pid_shell" commandPath="/system/xbin/echo" commandArgs="$$" />
+  <command commandId="pid_shell_cmds" commandPath="/system/bin/ps" commandArgs="| /system/xbin/grep -w %1$s | /system/xbin/awk '{print $2}' | /system/xbin/grep -v -w %1$s" />
   <command commandId="pid_cmd" commandPath="/system/bin/ps" commandArgs="| /system/xbin/grep %1$s | /system/xbin/grep -w %2$s | /system/xbin/awk '{print $2}'" />
   <command commandId="sendsignal" commandPath="/system/bin/kill" commandArgs="-%1$s %2$s" />
   <command commandId="terminate" commandPath="/system/bin/kill" commandArgs="%1$s" />
 
   <!-- Compress -->
-  <command commandId="tar" commandPath="/system/xbin/tar" commandArgs="-%1$scvf %2$s [@]" />
+  <command commandId="tar" commandPath="/system/xbin/tar" commandArgs="-C%1$s -%2$scvf %3$s [@]" />
   <command commandId="gzip" commandPath="/system/bin/gzip" commandArgs="%1$s" />
   <command commandId="bzip" commandPath="/system/xbin/bzip2" commandArgs="-f %1$s" />
+  <command commandId="zip" commandPath="cd" commandArgs="%1$s &amp;&amp; ( /system/xbin/zip -9 -r -y %2$s [@] || cd /)" />
 
   <!-- Uncompress -->
   <command commandId="untar" commandPath="/system/bin/mkdir" commandArgs="-p %2$s &amp;&amp; /system/xbin/tar -C %2$s -%1$sxvf %3$s" />
@@ -104,5 +103,6 @@
   <command commandId="unlzma" commandPath="/system/xbin/unlzma" commandArgs="-f %1$s" />
   <command commandId="uncompress" commandPath="/system/xbin/uncompress" commandArgs="-f %1$s" />
   <command commandId="unxz" commandPath="/system/xbin/unxz" commandArgs="-f %1$s" />
+  <command commandId="unrar" commandPath="/system/xbin/unrar" commandArgs="x -ry -c- -cfg- -kb -p- -o+ %2$s %1$s" />
 
 </CommandList>

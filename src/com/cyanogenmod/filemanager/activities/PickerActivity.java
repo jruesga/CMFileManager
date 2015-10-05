@@ -18,6 +18,7 @@ package com.cyanogenmod.filemanager.activities;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.ActivityNotFoundException;
 import android.content.BroadcastReceiver;
 import android.content.ComponentName;
 import android.content.Context;
@@ -29,8 +30,10 @@ import android.content.IntentFilter;
 import android.content.res.Configuration;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.os.Handler;
 import android.os.storage.StorageVolume;
+import android.text.TextUtils;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
@@ -54,10 +57,12 @@ import com.cyanogenmod.filemanager.ui.ThemeManager.Theme;
 import com.cyanogenmod.filemanager.ui.widgets.Breadcrumb;
 import com.cyanogenmod.filemanager.ui.widgets.ButtonItem;
 import com.cyanogenmod.filemanager.ui.widgets.NavigationView;
+import com.cyanogenmod.filemanager.ui.widgets.NavigationView.OnDirectoryChangedListener;
 import com.cyanogenmod.filemanager.ui.widgets.NavigationView.OnFilePickedListener;
 import com.cyanogenmod.filemanager.util.DialogHelper;
 import com.cyanogenmod.filemanager.util.ExceptionUtil;
 import com.cyanogenmod.filemanager.util.FileHelper;
+import com.cyanogenmod.filemanager.util.MediaHelper;
 import com.cyanogenmod.filemanager.util.MimeTypeHelper;
 import com.cyanogenmod.filemanager.util.StorageHelper;
 
@@ -72,7 +77,7 @@ import java.util.Map;
  * application.
  */
 public class PickerActivity extends Activity
-        implements OnCancelListener, OnDismissListener, OnFilePickedListener {
+        implements OnCancelListener, OnDismissListener, OnFilePickedListener, OnDirectoryChangedListener {
 
     private static final String TAG = "PickerActivity"; //$NON-NLS-1$
 
@@ -97,7 +102,7 @@ public class PickerActivity extends Activity
     private static final ComponentName CROP_COMPONENT =
                                     new ComponentName(
                                             "com.android.gallery3d", //$NON-NLS-1$
-                                            "com.android.gallery3d.app.CropImage"); //$NON-NLS-1$
+                                            "com.android.gallery3d.filtershow.crop.CropActivity"); //$NON-NLS-1$
 
     // Gallery crop editor action
     private static final String ACTION_CROP = "com.android.camera.action.CROP"; //$NON-NLS-1$
@@ -105,7 +110,13 @@ public class PickerActivity extends Activity
     // Extra data for Gallery CROP action
     private static final String EXTRA_CROP = "crop"; //$NON-NLS-1$
 
-    private FileSystemObject mFso;  // The picked item
+    // Intent for folder picker
+    private static final String INTENT_FOLDER_SELECT = "com.android.fileexplorer.action.DIR_SEL";
+    // String extra for folder selection
+    private static final String EXTRA_FOLDER_PATH = "def_file_manager_result_dir";
+
+    FileSystemObject mFso;  // The picked item
+    FileSystemObject mCurrentDirectory;
     private AlertDialog mDialog;
     private Handler mHandler;
     /**
@@ -127,6 +138,10 @@ public class PickerActivity extends Activity
         IntentFilter filter = new IntentFilter();
         filter.addAction(FileManagerSettings.INTENT_THEME_CHANGED);
         registerReceiver(this.mNotificationReceiver, filter);
+
+        // Set the theme before setContentView
+        Theme theme = ThemeManager.getCurrentTheme(this);
+        theme.setBaseTheme(this, true);
 
         // Initialize the activity
         init();
@@ -169,30 +184,45 @@ public class PickerActivity extends Activity
      * proposed file
      */
     private void init() {
-        // Check that call has a valid request (GET_CONTENT a and mime type)
-        String action = getIntent().getAction();
+        final boolean pickingDirectory;
+        final Intent intent = getIntent();
 
-        Log.d(TAG, "PickerActivity. action: " + String.valueOf(action)); //$NON-NLS-1$
-        if (action.compareTo(Intent.ACTION_GET_CONTENT.toString()) != 0) {
+        if (isFilePickIntent(intent)) {
+            // ok
+            Log.d(TAG, "PickerActivity: got file pick intent: " + String.valueOf(intent)); //$NON-NLS-1$
+            pickingDirectory = false;
+        } else if (isDirectoryPickIntent(getIntent())) {
+            // ok
+            Log.d(TAG, "PickerActivity: got folder pick intent: " + String.valueOf(intent)); //$NON-NLS-1$
+            pickingDirectory = true;
+        } else {
+            Log.d(TAG, "PickerActivity got unrecognized intent: " + String.valueOf(intent)); //$NON-NLS-1$
             setResult(Activity.RESULT_CANCELED);
             finish();
             return;
         }
 
         // Display restrictions
+        Bundle extras = getIntent().getExtras();
         Map<DisplayRestrictions, Object> restrictions = new HashMap<DisplayRestrictions, Object>();
         //- Mime/Type restriction
         String mimeType = getIntent().getType();
-        Log.d(TAG, "PickerActivity. type: " + String.valueOf(mimeType)); //$NON-NLS-1$
         if (mimeType != null) {
             if (!MimeTypeHelper.isMimeTypeKnown(this, mimeType)) {
-                Log.i(TAG, "Mime type " + mimeType + " unknown, falling back to wildcard.");
+                Log.i(TAG,
+                        String.format(
+                                "Mime type %s unknown, falling back to wildcard.", //$NON-NLS-1$
+                                mimeType));
                 mimeType = MimeTypeHelper.ALL_MIME_TYPES;
             }
             restrictions.put(DisplayRestrictions.MIME_TYPE_RESTRICTION, mimeType);
+        } else {
+            String[] mimeTypes = getIntent().getStringArrayExtra(Intent.EXTRA_MIME_TYPES);
+            if (mimeTypes != null && mimeTypes.length > 0) {
+                restrictions.put(DisplayRestrictions.MIME_TYPE_RESTRICTION, mimeTypes);
+            }
         }
         // Other restrictions
-        Bundle extras = getIntent().getExtras();
         Log.d(TAG, "PickerActivity. extras: " + String.valueOf(extras)); //$NON-NLS-1$
         if (extras != null) {
             //-- File size
@@ -208,6 +238,9 @@ public class PickerActivity extends Activity
                         DisplayRestrictions.LOCAL_FILESYSTEM_ONLY_RESTRICTION,
                         Boolean.valueOf(localOnly));
             }
+        }
+        if (pickingDirectory) {
+            restrictions.put(DisplayRestrictions.DIRECTORY_ONLY_RESTRICTION, Boolean.TRUE);
         }
 
         // Create or use the console
@@ -240,6 +273,7 @@ public class PickerActivity extends Activity
                 (NavigationView)this.mRootView.findViewById(R.id.navigation_view);
         this.mNavigationView.setRestrictions(restrictions);
         this.mNavigationView.setOnFilePickedListener(this);
+        this.mNavigationView.setOnDirectoryChangedListener(this);
         this.mNavigationView.setBreadcrumb(breadcrumb);
 
         // Apply the current theme
@@ -247,9 +281,12 @@ public class PickerActivity extends Activity
 
         // Create the dialog
         this.mDialog = DialogHelper.createDialog(
-            this, R.drawable.ic_launcher, R.string.picker_title, this.mRootView);
+            this, R.mipmap.ic_launcher_filemanager,
+            pickingDirectory ? R.string.directory_picker_title : R.string.picker_title,
+            this.mRootView);
+
         this.mDialog.setButton(
-                DialogInterface.BUTTON_NEUTRAL,
+                DialogInterface.BUTTON_NEGATIVE,
                 getString(R.string.cancel),
                 new DialogInterface.OnClickListener() {
             @Override
@@ -257,6 +294,18 @@ public class PickerActivity extends Activity
                 dlg.cancel();
             }
         });
+        if (pickingDirectory) {
+            this.mDialog.setButton(
+                    DialogInterface.BUTTON_POSITIVE,
+                    getString(R.string.select),
+                    new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dlg, int which) {
+                    PickerActivity.this.mFso = PickerActivity.this.mCurrentDirectory;
+                    dlg.dismiss();
+                }
+            });
+        }
         this.mDialog.setCancelable(true);
         this.mDialog.setOnCancelListener(this);
         this.mDialog.setOnDismissListener(this);
@@ -266,12 +315,21 @@ public class PickerActivity extends Activity
         ButtonItem fs = (ButtonItem)this.mRootView.findViewById(R.id.ab_filesystem_info);
         fs.setContentDescription(getString(R.string.actionbar_button_storage_cd));
 
+        final File initialDir = getInitialDirectoryFromIntent(getIntent());
+        final String rootDirectory;
+
+        if (initialDir != null) {
+            rootDirectory = initialDir.getAbsolutePath();
+        } else {
+            rootDirectory = FileHelper.ROOT_DIRECTORY;
+        }
+
         this.mHandler = new Handler();
         this.mHandler.post(new Runnable() {
             @Override
             public void run() {
                 // Navigate to. The navigation view will redirect to the appropriate directory
-                PickerActivity.this.mNavigationView.changeCurrentDir(FileHelper.ROOT_DIRECTORY);
+                PickerActivity.this.mNavigationView.changeCurrentDir(rootDirectory);
             }
         });
 
@@ -302,11 +360,8 @@ public class PickerActivity extends Activity
      */
     private boolean initializeConsole() {
         try {
-            // Is there a console allocate
-            if (!ConsoleBuilder.isAlloc()) {
-                // Create a ChRooted console
-                ConsoleBuilder.createDefaultConsole(this, false, false);
-            }
+            // Create a ChRooted console
+            ConsoleBuilder.createDefaultConsole(this, false, false);
             // There is a console allocated. Use it.
             return true;
         } catch (Throwable _throw) {
@@ -366,21 +421,119 @@ public class PickerActivity extends Activity
                     intent.setData(Uri.fromFile(src));
                     intent.putExtras(extras);
                     intent.setComponent(CROP_COMPONENT);
-                    startActivityForResult(intent, RESULT_CROP_IMAGE);
-                    return;
+                    try {
+                        startActivityForResult(intent, RESULT_CROP_IMAGE);
+                        return;
+                    } catch (ActivityNotFoundException e) {
+                        Log.w(TAG, "Failed to find crop activity!");
+                    }
+                    intent.setComponent(null);
+                    try {
+                        startActivityForResult(intent, RESULT_CROP_IMAGE);
+                        return;
+                    } catch (ActivityNotFoundException e) {
+                        Log.w(TAG, "Failed to find any crop activity!");
+                    }
                 }
+            }
+
+            if (INTENT_FOLDER_SELECT.equals(getIntent().getAction())) {
+                Intent result = new Intent();
+                result.putExtra(EXTRA_FOLDER_PATH, src.getAbsolutePath());
+                setResult(Activity.RESULT_OK, result);
+                finish();
+                return;
             }
 
             // Return the picked file, as expected (this activity should fill the intent data
             // and return RESULT_OK result)
             Intent result = new Intent();
-            result.setData(Uri.fromFile(src));
+            result.setData(getResultUriForFileFromIntent(this, src, getIntent()));
             setResult(Activity.RESULT_OK, result);
             finish();
 
         } else {
             cancel();
         }
+    }
+
+    private static boolean isFilePickIntent(Intent intent) {
+        final String action = intent.getAction();
+
+        if (Intent.ACTION_GET_CONTENT.equals(action)) {
+            return true;
+        }
+        if (Intent.ACTION_PICK.equals(action)) {
+            final Uri data = intent.getData();
+            if (data != null && FileHelper.FILE_URI_SCHEME.equals(data.getScheme())) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    private static boolean isDirectoryPickIntent(Intent intent) {
+        if (INTENT_FOLDER_SELECT.equals(intent.getAction())) {
+            return true;
+        }
+
+        if (Intent.ACTION_PICK.equals(intent.getAction()) && intent.getData() != null) {
+            String scheme = intent.getData().getScheme();
+            if (FileHelper.FOLDER_URI_SCHEME.equals(scheme)
+                    || FileHelper.DIRECTORY_URI_SCHEME.equals(scheme)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    private static File getInitialDirectoryFromIntent(Intent intent) {
+        if (!Intent.ACTION_PICK.equals(intent.getAction())) {
+            return null;
+        }
+
+        if (INTENT_FOLDER_SELECT.equals(intent.getAction())) {
+            return Environment.getExternalStorageDirectory();
+        }
+
+        final Uri data = intent.getData();
+        if (data == null) {
+            return null;
+        }
+
+        final String path = data.getPath();
+        if (path == null) {
+            return null;
+        }
+
+        final File file = new File(path);
+        if (!file.exists() || !file.isAbsolute()) {
+            return null;
+        }
+
+        if (file.isDirectory()) {
+            return file;
+        }
+        return file.getParentFile();
+    }
+
+    private static Uri getResultUriForFileFromIntent(Context context, File src, Intent intent) {
+        // Try to find the preferred uri scheme
+        Uri result = MediaHelper.fileToContentUri(context, src);
+        if (result == null) {
+            result = Uri.fromFile(src);
+        }
+
+        if (Intent.ACTION_PICK.equals(intent.getAction()) && intent.getData() != null) {
+            String scheme = intent.getData().getScheme();
+            if (scheme != null) {
+                result = result.buildUpon().scheme(scheme).build();
+            }
+        }
+
+        return result;
     }
 
     /**
@@ -398,6 +551,14 @@ public class PickerActivity extends Activity
     public void onFilePicked(FileSystemObject item) {
         this.mFso = item;
         this.mDialog.dismiss();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void onDirectoryChanged(FileSystemObject item) {
+        this.mCurrentDirectory = item;
     }
 
     /**
@@ -435,15 +596,28 @@ public class PickerActivity extends Activity
      */
     private void showStorageVolumesPopUp(View anchor) {
         // Create a list (but not checkable)
-        final StorageVolume[] volumes = StorageHelper.getStorageVolumes(PickerActivity.this);
+        final StorageVolume[] volumes = StorageHelper.getStorageVolumes(PickerActivity.this, false);
         List<CheckableItem> descriptions = new ArrayList<CheckableItem>();
         if (volumes != null) {
             int cc = volumes.length;
             for (int i = 0; i < cc; i++) {
-                String desc = StorageHelper.getStorageVolumeDescription(this, volumes[i]);
-                CheckableItem item = new CheckableItem(desc, false, false);
-                descriptions.add(item);
+                StorageVolume volume = volumes[i];
+                if (volumes[i] != null) {
+                    String mountedState = volumes[i].getState();
+                    String path = volumes[i].getPath();
+                    if (!Environment.MEDIA_MOUNTED.equalsIgnoreCase(mountedState) &&
+                            !Environment.MEDIA_MOUNTED_READ_ONLY.equalsIgnoreCase(mountedState)) {
+                        Log.w(TAG, "Ignoring '" + path + "' with state of '"+ mountedState + "'");
+                        continue;
+                    }
+                    if (!TextUtils.isEmpty(path)) {
+                        String desc = StorageHelper.getStorageVolumeDescription(this, volumes[i]);
+                        CheckableItem item = new CheckableItem(desc, false, false);
+                        descriptions.add(item);
+                    }
+                }
             }
+
         }
         CheckableListAdapter adapter =
                 new CheckableListAdapter(getApplicationContext(), descriptions);

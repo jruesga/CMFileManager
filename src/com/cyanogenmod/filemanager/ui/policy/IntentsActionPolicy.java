@@ -18,25 +18,32 @@ package com.cyanogenmod.filemanager.ui.policy;
 
 import android.content.ComponentName;
 import android.content.Context;
-import android.content.IntentFilter;
 import android.content.DialogInterface.OnCancelListener;
 import android.content.DialogInterface.OnDismissListener;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.util.Log;
 import android.widget.Toast;
-
 import com.cyanogenmod.filemanager.R;
 import com.cyanogenmod.filemanager.activities.ShortcutActivity;
+import com.cyanogenmod.filemanager.console.secure.SecureConsole;
 import com.cyanogenmod.filemanager.model.FileSystemObject;
 import com.cyanogenmod.filemanager.model.RegularFile;
+import com.cyanogenmod.filemanager.providers.SecureResourceProvider;
+import com.cyanogenmod.filemanager.providers.SecureResourceProvider.AuthorizationResource;
+import com.cyanogenmod.filemanager.providers.secure.ISecureChoiceCompleteListener;
+import com.cyanogenmod.filemanager.providers.secure.SecureCacheCleanupService;
+import com.cyanogenmod.filemanager.providers.secure.SecureChoiceClickListener;
 import com.cyanogenmod.filemanager.ui.dialogs.AssociationsDialog;
 import com.cyanogenmod.filemanager.util.DialogHelper;
 import com.cyanogenmod.filemanager.util.ExceptionUtil;
 import com.cyanogenmod.filemanager.util.FileHelper;
+import com.cyanogenmod.filemanager.util.MediaHelper;
 import com.cyanogenmod.filemanager.util.MimeTypeHelper;
 import com.cyanogenmod.filemanager.util.MimeTypeHelper.MimeTypeCategory;
 import com.cyanogenmod.filemanager.util.ResourcesHelper;
@@ -78,6 +85,11 @@ public final class IntentsActionPolicy extends ActionsPolicy {
             "com.cyanogenmod.filemanager.category.EDITOR"; //$NON-NLS-1$
 
     /**
+     * The package name of Gallery2.
+     */
+    public static final String GALLERY2_PACKAGE = "com.android.gallery3d";
+
+    /**
      * Method that opens a {@link FileSystemObject} with the default registered application
      * by the system, or ask the user for select a registered application.
      *
@@ -89,19 +101,75 @@ public final class IntentsActionPolicy extends ActionsPolicy {
      */
     public static void openFileSystemObject(
             final Context ctx, final FileSystemObject fso, final boolean choose,
-            OnCancelListener onCancelListener, OnDismissListener onDismissListener) {
+            final OnCancelListener onCancelListener, final OnDismissListener onDismissListener) {
         try {
             // Create the intent to open the file
-            Intent intent = new Intent();
+            final Intent intent = new Intent();
             intent.setAction(android.content.Intent.ACTION_VIEW);
+
+            // [NOTE][MSB]: Short circuit to pop up dialog informing user we need to copy out the
+            // file until we find a better solution.
+            if (fso.isSecure()) {
+                // [TODO][MSB]: Check visible cache for existing file but I need to split up
+                // resolveIntent function properly for this to be successful
+                DialogHelper.createTwoButtonsQuestionDialog(
+                        ctx,
+                        R.string.ok,
+                        R.string.cancel,
+                        R.string.warning_title,
+                        ctx.getResources().getString(R.string.secure_storage_open_file_warning),
+                        new SecureChoiceClickListener(ctx, fso,
+                                new ISecureChoiceCompleteListener() {
+                                    private boolean isCancelled = false;
+                                    @Override
+                                    public void onComplete(File cacheFile) {
+                                        if (isCancelled) {
+                                            return;
+                                        }
+                                        // Schedule cleanup alarm
+                                        SecureCacheCleanupService.scheduleCleanup(ctx);
+
+                                        FileSystemObject cacheFso = FileHelper
+                                                .createFileSystemObject(cacheFile);
+                                        // Obtain the mime/type and passed it to intent
+                                        String mime = MimeTypeHelper.getMimeType(ctx, cacheFso);
+                                        if (mime != null) {
+                                            intent.setDataAndType(getUriFromFile(ctx, cacheFso),
+                                                    mime);
+                                        } else {
+                                            intent.setData(getUriFromFile(ctx, cacheFso));
+                                        }
+                                        // Resolve the intent
+                                        resolveIntent(
+                                                ctx,
+                                                intent,
+                                                choose,
+                                                createInternalIntents(ctx, cacheFso),
+                                                0,
+                                                R.string.associations_dialog_openwith_title,
+                                                R.string.associations_dialog_openwith_action,
+                                                true,
+                                                onCancelListener,
+                                                onDismissListener);
+                                    }
+
+                                    @Override
+                                    public void onCancelled() {
+                                        isCancelled = true;
+                                        Toast.makeText(ctx, R.string.cancelled_message, Toast
+                                                .LENGTH_SHORT).show();
+                                    }
+                                }))
+                        .show();
+                return;
+            }
 
             // Obtain the mime/type and passed it to intent
             String mime = MimeTypeHelper.getMimeType(ctx, fso);
-            File file = new File(fso.getFullPath());
             if (mime != null) {
-                intent.setDataAndType(Uri.fromFile(file), mime);
+                intent.setDataAndType(getUriFromFile(ctx, fso), mime);
             } else {
-                intent.setData(Uri.fromFile(file));
+                intent.setData(getUriFromFile(ctx, fso));
             }
 
             // Resolve the intent
@@ -109,7 +177,7 @@ public final class IntentsActionPolicy extends ActionsPolicy {
                     ctx,
                     intent,
                     choose,
-                    createInternalIntents(ctx,  fso),
+                    createInternalIntents(ctx, fso),
                     0,
                     R.string.associations_dialog_openwith_title,
                     R.string.associations_dialog_openwith_action,
@@ -138,14 +206,81 @@ public final class IntentsActionPolicy extends ActionsPolicy {
             intent.setAction(android.content.Intent.ACTION_SEND);
             intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
             intent.setType(MimeTypeHelper.getMimeType(ctx, fso));
-            Uri uri = Uri.fromFile(new File(fso.getFullPath()));
+            Uri uri = getUriFromFile(ctx, fso);
             intent.putExtra(Intent.EXTRA_STREAM, uri);
 
             // Resolve the intent
             resolveIntent(
                     ctx,
                     intent,
-                    false,
+                    true,
+                    null,
+                    0,
+                    R.string.associations_dialog_sendwith_title,
+                    R.string.associations_dialog_sendwith_action,
+                    false, onCancelListener, onDismissListener);
+
+        } catch (Exception e) {
+            ExceptionUtil.translateException(ctx, e);
+        }
+    }
+
+    /**
+     * Method that sends a {@link FileSystemObject} with the default registered application
+     * by the system, or ask the user for select a registered application.
+     *
+     * @param ctx The current context
+     * @param fsos The file system objects
+     * @param onCancelListener The cancel listener
+     * @param onDismissListener The dismiss listener
+     */
+    public static void sendMultipleFileSystemObject(
+            final Context ctx, final List<FileSystemObject> fsos,
+            OnCancelListener onCancelListener, OnDismissListener onDismissListener) {
+        try {
+            // Create the intent to
+            Intent intent = new Intent();
+            intent.setAction(android.content.Intent.ACTION_SEND_MULTIPLE);
+            intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+
+            // Create an array list of the uris to send
+            ArrayList<Uri> uris = new ArrayList<Uri>();
+            int cc = fsos.size();
+            String lastMimeType = null;
+            boolean sameMimeType = true;
+            for (int i = 0; i < cc; i++) {
+                FileSystemObject fso = fsos.get(i);
+
+                // Folders are not allowed
+                if (FileHelper.isDirectory(fso)) continue;
+
+                // Check if we can use a unique mime/type
+                String mimeType = MimeTypeHelper.getMimeType(ctx, fso);
+                if (mimeType == null) {
+                    sameMimeType = false;
+                }
+                if (sameMimeType &&
+                    (mimeType != null && lastMimeType != null &&
+                     mimeType.compareTo(lastMimeType) != 0)) {
+                    sameMimeType = false;
+                }
+                lastMimeType = mimeType;
+
+                // Add the uri
+                uris.add(getUriFromFile(ctx, fso));
+            }
+            if (sameMimeType) {
+                intent.setType(lastMimeType);
+            } else {
+                intent.setType(MimeTypeHelper.ALL_MIME_TYPES);
+            }
+            intent.putParcelableArrayListExtra(Intent.EXTRA_STREAM, uris);
+
+            // Resolve the intent
+            resolveIntent(
+                    ctx,
+                    intent,
+                    true,
                     null,
                     0,
                     R.string.associations_dialog_sendwith_title,
@@ -222,6 +357,15 @@ public final class IntentsActionPolicy extends ActionsPolicy {
                                 rie.activityInfo.packageName) == 0 &&
                             ri.activityInfo.name.compareTo(
                                     rie.activityInfo.name) == 0) {
+
+                            // Mark as internal
+                            if (ri.activityInfo.metaData == null) {
+                                ri.activityInfo.metaData = new Bundle();
+                                ri.activityInfo.metaData.putString(
+                                        EXTRA_INTERNAL_ACTION, ii.getAction());
+                                ri.activityInfo.metaData.putBoolean(
+                                        CATEGORY_INTERNAL_VIEWER, true);
+                            }
                             exists = true;
                             break;
                         }
@@ -247,6 +391,9 @@ public final class IntentsActionPolicy extends ActionsPolicy {
         // No registered application
         if (info.size() == 0) {
             DialogHelper.showToast(ctx, R.string.msgs_not_registered_app, Toast.LENGTH_SHORT);
+            if (onDismissListener != null) {
+                onDismissListener.onDismiss(null);
+            }
             return;
         }
 
@@ -260,12 +407,18 @@ public final class IntentsActionPolicy extends ActionsPolicy {
         // If we have a preferred application, then use it
         if (!choose && (mPreferredInfo  != null && mPreferredInfo.match != 0)) {
             ctx.startActivity(getIntentFromResolveInfo(mPreferredInfo, intent));
+            if (onDismissListener != null) {
+                onDismissListener.onDismiss(null);
+            }
             return;
         }
         // If there are only one activity (app or internal editor), then use it
         if (!choose && info.size() == 1) {
             ResolveInfo ri = info.get(0);
             ctx.startActivity(getIntentFromResolveInfo(ri, intent));
+            if (onDismissListener != null) {
+                onDismissListener.onDismiss(null);
+            }
             return;
         }
 
@@ -297,7 +450,7 @@ public final class IntentsActionPolicy extends ActionsPolicy {
             // Create the intent that will handle the shortcut
             Intent shortcutIntent = new Intent(ctx, ShortcutActivity.class);
             shortcutIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            shortcutIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            shortcutIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             if (FileHelper.isDirectory(fso)) {
                 shortcutIntent.putExtra(
                         ShortcutActivity.EXTRA_TYPE,ShortcutActivity.SHORTCUT_TYPE_NAVIGATE);
@@ -385,7 +538,8 @@ public final class IntentsActionPolicy extends ActionsPolicy {
                         ri.activityInfo.applicationInfo.packageName,
                         ri.activityInfo.name),
                     request);
-        if (isInternalEditor(ri)) {
+        boolean isInternalEditor = isInternalEditor(ri);
+        if (isInternalEditor) {
             String a = Intent.ACTION_VIEW;
             if (ri.activityInfo.metaData != null) {
                 a = ri.activityInfo.metaData.getString(
@@ -393,8 +547,71 @@ public final class IntentsActionPolicy extends ActionsPolicy {
                         Intent.ACTION_VIEW);
             }
             intent.setAction(a);
+        } else {
+            // Opening image files with Gallery2 will behave incorrectly when started
+            // as a new task. We want to be able to return to CMFM with the back button.
+            if (!(Intent.ACTION_VIEW.equals(intent.getAction())
+                  && isGallery2(ri)
+                  && intent.getData() != null
+                  && MediaStore.AUTHORITY.equals(intent.getData().getAuthority()))) {
+                // Create a new stack for the activity
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            }
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         }
+
+        // Grant access to resources if needed
+        grantSecureAccessIfNeeded(intent, ri);
+
         return intent;
+    }
+
+    /**
+     * Method that add grant access to secure resources if needed
+     *
+     * @param intent The intent to grant access
+     * @param ri The resolved info associated with the intent
+     */
+    public static final void grantSecureAccessIfNeeded(Intent intent, ResolveInfo ri) {
+        // If this intent will be serve by the SecureResourceProvider then this uri must
+        // be granted before we start it, only for external apps. The internal editor
+        // must receive an file scheme uri
+        Uri uri = intent.getData();
+        String authority = null;
+        if (uri != null) {
+            authority = uri.getAuthority();
+            grantSecureAccess(intent, authority, ri, uri);
+        } else if (intent.getExtras() != null) {
+            Object obj = intent.getExtras().get(Intent.EXTRA_STREAM);
+            if (obj instanceof Uri) {
+                uri = (Uri) intent.getExtras().get(Intent.EXTRA_STREAM);
+                authority = uri.getAuthority();
+                grantSecureAccess(intent, authority, ri, uri);
+            } else if (obj instanceof ArrayList) {
+                ArrayList<Uri> uris = (ArrayList<Uri>) intent.getExtras().get(Intent.EXTRA_STREAM);
+                for (Uri u : uris) {
+                    authority = u.getAuthority();
+                    grantSecureAccess(intent, authority, ri, u);
+                }
+            }
+        }
+    }
+
+    private static final void grantSecureAccess(Intent intent, String authority, ResolveInfo ri,
+            Uri uri) {
+        if (authority != null && authority.equals(SecureResourceProvider.AUTHORITY)) {
+            boolean isInternalEditor = isInternalEditor(ri);
+            if (isInternalEditor) {
+                // remove the authorization and change request to file scheme
+                AuthorizationResource auth = SecureResourceProvider.revertAuthorization(uri);
+                intent.setData(Uri.fromFile(new File(auth.mFile.getFullPath())));
+
+            } else {
+                // Grant access to the package
+                SecureResourceProvider.grantAuthorizationUri(uri,
+                        ri.activityInfo.applicationInfo.packageName);
+            }
+        }
     }
 
     /**
@@ -430,6 +647,10 @@ public final class IntentsActionPolicy extends ActionsPolicy {
         return ri.activityInfo.metaData != null &&
                 ri.activityInfo.metaData.getBoolean(
                         IntentsActionPolicy.CATEGORY_INTERNAL_VIEWER, false);
+    }
+
+    public static final boolean isGallery2(ResolveInfo ri) {
+        return GALLERY2_PACKAGE.equals(ri.activityInfo.packageName);
     }
 
     /**
@@ -503,5 +724,29 @@ public final class IntentsActionPolicy extends ActionsPolicy {
             }
         });
         return pref.get(0);
+    }
+
+    /**
+     * Method that returns the best Uri for the file (content uri, file uri, ...)
+     *
+     * @param ctx The current context
+     * @param file The file to resolve
+     */
+    private static Uri getUriFromFile(Context ctx, FileSystemObject fso) {
+        // If the passed object is secure file then we have to provide access with
+        // the internal resource provider
+        if (fso.isSecure() && SecureConsole.isVirtualStorageResource(fso.getFullPath())
+                && fso instanceof RegularFile) {
+            RegularFile file = (RegularFile) fso;
+            return SecureResourceProvider.createAuthorizationUri(file);
+        }
+
+        // Try to resolve media data or return a file uri
+        final File file = new File(fso.getFullPath());
+        Uri uri = MediaHelper.fileToContentUri(ctx, file);
+        if (uri == null) {
+            uri = Uri.fromFile(file);
+        }
+        return uri;
     }
 }

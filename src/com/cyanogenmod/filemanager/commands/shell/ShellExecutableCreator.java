@@ -17,14 +17,14 @@
 package com.cyanogenmod.filemanager.commands.shell;
 
 import com.cyanogenmod.filemanager.commands.AsyncResultListener;
-import com.cyanogenmod.filemanager.commands.ChangeCurrentDirExecutable;
 import com.cyanogenmod.filemanager.commands.ChangeOwnerExecutable;
 import com.cyanogenmod.filemanager.commands.ChangePermissionsExecutable;
+import com.cyanogenmod.filemanager.commands.ChecksumExecutable;
 import com.cyanogenmod.filemanager.commands.CompressExecutable;
+import com.cyanogenmod.filemanager.commands.ConcurrentAsyncResultListener;
 import com.cyanogenmod.filemanager.commands.CopyExecutable;
 import com.cyanogenmod.filemanager.commands.CreateDirExecutable;
 import com.cyanogenmod.filemanager.commands.CreateFileExecutable;
-import com.cyanogenmod.filemanager.commands.CurrentDirExecutable;
 import com.cyanogenmod.filemanager.commands.DeleteDirExecutable;
 import com.cyanogenmod.filemanager.commands.DeleteFileExecutable;
 import com.cyanogenmod.filemanager.commands.DiskUsageExecutable;
@@ -50,6 +50,8 @@ import com.cyanogenmod.filemanager.commands.SendSignalExecutable;
 import com.cyanogenmod.filemanager.commands.UncompressExecutable;
 import com.cyanogenmod.filemanager.commands.WriteExecutable;
 import com.cyanogenmod.filemanager.console.CommandNotFoundException;
+import com.cyanogenmod.filemanager.console.InsufficientPermissionsException;
+import com.cyanogenmod.filemanager.console.NoSuchFileOrDirectory;
 import com.cyanogenmod.filemanager.console.shell.ShellConsole;
 import com.cyanogenmod.filemanager.model.Group;
 import com.cyanogenmod.filemanager.model.MountPoint;
@@ -73,19 +75,6 @@ public class ShellExecutableCreator implements ExecutableCreator {
     ShellExecutableCreator(ShellConsole console) {
         super();
         this.mConsole = console;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public ChangeCurrentDirExecutable createChangeCurrentDirExecutable(String dir)
-            throws CommandNotFoundException {
-        try {
-            return new ChangeCurrentDirCommand(dir);
-        } catch (InvalidCommandDefinitionException icdEx) {
-            throw new CommandNotFoundException("ChangeCurrentDirCommand", icdEx); //$NON-NLS-1$
-        }
     }
 
     /**
@@ -150,18 +139,6 @@ public class ShellExecutableCreator implements ExecutableCreator {
             return new CreateFileCommand(file);
         } catch (InvalidCommandDefinitionException icdEx) {
             throw new CommandNotFoundException("CreateFileCommand", icdEx); //$NON-NLS-1$
-        }
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public CurrentDirExecutable createCurrentDirExecutable() throws CommandNotFoundException {
-        try {
-            return new CurrentDirCommand();
-        } catch (InvalidCommandDefinitionException icdEx) {
-            throw new CommandNotFoundException("CurrentDirCommand", icdEx); //$NON-NLS-1$
         }
     }
 
@@ -246,7 +223,7 @@ public class ShellExecutableCreator implements ExecutableCreator {
      */
     @Override
     public FindExecutable createFindExecutable(
-            String directory, Query query, AsyncResultListener asyncResultListener)
+            String directory, Query query, ConcurrentAsyncResultListener asyncResultListener)
             throws CommandNotFoundException {
         try {
             return new FindCommand(directory, query, asyncResultListener);
@@ -400,6 +377,19 @@ public class ShellExecutableCreator implements ExecutableCreator {
      * {@inheritDoc}
      */
     @Override
+    public ProcessIdExecutable createProcessIdExecutable(int pid)
+            throws CommandNotFoundException {
+        try {
+            return new ProcessIdCommand(pid);
+        } catch (InvalidCommandDefinitionException icdEx) {
+            throw new CommandNotFoundException("ProcessIdCommand", icdEx); //$NON-NLS-1$
+        }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public ProcessIdExecutable createProcessIdExecutable(int pid, String processName)
             throws CommandNotFoundException {
         try {
@@ -531,6 +521,21 @@ public class ShellExecutableCreator implements ExecutableCreator {
             return new UncompressCommand(src, dst, asyncResultListener);
         } catch (InvalidCommandDefinitionException icdEx) {
             throw new CommandNotFoundException("UncompressCommand", icdEx); //$NON-NLS-1$
+        }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public ChecksumExecutable createChecksumExecutable(
+            String src, AsyncResultListener asyncResultListener)
+            throws CommandNotFoundException, NoSuchFileOrDirectory,
+            InsufficientPermissionsException {
+        try {
+            return new ChecksumCommand(src, asyncResultListener);
+        } catch (InvalidCommandDefinitionException icdEx) {
+            throw new CommandNotFoundException("ChecksumCommand", icdEx); //$NON-NLS-1$
         }
     }
 

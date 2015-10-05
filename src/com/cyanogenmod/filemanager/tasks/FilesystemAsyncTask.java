@@ -23,6 +23,7 @@ import android.os.AsyncTask;
 import android.util.Log;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.app.Activity;
 
 import com.cyanogenmod.filemanager.model.DiskUsage;
 import com.cyanogenmod.filemanager.model.MountPoint;
@@ -58,6 +59,11 @@ public class FilesystemAsyncTask extends AsyncTask<String, Integer, Boolean> {
     /**
      * @hide
      */
+    final boolean mIsDialog;
+
+    /**
+     * @hide
+     */
     static int sColorFilterNormal;
 
     /**
@@ -71,12 +77,29 @@ public class FilesystemAsyncTask extends AsyncTask<String, Integer, Boolean> {
     public FilesystemAsyncTask(
             Context context, ImageView mountPointInfo,
             ProgressBar diskUsageInfo, int freeDiskSpaceWarningLevel) {
+        this(context, mountPointInfo, diskUsageInfo, freeDiskSpaceWarningLevel,
+                false);
+    }
+
+    /**
+     * Constructor of <code>FilesystemAsyncTask</code>.
+     *
+     * @param context The current context
+     * @param mountPointInfo The mount point info view
+     * @param diskUsageInfo The mount point info view
+     * @param freeDiskSpaceWarningLevel The free disk space warning level
+     * @param isDialog Whether or not to use dialog theme resources
+     */
+    public FilesystemAsyncTask(
+            Context context, ImageView mountPointInfo,
+            ProgressBar diskUsageInfo, int freeDiskSpaceWarningLevel, boolean isDialog) {
         super();
         this.mContext = context;
         this.mMountPointInfo = mountPointInfo;
         this.mDiskUsageInfo = diskUsageInfo;
         this.mFreeDiskSpaceWarningLevel = freeDiskSpaceWarningLevel;
         this.mRunning = false;
+        this.mIsDialog = isDialog;
     }
 
     /**
@@ -109,14 +132,16 @@ public class FilesystemAsyncTask extends AsyncTask<String, Integer, Boolean> {
             if (isCancelled()) {
                 return Boolean.TRUE;
             }
-            this.mMountPointInfo.post(new Runnable() {
+            ((Activity)mContext).runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
                     Theme theme = ThemeManager.getCurrentTheme(FilesystemAsyncTask.this.mContext);
                     theme.setImageDrawable(
                             FilesystemAsyncTask.this.mContext,
                             FilesystemAsyncTask.this.mMountPointInfo,
-                            "filesystem_warning_drawable"); //$NON-NLS-1$
+                            FilesystemAsyncTask.this.mIsDialog ?
+                                    "filesystem_dialog_warning_drawable" //$NON-NLS-1$
+                                    : "filesystem_warning_drawable"); //$NON-NLS-1$
                     FilesystemAsyncTask.this.mMountPointInfo.setTag(null);
                 }
             });
@@ -125,13 +150,17 @@ public class FilesystemAsyncTask extends AsyncTask<String, Integer, Boolean> {
             if (isCancelled()) {
                 return Boolean.TRUE;
             }
-            this.mMountPointInfo.post(new Runnable() {
+            ((Activity)mContext).runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
                    String resource =
                             MountPointHelper.isReadOnly(mp)
-                            ? "filesystem_locked_drawable" //$NON-NLS-1$
-                            : "filesystem_unlocked_drawable"; //$NON-NLS-1$
+                            ? FilesystemAsyncTask.this.mIsDialog ?
+                                    "filesystem_dialog_locked_drawable" //$NON-NLS-1$
+                                    : "filesystem_locked_drawable" //$NON-NLS-1$
+                            : FilesystemAsyncTask.this.mIsDialog ?
+                                    "filesystem_dialog_unlocked_drawable" //$NON-NLS-1$
+                                    : "filesystem_unlocked_drawable"; //$NON-NLS-1$
                     Theme theme = ThemeManager.getCurrentTheme(FilesystemAsyncTask.this.mContext);
                     theme.setImageDrawable(
                             FilesystemAsyncTask.this.mContext,
@@ -145,7 +174,7 @@ public class FilesystemAsyncTask extends AsyncTask<String, Integer, Boolean> {
             if (isCancelled()) {
                 return Boolean.TRUE;
             }
-            this.mDiskUsageInfo.post(new Runnable() {
+            ((Activity)mContext).runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
                     DiskUsage du = null;

@@ -33,20 +33,6 @@ import com.cyanogenmod.filemanager.preferences.CompressionMode;
 public interface ExecutableCreator {
 
     /**
-     * Method that creates an executable for change the current directory.
-     *
-     * @param dir The absolute path of the new directory to establish as current directory
-     * @return ChangeCurrentDirExecutable A {@link ChangeCurrentDirExecutable} executable
-     * implementation reference
-     * @throws CommandNotFoundException If the executable can't be created
-     * @throws NoSuchFileOrDirectory If the file or directory was not found
-     * @throws InsufficientPermissionsException If an operation requires elevated permissions
-     */
-    ChangeCurrentDirExecutable createChangeCurrentDirExecutable(
-            String dir) throws CommandNotFoundException,
-            NoSuchFileOrDirectory, InsufficientPermissionsException;
-
-    /**
      * Method that creates an executable for change the owner of a file system object.
      *
      * @param fso The absolute path to the source file system object
@@ -116,18 +102,6 @@ public interface ExecutableCreator {
      * @throws InsufficientPermissionsException If an operation requires elevated permissions
      */
     CreateFileExecutable createCreateFileExecutable(String file) throws CommandNotFoundException,
-            NoSuchFileOrDirectory, InsufficientPermissionsException;
-
-    /**
-     * Method that creates an executable for retrieve the current directory.
-     *
-     * @return CurrentDirExecutable A {@link CurrentDirExecutable} executable
-     * implementation reference
-     * @throws CommandNotFoundException If the executable can't be created
-     * @throws NoSuchFileOrDirectory If the file or directory was not found
-     * @throws InsufficientPermissionsException If an operation requires elevated permissions
-     */
-    CurrentDirExecutable createCurrentDirExecutable() throws CommandNotFoundException,
             NoSuchFileOrDirectory, InsufficientPermissionsException;
 
     /**
@@ -222,7 +196,7 @@ public interface ExecutableCreator {
      * @throws InsufficientPermissionsException If an operation requires elevated permissions
      */
     FindExecutable createFindExecutable(
-            String directory, Query query, AsyncResultListener asyncResultListener)
+            String directory, Query query, ConcurrentAsyncResultListener asyncResultListener)
             throws CommandNotFoundException,
             NoSuchFileOrDirectory, InsufficientPermissionsException;
 
@@ -376,6 +350,21 @@ public interface ExecutableCreator {
             NoSuchFileOrDirectory, InsufficientPermissionsException;
 
     /**
+     * Method that creates an executable for retrieve operating system process identifiers of a
+     * shell.
+     *
+     * @param pid The shell process id where the process is running
+     * @param processName The process name
+     * @return ProcessIdExecutable A {@link ProcessIdExecutable} executable implementation
+     * reference
+     * @throws CommandNotFoundException If the executable can't be created
+     * @throws NoSuchFileOrDirectory If the file or directory was not found
+     * @throws InsufficientPermissionsException If an operation requires elevated permissions
+     */
+    ProcessIdExecutable createProcessIdExecutable(int pid) throws CommandNotFoundException,
+            NoSuchFileOrDirectory, InsufficientPermissionsException;
+
+    /**
      * Method that creates an executable for retrieve operating system process identifier of a
      * process.
      *
@@ -526,6 +515,21 @@ public interface ExecutableCreator {
      */
     UncompressExecutable createUncompressExecutable(
             String src, String dst, AsyncResultListener asyncResultListener)
+            throws CommandNotFoundException,
+            NoSuchFileOrDirectory, InsufficientPermissionsException;
+
+    /**
+     * Method that creates an executable for calculate checksums of file system objects.
+     *
+     * @param src The compressed file
+     * @param asyncResultListener The listener where to return partial results
+     * @return ChecksumExecutable A {@link ChecksumExecutable} executable implementation reference
+     * @throws CommandNotFoundException If the executable can't be created
+     * @throws NoSuchFileOrDirectory If the file or directory was not found
+     * @throws InsufficientPermissionsException If an operation requires elevated permissions
+     */
+    ChecksumExecutable createChecksumExecutable(
+            String src, AsyncResultListener asyncResultListener)
             throws CommandNotFoundException,
             NoSuchFileOrDirectory, InsufficientPermissionsException;
 
